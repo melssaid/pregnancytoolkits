@@ -8003,5 +8003,72 @@
         }
       }
     }
+  },
+  "safety": {
+    "whenToCall": {
+      "title": "When to Call Your Doctor",
+      "kickCounter": {
+        "items": [
+          "Fewer than 10 movements in 2 hours",
+          "Sudden decrease in baby's usual movement pattern",
+          "No movements felt for several hours",
+          "Movements feel weaker than usual"
+        ]
+      },
+      "contraction": {
+        "items": [
+          "Contractions every 5 minutes lasting 1 minute for 1 hour (5-1-1 rule)",
+          "Water breaking (clear or greenish fluid)",
+          "Heavy vaginal bleeding",
+          "Severe pain between contractions that doesn't ease"
+        ]
+      },
+      "symptoms": {
+        "items": [
+          "Severe or persistent headache with vision changes",
+          "Sudden swelling of face, hands, or feet",
+          "Persistent abdominal pain or cramping",
+          "Fever above 38°C (100.4°F)",
+          "Vaginal bleeding at any stage"
+        ]
+      },
+      "preeclampsia": {
+        "items": [
+          "Blood pressure above 140/90 mmHg",
+          "Severe headache that doesn't respond to medication",
+          "Vision changes: blurriness, spots, or light sensitivity",
+          "Upper abdominal pain, especially under the ribs",
+          "Sudden weight gain with facial or hand swelling"
+        ]
+      },
+      "general": {
+        "items": [
+          "Any vaginal bleeding or fluid leakage",
+          "Severe or persistent headache",
+          "Difficulty breathing or chest pain",
+          "Signs of infection: fever, chills, burning urination",
+          "Reduced or absent fetal movement after week 28"
+        ]
+      }
+    },
+    "emergency": "In an emergency, call your local emergency services immediately. Do not wait.",
+    "evidence": {
+      "fiveOneOne": {
+        "title": "The 5-1-1 Rule",
+        "content": "Go to the hospital when contractions come every 5 minutes, each lasting 1 minute, for at least 1 hour consistently.",
+        "source": "Source: American College of Obstetricians and Gynecologists (ACOG)"
+      },
+      "kickCounting": {
+        "title": "Kick Counting Guidelines",
+        "content": "After week 28, you should feel at least 10 movements within 2 hours. The best time to count is when your baby is usually most active.",
+        "source": "Source: American Pregnancy Association"
+      }
+    },
+    "banners": {
+      "lowKicks": "Fewer than 10 kicks recorded. If this continues, please contact your healthcare provider.",
+      "activeLabor": "Your contraction pattern suggests active labor may be approaching. Consider contacting your hospital.",
+      "highBP": "Elevated blood pressure detected. Please consult your healthcare provider promptly.",
+      "lowBP": "Low blood pressure detected. Rest and stay hydrated. Consult your doctor if symptoms persist."
+    }
   }
 }

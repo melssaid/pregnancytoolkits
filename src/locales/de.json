@@ -7898,5 +7898,72 @@
         }
       }
     }
+  },
+  "safety": {
+    "whenToCall": {
+      "title": "Wann Sie Ihre Ärztin kontaktieren sollten",
+      "kickCounter": {
+        "items": [
+          "Weniger als 10 Bewegungen in 2 Stunden",
+          "Plötzliche Abnahme des gewohnten Bewegungsmusters",
+          "Keine Bewegungen über mehrere Stunden",
+          "Bewegungen fühlen sich schwächer an als üblich"
+        ]
+      },
+      "contraction": {
+        "items": [
+          "Wehen alle 5 Minuten, je 1 Minute lang, über 1 Stunde (5-1-1-Regel)",
+          "Blasensprung (klare oder grünliche Flüssigkeit)",
+          "Starke vaginale Blutung",
+          "Starke Schmerzen zwischen den Wehen, die nicht nachlassen"
+        ]
+      },
+      "symptoms": {
+        "items": [
+          "Starke oder anhaltende Kopfschmerzen mit Sehstörungen",
+          "Plötzliche Schwellung von Gesicht, Händen oder Füßen",
+          "Anhaltende Bauchschmerzen oder Krämpfe",
+          "Fieber über 38°C",
+          "Vaginale Blutung in jeder Phase"
+        ]
+      },
+      "preeclampsia": {
+        "items": [
+          "Blutdruck über 140/90 mmHg",
+          "Starke Kopfschmerzen, die nicht auf Medikamente ansprechen",
+          "Sehstörungen: Verschwommenheit, Flecken oder Lichtempfindlichkeit",
+          "Oberbauchschmerzen, besonders unter den Rippen",
+          "Plötzliche Gewichtszunahme mit Schwellung im Gesicht oder an den Händen"
+        ]
+      },
+      "general": {
+        "items": [
+          "Jede vaginale Blutung oder Flüssigkeitsaustritt",
+          "Starke oder anhaltende Kopfschmerzen",
+          "Atembeschwerden oder Brustschmerzen",
+          "Infektionszeichen: Fieber, Schüttelfrost, Brennen beim Wasserlassen",
+          "Verminderte oder fehlende Kindsbewegungen nach Woche 28"
+        ]
+      }
+    },
+    "emergency": "Rufen Sie im Notfall sofort den Rettungsdienst. Warten Sie nicht.",
+    "evidence": {
+      "fiveOneOne": {
+        "title": "Die 5-1-1-Regel",
+        "content": "Fahren Sie ins Krankenhaus, wenn die Wehen alle 5 Minuten kommen, jeweils 1 Minute dauern und dies mindestens 1 Stunde anhält.",
+        "source": "Quelle: American College of Obstetricians and Gynecologists (ACOG)"
+      },
+      "kickCounting": {
+        "title": "Richtlinien zum Tritte-Zählen",
+        "content": "Nach Woche 28 sollten Sie mindestens 10 Bewegungen innerhalb von 2 Stunden spüren. Zählen Sie am besten, wenn Ihr Baby normalerweise am aktivsten ist.",
+        "source": "Quelle: American Pregnancy Association"
+      }
+    },
+    "banners": {
+      "lowKicks": "Weniger als 10 Tritte registriert. Falls dies anhält, kontaktieren Sie bitte Ihre Ärztin.",
+      "activeLabor": "Ihr Wehenmuster deutet auf eine bevorstehende aktive Geburt hin. Erwägen Sie, Ihr Krankenhaus zu kontaktieren.",
+      "highBP": "Erhöhter Blutdruck festgestellt. Bitte wenden Sie sich zeitnah an Ihre Ärztin.",
+      "lowBP": "Niedriger Blutdruck festgestellt. Ruhen Sie sich aus und trinken Sie ausreichend. Konsultieren Sie Ihre Ärztin bei anhaltenden Symptomen."
+    }
   }
 }

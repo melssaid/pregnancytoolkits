@@ -7923,5 +7923,72 @@
         }
       }
     }
+  },
+  "safety": {
+    "whenToCall": {
+      "title": "Quand appeler votre médecin",
+      "kickCounter": {
+        "items": [
+          "Moins de 10 mouvements en 2 heures",
+          "Diminution soudaine du schéma habituel de mouvements",
+          "Aucun mouvement ressenti pendant plusieurs heures",
+          "Mouvements plus faibles que d'habitude"
+        ]
+      },
+      "contraction": {
+        "items": [
+          "Contractions toutes les 5 minutes, durant 1 minute, pendant 1 heure (règle 5-1-1)",
+          "Rupture de la poche des eaux (liquide clair ou verdâtre)",
+          "Saignement vaginal abondant",
+          "Douleur intense entre les contractions qui ne s'atténue pas"
+        ]
+      },
+      "symptoms": {
+        "items": [
+          "Maux de tête sévères ou persistants avec troubles visuels",
+          "Gonflement soudain du visage, des mains ou des pieds",
+          "Douleur abdominale persistante ou crampes",
+          "Fièvre supérieure à 38°C",
+          "Saignement vaginal à tout stade"
+        ]
+      },
+      "preeclampsia": {
+        "items": [
+          "Tension artérielle supérieure à 140/90 mmHg",
+          "Maux de tête sévères ne répondant pas aux médicaments",
+          "Troubles visuels : vision floue, taches ou sensibilité à la lumière",
+          "Douleur abdominale haute, surtout sous les côtes",
+          "Prise de poids soudaine avec gonflement du visage ou des mains"
+        ]
+      },
+      "general": {
+        "items": [
+          "Tout saignement vaginal ou fuite de liquide",
+          "Maux de tête sévères ou persistants",
+          "Difficulté à respirer ou douleur thoracique",
+          "Signes d'infection : fièvre, frissons, brûlures urinaires",
+          "Mouvements fœtaux réduits ou absents après la semaine 28"
+        ]
+      }
+    },
+    "emergency": "En cas d'urgence, appelez immédiatement les services d'urgence locaux. N'attendez pas.",
+    "evidence": {
+      "fiveOneOne": {
+        "title": "La règle 5-1-1",
+        "content": "Rendez-vous à l'hôpital lorsque les contractions surviennent toutes les 5 minutes, durent 1 minute chacune, pendant au moins 1 heure.",
+        "source": "Source : American College of Obstetricians and Gynecologists (ACOG)"
+      },
+      "kickCounting": {
+        "title": "Guide du comptage des coups de pied",
+        "content": "Après la semaine 28, vous devriez sentir au moins 10 mouvements en 2 heures. Le meilleur moment pour compter est quand votre bébé est habituellement le plus actif.",
+        "source": "Source : American Pregnancy Association"
+      }
+    },
+    "banners": {
+      "lowKicks": "Moins de 10 coups de pied enregistrés. Si cela continue, contactez votre professionnel de santé.",
+      "activeLabor": "Votre schéma de contractions suggère un travail actif imminent. Envisagez de contacter votre hôpital.",
+      "highBP": "Tension artérielle élevée détectée. Veuillez consulter votre professionnel de santé rapidement.",
+      "lowBP": "Tension artérielle basse détectée. Reposez-vous et hydratez-vous. Consultez si les symptômes persistent."
+    }
   }
 }

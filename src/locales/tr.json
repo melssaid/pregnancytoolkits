@@ -7611,5 +7611,72 @@
         }
       }
     }
+  },
+  "safety": {
+    "whenToCall": {
+      "title": "Doktorunuzu ne zaman aramalısınız",
+      "kickCounter": {
+        "items": [
+          "2 saat içinde 10'dan az hareket",
+          "Bebeğin alışılmış hareket düzeninde ani azalma",
+          "Birkaç saat boyunca hiç hareket hissetmeme",
+          "Hareketlerin normalden daha zayıf hissedilmesi"
+        ]
+      },
+      "contraction": {
+        "items": [
+          "Her 5 dakikada bir, 1 dakika süren kasılmalar, 1 saat boyunca (5-1-1 kuralı)",
+          "Su kesesinin açılması (berrak veya yeşilimsi sıvı)",
+          "Yoğun vajinal kanama",
+          "Kasılmalar arasında geçmeyen şiddetli ağrı"
+        ]
+      },
+      "symptoms": {
+        "items": [
+          "Görme değişiklikleri ile birlikte şiddetli veya sürekli baş ağrısı",
+          "Yüz, el veya ayaklarda ani şişlik",
+          "Sürekli karın ağrısı veya kramplar",
+          "38°C üzerinde ateş",
+          "Her dönemde vajinal kanama"
+        ]
+      },
+      "preeclampsia": {
+        "items": [
+          "140/90 mmHg üzerinde tansiyon",
+          "İlaçlara yanıt vermeyen şiddetli baş ağrısı",
+          "Görme değişiklikleri: bulanıklık, noktalar veya ışığa duyarlılık",
+          "Üst karın ağrısı, özellikle kaburgaların altında",
+          "Yüz veya ellerde şişlik ile ani kilo artışı"
+        ]
+      },
+      "general": {
+        "items": [
+          "Herhangi bir vajinal kanama veya sıvı sızıntısı",
+          "Şiddetli veya sürekli baş ağrısı",
+          "Nefes almada zorluk veya göğüs ağrısı",
+          "Enfeksiyon belirtileri: ateş, titreme, idrar yaparken yanma",
+          "28. haftadan sonra azalmış veya kaybolmuş bebek hareketleri"
+        ]
+      }
+    },
+    "emergency": "Acil durumda hemen acil servisi arayın. Beklemeyin.",
+    "evidence": {
+      "fiveOneOne": {
+        "title": "5-1-1 Kuralı",
+        "content": "Kasılmalar her 5 dakikada bir geldiğinde, her biri 1 dakika sürdüğünde ve bu en az 1 saat devam ettiğinde hastaneye gidin.",
+        "source": "Kaynak: American College of Obstetricians and Gynecologists (ACOG)"
+      },
+      "kickCounting": {
+        "title": "Tekme Sayma Rehberi",
+        "content": "28. haftadan sonra 2 saat içinde en az 10 hareket hissetmelisiniz. Saymak için en iyi zaman bebeğinizin genellikle en aktif olduğu zamandır.",
+        "source": "Kaynak: American Pregnancy Association"
+      }
+    },
+    "banners": {
+      "lowKicks": "10'dan az tekme kaydedildi. Bu devam ederse, sağlık uzmanınızla iletişime geçin.",
+      "activeLabor": "Kasılma düzeniniz aktif doğumun yaklaştığını gösteriyor. Hastanenizi aramayı düşünün.",
+      "highBP": "Yüksek tansiyon tespit edildi. Lütfen sağlık uzmanınıza danışın.",
+      "lowBP": "Düşük tansiyon tespit edildi. Dinlenin ve bol sıvı alın. Belirtiler devam ederse doktorunuza danışın."
+    }
   }
 }

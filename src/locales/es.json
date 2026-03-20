@@ -7611,5 +7611,72 @@
         }
       }
     }
+  },
+  "safety": {
+    "whenToCall": {
+      "title": "Cuándo llamar a tu médica",
+      "kickCounter": {
+        "items": [
+          "Menos de 10 movimientos en 2 horas",
+          "Disminución repentina del patrón habitual de movimiento",
+          "Sin movimientos durante varias horas",
+          "Movimientos más débiles de lo habitual"
+        ]
+      },
+      "contraction": {
+        "items": [
+          "Contracciones cada 5 minutos, de 1 minuto de duración, durante 1 hora (regla 5-1-1)",
+          "Rotura de membranas (líquido claro o verdoso)",
+          "Sangrado vaginal abundante",
+          "Dolor intenso entre contracciones que no cede"
+        ]
+      },
+      "symptoms": {
+        "items": [
+          "Dolor de cabeza severo o persistente con cambios visuales",
+          "Hinchazón repentina de cara, manos o pies",
+          "Dolor abdominal persistente o calambres",
+          "Fiebre superior a 38°C",
+          "Sangrado vaginal en cualquier etapa"
+        ]
+      },
+      "preeclampsia": {
+        "items": [
+          "Presión arterial superior a 140/90 mmHg",
+          "Dolor de cabeza severo que no responde a medicamentos",
+          "Cambios visuales: visión borrosa, manchas o sensibilidad a la luz",
+          "Dolor abdominal superior, especialmente bajo las costillas",
+          "Aumento repentino de peso con hinchazón facial o de manos"
+        ]
+      },
+      "general": {
+        "items": [
+          "Cualquier sangrado vaginal o pérdida de líquido",
+          "Dolor de cabeza severo o persistente",
+          "Dificultad para respirar o dolor en el pecho",
+          "Signos de infección: fiebre, escalofríos, ardor al orinar",
+          "Movimientos fetales reducidos o ausentes después de la semana 28"
+        ]
+      }
+    },
+    "emergency": "En caso de emergencia, llama inmediatamente a los servicios de emergencia. No esperes.",
+    "evidence": {
+      "fiveOneOne": {
+        "title": "La regla 5-1-1",
+        "content": "Ve al hospital cuando las contracciones vengan cada 5 minutos, duren 1 minuto cada una, durante al menos 1 hora.",
+        "source": "Fuente: American College of Obstetricians and Gynecologists (ACOG)"
+      },
+      "kickCounting": {
+        "title": "Guía de conteo de patadas",
+        "content": "Después de la semana 28, deberías sentir al menos 10 movimientos en 2 horas. El mejor momento para contar es cuando tu bebé suele estar más activo.",
+        "source": "Fuente: American Pregnancy Association"
+      }
+    },
+    "banners": {
+      "lowKicks": "Menos de 10 patadas registradas. Si esto continúa, contacta a tu profesional de salud.",
+      "activeLabor": "Tu patrón de contracciones sugiere que el parto activo puede estar cerca. Considera contactar al hospital.",
+      "highBP": "Presión arterial elevada detectada. Consulta a tu profesional de salud pronto.",
+      "lowBP": "Presión arterial baja detectada. Descansa e hidrátate. Consulta si los síntomas persisten."
+    }
   }
 }
