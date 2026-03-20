@@ -49,11 +49,34 @@ const deferAfterPaint = (fn: () => void) => {
 
 deferAfterPaint(() => {
   // Storage cleanup
-  import("@/lib/storageCleanup").then(m => m.maybeRunCleanup());
-  // Service Worker + push notifications
-  import("@/lib/pushNotifications").then(m => m.registerServiceWorker()).then(() => {
-    setTimeout(() => {
-      import("@/lib/scheduleNotifications").then(m => m.sendDailyScheduleToSW());
-    }, 2000);
-  });
+  import("@/lib/storageCleanup").then((m) => m.maybeRunCleanup());
+
+  // Prevent dev-time SW cache from intercepting Vite modules/HMR requests
+  if (import.meta.env.DEV) {
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        registrations.forEach((registration) => registration.unregister());
+      });
+    }
+
+    if ("caches" in window) {
+      caches.keys().then((keys) => {
+        keys
+          .filter((key) => key.startsWith("pt-cache-v"))
+          .forEach((key) => {
+            caches.delete(key);
+          });
+      });
+    }
+    return;
+  }
+
+  // Service Worker + push notifications (production only)
+  import("@/lib/pushNotifications")
+    .then((m) => m.registerServiceWorker())
+    .then(() => {
+      setTimeout(() => {
+        import("@/lib/scheduleNotifications").then((m) => m.sendDailyScheduleToSW());
+      }, 2000);
+    });
 });

@@ -64,6 +64,15 @@ self.addEventListener('fetch', (event) => {
   // Skip network-first patterns (API calls)
   if (NETWORK_FIRST_PATTERNS.some(p => p.test(url.href))) return;
 
+  // Never intercept Vite dev module/HMR requests
+  if (
+    url.pathname.startsWith('/src/') ||
+    url.pathname.startsWith('/node_modules/') ||
+    url.searchParams.has('t')
+  ) {
+    return;
+  }
+
   // Cache-first for static assets
   if (CACHE_FIRST_PATTERNS.some(p => p.test(url.pathname))) {
     event.respondWith(
