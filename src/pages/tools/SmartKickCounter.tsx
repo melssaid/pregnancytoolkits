@@ -131,10 +131,8 @@ const SmartKickCounter: React.FC = () => {
       const sessionHistory = await KickService.getHistory(10);
       setHistory(sessionHistory);
       
-      // Auto-analyze if enough data
-      if (sessionHistory.length >= 2) {
-        analyzePatterns(sessionHistory);
-      }
+      
+
       
     } catch (error: any) {
       toast({
@@ -176,47 +174,6 @@ const SmartKickCounter: React.FC = () => {
     return 'text-muted-foreground';
   };
 
-  // Unified AI Analysis
-  const analyzePatterns = async (sessions: any[]) => {
-    setAiResult('');
-
-    const sessionData = sessions.slice(0, 7).map(s => ({
-      kicks: s.total_kicks,
-      duration: s.duration_minutes,
-      date: new Date(s.started_at).toLocaleDateString(),
-      time: new Date(s.started_at).toLocaleTimeString(),
-      week: s.week
-    }));
-
-    const avgKicks = sessions.reduce((sum, s) => sum + s.total_kicks, 0) / sessions.length;
-    const avgDuration = sessions.reduce((sum, s) => sum + (s.duration_minutes || 0), 0) / sessions.length;
-
-    const prompt = `As a pregnancy wellness guide, provide a comprehensive baby movement analysis for week ${currentWeek}. Use supportive, non-clinical language.
-
-**Journal Entries (Last ${sessions.length} entries):**
-${sessionData.map(s => `- ${s.date} at ${s.time}: ${s.kicks} movements in ${s.duration} minutes`).join('\n')}
-
-**Summary:**
-- Average movements per entry: ${avgKicks.toFixed(1)}
-- Average entry duration: ${avgDuration.toFixed(1)} minutes
-- Activity score: ${getMovementScore()}/100
-
-Provide a comprehensive analysis covering:
-1. **Movement Patterns** - Daily trends, time-of-day observations, consistency
-2. **Health Insight** - What these patterns suggest for week ${currentWeek}, encouraging notes
-3. **Practical Tips** - Best times to journal, positions to feel movements, foods that encourage activity
-4. **Your Takeaway** - Warm encouraging summary
-
-Keep the tone warm, supportive. Avoid clinical or diagnostic language.`;
-
-    await streamChat({
-      type: 'kick-analysis',
-      messages: [{ role: 'user', content: prompt }],
-      context: { week: currentWeek },
-      onDelta: (text) => setAiResult((prev) => prev + text),
-      onDone: () => {},
-    });
-  };
 
   if (isLoading) {
     return (
