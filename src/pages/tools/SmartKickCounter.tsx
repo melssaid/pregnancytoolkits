@@ -1,22 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Baby, Play, TrendingUp, Clock, Loader2, Save, AlertTriangle, Activity, Brain, RefreshCw, Zap } from 'lucide-react';
+import { Baby, Play, TrendingUp, Clock, Loader2, Save, Zap } from 'lucide-react';
 import { ContextualWarningBanner, WhenToCallDoctorCard, EvidenceInfoBlock } from '@/components/safety';
+import { KickPatternVisualizer } from '@/components/kick-counter/KickPatternVisualizer';
+import { AIMovementAnalysis } from '@/components/kick-counter/AIMovementAnalysis';
+import { KickChart } from '@/components/charts/KickChart';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
-import { Progress } from '@/components/ui/progress';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useToast } from '@/hooks/use-toast';
 import { KickService } from '@/services/localStorageServices';
 import { ToolFrame } from '@/components/ToolFrame';
-import { usePregnancyAI } from '@/hooks/usePregnancyAI';
-import { AIActionButton } from '@/components/ai/AIActionButton';
-import { AIResponseFrame } from '@/components/ai/AIResponseFrame';
-import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
+
 import { useUserProfile } from '@/hooks/useUserProfile';
 
 const SmartKickCounter: React.FC = () => {
@@ -33,16 +30,7 @@ const SmartKickCounter: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   
-  // AI States
-  const [aiResult, setAiResult] = useState('');
-  
-  
-  const { streamChat, isLoading: aiLoading } = usePregnancyAI();
   const { toast } = useToast();
-
-  useResetOnLanguageChange(() => {
-    setAiResult('');
-  });
 
   useEffect(() => {
     // Sync week from central profile
@@ -141,10 +129,8 @@ const SmartKickCounter: React.FC = () => {
       const sessionHistory = await KickService.getHistory(10);
       setHistory(sessionHistory);
       
-      // Auto-analyze if enough data
-      if (sessionHistory.length >= 2) {
-        analyzePatterns(sessionHistory);
-      }
+      
+
       
     } catch (error: any) {
       toast({
@@ -186,47 +172,6 @@ const SmartKickCounter: React.FC = () => {
     return 'text-muted-foreground';
   };
 
-  // Unified AI Analysis
-  const analyzePatterns = async (sessions: any[]) => {
-    setAiResult('');
-
-    const sessionData = sessions.slice(0, 7).map(s => ({
-      kicks: s.total_kicks,
-      duration: s.duration_minutes,
-      date: new Date(s.started_at).toLocaleDateString(),
-      time: new Date(s.started_at).toLocaleTimeString(),
-      week: s.week
-    }));
-
-    const avgKicks = sessions.reduce((sum, s) => sum + s.total_kicks, 0) / sessions.length;
-    const avgDuration = sessions.reduce((sum, s) => sum + (s.duration_minutes || 0), 0) / sessions.length;
-
-    const prompt = `As a pregnancy wellness guide, provide a comprehensive baby movement analysis for week ${currentWeek}. Use supportive, non-clinical language.
-
-**Journal Entries (Last ${sessions.length} entries):**
-${sessionData.map(s => `- ${s.date} at ${s.time}: ${s.kicks} movements in ${s.duration} minutes`).join('\n')}
-
-**Summary:**
-- Average movements per entry: ${avgKicks.toFixed(1)}
-- Average entry duration: ${avgDuration.toFixed(1)} minutes
-- Activity score: ${getMovementScore()}/100
-
-Provide a comprehensive analysis covering:
-1. **Movement Patterns** - Daily trends, time-of-day observations, consistency
-2. **Health Insight** - What these patterns suggest for week ${currentWeek}, encouraging notes
-3. **Practical Tips** - Best times to journal, positions to feel movements, foods that encourage activity
-4. **Your Takeaway** - Warm encouraging summary
-
-Keep the tone warm, supportive. Avoid clinical or diagnostic language.`;
-
-    await streamChat({
-      type: 'kick-analysis',
-      messages: [{ role: 'user', content: prompt }],
-      context: { week: currentWeek },
-      onDelta: (text) => setAiResult((prev) => prev + text),
-      onDone: () => {},
-    });
-  };
 
   if (isLoading) {
     return (
@@ -534,66 +479,40 @@ Keep the tone warm, supportive. Avoid clinical or diagnostic language.`;
           </Card>
         </div>
 
-        {/* Mini Kick History Chart */}
+        {/* Pattern Visualizer — rich health score + trend + bar chart */}
         {history.length >= 2 && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.15 }}
-          >
-            <Card className="overflow-hidden border-border/40">
-              <CardContent className="py-3 px-4">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs font-semibold text-foreground">{t('toolsInternal.kickCounter.recentActivity', 'Recent Activity')}</span>
-                  <span className="text-[10px] text-muted-foreground">{t('toolsInternal.kickCounter.lastSessions', { count: Math.min(history.length, 7) })}</span>
-                </div>
-                <div className="flex items-end gap-1.5 h-16">
-                  {history.slice(0, 7).reverse().map((session, i) => {
-                    const maxKicks = Math.max(...history.slice(0, 7).map(s => s.total_kicks), 1);
-                    const heightPercent = Math.max(12, (session.total_kicks / maxKicks) * 100);
-                    const isLast = i === Math.min(history.length, 7) - 1;
-                    return (
-                      <div key={session.id || i} className="flex-1 flex flex-col items-center gap-1">
-                        <span className="text-[9px] font-bold text-muted-foreground tabular-nums">{session.total_kicks}</span>
-                        <motion.div
-                          initial={{ height: 0 }}
-                          animate={{ height: `${heightPercent}%` }}
-                          transition={{ duration: 0.5, delay: i * 0.05 }}
-                          className={`w-full rounded-t-md ${isLast ? 'bg-primary' : 'bg-primary/30'}`}
-                          style={{ minHeight: 4 }}
-                        />
-                        <span className="text-[8px] text-muted-foreground">
-                          {new Date(session.started_at).toLocaleDateString(undefined, { day: 'numeric' })}
-                        </span>
-                      </div>
-                    );
-                  })}
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
+          <KickPatternVisualizer
+            sessions={history.slice(0, 7).map((s: any) => ({
+              date: new Date(s.started_at).toISOString().split('T')[0],
+              kicks: s.total_kicks,
+              duration: s.duration_minutes || 0,
+              startTime: new Date(s.started_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+            }))}
+          />
         )}
 
-        {/* AI Analysis - Single Button */}
-        {history.length >= 1 && (
-          <div className="space-y-3">
-            <AIActionButton
-              onClick={() => analyzePatterns(history)}
-              isLoading={aiLoading}
-              label={t('toolsInternal.kickCounter.aiDataAnalysis')}
-              loadingLabel={t('toolsInternal.kickCounter.analyzingMovements')}
-            />
-
-            {aiResult && (
-              <AIResponseFrame
-                content={aiResult}
-                isLoading={aiLoading}
-                title={t('toolsInternal.kickCounter.aiDataAnalysis')}
-                icon={Brain}
-              />
-            )}
-          </div>
+        {/* Recharts Kick Chart */}
+        {history.length >= 2 && (
+          <KickChart
+            sessions={history.slice(0, 7).map((s: any) => ({
+              id: s.id,
+              startTime: new Date(s.started_at),
+              kicks: s.total_kicks,
+              duration: (s.duration_minutes || 0) * 60,
+            }))}
+          />
         )}
+
+        {/* AI Movement Analysis — phased, animated */}
+        <AIMovementAnalysis
+          sessions={history.map((s: any) => ({
+            date: new Date(s.started_at).toISOString().split('T')[0],
+            kicks: s.total_kicks,
+            duration: s.duration_minutes || 0,
+            startTime: new Date(s.started_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+          }))}
+          currentWeek={currentWeek}
+        />
 
         {/* History */}
         {history.length > 0 && (
