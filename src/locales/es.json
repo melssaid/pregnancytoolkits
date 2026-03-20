@@ -175,7 +175,57 @@
     "selectDate": "Seleccionar fecha",
     "weeksUnit": "semanas",
     "autoWeekNote": "Semana calculada automáticamente",
-    "dueDateLabel": "Fecha estimada de parto"
+    "dueDateLabel": "Fecha estimada de parto",
+    "step2": {
+      "title": "¿Dónde estás en tu camino?",
+      "subtitle": "Personalizaremos todo para ti",
+      "fertility": "Sueño con un bebé",
+      "fertilityDesc": "Seguimiento de fertilidad y planificación del embarazo",
+      "pregnant": "Mi embarazo",
+      "pregnantDesc": "Tu compañera integral durante el embarazo",
+      "postpartum": "Mi bebé",
+      "postpartumDesc": "Cuida a tu bebé y recupérate con confianza"
+    },
+    "step3": {
+      "title": "Tus datos de salud",
+      "subtitle": "Nos ayuda a dar recomendaciones precisas",
+      "bloodType": "Grupo sanguíneo",
+      "selectBloodType": "Seleccionar",
+      "unknown": "Desconocido",
+      "healthConsiderations": "Consideraciones de salud",
+      "condition": {
+        "gestationalDiabetes": "Diabetes gestacional",
+        "highBloodPressure": "Presión arterial alta",
+        "twinPregnancy": "Embarazo gemelar",
+        "thyroidDisorder": "Trastorno tiroideo",
+        "none": "Ninguno de los anteriores"
+      }
+    },
+    "step4": {
+      "title": "¿Qué es lo más importante para ti?",
+      "subtitle": "Selecciona tus prioridades",
+      "goal": {
+        "nutrition": "Nutrición saludable",
+        "fitness": "Ejercicio seguro",
+        "sleep": "Mejor sueño",
+        "mentalHealth": "Salud mental",
+        "weightTracking": "Control de peso",
+        "babyCare": "Cuidado del bebé"
+      },
+      "notifications": "Recordatorios",
+      "notifVitamins": "Recordatorios de vitaminas",
+      "notifWater": "Recordatorios de agua",
+      "notifAppointments": "Recordatorios de citas"
+    },
+    "step5": {
+      "title": "Tu privacidad primero",
+      "subtitle": "Nos tomamos tu privacidad en serio",
+      "localData": "Tus datos se almacenan localmente en tu dispositivo",
+      "noThirdParty": "Sin compartir con terceros",
+      "fullControl": "Control total sobre tus datos",
+      "disclaimerTitle": "Descargo de responsabilidad médica",
+      "startJourney": "Comienza tu camino"
+    }
   },
   "tools": {
     "pregnancyAssistant": {

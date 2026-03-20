@@ -175,7 +175,57 @@
     "selectDate": "اختر تاريخاً",
     "weeksUnit": "أسابيع",
     "autoWeekNote": "يُحسب الأسبوع تلقائياً من هذا التاريخ",
-    "dueDateLabel": "تاريخ الولادة المتوقع"
+    "dueDateLabel": "تاريخ الولادة المتوقع",
+    "step2": {
+      "title": "أين أنتِ في رحلتكِ؟",
+      "subtitle": "سنخصص كل شيء من أجلكِ",
+      "fertility": "أحلم بطفل",
+      "fertilityDesc": "أدوات تتبع الخصوبة والتخطيط للحمل",
+      "pregnant": "حملي",
+      "pregnantDesc": "رفيقتكِ الشاملة خلال رحلة الحمل",
+      "postpartum": "طفلي",
+      "postpartumDesc": "رعاية طفلكِ والتعافي بثقة"
+    },
+    "step3": {
+      "title": "بياناتكِ الصحية",
+      "subtitle": "تساعدنا على تقديم توصيات دقيقة",
+      "bloodType": "فصيلة الدم",
+      "selectBloodType": "اختاري",
+      "unknown": "غير معروفة",
+      "healthConsiderations": "الاعتبارات الصحية",
+      "condition": {
+        "gestationalDiabetes": "سكري الحمل",
+        "highBloodPressure": "ضغط الدم المرتفع",
+        "twinPregnancy": "حمل توأم",
+        "thyroidDisorder": "اضطراب الغدة الدرقية",
+        "none": "لا شيء مما سبق"
+      }
+    },
+    "step4": {
+      "title": "ما الذي يهمكِ أكثر؟",
+      "subtitle": "اختاري أولوياتكِ",
+      "goal": {
+        "nutrition": "تغذية صحية",
+        "fitness": "لياقة آمنة",
+        "sleep": "نوم أفضل",
+        "mentalHealth": "صحة نفسية",
+        "weightTracking": "تتبع الوزن",
+        "babyCare": "رعاية الطفل"
+      },
+      "notifications": "التذكيرات",
+      "notifVitamins": "تذكير الفيتامينات",
+      "notifWater": "تذكير شرب الماء",
+      "notifAppointments": "تذكير المواعيد"
+    },
+    "step5": {
+      "title": "خصوصيتكِ أولاً",
+      "subtitle": "نأخذ خصوصيتكِ على محمل الجد",
+      "localData": "بياناتكِ مخزنة محلياً على جهازكِ",
+      "noThirdParty": "لا مشاركة مع أطراف ثالثة",
+      "fullControl": "تحكم كامل في بياناتكِ",
+      "disclaimerTitle": "إخلاء المسؤولية الطبية",
+      "startJourney": "ابدئي رحلتكِ"
+    }
   },
   "tools": {
     "pregnancyAssistant": {

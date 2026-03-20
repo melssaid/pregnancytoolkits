@@ -175,7 +175,57 @@
     "selectDate": "Tarih seçin",
     "weeksUnit": "hafta",
     "autoWeekNote": "Hafta bu tarihten otomatik hesaplanır",
-    "dueDateLabel": "Tahmini doğum tarihi"
+    "dueDateLabel": "Tahmini doğum tarihi",
+    "step2": {
+      "title": "Yolculuğunuzda neredesiniz?",
+      "subtitle": "Her şeyi sizin için kişiselleştireceğiz",
+      "fertility": "Bebek hayali",
+      "fertilityDesc": "Doğurganlık takibi ve hamilelik planlaması",
+      "pregnant": "Hamileliğim",
+      "pregnantDesc": "Kapsamlı hamilelik yol arkadaşınız",
+      "postpartum": "Bebeğim",
+      "postpartumDesc": "Bebeğinize bakın ve güvenle iyileşin"
+    },
+    "step3": {
+      "title": "Sağlık verileriniz",
+      "subtitle": "Doğru öneriler vermemize yardımcı olur",
+      "bloodType": "Kan grubu",
+      "selectBloodType": "Seçin",
+      "unknown": "Bilinmiyor",
+      "healthConsiderations": "Sağlık durumları",
+      "condition": {
+        "gestationalDiabetes": "Gebelik diyabeti",
+        "highBloodPressure": "Yüksek tansiyon",
+        "twinPregnancy": "İkiz gebelik",
+        "thyroidDisorder": "Tiroid bozukluğu",
+        "none": "Yukarıdakilerin hiçbiri"
+      }
+    },
+    "step4": {
+      "title": "Sizin için en önemli olan nedir?",
+      "subtitle": "Önceliklerinizi seçin",
+      "goal": {
+        "nutrition": "Sağlıklı beslenme",
+        "fitness": "Güvenli egzersiz",
+        "sleep": "Daha iyi uyku",
+        "mentalHealth": "Ruh sağlığı",
+        "weightTracking": "Kilo takibi",
+        "babyCare": "Bebek bakımı"
+      },
+      "notifications": "Hatırlatıcılar",
+      "notifVitamins": "Vitamin hatırlatıcıları",
+      "notifWater": "Su hatırlatıcıları",
+      "notifAppointments": "Randevu hatırlatıcıları"
+    },
+    "step5": {
+      "title": "Önce gizliliğiniz",
+      "subtitle": "Gizliliğinizi ciddiye alıyoruz",
+      "localData": "Verileriniz cihazınızda yerel olarak saklanır",
+      "noThirdParty": "Üçüncü taraflarla paylaşım yok",
+      "fullControl": "Verileriniz üzerinde tam kontrol",
+      "disclaimerTitle": "Tıbbi sorumluluk reddi",
+      "startJourney": "Yolculuğunuza başlayın"
+    }
   },
   "tools": {
     "pregnancyAssistant": {
