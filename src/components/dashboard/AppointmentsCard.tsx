@@ -1,31 +1,53 @@
 import { memo, useMemo } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { Calendar, ArrowRight, CalendarPlus } from "lucide-react";
+import { Calendar, ArrowRight, CalendarPlus, Clock, User } from "lucide-react";
 import { Link } from "react-router-dom";
-import { getUserId } from "@/hooks/useSupabase";
-import { safeParseLocalStorage } from "@/lib/safeStorage";
 
-export const AppointmentsCard = memo(function AppointmentsCard() {
-  const { t, i18n } = useTranslation();
-  const userId = getUserId();
+/**
+ * Reads appointments from the same localStorage key used by AppointmentService
+ * Key: "appointments" — filtered by user_id matching pregnancy_user_id
+ * Field: appointment_date (not "date")
+ */
+const getLocalUserId = (): string => {
+  return localStorage.getItem('pregnancy_user_id') || '';
+};
 
-  const upcoming = useMemo(() => {
-    const all = safeParseLocalStorage<any[]>(`appointments_${userId}`, []);
+const getUpcomingAppointments = (userId: string) => {
+  try {
+    const raw = localStorage.getItem('appointments');
+    if (!raw) return [];
+    const all = JSON.parse(raw) as any[];
     const now = new Date();
     return all
-      .filter((a: any) => new Date(a.date) >= now)
-      .sort((a: any, b: any) => new Date(a.date).getTime() - new Date(b.date).getTime())
+      .filter((a: any) => a.user_id === userId && new Date(a.appointment_date) >= now)
+      .sort((a: any, b: any) => new Date(a.appointment_date).getTime() - new Date(b.appointment_date).getTime())
       .slice(0, 3);
-  }, [userId]);
+  } catch {
+    return [];
+  }
+};
+
+export const AppointmentsCard = memo(function AppointmentsCard() {
+  const { t } = useTranslation();
+  const userId = getLocalUserId();
+
+  const upcoming = useMemo(() => getUpcomingAppointments(userId), [userId]);
 
   const formatDate = (dateStr: string) => {
     const d = new Date(dateStr);
     const now = new Date();
-    const diffDays = Math.ceil((d.getTime() - now.getTime()) / 86400000);
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const appointmentDay = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+    const diffDays = Math.round((appointmentDay.getTime() - today.getTime()) / 86400000);
     if (diffDays <= 0) return t("dailyDashboard.appointments.today");
     if (diffDays === 1) return t("dailyDashboard.appointments.tomorrow");
     return t("dailyDashboard.appointments.inDays", { days: diffDays });
+  };
+
+  const formatTime = (dateStr: string) => {
+    const d = new Date(dateStr);
+    return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   };
 
   return (
@@ -48,13 +70,27 @@ export const AppointmentsCard = memo(function AppointmentsCard() {
       {upcoming.length > 0 ? (
         <div className="space-y-1.5">
           {upcoming.map((apt: any, i: number) => (
-            <div key={i} className="flex items-center gap-2.5 p-2 rounded-xl bg-muted/30">
+            <div key={apt.id || i} className="flex items-center gap-2.5 p-2 rounded-xl bg-muted/30">
               <div className="w-6 h-6 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
                 <Calendar className="w-3 h-3 text-primary" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-[11px] font-medium text-foreground truncate">{apt.title || apt.name || t("dailyDashboard.appointments.checkup")}</p>
-                <p className="text-[9px] text-muted-foreground">{formatDate(apt.date)}</p>
+                <p className="text-[11px] font-medium text-foreground truncate">
+                  {apt.title || t("dailyDashboard.appointments.checkup")}
+                </p>
+                <div className="flex items-center gap-2 text-[9px] text-muted-foreground">
+                  <span>{formatDate(apt.appointment_date)}</span>
+                  <span className="flex items-center gap-0.5">
+                    <Clock className="w-2.5 h-2.5" />
+                    {formatTime(apt.appointment_date)}
+                  </span>
+                </div>
+                {apt.doctor_name && (
+                  <p className="text-[9px] text-muted-foreground flex items-center gap-0.5 mt-0.5">
+                    <User className="w-2.5 h-2.5" />
+                    {apt.doctor_name}
+                  </p>
+                )}
               </div>
             </div>
           ))}
