@@ -264,6 +264,9 @@ Analyze contraction pattern, regularity, and labor progression. Provide guidance
             context={{ week: 38 }}
             buttonText={t("toolsInternal.contractionTimer.aiAnalysisButton", "تحليل الانقباضات بالذكاء الاصطناعي")}
             icon={<TrendingUp className="w-4 h-4" />}
+            showPrintButton
+            showDisclaimer
+            printTitle={t("toolsInternal.contractionTimer.title", "عداد الانقباضات")}
           />
         )}
 
