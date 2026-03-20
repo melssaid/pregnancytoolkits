@@ -267,7 +267,7 @@ Analyze contraction pattern, regularity, and labor progression. Provide guidance
           />
         )}
 
-        <InlineDisclaimer />
+        
       </div>
     </ToolFrame>
   );
