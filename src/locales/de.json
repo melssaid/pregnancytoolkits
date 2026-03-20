@@ -1623,7 +1623,10 @@
         "smallMeals": "Essen Sie 5-6 kleine Mahlzeiten täglich",
         "drinkWater": "Trinken Sie 8-10 Gläser Wasser",
         "avoidRaw": "Vermeiden Sie rohe Lebensmittel"
-      }
+      },
+      "allergiesLabel": "Allergien",
+      "prepTimeLabel": "Zubereitungszeit",
+      "noneSpecified": "Nicht angegeben"
     },
     "dueDate": {
       "calculateTitle": "Berechnen Sie Ihren Geburtstermin",
@@ -1668,7 +1671,9 @@
       "aiGuideTitle": "KI-Schwangerschaftsführer",
       "getWeeklyGuide": "Wöchentlichen Leitfaden erhalten",
       "pickDate": "Datum auswählen",
-      "fromProfile": "Automatisch aus Ihrem Profil ausgefüllt"
+      "fromProfile": "Automatisch aus Ihrem Profil ausgefüllt",
+      "videosTitle": "Videos zum Geburtstermin",
+      "videosSubtitle": "Erfahren Sie mehr über die Geburt"
     },
     "kickCounter": {
       "title": "Baby-Bewegungstagebuch",
@@ -1851,7 +1856,12 @@
       "aiSuggestions": "KI-Vorschläge",
       "aiSuggestionsLabel": "KI-vorgeschlagene Fragen:",
       "yourQuestions": "Ihre Fragen",
-      "addFirst": "Fügen Sie Ihren ersten Termin hinzu!"
+      "addFirst": "Fügen Sie Ihren ersten Termin hinzu!",
+      "details": "Details",
+      "notificationHint": "Sie erhalten eine Erinnerung",
+      "questionsHint": "Fragen für den Arzt",
+      "savedWithQuestions": "Mit Fragen gespeichert",
+      "skipQuestions": "Fragen überspringen"
     },
     "babyGrowth": {
       "title": "Baby-Wachstum",
@@ -2054,7 +2064,8 @@
       "analyzing": "Überprüfung...",
       "generatingInsights": "Generiere Einblicke...",
       "clickToExpand": "Zum Erweitern klicken",
-      "clickToCollapse": "Zum Reduzieren klicken"
+      "clickToCollapse": "Zum Reduzieren klicken",
+      "nutritionAnalysis": "Ernährungsanalyse"
     },
     "nauseaRelief": {
       "title": "KI-Übelkeits-Komforttipps",
@@ -2544,7 +2555,13 @@
         "back": "Zurück",
         "next": "Weiter",
         "start": "Tracking starten"
-      }
+      },
+      "videosTitle": "Zyklusvideos",
+      "videosSubtitle": "Lernen Sie Ihren Zyklus kennen",
+      "avgLabel": "Durchschnitt",
+      "markPeriod": "Periode markieren",
+      "normal": "Normal",
+      "slightVariation": "Leichte Abweichung"
     },
     "birthPosition": {
       "title": "KI-Geburtspositionen",

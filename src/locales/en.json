@@ -2992,7 +2992,12 @@
       "aiSuggestions": "AI Suggestions",
       "aiSuggestionsLabel": "AI Suggested Questions:",
       "yourQuestions": "Your Questions",
-      "addFirst": "Add your first appointment!"
+      "addFirst": "Add your first appointment!",
+      "details": "Details",
+      "notificationHint": "You'll receive a reminder",
+      "questionsHint": "Questions for the doctor",
+      "savedWithQuestions": "Saved with questions",
+      "skipQuestions": "Skip questions"
     },
     "babyGrowth": {
       "title": "Baby Growth",

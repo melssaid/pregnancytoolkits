@@ -1307,7 +1307,11 @@
           "title": "Diário",
           "desc": "Escreva 3 coisas pelas quais você é grata"
         }
-      }
+      },
+      "personalizedPlan": "Plano personalizado",
+      "retake": "Refazer avaliação",
+      "scoreLabel": "Pontuação",
+      "helpfulVideos": "Vídeos úteis"
     },
     "weeklySummary": {
       "title": "Resumo Semanal",
@@ -1328,7 +1332,16 @@
       "refresh": "Atualizar",
       "trackTip": "Acompanhe sua semana para obter informações personalizadas sobre o crescimento do seu bebê e as mudanças do seu corpo",
       "trimester": "Trimestre",
-      "generating": "Gerando resumo..."
+      "generating": "Gerando resumo...",
+      "autoSave": "Salvar automaticamente",
+      "current": "Atual",
+      "generateFirstHint": "Gere seu primeiro resumo semanal",
+      "lastGenerated": "Última geração",
+      "localStorageNote": "Resumos salvos localmente",
+      "noSummariesYet": "Ainda sem resumos",
+      "previousSummaries": "Resumos anteriores",
+      "regenerate": "Regenerar",
+      "savedAutomatically": "Salvo automaticamente"
     },
     "hospitalBag": {
       "title": "Mala de Maternidade IA",
@@ -1576,6 +1589,21 @@
         "smallMeals": "Coma 5-6 pequenas refeições por dia",
         "drinkWater": "Beba 8-10 copos de água",
         "avoidRaw": "Evite alimentos crus"
+      },
+      "allergiesLabel": "Alergias",
+      "prepTimeLabel": "Tempo de preparo",
+      "noneSpecified": "Nenhum especificado",
+      "allergies": {
+        "none": "Nenhuma",
+        "gluten": "Glúten",
+        "dairy": "Laticínios",
+        "nuts": "Oleaginosas",
+        "eggs": "Ovos"
+      },
+      "prepTimes": {
+        "quick": "Rápido (< 15 min)",
+        "moderate": "Moderado (15-30 min)",
+        "long": "Longo (> 30 min)"
       }
     },
     "dueDate": {
@@ -1621,7 +1649,9 @@
       "aiGuideTitle": "Guia de Gravidez IA",
       "getWeeklyGuide": "Obter Guia Semanal",
       "pickDate": "Escolher uma data",
-      "fromProfile": "Preenchido automaticamente do seu perfil"
+      "fromProfile": "Preenchido automaticamente do seu perfil",
+      "videosTitle": "Vídeos sobre data prevista",
+      "videosSubtitle": "Saiba mais sobre parto"
     },
     "kickCounter": {
       "title": "Diário de movimentos do bebê",
@@ -1859,7 +1889,8 @@
       "analyzing": "Revisando...",
       "generatingInsights": "Gerando insights personalizados...",
       "clickToExpand": "Clique para expandir",
-      "clickToCollapse": "Clique para recolher"
+      "clickToCollapse": "Clique para recolher",
+      "nutritionAnalysis": "Análise nutricional"
     },
     "fitnessCoach": {
       "title": "Guia Fitness IA",
@@ -2252,8 +2283,8 @@
       "weightGainLinkDesc": "Monitore seu ganho de peso saudável"
     },
     "sleepOptimizer": {
-      "title": "Dicas de Sono IA",
-      "subtitle": "Orientação de sono personalizada para a gravidez",
+      "title": "Dicas IA para dormir",
+      "subtitle": "Guia personalizado de sono na gravidez",
       "currentWeek": "Semana Atual",
       "sleepIssues": "Problemas de Sono",
       "backPain": "Dor nas Costas",
@@ -2265,7 +2296,26 @@
       "generateTips": "Obter Dicas de Sono",
       "sleepPositions": "Posições de Sono Recomendadas",
       "bedtimeRoutine": "Rotina de Dormir",
-      "environmentTips": "Dicas do Ambiente de Sono"
+      "environmentTips": "Dicas do Ambiente de Sono",
+      "currentSleep": "Sono atual: {{hours}} horas/noite",
+      "usualBedtime": "Hora habitual de dormir",
+      "sleepChallenges": "Desafios do sono",
+      "sleepPlan": "Plano de sono",
+      "meditation": "Meditação",
+      "routine": "Rotina",
+      "leftSideTip": "Dormir do lado esquerdo é recomendado após a semana 20 para circulação ideal",
+      "sleepVideos": "Vídeos sobre sono na gravidez",
+      "sleepVideosSubtitle": "Dicas de especialistas para dormir melhor",
+      "issues": {
+        "backPain": "Dor nas costas",
+        "frequentUrination": "Micção frequente",
+        "legCramps": "Cãibras nas pernas",
+        "heartburn": "Azia",
+        "anxiety": "Ansiedade/pensamentos",
+        "babyMovements": "Movimentos do bebê",
+        "hotFlashes": "Ondas de calor",
+        "snoring": "Ronco/problemas respiratórios"
+      }
     },
     "nauseaRelief": {
       "title": "Dicas de Conforto Náuseas IA",
@@ -2530,7 +2580,94 @@
       "strengthExercises": "Exercícios de Força",
       "postureCorrection": "Correção de Postura",
       "whenToSeekHelp": "Quando Buscar Ajuda",
-      "analyzing": "Analisando..."
+      "analyzing": "Analisando...",
+      "whereHurts": "Onde dói?",
+      "fullBack": "Costas inteiras",
+      "hipsSciatica": "Quadris e ciática",
+      "exercisesCompleted": "{{completed}}/{{total}} concluídos",
+      "getAIAdvice": "Conselhos IA anti-dor",
+      "aiCoach": "Coach IA anti-dor",
+      "safetyNotice": "Aviso de segurança importante",
+      "safetyText": "Pare se sentir dor aguda ou tontura. Consulte seu médico.",
+      "exerciseList": "Exercícios para as costas",
+      "steps": "Passos",
+      "stop": "Parar",
+      "exercises": {
+        "catCow": {
+          "name": "Gato-Vaca",
+          "description": "Flexão e extensão da coluna",
+          "steps": [
+            "De quatro",
+            "Inspirar: abaixar barriga (Vaca)",
+            "Expirar: arquear costas (Gato)",
+            "Alternar lentamente",
+            "Repetir 10-15 vezes"
+          ]
+        },
+        "pelvicTilt": {
+          "name": "Inclinação pélvica",
+          "description": "Fortalecer o core",
+          "steps": [
+            "Deitada, joelhos flexionados",
+            "Achatar lombar",
+            "Inclinar pelve",
+            "Manter 5 seg",
+            "Repetir 10-15 vezes"
+          ]
+        },
+        "childPose": {
+          "name": "Postura da criança",
+          "description": "Alongamento suave das costas",
+          "steps": [
+            "Ajoelhar",
+            "Separar joelhos",
+            "Sentar nos calcanhares",
+            "Estender braços",
+            "Respirar fundo"
+          ]
+        },
+        "piriformis": {
+          "name": "Alongamento piriforme",
+          "description": "Aliviar ciática",
+          "steps": [
+            "Sentada na cadeira",
+            "Tornozelo sobre joelho",
+            "Inclinar suavemente",
+            "Manter 30 seg",
+            "Trocar lado"
+          ]
+        },
+        "wallPush": {
+          "name": "Flexão na parede",
+          "description": "Fortalecer costas altas",
+          "steps": [
+            "A um braço da parede",
+            "Mãos na altura dos ombros",
+            "Flexionar cotovelos",
+            "Empurrar de volta",
+            "Repetir 10-15 vezes"
+          ]
+        },
+        "sideStretch": {
+          "name": "Alongamento lateral",
+          "description": "Alongar os lados",
+          "steps": [
+            "Em pé, pés afastados",
+            "Levantar um braço",
+            "Inclinar para o lado",
+            "Manter 15-20 seg",
+            "Trocar lado"
+          ]
+        }
+      },
+      "targetAreas": {
+        "lowerUpperBack": "Costas baixas e altas",
+        "lowerBackCore": "Costas baixas e core",
+        "fullBack": "Costas inteiras",
+        "hipsLowerBack": "Quadris e costas baixas",
+        "upperBackArms": "Costas altas e braços",
+        "sideBody": "Laterais"
+      }
     },
     "skincare": {
       "title": "Cuidados com a Pele IA",
@@ -2780,7 +2917,26 @@
         "waterBirth": "Planejando parto na água",
         "mobility": "Quero ficar móvel",
         "tired": "Estou exausta"
-      }
+      },
+      "birthPreference": "Preferência de parto",
+      "laborStage": "Estágio do parto",
+      "physicalConditions": "Condições físicas",
+      "commonPositions": "Posições comuns",
+      "getPositions": "Obter posições",
+      "analyzing": "Analisando...",
+      "natural": "Natural",
+      "csection": "Cesárea",
+      "earlyLabor": "Trabalho de parto inicial",
+      "activeLabor": "Trabalho de parto ativo",
+      "pushing": "Expulsivo",
+      "backPain": "Dor nas costas",
+      "hipPain": "Dor no quadril",
+      "sciatica": "Ciática",
+      "spd": "Dor pélvica",
+      "highBP": "Pressão alta",
+      "noConditions": "Nenhuma condição",
+      "birthPositionVideos": "Vídeos de posições de parto",
+      "birthPositionVideosSubtitle": "Aprenda as melhores posições para o parto"
     },
     "lactationPrep": {
       "title": "Preparação para Amamentação IA",
@@ -2953,7 +3109,12 @@
       "aiSuggestions": "Sugestões AI",
       "aiSuggestionsLabel": "Perguntas sugeridas pela AI:",
       "yourQuestions": "Suas Perguntas",
-      "addFirst": "Adicione sua primeira consulta!"
+      "addFirst": "Adicione sua primeira consulta!",
+      "details": "Detalhes",
+      "notificationHint": "Você receberá um lembrete",
+      "questionsHint": "Perguntas para o médico",
+      "savedWithQuestions": "Salvo com perguntas",
+      "skipQuestions": "Pular perguntas"
     },
     "babyGrowth": {
       "title": "Crescimento do Bebê",
@@ -2997,7 +3158,9 @@
       "deleted": "Excluído",
       "whoStandards": "Baseado em padrões OMS",
       "month": "Mês {{month}}",
-      "addFirst": "Adicionar primeira medição"
+      "addFirst": "Adicionar primeira medição",
+      "aiAnalysis": "Análise IA de crescimento",
+      "analyzing": "Analisando..."
     },
     "babySleep": {
       "title": "Rastreador de Sono do Bebê",
@@ -3279,24 +3442,30 @@
         "back": "Voltar",
         "next": "Próximo",
         "start": "Começar rastreamento"
-      }
+      },
+      "avgLabel": "Média",
+      "markPeriod": "Marcar período",
+      "normal": "Normal",
+      "slightVariation": "Variação leve",
+      "videosTitle": "Vídeos do ciclo",
+      "videosSubtitle": "Aprenda sobre seu ciclo"
     },
     "weightGain": {
-      "title": "Guia de Ganho de Peso",
-      "subtitle": "Monitore um ganho de peso saudável na gravidez",
-      "currentWeight": "Peso Atual",
-      "prePregnancyWeight": "Peso Pré-Gravidez",
+      "title": "Guia de ganho de peso",
+      "subtitle": "Monitorar ganho de peso saudável",
+      "currentWeight": "Peso atual",
+      "prePregnancyWeight": "Peso pré-gravidez",
       "height": "Altura",
-      "currentWeek": "Semana Atual",
-      "analyze": "Analisar Ganho de Peso",
-      "totalGain": "Ganho Total de Peso",
-      "recommended": "Faixa Recomendada",
+      "currentWeek": "Semana atual",
+      "analyze": "Analisar ganho de peso",
+      "totalGain": "Ganho total",
+      "recommended": "Faixa recomendada",
       "status": "Status",
-      "onTrack": "No Caminho",
-      "belowTarget": "Abaixo do Objetivo",
-      "aboveTarget": "Acima do Objetivo",
-      "weeklyGain": "Ganho Semanal",
-      "aiAnalysis": "Análise de Peso IA",
+      "onTrack": "No objetivo",
+      "belowTarget": "Abaixo do objetivo",
+      "aboveTarget": "Acima do objetivo",
+      "weeklyGain": "Ganho semanal",
+      "aiAnalysis": "Análise IA do peso",
       "cancel": "Cancelar",
       "entryRemoved": "Entrada removida",
       "saveEntry": "Salvar",
@@ -3304,7 +3473,119 @@
       "showAll": "Mostrar tudo",
       "showLess": "Menos",
       "totalDistribution": "Distribuição total do peso",
-      "trimester": "Trimestre"
+      "trimester": "Trimestre",
+      "heroTitle": "Acompanhe seu peso com confiança",
+      "heroDesc": "Ferramenta médica baseada nas diretrizes OMS/IOM",
+      "iomBadge": "Baseado nas diretrizes IOM e OMS",
+      "profileSetup": "Seu perfil",
+      "profileSetupDesc": "Insira seus dados para calcular sua faixa saudável",
+      "startAnalysis": "Iniciar análise",
+      "yourProfile": "Seu perfil",
+      "heightCm": "Altura (cm)",
+      "prePregnancyWeightKg": "Peso pré-gravidez (kg)",
+      "bmiCategory": "Categoria IMC",
+      "bmiValue": "Índice de massa corporal",
+      "recommendedTotalGain": "Ganho recomendado",
+      "addWeightEntry": "Registrar peso",
+      "pregnancyWeek": "Semana de gravidez",
+      "currentWeightKg": "Peso atual (kg)",
+      "addEntry": "Adicionar",
+      "addEntryFull": "Registrar peso",
+      "entryAdded": "Peso registrado com sucesso",
+      "lastRecorded": "Último registro",
+      "weightGainTrend": "Tendência de ganho",
+      "chartNote": "Faixa recomendada",
+      "recentEntries": "Diário de peso",
+      "week": "Semana",
+      "totalWeightGainLabel": "Ganho total",
+      "progressToGoal": "Progresso ao objetivo",
+      "statusLabel": "Status",
+      "entriesCount": "Entradas",
+      "reading": "medida",
+      "noEntriesYet": "Sem entradas ainda",
+      "noEntriesHint": "Registre seu primeiro peso",
+      "trimester1": "1º trimestre",
+      "trimester2": "2º trimestre",
+      "trimester3": "3º trimestre",
+      "tipTitle": "Dica médica",
+      "tips": {
+        "first": "No 1º trimestre, o ganho é mínimo (0,5-2 kg).",
+        "second": "No 2º trimestre, aprox. 0,5 kg/semana.",
+        "third": "No 3º trimestre, o ganho pode aumentar.",
+        "general": "O ganho saudável varia. Consulte seu médico."
+      },
+      "weightDistribution": "Distribuição do peso na gravidez",
+      "distribution": {
+        "baby": "Bebê: 3-3,5 kg",
+        "placenta": "Placenta: 0,7 kg",
+        "fluid": "Líquido amniótico: 0,8 kg",
+        "uterus": "Útero: 0,9 kg",
+        "breast": "Seios: 0,5-1 kg",
+        "blood": "Volume sanguíneo: 1,4 kg",
+        "fat": "Reservas de gordura: 2,7-3,6 kg"
+      },
+      "bmiCategories": {
+        "underweight": "Abaixo do peso",
+        "normal": "Normal",
+        "overweight": "Sobrepeso",
+        "obese": "Obesidade"
+      },
+      "bmiRanges": {
+        "underweight": "Menos de 18,5",
+        "normal": "18,5 - 24,9",
+        "overweight": "25 - 29,9",
+        "obese": "30 ou mais"
+      },
+      "statusMessages": {
+        "below": {
+          "message": "Abaixo do objetivo",
+          "recommendation": "Consulte nutrição com seu médico."
+        },
+        "above": {
+          "message": "Acima do objetivo",
+          "recommendation": "Consulte hábitos saudáveis com seu médico."
+        },
+        "normal": {
+          "message": "Na faixa saudável",
+          "recommendation": "Excelente! Continue assim."
+        }
+      },
+      "minRecommended": "Mín recomendado",
+      "maxRecommended": "Máx recomendado",
+      "yourWeight": "Seu peso",
+      "weekAxis": "Semana",
+      "weightGainKg": "Ganho (kg)",
+      "aiAnalysisTitle": "Análise IA do peso",
+      "aiAnalysisButton": "Analisar com IA",
+      "weeklyDelta": "Variação",
+      "weeklyRateGauge": "Taxa semanal",
+      "healthyRange": "Saudável",
+      "kgPerWeek": "kg/sem",
+      "weeklyGoalTitle": "Sua meta para a próxima semana",
+      "goalRange": "Faixa alvo",
+      "onTrackGoal": "Você está no objetivo!",
+      "adjustGoal": "Um ajuste leve pode ajudar",
+      "trimesterComparison": "Comparação por trimestre",
+      "step1": "Insira sua altura",
+      "step2": "Insira seu peso pré-gravidez",
+      "step3": "Registre seu primeiro peso",
+      "step1Short": "Altura",
+      "step2Short": "Peso",
+      "step3Short": "Registrar",
+      "heightHint": "Insira sua altura aqui",
+      "weightHint": "Peso antes da gravidez",
+      "addFirstWeight": "Registre seu peso atual",
+      "addFirstWeightHint": "Comece com seu primeiro registro",
+      "expectedForWeek": "Ganho esperado para a semana",
+      "fromStart": "desde o início",
+      "fillProfileHint": "Insira altura e peso acima",
+      "startAnalysisHint": "Vamos ajudá-la a acompanhar seu peso",
+      "fetalDevLink": "Desenvolvimento fetal",
+      "fetalDevLinkDesc": "Crescimento do bebê semana a semana",
+      "kickCounterLink": "Contador de chutes",
+      "kickCounterLinkDesc": "Acompanhar movimentos do bebê",
+      "mealSuggestionLink": "Sugestões de refeições",
+      "mealSuggestionLinkDesc": "Ideias de refeições saudáveis"
     },
     "stressRelief": {
       "title": "Guia de Alívio do Estresse IA",
@@ -3452,6 +3733,15 @@
       "progress": "Progresso de recuperação",
       "getAIAdvice": "Conselhos IA de recuperação",
       "aiAdviceTitle": "Orientação IA de recuperação"
+    },
+    "preconceptionCheckup": {
+      "progressLabel": "Progresso",
+      "allComplete": "Tudo completo",
+      "ai": "Análise IA",
+      "disclaimer": "Consulte seu médico",
+      "tracked": "Acompanhado",
+      "categories": "Categorias",
+      "checks": "Verificações"
     }
   },
   "preeclampsiaRisk": {

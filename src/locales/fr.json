@@ -1623,7 +1623,10 @@
         "smallMeals": "Mangez 5-6 petits repas par jour",
         "drinkWater": "Buvez 8-10 verres d'eau",
         "avoidRaw": "Évitez les aliments crus"
-      }
+      },
+      "allergiesLabel": "Allergies",
+      "prepTimeLabel": "Temps de préparation",
+      "noneSpecified": "Non spécifié"
     },
     "dueDate": {
       "calculateTitle": "Calculez votre date d'accouchement",
@@ -1668,7 +1671,9 @@
       "aiGuideTitle": "Guide IA Grossesse",
       "getWeeklyGuide": "Obtenir le guide hebdomadaire",
       "pickDate": "Choisir une date",
-      "fromProfile": "Pré-rempli depuis votre profil"
+      "fromProfile": "Pré-rempli depuis votre profil",
+      "videosTitle": "Vidéos sur la date prévue",
+      "videosSubtitle": "En savoir plus sur l'accouchement"
     },
     "kickCounter": {
       "title": "Journal des mouvements bébé",
@@ -1851,7 +1856,12 @@
       "aiSuggestions": "Suggestions IA",
       "aiSuggestionsLabel": "Questions suggérées par l'IA:",
       "yourQuestions": "Vos questions",
-      "addFirst": "Ajoutez votre premier rendez-vous!"
+      "addFirst": "Ajoutez votre premier rendez-vous!",
+      "details": "Détails",
+      "notificationHint": "Vous recevrez un rappel",
+      "questionsHint": "Questions pour le médecin",
+      "savedWithQuestions": "Enregistré avec questions",
+      "skipQuestions": "Passer les questions"
     },
     "babyGrowth": {
       "title": "Croissance du bébé",
@@ -2239,7 +2249,8 @@
       "analyzing": "Révision...",
       "generatingInsights": "Génération des insights...",
       "clickToExpand": "Cliquez pour développer",
-      "clickToCollapse": "Cliquez pour réduire"
+      "clickToCollapse": "Cliquez pour réduire",
+      "nutritionAnalysis": "Analyse nutritionnelle"
     },
     "nauseaRelief": {
       "title": "Conseils confort nausées IA",
@@ -2729,7 +2740,13 @@
         "back": "Retour",
         "next": "Suivant",
         "start": "Commencer le suivi"
-      }
+      },
+      "videosTitle": "Vidéos sur le cycle",
+      "videosSubtitle": "Apprenez-en plus sur votre cycle",
+      "avgLabel": "Moyenne",
+      "markPeriod": "Marquer les règles",
+      "normal": "Normal",
+      "slightVariation": "Légère variation"
     },
     "birthPosition": {
       "title": "Positions d'Accouchement IA",

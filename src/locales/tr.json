@@ -1307,7 +1307,11 @@
           "title": "Günlük",
           "desc": "Minnettar olduğunuz 3 şeyi yazın"
         }
-      }
+      },
+      "personalizedPlan": "Kişiselleştirilmiş plan",
+      "retake": "Tekrar değerlendir",
+      "scoreLabel": "Puan",
+      "helpfulVideos": "Faydalı videolar"
     },
     "weeklySummary": {
       "title": "Haftalık Özet",
@@ -1328,7 +1332,16 @@
       "refresh": "Yenile",
       "trackTip": "Bebeğinizin büyümesi ve vücudunuzdaki değişiklikler hakkında kişiselleştirilmiş bilgi almak için haftanızı takip edin",
       "trimester": "Trimester",
-      "generating": "Özet oluşturuluyor..."
+      "generating": "Özet oluşturuluyor...",
+      "autoSave": "Otomatik kaydet",
+      "current": "Mevcut",
+      "generateFirstHint": "İlk haftalık özetinizi oluşturun",
+      "lastGenerated": "Son oluşturma",
+      "localStorageNote": "Özetler yerel olarak saklanır",
+      "noSummariesYet": "Henüz özet yok",
+      "previousSummaries": "Önceki özetler",
+      "regenerate": "Yeniden oluştur",
+      "savedAutomatically": "Otomatik olarak kaydedildi"
     },
     "hospitalBag": {
       "title": "AI Hastane Çantası",
@@ -1576,6 +1589,21 @@
         "smallMeals": "Günde 5-6 küçük öğün yiyin",
         "drinkWater": "8-10 bardak su için",
         "avoidRaw": "Çiğ yiyeceklerden kaçının"
+      },
+      "allergiesLabel": "Alerjiler",
+      "prepTimeLabel": "Hazırlama süresi",
+      "noneSpecified": "Belirtilmedi",
+      "allergies": {
+        "none": "Yok",
+        "gluten": "Gluten",
+        "dairy": "Süt ürünleri",
+        "nuts": "Kuruyemiş",
+        "eggs": "Yumurta"
+      },
+      "prepTimes": {
+        "quick": "Hızlı (< 15 dk)",
+        "moderate": "Orta (15-30 dk)",
+        "long": "Uzun (> 30 dk)"
       }
     },
     "dueDate": {
@@ -1621,7 +1649,9 @@
       "aiGuideTitle": "AI Hamilelik Rehberi",
       "getWeeklyGuide": "Haftalık Rehberi Al",
       "pickDate": "Bir tarih seçin",
-      "fromProfile": "Profilinizden otomatik dolduruldu"
+      "fromProfile": "Profilinizden otomatik dolduruldu",
+      "videosTitle": "Doğum tarihi videoları",
+      "videosSubtitle": "Doğum hakkında daha fazla bilgi edinin"
     },
     "kickCounter": {
       "title": "Bebek Hareket Günlüğü",
@@ -1859,7 +1889,8 @@
       "analyzing": "İnceleniyor...",
       "generatingInsights": "Kişiselleştirilmiş içgörüler oluşturuluyor...",
       "clickToExpand": "Genişletmek için tıklayın",
-      "clickToCollapse": "Daraltmak için tıklayın"
+      "clickToCollapse": "Daraltmak için tıklayın",
+      "nutritionAnalysis": "Beslenme analizi"
     },
     "fitnessCoach": {
       "title": "AI Fitness Rehberi",
@@ -2252,8 +2283,8 @@
       "weightGainLinkDesc": "Sağlıklı kilo alımınızı izleyin"
     },
     "sleepOptimizer": {
-      "title": "AI Uyku İpuçları",
-      "subtitle": "Hamilelik için kişiselleştirilmiş uyku rehberliği",
+      "title": "Yapay Zeka Uyku İpuçları",
+      "subtitle": "Hamilelikte kişiselleştirilmiş uyku rehberi",
       "currentWeek": "Mevcut Hafta",
       "sleepIssues": "Uyku Sorunları",
       "backPain": "Sırt Ağrısı",
@@ -2265,7 +2296,26 @@
       "generateTips": "Uyku İpuçları Al",
       "sleepPositions": "Önerilen Uyku Pozisyonları",
       "bedtimeRoutine": "Uyku Vakti Rutini",
-      "environmentTips": "Uyku Ortamı İpuçları"
+      "environmentTips": "Uyku Ortamı İpuçları",
+      "currentSleep": "Mevcut uyku: {{hours}} saat/gece",
+      "usualBedtime": "Normal uyku saati",
+      "sleepChallenges": "Uyku zorlukları",
+      "sleepPlan": "Uyku planı",
+      "meditation": "Meditasyon",
+      "routine": "Rutin",
+      "leftSideTip": "20. haftadan sonra sol tarafta uyumak optimal dolaşım için önerilir",
+      "sleepVideos": "Hamilelikte uyku videoları",
+      "sleepVideosSubtitle": "Daha iyi uyumak için uzman ipuçları",
+      "issues": {
+        "backPain": "Sırt ağrısı",
+        "frequentUrination": "Sık idrara çıkma",
+        "legCramps": "Bacak krampları",
+        "heartburn": "Mide yanması",
+        "anxiety": "Kaygı/düşünceler",
+        "babyMovements": "Bebek hareketleri",
+        "hotFlashes": "Sıcak basması",
+        "snoring": "Horlama/solunum sorunları"
+      }
     },
     "nauseaRelief": {
       "title": "AI Mide Bulantısı Rahatlatma",
@@ -2530,7 +2580,94 @@
       "strengthExercises": "Güçlendirme Egzersizleri",
       "postureCorrection": "Duruş Düzeltme",
       "whenToSeekHelp": "Ne Zaman Yardım Almalısınız",
-      "analyzing": "Analiz ediliyor..."
+      "analyzing": "Analiz ediliyor...",
+      "whereHurts": "Nerede ağrıyor?",
+      "fullBack": "Tüm sırt",
+      "hipsSciatica": "Kalça ve siyatik",
+      "exercisesCompleted": "{{completed}}/{{total}} tamamlandı",
+      "getAIAdvice": "Yapay Zeka Ağrı Tavsiyeleri",
+      "aiCoach": "Yapay Zeka Ağrı Koçu",
+      "safetyNotice": "Güvenlik uyarısı",
+      "safetyText": "Şiddetli ağrı veya baş dönmesinde durdurun. Doktorunuza danışın.",
+      "exerciseList": "Sırt egzersizleri",
+      "steps": "Adımlar",
+      "stop": "Dur",
+      "exercises": {
+        "catCow": {
+          "name": "Kedi-İnek",
+          "description": "Omurga esnekliği",
+          "steps": [
+            "Dört ayak üzerinde",
+            "Nefes al: karnı aşağı (İnek)",
+            "Nefes ver: sırtı yuvarla (Kedi)",
+            "Yavaşça değiştir",
+            "10-15 tekrar"
+          ]
+        },
+        "pelvicTilt": {
+          "name": "Pelvik Eğim",
+          "description": "Core güçlendirme",
+          "steps": [
+            "Sırt üstü, dizler bükük",
+            "Beli yere yapıştır",
+            "Pelvisi hafifçe eğ",
+            "5 sn tut",
+            "10-15 tekrar"
+          ]
+        },
+        "childPose": {
+          "name": "Çocuk Pozisyonu",
+          "description": "Nazik sırt esnemesi",
+          "steps": [
+            "Diz çök",
+            "Dizleri ayır",
+            "Topuklara otur",
+            "Kolları ileri uzat",
+            "Derin nefes al"
+          ]
+        },
+        "piriformis": {
+          "name": "Piriformis Esnemesi",
+          "description": "Siyatik rahatlatma",
+          "steps": [
+            "Sandalyede otur",
+            "Bilekte diz üzerine",
+            "Öne eğil",
+            "30 sn tut",
+            "Taraf değiştir"
+          ]
+        },
+        "wallPush": {
+          "name": "Duvar Şınavı",
+          "description": "Üst sırt güçlendirme",
+          "steps": [
+            "Kolun uzunluğunda duvar",
+            "Eller omuz hizasında",
+            "Dirsekleri bük",
+            "Geri it",
+            "10-15 tekrar"
+          ]
+        },
+        "sideStretch": {
+          "name": "Yan Esneme",
+          "description": "Gövde yanlarını esnet",
+          "steps": [
+            "Ayakta, ayaklar ayrık",
+            "Bir kolu kaldır",
+            "Yana eğil",
+            "15-20 sn tut",
+            "Taraf değiştir"
+          ]
+        }
+      },
+      "targetAreas": {
+        "lowerUpperBack": "Alt ve Üst Sırt",
+        "lowerBackCore": "Alt Sırt ve Core",
+        "fullBack": "Tüm Sırt",
+        "hipsLowerBack": "Kalça ve Alt Sırt",
+        "upperBackArms": "Üst Sırt ve Kollar",
+        "sideBody": "Yan Gövde"
+      }
     },
     "skincare": {
       "title": "AI Cilt Bakımı",
@@ -2780,7 +2917,26 @@
         "waterBirth": "Su doğumu planlıyorum",
         "mobility": "Hareketli kalmak istiyorum",
         "tired": "Çok yorgunum"
-      }
+      },
+      "birthPreference": "Doğum tercihi",
+      "laborStage": "Doğum aşaması",
+      "physicalConditions": "Fiziksel durumlar",
+      "commonPositions": "Yaygın pozisyonlar",
+      "getPositions": "Pozisyonları getir",
+      "analyzing": "Analiz ediliyor...",
+      "natural": "Doğal",
+      "csection": "Sezaryen",
+      "earlyLabor": "Erken doğum",
+      "activeLabor": "Aktif doğum",
+      "pushing": "Itme",
+      "backPain": "Sırt ağrısı",
+      "hipPain": "Kalça ağrısı",
+      "sciatica": "Siyatik",
+      "spd": "Pelvik ağrı",
+      "highBP": "Yüksek tansiyon",
+      "noConditions": "Durum yok",
+      "birthPositionVideos": "Doğum pozisyonu videoları",
+      "birthPositionVideosSubtitle": "En iyi doğum pozisyonlarını öğrenin"
     },
     "lactationPrep": {
       "title": "AI Emzirme Hazırlığı",
@@ -2953,7 +3109,12 @@
       "aiSuggestions": "AI Önerileri",
       "aiSuggestionsLabel": "AI Önerilen Sorular:",
       "yourQuestions": "Sorularınız",
-      "addFirst": "İlk randevunuzu ekleyin!"
+      "addFirst": "İlk randevunuzu ekleyin!",
+      "details": "Ayrıntılar",
+      "notificationHint": "Bir hatırlatma alacaksınız",
+      "questionsHint": "Doktor için sorular",
+      "savedWithQuestions": "Sorularla kaydedildi",
+      "skipQuestions": "Soruları atla"
     },
     "babyGrowth": {
       "title": "Bebek Büyümesi",
@@ -2997,7 +3158,9 @@
       "deleted": "Silindi",
       "whoStandards": "WHO Büyüme Standartlarına dayalı",
       "month": "Ay {{month}}",
-      "addFirst": "İlk Ölçümü Ekle"
+      "addFirst": "İlk Ölçümü Ekle",
+      "aiAnalysis": "Yapay Zeka Büyüme Analizi",
+      "analyzing": "Analiz ediliyor..."
     },
     "babySleep": {
       "title": "Bebek Uyku Takibi",
@@ -3279,24 +3442,30 @@
         "back": "Geri",
         "next": "İleri",
         "start": "Takibe Başla"
-      }
+      },
+      "avgLabel": "Ortalama",
+      "markPeriod": "Adet işaretle",
+      "normal": "Normal",
+      "slightVariation": "Hafif değişiklik",
+      "videosTitle": "Döngü videoları",
+      "videosSubtitle": "Döngünüz hakkında bilgi edinin"
     },
     "weightGain": {
-      "title": "Kilo Alımı Rehberi",
-      "subtitle": "Sağlıklı hamilelik kilosunu izleyin",
-      "currentWeight": "Mevcut Kilo",
-      "prePregnancyWeight": "Hamilelik Öncesi Kilo",
+      "title": "Kilo Alma Rehberi",
+      "subtitle": "Sağlıklı kilo alımını izleyin",
+      "currentWeight": "Mevcut ağırlık",
+      "prePregnancyWeight": "Hamilelik öncesi ağırlık",
       "height": "Boy",
-      "currentWeek": "Mevcut Hafta",
-      "analyze": "Kilo Alımını Analiz Et",
-      "totalGain": "Toplam Kilo Alımı",
-      "recommended": "Önerilen Aralık",
+      "currentWeek": "Mevcut hafta",
+      "analyze": "Kilo alımını analiz et",
+      "totalGain": "Toplam artış",
+      "recommended": "Önerilen aralık",
       "status": "Durum",
-      "onTrack": "Yolunda",
-      "belowTarget": "Hedefin Altında",
-      "aboveTarget": "Hedefin Üstünde",
-      "weeklyGain": "Haftalık Alım",
-      "aiAnalysis": "AI Kilo Analizi",
+      "onTrack": "Hedefte",
+      "belowTarget": "Hedefin altında",
+      "aboveTarget": "Hedefin üstünde",
+      "weeklyGain": "Haftalık artış",
+      "aiAnalysis": "Yapay Zeka Kilo Analizi",
       "cancel": "İptal",
       "entryRemoved": "Giriş silindi",
       "saveEntry": "Kaydet",
@@ -3304,7 +3473,119 @@
       "showAll": "Tümünü göster",
       "showLess": "Daha az",
       "totalDistribution": "Toplam Ağırlık Dağılımı",
-      "trimester": "Trimester"
+      "trimester": "Trimester",
+      "heroTitle": "Kilonuzu güvenle takip edin",
+      "heroDesc": "DSÖ/IOM kılavuzlarına dayalı tıbbi araç",
+      "iomBadge": "IOM ve DSÖ kılavuzlarına dayalı",
+      "profileSetup": "Profiliniz",
+      "profileSetupDesc": "Sağlıklı aralığınızı hesaplamak için verilerinizi girin",
+      "startAnalysis": "Analizi başlat",
+      "yourProfile": "Profiliniz",
+      "heightCm": "Boy (cm)",
+      "prePregnancyWeightKg": "Hamilelik öncesi ağırlık (kg)",
+      "bmiCategory": "VKİ kategorisi",
+      "bmiValue": "Vücut kitle indeksi",
+      "recommendedTotalGain": "Önerilen artış",
+      "addWeightEntry": "Ağırlık kaydet",
+      "pregnancyWeek": "Hamilelik haftası",
+      "currentWeightKg": "Mevcut ağırlık (kg)",
+      "addEntry": "Ekle",
+      "addEntryFull": "Ağırlık kaydet",
+      "entryAdded": "Ağırlık başarıyla kaydedildi",
+      "lastRecorded": "Son kayıt",
+      "weightGainTrend": "Kilo artış trendi",
+      "chartNote": "Önerilen aralık",
+      "recentEntries": "Ağırlık günlüğü",
+      "week": "Hafta",
+      "totalWeightGainLabel": "Toplam artış",
+      "progressToGoal": "Hedefe ilerleme",
+      "statusLabel": "Durum",
+      "entriesCount": "Girişler",
+      "reading": "ölçüm",
+      "noEntriesYet": "Henüz giriş yok",
+      "noEntriesHint": "İlk ağırlığınızı kaydedin",
+      "trimester1": "1. Trimester",
+      "trimester2": "2. Trimester",
+      "trimester3": "3. Trimester",
+      "tipTitle": "Tıbbi ipucu",
+      "tips": {
+        "first": "1. trimesterde artış minimumdur (0,5-2 kg).",
+        "second": "2. trimesterde yaklaşık 0,5 kg/hafta.",
+        "third": "3. trimesterde artış yükselebilir.",
+        "general": "Sağlıklı artış değişir. Doktorunuza danışın."
+      },
+      "weightDistribution": "Hamilelikte kilo dağılımı",
+      "distribution": {
+        "baby": "Bebek: 3-3,5 kg",
+        "placenta": "Plasenta: 0,7 kg",
+        "fluid": "Amniyotik sıvı: 0,8 kg",
+        "uterus": "Rahim: 0,9 kg",
+        "breast": "Göğüsler: 0,5-1 kg",
+        "blood": "Kan hacmi: 1,4 kg",
+        "fat": "Yağ depoları: 2,7-3,6 kg"
+      },
+      "bmiCategories": {
+        "underweight": "Düşük kilolu",
+        "normal": "Normal",
+        "overweight": "Fazla kilolu",
+        "obese": "Obez"
+      },
+      "bmiRanges": {
+        "underweight": "18,5 altı",
+        "normal": "18,5 - 24,9",
+        "overweight": "25 - 29,9",
+        "obese": "30 ve üzeri"
+      },
+      "statusMessages": {
+        "below": {
+          "message": "Hedefin altında",
+          "recommendation": "Beslenme hakkında doktorunuzla görüşün."
+        },
+        "above": {
+          "message": "Hedefin üstünde",
+          "recommendation": "Sağlıklı yeme alışkanlıkları için doktorunuzla görüşün."
+        },
+        "normal": {
+          "message": "Sağlıklı aralıkta",
+          "recommendation": "Mükemmel! Böyle devam edin."
+        }
+      },
+      "minRecommended": "Min önerilen",
+      "maxRecommended": "Maks önerilen",
+      "yourWeight": "Ağırlığınız",
+      "weekAxis": "Hafta",
+      "weightGainKg": "Artış (kg)",
+      "aiAnalysisTitle": "Yapay Zeka Kilo Analizi",
+      "aiAnalysisButton": "Yapay Zeka ile analiz",
+      "weeklyDelta": "Değişim",
+      "weeklyRateGauge": "Haftalık oran",
+      "healthyRange": "Sağlıklı",
+      "kgPerWeek": "kg/hf",
+      "weeklyGoalTitle": "Gelecek hafta hedefiniz",
+      "goalRange": "Hedef aralık",
+      "onTrackGoal": "Hedeftesiniz!",
+      "adjustGoal": "Hafif bir ayarlama yardımcı olabilir",
+      "trimesterComparison": "Trimester karşılaştırması",
+      "step1": "Boyunuzu girin",
+      "step2": "Hamilelik öncesi kilonuzu girin",
+      "step3": "İlk kilonuzu kaydedin",
+      "step1Short": "Boy",
+      "step2Short": "Kilo",
+      "step3Short": "Kaydet",
+      "heightHint": "Boyunuzu buraya girin",
+      "weightHint": "Hamilelik öncesi ağırlık",
+      "addFirstWeight": "Mevcut kilonuzu kaydedin",
+      "addFirstWeightHint": "İlk kaydınızla başlayın",
+      "expectedForWeek": "Hafta için beklenen artış",
+      "fromStart": "başlangıçtan",
+      "fillProfileHint": "Yukarıya boy ve kilo girin",
+      "startAnalysisHint": "Kilonuzu takip etmenize yardımcı olacağız",
+      "fetalDevLink": "Fetal gelişim",
+      "fetalDevLinkDesc": "Hafta hafta bebek büyümesi",
+      "kickCounterLink": "Tekme sayacı",
+      "kickCounterLinkDesc": "Bebek hareketlerini takip edin",
+      "mealSuggestionLink": "Yemek önerileri",
+      "mealSuggestionLinkDesc": "Sağlıklı yemek fikirleri"
     },
     "stressRelief": {
       "title": "AI Stres Rahatlatma Rehberi",
@@ -3452,6 +3733,15 @@
       "progress": "İyileşme ilerlemeniz",
       "getAIAdvice": "Yapay Zeka İyileşme Tavsiyeleri",
       "aiAdviceTitle": "Yapay Zeka İyileşme Rehberliği"
+    },
+    "preconceptionCheckup": {
+      "progressLabel": "İlerleme",
+      "allComplete": "Tümü tamamlandı",
+      "ai": "Yapay Zeka Analizi",
+      "disclaimer": "Doktorunuza danışın",
+      "tracked": "Takip ediliyor",
+      "categories": "Kategoriler",
+      "checks": "Kontroller"
     }
   },
   "preeclampsiaRisk": {
