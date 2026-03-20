@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { AlertTriangle, CheckCircle, Info, Shield, Heart } from "lucide-react";
+import { WhenToCallDoctorCard, EvidenceInfoBlock } from "@/components/safety";
 import { ToolFrame } from "@/components/ToolFrame";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -282,6 +283,9 @@ export default function MaternalHealthAwareness() {
           <TabsContent value="gdm"><GDMTab /></TabsContent>
           <TabsContent value="preeclampsia"><PreeclampsiaTab /></TabsContent>
         </Tabs>
+
+        {/* When to Call Doctor */}
+        <WhenToCallDoctorCard context="general" />
 
         <Card className="bg-muted/30">
           <CardContent className="pt-4">

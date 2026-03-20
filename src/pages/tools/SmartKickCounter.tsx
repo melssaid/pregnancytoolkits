@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Baby, Play, TrendingUp, Clock, Loader2, Save, AlertTriangle, Activity, Brain, RefreshCw, Zap } from 'lucide-react';
+import { ContextualWarningBanner, WhenToCallDoctorCard, EvidenceInfoBlock } from '@/components/safety';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
@@ -639,29 +640,23 @@ Keep the tone warm, supportive. Avoid clinical or diagnostic language.`;
           </Card>
         )}
 
-        {/* Information Card */}
-        <Card className="border-primary/20 bg-gradient-to-r from-primary/5 to-secondary/10">
-          <CardContent className="p-3">
-            <div className="flex items-start gap-2">
-              <Baby className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-              <div>
-                <h3 className="font-semibold text-foreground text-xs mb-1">{t('toolsInternal.kickCounter.whenToCallDoctor')}</h3>
-                <ul className="text-xs text-muted-foreground space-y-1">
-                  <li>• {t('toolsInternal.kickCounter.warningFewer')}</li>
-                  <li>• {t('toolsInternal.kickCounter.warningDecrease')}</li>
-                  <li>• {t('toolsInternal.kickCounter.warningNoMovements')}</li>
-                </ul>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+        {/* Evidence: Kick Counting Guidelines */}
+        <EvidenceInfoBlock
+          title={t("safety.evidence.kickCounting.title")}
+          content={t("safety.evidence.kickCounting.content")}
+          source={t("safety.evidence.kickCounting.source")}
+        />
 
-        {/* Educational Note */}
-        <div className="bg-muted/30 rounded-xl p-4 text-center">
-          <p className="text-xs text-muted-foreground">
-            💡 {t('toolsInternal.kickCounter.educationalNote')}
-          </p>
-        </div>
+        {/* When to Call Doctor */}
+        <WhenToCallDoctorCard context="kickCounter" />
+
+        {/* Low kicks warning banner */}
+        {kicks.length > 0 && kicks.length < 10 && elapsedTime > 7200 && (
+          <ContextualWarningBanner
+            level="warning"
+            message={t("safety.banners.lowKicks")}
+          />
+        )}
       </div>
     </ToolFrame>
   );
