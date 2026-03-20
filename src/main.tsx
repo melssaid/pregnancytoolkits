@@ -24,6 +24,29 @@ const dismissSplash = () => {
 window.addEventListener("app:first-render", dismissSplash, { once: true });
 setTimeout(dismissSplash, 5000); // safety fallback
 
+const clearDevelopmentCaches = () => {
+  if (!import.meta.env.DEV) return;
+
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      registrations.forEach((registration) => registration.unregister());
+    });
+  }
+
+  if ("caches" in window) {
+    caches.keys().then((keys) => {
+      keys.forEach((key) => {
+        if (key.startsWith("pt-cache-v") || key.includes("vite") || key.includes("workbox")) {
+          caches.delete(key);
+        }
+      });
+    });
+  }
+};
+
+// Run ASAP in development to prevent stale SW/HMR module cache from breaking dynamic imports
+clearDevelopmentCaches();
+
 // ── Mount React immediately, i18n loads in background ──
 const root = createRoot(document.getElementById("root")!);
 
@@ -51,25 +74,7 @@ deferAfterPaint(() => {
   // Storage cleanup
   import("@/lib/storageCleanup").then((m) => m.maybeRunCleanup());
 
-  // Prevent dev-time SW cache from intercepting Vite modules/HMR requests
-  if (import.meta.env.DEV) {
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.getRegistrations().then((registrations) => {
-        registrations.forEach((registration) => registration.unregister());
-      });
-    }
-
-    if ("caches" in window) {
-      caches.keys().then((keys) => {
-        keys
-          .filter((key) => key.startsWith("pt-cache-v"))
-          .forEach((key) => {
-            caches.delete(key);
-          });
-      });
-    }
-    return;
-  }
+  if (import.meta.env.DEV) return;
 
   // Service Worker + push notifications (production only)
   import("@/lib/pushNotifications")
