@@ -1365,11 +1365,17 @@
       "differentWeek": "Changer la semaine",
       "refresh": "Actualiser",
       "trackTip": "Suivez votre semaine pour obtenir des informations personnalisées sur la croissance de votre bébé et les changements de votre corps",
-      "trimester": {
-        "first": "Premier trimestre",
-        "second": "Deuxième trimestre",
-        "third": "Troisième trimestre"
-      }
+      "trimester": "Trimestre",
+      "generating": "Génération du résumé...",
+      "autoSave": "Sauvegarde auto",
+      "current": "Actuel",
+      "generateFirstHint": "Générez votre premier résumé hebdomadaire",
+      "lastGenerated": "Dernière génération",
+      "localStorageNote": "Les résumés sont stockés localement",
+      "noSummariesYet": "Pas encore de résumés",
+      "previousSummaries": "Résumés précédents",
+      "regenerate": "Régénérer",
+      "savedAutomatically": "Sauvegardé automatiquement"
     },
     "hospitalBag": {
       "title": "Sac d'hôpital IA",
@@ -1700,7 +1706,22 @@
       "startHint": "Démarrez une session puis touchez le cercle à chaque mouvement du bébé",
       "lastKick": "Dernier mouvement",
       "goalReached": "Bravo ! Objectif atteint",
-      "goalReachedDesc": "10 mouvements enregistrés — vous pouvez continuer ou sauvegarder la session"
+      "goalReachedDesc": "10 mouvements enregistrés — vous pouvez continuer ou sauvegarder la session",
+      "recording": "Enregistrement",
+      "goal": "Objectif",
+      "recentActivity": "Activité récente",
+      "lastSessions": "{{count}} dernières séances",
+      "aiDataAnalysis": "Analyse IA des mouvements",
+      "analyzingMovements": "Analyse des mouvements...",
+      "avgMin": "Moy. minutes",
+      "educationalNote": "Comptez les mouvements fœtaux quotidiennement à partir de la semaine 28. Visez 10 mouvements en 2 heures pendant la période active de votre bébé.",
+      "minWeek": "{{min}} min · Semaine {{week}}",
+      "movements": "mouvements",
+      "recentSessions": "Séances récentes",
+      "warningFewer": "Moins de 10 mouvements en 2 heures",
+      "warningDecrease": "Diminution soudaine des mouvements",
+      "warningNoMovements": "Absence de mouvements prolongée",
+      "whenToCallDoctor": "Quand appeler votre médecin"
     },
     "symptomAnalyzer": {
       "title": "Journal de bien-être grossesse",
@@ -1850,14 +1871,19 @@
       "noMeasurements": "Aucune mesure ajoutée",
       "tabs": {
         "add": "Ajouter mesure",
-        "chart": "Courbe",
-        "history": "Historique"
+        "chart": "Graphique",
+        "history": "Historique",
+        "overview": "Aperçu",
+        "milestones": "Étapes"
       },
       "status": {
         "label": "État",
         "normal": "Normal",
         "belowNormal": "Sous la normale",
-        "aboveNormal": "Au-dessus de la normale"
+        "aboveNormal": "Au-dessus de la normale",
+        "onTrack": "En bonne voie",
+        "below": "Sous la moyenne",
+        "above": "Au-dessus de la moyenne"
       },
       "ageMonths": "Âge (mois)",
       "monthUnit": "mois",
@@ -1874,7 +1900,9 @@
       "deleted": "Supprimé",
       "whoStandards": "Basé sur les normes OMS",
       "month": "Mois {{month}}",
-      "addFirst": "Ajouter première mesure"
+      "addFirst": "Ajouter première mesure",
+      "aiAnalysis": "Analyse IA de croissance",
+      "analyzing": "Analyse..."
     },
     "babySleep": {
       "title": "Suivi du sommeil bébé",
@@ -1913,7 +1941,8 @@
       "qualityGood": "Bon",
       "qualityFair": "Passable",
       "qualityNeedsAttention": "Nécessite attention",
-      "startedAt": "Commencé à"
+      "startedAt": "Commencé à",
+      "analyzing": "Analyse..."
     },
     "bloodType": {
       "title": "Calculateur de groupe sanguin",
@@ -3254,7 +3283,8 @@
         "hipsLowerBack": "Hanches & Bas du dos",
         "upperBackArms": "Haut du dos & Bras",
         "sideBody": "Côté du corps"
-      }
+      },
+      "analyzing": "Analyse..."
     },
     "lactationPrep": {
       "title": "Préparation à l'allaitement",
@@ -3509,7 +3539,82 @@
       "expectedForWeek": "Prise attendue pour la semaine",
       "fromStart": "depuis le début",
       "fillProfileHint": "Entrez taille et poids ci-dessus",
-      "startAnalysisHint": "Nous vous aiderons à suivre votre poids"
+      "startAnalysisHint": "Nous vous aiderons à suivre votre poids",
+      "cancel": "Annuler",
+      "entryRemoved": "Entrée supprimée",
+      "saveEntry": "Enregistrer",
+      "saveWeight": "Enregistrer le poids",
+      "showAll": "Tout afficher",
+      "showLess": "Moins",
+      "totalDistribution": "Répartition totale du poids",
+      "trimester": "Trimestre"
+    },
+    "babyCryTranslator": {
+      "subtitle": "Analyse des pleurs par IA",
+      "analyzeButton": "Analyser les pleurs",
+      "analyzing": "Analyse en cours...",
+      "analysisResult": "Résultat de l'analyse",
+      "reanalyze": "Réanalyser",
+      "newAnalysis": "Nouvelle analyse",
+      "recentLogs": "Entrées récentes",
+      "babyAge": "Âge du bébé",
+      "weeks": "semaines",
+      "cryDuration": "Durée des pleurs",
+      "cryPattern": "Type de pleurs",
+      "whenCrying": "Quand les pleurs ont-ils commencé ?",
+      "tipsTitle": "Conseils d'apaisement",
+      "patterns": {
+        "continuous": "Continu",
+        "intermittent": "Intermittent",
+        "escalating": "Croissant",
+        "weak": "Faible"
+      },
+      "durations": {
+        "brief": "Court (< 5 min)",
+        "moderate": "Modéré (5-15 min)",
+        "prolonged": "Prolongé (> 15 min)"
+      },
+      "contexts": {
+        "feeding": "Pendant/Après le repas",
+        "sleeping": "Avant le sommeil",
+        "diaper": "Change nécessaire",
+        "unknown": "Inconnu"
+      },
+      "tips": {
+        "swaddle": "Essayer l'emmaillotage",
+        "shush": "Chuchotement doux",
+        "swing": "Bercement doux",
+        "suck": "Offrir la tétine",
+        "side": "Position latérale"
+      }
+    },
+    "postpartumRecovery": {
+      "subtitle": "Votre guide de récupération post-partum",
+      "welcomeTitle": "Bienvenue dans votre récupération",
+      "welcomeDesc": "Conseils personnalisés basés sur votre expérience d'accouchement",
+      "selectBirthType": "Sélectionnez votre type d'accouchement",
+      "birthTypes": {
+        "vaginal": "Accouchement vaginal",
+        "cesarean": "Césarienne",
+        "assisted": "Accouchement assisté"
+      },
+      "changeBirthType": "Changer le type",
+      "phases": {
+        "week1": "Semaine 1",
+        "week2": "Semaine 2-3",
+        "week4": "Semaine 4-6",
+        "month2": "Mois 2-3"
+      },
+      "checklist": {
+        "rest": "Se reposer suffisamment",
+        "hydrate": "Rester hydratée",
+        "nutrition": "Repas nutritifs",
+        "exercise": "Marche douce",
+        "checkup": "Visite post-partum"
+      },
+      "progress": "Progression de la récupération",
+      "getAIAdvice": "Conseils IA de récupération",
+      "aiAdviceTitle": "Guidance IA de récupération"
     }
   },
   "preeclampsiaRisk": {

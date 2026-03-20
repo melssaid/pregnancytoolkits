@@ -1365,11 +1365,17 @@
       "differentWeek": "Woche ändern",
       "refresh": "Aktualisieren",
       "trackTip": "Verfolgen Sie Ihre Woche, um personalisierte Informationen über das Wachstum Ihres Babys und Ihre Körperveränderungen zu erhalten",
-      "trimester": {
-        "first": "Erstes Trimester",
-        "second": "Zweites Trimester",
-        "third": "Drittes Trimester"
-      }
+      "trimester": "Trimester",
+      "generating": "Zusammenfassung wird erstellt...",
+      "autoSave": "Automatisch speichern",
+      "current": "Aktuell",
+      "generateFirstHint": "Generieren Sie Ihre erste wöchentliche Zusammenfassung",
+      "lastGenerated": "Zuletzt erstellt",
+      "localStorageNote": "Zusammenfassungen werden lokal gespeichert",
+      "noSummariesYet": "Noch keine Zusammenfassungen",
+      "previousSummaries": "Vorherige Zusammenfassungen",
+      "regenerate": "Neu erstellen",
+      "savedAutomatically": "Automatisch gespeichert"
     },
     "hospitalBag": {
       "title": "KI-Krankenhaustasche",
@@ -1700,7 +1706,22 @@
       "startHint": "Starten Sie eine neue Sitzung und tippen Sie bei jeder Babybewegung auf den Kreis",
       "lastKick": "Letzte Bewegung",
       "goalReached": "Super! Ziel erreicht",
-      "goalReachedDesc": "10 Bewegungen aufgezeichnet — Sie können fortfahren oder die Sitzung speichern"
+      "goalReachedDesc": "10 Bewegungen aufgezeichnet — Sie können fortfahren oder die Sitzung speichern",
+      "recording": "Aufnahme läuft",
+      "goal": "Ziel",
+      "recentActivity": "Letzte Aktivität",
+      "lastSessions": "Letzte {{count}} Sitzungen",
+      "aiDataAnalysis": "KI-Bewegungsanalyse",
+      "analyzingMovements": "Bewegungen werden analysiert...",
+      "avgMin": "Durchschn. Minuten",
+      "educationalNote": "Zählen Sie ab Woche 28 täglich die Kindsbewegungen. Ziel: 10 Bewegungen in 2 Stunden während der aktiven Phase.",
+      "minWeek": "{{min}} Min. · Woche {{week}}",
+      "movements": "Bewegungen",
+      "recentSessions": "Letzte Sitzungen",
+      "warningFewer": "Weniger als 10 Bewegungen in 2 Stunden",
+      "warningDecrease": "Plötzliche Abnahme der Bewegungsmuster",
+      "warningNoMovements": "Keine Bewegungen über längere Zeit",
+      "whenToCallDoctor": "Wann Sie Ihren Arzt anrufen sollten"
     },
     "symptomAnalyzer": {
       "title": "Schwangerschafts-Wohlbefinden-Tagebuch",
@@ -1850,14 +1871,19 @@
       "noMeasurements": "Noch keine Messungen hinzugefügt",
       "tabs": {
         "add": "Messung hinzufügen",
-        "chart": "Wachstumstabelle",
-        "history": "Verlauf"
+        "chart": "Diagramm",
+        "history": "Verlauf",
+        "overview": "Übersicht",
+        "milestones": "Meilensteine"
       },
       "status": {
         "label": "Status",
         "normal": "Normal",
         "belowNormal": "Unter Normal",
-        "aboveNormal": "Über Normal"
+        "aboveNormal": "Über Normal",
+        "onTrack": "Im Zielbereich",
+        "below": "Unter Durchschnitt",
+        "above": "Über Durchschnitt"
       },
       "ageMonths": "Alter (Monate)",
       "monthUnit": "Mo.",
@@ -1874,7 +1900,9 @@
       "deleted": "Gelöscht",
       "whoStandards": "Basierend auf WHO-Standards",
       "month": "Monat {{month}}",
-      "addFirst": "Erste Messung hinzufügen"
+      "addFirst": "Erste Messung hinzufügen",
+      "aiAnalysis": "KI-Wachstumsanalyse",
+      "analyzing": "Analyse..."
     },
     "babySleep": {
       "title": "Baby-Schlaf-Tracker",
@@ -1913,7 +1941,8 @@
       "qualityGood": "Gut",
       "qualityFair": "Befriedigend",
       "qualityNeedsAttention": "Benötigt Aufmerksamkeit",
-      "startedAt": "Gestartet um"
+      "startedAt": "Gestartet um",
+      "analyzing": "Analyse..."
     },
     "bloodType": {
       "title": "Blutgruppen-Rechner",
@@ -3254,7 +3283,8 @@
         "hipsLowerBack": "Hüfte & Unterrücken",
         "upperBackArms": "Oberrücken & Arme",
         "sideBody": "Seitlich"
-      }
+      },
+      "analyzing": "Analyse..."
     },
     "lactationPrep": {
       "title": "KI-Stillvorbereitung",
@@ -3509,7 +3539,82 @@
       "expectedForWeek": "Erwartete Zunahme für Woche",
       "fromStart": "von Beginn",
       "fillProfileHint": "Geben Sie oben Größe und Gewicht ein",
-      "startAnalysisHint": "Wir helfen Ihnen, Ihr Gewicht zu verfolgen"
+      "startAnalysisHint": "Wir helfen Ihnen, Ihr Gewicht zu verfolgen",
+      "cancel": "Abbrechen",
+      "entryRemoved": "Eintrag entfernt",
+      "saveEntry": "Eintrag speichern",
+      "saveWeight": "Gewicht speichern",
+      "showAll": "Alle anzeigen",
+      "showLess": "Weniger",
+      "totalDistribution": "Gesamte Gewichtsverteilung",
+      "trimester": "Trimester"
+    },
+    "babyCryTranslator": {
+      "subtitle": "KI-gestützte Babyweinen-Analyse",
+      "analyzeButton": "Weinen analysieren",
+      "analyzing": "Analyse läuft...",
+      "analysisResult": "Analyseergebnis",
+      "reanalyze": "Erneut analysieren",
+      "newAnalysis": "Neue Analyse",
+      "recentLogs": "Letzte Einträge",
+      "babyAge": "Alter des Babys",
+      "weeks": "Wochen",
+      "cryDuration": "Dauer des Weinens",
+      "cryPattern": "Weinmuster",
+      "whenCrying": "Wann hat das Weinen begonnen?",
+      "tipsTitle": "Beruhigungstipps",
+      "patterns": {
+        "continuous": "Durchgehend",
+        "intermittent": "Unterbrochen",
+        "escalating": "Zunehmend",
+        "weak": "Schwach"
+      },
+      "durations": {
+        "brief": "Kurz (< 5 Min.)",
+        "moderate": "Mäßig (5-15 Min.)",
+        "prolonged": "Lang (> 15 Min.)"
+      },
+      "contexts": {
+        "feeding": "Beim/Nach dem Füttern",
+        "sleeping": "Vor dem Schlafen",
+        "diaper": "Windel wechseln",
+        "unknown": "Unbekannt"
+      },
+      "tips": {
+        "swaddle": "Pucken versuchen",
+        "shush": "Sanftes Shushing",
+        "swing": "Sanftes Wiegen",
+        "suck": "Schnuller anbieten",
+        "side": "Seitenlage"
+      }
+    },
+    "postpartumRecovery": {
+      "subtitle": "Ihr Wochenbett-Guide",
+      "welcomeTitle": "Willkommen zur Erholung",
+      "welcomeDesc": "Personalisierte Wochenbett-Beratung basierend auf Ihrer Geburtserfahrung",
+      "selectBirthType": "Geburtsart wählen",
+      "birthTypes": {
+        "vaginal": "Vaginale Geburt",
+        "cesarean": "Kaiserschnitt",
+        "assisted": "Assistierte Geburt"
+      },
+      "changeBirthType": "Geburtsart ändern",
+      "phases": {
+        "week1": "Woche 1",
+        "week2": "Woche 2-3",
+        "week4": "Woche 4-6",
+        "month2": "Monat 2-3"
+      },
+      "checklist": {
+        "rest": "Ausreichend ruhen",
+        "hydrate": "Hydratisiert bleiben",
+        "nutrition": "Nährstoffreiche Mahlzeiten",
+        "exercise": "Sanfte Spaziergänge",
+        "checkup": "Nachsorgeuntersuchung"
+      },
+      "progress": "Erholungsfortschritt",
+      "getAIAdvice": "KI-Erholungsberatung",
+      "aiAdviceTitle": "KI-Erholungshinweise"
     }
   },
   "preeclampsiaRisk": {

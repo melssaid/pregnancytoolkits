@@ -1327,11 +1327,8 @@
       "differentWeek": "Mudar Semana",
       "refresh": "Atualizar",
       "trackTip": "Acompanhe sua semana para obter informações personalizadas sobre o crescimento do seu bebê e as mudanças do seu corpo",
-      "trimester": {
-        "first": "Primeiro Trimestre",
-        "second": "Segundo Trimestre",
-        "third": "Terceiro Trimestre"
-      }
+      "trimester": "Trimestre",
+      "generating": "Gerando resumo..."
     },
     "hospitalBag": {
       "title": "Mala de Maternidade IA",
@@ -1662,7 +1659,22 @@
       "startHint": "Inicie uma nova sessão e toque no círculo a cada movimento do bebê",
       "lastKick": "Último movimento",
       "goalReached": "Ótimo! Meta alcançada",
-      "goalReachedDesc": "10 movimentos registrados — você pode continuar ou salvar a sessão"
+      "goalReachedDesc": "10 movimentos registrados — você pode continuar ou salvar a sessão",
+      "recording": "Gravando",
+      "goal": "Meta",
+      "recentActivity": "Atividade recente",
+      "lastSessions": "Últimas {{count}} sessões",
+      "aiDataAnalysis": "Análise IA de movimentos",
+      "analyzingMovements": "Analisando movimentos...",
+      "avgMin": "Méd. minutos",
+      "educationalNote": "Conte os movimentos fetais diariamente a partir da semana 28. Objetivo: 10 movimentos em 2 horas durante o período ativo do seu bebê.",
+      "minWeek": "{{min}} min · Semana {{week}}",
+      "movements": "movimentos",
+      "recentSessions": "Sessões recentes",
+      "warningFewer": "Menos de 10 movimentos em 2 horas",
+      "warningDecrease": "Diminuição repentina no padrão de movimento",
+      "warningNoMovements": "Sem movimentos por um período prolongado",
+      "whenToCallDoctor": "Quando ligar para o médico"
     },
     "symptomAnalyzer": {
       "title": "Diário de bem-estar da gravidez",
@@ -2517,7 +2529,8 @@
       "stretchingRoutine": "Rotina de Alongamento",
       "strengthExercises": "Exercícios de Força",
       "postureCorrection": "Correção de Postura",
-      "whenToSeekHelp": "Quando Buscar Ajuda"
+      "whenToSeekHelp": "Quando Buscar Ajuda",
+      "analyzing": "Analisando..."
     },
     "skincare": {
       "title": "Cuidados com a Pele IA",
@@ -3023,7 +3036,8 @@
       "qualityGood": "Bom",
       "qualityFair": "Regular",
       "qualityNeedsAttention": "Precisa de Atenção",
-      "startedAt": "Começou às"
+      "startedAt": "Começou às",
+      "analyzing": "Analisando..."
     },
     "diaperTracker": {
       "title": "Rastreador de Fraldas",
@@ -3282,7 +3296,15 @@
       "belowTarget": "Abaixo do Objetivo",
       "aboveTarget": "Acima do Objetivo",
       "weeklyGain": "Ganho Semanal",
-      "aiAnalysis": "Análise de Peso IA"
+      "aiAnalysis": "Análise de Peso IA",
+      "cancel": "Cancelar",
+      "entryRemoved": "Entrada removida",
+      "saveEntry": "Salvar",
+      "saveWeight": "Salvar peso",
+      "showAll": "Mostrar tudo",
+      "showLess": "Menos",
+      "totalDistribution": "Distribuição total do peso",
+      "trimester": "Trimestre"
     },
     "stressRelief": {
       "title": "Guia de Alívio do Estresse IA",
@@ -3363,6 +3385,73 @@
       "phaseTransitionDesc": "As contrações são muito fortes e muito próximas. Vá ao hospital imediatamente!",
       "aiAnalysisTitle": "Análise IA das contrações",
       "aiAnalysisButton": "Analisar contrações com IA"
+    },
+    "babyCryTranslator": {
+      "subtitle": "Análise de choro com IA",
+      "analyzeButton": "Analisar choro",
+      "analyzing": "Analisando...",
+      "analysisResult": "Resultado da análise",
+      "reanalyze": "Reanalisar",
+      "newAnalysis": "Nova análise",
+      "recentLogs": "Registros recentes",
+      "babyAge": "Idade do bebê",
+      "weeks": "semanas",
+      "cryDuration": "Duração do choro",
+      "cryPattern": "Padrão de choro",
+      "whenCrying": "Quando o choro começou?",
+      "tipsTitle": "Dicas para acalmar",
+      "patterns": {
+        "continuous": "Contínuo",
+        "intermittent": "Intermitente",
+        "escalating": "Crescente",
+        "weak": "Fraco"
+      },
+      "durations": {
+        "brief": "Breve (< 5 min)",
+        "moderate": "Moderado (5-15 min)",
+        "prolonged": "Prolongado (> 15 min)"
+      },
+      "contexts": {
+        "feeding": "Durante/Após a alimentação",
+        "sleeping": "Antes de dormir",
+        "diaper": "Troca de fralda",
+        "unknown": "Desconhecido"
+      },
+      "tips": {
+        "swaddle": "Tentar envolver",
+        "shush": "Shushing suave",
+        "swing": "Balançar suave",
+        "suck": "Oferecer chupeta",
+        "side": "Posição lateral"
+      }
+    },
+    "postpartumRecovery": {
+      "subtitle": "Seu guia de recuperação pós-parto",
+      "welcomeTitle": "Bem-vinda à sua recuperação",
+      "welcomeDesc": "Orientação personalizada com base na sua experiência de parto",
+      "selectBirthType": "Selecione o tipo de parto",
+      "birthTypes": {
+        "vaginal": "Parto vaginal",
+        "cesarean": "Cesárea",
+        "assisted": "Parto assistido"
+      },
+      "changeBirthType": "Alterar tipo de parto",
+      "phases": {
+        "week1": "Semana 1",
+        "week2": "Semana 2-3",
+        "week4": "Semana 4-6",
+        "month2": "Mês 2-3"
+      },
+      "checklist": {
+        "rest": "Descansar bastante",
+        "hydrate": "Manter-se hidratada",
+        "nutrition": "Refeições nutritivas",
+        "exercise": "Caminhadas leves",
+        "checkup": "Consulta pós-parto"
+      },
+      "progress": "Progresso de recuperação",
+      "getAIAdvice": "Conselhos IA de recuperação",
+      "aiAdviceTitle": "Orientação IA de recuperação"
     }
   },
   "preeclampsiaRisk": {

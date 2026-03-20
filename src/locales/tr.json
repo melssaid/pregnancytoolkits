@@ -1327,11 +1327,8 @@
       "differentWeek": "Haftayı Değiştir",
       "refresh": "Yenile",
       "trackTip": "Bebeğinizin büyümesi ve vücudunuzdaki değişiklikler hakkında kişiselleştirilmiş bilgi almak için haftanızı takip edin",
-      "trimester": {
-        "first": "Birinci Trimester",
-        "second": "İkinci Trimester",
-        "third": "Üçüncü Trimester"
-      }
+      "trimester": "Trimester",
+      "generating": "Özet oluşturuluyor..."
     },
     "hospitalBag": {
       "title": "AI Hastane Çantası",
@@ -1662,7 +1659,22 @@
       "startHint": "Yeni bir oturum başlatın ve her bebek hareketi için daireye dokunun",
       "lastKick": "Son hareket",
       "goalReached": "Harika! Hedefe ulaşıldı",
-      "goalReachedDesc": "10 hareket kaydedildi — devam edebilir veya oturumu kaydedebilirsiniz"
+      "goalReachedDesc": "10 hareket kaydedildi — devam edebilir veya oturumu kaydedebilirsiniz",
+      "recording": "Kaydediliyor",
+      "goal": "Hedef",
+      "recentActivity": "Son Aktivite",
+      "lastSessions": "Son {{count}} oturum",
+      "aiDataAnalysis": "Yapay Zeka Hareket Analizi",
+      "analyzingMovements": "Hareketler analiz ediliyor...",
+      "avgMin": "Ort. dakika",
+      "educationalNote": "28. haftadan itibaren günlük fetal hareketleri sayın. Bebeğinizin aktif döneminde 2 saatte 10 hareket hedefleyin.",
+      "minWeek": "{{min}} dk · Hafta {{week}}",
+      "movements": "hareket",
+      "recentSessions": "Son Oturumlar",
+      "warningFewer": "2 saatte 10'dan az hareket",
+      "warningDecrease": "Hareket düzeninde ani azalma",
+      "warningNoMovements": "Uzun süre hareket olmaması",
+      "whenToCallDoctor": "Doktorunuzu ne zaman aramalısınız"
     },
     "symptomAnalyzer": {
       "title": "Hamilelik Sağlık Günlüğü",
@@ -2517,7 +2529,8 @@
       "stretchingRoutine": "Esneme Rutini",
       "strengthExercises": "Güçlendirme Egzersizleri",
       "postureCorrection": "Duruş Düzeltme",
-      "whenToSeekHelp": "Ne Zaman Yardım Almalısınız"
+      "whenToSeekHelp": "Ne Zaman Yardım Almalısınız",
+      "analyzing": "Analiz ediliyor..."
     },
     "skincare": {
       "title": "AI Cilt Bakımı",
@@ -3023,7 +3036,8 @@
       "qualityGood": "İyi",
       "qualityFair": "Orta",
       "qualityNeedsAttention": "Dikkat Gerekiyor",
-      "startedAt": "Başlama saati"
+      "startedAt": "Başlama saati",
+      "analyzing": "Analiz ediliyor..."
     },
     "diaperTracker": {
       "title": "Bez Takibi",
@@ -3282,7 +3296,15 @@
       "belowTarget": "Hedefin Altında",
       "aboveTarget": "Hedefin Üstünde",
       "weeklyGain": "Haftalık Alım",
-      "aiAnalysis": "AI Kilo Analizi"
+      "aiAnalysis": "AI Kilo Analizi",
+      "cancel": "İptal",
+      "entryRemoved": "Giriş silindi",
+      "saveEntry": "Kaydet",
+      "saveWeight": "Ağırlığı kaydet",
+      "showAll": "Tümünü göster",
+      "showLess": "Daha az",
+      "totalDistribution": "Toplam Ağırlık Dağılımı",
+      "trimester": "Trimester"
     },
     "stressRelief": {
       "title": "AI Stres Rahatlatma Rehberi",
@@ -3363,6 +3385,73 @@
       "phaseTransitionDesc": "Kasılmalar çok güçlü ve çok sık. Derhal hastaneye gidin!",
       "aiAnalysisTitle": "Yapay Zeka Kasılma Analizi",
       "aiAnalysisButton": "Kasılmaları Yapay Zeka ile Analiz Et"
+    },
+    "babyCryTranslator": {
+      "subtitle": "Yapay zeka destekli ağlama analizi",
+      "analyzeButton": "Ağlamayı Analiz Et",
+      "analyzing": "Analiz ediliyor...",
+      "analysisResult": "Analiz Sonucu",
+      "reanalyze": "Yeniden Analiz Et",
+      "newAnalysis": "Yeni Analiz",
+      "recentLogs": "Son Kayıtlar",
+      "babyAge": "Bebeğin Yaşı",
+      "weeks": "hafta",
+      "cryDuration": "Ağlama Süresi",
+      "cryPattern": "Ağlama Türü",
+      "whenCrying": "Ağlama ne zaman başladı?",
+      "tipsTitle": "Sakinleştirme İpuçları",
+      "patterns": {
+        "continuous": "Sürekli",
+        "intermittent": "Aralıklı",
+        "escalating": "Artan",
+        "weak": "Zayıf"
+      },
+      "durations": {
+        "brief": "Kısa (< 5 dk)",
+        "moderate": "Orta (5-15 dk)",
+        "prolonged": "Uzun (> 15 dk)"
+      },
+      "contexts": {
+        "feeding": "Beslenme sırasında/sonrasında",
+        "sleeping": "Uyumadan önce",
+        "diaper": "Bez değişimi",
+        "unknown": "Bilinmiyor"
+      },
+      "tips": {
+        "swaddle": "Kundaklama deneyin",
+        "shush": "Hafif fısıldama",
+        "swing": "Hafif sallama",
+        "suck": "Emzik verin",
+        "side": "Yan pozisyon"
+      }
+    },
+    "postpartumRecovery": {
+      "subtitle": "Doğum sonrası iyileşme rehberiniz",
+      "welcomeTitle": "İyileşmenize hoş geldiniz",
+      "welcomeDesc": "Doğum deneyiminize dayalı kişiselleştirilmiş rehberlik",
+      "selectBirthType": "Doğum tipini seçin",
+      "birthTypes": {
+        "vaginal": "Normal doğum",
+        "cesarean": "Sezaryen",
+        "assisted": "Yardımlı doğum"
+      },
+      "changeBirthType": "Doğum tipini değiştir",
+      "phases": {
+        "week1": "Hafta 1",
+        "week2": "Hafta 2-3",
+        "week4": "Hafta 4-6",
+        "month2": "Ay 2-3"
+      },
+      "checklist": {
+        "rest": "Yeterince dinlenin",
+        "hydrate": "Bol su için",
+        "nutrition": "Besleyici yemekler",
+        "exercise": "Hafif yürüyüşler",
+        "checkup": "Doğum sonrası kontrol"
+      },
+      "progress": "İyileşme ilerlemeniz",
+      "getAIAdvice": "Yapay Zeka İyileşme Tavsiyeleri",
+      "aiAdviceTitle": "Yapay Zeka İyileşme Rehberliği"
     }
   },
   "preeclampsiaRisk": {
