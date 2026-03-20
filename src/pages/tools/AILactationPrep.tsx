@@ -232,11 +232,13 @@ Be encouraging and realistic - breastfeeding has a learning curve!`;
 
         {/* AI Response */}
         {response && (
-          <AIResponseFrame
-            content={response}
-            isLoading={isLoading}
-            title={t('toolsInternal.lactationPrep.title')}
-          />
+          <PrintableReport title={t('toolsInternal.lactationPrep.title')} isLoading={isLoading}>
+            <AIResponseFrame
+              content={response}
+              isLoading={isLoading}
+              title={t('toolsInternal.lactationPrep.title')}
+            />
+          </PrintableReport>
         )}
 
         {/* Support Note */}

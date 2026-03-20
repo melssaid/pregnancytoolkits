@@ -278,13 +278,15 @@ Provide brief, supportive wellness insights about these feelings during week ${c
 
         {/* AI Response */}
         {aiInsight && (
-          <AIResponseFrame
-            content={aiInsight}
-            isLoading={isGettingInsight}
-            title={t('toolsInternal.symptomAnalyzer.aiWellnessNotes')}
-            icon={Brain}
-            toolId="ai-symptom-analyzer"
-          />
+          <PrintableReport title={t('toolsInternal.symptomAnalyzer.aiWellnessNotes')} isLoading={isGettingInsight}>
+            <AIResponseFrame
+              content={aiInsight}
+              isLoading={isGettingInsight}
+              title={t('toolsInternal.symptomAnalyzer.aiWellnessNotes')}
+              icon={Brain}
+              toolId="ai-symptom-analyzer"
+            />
+          </PrintableReport>
         )}
 
         {/* Save Entry Button */}

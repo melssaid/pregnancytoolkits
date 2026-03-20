@@ -214,12 +214,13 @@ Keep suggestions practical, delicious, and easy to prepare. Focus on satisfying 
                 </div>
               )}
               {result && (
-                <AIResponseFrame
-                  content={result}
-                  title={t('toolsInternal.cravingAlternatives.healthyAlternativesFor', { craving })}
-                  icon={Salad}
-                />
-              )}
+                <PrintableReport title={t('toolsInternal.cravingAlternatives.healthyAlternativesFor', { craving })}>
+                  <AIResponseFrame
+                    content={result}
+                    title={t('toolsInternal.cravingAlternatives.healthyAlternativesFor', { craving })}
+                    icon={Salad}
+                  />
+                </PrintableReport>
             </div>
           )}
 

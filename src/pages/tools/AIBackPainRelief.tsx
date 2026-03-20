@@ -212,13 +212,15 @@ Provide:
 
         {/* AI Response */}
         {showAIAdvice && aiResponse && (
-          <AIResponseFrame
-            content={aiResponse}
-            isLoading={isLoading}
-            title={t('toolsInternal.backPainRelief.aiCoach')}
-            icon={Brain}
-            toolId="ai-back-pain"
-          />
+          <PrintableReport title={t('toolsInternal.backPainRelief.aiCoach')} isLoading={isLoading}>
+            <AIResponseFrame
+              content={aiResponse}
+              isLoading={isLoading}
+              title={t('toolsInternal.backPainRelief.aiCoach')}
+              icon={Brain}
+              toolId="ai-back-pain"
+            />
+          </PrintableReport>
         )}
 
         {error && (

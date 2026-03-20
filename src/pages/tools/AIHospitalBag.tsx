@@ -528,11 +528,13 @@ Include seasonal considerations and hospital-specific recommendations.`;
         </div>
 
         {response && (
-          <AIResponseFrame
-            content={response}
-            isLoading={isLoading}
-            title={t('toolsInternal.hospitalBag.title')}
-          />
+          <PrintableReport title={t('toolsInternal.hospitalBag.title')} isLoading={isLoading}>
+            <AIResponseFrame
+              content={response}
+              isLoading={isLoading}
+              title={t('toolsInternal.hospitalBag.title')}
+            />
+          </PrintableReport>
         )}
 
         {/* Educational Videos */}

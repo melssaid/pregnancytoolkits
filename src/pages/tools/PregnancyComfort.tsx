@@ -282,11 +282,13 @@ function NauseaTab() {
       />
 
       {response && (
-        <AIResponseFrame
-          content={response}
-          isLoading={isLoading}
-          title={t('toolsInternal.nauseaRelief.title')}
-        />
+        <PrintableReport title={t('toolsInternal.nauseaRelief.title')} isLoading={isLoading}>
+          <AIResponseFrame
+            content={response}
+            isLoading={isLoading}
+            title={t('toolsInternal.nauseaRelief.title')}
+          />
+        </PrintableReport>
       )}
 
       <Card className="p-3 bg-muted/30 text-center">

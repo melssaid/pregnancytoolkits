@@ -216,12 +216,14 @@ Be compassionate - morning sickness is exhausting!`;
 
         {/* AI Response */}
         {response && (
-          <AIResponseFrame
-            content={response}
-            isLoading={isLoading}
-            title={t('toolsInternal.nauseaRelief.title')}
-            toolId="ai-nausea-relief"
-          />
+          <PrintableReport title={t('toolsInternal.nauseaRelief.title')} isLoading={isLoading}>
+            <AIResponseFrame
+              content={response}
+              isLoading={isLoading}
+              title={t('toolsInternal.nauseaRelief.title')}
+              toolId="ai-nausea-relief"
+            />
+          </PrintableReport>
         )}
 
         {/* Encouraging Note */}

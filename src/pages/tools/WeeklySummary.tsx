@@ -228,13 +228,15 @@ export default function WeeklySummary() {
               )}
             </AnimatePresence>
 
-            <AIResponseFrame
-              title={t("toolsInternal.weeklySummary.weekSummary", { week })}
-              content={summary}
-              isLoading={isLoading}
-              icon={Baby}
-              toolId="weekly-summary"
-            />
+            <PrintableReport title={t("toolsInternal.weeklySummary.weekSummary", { week })} isLoading={isLoading}>
+              <AIResponseFrame
+                title={t("toolsInternal.weeklySummary.weekSummary", { week })}
+                content={summary}
+                isLoading={isLoading}
+                icon={Baby}
+                toolId="weekly-summary"
+              />
+            </PrintableReport>
 
             {/* Saved date indicator */}
             {currentWeekSaved && !isLoading && (

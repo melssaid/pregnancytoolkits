@@ -193,13 +193,15 @@ Include natural DIY options when appropriate. Focus ONLY on pregnancy-safe ingre
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <AIResponseFrame
-              content={response}
-              isLoading={isLoading}
-              title={t('toolsInternal.skincare.yourRoutine')}
-              icon={Sparkles}
-              toolId="ai-skincare"
-            />
+            <PrintableReport title={t('toolsInternal.skincare.yourRoutine')} isLoading={isLoading}>
+              <AIResponseFrame
+                content={response}
+                isLoading={isLoading}
+                title={t('toolsInternal.skincare.yourRoutine')}
+                icon={Sparkles}
+                toolId="ai-skincare"
+              />
+            </PrintableReport>
           </motion.div>
         )}
 

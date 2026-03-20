@@ -214,12 +214,14 @@ Include safety considerations and when to change positions.`;
 
         {/* AI Response */}
         {response && (
-          <AIResponseFrame
-            content={response}
-            isLoading={isLoading}
-            title={t('toolsInternal.birthPosition.title')}
-            icon={Baby}
-          />
+          <PrintableReport title={t('toolsInternal.birthPosition.title')} isLoading={isLoading}>
+            <AIResponseFrame
+              content={response}
+              isLoading={isLoading}
+              title={t('toolsInternal.birthPosition.title')}
+              icon={Baby}
+            />
+          </PrintableReport>
         )}
 
         {/* Educational Videos with Thumbnails */}

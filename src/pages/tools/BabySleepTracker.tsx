@@ -393,12 +393,13 @@ Provide 3 specific tips to improve this baby's sleep schedule. Keep response und
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
             >
-              <AIResponseFrame
-                content={aiAdvice}
-                title={t('toolsInternal.babySleep.aiSleepAdvisor')}
-                icon={Sparkles}
-              />
-            </motion.div>
+              <PrintableReport title={t('toolsInternal.babySleep.aiSleepAdvisor')}>
+                <AIResponseFrame
+                  content={aiAdvice}
+                  title={t('toolsInternal.babySleep.aiSleepAdvisor')}
+                  icon={Sparkles}
+                />
+              </PrintableReport>
           )}
         </AnimatePresence>
 

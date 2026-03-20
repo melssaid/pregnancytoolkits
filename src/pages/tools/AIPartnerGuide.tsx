@@ -164,12 +164,14 @@ Be warm, practical, and specific. Include real examples.`;
 
         {/* AI Response */}
         {response && (
-          <AIResponseFrame
-            content={response}
-            isLoading={isLoading}
-            title={t('toolsInternal.partnerGuide.getAdvice')}
-            icon={Heart}
-          />
+          <PrintableReport title={t('toolsInternal.partnerGuide.getAdvice')} isLoading={isLoading}>
+            <AIResponseFrame
+              content={response}
+              isLoading={isLoading}
+              title={t('toolsInternal.partnerGuide.getAdvice')}
+              icon={Heart}
+            />
+          </PrintableReport>
         )}
 
         {/* Quick Tips */}
