@@ -669,7 +669,15 @@
         "aiProducts": {
           "title": "AI-Powered Features",
           "desc": "We offer features powered by artificial intelligence through secure cloud-based AI models (Google Gemini). No third-party AI providers have access to your stored health data.",
-          "tools": ["Smart Pregnancy Assistant", "Pregnancy Wellness Diary", "Smart Meal Suggestions", "Smart Appointment Planner", "Fitness & Flexibility Coach", "Contraction Logger", "Ultrasound Gallery"],
+          "tools": [
+            "Smart Pregnancy Assistant",
+            "Pregnancy Wellness Diary",
+            "Smart Meal Suggestions",
+            "Smart Appointment Planner",
+            "Fitness & Flexibility Coach",
+            "Contraction Logger",
+            "Ultrasound Gallery"
+          ],
           "dataNote": "When using AI features, only your specific query text is sent anonymously to our secure backend. Your stored health data remains entirely on your device and is never transmitted.",
           "noTraining": "Your queries are NOT used to train AI models"
         },
@@ -1265,49 +1273,68 @@
       "regenerate": "Regenerate",
       "current": "Current",
       "localStorageNote": "Data saved locally on your device",
-      "trimester": {
-        "first": "First Trimester",
-        "second": "Second Trimester",
-        "third": "Third Trimester"
-      }
+      "trimester": "Trimester",
+      "generating": "Generating summary..."
     },
     "hospitalBag": {
-      "title": "Hospital Bag Checklist",
-      "subtitle": "Pack confidently for delivery day",
-      "progress": "Packing progress",
-      "itemsPacked": "{{packed}} of {{total}} items packed",
+      "title": "AI Hospital Bag",
+      "subtitle": "Smart packing list for delivery day",
+      "forMom": "For Mom",
+      "forBaby": "For Baby",
+      "forPartner": "For Partner",
+      "documents": "Documents",
       "all": "All",
       "mom": "Mom",
       "baby": "Baby",
       "partner": "Partner",
-      "documents": "Documents",
       "essential": "Essential",
-      "addCustomItem": "Add a custom item...",
-      "getAIList": "Get AI packing list",
+      "recommended": "Recommended",
+      "optional": "Optional",
+      "generateList": "Generate Packing List",
+      "getAIList": "Get AI Personalized List",
       "generating": "Generating...",
-      "hospitalBagVideos": "Hospital bag videos",
-      "hospitalBagVideosSubtitle": "Quick expert tips to pack smarter",
+      "progress": "Packing Progress",
+      "itemsPacked": "{{packed}} of {{total}} items packed",
+      "addCustomItem": "Add custom item...",
+      "hospitalBagVideos": "Hospital Bag Prep Videos",
+      "hospitalBagVideosSubtitle": "Tips from experienced moms",
       "videos": {
-        "v1": { "title": "Hospital Bag Essentials", "description": "What to pack for mom, baby, and partner", "category": "Packing basics" },
-        "v2": { "title": "Packing Timeline", "description": "When to start packing and what to prioritize", "category": "Planning" },
-        "v3": { "title": "Documents & Admin", "description": "Paperwork and documents you shouldn't forget", "category": "Documents" },
-        "v4": { "title": "Pro Tips", "description": "Commonly forgotten items and comfort extras", "category": "Pro tips" }
+        "v1": {
+          "title": "Hospital Bag Checklist",
+          "description": "Midwife advice on what to pack",
+          "category": "Essentials"
+        },
+        "v2": {
+          "title": "Essential Hospital Bag Items",
+          "description": "Must-have items for labor and delivery",
+          "category": "Essentials"
+        },
+        "v3": {
+          "title": "Hospital Bag Tips",
+          "description": "Nurse-approved essentials you'll actually use",
+          "category": "Tips"
+        },
+        "v4": {
+          "title": "What to Pack for Baby",
+          "description": "Newborn essentials for hospital stay",
+          "category": "Baby"
+        }
       },
       "items": {
-        "hospitalID": "Hospital ID & insurance cards",
+        "hospitalID": "Hospital ID & Insurance cards",
         "birthPlanCopies": "Birth plan copies",
         "nightgown": "Comfortable nightgown/robe",
-        "supportiveBras": "Supportive bras (2–3)",
+        "supportiveBras": "Comfortable supportive bras (2-3)",
         "toiletries": "Toiletries bag",
         "slippersSocks": "Slippers & socks",
         "goingHomeOutfitMom": "Going home outfit (Mom)",
-        "moisturizer": "Moisturizer",
+        "moisturizer": "Moisturizing cream",
         "hairTies": "Hair ties & headband",
         "phoneCharger": "Phone charger (long cord)",
         "lipBalm": "Lip balm",
         "goingHomeOutfitBaby": "Going home outfit (Baby)",
         "carSeat": "Car seat (installed)",
-        "swaddleBlankets": "Swaddle blankets",
+        "swaddleBlankets": "Swaddle blankets (2)",
         "newbornDiapers": "Newborn diapers",
         "babyHat": "Baby hat",
         "changeOfClothes": "Change of clothes",
@@ -1331,11 +1358,9 @@
       },
       "packed": "Packed",
       "notPacked": "Not packed",
-      "recommended": "Recommended",
-      "optional": "Optional",
+      "resetList": "Reset List",
       "exportPDF": "Export PDF",
       "shareWhatsApp": "Share via WhatsApp",
-      "resetList": "Reset List",
       "resetConfirm": "Are you sure you want to reset the list? This will remove all custom items and restore the default list.",
       "resetSuccess": "List has been reset to defaults!",
       "exportSuccess": "Checklist exported successfully!",
@@ -1344,6 +1369,17 @@
     "birthPlan": {
       "title": "AI Birth Plan Generator",
       "subtitle": "Create your personalized birth plan",
+      "additionalNotes": "Additional Notes or Requests",
+      "notesPlaceholder": "Any specific concerns, cultural considerations, or special requests...",
+      "generating": "Generating...",
+      "generateButton": "Generate My Birth Plan",
+      "yourBirthPlan": "Your Birth Plan",
+      "savedPlans": "Saved Plans ({{count}}/{{max}})",
+      "storageFull": "Storage full - delete a plan to save new ones",
+      "noSavedPlans": "No saved plans yet. Generate and save your first birth plan!",
+      "planTitle": "Birth Plan",
+      "preferencesSet": "{{count}} preferences set",
+      "load": "Load",
       "categories": {
         "laborEnvironment": "Labor Environment",
         "painManagement": "Pain Management",
@@ -1375,7 +1411,7 @@
         },
         "painRelief": {
           "label": "Pain Relief Preference",
-          "natural": "Natural methods only",
+          "natural": "Natural/no medication",
           "epidural": "Epidural when needed",
           "iv": "IV pain medication",
           "openToAll": "Open to all options"
@@ -1385,7 +1421,7 @@
           "partner": "Partner only",
           "doula": "Doula",
           "family": "Family members",
-          "medical": "Medical team only"
+          "medical": "Medical staff only"
         },
         "relaxation": {
           "label": "Relaxation Techniques",
@@ -1396,15 +1432,15 @@
         },
         "birthPosition": {
           "label": "Birth Position",
-          "natural": "Natural/upright",
+          "natural": "Whatever feels natural",
           "squatting": "Squatting",
           "sideLying": "Side-lying",
-          "supine": "Supine/reclined"
+          "supine": "Standard/supine"
         },
         "pushing": {
-          "label": "Pushing Preference",
+          "label": "Pushing Style",
           "coached": "Coached pushing",
-          "spontaneous": "Spontaneous pushing",
+          "spontaneous": "Spontaneous/instinctive",
           "noPreference": "No preference"
         },
         "episiotomy": {
@@ -1422,49 +1458,36 @@
         "cordClamping": {
           "label": "Cord Clamping",
           "delayed": "Delayed clamping",
-          "immediate": "Immediate clamping",
+          "immediate": "Immediate",
           "partnerCut": "Partner to cut cord",
           "noPreference": "No preference"
         },
         "feeding": {
-          "label": "Feeding Preference",
+          "label": "Feeding Plan",
           "breastfeeding": "Breastfeeding",
           "formula": "Formula feeding",
           "combination": "Combination",
           "undecided": "Undecided"
         },
         "cesarean": {
-          "label": "If Cesarean Needed",
+          "label": "If C-Section Needed",
           "partnerPresent": "Partner present",
           "familyCentered": "Family-centered approach",
           "calmEnvironment": "Calm and quiet environment"
         },
         "photography": {
           "label": "Photography/Video",
-          "throughout": "Throughout labor & birth",
+          "throughout": "Yes, throughout",
           "photosOnly": "Photos only",
           "afterBirth": "After birth only",
           "none": "No photography"
         }
       },
-      "additionalNotes": "Additional Notes or Requests",
-      "notesPlaceholder": "Any specific concerns, cultural considerations, or special requests...",
-      "generateButton": "Generate My Birth Plan",
-      "generating": "Generating your plan...",
-      "yourBirthPlan": "Your Birth Plan",
-      "savedPlans": "Saved Plans ({{count}}/{{max}})",
-      "noSavedPlans": "No saved plans yet",
-      "planTitle": "Birth Plan",
-      "preferencesSet": "{{count}} preferences set",
-      "load": "Load",
-      "storageFull": "Storage full. Delete old plans to save new ones.",
-      "selectPreference": "Please select at least one preference",
-      "planGenerated": "Birth plan generated successfully!",
-      "planSaved": "Birth plan saved!",
       "planDeleted": "Plan deleted",
+      "planGenerated": "Plan generated",
       "planLoaded": "Plan loaded",
-      "pdfSuccess": "PDF downloaded successfully!",
-      "pdfError": "Failed to export PDF"
+      "planSaved": "Plan saved",
+      "selectPreference": "Select preference"
     },
     "dueDate": {
       "calculateTitle": "Calculate Your Due Date",
@@ -1542,24 +1565,24 @@
       "getHealthInsight": "Get Wellness Insight",
       "getTips": "Get Tips",
       "analyzing": "Analyzing...",
-      "avgMin": "Avg Min",
-      "aiDataAnalysis": "AI Journal Insights",
+      "avgMin": "Avg minutes",
+      "aiDataAnalysis": "AI Movement Analysis",
       "avgPerSession": "Avg/Entry",
       "healthScore": "Activity Level",
       "status": "Status",
       "patterns": "Patterns",
       "health": "Wellness",
-      "analyzingMovements": "Reviewing your baby's movement journal...",
+      "analyzingMovements": "Analyzing movements...",
       "tapForInsights": "Tap a button above to get insights about your baby's movements",
       "viewDetailedAnalysis": "View Detailed Insights",
-      "recentSessions": "Recent Journal Entries",
+      "recentSessions": "Recent Sessions",
       "movements": "movements",
-      "minWeek": "{{min}} min • Week {{week}}",
-      "whenToCallDoctor": "When to Consult Your Healthcare Provider",
-      "warningFewer": "Fewer than 10 movements noted in 2 hours",
-      "warningDecrease": "Noticeable change in baby's usual activity pattern",
-      "warningNoMovements": "No movements felt for several hours",
-      "educationalNote": "Babies are most active between 9 PM and 1 AM. Journal at the same time daily for consistent entries.",
+      "minWeek": "{{min}} min · Week {{week}}",
+      "whenToCallDoctor": "When to Call Your Doctor",
+      "warningFewer": "Fewer than 10 movements in 2 hours",
+      "warningDecrease": "Sudden decrease in movement pattern",
+      "warningNoMovements": "No movements for an extended period",
+      "educationalNote": "Count fetal movements daily starting from week 28. Aim for 10 movements in 2 hours during your baby's active time.",
       "fetalDevLink": "Fetal Development",
       "fetalDevLinkDesc": "Track your baby's growth and development week by week",
       "weeklySummaryLink": "Weekly Summary",
@@ -1570,7 +1593,11 @@
       "startHint": "Start a new session then tap the circle for each baby movement",
       "lastKick": "Last movement",
       "goalReached": "Great job! Goal reached",
-      "goalReachedDesc": "10 movements recorded — you can continue or save the session"
+      "goalReachedDesc": "10 movements recorded — you can continue or save the session",
+      "recording": "Recording",
+      "goal": "Goal",
+      "recentActivity": "Recent Activity",
+      "lastSessions": "Last {{count}} sessions"
     },
     "contractionTimer": {
       "title": "Contraction Timer",
@@ -1735,7 +1762,10 @@
         "vitaminD": "Vitamin D",
         "omega3": "Omega 3",
         "prenatal": "Prenatal Vitamins"
-      }
+      },
+      "analyzing": "Analyzing...",
+      "dosages": "Dosages",
+      "importance": "Importance"
     },
     "common": {
       "week": "Week",
@@ -1972,14 +2002,38 @@
         "lowImpact": "Low Impact"
       },
       "videos": {
-        "fullBody": { "title": "Full Body Prenatal Workout", "description": "25-minute low impact full body workout — safe for all trimesters" },
-        "strength": { "title": "Bodyweight Prenatal Strength", "description": "35-minute no equipment strength workout for pregnancy" },
-        "stretching": { "title": "Beginner Pregnancy Stretch", "description": "20-minute gentle stretching safe for all trimesters" },
-        "yoga": { "title": "Prenatal Yoga for Relaxation", "description": "Deep relaxation yoga for pregnancy" },
-        "relaxation": { "title": "Pregnancy Relaxation Meditation", "description": "Calming meditation for expecting mothers" },
-        "birthPrep": { "title": "Pregnancy Cardio + Birth Prep", "description": "30-minute cardio and birth preparation exercises" },
-        "core": { "title": "Safe Prenatal Core Workout", "description": "10-minute safe core workout for first trimester" },
-        "lowImpact": { "title": "Low Impact Prenatal Workout", "description": "25-minute gentle full body prenatal exercise" }
+        "fullBody": {
+          "title": "Full Body Prenatal Workout",
+          "description": "25-minute low impact full body workout — safe for all trimesters"
+        },
+        "strength": {
+          "title": "Bodyweight Prenatal Strength",
+          "description": "35-minute no equipment strength workout for pregnancy"
+        },
+        "stretching": {
+          "title": "Beginner Pregnancy Stretch",
+          "description": "20-minute gentle stretching safe for all trimesters"
+        },
+        "yoga": {
+          "title": "Prenatal Yoga for Relaxation",
+          "description": "Deep relaxation yoga for pregnancy"
+        },
+        "relaxation": {
+          "title": "Pregnancy Relaxation Meditation",
+          "description": "Calming meditation for expecting mothers"
+        },
+        "birthPrep": {
+          "title": "Pregnancy Cardio + Birth Prep",
+          "description": "30-minute cardio and birth preparation exercises"
+        },
+        "core": {
+          "title": "Safe Prenatal Core Workout",
+          "description": "10-minute safe core workout for first trimester"
+        },
+        "lowImpact": {
+          "title": "Low Impact Prenatal Workout",
+          "description": "25-minute gentle full body prenatal exercise"
+        }
       },
       "sections": {
         "setup": "Setup & Preferences",
@@ -2017,118 +2071,6 @@
           "relaxation": "Relaxation"
         }
       }
-    },
-    "birthPlan": {
-      "title": "AI Birth Plan Generator",
-      "subtitle": "Create your personalized birth plan",
-      "additionalNotes": "Additional Notes or Requests",
-      "notesPlaceholder": "Any specific concerns, cultural considerations, or special requests...",
-      "generating": "Generating...",
-      "generateButton": "Generate My Birth Plan",
-      "yourBirthPlan": "Your Birth Plan",
-      "savedPlans": "Saved Plans ({{count}}/{{max}})",
-      "storageFull": "Storage full - delete a plan to save new ones",
-      "noSavedPlans": "No saved plans yet. Generate and save your first birth plan!",
-      "planTitle": "Birth Plan",
-      "preferencesSet": "{{count}} preferences set",
-      "load": "Load",
-      "categories": {
-        "laborEnvironment": "Labor Environment",
-        "painManagement": "Pain Management",
-        "deliveryPreferences": "Delivery Preferences",
-        "afterBirth": "After Birth",
-        "specialCircumstances": "Special Circumstances"
-      },
-      "prefs": {
-        "lighting": { "label": "Room Lighting", "dim": "Dim/Low", "natural": "Natural", "bright": "Bright", "noPreference": "No preference" },
-        "music": { "label": "Music/Sounds", "relaxing": "Relaxing music", "nature": "Nature sounds", "silence": "Silence", "ownPlaylist": "My own playlist" },
-        "movement": { "label": "Movement During Labor", "walk": "Freedom to walk", "ball": "Birth ball", "shower": "Shower/tub access", "bedRest": "Bed rest only" },
-        "painRelief": { "label": "Pain Relief Preference", "natural": "Natural/no medication", "epidural": "Epidural when needed", "iv": "IV pain medication", "openToAll": "Open to all options" },
-        "laborSupport": { "label": "Labor Support", "partner": "Partner only", "doula": "Doula", "family": "Family members", "medical": "Medical staff only" },
-        "relaxation": { "label": "Relaxation Techniques", "breathing": "Breathing exercises", "massage": "Massage", "aromatherapy": "Aromatherapy", "hypnobirthing": "Hypnobirthing" },
-        "birthPosition": { "label": "Birth Position", "natural": "Whatever feels natural", "squatting": "Squatting", "sideLying": "Side-lying", "supine": "Standard/supine" },
-        "pushing": { "label": "Pushing Style", "coached": "Coached pushing", "spontaneous": "Spontaneous/instinctive", "noPreference": "No preference" },
-        "episiotomy": { "label": "Episiotomy", "avoid": "Avoid if possible", "ifNecessary": "Only if necessary", "noPreference": "No preference" },
-        "firstMoments": { "label": "First Moments with Baby", "immediately": "Hold baby immediately", "afterChecks": "After initial medical checks", "partnerFirst": "Partner holds baby first" },
-        "cordClamping": { "label": "Cord Clamping", "delayed": "Delayed clamping", "immediate": "Immediate", "partnerCut": "Partner to cut cord", "noPreference": "No preference" },
-        "feeding": { "label": "Feeding Plan", "breastfeeding": "Breastfeeding", "formula": "Formula feeding", "combination": "Combination", "undecided": "Undecided" },
-        "cesarean": { "label": "If C-Section Needed", "partnerPresent": "Partner present", "familyCentered": "Family-centered approach", "calmEnvironment": "Calm and quiet environment" },
-        "photography": { "label": "Photography/Video", "throughout": "Yes, throughout", "photosOnly": "Photos only", "afterBirth": "After birth only", "none": "No photography" }
-      }
-    },
-    "hospitalBag": {
-      "title": "AI Hospital Bag",
-      "subtitle": "Smart packing list for delivery day",
-      "forMom": "For Mom",
-      "forBaby": "For Baby",
-      "forPartner": "For Partner",
-      "documents": "Documents",
-      "all": "All",
-      "mom": "Mom",
-      "baby": "Baby",
-      "partner": "Partner",
-      "essential": "Essential",
-      "recommended": "Recommended",
-      "optional": "Optional",
-      "generateList": "Generate Packing List",
-      "getAIList": "Get AI Personalized List",
-      "generating": "Generating...",
-      "progress": "Packing Progress",
-      "itemsPacked": "{{packed}} of {{total}} items packed",
-      "addCustomItem": "Add custom item...",
-      "hospitalBagVideos": "Hospital Bag Prep Videos",
-      "hospitalBagVideosSubtitle": "Tips from experienced moms",
-      "videos": {
-        "v1": { "title": "Hospital Bag Checklist", "description": "Midwife advice on what to pack", "category": "Essentials" },
-        "v2": { "title": "Essential Hospital Bag Items", "description": "Must-have items for labor and delivery", "category": "Essentials" },
-        "v3": { "title": "Hospital Bag Tips", "description": "Nurse-approved essentials you'll actually use", "category": "Tips" },
-        "v4": { "title": "What to Pack for Baby", "description": "Newborn essentials for hospital stay", "category": "Baby" }
-      },
-      "items": {
-        "hospitalID": "Hospital ID & Insurance cards",
-        "birthPlanCopies": "Birth plan copies",
-        "nightgown": "Comfortable nightgown/robe",
-        "supportiveBras": "Comfortable supportive bras (2-3)",
-        "toiletries": "Toiletries bag",
-        "slippersSocks": "Slippers & socks",
-        "goingHomeOutfitMom": "Going home outfit (Mom)",
-        "moisturizer": "Moisturizing cream",
-        "hairTies": "Hair ties & headband",
-        "phoneCharger": "Phone charger (long cord)",
-        "lipBalm": "Lip balm",
-        "goingHomeOutfitBaby": "Going home outfit (Baby)",
-        "carSeat": "Car seat (installed)",
-        "swaddleBlankets": "Swaddle blankets (2)",
-        "newbornDiapers": "Newborn diapers",
-        "babyHat": "Baby hat",
-        "changeOfClothes": "Change of clothes",
-        "snacksDrinks": "Snacks & drinks",
-        "cameraCharger": "Camera/phone charger",
-        "babyWipes": "Baby wipes",
-        "babyOil": "Baby oil/lotion",
-        "nursingPads": "Nursing pads",
-        "maternityPads": "Maternity pads",
-        "waterBottle": "Water bottle",
-        "babyMittens": "Baby mittens & socks",
-        "underwear": "Underwear (disposable)",
-        "towel": "Towel",
-        "handSanitizer": "Hand sanitizer",
-        "babyBottles": "Baby bottles",
-        "pacifier": "Pacifier",
-        "extraBlanket": "Extra blanket",
-        "snacksMom": "Snacks for mom",
-        "diaperCream": "Diaper cream",
-        "totalItems": "items"
-      },
-      "packed": "Packed",
-      "notPacked": "Not packed",
-      "resetList": "Reset List",
-      "exportPDF": "Export PDF",
-      "shareWhatsApp": "Share via WhatsApp",
-      "resetConfirm": "Are you sure you want to reset the list? This will remove all custom items and restore the default list.",
-      "resetSuccess": "List has been reset to defaults!",
-      "exportSuccess": "Checklist exported successfully!",
-      "exportError": "Failed to export checklist"
     },
     "sleepOptimizer": {
       "title": "AI Sleep Tips",
@@ -2182,12 +2124,30 @@
         "cooking": "Cooking smells"
       },
       "remedies": {
-        "lemonWater": { "name": "Lemon water", "tip": "Sip slowly on waking" },
-        "ginger": { "name": "Ginger", "tip": "Tea, candies, or fresh" },
-        "iceChips": { "name": "Ice chips", "tip": "Suck on ice when queasy" },
-        "dryCrackers": { "name": "Dry crackers", "tip": "Keep by bedside" },
-        "peppermint": { "name": "Peppermint", "tip": "Inhale or tea" },
-        "banana": { "name": "Banana", "tip": "Easy on stomach" }
+        "lemonWater": {
+          "name": "Lemon water",
+          "tip": "Sip slowly on waking"
+        },
+        "ginger": {
+          "name": "Ginger",
+          "tip": "Tea, candies, or fresh"
+        },
+        "iceChips": {
+          "name": "Ice chips",
+          "tip": "Suck on ice when queasy"
+        },
+        "dryCrackers": {
+          "name": "Dry crackers",
+          "tip": "Keep by bedside"
+        },
+        "peppermint": {
+          "name": "Peppermint",
+          "tip": "Inhale or tea"
+        },
+        "banana": {
+          "name": "Banana",
+          "tip": "Easy on stomach"
+        }
       }
     },
     "groceryList": {
@@ -2208,7 +2168,6 @@
       "generateList": "Generate AI List",
       "customizeForWeek": "Customize for Week {{week}}",
       "essentialNutrients": "Essential Nutrients",
-      "protein": "Protein",
       "iron": "Iron",
       "folate": "Folate",
       "calcium": "Calcium",
@@ -2237,20 +2196,68 @@
       "partnerVideos": "Partner Support Videos",
       "partnerVideosSubtitle": "Learn how to be the best support partner",
       "videos": {
-        "v1": { "title": "Newborn Care Week 1", "description": "Pediatrician guide to first week with baby", "category": "Newborn Care" },
-        "v2": { "title": "Caring For Your Newborn", "description": "Comprehensive newborn care guide for new parents", "category": "Newborn Care" },
-        "v3": { "title": "Labor & Birth Positions", "description": "How partners can help with comfort during labor", "category": "Labor Support" },
-        "v4": { "title": "Hospital Bag Preparation", "description": "What to pack for labor and delivery", "category": "Preparation" }
+        "v1": {
+          "title": "Newborn Care Week 1",
+          "description": "Pediatrician guide to first week with baby",
+          "category": "Newborn Care"
+        },
+        "v2": {
+          "title": "Caring For Your Newborn",
+          "description": "Comprehensive newborn care guide for new parents",
+          "category": "Newborn Care"
+        },
+        "v3": {
+          "title": "Labor & Birth Positions",
+          "description": "How partners can help with comfort during labor",
+          "category": "Labor Support"
+        },
+        "v4": {
+          "title": "Hospital Bag Preparation",
+          "description": "What to pack for labor and delivery",
+          "category": "Preparation"
+        }
       },
       "topics": {
-        "emotional": {"label": "Emotional Support", "icon": "💝", "desc": "How to be emotionally present"},
-        "physical": {"label": "Physical Comfort", "icon": "🤲", "desc": "Massage, help with tasks"},
-        "appointments": {"label": "Medical Appointments", "icon": "🏥", "desc": "Being involved in prenatal care"},
-        "communication": {"label": "Communication", "icon": "💬", "desc": "Understanding mood changes"},
-        "bonding": {"label": "Bonding with Baby", "icon": "👶", "desc": "Connecting before birth"},
-        "labor": {"label": "Labor Preparation", "icon": "⏰", "desc": "Being ready for D-day"},
-        "postpartum": {"label": "Postpartum Planning", "icon": "🏠", "desc": "After baby arrives"},
-        "intimacy": {"label": "Intimacy & Connection", "icon": "❤️", "desc": "Maintaining closeness"}
+        "emotional": {
+          "label": "Emotional Support",
+          "icon": "💝",
+          "desc": "How to be emotionally present"
+        },
+        "physical": {
+          "label": "Physical Comfort",
+          "icon": "🤲",
+          "desc": "Massage, help with tasks"
+        },
+        "appointments": {
+          "label": "Medical Appointments",
+          "icon": "🏥",
+          "desc": "Being involved in prenatal care"
+        },
+        "communication": {
+          "label": "Communication",
+          "icon": "💬",
+          "desc": "Understanding mood changes"
+        },
+        "bonding": {
+          "label": "Bonding with Baby",
+          "icon": "👶",
+          "desc": "Connecting before birth"
+        },
+        "labor": {
+          "label": "Labor Preparation",
+          "icon": "⏰",
+          "desc": "Being ready for D-day"
+        },
+        "postpartum": {
+          "label": "Postpartum Planning",
+          "icon": "🏠",
+          "desc": "After baby arrives"
+        },
+        "intimacy": {
+          "label": "Intimacy & Connection",
+          "icon": "❤️",
+          "desc": "Maintaining closeness"
+        }
       }
     },
     "bumpPhotos": {
@@ -2283,7 +2290,6 @@
       "captionPlaceholder": "Add a note about this scan... (optional)",
       "compressing": "Compressing & Saving...",
       "takeOrUpload": "Take or Upload Ultrasound Photo",
-      "takePhoto": "Take Photo",
       "uploadFromGallery": "Upload from Gallery",
       "uploadHint": "📸 You can take a photo of the ultrasound during your doctor's visit, or ask for a copy and upload it later from your gallery.",
       "localStorageWarning": "⚠️ Photos are stored on your device only. If you clear app data or uninstall the app, all photos will be permanently deleted. We recommend keeping a backup.",
@@ -2356,32 +2362,68 @@
         "catCow": {
           "name": "Cat-Cow Stretch",
           "description": "Alternating spinal flexion and extension",
-          "steps": ["Start on hands and knees", "Inhale: Drop belly, lift head (Cow)", "Exhale: Round spine, tuck chin (Cat)", "Move slowly between positions", "Repeat 10-15 times"]
+          "steps": [
+            "Start on hands and knees",
+            "Inhale: Drop belly, lift head (Cow)",
+            "Exhale: Round spine, tuck chin (Cat)",
+            "Move slowly between positions",
+            "Repeat 10-15 times"
+          ]
         },
         "pelvicTilt": {
           "name": "Pelvic Tilts",
           "description": "Strengthen core and relieve lower back pressure",
-          "steps": ["Lie on your back with knees bent", "Flatten your lower back against the floor", "Tilt your pelvis upward slightly", "Hold for 5 seconds", "Repeat 10-15 times"]
+          "steps": [
+            "Lie on your back with knees bent",
+            "Flatten your lower back against the floor",
+            "Tilt your pelvis upward slightly",
+            "Hold for 5 seconds",
+            "Repeat 10-15 times"
+          ]
         },
         "childPose": {
           "name": "Child's Pose",
           "description": "Gentle stretch for the entire back",
-          "steps": ["Kneel on the floor", "Spread knees wide to accommodate belly", "Sit back on heels", "Stretch arms forward on floor", "Rest and breathe deeply"]
+          "steps": [
+            "Kneel on the floor",
+            "Spread knees wide to accommodate belly",
+            "Sit back on heels",
+            "Stretch arms forward on floor",
+            "Rest and breathe deeply"
+          ]
         },
         "piriformis": {
           "name": "Piriformis Stretch",
           "description": "Relieve sciatic pain and hip tension",
-          "steps": ["Sit in a chair", "Cross one ankle over opposite knee", "Gently lean forward", "Hold for 30 seconds", "Switch sides"]
+          "steps": [
+            "Sit in a chair",
+            "Cross one ankle over opposite knee",
+            "Gently lean forward",
+            "Hold for 30 seconds",
+            "Switch sides"
+          ]
         },
         "wallPush": {
           "name": "Wall Push-Up",
           "description": "Strengthen upper back and shoulders",
-          "steps": ["Stand arm-length from wall", "Place palms on wall at shoulder height", "Slowly bend elbows toward wall", "Push back to starting position", "Repeat 10-15 times"]
+          "steps": [
+            "Stand arm-length from wall",
+            "Place palms on wall at shoulder height",
+            "Slowly bend elbows toward wall",
+            "Push back to starting position",
+            "Repeat 10-15 times"
+          ]
         },
         "sideStretch": {
           "name": "Side Body Stretch",
           "description": "Stretch the sides of your torso",
-          "steps": ["Stand with feet hip-width apart", "Raise one arm overhead", "Lean gently to the opposite side", "Hold for 15-20 seconds", "Switch sides"]
+          "steps": [
+            "Stand with feet hip-width apart",
+            "Raise one arm overhead",
+            "Lean gently to the opposite side",
+            "Hold for 15-20 seconds",
+            "Switch sides"
+          ]
         }
       },
       "targetAreas": {
@@ -2391,7 +2433,8 @@
         "hipsLowerBack": "Hips & Lower Back",
         "upperBackArms": "Upper Back & Arms",
         "sideBody": "Side Body"
-      }
+      },
+      "analyzing": "Analyzing..."
     },
     "skincare": {
       "title": "AI Skincare",
@@ -2419,28 +2462,92 @@
       "skincareVideos": "Pregnancy Skincare Videos",
       "skincareVideosSubtitle": "Pregnancy-safe skincare guidance",
       "videos": {
-        "v1": { "title": "Pregnancy Safe Skincare Routine", "description": "Board-certified dermatologist Dr. Joyce Park explains safe products", "category": "Skincare Routine" },
-        "v2": { "title": "Safe Skincare During Pregnancy", "description": "Dr. Sheila Farhang on what products to use and avoid", "category": "Product Safety" },
-        "v3": { "title": "Pregnancy Nutrition for Skin", "description": "Foods that promote healthy pregnancy and glowing skin", "category": "Nutrition" },
-        "v4": { "title": "Pregnancy Diet Guide", "description": "What to eat for healthy skin during pregnancy", "category": "Diet" }
+        "v1": {
+          "title": "Pregnancy Safe Skincare Routine",
+          "description": "Board-certified dermatologist Dr. Joyce Park explains safe products",
+          "category": "Skincare Routine"
+        },
+        "v2": {
+          "title": "Safe Skincare During Pregnancy",
+          "description": "Dr. Sheila Farhang on what products to use and avoid",
+          "category": "Product Safety"
+        },
+        "v3": {
+          "title": "Pregnancy Nutrition for Skin",
+          "description": "Foods that promote healthy pregnancy and glowing skin",
+          "category": "Nutrition"
+        },
+        "v4": {
+          "title": "Pregnancy Diet Guide",
+          "description": "What to eat for healthy skin during pregnancy",
+          "category": "Diet"
+        }
       },
       "concerns": {
-        "acne": {"label": "Pregnancy Acne", "icon": "🔴"},
-        "melasma": {"label": "Melasma/Dark Spots", "icon": "🟤"},
-        "stretchMarks": {"label": "Stretch Marks", "icon": "〰️"},
-        "dryness": {"label": "Dry Skin", "icon": "🏜️"},
-        "oiliness": {"label": "Oily/Shiny Skin", "icon": "✨"},
-        "sensitivity": {"label": "Sensitivity", "icon": "❗"},
-        "itching": {"label": "Itching (PUPPP)", "icon": "🤚"},
-        "glow": {"label": "Want that pregnancy glow!", "icon": "💫"}
+        "acne": {
+          "label": "Pregnancy Acne",
+          "icon": "🔴"
+        },
+        "melasma": {
+          "label": "Melasma/Dark Spots",
+          "icon": "🟤"
+        },
+        "stretchMarks": {
+          "label": "Stretch Marks",
+          "icon": "〰️"
+        },
+        "dryness": {
+          "label": "Dry Skin",
+          "icon": "🏜️"
+        },
+        "oiliness": {
+          "label": "Oily/Shiny Skin",
+          "icon": "✨"
+        },
+        "sensitivity": {
+          "label": "Sensitivity",
+          "icon": "❗"
+        },
+        "itching": {
+          "label": "Itching (PUPPP)",
+          "icon": "🤚"
+        },
+        "glow": {
+          "label": "Want that pregnancy glow!",
+          "icon": "💫"
+        }
       },
       "unsafeIngredients": {
-        "retinol": {"name": "Retinol/Retinoids", "risk": "high", "icon": "🚫"},
-        "salicylic": {"name": "Salicylic Acid (high %)", "risk": "medium", "icon": "⚠️"},
-        "hydroquinone": {"name": "Hydroquinone", "risk": "high", "icon": "🚫"},
-        "formaldehyde": {"name": "Formaldehyde", "risk": "high", "icon": "🚫"},
-        "chemicalSunscreens": {"name": "Chemical Sunscreens", "risk": "medium", "icon": "⚠️"},
-        "essentialOils": {"name": "Essential Oils (some)", "risk": "medium", "icon": "⚠️"}
+        "retinol": {
+          "name": "Retinol/Retinoids",
+          "risk": "high",
+          "icon": "🚫"
+        },
+        "salicylic": {
+          "name": "Salicylic Acid (high %)",
+          "risk": "medium",
+          "icon": "⚠️"
+        },
+        "hydroquinone": {
+          "name": "Hydroquinone",
+          "risk": "high",
+          "icon": "🚫"
+        },
+        "formaldehyde": {
+          "name": "Formaldehyde",
+          "risk": "high",
+          "icon": "🚫"
+        },
+        "chemicalSunscreens": {
+          "name": "Chemical Sunscreens",
+          "risk": "medium",
+          "icon": "⚠️"
+        },
+        "essentialOils": {
+          "name": "Essential Oils (some)",
+          "risk": "medium",
+          "icon": "⚠️"
+        }
       }
     },
     "cravingAlternatives": {
@@ -2511,10 +2618,22 @@
       "birthPositionVideos": "Birth Position Videos",
       "birthPositionVideosSubtitle": "Visual guides for labor positions",
       "positions": {
-        "squatting": {"name": "Squatting", "desc": "Opens pelvis 30%"},
-        "handsKnees": {"name": "Hands & Knees", "desc": "Relieves back labor"},
-        "sideLying": {"name": "Side Lying", "desc": "Rest between contractions"},
-        "standing": {"name": "Standing/Walking", "desc": "Uses gravity"}
+        "squatting": {
+          "name": "Squatting",
+          "desc": "Opens pelvis 30%"
+        },
+        "handsKnees": {
+          "name": "Hands & Knees",
+          "desc": "Relieves back labor"
+        },
+        "sideLying": {
+          "name": "Side Lying",
+          "desc": "Rest between contractions"
+        },
+        "standing": {
+          "name": "Standing/Walking",
+          "desc": "Uses gravity"
+        }
       }
     },
     "lactationPrep": {
@@ -2567,10 +2686,22 @@
         "year": "After 1 year"
       },
       "videos": {
-        "video1": {"title": "Breastfeeding a Newborn", "description": "What's normal, common challenges, and tips from pediatrician IBCLC"},
-        "video2": {"title": "Newborn Care Week 1", "description": "Pediatrician guide including feeding basics"},
-        "video3": {"title": "Caring For Your Newborn", "description": "Comprehensive guide including feeding schedules"},
-        "video4": {"title": "Newborn Baby Care Guide", "description": "Handling, feeding, and sleeping basics"}
+        "video1": {
+          "title": "Breastfeeding a Newborn",
+          "description": "What's normal, common challenges, and tips from pediatrician IBCLC"
+        },
+        "video2": {
+          "title": "Newborn Care Week 1",
+          "description": "Pediatrician guide including feeding basics"
+        },
+        "video3": {
+          "title": "Caring For Your Newborn",
+          "description": "Comprehensive guide including feeding schedules"
+        },
+        "video4": {
+          "title": "Newborn Baby Care Guide",
+          "description": "Handling, feeding, and sleeping basics"
+        }
       },
       "categories": {
         "gettingStarted": "Getting Started",
@@ -2697,10 +2828,50 @@
         "8": "I release worry and embrace peace"
       },
       "exercises": {
-        "boxBreathing": {"name": "Box Breathing", "desc": "A calming technique used by Navy SEALs", "steps": ["Breathe in slowly for 4 seconds", "Hold your breath for 4 seconds", "Exhale slowly for 4 seconds", "Hold for 4 seconds", "Repeat the cycle"]},
-        "safePlace": {"name": "Safe Place Visualization", "desc": "Imagine your perfect peaceful sanctuary", "steps": ["Close your eyes and take deep breaths", "Imagine a place where you feel completely safe", "Notice the colors, sounds, and smells", "Feel the peace and comfort surrounding you", "Stay here as long as you need"]},
-        "grounding54321": {"name": "5-4-3-2-1 Grounding", "desc": "A sensory technique to reduce anxiety", "steps": ["Notice 5 things you can SEE", "Notice 4 things you can TOUCH", "Notice 3 things you can HEAR", "Notice 2 things you can SMELL", "Notice 1 thing you can TASTE"]},
-        "progressiveRelaxation": {"name": "Progressive Muscle Relaxation", "desc": "Release tension from head to toe", "steps": ["Start with your feet - tense for 5 seconds, release", "Move to your calves - tense and release", "Continue to thighs, abdomen, hands, arms", "Tense and release shoulders, neck, face", "Feel the wave of relaxation through your body"]}
+        "boxBreathing": {
+          "name": "Box Breathing",
+          "desc": "A calming technique used by Navy SEALs",
+          "steps": [
+            "Breathe in slowly for 4 seconds",
+            "Hold your breath for 4 seconds",
+            "Exhale slowly for 4 seconds",
+            "Hold for 4 seconds",
+            "Repeat the cycle"
+          ]
+        },
+        "safePlace": {
+          "name": "Safe Place Visualization",
+          "desc": "Imagine your perfect peaceful sanctuary",
+          "steps": [
+            "Close your eyes and take deep breaths",
+            "Imagine a place where you feel completely safe",
+            "Notice the colors, sounds, and smells",
+            "Feel the peace and comfort surrounding you",
+            "Stay here as long as you need"
+          ]
+        },
+        "grounding54321": {
+          "name": "5-4-3-2-1 Grounding",
+          "desc": "A sensory technique to reduce anxiety",
+          "steps": [
+            "Notice 5 things you can SEE",
+            "Notice 4 things you can TOUCH",
+            "Notice 3 things you can HEAR",
+            "Notice 2 things you can SMELL",
+            "Notice 1 thing you can TASTE"
+          ]
+        },
+        "progressiveRelaxation": {
+          "name": "Progressive Muscle Relaxation",
+          "desc": "Release tension from head to toe",
+          "steps": [
+            "Start with your feet - tense for 5 seconds, release",
+            "Move to your calves - tense and release",
+            "Continue to thighs, abdomen, hands, arms",
+            "Tense and release shoulders, neck, face",
+            "Feel the wave of relaxation through your body"
+          ]
+        }
       }
     },
     "mobilityCoach": {
@@ -2727,10 +2898,22 @@
       "tip4": "Do calf stretches before bed to prevent night cramps",
       "tip5": "Keep magnesium-rich foods in your diet",
       "legExercises": {
-        "calfRaises": {"name": "Calf Raises", "desc": "Stand and raise heels off ground, lower slowly"},
-        "ankleCircles": {"name": "Ankle Circles", "desc": "Rotate each ankle in circles, both directions"},
-        "toePoints": {"name": "Toe Points", "desc": "Point and flex toes to improve circulation"},
-        "legStretches": {"name": "Gentle Leg Stretches", "desc": "Stretch calves and hamstrings gently"}
+        "calfRaises": {
+          "name": "Calf Raises",
+          "desc": "Stand and raise heels off ground, lower slowly"
+        },
+        "ankleCircles": {
+          "name": "Ankle Circles",
+          "desc": "Rotate each ankle in circles, both directions"
+        },
+        "toePoints": {
+          "name": "Toe Points",
+          "desc": "Point and flex toes to improve circulation"
+        },
+        "legStretches": {
+          "name": "Gentle Leg Stretches",
+          "desc": "Stretch calves and hamstrings gently"
+        }
       }
     },
     "postureCoach": {
@@ -2817,7 +3000,12 @@
       "aiSuggestions": "AI Suggestions",
       "aiSuggestionsLabel": "AI Suggested Questions:",
       "yourQuestions": "Your Questions",
-      "addFirst": "Add your first appointment!"
+      "addFirst": "Add your first appointment!",
+      "details": "Details",
+      "notificationHint": "You'll receive a reminder",
+      "questionsHint": "Questions for the doctor",
+      "savedWithQuestions": "Saved with questions",
+      "skipQuestions": "Skip questions"
     },
     "babyGrowth": {
       "title": "Baby Growth",
@@ -2837,14 +3025,19 @@
       "noMeasurements": "No measurements added yet",
       "tabs": {
         "add": "Add Measurement",
-        "chart": "Growth Chart",
-        "history": "History"
+        "chart": "Chart",
+        "history": "History",
+        "overview": "Overview",
+        "milestones": "Milestones"
       },
       "status": {
         "label": "Status",
         "normal": "Normal",
         "belowNormal": "Below Normal",
-        "aboveNormal": "Above Normal"
+        "aboveNormal": "Above Normal",
+        "onTrack": "On Track",
+        "below": "Below Average",
+        "above": "Above Average"
       },
       "ageMonths": "Age (months)",
       "monthUnit": "mo",
@@ -2861,7 +3054,9 @@
       "deleted": "Deleted",
       "whoStandards": "Based on WHO Growth Standards",
       "month": "Month {{month}}",
-      "addFirst": "Add First Measurement"
+      "addFirst": "Add First Measurement",
+      "aiAnalysis": "AI Growth Analysis",
+      "analyzing": "Analyzing..."
     },
     "babySleep": {
       "title": "Baby Sleep Tracker",
@@ -2900,7 +3095,8 @@
       "qualityGood": "Good",
       "qualityFair": "Fair",
       "qualityNeedsAttention": "Needs Attention",
-      "startedAt": "Started at"
+      "startedAt": "Started at",
+      "analyzing": "Analyzing..."
     },
     "diaperTracker": {
       "title": "Diaper Tracker",
@@ -2915,30 +3111,27 @@
       "aiHealthTips": "AI Health Tips"
     },
     "forbiddenFoods": {
-      "title": "Foods to Avoid",
-      "subtitle": "Know what's safe to eat",
-      "search": "Search foods...",
-      "avoid": "Avoid",
-      "caution": "Caution",
-      "safe": "Safe",
-      "askAI": "Ask AI about a food",
-      "foodQuestion": "Is {{food}} safe during pregnancy?",
-      "status": {
+      "title": "Food Safety Guide",
+      "subtitle": "What to eat & avoid during pregnancy",
+      "searchPlaceholder": "Search foods (e.g. sushi, cheese)...",
+      "noResults": "No foods found matching \"{{term}}\"",
+      "askAI": "Ask AI about \"{{term}}\"",
+      "aiAnalysis": "AI Food Safety Analysis",
+      "analyzing": "Analyzing food safety...",
+      "quickRules": "Quick Rules",
+      "filters": {
+        "all": "All",
         "safe": "Safe",
-        "avoid": "Avoid",
-        "limit": "Limit"
+        "limit": "Limit",
+        "avoid": "Avoid"
       },
-      "foods": {
-        "sushi": { "name": "Sushi (Raw Fish)", "reason": "Risk of parasites and bacteria like Listeria" },
-        "softCheese": { "name": "Soft Cheese (Unpasteurized)", "reason": "Risk of Listeria contamination" },
-        "coffee": { "name": "Coffee", "reason": "Limit caffeine to 200mg/day to reduce risk of low birth weight" },
-        "salmon": { "name": "Salmon (Cooked)", "reason": "Great source of Omega-3s. Ensure it is fully cooked." },
-        "deliMeat": { "name": "Deli Meat", "reason": "Listeria risk unless heated until steaming hot" },
-        "rawEggs": { "name": "Raw Eggs", "reason": "Risk of Salmonella" },
-        "tuna": { "name": "Tuna (Albacore)", "reason": "Higher mercury content. Limit to 6oz per week." },
-        "alcohol": { "name": "Alcohol", "reason": "No known safe amount. Can cause fetal alcohol spectrum disorders." },
-        "hardCheese": { "name": "Hard Cheeses", "reason": "Generally safe as they are pasteurized and have low moisture" },
-        "chicken": { "name": "Chicken", "reason": "Excellent protein source. Must be fully cooked." }
+      "rules": {
+        "avoid": "Avoid",
+        "avoidDesc": "Raw meat/fish, unpasteurized dairy, deli meats (cold).",
+        "cook": "Cook",
+        "cookDesc": "Meats to 165°F (75°C).",
+        "wash": "Wash",
+        "washDesc": "All fruits and vegetables thoroughly."
       }
     },
     "gestationalDiabetes": {
@@ -3114,7 +3307,11 @@
         "back": "Back",
         "next": "Next",
         "start": "Start Tracking"
-      }
+      },
+      "avgLabel": "Average",
+      "markPeriod": "Mark period",
+      "normal": "Normal",
+      "slightVariation": "Slight variation"
     },
     "weightGain": {
       "title": "Weight Gain Guide",
@@ -3195,9 +3392,18 @@
         "obese": "30 or above"
       },
       "statusMessages": {
-        "below": { "message": "Below target", "recommendation": "Consider consulting your healthcare provider about nutrition to ensure you and your baby get adequate nutrients." },
-        "above": { "message": "Above target", "recommendation": "Discuss with your doctor about healthy eating habits and appropriate physical activity." },
-        "normal": { "message": "Within healthy range", "recommendation": "Excellent! Keep up the balanced nutrition and regular physical activity." }
+        "below": {
+          "message": "Below target",
+          "recommendation": "Consider consulting your healthcare provider about nutrition to ensure you and your baby get adequate nutrients."
+        },
+        "above": {
+          "message": "Above target",
+          "recommendation": "Discuss with your doctor about healthy eating habits and appropriate physical activity."
+        },
+        "normal": {
+          "message": "Within healthy range",
+          "recommendation": "Excellent! Keep up the balanced nutrition and regular physical activity."
+        }
       },
       "minRecommended": "Min Recommended",
       "maxRecommended": "Max Recommended",
@@ -3234,7 +3440,15 @@
       "expectedForWeek": "Expected gain for week",
       "fromStart": "from start",
       "fillProfileHint": "Enter your height and pre-pregnancy weight above to start",
-      "startAnalysisHint": "We'll help you track your weight throughout pregnancy"
+      "startAnalysisHint": "We'll help you track your weight throughout pregnancy",
+      "cancel": "Cancel",
+      "entryRemoved": "Entry removed",
+      "saveEntry": "Save entry",
+      "saveWeight": "Save weight",
+      "showAll": "Show all",
+      "showLess": "Show less",
+      "totalDistribution": "Total Weight Distribution",
+      "trimester": "Trimester"
     },
     "bloodType": {
       "title": "Blood Type Calculator",
@@ -3537,14 +3751,48 @@
         "8": "High protein for muscle and baby growth"
       },
       "ingredientItems": {
-        "1": { "0": "1 medium apple", "1": "2 tbsp almond butter" },
-        "2": { "0": "1 cup Greek yogurt", "1": "1/4 cup granola", "2": "1/2 cup berries", "3": "Honey drizzle" },
-        "3": { "0": "Mixed nuts", "1": "Dark chocolate chips", "2": "Dried cranberries" },
-        "4": { "0": "1 slice whole grain bread", "1": "1/2 avocado", "2": "Salt", "3": "Everything bagel seasoning" },
-        "5": { "0": "1/4 cup hummus", "1": "Carrot sticks", "2": "Cucumber slices", "3": "Bell pepper strips" },
-        "6": { "0": "4 whole grain crackers", "1": "2 oz cheddar cheese" },
-        "7": { "0": "1 banana", "1": "1 cup oats", "2": "2 tbsp peanut butter", "3": "1 tbsp honey" },
-        "8": { "0": "1 cup cottage cheese", "1": "Pineapple chunks", "2": "Walnuts" }
+        "1": {
+          "0": "1 medium apple",
+          "1": "2 tbsp almond butter"
+        },
+        "2": {
+          "0": "1 cup Greek yogurt",
+          "1": "1/4 cup granola",
+          "2": "1/2 cup berries",
+          "3": "Honey drizzle"
+        },
+        "3": {
+          "0": "Mixed nuts",
+          "1": "Dark chocolate chips",
+          "2": "Dried cranberries"
+        },
+        "4": {
+          "0": "1 slice whole grain bread",
+          "1": "1/2 avocado",
+          "2": "Salt",
+          "3": "Everything bagel seasoning"
+        },
+        "5": {
+          "0": "1/4 cup hummus",
+          "1": "Carrot sticks",
+          "2": "Cucumber slices",
+          "3": "Bell pepper strips"
+        },
+        "6": {
+          "0": "4 whole grain crackers",
+          "1": "2 oz cheddar cheese"
+        },
+        "7": {
+          "0": "1 banana",
+          "1": "1 cup oats",
+          "2": "2 tbsp peanut butter",
+          "3": "1 tbsp honey"
+        },
+        "8": {
+          "0": "1 cup cottage cheese",
+          "1": "Pineapple chunks",
+          "2": "Walnuts"
+        }
       },
       "recipes": {
         "2": "Layer yogurt, granola, and berries. Drizzle with honey.",
@@ -3635,11 +3883,31 @@
       "mentalWellnessVideos": "Mental Wellness Videos",
       "videosSubtitle": "Support and self-care resources",
       "videos": {
-        "v1": { "title": "Postpartum Depression: Signs & Symptoms", "description": "Medical professionals explain how to recognize postpartum depression", "category": "Education" },
-        "v2": { "title": "Understanding Postpartum Depression", "description": "From causes to treatment: a comprehensive guide", "category": "Education" },
-        "v3": { "title": "Postpartum Meditation for Calm", "description": "Guided meditation to feel calm and grounded in motherhood", "category": "Relaxation" },
-        "v4": { "title": "Mental Health and Pregnancy", "description": "ACOG explains mental health during pregnancy and postpartum", "category": "Wellness" },
-        "v5": { "title": "Managing Pregnancy Anxiety", "description": "Practical strategies for coping with anxiety during pregnancy", "category": "Anxiety" }
+        "v1": {
+          "title": "Postpartum Depression: Signs & Symptoms",
+          "description": "Medical professionals explain how to recognize postpartum depression",
+          "category": "Education"
+        },
+        "v2": {
+          "title": "Understanding Postpartum Depression",
+          "description": "From causes to treatment: a comprehensive guide",
+          "category": "Education"
+        },
+        "v3": {
+          "title": "Postpartum Meditation for Calm",
+          "description": "Guided meditation to feel calm and grounded in motherhood",
+          "category": "Relaxation"
+        },
+        "v4": {
+          "title": "Mental Health and Pregnancy",
+          "description": "ACOG explains mental health during pregnancy and postpartum",
+          "category": "Wellness"
+        },
+        "v5": {
+          "title": "Managing Pregnancy Anxiety",
+          "description": "Practical strategies for coping with anxiety during pregnancy",
+          "category": "Anxiety"
+        }
       },
       "riskLevels": {
         "low": {
@@ -3752,7 +4020,11 @@
           "title": "Journal",
           "desc": "Write down 3 things you're grateful for"
         }
-      }
+      },
+      "helpfulVideos": "Helpful Videos",
+      "personalizedPlan": "Personalized Plan",
+      "retake": "Retake Assessment",
+      "scoreLabel": "Score"
     },
     "mealSuggestion": {
       "subtitle": "Smart meal suggestions for your pregnancy",
@@ -3851,29 +4123,105 @@
       "videosTitle": "Fertility & Ovulation Videos",
       "videosSubtitle": "Learn about your fertile window and ovulation cycle"
     },
-    "forbiddenFoods": {
-      "title": "Food Safety Guide",
-      "subtitle": "What to eat & avoid during pregnancy",
-      "searchPlaceholder": "Search foods (e.g. sushi, cheese)...",
-      "noResults": "No foods found matching \"{{term}}\"",
-      "askAI": "Ask AI about \"{{term}}\"",
-      "aiAnalysis": "AI Food Safety Analysis",
-      "analyzing": "Analyzing food safety...",
-      "quickRules": "Quick Rules",
-      "filters": {
-        "all": "All",
-        "safe": "Safe",
-        "limit": "Limit",
-        "avoid": "Avoid"
+    "babyCryTranslator": {
+      "subtitle": "AI-powered baby cry analysis",
+      "analyzeButton": "Analyze Cry",
+      "analyzing": "Analyzing...",
+      "analysisResult": "Analysis Result",
+      "reanalyze": "Reanalyze",
+      "newAnalysis": "New Analysis",
+      "recentLogs": "Recent Logs",
+      "babyAge": "Baby's Age",
+      "weeks": "weeks",
+      "cryDuration": "Cry Duration",
+      "cryPattern": "Cry Pattern",
+      "whenCrying": "When did the crying start?",
+      "tipsTitle": "Soothing Tips",
+      "patterns": {
+        "continuous": "Continuous",
+        "intermittent": "Intermittent",
+        "escalating": "Escalating",
+        "weak": "Weak"
       },
-      "rules": {
-        "avoid": "Avoid",
-        "avoidDesc": "Raw meat/fish, unpasteurized dairy, deli meats (cold).",
-        "cook": "Cook",
-        "cookDesc": "Meats to 165°F (75°C).",
-        "wash": "Wash",
-        "washDesc": "All fruits and vegetables thoroughly."
+      "durations": {
+        "brief": "Brief (< 5 min)",
+        "moderate": "Moderate (5-15 min)",
+        "prolonged": "Prolonged (> 15 min)"
+      },
+      "contexts": {
+        "feeding": "During/After feeding",
+        "sleeping": "Before sleep",
+        "diaper": "Diaper change needed",
+        "unknown": "Unknown"
+      },
+      "tips": {
+        "swaddle": "Try swaddling",
+        "shush": "Gentle shushing",
+        "swing": "Gentle swinging",
+        "suck": "Offer pacifier",
+        "side": "Side/stomach position"
       }
+    },
+    "postpartumRecovery": {
+      "subtitle": "Your postpartum recovery guide",
+      "welcomeTitle": "Welcome to Your Recovery",
+      "welcomeDesc": "Personalized postpartum recovery guidance based on your birth experience",
+      "selectBirthType": "Select your birth type",
+      "birthTypes": {
+        "vaginal": "Vaginal Birth",
+        "cesarean": "C-Section",
+        "assisted": "Assisted Birth"
+      },
+      "changeBirthType": "Change birth type",
+      "phases": {
+        "week1": "Week 1",
+        "week2": "Week 2-3",
+        "week4": "Week 4-6",
+        "month2": "Month 2-3"
+      },
+      "checklist": {
+        "rest": "Get adequate rest",
+        "hydrate": "Stay hydrated",
+        "nutrition": "Eat nutritious meals",
+        "exercise": "Gentle walks",
+        "checkup": "Postpartum checkup"
+      },
+      "progress": "Recovery Progress",
+      "getAIAdvice": "Get AI Recovery Advice",
+      "aiAdviceTitle": "AI Recovery Guidance"
+    },
+    "fertilityAcademy": {
+      "lessons": "Lessons",
+      "lessonsCount": "{{count}} lessons"
+    },
+    "fertilitySigns": {
+      "signs": "Signs",
+      "signsCount": "{{count}} signs"
+    },
+    "preconceptionCheckup": {
+      "ai": "AI Analysis",
+      "allComplete": "All Complete",
+      "categories": "Categories",
+      "checks": "Checks",
+      "disclaimer": "Consult your doctor",
+      "progressLabel": "Progress",
+      "tracked": "Tracked"
+    },
+    "preconceptionNutrition": {
+      "categories": "Categories",
+      "categoriesCount": "{{count}} categories"
+    },
+    "prenatalVitamins": {
+      "supplementsCount": "{{count}} supplements",
+      "vitamins": "Vitamins"
+    },
+    "stressFertility": {
+      "topics": "Topics",
+      "topicsCount": "{{count}} topics"
+    },
+    "twwCompanion": {
+      "days": "Days",
+      "subtitle": "Two-week wait companion with daily tips"
     }
   },
   "welcome": {
@@ -3881,8 +4229,8 @@
     "subtitle": "Your complete pregnancy companion",
     "feature1": "30+ AI-powered pregnancy tools",
     "feature2": "Personalized health tracking",
-      "disclaimerTitle": "Important Notice",
-      "disclaimerText": "This app provides general wellness information only and is not a substitute for professional health guidance. Always consult your healthcare provider for any health concerns.",
+    "disclaimerTitle": "Important Notice",
+    "disclaimerText": "This app provides general wellness information only and is not a substitute for professional health guidance. Always consult your healthcare provider for any health concerns.",
     "getStarted": "Get Started",
     "agreement": "By continuing, you agree to our Terms of Service"
   },
@@ -3920,9 +4268,21 @@
       "demographics": "Demographics"
     },
     "riskLevels": {
-      "high": { "title": "Higher Risk", "description": "You have one or more significant risk factors for preeclampsia. Your provider may recommend low-dose aspirin starting at 12 weeks.", "recommendation": "Discuss aspirin prophylaxis with your healthcare provider" },
-      "moderate": { "title": "Moderate Risk", "description": "You have some risk factors. Enhanced monitoring and lifestyle modifications may be recommended.", "recommendation": "Consider discussing risk with your healthcare provider" },
-      "low": { "title": "Lower Risk", "description": "You have few identified risk factors. Continue with standard prenatal care.", "recommendation": "Maintain regular prenatal visits" }
+      "high": {
+        "title": "Higher Risk",
+        "description": "You have one or more significant risk factors for preeclampsia. Your provider may recommend low-dose aspirin starting at 12 weeks.",
+        "recommendation": "Discuss aspirin prophylaxis with your healthcare provider"
+      },
+      "moderate": {
+        "title": "Moderate Risk",
+        "description": "You have some risk factors. Enhanced monitoring and lifestyle modifications may be recommended.",
+        "recommendation": "Consider discussing risk with your healthcare provider"
+      },
+      "low": {
+        "title": "Lower Risk",
+        "description": "You have few identified risk factors. Continue with standard prenatal care.",
+        "recommendation": "Maintain regular prenatal visits"
+      }
     },
     "warningSigns": {
       "headaches": "Severe headaches that don't go away",
@@ -3950,21 +4310,66 @@
       "baby": "Baby"
     },
     "tips": {
-      "t1": { "tip": "Stay hydrated!", "detail": "Aim for 8-10 glasses of water daily to support amniotic fluid and reduce swelling." },
-      "t2": { "tip": "Eat your greens", "detail": "Leafy greens like spinach and kale are packed with folate essential for neural development." },
-      "t3": { "tip": "Take a 15-minute walk", "detail": "Walking improves circulation, reduces swelling, and helps with labor preparation." },
-      "t4": { "tip": "Practice gratitude", "detail": "Write down 3 things you're grateful for today. This reduces stress and improves mood." },
-      "t5": { "tip": "Talk to your baby", "detail": "Your baby can hear you! Reading or singing strengthens your bond." },
-      "t6": { "tip": "Sleep on your left side", "detail": "This position improves blood flow to your baby and reduces pressure on organs." },
-      "t7": { "tip": "Include omega-3s", "detail": "Salmon, walnuts, and chia seeds support baby's brain development." },
-      "t8": { "tip": "Do your Kegels", "detail": "Pelvic floor exercises prepare you for labor and prevent incontinence." },
-      "t9": { "tip": "Connect with other moms", "detail": "Join a prenatal class or online community for support and shared experiences." },
-      "t10": { "tip": "Count those kicks", "detail": "After week 28, track baby movements. You should feel 10 kicks in 2 hours." },
-      "t11": { "tip": "Elevate your feet", "detail": "Reduce swelling by putting your feet up for 15 minutes several times a day." },
-      "t12": { "tip": "Don't skip breakfast", "detail": "A protein-rich breakfast stabilizes blood sugar and reduces nausea." },
-      "t13": { "tip": "Practice prenatal yoga", "detail": "Gentle stretching relieves back pain and prepares your body for labor." },
-      "t14": { "tip": "Take a tech break", "detail": "Step away from screens for 30 minutes to reduce stress and eye strain." },
-      "t15": { "tip": "Create a nursery playlist", "detail": "Play calming music for baby - they'll recognize it after birth!" }
+      "t1": {
+        "tip": "Stay hydrated!",
+        "detail": "Aim for 8-10 glasses of water daily to support amniotic fluid and reduce swelling."
+      },
+      "t2": {
+        "tip": "Eat your greens",
+        "detail": "Leafy greens like spinach and kale are packed with folate essential for neural development."
+      },
+      "t3": {
+        "tip": "Take a 15-minute walk",
+        "detail": "Walking improves circulation, reduces swelling, and helps with labor preparation."
+      },
+      "t4": {
+        "tip": "Practice gratitude",
+        "detail": "Write down 3 things you're grateful for today. This reduces stress and improves mood."
+      },
+      "t5": {
+        "tip": "Talk to your baby",
+        "detail": "Your baby can hear you! Reading or singing strengthens your bond."
+      },
+      "t6": {
+        "tip": "Sleep on your left side",
+        "detail": "This position improves blood flow to your baby and reduces pressure on organs."
+      },
+      "t7": {
+        "tip": "Include omega-3s",
+        "detail": "Salmon, walnuts, and chia seeds support baby's brain development."
+      },
+      "t8": {
+        "tip": "Do your Kegels",
+        "detail": "Pelvic floor exercises prepare you for labor and prevent incontinence."
+      },
+      "t9": {
+        "tip": "Connect with other moms",
+        "detail": "Join a prenatal class or online community for support and shared experiences."
+      },
+      "t10": {
+        "tip": "Count those kicks",
+        "detail": "After week 28, track baby movements. You should feel 10 kicks in 2 hours."
+      },
+      "t11": {
+        "tip": "Elevate your feet",
+        "detail": "Reduce swelling by putting your feet up for 15 minutes several times a day."
+      },
+      "t12": {
+        "tip": "Don't skip breakfast",
+        "detail": "A protein-rich breakfast stabilizes blood sugar and reduces nausea."
+      },
+      "t13": {
+        "tip": "Practice prenatal yoga",
+        "detail": "Gentle stretching relieves back pain and prepares your body for labor."
+      },
+      "t14": {
+        "tip": "Take a tech break",
+        "detail": "Step away from screens for 30 minutes to reduce stress and eye strain."
+      },
+      "t15": {
+        "tip": "Create a nursery playlist",
+        "detail": "Play calming music for baby - they'll recognize it after birth!"
+      }
     }
   },
   "nauseaRelief": {
@@ -3980,7 +4385,11 @@
     "encouragingNote": "Remember: Morning sickness usually peaks around weeks 8-10 and improves significantly by week 12-14. You've got this!",
     "videosTitle": "Nausea Comfort Videos",
     "videosSubtitle": "Techniques and tips to ease morning sickness",
-    "severityLabels": { "mild": "Mild", "moderate": "Moderate", "severe": "Severe" },
+    "severityLabels": {
+      "mild": "Mild",
+      "moderate": "Moderate",
+      "severe": "Severe"
+    },
     "triggers": {
       "morning": "Worst in morning",
       "evening": "Worst in evening",
@@ -3992,12 +4401,30 @@
       "cooking": "Cooking smells"
     },
     "remedies": {
-      "lemonWater": { "name": "Lemon water", "tip": "Sip slowly on waking" },
-      "ginger": { "name": "Ginger", "tip": "Tea, candies, or fresh" },
-      "iceChips": { "name": "Ice chips", "tip": "Suck on ice when queasy" },
-      "dryCrackers": { "name": "Dry crackers", "tip": "Keep by bedside" },
-      "peppermint": { "name": "Peppermint", "tip": "Inhale or tea" },
-      "banana": { "name": "Banana", "tip": "Easy on stomach" }
+      "lemonWater": {
+        "name": "Lemon water",
+        "tip": "Sip slowly on waking"
+      },
+      "ginger": {
+        "name": "Ginger",
+        "tip": "Tea, candies, or fresh"
+      },
+      "iceChips": {
+        "name": "Ice chips",
+        "tip": "Suck on ice when queasy"
+      },
+      "dryCrackers": {
+        "name": "Dry crackers",
+        "tip": "Keep by bedside"
+      },
+      "peppermint": {
+        "name": "Peppermint",
+        "tip": "Inhale or tea"
+      },
+      "banana": {
+        "name": "Banana",
+        "tip": "Easy on stomach"
+      }
     }
   },
   "legCrampPreventer": {
@@ -4026,21 +4453,60 @@
       "evening": "Evening"
     },
     "reliefSteps": {
-      "step1": { "title": "Flex your foot", "desc": "Pull toes toward your shin" },
-      "step2": { "title": "Massage the muscle", "desc": "Rub gently in the direction of the cramp" },
-      "step3": { "title": "Apply heat", "desc": "Use a warm towel or heating pad" },
-      "step4": { "title": "Walk around", "desc": "Gentle movement helps release the cramp" },
-      "step5": { "title": "Drink water", "desc": "Hydration helps prevent recurrence" }
+      "step1": {
+        "title": "Flex your foot",
+        "desc": "Pull toes toward your shin"
+      },
+      "step2": {
+        "title": "Massage the muscle",
+        "desc": "Rub gently in the direction of the cramp"
+      },
+      "step3": {
+        "title": "Apply heat",
+        "desc": "Use a warm towel or heating pad"
+      },
+      "step4": {
+        "title": "Walk around",
+        "desc": "Gentle movement helps release the cramp"
+      },
+      "step5": {
+        "title": "Drink water",
+        "desc": "Hydration helps prevent recurrence"
+      }
     },
     "preventionTips": {
-      "hydrated": { "title": "Stay Hydrated", "desc": "Drink at least 8-10 glasses of water daily" },
-      "stretch": { "title": "Stretch Before Bed", "desc": "Gentle calf stretches can prevent nighttime cramps" },
-      "magnesium": { "title": "Magnesium-Rich Foods", "desc": "Eat nuts, seeds, bananas, and leafy greens" },
-      "standing": { "title": "Avoid Standing Too Long", "desc": "Take breaks and elevate your legs when possible" },
-      "shoes": { "title": "Wear Supportive Shoes", "desc": "Good footwear supports leg muscles" },
-      "bath": { "title": "Warm Bath Before Bed", "desc": "Relaxes muscles and improves circulation" },
-      "sleep": { "title": "Sleep Position", "desc": "Sleep on your left side with pillow between knees" },
-      "toes": { "title": "Avoid Pointing Toes", "desc": "Flex feet instead of pointing when stretching" }
+      "hydrated": {
+        "title": "Stay Hydrated",
+        "desc": "Drink at least 8-10 glasses of water daily"
+      },
+      "stretch": {
+        "title": "Stretch Before Bed",
+        "desc": "Gentle calf stretches can prevent nighttime cramps"
+      },
+      "magnesium": {
+        "title": "Magnesium-Rich Foods",
+        "desc": "Eat nuts, seeds, bananas, and leafy greens"
+      },
+      "standing": {
+        "title": "Avoid Standing Too Long",
+        "desc": "Take breaks and elevate your legs when possible"
+      },
+      "shoes": {
+        "title": "Wear Supportive Shoes",
+        "desc": "Good footwear supports leg muscles"
+      },
+      "bath": {
+        "title": "Warm Bath Before Bed",
+        "desc": "Relaxes muscles and improves circulation"
+      },
+      "sleep": {
+        "title": "Sleep Position",
+        "desc": "Sleep on your left side with pillow between knees"
+      },
+      "toes": {
+        "title": "Avoid Pointing Toes",
+        "desc": "Flex feet instead of pointing when stretching"
+      }
     }
   },
   "stretchReminder": {
@@ -4067,33 +4533,66 @@
       "tip4": "Stay hydrated for flexible muscles"
     },
     "stretches": {
-      "neckRolls": { "name": "Neck Rolls", "desc": "Gently roll your head in circles", "bodyPart": "Neck" },
-      "shoulderShrugs": { "name": "Shoulder Shrugs", "desc": "Raise shoulders to ears, then release", "bodyPart": "Shoulders" },
-      "wristCircles": { "name": "Wrist Circles", "desc": "Rotate wrists in both directions", "bodyPart": "Wrists" },
-      "sideStretch": { "name": "Side Stretch", "desc": "Reach arm overhead and lean to side", "bodyPart": "Back" },
-      "catCow": { "name": "Cat-Cow", "desc": "Alternate arching and rounding back", "bodyPart": "Spine" },
-      "hipCircles": { "name": "Hip Circles", "desc": "Stand and rotate hips in circles", "bodyPart": "Hips" },
-      "calfRaises": { "name": "Calf Raises", "desc": "Rise up on toes, then lower", "bodyPart": "Legs" },
-      "deepBreathing": { "name": "Deep Breathing", "desc": "Slow, deep breaths with hands on belly", "bodyPart": "Relaxation" }
+      "neckRolls": {
+        "name": "Neck Rolls",
+        "desc": "Gently roll your head in circles",
+        "bodyPart": "Neck"
+      },
+      "shoulderShrugs": {
+        "name": "Shoulder Shrugs",
+        "desc": "Raise shoulders to ears, then release",
+        "bodyPart": "Shoulders"
+      },
+      "wristCircles": {
+        "name": "Wrist Circles",
+        "desc": "Rotate wrists in both directions",
+        "bodyPart": "Wrists"
+      },
+      "sideStretch": {
+        "name": "Side Stretch",
+        "desc": "Reach arm overhead and lean to side",
+        "bodyPart": "Back"
+      },
+      "catCow": {
+        "name": "Cat-Cow",
+        "desc": "Alternate arching and rounding back",
+        "bodyPart": "Spine"
+      },
+      "hipCircles": {
+        "name": "Hip Circles",
+        "desc": "Stand and rotate hips in circles",
+        "bodyPart": "Hips"
+      },
+      "calfRaises": {
+        "name": "Calf Raises",
+        "desc": "Rise up on toes, then lower",
+        "bodyPart": "Legs"
+      },
+      "deepBreathing": {
+        "name": "Deep Breathing",
+        "desc": "Slow, deep breaths with hands on belly",
+        "bodyPart": "Relaxation"
+      }
     }
   },
   "weeklySummary": {
-    "title": "Weekly Insights",
     "subtitle": "Smart weekly tracking for your pregnancy",
-    "daysToGo": "days to go",
+    "daysToGo": "{{days}} days to go",
     "pregnancyWeek": "Pregnancy Week",
-    "daysRemaining": "Approximately {{days}} days remaining",
+    "week": "Week {{week}}",
     "showSummary": "Show Week {{week}} Summary",
-    "differentWeek": "Change Week",
-    "refresh": "Refresh",
-    "trackWeekTip": "Track your week to get personalized information about your baby's growth and your body changes",
     "babyGrowth": "Baby Growth",
     "momsHealth": "Mom's Health",
     "checkups": "Checkups",
     "normal": "Normal",
     "good": "Good",
     "complete": "Complete",
-    "trimesters": {
+    "weekSummary": "Week {{week}} Summary",
+    "differentWeek": "Change Week",
+    "refresh": "Refresh",
+    "trackTip": "Track your week to get personalized information about your baby's growth and your body changes",
+    "approximatelyRemaining": "Approximately {{days}} days remaining",
+    "trimester": {
       "first": "First Trimester",
       "second": "Second Trimester",
       "third": "Third Trimester"
@@ -4187,14 +4686,41 @@
       "hips": "Hips & Sciatic"
     },
     "exercises": {
-      "catCow": { "name": "Cat-Cow Stretch", "desc": "Alternating spinal flexion and extension", "target": "Lower & Upper Back" },
-      "pelvicTilt": { "name": "Pelvic Tilts", "desc": "Strengthen core and relieve lower back pressure", "target": "Lower Back & Core" },
-      "childPose": { "name": "Child's Pose", "desc": "Gentle stretch for the entire back", "target": "Full Back" },
-      "piriformis": { "name": "Piriformis Stretch", "desc": "Relieve sciatic pain and hip tension", "target": "Hips & Lower Back" },
-      "wallPush": { "name": "Wall Push-Up", "desc": "Strengthen upper back and shoulders", "target": "Upper Back & Arms" },
-      "sideStretch": { "name": "Side Body Stretch", "desc": "Stretch the sides of your torso", "target": "Side Body" }
+      "catCow": {
+        "name": "Cat-Cow Stretch",
+        "desc": "Alternating spinal flexion and extension",
+        "target": "Lower & Upper Back"
+      },
+      "pelvicTilt": {
+        "name": "Pelvic Tilts",
+        "desc": "Strengthen core and relieve lower back pressure",
+        "target": "Lower Back & Core"
+      },
+      "childPose": {
+        "name": "Child's Pose",
+        "desc": "Gentle stretch for the entire back",
+        "target": "Full Back"
+      },
+      "piriformis": {
+        "name": "Piriformis Stretch",
+        "desc": "Relieve sciatic pain and hip tension",
+        "target": "Hips & Lower Back"
+      },
+      "wallPush": {
+        "name": "Wall Push-Up",
+        "desc": "Strengthen upper back and shoulders",
+        "target": "Upper Back & Arms"
+      },
+      "sideStretch": {
+        "name": "Side Body Stretch",
+        "desc": "Stretch the sides of your torso",
+        "target": "Side Body"
+      }
     },
-    "difficulty": { "easy": "Easy", "moderate": "Moderate" }
+    "difficulty": {
+      "easy": "Easy",
+      "moderate": "Moderate"
+    }
   },
   "sleepOptimizer": {
     "title": "AI Sleep Tips",
@@ -4217,29 +4743,6 @@
       "babyMovements": "Baby movements",
       "hotFlashes": "Hot flashes",
       "snoring": "Snoring/breathing issues"
-    }
-  },
-  "weeklySummary": {
-    "subtitle": "Smart weekly tracking for your pregnancy",
-    "daysToGo": "{{days}} days to go",
-    "pregnancyWeek": "Pregnancy Week",
-    "week": "Week {{week}}",
-    "showSummary": "Show Week {{week}} Summary",
-    "babyGrowth": "Baby Growth",
-    "momsHealth": "Mom's Health",
-    "checkups": "Checkups",
-    "normal": "Normal",
-    "good": "Good",
-    "complete": "Complete",
-    "weekSummary": "Week {{week}} Summary",
-    "differentWeek": "Change Week",
-    "refresh": "Refresh",
-    "trackTip": "Track your week to get personalized information about your baby's growth and your body changes",
-    "approximatelyRemaining": "Approximately {{days}} days remaining",
-    "trimester": {
-      "first": "First Trimester",
-      "second": "Second Trimester",
-      "third": "Third Trimester"
     }
   },
   "aiInsights": {
@@ -4356,26 +4859,6 @@
     "randomRecipe": "Random Recipe",
     "aiGenerate": "AI Generate",
     "aiGeneratedRecipe": "AI-Generated Recipe",
-    "ingredients": "Ingredients",
-    "instructions": "Instructions",
-    "nutrition": "Nutrition",
-    "allRecipes": "All Recipes for Trimester {{trimester}}",
-    "smoothies": {
-      "morningEnergy": "Morning Energy Boost",
-      "ironPower": "Iron Power Blend",
-      "sleepBetter": "Sleep Better Smoothie",
-      "nauseaRelief": "Nausea Relief Green",
-      "brainBuilder": "Brain Builder Blend",
-      "calciumCrush": "Calcium Crush"
-    },
-    "benefits": {
-      "fightsFatigue": "Fights fatigue and provides sustained energy",
-      "boostsIron": "Boosts iron levels and prevents anemia",
-      "promotesSleep": "Promotes relaxation and better sleep",
-      "calmsNausea": "Helps calm morning sickness",
-      "brainDev": "Supports baby brain development with Omega-3s",
-      "strengthensBones": "Strengthens bones for you and baby"
-    },
     "ingredients": {
       "1banana": "1 banana",
       "1cupSpinach": "1 cup spinach",
@@ -4409,6 +4892,25 @@
       "1cupFortifiedAlmondMilk": "1 cup fortified almond milk",
       "1tbspSesameSeeds": "1 tbsp sesame seeds",
       "honeyToTaste": "Honey to taste"
+    },
+    "instructions": "Instructions",
+    "nutrition": "Nutrition",
+    "allRecipes": "All Recipes for Trimester {{trimester}}",
+    "smoothies": {
+      "morningEnergy": "Morning Energy Boost",
+      "ironPower": "Iron Power Blend",
+      "sleepBetter": "Sleep Better Smoothie",
+      "nauseaRelief": "Nausea Relief Green",
+      "brainBuilder": "Brain Builder Blend",
+      "calciumCrush": "Calcium Crush"
+    },
+    "benefits": {
+      "fightsFatigue": "Fights fatigue and provides sustained energy",
+      "boostsIron": "Boosts iron levels and prevents anemia",
+      "promotesSleep": "Promotes relaxation and better sleep",
+      "calmsNausea": "Helps calm morning sickness",
+      "brainDev": "Supports baby brain development with Omega-3s",
+      "strengthensBones": "Strengthens bones for you and baby"
     },
     "instructionsText": {
       "morningEnergyInstructions": "Blend all ingredients until smooth. Serve immediately for best texture.",
@@ -4765,14 +5267,38 @@
       "earlyLaborSigns": "What are signs of early labor?"
     },
     "categories": {
-      "checkups": { "label": "Checkups", "icon": "🔬" },
-      "development": { "label": "Baby Growth", "icon": "👶" },
-      "warning": { "label": "Warning Signs", "icon": "⚠️" },
-      "lifestyle": { "label": "Lifestyle", "icon": "🏃" },
-      "nutrition": { "label": "Nutrition", "icon": "🥗" },
-      "medications": { "label": "Medications", "icon": "💊" },
-      "preparation": { "label": "Preparation", "icon": "📋" },
-      "other": { "label": "Other", "icon": "❓" }
+      "checkups": {
+        "label": "Checkups",
+        "icon": "🔬"
+      },
+      "development": {
+        "label": "Baby Growth",
+        "icon": "👶"
+      },
+      "warning": {
+        "label": "Warning Signs",
+        "icon": "⚠️"
+      },
+      "lifestyle": {
+        "label": "Lifestyle",
+        "icon": "🏃"
+      },
+      "nutrition": {
+        "label": "Nutrition",
+        "icon": "🥗"
+      },
+      "medications": {
+        "label": "Medications",
+        "icon": "💊"
+      },
+      "preparation": {
+        "label": "Preparation",
+        "icon": "📋"
+      },
+      "other": {
+        "label": "Other",
+        "icon": "❓"
+      }
     },
     "priority": {
       "high": "Important",
@@ -4842,32 +5368,104 @@
     "aiAdviceTitle": "Personalized Recovery Advice",
     "changeBirthType": "Change birth type",
     "phases": {
-      "week1": { "title": "Week 1 — Rest & Heal", "description": "Focus on rest, wound care, and bonding with your baby" },
-      "week2": { "title": "Week 2 — Gentle Start", "description": "Begin gentle movement and establish routines" },
-      "week3_4": { "title": "Weeks 3-4 — Building Strength", "description": "Light exercises and emotional wellness check" },
-      "week5_6": { "title": "Weeks 5-6 — New Normal", "description": "Return to activity and long-term planning" }
+      "week1": {
+        "title": "Week 1 — Rest & Heal",
+        "description": "Focus on rest, wound care, and bonding with your baby"
+      },
+      "week2": {
+        "title": "Week 2 — Gentle Start",
+        "description": "Begin gentle movement and establish routines"
+      },
+      "week3_4": {
+        "title": "Weeks 3-4 — Building Strength",
+        "description": "Light exercises and emotional wellness check"
+      },
+      "week5_6": {
+        "title": "Weeks 5-6 — New Normal",
+        "description": "Return to activity and long-term planning"
+      }
     },
     "checklist": {
-      "rest": { "title": "Prioritize Rest", "desc": "Sleep when baby sleeps, accept help from others" },
-      "hydration": { "title": "Stay Hydrated", "desc": "Drink 8-10 glasses of water daily" },
-      "woundCare": { "title": "Wound Care", "desc": "Follow your doctor's wound care instructions" },
-      "feedingSchedule": { "title": "Feeding Schedule", "desc": "Establish a consistent feeding routine" },
-      "painManagement": { "title": "Pain Management", "desc": "Take prescribed medications as directed" },
-      "gentleWalking": { "title": "Gentle Walking", "desc": "Short walks around the house" },
-      "emotionalCheck": { "title": "Emotional Check-in", "desc": "Monitor your mood and feelings" },
-      "nutrition": { "title": "Nutritious Meals", "desc": "Eat iron-rich, protein-packed meals" },
-      "sleepRoutine": { "title": "Sleep Routine", "desc": "Create a restful sleep environment" },
-      "socialSupport": { "title": "Social Support", "desc": "Stay connected with loved ones" },
-      "lightExercise": { "title": "Light Exercise", "desc": "Gentle stretching and walking" },
-      "posturalExercises": { "title": "Postural Exercises", "desc": "Strengthen your core gently" },
-      "kegelExercises": { "title": "Kegel Exercises", "desc": "Start pelvic floor exercises" },
-      "mentalHealthCheck": { "title": "Mental Health Check", "desc": "Screen for postpartum depression" },
-      "doctorVisit": { "title": "Doctor Visit", "desc": "Schedule your postpartum checkup" },
-      "returnToExercise": { "title": "Return to Exercise", "desc": "Gradually increase activity level" },
-      "intimacyReadiness": { "title": "Intimacy Readiness", "desc": "Discuss with your partner when ready" },
-      "fullCheckup": { "title": "Full Checkup", "desc": "Complete postpartum medical exam" },
-      "longTermPlan": { "title": "Long-term Plan", "desc": "Discuss contraception and future plans" },
-      "selfCare": { "title": "Self-Care Routine", "desc": "Establish ongoing self-care practices" }
+      "rest": {
+        "title": "Prioritize Rest",
+        "desc": "Sleep when baby sleeps, accept help from others"
+      },
+      "hydration": {
+        "title": "Stay Hydrated",
+        "desc": "Drink 8-10 glasses of water daily"
+      },
+      "woundCare": {
+        "title": "Wound Care",
+        "desc": "Follow your doctor's wound care instructions"
+      },
+      "feedingSchedule": {
+        "title": "Feeding Schedule",
+        "desc": "Establish a consistent feeding routine"
+      },
+      "painManagement": {
+        "title": "Pain Management",
+        "desc": "Take prescribed medications as directed"
+      },
+      "gentleWalking": {
+        "title": "Gentle Walking",
+        "desc": "Short walks around the house"
+      },
+      "emotionalCheck": {
+        "title": "Emotional Check-in",
+        "desc": "Monitor your mood and feelings"
+      },
+      "nutrition": {
+        "title": "Nutritious Meals",
+        "desc": "Eat iron-rich, protein-packed meals"
+      },
+      "sleepRoutine": {
+        "title": "Sleep Routine",
+        "desc": "Create a restful sleep environment"
+      },
+      "socialSupport": {
+        "title": "Social Support",
+        "desc": "Stay connected with loved ones"
+      },
+      "lightExercise": {
+        "title": "Light Exercise",
+        "desc": "Gentle stretching and walking"
+      },
+      "posturalExercises": {
+        "title": "Postural Exercises",
+        "desc": "Strengthen your core gently"
+      },
+      "kegelExercises": {
+        "title": "Kegel Exercises",
+        "desc": "Start pelvic floor exercises"
+      },
+      "mentalHealthCheck": {
+        "title": "Mental Health Check",
+        "desc": "Screen for postpartum depression"
+      },
+      "doctorVisit": {
+        "title": "Doctor Visit",
+        "desc": "Schedule your postpartum checkup"
+      },
+      "returnToExercise": {
+        "title": "Return to Exercise",
+        "desc": "Gradually increase activity level"
+      },
+      "intimacyReadiness": {
+        "title": "Intimacy Readiness",
+        "desc": "Discuss with your partner when ready"
+      },
+      "fullCheckup": {
+        "title": "Full Checkup",
+        "desc": "Complete postpartum medical exam"
+      },
+      "longTermPlan": {
+        "title": "Long-term Plan",
+        "desc": "Discuss contraception and future plans"
+      },
+      "selfCare": {
+        "title": "Self-Care Routine",
+        "desc": "Establish ongoing self-care practices"
+      }
     }
   },
   "toolsInternal.recipeModifier": {
@@ -4889,7 +5487,6 @@
     "selectPreference": "Please select at least one preference"
   },
   "toolsInternal.walkingCoach.minutes": "minutes",
-
   "socialProof": {
     "title": "Everything You Need 💕",
     "subtitle": "Your complete pregnancy companion",
@@ -5020,7 +5617,7 @@
     "waterHint": "Daily reminder at 9:00 AM",
     "cycleReminders": "Cycle & Ovulation",
     "cycleHint": "Alert 2 days before period & ovulation",
-    "kickReminders": "Baby Kicks",
+    "kickReminders": "Kick Counter",
     "kickHint": "Daily kick counting reminder",
     "milestoneReminders": "Milestones",
     "milestoneHint": "Celebrate pregnancy milestones",
@@ -5132,7 +5729,6 @@
     "weeklyTipMsg_default": "Your baby is growing beautifully! Week {{week}} — enjoy every moment 💕",
     "kickReminderTitle": "👶 Time to Count Kicks",
     "kickReminderMsg": "Your baby is active! Take a moment to count 10 movements. It helps ensure baby's wellbeing.",
-    "kickReminders": "Kick Counter",
     "milestoneTitle": "🎉 Milestone Reached!",
     "milestoneMsg_month2": "You've completed 2 months of pregnancy! Your baby's heart is beating strong 💓",
     "milestoneMsg_month3": "3 months done! End of first trimester — the risk of complications drops significantly 🎊",
@@ -5142,7 +5738,6 @@
     "milestoneMsg_month7": "7 months! Third trimester begins. The countdown is on! ⏰",
     "milestoneMsg_month8": "8 months! Baby is gaining weight rapidly. Almost there! 💪",
     "milestoneMsg_month9": "9 months! Your baby is fully developed and ready to arrive! 🎁",
-    "milestoneReminders": "Milestones",
     "weeklyTipReminders": "Weekly Tips",
     "diaperReminders": "Diaper Reminder",
     "diaperHint": "Alert after 5 hours without a change",
@@ -5271,8 +5866,8 @@
     "step2": "Squeeze and hold for 5 seconds, keeping abs and thighs relaxed.",
     "step3": "Release for 5 seconds and let the muscles fully relax.",
     "step4": "Repeat 10-15 times per set, 3 sets daily for best results."
-  }
-  ,"aiErrors": {
+  },
+  "aiErrors": {
     "rateLimitTitle": "Too Many Requests",
     "rateLimitMsg": "You've sent too many requests. Please wait a moment and try again.",
     "paymentTitle": "Service Unavailable",
@@ -5436,24 +6031,78 @@
         "title": "Optimizing Timing for Conception",
         "content": "Timing is crucial for maximizing your chances:\n\n• The best days for conception are the 2–3 days before ovulation and ovulation day itself.\n• Having intercourse every 1–2 days during the fertile window provides the best results.\n• Sperm quality is not significantly reduced by daily ejaculation in most men.\n• After intercourse, lying down for 10–15 minutes may slightly improve sperm transport, though evidence is limited.\n• Lubricants: Some commercial lubricants can reduce sperm motility. Use fertility-friendly brands if needed.\n• Track your cycle for 2–3 months before actively trying, to understand your personal pattern.\n• Stay hydrated and maintain a balanced diet during the fertile window.\n• Both partners should avoid excessive alcohol during the fertile window."
       },
-      "implantationWindow": { "title": "The Implantation Window", "content": "The implantation window is the brief period when the uterine lining is ready to receive the embryo:\n\n• Typically occurs between days 6–10 after ovulation.\n• During this time, the endometrium secretes special proteins that help the embryo attach.\n• Progesterone plays a central role in preparing the lining.\n• Factors affecting window quality: chronic inflammation, insufficient lining thickness, or immune disorders.\n• Rest and good nutrition during the luteal phase support the implantation process." },
-      "cervicalHealth": { "title": "Cervical Health & Fertility", "content": "The cervix plays a fundamental role in fertility:\n\n• It produces mucus that changes throughout the cycle to facilitate or block sperm passage.\n• Fertile mucus nourishes sperm and extends their lifespan up to 5 days.\n• Chronic cervical infections may reduce mucus quality.\n• Previous cervical procedures (like cone biopsies) may affect mucus production.\n• Maintaining healthy vaginal pH supports the optimal cervical environment for fertility." },
-      "thyroidFertility": { "title": "Thyroid & Fertility", "content": "Thyroid disorders are among the most treatable causes of fertility problems:\n\n• Hypothyroidism can cause irregular cycles, absent ovulation, or early miscarriage.\n• Hyperthyroidism is linked to irregular periods and difficulty conceiving.\n• Even subclinical hypothyroidism (TSH 2.5–4.0) may affect fertility.\n• Thyroid antibodies (Anti-TPO) are common and may impact implantation.\n• TSH and FT4 testing is recommended for all women planning pregnancy.\n• Levothyroxine treatment is safe and effective while trying to conceive." },
-      "pcosManagement": { "title": "Managing PCOS & Fertility", "content": "Polycystic Ovary Syndrome (PCOS) affects 8–13% of women:\n\n• The most common cause of anovulation and ovulation-related infertility.\n• Key symptoms: irregular periods, acne, excess hair growth, insulin resistance.\n• Lifestyle changes are very effective: losing 5–10% of weight can restore ovulation.\n• Inositol has shown promising results in improving insulin sensitivity and egg quality.\n• A low-sugar, balanced diet supports hormonal regularity.\n• Medications like clomiphene or letrozole successfully stimulate ovulation in many cases." },
-      "endometriosisAwareness": { "title": "Endometriosis & Fertility", "content": "Endometriosis affects 1 in 10 women:\n\n• Tissue similar to the uterine lining grows outside the uterus, causing inflammation and adhesions.\n• It can affect the tubes, ovaries, and egg quality.\n• Symptoms: severe period pain, pain during intercourse, and sometimes no symptoms.\n• Early diagnosis improves outcomes. Laparoscopy is the gold standard.\n• Many affected women conceive naturally or with assistance.\n• Consult a fertility specialist if you have a family history or suspicious symptoms." },
-      "nutritionFertility": { "title": "Optimal Nutrition for Fertility", "content": "Diet directly affects egg and sperm quality:\n\n• The Mediterranean diet has shown the best results in fertility studies.\n• Healthy fats (omega-3, olive oil) support hormone production.\n• Plant protein may be better than animal protein for some women.\n• Avoid trans fats, which double the risk of ovulation-related infertility.\n• Organic foods reduce exposure to hormone-disrupting pesticides.\n• Plant-source iron + vitamin C significantly improves absorption." },
-      "sleepHormones": { "title": "Sleep & Fertility Hormones", "content": "Sleep is not a luxury — it's a biological necessity for fertility:\n\n• Melatonin (sleep hormone) acts as an antioxidant protecting eggs.\n• Less than 6 hours of sleep raises cortisol, which suppresses GnRH and ovulation.\n• Shift work is associated with increased cycle and fertility problems.\n• The circadian rhythm regulates FSH and LH secretion.\n• Blue light from screens suppresses melatonin and disrupts rhythm.\n• Goal: 7–9 hours of sleep in a dark, cool room with a consistent routine." },
-      "exerciseBalance": { "title": "Balancing Exercise & Fertility", "content": "Exercise is a double-edged sword for fertility:\n\n• Moderate activity (150 minutes/week) improves ovulation and fertility.\n• Continuous intense exercise can cause 'relative energy deficiency' stopping ovulation.\n• Walking, swimming, and yoga are among the best options.\n• Moderate strength training improves insulin sensitivity (helpful for PCOS).\n• Fertility yoga combines movement with stress reduction.\n• If your period disappears with intense exercise, reduce intensity immediately.\n• The balance between movement and rest is key." },
-      "supplementsGuide": { "title": "Smart Supplements Guide", "content": "Supplements can support your fertility — but not all are equal:\n\n• Folic acid/methylfolate: Essential — start 3 months before trying.\n• CoQ10 (200–600mg): Supports egg energy, especially after 35.\n• Vitamin D (1000–2000 IU): Most women are deficient.\n• Omega-3 DHA (200–300mg): For hormone health and inflammation.\n• Inositol (4g myo + 100mg d-chiro): Especially helpful with PCOS.\n• Iron: Only if tests show deficiency — excess is harmful.\n• Always consult your doctor before starting any new supplement." },
-      "environmentalToxins": { "title": "Environmental Toxins & Fertility", "content": "Daily exposure to environmental toxins can affect your fertility:\n\n• BPA in plastics mimics estrogen and disrupts hormonal balance.\n• Phthalates in cosmetics and fragrances disrupt the endocrine system.\n• Pesticides on fruits and vegetables are linked to lower egg quality.\n• Heavy metals (lead, mercury) affect both eggs and sperm.\n• Practical steps: glass containers instead of plastic, natural cleaning products, wash fruits well.\n• Filtering drinking water reduces pollutant exposure." },
-      "geneticFactors": { "title": "Genetic Factors & Fertility", "content": "Genes play a bigger role than expected in fertility:\n\n• Carrier genetic screening reveals risk of passing genetic diseases to children.\n• MTHFR mutation affects folate metabolism — methylfolate may be better.\n• Turner syndrome and chromosomal abnormalities affect ovarian reserve.\n• Family history of early menopause may signal early reserve decline.\n• Karyotype testing is recommended in cases of recurrent miscarriage.\n• Genetic counseling is available and useful for those with specific family histories." },
-      "immunologyFertility": { "title": "Immunology & Fertility", "content": "The immune system plays a delicate role in pregnancy:\n\n• The body must accept the embryo (half its genes from the father) without rejecting it.\n• Uterine NK cells help with implantation — but excessive activity may hinder it.\n• Antiphospholipid antibodies are linked to recurrent miscarriage.\n• Autoimmune diseases (lupus, Hashimoto's) may affect fertility.\n• Chronic pelvic inflammation can damage the tubes.\n• An anti-inflammatory lifestyle (nutrition, sleep, movement) supports balanced immunity." },
-      "secondaryInfertility": { "title": "Secondary Infertility", "content": "Secondary infertility means difficulty conceiving after having a previous child:\n\n• Accounts for about 50% of infertility cases — but is less discussed.\n• Causes: advancing age, weight changes, complications from previous pregnancy.\n• Adhesions from cesarean section or infection may affect fertility.\n• Hormonal changes after first birth may not fully normalize.\n• Social expectations ('you have a child, be grateful') increase psychological burden.\n• Don't delay seeking help — the same time criteria apply." },
-      "recurrentLoss": { "title": "Understanding Recurrent Pregnancy Loss", "content": "Recurrent pregnancy loss (two or more) requires comprehensive evaluation:\n\n• 15–20% of pregnancies end in miscarriage — most due to chromosomal abnormalities.\n• Treatable causes: clotting disorders, uterine anomalies, thyroid problems.\n• Uterine septum is the most common uterine anomaly and can be surgically corrected.\n• Antiphospholipid syndrome is treatable with aspirin and heparin.\n• Psychological support is essential — grief and anxiety after loss are natural and valid.\n• 60–70% of couples with unexplained recurrent loss succeed in the next pregnancy." },
-      "fertilityPreservation": { "title": "Fertility Preservation", "content": "Fertility preservation is an available option that gives you flexibility in planning:\n\n• Egg freezing: Ideal age before 35. Excellent results with modern techniques.\n• Embryo freezing: Option for married couples. Higher success rates than eggs alone.\n• Reasons for freezing: delayed childbearing, chemotherapy, medical conditions.\n• The process requires hormonal stimulation for 10–14 days then egg retrieval.\n• Cost and storage are factors to consider.\n• Consult a fertility specialist to assess if it's suitable for your situation." },
-      "assistedReproduction": { "title": "Assisted Reproduction Techniques", "content": "When natural conception doesn't succeed, there are effective options:\n\n• Ovulation stimulation: Medications that stimulate egg production — first-line treatment.\n• Intrauterine insemination (IUI): Processed sperm injected directly into the uterus.\n• In vitro fertilization (IVF): The most advanced technique. Success rates 30–50% per cycle.\n• Intracytoplasmic sperm injection (ICSI): A single sperm injected directly into the egg.\n• Preimplantation genetic testing (PGT): Screening embryos for chromosomal abnormalities.\n• Each option has specific indications — a fertility specialist guides you to the most suitable." },
-      "epigeneticsFertility": { "title": "Epigenetics & Generational Health", "content": "Epigenetics discoveries have changed our understanding of fertility:\n\n• Your nutrition and lifestyle can influence gene expression in your future child.\n• Folate deficiency before pregnancy affects fetal gene programming.\n• Chronic stress can leave 'imprints' on DNA that transfer to the embryo.\n• Pollution and environmental toxins cause epigenetic changes that may affect generations.\n• Good news: negative epigenetic changes are reversible with a healthy lifestyle.\n• 3–6 months of improvements before pregnancy make a real difference in fetal health." },
-      "mindBodyConnection": { "title": "The Mind-Body Connection", "content": "The relationship between mind and body is deeper than we imagine in fertility:\n\n• Chronic stress activates the HPA axis which suppresses reproductive hormones.\n• Relaxation techniques (meditation, yoga, deep breathing) measurably improve fertility outcomes.\n• Cognitive behavioral therapy (CBT) has shown positive results in reducing fertility anxiety.\n• Positive visualization and affirmations activate neural pathways that support hormonal balance.\n• Support groups reduce feelings of isolation and improve mental health.\n• Art, music, and creative writing are effective therapeutic tools during the fertility journey.\n• Seek professional help if anxiety or sadness begin to dominate your life." }
+      "implantationWindow": {
+        "title": "The Implantation Window",
+        "content": "The implantation window is the brief period when the uterine lining is ready to receive the embryo:\n\n• Typically occurs between days 6–10 after ovulation.\n• During this time, the endometrium secretes special proteins that help the embryo attach.\n• Progesterone plays a central role in preparing the lining.\n• Factors affecting window quality: chronic inflammation, insufficient lining thickness, or immune disorders.\n• Rest and good nutrition during the luteal phase support the implantation process."
+      },
+      "cervicalHealth": {
+        "title": "Cervical Health & Fertility",
+        "content": "The cervix plays a fundamental role in fertility:\n\n• It produces mucus that changes throughout the cycle to facilitate or block sperm passage.\n• Fertile mucus nourishes sperm and extends their lifespan up to 5 days.\n• Chronic cervical infections may reduce mucus quality.\n• Previous cervical procedures (like cone biopsies) may affect mucus production.\n• Maintaining healthy vaginal pH supports the optimal cervical environment for fertility."
+      },
+      "thyroidFertility": {
+        "title": "Thyroid & Fertility",
+        "content": "Thyroid disorders are among the most treatable causes of fertility problems:\n\n• Hypothyroidism can cause irregular cycles, absent ovulation, or early miscarriage.\n• Hyperthyroidism is linked to irregular periods and difficulty conceiving.\n• Even subclinical hypothyroidism (TSH 2.5–4.0) may affect fertility.\n• Thyroid antibodies (Anti-TPO) are common and may impact implantation.\n• TSH and FT4 testing is recommended for all women planning pregnancy.\n• Levothyroxine treatment is safe and effective while trying to conceive."
+      },
+      "pcosManagement": {
+        "title": "Managing PCOS & Fertility",
+        "content": "Polycystic Ovary Syndrome (PCOS) affects 8–13% of women:\n\n• The most common cause of anovulation and ovulation-related infertility.\n• Key symptoms: irregular periods, acne, excess hair growth, insulin resistance.\n• Lifestyle changes are very effective: losing 5–10% of weight can restore ovulation.\n• Inositol has shown promising results in improving insulin sensitivity and egg quality.\n• A low-sugar, balanced diet supports hormonal regularity.\n• Medications like clomiphene or letrozole successfully stimulate ovulation in many cases."
+      },
+      "endometriosisAwareness": {
+        "title": "Endometriosis & Fertility",
+        "content": "Endometriosis affects 1 in 10 women:\n\n• Tissue similar to the uterine lining grows outside the uterus, causing inflammation and adhesions.\n• It can affect the tubes, ovaries, and egg quality.\n• Symptoms: severe period pain, pain during intercourse, and sometimes no symptoms.\n• Early diagnosis improves outcomes. Laparoscopy is the gold standard.\n• Many affected women conceive naturally or with assistance.\n• Consult a fertility specialist if you have a family history or suspicious symptoms."
+      },
+      "nutritionFertility": {
+        "title": "Optimal Nutrition for Fertility",
+        "content": "Diet directly affects egg and sperm quality:\n\n• The Mediterranean diet has shown the best results in fertility studies.\n• Healthy fats (omega-3, olive oil) support hormone production.\n• Plant protein may be better than animal protein for some women.\n• Avoid trans fats, which double the risk of ovulation-related infertility.\n• Organic foods reduce exposure to hormone-disrupting pesticides.\n• Plant-source iron + vitamin C significantly improves absorption."
+      },
+      "sleepHormones": {
+        "title": "Sleep & Fertility Hormones",
+        "content": "Sleep is not a luxury — it's a biological necessity for fertility:\n\n• Melatonin (sleep hormone) acts as an antioxidant protecting eggs.\n• Less than 6 hours of sleep raises cortisol, which suppresses GnRH and ovulation.\n• Shift work is associated with increased cycle and fertility problems.\n• The circadian rhythm regulates FSH and LH secretion.\n• Blue light from screens suppresses melatonin and disrupts rhythm.\n• Goal: 7–9 hours of sleep in a dark, cool room with a consistent routine."
+      },
+      "exerciseBalance": {
+        "title": "Balancing Exercise & Fertility",
+        "content": "Exercise is a double-edged sword for fertility:\n\n• Moderate activity (150 minutes/week) improves ovulation and fertility.\n• Continuous intense exercise can cause 'relative energy deficiency' stopping ovulation.\n• Walking, swimming, and yoga are among the best options.\n• Moderate strength training improves insulin sensitivity (helpful for PCOS).\n• Fertility yoga combines movement with stress reduction.\n• If your period disappears with intense exercise, reduce intensity immediately.\n• The balance between movement and rest is key."
+      },
+      "supplementsGuide": {
+        "title": "Smart Supplements Guide",
+        "content": "Supplements can support your fertility — but not all are equal:\n\n• Folic acid/methylfolate: Essential — start 3 months before trying.\n• CoQ10 (200–600mg): Supports egg energy, especially after 35.\n• Vitamin D (1000–2000 IU): Most women are deficient.\n• Omega-3 DHA (200–300mg): For hormone health and inflammation.\n• Inositol (4g myo + 100mg d-chiro): Especially helpful with PCOS.\n• Iron: Only if tests show deficiency — excess is harmful.\n• Always consult your doctor before starting any new supplement."
+      },
+      "environmentalToxins": {
+        "title": "Environmental Toxins & Fertility",
+        "content": "Daily exposure to environmental toxins can affect your fertility:\n\n• BPA in plastics mimics estrogen and disrupts hormonal balance.\n• Phthalates in cosmetics and fragrances disrupt the endocrine system.\n• Pesticides on fruits and vegetables are linked to lower egg quality.\n• Heavy metals (lead, mercury) affect both eggs and sperm.\n• Practical steps: glass containers instead of plastic, natural cleaning products, wash fruits well.\n• Filtering drinking water reduces pollutant exposure."
+      },
+      "geneticFactors": {
+        "title": "Genetic Factors & Fertility",
+        "content": "Genes play a bigger role than expected in fertility:\n\n• Carrier genetic screening reveals risk of passing genetic diseases to children.\n• MTHFR mutation affects folate metabolism — methylfolate may be better.\n• Turner syndrome and chromosomal abnormalities affect ovarian reserve.\n• Family history of early menopause may signal early reserve decline.\n• Karyotype testing is recommended in cases of recurrent miscarriage.\n• Genetic counseling is available and useful for those with specific family histories."
+      },
+      "immunologyFertility": {
+        "title": "Immunology & Fertility",
+        "content": "The immune system plays a delicate role in pregnancy:\n\n• The body must accept the embryo (half its genes from the father) without rejecting it.\n• Uterine NK cells help with implantation — but excessive activity may hinder it.\n• Antiphospholipid antibodies are linked to recurrent miscarriage.\n• Autoimmune diseases (lupus, Hashimoto's) may affect fertility.\n• Chronic pelvic inflammation can damage the tubes.\n• An anti-inflammatory lifestyle (nutrition, sleep, movement) supports balanced immunity."
+      },
+      "secondaryInfertility": {
+        "title": "Secondary Infertility",
+        "content": "Secondary infertility means difficulty conceiving after having a previous child:\n\n• Accounts for about 50% of infertility cases — but is less discussed.\n• Causes: advancing age, weight changes, complications from previous pregnancy.\n• Adhesions from cesarean section or infection may affect fertility.\n• Hormonal changes after first birth may not fully normalize.\n• Social expectations ('you have a child, be grateful') increase psychological burden.\n• Don't delay seeking help — the same time criteria apply."
+      },
+      "recurrentLoss": {
+        "title": "Understanding Recurrent Pregnancy Loss",
+        "content": "Recurrent pregnancy loss (two or more) requires comprehensive evaluation:\n\n• 15–20% of pregnancies end in miscarriage — most due to chromosomal abnormalities.\n• Treatable causes: clotting disorders, uterine anomalies, thyroid problems.\n• Uterine septum is the most common uterine anomaly and can be surgically corrected.\n• Antiphospholipid syndrome is treatable with aspirin and heparin.\n• Psychological support is essential — grief and anxiety after loss are natural and valid.\n• 60–70% of couples with unexplained recurrent loss succeed in the next pregnancy."
+      },
+      "fertilityPreservation": {
+        "title": "Fertility Preservation",
+        "content": "Fertility preservation is an available option that gives you flexibility in planning:\n\n• Egg freezing: Ideal age before 35. Excellent results with modern techniques.\n• Embryo freezing: Option for married couples. Higher success rates than eggs alone.\n• Reasons for freezing: delayed childbearing, chemotherapy, medical conditions.\n• The process requires hormonal stimulation for 10–14 days then egg retrieval.\n• Cost and storage are factors to consider.\n• Consult a fertility specialist to assess if it's suitable for your situation."
+      },
+      "assistedReproduction": {
+        "title": "Assisted Reproduction Techniques",
+        "content": "When natural conception doesn't succeed, there are effective options:\n\n• Ovulation stimulation: Medications that stimulate egg production — first-line treatment.\n• Intrauterine insemination (IUI): Processed sperm injected directly into the uterus.\n• In vitro fertilization (IVF): The most advanced technique. Success rates 30–50% per cycle.\n• Intracytoplasmic sperm injection (ICSI): A single sperm injected directly into the egg.\n• Preimplantation genetic testing (PGT): Screening embryos for chromosomal abnormalities.\n• Each option has specific indications — a fertility specialist guides you to the most suitable."
+      },
+      "epigeneticsFertility": {
+        "title": "Epigenetics & Generational Health",
+        "content": "Epigenetics discoveries have changed our understanding of fertility:\n\n• Your nutrition and lifestyle can influence gene expression in your future child.\n• Folate deficiency before pregnancy affects fetal gene programming.\n• Chronic stress can leave 'imprints' on DNA that transfer to the embryo.\n• Pollution and environmental toxins cause epigenetic changes that may affect generations.\n• Good news: negative epigenetic changes are reversible with a healthy lifestyle.\n• 3–6 months of improvements before pregnancy make a real difference in fetal health."
+      },
+      "mindBodyConnection": {
+        "title": "The Mind-Body Connection",
+        "content": "The relationship between mind and body is deeper than we imagine in fertility:\n\n• Chronic stress activates the HPA axis which suppresses reproductive hormones.\n• Relaxation techniques (meditation, yoga, deep breathing) measurably improve fertility outcomes.\n• Cognitive behavioral therapy (CBT) has shown positive results in reducing fertility anxiety.\n• Positive visualization and affirmations activate neural pathways that support hormonal balance.\n• Support groups reduce feelings of isolation and improve mental health.\n• Art, music, and creative writing are effective therapeutic tools during the fertility journey.\n• Seek professional help if anxiety or sadness begin to dominate your life."
+      }
     }
   },
   "toolsInternal.fertilitySigns": {
