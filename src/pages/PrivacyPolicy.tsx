@@ -273,11 +273,11 @@ const SectionContent = ({ sectionKey }: { sectionKey: string }) => {
           <p className="text-muted-foreground leading-relaxed text-sm">{s("desc")}</p>
           <div className="grid gap-3 mt-3">
             <a 
-              href="mailto:M.melssaid@gmail.com" 
+              href="mailto:pregnancytoolkits@gmail.com" 
               className="flex items-center gap-2 p-3 rounded-lg bg-primary/5 hover:bg-primary/10 transition-colors"
             >
               <Mail className="w-4 h-4 text-primary shrink-0" />
-              <span className="text-sm text-primary font-medium">M.melssaid@gmail.com</span>
+              <span className="text-sm text-primary font-medium">pregnancytoolkits@gmail.com</span>
             </a>
             <Link 
               to="/contact" 

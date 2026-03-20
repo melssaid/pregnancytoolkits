@@ -182,7 +182,7 @@ export function buildPrintHTML({ content, title, lang, isRTL, profile, logoDataU
   <div class="print-content">${content}</div>
   <div class="print-footer">
     <div class="footer-message">${footerMessages[lang] || footerMessages.en}</div>
-    <a class="footer-email" href="mailto:Melssaid@gmail.com">Melssaid@gmail.com</a>
+    <a class="footer-email" href="mailto:pregnancytoolkits@gmail.com">pregnancytoolkits@gmail.com</a>
     <div class="footer-brand">${escapeHtml(brand)} &mdash; ${new Date().getFullYear()}</div>
   </div>
 </body>

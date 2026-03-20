@@ -26,7 +26,7 @@ export default function Contact() {
           <div className="grid gap-6">
             {/* Email Card */}
             <motion.a
-              href="mailto:M.melssaid@gmail.com"
+              href="mailto:pregnancytoolkits@gmail.com"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.1 }}
@@ -37,7 +37,7 @@ export default function Contact() {
               </div>
               <div className="min-w-0">
                 <h3 className="text-sm font-semibold text-foreground">{t('layout.contactPage.email')}</h3>
-                <p className="text-xs text-muted-foreground break-all">M.melssaid@gmail.com</p>
+                <p className="text-xs text-muted-foreground break-all">pregnancytoolkits@gmail.com</p>
               </div>
             </motion.a>
 
