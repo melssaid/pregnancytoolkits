@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { WhenToCallDoctorCard } from '@/components/safety';
 import { AIResponseFrame } from '@/components/ai/AIResponseFrame';
 import { PrintableReport } from '@/components/PrintableReport';
 import { motion } from 'framer-motion';
@@ -392,6 +393,9 @@ Provide brief, supportive wellness insights about these feelings during week ${c
             </CardContent>
           </Card>
         )}
+
+        {/* When to Call Doctor — educational, non-diagnostic */}
+        <WhenToCallDoctorCard context="symptoms" />
 
         {/* Reminder Card */}
         <Card className="overflow-hidden border-primary/20 bg-primary/5">
