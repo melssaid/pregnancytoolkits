@@ -44,7 +44,7 @@ export const SymptomsSummary = memo(function SymptomsSummary() {
           <div className="flex items-center gap-1.5 mb-2">
             <span className="text-sm">{moodEmoji[mood] || "😐"}</span>
             <span className="text-[11px] font-medium text-foreground">
-              {t(`dashboard.health.moods.${mood.toLowerCase()}`, mood)}
+              {String(t(`dashboard.health.moods.${mood.toLowerCase()}`, mood))}
             </span>
           </div>
         )}
