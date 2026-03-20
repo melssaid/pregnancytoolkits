@@ -278,12 +278,38 @@
       "title": "Kegel Egzersizi",
       "description": "Zamanlayıcı ve tekrar sayacı ile günlük pelvik taban egzersizleri."
     },
-    "smartStretchReminder": {"title": "Esneme Hatırlatıcısı", "description": "Konforunuz için kişiselleştirilmiş esneme rutinleri."},
-    "fertileWindow": {"title": "Doğurganlık Penceresi", "description": "En verimli günlerinizi belirleyin."},
-    "fertilityAcademy": {"title": "Doğurganlık Akademisi", "description": "Kapsamlı doğurganlık eğitimi: dersler, vücut işaretleri ve stres yönetimi.", "lessonsTab": "Dersler", "signsTab": "Vücut İşaretleri", "stressTab": "Stres & Huzur", "twwTab": "Bekleme"},
-    "nutritionSupplements": {"title": "Besin Takviyesi Rehberi", "description": "Gebe kalmak için kapsamlı beslenme ve takviye rehberi.", "nutritionTab": "Beslenme", "supplementsTab": "Takviyeler", "videosTitle": "Eğitim Videoları", "videosSubtitle": "Doğum öncesi beslenme ve takviyeler hakkında bilgi edinin"},
-    "twwCompanion": {"title": "Bekleme Arkadaşı", "description": "İki haftalık bekleme süresinde günlük destek."},
-    "preconceptionCheckup": {"title": "Gebelik Öncesi Kontrol", "description": "Hamilelik öncesi temel testler."},
+    "smartStretchReminder": {
+      "title": "Esneme Hatırlatıcısı",
+      "description": "Konforunuz için kişiselleştirilmiş esneme rutinleri."
+    },
+    "fertileWindow": {
+      "title": "Doğurganlık Penceresi",
+      "description": "En verimli günlerinizi belirleyin."
+    },
+    "fertilityAcademy": {
+      "title": "Doğurganlık Akademisi",
+      "description": "Kapsamlı doğurganlık eğitimi: dersler, vücut işaretleri ve stres yönetimi.",
+      "lessonsTab": "Dersler",
+      "signsTab": "Vücut İşaretleri",
+      "stressTab": "Stres & Huzur",
+      "twwTab": "Bekleme"
+    },
+    "nutritionSupplements": {
+      "title": "Besin Takviyesi Rehberi",
+      "description": "Gebe kalmak için kapsamlı beslenme ve takviye rehberi.",
+      "nutritionTab": "Beslenme",
+      "supplementsTab": "Takviyeler",
+      "videosTitle": "Eğitim Videoları",
+      "videosSubtitle": "Doğum öncesi beslenme ve takviyeler hakkında bilgi edinin"
+    },
+    "twwCompanion": {
+      "title": "Bekleme Arkadaşı",
+      "description": "İki haftalık bekleme süresinde günlük destek."
+    },
+    "preconceptionCheckup": {
+      "title": "Gebelik Öncesi Kontrol",
+      "description": "Hamilelik öncesi temel testler."
+    },
     "aiLaborProgress": {
       "title": "Kasılma Günlüğü",
       "description": "Kasılma düzenlerinizi kaydedin."
@@ -629,7 +655,15 @@
         "aiProducts": {
           "title": "Yapay Zeka Destekli Özellikler",
           "desc": "Güvenli bulut tabanlı AI modelleri (Google Gemini) aracılığıyla yapay zeka destekli özellikler sunuyoruz. Hiçbir üçüncü taraf AI sağlayıcısı saklanan sağlık verilerinize erişemez.",
-          "tools": ["Akıllı Hamilelik Asistanı", "Hamilelik Wellness Günlüğü", "Akıllı Öğün Önerileri", "Akıllı Randevu Planlayıcı", "Fitness & Esneklik Koçu", "Kasılma Günlüğü", "Ultrason Galerisi"],
+          "tools": [
+            "Akıllı Hamilelik Asistanı",
+            "Hamilelik Wellness Günlüğü",
+            "Akıllı Öğün Önerileri",
+            "Akıllı Randevu Planlayıcı",
+            "Fitness & Esneklik Koçu",
+            "Kasılma Günlüğü",
+            "Ultrason Galerisi"
+          ],
           "dataNote": "AI özelliklerini kullanırken yalnızca sorgu metniniz anonim olarak güvenli sunucumuza gönderilir. Saklanan sağlık verileriniz tamamen cihazınızda kalır.",
           "noTraining": "Sorgularınız AI modellerini eğitmek için KULLANILMAZ"
         },
@@ -729,46 +763,8 @@
   },
   "common": {
     "calculate": "Hesapla",
-    "results": "Sonuçlarınız",
-    "info": "Bilgi",
-    "warning": "Önemli",
-    "success": "Başarılı",
-    "error": "Hata",
-    "save": "Kaydet",
-    "reset": "Sıfırla",
-    "start": "Başlat",
-    "stop": "Durdur",
-    "clear": "Temizle",
-    "delete": "Sil",
-    "add": "Ekle",
-    "remove": "Kaldır",
-    "today": "Bugün",
-    "yesterday": "Dün",
-    "week": "Hafta",
-    "weeks": "Hafta",
-    "day": "Gün",
-    "days": "Gün",
-    "month": "Ay",
-    "months": "Ay",
-    "minutes": "dakika",
-    "seconds": "saniye",
-    "hours": "saat",
-    "premium": "Premium",
-    "subscribe": "Abone Ol",
-    "unlock": "Tüm Araçları Aç",
-    "loading": "Yükleniyor...",
-    "cancel": "İptal",
-    "edit": "Düzenle",
-    "showLess": "Daha Az Göster",
-    "moreItems": "+{{count}} Daha Fazla",
-    "exporting": "Dışa aktarılıyor...",
-    "exportComplete": "Dışa aktarma tamamlandı!",
-    "exportFailed": "Dışa aktarma başarısız",
-    "downloadPDF": "PDF İndir",
-    "dailyExportLimit": "Günde en fazla 4 rapor dışa aktarabilirsiniz",
-    "dailyExportRemaining": "Bugün {{count}} dışa aktarma kaldı",
-    "dailyExportLimitReached": "Günlük dışa aktarma limiti doldu. Yarın tekrar deneyin.",
-    "back": "Geri"
+    "results": "Sonuçlar",
+    "start": "Başla"
   },
   "subscription": {
     "subscribeNow": "Premium Al - ₺24.99/ay",
@@ -973,7 +969,12 @@
       "bloodTypePlaceholder": "Kan grubu seçin",
       "bloodTypeUnknown": "Bilinmiyor / Test edilmedi",
       "bmiLabel": "Vücut Kitle İndeksi (VKİ)",
-      "bmi": { "underweight": "Düşük kilolu", "normal": "Normal", "overweight": "Fazla kilolu", "obese": "Obez" }
+      "bmi": {
+        "underweight": "Düşük kilolu",
+        "normal": "Normal",
+        "overweight": "Fazla kilolu",
+        "obese": "Obez"
+      }
     },
     "securityPrivacy": "Güvenlik ve Gizlilik",
     "securityDesc": "Veri şifreleme ve koruma",
@@ -1174,35 +1175,138 @@
       "mentalWellnessVideos": "Ruh sağlığı videoları",
       "videosSubtitle": "Destek ve öz bakım kaynakları",
       "videos": {
-        "v1": { "title": "Doğum sonrası depresyon nedir?", "description": "Belirtiler, semptomlar ve ne zaman yardım aramalısınız", "category": "Eğitim" },
-        "v2": { "title": "Doğum sonrası depresyon açıklandı", "description": "Semptomlar, risk faktörleri ve tedavi seçenekleri", "category": "Eğitim" },
-        "v3": { "title": "Hamilelikte rahatlama meditasyonu", "description": "Daha iyi ruh sağlığı için sakinleştirici meditasyon", "category": "Rahatlama" },
-        "v4": { "title": "Yenidoğan bakımı - 1. Hafta", "description": "Bebekle ilk hafta için pediatrist rehberi", "category": "Öz Bakım" }
+        "v1": {
+          "title": "Doğum sonrası depresyon nedir?",
+          "description": "Belirtiler, semptomlar ve ne zaman yardım aramalısınız",
+          "category": "Eğitim"
+        },
+        "v2": {
+          "title": "Doğum sonrası depresyon açıklandı",
+          "description": "Semptomlar, risk faktörleri ve tedavi seçenekleri",
+          "category": "Eğitim"
+        },
+        "v3": {
+          "title": "Hamilelikte rahatlama meditasyonu",
+          "description": "Daha iyi ruh sağlığı için sakinleştirici meditasyon",
+          "category": "Rahatlama"
+        },
+        "v4": {
+          "title": "Yenidoğan bakımı - 1. Hafta",
+          "description": "Bebekle ilk hafta için pediatrist rehberi",
+          "category": "Öz Bakım"
+        }
       },
       "riskLevels": {
-        "low": { "title": "Düşük risk", "message": "Yanıtlarınız iyi başa çıktığınızı gösteriyor. Öz bakımı uygulamaya devam edin." },
-        "moderate": { "title": "Orta", "message": "Nasıl hissettiğiniz hakkında doktorunuzla konuşmayı düşünün." },
-        "high": { "title": "Destek arayın", "message": "Lütfen doktorunuza veya bir ruh sağlığı uzmanına başvurun." }
+        "low": {
+          "title": "Düşük risk",
+          "message": "Yanıtlarınız iyi başa çıktığınızı gösteriyor. Öz bakımı uygulamaya devam edin."
+        },
+        "moderate": {
+          "title": "Orta",
+          "message": "Nasıl hissettiğiniz hakkında doktorunuzla konuşmayı düşünün."
+        },
+        "high": {
+          "title": "Destek arayın",
+          "message": "Lütfen doktorunuza veya bir ruh sağlığı uzmanına başvurun."
+        }
       },
       "epds": {
-        "q1": { "question": "Gülebildim ve olayların komik yanını görebildim", "o0": "Her zamanki kadar", "o1": "Şimdi o kadar değil", "o2": "Kesinlikle şimdi o kadar değil", "o3": "Hiç" },
-        "q2": { "question": "Olayları zevkle bekledim", "o0": "Her zamanki kadar", "o1": "Eskisinden biraz az", "o2": "Eskisinden kesinlikle az", "o3": "Neredeyse hiç" },
-        "q3": { "question": "İşler ters gittiğinde gereksiz yere kendimi suçladım", "o0": "Hayır, hiçbir zaman", "o1": "Çok sık değil", "o2": "Evet, bazen", "o3": "Evet, çoğu zaman" },
-        "q4": { "question": "İyi bir neden olmadan endişeli veya kaygılı oldum", "o0": "Hayır, hiç", "o1": "Neredeyse hiç", "o2": "Evet, bazen", "o3": "Evet, çok sık" },
-        "q5": { "question": "İyi bir neden olmadan korkmuş veya panik olmuş hissettim", "o0": "Hayır, hiç", "o1": "Hayır, pek değil", "o2": "Evet, bazen", "o3": "Evet, oldukça çok" },
-        "q6": { "question": "Fırsat olmasına rağmen uyumakta zorlandım", "o0": "Hayır, hiç", "o1": "Nadiren", "o2": "Evet, bazen", "o3": "Evet, çoğu zaman" },
-        "q7": { "question": "Kendimi üzgün hissettim veya ağladım", "o0": "Hayır, hiç", "o1": "Çok nadiren", "o2": "Evet, bazen", "o3": "Evet, çoğu zaman" },
-        "q8": { "question": "İştahım belirgin şekilde değişti (arttı veya azaldı)", "o0": "Hayır, normal", "o1": "Biraz değişti", "o2": "Belirgin şekilde değişti", "o3": "İştahımı tamamen kaybettim veya aşırı yiyorum" },
-        "q9": { "question": "Odaklanmakta veya karar vermekte zorlandım", "o0": "Hayır, hiç", "o1": "Nadiren", "o2": "Evet, bazen", "o3": "Evet, çoğu zaman" },
-        "q10": { "question": "Kendimi bitkin ve enerjisiz hissettim", "o0": "Hayır, enerjim iyi", "o1": "Normalden daha az enerji", "o2": "Çoğu zaman bitkin", "o3": "Tamamen tükenmiş" }
+        "q1": {
+          "question": "Gülebildim ve olayların komik yanını görebildim",
+          "o0": "Her zamanki kadar",
+          "o1": "Şimdi o kadar değil",
+          "o2": "Kesinlikle şimdi o kadar değil",
+          "o3": "Hiç"
+        },
+        "q2": {
+          "question": "Olayları zevkle bekledim",
+          "o0": "Her zamanki kadar",
+          "o1": "Eskisinden biraz az",
+          "o2": "Eskisinden kesinlikle az",
+          "o3": "Neredeyse hiç"
+        },
+        "q3": {
+          "question": "İşler ters gittiğinde gereksiz yere kendimi suçladım",
+          "o0": "Hayır, hiçbir zaman",
+          "o1": "Çok sık değil",
+          "o2": "Evet, bazen",
+          "o3": "Evet, çoğu zaman"
+        },
+        "q4": {
+          "question": "İyi bir neden olmadan endişeli veya kaygılı oldum",
+          "o0": "Hayır, hiç",
+          "o1": "Neredeyse hiç",
+          "o2": "Evet, bazen",
+          "o3": "Evet, çok sık"
+        },
+        "q5": {
+          "question": "İyi bir neden olmadan korkmuş veya panik olmuş hissettim",
+          "o0": "Hayır, hiç",
+          "o1": "Hayır, pek değil",
+          "o2": "Evet, bazen",
+          "o3": "Evet, oldukça çok"
+        },
+        "q6": {
+          "question": "Fırsat olmasına rağmen uyumakta zorlandım",
+          "o0": "Hayır, hiç",
+          "o1": "Nadiren",
+          "o2": "Evet, bazen",
+          "o3": "Evet, çoğu zaman"
+        },
+        "q7": {
+          "question": "Kendimi üzgün hissettim veya ağladım",
+          "o0": "Hayır, hiç",
+          "o1": "Çok nadiren",
+          "o2": "Evet, bazen",
+          "o3": "Evet, çoğu zaman"
+        },
+        "q8": {
+          "question": "İştahım belirgin şekilde değişti (arttı veya azaldı)",
+          "o0": "Hayır, normal",
+          "o1": "Biraz değişti",
+          "o2": "Belirgin şekilde değişti",
+          "o3": "İştahımı tamamen kaybettim veya aşırı yiyorum"
+        },
+        "q9": {
+          "question": "Odaklanmakta veya karar vermekte zorlandım",
+          "o0": "Hayır, hiç",
+          "o1": "Nadiren",
+          "o2": "Evet, bazen",
+          "o3": "Evet, çoğu zaman"
+        },
+        "q10": {
+          "question": "Kendimi bitkin ve enerjisiz hissettim",
+          "o0": "Hayır, enerjim iyi",
+          "o1": "Normalden daha az enerji",
+          "o2": "Çoğu zaman bitkin",
+          "o3": "Tamamen tükenmiş"
+        }
       },
       "coping": {
-        "sunlight": { "title": "Sabah güneş ışığı", "desc": "Her sabah 10-15 dakika doğal ışık alın" },
-        "movement": { "title": "Hafif hareket", "desc": "Kısa bir yürüyüş ruh halini önemli ölçüde iyileştirebilir" },
-        "connect": { "title": "Günlük bağlantı", "desc": "Her gün bir arkadaş veya aile üyesiyle konuşun" },
-        "rest": { "title": "Mümkün olduğunda dinlenin", "desc": "Bebek uyuduğunda siz de uyuyun, kısa bile olsa" },
-        "nourish": { "title": "Kendinizi besleyin", "desc": "Düzenli, besleyici öğünler yiyin" },
-        "journal": { "title": "Günlük", "desc": "Minnettar olduğunuz 3 şeyi yazın" }
+        "sunlight": {
+          "title": "Sabah güneş ışığı",
+          "desc": "Her sabah 10-15 dakika doğal ışık alın"
+        },
+        "movement": {
+          "title": "Hafif hareket",
+          "desc": "Kısa bir yürüyüş ruh halini önemli ölçüde iyileştirebilir"
+        },
+        "connect": {
+          "title": "Günlük bağlantı",
+          "desc": "Her gün bir arkadaş veya aile üyesiyle konuşun"
+        },
+        "rest": {
+          "title": "Mümkün olduğunda dinlenin",
+          "desc": "Bebek uyuduğunda siz de uyuyun, kısa bile olsa"
+        },
+        "nourish": {
+          "title": "Kendinizi besleyin",
+          "desc": "Düzenli, besleyici öğünler yiyin"
+        },
+        "journal": {
+          "title": "Günlük",
+          "desc": "Minnettar olduğunuz 3 şeyi yazın"
+        }
       }
     },
     "weeklySummary": {
@@ -1212,24 +1316,17 @@
       "pregnancyWeek": "Hamilelik Haftası",
       "week": "Hafta {{week}}",
       "showSummary": "Hafta {{week}} özetini göster",
+      "approximatelyRemaining": "Yaklaşık {{days}} gün kaldı",
       "babyGrowth": "Bebek Büyümesi",
-      "momsHealth": "Annenin Sağlığı",
+      "momsHealth": "Anne Sağlığı",
       "checkups": "Kontroller",
       "normal": "Normal",
       "good": "İyi",
       "complete": "Tamamlandı",
-      "weekSummary": "Hafta {{week}} özeti",
+      "weekSummary": "Hafta {{week}} Özeti",
       "differentWeek": "Haftayı Değiştir",
       "refresh": "Yenile",
       "trackTip": "Bebeğinizin büyümesi ve vücudunuzdaki değişiklikler hakkında kişiselleştirilmiş bilgi almak için haftanızı takip edin",
-      "fetalDevLink": "Fetüs Gelişimi",
-      "fetalDevLinkDesc": "Bu hafta bebeğinizin boyutunu ve gelişimini görün",
-      "kickCounterLink": "Tekme Sayacı",
-      "kickCounterLinkDesc": "Bebeğinizin hareketlerini takip edin ve kaydedin",
-      "approximatelyRemaining": "Yaklaşık {{days}} gün kaldı",
-      "noSummariesYet": "Henüz özet yok",
-      "generateFirstHint": "İlk haftalık özetinizi oluşturmak için yukarıdaki düğmeye dokunun",
-      "previousSummaries": "Önceki Özetler",
       "trimester": {
         "first": "Birinci Trimester",
         "second": "İkinci Trimester",
@@ -1237,74 +1334,82 @@
       }
     },
     "hospitalBag": {
-      "title": "Hastane Çantası Listesi",
-      "subtitle": "Doğum günü için çantanı güvenle hazırla",
-      "progress": "Paketleme ilerlemesi",
-      "itemsPacked": "{{packed}} / {{total}} öğe paketlendi",
+      "title": "AI Hastane Çantası",
+      "subtitle": "Doğum günü için akıllı paketleme listesi",
+      "forMom": "Anne İçin",
+      "forBaby": "Bebek İçin",
+      "forPartner": "Partner İçin",
+      "documents": "Belgeler",
       "all": "Tümü",
       "mom": "Anne",
       "baby": "Bebek",
       "partner": "Partner",
-      "documents": "Belgeler",
-      "essential": "Gerekli",
-      "addCustomItem": "Özel bir öğe ekle...",
-      "getAIList": "Yapay zekadan liste al",
+      "essential": "Temel",
+      "recommended": "Tavsiye Edilen",
+      "optional": "İsteğe Bağlı",
+      "generateList": "Paketleme Listesi Oluştur",
+      "getAIList": "Kişiselleştirilmiş AI listesi al",
       "generating": "Oluşturuluyor...",
-      "hospitalBagVideos": "Hastane çantası videoları",
-      "hospitalBagVideosSubtitle": "Daha iyi hazırlık için kısa ipuçları",
+      "customizeList": "Listeyi Özelleştir",
+      "packed": "Paketlendi",
+      "notPacked": "Paketlenmedi",
+      "markAllPacked": "Tümünü Paketlendi İşaretle",
+      "resetList": "Listeyi Sıfırla",
+      "progress": "Paketleme İlerlemesi",
+      "itemsPacked": "{{packed}}/{{total}} öğe paketlendi",
+      "addCustomItem": "Özel öğe ekle...",
+      "hospitalBagVideos": "Hastane Çantası Hazırlık Videoları",
+      "hospitalBagVideosSubtitle": "Deneyimli annelerden ipuçları",
       "videos": {
-        "v1": { "title": "Çanta temel ihtiyaçları", "description": "Anne, bebek ve partner için neler gerekli", "category": "Temeller" },
-        "v2": { "title": "Ne zaman hazırlamalı?", "description": "Paketlemeye ne zaman başlanır, ne öncelikli", "category": "Planlama" },
-        "v3": { "title": "Belgeler", "description": "Unutmamanız gereken evraklar", "category": "Belgeler" },
-        "v4": { "title": "Pro ipuçları", "description": "Sık unutulanlar ve konfor ekleri", "category": "İpuçları" }
+        "v1": {
+          "title": "Hastane Çantası Kontrol Listesi",
+          "description": "Ebe tavsiyesi ne paketlenmeli",
+          "category": "Temel"
+        },
+        "v2": {
+          "title": "Temel Hastane Eşyaları",
+          "description": "Doğum için olmazsa olmazlar",
+          "category": "Temel"
+        },
+        "v3": {
+          "title": "Hastane Çantası İpuçları",
+          "description": "Hemşire onaylı temel malzemeler",
+          "category": "İpuçları"
+        },
+        "v4": {
+          "title": "Bebek İçin Ne Paketlenmeli",
+          "description": "Hastane kalışı için yenidoğan ihtiyaçları",
+          "category": "Bebek"
+        }
       },
       "items": {
         "hospitalID": "Hastane kimliği ve sigorta kartları",
         "birthPlanCopies": "Doğum planı kopyaları",
         "nightgown": "Rahat gecelik/bornoz",
-        "supportiveBras": "Destekli sütyen (2–3)",
-        "toiletries": "Kişisel bakım çantası",
-        "slippersSocks": "Terlik ve çorap",
-        "goingHomeOutfitMom": "Çıkış kıyafeti (anne)",
-        "moisturizer": "Nemlendirici",
-        "hairTies": "Saç tokası ve saç bandı",
-        "phoneCharger": "Telefon şarjı (uzun kablo)",
-        "lipBalm": "Dudak balmı",
-        "goingHomeOutfitBaby": "Çıkış kıyafeti (bebek)",
-        "carSeat": "Oto koltuğu (takılı)",
-        "swaddleBlankets": "Kundak örtüsü",
-        "newbornDiapers": "Yenidoğan bezi",
+        "supportiveBras": "Rahat emzirme sütyenleri (2-3)",
+        "toiletries": "Tuvalet çantası",
+        "slippersSocks": "Terlik ve çoraplar",
+        "goingHomeOutfitMom": "Eve dönüş kıyafeti (Anne)",
+        "moisturizer": "Nemlendirici krem",
+        "hairTies": "Saç lastikleri ve bandana",
+        "phoneCharger": "Telefon şarj cihazı (uzun kablo)",
+        "lipBalm": "Dudak nemlendiricisi",
+        "goingHomeOutfitBaby": "Eve dönüş kıyafeti (Bebek)",
+        "carSeat": "Araba koltuğu (kurulu)",
+        "swaddleBlankets": "Kundak battaniyeleri (2)",
+        "newbornDiapers": "Yenidoğan bezleri",
         "babyHat": "Bebek şapkası",
         "changeOfClothes": "Yedek kıyafet",
-        "snacksDrinks": "Atıştırmalık ve içecek",
-        "cameraCharger": "Kamera/telefon şarjı",
-        "babyWipes": "Islak mendil",
-        "babyOil": "Bebek yağı/losyonu",
-        "nursingPads": "Göğüs pedleri",
-        "maternityPads": "Lohusa pedi",
-        "waterBottle": "Su şişesi",
-        "babyMittens": "Bebek eldiveni ve çorapları",
-        "underwear": "İç çamaşırı (tek kullanımlık)",
-        "towel": "Havlu",
-        "handSanitizer": "El dezenfektanı",
-        "babyBottles": "Biberon",
-        "pacifier": "Emzik",
-        "extraBlanket": "Ekstra battaniye",
-        "snacksMom": "Anne için atıştırmalık",
-        "diaperCream": "Pişik kremi",
+        "snacksDrinks": "Atıştırmalıklar ve içecekler",
+        "cameraCharger": "Kamera/telefon şarj cihazı",
         "totalItems": "öğe"
       },
-      "packed": "Paketlendi",
-      "notPacked": "Paketlenmedi",
-      "recommended": "Önerilen",
-      "optional": "İsteğe bağlı",
       "exportPDF": "PDF olarak dışa aktar",
       "shareWhatsApp": "WhatsApp ile paylaş",
-      "resetList": "Listeyi sıfırla",
-      "resetConfirm": "Listeyi sıfırlamak istediğinizden emin misiniz? Bu, tüm özel öğeleri kaldıracak ve varsayılan listeyi geri yükleyecektir.",
-      "resetSuccess": "Liste sıfırlandı!",
+      "resetConfirm": "Listeyi sıfırlamak istediğinizden emin misiniz? Bu, tüm özel öğeleri kaldırarak varsayılan listeyi geri yükleyecektir.",
+      "resetSuccess": "Liste varsayılanlara sıfırlandı!",
       "exportSuccess": "Liste başarıyla dışa aktarıldı!",
-      "exportError": "Dışa aktarma başarısız"
+      "exportError": "Liste dışa aktarılamadı"
     },
     "birthPlan": {
       "title": "Yapay Zeka Doğum Planı Oluşturucu",
@@ -1879,14 +1984,38 @@
         "lowImpact": "Düşük Etki"
       },
       "videos": {
-        "fullBody": { "title": "Tüm Vücut Hamilelik Egzersizi", "description": "25 dakika düşük etkili tüm vücut egzersizi — tüm trimesterler için güvenli" },
-        "strength": { "title": "Vücut Ağırlığı ile Hamilelik Güçlendirme", "description": "35 dakika ekipmansız güçlendirme egzersizi" },
-        "stretching": { "title": "Başlangıç Seviyesi Hamilelik Esneme", "description": "20 dakika nazik esneme — tüm trimesterler için güvenli" },
-        "yoga": { "title": "Doğum Öncesi Rahatlama Yogası", "description": "Hamilelik için derin rahatlama yogası" },
-        "relaxation": { "title": "Hamilelik Rahatlama Meditasyonu", "description": "Beklentili anneler için sakinleştirici meditasyon" },
-        "birthPrep": { "title": "Hamilelik Kardiyo + Doğum Hazırlığı", "description": "30 dakika kardiyo ve doğum hazırlık egzersizleri" },
-        "core": { "title": "Güvenli Hamilelik Karın Egzersizi", "description": "10 dakika güvenli karın egzersizi" },
-        "lowImpact": { "title": "Düşük Etkili Hamilelik Egzersizi", "description": "25 dakika nazik tüm vücut egzersizi" }
+        "fullBody": {
+          "title": "Tüm Vücut Hamilelik Egzersizi",
+          "description": "25 dakika düşük etkili tüm vücut egzersizi — tüm trimesterler için güvenli"
+        },
+        "strength": {
+          "title": "Vücut Ağırlığı ile Hamilelik Güçlendirme",
+          "description": "35 dakika ekipmansız güçlendirme egzersizi"
+        },
+        "stretching": {
+          "title": "Başlangıç Seviyesi Hamilelik Esneme",
+          "description": "20 dakika nazik esneme — tüm trimesterler için güvenli"
+        },
+        "yoga": {
+          "title": "Doğum Öncesi Rahatlama Yogası",
+          "description": "Hamilelik için derin rahatlama yogası"
+        },
+        "relaxation": {
+          "title": "Hamilelik Rahatlama Meditasyonu",
+          "description": "Beklentili anneler için sakinleştirici meditasyon"
+        },
+        "birthPrep": {
+          "title": "Hamilelik Kardiyo + Doğum Hazırlığı",
+          "description": "30 dakika kardiyo ve doğum hazırlık egzersizleri"
+        },
+        "core": {
+          "title": "Güvenli Hamilelik Karın Egzersizi",
+          "description": "10 dakika güvenli karın egzersizi"
+        },
+        "lowImpact": {
+          "title": "Düşük Etkili Hamilelik Egzersizi",
+          "description": "25 dakika nazik tüm vücut egzersizi"
+        }
       },
       "sections": {
         "setup": "Ayarlar ve tercihler",
@@ -1895,8 +2024,8 @@
         "buildWorkoutDesc": "Enerji, hedef ve süreyi seçin",
         "workout": "Bugünkü antrenman",
         "workoutDesc": "Kişiselleştirilmiş egzersizlerinizi takip edin",
-      "analysis": "İçgörüler ve ipuçları",
-      "analysisDesc": "Yapay zeka içgörüleri ve günlük tavsiyeler",
+        "analysis": "İçgörüler ve ipuçları",
+        "analysisDesc": "Yapay zeka içgörüleri ve günlük tavsiyeler",
         "resources": "Videolar ve güvenlik",
         "resourcesDesc": "Eğitim içeriği ve önemli hatırlatmalar"
       },
@@ -1923,30 +2052,6 @@
           "fullBody": "Tüm Vücut",
           "relaxation": "Rahatlama"
         }
-      }
-    },
-    "weeklySummary": {
-      "title": "Haftalık Özet",
-      "subtitle": "Hamileliğinizi akıllı haftalık takip",
-      "daysToGo": "{{days}} gün kaldı",
-      "pregnancyWeek": "Hamilelik Haftası",
-      "week": "Hafta {{week}}",
-      "showSummary": "Hafta {{week}} özetini göster",
-      "approximatelyRemaining": "Yaklaşık {{days}} gün kaldı",
-      "babyGrowth": "Bebek Büyümesi",
-      "momsHealth": "Anne Sağlığı",
-      "checkups": "Kontroller",
-      "normal": "Normal",
-      "good": "İyi",
-      "complete": "Tamamlandı",
-      "weekSummary": "Hafta {{week}} Özeti",
-      "differentWeek": "Haftayı Değiştir",
-      "refresh": "Yenile",
-      "trackTip": "Bebeğinizin büyümesi ve vücudunuzdaki değişiklikler hakkında kişiselleştirilmiş bilgi almak için haftanızı takip edin",
-      "trimester": {
-        "first": "Birinci Trimester",
-        "second": "İkinci Trimester",
-        "third": "Üçüncü Trimester"
       }
     },
     "bmi": {
@@ -1985,9 +2090,18 @@
       "preventionTipsTitle": "Önleme ipuçları",
       "infoNote": "Gebelik diyabeti testleri genellikle 24-28. haftalar arasında yapılır. Birden fazla risk faktörünüz varsa doktorunuz daha erken test önerebilir. Bu araç yalnızca eğitim amaçlıdır.",
       "riskLevels": {
-        "high": { "title": "Daha yüksek risk", "description": "Risk faktörleriniz yüksek bir olasılık göstermektedir. Erken tarama önerilebilir." },
-        "moderate": { "title": "Orta risk", "description": "Bazı risk faktörleriniz var. 24-28. haftalarda standart tarama önerilir." },
-        "low": { "title": "Daha düşük risk", "description": "Az risk faktörünüz var, ancak 24-28. haftalarda rutin tarama yine de önerilir." }
+        "high": {
+          "title": "Daha yüksek risk",
+          "description": "Risk faktörleriniz yüksek bir olasılık göstermektedir. Erken tarama önerilebilir."
+        },
+        "moderate": {
+          "title": "Orta risk",
+          "description": "Bazı risk faktörleriniz var. 24-28. haftalarda standart tarama önerilir."
+        },
+        "low": {
+          "title": "Daha düşük risk",
+          "description": "Az risk faktörünüz var, ancak 24-28. haftalarda rutin tarama yine de önerilir."
+        }
       },
       "riskFactors": {
         "age": "35 yaş ve üzeri",
@@ -2032,20 +2146,49 @@
       "developing": "Gelişmekte",
       "length": "Uzunluk",
       "weight": "Ağırlık",
-      "units": { "cm": "cm", "g": "g", "kg": "kg" },
-      "organs": { "heart": "Kalp", "brain": "Beyin", "ears": "Kulaklar", "eyes": "Gözler", "hands": "Eller", "feet": "Ayaklar" },
+      "units": {
+        "cm": "cm",
+        "g": "g",
+        "kg": "kg"
+      },
+      "organs": {
+        "heart": "Kalp",
+        "brain": "Beyin",
+        "ears": "Kulaklar",
+        "eyes": "Gözler",
+        "hands": "Eller",
+        "feet": "Ayaklar"
+      },
       "thisWeeksDevelopment": "Bu Haftanın Gelişimi",
       "aiWeeklyInsights": "Yapay Zeka Haftalık İçgörüler",
       "development": "Gelişim",
       "nutrition": "Beslenme",
       "exercise": "Egzersiz",
-      "trimesters": { "first": "Birinci Trimester", "second": "İkinci Trimester", "third": "Üçüncü Trimester" },
+      "trimesters": {
+        "first": "Birinci Trimester",
+        "second": "İkinci Trimester",
+        "third": "Üçüncü Trimester"
+      },
       "sizes": {
-        "poppySeed": "Haşhaş tohumu", "sweetPea": "Bezelye", "raspberry": "Ahududu", "prune": "Kuru erik",
-        "lime": "Misket limonu", "lemon": "Limon", "avocado": "Avokado", "bellPepper": "Biber",
-        "banana": "Muz", "papaya": "Papaya", "corn": "Mısır koçanı", "lettuce": "Marul",
-        "eggplant": "Patlıcan", "cabbage": "Lahana", "squash": "Kabak", "cantaloupe": "Kavun",
-        "honeydew": "Bal kavunu", "pumpkin": "Balkabağı", "watermelon": "Karpuz"
+        "poppySeed": "Haşhaş tohumu",
+        "sweetPea": "Bezelye",
+        "raspberry": "Ahududu",
+        "prune": "Kuru erik",
+        "lime": "Misket limonu",
+        "lemon": "Limon",
+        "avocado": "Avokado",
+        "bellPepper": "Biber",
+        "banana": "Muz",
+        "papaya": "Papaya",
+        "corn": "Mısır koçanı",
+        "lettuce": "Marul",
+        "eggplant": "Patlıcan",
+        "cabbage": "Lahana",
+        "squash": "Kabak",
+        "cantaloupe": "Kavun",
+        "honeydew": "Bal kavunu",
+        "pumpkin": "Balkabağı",
+        "watermelon": "Karpuz"
       },
       "developments": {
         "week4": "Hücreler hızla bölünüyor. Nöral tüp oluşuyor.",
@@ -2096,75 +2239,6 @@
       "weightGainLink": "Kilo Alım Analizörü",
       "weightGainLinkDesc": "Sağlıklı kilo alımınızı izleyin"
     },
-    "hospitalBag": {
-      "title": "AI Hastane Çantası",
-      "subtitle": "Doğum günü için akıllı paketleme listesi",
-      "forMom": "Anne İçin",
-      "forBaby": "Bebek İçin",
-      "forPartner": "Partner İçin",
-      "documents": "Belgeler",
-      "all": "Tümü",
-      "mom": "Anne",
-      "baby": "Bebek",
-      "partner": "Partner",
-      "essential": "Temel",
-      "recommended": "Tavsiye Edilen",
-      "optional": "İsteğe Bağlı",
-      "generateList": "Paketleme Listesi Oluştur",
-      "getAIList": "Kişiselleştirilmiş AI listesi al",
-      "generating": "Oluşturuluyor...",
-      "customizeList": "Listeyi Özelleştir",
-      "packed": "Paketlendi",
-      "notPacked": "Paketlenmedi",
-      "markAllPacked": "Tümünü Paketlendi İşaretle",
-      "resetList": "Listeyi Sıfırla",
-      "progress": "Paketleme İlerlemesi",
-      "itemsPacked": "{{packed}}/{{total}} öğe paketlendi",
-      "addCustomItem": "Özel öğe ekle...",
-      "hospitalBagVideos": "Hastane Çantası Hazırlık Videoları",
-      "hospitalBagVideosSubtitle": "Deneyimli annelerden ipuçları",
-      "videos": {
-        "v1": { "title": "Hastane Çantası Kontrol Listesi", "description": "Ebe tavsiyesi ne paketlenmeli", "category": "Temel" },
-        "v2": { "title": "Temel Hastane Eşyaları", "description": "Doğum için olmazsa olmazlar", "category": "Temel" },
-        "v3": { "title": "Hastane Çantası İpuçları", "description": "Hemşire onaylı temel malzemeler", "category": "İpuçları" },
-        "v4": { "title": "Bebek İçin Ne Paketlenmeli", "description": "Hastane kalışı için yenidoğan ihtiyaçları", "category": "Bebek" }
-      },
-      "items": {
-        "hospitalID": "Hastane kimliği ve sigorta kartları",
-        "birthPlanCopies": "Doğum planı kopyaları",
-        "nightgown": "Rahat gecelik/bornoz",
-        "supportiveBras": "Rahat emzirme sütyenleri (2-3)",
-        "toiletries": "Tuvalet çantası",
-        "slippersSocks": "Terlik ve çoraplar",
-        "goingHomeOutfitMom": "Eve dönüş kıyafeti (Anne)",
-        "moisturizer": "Nemlendirici krem",
-        "hairTies": "Saç lastikleri ve bandana",
-        "phoneCharger": "Telefon şarj cihazı (uzun kablo)",
-        "lipBalm": "Dudak nemlendiricisi",
-        "goingHomeOutfitBaby": "Eve dönüş kıyafeti (Bebek)",
-        "carSeat": "Araba koltuğu (kurulu)",
-        "swaddleBlankets": "Kundak battaniyeleri (2)",
-        "newbornDiapers": "Yenidoğan bezleri",
-        "babyHat": "Bebek şapkası",
-        "changeOfClothes": "Yedek kıyafet",
-        "snacksDrinks": "Atıştırmalıklar ve içecekler",
-        "cameraCharger": "Kamera/telefon şarj cihazı",
-        "babyWipes": "Islak mendil",
-        "babyOil": "Bebek yağı/losyonu",
-        "nursingPads": "Göğüs pedleri",
-        "maternityPads": "Lohusa pedi",
-        "waterBottle": "Su şişesi",
-        "babyMittens": "Bebek eldiveni ve çorapları",
-        "underwear": "İç çamaşırı (tek kullanımlık)",
-        "towel": "Havlu",
-        "handSanitizer": "El dezenfektanı",
-        "babyBottles": "Biberon",
-        "pacifier": "Emzik",
-        "extraBlanket": "Ekstra battaniye",
-        "snacksMom": "Anne için atıştırmalık",
-        "diaperCream": "Pişik kremi"
-      }
-    },
     "sleepOptimizer": {
       "title": "AI Uyku İpuçları",
       "subtitle": "Hamilelik için kişiselleştirilmiş uyku rehberliği",
@@ -2210,12 +2284,30 @@
         "cooking": "Yemek kokuları"
       },
       "remedies": {
-        "lemonWater": { "name": "Limonlu su", "tip": "Uyanınca yavaşça için" },
-        "ginger": { "name": "Zencefil", "tip": "Çay, şeker veya taze" },
-        "iceChips": { "name": "Buz parçaları", "tip": "Bulantıda emebilirsiniz" },
-        "dryCrackers": { "name": "Kuru kraker", "tip": "Yatağın yanında tutun" },
-        "peppermint": { "name": "Nane", "tip": "Koklamak veya çay" },
-        "banana": { "name": "Muz", "tip": "Mideye hafif" }
+        "lemonWater": {
+          "name": "Limonlu su",
+          "tip": "Uyanınca yavaşça için"
+        },
+        "ginger": {
+          "name": "Zencefil",
+          "tip": "Çay, şeker veya taze"
+        },
+        "iceChips": {
+          "name": "Buz parçaları",
+          "tip": "Bulantıda emebilirsiniz"
+        },
+        "dryCrackers": {
+          "name": "Kuru kraker",
+          "tip": "Yatağın yanında tutun"
+        },
+        "peppermint": {
+          "name": "Nane",
+          "tip": "Koklamak veya çay"
+        },
+        "banana": {
+          "name": "Muz",
+          "tip": "Mideye hafif"
+        }
       }
     },
     "groceryList": {
@@ -2263,20 +2355,68 @@
       "partnerVideos": "Partner Destek Videoları",
       "partnerVideosSubtitle": "En iyi destek partneri olmayı öğrenin",
       "videos": {
-        "v1": { "title": "Yenidoğan Bakımı 1. Hafta", "description": "Bebekle ilk hafta için pediatrist rehberi", "category": "Yenidoğan Bakımı" },
-        "v2": { "title": "Yenidoğanınıza Bakım", "description": "Yeni ebeveynler için kapsamlı yenidoğan bakım rehberi", "category": "Yenidoğan Bakımı" },
-        "v3": { "title": "Doğum Pozisyonları", "description": "Partnerler doğum sırasında konforla nasıl yardımcı olabilir", "category": "Doğum Desteği" },
-        "v4": { "title": "Hastane Çantası Hazırlığı", "description": "Doğum için ne paketlenmeli", "category": "Hazırlık" }
+        "v1": {
+          "title": "Yenidoğan Bakımı 1. Hafta",
+          "description": "Bebekle ilk hafta için pediatrist rehberi",
+          "category": "Yenidoğan Bakımı"
+        },
+        "v2": {
+          "title": "Yenidoğanınıza Bakım",
+          "description": "Yeni ebeveynler için kapsamlı yenidoğan bakım rehberi",
+          "category": "Yenidoğan Bakımı"
+        },
+        "v3": {
+          "title": "Doğum Pozisyonları",
+          "description": "Partnerler doğum sırasında konforla nasıl yardımcı olabilir",
+          "category": "Doğum Desteği"
+        },
+        "v4": {
+          "title": "Hastane Çantası Hazırlığı",
+          "description": "Doğum için ne paketlenmeli",
+          "category": "Hazırlık"
+        }
       },
       "topics": {
-        "emotional": {"label": "Duygusal Destek", "icon": "💝", "desc": "Duygusal olarak nasıl hazır bulunulur"},
-        "physical": {"label": "Fiziksel Konfor", "icon": "🤲", "desc": "Masaj, görevlerde yardım"},
-        "appointments": {"label": "Tıbbi Randevular", "icon": "🏥", "desc": "Doğum öncesi bakıma katılım"},
-        "communication": {"label": "İletişim", "icon": "💬", "desc": "Ruh hali değişikliklerini anlama"},
-        "bonding": {"label": "Bebekle Bağ Kurma", "icon": "👶", "desc": "Doğumdan önce bağlanma"},
-        "labor": {"label": "Doğum Hazırlığı", "icon": "⏰", "desc": "D-günü için hazır olma"},
-        "postpartum": {"label": "Doğum Sonrası Planlama", "icon": "🏠", "desc": "Bebek geldikten sonra"},
-        "intimacy": {"label": "Yakınlık ve Bağlantı", "icon": "❤️", "desc": "Yakınlığı sürdürme"}
+        "emotional": {
+          "label": "Duygusal Destek",
+          "icon": "💝",
+          "desc": "Duygusal olarak nasıl hazır bulunulur"
+        },
+        "physical": {
+          "label": "Fiziksel Konfor",
+          "icon": "🤲",
+          "desc": "Masaj, görevlerde yardım"
+        },
+        "appointments": {
+          "label": "Tıbbi Randevular",
+          "icon": "🏥",
+          "desc": "Doğum öncesi bakıma katılım"
+        },
+        "communication": {
+          "label": "İletişim",
+          "icon": "💬",
+          "desc": "Ruh hali değişikliklerini anlama"
+        },
+        "bonding": {
+          "label": "Bebekle Bağ Kurma",
+          "icon": "👶",
+          "desc": "Doğumdan önce bağlanma"
+        },
+        "labor": {
+          "label": "Doğum Hazırlığı",
+          "icon": "⏰",
+          "desc": "D-günü için hazır olma"
+        },
+        "postpartum": {
+          "label": "Doğum Sonrası Planlama",
+          "icon": "🏠",
+          "desc": "Bebek geldikten sonra"
+        },
+        "intimacy": {
+          "label": "Yakınlık ve Bağlantı",
+          "icon": "❤️",
+          "desc": "Yakınlığı sürdürme"
+        }
       }
     },
     "bumpPhotos": {
@@ -2309,7 +2449,6 @@
       "captionPlaceholder": "Bu an için bir açıklama ekleyin... (isteğe bağlı)",
       "compressing": "Sıkıştırılıyor ve Kaydediliyor...",
       "takeOrUpload": "Fotoğraf Çekin veya Yükleyin",
-      "takePhoto": "Fotoğraf Çek",
       "uploadFromGallery": "Galeriden Yükle",
       "uploadHint": "📸 Doktor ziyaretiniz sırasında ultrason fotoğrafı çekebilir veya doktorunuzdan bir kopya isteyip daha sonra galeriden yükleyebilirsiniz.",
       "localStorageWarning": "⚠️ Fotoğraflar yalnızca cihazınızda saklanır. Uygulama verilerini silerseniz veya uygulamayı kaldırırsanız, tüm fotoğraflar kalıcı olarak silinir. Yedek almanızı öneririz.",
@@ -2405,28 +2544,92 @@
       "skincareVideos": "Hamilelik Cilt Bakım Videoları",
       "skincareVideosSubtitle": "Hamilelikte güvenli cilt bakım rehberi",
       "videos": {
-        "v1": { "title": "Hamilelikte Güvenli Cilt Bakım Rutini", "description": "Dermatolog Dr. Joyce Park güvenli ürünleri açıklıyor", "category": "Cilt Bakım Rutini" },
-        "v2": { "title": "Hamilelikte Güvenli Cilt Bakımı", "description": "Dr. Sheila Farhang hangi ürünlerin kullanılacağı ve kaçınılacağı hakkında", "category": "Ürün Güvenliği" },
-        "v3": { "title": "Cilt için Hamilelik Beslenmesi", "description": "Sağlıklı hamilelik ve parlak cilt için besinler", "category": "Beslenme" },
-        "v4": { "title": "Hamilelik Diyet Rehberi", "description": "Hamilelikte sağlıklı cilt için ne yemeli", "category": "Diyet" }
+        "v1": {
+          "title": "Hamilelikte Güvenli Cilt Bakım Rutini",
+          "description": "Dermatolog Dr. Joyce Park güvenli ürünleri açıklıyor",
+          "category": "Cilt Bakım Rutini"
+        },
+        "v2": {
+          "title": "Hamilelikte Güvenli Cilt Bakımı",
+          "description": "Dr. Sheila Farhang hangi ürünlerin kullanılacağı ve kaçınılacağı hakkında",
+          "category": "Ürün Güvenliği"
+        },
+        "v3": {
+          "title": "Cilt için Hamilelik Beslenmesi",
+          "description": "Sağlıklı hamilelik ve parlak cilt için besinler",
+          "category": "Beslenme"
+        },
+        "v4": {
+          "title": "Hamilelik Diyet Rehberi",
+          "description": "Hamilelikte sağlıklı cilt için ne yemeli",
+          "category": "Diyet"
+        }
       },
       "concerns": {
-        "acne": {"label": "Hamilelik Aknesi", "icon": "🔴"},
-        "melasma": {"label": "Melasma/Koyu Lekeler", "icon": "🟤"},
-        "stretchMarks": {"label": "Çatlaklar", "icon": "〰️"},
-        "dryness": {"label": "Kuru Cilt", "icon": "🏜️"},
-        "oiliness": {"label": "Yağlı/Parlak Cilt", "icon": "✨"},
-        "sensitivity": {"label": "Hassasiyet", "icon": "❗"},
-        "itching": {"label": "Kaşıntı (PUPPP)", "icon": "🤚"},
-        "glow": {"label": "Hamilelik parıltısı istiyorum!", "icon": "💫"}
+        "acne": {
+          "label": "Hamilelik Aknesi",
+          "icon": "🔴"
+        },
+        "melasma": {
+          "label": "Melasma/Koyu Lekeler",
+          "icon": "🟤"
+        },
+        "stretchMarks": {
+          "label": "Çatlaklar",
+          "icon": "〰️"
+        },
+        "dryness": {
+          "label": "Kuru Cilt",
+          "icon": "🏜️"
+        },
+        "oiliness": {
+          "label": "Yağlı/Parlak Cilt",
+          "icon": "✨"
+        },
+        "sensitivity": {
+          "label": "Hassasiyet",
+          "icon": "❗"
+        },
+        "itching": {
+          "label": "Kaşıntı (PUPPP)",
+          "icon": "🤚"
+        },
+        "glow": {
+          "label": "Hamilelik parıltısı istiyorum!",
+          "icon": "💫"
+        }
       },
       "unsafeIngredients": {
-        "retinol": {"name": "Retinol/Retinoidler", "risk": "high", "icon": "🚫"},
-        "salicylic": {"name": "Salisilik Asit (yüksek %)", "risk": "medium", "icon": "⚠️"},
-        "hydroquinone": {"name": "Hidrokinon", "risk": "high", "icon": "🚫"},
-        "formaldehyde": {"name": "Formaldehit", "risk": "high", "icon": "🚫"},
-        "chemicalSunscreens": {"name": "Kimyasal Güneş Kremleri", "risk": "medium", "icon": "⚠️"},
-        "essentialOils": {"name": "Uçucu Yağlar (bazıları)", "risk": "medium", "icon": "⚠️"}
+        "retinol": {
+          "name": "Retinol/Retinoidler",
+          "risk": "high",
+          "icon": "🚫"
+        },
+        "salicylic": {
+          "name": "Salisilik Asit (yüksek %)",
+          "risk": "medium",
+          "icon": "⚠️"
+        },
+        "hydroquinone": {
+          "name": "Hidrokinon",
+          "risk": "high",
+          "icon": "🚫"
+        },
+        "formaldehyde": {
+          "name": "Formaldehit",
+          "risk": "high",
+          "icon": "🚫"
+        },
+        "chemicalSunscreens": {
+          "name": "Kimyasal Güneş Kremleri",
+          "risk": "medium",
+          "icon": "⚠️"
+        },
+        "essentialOils": {
+          "name": "Uçucu Yağlar (bazıları)",
+          "risk": "medium",
+          "icon": "⚠️"
+        }
       }
     },
     "cravingAlternatives": {
@@ -2528,38 +2731,42 @@
     },
     "birthPosition": {
       "title": "AI Doğum Pozisyonları",
-      "subtitle": "Doğumunuz için optimal pozisyonlar",
-      "commonPositions": "Yaygın Doğum Pozisyonları",
-      "laborStage": "Doğum Aşaması",
-      "earlyLabor": "Erken Doğum",
-      "activeLabor": "Aktif Doğum",
-      "pushing": "Itkı",
-      "birthPreference": "Doğum Tercihi",
-      "birthPreferences": "Doğum Tercihleri",
-      "natural": "Doğal/İlaçsız",
-      "epidural": "Epidural İle",
-      "waterBirth": "Su Doğumu",
-      "csection": "Planlı Sezaryen",
-      "physicalConditions": "Fiziksel Durumlar",
-      "backPain": "Sırt ağrısı",
-      "hipPain": "Kalça ağrısı",
-      "sciatica": "Siyatik",
-      "spd": "Pelvik ağrı/SPD",
-      "highBP": "Yüksek tansiyon",
-      "noConditions": "Özel bir durum yok",
-      "getPositions": "AI Pozisyon Önerileri Al",
-      "analyzing": "Analiz ediliyor...",
-      "recommendedPositions": "Önerilen Pozisyonlar",
-      "benefits": "Faydalar",
-      "howTo": "Nasıl Yapılır",
-      "whenToUse": "Ne Zaman Kullanılır",
-      "birthPositionVideos": "Doğum Pozisyonu Videoları",
-      "birthPositionVideosSubtitle": "Doğum pozisyonları için görsel rehberler",
+      "subtitle": "Doğumunuz için en uygun pozisyonları bulun",
+      "selectPreferences": "Tercihlerinizi seçin",
+      "getRecommendations": "AI Önerileri Al",
+      "generating": "Öneriler oluşturuluyor...",
       "positions": {
-        "squatting": {"name": "Çömelme", "desc": "Pelvisi %30 genişletir"},
-        "handsKnees": {"name": "Dört Ayak Üstünde", "desc": "Sırt ağrısını rahatlatır"},
-        "sideLying": {"name": "Yan Yatma", "desc": "Kasılmalar arası dinlenme"},
-        "standing": {"name": "Ayakta/Yürüme", "desc": "Yerçekimini kullanır"}
+        "squatting": {
+          "name": "Çömelme",
+          "description": "Pelvisi %30'a kadar genişletir"
+        },
+        "handKnees": {
+          "name": "Dört Ayak Üstünde",
+          "description": "Sırt ağrılı doğumlar için ideal"
+        },
+        "sidelying": {
+          "name": "Yan Yatma",
+          "description": "İlerlemeyi sürdürürken dinlenmeye izin verir"
+        },
+        "standing": {
+          "name": "Ayakta",
+          "description": "İniş için yerçekimini kullanır"
+        },
+        "kneeling": {
+          "name": "Diz Çökme",
+          "description": "Omurgaya baskıyı azaltır"
+        },
+        "birthBall": {
+          "name": "Doğum Topu",
+          "description": "Pelvis hareketliliğini teşvik eder"
+        }
+      },
+      "preferences": {
+        "backLabor": "Sırt ağrılı doğum yaşıyorum",
+        "epidural": "Epidural planlıyorum",
+        "waterBirth": "Su doğumu planlıyorum",
+        "mobility": "Hareketli kalmak istiyorum",
+        "tired": "Çok yorgunum"
       }
     },
     "lactationPrep": {
@@ -2612,10 +2819,22 @@
         "year": "1 yıl sonra"
       },
       "videos": {
-        "video1": {"title": "Yenidoğanı Emzirme", "description": "Normal olan, yaygın zorluklar ve pediatrist ipuçları"},
-        "video2": {"title": "Yenidoğan Bakımı Hafta 1", "description": "Besleme temellerini içeren pediatrist rehberi"},
-        "video3": {"title": "Yenidoğanınıza Bakım", "description": "Besleme programlarını içeren kapsamlı rehber"},
-        "video4": {"title": "Bebek Bakım Rehberi", "description": "Taşıma, besleme ve uyku temelleri"}
+        "video1": {
+          "title": "Yenidoğanı Emzirme",
+          "description": "Normal olan, yaygın zorluklar ve pediatrist ipuçları"
+        },
+        "video2": {
+          "title": "Yenidoğan Bakımı Hafta 1",
+          "description": "Besleme temellerini içeren pediatrist rehberi"
+        },
+        "video3": {
+          "title": "Yenidoğanınıza Bakım",
+          "description": "Besleme programlarını içeren kapsamlı rehber"
+        },
+        "video4": {
+          "title": "Bebek Bakım Rehberi",
+          "description": "Taşıma, besleme ve uyku temelleri"
+        }
       },
       "categories": {
         "gettingStarted": "Başlarken",
@@ -2833,16 +3052,46 @@
         "limit": "Sınırlı"
       },
       "foods": {
-        "sushi": { "name": "Suşi (Çiğ Balık)", "reason": "Parazit ve Listeria gibi bakteri riski" },
-        "softCheese": { "name": "Yumuşak Peynir (Pastörize Edilmemiş)", "reason": "Listeria kontaminasyon riski" },
-        "coffee": { "name": "Kahve", "reason": "Düşük doğum ağırlığı riskini azaltmak için kafeini günde 200mg ile sınırlayın" },
-        "salmon": { "name": "Somon (Pişmiş)", "reason": "Mükemmel Omega-3 kaynağı. Tamamen pişirildiğinden emin olun." },
-        "deliMeat": { "name": "Hazır Et Ürünleri", "reason": "Buhar çıkana kadar ısıtılmadığı sürece Listeria riski" },
-        "rawEggs": { "name": "Çiğ Yumurta", "reason": "Salmonella riski" },
-        "tuna": { "name": "Ton Balığı (Albacore)", "reason": "Yüksek cıva içeriği. Haftada 170g ile sınırlayın." },
-        "alcohol": { "name": "Alkol", "reason": "Bilinen güvenli miktar yok. Fetal alkol spektrum bozukluklarına neden olabilir." },
-        "hardCheese": { "name": "Sert Peynirler", "reason": "Pastörize ve düşük nem oranına sahip oldukları için genellikle güvenlidir" },
-        "chicken": { "name": "Tavuk", "reason": "Mükemmel protein kaynağı. Tamamen pişirilmelidir." }
+        "sushi": {
+          "name": "Suşi (Çiğ Balık)",
+          "reason": "Parazit ve Listeria gibi bakteri riski"
+        },
+        "softCheese": {
+          "name": "Yumuşak Peynir (Pastörize Edilmemiş)",
+          "reason": "Listeria kontaminasyon riski"
+        },
+        "coffee": {
+          "name": "Kahve",
+          "reason": "Düşük doğum ağırlığı riskini azaltmak için kafeini günde 200mg ile sınırlayın"
+        },
+        "salmon": {
+          "name": "Somon (Pişmiş)",
+          "reason": "Mükemmel Omega-3 kaynağı. Tamamen pişirildiğinden emin olun."
+        },
+        "deliMeat": {
+          "name": "Hazır Et Ürünleri",
+          "reason": "Buhar çıkana kadar ısıtılmadığı sürece Listeria riski"
+        },
+        "rawEggs": {
+          "name": "Çiğ Yumurta",
+          "reason": "Salmonella riski"
+        },
+        "tuna": {
+          "name": "Ton Balığı (Albacore)",
+          "reason": "Yüksek cıva içeriği. Haftada 170g ile sınırlayın."
+        },
+        "alcohol": {
+          "name": "Alkol",
+          "reason": "Bilinen güvenli miktar yok. Fetal alkol spektrum bozukluklarına neden olabilir."
+        },
+        "hardCheese": {
+          "name": "Sert Peynirler",
+          "reason": "Pastörize ve düşük nem oranına sahip oldukları için genellikle güvenlidir"
+        },
+        "chicken": {
+          "name": "Tavuk",
+          "reason": "Mükemmel protein kaynağı. Tamamen pişirilmelidir."
+        }
       }
     },
     "gestationalDiabetes": {
@@ -3035,90 +3284,6 @@
       "weeklyGain": "Haftalık Alım",
       "aiAnalysis": "AI Kilo Analizi"
     },
-    "birthPosition": {
-      "title": "AI Doğum Pozisyonları",
-      "subtitle": "Doğumunuz için en uygun pozisyonları bulun",
-      "selectPreferences": "Tercihlerinizi seçin",
-      "getRecommendations": "AI Önerileri Al",
-      "generating": "Öneriler oluşturuluyor...",
-      "positions": {
-        "squatting": {"name": "Çömelme", "description": "Pelvisi %30'a kadar genişletir"},
-        "handKnees": {"name": "Dört Ayak Üstünde", "description": "Sırt ağrılı doğumlar için ideal"},
-        "sidelying": {"name": "Yan Yatma", "description": "İlerlemeyi sürdürürken dinlenmeye izin verir"},
-        "standing": {"name": "Ayakta", "description": "İniş için yerçekimini kullanır"},
-        "kneeling": {"name": "Diz Çökme", "description": "Omurgaya baskıyı azaltır"},
-        "birthBall": {"name": "Doğum Topu", "description": "Pelvis hareketliliğini teşvik eder"}
-      },
-      "preferences": {
-        "backLabor": "Sırt ağrılı doğum yaşıyorum",
-        "epidural": "Epidural planlıyorum",
-        "waterBirth": "Su doğumu planlıyorum",
-        "mobility": "Hareketli kalmak istiyorum",
-        "tired": "Çok yorgunum"
-      }
-    },
-    "hospitalBag": {
-      "title": "AI Hastane Çantası",
-      "subtitle": "Doğum günü için akıllı paketleme listesi",
-      "forMom": "Anne İçin",
-      "forBaby": "Bebek İçin",
-      "forPartner": "Partner İçin",
-      "documents": "Belgeler",
-      "all": "Tümü",
-      "mom": "Anne",
-      "baby": "Bebek",
-      "partner": "Partner",
-      "essential": "Temel",
-      "recommended": "Tavsiye Edilen",
-      "optional": "İsteğe Bağlı",
-      "generateList": "Paketleme Listesi Oluştur",
-      "getAIList": "Kişiselleştirilmiş AI listesi al",
-      "generating": "Oluşturuluyor...",
-      "customizeList": "Listeyi Özelleştir",
-      "packed": "Paketlendi",
-      "notPacked": "Paketlenmedi",
-      "markAllPacked": "Tümünü Paketlendi İşaretle",
-      "resetList": "Listeyi Sıfırla",
-      "progress": "Paketleme İlerlemesi",
-      "itemsPacked": "{{packed}}/{{total}} öğe paketlendi",
-      "addCustomItem": "Özel öğe ekle...",
-      "hospitalBagVideos": "Hastane Çantası Hazırlık Videoları",
-      "hospitalBagVideosSubtitle": "Deneyimli annelerden ipuçları",
-      "videos": {
-        "v1": { "title": "Hastane Çantası Kontrol Listesi", "description": "Ebe tavsiyesi ne paketlenmeli", "category": "Temel" },
-        "v2": { "title": "Temel Hastane Eşyaları", "description": "Doğum için olmazsa olmazlar", "category": "Temel" },
-        "v3": { "title": "Hastane Çantası İpuçları", "description": "Hemşire onaylı temel malzemeler", "category": "İpuçları" },
-        "v4": { "title": "Bebek İçin Ne Paketlenmeli", "description": "Hastane kalışı için yenidoğan ihtiyaçları", "category": "Bebek" }
-      },
-      "items": {
-        "hospitalID": "Hastane kimliği ve sigorta kartları",
-        "birthPlanCopies": "Doğum planı kopyaları",
-        "nightgown": "Rahat gecelik/bornoz",
-        "supportiveBras": "Rahat emzirme sütyenleri (2-3)",
-        "toiletries": "Tuvalet çantası",
-        "slippersSocks": "Terlik ve çoraplar",
-        "goingHomeOutfitMom": "Eve dönüş kıyafeti (Anne)",
-        "moisturizer": "Nemlendirici krem",
-        "hairTies": "Saç lastikleri ve bandana",
-        "phoneCharger": "Telefon şarj cihazı (uzun kablo)",
-        "lipBalm": "Dudak nemlendiricisi",
-        "goingHomeOutfitBaby": "Eve dönüş kıyafeti (Bebek)",
-        "carSeat": "Araba koltuğu (kurulu)",
-        "swaddleBlankets": "Kundak battaniyeleri (2)",
-        "newbornDiapers": "Yenidoğan bezleri",
-        "babyHat": "Bebek şapkası",
-        "changeOfClothes": "Yedek kıyafet",
-        "snacksDrinks": "Atıştırmalıklar ve içecekler",
-        "cameraCharger": "Kamera/telefon şarj cihazı",
-        "totalItems": "öğe"
-      },
-      "exportPDF": "PDF olarak dışa aktar",
-      "shareWhatsApp": "WhatsApp ile paylaş",
-      "resetConfirm": "Listeyi sıfırlamak istediğinizden emin misiniz? Bu, tüm özel öğeleri kaldırarak varsayılan listeyi geri yükleyecektir.",
-      "resetSuccess": "Liste varsayılanlara sıfırlandı!",
-      "exportSuccess": "Liste başarıyla dışa aktarıldı!",
-      "exportError": "Liste dışa aktarılamadı"
-    },
     "stressRelief": {
       "title": "AI Stres Rahatlatma Rehberi",
       "subtitle": "Hamilelik için kişiselleştirilmiş rahatlama teknikleri",
@@ -3158,6 +3323,46 @@
       "generating": "Kişiselleştirilmiş rutin oluşturuluyor...",
       "safetyReminder": "Güvenlik Hatırlatması",
       "safetyText": "Baş dönmesi, ağrı veya rahatsızlık hissederseniz durun"
+    },
+    "contractionTimer": {
+      "title": "Kasılma Zamanlayıcı",
+      "subtitle": "Kasılma sürelerini ve aralarındaki süreleri takip edin",
+      "recording": "Kaydediliyor...",
+      "startContraction": "Kasılmayı Başlat",
+      "stop": "Durdur",
+      "total": "Toplam",
+      "avgDuration": "Ort. Süre",
+      "avgInterval": "Ort. Aralık",
+      "ruleMetTitle": "5-1-1 Kuralı Sağlandı!",
+      "ruleMetDesc": "Kasılmalar 5 dakika veya daha kısa aralıklarla geliyor ve 1 dakikadan uzun sürüyor. Hastaneye gitme zamanı olabilir. Hemen doktorunuzla iletişime geçin.",
+      "history": "Geçmiş",
+      "clearAll": "Tümünü Sil",
+      "duration": "Süre",
+      "gap": "Aralık",
+      "chartTitle": "Kasılma Paterni",
+      "chartTab": "Grafik",
+      "historyTab": "Kayıt",
+      "regularity": "Düzenlilik",
+      "trendShortening": "Yaklaşıyor",
+      "trendLengthening": "Uzaklaşıyor",
+      "trendStable": "Sabit",
+      "trend": "Eğilim",
+      "sessionTime": "Oturum Süresi",
+      "lastOne": "Son kasılma",
+      "time": "Saat",
+      "intensity": "Yoğunluk",
+      "intensityStrong": "Çok Güçlü",
+      "intensityModerate": "Güçlü",
+      "intensityMild": "Orta",
+      "intensityLight": "Hafif",
+      "phaseEarly": "Erken Faz",
+      "phaseEarlyDesc": "Kasılmalar hafif ve aralıklı. Evde rahat olun ve ilerlemeyi izleyin.",
+      "phaseActive": "Aktif Faz",
+      "phaseActiveDesc": "Kasılmalar düzenli ve daha güçlü. Hastaneye gitmeye hazırlanın.",
+      "phaseTransition": "Geçiş Fazı",
+      "phaseTransitionDesc": "Kasılmalar çok güçlü ve çok sık. Derhal hastaneye gidin!",
+      "aiAnalysisTitle": "Yapay Zeka Kasılma Analizi",
+      "aiAnalysisButton": "Kasılmaları Yapay Zeka ile Analiz Et"
     }
   },
   "preeclampsiaRisk": {
@@ -3194,9 +3399,21 @@
       "demographics": "Demografi"
     },
     "riskLevels": {
-      "high": { "title": "Çok Faktör", "description": "Bir veya daha fazla önemli faktörünüz var. Doktorunuz 12. haftadan itibaren düşük doz aspirin önerebilir.", "recommendation": "Doktorunuzla aspirin profilaksisini tartışın" },
-      "moderate": { "title": "Bazı Faktörler", "description": "Bazı faktörleriniz var. Geliştirilmiş izleme ve yaşam tarzı değişiklikleri önerilebilir.", "recommendation": "Doktorunuzla durumu tartışmayı düşünün" },
-      "low": { "title": "Az Faktör", "description": "Çok az tanımlanmış faktörünüz var. Standart doğum öncesi bakıma devam edin.", "recommendation": "Düzenli doğum öncesi ziyaretleri sürdürün" }
+      "high": {
+        "title": "Çok Faktör",
+        "description": "Bir veya daha fazla önemli faktörünüz var. Doktorunuz 12. haftadan itibaren düşük doz aspirin önerebilir.",
+        "recommendation": "Doktorunuzla aspirin profilaksisini tartışın"
+      },
+      "moderate": {
+        "title": "Bazı Faktörler",
+        "description": "Bazı faktörleriniz var. Geliştirilmiş izleme ve yaşam tarzı değişiklikleri önerilebilir.",
+        "recommendation": "Doktorunuzla durumu tartışmayı düşünün"
+      },
+      "low": {
+        "title": "Az Faktör",
+        "description": "Çok az tanımlanmış faktörünüz var. Standart doğum öncesi bakıma devam edin.",
+        "recommendation": "Düzenli doğum öncesi ziyaretleri sürdürün"
+      }
     },
     "warningSigns": {
       "headaches": "Geçmeyen şiddetli baş ağrıları",
@@ -3312,9 +3529,18 @@
     "preventionTipsTitle": "Önleme İpuçları",
     "infoNote": "Gestasyonel diyabet testi genellikle 24-28. haftalarda yapılır. Birden fazla risk faktörünüz varsa doktorunuz erken test önerebilir.",
     "riskLevels": {
-      "high": { "title": "Çok Faktör", "description": "Faktörleriniz yüksek olasılık gösteriyor. Erken test önerilebilir." },
-      "moderate": { "title": "Bazı Faktörler", "description": "Bazı faktörleriniz var. 24-28. haftalarda standart test önerilir." },
-      "low": { "title": "Az Faktör", "description": "Az faktörünüz var, ancak 24-28. haftalarda rutin test hâlâ önerilir." }
+      "high": {
+        "title": "Çok Faktör",
+        "description": "Faktörleriniz yüksek olasılık gösteriyor. Erken test önerilebilir."
+      },
+      "moderate": {
+        "title": "Bazı Faktörler",
+        "description": "Bazı faktörleriniz var. 24-28. haftalarda standart test önerilir."
+      },
+      "low": {
+        "title": "Az Faktör",
+        "description": "Az faktörünüz var, ancak 24-28. haftalarda rutin test hâlâ önerilir."
+      }
     },
     "riskFactors": {
       "age": "35 yaş veya üzeri",
@@ -3409,11 +3635,6 @@
     "getAIAdvice": "Yapay Zeka Gebe Kalma Tavsiyesi Al",
     "aiConceptionGuide": "Yapay Zeka Gebe Kalma Rehberi",
     "gettingAdvice": "Kişiselleştirilmiş tavsiye alınıyor..."
-  },
-  "common": {
-    "calculate": "Hesapla",
-    "results": "Sonuçlar",
-    "start": "Başla"
   },
   "nutritionOptimizer": {
     "title": "Akıllı Beslenme Planlayıcısı",
@@ -3510,36 +3731,39 @@
   },
   "groceryList": {
     "title": "Akıllı Alışveriş Listesi",
-    "subtitle": "Hamilelik beslenmesi için yapay zeka destekli alışveriş listesi",
+    "subtitle": "Hamilelik beslenmesi için AI destekli alışveriş listesi",
     "smartNutrition": "Akıllı Hamilelik Beslenmesi",
-    "smartNutritionDesc": "Yemekleri planlayın, besinleri takip edin ve süper gıdaları keşfedin.",
-    "items": "Öğeler",
-    "done": "Tamamlandı",
+    "smartNutritionDesc": "Öğünleri planlayın, besinleri takip edin ve siz ve bebeğiniz için süper gıdaları keşfedin.",
+    "items": "Ürünler",
+    "done": "Tamam",
     "score": "Puan",
     "super": "Süper",
     "list": "Liste",
     "analysis": "Analiz",
     "planner": "Planlayıcı",
-    "addItem": "Öğe ekle...",
+    "addItem": "Ürün ekle...",
     "yourList": "Listeniz",
-    "noItems": "Henüz öğe yok",
+    "noItems": "Henüz ürün yok",
     "clear": "Temizle",
     "addedToList": "listeye eklendi",
-    "dailyNutritionGoals": "Günlük Beslenme Hedefleri",
+    "dailyNutritionGoals": "Günlük beslenme hedefleri",
     "categoriesChart": "Kategoriler",
     "nutrientsChart": "Besinler",
-    "weekFocus": "Hafta {{week}} Odağı",
-    "dailyMealIdeas": "Günlük Öğün Fikirleri",
-    "aiWeeklyMealPlan": "Haftalık AI Yemek Planı",
+    "weekFocus": "Hafta {{week}} odak",
+    "dailyMealIdeas": "Günlük öğün fikirleri",
+    "aiWeeklyMealPlan": "AI haftalık öğün planı",
     "addAllSuperfoods": "Tüm süper gıdaları ekle",
-    "recommendedSuperfoods": "Önerilen Süper Gıdalar",
+    "recommendedSuperfoods": "Önerilen süper gıdalar",
     "reset": "Sıfırla",
     "superfoodsAdded": "{{count}} süper gıda listenize eklendi",
     "allSuperfoodsInList": "Tüm süper gıdalar zaten listenizde",
+    "itemAdded": "Ürün eklendi",
+    "itemsCleared": "{{count}} ürün temizlendi",
+    "saveFailed": "Liste kaydedilemedi",
     "nutrients": {
       "protein": "Protein",
       "iron": "Demir",
-      "folate": "Folik Asit",
+      "folate": "Folat",
       "calcium": "Kalsiyum",
       "omega3": "Omega-3"
     },
@@ -3551,7 +3775,7 @@
       "other": "Diğer"
     },
     "weeklyRecommendations": {
-      "folateRich": "Folik asit açısından zengin gıdalar",
+      "folateRich": "Folat açısından zengin gıdalar",
       "wholeGrains": "Tam tahıllar",
       "leanProteins": "Yağsız proteinler",
       "ironRich": "Demir açısından zengin gıdalar",
@@ -3563,23 +3787,23 @@
     },
     "meals": {
       "breakfast": "Kahvaltı",
-      "lunch": "Öğle Yemeği",
-      "dinner": "Akşam Yemeği",
+      "lunch": "Öğle yemeği",
+      "dinner": "Akşam yemeği",
       "snacks": "Atıştırmalıklar"
     },
     "mealSuggestions": {
       "breakfast": "Meyveli yoğurt",
-      "lunch": "Somonlu ıspanak salatası",
+      "lunch": "Somon ıspanak salatası",
       "dinner": "Mercimek çorbası",
       "snacks": "Portakal + badem"
     },
     "categories": {
-      "all": "Tümü",
-      "produce": "Meyve & Sebze",
-      "dairy": "Süt Ürünleri",
-      "protein": "Protein",
-      "grains": "Tahıllar",
-      "other": "Diğer"
+      "all": "tümü",
+      "produce": "meyve & sebze",
+      "dairy": "süt ürünleri",
+      "protein": "protein",
+      "grains": "tahıllar",
+      "other": "diğer"
     },
     "groceryItems": {
       "spinach": "Ispanak",
@@ -3589,8 +3813,8 @@
       "salmon": "Somon",
       "lentils": "Mercimek",
       "sweetPotatoes": "Tatlı Patates",
-      "berries": "Böğürtlenler",
-      "wholeGrainBread": "Tam Tahıl Ekmeği",
+      "berries": "Böğürtlen",
+      "wholeGrainBread": "Tam Buğday Ekmeği",
       "oranges": "Portakal",
       "almonds": "Badem",
       "chickenBreast": "Tavuk Göğsü",
@@ -3601,8 +3825,8 @@
       "mangoes": "Mango",
       "cheese": "Peynir",
       "milk": "Süt",
-      "cottageCheese": "Süzme Peynir",
-      "beef": "Yağsız Sığır Eti",
+      "cottageCheese": "Lor Peyniri",
+      "beef": "Yağsız Et",
       "chickpeas": "Nohut",
       "tofu": "Tofu",
       "sardines": "Sardalya",
@@ -3614,11 +3838,11 @@
       "dates": "Hurma"
     },
     "benefits": {
-      "spinach": "Folik asit ve demir açısından zengin",
+      "spinach": "Folat ve demir açısından zengin",
       "avocados": "Bebek beyni için sağlıklı yağlar",
       "greekYogurt": "Kalsiyum ve probiyotikler",
       "eggs": "Beyin gelişimi için kolin",
-      "salmon": "Bebek beyni için Omega-3",
+      "salmon": "Bebek beyni için omega-3",
       "lentils": "Demir ve protein",
       "sweetPotatoes": "A vitamini ve lif",
       "berries": "Antioksidanlar ve C vitamini",
@@ -3626,7 +3850,7 @@
       "oranges": "Bağışıklık için C vitamini",
       "almonds": "Sağlıklı yağlar ve kalsiyum",
       "chickenBreast": "Yağsız protein",
-      "broccoli": "Folik asit, kalsiyum ve C vitamini",
+      "broccoli": "Folat, kalsiyum ve C vitamini",
       "bananas": "Potasyum ve enerji",
       "carrots": "Bebek görüşü için beta-karoten",
       "kale": "Demir, folat ve kalsiyum",
@@ -3638,10 +3862,10 @@
       "chickpeas": "Demir, folat ve protein",
       "tofu": "Bitkisel protein ve kalsiyum",
       "sardines": "Omega-3 ve kalsiyum",
-      "oats": "Demir ve sürdürülebilir enerji",
+      "oats": "Demir ve sürekli enerji",
       "quinoa": "Tam protein ve demir",
       "brownRice": "Lif ve B vitaminleri",
-      "walnuts": "Beyin gelişimi için Omega-3",
+      "walnuts": "Beyin gelişimi için omega-3",
       "chia": "Omega-3, kalsiyum ve lif",
       "dates": "Doğal demir ve enerji"
     }
@@ -3691,14 +3915,48 @@
       "8": "Kas ve bebek büyümesi için yüksek protein"
     },
     "ingredientItems": {
-      "1": { "0": "1 orta elma", "1": "2 yemek kaşığı badem ezmesi" },
-      "2": { "0": "1 bardak Yunan yoğurdu", "1": "1/4 bardak granola", "2": "1/2 bardak meyve", "3": "Bal" },
-      "3": { "0": "Karışık kuruyemişler", "1": "Bitter çikolata parçaları", "2": "Kuru yaban mersini" },
-      "4": { "0": "1 dilim tam buğday ekmeği", "1": "1/2 avokado", "2": "Tuz", "3": "Baharat" },
-      "5": { "0": "1/4 bardak humus", "1": "Havuç çubukları", "2": "Salatalık dilimleri", "3": "Biber şeritleri" },
-      "6": { "0": "4 tam buğday kraker", "1": "60g cheddar peyniri" },
-      "7": { "0": "1 muz", "1": "1 bardak yulaf", "2": "2 yemek kaşığı fıstık ezmesi", "3": "1 yemek kaşığı bal" },
-      "8": { "0": "1 bardak süzme peynir", "1": "Ananas parçaları", "2": "Ceviz" }
+      "1": {
+        "0": "1 orta elma",
+        "1": "2 yemek kaşığı badem ezmesi"
+      },
+      "2": {
+        "0": "1 bardak Yunan yoğurdu",
+        "1": "1/4 bardak granola",
+        "2": "1/2 bardak meyve",
+        "3": "Bal"
+      },
+      "3": {
+        "0": "Karışık kuruyemişler",
+        "1": "Bitter çikolata parçaları",
+        "2": "Kuru yaban mersini"
+      },
+      "4": {
+        "0": "1 dilim tam buğday ekmeği",
+        "1": "1/2 avokado",
+        "2": "Tuz",
+        "3": "Baharat"
+      },
+      "5": {
+        "0": "1/4 bardak humus",
+        "1": "Havuç çubukları",
+        "2": "Salatalık dilimleri",
+        "3": "Biber şeritleri"
+      },
+      "6": {
+        "0": "4 tam buğday kraker",
+        "1": "60g cheddar peyniri"
+      },
+      "7": {
+        "0": "1 muz",
+        "1": "1 bardak yulaf",
+        "2": "2 yemek kaşığı fıstık ezmesi",
+        "3": "1 yemek kaşığı bal"
+      },
+      "8": {
+        "0": "1 bardak süzme peynir",
+        "1": "Ananas parçaları",
+        "2": "Ceviz"
+      }
     },
     "recipes": {
       "2": "Yoğurt, granola ve meyveleri katman katman koyun. Bal gezdirin.",
@@ -3743,26 +4001,50 @@
     "selectPreference": "Lütfen en az bir tercih seçin"
   },
   "vitaminTracker": {
-    "subtitle": "Günlük prenatal vitaminlerinizi takip edin",
+    "subtitle": "Günlük doğum öncesi vitaminlerinizi takip edin",
     "pregnancyWeek": "Hamilelik Haftası",
-    "todaysProgress": "Bugünkü İlerleme",
-    "vitaminsCount": "Bugün {{taken}} / {{total}} vitamin alındı",
-    "aiAnalysisTitle": "Yapay Zeka Vitamin Analizi",
-    "analyzeRoutine": "Rutinimi Analiz Et",
+    "todaysProgress": "Bugünün ilerlemesi",
+    "vitaminsCount": "Bugün {{total}} vitaminden {{taken}} alındı",
+    "aiAnalysisTitle": "AI Vitamin Analizi",
+    "analyzeRoutine": "Rutinimi analiz et",
     "analyzingIntake": "Alımınız analiz ediliyor...",
     "alreadyTaken": "Zaten alındı!",
-    "alreadyTakenDesc": "Bugün {{name}} zaten kaydettiniz.",
-    "logged": "Vitamin Kaydedildi!",
+    "alreadyTakenDesc": "Bugün {{name}} zaten kaydedildi.",
+    "logged": "Vitamin kaydedildi!",
     "loggedDesc": "{{name}} kaydedildi.",
     "failedToLog": "Vitamin kaydedilemedi",
-    "done": "Tamamlandı",
+    "done": "Tamam",
     "take": "Al",
     "thisWeek": "bu hafta",
     "weeklyStats": "Haftalık İstatistikler",
     "days": "gün",
     "recentHistory": "Son Geçmiş",
     "tipTitle": "Profesyonel İpucu",
-    "tipContent": "Daha iyi emilim için demir takviyelerini C vitamini ile alın, ancak kalsiyum ile almaktan kaçının."
+    "tipContent": "Demir takviyelerini daha iyi emilim için C vitamini ile alın, ancak kalsiyum ile almaktan kaçının.",
+    "vitamins": {
+      "folicAcid": "Folik Asit",
+      "iron": "Demir",
+      "calcium": "Kalsiyum",
+      "vitaminD": "D Vitamini",
+      "omega3": "Omega 3",
+      "prenatal": "Doğum Öncesi Vitaminler"
+    },
+    "dosages": {
+      "folicAcid": "400-800 mcg",
+      "iron": "27 mg",
+      "calcium": "1000 mg",
+      "vitaminD": "600 IU",
+      "omega3": "200-300 mg DHA",
+      "prenatal": "Doktor önerisine göre"
+    },
+    "importance": {
+      "folicAcid": "Sinir gelişimi için gerekli",
+      "iron": "Aneminin önlenmesi",
+      "calcium": "Kemik sağlığı için",
+      "vitaminD": "Kalsiyum emilimi",
+      "omega3": "Bebek beyin gelişimi",
+      "prenatal": "Tam ve dengeli"
+    }
   },
   "babyGear": {
     "title": "Bebek Eşyası Önerici",
@@ -3886,10 +4168,26 @@
     "mentalWellnessVideos": "Ruh sağlığı videoları",
     "videosSubtitle": "Destek ve öz bakım kaynakları",
     "videos": {
-      "v1": { "title": "Doğum sonrası depresyon nedir?", "description": "Belirtiler, semptomlar ve ne zaman yardım aramalısınız", "category": "Eğitim" },
-      "v2": { "title": "Doğum sonrası depresyon açıklandı", "description": "Semptomlar, risk faktörleri ve tedavi seçenekleri", "category": "Eğitim" },
-      "v3": { "title": "Hamilelikte rahatlama meditasyonu", "description": "Daha iyi ruh sağlığı için sakinleştirici meditasyon", "category": "Rahatlama" },
-      "v4": { "title": "Yenidoğan bakımı - 1. Hafta", "description": "Bebekle ilk hafta için pediatrist rehberi", "category": "Öz Bakım" }
+      "v1": {
+        "title": "Doğum sonrası depresyon nedir?",
+        "description": "Belirtiler, semptomlar ve ne zaman yardım aramalısınız",
+        "category": "Eğitim"
+      },
+      "v2": {
+        "title": "Doğum sonrası depresyon açıklandı",
+        "description": "Semptomlar, risk faktörleri ve tedavi seçenekleri",
+        "category": "Eğitim"
+      },
+      "v3": {
+        "title": "Hamilelikte rahatlama meditasyonu",
+        "description": "Daha iyi ruh sağlığı için sakinleştirici meditasyon",
+        "category": "Rahatlama"
+      },
+      "v4": {
+        "title": "Yenidoğan bakımı - 1. Hafta",
+        "description": "Bebekle ilk hafta için pediatrist rehberi",
+        "category": "Öz Bakım"
+      }
     },
     "riskLevels": {
       "low": {
@@ -3995,14 +4293,38 @@
       "earlyLaborSigns": "Erken doğum belirtileri nelerdir?"
     },
     "categories": {
-      "checkups": { "label": "Kontroller", "icon": "🔬" },
-      "development": { "label": "Bebek Büyümesi", "icon": "👶" },
-      "warning": { "label": "Uyarı İşaretleri", "icon": "⚠️" },
-      "lifestyle": { "label": "Yaşam Tarzı", "icon": "🏃" },
-      "nutrition": { "label": "Beslenme", "icon": "🥗" },
-      "medications": { "label": "İlaçlar", "icon": "💊" },
-      "preparation": { "label": "Hazırlık", "icon": "📋" },
-      "other": { "label": "Diğer", "icon": "❓" }
+      "checkups": {
+        "label": "Kontroller",
+        "icon": "🔬"
+      },
+      "development": {
+        "label": "Bebek Büyümesi",
+        "icon": "👶"
+      },
+      "warning": {
+        "label": "Uyarı İşaretleri",
+        "icon": "⚠️"
+      },
+      "lifestyle": {
+        "label": "Yaşam Tarzı",
+        "icon": "🏃"
+      },
+      "nutrition": {
+        "label": "Beslenme",
+        "icon": "🥗"
+      },
+      "medications": {
+        "label": "İlaçlar",
+        "icon": "💊"
+      },
+      "preparation": {
+        "label": "Hazırlık",
+        "icon": "📋"
+      },
+      "other": {
+        "label": "Diğer",
+        "icon": "❓"
+      }
     },
     "priority": {
       "high": "Önemli",
@@ -4019,24 +4341,174 @@
   },
   "toolsInternal.babyCryTranslator": {
     "subtitle": "Bebeğinizin size ne söylemeye çalıştığını anlayın",
-    "babyAge": "Bebek Yaşı", "weeks": "hafta", "cryPattern": "Ağlama Kalıbı", "cryDuration": "Ne Kadar Sürdü?", "whenCrying": "Bebek Ne Zaman Ağlıyor?", "analyzeButton": "Ağlama Kalıbını Analiz Et", "analysisResult": "Ağlama Analizi", "newAnalysis": "Yeni Analiz", "reanalyze": "Tekrar Analiz Et", "recentLogs": "Son Analizler", "tipsTitle": "Faydalı İpuçları",
-    "patterns": { "continuous": "Sürekli ağlama", "intermittent": "Aralıklı", "highPitch": "Yüksek perdeli", "whimpering": "Sızlanma", "rhythmic": "Ritmik", "sudden": "Ani çığlık" },
-    "durations": { "under1": "1 dk altı", "1to5": "1-5 dk", "5to15": "5-15 dk", "over15": "15 dk üzeri" },
-    "contexts": { "afterFeeding": "Beslemeden sonra", "beforeSleep": "Uyumadan önce", "afterWaking": "Uyandıktan sonra", "duringChange": "Bez değişimi sırasında", "noReason": "Belirgin sebep yok", "afterBath": "Banyodan sonra" },
-    "tips": { "tip1": "Her bebeğin benzersiz bir ağlama kalıbı vardır", "tip2": "Bebekler günde ortalama 1-3 saat ağlar — bu normaldir", "tip3": "Olağandışı veya sürekli ağlama durumunda pediatristinize danışın" }
+    "babyAge": "Bebek Yaşı",
+    "weeks": "hafta",
+    "cryPattern": "Ağlama Kalıbı",
+    "cryDuration": "Ne Kadar Sürdü?",
+    "whenCrying": "Bebek Ne Zaman Ağlıyor?",
+    "analyzeButton": "Ağlama Kalıbını Analiz Et",
+    "analysisResult": "Ağlama Analizi",
+    "newAnalysis": "Yeni Analiz",
+    "reanalyze": "Tekrar Analiz Et",
+    "recentLogs": "Son Analizler",
+    "tipsTitle": "Faydalı İpuçları",
+    "patterns": {
+      "continuous": "Sürekli ağlama",
+      "intermittent": "Aralıklı",
+      "highPitch": "Yüksek perdeli",
+      "whimpering": "Sızlanma",
+      "rhythmic": "Ritmik",
+      "sudden": "Ani çığlık"
+    },
+    "durations": {
+      "under1": "1 dk altı",
+      "1to5": "1-5 dk",
+      "5to15": "5-15 dk",
+      "over15": "15 dk üzeri"
+    },
+    "contexts": {
+      "afterFeeding": "Beslemeden sonra",
+      "beforeSleep": "Uyumadan önce",
+      "afterWaking": "Uyandıktan sonra",
+      "duringChange": "Bez değişimi sırasında",
+      "noReason": "Belirgin sebep yok",
+      "afterBath": "Banyodan sonra"
+    },
+    "tips": {
+      "tip1": "Her bebeğin benzersiz bir ağlama kalıbı vardır",
+      "tip2": "Bebekler günde ortalama 1-3 saat ağlar — bu normaldir",
+      "tip3": "Olağandışı veya sürekli ağlama durumunda pediatristinize danışın"
+    }
   },
   "toolsInternal.postpartumRecovery": {
     "subtitle": "Doğum sonrası kişiselleştirilmiş iyileşme yolculuğunuz",
-    "welcomeTitle": "İyileşme Yolculuğunuz", "welcomeDesc": "Doğum deneyiminize özel 6 haftalık iyileşme planı", "selectBirthType": "Nasıl doğum yaptınız?",
-    "birthTypes": { "vaginal": "Normal Doğum", "cesarean": "Sezaryen" },
-    "progress": "İlerleme", "getAIAdvice": "AI İyileşme Tavsiyesi Al", "aiAdviceTitle": "Kişiselleştirilmiş İyileşme Tavsiyesi", "changeBirthType": "Doğum türünü değiştir",
-    "phases": { "week1": { "title": "Hafta 1 — Dinlenme ve İyileşme", "description": "Dinlenme, yara bakımı ve bebekle bağ kurma" }, "week2": { "title": "Hafta 2 — Yumuşak Başlangıç", "description": "Hafif hareket ve rutinler oluşturma" }, "week3_4": { "title": "Hafta 3-4 — Güç Kazanma", "description": "Hafif egzersizler ve duygusal sağlık kontrolü" }, "week5_6": { "title": "Hafta 5-6 — Yeni Normal", "description": "Aktiviteye dönüş ve uzun vadeli planlama" } },
-    "checklist": { "rest": { "title": "Dinlenmeyi Öncelikle", "desc": "Bebek uyurken uyuyun" }, "hydration": { "title": "Su İçin", "desc": "Günde 8-10 bardak su" }, "woundCare": { "title": "Yara Bakımı", "desc": "Doktor talimatlarını takip edin" }, "feedingSchedule": { "title": "Beslenme Programı", "desc": "Düzenli bir beslenme rutini oluşturun" }, "painManagement": { "title": "Ağrı Yönetimi", "desc": "Reçeteli ilaçları yönergelere göre alın" }, "gentleWalking": { "title": "Hafif Yürüyüş", "desc": "Evde kısa yürüyüşler" }, "emotionalCheck": { "title": "Duygusal Kontrol", "desc": "Ruh halinizi izleyin" }, "nutrition": { "title": "Besleyici Yemekler", "desc": "Demir ve protein açısından zengin yemekler" }, "sleepRoutine": { "title": "Uyku Rutini", "desc": "Dinlendirici bir uyku ortamı oluşturun" }, "socialSupport": { "title": "Sosyal Destek", "desc": "Sevdiklerinizle bağlantıda kalın" }, "lightExercise": { "title": "Hafif Egzersiz", "desc": "Nazik esneme ve yürüyüş" }, "posturalExercises": { "title": "Duruş Egzersizleri", "desc": "Çekirdek kaslarınızı nazikçe güçlendirin" }, "kegelExercises": { "title": "Kegel Egzersizleri", "desc": "Pelvik taban egzersizlerine başlayın" }, "mentalHealthCheck": { "title": "Ruh Sağlığı Kontrolü", "desc": "Doğum sonrası depresyon taraması" }, "doctorVisit": { "title": "Doktor Ziyareti", "desc": "Doğum sonrası kontrolünüzü planlayın" }, "returnToExercise": { "title": "Spora Dönüş", "desc": "Aktivite seviyesini kademeli olarak artırın" }, "intimacyReadiness": { "title": "Yakınlık Hazırlığı", "desc": "Hazır olduğunuzda partnerinizle konuşun" }, "fullCheckup": { "title": "Tam Kontrol", "desc": "Kapsamlı doğum sonrası muayene" }, "longTermPlan": { "title": "Uzun Vadeli Plan", "desc": "Doğum kontrolü ve gelecek planları" }, "selfCare": { "title": "Öz Bakım Rutini", "desc": "Sürekli öz bakım alışkanlıkları edinin" } }
+    "welcomeTitle": "İyileşme Yolculuğunuz",
+    "welcomeDesc": "Doğum deneyiminize özel 6 haftalık iyileşme planı",
+    "selectBirthType": "Nasıl doğum yaptınız?",
+    "birthTypes": {
+      "vaginal": "Normal Doğum",
+      "cesarean": "Sezaryen"
+    },
+    "progress": "İlerleme",
+    "getAIAdvice": "AI İyileşme Tavsiyesi Al",
+    "aiAdviceTitle": "Kişiselleştirilmiş İyileşme Tavsiyesi",
+    "changeBirthType": "Doğum türünü değiştir",
+    "phases": {
+      "week1": {
+        "title": "Hafta 1 — Dinlenme ve İyileşme",
+        "description": "Dinlenme, yara bakımı ve bebekle bağ kurma"
+      },
+      "week2": {
+        "title": "Hafta 2 — Yumuşak Başlangıç",
+        "description": "Hafif hareket ve rutinler oluşturma"
+      },
+      "week3_4": {
+        "title": "Hafta 3-4 — Güç Kazanma",
+        "description": "Hafif egzersizler ve duygusal sağlık kontrolü"
+      },
+      "week5_6": {
+        "title": "Hafta 5-6 — Yeni Normal",
+        "description": "Aktiviteye dönüş ve uzun vadeli planlama"
+      }
+    },
+    "checklist": {
+      "rest": {
+        "title": "Dinlenmeyi Öncelikle",
+        "desc": "Bebek uyurken uyuyun"
+      },
+      "hydration": {
+        "title": "Su İçin",
+        "desc": "Günde 8-10 bardak su"
+      },
+      "woundCare": {
+        "title": "Yara Bakımı",
+        "desc": "Doktor talimatlarını takip edin"
+      },
+      "feedingSchedule": {
+        "title": "Beslenme Programı",
+        "desc": "Düzenli bir beslenme rutini oluşturun"
+      },
+      "painManagement": {
+        "title": "Ağrı Yönetimi",
+        "desc": "Reçeteli ilaçları yönergelere göre alın"
+      },
+      "gentleWalking": {
+        "title": "Hafif Yürüyüş",
+        "desc": "Evde kısa yürüyüşler"
+      },
+      "emotionalCheck": {
+        "title": "Duygusal Kontrol",
+        "desc": "Ruh halinizi izleyin"
+      },
+      "nutrition": {
+        "title": "Besleyici Yemekler",
+        "desc": "Demir ve protein açısından zengin yemekler"
+      },
+      "sleepRoutine": {
+        "title": "Uyku Rutini",
+        "desc": "Dinlendirici bir uyku ortamı oluşturun"
+      },
+      "socialSupport": {
+        "title": "Sosyal Destek",
+        "desc": "Sevdiklerinizle bağlantıda kalın"
+      },
+      "lightExercise": {
+        "title": "Hafif Egzersiz",
+        "desc": "Nazik esneme ve yürüyüş"
+      },
+      "posturalExercises": {
+        "title": "Duruş Egzersizleri",
+        "desc": "Çekirdek kaslarınızı nazikçe güçlendirin"
+      },
+      "kegelExercises": {
+        "title": "Kegel Egzersizleri",
+        "desc": "Pelvik taban egzersizlerine başlayın"
+      },
+      "mentalHealthCheck": {
+        "title": "Ruh Sağlığı Kontrolü",
+        "desc": "Doğum sonrası depresyon taraması"
+      },
+      "doctorVisit": {
+        "title": "Doktor Ziyareti",
+        "desc": "Doğum sonrası kontrolünüzü planlayın"
+      },
+      "returnToExercise": {
+        "title": "Spora Dönüş",
+        "desc": "Aktivite seviyesini kademeli olarak artırın"
+      },
+      "intimacyReadiness": {
+        "title": "Yakınlık Hazırlığı",
+        "desc": "Hazır olduğunuzda partnerinizle konuşun"
+      },
+      "fullCheckup": {
+        "title": "Tam Kontrol",
+        "desc": "Kapsamlı doğum sonrası muayene"
+      },
+      "longTermPlan": {
+        "title": "Uzun Vadeli Plan",
+        "desc": "Doğum kontrolü ve gelecek planları"
+      },
+      "selfCare": {
+        "title": "Öz Bakım Rutini",
+        "desc": "Sürekli öz bakım alışkanlıkları edinin"
+      }
+    }
   },
   "toolsInternal.mealSuggestion.allergiesLabel": "Alerjiler ve İntoleranslar",
-  "toolsInternal.mealSuggestion.allergies": { "gluten": "Gluten", "dairy": "Süt Ürünleri", "nuts": "Kuruyemiş", "eggs": "Yumurta", "soy": "Soya", "seafood": "Deniz Ürünleri" },
+  "toolsInternal.mealSuggestion.allergies": {
+    "gluten": "Gluten",
+    "dairy": "Süt Ürünleri",
+    "nuts": "Kuruyemiş",
+    "eggs": "Yumurta",
+    "soy": "Soya",
+    "seafood": "Deniz Ürünleri"
+  },
   "toolsInternal.mealSuggestion.prepTimeLabel": "Hazırlık Süresi",
-  "toolsInternal.mealSuggestion.prepTimes": { "quick": "Hızlı (< 15 dk)", "medium": "Orta (15-30 dk)", "elaborate": "Detaylı (30+ dk)" },
+  "toolsInternal.mealSuggestion.prepTimes": {
+    "quick": "Hızlı (< 15 dk)",
+    "medium": "Orta (15-30 dk)",
+    "elaborate": "Detaylı (30+ dk)"
+  },
   "toolsInternal.kickCounter.avgMin": "Ort. Dk",
   "toolsInternal.kickCounter.aiDataAnalysis": "AI Veri Analizi",
   "toolsInternal.kickCounter.avgPerSession": "Ort./Oturum",
@@ -4114,10 +4586,22 @@
   "toolsInternal.mobilityCoach.tip4": "Gece kramplarını önlemek için yatmadan önce baldır esnetmeleri yapın",
   "toolsInternal.mobilityCoach.tip5": "Magnezyum açısından zengin besinleri diyetinizde tutun",
   "toolsInternal.mobilityCoach.legExercises": {
-    "calfRaises": {"name": "Baldır Kaldırma", "desc": "Ayakta durun ve topukları kaldırıp yavaşça indirin"},
-    "ankleCircles": {"name": "Ayak Bileği Daireleri", "desc": "Her ayak bileğini daireler çizerek döndürün"},
-    "toePoints": {"name": "Ayak Parmağı Esnetme", "desc": "Dolaşımı iyileştirmek için parmakları uzatıp bükün"},
-    "legStretches": {"name": "Nazik Bacak Esnetmeleri", "desc": "Baldır ve arka bacak kaslarını nazikçe esnetin"}
+    "calfRaises": {
+      "name": "Baldır Kaldırma",
+      "desc": "Ayakta durun ve topukları kaldırıp yavaşça indirin"
+    },
+    "ankleCircles": {
+      "name": "Ayak Bileği Daireleri",
+      "desc": "Her ayak bileğini daireler çizerek döndürün"
+    },
+    "toePoints": {
+      "name": "Ayak Parmağı Esnetme",
+      "desc": "Dolaşımı iyileştirmek için parmakları uzatıp bükün"
+    },
+    "legStretches": {
+      "name": "Nazik Bacak Esnetmeleri",
+      "desc": "Baldır ve arka bacak kaslarını nazikçe esnetin"
+    }
   },
   "toolsInternal.weightGain.yourProfile": "Profiliniz",
   "toolsInternal.weightGain.heightCm": "Boy (cm)",
@@ -4140,9 +4624,18 @@
     "obese": "Obez (VKİ ≥ 30)"
   },
   "toolsInternal.weightGain.statusMessages": {
-    "below": { "message": "Kilo artışınız önerilen aralığın altında.", "recommendation": "Beslenme hakkında doktorunuza danışın." },
-    "above": { "message": "Kilo artışınız önerilen aralığın üstünde.", "recommendation": "Sağlıklı beslenme alışkanlıkları hakkında doktorunuzla konuşun." },
-    "normal": { "message": "Kilo artışınız sağlıklı aralıkta!", "recommendation": "Dengeli beslenmeye bu şekilde devam edin." }
+    "below": {
+      "message": "Kilo artışınız önerilen aralığın altında.",
+      "recommendation": "Beslenme hakkında doktorunuza danışın."
+    },
+    "above": {
+      "message": "Kilo artışınız önerilen aralığın üstünde.",
+      "recommendation": "Sağlıklı beslenme alışkanlıkları hakkında doktorunuzla konuşun."
+    },
+    "normal": {
+      "message": "Kilo artışınız sağlıklı aralıkta!",
+      "recommendation": "Dengeli beslenmeye bu şekilde devam edin."
+    }
   },
   "toolsInternal.weightGain.minRecommended": "Min. Önerilen",
   "toolsInternal.weightGain.maxRecommended": "Maks. Önerilen",
@@ -4158,36 +4651,126 @@
   "toolsInternal.fertilityAcademy": {
     "lessonsCount": "{{count}} eğitim modülü",
     "lessons": {
-      "menstrualCycle": { "title": "Adet döngüsünü anlamak", "content": "Adet döngünüz dört ana aşamaya ayrılır:\n\n1. Adet Aşaması (1–5. günler): Rahim iç tabakası dökülür ve yeni bir döngü başlar.\n\n2. Foliküler Aşama (1–13. günler): FSH yumurtalıkları uyararak folikül geliştirir. Östrojen yükselir ve rahim iç tabakası kalınlaşır.\n\n3. Yumurtlama (~14. gün): LH yükselişi olgun bir yumurtanın salınmasını tetikler. Bu en verimli anınızdır.\n\n4. Luteal Aşama (15–28. günler): Boş folikül korpus luteuma dönüşerek progesteron üretir. Döllenme gerçekleşmezse hormon seviyeleri düşer ve döngü yeniden başlar.\n\nBu aşamaları anlamak verimli pencerenizi belirlemenize ve vücudunuzun doğal ritmiyle uyum sağlamanıza yardımcı olur." },
-      "ovulationProcess": { "title": "Yumurtlama nasıl çalışır?", "content": "Yumurtlama, yumurtalıklardan olgun bir yumurtanın salınmasıdır:\n\n• Yumurtlamaya giden günlerde artan östrojen dominant folikülün büyümesine neden olur.\n• Ani bir LH yükselişi folikülün yırtılıp yumurtayı fallop tüpüne salmasını tetikler.\n• Yumurta salındıktan sonra 12–24 saat yaşar. Sperm üreme yolunda 5 güne kadar hayatta kalabilir.\n• Bu, verimli pencerenizin yaklaşık 6 gün — yumurtlamadan 5 gün önce ve yumurtlama günü — sürdüğü anlamına gelir.\n\nBazı kadınlar yumurtlama sırasında hafif bir sızı veya kramp (mittelschmerz) hisseder. Diğerleri servikal mukustaki değişiklikleri fark eder — berrak ve esnek hale gelir." },
-      "fertilizationBasics": { "title": "Döllenmenin temelleri", "content": "Yumurtlamadan sonra döllenme fallop tüpünde gerçekleşebilir:\n\n• Milyonlarca spermden yalnızca birkaç yüzü yumurtaya ulaşır.\n• Bir sperm yumurtanın dış tabakasını geçerek diğer spermlerin girmesini engelleyen kimyasal bir reaksiyon tetikler.\n• Döllenmiş yumurta (zigot) 3–4 gün boyunca rahme doğru ilerlerken bölünmeye başlar.\n• Yumurtlamadan yaklaşık 6–10 gün sonra blastosist rahim iç tabakasına yerleşir.\n• Yerleşme hafif bir lekelenmeye neden olabilir — implantasyon kanaması.\n• Yerleştikten sonra vücut hCG üretmeye başlar — hamilelik testlerinin algıladığı hormon." },
-      "hormonesRole": { "title": "Hormonların rolü", "content": "Birçok hormon doğurganlığınızı yönetir:\n\n• FSH: Yumurtalıklarda folikül büyümesini uyarır. Yumurtalık rezervini değerlendirmek için döngünün 3. gününde test edilir.\n\n• LH: Yumurtlamayı tetikler. Yumurtlama tahmin kitleri LH yükselişini algılar.\n\n• Östrojen: Folikül gelişimini destekler ve rahim iç tabakasını kalınlaştırır. Servikal mukus kalitesini de etkiler.\n\n• Progesteron: Yumurtlamadan sonra üretilir, olası yerleşme için rahim iç tabakasını korur.\n\n• AMH: Kalan yumurta sayısını yansıtır. Doğurganlık planlaması için faydalıdır.\n\n• Tiroid Hormonları (TSH, T3, T4): Dengesizlikler yumurtlamayı ve döngü düzenini bozabilir." },
-      "ageAndFertility": { "title": "Yaş ve doğurganlık", "content": "Yaş, doğurganlığı etkileyen en önemli faktörlerden biridir:\n\n• Kadınlar doğdukları anda sahip olacakları tüm yumurtalara sahiptir — yaklaşık 1–2 milyon.\n• Ergenlikte yaklaşık 300.000–400.000 yumurta kalır. Ömür boyunca yalnızca 300–400 tanesi yumurtlar.\n• Doğurganlık 20'li yaşların ortasında zirve yapar. 30 yaşından sonra kademeli bir düşüş başlar.\n• 35'ten sonra düşüş hızlanır. Hem yumurta kalitesi hem miktarı azalır.\n• 40 yaşında döngü başına doğal gebelik şansı yaklaşık %5'e düşer.\n• Erkek doğurganlığı da yaşla azalır, ancak daha yavaş.\n\nBu 35'ten sonra gebeliğin imkansız olduğu anlamına gelmez — birçok kadın doğal yolla gebe kalır. Ancak zamanlamayı anlamak planlamaya yardımcı olur." },
-      "lifestyleFactors": { "title": "Yaşam tarzı faktörleri", "content": "Günlük alışkanlıklarınız doğurganlığı önemli ölçüde etkiler:\n\n• Kilo: Hem düşük kilolu (VKİ < 18,5) hem fazla kilolu (VKİ > 30) yumurtlamayı bozabilir. %5–10'luk bir kilo değişikliği bile döngü düzenini iyileştirebilir.\n\n• Sigara: Yumurta kalitesini düşürür, fallop tüplerini hasarlar ve yumurta kaybını hızlandırır.\n\n• Alkol: Aşırı içki düzensiz döngüler ve düşük doğurganlıkla ilişkilidir.\n\n• Kafein: Günde 200–300mg'dan fazlası doğurganlığı hafifçe azaltabilir.\n\n• Egzersiz: Ilımlı aktivite doğurganlığı destekler. Aşırı yoğun egzersiz yumurtlamayı bozabilir.\n\n• Uyku: Kötü uyku üreme hormonlarını bozar. Gecelik 7–9 saat hedefleyin.\n\n• Çevresel Toksinler: Pestisitler, ağır metaller ve bazı plastiklere (BPA) maruziyeti sınırlayın." },
-      "commonMyths": { "title": "Yaygın mitler", "content": "Gerçeği kurgudan ayıralım:\n\nMit: Sadece yumurtlama gününde gebe kalabilirsiniz.\nGerçek: Verimli pencere yaklaşık 6 gün sürer. Sperm 5 güne kadar hayatta kalabilir.\n\nMit: İlişki sırasındaki pozisyon gebeliği etkiler.\nGerçek: Bunu destekleyen bilimsel kanıt yoktur. Sperm saniyeler içinde servikse ulaşır.\n\nMit: Doğum kontrolü kısırlığa neden olur.\nGerçek: Çoğu kontraseptifleri bıraktıktan 1–3 ay sonra doğurganlık geri döner.\n\nMit: Stres doğrudan kısırlığa neden olur.\nGerçek: Ciddi kronik stres hormonları etkileyebilir, ancak orta düzey stres tek başına nadiren gebeliği engeller.\n\nMit: Her gün ilişkiye girmeniz gerekir.\nGerçek: Verimli pencerede her 1–2 günde bir yeterlidir.\n\nMit: Bitkisel takviyeler doğurganlığı garanti eder.\nGerçek: Bazıları yardımcı olabilir, ancak hiçbiri bilimsel olarak gebeliği garanti etmez." },
-      "whenToSeekHelp": { "title": "Ne zaman destek almalısın?", "content": "Şu durumlarda profesyonel doğurganlık rehberliği almayı düşünün:\n\n• 35 yaşın altındaysanız ve 12 aydır başarısız deniyorsanız.\n• 35–39 yaşındaysanız ve 6 aydır deniyorsanız.\n• 40 yaş ve üzeriyseniz — zaman faktör olduğundan erken danışın.\n• Düzensiz veya adet görmüyorsanız.\n• Bilinen bir durumunuz varsa: endometriozis, PKOS, tiroid bozukluğu veya önceki pelvik cerrahi.\n• Tekrarlayan düşükler (2 veya daha fazla) yaşadıysanız.\n• Eşinizin bilinen doğurganlık endişeleri varsa.\n\nBir doğurganlık uzmanı testler yapabilir ve yaşam tarzı değişikliklerinden yardımcı üremeye kadar seçenekleri tartışabilir." },
-      "maleFertility": { "title": "Erkek doğurganlığı", "content": "Erkek doğurganlığı gebe kalma yolculuğunda eşit derecede önemlidir:\n\n• Sperm üretimi yaklaşık 74 gün sürer. Yaşam tarzı değişikliklerinin sonuç göstermesi zaman alır.\n• Optimal sperm sağlığı gerektirir: aşırı ısıdan kaçınma, sağlıklı kilo koruma ve stres yönetimi.\n• Sperm kalitesini azaltabilecek faktörler: sigara, aşırı alkol, bazı ilaçlar, anabolik steroidler.\n• Spermiogram basit, invaziv olmayan bir testtir — sayım, hareketlilik ve morfolojiyi değerlendirir.\n• Yaş erkek doğurganlığını da etkiler — sperm kalitesi 40 yaşından sonra kademeli olarak düşer.\n• Sperm sağlığı için önemli besinler: çinko, selenyum, C vitamini, E vitamini, folat ve omega-3." },
-      "emotionalWellbeing": { "title": "Duygusal iyi oluş", "content": "Gebe kalmaya çalışmak duygusal bir iniş çıkış olabilir:\n\n• Umut, heyecan, hayal kırıklığı ve üzüntü hissetmek normaldir — bazen hepsi tek bir döngüde.\n• Yaklaşık her 6 çiftten 1'i gebe kalmada zorluk yaşar. Yalnız değilsiniz.\n• Negatif testten sonra yaşanan üzüntü geçerlidir. Kendinizi yargılamadan hissetmenize izin verin.\n• Eşinizle iletişim hayati önemlidir. Duygularınızı açıkça paylaşın.\n• Bir destek topluluğuna katılmayı düşünün — aynı yolculukta olan diğerleriyle bağ kurmak rahatlatıcı olabilir.\n• Profesyonel danışmanlık durumunuza özel başa çıkma stratejileri sağlayabilir.\n• Unutmayın: değeriniz doğurganlığınızla tanımlanmaz. Kendinize iyi davranın." },
-      "trackingMethods": { "title": "Takip yöntemleri", "content": "Verimli pencerenizi belirlemeye yardımcı birçok yöntem vardır:\n\n1. Takvim Yöntemi: Birkaç ay boyunca döngü uzunluklarını takip edin. Yumurtlama genellikle bir sonraki adetten 14 gün önce gerçekleşir.\n\n2. Bazal Vücut Sıcaklığı (BBT): Her sabah kalkmadan önce sıcaklığınızı ölçün. 0,2–0,5°C'lik hafif bir artış yumurtlamayı doğrular.\n\n3. Servikal Mukus Gözlemi: Yumurtlama yaklaştıkça mukus berrak, esnek ve kaygan hale gelir.\n\n4. Yumurtlama Tahmin Kitleri (OPK): İdrardaki LH yükselişini yumurtlamadan 12–36 saat önce algılar.\n\n5. Doğurganlık Monitörleri: Daha eksiksiz bir tablo için birden fazla hormonu izleyen gelişmiş cihazlar.\n\n6. Serviks Pozisyonu: Serviks yumurtlama civarında yükselir, yumuşar ve açılır.\n\nBirden fazla yöntemi birleştirmek doğruluğu artırır." },
-      "optimizingTiming": { "title": "Zamanlamayı optimize etmek", "content": "Zamanlama şansınızı en üst düzeye çıkarmak için çok önemlidir:\n\n• Gebelik için en iyi günler yumurtlamadan 2–3 gün önce ve yumurtlama günüdür.\n• Verimli pencerede her 1–2 günde bir ilişki en iyi sonuçları verir.\n• Günlük boşalma çoğu erkekte sperm kalitesini önemli ölçüde azaltmaz.\n• İlişkiden sonra 10–15 dakika uzanmak sperm taşınmasını hafifçe iyileştirebilir.\n• Kayganlaştırıcılar: Bazı ticari kayganlaştırıcılar sperm hareketliliğini azaltabilir. Gerekirse doğurganlık dostu marka kullanın.\n• Aktif olarak denemeden önce 2–3 ay döngünüzü takip edin.\n• Verimli pencerede her iki partner de aşırı alkolden kaçınmalıdır." },
-      "implantationWindow": { "title": "İmplantasyon penceresi", "content": "İmplantasyon penceresi, rahim iç tabakasının embriyoyu kabul etmeye hazır olduğu kısa dönemdir:\n\n• Genellikle yumurtlamadan 6–10 gün sonra gerçekleşir.\n• Bu sürede endometriyum, embriyonun tutunmasına yardımcı özel proteinler salgılar.\n• Progesteron iç tabakayı hazırlamada merkezi rol oynar.\n• Pencere kalitesini etkileyen faktörler: kronik iltihap, yetersiz iç tabaka kalınlığı veya bağışıklık bozuklukları.\n• Luteal fazda dinlenme ve iyi beslenme implantasyon sürecini destekler." },
-      "cervicalHealth": { "title": "Servikal sağlık ve doğurganlık", "content": "Serviks doğurganlıkta temel bir rol oynar:\n\n• Döngü boyunca değişen mukus üreterek sperm geçişini kolaylaştırır veya engeller.\n• Verimli mukus spermleri besler ve ömürlerini 5 güne kadar uzatır.\n• Kronik servikal enfeksiyonlar mukus kalitesini düşürebilir.\n• Önceki servikal işlemler (koni biyopsisi gibi) mukus üretimini etkileyebilir.\n• Sağlıklı vajinal pH'ı korumak doğurganlık için optimal servikal ortamı destekler." },
-      "thyroidFertility": { "title": "Tiroid ve doğurganlık", "content": "Tiroid bozuklukları doğurganlık sorunlarının en tedavi edilebilir nedenlerinden biridir:\n\n• Hipotiroidizm düzensiz döngülere, yumurtlama yokluğuna veya erken düşüğe neden olabilir.\n• Hipertiroidizm düzensiz adetler ve gebe kalmada zorlukla bağlantılıdır.\n• Subklinik hipotiroidizm (TSH 2,5–4,0) bile doğurganlığı etkileyebilir.\n• Tiroid antikorları (Anti-TPO) yaygındır ve implantasyonu etkileyebilir.\n• Gebelik planlayan tüm kadınlar için TSH ve FT4 testi önerilir.\n• Levotiroksin tedavisi gebe kalmaya çalışırken güvenli ve etkilidir." },
-      "pcosManagement": { "title": "PKOS yönetimi ve doğurganlık", "content": "Polikistik Over Sendromu (PKOS) kadınların %8–13'ünü etkiler:\n\n• Anovulasyon ve yumurtlama kaynaklı kısırlığın en yaygın nedenidir.\n• Temel belirtiler: düzensiz adetler, akne, aşırı tüylenme, insülin direnci.\n• Yaşam tarzı değişiklikleri çok etkilidir: %5–10 kilo kaybı yumurtlamayı geri getirebilir.\n• İnositol, insülin duyarlılığını ve yumurta kalitesini iyileştirmede umut verici sonuçlar göstermiştir.\n• Düşük şekerli, dengeli bir diyet hormonal düzenliliği destekler.\n• Klomifen veya letrozol gibi ilaçlar birçok vakada yumurtlamayı başarıyla uyarır." },
-      "endometriosisAwareness": { "title": "Endometriozis ve doğurganlık", "content": "Endometriozis her 10 kadından 1'ini etkiler:\n\n• Rahim iç tabakasına benzer doku rahmin dışında büyüyerek iltihap ve yapışıklıklara neden olur.\n• Tüpleri, yumurtalıkları ve yumurta kalitesini etkileyebilir.\n• Belirtiler: şiddetli adet ağrısı, ilişki sırasında ağrı ve bazen hiç belirti olmaz.\n• Erken tanı sonuçları iyileştirir. Laparoskopi altın standarttır.\n• Etkilenen birçok kadın doğal olarak veya yardımla gebe kalır.\n• Aile öyküsü veya şüpheli belirtileriniz varsa doğurganlık uzmanına danışın." },
-      "nutritionFertility": { "title": "Doğurganlık için optimal beslenme", "content": "Diyet doğrudan yumurta ve sperm kalitesini etkiler:\n\n• Akdeniz diyeti doğurganlık çalışmalarında en iyi sonuçları göstermiştir.\n• Sağlıklı yağlar (omega-3, zeytinyağı) hormon üretimini destekler.\n• Bitkisel protein bazı kadınlar için hayvansal proteinden daha iyi olabilir.\n• Trans yağlardan kaçının — yumurtlama kaynaklı kısırlık riskini ikiye katlar.\n• Organik gıdalar hormon bozucu pestisitlere maruziyeti azaltır.\n• Bitkisel kaynaklı demir + C vitamini emilimi önemli ölçüde iyileştirir." },
-      "sleepHormones": { "title": "Uyku ve doğurganlık hormonları", "content": "Uyku bir lüks değil — doğurganlık için biyolojik bir zorunluluktur:\n\n• Melatonin (uyku hormonu) yumurtaları koruyan bir antioksidan olarak çalışır.\n• 6 saatten az uyku kortizolü artırarak GnRH ve yumurtlamayı baskılar.\n• Vardiyalı çalışma döngü ve doğurganlık sorunlarıyla ilişkilidir.\n• Sirkadiyen ritim FSH ve LH salgısını düzenler.\n• Ekranlardan gelen mavi ışık melatonini baskılar ve ritmi bozar.\n• Hedef: Karanlık, serin bir odada tutarlı bir rutinle 7–9 saat uyku." },
-      "exerciseBalance": { "title": "Egzersiz ve doğurganlık dengesi", "content": "Egzersiz doğurganlık için iki ucu keskin bir kılıçtır:\n\n• Ilımlı aktivite (haftada 150 dakika) yumurtlamayı ve doğurganlığı iyileştirir.\n• Sürekli yoğun egzersiz yumurtlamayı durduran 'göreceli enerji yetersizliğine' neden olabilir.\n• Yürüyüş, yüzme ve yoga en iyi seçenekler arasındadır.\n• Ilımlı kuvvet antrenmanı insülin duyarlılığını iyileştirir (PKOS için faydalı).\n• Doğurganlık yogası hareketi stres azaltmayla birleştirir.\n• Yoğun egzersizle adetleriniz kesilirse yoğunluğu hemen azaltın.\n• Hareket ve dinlenme arasındaki denge anahtardır." },
-      "supplementsGuide": { "title": "Akıllı takviye rehberi", "content": "Takviyeler doğurganlığınızı destekleyebilir — ama hepsi eşit değildir:\n\n• Folik asit/metilfolat: Temel — denemeden 3 ay önce başlayın.\n• CoQ10 (200–600mg): Özellikle 35 yaş sonrası yumurta enerjisini destekler.\n• D vitamini (1000–2000 IU): Çoğu kadında eksiktir.\n• Omega-3 DHA (200–300mg): Hormon sağlığı ve iltihap için.\n• İnositol (4g myo + 100mg d-kiro): Özellikle PKOS'ta faydalı.\n• Demir: Yalnızca testler eksiklik gösteriyorsa — fazlası zararlıdır.\n• Yeni bir takviyeye başlamadan önce daima doktorunuza danışın." },
-      "environmentalToxins": { "title": "Çevresel toksinler ve doğurganlık", "content": "Günlük çevresel toksinlere maruz kalma doğurganlığınızı etkileyebilir:\n\n• Plastiklerdeki BPA östrojeni taklit ederek hormonal dengeyi bozar.\n• Kozmetik ve parfümlerdeki ftalatlar endokrin sistemi bozar.\n• Meyve ve sebzelerdeki pestisitler düşük yumurta kalitesiyle bağlantılıdır.\n• Ağır metaller (kurşun, cıva) hem yumurtaları hem spermleri etkiler.\n• Pratik adımlar: plastik yerine cam kaplar, doğal temizlik ürünleri, meyveleri iyi yıkayın.\n• İçme suyunu filtrelemek kirletici maruziyetini azaltır." },
-      "geneticFactors": { "title": "Genetik faktörler ve doğurganlık", "content": "Genler doğurganlıkta beklenenden daha büyük bir rol oynar:\n\n• Taşıyıcı genetik tarama çocuklara genetik hastalık geçirme riskini ortaya çıkarır.\n• MTHFR mutasyonu folat metabolizmasını etkiler — metilfolat daha iyi olabilir.\n• Turner sendromu ve kromozomal anormallikler yumurtalık rezervini etkiler.\n• Erken menopoz aile öyküsü erken rezerv düşüşünü işaret edebilir.\n• Tekrarlayan düşük durumunda karyotip testi önerilir.\n• Belirli aile öyküsü olanlar için genetik danışmanlık mevcuttur." },
-      "immunologyFertility": { "title": "İmmünoloji ve doğurganlık", "content": "Bağışıklık sistemi gebelikte hassas bir rol oynar:\n\n• Vücut embriyoyu (genlerinin yarısı babadan) reddetmeden kabul etmelidir.\n• Rahim NK hücreleri implantasyona yardımcı olur — ancak aşırı aktivite engelleyebilir.\n• Antifosfolipid antikorları tekrarlayan düşükle bağlantılıdır.\n• Otoimmün hastalıklar (lupus, Hashimoto) doğurganlığı etkileyebilir.\n• Kronik pelvik iltihap tüplere zarar verebilir.\n• Anti-inflamatuar yaşam tarzı (beslenme, uyku, hareket) dengeli bağışıklığı destekler." },
-      "secondaryInfertility": { "title": "İkincil kısırlık", "content": "İkincil kısırlık, önceki bir çocuktan sonra gebe kalmada zorluk anlamına gelir:\n\n• Kısırlık vakalarının yaklaşık %50'sini oluşturur — ama daha az tartışılır.\n• Nedenleri: ilerleyen yaş, kilo değişiklikleri, önceki gebelik komplikasyonları.\n• Sezaryen veya enfeksiyondan kaynaklanan yapışıklıklar doğurganlığı etkileyebilir.\n• İlk doğumdan sonraki hormonal değişiklikler tamamen normalleşmeyebilir.\n• Sosyal beklentiler ('çocuğun var, şükret') psikolojik yükü artırır.\n• Yardım istemede gecikmeyin — aynı zaman kriterleri geçerlidir." },
-      "recurrentLoss": { "title": "Tekrarlayan gebelik kaybını anlamak", "content": "Tekrarlayan gebelik kaybı (iki veya daha fazla) kapsamlı değerlendirme gerektirir:\n\n• Gebeliklerin %15–20'si düşükle sonuçlanır — çoğu kromozomal anormallikler nedeniyle.\n• Tedavi edilebilir nedenler: pıhtılaşma bozuklukları, rahim anomalileri, tiroid sorunları.\n• Rahim septumu en yaygın rahim anomalisidir ve cerrahi olarak düzeltilebilir.\n• Antifosfolipid sendromu aspirin ve heparin ile tedavi edilebilir.\n• Psikolojik destek hayati önemlidir — kayıp sonrası yas ve kaygı doğal ve geçerlidir.\n• Açıklanamayan tekrarlayan kayıp yaşayan çiftlerin %60–70'i bir sonraki gebelikte başarılı olur." },
-      "fertilityPreservation": { "title": "Doğurganlık koruma", "content": "Doğurganlık koruma, planlamada esneklik sağlayan mevcut bir seçenektir:\n\n• Yumurta dondurma: İdeal yaş 35'ten önce. Modern tekniklerle mükemmel sonuçlar.\n• Embriyo dondurma: Evli çiftler için seçenek. Tek başına yumurtadan daha yüksek başarı oranları.\n• Dondurma nedenleri: gecikmeli çocuk sahibi olma, kemoterapi, tıbbi durumlar.\n• Süreç 10–14 gün hormonal uyarım ve ardından yumurta toplama gerektirir.\n• Maliyet ve saklama dikkate alınması gereken faktörlerdir.\n• Durumunuza uygun olup olmadığını değerlendirmek için doğurganlık uzmanına danışın." },
-      "assistedReproduction": { "title": "Yardımcı üreme teknikleri", "content": "Doğal gebelik başarısız olduğunda etkili seçenekler vardır:\n\n• Yumurtlama uyarımı: Yumurta üretimini uyaran ilaçlar — ilk basamak tedavi.\n• Rahim içi döllenme (IUI): İşlenmiş sperm doğrudan rahme enjekte edilir.\n• Tüp bebek (IVF): En gelişmiş teknik. Döngü başına %30–50 başarı oranı.\n• ICSI: Tek bir sperm doğrudan yumurtaya enjekte edilir.\n• Preimplantasyon genetik testi (PGT): Embriyoları kromozomal anormallikler için tarama.\n• Her seçeneğin belirli endikasyonları vardır — doğurganlık uzmanı en uygun olanı belirler." },
-      "epigeneticsFertility": { "title": "Epigenetik ve nesil sağlığı", "content": "Epigenetik keşifler doğurganlık anlayışımızı değiştirdi:\n\n• Beslenmeniz ve yaşam tarzınız gelecek çocuğunuzdaki gen ifadesini etkileyebilir.\n• Gebelik öncesi folat eksikliği fetal gen programlamasını etkiler.\n• Kronik stres embriyoya aktarılabilen DNA 'izleri' bırakabilir.\n• Kirlilik ve çevresel toksinler nesilleri etkileyebilecek epigenetik değişikliklere neden olur.\n• İyi haber: olumsuz epigenetik değişiklikler sağlıklı yaşam tarzıyla geri döndürülebilir.\n• Gebelikten 3–6 ay önce iyileştirmeler fetal sağlıkta gerçek bir fark yaratır." },
-      "mindBodyConnection": { "title": "Zihin-beden bağlantısı", "content": "Doğurganlıkta zihin ve beden arasındaki ilişki düşündüğümüzden daha derindir:\n\n• Kronik stres HPA eksenini aktive ederek üreme hormonlarını baskılar.\n• Gevşeme teknikleri (meditasyon, yoga, derin nefes) doğurganlık sonuçlarını ölçülebilir şekilde iyileştirir.\n• Bilişsel davranışçı terapi (BDT) doğurganlık kaygısını azaltmada olumlu sonuçlar göstermiştir.\n• Olumlu görselleştirme ve olumlamalar hormonal dengeyi destekleyen sinirsel yolları aktive eder.\n• Destek grupları izolasyon duygusunu azaltır ve ruh sağlığını iyileştirir.\n• Sanat, müzik ve yaratıcı yazarlık doğurganlık yolculuğunda etkili terapötik araçlardır.\n• Kaygı veya üzüntü hayatınıza hakim olmaya başlarsa profesyonel yardım arayın." }
+      "menstrualCycle": {
+        "title": "Adet döngüsünü anlamak",
+        "content": "Adet döngünüz dört ana aşamaya ayrılır:\n\n1. Adet Aşaması (1–5. günler): Rahim iç tabakası dökülür ve yeni bir döngü başlar.\n\n2. Foliküler Aşama (1–13. günler): FSH yumurtalıkları uyararak folikül geliştirir. Östrojen yükselir ve rahim iç tabakası kalınlaşır.\n\n3. Yumurtlama (~14. gün): LH yükselişi olgun bir yumurtanın salınmasını tetikler. Bu en verimli anınızdır.\n\n4. Luteal Aşama (15–28. günler): Boş folikül korpus luteuma dönüşerek progesteron üretir. Döllenme gerçekleşmezse hormon seviyeleri düşer ve döngü yeniden başlar.\n\nBu aşamaları anlamak verimli pencerenizi belirlemenize ve vücudunuzun doğal ritmiyle uyum sağlamanıza yardımcı olur."
+      },
+      "ovulationProcess": {
+        "title": "Yumurtlama nasıl çalışır?",
+        "content": "Yumurtlama, yumurtalıklardan olgun bir yumurtanın salınmasıdır:\n\n• Yumurtlamaya giden günlerde artan östrojen dominant folikülün büyümesine neden olur.\n• Ani bir LH yükselişi folikülün yırtılıp yumurtayı fallop tüpüne salmasını tetikler.\n• Yumurta salındıktan sonra 12–24 saat yaşar. Sperm üreme yolunda 5 güne kadar hayatta kalabilir.\n• Bu, verimli pencerenizin yaklaşık 6 gün — yumurtlamadan 5 gün önce ve yumurtlama günü — sürdüğü anlamına gelir.\n\nBazı kadınlar yumurtlama sırasında hafif bir sızı veya kramp (mittelschmerz) hisseder. Diğerleri servikal mukustaki değişiklikleri fark eder — berrak ve esnek hale gelir."
+      },
+      "fertilizationBasics": {
+        "title": "Döllenmenin temelleri",
+        "content": "Yumurtlamadan sonra döllenme fallop tüpünde gerçekleşebilir:\n\n• Milyonlarca spermden yalnızca birkaç yüzü yumurtaya ulaşır.\n• Bir sperm yumurtanın dış tabakasını geçerek diğer spermlerin girmesini engelleyen kimyasal bir reaksiyon tetikler.\n• Döllenmiş yumurta (zigot) 3–4 gün boyunca rahme doğru ilerlerken bölünmeye başlar.\n• Yumurtlamadan yaklaşık 6–10 gün sonra blastosist rahim iç tabakasına yerleşir.\n• Yerleşme hafif bir lekelenmeye neden olabilir — implantasyon kanaması.\n• Yerleştikten sonra vücut hCG üretmeye başlar — hamilelik testlerinin algıladığı hormon."
+      },
+      "hormonesRole": {
+        "title": "Hormonların rolü",
+        "content": "Birçok hormon doğurganlığınızı yönetir:\n\n• FSH: Yumurtalıklarda folikül büyümesini uyarır. Yumurtalık rezervini değerlendirmek için döngünün 3. gününde test edilir.\n\n• LH: Yumurtlamayı tetikler. Yumurtlama tahmin kitleri LH yükselişini algılar.\n\n• Östrojen: Folikül gelişimini destekler ve rahim iç tabakasını kalınlaştırır. Servikal mukus kalitesini de etkiler.\n\n• Progesteron: Yumurtlamadan sonra üretilir, olası yerleşme için rahim iç tabakasını korur.\n\n• AMH: Kalan yumurta sayısını yansıtır. Doğurganlık planlaması için faydalıdır.\n\n• Tiroid Hormonları (TSH, T3, T4): Dengesizlikler yumurtlamayı ve döngü düzenini bozabilir."
+      },
+      "ageAndFertility": {
+        "title": "Yaş ve doğurganlık",
+        "content": "Yaş, doğurganlığı etkileyen en önemli faktörlerden biridir:\n\n• Kadınlar doğdukları anda sahip olacakları tüm yumurtalara sahiptir — yaklaşık 1–2 milyon.\n• Ergenlikte yaklaşık 300.000–400.000 yumurta kalır. Ömür boyunca yalnızca 300–400 tanesi yumurtlar.\n• Doğurganlık 20'li yaşların ortasında zirve yapar. 30 yaşından sonra kademeli bir düşüş başlar.\n• 35'ten sonra düşüş hızlanır. Hem yumurta kalitesi hem miktarı azalır.\n• 40 yaşında döngü başına doğal gebelik şansı yaklaşık %5'e düşer.\n• Erkek doğurganlığı da yaşla azalır, ancak daha yavaş.\n\nBu 35'ten sonra gebeliğin imkansız olduğu anlamına gelmez — birçok kadın doğal yolla gebe kalır. Ancak zamanlamayı anlamak planlamaya yardımcı olur."
+      },
+      "lifestyleFactors": {
+        "title": "Yaşam tarzı faktörleri",
+        "content": "Günlük alışkanlıklarınız doğurganlığı önemli ölçüde etkiler:\n\n• Kilo: Hem düşük kilolu (VKİ < 18,5) hem fazla kilolu (VKİ > 30) yumurtlamayı bozabilir. %5–10'luk bir kilo değişikliği bile döngü düzenini iyileştirebilir.\n\n• Sigara: Yumurta kalitesini düşürür, fallop tüplerini hasarlar ve yumurta kaybını hızlandırır.\n\n• Alkol: Aşırı içki düzensiz döngüler ve düşük doğurganlıkla ilişkilidir.\n\n• Kafein: Günde 200–300mg'dan fazlası doğurganlığı hafifçe azaltabilir.\n\n• Egzersiz: Ilımlı aktivite doğurganlığı destekler. Aşırı yoğun egzersiz yumurtlamayı bozabilir.\n\n• Uyku: Kötü uyku üreme hormonlarını bozar. Gecelik 7–9 saat hedefleyin.\n\n• Çevresel Toksinler: Pestisitler, ağır metaller ve bazı plastiklere (BPA) maruziyeti sınırlayın."
+      },
+      "commonMyths": {
+        "title": "Yaygın mitler",
+        "content": "Gerçeği kurgudan ayıralım:\n\nMit: Sadece yumurtlama gününde gebe kalabilirsiniz.\nGerçek: Verimli pencere yaklaşık 6 gün sürer. Sperm 5 güne kadar hayatta kalabilir.\n\nMit: İlişki sırasındaki pozisyon gebeliği etkiler.\nGerçek: Bunu destekleyen bilimsel kanıt yoktur. Sperm saniyeler içinde servikse ulaşır.\n\nMit: Doğum kontrolü kısırlığa neden olur.\nGerçek: Çoğu kontraseptifleri bıraktıktan 1–3 ay sonra doğurganlık geri döner.\n\nMit: Stres doğrudan kısırlığa neden olur.\nGerçek: Ciddi kronik stres hormonları etkileyebilir, ancak orta düzey stres tek başına nadiren gebeliği engeller.\n\nMit: Her gün ilişkiye girmeniz gerekir.\nGerçek: Verimli pencerede her 1–2 günde bir yeterlidir.\n\nMit: Bitkisel takviyeler doğurganlığı garanti eder.\nGerçek: Bazıları yardımcı olabilir, ancak hiçbiri bilimsel olarak gebeliği garanti etmez."
+      },
+      "whenToSeekHelp": {
+        "title": "Ne zaman destek almalısın?",
+        "content": "Şu durumlarda profesyonel doğurganlık rehberliği almayı düşünün:\n\n• 35 yaşın altındaysanız ve 12 aydır başarısız deniyorsanız.\n• 35–39 yaşındaysanız ve 6 aydır deniyorsanız.\n• 40 yaş ve üzeriyseniz — zaman faktör olduğundan erken danışın.\n• Düzensiz veya adet görmüyorsanız.\n• Bilinen bir durumunuz varsa: endometriozis, PKOS, tiroid bozukluğu veya önceki pelvik cerrahi.\n• Tekrarlayan düşükler (2 veya daha fazla) yaşadıysanız.\n• Eşinizin bilinen doğurganlık endişeleri varsa.\n\nBir doğurganlık uzmanı testler yapabilir ve yaşam tarzı değişikliklerinden yardımcı üremeye kadar seçenekleri tartışabilir."
+      },
+      "maleFertility": {
+        "title": "Erkek doğurganlığı",
+        "content": "Erkek doğurganlığı gebe kalma yolculuğunda eşit derecede önemlidir:\n\n• Sperm üretimi yaklaşık 74 gün sürer. Yaşam tarzı değişikliklerinin sonuç göstermesi zaman alır.\n• Optimal sperm sağlığı gerektirir: aşırı ısıdan kaçınma, sağlıklı kilo koruma ve stres yönetimi.\n• Sperm kalitesini azaltabilecek faktörler: sigara, aşırı alkol, bazı ilaçlar, anabolik steroidler.\n• Spermiogram basit, invaziv olmayan bir testtir — sayım, hareketlilik ve morfolojiyi değerlendirir.\n• Yaş erkek doğurganlığını da etkiler — sperm kalitesi 40 yaşından sonra kademeli olarak düşer.\n• Sperm sağlığı için önemli besinler: çinko, selenyum, C vitamini, E vitamini, folat ve omega-3."
+      },
+      "emotionalWellbeing": {
+        "title": "Duygusal iyi oluş",
+        "content": "Gebe kalmaya çalışmak duygusal bir iniş çıkış olabilir:\n\n• Umut, heyecan, hayal kırıklığı ve üzüntü hissetmek normaldir — bazen hepsi tek bir döngüde.\n• Yaklaşık her 6 çiftten 1'i gebe kalmada zorluk yaşar. Yalnız değilsiniz.\n• Negatif testten sonra yaşanan üzüntü geçerlidir. Kendinizi yargılamadan hissetmenize izin verin.\n• Eşinizle iletişim hayati önemlidir. Duygularınızı açıkça paylaşın.\n• Bir destek topluluğuna katılmayı düşünün — aynı yolculukta olan diğerleriyle bağ kurmak rahatlatıcı olabilir.\n• Profesyonel danışmanlık durumunuza özel başa çıkma stratejileri sağlayabilir.\n• Unutmayın: değeriniz doğurganlığınızla tanımlanmaz. Kendinize iyi davranın."
+      },
+      "trackingMethods": {
+        "title": "Takip yöntemleri",
+        "content": "Verimli pencerenizi belirlemeye yardımcı birçok yöntem vardır:\n\n1. Takvim Yöntemi: Birkaç ay boyunca döngü uzunluklarını takip edin. Yumurtlama genellikle bir sonraki adetten 14 gün önce gerçekleşir.\n\n2. Bazal Vücut Sıcaklığı (BBT): Her sabah kalkmadan önce sıcaklığınızı ölçün. 0,2–0,5°C'lik hafif bir artış yumurtlamayı doğrular.\n\n3. Servikal Mukus Gözlemi: Yumurtlama yaklaştıkça mukus berrak, esnek ve kaygan hale gelir.\n\n4. Yumurtlama Tahmin Kitleri (OPK): İdrardaki LH yükselişini yumurtlamadan 12–36 saat önce algılar.\n\n5. Doğurganlık Monitörleri: Daha eksiksiz bir tablo için birden fazla hormonu izleyen gelişmiş cihazlar.\n\n6. Serviks Pozisyonu: Serviks yumurtlama civarında yükselir, yumuşar ve açılır.\n\nBirden fazla yöntemi birleştirmek doğruluğu artırır."
+      },
+      "optimizingTiming": {
+        "title": "Zamanlamayı optimize etmek",
+        "content": "Zamanlama şansınızı en üst düzeye çıkarmak için çok önemlidir:\n\n• Gebelik için en iyi günler yumurtlamadan 2–3 gün önce ve yumurtlama günüdür.\n• Verimli pencerede her 1–2 günde bir ilişki en iyi sonuçları verir.\n• Günlük boşalma çoğu erkekte sperm kalitesini önemli ölçüde azaltmaz.\n• İlişkiden sonra 10–15 dakika uzanmak sperm taşınmasını hafifçe iyileştirebilir.\n• Kayganlaştırıcılar: Bazı ticari kayganlaştırıcılar sperm hareketliliğini azaltabilir. Gerekirse doğurganlık dostu marka kullanın.\n• Aktif olarak denemeden önce 2–3 ay döngünüzü takip edin.\n• Verimli pencerede her iki partner de aşırı alkolden kaçınmalıdır."
+      },
+      "implantationWindow": {
+        "title": "İmplantasyon penceresi",
+        "content": "İmplantasyon penceresi, rahim iç tabakasının embriyoyu kabul etmeye hazır olduğu kısa dönemdir:\n\n• Genellikle yumurtlamadan 6–10 gün sonra gerçekleşir.\n• Bu sürede endometriyum, embriyonun tutunmasına yardımcı özel proteinler salgılar.\n• Progesteron iç tabakayı hazırlamada merkezi rol oynar.\n• Pencere kalitesini etkileyen faktörler: kronik iltihap, yetersiz iç tabaka kalınlığı veya bağışıklık bozuklukları.\n• Luteal fazda dinlenme ve iyi beslenme implantasyon sürecini destekler."
+      },
+      "cervicalHealth": {
+        "title": "Servikal sağlık ve doğurganlık",
+        "content": "Serviks doğurganlıkta temel bir rol oynar:\n\n• Döngü boyunca değişen mukus üreterek sperm geçişini kolaylaştırır veya engeller.\n• Verimli mukus spermleri besler ve ömürlerini 5 güne kadar uzatır.\n• Kronik servikal enfeksiyonlar mukus kalitesini düşürebilir.\n• Önceki servikal işlemler (koni biyopsisi gibi) mukus üretimini etkileyebilir.\n• Sağlıklı vajinal pH'ı korumak doğurganlık için optimal servikal ortamı destekler."
+      },
+      "thyroidFertility": {
+        "title": "Tiroid ve doğurganlık",
+        "content": "Tiroid bozuklukları doğurganlık sorunlarının en tedavi edilebilir nedenlerinden biridir:\n\n• Hipotiroidizm düzensiz döngülere, yumurtlama yokluğuna veya erken düşüğe neden olabilir.\n• Hipertiroidizm düzensiz adetler ve gebe kalmada zorlukla bağlantılıdır.\n• Subklinik hipotiroidizm (TSH 2,5–4,0) bile doğurganlığı etkileyebilir.\n• Tiroid antikorları (Anti-TPO) yaygındır ve implantasyonu etkileyebilir.\n• Gebelik planlayan tüm kadınlar için TSH ve FT4 testi önerilir.\n• Levotiroksin tedavisi gebe kalmaya çalışırken güvenli ve etkilidir."
+      },
+      "pcosManagement": {
+        "title": "PKOS yönetimi ve doğurganlık",
+        "content": "Polikistik Over Sendromu (PKOS) kadınların %8–13'ünü etkiler:\n\n• Anovulasyon ve yumurtlama kaynaklı kısırlığın en yaygın nedenidir.\n• Temel belirtiler: düzensiz adetler, akne, aşırı tüylenme, insülin direnci.\n• Yaşam tarzı değişiklikleri çok etkilidir: %5–10 kilo kaybı yumurtlamayı geri getirebilir.\n• İnositol, insülin duyarlılığını ve yumurta kalitesini iyileştirmede umut verici sonuçlar göstermiştir.\n• Düşük şekerli, dengeli bir diyet hormonal düzenliliği destekler.\n• Klomifen veya letrozol gibi ilaçlar birçok vakada yumurtlamayı başarıyla uyarır."
+      },
+      "endometriosisAwareness": {
+        "title": "Endometriozis ve doğurganlık",
+        "content": "Endometriozis her 10 kadından 1'ini etkiler:\n\n• Rahim iç tabakasına benzer doku rahmin dışında büyüyerek iltihap ve yapışıklıklara neden olur.\n• Tüpleri, yumurtalıkları ve yumurta kalitesini etkileyebilir.\n• Belirtiler: şiddetli adet ağrısı, ilişki sırasında ağrı ve bazen hiç belirti olmaz.\n• Erken tanı sonuçları iyileştirir. Laparoskopi altın standarttır.\n• Etkilenen birçok kadın doğal olarak veya yardımla gebe kalır.\n• Aile öyküsü veya şüpheli belirtileriniz varsa doğurganlık uzmanına danışın."
+      },
+      "nutritionFertility": {
+        "title": "Doğurganlık için optimal beslenme",
+        "content": "Diyet doğrudan yumurta ve sperm kalitesini etkiler:\n\n• Akdeniz diyeti doğurganlık çalışmalarında en iyi sonuçları göstermiştir.\n• Sağlıklı yağlar (omega-3, zeytinyağı) hormon üretimini destekler.\n• Bitkisel protein bazı kadınlar için hayvansal proteinden daha iyi olabilir.\n• Trans yağlardan kaçının — yumurtlama kaynaklı kısırlık riskini ikiye katlar.\n• Organik gıdalar hormon bozucu pestisitlere maruziyeti azaltır.\n• Bitkisel kaynaklı demir + C vitamini emilimi önemli ölçüde iyileştirir."
+      },
+      "sleepHormones": {
+        "title": "Uyku ve doğurganlık hormonları",
+        "content": "Uyku bir lüks değil — doğurganlık için biyolojik bir zorunluluktur:\n\n• Melatonin (uyku hormonu) yumurtaları koruyan bir antioksidan olarak çalışır.\n• 6 saatten az uyku kortizolü artırarak GnRH ve yumurtlamayı baskılar.\n• Vardiyalı çalışma döngü ve doğurganlık sorunlarıyla ilişkilidir.\n• Sirkadiyen ritim FSH ve LH salgısını düzenler.\n• Ekranlardan gelen mavi ışık melatonini baskılar ve ritmi bozar.\n• Hedef: Karanlık, serin bir odada tutarlı bir rutinle 7–9 saat uyku."
+      },
+      "exerciseBalance": {
+        "title": "Egzersiz ve doğurganlık dengesi",
+        "content": "Egzersiz doğurganlık için iki ucu keskin bir kılıçtır:\n\n• Ilımlı aktivite (haftada 150 dakika) yumurtlamayı ve doğurganlığı iyileştirir.\n• Sürekli yoğun egzersiz yumurtlamayı durduran 'göreceli enerji yetersizliğine' neden olabilir.\n• Yürüyüş, yüzme ve yoga en iyi seçenekler arasındadır.\n• Ilımlı kuvvet antrenmanı insülin duyarlılığını iyileştirir (PKOS için faydalı).\n• Doğurganlık yogası hareketi stres azaltmayla birleştirir.\n• Yoğun egzersizle adetleriniz kesilirse yoğunluğu hemen azaltın.\n• Hareket ve dinlenme arasındaki denge anahtardır."
+      },
+      "supplementsGuide": {
+        "title": "Akıllı takviye rehberi",
+        "content": "Takviyeler doğurganlığınızı destekleyebilir — ama hepsi eşit değildir:\n\n• Folik asit/metilfolat: Temel — denemeden 3 ay önce başlayın.\n• CoQ10 (200–600mg): Özellikle 35 yaş sonrası yumurta enerjisini destekler.\n• D vitamini (1000–2000 IU): Çoğu kadında eksiktir.\n• Omega-3 DHA (200–300mg): Hormon sağlığı ve iltihap için.\n• İnositol (4g myo + 100mg d-kiro): Özellikle PKOS'ta faydalı.\n• Demir: Yalnızca testler eksiklik gösteriyorsa — fazlası zararlıdır.\n• Yeni bir takviyeye başlamadan önce daima doktorunuza danışın."
+      },
+      "environmentalToxins": {
+        "title": "Çevresel toksinler ve doğurganlık",
+        "content": "Günlük çevresel toksinlere maruz kalma doğurganlığınızı etkileyebilir:\n\n• Plastiklerdeki BPA östrojeni taklit ederek hormonal dengeyi bozar.\n• Kozmetik ve parfümlerdeki ftalatlar endokrin sistemi bozar.\n• Meyve ve sebzelerdeki pestisitler düşük yumurta kalitesiyle bağlantılıdır.\n• Ağır metaller (kurşun, cıva) hem yumurtaları hem spermleri etkiler.\n• Pratik adımlar: plastik yerine cam kaplar, doğal temizlik ürünleri, meyveleri iyi yıkayın.\n• İçme suyunu filtrelemek kirletici maruziyetini azaltır."
+      },
+      "geneticFactors": {
+        "title": "Genetik faktörler ve doğurganlık",
+        "content": "Genler doğurganlıkta beklenenden daha büyük bir rol oynar:\n\n• Taşıyıcı genetik tarama çocuklara genetik hastalık geçirme riskini ortaya çıkarır.\n• MTHFR mutasyonu folat metabolizmasını etkiler — metilfolat daha iyi olabilir.\n• Turner sendromu ve kromozomal anormallikler yumurtalık rezervini etkiler.\n• Erken menopoz aile öyküsü erken rezerv düşüşünü işaret edebilir.\n• Tekrarlayan düşük durumunda karyotip testi önerilir.\n• Belirli aile öyküsü olanlar için genetik danışmanlık mevcuttur."
+      },
+      "immunologyFertility": {
+        "title": "İmmünoloji ve doğurganlık",
+        "content": "Bağışıklık sistemi gebelikte hassas bir rol oynar:\n\n• Vücut embriyoyu (genlerinin yarısı babadan) reddetmeden kabul etmelidir.\n• Rahim NK hücreleri implantasyona yardımcı olur — ancak aşırı aktivite engelleyebilir.\n• Antifosfolipid antikorları tekrarlayan düşükle bağlantılıdır.\n• Otoimmün hastalıklar (lupus, Hashimoto) doğurganlığı etkileyebilir.\n• Kronik pelvik iltihap tüplere zarar verebilir.\n• Anti-inflamatuar yaşam tarzı (beslenme, uyku, hareket) dengeli bağışıklığı destekler."
+      },
+      "secondaryInfertility": {
+        "title": "İkincil kısırlık",
+        "content": "İkincil kısırlık, önceki bir çocuktan sonra gebe kalmada zorluk anlamına gelir:\n\n• Kısırlık vakalarının yaklaşık %50'sini oluşturur — ama daha az tartışılır.\n• Nedenleri: ilerleyen yaş, kilo değişiklikleri, önceki gebelik komplikasyonları.\n• Sezaryen veya enfeksiyondan kaynaklanan yapışıklıklar doğurganlığı etkileyebilir.\n• İlk doğumdan sonraki hormonal değişiklikler tamamen normalleşmeyebilir.\n• Sosyal beklentiler ('çocuğun var, şükret') psikolojik yükü artırır.\n• Yardım istemede gecikmeyin — aynı zaman kriterleri geçerlidir."
+      },
+      "recurrentLoss": {
+        "title": "Tekrarlayan gebelik kaybını anlamak",
+        "content": "Tekrarlayan gebelik kaybı (iki veya daha fazla) kapsamlı değerlendirme gerektirir:\n\n• Gebeliklerin %15–20'si düşükle sonuçlanır — çoğu kromozomal anormallikler nedeniyle.\n• Tedavi edilebilir nedenler: pıhtılaşma bozuklukları, rahim anomalileri, tiroid sorunları.\n• Rahim septumu en yaygın rahim anomalisidir ve cerrahi olarak düzeltilebilir.\n• Antifosfolipid sendromu aspirin ve heparin ile tedavi edilebilir.\n• Psikolojik destek hayati önemlidir — kayıp sonrası yas ve kaygı doğal ve geçerlidir.\n• Açıklanamayan tekrarlayan kayıp yaşayan çiftlerin %60–70'i bir sonraki gebelikte başarılı olur."
+      },
+      "fertilityPreservation": {
+        "title": "Doğurganlık koruma",
+        "content": "Doğurganlık koruma, planlamada esneklik sağlayan mevcut bir seçenektir:\n\n• Yumurta dondurma: İdeal yaş 35'ten önce. Modern tekniklerle mükemmel sonuçlar.\n• Embriyo dondurma: Evli çiftler için seçenek. Tek başına yumurtadan daha yüksek başarı oranları.\n• Dondurma nedenleri: gecikmeli çocuk sahibi olma, kemoterapi, tıbbi durumlar.\n• Süreç 10–14 gün hormonal uyarım ve ardından yumurta toplama gerektirir.\n• Maliyet ve saklama dikkate alınması gereken faktörlerdir.\n• Durumunuza uygun olup olmadığını değerlendirmek için doğurganlık uzmanına danışın."
+      },
+      "assistedReproduction": {
+        "title": "Yardımcı üreme teknikleri",
+        "content": "Doğal gebelik başarısız olduğunda etkili seçenekler vardır:\n\n• Yumurtlama uyarımı: Yumurta üretimini uyaran ilaçlar — ilk basamak tedavi.\n• Rahim içi döllenme (IUI): İşlenmiş sperm doğrudan rahme enjekte edilir.\n• Tüp bebek (IVF): En gelişmiş teknik. Döngü başına %30–50 başarı oranı.\n• ICSI: Tek bir sperm doğrudan yumurtaya enjekte edilir.\n• Preimplantasyon genetik testi (PGT): Embriyoları kromozomal anormallikler için tarama.\n• Her seçeneğin belirli endikasyonları vardır — doğurganlık uzmanı en uygun olanı belirler."
+      },
+      "epigeneticsFertility": {
+        "title": "Epigenetik ve nesil sağlığı",
+        "content": "Epigenetik keşifler doğurganlık anlayışımızı değiştirdi:\n\n• Beslenmeniz ve yaşam tarzınız gelecek çocuğunuzdaki gen ifadesini etkileyebilir.\n• Gebelik öncesi folat eksikliği fetal gen programlamasını etkiler.\n• Kronik stres embriyoya aktarılabilen DNA 'izleri' bırakabilir.\n• Kirlilik ve çevresel toksinler nesilleri etkileyebilecek epigenetik değişikliklere neden olur.\n• İyi haber: olumsuz epigenetik değişiklikler sağlıklı yaşam tarzıyla geri döndürülebilir.\n• Gebelikten 3–6 ay önce iyileştirmeler fetal sağlıkta gerçek bir fark yaratır."
+      },
+      "mindBodyConnection": {
+        "title": "Zihin-beden bağlantısı",
+        "content": "Doğurganlıkta zihin ve beden arasındaki ilişki düşündüğümüzden daha derindir:\n\n• Kronik stres HPA eksenini aktive ederek üreme hormonlarını baskılar.\n• Gevşeme teknikleri (meditasyon, yoga, derin nefes) doğurganlık sonuçlarını ölçülebilir şekilde iyileştirir.\n• Bilişsel davranışçı terapi (BDT) doğurganlık kaygısını azaltmada olumlu sonuçlar göstermiştir.\n• Olumlu görselleştirme ve olumlamalar hormonal dengeyi destekleyen sinirsel yolları aktive eder.\n• Destek grupları izolasyon duygusunu azaltır ve ruh sağlığını iyileştirir.\n• Sanat, müzik ve yaratıcı yazarlık doğurganlık yolculuğunda etkili terapötik araçlardır.\n• Kaygı veya üzüntü hayatınıza hakim olmaya başlarsa profesyonel yardım arayın."
+      }
     }
   },
   "toolsInternal.fertileWindow": {
@@ -4203,82 +4786,306 @@
   "toolsInternal.fertilitySigns": {
     "signsCount": "{{count}} bilmen gereken işaret",
     "signs": {
-      "cervicalMucus": { "title": "Servikal mukus değişiklikleri", "description": "Yumurtlama yaklaştıkça servikal mukus daha bol, berrak ve esnek hale gelir — çiğ yumurta akına benzer. Sperm geçişini kolaylaştırır. Yumurtlamadan sonra koyulaşır veya kurur.", "tip": "İdrar yapmadan önce silerek günlük kontrol edin. En verimli mukus parmaklar arasında kopmadan uzar." },
-      "basalTemp": { "title": "Bazal vücut sıcaklığı yükselişi", "description": "Yumurtlamadan sonra progesteron dinlenme sıcaklığını 0.2–0.5°C artırır. Birkaç döngü boyunca takip ederek yumurtlama paternini belirleyebilirsin.", "tip": "Her sabah aynı saatte, yataktan kalkmadan önce ölç. BBT termometresi kullan." },
-      "cervicalPosition": { "title": "Serviks pozisyon değişiklikleri", "description": "Verimli pencerede serviks yükselir, yumuşar ve hafifçe açılır. Yumurtlamadan sonra alçalır, sertleşir ve kapanır.", "tip": "Her gün aynı pozisyonda kontrol et. Pratik gerektirir — sabırlı ol." },
-      "ovulationPain": { "title": "Yumurtlama ağrısı (Mittelschmerz)", "description": "Bazı kadınlar yumurtlama sırasında alt karında hafif bir sızı hisseder. Folikülün yırtılmasından kaynaklanır ve birkaç dakika ile saat arası sürer.", "tip": "Hangi tarafta hissettiğini not et — döngüler arasında değişebilir." },
-      "breastTenderness": { "title": "Göğüs hassasiyeti", "description": "Yumurtlamadan sonra artan progesteron göğüslerde hassasiyet ve dolgunluk hissine neden olabilir. En yaygın luteal faz belirtilerinden.", "tip": "Hassasiyetin ne zaman başlayıp bittiğini takip ederek yumurtlama paterninle ilişkilendir." },
-      "libidoChanges": { "title": "İstek değişiklikleri", "description": "Birçok kadın yumurtlama civarında östrojen ve testosteron artışına bağlı doğal bir istek artışı yaşar.", "tip": "Bu doğal değişimlere dikkat et — genellikle en verimli günlerinle örtüşür." },
-      "moodShifts": { "title": "Ruh hali ve enerji değişimleri", "description": "Artan östrojen genellikle ruh halini ve enerjiyi iyileştirir. Yumurtlamadan sonra progesteron sakinlik veya huzursuzluk getirebilir. Bu dalgalanmalar normaldir.", "tip": "Günlük ruh hali kaydı tutmak, döngü fazlarıyla ilişkili paternleri ortaya çıkarabilir." },
-      "bloating": { "title": "Hafif şişkinlik", "description": "Yumurtlama civarında hormonal değişiklikler su tutulumu ve hafif şişkinliğe neden olabilir — luteal faza geçişin işareti.", "tip": "Bol su içmek ve sodyumu azaltmak yumurtlama şişkinliğini yönetmeye yardımcı olur." },
-      "lightSpotting": { "title": "Yumurtlama kanaması", "description": "Yumurtlama günü civarında hafif pembe lekelenme östrojen düşüşü veya folikül yırtılmasından kaynaklanabilir. Genellikle çok hafif ve kısa sürer.", "tip": "Yumurtlama kanaması implantasyon kanamasından farklıdır (yumurtlamadan 6–12 gün sonra). Zamanlamayı dikkatle takip et." },
-      "heightenedSenses": { "title": "Keskinleşen duyular", "description": "Bazı kadınlar yumurtlama sırasında artan östrojene bağlı daha keskin bir koku alma duyusu bildirirler.", "tip": "Döngünün ortasında kokuları daha güçlü hissediyorsan, bu kişisel bir yumurtlama göstergesi olabilir." }
+      "cervicalMucus": {
+        "title": "Servikal mukus değişiklikleri",
+        "description": "Yumurtlama yaklaştıkça servikal mukus daha bol, berrak ve esnek hale gelir — çiğ yumurta akına benzer. Sperm geçişini kolaylaştırır. Yumurtlamadan sonra koyulaşır veya kurur.",
+        "tip": "İdrar yapmadan önce silerek günlük kontrol edin. En verimli mukus parmaklar arasında kopmadan uzar."
+      },
+      "basalTemp": {
+        "title": "Bazal vücut sıcaklığı yükselişi",
+        "description": "Yumurtlamadan sonra progesteron dinlenme sıcaklığını 0.2–0.5°C artırır. Birkaç döngü boyunca takip ederek yumurtlama paternini belirleyebilirsin.",
+        "tip": "Her sabah aynı saatte, yataktan kalkmadan önce ölç. BBT termometresi kullan."
+      },
+      "cervicalPosition": {
+        "title": "Serviks pozisyon değişiklikleri",
+        "description": "Verimli pencerede serviks yükselir, yumuşar ve hafifçe açılır. Yumurtlamadan sonra alçalır, sertleşir ve kapanır.",
+        "tip": "Her gün aynı pozisyonda kontrol et. Pratik gerektirir — sabırlı ol."
+      },
+      "ovulationPain": {
+        "title": "Yumurtlama ağrısı (Mittelschmerz)",
+        "description": "Bazı kadınlar yumurtlama sırasında alt karında hafif bir sızı hisseder. Folikülün yırtılmasından kaynaklanır ve birkaç dakika ile saat arası sürer.",
+        "tip": "Hangi tarafta hissettiğini not et — döngüler arasında değişebilir."
+      },
+      "breastTenderness": {
+        "title": "Göğüs hassasiyeti",
+        "description": "Yumurtlamadan sonra artan progesteron göğüslerde hassasiyet ve dolgunluk hissine neden olabilir. En yaygın luteal faz belirtilerinden.",
+        "tip": "Hassasiyetin ne zaman başlayıp bittiğini takip ederek yumurtlama paterninle ilişkilendir."
+      },
+      "libidoChanges": {
+        "title": "İstek değişiklikleri",
+        "description": "Birçok kadın yumurtlama civarında östrojen ve testosteron artışına bağlı doğal bir istek artışı yaşar.",
+        "tip": "Bu doğal değişimlere dikkat et — genellikle en verimli günlerinle örtüşür."
+      },
+      "moodShifts": {
+        "title": "Ruh hali ve enerji değişimleri",
+        "description": "Artan östrojen genellikle ruh halini ve enerjiyi iyileştirir. Yumurtlamadan sonra progesteron sakinlik veya huzursuzluk getirebilir. Bu dalgalanmalar normaldir.",
+        "tip": "Günlük ruh hali kaydı tutmak, döngü fazlarıyla ilişkili paternleri ortaya çıkarabilir."
+      },
+      "bloating": {
+        "title": "Hafif şişkinlik",
+        "description": "Yumurtlama civarında hormonal değişiklikler su tutulumu ve hafif şişkinliğe neden olabilir — luteal faza geçişin işareti.",
+        "tip": "Bol su içmek ve sodyumu azaltmak yumurtlama şişkinliğini yönetmeye yardımcı olur."
+      },
+      "lightSpotting": {
+        "title": "Yumurtlama kanaması",
+        "description": "Yumurtlama günü civarında hafif pembe lekelenme östrojen düşüşü veya folikül yırtılmasından kaynaklanabilir. Genellikle çok hafif ve kısa sürer.",
+        "tip": "Yumurtlama kanaması implantasyon kanamasından farklıdır (yumurtlamadan 6–12 gün sonra). Zamanlamayı dikkatle takip et."
+      },
+      "heightenedSenses": {
+        "title": "Keskinleşen duyular",
+        "description": "Bazı kadınlar yumurtlama sırasında artan östrojene bağlı daha keskin bir koku alma duyusu bildirirler.",
+        "tip": "Döngünün ortasında kokuları daha güçlü hissediyorsan, bu kişisel bir yumurtlama göstergesi olabilir."
+      }
     }
   },
   "toolsInternal.preconceptionNutrition": {
     "categoriesCount": "{{count}} beslenme kategorisi",
     "categories": {
-      "folateRich": { "title": "Folat açısından zengin gıdalar", "description": "Folat nöral tüp defektlerini önlemek için kritiktir. Önerilen günlük doz: 400–800 µg. Gebelikten 1–3 ay önce başla.", "foods": "Koyu yapraklı yeşillikler, mercimek, nohut, kuşkonmaz, brokoli, avokado, zenginleştirilmiş tahıllar, narenciye, pancar" },
-      "ironSources": { "title": "Demir açısından zengin gıdalar", "description": "Demir kan üretimini ve oksijen taşınmasını destekler. Kadınlar günde ~18 mg'a ihtiyaç duyar. Eksikliği yumurtlamayı etkileyebilir.", "foods": "Kırmızı et, kümes hayvanları, balık, mercimek, ıspanak, zenginleştirilmiş tahıllar, kabak çekirdeği, tofu, bitter çikolata" },
-      "omega3": { "title": "Omega-3 yağ asitleri", "description": "Hormon üretimini destekler, iltihabı azaltır ve fetüsün beyin ve göz gelişimi için gereklidir.", "foods": "Somon, sardalya, uskumru, ceviz, chia tohumu, keten tohumu, kenevir tohumu, alg DHA takviyeleri" },
-      "antioxidants": { "title": "Antioksidan açısından zengin gıdalar", "description": "Yumurta ve spermi oksidatif stresten korur. C ve E vitamini, selenyum ve CoQ10 özellikle önemlidir.", "foods": "Çilek türleri, domates, biber, kuruyemiş, tohumlar, yeşil çay, yapraklı yeşillikler, tatlı patates" },
-      "zinc": { "title": "Çinko kaynakları", "description": "Hormon dengesi, yumurta kalitesi ve hücre bölünmesi için gereklidir. Erkek doğurganlığında da kritik rol oynar.", "foods": "İstiridye, sığır eti, kabak çekirdeği, kaju, nohut, mercimek, yoğurt, peynir, tam tahıllar" },
-      "vitaminD": { "title": "D vitamini kaynakları", "description": "Reseptörleri yumurtalıklarda ve rahimde bulunur. Eksikliği düzensiz döngüler ve PKOS ile ilişkilidir.", "foods": "Güneş ışığı (15–20 dk/gün), yağlı balık, yumurta sarısı, zenginleştirilmiş süt, mantar" },
-      "calcium": { "title": "Kalsiyum kaynakları", "description": "Üreme fonksiyonu ve embriyonik gelişim için gereklidir. Hedef: günde 1000 mg.", "foods": "Süt ürünleri, zenginleştirilmiş bitki sütü, lahana, brokoli, badem, sardalya, tofu, incir" },
-      "protein": { "title": "Kaliteli protein", "description": "Hormonlar ve hücreler için yapı taşları sağlar. Hayvansal proteinin bir kısmını bitkisel ile değiştirmek sonuçları iyileştirebilir.", "foods": "Yumurta, kümes hayvanları, balık, baklagiller, kuruyemiş, tohumlar, Yunan yoğurdu, tofu, kinoa" },
-      "hydration": { "title": "Hidrasyon", "description": "Su, servikal mukus üretimi, besin taşınması ve hormon dengesi için gereklidir. Hedef: günde 8–10 bardak.", "foods": "Su, bitki çayları, hindistan cevizi suyu, su oranı yüksek meyveler (karpuz, salatalık, portakal)" },
-      "avoidList": { "title": "Azaltılması gereken gıdalar", "description": "Bazı gıdalar doğurganlığı olumsuz etkileyebilir. Gebe kalmaya çalışırken azaltmak vücudu optimize eder.", "foods": "Aşırı kafein (>200 mg/gün), alkol, trans yağlar, işlenmiş gıdalar, cıva oranı yüksek balıklar, aşırı şeker" }
+      "folateRich": {
+        "title": "Folat açısından zengin gıdalar",
+        "description": "Folat nöral tüp defektlerini önlemek için kritiktir. Önerilen günlük doz: 400–800 µg. Gebelikten 1–3 ay önce başla.",
+        "foods": "Koyu yapraklı yeşillikler, mercimek, nohut, kuşkonmaz, brokoli, avokado, zenginleştirilmiş tahıllar, narenciye, pancar"
+      },
+      "ironSources": {
+        "title": "Demir açısından zengin gıdalar",
+        "description": "Demir kan üretimini ve oksijen taşınmasını destekler. Kadınlar günde ~18 mg'a ihtiyaç duyar. Eksikliği yumurtlamayı etkileyebilir.",
+        "foods": "Kırmızı et, kümes hayvanları, balık, mercimek, ıspanak, zenginleştirilmiş tahıllar, kabak çekirdeği, tofu, bitter çikolata"
+      },
+      "omega3": {
+        "title": "Omega-3 yağ asitleri",
+        "description": "Hormon üretimini destekler, iltihabı azaltır ve fetüsün beyin ve göz gelişimi için gereklidir.",
+        "foods": "Somon, sardalya, uskumru, ceviz, chia tohumu, keten tohumu, kenevir tohumu, alg DHA takviyeleri"
+      },
+      "antioxidants": {
+        "title": "Antioksidan açısından zengin gıdalar",
+        "description": "Yumurta ve spermi oksidatif stresten korur. C ve E vitamini, selenyum ve CoQ10 özellikle önemlidir.",
+        "foods": "Çilek türleri, domates, biber, kuruyemiş, tohumlar, yeşil çay, yapraklı yeşillikler, tatlı patates"
+      },
+      "zinc": {
+        "title": "Çinko kaynakları",
+        "description": "Hormon dengesi, yumurta kalitesi ve hücre bölünmesi için gereklidir. Erkek doğurganlığında da kritik rol oynar.",
+        "foods": "İstiridye, sığır eti, kabak çekirdeği, kaju, nohut, mercimek, yoğurt, peynir, tam tahıllar"
+      },
+      "vitaminD": {
+        "title": "D vitamini kaynakları",
+        "description": "Reseptörleri yumurtalıklarda ve rahimde bulunur. Eksikliği düzensiz döngüler ve PKOS ile ilişkilidir.",
+        "foods": "Güneş ışığı (15–20 dk/gün), yağlı balık, yumurta sarısı, zenginleştirilmiş süt, mantar"
+      },
+      "calcium": {
+        "title": "Kalsiyum kaynakları",
+        "description": "Üreme fonksiyonu ve embriyonik gelişim için gereklidir. Hedef: günde 1000 mg.",
+        "foods": "Süt ürünleri, zenginleştirilmiş bitki sütü, lahana, brokoli, badem, sardalya, tofu, incir"
+      },
+      "protein": {
+        "title": "Kaliteli protein",
+        "description": "Hormonlar ve hücreler için yapı taşları sağlar. Hayvansal proteinin bir kısmını bitkisel ile değiştirmek sonuçları iyileştirebilir.",
+        "foods": "Yumurta, kümes hayvanları, balık, baklagiller, kuruyemiş, tohumlar, Yunan yoğurdu, tofu, kinoa"
+      },
+      "hydration": {
+        "title": "Hidrasyon",
+        "description": "Su, servikal mukus üretimi, besin taşınması ve hormon dengesi için gereklidir. Hedef: günde 8–10 bardak.",
+        "foods": "Su, bitki çayları, hindistan cevizi suyu, su oranı yüksek meyveler (karpuz, salatalık, portakal)"
+      },
+      "avoidList": {
+        "title": "Azaltılması gereken gıdalar",
+        "description": "Bazı gıdalar doğurganlığı olumsuz etkileyebilir. Gebe kalmaya çalışırken azaltmak vücudu optimize eder.",
+        "foods": "Aşırı kafein (>200 mg/gün), alkol, trans yağlar, işlenmiş gıdalar, cıva oranı yüksek balıklar, aşırı şeker"
+      }
     }
   },
   "toolsInternal.prenatalVitamins": {
     "supplementsCount": "{{count}} incelenecek takviye",
     "vitamins": {
-      "folicAcid": { "title": "Folik asit (B9 vitamini)", "description": "En önemli gebelik öncesi takviye. Nöral tüp defekti riskini önemli ölçüde azaltır. 1–3 ay önce başla.", "dosage": "400–800 µg/gün. Bazı kadınlar 4–5 mg'a ihtiyaç duyabilir — doktoruna danış." },
-      "iron": { "title": "Demir", "description": "Gebelikte ihtiyaç 18'den 27 mg/güne çıkar. Önceden depo oluşturmak anemiyi önler.", "dosage": "18 mg/gün. C vitamini ile al. Kalsiyum ve çay ile birlikte alma." },
-      "vitaminD": { "title": "D vitamini", "description": "Bağışıklığı, kalsiyum emilimini ve üreme sağlığını destekler. Eksikliği gestasyonel diyabet ve preeklampsiye bağlıdır.", "dosage": "600–2000 IU/gün. Eksiklik varsa doktorun daha yüksek doz önerebilir." },
-      "omega3DHA": { "title": "Omega-3 DHA", "description": "Fetüsün beyin ve retina gelişimi için kritik. Gebelik öncesi başlamak yeterli depo sağlar.", "dosage": "200–300 mg DHA/gün. Cıva test edilmiş takviyeler seç." },
-      "calcium": { "title": "Kalsiyum", "description": "Annenin alımı yetersizse, bebek kalsiyumu kemiklerinden çeker. Depo oluşturmak kemik sağlığını korur.", "dosage": "1000 mg/gün. 500 mg veya daha az dozlarda daha iyi emilir." },
-      "iodine": { "title": "İyot", "description": "Doğurganlığı ve fetüs beyin gelişimini doğrudan etkileyen tiroid fonksiyonu için gereklidir.", "dosage": "Gebelik öncesi 150 µg, gebelikte 220 µg. Doğum öncesi vitamininizi kontrol edin." },
-      "zinc": { "title": "Çinko", "description": "Yumurta kalitesini, hormon dengesini, bağışıklığı ve DNA sentezini destekler.", "dosage": "8 mg/gün. Çoğu doğum öncesi vitamini yeterli çinko içerir." },
-      "vitaminB12": { "title": "B12 vitamini", "description": "Folat ile birlikte DNA sentezi ve sinir sistemi için çalışır. Vejetaryenlerde eksikliği daha yaygındır.", "dosage": "2.4 µg/gün. Veganlar takviye almalıdır." },
-      "vitaminC": { "title": "C vitamini", "description": "Yumurtaları koruyan güçlü antioksidan, demir emilimini artırır ve bağışıklığı destekler.", "dosage": "75–90 mg/gün. Narenciye, çilek ve biberde bulunur." },
-      "vitaminE": { "title": "E vitamini", "description": "Endometrium kalınlığını ve kalitesini destekler, hücre zarlarını korur.", "dosage": "15 mg/gün. Kuruyemiş, tohumlar ve bitkisel yağlarda bulunur." },
-      "coq10": { "title": "CoQ10", "description": "Özellikle 35 yaş üstü kadınlar için yumurtalardaki mitokondri fonksiyonunu destekleyen antioksidan.", "dosage": "100–600 mg/gün. Ubiquinol formu daha iyi emilir. Doktoruna danış." },
-      "probiotics": { "title": "Probiyotikler", "description": "Sağlıklı mikrobiyom doğurganlığı ve sperm hayatta kalması için optimal vajinal pH'ı destekler.", "dosage": "Lactobacillus içeren çok suşlu probiyotik. Fermente gıdalar: yoğurt, kefir, lahana turşusu." }
+      "folicAcid": {
+        "title": "Folik asit (B9 vitamini)",
+        "description": "En önemli gebelik öncesi takviye. Nöral tüp defekti riskini önemli ölçüde azaltır. 1–3 ay önce başla.",
+        "dosage": "400–800 µg/gün. Bazı kadınlar 4–5 mg'a ihtiyaç duyabilir — doktoruna danış."
+      },
+      "iron": {
+        "title": "Demir",
+        "description": "Gebelikte ihtiyaç 18'den 27 mg/güne çıkar. Önceden depo oluşturmak anemiyi önler.",
+        "dosage": "18 mg/gün. C vitamini ile al. Kalsiyum ve çay ile birlikte alma."
+      },
+      "vitaminD": {
+        "title": "D vitamini",
+        "description": "Bağışıklığı, kalsiyum emilimini ve üreme sağlığını destekler. Eksikliği gestasyonel diyabet ve preeklampsiye bağlıdır.",
+        "dosage": "600–2000 IU/gün. Eksiklik varsa doktorun daha yüksek doz önerebilir."
+      },
+      "omega3DHA": {
+        "title": "Omega-3 DHA",
+        "description": "Fetüsün beyin ve retina gelişimi için kritik. Gebelik öncesi başlamak yeterli depo sağlar.",
+        "dosage": "200–300 mg DHA/gün. Cıva test edilmiş takviyeler seç."
+      },
+      "calcium": {
+        "title": "Kalsiyum",
+        "description": "Annenin alımı yetersizse, bebek kalsiyumu kemiklerinden çeker. Depo oluşturmak kemik sağlığını korur.",
+        "dosage": "1000 mg/gün. 500 mg veya daha az dozlarda daha iyi emilir."
+      },
+      "iodine": {
+        "title": "İyot",
+        "description": "Doğurganlığı ve fetüs beyin gelişimini doğrudan etkileyen tiroid fonksiyonu için gereklidir.",
+        "dosage": "Gebelik öncesi 150 µg, gebelikte 220 µg. Doğum öncesi vitamininizi kontrol edin."
+      },
+      "zinc": {
+        "title": "Çinko",
+        "description": "Yumurta kalitesini, hormon dengesini, bağışıklığı ve DNA sentezini destekler.",
+        "dosage": "8 mg/gün. Çoğu doğum öncesi vitamini yeterli çinko içerir."
+      },
+      "vitaminB12": {
+        "title": "B12 vitamini",
+        "description": "Folat ile birlikte DNA sentezi ve sinir sistemi için çalışır. Vejetaryenlerde eksikliği daha yaygındır.",
+        "dosage": "2.4 µg/gün. Veganlar takviye almalıdır."
+      },
+      "vitaminC": {
+        "title": "C vitamini",
+        "description": "Yumurtaları koruyan güçlü antioksidan, demir emilimini artırır ve bağışıklığı destekler.",
+        "dosage": "75–90 mg/gün. Narenciye, çilek ve biberde bulunur."
+      },
+      "vitaminE": {
+        "title": "E vitamini",
+        "description": "Endometrium kalınlığını ve kalitesini destekler, hücre zarlarını korur.",
+        "dosage": "15 mg/gün. Kuruyemiş, tohumlar ve bitkisel yağlarda bulunur."
+      },
+      "coq10": {
+        "title": "CoQ10",
+        "description": "Özellikle 35 yaş üstü kadınlar için yumurtalardaki mitokondri fonksiyonunu destekleyen antioksidan.",
+        "dosage": "100–600 mg/gün. Ubiquinol formu daha iyi emilir. Doktoruna danış."
+      },
+      "probiotics": {
+        "title": "Probiyotikler",
+        "description": "Sağlıklı mikrobiyom doğurganlığı ve sperm hayatta kalması için optimal vajinal pH'ı destekler.",
+        "dosage": "Lactobacillus içeren çok suşlu probiyotik. Fermente gıdalar: yoğurt, kefir, lahana turşusu."
+      }
     }
   },
   "toolsInternal.twwCompanion": {
     "subtitle": "İki haftalık bekleme döneminde günlük rehberin",
     "days": {
-      "day1": { "title": "Yumurtlama + 1", "body": "Dün yumurtlama olduysa, yumurta fallop tüpünde ilerliyor. Döllenme genellikle 12–24 saat içinde gerçekleşir. Bugün sonucu etkileyecek bir şey yok — ve bu normal.", "tip": "Derin bir nefes al. Yolculuk başladı. Bugün keyif aldığın bir şeye odaklan." },
-      "day2": { "title": "Hücresel başlangıçlar", "body": "Döllenme gerçekleştiyse hücre bölünmeye başlar — önce 2, sonra 4. Bu küme fallop tüpünden rahme doğru ilerler.", "tip": "Bol su iç ve besleyici ye. Vücudun hücresel düzeyde inanılmaz bir iş yapıyor." },
-      "day3": { "title": "Morula aşaması", "body": "Hücreler morula adı verilen katı bir top oluşturur (~16 hücre). Progesteron yükselir, rahim zarını hazırlar.", "tip": "Hafif aktivite tamamen uygun. Normal rutinini kısıtlamana gerek yok." },
-      "day4": { "title": "Rahme giriş", "body": "Morula yaklaşık 4. günde rahme ulaşır. Sıvı dolu boşluk oluşturarak blastosiste dönüşür. Rahim zarı kalınlaşır.", "tip": "Farkındalık veya hafif esneme yap. Beklentiyi yönetmek yolculuğun parçası." },
-      "day5": { "title": "Blastosist oluşumu", "body": "Blastosistte iki hücre grubu var: iç hücre kütlesi (embriyo olacak) ve trofoblast (plasenta olacak). Rahim boşluğunda serbest yüzer.", "tip": "Düşüncelerini ve duygularını yazma günü. Kendini ifade etmek terapötik." },
-      "day6": { "title": "İmplantasyon başlayabilir", "body": "Blastosist ideal bir implantasyon yeri arar. Trofoblast hücreleri endometriyuma nüfuz etmeye başlar. Hafif lekelenme olabilir.", "tip": "Bu aşamada hafif lekelenme normal. Panik yapma — ve henüz test yapma." },
-      "day7": { "title": "İmplantasyon penceresi", "body": "6–10. günler tipik implantasyon penceresidir. Blastosist endometriyuma daha derin gömülür. Embriyo ve vücudun arasında erken sinyaller değiştirilir.", "tip": "Normal aktivitelerine devam et. İhtiyaç duyduğunda dinlen. Sürece güven." },
-      "day8": { "title": "hCG başlıyor", "body": "İmplantasyon ilerliyorsa küçük miktarlarda hCG üretilir. Bu hormon korpus luteumu aktif tutar. Seviyeler tespit için çok düşük.", "tip": "Test yapma dürtüsüne diren. hCG'nin yükselmesi zaman alır. Sabır en büyük müttefikin." },
-      "day9": { "title": "Yükselen sinyaller", "body": "hCG seviyeleri yükseliyor ama çoğu testin algılama eşiğinin altında olabilir. İmplantasyon tamamlanmış veya neredeyse tamamlanmış olmalı.", "tip": "Kendine rahatlatıcı bir şey sun — sıcak banyo, favori çayın veya doğa yürüyüşü." },
-      "day10": { "title": "Neredeyse tamam", "body": "İmplantasyon olduysa hCG yaklaşık her 48 saatte ikiye katlanıyor. Bazı hassas testler erken gebeliği algılayabilir. Bugün negatif sonuç hamile olmadığın anlamına gelmez.", "tip": "Bugün negatif mi? Umudunu kaybetme. Birçok başarılı gebelik 12–14. günde pozitif gösterir." },
-      "day11": { "title": "Artan beklenti", "body": "hCG yükselmeye devam ediyor. Hafif kramp, göğüs hassasiyeti veya yorgunluk fark edebilirsin. Bu belirtiler progesteron kaynaklı da olabilir.", "tip": "Belirti takibi doğal ama kaygıyı artırabilir. Günlük hayatında şimdiki ana odaklanmaya çalış." },
-      "day12": { "title": "Testler daha güvenilir", "body": "Çoğu ev testi bugünden itibaren güvenilir hale gelir. Sabahın ilk idrarını kullan. Soluk bir çizgi bile pozitif sonuçtur.", "tip": "Sonuç ne olursa olsun: bir döngü yolculuğunu tanımlamaz. Kendine karşı nazik ol." },
-      "day13": { "title": "Bilmenin arifesi", "body": "Yarın adet dönemin bekleniyor (28 günlük döngüde). Gelmezse ve test soluk pozitifse, tebrikler yerinde olabilir.", "tip": "Her iki sonuca da duygusal olarak hazırlan. İkisi de geçerli." },
-      "day14": { "title": "Cevap günü", "body": "Bugün adet dönemin bekleniyor. Gelmemesi ve pozitif test güçlü bir hamilelik göstergesidir. Pozitifse, ilk randevu için doktorunu ara (~6–8 hafta).", "tip": "Pozitif? Bu anı kutla. Negatif? Güçlü ve dayanıklısın. Her iki sonuç da şefkati hak ediyor." }
+      "day1": {
+        "title": "Yumurtlama + 1",
+        "body": "Dün yumurtlama olduysa, yumurta fallop tüpünde ilerliyor. Döllenme genellikle 12–24 saat içinde gerçekleşir. Bugün sonucu etkileyecek bir şey yok — ve bu normal.",
+        "tip": "Derin bir nefes al. Yolculuk başladı. Bugün keyif aldığın bir şeye odaklan."
+      },
+      "day2": {
+        "title": "Hücresel başlangıçlar",
+        "body": "Döllenme gerçekleştiyse hücre bölünmeye başlar — önce 2, sonra 4. Bu küme fallop tüpünden rahme doğru ilerler.",
+        "tip": "Bol su iç ve besleyici ye. Vücudun hücresel düzeyde inanılmaz bir iş yapıyor."
+      },
+      "day3": {
+        "title": "Morula aşaması",
+        "body": "Hücreler morula adı verilen katı bir top oluşturur (~16 hücre). Progesteron yükselir, rahim zarını hazırlar.",
+        "tip": "Hafif aktivite tamamen uygun. Normal rutinini kısıtlamana gerek yok."
+      },
+      "day4": {
+        "title": "Rahme giriş",
+        "body": "Morula yaklaşık 4. günde rahme ulaşır. Sıvı dolu boşluk oluşturarak blastosiste dönüşür. Rahim zarı kalınlaşır.",
+        "tip": "Farkındalık veya hafif esneme yap. Beklentiyi yönetmek yolculuğun parçası."
+      },
+      "day5": {
+        "title": "Blastosist oluşumu",
+        "body": "Blastosistte iki hücre grubu var: iç hücre kütlesi (embriyo olacak) ve trofoblast (plasenta olacak). Rahim boşluğunda serbest yüzer.",
+        "tip": "Düşüncelerini ve duygularını yazma günü. Kendini ifade etmek terapötik."
+      },
+      "day6": {
+        "title": "İmplantasyon başlayabilir",
+        "body": "Blastosist ideal bir implantasyon yeri arar. Trofoblast hücreleri endometriyuma nüfuz etmeye başlar. Hafif lekelenme olabilir.",
+        "tip": "Bu aşamada hafif lekelenme normal. Panik yapma — ve henüz test yapma."
+      },
+      "day7": {
+        "title": "İmplantasyon penceresi",
+        "body": "6–10. günler tipik implantasyon penceresidir. Blastosist endometriyuma daha derin gömülür. Embriyo ve vücudun arasında erken sinyaller değiştirilir.",
+        "tip": "Normal aktivitelerine devam et. İhtiyaç duyduğunda dinlen. Sürece güven."
+      },
+      "day8": {
+        "title": "hCG başlıyor",
+        "body": "İmplantasyon ilerliyorsa küçük miktarlarda hCG üretilir. Bu hormon korpus luteumu aktif tutar. Seviyeler tespit için çok düşük.",
+        "tip": "Test yapma dürtüsüne diren. hCG'nin yükselmesi zaman alır. Sabır en büyük müttefikin."
+      },
+      "day9": {
+        "title": "Yükselen sinyaller",
+        "body": "hCG seviyeleri yükseliyor ama çoğu testin algılama eşiğinin altında olabilir. İmplantasyon tamamlanmış veya neredeyse tamamlanmış olmalı.",
+        "tip": "Kendine rahatlatıcı bir şey sun — sıcak banyo, favori çayın veya doğa yürüyüşü."
+      },
+      "day10": {
+        "title": "Neredeyse tamam",
+        "body": "İmplantasyon olduysa hCG yaklaşık her 48 saatte ikiye katlanıyor. Bazı hassas testler erken gebeliği algılayabilir. Bugün negatif sonuç hamile olmadığın anlamına gelmez.",
+        "tip": "Bugün negatif mi? Umudunu kaybetme. Birçok başarılı gebelik 12–14. günde pozitif gösterir."
+      },
+      "day11": {
+        "title": "Artan beklenti",
+        "body": "hCG yükselmeye devam ediyor. Hafif kramp, göğüs hassasiyeti veya yorgunluk fark edebilirsin. Bu belirtiler progesteron kaynaklı da olabilir.",
+        "tip": "Belirti takibi doğal ama kaygıyı artırabilir. Günlük hayatında şimdiki ana odaklanmaya çalış."
+      },
+      "day12": {
+        "title": "Testler daha güvenilir",
+        "body": "Çoğu ev testi bugünden itibaren güvenilir hale gelir. Sabahın ilk idrarını kullan. Soluk bir çizgi bile pozitif sonuçtur.",
+        "tip": "Sonuç ne olursa olsun: bir döngü yolculuğunu tanımlamaz. Kendine karşı nazik ol."
+      },
+      "day13": {
+        "title": "Bilmenin arifesi",
+        "body": "Yarın adet dönemin bekleniyor (28 günlük döngüde). Gelmezse ve test soluk pozitifse, tebrikler yerinde olabilir.",
+        "tip": "Her iki sonuca da duygusal olarak hazırlan. İkisi de geçerli."
+      },
+      "day14": {
+        "title": "Cevap günü",
+        "body": "Bugün adet dönemin bekleniyor. Gelmemesi ve pozitif test güçlü bir hamilelik göstergesidir. Pozitifse, ilk randevu için doktorunu ara (~6–8 hafta).",
+        "tip": "Pozitif? Bu anı kutla. Negatif? Güçlü ve dayanıklısın. Her iki sonuç da şefkati hak ediyor."
+      }
     }
   },
   "toolsInternal.stressFertility": {
     "topicsCount": "{{count}} keşfedilecek konu",
     "topics": {
-      "stressHormones": { "title": "Stres doğurganlığı nasıl etkiler", "content": "Kronik stres kortizol ve adrenalin salgılar, yumurtlamayı kontrol eden HPG eksenini bozabilir.", "practice": "Bu hafta en önemli 3 stres kaynağını belirle. Her biri için etkisini azaltacak küçük bir eylem yaz." },
-      "cortisol": { "title": "Kortizolü anlamak", "content": "Kortizol birincil stres hormonudur. Küçük dozlarda faydalı ama kronik yükseklikte üreme hormonlarını baskılar.", "practice": "4-7-8 nefes tekniği: 4 saniye nefes al, 7 tut, 8 ver. 4 kez tekrarla." },
-      "mindfulness": { "title": "Doğurganlık için bilinçli farkındalık", "content": "Bilinçli farkındalık yargılamadan tam olarak şimdiki anda olmaktır. Araştırmalar kaygı ve depresyonu azalttığını gösteriyor. Günde 10 dakika bile kortizolü düşürür.", "practice": "5 dakikalık vücut taraması: Gözlerini kapat, derin nefes al, dikkatini ayak parmaklarından başına doğru hareket ettir." },
-      "breathing": { "title": "Nefes teknikleri", "content": "Kontrollü nefes vagus sinirini aktive ederek gevşeme yanıtını tetikler. Kalp atışını, tansiyonu ve kortizolü düşürür.", "practice": "Kutu nefesi: 4 sayı nefes al → 4 tut → 4 ver → 4 tut. 5 dakika tekrarla." },
-      "journaling": { "title": "Terapötik günlük tutma", "content": "Duygular hakkında yazmak stresi azaltır ve bağışıklığı iyileştirir. Amaç: duyguları işlemek ve küçük zaferleri kutlamak.", "practice": "Bu gece yaz: 1) Minnettar olduğum şey, 2) Bırakmak istediğim endişe, 3) Kendim için yaptığım güzel şey." },
-      "sleep": { "title": "Uyku ve doğurganlık", "content": "Uyku, vücudun onarım yaptığı ve hormon ürettiği zamandır. Kötü uyku melatonini bozar ve kortizolü artırır. 6 saatten az uyku düşük doğurganlıkla ilişkilidir.", "practice": "Gece rutini: Yatmadan 30 dk önce ekran yok, loş ışık, lavanta, serin yatak odası (18–20°C)." },
-      "exercise": { "title": "Hareket ve stres azaltma", "content": "Düzenli ılımlı egzersiz en etkili stres gidericilerden biridir. Ancak aşırı yoğun egzersiz yumurtlamayı baskılayabilir.", "practice": "Bu hafta: 5 gün 30 dakika ılımlı hareket: yürüyüş, yoga, yüzme veya dans." },
-      "socialSupport": { "title": "Destek ağını oluştur", "content": "Sosyal izolasyon stresi büyütür. Güvendiğin insanlarla paylaşmak duygusal yükü önemli ölçüde azaltır.", "practice": "Güvendiğin bir kişi belirle. Bu hafta yolculuğundan bir şey paylaş." },
-      "professionalHelp": { "title": "Profesyonel destek ne zaman aranmalı", "content": "Kaygı günlük hayatını, uykunu veya ilişkilerini etkiliyorsa profesyonel destek yardımcı olabilir.", "practice": "Üreme psikolojisi konusunda uzmanlaşmış bir terapist ara. Birçoğu sanal seans sunar." },
-      "acceptance": { "title": "Kabullenmeyi pratik etmek", "content": "Kabullenme pes etmek değildir — bazı şeylerin kontrolün dışında olduğunu kabul ederken etkileyebileceklerine odaklanmaktır.", "practice": "Tekrarla: 'Yapabileceğim her şeyi yapıyorum. Vücuduma ve yolculuğuma güveniyorum. Sonuç değerimi tanımlamaz.'" }
+      "stressHormones": {
+        "title": "Stres doğurganlığı nasıl etkiler",
+        "content": "Kronik stres kortizol ve adrenalin salgılar, yumurtlamayı kontrol eden HPG eksenini bozabilir.",
+        "practice": "Bu hafta en önemli 3 stres kaynağını belirle. Her biri için etkisini azaltacak küçük bir eylem yaz."
+      },
+      "cortisol": {
+        "title": "Kortizolü anlamak",
+        "content": "Kortizol birincil stres hormonudur. Küçük dozlarda faydalı ama kronik yükseklikte üreme hormonlarını baskılar.",
+        "practice": "4-7-8 nefes tekniği: 4 saniye nefes al, 7 tut, 8 ver. 4 kez tekrarla."
+      },
+      "mindfulness": {
+        "title": "Doğurganlık için bilinçli farkındalık",
+        "content": "Bilinçli farkındalık yargılamadan tam olarak şimdiki anda olmaktır. Araştırmalar kaygı ve depresyonu azalttığını gösteriyor. Günde 10 dakika bile kortizolü düşürür.",
+        "practice": "5 dakikalık vücut taraması: Gözlerini kapat, derin nefes al, dikkatini ayak parmaklarından başına doğru hareket ettir."
+      },
+      "breathing": {
+        "title": "Nefes teknikleri",
+        "content": "Kontrollü nefes vagus sinirini aktive ederek gevşeme yanıtını tetikler. Kalp atışını, tansiyonu ve kortizolü düşürür.",
+        "practice": "Kutu nefesi: 4 sayı nefes al → 4 tut → 4 ver → 4 tut. 5 dakika tekrarla."
+      },
+      "journaling": {
+        "title": "Terapötik günlük tutma",
+        "content": "Duygular hakkında yazmak stresi azaltır ve bağışıklığı iyileştirir. Amaç: duyguları işlemek ve küçük zaferleri kutlamak.",
+        "practice": "Bu gece yaz: 1) Minnettar olduğum şey, 2) Bırakmak istediğim endişe, 3) Kendim için yaptığım güzel şey."
+      },
+      "sleep": {
+        "title": "Uyku ve doğurganlık",
+        "content": "Uyku, vücudun onarım yaptığı ve hormon ürettiği zamandır. Kötü uyku melatonini bozar ve kortizolü artırır. 6 saatten az uyku düşük doğurganlıkla ilişkilidir.",
+        "practice": "Gece rutini: Yatmadan 30 dk önce ekran yok, loş ışık, lavanta, serin yatak odası (18–20°C)."
+      },
+      "exercise": {
+        "title": "Hareket ve stres azaltma",
+        "content": "Düzenli ılımlı egzersiz en etkili stres gidericilerden biridir. Ancak aşırı yoğun egzersiz yumurtlamayı baskılayabilir.",
+        "practice": "Bu hafta: 5 gün 30 dakika ılımlı hareket: yürüyüş, yoga, yüzme veya dans."
+      },
+      "socialSupport": {
+        "title": "Destek ağını oluştur",
+        "content": "Sosyal izolasyon stresi büyütür. Güvendiğin insanlarla paylaşmak duygusal yükü önemli ölçüde azaltır.",
+        "practice": "Güvendiğin bir kişi belirle. Bu hafta yolculuğundan bir şey paylaş."
+      },
+      "professionalHelp": {
+        "title": "Profesyonel destek ne zaman aranmalı",
+        "content": "Kaygı günlük hayatını, uykunu veya ilişkilerini etkiliyorsa profesyonel destek yardımcı olabilir.",
+        "practice": "Üreme psikolojisi konusunda uzmanlaşmış bir terapist ara. Birçoğu sanal seans sunar."
+      },
+      "acceptance": {
+        "title": "Kabullenmeyi pratik etmek",
+        "content": "Kabullenme pes etmek değildir — bazı şeylerin kontrolün dışında olduğunu kabul ederken etkileyebileceklerine odaklanmaktır.",
+        "practice": "Tekrarla: 'Yapabileceğim her şeyi yapıyorum. Vücuduma ve yolculuğuma güveniyorum. Sonuç değerimi tanımlamaz.'"
+      }
     }
   },
   "toolsInternal.preconceptionCheckup": {
@@ -4307,21 +5114,56 @@
     },
     "disclaimer": "Bu liste, doktorunuzla görüşmelerinizi organize etmenize yardımcı olacak eğitici bir referanstır. Profesyonel tıbbi tavsiye, teşhis veya tedavinin yerini almaz. Tüm taramalar ve testler nitelikli bir sağlık profesyoneli tarafından tartışılmalı ve istenmelidir.",
     "checks": {
-      "generalCheckup": { "title": "Genel sağlık kontrolü", "description": "Genel sağlığını, tansiyonunu, kilonu değerlendirmek ve hamilelik planlarını görüşmek için kapsamlı fizik muayene." },
-      "bloodWork": { "title": "Tam kan sayımı", "description": "Anemi, enfeksiyonlar ve genel kan sağlığını kontrol eder. Hamilelik öncesi tedavi edilmesi gereken demir eksikliğini tespit eder." },
-      "pap": { "title": "Smear testi / Servikal tarama", "description": "Serviks anormalliklerini tarar. Hamilelikten önce yapılması tercih edilir." },
-      "thyroid": { "title": "Tiroid fonksiyon testi (TSH)", "description": "Tiroid bozuklukları yaygındır ve doğurganlığı ve hamileliği önemli ölçüde etkileyebilir." },
-      "rubella": { "title": "Kızamıkçık bağışıklığı", "description": "Hamilelikte kızamıkçık ciddi doğum kusurlarına neden olabilir. Bağışık değilseniz denemeden en az 1 ay önce aşılanma önerilir." },
-      "hepatitis": { "title": "Hepatit B & C taraması", "description": "Hepatit B doğum sırasında bebeğe bulaşabilir. Durumunuzu bilmek önleyici tedbirler almanıza olanak tanır." },
-      "hiv": { "title": "HIV & CYBH taraması", "description": "Rutin tarama hem sizin hem de gelecek bebeğinizin sağlığını korur. Erken tespit etkili tedavi sağlar." },
-      "dental": { "title": "Diş kontrolü", "description": "Diş eti hastalıkları erken doğumla ilişkilidir. Hormonal değişiklikler mevcut diş sorunlarını kötüleştirebilir." },
-      "geneticScreening": { "title": "Genetik taşıyıcı taraması", "description": "Siz veya eşinizin kistik fibrozis, orak hücreli anemi veya talasemi gibi durumlar için gen taşıyıp taşımadığını test eder." },
-      "mentalHealth": { "title": "Ruh sağlığı değerlendirmesi", "description": "Depresyon veya kaygı geçmişinizi doktorunuzla tartışın. Mevcut durumlar hamilelikte proaktif olarak yönetilebilir." },
-      "medications": { "title": "İlaç incelemesi", "description": "Tüm ilaç ve takviyelerinizi gözden geçirin. Bazıları hamilelikte güvenli değildir — önceden alternatifler ayarlayın." },
-      "vaccinations": { "title": "Aşı kontrolü", "description": "Önerilen aşılarınızın güncel olduğundan emin olun. Bazı aşılar hamilelikte yapılamaz, önceden tamamlayın." }
+      "generalCheckup": {
+        "title": "Genel sağlık kontrolü",
+        "description": "Genel sağlığını, tansiyonunu, kilonu değerlendirmek ve hamilelik planlarını görüşmek için kapsamlı fizik muayene."
+      },
+      "bloodWork": {
+        "title": "Tam kan sayımı",
+        "description": "Anemi, enfeksiyonlar ve genel kan sağlığını kontrol eder. Hamilelik öncesi tedavi edilmesi gereken demir eksikliğini tespit eder."
+      },
+      "pap": {
+        "title": "Smear testi / Servikal tarama",
+        "description": "Serviks anormalliklerini tarar. Hamilelikten önce yapılması tercih edilir."
+      },
+      "thyroid": {
+        "title": "Tiroid fonksiyon testi (TSH)",
+        "description": "Tiroid bozuklukları yaygındır ve doğurganlığı ve hamileliği önemli ölçüde etkileyebilir."
+      },
+      "rubella": {
+        "title": "Kızamıkçık bağışıklığı",
+        "description": "Hamilelikte kızamıkçık ciddi doğum kusurlarına neden olabilir. Bağışık değilseniz denemeden en az 1 ay önce aşılanma önerilir."
+      },
+      "hepatitis": {
+        "title": "Hepatit B & C taraması",
+        "description": "Hepatit B doğum sırasında bebeğe bulaşabilir. Durumunuzu bilmek önleyici tedbirler almanıza olanak tanır."
+      },
+      "hiv": {
+        "title": "HIV & CYBH taraması",
+        "description": "Rutin tarama hem sizin hem de gelecek bebeğinizin sağlığını korur. Erken tespit etkili tedavi sağlar."
+      },
+      "dental": {
+        "title": "Diş kontrolü",
+        "description": "Diş eti hastalıkları erken doğumla ilişkilidir. Hormonal değişiklikler mevcut diş sorunlarını kötüleştirebilir."
+      },
+      "geneticScreening": {
+        "title": "Genetik taşıyıcı taraması",
+        "description": "Siz veya eşinizin kistik fibrozis, orak hücreli anemi veya talasemi gibi durumlar için gen taşıyıp taşımadığını test eder."
+      },
+      "mentalHealth": {
+        "title": "Ruh sağlığı değerlendirmesi",
+        "description": "Depresyon veya kaygı geçmişinizi doktorunuzla tartışın. Mevcut durumlar hamilelikte proaktif olarak yönetilebilir."
+      },
+      "medications": {
+        "title": "İlaç incelemesi",
+        "description": "Tüm ilaç ve takviyelerinizi gözden geçirin. Bazıları hamilelikte güvenli değildir — önceden alternatifler ayarlayın."
+      },
+      "vaccinations": {
+        "title": "Aşı kontrolü",
+        "description": "Önerilen aşılarınızın güncel olduğundan emin olun. Bazı aşılar hamilelikte yapılamaz, önceden tamamlayın."
+      }
     }
   },
-
   "socialProof": {
     "title": "İhtiyacın olan her şey 💕",
     "subtitle": "Tam kapsamlı hamilelik yoldaşın",
@@ -4695,14 +5537,46 @@
       "tip4": "Esnek kaslar için su içmeye devam edin"
     },
     "stretches": {
-      "neckRolls": { "name": "Boyun döndürme", "desc": "Başınızı nazikçe daireler çizerek döndürün", "bodyPart": "Boyun" },
-      "shoulderShrugs": { "name": "Omuz kaldırma", "desc": "Omuzları kulaklara doğru kaldırın, bırakın", "bodyPart": "Omuzlar" },
-      "wristCircles": { "name": "Bilek çevreleri", "desc": "Bilekleri her iki yönde çevirin", "bodyPart": "Bilekler" },
-      "sideStretch": { "name": "Yan esneme", "desc": "Kolunuzu başınızın üstünden uzatıp yana eğilin", "bodyPart": "Sırt" },
-      "catCow": { "name": "Kedi-İnek", "desc": "Sırtı kambur ve çukur yapma arasında geçiş yapın", "bodyPart": "Omurga" },
-      "hipCircles": { "name": "Kalça çevreleri", "desc": "Ayakta durup kalçalarınızı daire çizerek döndürün", "bodyPart": "Kalçalar" },
-      "calfRaises": { "name": "Baldır kaldırma", "desc": "Parmak uçlarına yükselin, sonra indirin", "bodyPart": "Bacaklar" },
-      "deepBreathing": { "name": "Derin nefes", "desc": "Ellerinizi karnınızda tutarak yavaş, derin nefesler", "bodyPart": "Rahatlama" }
+      "neckRolls": {
+        "name": "Boyun döndürme",
+        "desc": "Başınızı nazikçe daireler çizerek döndürün",
+        "bodyPart": "Boyun"
+      },
+      "shoulderShrugs": {
+        "name": "Omuz kaldırma",
+        "desc": "Omuzları kulaklara doğru kaldırın, bırakın",
+        "bodyPart": "Omuzlar"
+      },
+      "wristCircles": {
+        "name": "Bilek çevreleri",
+        "desc": "Bilekleri her iki yönde çevirin",
+        "bodyPart": "Bilekler"
+      },
+      "sideStretch": {
+        "name": "Yan esneme",
+        "desc": "Kolunuzu başınızın üstünden uzatıp yana eğilin",
+        "bodyPart": "Sırt"
+      },
+      "catCow": {
+        "name": "Kedi-İnek",
+        "desc": "Sırtı kambur ve çukur yapma arasında geçiş yapın",
+        "bodyPart": "Omurga"
+      },
+      "hipCircles": {
+        "name": "Kalça çevreleri",
+        "desc": "Ayakta durup kalçalarınızı daire çizerek döndürün",
+        "bodyPart": "Kalçalar"
+      },
+      "calfRaises": {
+        "name": "Baldır kaldırma",
+        "desc": "Parmak uçlarına yükselin, sonra indirin",
+        "bodyPart": "Bacaklar"
+      },
+      "deepBreathing": {
+        "name": "Derin nefes",
+        "desc": "Ellerinizi karnınızda tutarak yavaş, derin nefesler",
+        "bodyPart": "Rahatlama"
+      }
     }
   },
   "kegel": {
@@ -4726,8 +5600,8 @@
     "step2": "5 saniye sıkın, karın ve bacak kaslarını gevşek tutun.",
     "step3": "5 saniye gevşetin ve kasların tamamen rahatlamasını sağlayın.",
     "step4": "Her sette 10-15 kez tekrarlayın, en iyi sonuçlar için günde 3 set yapın."
-  }
-  ,"aiErrors": {
+  },
+  "aiErrors": {
     "rateLimitTitle": "Çok fazla istek",
     "rateLimitMsg": "Çok fazla istek gönderdiniz. Lütfen bir süre bekleyip tekrar deneyin.",
     "paymentTitle": "Hizmet kullanılamıyor",
@@ -4755,193 +5629,6 @@
     "resetsDaily": "Günlük sıfırlanır",
     "usedOf": "Bugün {{used}}/{{limit}} kullanıldı",
     "subscribePro": "Pro'ya abone ol"
-  },
-  "groceryList": {
-    "title": "Akıllı Alışveriş Listesi",
-    "subtitle": "Hamilelik beslenmesi için AI destekli alışveriş listesi",
-    "smartNutrition": "Akıllı Hamilelik Beslenmesi",
-    "smartNutritionDesc": "Öğünleri planlayın, besinleri takip edin ve siz ve bebeğiniz için süper gıdaları keşfedin.",
-    "items": "Ürünler",
-    "done": "Tamam",
-    "score": "Puan",
-    "super": "Süper",
-    "list": "Liste",
-    "analysis": "Analiz",
-    "planner": "Planlayıcı",
-    "addItem": "Ürün ekle...",
-    "yourList": "Listeniz",
-    "noItems": "Henüz ürün yok",
-    "clear": "Temizle",
-    "addedToList": "listeye eklendi",
-    "dailyNutritionGoals": "Günlük beslenme hedefleri",
-    "categoriesChart": "Kategoriler",
-    "nutrientsChart": "Besinler",
-    "weekFocus": "Hafta {{week}} odak",
-    "dailyMealIdeas": "Günlük öğün fikirleri",
-    "aiWeeklyMealPlan": "AI haftalık öğün planı",
-    "addAllSuperfoods": "Tüm süper gıdaları ekle",
-    "recommendedSuperfoods": "Önerilen süper gıdalar",
-    "reset": "Sıfırla",
-    "superfoodsAdded": "{{count}} süper gıda listenize eklendi",
-    "allSuperfoodsInList": "Tüm süper gıdalar zaten listenizde",
-    "itemAdded": "Ürün eklendi",
-    "itemsCleared": "{{count}} ürün temizlendi",
-    "saveFailed": "Liste kaydedilemedi",
-    "nutrients": {
-      "protein": "Protein",
-      "iron": "Demir",
-      "folate": "Folat",
-      "calcium": "Kalsiyum",
-      "omega3": "Omega-3"
-    },
-    "categoryNames": {
-      "produce": "Meyve & Sebze",
-      "dairy": "Süt Ürünleri",
-      "protein": "Protein",
-      "grains": "Tahıllar",
-      "other": "Diğer"
-    },
-    "weeklyRecommendations": {
-      "folateRich": "Folat açısından zengin gıdalar",
-      "wholeGrains": "Tam tahıllar",
-      "leanProteins": "Yağsız proteinler",
-      "ironRich": "Demir açısından zengin gıdalar",
-      "omega3Sources": "Omega-3 kaynakları",
-      "calciumFoods": "Kalsiyum açısından zengin gıdalar",
-      "highFiber": "Lif açısından zengin gıdalar",
-      "vitaminD": "D vitamini kaynakları",
-      "hydratingFoods": "Nemlendirici gıdalar"
-    },
-    "meals": {
-      "breakfast": "Kahvaltı",
-      "lunch": "Öğle yemeği",
-      "dinner": "Akşam yemeği",
-      "snacks": "Atıştırmalıklar"
-    },
-    "mealSuggestions": {
-      "breakfast": "Meyveli yoğurt",
-      "lunch": "Somon ıspanak salatası",
-      "dinner": "Mercimek çorbası",
-      "snacks": "Portakal + badem"
-    },
-    "categories": {
-      "all": "tümü",
-      "produce": "meyve & sebze",
-      "dairy": "süt ürünleri",
-      "protein": "protein",
-      "grains": "tahıllar",
-      "other": "diğer"
-    },
-    "groceryItems": {
-      "spinach": "Ispanak",
-      "avocados": "Avokado",
-      "greekYogurt": "Yunan Yoğurdu",
-      "eggs": "Yumurta",
-      "salmon": "Somon",
-      "lentils": "Mercimek",
-      "sweetPotatoes": "Tatlı Patates",
-      "berries": "Böğürtlen",
-      "wholeGrainBread": "Tam Buğday Ekmeği",
-      "oranges": "Portakal",
-      "almonds": "Badem",
-      "chickenBreast": "Tavuk Göğsü",
-      "broccoli": "Brokoli",
-      "bananas": "Muz",
-      "carrots": "Havuç",
-      "kale": "Kara Lahana",
-      "mangoes": "Mango",
-      "cheese": "Peynir",
-      "milk": "Süt",
-      "cottageCheese": "Lor Peyniri",
-      "beef": "Yağsız Et",
-      "chickpeas": "Nohut",
-      "tofu": "Tofu",
-      "sardines": "Sardalya",
-      "oats": "Yulaf",
-      "quinoa": "Kinoa",
-      "brownRice": "Esmer Pirinç",
-      "walnuts": "Ceviz",
-      "chia": "Chia Tohumu",
-      "dates": "Hurma"
-    },
-    "benefits": {
-      "spinach": "Folat ve demir açısından zengin",
-      "avocados": "Bebek beyni için sağlıklı yağlar",
-      "greekYogurt": "Kalsiyum ve probiyotikler",
-      "eggs": "Beyin gelişimi için kolin",
-      "salmon": "Bebek beyni için omega-3",
-      "lentils": "Demir ve protein",
-      "sweetPotatoes": "A vitamini ve lif",
-      "berries": "Antioksidanlar ve C vitamini",
-      "wholeGrainBread": "Lif ve B vitaminleri",
-      "oranges": "Bağışıklık için C vitamini",
-      "almonds": "Sağlıklı yağlar ve kalsiyum",
-      "chickenBreast": "Yağsız protein",
-      "broccoli": "Folat, kalsiyum ve C vitamini",
-      "bananas": "Potasyum ve enerji",
-      "carrots": "Bebek görüşü için beta-karoten",
-      "kale": "Demir, folat ve kalsiyum",
-      "mangoes": "A vitamini ve folat",
-      "cheese": "Kalsiyum ve protein",
-      "milk": "Kalsiyum ve D vitamini",
-      "cottageCheese": "Yüksek protein ve kalsiyum",
-      "beef": "Kan için demir ve B12",
-      "chickpeas": "Demir, folat ve protein",
-      "tofu": "Bitkisel protein ve kalsiyum",
-      "sardines": "Omega-3 ve kalsiyum",
-      "oats": "Demir ve sürekli enerji",
-      "quinoa": "Tam protein ve demir",
-      "brownRice": "Lif ve B vitaminleri",
-      "walnuts": "Beyin gelişimi için omega-3",
-      "chia": "Omega-3, kalsiyum ve lif",
-      "dates": "Doğal demir ve enerji"
-    }
-  },
-  "vitaminTracker": {
-    "subtitle": "Günlük doğum öncesi vitaminlerinizi takip edin",
-    "pregnancyWeek": "Hamilelik Haftası",
-    "todaysProgress": "Bugünün ilerlemesi",
-    "vitaminsCount": "Bugün {{total}} vitaminden {{taken}} alındı",
-    "aiAnalysisTitle": "AI Vitamin Analizi",
-    "analyzeRoutine": "Rutinimi analiz et",
-    "analyzingIntake": "Alımınız analiz ediliyor...",
-    "alreadyTaken": "Zaten alındı!",
-    "alreadyTakenDesc": "Bugün {{name}} zaten kaydedildi.",
-    "logged": "Vitamin kaydedildi!",
-    "loggedDesc": "{{name}} kaydedildi.",
-    "failedToLog": "Vitamin kaydedilemedi",
-    "done": "Tamam",
-    "take": "Al",
-    "thisWeek": "bu hafta",
-    "weeklyStats": "Haftalık İstatistikler",
-    "days": "gün",
-    "recentHistory": "Son Geçmiş",
-    "tipTitle": "Profesyonel İpucu",
-    "tipContent": "Demir takviyelerini daha iyi emilim için C vitamini ile alın, ancak kalsiyum ile almaktan kaçının.",
-    "vitamins": {
-      "folicAcid": "Folik Asit",
-      "iron": "Demir",
-      "calcium": "Kalsiyum",
-      "vitaminD": "D Vitamini",
-      "omega3": "Omega 3",
-      "prenatal": "Doğum Öncesi Vitaminler"
-    },
-    "dosages": {
-      "folicAcid": "400-800 mcg",
-      "iron": "27 mg",
-      "calcium": "1000 mg",
-      "vitaminD": "600 IU",
-      "omega3": "200-300 mg DHA",
-      "prenatal": "Doktor önerisine göre"
-    },
-    "importance": {
-      "folicAcid": "Sinir gelişimi için gerekli",
-      "iron": "Aneminin önlenmesi",
-      "calcium": "Kemik sağlığı için",
-      "vitaminD": "Kalsiyum emilimi",
-      "omega3": "Bebek beyin gelişimi",
-      "prenatal": "Tam ve dengeli"
-    }
   },
   "settings.deleteAccount": {
     "title": "Tüm Verileri Sil",
