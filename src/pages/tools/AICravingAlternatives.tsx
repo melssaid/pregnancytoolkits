@@ -223,6 +223,7 @@ Keep suggestions practical, delicious, and easy to prepare. Focus on satisfying 
                 </PrintableReport>
               )}
             </div>
+          )}
 
           {/* Tips Card */}
           {!result && !isLoading && (
