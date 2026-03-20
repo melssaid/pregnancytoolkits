@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { SEOHead } from '@/components/SEOHead';
 import { 
   Globe, User, Download, Trash2, Shield, Heart, 
-  ChevronRight, ChevronLeft, Lock
+  ChevronRight, ChevronLeft, Lock, RotateCcw
 } from 'lucide-react';
+import { useAIUsage } from '@/contexts/AIUsageContext';
+import { toast } from 'sonner';
 import { DataBackupManager } from '@/components/settings/DataBackupManager';
 import { EncryptionManager } from '@/components/settings/EncryptionManager';
 import { AccountDeletion } from '@/components/settings/AccountDeletion';
@@ -23,6 +25,7 @@ const Settings: React.FC = () => {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === 'ar';
   const [activeView, setActiveView] = useState<SettingsView>('main');
+  const { used, limit, remaining, resetUsage } = useAIUsage();
   const ChevronIcon = isRTL ? ChevronLeft : ChevronRight;
 
   const settingsItems: {
@@ -136,6 +139,32 @@ const Settings: React.FC = () => {
                     </motion.button>
                   );
                 })}
+              </div>
+
+              {/* Admin AI Reset */}
+              <div className="rounded-2xl border bg-card p-4 space-y-3">
+                <div className="flex items-center gap-2">
+                  <div className="w-9 h-9 rounded-xl bg-amber-500/10 flex items-center justify-center">
+                    <RotateCcw className="w-4.5 h-4.5 text-amber-500" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <span className="text-sm font-medium text-foreground block">
+                      {t('settings.aiReset.title', 'إعادة تعيين محاولات AI')}
+                    </span>
+                    <span className="text-[10px] text-muted-foreground">
+                      {t('settings.aiReset.status', 'مستخدم: {{used}}/{{limit}} • متبقي: {{remaining}}', { used, limit, remaining })}
+                    </span>
+                  </div>
+                </div>
+                <button
+                  onClick={() => {
+                    resetUsage();
+                    toast.success(t('settings.aiReset.success', 'تم إعادة التعيين! 30 محاولة متاحة الآن'));
+                  }}
+                  className="w-full py-2.5 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 text-sm font-medium hover:bg-amber-500/20 transition-colors active:scale-[0.98]"
+                >
+                  {t('settings.aiReset.button', 'إعادة تعيين المحاولات (Premium)')}
+                </button>
               </div>
 
               {/* Privacy Badge */}
