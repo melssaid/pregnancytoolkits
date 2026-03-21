@@ -3,6 +3,18 @@ import { useTranslation } from "react-i18next";
 import { useAIUsageLimit } from "./useAIUsageLimit";
 import { supabase } from "@/integrations/supabase/client";
 
+const STORAGE_KEY = 'ai_daily_usage';
+function isAdminBypass(): boolean {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      return parsed.adminBypass === true;
+    }
+  } catch {}
+  return false;
+}
+
 // Must match all types accepted by the edge function
 type AIType =
   | "symptom-analysis" | "meal-suggestion" | "pregnancy-assistant" | "weekly-summary"
