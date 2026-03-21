@@ -8050,6 +8050,22 @@
           "Signs of infection: fever, chills, burning urination",
           "Reduced or absent fetal movement after week 28"
         ]
+      },
+      "gestationalDiabetes": {
+        "items": {
+          "0": "Extreme thirst or unusually frequent urination",
+          "1": "Blurred vision or persistent headaches",
+          "2": "Severe nausea preventing eating or drinking",
+          "3": "Reduced fetal movement"
+        }
+      },
+      "weightGain": {
+        "items": {
+          "0": "Sudden weight gain of more than 1 kg in a week",
+          "1": "Swelling in face, hands, or feet",
+          "2": "No weight gain for two consecutive weeks",
+          "3": "Severe abdominal pain with weight changes"
+        }
       }
     },
     "emergency": "In an emergency, call your local emergency services immediately. Do not wait.",
