@@ -9,6 +9,7 @@ import { safeParseLocalStorage } from "@/lib/safeStorage";
 // Dashboard components
 import { DailyHeroCard } from "@/components/dashboard/DailyHeroCard";
 import { RiskAlertCard } from "@/components/dashboard/RiskAlertCard";
+import { TodaysInsightCard } from "@/components/dashboard/TodaysInsightCard";
 import { DailyPriorities } from "@/components/dashboard/DailyPriorities";
 import { QuickActionsBar } from "@/components/dashboard/QuickActionsBar";
 import { HydrationTracker } from "@/components/dashboard/HydrationTracker";
@@ -44,6 +45,9 @@ const SmartDashboard = () => {
           todayKicks={stats.dailyTracking.todayKicks}
           week={profile.pregnancyWeek}
         />
+
+        {/* 2.5. Today's Insight Preview */}
+        <TodaysInsightCard />
 
         {/* 3. Daily Priorities */}
         <DailyPriorities

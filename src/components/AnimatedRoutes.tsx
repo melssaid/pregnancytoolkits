@@ -10,6 +10,7 @@ import Index from "@/pages/Index";
 // LAZY LOADED PAGES - 35 Curated Professional Tools
 // ═══════════════════════════════════════════════════════════════
 const SmartDashboard = lazy(() => import("@/pages/SmartDashboard"));
+const DailyInsights = lazy(() => import("@/pages/DailyInsights"));
 const Settings = lazy(() => import("@/pages/Settings"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
 const PrivacyPolicy = lazy(() => import("@/pages/PrivacyPolicy"));
@@ -92,6 +93,7 @@ export function AnimatedRoutes() {
         <Route path="/" element={<PageTransition><Index /></PageTransition>} />
         <Route path="/en" element={<PageTransition><LandingEN /></PageTransition>} />
         <Route path="/dashboard" element={<PageTransition><SmartDashboard /></PageTransition>} />
+        <Route path="/daily-insights" element={<PageTransition><DailyInsights /></PageTransition>} />
         <Route path="/settings" element={<PageTransition><Settings /></PageTransition>} />
         <Route path="/privacy" element={<PageTransition><PrivacyPolicy /></PageTransition>} />
         <Route path="/terms" element={<PageTransition><TermsOfService /></PageTransition>} />
