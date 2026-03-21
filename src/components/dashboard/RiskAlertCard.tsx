@@ -126,10 +126,10 @@ function buildAlerts(
 export const RiskAlertCard = memo(function RiskAlertCard({ bloodPressure, todayKicks, week }: RiskAlertCardProps) {
   const { t } = useTranslation();
 
-  const [alerts, setAlerts] = useState<Alert[]>(() => buildAlerts(t, week, todayKicks, bloodPressure));
+  const [alerts, setAlerts] = useState<Alert[]>(() => buildAlerts(t as any, week, todayKicks, bloodPressure));
 
   const refresh = useCallback(() => {
-    setAlerts(buildAlerts(t, week, todayKicks, bloodPressure));
+    setAlerts(buildAlerts(t as any, week, todayKicks, bloodPressure));
   }, [t, week, todayKicks, bloodPressure]);
 
   useEffect(() => {
