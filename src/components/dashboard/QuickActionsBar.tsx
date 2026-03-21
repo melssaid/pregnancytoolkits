@@ -1,9 +1,8 @@
 import { memo } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { Link, useNavigate } from "react-router-dom";
-import { Bot, Hand, Gauge, TrendingUp, Calendar, Stethoscope, Camera, Pill, Lock } from "lucide-react";
-import { useSubscriptionStatus, isToolPremium } from "@/hooks/useSubscriptionStatus";
+import { Link } from "react-router-dom";
+import { Bot, Hand, Gauge, TrendingUp, Calendar, Stethoscope, Camera, Pill } from "lucide-react";
 
 const actions = [
   { id: "pregnancy-assistant", icon: Bot,          href: "/tools/pregnancy-assistant",  labelKey: "assistant", accent: "from-violet-500/15 to-violet-500/5" },
@@ -18,8 +17,6 @@ const actions = [
 
 export const QuickActionsBar = memo(function QuickActionsBar() {
   const { t } = useTranslation();
-  const { tier } = useSubscriptionStatus();
-  const navigate = useNavigate();
 
   return (
     <motion.div
@@ -29,40 +26,24 @@ export const QuickActionsBar = memo(function QuickActionsBar() {
     >
       <h3 className="text-xs font-bold text-foreground mb-2.5">{t("dailyDashboard.quickActions.title")}</h3>
       <div className="grid grid-cols-4 gap-2">
-        {actions.map((action, i) => {
-          const locked = isToolPremium(action.id, tier);
-          return (
-            <Link
-              key={action.id}
-              to={locked ? "#" : action.href}
-              onClick={locked ? (e) => { e.preventDefault(); navigate("/pricing-demo"); } : undefined}
+        {actions.map((action, i) => (
+          <Link key={action.id} to={action.href}>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.025 * i }}
+              whileTap={{ scale: 0.93 }}
+              className={`flex flex-col items-center gap-1.5 py-2.5 px-1 rounded-2xl transition-all duration-200 bg-gradient-to-b ${action.accent} hover:shadow-sm active:shadow-none`}
             >
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.025 * i }}
-                whileTap={{ scale: 0.93 }}
-                className={`flex flex-col items-center gap-1.5 py-2.5 px-1 rounded-2xl transition-all duration-200 ${
-                  locked
-                    ? "opacity-40 grayscale bg-muted/20"
-                    : `bg-gradient-to-b ${action.accent} hover:shadow-sm active:shadow-none`
-                }`}
-              >
-                <div className="relative w-9 h-9 rounded-xl bg-background/80 backdrop-blur-sm border border-border/20 flex items-center justify-center shadow-sm">
-                  <action.icon className="w-[18px] h-[18px] text-primary" strokeWidth={1.75} />
-                  {locked && (
-                    <div className="absolute -top-1 -end-1 w-4 h-4 rounded-full bg-muted flex items-center justify-center border border-border/30">
-                      <Lock className="w-2 h-2 text-muted-foreground" />
-                    </div>
-                  )}
-                </div>
-                <span className="text-[9px] font-medium text-foreground/80 text-center leading-tight line-clamp-1">
-                  {t(`dailyDashboard.quickActions.${action.labelKey}`)}
-                </span>
-              </motion.div>
-            </Link>
-          );
-        })}
+              <div className="relative w-9 h-9 rounded-xl bg-background/80 backdrop-blur-sm border border-border/20 flex items-center justify-center shadow-sm">
+                <action.icon className="w-[18px] h-[18px] text-primary" strokeWidth={1.75} />
+              </div>
+              <span className="text-[9px] font-medium text-foreground/80 text-center leading-tight line-clamp-1">
+                {t(`dailyDashboard.quickActions.${action.labelKey}`)}
+              </span>
+            </motion.div>
+          </Link>
+        ))}
       </div>
     </motion.div>
   );
