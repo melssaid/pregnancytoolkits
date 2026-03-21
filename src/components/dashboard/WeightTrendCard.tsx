@@ -3,28 +3,39 @@ import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Gauge, TrendingUp, TrendingDown, ArrowRight, Minus } from "lucide-react";
 import { Link } from "react-router-dom";
-import { getUserId } from "@/hooks/useSupabase";
 import { safeParseLocalStorage } from "@/lib/safeStorage";
 
 export const WeightTrendCard = memo(function WeightTrendCard() {
   const { t } = useTranslation();
-  const userId = getUserId();
 
   const { current, change, status } = useMemo(() => {
-    const logs = safeParseLocalStorage<any[]>(`weight_logs_${userId}`, []);
-    if (logs.length === 0) return { current: null, change: null, status: "empty" as const };
+    // Read from weightGainEntries (what SmartWeightGainAnalyzer saves)
+    const entries = safeParseLocalStorage<any[]>("weightGainEntries", []);
+    
+    // Also check user profile for weight set during onboarding
+    const profile = safeParseLocalStorage<any>("user_central_profile_v1", null);
+    const profileWeight = profile?.weight ?? null;
 
-    const sorted = [...logs].sort((a, b) => new Date(a.date || a.logged_at || 0).getTime() - new Date(b.date || b.logged_at || 0).getTime());
-    const last = sorted[sorted.length - 1];
-    const prev = sorted.length > 1 ? sorted[sorted.length - 2] : null;
-    const diff = prev ? +(last.weight - prev.weight).toFixed(1) : null;
+    if (entries.length > 0) {
+      const sorted = [...entries].sort((a, b) => (a.week || 0) - (b.week || 0));
+      const last = sorted[sorted.length - 1];
+      const prev = sorted.length > 1 ? sorted[sorted.length - 2] : null;
+      const diff = prev ? +(last.weight - prev.weight).toFixed(1) : null;
 
-    return {
-      current: last.weight,
-      change: diff,
-      status: diff === null ? "single" as const : diff > 0 ? "up" as const : diff < 0 ? "down" as const : "same" as const,
-    };
-  }, [userId]);
+      return {
+        current: last.weight,
+        change: diff,
+        status: diff === null ? "single" as const : diff > 0 ? "up" as const : diff < 0 ? "down" as const : "same" as const,
+      };
+    }
+
+    // Fallback to profile weight if no entries logged yet
+    if (profileWeight) {
+      return { current: profileWeight, change: null, status: "single" as const };
+    }
+
+    return { current: null, change: null, status: "empty" as const };
+  }, []);
 
   const TrendIcon = status === "up" ? TrendingUp : status === "down" ? TrendingDown : Minus;
 
