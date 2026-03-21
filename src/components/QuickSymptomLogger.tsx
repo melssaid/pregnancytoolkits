@@ -1,7 +1,7 @@
 import { memo, useState, useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { motion, AnimatePresence } from "framer-motion";
-import { Check, ChevronDown, TrendingUp } from "lucide-react";
+import { motion } from "framer-motion";
+import { Check } from "lucide-react";
 import { useUserProfile } from "@/hooks/useUserProfile";
 
 interface DailyLog {
@@ -59,7 +59,7 @@ const QuickSymptomLogger = memo(function QuickSymptomLogger() {
   const [selectedMood, setSelectedMood] = useState<number>(todayLog?.mood || 0);
   const [selectedSymptoms, setSelectedSymptoms] = useState<string[]>(todayLog?.symptoms || []);
   const [saved, setSaved] = useState(!!todayLog);
-  const [showChart, setShowChart] = useState(false);
+  
 
   const toggleSymptom = useCallback((id: string) => {
     setSelectedSymptoms(prev => prev.includes(id) ? prev.filter(s => s !== id) : [...prev, id]);
@@ -77,18 +77,8 @@ const QuickSymptomLogger = memo(function QuickSymptomLogger() {
     window.dispatchEvent(new Event("storage"));
   }, [selectedMood, selectedSymptoms, today, logs, profile.pregnancyWeek]);
 
-  // Last 7 days mood chart
-  const last7 = useMemo(() => {
-    const days: { date: string; mood: number }[] = [];
-    for (let i = 6; i >= 0; i--) {
-      const d = new Date();
-      d.setDate(d.getDate() - i);
-      const dateStr = d.toISOString().split("T")[0];
-      const log = logs.find(l => l.date === dateStr);
-      days.push({ date: dateStr, mood: log?.mood || 0 });
-    }
-    return days;
-  }, [logs]);
+
+
 
   return (
     <motion.div
@@ -106,17 +96,8 @@ const QuickSymptomLogger = memo(function QuickSymptomLogger() {
               {t("quickLog.title")}
             </h3>
           </div>
-          {logs.length > 1 && (
-            <button
-              onClick={() => setShowChart(!showChart)}
-              className="flex items-center gap-1 px-2 py-1 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors"
-            >
-              <TrendingUp className="w-3 h-3 text-muted-foreground" />
-              <span className="text-[10px] text-muted-foreground font-medium">
-                {t("quickLog.trend")}
-              </span>
-            </button>
-          )}
+
+
         </div>
 
         {/* Mood selector */}
@@ -195,43 +176,8 @@ const QuickSymptomLogger = memo(function QuickSymptomLogger() {
           ) : t("quickLog.save")}
         </motion.button>
 
-        {/* 7-day trend chart */}
-        <AnimatePresence>
-          {showChart && (
-            <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              className="overflow-hidden"
-            >
-              <div className="mt-3 pt-3 border-t border-border/10">
-                <p className="text-[10px] text-muted-foreground mb-2">
-                  {t("quickLog.last7Days")}
-                </p>
-                <div className="flex items-end gap-1 h-16">
-                  {last7.map((d, i) => {
-                    const h = d.mood ? (d.mood / 5) * 100 : 5;
-                    const moodData = moods.find(m => m.value === d.mood);
-                    return (
-                      <div key={i} className="flex-1 flex flex-col items-center gap-0.5">
-                        <motion.div
-                          initial={{ height: 0 }}
-                          animate={{ height: `${h}%` }}
-                          transition={{ duration: 0.5, delay: i * 0.05 }}
-                          className="w-full rounded-t-md"
-                          style={{ backgroundColor: moodData?.color || "hsl(var(--muted))", minHeight: 3 }}
-                        />
-                        <span className="text-[8px] text-muted-foreground tabular-nums">
-                          {new Date(d.date).toLocaleDateString(isAr ? "ar" : "en", { weekday: "narrow" })}
-                        </span>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+
+
       </div>
     </motion.div>
   );
