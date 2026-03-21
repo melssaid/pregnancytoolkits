@@ -140,9 +140,8 @@ Provide brief, supportive wellness insights about these feelings during week ${c
     setSelectedMood('');
     setNotes('');
     setAiInsight('');
-    // Trigger chart pulse animation
-    setChartPulse(true);
-    setTimeout(() => setChartPulse(false), 1500);
+
+
     toast.success(t('toolsInternal.symptomAnalyzer.entrySaved'));
   };
 
