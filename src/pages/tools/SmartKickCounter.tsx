@@ -464,140 +464,109 @@ const SmartKickCounter: React.FC = () => {
           )}
         </AnimatePresence>
 
-        {/* Stats */}
-        <div className="grid grid-cols-3 gap-3">
-          <Card>
-            <CardContent className="p-3 text-center">
-              <TrendingUp className="w-5 h-5 text-primary mx-auto mb-1" />
-              <div className="text-lg font-bold">{getAverageKicks()}</div>
-              <p className="text-xs text-muted-foreground">{t('toolsInternal.kickCounter.avgKicks')}</p>
-            </CardContent>
-          </Card>
-          
-          <Card>
-            <CardContent className="p-3 text-center">
-              <Clock className="w-5 h-5 text-primary mx-auto mb-1" />
-              <div className="text-lg font-bold">{history.length}</div>
-              <p className="text-xs text-muted-foreground">{t('toolsInternal.kickCounter.sessions')}</p>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardContent className="p-3 text-center">
-              <Zap className="w-5 h-5 text-primary mx-auto mb-1" />
-              <div className="text-lg font-bold">
-                {history.length > 0 
-                  ? Math.round(history.reduce((sum, s) => sum + (s.duration_minutes || 0), 0) / history.length)
-                  : 0}
-              </div>
-              <p className="text-xs text-muted-foreground">{t('toolsInternal.kickCounter.avgMin')}</p>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Pattern Visualizer — rich health score + trend + bar chart */}
+        {/* ═══ Analysis Flow — Pattern → AI → History (connected) ═══ */}
         {history.length >= 2 && (
-          <KickPatternVisualizer
-            sessions={history.slice(0, 7).map((s: any) => ({
-              date: new Date(s.started_at).toISOString().split('T')[0],
-              kicks: s.total_kicks,
-              duration: s.duration_minutes || 0,
-              startTime: new Date(s.started_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-            }))}
-          />
-        )}
+          <div className="rounded-2xl border border-border/20 overflow-hidden">
+            {/* Pattern Visualizer */}
+            <div className="p-0">
+              <KickPatternVisualizer
+                sessions={history.slice(0, 7).map((s: any) => ({
+                  date: new Date(s.started_at).toISOString().split('T')[0],
+                  kicks: s.total_kicks,
+                  duration: s.duration_minutes || 0,
+                  startTime: new Date(s.started_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+                }))}
+              />
+            </div>
 
-        {/* AI Movement Analysis — unified AIInsightCard */}
-        {history.length >= 3 && (
-          <AIInsightCard
-            title={t('toolsInternal.kickCounter.aiAnalysisTitle', 'تحليل ذكي للحركة')}
-            aiType="symptom-analysis"
-            prompt={`You are an expert perinatal nurse providing fetal movement analysis. Analyze this kick counting data and provide comprehensive insights.
+            {/* AI Analysis — inside same container */}
+            {history.length >= 3 && (
+              <div className="border-t border-border/10 bg-muted/5">
+                <AIInsightCard
+                  title={t('toolsInternal.kickCounter.aiAnalysisTitle', 'تحليل ذكي للحركة')}
+                  aiType="symptom-analysis"
+                  prompt={`You are an expert perinatal nurse providing fetal movement analysis.
 
 ## Patient Data
 - Pregnancy Week: ${currentWeek}
-- Total Sessions Recorded: ${history.length}
-- Analysis Period: Last ${Math.min(history.length, 14)} sessions
+- Total Sessions: ${history.length}
 
 ## Session Records
 ${history.slice(0, 14).map((s: any) => `${new Date(s.started_at).toISOString().split('T')[0]}: ${s.total_kicks} kicks in ${s.duration_minutes || 0} min`).join('\n')}
 
 ## Statistics
-- Average kicks per session: ${getAverageKicks()}
-- Movement health score: ${movementScore}/100
+- Average kicks/session: ${getAverageKicks()}
+- Movement score: ${movementScore}/100
 
-Provide: 1) Pattern review, 2) Pattern interpretation for week ${currentWeek}, 3) Personalized recommendations, 4) When to seek care (non-alarming), 5) Quick tips for week ${currentWeek}. Use markdown formatting. Be supportive and reassuring.`}
-            context={{ week: currentWeek }}
-            buttonText={t('toolsInternal.kickCounter.aiAnalysisButton', 'تحليل الحركة بالذكاء الاصطناعي')}
-            icon={<TrendingUp className="w-4 h-4" />}
-            showPrintButton
-            showDisclaimer
-            printTitle={t('toolsInternal.kickCounter.title')}
-          />
-        )}
+Provide: 1) Pattern review, 2) Interpretation for week ${currentWeek}, 3) Recommendations, 4) When to seek care, 5) Tips. Be supportive.`}
+                  context={{ week: currentWeek }}
+                  buttonText={t('toolsInternal.kickCounter.aiAnalysisButton', 'تحليل الحركة بالذكاء الاصطناعي')}
+                  icon={<TrendingUp className="w-4 h-4" />}
+                  showPrintButton
+                  showDisclaimer
+                  printTitle={t('toolsInternal.kickCounter.title')}
+                />
+              </div>
+            )}
 
-        {/* History */}
-        {history.length > 0 && (
-          <Card>
-            <CardHeader className="pb-2">
-            <CardTitle className="flex items-center gap-2 text-sm">
-                <Clock className="w-4 h-4 text-primary" />
-                {t('toolsInternal.kickCounter.recentSessions')}
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-2 max-h-64 overflow-y-auto">
-                {history.map((session, index) => (
-                  <motion.div 
-                    key={session.id || index} 
-                    initial={{ opacity: 0, x: -10 }}
+            {/* Recent Sessions — inside same container */}
+            <div className="border-t border-border/10">
+              <div className="px-3.5 py-2.5">
+                <h4 className="text-xs font-semibold text-foreground flex items-center gap-2">
+                  <Clock className="w-3.5 h-3.5 text-primary" />
+                  {t('toolsInternal.kickCounter.recentSessions')}
+                </h4>
+              </div>
+              <div className="px-3.5 pb-3 space-y-1.5 max-h-52 overflow-y-auto">
+                {history.map((session: any, index: number) => (
+                  <motion.div
+                    key={session.id || index}
+                    initial={{ opacity: 0, x: -6 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.05 }}
-                    className="flex items-center justify-between p-3 bg-muted/50 rounded-lg"
+                    transition={{ delay: index * 0.04 }}
+                    className="flex items-center justify-between p-2.5 bg-muted/30 rounded-xl"
                   >
-                    <div className="flex items-center gap-3">
-                      <div className="p-2 rounded-full bg-primary/10">
-                        <Baby className="w-4 h-4 text-primary" />
+                    <div className="flex items-center gap-2.5">
+                      <div className="p-1.5 rounded-lg bg-primary/10">
+                        <Baby className="w-3.5 h-3.5 text-primary" />
                       </div>
                       <div>
-                        <div className="font-medium">
+                        <span className="text-xs font-medium text-foreground">
                           {session.total_kicks} {t('toolsInternal.kickCounter.movements')}
-                        </div>
-                        <div className="text-xs text-muted-foreground">
+                        </span>
+                        <p className="text-[10px] text-muted-foreground">
                           {t('toolsInternal.kickCounter.minWeek', { min: session.duration_minutes, week: session.week })}
-                        </div>
+                        </p>
                       </div>
                     </div>
-                    <div className="text-sm text-muted-foreground">
-                      {new Date(session.started_at).toLocaleDateString('en-US', {
-                        month: 'short',
-                        day: 'numeric'
-                      })}
-                    </div>
+                    <span className="text-[10px] text-muted-foreground">
+                      {new Date(session.started_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
+                    </span>
                   </motion.div>
                 ))}
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         )}
 
-        {/* Evidence: Kick Counting Guidelines */}
-        <EvidenceInfoBlock
-          title={t("safety.evidence.kickCounting.title")}
-          content={t("safety.evidence.kickCounting.content")}
-          source={t("safety.evidence.kickCounting.source")}
-        />
-
-        {/* When to Call Doctor */}
-        <WhenToCallDoctorCard context="kickCounter" />
-
-        {/* Low kicks warning banner */}
-        {kicks.length > 0 && kicks.length < 10 && elapsedTime > 7200 && (
-          <ContextualWarningBanner
-            level="warning"
-            message={t("safety.banners.lowKicks")}
+        {/* ═══ Safety Section — connected ═══ */}
+        <div className="space-y-3">
+          <EvidenceInfoBlock
+            title={t("safety.evidence.kickCounting.title")}
+            content={t("safety.evidence.kickCounting.content")}
+            source={t("safety.evidence.kickCounting.source")}
           />
-        )}
+
+          {/* Active labor warning */}
+          {kicks.length > 0 && kicks.length < 10 && elapsedTime > 7200 && (
+            <ContextualWarningBanner
+              level="warning"
+              message={t("safety.banners.lowKicks")}
+            />
+          )}
+
+          <WhenToCallDoctorCard context="kickCounter" />
+        </div>
       </div>
     </ToolFrame>
   );
