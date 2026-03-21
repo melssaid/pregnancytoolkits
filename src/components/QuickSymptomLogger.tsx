@@ -2,11 +2,13 @@ import { memo, useState, useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, ChevronDown, TrendingUp } from "lucide-react";
+import { useUserProfile } from "@/hooks/useUserProfile";
 
 interface DailyLog {
   date: string;
   mood: number;
   symptoms: string[];
+  week?: number;
 }
 
 const moods = [
