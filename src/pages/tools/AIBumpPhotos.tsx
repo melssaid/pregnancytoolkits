@@ -664,9 +664,14 @@ const AIBumpPhotos: React.FC = () => {
                   )}
                   
                   {aiAnalysis ? (
-                    <div className="bg-background/50 rounded-xl p-4">
-                      <MarkdownRenderer content={aiAnalysis} />
-                    </div>
+                    <>
+                      <div className="bg-background/50 rounded-xl p-4">
+                        <MarkdownRenderer content={aiAnalysis} />
+                      </div>
+                      <PrintableReport title={t('toolsInternal.bumpPhotos.aiAnalysisWeek', { week: selectedPhoto.week })}>
+                        <MarkdownRenderer content={aiAnalysis} />
+                      </PrintableReport>
+                    </>
                   ) : (
                     <div className="text-center py-6 text-muted-foreground">
                       <Sparkles className="w-8 h-8 mx-auto mb-2 text-muted-foreground/30" />
