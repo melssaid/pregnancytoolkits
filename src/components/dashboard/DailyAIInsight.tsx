@@ -20,9 +20,9 @@ export const DailyAIInsight = memo(function DailyAIInsight({ week }: DailyAIInsi
   const ChevronIcon = isRTL ? ChevronLeft : ChevronRight;
 
   const quickPrompts = [
-    { label: t("dailyDashboard.aiInsight.askSymptom", "اسألي عن أعراضك"), icon: "🩺" },
-    { label: t("dailyDashboard.aiInsight.askNutrition", "نصائح التغذية"), icon: "🥗" },
-    { label: t("dailyDashboard.aiInsight.askSleep", "تحسين النوم"), icon: "😴" },
+    { label: t("dailyDashboard.aiInsight.askSymptom"), icon: "🩺" },
+    { label: t("dailyDashboard.aiInsight.askNutrition"), icon: "🥗" },
+    { label: t("dailyDashboard.aiInsight.askSleep"), icon: "😴" },
   ];
 
   return (
@@ -43,10 +43,10 @@ export const DailyAIInsight = memo(function DailyAIInsight({ week }: DailyAIInsi
             </div>
             <div>
               <h3 className="text-sm font-bold text-foreground leading-tight">
-                {t("dailyDashboard.aiInsight.title", "المساعد الذكي")}
+                {t("dailyDashboard.aiInsight.title")}
               </h3>
               <p className="text-[10px] text-muted-foreground">
-                {t("dailyDashboard.aiInsight.subtitle", "اسألي أي سؤال عن حملك")}
+                {t("dailyDashboard.aiInsight.subtitle")}
               </p>
             </div>
           </div>

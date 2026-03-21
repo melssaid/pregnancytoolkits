@@ -558,7 +558,10 @@
       "moods": {
         "excellent": "Excelente",
         "good": "Bueno",
+        "great": "Genial",
         "normal": "Normal",
+        "okay": "Regular",
+        "low": "Bajo",
         "anxious": "Ansiosa",
         "bad": "Malo"
       },
@@ -6263,7 +6266,8 @@
     },
     "symptoms": {
       "title": "Resumen de síntomas",
-      "noSymptoms": "Sin síntomas registrados"
+      "noSymptoms": "Sin síntomas registrados",
+      "noData": "Registra tus síntomas y estado de ánimo hoy"
     },
     "fetalMovement": {
       "title": "Movimiento fetal",
@@ -6290,10 +6294,14 @@
       "lowKicks": "Menos movimientos de lo habitual — vigile y consulte"
     },
     "aiInsight": {
-      "title": "Análisis IA",
+      "title": "Asistente inteligente",
+      "subtitle": "Haz cualquier pregunta sobre tu embarazo",
       "description": "Obtén consejos personalizados para tu semana actual",
       "generate": "Obtener análisis",
       "loading": "Analizando...",
+      "askSymptom": "Preguntar sobre síntomas",
+      "askNutrition": "Consejos de nutrición",
+      "askSleep": "Mejorar el sueño",
       "prompt": "Dame un consejo de salud personalizado para la semana {{week}} del embarazo. Enfócate en los 3 puntos más importantes."
     }
   },

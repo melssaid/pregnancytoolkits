@@ -558,7 +558,10 @@
       "moods": {
         "excellent": "Mükemmel",
         "good": "İyi",
+        "great": "Harika",
         "normal": "Normal",
+        "okay": "Fena değil",
+        "low": "Düşük",
         "anxious": "Endişeli",
         "bad": "Kötü"
       },
@@ -6263,7 +6266,8 @@
     },
     "symptoms": {
       "title": "Belirti özeti",
-      "noSymptoms": "Kayıtlı belirti yok"
+      "noSymptoms": "Kayıtlı belirti yok",
+      "noData": "Bugünkü belirtilerinizi ve ruh halinizi kaydedin"
     },
     "fetalMovement": {
       "title": "Bebek hareketleri",
@@ -6290,10 +6294,14 @@
       "lowKicks": "Normalden az hareket — izleyin ve danışın"
     },
     "aiInsight": {
-      "title": "Yapay Zeka Görüşü",
+      "title": "Akıllı Asistan",
+      "subtitle": "Hamileliğiniz hakkında soru sorun",
       "description": "Mevcut haftanız için kişisel tavsiyeler alın",
       "generate": "Analiz al",
       "loading": "Analiz ediliyor...",
+      "askSymptom": "Belirtiler hakkında sor",
+      "askNutrition": "Beslenme ipuçları",
+      "askSleep": "Uyku iyileştirme",
       "prompt": "Hamileliğin {{week}}. haftası için kısa ve kişisel bir sağlık ipucu verin. En önemli 3 noktaya odaklanın."
     }
   },

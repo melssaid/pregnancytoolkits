@@ -558,7 +558,10 @@
       "moods": {
         "excellent": "Ausgezeichnet",
         "good": "Gut",
+        "great": "Großartig",
         "normal": "Normal",
+        "okay": "In Ordnung",
+        "low": "Niedergeschlagen",
         "anxious": "Ängstlich",
         "bad": "Schlecht"
       },
@@ -6549,7 +6552,8 @@
     },
     "symptoms": {
       "title": "Symptomzusammenfassung",
-      "noSymptoms": "Keine Symptome aufgezeichnet"
+      "noSymptoms": "Keine Symptome aufgezeichnet",
+      "noData": "Erfassen Sie Ihre Symptome und Stimmung heute"
     },
     "fetalMovement": {
       "title": "Kindsbewegungen",
@@ -6576,10 +6580,14 @@
       "lowKicks": "Weniger Bewegungen als üblich — beobachten und nachfragen"
     },
     "aiInsight": {
-      "title": "KI-Einblick",
+      "title": "Intelligenter Assistent",
+      "subtitle": "Stellen Sie Fragen zu Ihrer Schwangerschaft",
       "description": "Erhalten Sie persönliche Tipps für Ihre aktuelle Woche",
       "generate": "Analyse starten",
       "loading": "Analyse läuft...",
+      "askSymptom": "Symptome fragen",
+      "askNutrition": "Ernährungstipps",
+      "askSleep": "Schlaf verbessern",
       "prompt": "Geben Sie mir einen kurzen personalisierten Gesundheitstipp für Schwangerschaftswoche {{week}}. Fokus auf die 3 wichtigsten Punkte."
     }
   },

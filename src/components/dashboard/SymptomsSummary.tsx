@@ -129,7 +129,7 @@ export const SymptomsSummary = memo(function SymptomsSummary() {
         </div>
 
         {!hasData ? (
-          <p className="text-[10px] text-muted-foreground">{t("dailyDashboard.symptoms.noData", "سجّلي أعراضك ومزاجك اليوم")}</p>
+          <p className="text-[10px] text-muted-foreground">{t("dailyDashboard.symptoms.noData")}</p>
         ) : (
           <>
             {moodEmoji && (
