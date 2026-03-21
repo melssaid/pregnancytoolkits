@@ -2,13 +2,15 @@
  * Global AI Usage Context
  * Single source of truth for daily AI usage across all components.
  * Server headers are the authority; localStorage is optimistic cache.
+ * Admin reset sets a session bypass that prevents server re-sync.
  */
 
-import { createContext, useContext, useState, useCallback, useEffect, type ReactNode } from 'react';
+import { createContext, useContext, useState, useCallback, useEffect, useRef, type ReactNode } from 'react';
 
 const STORAGE_KEY = 'ai_daily_usage';
 const FREE_LIMIT = 10;
 const PREMIUM_LIMIT = 30;
+const ADMIN_BYPASS_LIMIT = 999;
 
 export type SubscriptionTier = 'free' | 'premium';
 
@@ -17,6 +19,7 @@ interface UsageData {
   count: number;
   limit: number;
   tier: SubscriptionTier;
+  adminBypass?: boolean;
 }
 
 interface AIUsageContextValue {
@@ -42,15 +45,14 @@ function getLocalUsage(): UsageData {
     if (raw) {
       const parsed = JSON.parse(raw) as UsageData;
       if (parsed.date === getTodayKey()) {
-        // Fix stale limits from previous versions
-        if (parsed.limit !== FREE_LIMIT && parsed.limit !== PREMIUM_LIMIT) {
+        if (parsed.limit !== FREE_LIMIT && parsed.limit !== PREMIUM_LIMIT && parsed.limit !== ADMIN_BYPASS_LIMIT) {
           parsed.limit = parsed.tier === 'premium' ? PREMIUM_LIMIT : FREE_LIMIT;
         }
         return parsed;
       }
     }
   } catch {}
-  return { date: getTodayKey(), count: 0, limit: FREE_LIMIT, tier: 'free' };
+  return { date: getTodayKey(), count: 0, limit: FREE_LIMIT, tier: 'free', adminBypass: false };
 }
 
 function setLocalUsage(data: Partial<UsageData>): void {
@@ -63,14 +65,15 @@ const AIUsageContext = createContext<AIUsageContextValue | null>(null);
 export function AIUsageProvider({ children }: { children: ReactNode }) {
   const local = getLocalUsage();
   const [count, setCount] = useState(local.count);
-  const [limit, setLimit] = useState(local.limit || FREE_LIMIT);
+  const [limit, setLimit] = useState(local.adminBypass ? ADMIN_BYPASS_LIMIT : (local.limit || FREE_LIMIT));
   const [tier, setTier] = useState<SubscriptionTier>(local.tier || 'free');
+  const adminBypassRef = useRef(local.adminBypass || false);
 
-  // Reset at midnight
   useEffect(() => {
     const stored = getLocalUsage();
     setCount(stored.count);
-    setLimit(stored.limit || FREE_LIMIT);
+    adminBypassRef.current = stored.adminBypass || false;
+    setLimit(stored.adminBypass ? ADMIN_BYPASS_LIMIT : (stored.limit || FREE_LIMIT));
     setTier(stored.tier || 'free');
   }, []);
 
@@ -87,21 +90,26 @@ export function AIUsageProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const syncFromServer = useCallback((serverUsed: number) => {
+    // Skip server sync if admin bypass is active
+    if (adminBypassRef.current) return;
     setCount(serverUsed);
     setLocalUsage({ count: serverUsed });
   }, []);
 
   const syncLimit = useCallback((newLimit: number, newTier?: SubscriptionTier) => {
+    // Skip server sync if admin bypass is active
+    if (adminBypassRef.current) return;
     setLimit(newLimit);
     if (newTier) setTier(newTier);
     setLocalUsage({ limit: newLimit, tier: newTier || 'free' });
   }, []);
 
   const resetUsage = useCallback(() => {
+    adminBypassRef.current = true;
     setCount(0);
-    setLimit(PREMIUM_LIMIT);
+    setLimit(ADMIN_BYPASS_LIMIT);
     setTier('premium');
-    setLocalUsage({ count: 0, limit: PREMIUM_LIMIT, tier: 'premium' });
+    setLocalUsage({ count: 0, limit: ADMIN_BYPASS_LIMIT, tier: 'premium', adminBypass: true });
   }, []);
 
   return (
@@ -125,9 +133,8 @@ export function AIUsageProvider({ children }: { children: ReactNode }) {
 export function useAIUsage(): AIUsageContextValue {
   const ctx = useContext(AIUsageContext);
   if (!ctx) {
-    // Fallback for components rendered outside provider
     const local = getLocalUsage();
-    const lim = local.limit || FREE_LIMIT;
+    const lim = local.adminBypass ? ADMIN_BYPASS_LIMIT : (local.limit || FREE_LIMIT);
     const remaining = Math.max(0, lim - local.count);
     return {
       remaining,
