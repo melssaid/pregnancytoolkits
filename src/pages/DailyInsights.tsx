@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -19,28 +19,32 @@ const DailyInsights = () => {
   const navigate = useNavigate();
   const { profile } = useUserProfile();
   const { stats } = useTrackingStats();
+  const [aiContent, setAiContent] = useState("");
+  const [aiLoading, setAiLoading] = useState(false);
   const [showAI, setShowAI] = useState(false);
 
   const week = profile.pregnancyWeek || 0;
   const trimester = week <= 13 ? 1 : week <= 27 ? 2 : 3;
 
-  const {
-    response,
-    isStreaming,
-    error,
-    ask,
-    stop,
-    reset,
-  } = usePregnancyAI({ aiType: "daily-tips" });
+  const { generateContent, isLoading, error } = usePregnancyAI();
 
-  const handleGenerateInsight = () => {
+  const handleGenerateInsight = useCallback(async () => {
     setShowAI(true);
-    const prompt = `Give me a personalized daily insight for pregnancy week ${week} (trimester ${trimester}).
+    setAiLoading(true);
+    setAiContent("");
+    try {
+      const prompt = `Give me a personalized daily insight for pregnancy week ${week} (trimester ${trimester}).
 Context: Water intake today: ${stats.dailyTracking.waterGlasses} glasses. Kicks today: ${stats.dailyTracking.todayKicks}. Vitamins taken: ${stats.dailyTracking.vitaminsTaken}. Upcoming appointments: ${stats.planning.upcomingAppointments}.
 ${profile.healthConditions?.length ? `Health conditions: ${profile.healthConditions.join(', ')}` : ''}
 Provide: 1 main recommendation, 2 secondary tips (nutrition + activity). Keep it concise and actionable.`;
-    ask(prompt);
-  };
+      const result = await generateContent(prompt);
+      setAiContent(result || "");
+    } catch {
+      // error handled by hook
+    } finally {
+      setAiLoading(false);
+    }
+  }, [week, trimester, stats, profile.healthConditions, generateContent]);
 
   // Secondary suggestion cards based on local data
   const suggestions = [
@@ -116,14 +120,11 @@ Provide: 1 main recommendation, 2 secondary tips (nutrition + activity). Keep it
                 </h2>
               </div>
 
-              {showAI && (response || isStreaming || error) ? (
+              {showAI && (aiContent || aiLoading || error) ? (
                 <AIResponseFrame
-                  response={response}
-                  isStreaming={isStreaming}
-                  error={error}
-                  onRetry={handleGenerateInsight}
-                  onStop={stop}
-                  onReset={() => { reset(); setShowAI(false); }}
+                  content={aiContent}
+                  isLoading={aiLoading || isLoading}
+                  toolId="daily-insights"
                 />
               ) : (
                 <div className="space-y-3">
@@ -132,7 +133,7 @@ Provide: 1 main recommendation, 2 secondary tips (nutrition + activity). Keep it
                   </p>
                   <AIActionButton
                     onClick={handleGenerateInsight}
-                    isLoading={isStreaming}
+                    isLoading={aiLoading || isLoading}
                     label={t("dailyInsights.generateInsight")}
                   />
                 </div>
