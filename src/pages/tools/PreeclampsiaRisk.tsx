@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { Heart, CheckCircle, AlertTriangle, Info } from "lucide-react";
-import { WhenToCallDoctorCard } from "@/components/safety";
+import { WhenToCallDoctorCard, EvidenceInfoBlock } from "@/components/safety";
 import { ToolFrame } from "@/components/ToolFrame";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -221,6 +221,19 @@ Encouraging message about proactive health management`}
                     buttonText={t('preeclampsiaRisk.getPreventionPlan')}
                   />
                 )}
+
+                {/* Evidence-based medical info */}
+                <EvidenceInfoBlock
+                  title={t('preeclampsiaRisk.evidence.title', 'ما هو تسمم الحمل؟')}
+                  content={t('preeclampsiaRisk.evidence.content', 'تسمم الحمل (Preeclampsia) هو حالة تصيب 3-8% من حالات الحمل حول العالم، وتتميز بارتفاع ضغط الدم مع وجود بروتين في البول بعد الأسبوع 20. الاكتشاف المبكر والمتابعة المنتظمة يقللان المخاطر بنسبة تصل إلى 60%.')}
+                  source={t('preeclampsiaRisk.evidence.source', 'المصدر: WHO — Recommendations for Prevention and Treatment of Pre-eclampsia, 2023')}
+                />
+
+                <EvidenceInfoBlock
+                  title={t('preeclampsiaRisk.evidence2.title', 'الوقاية والأسبرين')}
+                  content={t('preeclampsiaRisk.evidence2.content', 'توصي الكلية الأمريكية لأطباء النساء والتوليد (ACOG) بجرعة منخفضة من الأسبرين (81 ملغ يومياً) بدءاً من الأسبوع 12-16 للنساء المعرضات لخطر مرتفع، مما يقلل خطر تسمم الحمل بنسبة 24%. استشيري طبيبتك دائماً قبل تناول أي دواء.')}
+                  source={t('preeclampsiaRisk.evidence2.source', 'المصدر: ACOG Practice Advisory — Low-Dose Aspirin for Preeclampsia Prevention, 2024')}
+                />
 
                 {/* When to Call Doctor — Preeclampsia context */}
                 <WhenToCallDoctorCard context="preeclampsia" />

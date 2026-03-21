@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { WhenToCallDoctorCard } from '@/components/safety';
+import { WhenToCallDoctorCard, EvidenceInfoBlock } from '@/components/safety';
 import { AIResponseFrame } from '@/components/ai/AIResponseFrame';
 import { PrintableReport } from '@/components/PrintableReport';
 import { motion } from 'framer-motion';
@@ -393,6 +393,19 @@ Provide brief, supportive wellness insights about these feelings during week ${c
             </CardContent>
           </Card>
         )}
+
+        {/* Evidence-based medical info */}
+        <EvidenceInfoBlock
+          title={t('symptomAnalyzer.evidence.title', 'متى تكون الأعراض طبيعية؟')}
+          content={t('symptomAnalyzer.evidence.content', 'الغثيان والإرهاق والصداع من أكثر أعراض الحمل شيوعاً وتصيب حتى 80% من الحوامل. معظم هذه الأعراض تتحسن تلقائياً بعد الثلث الأول. لكن الأعراض المفاجئة أو الشديدة مثل تورم الوجه أو اضطرابات الرؤية تستدعي استشارة طبية فورية.')}
+          source={t('symptomAnalyzer.evidence.source', 'المصدر: ACOG Practice Bulletin — Nausea and Vomiting of Pregnancy, 2024')}
+        />
+
+        <EvidenceInfoBlock
+          title={t('symptomAnalyzer.evidence2.title', 'أهمية تتبع الأعراض')}
+          content={t('symptomAnalyzer.evidence2.content', 'أظهرت الدراسات أن النساء اللواتي يسجلن أعراضهن بانتظام يكتشفن المضاعفات أبكر بنسبة 40%، مما يحسّن نتائج الحمل بشكل ملحوظ. التسجيل اليومي يساعد طبيبتك على فهم نمط أعراضك بشكل أفضل.')}
+          source={t('symptomAnalyzer.evidence2.source', 'المصدر: BMC Pregnancy and Childbirth, 2023 — Digital symptom tracking in pregnancy')}
+        />
 
         {/* When to Call Doctor — educational, non-diagnostic */}
         <WhenToCallDoctorCard context="symptoms" />
