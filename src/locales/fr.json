@@ -3657,6 +3657,8 @@
       "entryRemoved": "Entrée supprimée",
       "saveEntry": "Enregistrer",
       "saveWeight": "Enregistrer le poids",
+      "editProfile": "Modifier",
+      "saveProfile": "Enregistrer le profil",
       "showAll": "Tout afficher",
       "showLess": "Moins",
       "totalDistribution": "Répartition totale du poids",

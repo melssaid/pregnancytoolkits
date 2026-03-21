@@ -3508,6 +3508,8 @@
       "entryRemoved": "Entry removed",
       "saveEntry": "Save entry",
       "saveWeight": "Save weight",
+      "editProfile": "Edit",
+      "saveProfile": "Save Profile",
       "showAll": "Show all",
       "showLess": "Show less",
       "totalDistribution": "Total Weight Distribution",
