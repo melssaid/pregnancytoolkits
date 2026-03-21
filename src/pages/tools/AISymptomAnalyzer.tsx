@@ -8,7 +8,7 @@ import {
   Brain, Info, Sparkles, Calendar, 
   Clock, Trash2, ChevronDown, ChevronUp, Plus, Heart, SmilePlus, NotebookPen,
 } from 'lucide-react';
-import { WellnessDiaryChart } from '@/components/charts/WellnessDiaryChart';
+
 import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
@@ -60,7 +60,7 @@ const AISymptomAnalyzer: React.FC = () => {
   const [showDisclaimer, setShowDisclaimer] = useState(true);
   const { profile: userProfile } = useUserProfile();
   const [currentWeek, setCurrentWeek] = useState(userProfile.pregnancyWeek || 12);
-  const [chartPulse, setChartPulse] = useState(false);
+  
 
   const [selectedSymptoms, setSelectedSymptoms] = useState<string[]>([]);
   const [selectedMood, setSelectedMood] = useState<string>('');
