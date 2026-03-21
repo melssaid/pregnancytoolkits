@@ -1,64 +1,43 @@
 
 
-## خطة إصلاح مفاتيح الترجمة والنصوص العربية المتسربة
+## Plan: "Today's Insight" Preview Card + New "Daily Insights" Screen
 
-### المشكلة
-174 موضع في 9 ملفات تستخدم `t('key', 'نص عربي كفولباك')` — عند عدم وجود المفتاح في ملفات اللغة الأخرى، يظهر النص العربي بدلاً من لغة المستخدم. أيضاً دائرة نقاط الحركة في عداد الركلات غير منسقة (النص يتكسر).
+### What We're Building
 
-### الملفات المتأثرة والتغييرات
+1. **A preview card on SmartDashboard** — lightweight "Today's Insight" card showing a short contextual message based on pregnancy week + tracked data, with a "View full insight" CTA navigating to `/daily-insights`
 
-#### 1. إضافة المفاتيح المفقودة لجميع اللغات السبع (7 ملفات JSON)
-إضافة المفاتيح التالية لكل لغة:
+2. **A new `/daily-insights` page** — full intelligent experience with:
+   - Main AI-generated recommendation (contextual to week, symptoms, hydration, etc.)
+   - 2 secondary suggestion cards (nutrition, activity, etc.)
+   - Quick action buttons (track symptoms, log water, view appointments)
+   - Trust/disclaimer section
 
-**kickCounter** (مفقودة في كل اللغات):
-- `toolsInternal.kickCounter.aiAnalysisTitle`
-- `toolsInternal.kickCounter.aiAnalysisButton`
+### Files to Create
 
-**evidence blocks** (مفقودة في en, fr, de, tr, es, pt):
-- `preeclampsiaRisk.evidence.*` + `evidence2.*`
-- `gdm.evidence.*` + `evidence2.*`
-- `symptomAnalyzer.evidence.*` + `evidence2.*`
+| File | Purpose |
+|------|---------|
+| `src/components/dashboard/TodaysInsightCard.tsx` | Preview card for dashboard — generates a short contextual tip from local data (no AI call), with CTA to `/daily-insights` |
+| `src/pages/DailyInsights.tsx` | Full insights screen with AI-powered main recommendation, secondary suggestions, quick actions, trust section |
 
-**settings** (مفقودة):
-- `settings.deleteAccount.title/description`
-- `settings.aiReset.title/status/success/button`
+### Files to Modify
 
-**paywall** (مفقودة):
-- `paywall.title/subtitle/trialDesc/startTrial/subscribeButton/maybeLater`
+| File | Change |
+|------|--------|
+| `src/pages/SmartDashboard.tsx` | Insert `<TodaysInsightCard />` between Risk Alerts and Daily Priorities (position 2.5) |
+| `src/components/AnimatedRoutes.tsx` | Add lazy import + route for `/daily-insights` |
+| `src/locales/en.json` | Add `dailyInsights.*` keys |
+| `src/locales/ar.json` | Arabic translations |
+| `src/locales/de.json` | German translations |
+| `src/locales/es.json` | Spanish translations |
+| `src/locales/fr.json` | French translations |
+| `src/locales/pt.json` | Portuguese translations |
+| `src/locales/tr.json` | Turkish translations |
 
-**AI components** (مفقودة):
-- `aiUsage.subscribePro`
-- `toolsInternal.babyGrowth.monthUnit`
+### Technical Details
 
-#### 2. إصلاح الفولباك في الملفات TSX (9 ملفات)
-تغيير كل `t('key', 'نص عربي')` إلى `t('key')` فقط — بدون فولباك عربي — لأن النص الصحيح سيكون موجود في ملفات اللغة.
+**TodaysInsightCard** — Pure client-side logic, no AI call. Uses `useUserProfile` and `useTrackingStats` to pick a contextual tip from a week-based map (e.g., week 28 → hydration focus, week 36 → hospital bag reminder). Renders as a gradient card with Sparkles icon, short text, and a "View full insight →" button.
 
-**الملفات**:
-- `src/pages/tools/SmartKickCounter.tsx`
-- `src/pages/tools/PreeclampsiaRisk.tsx`
-- `src/pages/tools/GestationalDiabetes.tsx`
-- `src/pages/tools/AISymptomAnalyzer.tsx`
-- `src/pages/tools/BabyGrowth.tsx`
-- `src/pages/tools/SmartWeightGainAnalyzer.tsx`
-- `src/pages/Settings.tsx`
-- `src/components/PaywallSheet.tsx`
-- `src/components/ai/AIResponseFrame.tsx`
+**DailyInsights page** — Uses `usePregnancyAI` to generate a main recommendation via streaming. Secondary suggestions are derived from local data (upcoming appointments, vitamin status, symptom trends). Quick actions link to existing tools. Trust section uses existing `InlineDisclaimer`.
 
-#### 3. إصلاح تنسيق دائرة نقاط الحركة
-في `KickPatternVisualizer.tsx`: إضافة `flex-shrink-0` للدائرة و `min-w-0 overflow-hidden` للنصوص لمنع التكسر على الشاشات الصغيرة.
-
-### ملفات الترجمة المعدّلة
-- `src/locales/en.json`
-- `src/locales/fr.json`
-- `src/locales/ar.json`
-- `src/locales/de.json`
-- `src/locales/tr.json`
-- `src/locales/es.json`
-- `src/locales/pt.json`
-
-### الملخص
-- ~174 فولباك عربي → مفاتيح ترجمة صحيحة
-- 7 ملفات لغة تحتاج مفاتيح جديدة
-- 9 ملفات TSX تحتاج إزالة الفولباك العربي
-- إصلاح تنسيق دائرة الحركة للشاشات الصغيرة
+**Data sources**: `useUserProfile` (week, due date, conditions), `useTrackingStats` (kicks, water, vitamins, symptoms), `safeParseLocalStorage` for wellness diary entries and appointments.
 
