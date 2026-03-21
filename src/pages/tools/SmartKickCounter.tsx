@@ -194,27 +194,44 @@ const SmartKickCounter: React.FC = () => {
       toolId="smart-kick-counter"
     >
       <div className="space-y-4">
-        {/* Movement Score - Compact */}
+        {/* Movement Score + Quick Stats — unified strip */}
         {history.length > 0 && (
-          <Card className="border-primary/15">
-            <CardContent className="py-2.5 px-3">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="relative w-12 h-12">
-                    <svg className="w-full h-full transform -rotate-90">
-                      <circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" strokeWidth="4" className="text-muted/20" />
-                      <circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" strokeWidth="4"
-                        strokeDasharray={`${(movementScore / 100) * 126} 126`} strokeLinecap="round"
-                        className={getScoreColor(movementScore)} />
-                    </svg>
-                    <span className={`absolute inset-0 flex items-center justify-center text-xs font-bold ${getScoreColor(movementScore)}`}>{movementScore}</span>
-                  </div>
-                  <div>
-                    <p className="text-xs font-semibold text-foreground">{t('toolsInternal.kickCounter.movementScore')}</p>
-                    <p className="text-[11px] text-muted-foreground">{t('toolsInternal.kickCounter.basedOnSessions', { count: history.length })}</p>
-                  </div>
+          <Card className="border-primary/15 overflow-hidden">
+            <CardContent className="p-0">
+              {/* Score row */}
+              <div className="flex items-center gap-3 px-3 py-2.5 border-b border-border/10">
+                <div className="relative w-11 h-11 flex-shrink-0">
+                  <svg className="w-full h-full transform -rotate-90">
+                    <circle cx="22" cy="22" r="18" fill="none" stroke="currentColor" strokeWidth="3.5" className="text-muted/20" />
+                    <circle cx="22" cy="22" r="18" fill="none" stroke="currentColor" strokeWidth="3.5"
+                      strokeDasharray={`${(movementScore / 100) * 113} 113`} strokeLinecap="round"
+                      className={getScoreColor(movementScore)} />
+                  </svg>
+                  <span className={`absolute inset-0 flex items-center justify-center text-[11px] font-bold ${getScoreColor(movementScore)}`}>{movementScore}</span>
                 </div>
-                <span className="text-xs text-muted-foreground">{getAverageKicks()} {t('toolsInternal.kickCounter.avgKicks')}</span>
+                <div className="flex-1">
+                  <p className="text-xs font-semibold text-foreground">{t('toolsInternal.kickCounter.movementScore')}</p>
+                  <p className="text-[10px] text-muted-foreground">{t('toolsInternal.kickCounter.basedOnSessions', { count: history.length })}</p>
+                </div>
+              </div>
+              {/* Mini stats row */}
+              <div className="grid grid-cols-3 divide-x divide-border/10">
+                <div className="p-2.5 text-center">
+                  <div className="text-sm font-bold text-foreground">{getAverageKicks()}</div>
+                  <p className="text-[9px] text-muted-foreground">{t('toolsInternal.kickCounter.avgKicks')}</p>
+                </div>
+                <div className="p-2.5 text-center">
+                  <div className="text-sm font-bold text-foreground">{history.length}</div>
+                  <p className="text-[9px] text-muted-foreground">{t('toolsInternal.kickCounter.sessions')}</p>
+                </div>
+                <div className="p-2.5 text-center">
+                  <div className="text-sm font-bold text-foreground">
+                    {history.length > 0 
+                      ? Math.round(history.reduce((sum: number, s: any) => sum + (s.duration_minutes || 0), 0) / history.length)
+                      : 0}
+                  </div>
+                  <p className="text-[9px] text-muted-foreground">{t('toolsInternal.kickCounter.avgMin')}</p>
+                </div>
               </div>
             </CardContent>
           </Card>
