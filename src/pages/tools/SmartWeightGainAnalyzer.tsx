@@ -22,6 +22,7 @@ import { WeeklySummaryHero } from '@/components/weight-gain/WeeklySummaryHero';
 import { WeeklyGoalCard } from '@/components/weight-gain/WeeklyGoalCard';
 import { TrimesterComparison } from '@/components/weight-gain/TrimesterComparison';
 import { AIInsightCard } from '@/components/ai/AIInsightCard';
+import { WhenToCallDoctorCard, EvidenceInfoBlock } from '@/components/safety';
 
 interface WeightEntry {
   id: string;
@@ -765,6 +766,21 @@ Provide personalized weight management advice based on this data.`}
             </Card>
           </motion.div>
         )}
+
+        {/* Clinical Safety System */}
+        <EvidenceInfoBlock
+          title={t('weightGain.evidence.title', 'معدل الزيادة الطبيعي')}
+          content={t('weightGain.evidence.content', 'تختلف الزيادة المثالية حسب مؤشر كتلة الجسم قبل الحمل: الوزن الطبيعي (BMI 18.5-24.9) يُنصح بزيادة 11.5-16 كجم، بينما الوزن الزائد (BMI 25-29.9) يُنصح بزيادة 7-11.5 كجم.')}
+          source={t('weightGain.evidence.source', 'المصدر: Institute of Medicine (IOM) — Weight Gain During Pregnancy Guidelines, 2024')}
+        />
+
+        <EvidenceInfoBlock
+          title={t('weightGain.evidence2.title', 'متى تقلقين من الزيادة؟')}
+          content={t('weightGain.evidence2.content', 'زيادة أكثر من 1 كجم في أسبوع واحد بعد الأسبوع 20 قد تشير لاحتباس السوائل وتستدعي فحص ضغط الدم. عدم اكتساب أي وزن لمدة أسبوعين متتاليين يستدعي استشارة طبية.')}
+          source={t('weightGain.evidence2.source', 'المصدر: ACOG Committee Opinion — Weight Gain During Pregnancy, 2023')}
+        />
+
+        <WhenToCallDoctorCard context="weightGain" />
 
       </div>
     </ToolFrame>

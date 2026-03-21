@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { AlertTriangle, CheckCircle, Info, Shield } from "lucide-react";
+import { WhenToCallDoctorCard, EvidenceInfoBlock } from "@/components/safety";
 import { ToolFrame } from "@/components/ToolFrame";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -201,6 +202,21 @@ Encouraging message about managing this condition`}
             </ul>
           </CardContent>
         </Card>
+
+        {/* Evidence-based medical info */}
+        <EvidenceInfoBlock
+          title={t('gdm.evidence.title', 'فحص سكري الحمل')}
+          content={t('gdm.evidence.content', 'يُجرى فحص تحمّل الغلوكوز عادةً بين الأسبوعين 24-28 من الحمل. سكري الحمل يصيب 6-9% من الحوامل عالمياً، ويمكن السيطرة عليه بالنظام الغذائي والتمارين في 80-90% من الحالات دون الحاجة للأنسولين.')}
+          source={t('gdm.evidence.source', 'المصدر: American Diabetes Association — Standards of Care in Diabetes, 2024')}
+        />
+
+        <EvidenceInfoBlock
+          title={t('gdm.evidence2.title', 'تأثير النظام الغذائي')}
+          content={t('gdm.evidence2.content', 'أظهرت الدراسات أن اتباع نظام غذائي منخفض السكر (Low GI) يقلل خطر الإصابة بسكري الحمل بنسبة 33%، ويحسّن مستويات السكر لدى المصابات. تقسيم الوجبات إلى 5-6 وجبات صغيرة يومياً يساعد في استقرار السكر.')}
+          source={t('gdm.evidence2.source', 'المصدر: Cochrane Review — Diet and Exercise for GDM Prevention, 2023')}
+        />
+
+        <WhenToCallDoctorCard context="gestationalDiabetes" />
 
         <Card className="bg-muted/30">
           <CardContent className="pt-4">
