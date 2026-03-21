@@ -131,7 +131,7 @@ Provide brief, supportive wellness insights about these feelings during week ${c
       createdAt: new Date().toISOString(),
     };
 
-    const updated = [newEntry, ...entries].slice(0, 100);
+    const updated = [newEntry, ...entries].slice(0, 90);
     setEntries(updated);
     safeSaveToLocalStorage(STORAGE_KEY, updated);
     window.dispatchEvent(new Event("storage"));

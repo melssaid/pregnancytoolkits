@@ -68,7 +68,7 @@ export default function SmartWeightGainAnalyzer() {
 
   // Persist entries
   useEffect(() => {
-    localStorage.setItem('weightGainEntries', JSON.stringify(entries));
+    localStorage.setItem('weightGainEntries', JSON.stringify(entries.slice(-45)));
     window.dispatchEvent(new Event('storage'));
   }, [entries]);
 
