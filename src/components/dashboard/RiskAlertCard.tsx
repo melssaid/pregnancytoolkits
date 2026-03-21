@@ -33,9 +33,6 @@ function buildAlerts(
   todayKicks: number,
   bloodPressure?: string
 ): Alert[] {
-  todayKicks: number,
-  bloodPressure?: string
-): Alert[] {
   const alerts: Alert[] = [];
   const today = getToday();
   const userId = getUserId();
