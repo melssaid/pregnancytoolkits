@@ -8096,5 +8096,12 @@
       "swelling": "Gonflement",
       "heartburn": "Brûlures d'estomac"
     }
+  },
+  "wellnessStats": {
+    "title": "Résumé bien-être",
+    "entries": "Entrées",
+    "symptoms": "Symptômes",
+    "avgMood": "Humeur moy.",
+    "mostCommon": "Le plus fréquent"
   }
 }
