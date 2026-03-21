@@ -7759,5 +7759,31 @@
       "content": "Ganar más de 1 kg en una semana después de la semana 20 puede indicar retención de líquidos y requiere control de presión arterial. No ganar peso durante dos semanas consecutivas amerita consulta médica.",
       "source": "Fuente: ACOG Committee Opinion — Aumento de peso durante el embarazo, 2023"
     }
+  },
+  "quickLog": {
+    "title": "Registra tu día",
+    "trend": "Tendencia",
+    "howFeeling": "¿Cómo te sientes hoy?",
+    "symptoms": "Síntomas",
+    "save": "Guardar",
+    "saved": "Guardado ✓",
+    "last7Days": "Últimos 7 días",
+    "moods": {
+      "1": "Mal",
+      "2": "Bajo",
+      "3": "Regular",
+      "4": "Bien",
+      "5": "Genial"
+    },
+    "symptomNames": {
+      "nausea": "Náuseas",
+      "fatigue": "Fatiga",
+      "headache": "Dolor de cabeza",
+      "backpain": "Dolor de espalda",
+      "cramps": "Calambres",
+      "insomnia": "Insomnio",
+      "swelling": "Hinchazón",
+      "heartburn": "Acidez"
+    }
   }
 }

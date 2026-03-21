@@ -8045,5 +8045,31 @@
       "content": "Eine Zunahme von mehr als 1 kg in einer Woche nach Woche 20 kann auf Wassereinlagerungen hindeuten und erfordert eine Blutdruckkontrolle. Keine Gewichtszunahme über zwei aufeinanderfolgende Wochen erfordert eine ärztliche Beratung.",
       "source": "Quelle: ACOG Committee Opinion — Gewichtszunahme in der Schwangerschaft, 2023"
     }
+  },
+  "quickLog": {
+    "title": "Tag protokollieren",
+    "trend": "Trend",
+    "howFeeling": "Wie fühlen Sie sich heute?",
+    "symptoms": "Symptome",
+    "save": "Speichern",
+    "saved": "Gespeichert ✓",
+    "last7Days": "Letzte 7 Tage",
+    "moods": {
+      "1": "Schlecht",
+      "2": "Niedrig",
+      "3": "Okay",
+      "4": "Gut",
+      "5": "Super"
+    },
+    "symptomNames": {
+      "nausea": "Übelkeit",
+      "fatigue": "Müdigkeit",
+      "headache": "Kopfschmerzen",
+      "backpain": "Rückenschmerzen",
+      "cramps": "Krämpfe",
+      "insomnia": "Schlaflosigkeit",
+      "swelling": "Schwellung",
+      "heartburn": "Sodbrennen"
+    }
   }
 }

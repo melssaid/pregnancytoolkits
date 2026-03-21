@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { WhenToCallDoctorCard, EvidenceInfoBlock } from '@/components/safety';
+import { useUserProfile } from '@/hooks/useUserProfile';
 import { AIResponseFrame } from '@/components/ai/AIResponseFrame';
 import { PrintableReport } from '@/components/PrintableReport';
 import { motion } from 'framer-motion';
@@ -57,7 +58,8 @@ const AISymptomAnalyzer: React.FC = () => {
   const { t } = useTranslation();
   const { streamChat, isLoading: aiLoading } = usePregnancyAI();
   const [showDisclaimer, setShowDisclaimer] = useState(true);
-  const [currentWeek, setCurrentWeek] = useState(12);
+  const { profile: userProfile } = useUserProfile();
+  const [currentWeek, setCurrentWeek] = useState(userProfile.pregnancyWeek || 12);
   const [chartPulse, setChartPulse] = useState(false);
 
   const [selectedSymptoms, setSelectedSymptoms] = useState<string[]>([]);
@@ -132,6 +134,7 @@ Provide brief, supportive wellness insights about these feelings during week ${c
     const updated = [newEntry, ...entries].slice(0, 100);
     setEntries(updated);
     safeSaveToLocalStorage(STORAGE_KEY, updated);
+    window.dispatchEvent(new Event("storage"));
 
     setSelectedSymptoms([]);
     setSelectedMood('');
