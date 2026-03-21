@@ -558,7 +558,10 @@
       "moods": {
         "excellent": "Excelente",
         "good": "Bom",
+        "great": "Ótimo",
         "normal": "Normal",
+        "okay": "Razoável",
+        "low": "Baixo",
         "anxious": "Ansiosa",
         "bad": "Ruim"
       },
