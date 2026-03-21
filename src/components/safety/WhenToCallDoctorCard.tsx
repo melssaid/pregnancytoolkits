@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Phone, Stethoscope } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-type Context = "kickCounter" | "contraction" | "symptoms" | "preeclampsia" | "general";
+type Context = "kickCounter" | "contraction" | "symptoms" | "preeclampsia" | "gestationalDiabetes" | "weightGain" | "general";
 
 interface WhenToCallDoctorCardProps {
   context: Context;
@@ -17,6 +17,8 @@ const itemCounts: Record<Context, number> = {
   contraction: 4,
   symptoms: 5,
   preeclampsia: 5,
+  gestationalDiabetes: 4,
+  weightGain: 4,
   general: 5,
 };
 

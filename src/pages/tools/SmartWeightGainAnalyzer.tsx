@@ -22,6 +22,7 @@ import { WeeklySummaryHero } from '@/components/weight-gain/WeeklySummaryHero';
 import { WeeklyGoalCard } from '@/components/weight-gain/WeeklyGoalCard';
 import { TrimesterComparison } from '@/components/weight-gain/TrimesterComparison';
 import { AIInsightCard } from '@/components/ai/AIInsightCard';
+import { WhenToCallDoctorCard, EvidenceInfoBlock } from '@/components/safety';
 
 interface WeightEntry {
   id: string;
