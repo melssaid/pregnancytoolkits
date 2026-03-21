@@ -1,5 +1,9 @@
 import { useState, useRef, useCallback } from "react";
 import { useTranslation } from "react-i18next";
+const STORAGE_KEY = 'ai_daily_usage';
+function isAdminBypass(): boolean {
+  try { const r = localStorage.getItem(STORAGE_KEY); return r ? JSON.parse(r).adminBypass === true : false; } catch { return false; }
+}
 import { Brain } from "lucide-react";
 import { ToolFrame } from "@/components/ToolFrame";
 import { SavedResultsViewer } from "@/components/ai/SavedResultsViewer";
