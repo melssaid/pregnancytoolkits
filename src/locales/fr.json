@@ -8135,6 +8135,10 @@
       "hospitalBag": "Semaine {{week}} : il est temps de préparer votre valise maternité",
       "bonding": "Parlez ou chantez à votre bébé — il peut vous entendre !",
       "general": "Chaque semaine apporte de nouveaux changements — restez informée"
+    },
+    "savedTips": {
+      "title": "Conseils sauvegardés",
+      "week": "Semaine {{week}}"
     }
   }
 }

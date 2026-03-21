@@ -7824,6 +7824,10 @@
       "hospitalBag": "{{week}}. hafta: hastane çantanızı hazırlamanın zamanı",
       "bonding": "Bebeğinizle konuşun veya şarkı söyleyin — sizi duyabilir!",
       "general": "Her hafta yeni değişiklikler getirir — bilgili kalın"
+    },
+    "savedTips": {
+      "title": "Kaydedilen İpuçları",
+      "week": "Hafta {{week}}"
     }
   }
 }
