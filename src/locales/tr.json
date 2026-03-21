@@ -7792,5 +7792,38 @@
     "symptoms": "Belirtiler",
     "avgMood": "Ort. Ruh hali",
     "mostCommon": "En yaygın"
+  },
+  "dailyInsights": {
+    "pageTitle": "Günlük İpuçları",
+    "todaysInsight": "Bugünün İpucu",
+    "viewFull": "Tüm ipuçlarını gör",
+    "badge": "Hafta {{week}}",
+    "title": "Günlük İpuçları",
+    "subtitle": "Sizin için kişiselleştirilmiş öneriler",
+    "mainRecommendation": "Öneriniz",
+    "aiPromptDesc": "Hamilelik verilerinize dayalı kişiselleştirilmiş bir yapay zeka ipucu alın",
+    "generateInsight": "İpucumu oluştur",
+    "quickActions": "Hızlı İşlemler",
+    "suggestions": {
+      "hydration": { "title": "Sıvı Alımı", "desc": "Bugün {{glasses}} bardak — devam edin!" },
+      "movement": { "title": "Bebek Hareketi", "desc": "Bugün {{kicks}} tekme kaydedildi" }
+    },
+    "actions": {
+      "logSymptoms": "Belirtileri kaydet",
+      "trackWater": "Su takibi",
+      "logVitamins": "Vitamin kaydet",
+      "viewAppointments": "Randevular"
+    },
+    "tips": {
+      "hydration": "{{week}}. haftadasınız — yeterli su içmek şimdi çok önemli",
+      "movement": "{{week}}. hafta: bebeğinizin hareketlerini düzenli takip edin",
+      "vitamins": "Bugün hamilelik vitaminlerinizi unutmayın",
+      "rest": "Vücudunuz {{week}}. haftada çok çalışıyor — dinlenmeye öncelik verin",
+      "nutrition": "{{week}}. hafta önemli bir büyüme dönemi — demir açısından zengin gıdalara odaklanın",
+      "appointment": "Yaklaşan randevularınız var — sorularınızı hazırlayın",
+      "hospitalBag": "{{week}}. hafta: hastane çantanızı hazırlamanın zamanı",
+      "bonding": "Bebeğinizle konuşun veya şarkı söyleyin — sizi duyabilir!",
+      "general": "Her hafta yeni değişiklikler getirir — bilgili kalın"
+    }
   }
 }

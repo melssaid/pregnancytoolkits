@@ -7792,5 +7792,38 @@
     "symptoms": "Sintomas",
     "avgMood": "Humor médio",
     "mostCommon": "Mais comum"
+  },
+  "dailyInsights": {
+    "pageTitle": "Dicas diárias",
+    "todaysInsight": "Dica de hoje",
+    "viewFull": "Ver todas as dicas",
+    "badge": "Semana {{week}}",
+    "title": "Dicas diárias",
+    "subtitle": "Recomendações personalizadas para você",
+    "mainRecommendation": "Sua recomendação",
+    "aiPromptDesc": "Receba uma dica de IA personalizada com base nos seus dados de gravidez",
+    "generateInsight": "Gerar minha dica",
+    "quickActions": "Ações rápidas",
+    "suggestions": {
+      "hydration": { "title": "Hidratação", "desc": "{{glasses}} copos hoje — continue assim!" },
+      "movement": { "title": "Movimento do bebê", "desc": "{{kicks}} chutes registrados hoje" }
+    },
+    "actions": {
+      "logSymptoms": "Registrar sintomas",
+      "trackWater": "Registrar água",
+      "logVitamins": "Registrar vitaminas",
+      "viewAppointments": "Consultas"
+    },
+    "tips": {
+      "hydration": "Você está na semana {{week}} — manter-se hidratada é muito importante agora",
+      "movement": "Semana {{week}}: acompanhe os movimentos do bebê regularmente",
+      "vitamins": "Não esqueça suas vitaminas pré-natais hoje",
+      "rest": "Seu corpo está trabalhando muito na semana {{week}} — priorize o descanso",
+      "nutrition": "A semana {{week}} é um período de crescimento importante — foque em alimentos ricos em ferro",
+      "appointment": "Você tem consultas chegando — prepare suas perguntas",
+      "hospitalBag": "Semana {{week}}: hora de preparar a bolsa maternidade",
+      "bonding": "Converse ou cante para o bebê — ele pode te ouvir!",
+      "general": "Cada semana traz mudanças — mantenha-se informada e cuide de si"
+    }
   }
 }

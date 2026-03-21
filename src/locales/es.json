@@ -7792,5 +7792,38 @@
     "symptoms": "Síntomas",
     "avgMood": "Ánimo prom.",
     "mostCommon": "Más común"
+  },
+  "dailyInsights": {
+    "pageTitle": "Consejos diarios",
+    "todaysInsight": "Consejo de hoy",
+    "viewFull": "Ver todos los consejos",
+    "badge": "Semana {{week}}",
+    "title": "Consejos diarios",
+    "subtitle": "Recomendaciones personalizadas para ti",
+    "mainRecommendation": "Tu recomendación",
+    "aiPromptDesc": "Obtén un consejo IA personalizado basado en tus datos de embarazo",
+    "generateInsight": "Generar mi consejo",
+    "quickActions": "Acciones rápidas",
+    "suggestions": {
+      "hydration": { "title": "Hidratación", "desc": "{{glasses}} vasos hoy — ¡sigue así!" },
+      "movement": { "title": "Movimiento bebé", "desc": "{{kicks}} patadas registradas hoy" }
+    },
+    "actions": {
+      "logSymptoms": "Registrar síntomas",
+      "trackWater": "Registrar agua",
+      "logVitamins": "Registrar vitaminas",
+      "viewAppointments": "Citas"
+    },
+    "tips": {
+      "hydration": "Estás en la semana {{week}} — mantenerse hidratada es muy importante ahora",
+      "movement": "Semana {{week}}: monitorea los movimientos de tu bebé regularmente",
+      "vitamins": "No olvides tus vitaminas prenatales hoy",
+      "rest": "Tu cuerpo trabaja duro en la semana {{week}} — prioriza el descanso",
+      "nutrition": "La semana {{week}} es clave para el crecimiento — enfócate en alimentos ricos en hierro",
+      "appointment": "Tienes citas próximas — prepara tus preguntas",
+      "hospitalBag": "Semana {{week}}: es hora de preparar tu bolsa del hospital",
+      "bonding": "Habla o canta a tu bebé — ¡puede escucharte!",
+      "general": "Cada semana trae nuevos cambios — mantente informada"
+    }
   }
 }

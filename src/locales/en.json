@@ -8188,5 +8188,44 @@
     "symptoms": "Symptoms",
     "avgMood": "Avg Mood",
     "mostCommon": "Most common"
+  },
+  "dailyInsights": {
+    "pageTitle": "Daily Insights",
+    "todaysInsight": "Today's Insight",
+    "viewFull": "View full insight",
+    "badge": "Week {{week}}",
+    "title": "Daily Insights",
+    "subtitle": "Personalized recommendations just for you",
+    "mainRecommendation": "Your Recommendation",
+    "aiPromptDesc": "Get a personalized AI insight based on your pregnancy data and today's activity",
+    "generateInsight": "Generate My Insight",
+    "quickActions": "Quick Actions",
+    "suggestions": {
+      "hydration": {
+        "title": "Hydration",
+        "desc": "{{glasses}} glasses today — keep going!"
+      },
+      "movement": {
+        "title": "Baby Movement",
+        "desc": "{{kicks}} kicks recorded today"
+      }
+    },
+    "actions": {
+      "logSymptoms": "Log Symptoms",
+      "trackWater": "Track Water",
+      "logVitamins": "Log Vitamins",
+      "viewAppointments": "Appointments"
+    },
+    "tips": {
+      "hydration": "You're in week {{week}} — staying well-hydrated is especially important now",
+      "movement": "Week {{week}}: Track your baby's movements regularly for peace of mind",
+      "vitamins": "Don't forget your prenatal vitamins today — they matter most right now",
+      "rest": "Your body is working hard in week {{week}} — prioritize quality rest",
+      "nutrition": "Week {{week}} is a key growth period — focus on iron and folate-rich foods",
+      "appointment": "You have appointments coming up — prepare your questions",
+      "hospitalBag": "Week {{week}}: It's time to start preparing your hospital bag",
+      "bonding": "Talk or sing to your baby — they can hear you now!",
+      "general": "Every week brings new changes — stay informed and take care of yourself"
+    }
   }
 }
