@@ -31,7 +31,7 @@ export const HydrationTracker = memo(function HydrationTracker() {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 6 }}
+      id="hydration-tracker"
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.15 }}
       className="rounded-2xl border border-border/20 bg-card p-3.5"
