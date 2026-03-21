@@ -71,9 +71,9 @@ export const KickPatternVisualizer: React.FC<PatternVisualizerProps> = ({ sessio
   return (
     <div className="space-y-4">
       {/* Health Score Ring */}
-      <div className="flex items-center justify-between bg-gradient-to-br from-muted/50 to-muted/30 rounded-2xl p-4">
+      <div className="flex items-center justify-between bg-gradient-to-br from-muted/50 to-muted/30 rounded-2xl p-4 gap-3">
         <div className="flex items-center gap-4">
-          <div className="relative w-20 h-20">
+          <div className="relative w-20 h-20 flex-shrink-0">
             <svg className="w-20 h-20 transform -rotate-90">
               <circle cx="40" cy="40" r="35" stroke="currentColor" strokeWidth="6" fill="none" className="text-muted" />
               <motion.circle
@@ -98,7 +98,7 @@ export const KickPatternVisualizer: React.FC<PatternVisualizerProps> = ({ sessio
               </motion.span>
             </div>
           </div>
-          <div>
+          <div className="min-w-0 overflow-hidden">
             <h3 className="font-semibold text-foreground">{t('kickPattern.movementScore')}</h3>
             <p className="text-sm text-muted-foreground">
               {healthScore >= 80 ? t('kickPattern.excellent') : healthScore >= 60 ? t('kickPattern.good') : t('kickPattern.needsAttention')}
