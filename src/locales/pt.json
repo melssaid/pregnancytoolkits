@@ -6266,7 +6266,8 @@
     },
     "symptoms": {
       "title": "Resumo de sintomas",
-      "noSymptoms": "Nenhum sintoma registrado"
+      "noSymptoms": "Nenhum sintoma registrado",
+      "noData": "Registre seus sintomas e humor hoje"
     },
     "fetalMovement": {
       "title": "Movimento fetal",
@@ -6293,10 +6294,14 @@
       "lowKicks": "Menos movimentos que o normal — monitore e consulte"
     },
     "aiInsight": {
-      "title": "Análise IA",
+      "title": "Assistente inteligente",
+      "subtitle": "Faça qualquer pergunta sobre sua gravidez",
       "description": "Receba conselhos personalizados para sua semana atual",
       "generate": "Obter análise",
       "loading": "Analisando...",
+      "askSymptom": "Perguntar sobre sintomas",
+      "askNutrition": "Dicas de nutrição",
+      "askSleep": "Melhorar o sono",
       "prompt": "Dê-me uma dica de saúde personalizada para a semana {{week}} da gravidez. Foque nos 3 pontos mais importantes."
     }
   },
