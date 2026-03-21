@@ -726,12 +726,15 @@ Deno.serve(async (req) => {
 
     const DAILY_LIMIT = isPremium ? PREMIUM_DAILY_LIMIT : FREE_DAILY_LIMIT;
 
+    // ── Admin bypass check (dev/testing only) ──
+    const adminBypass = req.headers.get("X-Admin-Bypass") === "true";
+
     // ── Server-side daily limit check ──
     const userId = authenticatedUserId;
     const dailyUsed = await getDailyUsageCount(rateLimitId, userId);
     const dailyRemaining = Math.max(0, DAILY_LIMIT - dailyUsed);
     
-    if (dailyUsed >= DAILY_LIMIT) {
+    if (dailyUsed >= DAILY_LIMIT && !adminBypass) {
       return new Response(
         JSON.stringify({ error: "daily_limit_reached", used: dailyUsed, limit: DAILY_LIMIT, remaining: 0 }),
         {
