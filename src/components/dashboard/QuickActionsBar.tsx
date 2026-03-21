@@ -2,18 +2,18 @@ import { memo } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
-import { Bot, Hand, Scale, TrendingUp, Calendar, Stethoscope, Camera, Pill, Lock } from "lucide-react";
+import { Bot, Hand, Gauge, TrendingUp, Calendar, Stethoscope, Camera, Pill, Lock } from "lucide-react";
 import { useSubscriptionStatus, isToolPremium } from "@/hooks/useSubscriptionStatus";
 
 const actions = [
-  { id: "pregnancy-assistant", icon: Bot,          href: "/tools/pregnancy-assistant",  labelKey: "assistant" },
-  { id: "kick-counter",        icon: Hand,         href: "/tools/kick-counter",         labelKey: "kicks" },
-  { id: "weight-gain",         icon: Scale,        href: "/tools/weight-gain",          labelKey: "weight" },
-  { id: "fetal-growth",        icon: TrendingUp,   href: "/tools/fetal-growth",         labelKey: "growth" },
-  { id: "smart-appointment",   icon: Calendar,     href: "/tools/smart-appointment-reminder", labelKey: "appointment" },
-  { id: "ai-symptom-analyzer", icon: Stethoscope,  href: "/tools/wellness-diary",       labelKey: "symptoms" },
-  { id: "vitamin-tracker",     icon: Pill,         href: "/tools/vitamin-tracker",      labelKey: "vitamins" },
-  { id: "ai-bump-photos",      icon: Camera,       href: "/tools/ai-bump-photos",       labelKey: "photos" },
+  { id: "pregnancy-assistant", icon: Bot,          href: "/tools/pregnancy-assistant",  labelKey: "assistant", accent: "from-violet-500/15 to-violet-500/5" },
+  { id: "kick-counter",        icon: Hand,         href: "/tools/kick-counter",         labelKey: "kicks",     accent: "from-pink-500/15 to-pink-500/5" },
+  { id: "weight-gain",         icon: Gauge,        href: "/tools/weight-gain",          labelKey: "weight",    accent: "from-emerald-500/15 to-emerald-500/5" },
+  { id: "fetal-growth",        icon: TrendingUp,   href: "/tools/fetal-growth",         labelKey: "growth",    accent: "from-blue-500/15 to-blue-500/5" },
+  { id: "smart-appointment",   icon: Calendar,     href: "/tools/smart-appointment-reminder", labelKey: "appointment", accent: "from-amber-500/15 to-amber-500/5" },
+  { id: "ai-symptom-analyzer", icon: Stethoscope,  href: "/tools/wellness-diary",       labelKey: "symptoms",  accent: "from-rose-500/15 to-rose-500/5" },
+  { id: "vitamin-tracker",     icon: Pill,         href: "/tools/vitamin-tracker",      labelKey: "vitamins",  accent: "from-teal-500/15 to-teal-500/5" },
+  { id: "ai-bump-photos",      icon: Camera,       href: "/tools/ai-bump-photos",       labelKey: "photos",    accent: "from-purple-500/15 to-purple-500/5" },
 ];
 
 export const QuickActionsBar = memo(function QuickActionsBar() {
@@ -27,8 +27,8 @@ export const QuickActionsBar = memo(function QuickActionsBar() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.12 }}
     >
-      <h3 className="text-xs font-bold text-foreground mb-2">{t("dailyDashboard.quickActions.title")}</h3>
-      <div className="flex gap-1.5 overflow-x-auto scrollbar-hide pb-1">
+      <h3 className="text-xs font-bold text-foreground mb-2.5">{t("dailyDashboard.quickActions.title")}</h3>
+      <div className="grid grid-cols-4 gap-2">
         {actions.map((action, i) => {
           const locked = isToolPremium(action.id, tier);
           return (
@@ -40,16 +40,23 @@ export const QuickActionsBar = memo(function QuickActionsBar() {
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.02 * i }}
-                className={`flex flex-col items-center gap-1 px-3 py-2 rounded-xl min-w-[60px] transition-colors ${
-                  locked ? "opacity-50 grayscale bg-muted/30" : "bg-muted/30 hover:bg-primary/10"
+                transition={{ delay: 0.025 * i }}
+                whileTap={{ scale: 0.93 }}
+                className={`flex flex-col items-center gap-1.5 py-2.5 px-1 rounded-2xl transition-all duration-200 ${
+                  locked
+                    ? "opacity-40 grayscale bg-muted/20"
+                    : `bg-gradient-to-b ${action.accent} hover:shadow-sm active:shadow-none`
                 }`}
               >
-                <div className="relative w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <action.icon className="w-4 h-4 text-primary" strokeWidth={1.75} />
-                  {locked && <Lock className="w-2.5 h-2.5 text-muted-foreground absolute -top-1 -end-1" />}
+                <div className="relative w-9 h-9 rounded-xl bg-background/80 backdrop-blur-sm border border-border/20 flex items-center justify-center shadow-sm">
+                  <action.icon className="w-[18px] h-[18px] text-primary" strokeWidth={1.75} />
+                  {locked && (
+                    <div className="absolute -top-1 -end-1 w-4 h-4 rounded-full bg-muted flex items-center justify-center border border-border/30">
+                      <Lock className="w-2 h-2 text-muted-foreground" />
+                    </div>
+                  )}
                 </div>
-                <span className="text-[9px] font-medium text-foreground text-center leading-tight whitespace-nowrap">
+                <span className="text-[9px] font-medium text-foreground/80 text-center leading-tight line-clamp-1">
                   {t(`dailyDashboard.quickActions.${action.labelKey}`)}
                 </span>
               </motion.div>

@@ -1,7 +1,7 @@
 import { memo, useMemo } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { Scale, TrendingUp, TrendingDown, ArrowRight, Minus } from "lucide-react";
+import { Gauge, TrendingUp, TrendingDown, ArrowRight, Minus } from "lucide-react";
 import { Link } from "react-router-dom";
 import { getUserId } from "@/hooks/useSupabase";
 import { safeParseLocalStorage } from "@/lib/safeStorage";
@@ -38,7 +38,7 @@ export const WeightTrendCard = memo(function WeightTrendCard() {
       >
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-2">
-            <Scale className="w-4 h-4 text-primary" />
+            <Gauge className="w-4 h-4 text-primary" />
             <h3 className="text-xs font-bold text-foreground">{t("dailyDashboard.weight.title")}</h3>
           </div>
           <ArrowRight className="w-3.5 h-3.5 text-muted-foreground group-hover:text-primary transition-colors" />
