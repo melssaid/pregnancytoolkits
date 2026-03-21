@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Baby, RefreshCw, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -11,6 +11,7 @@ import { PrintableReport } from "@/components/PrintableReport";
 import { useResetOnLanguageChange } from "@/hooks/useResetOnLanguageChange";
 import { WeekSlider } from "@/components/WeekSlider";
 import { useUserProfile } from "@/hooks/useUserProfile";
+import { safeParseLocalStorage, safeSaveToLocalStorage } from "@/lib/safeStorage";
 
 // Weekly journey editorial components
 import { WeeklyHeroSection } from "@/components/weekly-journey/WeeklyHeroSection";
@@ -21,14 +22,44 @@ import { MentalWellnessCard } from "@/components/weekly-journey/MentalWellnessCa
 import { DoctorQuestionsCard } from "@/components/weekly-journey/DoctorQuestionsCard";
 import { WeeklyChecklistCard } from "@/components/weekly-journey/WeeklyChecklistCard";
 
+const STORAGE_KEY = "weekly-summary-data";
+
+interface WeeklySummaryEntry {
+  week: number;
+  content: string;
+  generatedAt: string;
+}
+
+function loadSavedSummaries(): WeeklySummaryEntry[] {
+  return safeParseLocalStorage<WeeklySummaryEntry[]>(STORAGE_KEY, [], (d): d is WeeklySummaryEntry[] => Array.isArray(d));
+}
+
+function saveSummary(week: number, content: string) {
+  const entries = loadSavedSummaries();
+  // Replace existing entry for same week, or prepend
+  const filtered = entries.filter(e => e.week !== week);
+  const newEntry: WeeklySummaryEntry = { week, content, generatedAt: new Date().toISOString() };
+  const updated = [newEntry, ...filtered].slice(0, 20); // keep max 20
+  safeSaveToLocalStorage(STORAGE_KEY, updated);
+}
+
 export default function WeeklySummary() {
   const { t } = useTranslation();
   const { streamChat, isLoading, error } = usePregnancyAI();
-  const { profile: userProfile } = useUserProfile();
+  const { profile: userProfile, setPregnancyWeek } = useUserProfile();
   const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [week, setWeek] = useState<number>(userProfile.pregnancyWeek || 20);
   const [aiSummary, setAiSummary] = useState("");
   const [showAI, setShowAI] = useState(false);
+
+  // Load saved AI result for the current week
+  useEffect(() => {
+    const saved = loadSavedSummaries().find(e => e.week === week);
+    if (saved && !showAI) {
+      setAiSummary(saved.content);
+      setShowAI(true);
+    }
+  }, [week]);
 
   useResetOnLanguageChange(() => {
     setAiSummary("");
@@ -37,9 +68,18 @@ export default function WeeklySummary() {
 
   const handleWeekChange = useCallback((newWeek: number) => {
     setWeek(newWeek);
-    setAiSummary("");
-    setShowAI(false);
-  }, []);
+    // Auto-save week to user profile
+    setPregnancyWeek(newWeek);
+    // Load saved result for new week
+    const saved = loadSavedSummaries().find(e => e.week === newWeek);
+    if (saved) {
+      setAiSummary(saved.content);
+      setShowAI(true);
+    } else {
+      setAiSummary("");
+      setShowAI(false);
+    }
+  }, [setPregnancyWeek]);
 
   const accumulatedRef = useRef("");
 
@@ -58,7 +98,12 @@ export default function WeeklySummary() {
         accumulatedRef.current += chunk;
         setAiSummary(prev => prev + chunk);
       },
-      onDone: () => {},
+      onDone: () => {
+        // Save result locally
+        if (accumulatedRef.current.length > 10) {
+          saveSummary(week, accumulatedRef.current);
+        }
+      },
     });
   };
 
@@ -120,7 +165,7 @@ export default function WeeklySummary() {
               onClick={generateAIInsight}
               isLoading={isLoading}
               label={t("weeklyJourney.generateAI")}
-              loadingLabel={t("toolsInternal.weeklySummary.generating", "Generating...")}
+              loadingLabel={t("toolsInternal.weeklySummary.generating")}
             />
           </motion.div>
         )}
@@ -153,7 +198,7 @@ export default function WeeklySummary() {
                     style={{ background: "linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))" }}
                   >
                     <RefreshCw className="w-3.5 h-3.5" />
-                    {t("toolsInternal.weeklySummary.regenerate", "Regenerate")}
+                    {t("toolsInternal.weeklySummary.regenerate")}
                   </motion.button>
                 </div>
               )}
