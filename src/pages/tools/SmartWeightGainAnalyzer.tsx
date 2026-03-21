@@ -9,8 +9,8 @@ import { Label } from '@/components/ui/label';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   TrendingUp, CheckCircle, Plus, Trash2,
-  Save, Calendar, Activity, Gauge, Ruler, Baby,
-  ArrowUp, ArrowDown, ChevronDown, ChevronUp, X, Info, Target, Sparkles
+  Save, Calendar, Gauge, Ruler,
+  ArrowUp, ArrowDown, ChevronDown, ChevronUp, X, Target, Edit2
 } from 'lucide-react';
 import { WeekSlider } from '@/components/WeekSlider';
 import { toast } from 'sonner';
@@ -49,22 +49,27 @@ export default function SmartWeightGainAnalyzer() {
   const [bmiCategory, setBmiCategory] = useState('normal');
   const [showAddForm, setShowAddForm] = useState(false);
   const [showAllEntries, setShowAllEntries] = useState(false);
+  const [editingProfile, setEditingProfile] = useState(false);
 
+  // Load data from profile and localStorage
   useEffect(() => {
     const saved = localStorage.getItem('weightGainEntries');
     if (saved) {
       try { setEntries(JSON.parse(saved)); } catch {}
     }
+    // Sync from profile
     if (userProfile.prePregnancyWeight) setPrePregnancyWeightState(String(userProfile.prePregnancyWeight));
+    else if (userProfile.weight) setPrePregnancyWeightState(String(userProfile.weight));
     if (userProfile.height) setHeightState(String(userProfile.height));
     if (userProfile.pregnancyWeek) setCurrentWeek(String(userProfile.pregnancyWeek));
-    // Pre-fill current weight from profile so the field isn't empty
     if (userProfile.weight) setCurrentWeight(String(userProfile.weight));
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Persist entries
   useEffect(() => {
     localStorage.setItem('weightGainEntries', JSON.stringify(entries));
+    window.dispatchEvent(new Event('storage'));
   }, [entries]);
 
   const setPrePregnancyWeight = (val: string) => {
@@ -81,6 +86,7 @@ export default function SmartWeightGainAnalyzer() {
     if (!isNaN(cm) && cm > 0) updateUserProfile({ height: cm });
   };
 
+  // BMI calculation
   useEffect(() => {
     if (prePregnancyWeight && height) {
       const bmi = parseFloat(prePregnancyWeight) / Math.pow(parseFloat(height) / 100, 2);
@@ -116,7 +122,7 @@ export default function SmartWeightGainAnalyzer() {
     const kg = parseFloat(currentWeight);
     const wk = parseInt(currentWeek);
     if (isNaN(kg) || kg <= 0) return;
-    
+
     const entry: WeightEntry = {
       id: Date.now().toString(),
       date: new Date().toISOString(),
@@ -125,7 +131,6 @@ export default function SmartWeightGainAnalyzer() {
     };
     updateUserProfile({ weight: kg, pregnancyWeek: wk });
     setEntries(prev => {
-      // Replace existing entry for same week, or add new
       const filtered = prev.filter(e => e.week !== wk);
       return [...filtered, entry].sort((a, b) => a.week - b.week);
     });
@@ -206,9 +211,6 @@ export default function SmartWeightGainAnalyzer() {
 
   const displayEntries = showAllEntries ? [...entries].reverse() : entries.slice(-3).reverse();
 
-  const step1Done = !!height;
-  const step2Done = !!prePregnancyWeight;
-
   return (
     <ToolFrame 
       title={t('toolsInternal.weightGain.title')}
@@ -219,96 +221,142 @@ export default function SmartWeightGainAnalyzer() {
     >
       <div className="space-y-3">
 
-        {/* ═══ Profile Setup: Height + Pre-pregnancy Weight ═══ */}
+        {/* ═══ Profile Card — Height + Pre-pregnancy Weight ═══ */}
         <Card className="border-border/40 overflow-hidden">
           <div className="h-0.5 bg-gradient-to-r from-primary/30 via-primary to-primary/30" />
           <CardContent className="p-3 space-y-3">
-            <div className="grid grid-cols-2 gap-3">
-              {/* Height */}
-              <div className="space-y-1.5">
-                <Label className="text-[10px] text-muted-foreground font-semibold flex items-center gap-1">
-                  <Ruler className="w-3 h-3 text-primary/60" />
-                  {t('toolsInternal.weightGain.heightCm')}
-                </Label>
-                <div className="relative">
-                  <Input
-                    type="text"
-                    inputMode="decimal"
-                    pattern="[0-9]*\.?[0-9]*"
-                    placeholder="165"
-                    value={height}
-                    onChange={(e) => setHeight(e.target.value)}
-                    className={`h-11 text-center font-bold text-base rounded-xl transition-colors ${
-                      step1Done 
-                        ? 'border-emerald-300 dark:border-emerald-700 bg-emerald-50/30 dark:bg-emerald-950/10' 
-                        : 'border-border bg-background'
-                    }`}
-                  />
-                  <span className="absolute end-3 top-1/2 -translate-y-1/2 text-[10px] text-muted-foreground/50 font-bold">cm</span>
-                  {step1Done && (
-                    <CheckCircle className="absolute -top-1 -end-1 w-4 h-4 text-emerald-500 fill-emerald-100" />
-                  )}
-                </div>
-              </div>
-
-              {/* Pre-pregnancy weight */}
-              <div className="space-y-1.5">
-                <Label className="text-[10px] text-muted-foreground font-semibold flex items-center gap-1">
-                  <Gauge className="w-3 h-3 text-primary/60" />
-                  {t('toolsInternal.weightGain.prePregnancyWeightKg')}
-                </Label>
-                <div className="relative">
-                  <Input
-                    type="text"
-                    inputMode="decimal"
-                    pattern="[0-9]*\.?[0-9]*"
-                    placeholder="60"
-                    value={prePregnancyWeight}
-                    onChange={(e) => setPrePregnancyWeight(e.target.value)}
-                    className={`h-11 text-center font-bold text-base rounded-xl transition-colors ${
-                      step2Done 
-                        ? 'border-emerald-300 dark:border-emerald-700 bg-emerald-50/30 dark:bg-emerald-950/10' 
-                        : 'border-border bg-background'
-                    }`}
-                  />
-                  <span className="absolute end-3 top-1/2 -translate-y-1/2 text-[10px] text-muted-foreground/50 font-bold">kg</span>
-                  {step2Done && (
-                    <CheckCircle className="absolute -top-1 -end-1 w-4 h-4 text-emerald-500 fill-emerald-100" />
-                  )}
-                </div>
-              </div>
+            {/* Header with edit toggle */}
+            <div className="flex items-center justify-between">
+              <h3 className="text-[11px] font-bold text-foreground flex items-center gap-1.5">
+                <Gauge className="w-3.5 h-3.5 text-primary" />
+                {t('toolsInternal.weightGain.yourProfile')}
+              </h3>
+              {profileComplete && !editingProfile && (
+                <button
+                  onClick={() => setEditingProfile(true)}
+                  className="flex items-center gap-1 text-[10px] text-primary font-medium px-2 py-1 rounded-lg hover:bg-primary/5 transition-colors"
+                >
+                  <Edit2 className="w-3 h-3" />
+                  {t('toolsInternal.weightGain.editProfile')}
+                </button>
+              )}
             </div>
 
-            {/* BMI Result */}
-            <AnimatePresence>
-              {profileComplete && (
-                <motion.div 
-                  initial={{ opacity: 0, height: 0 }} 
-                  animate={{ opacity: 1, height: 'auto' }} 
-                  exit={{ opacity: 0, height: 0 }}
-                  className="space-y-2.5 overflow-hidden"
-                >
-                  <div className="flex items-center gap-2.5 p-2.5 rounded-xl bg-muted/30 border border-border/30">
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex flex-col items-center justify-center shrink-0">
-                      <span className="text-sm font-black text-primary leading-none">{bmi.toFixed(1)}</span>
-                      <span className="text-[7px] text-primary/50 font-bold uppercase">BMI</span>
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-[11px] font-bold text-foreground">{t(`toolsInternal.weightGain.bmiCategories.${range.categoryKey}`)}</p>
-                      <p className="text-[9px] text-muted-foreground mt-0.5">
-                        {t('toolsInternal.weightGain.recommendedTotalGain')}: 
-                        <span className="font-bold text-primary ms-1">{range.min}–{range.max} kg</span>
-                      </p>
+            {/* Show summary when profile complete and NOT editing */}
+            {profileComplete && !editingProfile ? (
+              <div className="flex items-center gap-2.5 p-2.5 rounded-xl bg-muted/30 border border-border/30">
+                <div className="w-10 h-10 rounded-lg bg-primary/10 flex flex-col items-center justify-center shrink-0">
+                  <span className="text-sm font-black text-primary leading-none">{bmi.toFixed(1)}</span>
+                  <span className="text-[7px] text-primary/50 font-bold uppercase">BMI</span>
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-[11px] font-bold text-foreground">{t(`toolsInternal.weightGain.bmiCategories.${range.categoryKey}`)}</p>
+                  <div className="flex items-center gap-3 mt-0.5">
+                    <span className="text-[9px] text-muted-foreground">
+                      <Ruler className="w-2.5 h-2.5 inline me-0.5" />{height} cm
+                    </span>
+                    <span className="text-[9px] text-muted-foreground">
+                      <Gauge className="w-2.5 h-2.5 inline me-0.5" />{prePregnancyWeight} kg
+                    </span>
+                    <span className="text-[9px] text-primary font-semibold">
+                      {range.min}–{range.max} kg
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              /* Editable fields */
+              <div className="space-y-3">
+                <div className="grid grid-cols-2 gap-3">
+                  {/* Height */}
+                  <div className="space-y-1.5">
+                    <Label className="text-[10px] text-muted-foreground font-semibold flex items-center gap-1">
+                      <Ruler className="w-3 h-3 text-primary/60" />
+                      {t('toolsInternal.weightGain.heightCm')}
+                    </Label>
+                    <div className="relative">
+                      <Input
+                        type="text"
+                        inputMode="decimal"
+                        pattern="[0-9]*\.?[0-9]*"
+                        placeholder="165"
+                        value={height}
+                        onChange={(e) => setHeight(e.target.value)}
+                        className={`h-11 text-center font-bold text-base rounded-xl transition-colors ${
+                          height ? 'border-emerald-300 dark:border-emerald-700 bg-emerald-50/30 dark:bg-emerald-950/10' : 'border-border bg-background'
+                        }`}
+                      />
+                      <span className="absolute end-3 top-1/2 -translate-y-1/2 text-[10px] text-muted-foreground/50 font-bold">cm</span>
+                      {!!height && <CheckCircle className="absolute -top-1 -end-1 w-4 h-4 text-emerald-500 fill-emerald-100" />}
                     </div>
                   </div>
-                  <BMIScaleBar bmi={bmi} t={t} />
-                </motion.div>
-              )}
-            </AnimatePresence>
+
+                  {/* Pre-pregnancy weight */}
+                  <div className="space-y-1.5">
+                    <Label className="text-[10px] text-muted-foreground font-semibold flex items-center gap-1">
+                      <Gauge className="w-3 h-3 text-primary/60" />
+                      {t('toolsInternal.weightGain.prePregnancyWeightKg')}
+                    </Label>
+                    <div className="relative">
+                      <Input
+                        type="text"
+                        inputMode="decimal"
+                        pattern="[0-9]*\.?[0-9]*"
+                        placeholder="60"
+                        value={prePregnancyWeight}
+                        onChange={(e) => setPrePregnancyWeight(e.target.value)}
+                        className={`h-11 text-center font-bold text-base rounded-xl transition-colors ${
+                          prePregnancyWeight ? 'border-emerald-300 dark:border-emerald-700 bg-emerald-50/30 dark:bg-emerald-950/10' : 'border-border bg-background'
+                        }`}
+                      />
+                      <span className="absolute end-3 top-1/2 -translate-y-1/2 text-[10px] text-muted-foreground/50 font-bold">kg</span>
+                      {!!prePregnancyWeight && <CheckCircle className="absolute -top-1 -end-1 w-4 h-4 text-emerald-500 fill-emerald-100" />}
+                    </div>
+                  </div>
+                </div>
+
+                {/* BMI Result */}
+                <AnimatePresence>
+                  {profileComplete && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="space-y-2.5 overflow-hidden"
+                    >
+                      <div className="flex items-center gap-2.5 p-2.5 rounded-xl bg-muted/30 border border-border/30">
+                        <div className="w-10 h-10 rounded-lg bg-primary/10 flex flex-col items-center justify-center shrink-0">
+                          <span className="text-sm font-black text-primary leading-none">{bmi.toFixed(1)}</span>
+                          <span className="text-[7px] text-primary/50 font-bold uppercase">BMI</span>
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-[11px] font-bold text-foreground">{t(`toolsInternal.weightGain.bmiCategories.${range.categoryKey}`)}</p>
+                          <p className="text-[9px] text-muted-foreground mt-0.5">
+                            {t('toolsInternal.weightGain.recommendedTotalGain')}: 
+                            <span className="font-bold text-primary ms-1">{range.min}–{range.max} kg</span>
+                          </p>
+                        </div>
+                      </div>
+                      <BMIScaleBar bmi={bmi} t={t} />
+                      
+                      {editingProfile && (
+                        <Button
+                          onClick={() => setEditingProfile(false)}
+                          className="w-full h-10 rounded-xl text-xs font-bold"
+                        >
+                          <CheckCircle className="w-3.5 h-3.5 me-1.5" />
+                          {t('toolsInternal.weightGain.saveProfile')}
+                        </Button>
+                      )}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            )}
           </CardContent>
         </Card>
 
-        {/* ═══ Weight Registration (shows directly when profile complete) ═══ */}
+        {/* ═══ Main Content — after profile complete ═══ */}
         {profileComplete && (
           <div className="space-y-2.5">
 
@@ -397,7 +445,6 @@ export default function SmartWeightGainAnalyzer() {
                             type="text"
                             inputMode="decimal"
                             pattern="[0-9]*\.?[0-9]*"
-                            step="0.1"
                             placeholder="62.5"
                             value={currentWeight}
                             onChange={(e) => {
@@ -431,11 +478,11 @@ export default function SmartWeightGainAnalyzer() {
                         )}
                       </div>
 
-                      <div className="flex gap-2">
+                      <div className="grid grid-cols-2 gap-2">
                         <Button 
                           onClick={addEntry} 
                           disabled={!currentWeight || !currentWeek}
-                          className="flex-1 h-11 text-[13px] font-bold gap-1.5 rounded-xl shadow-sm"
+                          className="h-11 text-[13px] font-bold gap-1.5 rounded-xl shadow-sm"
                         >
                           <Save className="w-4 h-4" />
                           {t('toolsInternal.weightGain.saveEntry')}
@@ -443,7 +490,7 @@ export default function SmartWeightGainAnalyzer() {
                         <Button 
                           variant="outline" 
                           onClick={() => setShowAddForm(false)}
-                          className="h-11 px-5 rounded-xl text-[12px]"
+                          className="h-11 text-[12px] rounded-xl"
                         >
                           {t('toolsInternal.weightGain.cancel')}
                         </Button>
@@ -616,11 +663,11 @@ Provide personalized weight management advice based on this data.`}
           </div>
         )}
 
-        {/* Empty State — not profile complete */}
+        {/* Empty State */}
         {!profileComplete && (
           <Card className="border-dashed border border-border/30 overflow-hidden">
             <CardContent className="p-4 text-center space-y-2">
-              <div className="text-2xl">⚖️</div>
+              <Gauge className="w-8 h-8 text-primary/40 mx-auto" />
               <p className="text-[12px] font-bold text-foreground">{t('toolsInternal.weightGain.noEntriesYet')}</p>
               <p className="text-[10px] text-muted-foreground/60 max-w-[220px] mx-auto leading-relaxed">
                 {t('toolsInternal.weightGain.fillProfileHint')}
@@ -629,19 +676,17 @@ Provide personalized weight management advice based on this data.`}
           </Card>
         )}
 
-        {/* Clinical Safety System */}
+        {/* Clinical Safety */}
         <EvidenceInfoBlock
           title={t('weightGain.evidence.title')}
           content={t('weightGain.evidence.content')}
           source={t('weightGain.evidence.source')}
         />
-
         <EvidenceInfoBlock
           title={t('weightGain.evidence2.title')}
           content={t('weightGain.evidence2.content')}
           source={t('weightGain.evidence2.source')}
         />
-
         <WhenToCallDoctorCard context="weightGain" />
 
       </div>
