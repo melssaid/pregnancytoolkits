@@ -28,8 +28,11 @@ function safeJSON<T>(key: string, fallback: T): T {
 }
 
 function buildAlerts(
-  t: (key: string, fallback?: string) => string,
+  t: (key: string, defaultValue?: string) => any,
   week: number,
+  todayKicks: number,
+  bloodPressure?: string
+): Alert[] {
   todayKicks: number,
   bloodPressure?: string
 ): Alert[] {
