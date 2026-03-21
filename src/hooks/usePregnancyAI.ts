@@ -191,6 +191,7 @@ export function usePregnancyAI() {
                     headers: {
                       "Content-Type": "application/json",
                       Authorization: `Bearer ${session.access_token}`,
+                      ...(isAdminBypass() ? { "X-Admin-Bypass": "true" } : {}),
                     },
                     body: JSON.stringify({ type, messages, context: contextWithLanguage }),
                   }
