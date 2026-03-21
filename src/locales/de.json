@@ -536,7 +536,9 @@
       "smartPlan": "Smart-Plan",
       "aiAssistant": "KI-Assistent",
       "symptoms": "Symptome",
-      "weekly": "Wöchentlich"
+      "weekly": "Wöchentlich",
+      "mealPlan": "Essensplan",
+      "fitness": "Fitness-Leitfaden"
     },
     "chat": {
       "title": "Intelligenter Schwangerschafts-Ratgeber",
