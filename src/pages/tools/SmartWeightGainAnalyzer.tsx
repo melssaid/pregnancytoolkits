@@ -554,9 +554,9 @@ export default function SmartWeightGainAnalyzer() {
                       className="w-full mt-1.5 py-1.5 text-[10px] font-medium text-primary flex items-center justify-center gap-1 rounded-lg hover:bg-primary/5 transition-colors"
                     >
                       {showAllEntries ? (
-                        <><ChevronUp className="w-3 h-3" /> {t('toolsInternal.weightGain.showLess', 'عرض أقل')}</>
+                        <><ChevronUp className="w-3 h-3" /> {t('toolsInternal.weightGain.showLess')}</>
                       ) : (
-                        <><ChevronDown className="w-3 h-3" /> {t('toolsInternal.weightGain.showAll', 'عرض الكل')} ({entries.length})</>
+                        <><ChevronDown className="w-3 h-3" /> {t('toolsInternal.weightGain.showAll')} ({entries.length})</>
                       )}
                     </button>
                   )}
