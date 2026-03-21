@@ -814,7 +814,9 @@
   "common": {
     "calculate": "Hesapla",
     "results": "Sonuçlar",
-    "start": "Başla"
+    "start": "Başla",
+    "next": "İleri",
+    "back": "Geri"
   },
   "subscription": {
     "subscribeNow": "Premium Al - ₺24.99/ay",

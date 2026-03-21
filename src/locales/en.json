@@ -905,7 +905,8 @@
     "dailyExportLimit": "You can export up to 4 reports per day",
     "dailyExportRemaining": "{{count}} exports remaining today",
     "dailyExportLimitReached": "Daily export limit reached. Try again tomorrow.",
-    "back": "Back"
+    "back": "Back",
+    "next": "Next"
   },
   "subscription": {
     "subscribeNow": "Get Premium - $0.79/mo",

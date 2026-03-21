@@ -814,7 +814,9 @@
   "common": {
     "calculate": "Calcular",
     "results": "Resultados",
-    "start": "Iniciar"
+    "start": "Iniciar",
+    "next": "Siguiente",
+    "back": "Atrás"
   },
   "subscription": {
     "subscribeNow": "Premium - 0,79€/mes",

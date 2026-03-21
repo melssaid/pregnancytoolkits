@@ -898,7 +898,8 @@
     "dailyExportLimit": "يمكنك تصدير حتى 4 تقارير يومياً",
     "dailyExportRemaining": "{{count}} تقارير متبقية اليوم",
     "dailyExportLimitReached": "تم الوصول للحد اليومي. حاول مرة أخرى غداً.",
-    "back": "رجوع"
+    "back": "رجوع",
+    "next": "التالي"
   },
   "settings": {
     "title": "الإعدادات",

@@ -852,7 +852,8 @@
     "dailyExportLimit": "Sie können bis zu 4 Berichte pro Tag exportieren",
     "dailyExportRemaining": "{{count}} Exporte heute verbleibend",
     "dailyExportLimitReached": "Tägliches Exportlimit erreicht. Versuchen Sie es morgen erneut.",
-    "back": "Zurück"
+    "back": "Zurück",
+    "next": "Weiter"
   },
   "subscription": {
     "subscribeNow": "Premium holen - 0,79€/Monat",
