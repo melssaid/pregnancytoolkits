@@ -184,6 +184,62 @@ Provide brief, supportive wellness insights about these feelings during week ${c
           </div>
         )}
 
+        {/* Stats Summary */}
+        {entries.length > 0 && (() => {
+          const moodScores: Record<string, number> = { great: 5, good: 4, okay: 3, tired: 2, tough: 1 };
+          const moodEntries = entries.filter(e => e.mood && moodScores[e.mood]);
+          const avgMood = moodEntries.length > 0
+            ? moodEntries.reduce((sum, e) => sum + (moodScores[e.mood] || 0), 0) / moodEntries.length
+            : 0;
+          const avgMoodLabel = avgMood >= 4.5 ? 'great' : avgMood >= 3.5 ? 'good' : avgMood >= 2.5 ? 'okay' : avgMood >= 1.5 ? 'tired' : 'tough';
+          const totalSymptoms = entries.reduce((sum, e) => sum + (e.symptoms?.length || 0), 0);
+          const topSymptom = (() => {
+            const freq: Record<string, number> = {};
+            entries.forEach(e => e.symptoms?.forEach(s => { freq[s] = (freq[s] || 0) + 1; }));
+            const sorted = Object.entries(freq).sort((a, b) => b[1] - a[1]);
+            return sorted[0]?.[0];
+          })();
+
+          return (
+            <motion.div
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+            >
+              <Card className="border-primary/15 bg-gradient-to-br from-primary/[0.04] to-transparent">
+                <CardContent className="p-3">
+                  <div className="flex items-center gap-2 mb-3">
+                    <NotebookPen className="w-4 h-4 text-primary" />
+                    <span className="text-xs font-semibold text-foreground">
+                      {t('wellnessStats.title', 'Wellness Summary')}
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-3 gap-2">
+                    <div className="text-center p-2 rounded-xl bg-background/60">
+                      <p className="text-lg font-bold text-foreground">{entries.length}</p>
+                      <p className="text-[10px] text-muted-foreground">{t('wellnessStats.entries', 'Entries')}</p>
+                    </div>
+                    <div className="text-center p-2 rounded-xl bg-background/60">
+                      <p className="text-lg font-bold text-foreground">{totalSymptoms}</p>
+                      <p className="text-[10px] text-muted-foreground">{t('wellnessStats.symptoms', 'Symptoms')}</p>
+                    </div>
+                    <div className="text-center p-2 rounded-xl bg-background/60">
+                      <p className="text-lg font-bold text-foreground">
+                        {MOOD_EMOJIS[avgMoodLabel] || '—'}
+                      </p>
+                      <p className="text-[10px] text-muted-foreground">{t('wellnessStats.avgMood', 'Avg Mood')}</p>
+                    </div>
+                  </div>
+                  {topSymptom && (
+                    <p className="text-[10px] text-muted-foreground mt-2 text-center">
+                      {t('wellnessStats.mostCommon', 'Most common')}: <span className="font-medium text-foreground">{t(`toolsInternal.symptomAnalyzer.symptoms.${topSymptom}`)}</span>
+                    </p>
+                  )}
+                </CardContent>
+              </Card>
+            </motion.div>
+          );
+        })()}
+
         {/* Week Selector */}
         <WeekSlider
           week={currentWeek}
