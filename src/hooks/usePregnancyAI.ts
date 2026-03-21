@@ -3,6 +3,18 @@ import { useTranslation } from "react-i18next";
 import { useAIUsageLimit } from "./useAIUsageLimit";
 import { supabase } from "@/integrations/supabase/client";
 
+const STORAGE_KEY = 'ai_daily_usage';
+function isAdminBypass(): boolean {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      return parsed.adminBypass === true;
+    }
+  } catch {}
+  return false;
+}
+
 // Must match all types accepted by the edge function
 type AIType =
   | "symptom-analysis" | "meal-suggestion" | "pregnancy-assistant" | "weekly-summary"
@@ -124,14 +136,19 @@ export function usePregnancyAI() {
       try {
         const authHeader = await getAuthHeader();
 
+        const headers: Record<string, string> = {
+          "Content-Type": "application/json",
+          Authorization: authHeader,
+        };
+        if (isAdminBypass()) {
+          headers["X-Admin-Bypass"] = "true";
+        }
+
         const response = await fetch(
           `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/pregnancy-ai-perplexity`,
           {
             method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: authHeader,
-            },
+            headers,
             body: JSON.stringify({ type, messages, context: contextWithLanguage }),
           }
         );
@@ -174,6 +191,7 @@ export function usePregnancyAI() {
                     headers: {
                       "Content-Type": "application/json",
                       Authorization: `Bearer ${session.access_token}`,
+                      ...(isAdminBypass() ? { "X-Admin-Bypass": "true" } : {}),
                     },
                     body: JSON.stringify({ type, messages, context: contextWithLanguage }),
                   }

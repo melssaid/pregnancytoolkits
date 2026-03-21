@@ -3,7 +3,7 @@
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
+  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-admin-bypass, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
 interface EnhancedPlanRequest {
@@ -351,8 +351,9 @@ Deno.serve(async (req) => {
     }
 
     // ── Server-side daily limit check ──
+    const adminBypass = req.headers.get("X-Admin-Bypass") === "true";
     const dailyUsed = await getDailyUsageCount(rateLimitId, userId);
-    if (dailyUsed >= DAILY_LIMIT) {
+    if (dailyUsed >= DAILY_LIMIT && !adminBypass) {
       return new Response(
         JSON.stringify({ error: "daily_limit_reached", used: dailyUsed, limit: DAILY_LIMIT, remaining: 0 }),
         {
