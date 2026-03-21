@@ -136,14 +136,19 @@ export function usePregnancyAI() {
       try {
         const authHeader = await getAuthHeader();
 
+        const headers: Record<string, string> = {
+          "Content-Type": "application/json",
+          Authorization: authHeader,
+        };
+        if (isAdminBypass()) {
+          headers["X-Admin-Bypass"] = "true";
+        }
+
         const response = await fetch(
           `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/pregnancy-ai-perplexity`,
           {
             method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: authHeader,
-            },
+            headers,
             body: JSON.stringify({ type, messages, context: contextWithLanguage }),
           }
         );
