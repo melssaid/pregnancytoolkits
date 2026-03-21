@@ -38,7 +38,7 @@ export const QuickActionsBar = memo(function QuickActionsBar() {
               <div className="relative w-9 h-9 rounded-xl bg-background/80 backdrop-blur-sm border border-border/20 flex items-center justify-center shadow-sm">
                 <action.icon className="w-[18px] h-[18px] text-primary" strokeWidth={1.75} />
               </div>
-              <span className="text-[9px] font-medium text-foreground/80 text-center leading-tight line-clamp-1">
+              <span className="text-[9px] font-medium text-foreground/80 text-center leading-tight line-clamp-2 whitespace-normal">
                 {t(`dailyDashboard.quickActions.${action.labelKey}`)}
               </span>
             </motion.div>
