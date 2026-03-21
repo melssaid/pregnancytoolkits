@@ -1,11 +1,10 @@
-import { memo, useState, useCallback } from "react";
+import { memo } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { Sparkles, Loader2 } from "lucide-react";
-import { usePregnancyAI } from "@/hooks/usePregnancyAI";
+import { useNavigate } from "react-router-dom";
+import { Brain, ChevronRight, ChevronLeft, MessageCircle, Sparkles } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { MarkdownRenderer } from "@/components/MarkdownRenderer";
-import { Button } from "@/components/ui/button";
+import { useAIUsage } from "@/contexts/AIUsageContext";
 
 interface DailyAIInsightProps {
   week: number;
@@ -14,60 +13,64 @@ interface DailyAIInsightProps {
 export const DailyAIInsight = memo(function DailyAIInsight({ week }: DailyAIInsightProps) {
   const { t } = useTranslation();
   const { currentLanguage } = useLanguage();
-  const { streamChat, isLoading } = usePregnancyAI();
-  const [insight, setInsight] = useState("");
+  const navigate = useNavigate();
+  const { used, limit } = useAIUsage();
+  const isRTL = currentLanguage === "ar";
+  const remaining = Math.max(0, limit - used);
+  const ChevronIcon = isRTL ? ChevronLeft : ChevronRight;
 
-  const generateInsight = useCallback(() => {
-    if (isLoading || week <= 0) return;
-    setInsight("");
-    const prompt = t("dailyDashboard.aiInsight.prompt", { week });
-    streamChat({
-      type: "pregnancy-assistant",
-      messages: [{ role: "user", content: prompt }],
-      context: { week, language: currentLanguage },
-      onDelta: (chunk) => setInsight(prev => prev + chunk),
-      onDone: () => {},
-    });
-  }, [isLoading, week, t, streamChat, currentLanguage]);
+  const quickPrompts = [
+    { label: t("dailyDashboard.aiInsight.askSymptom", "اسألي عن أعراضك"), icon: "🩺" },
+    { label: t("dailyDashboard.aiInsight.askNutrition", "نصائح التغذية"), icon: "🥗" },
+    { label: t("dailyDashboard.aiInsight.askSleep", "تحسين النوم"), icon: "😴" },
+  ];
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 6 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.35 }}
-      className="rounded-2xl border border-primary/15 bg-gradient-to-br from-primary/[0.06] to-transparent p-3.5"
     >
-      <div className="flex items-center gap-2 mb-2.5">
-        <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center">
-          <Sparkles className="w-4 h-4 text-primary" />
+      {/* Main card — navigates to AI assistant */}
+      <button
+        onClick={() => navigate("/tools/pregnancy-assistant")}
+        className="w-full text-start rounded-2xl border border-primary/15 bg-gradient-to-br from-primary/[0.08] via-primary/[0.03] to-transparent p-4 transition-all active:scale-[0.98] hover:border-primary/30"
+      >
+        <div className="flex items-center justify-between mb-3">
+          <div className="flex items-center gap-2.5">
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center">
+              <Brain className="w-5 h-5 text-primary" />
+            </div>
+            <div>
+              <h3 className="text-sm font-bold text-foreground leading-tight">
+                {t("dailyDashboard.aiInsight.title", "المساعد الذكي")}
+              </h3>
+              <p className="text-[10px] text-muted-foreground">
+                {t("dailyDashboard.aiInsight.subtitle", "اسألي أي سؤال عن حملك")}
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <span className="text-[10px] text-muted-foreground/70 tabular-nums">
+              {remaining}/{limit}
+            </span>
+            <ChevronIcon className="w-4 h-4 text-muted-foreground/40" />
+          </div>
         </div>
-        <h3 className="text-xs font-bold text-foreground">{t("dailyDashboard.aiInsight.title")}</h3>
-      </div>
 
-      {insight ? (
-        <div className="text-sm leading-relaxed">
-          <MarkdownRenderer content={insight} />
+        {/* Quick prompt chips */}
+        <div className="flex flex-wrap gap-1.5">
+          {quickPrompts.map((prompt, i) => (
+            <span
+              key={i}
+              className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary/[0.07] text-[10px] font-medium text-primary/80"
+            >
+              <span>{prompt.icon}</span>
+              {prompt.label}
+            </span>
+          ))}
         </div>
-      ) : isLoading ? (
-        <div className="flex items-center justify-center py-4 gap-2 text-muted-foreground">
-          <Loader2 className="w-4 h-4 animate-spin" />
-          <span className="text-[11px]">{t("dailyDashboard.aiInsight.loading")}</span>
-        </div>
-      ) : (
-        <div className="text-center py-2">
-          <p className="text-[10px] text-muted-foreground mb-2">{t("dailyDashboard.aiInsight.description")}</p>
-          <Button
-            size="sm"
-            variant="outline"
-            onClick={generateInsight}
-            disabled={week <= 0}
-            className="text-xs h-8 rounded-xl border-primary/20 text-primary hover:bg-primary/10"
-          >
-            <Sparkles className="w-3 h-3 me-1.5" />
-            {t("dailyDashboard.aiInsight.generate")}
-          </Button>
-        </div>
-      )}
+      </button>
     </motion.div>
   );
 });
