@@ -253,7 +253,7 @@ const SmartKickCounter: React.FC = () => {
                     animate={{ opacity: [1, 0.3, 1] }}
                     transition={{ duration: 1.2, repeat: Infinity }}
                   />
-                  <span className="text-xs font-medium text-muted-foreground">{t('toolsInternal.kickCounter.recording', 'جارٍ التسجيل')}</span>
+                  <span className="text-xs font-medium text-muted-foreground">{t('toolsInternal.kickCounter.recording')}</span>
                 </div>
                 <div className="font-mono text-sm font-bold text-foreground tabular-nums">
                   {formatTime(elapsedTime)}
@@ -391,7 +391,7 @@ const SmartKickCounter: React.FC = () => {
                     {/* Goal progress indicator */}
                     <div className="w-full max-w-[200px]">
                       <div className="flex justify-between mb-1">
-                        <span className="text-[10px] text-muted-foreground">{t('toolsInternal.kickCounter.goal', 'الهدف')}</span>
+                        <span className="text-[10px] text-muted-foreground">{t('toolsInternal.kickCounter.goal')}</span>
                         <span className="text-[10px] font-bold text-primary">{kicks.length}/10</span>
                       </div>
                       <div className="h-1.5 bg-muted rounded-full overflow-hidden">
@@ -482,10 +482,10 @@ const SmartKickCounter: React.FC = () => {
             {/* AI Analysis — inside same container */}
             {history.length >= 3 && (
               <div className="border-t border-border/10 bg-muted/5">
-                <AIInsightCard
-                  title={t('toolsInternal.kickCounter.aiAnalysisTitle', 'تحليل ذكي للحركة')}
-                  aiType="symptom-analysis"
-                  prompt={`You are an expert perinatal nurse providing fetal movement analysis.
+                  <AIInsightCard
+                    title={t('toolsInternal.kickCounter.aiAnalysisTitle')}
+                    aiType="symptom-analysis"
+                    prompt={`You are an expert perinatal nurse providing fetal movement analysis.
 
 ## Patient Data
 - Pregnancy Week: ${currentWeek}
@@ -499,13 +499,13 @@ ${history.slice(0, 14).map((s: any) => `${new Date(s.started_at).toISOString().s
 - Movement score: ${movementScore}/100
 
 Provide: 1) Pattern review, 2) Interpretation for week ${currentWeek}, 3) Recommendations, 4) When to seek care, 5) Tips. Be supportive.`}
-                  context={{ week: currentWeek }}
-                  buttonText={t('toolsInternal.kickCounter.aiAnalysisButton', 'تحليل الحركة بالذكاء الاصطناعي')}
-                  icon={<TrendingUp className="w-4 h-4" />}
-                  showPrintButton
-                  showDisclaimer
-                  printTitle={t('toolsInternal.kickCounter.title')}
-                />
+                    context={{ week: currentWeek }}
+                    buttonText={t('toolsInternal.kickCounter.aiAnalysisButton')}
+                    icon={<TrendingUp className="w-4 h-4" />}
+                    showPrintButton
+                    showDisclaimer
+                    printTitle={t('toolsInternal.kickCounter.title')}
+                  />
               </div>
             )}
 

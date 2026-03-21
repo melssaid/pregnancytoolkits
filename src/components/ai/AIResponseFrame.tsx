@@ -145,13 +145,13 @@ export const AIResponseFrame = ({
               className="flex items-center gap-1 text-[10px] font-semibold text-primary hover:text-primary/80 transition-colors"
             >
               <Crown className="w-3 h-3" />
-              <span>{t('aiUsage.subscribePro', 'اشترك في Pro')}</span>
+              <span>{t('aiUsage.subscribePro')}</span>
             </button>
           )}
         </div>
 
         <p className="mt-2 text-center text-[9px] font-semibold text-muted-foreground/70 tracking-wide">
-          {t('ai.resultDisclaimer', 'AI-generated • Consult your doctor')}
+          {t('ai.resultDisclaimer')}
         </p>
       </div>
     </motion.div>
