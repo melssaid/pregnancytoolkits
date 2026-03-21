@@ -558,7 +558,10 @@
       "moods": {
         "excellent": "Excellent",
         "good": "Good",
+        "great": "Great",
         "normal": "Normal",
+        "okay": "Okay",
+        "low": "Low",
         "anxious": "Anxious",
         "bad": "Bad"
       },
@@ -6654,7 +6657,8 @@
     },
     "symptoms": {
       "title": "Symptoms Summary",
-      "noSymptoms": "No symptoms logged"
+      "noSymptoms": "No symptoms logged",
+      "noData": "Log your symptoms and mood today"
     },
     "fetalMovement": {
       "title": "Fetal Movement",
@@ -6681,10 +6685,14 @@
       "lowKicks": "Fewer movements than usual — monitor and consult"
     },
     "aiInsight": {
-      "title": "AI Insight",
+      "title": "Smart Assistant",
+      "subtitle": "Ask any question about your pregnancy",
       "description": "Get personalized advice for your current week",
       "generate": "Get Insight",
       "loading": "Analyzing...",
+      "askSymptom": "Ask about symptoms",
+      "askNutrition": "Nutrition tips",
+      "askSleep": "Improve sleep",
       "prompt": "Give me a brief personalized health tip for pregnancy week {{week}}. Focus on the top 3 things to watch."
     }
   },
