@@ -48,9 +48,10 @@ function saveLogs(logs: DailyLog[]) {
 }
 
 const QuickSymptomLogger = memo(function QuickSymptomLogger() {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const isAr = i18n.language === "ar";
   const today = getToday();
+  const { profile } = useUserProfile();
 
   const [logs, setLogs] = useState<DailyLog[]>(() => getLogs());
   const todayLog = useMemo(() => logs.find(l => l.date === today), [logs, today]);
@@ -67,12 +68,14 @@ const QuickSymptomLogger = memo(function QuickSymptomLogger() {
 
   const handleSave = useCallback(() => {
     if (!selectedMood) return;
-    const newLog: DailyLog = { date: today, mood: selectedMood, symptoms: selectedSymptoms };
+    const newLog: DailyLog = { date: today, mood: selectedMood, symptoms: selectedSymptoms, week: profile.pregnancyWeek || undefined };
     const updated = [...logs.filter(l => l.date !== today), newLog];
     saveLogs(updated);
     setLogs(updated);
     setSaved(true);
-  }, [selectedMood, selectedSymptoms, today, logs]);
+    // Notify dashboard components
+    window.dispatchEvent(new Event("storage"));
+  }, [selectedMood, selectedSymptoms, today, logs, profile.pregnancyWeek]);
 
   // Last 7 days mood chart
   const last7 = useMemo(() => {
