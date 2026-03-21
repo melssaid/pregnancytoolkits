@@ -303,14 +303,8 @@ Provide brief, supportive wellness insights about these feelings during week ${c
           {t('toolsInternal.symptomAnalyzer.saveEntry')}
         </Button>
 
-        {/* Wellness Trends Chart — immediately after save for real-time feedback */}
-        <motion.div
-          animate={chartPulse ? { scale: [1, 1.02, 1], boxShadow: ['0 0 0 0 hsl(var(--primary) / 0)', '0 0 0 8px hsl(var(--primary) / 0.15)', '0 0 0 0 hsl(var(--primary) / 0)'] } : {}}
-          transition={{ duration: 1.2 }}
-          className="rounded-xl"
-        >
-          <WellnessDiaryChart entries={entries} />
-        </motion.div>
+
+
 
         {/* History Section */}
         {entries.length > 0 && (
