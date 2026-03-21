@@ -536,7 +536,9 @@
       "smartPlan": "Akıllı Plan",
       "aiAssistant": "AI Asistan",
       "symptoms": "Semptomlar",
-      "weekly": "Haftalık"
+      "weekly": "Haftalık",
+      "mealPlan": "Yemek Planı",
+      "fitness": "Fitness Rehberi"
     },
     "chat": {
       "title": "Akıllı Hamilelik Rehberi",
