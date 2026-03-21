@@ -121,6 +121,7 @@ export const VitaminService = {
     const logs = loadData<typeof log>('vitamin_logs');
     logs.push(log);
     saveData('vitamin_logs', logs);
+    window.dispatchEvent(new Event('storage'));
     return log;
   },
 
