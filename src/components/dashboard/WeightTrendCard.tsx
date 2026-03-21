@@ -1,7 +1,7 @@
 import { memo, useMemo } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { Scale, TrendingUp, TrendingDown, ArrowRight, Minus } from "lucide-react";
+import { Gauge, TrendingUp, TrendingDown, ArrowRight, Minus } from "lucide-react";
 import { Link } from "react-router-dom";
 import { getUserId } from "@/hooks/useSupabase";
 import { safeParseLocalStorage } from "@/lib/safeStorage";
