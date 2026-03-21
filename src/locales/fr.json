@@ -8070,5 +8070,31 @@
       "content": "Prendre plus d'1 kg en une semaine après la 20e semaine peut indiquer une rétention d'eau et nécessite un contrôle de la tension artérielle. L'absence de prise de poids pendant deux semaines consécutives justifie une consultation médicale.",
       "source": "Source : ACOG Committee Opinion — Prise de poids pendant la grossesse, 2023"
     }
+  },
+  "quickLog": {
+    "title": "Enregistrez votre journée",
+    "trend": "Tendance",
+    "howFeeling": "Comment vous sentez-vous aujourd'hui ?",
+    "symptoms": "Symptômes",
+    "save": "Enregistrer",
+    "saved": "Enregistré ✓",
+    "last7Days": "7 derniers jours",
+    "moods": {
+      "1": "Mal",
+      "2": "Bas",
+      "3": "Correct",
+      "4": "Bien",
+      "5": "Super"
+    },
+    "symptomNames": {
+      "nausea": "Nausée",
+      "fatigue": "Fatigue",
+      "headache": "Mal de tête",
+      "backpain": "Mal de dos",
+      "cramps": "Crampes",
+      "insomnia": "Insomnie",
+      "swelling": "Gonflement",
+      "heartburn": "Brûlures d'estomac"
+    }
   }
 }

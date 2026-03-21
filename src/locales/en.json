@@ -8155,5 +8155,31 @@
       "content": "Gaining more than 1 kg in one week after week 20 may indicate fluid retention and requires blood pressure check. No weight gain for two consecutive weeks warrants medical consultation.",
       "source": "Source: ACOG Committee Opinion — Weight Gain During Pregnancy, 2023"
     }
+  },
+  "quickLog": {
+    "title": "Log Your Day",
+    "trend": "Trend",
+    "howFeeling": "How are you feeling today?",
+    "symptoms": "Symptoms",
+    "save": "Save",
+    "saved": "Saved ✓",
+    "last7Days": "Last 7 days",
+    "moods": {
+      "1": "Bad",
+      "2": "Low",
+      "3": "Okay",
+      "4": "Good",
+      "5": "Great"
+    },
+    "symptomNames": {
+      "nausea": "Nausea",
+      "fatigue": "Fatigue",
+      "headache": "Headache",
+      "backpain": "Back Pain",
+      "cramps": "Cramps",
+      "insomnia": "Insomnia",
+      "swelling": "Swelling",
+      "heartburn": "Heartburn"
+    }
   }
 }
