@@ -150,11 +150,9 @@ export const AIResponseFrame = ({
           )}
         </div>
 
-        <div className="mt-1.5 mx-auto max-w-[85%] px-3 py-1.5 rounded-full bg-muted/40 border border-border/30 text-center">
-          <p className="text-[9px] text-muted-foreground/60 tracking-wide">
-            {t('ai.resultDisclaimer', 'AI-generated • Consult your healthcare provider')}
-          </p>
-        </div>
+        <p className="mt-2 text-center text-[9px] font-semibold text-muted-foreground/70 tracking-wide">
+          {t('ai.resultDisclaimer', 'AI-generated • Consult your doctor')}
+        </p>
       </div>
     </motion.div>
   );
