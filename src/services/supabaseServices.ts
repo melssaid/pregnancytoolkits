@@ -395,7 +395,9 @@ export const AppointmentService = {
     };
     
     appointments.push(newAppointment);
-    setLocalData('appointments', appointments);
+    // Keep max 50 appointments
+    const trimmed = appointments.length > 50 ? appointments.slice(-50) : appointments;
+    setLocalData('appointments', trimmed);
     return newAppointment;
   },
 

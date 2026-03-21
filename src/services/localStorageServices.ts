@@ -73,7 +73,9 @@ export const BumpPhotoService = {
 
     const photos = loadData<typeof photo>('bump_photos');
     photos.push(photo);
-    saveData('bump_photos', photos);
+    // Cap at 42 photos (one per week max)
+    const trimmed = photos.length > 42 ? photos.slice(-42) : photos;
+    saveData('bump_photos', trimmed);
     return photo;
   },
 
@@ -120,7 +122,9 @@ export const VitaminService = {
     };
     const logs = loadData<typeof log>('vitamin_logs');
     logs.push(log);
-    saveData('vitamin_logs', logs);
+    // Keep last 200 vitamin logs (~5 vitamins × 40 days)
+    const trimmed = logs.length > 200 ? logs.slice(-200) : logs;
+    saveData('vitamin_logs', trimmed);
     window.dispatchEvent(new Event('storage'));
     return log;
   },
@@ -160,7 +164,9 @@ export const KickService = {
     };
     const sessions = loadData<typeof session>('kick_sessions');
     sessions.push(session);
-    saveData('kick_sessions', sessions);
+    // Keep last 100 kick sessions
+    const trimmed = sessions.length > 100 ? sessions.slice(-100) : sessions;
+    saveData('kick_sessions', trimmed);
     return session;
   },
 

@@ -76,7 +76,7 @@ const DiaperTracker = () => {
       time: new Date().toISOString(),
       type,
     };
-    const updated = [newEntry, ...entries];
+    const updated = [newEntry, ...entries].slice(0, 90);
     setEntries(updated);
     localStorage.setItem("diaperEntries", JSON.stringify(updated));
     setLastAdded(type);
