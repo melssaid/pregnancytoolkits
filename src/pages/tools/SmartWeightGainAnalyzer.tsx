@@ -52,10 +52,13 @@ export default function SmartWeightGainAnalyzer() {
 
   useEffect(() => {
     const saved = localStorage.getItem('weightGainEntries');
-    if (saved) setEntries(JSON.parse(saved));
+    if (saved) {
+      try { setEntries(JSON.parse(saved)); } catch {}
+    }
     if (userProfile.prePregnancyWeight) setPrePregnancyWeightState(String(userProfile.prePregnancyWeight));
     if (userProfile.height) setHeightState(String(userProfile.height));
     if (userProfile.pregnancyWeek) setCurrentWeek(String(userProfile.pregnancyWeek));
+    // Pre-fill current weight from profile so the field isn't empty
     if (userProfile.weight) setCurrentWeight(String(userProfile.weight));
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -110,16 +113,22 @@ export default function SmartWeightGainAnalyzer() {
 
   const addEntry = () => {
     if (!currentWeight || !currentWeek) return;
+    const kg = parseFloat(currentWeight);
+    const wk = parseInt(currentWeek);
+    if (isNaN(kg) || kg <= 0) return;
+    
     const entry: WeightEntry = {
       id: Date.now().toString(),
       date: new Date().toISOString(),
-      weight: parseFloat(currentWeight),
-      week: parseInt(currentWeek),
+      weight: kg,
+      week: wk,
     };
-    const kg = parseFloat(currentWeight);
-    if (!isNaN(kg)) updateUserProfile({ weight: kg, pregnancyWeek: parseInt(currentWeek) });
-    setEntries(prev => [...prev, entry].sort((a, b) => a.week - b.week));
-    setCurrentWeight('');
+    updateUserProfile({ weight: kg, pregnancyWeek: wk });
+    setEntries(prev => {
+      // Replace existing entry for same week, or add new
+      const filtered = prev.filter(e => e.week !== wk);
+      return [...filtered, entry].sort((a, b) => a.week - b.week);
+    });
     setShowAddForm(false);
     toast.success(t('toolsInternal.weightGain.entryAdded'));
   };

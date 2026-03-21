@@ -49,10 +49,16 @@ export const useTrackingStats = () => {
       const todaySessions = kickSessions.filter((s: any) => s.started_at?.startsWith(today));
       const todayKicks = todaySessions.reduce((sum: number, s: any) => sum + (s.total_kicks || 0), 0);
 
-      const weightLogs = JSON.parse(localStorage.getItem(`weight_logs_${userId}`) || '[]');
-      const lastWeight = weightLogs.length > 0 
-        ? weightLogs[weightLogs.length - 1]?.weight + ' kg' 
-        : '';
+      // Weight: read from weightGainEntries (what the analyzer saves) + profile fallback
+      const weightEntries = JSON.parse(localStorage.getItem('weightGainEntries') || '[]');
+      const profile = JSON.parse(localStorage.getItem('user_central_profile_v1') || '{}');
+      let lastWeight = '';
+      if (weightEntries.length > 0) {
+        const sorted = [...weightEntries].sort((a: any, b: any) => (a.week || 0) - (b.week || 0));
+        lastWeight = sorted[sorted.length - 1]?.weight + ' kg';
+      } else if (profile?.weight) {
+        lastWeight = profile.weight + ' kg';
+      }
 
       const vitaminLogs = JSON.parse(localStorage.getItem(`vitamin_logs_${userId}`) || '[]');
       const todayVitamins = vitaminLogs.filter((l: any) => l.taken_at?.startsWith(today));
