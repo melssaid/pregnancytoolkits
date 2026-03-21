@@ -8,7 +8,7 @@ import {
   Brain, Info, Sparkles, Calendar, 
   Clock, Trash2, ChevronDown, ChevronUp, Plus, Heart, SmilePlus, NotebookPen,
 } from 'lucide-react';
-import { WellnessDiaryChart } from '@/components/charts/WellnessDiaryChart';
+
 import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
@@ -60,7 +60,7 @@ const AISymptomAnalyzer: React.FC = () => {
   const [showDisclaimer, setShowDisclaimer] = useState(true);
   const { profile: userProfile } = useUserProfile();
   const [currentWeek, setCurrentWeek] = useState(userProfile.pregnancyWeek || 12);
-  const [chartPulse, setChartPulse] = useState(false);
+  
 
   const [selectedSymptoms, setSelectedSymptoms] = useState<string[]>([]);
   const [selectedMood, setSelectedMood] = useState<string>('');
@@ -140,9 +140,8 @@ Provide brief, supportive wellness insights about these feelings during week ${c
     setSelectedMood('');
     setNotes('');
     setAiInsight('');
-    // Trigger chart pulse animation
-    setChartPulse(true);
-    setTimeout(() => setChartPulse(false), 1500);
+
+
     toast.success(t('toolsInternal.symptomAnalyzer.entrySaved'));
   };
 
@@ -303,14 +302,8 @@ Provide brief, supportive wellness insights about these feelings during week ${c
           {t('toolsInternal.symptomAnalyzer.saveEntry')}
         </Button>
 
-        {/* Wellness Trends Chart — immediately after save for real-time feedback */}
-        <motion.div
-          animate={chartPulse ? { scale: [1, 1.02, 1], boxShadow: ['0 0 0 0 hsl(var(--primary) / 0)', '0 0 0 8px hsl(var(--primary) / 0.15)', '0 0 0 0 hsl(var(--primary) / 0)'] } : {}}
-          transition={{ duration: 1.2 }}
-          className="rounded-xl"
-        >
-          <WellnessDiaryChart entries={entries} />
-        </motion.div>
+
+
 
         {/* History Section */}
         {entries.length > 0 && (
