@@ -31,7 +31,9 @@ function loadContractions(): Contraction[] {
 }
 
 function saveContractions(data: Contraction[]) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  // Keep last 50 contractions (labor is typically hours, not months)
+  const trimmed = data.length > 50 ? data.slice(-50) : data;
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(trimmed));
 }
 
 function formatDuration(seconds: number): string {
