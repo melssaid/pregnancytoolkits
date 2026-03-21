@@ -1,9 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { Target, ChevronLeft, ChevronRight, Bell, Droplets, Pill, CalendarCheck } from 'lucide-react';
+import { Target, ChevronLeft, ChevronRight, Bell, Droplets, Pill, CalendarCheck, Check } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { Switch } from '@/components/ui/switch';
 
 const GOALS = [
   'nutrition',
@@ -47,6 +46,12 @@ export const OnboardingStep4Goals: React.FC<Props> = ({
     }
   };
 
+  const notifications = [
+    { icon: Pill, label: 'onboarding.step4.notifVitamins', value: notifVitamins, onChange: onNotifVitaminsChange, accent: 'from-emerald-500/15 to-emerald-500/5', iconColor: 'text-emerald-600 dark:text-emerald-400' },
+    { icon: Droplets, label: 'onboarding.step4.notifWater', value: notifWater, onChange: onNotifWaterChange, accent: 'from-blue-500/15 to-blue-500/5', iconColor: 'text-blue-600 dark:text-blue-400' },
+    { icon: CalendarCheck, label: 'onboarding.step4.notifAppointments', value: notifAppointments, onChange: onNotifAppointmentsChange, accent: 'from-amber-500/15 to-amber-500/5', iconColor: 'text-amber-600 dark:text-amber-400' },
+  ];
+
   return (
     <motion.div
       key="step4"
@@ -56,7 +61,7 @@ export const OnboardingStep4Goals: React.FC<Props> = ({
       transition={{ duration: 0.2 }}
     >
       <div className="px-5 pt-3 pb-2 text-center">
-        <div className="w-9 h-9 mx-auto mb-1.5 rounded-lg bg-primary/10 flex items-center justify-center">
+        <div className="w-9 h-9 mx-auto mb-1.5 rounded-xl bg-primary/10 flex items-center justify-center">
           <Target className="w-4.5 h-4.5 text-primary" />
         </div>
         <h2 className="text-sm font-bold text-foreground">
@@ -67,61 +72,113 @@ export const OnboardingStep4Goals: React.FC<Props> = ({
         </p>
       </div>
 
-      <div className="px-4 pb-3 space-y-3">
-        {/* Goals chips */}
-        <div className="flex flex-wrap gap-1.5">
-          {GOALS.map((g) => {
+      <div className="px-4 pb-3 space-y-4">
+        {/* Goals chips — improved grid */}
+        <div className="grid grid-cols-2 gap-2">
+          {GOALS.map((g, i) => {
             const isSelected = goals.includes(g);
             return (
-              <button
+              <motion.button
                 key={g}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.04 }}
                 onClick={() => toggleGoal(g)}
                 className={cn(
-                  "px-3 py-2 rounded-xl border text-xs font-medium transition-all",
+                  "relative flex items-center gap-2 px-3 py-2.5 rounded-xl border text-xs font-medium transition-all duration-200",
                   isSelected
-                    ? "bg-primary/10 border-primary/30 text-primary"
-                    : "bg-transparent border-border/40 text-foreground/60 hover:bg-muted/40"
+                    ? "bg-primary/10 border-primary/30 text-primary shadow-sm shadow-primary/10"
+                    : "bg-card border-border/30 text-foreground/70 hover:bg-muted/40 hover:border-border/50"
                 )}
               >
-                {t(`onboarding.step4.goal.${g}`)}
-              </button>
+                <div className={cn(
+                  "w-4.5 h-4.5 rounded-md flex items-center justify-center flex-shrink-0 transition-all duration-200",
+                  isSelected
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-muted/50 border border-border/40"
+                )}>
+                  {isSelected && <Check className="w-3 h-3" strokeWidth={3} />}
+                </div>
+                <span className="truncate">{t(`onboarding.step4.goal.${g}`)}</span>
+              </motion.button>
             );
           })}
         </div>
 
-        {/* Notification prefs */}
-        <div className="space-y-1">
-          <label className="text-[11px] font-medium text-muted-foreground block mb-1.5">
-            <Bell className="w-3 h-3 inline me-1" />
-            {t('onboarding.step4.notifications', 'Reminders')}
-          </label>
-
-          <div className="space-y-1.5">
-            {[
-              { icon: Pill, label: 'onboarding.step4.notifVitamins', value: notifVitamins, onChange: onNotifVitaminsChange },
-              { icon: Droplets, label: 'onboarding.step4.notifWater', value: notifWater, onChange: onNotifWaterChange },
-              { icon: CalendarCheck, label: 'onboarding.step4.notifAppointments', value: notifAppointments, onChange: onNotifAppointmentsChange },
-            ].map((item, idx) => (
-              <div key={idx} className="flex items-center justify-between px-3 py-2 rounded-lg bg-muted/30 border border-border/20">
-                <div className="flex items-center gap-2">
-                  <item.icon className="w-3.5 h-3.5 text-primary" />
-                  <span className="text-xs text-foreground/80">{t(item.label)}</span>
-                </div>
-                <Switch checked={item.value} onCheckedChange={item.onChange} />
-              </div>
-            ))}
+        {/* Notification prefs — redesigned */}
+        <div className="space-y-1.5">
+          <div className="flex items-center gap-1.5 mb-2">
+            <Bell className="w-3.5 h-3.5 text-primary" />
+            <span className="text-[11px] font-bold text-foreground">
+              {t('onboarding.step4.notifications', 'Reminders')}
+            </span>
           </div>
+
+          {notifications.map((item, idx) => (
+            <motion.button
+              key={idx}
+              initial={{ opacity: 0, x: isRtl ? 10 : -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.15 + idx * 0.05 }}
+              onClick={() => item.onChange(!item.value)}
+              className={cn(
+                "w-full flex items-center justify-between px-3.5 py-3 rounded-xl border transition-all duration-200",
+                item.value
+                  ? `bg-gradient-to-r ${item.accent} border-primary/20 shadow-sm`
+                  : "bg-card border-border/20 hover:bg-muted/30"
+              )}
+            >
+              <div className="flex items-center gap-2.5">
+                <div className={cn(
+                  "w-8 h-8 rounded-lg flex items-center justify-center transition-all",
+                  item.value
+                    ? "bg-background/80 shadow-sm"
+                    : "bg-muted/40"
+                )}>
+                  <item.icon className={cn("w-4 h-4", item.value ? item.iconColor : "text-muted-foreground")} strokeWidth={1.75} />
+                </div>
+                <span className={cn(
+                  "text-xs font-medium transition-colors",
+                  item.value ? "text-foreground" : "text-foreground/60"
+                )}>
+                  {t(item.label)}
+                </span>
+              </div>
+              
+              {/* Custom toggle indicator */}
+              <div className={cn(
+                "w-10 h-[22px] rounded-full p-[2px] transition-all duration-300",
+                item.value
+                  ? "bg-primary"
+                  : "bg-muted-foreground/20"
+              )}>
+                <motion.div
+                  className="w-[18px] h-[18px] rounded-full bg-white shadow-sm"
+                  animate={{ x: item.value ? (isRtl ? 0 : 18) : (isRtl ? 18 : 0) }}
+                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                />
+              </div>
+            </motion.button>
+          ))}
         </div>
       </div>
 
-      {/* Navigation */}
-      <div className="px-4 pb-4 flex gap-2">
-        <button onClick={onBack} className="flex-1 py-2.5 rounded-xl border border-border text-xs font-medium flex items-center justify-center gap-1 hover:bg-muted/40 transition-colors">
+      {/* Navigation — improved buttons */}
+      <div className="px-4 pb-4 flex gap-2.5">
+        <motion.button
+          whileTap={{ scale: 0.95 }}
+          onClick={onBack}
+          className="flex-1 py-3 rounded-2xl border border-border/40 bg-card text-xs font-semibold flex items-center justify-center gap-1.5 hover:bg-muted/40 transition-all duration-200 text-foreground/70 shadow-sm"
+        >
           <BackIcon className="w-3.5 h-3.5" /> {t('onboarding.back', 'Back')}
-        </button>
-        <button onClick={onNext} className="flex-1 py-2.5 rounded-xl bg-primary text-primary-foreground text-xs font-semibold flex items-center justify-center gap-1.5 hover:opacity-90 transition-opacity">
+        </motion.button>
+        <motion.button
+          whileTap={{ scale: 0.95 }}
+          onClick={onNext}
+          className="flex-[1.5] py-3 rounded-2xl bg-primary text-primary-foreground text-xs font-bold flex items-center justify-center gap-1.5 hover:opacity-90 transition-all duration-200 shadow-lg shadow-primary/20"
+        >
           {t('onboarding.next', 'Continue')} <NextIcon className="w-3.5 h-3.5" />
-        </button>
+        </motion.button>
       </div>
     </motion.div>
   );
