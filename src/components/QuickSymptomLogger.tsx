@@ -103,7 +103,7 @@ const QuickSymptomLogger = memo(function QuickSymptomLogger() {
           <div className="flex items-center gap-2">
             <span className="text-lg">📋</span>
             <h3 className="text-[13px] font-bold text-foreground">
-              {isAr ? "سجّلي يومك" : "Log Your Day"}
+              {t("quickLog.title")}
             </h3>
           </div>
           {logs.length > 1 && (
@@ -113,7 +113,7 @@ const QuickSymptomLogger = memo(function QuickSymptomLogger() {
             >
               <TrendingUp className="w-3 h-3 text-muted-foreground" />
               <span className="text-[10px] text-muted-foreground font-medium">
-                {isAr ? "الاتجاه" : "Trend"}
+                {t("quickLog.trend")}
               </span>
             </button>
           )}
@@ -122,7 +122,7 @@ const QuickSymptomLogger = memo(function QuickSymptomLogger() {
         {/* Mood selector */}
         <div className="mb-3">
           <p className="text-[11px] text-muted-foreground mb-2">
-            {isAr ? "كيف حالك اليوم؟" : "How are you feeling today?"}
+            {t("quickLog.howFeeling")}
           </p>
           <div className="flex items-center justify-between gap-1">
             {moods.map(m => (
@@ -140,7 +140,7 @@ const QuickSymptomLogger = memo(function QuickSymptomLogger() {
                   {m.emoji}
                 </span>
                 <span className="text-[9px] font-medium text-muted-foreground">
-                  {isAr ? m.labelAr : m.labelEn}
+                  {t(`quickLog.moods.${m.value}`)}
                 </span>
               </motion.button>
             ))}
@@ -150,7 +150,7 @@ const QuickSymptomLogger = memo(function QuickSymptomLogger() {
         {/* Symptom chips */}
         <div className="mb-3">
           <p className="text-[11px] text-muted-foreground mb-2">
-            {isAr ? "الأعراض" : "Symptoms"}
+            {t("quickLog.symptoms")}
           </p>
           <div className="flex flex-wrap gap-1.5">
             {commonSymptoms.map(s => {
@@ -190,9 +190,9 @@ const QuickSymptomLogger = memo(function QuickSymptomLogger() {
           {saved ? (
             <span className="flex items-center justify-center gap-1.5">
               <Check className="w-4 h-4" />
-              {isAr ? "تم الحفظ ✓" : "Saved ✓"}
+              {t("quickLog.saved")}
             </span>
-          ) : isAr ? "حفظ" : "Save"}
+          ) : t("quickLog.save")}
         </motion.button>
 
         {/* 7-day trend chart */}
@@ -206,7 +206,7 @@ const QuickSymptomLogger = memo(function QuickSymptomLogger() {
             >
               <div className="mt-3 pt-3 border-t border-border/10">
                 <p className="text-[10px] text-muted-foreground mb-2">
-                  {isAr ? "آخر 7 أيام" : "Last 7 days"}
+                  {t("quickLog.last7Days")}
                 </p>
                 <div className="flex items-end gap-1 h-16">
                   {last7.map((d, i) => {
