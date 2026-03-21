@@ -48,11 +48,11 @@ export const WeightTrendCard = memo(function WeightTrendCard() {
         className="rounded-2xl border border-border/20 bg-card p-3.5 hover:border-primary/20 transition-colors group"
       >
         <div className="flex items-center justify-between mb-2">
-          <div className="flex items-center gap-2">
-            <Gauge className="w-4 h-4 text-primary" />
-            <h3 className="text-xs font-bold text-foreground">{t("dailyDashboard.weight.title")}</h3>
+          <div className="flex items-center gap-2 min-w-0">
+            <Gauge className="w-4 h-4 text-primary flex-shrink-0" />
+            <h3 className="text-xs font-bold text-foreground whitespace-normal leading-tight">{t("dailyDashboard.weight.title")}</h3>
           </div>
-          <ArrowRight className="w-3.5 h-3.5 text-muted-foreground group-hover:text-primary transition-colors" />
+          <ArrowRight className="w-3.5 h-3.5 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
         </div>
 
         {current ? (

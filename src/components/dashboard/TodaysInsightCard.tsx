@@ -46,27 +46,27 @@ export const TodaysInsightCard = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.15 }}
     >
-      <Card className="bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10 border-primary/20">
-        <CardContent className="p-4">
+      <Card className="bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10 border-primary/20 overflow-hidden">
+        <CardContent className="p-3.5">
           <div className="flex items-start gap-3">
-            <div className="flex-shrink-0 w-9 h-9 rounded-full bg-primary/15 flex items-center justify-center">
-              <Sparkles className="w-4.5 h-4.5 text-primary" />
+            <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/15 flex items-center justify-center mt-0.5">
+              <Sparkles className="w-4 h-4 text-primary" />
             </div>
-            <div className="flex-1 min-w-0 space-y-2">
-              <p className="text-[11px] font-semibold text-primary/80 uppercase tracking-wide">
+            <div className="flex-1 min-w-0 space-y-1.5">
+              <p className="text-[10px] font-semibold text-primary/80 uppercase tracking-wide whitespace-normal leading-tight">
                 {t("dailyInsights.todaysInsight")}
               </p>
-              <p className="text-sm text-foreground/85 leading-relaxed">
+              <p className="text-[12px] text-foreground/85 leading-relaxed whitespace-normal">
                 {message}
               </p>
               <Button
                 variant="ghost"
                 size="sm"
-                className="h-7 px-0 text-xs text-primary hover:text-primary/80 gap-1"
+                className="h-7 px-0 text-[11px] text-primary hover:text-primary/80 gap-1 whitespace-normal"
                 onClick={() => navigate("/daily-insights")}
               >
                 {t("dailyInsights.viewFull")}
-                <ChevronRight className="w-3.5 h-3.5" />
+                <ChevronRight className="w-3.5 h-3.5 flex-shrink-0" />
               </Button>
             </div>
           </div>
