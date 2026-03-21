@@ -126,7 +126,7 @@ export default function SmartWeightGainAnalyzer() {
 
   const removeEntry = (id: string) => {
     setEntries(prev => prev.filter(e => e.id !== id));
-    toast.success(t('toolsInternal.weightGain.entryRemoved', 'Entry removed'));
+    toast.success(t('toolsInternal.weightGain.entryRemoved'));
   };
 
   const totalGain = useMemo(() => {
@@ -316,8 +316,8 @@ export default function SmartWeightGainAnalyzer() {
                 <div className="flex-1 text-start min-w-0">
                   <p className="text-[13px] font-bold truncate">
                     {entries.length === 0 
-                      ? t('toolsInternal.weightGain.addFirstWeight', 'سجّلي وزنك الحالي')
-                      : t('toolsInternal.weightGain.saveWeight', 'سجّلي وزنك')
+                      ? t('toolsInternal.weightGain.addFirstWeight')
+                      : t('toolsInternal.weightGain.saveWeight')
                     }
                   </p>
                   {lastEntry ? (
@@ -326,7 +326,7 @@ export default function SmartWeightGainAnalyzer() {
                     </p>
                   ) : (
                     <p className="text-[10px] opacity-70">
-                      {t('toolsInternal.weightGain.addFirstWeightHint', 'ابدئي بتسجيل أول قراءة وزن')}
+                      {t('toolsInternal.weightGain.addFirstWeightHint')}
                     </p>
                   )}
                 </div>
@@ -370,7 +370,7 @@ export default function SmartWeightGainAnalyzer() {
                         <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-muted/30 border border-border/15">
                           <Target className="w-3 h-3 text-primary/60 shrink-0" />
                           <p className="text-[9px] text-muted-foreground">
-                            {t('toolsInternal.weightGain.expectedForWeek', 'الزيادة المتوقعة للأسبوع')} {currentWeek}:
+                            {t('toolsInternal.weightGain.expectedForWeek')} {currentWeek}:
                             <span className="font-bold text-primary ms-1">
                               {getExpectedGainForWeek(parseInt(currentWeek)).min.toFixed(1)}–{getExpectedGainForWeek(parseInt(currentWeek)).max.toFixed(1)} kg
                             </span>
@@ -414,7 +414,7 @@ export default function SmartWeightGainAnalyzer() {
                                       ? 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300'
                                       : 'bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-300'
                                 }`}>
-                                  {inRange ? '✓' : gain < expected.min ? '↓' : '↑'} {gain >= 0 ? '+' : ''}{gain.toFixed(1)} kg {t('toolsInternal.weightGain.fromStart', 'من البداية')}
+                                  {inRange ? '✓' : gain < expected.min ? '↓' : '↑'} {gain >= 0 ? '+' : ''}{gain.toFixed(1)} kg {t('toolsInternal.weightGain.fromStart')}
                                 </span>
                               );
                             })()}
@@ -429,14 +429,14 @@ export default function SmartWeightGainAnalyzer() {
                           className="flex-1 h-11 text-[13px] font-bold gap-1.5 rounded-xl shadow-sm"
                         >
                           <Save className="w-4 h-4" />
-                          {t('toolsInternal.weightGain.saveEntry', 'حفظ')}
+                          {t('toolsInternal.weightGain.saveEntry')}
                         </Button>
                         <Button 
                           variant="outline" 
                           onClick={() => setShowAddForm(false)}
                           className="h-11 px-5 rounded-xl text-[12px]"
                         >
-                          {t('toolsInternal.weightGain.cancel', 'إلغاء')}
+                          {t('toolsInternal.weightGain.cancel')}
                         </Button>
                       </div>
                     </CardContent>
@@ -614,7 +614,7 @@ Provide personalized weight management advice based on this data.`}
               <div className="text-2xl">⚖️</div>
               <p className="text-[12px] font-bold text-foreground">{t('toolsInternal.weightGain.noEntriesYet')}</p>
               <p className="text-[10px] text-muted-foreground/60 max-w-[220px] mx-auto leading-relaxed">
-                {t('toolsInternal.weightGain.fillProfileHint', 'أدخلي طولك ووزنك قبل الحمل أعلاه للبدء')}
+                {t('toolsInternal.weightGain.fillProfileHint')}
               </p>
             </CardContent>
           </Card>
@@ -622,15 +622,15 @@ Provide personalized weight management advice based on this data.`}
 
         {/* Clinical Safety System */}
         <EvidenceInfoBlock
-          title={t('weightGain.evidence.title', 'معدل الزيادة الطبيعي')}
-          content={t('weightGain.evidence.content', 'تختلف الزيادة المثالية حسب مؤشر كتلة الجسم قبل الحمل: الوزن الطبيعي (BMI 18.5-24.9) يُنصح بزيادة 11.5-16 كجم، بينما الوزن الزائد (BMI 25-29.9) يُنصح بزيادة 7-11.5 كجم.')}
-          source={t('weightGain.evidence.source', 'المصدر: Institute of Medicine (IOM) — Weight Gain During Pregnancy Guidelines, 2024')}
+          title={t('weightGain.evidence.title')}
+          content={t('weightGain.evidence.content')}
+          source={t('weightGain.evidence.source')}
         />
 
         <EvidenceInfoBlock
-          title={t('weightGain.evidence2.title', 'متى تقلقين من الزيادة؟')}
-          content={t('weightGain.evidence2.content', 'زيادة أكثر من 1 كجم في أسبوع واحد بعد الأسبوع 20 قد تشير لاحتباس السوائل وتستدعي فحص ضغط الدم. عدم اكتساب أي وزن لمدة أسبوعين متتاليين يستدعي استشارة طبية.')}
-          source={t('weightGain.evidence2.source', 'المصدر: ACOG Committee Opinion — Weight Gain During Pregnancy, 2023')}
+          title={t('weightGain.evidence2.title')}
+          content={t('weightGain.evidence2.content')}
+          source={t('weightGain.evidence2.source')}
         />
 
         <WhenToCallDoctorCard context="weightGain" />
