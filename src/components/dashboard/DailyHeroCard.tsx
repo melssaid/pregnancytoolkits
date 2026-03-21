@@ -73,7 +73,7 @@ export const DailyHeroCard = memo(function DailyHeroCard({ week, dueDate }: Dail
 
         {/* Info */}
         <div className="flex-1 min-w-0">
-          <p className="text-[11px] font-semibold text-primary/80">
+          <p className="text-[11px] font-semibold text-primary/80 whitespace-normal leading-tight">
             {t(`dailyDashboard.trimester.${trimesterKey}`)}
           </p>
           <div className="flex items-center gap-3 mt-2">

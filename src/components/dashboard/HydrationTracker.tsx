@@ -39,9 +39,9 @@ export const HydrationTracker = memo(function HydrationTracker() {
       className="rounded-2xl border border-border/20 bg-card p-3.5"
     >
       <div className="flex items-center justify-between mb-2.5">
-        <div className="flex items-center gap-2">
-          <Droplets className="w-4 h-4 text-primary" />
-          <h3 className="text-xs font-bold text-foreground">{t("dailyDashboard.hydration.title")}</h3>
+        <div className="flex items-center gap-2 min-w-0">
+          <Droplets className="w-4 h-4 text-primary flex-shrink-0" />
+          <h3 className="text-xs font-bold text-foreground whitespace-normal leading-tight">{t("dailyDashboard.hydration.title")}</h3>
         </div>
         <span className="text-[10px] font-semibold text-primary">{glasses}/{GOAL}</span>
       </div>
