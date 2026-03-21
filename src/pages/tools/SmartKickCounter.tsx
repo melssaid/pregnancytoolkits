@@ -484,7 +484,7 @@ const SmartKickCounter: React.FC = () => {
               <div className="border-t border-border/10 bg-muted/5">
                   <AIInsightCard
                     title={t('toolsInternal.kickCounter.aiAnalysisTitle')}
-                    aiType="symptom-analysis"
+                    aiType="kick-analysis"
                     prompt={`You are an expert perinatal nurse providing fetal movement analysis.
 
 ## Patient Data

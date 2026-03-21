@@ -8226,6 +8226,10 @@
       "hospitalBag": "Week {{week}}: It's time to start preparing your hospital bag",
       "bonding": "Talk or sing to your baby — they can hear you now!",
       "general": "Every week brings new changes — stay informed and take care of yourself"
+    },
+    "savedTips": {
+      "title": "Saved Tips",
+      "week": "Week {{week}}"
     }
   }
 }

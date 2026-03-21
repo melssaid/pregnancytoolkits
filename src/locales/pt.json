@@ -7824,6 +7824,10 @@
       "hospitalBag": "Semana {{week}}: hora de preparar a bolsa maternidade",
       "bonding": "Converse ou cante para o bebê — ele pode te ouvir!",
       "general": "Cada semana traz mudanças — mantenha-se informada e cuide de si"
+    },
+    "savedTips": {
+      "title": "Dicas salvas",
+      "week": "Semana {{week}}"
     }
   }
 }

@@ -8110,6 +8110,10 @@
       "hospitalBag": "Woche {{week}}: Zeit, die Krankenhaustasche zu packen",
       "bonding": "Sprich oder singe deinem Baby vor — es kann dich hören!",
       "general": "Jede Woche bringt neue Veränderungen — bleib informiert"
+    },
+    "savedTips": {
+      "title": "Gespeicherte Tipps",
+      "week": "Woche {{week}}"
     }
   }
 }
