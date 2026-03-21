@@ -147,14 +147,14 @@ Write in ${lang}. Be warm, encouraging, and concise.`;
     setHeight("");
     setHeadCirc("");
     setShowOptional(false);
-    toast.success(t('toolsInternal.babyGrowth.saved', 'Measurement saved!'));
+    toast.success(t('toolsInternal.babyGrowth.saved'));
   };
 
   const deleteEntry = (id: string) => {
     const updated = entries.filter((e) => e.id !== id);
     setEntries(updated);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
-    toast.success(t('toolsInternal.babyGrowth.deleted', 'Deleted'));
+    toast.success(t('toolsInternal.babyGrowth.deleted'));
   };
 
   // Live preview of percentile while typing
@@ -215,7 +215,7 @@ Write in ${lang}. Be warm, encouraging, and concise.`;
                   className="pe-10 text-base h-12 rounded-xl"
                 />
                 <span className="absolute end-3 top-1/2 -translate-y-1/2 text-xs text-muted-foreground">
-                  {t('toolsInternal.babyGrowth.monthUnit', 'شهر')}
+                  {t('toolsInternal.babyGrowth.monthUnit')}
                 </span>
               </div>
             </div>
@@ -242,7 +242,7 @@ Write in ${lang}. Be warm, encouraging, and concise.`;
             className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
           >
             {showOptional ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
-            {t('toolsInternal.babyGrowth.optionalMeasurements', 'Height & Head (optional)')}
+            {t('toolsInternal.babyGrowth.optionalMeasurements')}
           </button>
 
           <AnimatePresence>
@@ -312,7 +312,7 @@ Write in ${lang}. Be warm, encouraging, and concise.`;
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-xs text-muted-foreground">{t('toolsInternal.babyGrowth.status.label', 'Status')}</span>
+                  <span className="text-xs text-muted-foreground">{t('toolsInternal.babyGrowth.status.label')}</span>
                   <span className={`text-xs font-medium ${livePercentile.color}`}>
                     {t(`toolsInternal.babyGrowth.status.${livePercentile.status === "normal" ? "normal" : livePercentile.status === "underweight" ? "belowNormal" : "aboveNormal"}`)}
                   </span>
@@ -388,8 +388,8 @@ Write in ${lang}. Be warm, encouraging, and concise.`;
             <AIActionButton
               onClick={runAIAnalysis}
               isLoading={aiLoading}
-              label={t('toolsInternal.babyGrowth.aiAnalysis', 'AI Growth Analysis')}
-              loadingLabel={t('toolsInternal.babyGrowth.analyzing', 'Analyzing...')}
+              label={t('toolsInternal.babyGrowth.aiAnalysis')}
+              loadingLabel={t('toolsInternal.babyGrowth.analyzing')}
               icon={Baby}
             />
 
@@ -407,12 +407,12 @@ Write in ${lang}. Be warm, encouraging, and concise.`;
                       {aiLoading && !aiResult ? (
                         <div className="flex items-center justify-center py-8 gap-2 text-muted-foreground">
                           <Loader2 className="w-4 h-4 animate-spin" />
-                          <span className="text-xs">{t('toolsInternal.babyGrowth.analyzing', 'Analyzing...')}</span>
+                          <span className="text-xs">{t('toolsInternal.babyGrowth.analyzing')}</span>
                         </div>
                       ) : (
                         <MarkdownRenderer content={aiResult} isLoading={aiLoading} />
                       )}
-                      <p className="mt-3 text-center text-[9px] font-semibold text-muted-foreground/70 tracking-wide">{t('ai.resultDisclaimer', 'AI-generated • Consult your doctor')}</p>
+                      <p className="mt-3 text-center text-[9px] font-semibold text-muted-foreground/70 tracking-wide">{t('ai.resultDisclaimer')}</p>
                     </CardContent>
                   </Card>
                 </motion.div>

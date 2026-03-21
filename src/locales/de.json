@@ -1176,6 +1176,16 @@
       "confirmErrorDesc": "Bitte geben Sie \"{{word}}\" zur Bestätigung ein",
       "tip": "Tipp:",
       "tipText": "Exportieren Sie vor dem Löschen ein Backup, um Ihre Daten zu speichern"
+    },
+    "deleteAccount": {
+      "title": "Daten löschen",
+      "description": "Alle Ihre Daten dauerhaft löschen"
+    },
+    "aiReset": {
+      "title": "KI-Versuche zurücksetzen",
+      "status": "Verwendet: {{used}}/{{limit}} • Verbleibend: {{remaining}}",
+      "success": "Zurückgesetzt! 30 Versuche verfügbar",
+      "button": "Versuche zurücksetzen (Premium)"
     }
   },
   "charts": {
@@ -1793,7 +1803,9 @@
       "warningFewer": "Weniger als 10 Bewegungen in 2 Stunden",
       "warningDecrease": "Plötzliche Abnahme der Bewegungsmuster",
       "warningNoMovements": "Keine Bewegungen über längere Zeit",
-      "whenToCallDoctor": "Wann Sie Ihren Arzt anrufen sollten"
+      "whenToCallDoctor": "Wann Sie Ihren Arzt anrufen sollten",
+      "aiAnalysisTitle": "Intelligente Bewegungsanalyse",
+      "aiAnalysisButton": "KI-Bewegungsanalyse"
     },
     "symptomAnalyzer": {
       "title": "Schwangerschafts-Wohlbefinden-Tagebuch",
@@ -3807,6 +3819,16 @@
       "abdominalPain": "Oberbauchschmerzen (besonders rechte Seite)",
       "swelling": "Plötzliche Schwellungen (Gesicht, Hände, Füße)",
       "weightGain": "Plötzliche Gewichtszunahme (mehr als 2,5 kg in einer Woche)"
+    },
+    "evidence": {
+      "title": "Was ist Präeklampsie?",
+      "content": "Präeklampsie betrifft 3-8 % der Schwangerschaften weltweit und ist gekennzeichnet durch hohen Blutdruck und Eiweiß im Urin nach Woche 20. Früherkennung und regelmäßige Überwachung reduzieren das Risiko um bis zu 60 %.",
+      "source": "Quelle: WHO — Empfehlungen zur Prävention und Behandlung von Präeklampsie, 2023"
+    },
+    "evidence2": {
+      "title": "Prävention und Aspirin",
+      "content": "ACOG empfiehlt niedrig dosiertes Aspirin (81 mg täglich) ab Woche 12-16 für Hochrisikofrauen, was das Präeklampsie-Risiko um 24 % senkt. Konsultieren Sie immer Ihren Arzt, bevor Sie Medikamente einnehmen.",
+      "source": "Quelle: ACOG Practice Advisory — Niedrig dosiertes Aspirin zur Präeklampsie-Prävention, 2024"
     }
   },
   "toolsInternal.dailyTips": {
@@ -7965,6 +7987,51 @@
       "activeLabor": "Ihr Wehenmuster deutet auf eine bevorstehende aktive Geburt hin. Erwägen Sie, Ihr Krankenhaus zu kontaktieren.",
       "highBP": "Erhöhter Blutdruck festgestellt. Bitte wenden Sie sich zeitnah an Ihre Ärztin.",
       "lowBP": "Niedriger Blutdruck festgestellt. Ruhen Sie sich aus und trinken Sie ausreichend. Konsultieren Sie Ihre Ärztin bei anhaltenden Symptomen."
+    }
+  },
+  "paywall": {
+    "title": "Premium-Funktion ✨",
+    "subtitle": "Abonnieren Sie für alle Smart-Tools",
+    "trialTitle": "3 Tage kostenlos!",
+    "trialDesc": "Testen Sie alle Premium-Funktionen kostenlos",
+    "startTrial": "Kostenlose Testversion starten",
+    "subscribeButton": "Jetzt abonnieren",
+    "maybeLater": "Vielleicht später"
+  },
+  "gdm": {
+    "evidence": {
+      "title": "Screening auf Schwangerschaftsdiabetes",
+      "content": "Der Glukosetoleranztest wird normalerweise zwischen der 24. und 28. Schwangerschaftswoche durchgeführt. Schwangerschaftsdiabetes betrifft 6-9 % der Schwangerschaften weltweit und kann in 80-90 % der Fälle durch Ernährung und Bewegung ohne Insulin kontrolliert werden.",
+      "source": "Quelle: American Diabetes Association — Standards of Care in Diabetes, 2024"
+    },
+    "evidence2": {
+      "title": "Einfluss der Ernährung",
+      "content": "Studien zeigen, dass eine Ernährung mit niedrigem glykämischen Index das Risiko für Schwangerschaftsdiabetes um 33 % senkt und den Blutzucker verbessert. Die Aufteilung der Mahlzeiten in 5-6 kleine Portionen täglich hilft, den Blutzucker zu stabilisieren.",
+      "source": "Quelle: Cochrane Review — Ernährung und Bewegung zur GDM-Prävention, 2023"
+    }
+  },
+  "symptomAnalyzer": {
+    "evidence": {
+      "title": "Wann sind Symptome normal?",
+      "content": "Übelkeit, Müdigkeit und Kopfschmerzen gehören zu den häufigsten Schwangerschaftssymptomen und betreffen bis zu 80 % der Schwangeren. Die meisten verbessern sich nach dem ersten Trimester von selbst. Plötzliche oder schwere Symptome wie Gesichtsschwellungen oder Sehstörungen erfordern jedoch sofortige ärztliche Hilfe.",
+      "source": "Quelle: ACOG Practice Bulletin — Übelkeit und Erbrechen in der Schwangerschaft, 2024"
+    },
+    "evidence2": {
+      "title": "Bedeutung der Symptomverfolgung",
+      "content": "Studien zeigen, dass Frauen, die ihre Symptome regelmäßig protokollieren, Komplikationen 40 % früher erkennen und die Schwangerschaftsergebnisse deutlich verbessern. Tägliches Protokollieren hilft Ihrem Arzt, Ihre Symptommuster besser zu verstehen.",
+      "source": "Quelle: BMC Pregnancy and Childbirth, 2023 — Digitale Symptomverfolgung in der Schwangerschaft"
+    }
+  },
+  "weightGain": {
+    "evidence": {
+      "title": "Normale Gewichtszunahme",
+      "content": "Die ideale Gewichtszunahme variiert je nach BMI vor der Schwangerschaft: Normalgewicht (BMI 18,5-24,9) sollte 11,5-16 kg zunehmen, Übergewicht (BMI 25-29,9) sollte 7-11,5 kg zunehmen.",
+      "source": "Quelle: Institute of Medicine (IOM) — Leitlinien zur Gewichtszunahme in der Schwangerschaft, 2024"
+    },
+    "evidence2": {
+      "title": "Wann man sich über die Gewichtszunahme Sorgen machen sollte",
+      "content": "Eine Zunahme von mehr als 1 kg in einer Woche nach Woche 20 kann auf Wassereinlagerungen hindeuten und erfordert eine Blutdruckkontrolle. Keine Gewichtszunahme über zwei aufeinanderfolgende Wochen erfordert eine ärztliche Beratung.",
+      "source": "Quelle: ACOG Committee Opinion — Gewichtszunahme in der Schwangerschaft, 2023"
     }
   }
 }

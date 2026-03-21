@@ -318,7 +318,7 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
 
               {showDisclaimer && insight && !isLoading && (
                 <p className="mt-3 text-center text-[9px] font-semibold text-muted-foreground/70 tracking-wide">
-                  {t('ai.resultDisclaimer', 'AI-generated • Consult your doctor')}
+                  {t('ai.resultDisclaimer')}
                 </p>
               )}
             </motion.div>

@@ -87,7 +87,7 @@ export function PaywallSheet({ open, onClose, toolName }: PaywallSheetProps) {
 
                   <div className="text-center space-y-1.5">
                     <h2 className="text-lg font-bold text-foreground">
-                      {t('paywall.title', 'ميزة مميزة ✨')}
+                      {t('paywall.title')}
                     </h2>
                     {toolName && (
                       <p className="text-sm text-muted-foreground">
@@ -96,7 +96,7 @@ export function PaywallSheet({ open, onClose, toolName }: PaywallSheetProps) {
                     )}
                     {!toolName && (
                       <p className="text-sm text-muted-foreground">
-                        {t('paywall.subtitle', 'اشتركي للوصول لجميع الأدوات الذكية')}
+                        {t('paywall.subtitle')}
                       </p>
                     )}
                   </div>
@@ -117,10 +117,10 @@ export function PaywallSheet({ open, onClose, toolName }: PaywallSheetProps) {
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-bold text-foreground">
-                          {t('paywall.trialTitle', '3 أيام مجاناً!')}
+                          {t('paywall.trialTitle')}
                         </p>
                         <p className="text-[11px] text-muted-foreground leading-relaxed">
-                          {t('paywall.trialDesc', 'جرّبي جميع الميزات المميزة بدون أي رسوم')}
+                          {t('paywall.trialDesc')}
                         </p>
                       </div>
                     </div>
@@ -160,15 +160,15 @@ export function PaywallSheet({ open, onClose, toolName }: PaywallSheetProps) {
                   >
                     <Sparkles className="w-4 h-4 me-2" />
                     {showTrialOffer
-                      ? t('paywall.startTrial', 'ابدئي التجربة المجانية')
-                      : t('paywall.subscribeButton', 'اشتركي الآن')
+                      ? t('paywall.startTrial')
+                      : t('paywall.subscribeButton')
                     }
                   </Button>
                   <button
                     onClick={onClose}
                     className="w-full text-xs text-muted-foreground hover:text-foreground transition-colors py-2"
                   >
-                    {t('paywall.maybeLater', 'ربما لاحقاً')}
+                    {t('paywall.maybeLater')}
                   </button>
                 </motion.div>
               </div>

@@ -1231,6 +1231,16 @@
       "confirmErrorDesc": "Please type \"{{word}}\" to confirm",
       "tip": "Tip:",
       "tipText": "Export a backup before deleting to save your data"
+    },
+    "deleteAccount": {
+      "title": "Delete Data",
+      "description": "Permanently delete all your data"
+    },
+    "aiReset": {
+      "title": "Reset AI Attempts",
+      "status": "Used: {{used}}/{{limit}} • Remaining: {{remaining}}",
+      "success": "Reset! 30 attempts available now",
+      "button": "Reset Attempts (Premium)"
     }
   },
   "charts": {
@@ -1648,7 +1658,9 @@
       "recording": "Recording",
       "goal": "Goal",
       "recentActivity": "Recent Activity",
-      "lastSessions": "Last {{count}} sessions"
+      "lastSessions": "Last {{count}} sessions",
+      "aiAnalysisTitle": "Smart Movement Analysis",
+      "aiAnalysisButton": "AI Movement Analysis"
     },
     "contractionTimer": {
       "title": "Contraction Timer",
@@ -4341,6 +4353,16 @@
       "abdominalPain": "Upper abdominal pain (especially right side)",
       "swelling": "Sudden swelling (face, hands, feet)",
       "weightGain": "Sudden weight gain (more than 5 lbs in a week)"
+    },
+    "evidence": {
+      "title": "What is Preeclampsia?",
+      "content": "Preeclampsia affects 3-8% of pregnancies worldwide, characterized by high blood pressure and protein in urine after week 20. Early detection and regular monitoring reduce risks by up to 60%.",
+      "source": "Source: WHO — Recommendations for Prevention and Treatment of Pre-eclampsia, 2023"
+    },
+    "evidence2": {
+      "title": "Prevention and Aspirin",
+      "content": "ACOG recommends low-dose aspirin (81 mg daily) starting at weeks 12-16 for high-risk women, reducing preeclampsia risk by 24%. Always consult your doctor before taking any medication.",
+      "source": "Source: ACOG Practice Advisory — Low-Dose Aspirin for Preeclampsia Prevention, 2024"
     }
   },
   "dailyTips": {
@@ -8086,6 +8108,42 @@
       "activeLabor": "Your contraction pattern suggests active labor may be approaching. Consider contacting your hospital.",
       "highBP": "Elevated blood pressure detected. Please consult your healthcare provider promptly.",
       "lowBP": "Low blood pressure detected. Rest and stay hydrated. Consult your doctor if symptoms persist."
+    }
+  },
+  "gdm": {
+    "evidence": {
+      "title": "Gestational Diabetes Screening",
+      "content": "Glucose tolerance testing is usually performed between weeks 24-28 of pregnancy. Gestational diabetes affects 6-9% of pregnancies worldwide, and can be managed with diet and exercise in 80-90% of cases without insulin.",
+      "source": "Source: American Diabetes Association — Standards of Care in Diabetes, 2024"
+    },
+    "evidence2": {
+      "title": "Diet Impact",
+      "content": "Studies show that following a low glycemic index (Low GI) diet reduces gestational diabetes risk by 33% and improves blood sugar levels. Splitting meals into 5-6 small portions daily helps stabilize blood sugar.",
+      "source": "Source: Cochrane Review — Diet and Exercise for GDM Prevention, 2023"
+    }
+  },
+  "symptomAnalyzer": {
+    "evidence": {
+      "title": "When Are Symptoms Normal?",
+      "content": "Nausea, fatigue, and headaches are among the most common pregnancy symptoms, affecting up to 80% of pregnant women. Most of these symptoms improve on their own after the first trimester. However, sudden or severe symptoms such as facial swelling or vision disturbances require immediate medical attention.",
+      "source": "Source: ACOG Practice Bulletin — Nausea and Vomiting of Pregnancy, 2024"
+    },
+    "evidence2": {
+      "title": "Importance of Symptom Tracking",
+      "content": "Studies show that women who regularly log their symptoms detect complications 40% earlier, significantly improving pregnancy outcomes. Daily logging helps your doctor understand your symptom patterns better.",
+      "source": "Source: BMC Pregnancy and Childbirth, 2023 — Digital symptom tracking in pregnancy"
+    }
+  },
+  "weightGain": {
+    "evidence": {
+      "title": "Normal Weight Gain Rate",
+      "content": "Ideal weight gain varies by pre-pregnancy BMI: normal weight (BMI 18.5-24.9) should gain 11.5-16 kg, while overweight (BMI 25-29.9) should gain 7-11.5 kg.",
+      "source": "Source: Institute of Medicine (IOM) — Weight Gain During Pregnancy Guidelines, 2024"
+    },
+    "evidence2": {
+      "title": "When to Worry About Weight Gain",
+      "content": "Gaining more than 1 kg in one week after week 20 may indicate fluid retention and requires blood pressure check. No weight gain for two consecutive weeks warrants medical consultation.",
+      "source": "Source: ACOG Committee Opinion — Weight Gain During Pregnancy, 2023"
     }
   }
 }

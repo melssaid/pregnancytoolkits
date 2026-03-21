@@ -71,8 +71,8 @@ const Settings: React.FC = () => {
     {
       id: 'delete',
       icon: Trash2,
-      label: t('settings.deleteAccount.title', 'حذف البيانات'),
-      desc: t('settings.deleteAccount.description', 'حذف جميع بياناتك نهائياً'),
+      label: t('settings.deleteAccount.title'),
+      desc: t('settings.deleteAccount.description'),
       iconColor: 'text-destructive',
       iconBg: 'bg-destructive/10',
     },
@@ -150,21 +150,21 @@ const Settings: React.FC = () => {
                     </div>
                     <div className="flex-1 min-w-0">
                       <span className="text-sm font-medium text-foreground block">
-                        {t('settings.aiReset.title', 'إعادة تعيين محاولات AI')}
+                        {t('settings.aiReset.title')}
                       </span>
                       <span className="text-[10px] text-muted-foreground">
-                        {t('settings.aiReset.status', 'مستخدم: {{used}}/{{limit}} • متبقي: {{remaining}}', { used, limit, remaining })}
+                        {t('settings.aiReset.status', { used, limit, remaining })}
                       </span>
                     </div>
                   </div>
                   <button
                     onClick={() => {
                       resetUsage();
-                      toast.success(t('settings.aiReset.success', 'تم إعادة التعيين! 30 محاولة متاحة الآن'));
+                      toast.success(t('settings.aiReset.success'));
                     }}
                     className="w-full py-2.5 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 text-sm font-medium hover:bg-amber-500/20 transition-colors active:scale-[0.98]"
                   >
-                    {t('settings.aiReset.button', 'إعادة تعيين المحاولات (Premium)')}
+                    {t('settings.aiReset.button')}
                   </button>
                   <p className="text-[9px] text-amber-500/60 text-center">⚠ DEV ONLY — hidden in production</p>
                 </div>
