@@ -1,4 +1,4 @@
-import { memo, useMemo } from "react";
+import { memo, useMemo, useCallback } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Check, Circle, Droplets, Hand, Pill, Calendar } from "lucide-react";
@@ -46,7 +46,7 @@ export const DailyPriorities = memo(function DailyPriorities({
       labelKey: "dailyDashboard.priorities.water",
       done: waterGlasses >= 8,
       icon: Droplets,
-      href: "/tools/vitamin-tracker",
+      href: "#hydration-tracker",
       detail: `${waterGlasses}/8`,
     },
     {
