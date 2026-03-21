@@ -412,9 +412,7 @@ Write in ${lang}. Be warm, encouraging, and concise.`;
                       ) : (
                         <MarkdownRenderer content={aiResult} isLoading={aiLoading} />
                       )}
-                      <div className="mt-3 mx-auto max-w-[85%] px-3 py-1.5 rounded-full bg-muted/40 border border-border/30 text-center">
-                        <p className="text-[9px] text-muted-foreground/60 tracking-wide">{t('ai.resultDisclaimer', 'AI-generated • Consult your healthcare provider')}</p>
-                      </div>
+                      <p className="mt-3 text-center text-[9px] font-semibold text-muted-foreground/70 tracking-wide">{t('ai.resultDisclaimer', 'AI-generated • Consult your doctor')}</p>
                     </CardContent>
                   </Card>
                 </motion.div>
