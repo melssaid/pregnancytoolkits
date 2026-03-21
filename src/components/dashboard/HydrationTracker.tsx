@@ -19,8 +19,10 @@ export const HydrationTracker = memo(function HydrationTracker() {
   });
 
   const addGlass = useCallback(() => {
-    const logs = safeParseLocalStorage<any[]>(storageKey, []);
+    let logs = safeParseLocalStorage<any[]>(storageKey, []);
     logs.push({ date: today, glasses: 1, timestamp: new Date().toISOString() });
+    // Keep last 30 days of water logs
+    if (logs.length > 240) logs = logs.slice(-240); // 8 glasses × 30 days
     safeSaveToLocalStorage(storageKey, logs);
     setGlasses(prev => prev + 1);
     // Notify other tabs/components
