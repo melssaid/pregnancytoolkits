@@ -6,6 +6,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Play, Pause, CheckCircle, Clock, AlertCircle, Brain } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { AIActionButton } from '@/components/ai/AIActionButton';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
@@ -193,20 +194,13 @@ Provide:
             </div>
 
             {/* AI Button */}
-            <Button
+            <AIActionButton
               onClick={getAIReliefAdvice}
-              disabled={isLoading}
-              className="w-full h-11 rounded-xl bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground font-semibold text-sm shadow-md"
-            >
-              {isLoading ? (
-                <AILoadingDots text={t('toolsInternal.backPainRelief.analyzing')} />
-              ) : (
-                <>
-                  <Brain className="w-4 h-4 me-2" />
-                  {t('toolsInternal.backPainRelief.getAIAdvice')}
-                </>
-              )}
-            </Button>
+              isLoading={isLoading}
+              label={t('toolsInternal.backPainRelief.getAIAdvice')}
+              loadingLabel={t('toolsInternal.backPainRelief.analyzing')}
+              icon={Brain}
+            />
           </CardContent>
         </Card>
 
