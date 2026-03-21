@@ -130,50 +130,6 @@ export const KickPatternVisualizer: React.FC<PatternVisualizerProps> = ({ sessio
         </div>
       </div>
 
-      {/* Visual Pattern Chart */}
-      <div className="bg-card rounded-xl p-4 border border-border">
-        <h4 className="text-sm font-medium text-foreground mb-3">{t('kickPattern.durationPattern')}</h4>
-        <div className="flex items-end justify-between gap-2 h-24">
-          {recentSessions.map((session, index) => {
-            const height = (session.duration / maxDuration) * 100;
-            return (
-              <motion.div
-                key={session.date + session.startTime}
-                initial={{ height: 0 }}
-                animate={{ height: `${height}%` }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-                className="flex-1 relative group"
-              >
-                <div className={`w-full h-full rounded-t-lg ${getBarColor(session.duration)} shadow-sm`} />
-                <div className="absolute -top-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <span className="text-xs font-medium bg-foreground text-background px-1.5 py-0.5 rounded">
-                    {session.duration}m
-                  </span>
-                </div>
-                <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 text-[10px] text-muted-foreground whitespace-nowrap">
-                  {new Date(session.date).toLocaleDateString(i18n.language, { weekday: 'short' })}
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
-        
-        {/* Legend */}
-        <div className="flex justify-center gap-4 mt-8 pt-2 border-t border-border">
-          <div className="flex items-center gap-1.5">
-            <div className="w-3 h-3 rounded bg-gradient-to-t from-emerald-400 to-emerald-300" />
-            <span className="text-[10px] text-muted-foreground">{t('kickPattern.excellentLabel')}</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <div className="w-3 h-3 rounded bg-gradient-to-t from-blue-400 to-blue-300" />
-            <span className="text-[10px] text-muted-foreground">{t('kickPattern.goodLabel')}</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <div className="w-3 h-3 rounded bg-gradient-to-t from-amber-400 to-amber-300" />
-            <span className="text-[10px] text-muted-foreground">{t('kickPattern.moderateLabel')}</span>
-          </div>
-        </div>
-      </div>
 
       {/* Quick Insights */}
       {avgDuration > 60 && (
