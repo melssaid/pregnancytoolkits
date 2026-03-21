@@ -3538,6 +3538,8 @@
       "entryRemoved": "Giriş silindi",
       "saveEntry": "Kaydet",
       "saveWeight": "Ağırlığı kaydet",
+      "editProfile": "Düzenle",
+      "saveProfile": "Profili Kaydet",
       "showAll": "Tümünü göster",
       "showLess": "Daha az",
       "totalDistribution": "Toplam Ağırlık Dağılımı",

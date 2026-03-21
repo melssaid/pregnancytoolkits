@@ -3538,6 +3538,8 @@
       "entryRemoved": "Entrada eliminada",
       "saveEntry": "Guardar",
       "saveWeight": "Guardar peso",
+      "editProfile": "Editar",
+      "saveProfile": "Guardar perfil",
       "showAll": "Mostrar todo",
       "showLess": "Menos",
       "totalDistribution": "Distribución total del peso",
