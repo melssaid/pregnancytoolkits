@@ -172,7 +172,17 @@ export const useTrackingStats = () => {
     // Listen for storage changes
     const handleStorage = () => loadStats();
     window.addEventListener('storage', handleStorage);
-    return () => window.removeEventListener('storage', handleStorage);
+
+    // Refresh when user returns to the tab
+    const handleVisibility = () => {
+      if (document.visibilityState === 'visible') loadStats();
+    };
+    document.addEventListener('visibilitychange', handleVisibility);
+
+    return () => {
+      window.removeEventListener('storage', handleStorage);
+      document.removeEventListener('visibilitychange', handleVisibility);
+    };
   }, [loadStats]);
 
   return { stats, toolSummaries, loading, refresh: loadStats };
