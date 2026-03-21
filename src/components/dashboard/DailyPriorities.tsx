@@ -76,36 +76,46 @@ export const DailyPriorities = memo(function DailyPriorities({
       </div>
 
       <div className="space-y-1.5">
-        {items.map((item, i) => (
-          <Link key={item.id} to={item.href}>
-            <motion.div
-              initial={{ opacity: 0, x: -6 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.05 * i }}
-              className={`flex items-center gap-2.5 p-2.5 rounded-xl transition-colors ${
-                item.done ? "bg-primary/5" : "bg-muted/30 hover:bg-muted/50"
-              }`}
-            >
-              <div className={`w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0 ${
-                item.done ? "bg-primary/15" : "bg-muted/50"
-              }`}>
-                {item.done ? (
-                  <Check className="w-3.5 h-3.5 text-primary" />
-                ) : (
-                  <Circle className="w-3 h-3 text-muted-foreground/50" />
-                )}
-              </div>
-              <span className={`text-xs font-medium flex-1 ${item.done ? "text-primary" : "text-foreground"}`}>
-                {t(item.labelKey)}
-              </span>
-              {item.detail && (
-                <span className="text-[10px] font-semibold text-muted-foreground bg-muted px-1.5 py-0.5 rounded-full">
-                  {item.detail}
+        {items.map((item, i) => {
+          const isAnchor = item.href.startsWith("#");
+          const handleClick = (e: React.MouseEvent) => {
+            if (isAnchor) {
+              e.preventDefault();
+              const el = document.getElementById(item.href.slice(1));
+              el?.scrollIntoView({ behavior: "smooth", block: "center" });
+            }
+          };
+          return (
+            <Link key={item.id} to={isAnchor ? "#" : item.href} onClick={handleClick}>
+              <motion.div
+                initial={{ opacity: 0, x: -6 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.05 * i }}
+                className={`flex items-center gap-2.5 p-2.5 rounded-xl transition-colors ${
+                  item.done ? "bg-primary/5" : "bg-muted/30 hover:bg-muted/50"
+                }`}
+              >
+                <div className={`w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                  item.done ? "bg-primary/15" : "bg-muted/50"
+                }`}>
+                  {item.done ? (
+                    <Check className="w-3.5 h-3.5 text-primary" />
+                  ) : (
+                    <Circle className="w-3 h-3 text-muted-foreground/50" />
+                  )}
+                </div>
+                <span className={`text-xs font-medium flex-1 ${item.done ? "text-primary" : "text-foreground"}`}>
+                  {t(item.labelKey)}
                 </span>
-              )}
-            </motion.div>
-          </Link>
-        ))}
+                {item.detail && (
+                  <span className="text-[10px] font-semibold text-muted-foreground bg-muted px-1.5 py-0.5 rounded-full">
+                    {item.detail}
+                  </span>
+                )}
+              </motion.div>
+            </Link>
+          );
+        })}
       </div>
     </motion.div>
   );
