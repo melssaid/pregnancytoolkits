@@ -29,9 +29,10 @@ export const DailyPriorities = memo(function DailyPriorities({
     {
       id: "vitamins",
       labelKey: "dailyDashboard.priorities.vitamins",
-      done: vitaminsTaken > 0,
+      done: vitaminsTaken >= 5,
       icon: Pill,
       href: "/tools/vitamin-tracker",
+      detail: `${vitaminsTaken}/5`,
     },
     {
       id: "kicks",
