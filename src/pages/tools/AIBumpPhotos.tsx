@@ -17,6 +17,7 @@ import { useUserProfile } from '@/hooks/useUserProfile';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
+import { PrintableReport } from '@/components/PrintableReport';
 import { ToolFrame } from '@/components/ToolFrame';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { compressImage, estimateDataUrlSize, formatBytes } from '@/lib/imageCompression';
