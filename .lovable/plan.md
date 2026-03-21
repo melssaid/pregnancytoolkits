@@ -1,84 +1,64 @@
-## خطة إصلاح وتطوير صفحة دليل زيادة الوزن
 
-### المشكلة الحالية
 
-- خانات الطول والوزن بتنسيق `h-14` مع `text-lg` وتأثيرات بصرية معقدة (ring, pulsing hints) تسبب مشاكل في التعديل على الموبايل
-- الخانتين غير متساوية بصرياً (خانة الطول فيها hint نابض وخانة الوزن لا)
-- النظام الحالي معقد بخطوات مرحلية (step indicators) قد تربك المستخدم
+## خطة إصلاح مفاتيح الترجمة والنصوص العربية المتسربة
 
-### التغييرات المطلوبة
+### المشكلة
+174 موضع في 9 ملفات تستخدم `t('key', 'نص عربي كفولباك')` — عند عدم وجود المفتاح في ملفات اللغة الأخرى، يظهر النص العربي بدلاً من لغة المستخدم. أيضاً دائرة نقاط الحركة في عداد الركلات غير منسقة (النص يتكسر).
 
-#### 1. إعادة تصميم خانات الإدخال (الطول + الوزن قبل الحمل)
+### الملفات المتأثرة والتغييرات
 
-- توحيد التنسيق: `h-11` بدلاً من `h-14`، حجم خط `text-base`
-- إزالة التأثيرات المبالغة (ring-2, pulsing animations)
-- توحيد الـ border والـ background لكلا الخانتين
-- إبقاء علامة الصح الخضراء عند الإكمال بشكل أبسط
+#### 1. إضافة المفاتيح المفقودة لجميع اللغات السبع (7 ملفات JSON)
+إضافة المفاتيح التالية لكل لغة:
 
-**الملف**: `src/pages/tools/SmartWeightGainAnalyzer.tsx`
+**kickCounter** (مفقودة في كل اللغات):
+- `toolsInternal.kickCounter.aiAnalysisTitle`
+- `toolsInternal.kickCounter.aiAnalysisButton`
 
-#### 2. تبسيط تجربة المستخدم
+**evidence blocks** (مفقودة في en, fr, de, tr, es, pt):
+- `preeclampsiaRisk.evidence.*` + `evidence2.*`
+- `gdm.evidence.*` + `evidence2.*`
+- `symptomAnalyzer.evidence.*` + `evidence2.*`
 
-- إزالة step indicator العلوي (الخطوات الثلاث)
-- إظهار نموذج تسجيل الوزن مباشرة بعد إكمال الطول والوزن
-- إبقاء BMI badge بتصميم أبسط
+**settings** (مفقودة):
+- `settings.deleteAccount.title/description`
+- `settings.aiReset.title/status/success/button`
 
-#### 3. الرسم البياني وتسجيل النتائج
+**paywall** (مفقودة):
+- `paywall.title/subtitle/trialDesc/startTrial/subscribeButton/maybeLater`
 
-- الرسم البياني موجود بالفعل (`WeightGainChart`) ويعمل بعد تسجيل إدخال
-- التأكد من ظهوره بشكل صحيح
+**AI components** (مفقودة):
+- `aiUsage.subscribePro`
+- `toolsInternal.babyGrowth.monthUnit`
 
-#### 4. تحليل الوزن بالذكاء الاصطناعي
+#### 2. إصلاح الفولباك في الملفات TSX (9 ملفات)
+تغيير كل `t('key', 'نص عربي')` إلى `t('key')` فقط — بدون فولباك عربي — لأن النص الصحيح سيكون موجود في ملفات اللغة.
 
-- `AIInsightCard` موجود بالفعل مع `aiType="weight-analysis"` ومربوط بنظام الحدود (`usePregnancyAI` → `useAIUsageLimit` → `AIUsageContext`)
-- النوع `weight-analysis` مسجل في `AIType` union
-- لا تغيير مطلوب - النظام يعمل
+**الملفات**:
+- `src/pages/tools/SmartKickCounter.tsx`
+- `src/pages/tools/PreeclampsiaRisk.tsx`
+- `src/pages/tools/GestationalDiabetes.tsx`
+- `src/pages/tools/AISymptomAnalyzer.tsx`
+- `src/pages/tools/BabyGrowth.tsx`
+- `src/pages/tools/SmartWeightGainAnalyzer.tsx`
+- `src/pages/Settings.tsx`
+- `src/components/PaywallSheet.tsx`
+- `src/components/ai/AIResponseFrame.tsx`
 
-#### 5. دعم اللغات السبع
+#### 3. إصلاح تنسيق دائرة نقاط الحركة
+في `KickPatternVisualizer.tsx`: إضافة `flex-shrink-0` للدائرة و `min-w-0 overflow-hidden` للنصوص لمنع التكسر على الشاشات الصغيرة.
 
-- جميع النصوص تستخدم `t()` بمفاتيح ترجمة
-- لا تغيير مطلوب
+### ملفات الترجمة المعدّلة
+- `src/locales/en.json`
+- `src/locales/fr.json`
+- `src/locales/ar.json`
+- `src/locales/de.json`
+- `src/locales/tr.json`
+- `src/locales/es.json`
+- `src/locales/pt.json`
 
-#### 6. الميزات الاشتراكية
+### الملخص
+- ~174 فولباك عربي → مفاتيح ترجمة صحيحة
+- 7 ملفات لغة تحتاج مفاتيح جديدة
+- 9 ملفات TSX تحتاج إزالة الفولباك العربي
+- إصلاح تنسيق دائرة الحركة للشاشات الصغيرة
 
-- النظام الحالي يستخدم localStorage فقط - خفيف على قاعدة البيانات
-- `AIInsightCard` مربوط بحدود الاستخدام (10 مجاني / 30 مدفوع)
-- لا حاجة لجداول جديدة في قاعدة البيانات
-
-### الملف الوحيد المعدّل
-
-`src/pages/tools/SmartWeightGainAnalyzer.tsx`
-
-### التغييرات التقنية
-
-```text
-قبل:
-┌──────────────────────────┐
-│  Step 1 ─ Step 2 ─ Step 3│  ← يُحذف
-├──────────────────────────┤
-│ [الطول h-14] [الوزن h-14]│  ← ring + pulse
-│  👆 hint      👆 hint     │  ← يُحذف
-├──────────────────────────┤
-│ ► زر "ابدأ التحليل"      │  ← يُحذف
-└──────────────────────────┘
-
-بعد:
-┌──────────────────────────┐
-│ [الطول h-11] [الوزن h-11]│  ← نظيف، متساوي
-│      BMI: 22.5 طبيعي     │
-├──────────────────────────┤
-│ ► سجّلي وزنك الحالي      │  ← يظهر مباشرة
-│ [الأسبوع] [الوزن] [حفظ]  │
-├──────────────────────────┤
-│ 📊 الرسم البياني          │
-│ 🤖 تحليل AI              │
-└──────────────────────────┘
-```
-
-### ملخص
-
-- تبسيط الخانات وتوحيد تنسيقها
-- إزالة خطوات التوجيه المرحلية
-- إظهار نموذج التسجيل مباشرة بعد إكمال البيانات الأساسية
-- الرسم البياني وتحليل AI والحدود الاشتراكية واللغات كلها تعمل حالياً
-- افحص بعد التنفيذ وأصلح الأخطاء
