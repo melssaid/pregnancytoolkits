@@ -172,8 +172,8 @@ function SleepTab() {
               <TabsContent value="routine" className="max-h-[400px] overflow-y-auto rounded-xl bg-gradient-to-b from-primary/[0.04] to-transparent p-3">{routinePlan && <MarkdownRenderer content={routinePlan} isLoading={isLoading && activeTab === 'routine'} />}</TabsContent>
             </Tabs>
           </div>
-          <p className="text-[8px] text-muted-foreground/40 text-center pb-2.5 tracking-wide">
-            {t('ai.resultDisclaimer', 'AI-generated • Consult your healthcare provider')}
+          <p className="text-[9px] font-semibold text-muted-foreground/70 text-center pb-2.5 tracking-wide">
+            {t('ai.resultDisclaimer', 'AI-generated • Consult your doctor')}
           </p>
         </motion.div>
       )}
