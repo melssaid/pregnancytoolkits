@@ -7785,5 +7785,12 @@
       "swelling": "Şişlik",
       "heartburn": "Mide yanması"
     }
+  },
+  "wellnessStats": {
+    "title": "Sağlık Özeti",
+    "entries": "Kayıtlar",
+    "symptoms": "Belirtiler",
+    "avgMood": "Ort. Ruh hali",
+    "mostCommon": "En yaygın"
   }
 }

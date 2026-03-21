@@ -8071,5 +8071,12 @@
       "swelling": "Schwellung",
       "heartburn": "Sodbrennen"
     }
+  },
+  "wellnessStats": {
+    "title": "Wellness-Zusammenfassung",
+    "entries": "Einträge",
+    "symptoms": "Symptome",
+    "avgMood": "Ø Stimmung",
+    "mostCommon": "Am häufigsten"
   }
 }

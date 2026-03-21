@@ -8181,5 +8181,12 @@
       "swelling": "Swelling",
       "heartburn": "Heartburn"
     }
+  },
+  "wellnessStats": {
+    "title": "Wellness Summary",
+    "entries": "Entries",
+    "symptoms": "Symptoms",
+    "avgMood": "Avg Mood",
+    "mostCommon": "Most common"
   }
 }

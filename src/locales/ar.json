@@ -7968,5 +7968,12 @@
       "swelling": "انتفاخ",
       "heartburn": "حرقة"
     }
+  },
+  "wellnessStats": {
+    "title": "ملخص العافية",
+    "entries": "سجلات",
+    "symptoms": "أعراض",
+    "avgMood": "متوسط المزاج",
+    "mostCommon": "الأكثر شيوعاً"
   }
 }
