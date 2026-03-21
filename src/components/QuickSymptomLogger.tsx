@@ -167,7 +167,7 @@ const QuickSymptomLogger = memo(function QuickSymptomLogger() {
                   }`}
                 >
                   <span className="text-xs">{s.emoji}</span>
-                  {isAr ? s.ar : s.en}
+                  {t(`quickLog.symptomNames.${s.id}`)}
                 </motion.button>
               );
             })}
