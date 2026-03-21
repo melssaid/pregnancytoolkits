@@ -8103,5 +8103,38 @@
     "symptoms": "Symptômes",
     "avgMood": "Humeur moy.",
     "mostCommon": "Le plus fréquent"
+  },
+  "dailyInsights": {
+    "pageTitle": "Conseils du jour",
+    "todaysInsight": "Conseil du jour",
+    "viewFull": "Voir tous les conseils",
+    "badge": "Semaine {{week}}",
+    "title": "Conseils quotidiens",
+    "subtitle": "Des recommandations personnalisées pour vous",
+    "mainRecommendation": "Votre recommandation",
+    "aiPromptDesc": "Obtenez un conseil IA personnalisé basé sur vos données de grossesse",
+    "generateInsight": "Générer mon conseil",
+    "quickActions": "Actions rapides",
+    "suggestions": {
+      "hydration": { "title": "Hydratation", "desc": "{{glasses}} verres aujourd'hui — continuez !" },
+      "movement": { "title": "Mouvement bébé", "desc": "{{kicks}} coups enregistrés aujourd'hui" }
+    },
+    "actions": {
+      "logSymptoms": "Enregistrer symptômes",
+      "trackWater": "Suivre l'eau",
+      "logVitamins": "Enregistrer vitamines",
+      "viewAppointments": "Rendez-vous"
+    },
+    "tips": {
+      "hydration": "Vous êtes à la semaine {{week}} — bien s'hydrater est essentiel maintenant",
+      "movement": "Semaine {{week}} : suivez régulièrement les mouvements de bébé",
+      "vitamins": "N'oubliez pas vos vitamines prénatales aujourd'hui",
+      "rest": "Votre corps travaille dur en semaine {{week}} — accordez-vous du repos",
+      "nutrition": "La semaine {{week}} est une période de croissance clé — misez sur le fer et l'acide folique",
+      "appointment": "Vous avez des rendez-vous à venir — préparez vos questions",
+      "hospitalBag": "Semaine {{week}} : il est temps de préparer votre valise maternité",
+      "bonding": "Parlez ou chantez à votre bébé — il peut vous entendre !",
+      "general": "Chaque semaine apporte de nouveaux changements — restez informée"
+    }
   }
 }

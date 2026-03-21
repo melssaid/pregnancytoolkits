@@ -8078,5 +8078,38 @@
     "symptoms": "Symptome",
     "avgMood": "Ø Stimmung",
     "mostCommon": "Am häufigsten"
+  },
+  "dailyInsights": {
+    "pageTitle": "Tägliche Einblicke",
+    "todaysInsight": "Heutiger Tipp",
+    "viewFull": "Alle Einblicke anzeigen",
+    "badge": "Woche {{week}}",
+    "title": "Tägliche Einblicke",
+    "subtitle": "Personalisierte Empfehlungen für dich",
+    "mainRecommendation": "Deine Empfehlung",
+    "aiPromptDesc": "Erhalte einen personalisierten KI-Einblick basierend auf deinen Schwangerschaftsdaten",
+    "generateInsight": "Meinen Einblick generieren",
+    "quickActions": "Schnellaktionen",
+    "suggestions": {
+      "hydration": { "title": "Flüssigkeit", "desc": "{{glasses}} Gläser heute — weiter so!" },
+      "movement": { "title": "Babybewegung", "desc": "{{kicks}} Tritte heute aufgezeichnet" }
+    },
+    "actions": {
+      "logSymptoms": "Symptome erfassen",
+      "trackWater": "Wasser tracken",
+      "logVitamins": "Vitamine erfassen",
+      "viewAppointments": "Termine"
+    },
+    "tips": {
+      "hydration": "Du bist in Woche {{week}} — ausreichend trinken ist jetzt besonders wichtig",
+      "movement": "Woche {{week}}: Verfolge regelmäßig die Bewegungen deines Babys",
+      "vitamins": "Vergiss heute nicht deine Schwangerschaftsvitamine",
+      "rest": "Dein Körper arbeitet hart in Woche {{week}} — gönne dir Ruhe",
+      "nutrition": "Woche {{week}} ist eine wichtige Wachstumsphase — achte auf eisenreiche Lebensmittel",
+      "appointment": "Du hast bevorstehende Termine — bereite deine Fragen vor",
+      "hospitalBag": "Woche {{week}}: Zeit, die Krankenhaustasche zu packen",
+      "bonding": "Sprich oder singe deinem Baby vor — es kann dich hören!",
+      "general": "Jede Woche bringt neue Veränderungen — bleib informiert"
+    }
   }
 }
