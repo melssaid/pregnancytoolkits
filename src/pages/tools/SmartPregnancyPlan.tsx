@@ -54,6 +54,7 @@ const SmartPregnancyPlan = () => {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+            ...(isAdminBypass() ? { "X-Admin-Bypass": "true" } : {}),
           },
           body: JSON.stringify({
             week: health.week, weight: health.weight, height: health.height, age: health.age,
