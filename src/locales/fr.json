@@ -1176,6 +1176,16 @@
       "confirmErrorDesc": "Veuillez taper \"{{word}}\" pour confirmer",
       "tip": "Conseil :",
       "tipText": "Exportez une sauvegarde avant de supprimer pour conserver vos données"
+    },
+    "deleteAccount": {
+      "title": "Supprimer les données",
+      "description": "Supprimer définitivement toutes vos données"
+    },
+    "aiReset": {
+      "title": "Réinitialiser les essais IA",
+      "status": "Utilisé: {{used}}/{{limit}} • Restant: {{remaining}}",
+      "success": "Réinitialisé ! 30 essais disponibles",
+      "button": "Réinitialiser les essais (Premium)"
     }
   },
   "charts": {
@@ -1793,7 +1803,9 @@
       "warningFewer": "Moins de 10 mouvements en 2 heures",
       "warningDecrease": "Diminution soudaine des mouvements",
       "warningNoMovements": "Absence de mouvements prolongée",
-      "whenToCallDoctor": "Quand appeler votre médecin"
+      "whenToCallDoctor": "Quand appeler votre médecin",
+      "aiAnalysisTitle": "Analyse intelligente des mouvements",
+      "aiAnalysisButton": "Analyse IA des mouvements"
     },
     "symptomAnalyzer": {
       "title": "Journal de bien-être grossesse",
@@ -3807,6 +3819,16 @@
       "abdominalPain": "Douleur abdominale haute (surtout côté droit)",
       "swelling": "Gonflement soudain (visage, mains, pieds)",
       "weightGain": "Prise de poids soudaine (plus de 2,5 kg en une semaine)"
+    },
+    "evidence": {
+      "title": "Qu'est-ce que la prééclampsie ?",
+      "content": "La prééclampsie touche 3 à 8 % des grossesses dans le monde, caractérisée par une hypertension artérielle et la présence de protéines dans les urines après la 20e semaine. La détection précoce et un suivi régulier réduisent les risques jusqu'à 60 %.",
+      "source": "Source : OMS — Recommandations pour la prévention et le traitement de la prééclampsie, 2023"
+    },
+    "evidence2": {
+      "title": "Prévention et aspirine",
+      "content": "L'ACOG recommande une faible dose d'aspirine (81 mg/jour) à partir des semaines 12-16 pour les femmes à haut risque, réduisant le risque de prééclampsie de 24 %. Consultez toujours votre médecin avant de prendre tout médicament.",
+      "source": "Source : ACOG Practice Advisory — Aspirine à faible dose pour la prévention de la prééclampsie, 2024"
     }
   },
   "toolsInternal.dailyTips": {
@@ -7990,6 +8012,51 @@
       "activeLabor": "Votre schéma de contractions suggère un travail actif imminent. Envisagez de contacter votre hôpital.",
       "highBP": "Tension artérielle élevée détectée. Veuillez consulter votre professionnel de santé rapidement.",
       "lowBP": "Tension artérielle basse détectée. Reposez-vous et hydratez-vous. Consultez si les symptômes persistent."
+    }
+  },
+  "paywall": {
+    "title": "Fonctionnalité Premium ✨",
+    "subtitle": "Abonnez-vous pour accéder à tous les outils",
+    "trialTitle": "3 jours gratuits !",
+    "trialDesc": "Essayez toutes les fonctionnalités premium gratuitement",
+    "startTrial": "Commencer l'essai gratuit",
+    "subscribeButton": "S'abonner maintenant",
+    "maybeLater": "Peut-être plus tard"
+  },
+  "gdm": {
+    "evidence": {
+      "title": "Dépistage du diabète gestationnel",
+      "content": "Le test de tolérance au glucose est généralement effectué entre les semaines 24-28 de grossesse. Le diabète gestationnel touche 6-9 % des grossesses dans le monde et peut être géré par l'alimentation et l'exercice dans 80-90 % des cas sans insuline.",
+      "source": "Source : American Diabetes Association — Standards of Care in Diabetes, 2024"
+    },
+    "evidence2": {
+      "title": "Impact de l'alimentation",
+      "content": "Les études montrent qu'un régime à faible indice glycémique réduit le risque de diabète gestationnel de 33 % et améliore la glycémie. Diviser les repas en 5-6 petites portions par jour aide à stabiliser la glycémie.",
+      "source": "Source : Cochrane Review — Régime alimentaire et exercice pour la prévention du DG, 2023"
+    }
+  },
+  "symptomAnalyzer": {
+    "evidence": {
+      "title": "Quand les symptômes sont-ils normaux ?",
+      "content": "Les nausées, la fatigue et les maux de tête sont parmi les symptômes de grossesse les plus courants, touchant jusqu'à 80 % des femmes enceintes. La plupart s'améliorent d'eux-mêmes après le premier trimestre. Cependant, des symptômes soudains ou sévères comme un gonflement du visage ou des troubles de la vision nécessitent une attention médicale immédiate.",
+      "source": "Source : ACOG Practice Bulletin — Nausées et vomissements de la grossesse, 2024"
+    },
+    "evidence2": {
+      "title": "Importance du suivi des symptômes",
+      "content": "Les études montrent que les femmes qui enregistrent régulièrement leurs symptômes détectent les complications 40 % plus tôt, améliorant significativement les résultats de grossesse. L'enregistrement quotidien aide votre médecin à mieux comprendre vos schémas de symptômes.",
+      "source": "Source : BMC Pregnancy and Childbirth, 2023 — Suivi numérique des symptômes pendant la grossesse"
+    }
+  },
+  "weightGain": {
+    "evidence": {
+      "title": "Taux de prise de poids normal",
+      "content": "La prise de poids idéale varie selon l'IMC avant la grossesse : poids normal (IMC 18,5-24,9) devrait prendre 11,5-16 kg, tandis que le surpoids (IMC 25-29,9) devrait prendre 7-11,5 kg.",
+      "source": "Source : Institute of Medicine (IOM) — Directives sur la prise de poids pendant la grossesse, 2024"
+    },
+    "evidence2": {
+      "title": "Quand s'inquiéter de la prise de poids",
+      "content": "Prendre plus d'1 kg en une semaine après la 20e semaine peut indiquer une rétention d'eau et nécessite un contrôle de la tension artérielle. L'absence de prise de poids pendant deux semaines consécutives justifie une consultation médicale.",
+      "source": "Source : ACOG Committee Opinion — Prise de poids pendant la grossesse, 2023"
     }
   }
 }

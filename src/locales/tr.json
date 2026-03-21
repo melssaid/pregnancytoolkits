@@ -1139,6 +1139,16 @@
       "confirmErrorDesc": "Onaylamak için lütfen \"{{word}}\" yazın",
       "tip": "İpucu:",
       "tipText": "Verilerinizi kaydetmek için silmeden önce bir yedek dışa aktarın"
+    },
+    "deleteAccount": {
+      "title": "Verileri Sil",
+      "description": "Tüm verilerinizi kalıcı olarak silin"
+    },
+    "aiReset": {
+      "title": "Yapay Zeka Denemelerini Sıfırla",
+      "status": "Kullanılan: {{used}}/{{limit}} • Kalan: {{remaining}}",
+      "success": "Sıfırlandı! 30 deneme kullanılabilir",
+      "button": "Denemeleri Sıfırla (Premium)"
     }
   },
   "charts": {
@@ -1756,7 +1766,9 @@
       "warningFewer": "2 saatte 10'dan az hareket",
       "warningDecrease": "Hareket düzeninde ani azalma",
       "warningNoMovements": "Uzun süre hareket olmaması",
-      "whenToCallDoctor": "Doktorunuzu ne zaman aramalısınız"
+      "whenToCallDoctor": "Doktorunuzu ne zaman aramalısınız",
+      "aiAnalysisTitle": "Akıllı Hareket Analizi",
+      "aiAnalysisButton": "Yapay Zeka Hareket Analizi"
     },
     "symptomAnalyzer": {
       "title": "Hamilelik Sağlık Günlüğü",
@@ -3880,6 +3892,16 @@
       "abdominalPain": "Üst karın ağrısı (özellikle sağ taraf)",
       "swelling": "Ani şişlik (yüz, eller, ayaklar)",
       "weightGain": "Ani kilo artışı (bir haftada 2,5 kg'dan fazla)"
+    },
+    "evidence": {
+      "title": "Preeklampsi Nedir?",
+      "content": "Preeklampsi dünya genelinde gebeliklerin %3-8'ini etkiler, 20. haftadan sonra yüksek tansiyon ve idrarda protein ile karakterizedir. Erken teşhis ve düzenli takip riskleri %60'a kadar azaltır.",
+      "source": "Kaynak: DSÖ — Preeklampsi Önleme ve Tedavi Önerileri, 2023"
+    },
+    "evidence2": {
+      "title": "Önleme ve Aspirin",
+      "content": "ACOG, yüksek riskli kadınlar için 12-16. haftalardan itibaren düşük doz aspirin (günde 81 mg) önermektedir, bu preeklampsi riskini %24 azaltır. Herhangi bir ilaç almadan önce mutlaka doktorunuza danışın.",
+      "source": "Kaynak: ACOG Uygulama Danışma — Preeklampsi Önleme için Düşük Doz Aspirin, 2024"
     }
   },
   "dailyTips": {
@@ -7679,6 +7701,51 @@
       "activeLabor": "Kasılma düzeniniz aktif doğumun yaklaştığını gösteriyor. Hastanenizi aramayı düşünün.",
       "highBP": "Yüksek tansiyon tespit edildi. Lütfen sağlık uzmanınıza danışın.",
       "lowBP": "Düşük tansiyon tespit edildi. Dinlenin ve bol sıvı alın. Belirtiler devam ederse doktorunuza danışın."
+    }
+  },
+  "paywall": {
+    "title": "Premium Özellik ✨",
+    "subtitle": "Tüm akıllı araçlara erişmek için abone olun",
+    "trialTitle": "3 Gün Ücretsiz!",
+    "trialDesc": "Tüm premium özellikleri ücretsiz deneyin",
+    "startTrial": "Ücretsiz Denemeyi Başlat",
+    "subscribeButton": "Şimdi Abone Ol",
+    "maybeLater": "Belki sonra"
+  },
+  "gdm": {
+    "evidence": {
+      "title": "Gebelik Diyabeti Taraması",
+      "content": "Glikoz tolerans testi genellikle gebeliğin 24-28. haftaları arasında yapılır. Gebelik diyabeti dünya genelinde gebeliklerin %6-9'unu etkiler ve vakaların %80-90'ında insüline gerek kalmadan diyet ve egzersizle yönetilebilir.",
+      "source": "Kaynak: American Diabetes Association — Standards of Care in Diabetes, 2024"
+    },
+    "evidence2": {
+      "title": "Diyet Etkisi",
+      "content": "Araştırmalar, düşük glisemik indeksli bir diyetin gebelik diyabeti riskini %33 azalttığını ve kan şekeri seviyelerini iyileştirdiğini göstermektedir. Yemekleri günde 5-6 küçük porsiyona bölmek kan şekerini dengelemeye yardımcı olur.",
+      "source": "Kaynak: Cochrane Review — GDM Önleme için Diyet ve Egzersiz, 2023"
+    }
+  },
+  "symptomAnalyzer": {
+    "evidence": {
+      "title": "Belirtiler Ne Zaman Normaldir?",
+      "content": "Bulantı, yorgunluk ve baş ağrısı en yaygın gebelik belirtileri arasında olup hamile kadınların %80'ine kadarını etkiler. Bu belirtilerin çoğu ilk trimesterden sonra kendiliğinden düzelir. Ancak yüz şişmesi veya görme bozuklukları gibi ani veya şiddetli belirtiler acil tıbbi müdahale gerektirir.",
+      "source": "Kaynak: ACOG Uygulama Bülteni — Gebelikte Bulantı ve Kusma, 2024"
+    },
+    "evidence2": {
+      "title": "Semptom Takibinin Önemi",
+      "content": "Araştırmalar, belirtilerini düzenli olarak kaydeden kadınların komplikasyonları %40 daha erken tespit ettiğini ve gebelik sonuçlarını önemli ölçüde iyileştirdiğini göstermektedir. Günlük kayıt, doktorunuzun belirti kalıplarınızı daha iyi anlamasına yardımcı olur.",
+      "source": "Kaynak: BMC Pregnancy and Childbirth, 2023 — Gebelikte dijital semptom takibi"
+    }
+  },
+  "weightGain": {
+    "evidence": {
+      "title": "Normal Kilo Alım Oranı",
+      "content": "İdeal kilo alımı gebelik öncesi BMI'ye göre değişir: normal kilo (BMI 18,5-24,9) 11,5-16 kg, fazla kilolu (BMI 25-29,9) 7-11,5 kg almalıdır.",
+      "source": "Kaynak: Institute of Medicine (IOM) — Gebelikte Kilo Alımı Kılavuzu, 2024"
+    },
+    "evidence2": {
+      "title": "Kilo Alımı Konusunda Ne Zaman Endişelenmelisiniz",
+      "content": "20. haftadan sonra bir haftada 1 kg'dan fazla kilo almak sıvı tutulumunu gösterebilir ve tansiyon kontrolü gerektirir. Ardışık iki hafta hiç kilo alınmaması tıbbi danışmanlık gerektirir.",
+      "source": "Kaynak: ACOG Komite Görüşü — Gebelikte Kilo Alımı, 2023"
     }
   }
 }

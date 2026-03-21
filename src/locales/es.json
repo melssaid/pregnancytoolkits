@@ -1139,6 +1139,16 @@
       "confirmErrorDesc": "Por favor escribe \"{{word}}\" para confirmar",
       "tip": "Consejo:",
       "tipText": "Exporta una copia de seguridad antes de eliminar para guardar tus datos"
+    },
+    "deleteAccount": {
+      "title": "Eliminar datos",
+      "description": "Eliminar todos tus datos permanentemente"
+    },
+    "aiReset": {
+      "title": "Restablecer intentos de IA",
+      "status": "Usado: {{used}}/{{limit}} • Restante: {{remaining}}",
+      "success": "¡Restablecido! 30 intentos disponibles",
+      "button": "Restablecer intentos (Premium)"
     }
   },
   "charts": {
@@ -1756,7 +1766,9 @@
       "warningFewer": "Menos de 10 movimientos en 2 horas",
       "warningDecrease": "Disminución repentina del patrón de movimiento",
       "warningNoMovements": "Sin movimientos durante un período prolongado",
-      "whenToCallDoctor": "Cuándo llamar al médico"
+      "whenToCallDoctor": "Cuándo llamar al médico",
+      "aiAnalysisTitle": "Análisis inteligente de movimientos",
+      "aiAnalysisButton": "Análisis IA de movimientos"
     },
     "symptomAnalyzer": {
       "title": "Diario de bienestar del embarazo",
@@ -3880,6 +3892,16 @@
       "abdominalPain": "Dolor abdominal superior (especialmente lado derecho)",
       "swelling": "Hinchazón repentina (cara, manos, pies)",
       "weightGain": "Aumento de peso repentino (más de 2,5 kg en una semana)"
+    },
+    "evidence": {
+      "title": "¿Qué es la preeclampsia?",
+      "content": "La preeclampsia afecta al 3-8% de los embarazos a nivel mundial, caracterizada por presión arterial alta y proteína en la orina después de la semana 20. La detección temprana y el monitoreo regular reducen los riesgos hasta en un 60%.",
+      "source": "Fuente: OMS — Recomendaciones para la prevención y el tratamiento de la preeclampsia, 2023"
+    },
+    "evidence2": {
+      "title": "Prevención y aspirina",
+      "content": "ACOG recomienda aspirina en dosis baja (81 mg diarios) a partir de las semanas 12-16 para mujeres de alto riesgo, reduciendo el riesgo de preeclampsia en un 24%. Consulta siempre a tu médico antes de tomar cualquier medicamento.",
+      "source": "Fuente: ACOG Practice Advisory — Aspirina en dosis baja para la prevención de preeclampsia, 2024"
     }
   },
   "dailyTips": {
@@ -7679,6 +7701,51 @@
       "activeLabor": "Tu patrón de contracciones sugiere que el parto activo puede estar cerca. Considera contactar al hospital.",
       "highBP": "Presión arterial elevada detectada. Consulta a tu profesional de salud pronto.",
       "lowBP": "Presión arterial baja detectada. Descansa e hidrátate. Consulta si los síntomas persisten."
+    }
+  },
+  "paywall": {
+    "title": "Función Premium ✨",
+    "subtitle": "Suscríbete para acceder a todas las herramientas",
+    "trialTitle": "¡3 días gratis!",
+    "trialDesc": "Prueba todas las funciones premium gratis",
+    "startTrial": "Iniciar prueba gratuita",
+    "subscribeButton": "Suscribirse ahora",
+    "maybeLater": "Quizás después"
+  },
+  "gdm": {
+    "evidence": {
+      "title": "Detección de diabetes gestacional",
+      "content": "La prueba de tolerancia a la glucosa se realiza generalmente entre las semanas 24-28 del embarazo. La diabetes gestacional afecta al 6-9% de los embarazos y puede controlarse con dieta y ejercicio en el 80-90% de los casos sin insulina.",
+      "source": "Fuente: American Diabetes Association — Standards of Care in Diabetes, 2024"
+    },
+    "evidence2": {
+      "title": "Impacto de la dieta",
+      "content": "Los estudios muestran que seguir una dieta de bajo índice glucémico reduce el riesgo de diabetes gestacional en un 33% y mejora los niveles de azúcar en sangre. Dividir las comidas en 5-6 porciones pequeñas al día ayuda a estabilizar el azúcar.",
+      "source": "Fuente: Cochrane Review — Dieta y ejercicio para la prevención de DMG, 2023"
+    }
+  },
+  "symptomAnalyzer": {
+    "evidence": {
+      "title": "¿Cuándo son normales los síntomas?",
+      "content": "Las náuseas, la fatiga y los dolores de cabeza son de los síntomas más comunes del embarazo, afectando hasta al 80% de las embarazadas. La mayoría mejoran por sí solos después del primer trimestre. Sin embargo, síntomas repentinos o severos como hinchazón facial o alteraciones visuales requieren atención médica inmediata.",
+      "source": "Fuente: ACOG Practice Bulletin — Náuseas y vómitos del embarazo, 2024"
+    },
+    "evidence2": {
+      "title": "Importancia del seguimiento de síntomas",
+      "content": "Los estudios muestran que las mujeres que registran sus síntomas regularmente detectan complicaciones un 40% antes, mejorando significativamente los resultados del embarazo. El registro diario ayuda a tu médico a comprender mejor tus patrones de síntomas.",
+      "source": "Fuente: BMC Pregnancy and Childbirth, 2023 — Seguimiento digital de síntomas en el embarazo"
+    }
+  },
+  "weightGain": {
+    "evidence": {
+      "title": "Tasa normal de aumento de peso",
+      "content": "El aumento de peso ideal varía según el IMC previo al embarazo: peso normal (IMC 18,5-24,9) debería ganar 11,5-16 kg, mientras que sobrepeso (IMC 25-29,9) debería ganar 7-11,5 kg.",
+      "source": "Fuente: Institute of Medicine (IOM) — Directrices de aumento de peso durante el embarazo, 2024"
+    },
+    "evidence2": {
+      "title": "Cuándo preocuparse por el aumento de peso",
+      "content": "Ganar más de 1 kg en una semana después de la semana 20 puede indicar retención de líquidos y requiere control de presión arterial. No ganar peso durante dos semanas consecutivas amerita consulta médica.",
+      "source": "Fuente: ACOG Committee Opinion — Aumento de peso durante el embarazo, 2023"
     }
   }
 }

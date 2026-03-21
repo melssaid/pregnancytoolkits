@@ -1139,6 +1139,16 @@
       "confirmErrorDesc": "Por favor digite \"{{word}}\" para confirmar",
       "tip": "Dica:",
       "tipText": "Exporte um backup antes de excluir para salvar seus dados"
+    },
+    "deleteAccount": {
+      "title": "Excluir dados",
+      "description": "Excluir permanentemente todos os seus dados"
+    },
+    "aiReset": {
+      "title": "Redefinir tentativas de IA",
+      "status": "Usado: {{used}}/{{limit}} • Restante: {{remaining}}",
+      "success": "Redefinido! 30 tentativas disponíveis",
+      "button": "Redefinir tentativas (Premium)"
     }
   },
   "charts": {
@@ -1756,7 +1766,9 @@
       "warningFewer": "Menos de 10 movimentos em 2 horas",
       "warningDecrease": "Diminuição repentina no padrão de movimento",
       "warningNoMovements": "Sem movimentos por um período prolongado",
-      "whenToCallDoctor": "Quando ligar para o médico"
+      "whenToCallDoctor": "Quando ligar para o médico",
+      "aiAnalysisTitle": "Análise inteligente de movimentos",
+      "aiAnalysisButton": "Análise IA de movimentos"
     },
     "symptomAnalyzer": {
       "title": "Diário de bem-estar da gravidez",
@@ -3880,6 +3892,16 @@
       "abdominalPain": "Dor abdominal superior (especialmente lado direito)",
       "swelling": "Inchaço repentino (rosto, mãos, pés)",
       "weightGain": "Ganho de peso repentino (mais de 2,5 kg em uma semana)"
+    },
+    "evidence": {
+      "title": "O que é pré-eclâmpsia?",
+      "content": "A pré-eclâmpsia afeta 3-8% das gestações no mundo, caracterizada por pressão alta e proteína na urina após a semana 20. A detecção precoce e o monitoramento regular reduzem os riscos em até 60%.",
+      "source": "Fonte: OMS — Recomendações para Prevenção e Tratamento da Pré-eclâmpsia, 2023"
+    },
+    "evidence2": {
+      "title": "Prevenção e aspirina",
+      "content": "O ACOG recomenda aspirina em dose baixa (81 mg diários) a partir das semanas 12-16 para mulheres de alto risco, reduzindo o risco de pré-eclâmpsia em 24%. Sempre consulte seu médico antes de tomar qualquer medicamento.",
+      "source": "Fonte: ACOG Practice Advisory — Aspirina em dose baixa para prevenção de pré-eclâmpsia, 2024"
     }
   },
   "dailyTips": {
@@ -7679,6 +7701,51 @@
       "activeLabor": "Seu padrão de contrações sugere que o trabalho de parto ativo pode estar se aproximando. Considere entrar em contato com o hospital.",
       "highBP": "Pressão arterial elevada detectada. Consulte seu profissional de saúde prontamente.",
       "lowBP": "Pressão arterial baixa detectada. Descanse e hidrate-se. Consulte se os sintomas persistirem."
+    }
+  },
+  "paywall": {
+    "title": "Recurso Premium ✨",
+    "subtitle": "Assine para acessar todas as ferramentas",
+    "trialTitle": "3 dias grátis!",
+    "trialDesc": "Experimente todos os recursos premium gratuitamente",
+    "startTrial": "Iniciar teste gratuito",
+    "subscribeButton": "Assinar agora",
+    "maybeLater": "Talvez depois"
+  },
+  "gdm": {
+    "evidence": {
+      "title": "Rastreamento de diabetes gestacional",
+      "content": "O teste de tolerância à glicose é geralmente realizado entre as semanas 24-28 da gestação. O diabetes gestacional afeta 6-9% das gestações e pode ser controlado com dieta e exercício em 80-90% dos casos sem insulina.",
+      "source": "Fonte: American Diabetes Association — Standards of Care in Diabetes, 2024"
+    },
+    "evidence2": {
+      "title": "Impacto da dieta",
+      "content": "Estudos mostram que seguir uma dieta de baixo índice glicêmico reduz o risco de diabetes gestacional em 33% e melhora os níveis de açúcar no sangue. Dividir as refeições em 5-6 pequenas porções diárias ajuda a estabilizar o açúcar.",
+      "source": "Fonte: Cochrane Review — Dieta e exercício para prevenção de DMG, 2023"
+    }
+  },
+  "symptomAnalyzer": {
+    "evidence": {
+      "title": "Quando os sintomas são normais?",
+      "content": "Náuseas, fadiga e dores de cabeça são os sintomas mais comuns da gravidez, afetando até 80% das gestantes. A maioria melhora por conta própria após o primeiro trimestre. No entanto, sintomas súbitos ou severos como inchaço facial ou distúrbios visuais requerem atenção médica imediata.",
+      "source": "Fonte: ACOG Practice Bulletin — Náuseas e vômitos na gravidez, 2024"
+    },
+    "evidence2": {
+      "title": "Importância do acompanhamento de sintomas",
+      "content": "Estudos mostram que mulheres que registram seus sintomas regularmente detectam complicações 40% mais cedo, melhorando significativamente os resultados da gestação. O registro diário ajuda seu médico a entender melhor seus padrões de sintomas.",
+      "source": "Fonte: BMC Pregnancy and Childbirth, 2023 — Rastreamento digital de sintomas na gravidez"
+    }
+  },
+  "weightGain": {
+    "evidence": {
+      "title": "Taxa normal de ganho de peso",
+      "content": "O ganho de peso ideal varia conforme o IMC pré-gestacional: peso normal (IMC 18,5-24,9) deve ganhar 11,5-16 kg, enquanto sobrepeso (IMC 25-29,9) deve ganhar 7-11,5 kg.",
+      "source": "Fonte: Institute of Medicine (IOM) — Diretrizes de ganho de peso na gestação, 2024"
+    },
+    "evidence2": {
+      "title": "Quando se preocupar com o ganho de peso",
+      "content": "Ganhar mais de 1 kg em uma semana após a semana 20 pode indicar retenção de líquidos e requer verificação da pressão arterial. Não ganhar peso por duas semanas consecutivas justifica consulta médica.",
+      "source": "Fonte: ACOG Committee Opinion — Ganho de peso durante a gestação, 2023"
     }
   }
 }
