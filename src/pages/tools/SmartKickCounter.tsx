@@ -3,8 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Baby, Play, TrendingUp, Clock, Loader2, Save, Zap } from 'lucide-react';
 import { ContextualWarningBanner, WhenToCallDoctorCard, EvidenceInfoBlock } from '@/components/safety';
 import { KickPatternVisualizer } from '@/components/kick-counter/KickPatternVisualizer';
-import { AIMovementAnalysis } from '@/components/kick-counter/AIMovementAnalysis';
-import { KickChart } from '@/components/charts/KickChart';
+import { AIInsightCard } from '@/components/ai/AIInsightCard';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
@@ -491,28 +490,34 @@ const SmartKickCounter: React.FC = () => {
           />
         )}
 
-        {/* Recharts Kick Chart */}
-        {history.length >= 2 && (
-          <KickChart
-            sessions={history.slice(0, 7).map((s: any) => ({
-              id: s.id,
-              startTime: new Date(s.started_at),
-              kicks: s.total_kicks,
-              duration: (s.duration_minutes || 0) * 60,
-            }))}
+        {/* AI Movement Analysis — unified AIInsightCard */}
+        {history.length >= 3 && (
+          <AIInsightCard
+            title={t('toolsInternal.kickCounter.aiAnalysisTitle', 'تحليل ذكي للحركة')}
+            aiType="symptom-analysis"
+            prompt={`You are an expert perinatal nurse providing fetal movement analysis. Analyze this kick counting data and provide comprehensive insights.
+
+## Patient Data
+- Pregnancy Week: ${currentWeek}
+- Total Sessions Recorded: ${history.length}
+- Analysis Period: Last ${Math.min(history.length, 14)} sessions
+
+## Session Records
+${history.slice(0, 14).map((s: any) => `${new Date(s.started_at).toISOString().split('T')[0]}: ${s.total_kicks} kicks in ${s.duration_minutes || 0} min`).join('\n')}
+
+## Statistics
+- Average kicks per session: ${getAverageKicks()}
+- Movement health score: ${movementScore}/100
+
+Provide: 1) Pattern review, 2) Pattern interpretation for week ${currentWeek}, 3) Personalized recommendations, 4) When to seek care (non-alarming), 5) Quick tips for week ${currentWeek}. Use markdown formatting. Be supportive and reassuring.`}
+            context={{ week: currentWeek }}
+            buttonText={t('toolsInternal.kickCounter.aiAnalysisButton', 'تحليل الحركة بالذكاء الاصطناعي')}
+            icon={<TrendingUp className="w-4 h-4" />}
+            showPrintButton
+            showDisclaimer
+            printTitle={t('toolsInternal.kickCounter.title')}
           />
         )}
-
-        {/* AI Movement Analysis — phased, animated */}
-        <AIMovementAnalysis
-          sessions={history.map((s: any) => ({
-            date: new Date(s.started_at).toISOString().split('T')[0],
-            kicks: s.total_kicks,
-            duration: s.duration_minutes || 0,
-            startTime: new Date(s.started_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-          }))}
-          currentWeek={currentWeek}
-        />
 
         {/* History */}
         {history.length > 0 && (
