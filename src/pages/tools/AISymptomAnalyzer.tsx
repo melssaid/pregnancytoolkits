@@ -134,6 +134,7 @@ Provide brief, supportive wellness insights about these feelings during week ${c
     const updated = [newEntry, ...entries].slice(0, 100);
     setEntries(updated);
     safeSaveToLocalStorage(STORAGE_KEY, updated);
+    window.dispatchEvent(new Event("storage"));
 
     setSelectedSymptoms([]);
     setSelectedMood('');
