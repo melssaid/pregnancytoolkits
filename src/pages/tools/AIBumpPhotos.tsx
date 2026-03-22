@@ -14,7 +14,7 @@ import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
 import { BumpPhotoService } from '@/services/localStorageServices';
 import { useUserProfile } from '@/hooks/useUserProfile';
-import { usePregnancyAI } from '@/hooks/usePregnancyAI';
+import { useSmartChat, type ChatMessage } from '@/hooks/useSmartChat';
 import { useAIUsage } from '@/contexts/AIUsageContext';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
@@ -69,7 +69,11 @@ const AIBumpPhotos: React.FC = () => {
   const galleryInputRef = useRef<HTMLInputElement>(null);
   const abortRef = useRef(false);
   const { toast } = useToast();
-  const { streamChat } = usePregnancyAI();
+  const { sendChat, isLoading: isSmartLoading } = useSmartChat({
+    section: "ultrasound",
+    toolType: "bump-photos",
+    weight: 2,
+  });
   const { isLimitReached } = useAIUsage();
 
   useResetOnLanguageChange(() => { setAiAnalysis(''); });
@@ -256,16 +260,18 @@ const AIBumpPhotos: React.FC = () => {
         : `I am in week ${photo.week} of pregnancy. Please analyze this ultrasound (sonogram) image and provide educational observations about what is visible, baby's development at this stage, and any notable features.`;
 
       // Build multimodal message with ultrasound image
-      const messageContent: Array<{ type: string; text?: string; image_url?: { url: string } }> = [
-        { type: "text", text: textPrompt },
-        { type: "image_url", image_url: { url: photo.image_ref } },
-      ];
+      const messageContent: ChatMessage = {
+        role: 'user',
+        content: [
+          { type: "text", text: textPrompt },
+          { type: "image_url", image_url: { url: photo.image_ref } },
+        ],
+      };
 
       let fullResponse = '';
       
-      await streamChat({
-        type: 'bump-photos',
-        messages: [{ role: 'user', content: messageContent }],
+      await sendChat({
+        messages: [messageContent],
         context: { week: photo.week },
         onDelta: (text) => {
           if (abortRef.current) return;
@@ -280,7 +286,7 @@ const AIBumpPhotos: React.FC = () => {
             ));
           }
           setIsAnalyzing(false);
-        }
+        },
       });
       
     } catch (error: any) {
