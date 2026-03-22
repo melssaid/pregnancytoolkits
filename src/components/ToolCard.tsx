@@ -46,7 +46,7 @@ export function ToolCard({ titleKey, descriptionKey, icon: Icon, href, index, va
             <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/10 border border-primary/20 flex items-center justify-center group-hover:from-primary/30 group-hover:to-primary/15 group-hover:scale-105 transition-all duration-300 ${isLocked ? "grayscale-[30%]" : ""}`}>
               <Icon className="w-6 h-6 text-primary group-hover:text-primary transition-colors duration-300" strokeWidth={1.75} />
             </div>
-            <h3 className="text-[11px] font-semibold text-foreground text-center leading-snug break-words min-h-[28px]">
+            <h3 className="text-[11px] font-semibold text-foreground text-center leading-snug min-h-[28px] whitespace-normal" style={{ overflowWrap: 'anywhere' }}>
               {t(titleKey)}
             </h3>
           </div>
@@ -67,10 +67,10 @@ export function ToolCard({ titleKey, descriptionKey, icon: Icon, href, index, va
             <Icon className="w-5.5 h-5.5 text-primary group-hover:text-primary transition-colors duration-300" strokeWidth={2} />
           </div>
           <div className="flex-1 min-w-0">
-            <h3 className="text-sm font-semibold text-foreground leading-snug">
+            <h3 className="text-sm font-semibold text-foreground leading-snug whitespace-normal" style={{ overflowWrap: 'anywhere' }}>
               {t(titleKey)}
             </h3>
-            <p className="text-xs text-foreground/70 break-words mt-0.5 leading-relaxed">
+            <p className="text-xs text-foreground/70 mt-0.5 leading-relaxed whitespace-normal" style={{ overflowWrap: 'anywhere' }}>
               {t(descriptionKey)}
             </p>
           </div>
