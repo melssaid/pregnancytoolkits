@@ -22,7 +22,7 @@ const iconMap: Record<string, React.ElementType> = {
   unknown: AlertCircle,
 };
 
-const colorMap: Record<AIErrorType, { bg: string; border: string; icon: string; badge: string }> = {
+const colorMap: Record<string, { bg: string; border: string; icon: string; badge: string }> = {
   rate_limit: {
     bg: 'bg-amber-50 dark:bg-amber-950/20',
     border: 'border-amber-200/60 dark:border-amber-800/40',
@@ -55,7 +55,7 @@ const colorMap: Record<AIErrorType, { bg: string; border: string; icon: string; 
   },
 };
 
-const titleKeyMap: Record<AIErrorType, string> = {
+const titleKeyMap: Record<string, string> = {
   rate_limit: 'aiErrors.rateLimitTitle',
   payment: 'aiErrors.paymentTitle',
   network: 'aiErrors.networkTitle',
