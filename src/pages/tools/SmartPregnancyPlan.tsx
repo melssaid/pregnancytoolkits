@@ -1,9 +1,5 @@
 import { useState, useRef, useCallback } from "react";
 import { useTranslation } from "react-i18next";
-const STORAGE_KEY = 'ai_daily_usage';
-function isAdminBypass(): boolean {
-  try { const r = localStorage.getItem(STORAGE_KEY); return r ? JSON.parse(r).adminBypass === true : false; } catch { return false; }
-}
 import { Brain } from "lucide-react";
 import { ToolFrame } from "@/components/ToolFrame";
 import { SavedResultsViewer } from "@/components/ai/SavedResultsViewer";
@@ -14,6 +10,7 @@ import { HealthInputForm } from "@/components/smart-plan/HealthInputForm";
 import { SmartPlanResultView } from "@/components/smart-plan/SmartPlanResultView";
 import { useHealthData } from "@/components/smart-plan/useHealthData";
 import { useAIUsage } from "@/contexts/AIUsageContext";
+import { executeSmartRequest } from "@/services/smartEngine";
 
 const SmartPregnancyPlan = () => {
   const { t, i18n } = useTranslation();
@@ -21,7 +18,7 @@ const SmartPregnancyPlan = () => {
   const [researchEnhanced, setResearchEnhanced] = useState(false);
   const [enhancedLoading, setEnhancedLoading] = useState(false);
   const { streamChat, isLoading, error } = usePregnancyAI();
-  const { isLimitReached, incrementUsage, syncFromServer, syncLimit, limit } = useAIUsage();
+  const { isLimitReached, limit, refresh } = useAIUsage();
   const reportRef = useRef<HTMLDivElement>(null);
   const [limitError, setLimitError] = useState('');
 
@@ -43,97 +40,50 @@ const SmartPregnancyPlan = () => {
 
   useResetOnLanguageChange(() => setPlanContent(''));
 
-  const streamEnhanced = useCallback(async (onDelta: (text: string) => void) => {
-    setEnhancedLoading(true);
-    setResearchEnhanced(false);
-    try {
-      const response = await fetch(
-        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/pregnancy-plan-enhanced`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
-            ...(isAdminBypass() ? { "X-Admin-Bypass": "true" } : {}),
-          },
-          body: JSON.stringify({
-            week: health.week, weight: health.weight, height: health.height, age: health.age,
-            painLevel: health.painLevel, bloodPressureSys: health.bloodPressureSys,
-            bloodPressureDia: health.bloodPressureDia, sleepHours: health.sleepHours,
-            activityLevel: health.activityLevel, mood: health.mood,
-            conditions: health.conditions, language: lang, mode: "plan",
-          }),
-        }
-      );
-
-      if (!response.ok) {
-        // Check for daily limit
-        if (response.status === 429) {
-          try {
-            const errBody = await response.json();
-            if (errBody?.error === "daily_limit_reached") {
-              const serverUsed = parseInt(response.headers.get("X-Daily-Used") || "0", 10);
-              if (serverUsed) syncFromServer(serverUsed);
-              setLimitError(t('aiErrors.dailyLimitMsg', { limit, remaining: 0 }));
-              return;
-            }
-          } catch { /* ignore */ }
-        }
-        throw new Error("Enhanced endpoint failed");
-      }
-      if (!response.body) throw new Error("No response body");
-      
-      // Sync usage headers
-      const serverUsed = response.headers.get("X-Daily-Used");
-      if (serverUsed) syncFromServer(parseInt(serverUsed, 10));
-      const serverLimit = response.headers.get("X-Daily-Limit");
-      if (serverLimit) syncLimit(parseInt(serverLimit, 10));
-
-      setResearchEnhanced(response.headers.get("X-Research-Enhanced") === "true");
-
-      const reader = response.body.getReader();
-      const decoder = new TextDecoder();
-      let buffer = "";
-
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        buffer += decoder.decode(value, { stream: true });
-        let idx: number;
-        while ((idx = buffer.indexOf("\n")) !== -1) {
-          let line = buffer.slice(0, idx);
-          buffer = buffer.slice(idx + 1);
-          if (line.endsWith("\r")) line = line.slice(0, -1);
-          if (!line.startsWith("data: ") || line.trim() === "") continue;
-          const json = line.slice(6).trim();
-          if (json === "[DONE]") return;
-          try {
-            const content = JSON.parse(json).choices?.[0]?.delta?.content;
-            if (content) onDelta(content);
-          } catch {
-            buffer = line + "\n" + buffer;
-            break;
-          }
-        }
-      }
-    } finally {
-      setEnhancedLoading(false);
-    }
-  }, [health, lang]);
-
   const generatePlan = useCallback(async () => {
     if (isLimitReached) {
-      setLimitError(t('aiErrors.dailyLimitMsg', { limit, remaining: 0 }));
+      setLimitError(t('aiErrors.monthlyLimitMsg', { limit, remaining: 0 }));
       return;
     }
     setPlanContent('');
     setLimitError('');
+    setEnhancedLoading(true);
+    setResearchEnhanced(false);
+
+    const conditionsText = health.conditions.length > 0 ? health.conditions.join(', ') : 'none';
+    const base = `Week ${health.week}, Weight: ${health.weight}kg, Height: ${health.height}cm, Age: ${health.age}, Pain: ${health.painLevel}/10, BP: ${health.bloodPressureSys}/${health.bloodPressureDia}, Sleep: ${health.sleepHours}hrs, Mood: ${health.mood}, Activity: ${health.activityLevel}, Conditions: ${conditionsText}`;
+
     try {
-      await streamEnhanced((text) => setPlanContent(prev => prev + text));
-      incrementUsage();
+      // Route through the unified smart engine for quota + caching
+      await executeSmartRequest({
+        request: {
+          section: 'pregnancy-plan',
+          toolType: 'pregnancy-plan',
+          weight: 1,
+          messages: [{
+            role: 'user',
+            content: `I'm in week ${health.week} of pregnancy. ${base}. Give me a personalized weekly pregnancy plan covering exercises, nutrition tips, and wellness recommendations.`,
+          }],
+          context: { week: health.week, weight: health.weight, language: lang },
+        },
+        onDelta: (text) => setPlanContent(prev => prev + text),
+        onDone: () => {
+          setEnhancedLoading(false);
+          refresh(); // Sync UI with quota consumed by engine
+        },
+        onError: (err) => {
+          setEnhancedLoading(false);
+          if (err.type === 'quota_exhausted') {
+            setLimitError(t('aiErrors.monthlyLimitMsg', { limit, remaining: 0 }));
+          } else {
+            setLimitError(err.message);
+          }
+          refresh();
+        },
+      });
     } catch {
-      const conditionsText = health.conditions.length > 0 ? health.conditions.join(', ') : 'none';
-      const base = `Week ${health.week}, Weight: ${health.weight}kg, Height: ${health.height}cm, Age: ${health.age}, Pain: ${health.painLevel}/10, BP: ${health.bloodPressureSys}/${health.bloodPressureDia}, Sleep: ${health.sleepHours}hrs, Mood: ${health.mood}, Activity: ${health.activityLevel}, Conditions: ${conditionsText}`;
+      setEnhancedLoading(false);
+      // Fallback to streamChat (which also routes through smartEngine now)
       await streamChat({
         type: 'pregnancy-plan',
         messages: [{ role: 'user', content: `I'm in week ${health.week} of pregnancy. ${base}. Give me a personalized weekly pregnancy plan covering exercises, nutrition tips, and wellness recommendations.` }],
@@ -142,7 +92,7 @@ const SmartPregnancyPlan = () => {
         onDone: () => {},
       });
     }
-  }, [streamEnhanced, streamChat, health, lang, isLimitReached, incrementUsage, limit, t]);
+  }, [streamChat, health, lang, isLimitReached, limit, t, refresh]);
 
   return (
     <ToolFrame title={t("smartPlan.title")} subtitle={t("smartPlan.subtitle")} icon={Brain} mood="nurturing" toolId="smart-pregnancy-plan">

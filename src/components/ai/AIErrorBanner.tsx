@@ -1,8 +1,9 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
-import { WifiOff, Clock, CreditCard, AlertCircle, RefreshCw, X } from 'lucide-react';
+import { WifiOff, Clock, CreditCard, AlertCircle, RefreshCw, X, Crown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useNavigate } from 'react-router-dom';
 import type { AIErrorType } from '@/hooks/usePregnancyAI';
 import type { SmartErrorType } from '@/services/smartEngine';
 
@@ -14,7 +15,7 @@ interface AIErrorBannerProps {
 }
 
 const iconMap: Record<string, React.ElementType> = {
-  quota_exhausted: Clock,
+  quota_exhausted: Crown,
   rate_limit: Clock,
   payment: CreditCard,
   network: WifiOff,
@@ -23,6 +24,12 @@ const iconMap: Record<string, React.ElementType> = {
 };
 
 const colorMap: Record<string, { bg: string; border: string; icon: string; badge: string }> = {
+  quota_exhausted: {
+    bg: 'bg-primary/5',
+    border: 'border-primary/20',
+    icon: 'text-primary',
+    badge: 'bg-primary/10 text-primary',
+  },
   rate_limit: {
     bg: 'bg-amber-50 dark:bg-amber-950/20',
     border: 'border-amber-200/60 dark:border-amber-800/40',
@@ -56,6 +63,7 @@ const colorMap: Record<string, { bg: string; border: string; icon: string; badge
 };
 
 const titleKeyMap: Record<string, string> = {
+  quota_exhausted: 'aiErrors.monthlyLimitTitle',
   rate_limit: 'aiErrors.rateLimitTitle',
   payment: 'aiErrors.paymentTitle',
   network: 'aiErrors.networkTitle',
@@ -70,8 +78,13 @@ export const AIErrorBanner: React.FC<AIErrorBannerProps> = ({
   onDismiss,
 }) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const visible = !!(errorType && message);
+  const isQuotaExhausted = errorType === 'quota_exhausted';
+
+  // Fallback to 'unknown' if errorType isn't in our maps
+  const safeType = errorType && colorMap[errorType] ? errorType : 'unknown';
 
   return (
     <AnimatePresence>
@@ -81,44 +94,55 @@ export const AIErrorBanner: React.FC<AIErrorBannerProps> = ({
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: -8, scale: 0.97 }}
           transition={{ duration: 0.25 }}
-          className={`rounded-2xl border p-3.5 ${colorMap[errorType!].bg} ${colorMap[errorType!].border}`}
+          className={`rounded-2xl border p-3.5 ${colorMap[safeType].bg} ${colorMap[safeType].border}`}
         >
           <div className="flex items-start gap-3">
-            <div className={`p-1.5 rounded-lg ${colorMap[errorType!].badge} shrink-0`}>
-              {React.createElement(iconMap[errorType!], { className: `w-4 h-4 ${colorMap[errorType!].icon}` })}
+            <div className={`p-1.5 rounded-lg ${colorMap[safeType].badge} shrink-0`}>
+              {React.createElement(iconMap[safeType] || AlertCircle, { className: `w-4 h-4 ${colorMap[safeType].icon}` })}
             </div>
 
             <div className="flex-1 min-w-0">
-              <p className={`text-xs font-semibold mb-0.5 ${colorMap[errorType!].icon}`}>
-                {t(titleKeyMap[errorType!])}
+              <p className={`text-xs font-semibold mb-0.5 ${colorMap[safeType].icon}`}>
+                {t(titleKeyMap[safeType] || 'aiErrors.unknownTitle')}
               </p>
               <p className="text-xs text-muted-foreground leading-relaxed">{message}</p>
 
-              {(onRetry || onDismiss) && (
-                <div className="flex gap-2 mt-2.5">
-                  {onRetry && (
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      onClick={onRetry}
-                      className={`h-7 text-[11px] gap-1.5 border ${colorMap[errorType!].border} ${colorMap[errorType!].icon} hover:opacity-80`}
-                    >
-                      <RefreshCw className="w-3 h-3" />
-                      {t('aiErrors.retry')}
-                    </Button>
-                  )}
-                  {onDismiss && (
-                    <Button
-                      size="sm"
-                      variant="ghost"
-                      onClick={onDismiss}
-                      className="h-7 text-[11px] text-muted-foreground hover:text-foreground"
-                    >
-                      {t('aiErrors.dismiss')}
-                    </Button>
-                  )}
-                </div>
-              )}
+              <div className="flex gap-2 mt-2.5">
+                {isQuotaExhausted ? (
+                  <Button
+                    size="sm"
+                    onClick={() => navigate('/pricing-demo')}
+                    className="h-7 text-[11px] gap-1.5 bg-gradient-to-r from-primary to-primary/80 text-white hover:opacity-90"
+                  >
+                    <Crown className="w-3 h-3" />
+                    {t('quotaExhausted.upgradeCTA', 'Upgrade to Premium')}
+                  </Button>
+                ) : (
+                  <>
+                    {onRetry && (
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={onRetry}
+                        className={`h-7 text-[11px] gap-1.5 border ${colorMap[safeType].border} ${colorMap[safeType].icon} hover:opacity-80`}
+                      >
+                        <RefreshCw className="w-3 h-3" />
+                        {t('aiErrors.retry')}
+                      </Button>
+                    )}
+                  </>
+                )}
+                {onDismiss && (
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={onDismiss}
+                    className="h-7 text-[11px] text-muted-foreground hover:text-foreground"
+                  >
+                    {t('aiErrors.dismiss')}
+                  </Button>
+                )}
+              </div>
             </div>
 
             {onDismiss && (

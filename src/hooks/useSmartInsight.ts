@@ -5,6 +5,7 @@
 
 import { useState, useCallback, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { useAIUsage } from "@/contexts/AIUsageContext";
 import {
   executeSmartRequest,
   getQuotaState,
@@ -29,6 +30,7 @@ export function useSmartInsight({ section, toolType, weight = 1 }: UseSmartInsig
   const [errorType, setErrorType] = useState<SmartErrorType | null>(null);
   const [wasCached, setWasCached] = useState(false);
   const { i18n, t } = useTranslation();
+  const { refresh: refreshUsage } = useAIUsage();
   const langRef = useRef(i18n.language);
   langRef.current = i18n.language;
 
@@ -82,6 +84,7 @@ export function useSmartInsight({ section, toolType, weight = 1 }: UseSmartInsig
         onDone: (response) => {
           setIsLoading(false);
           setWasCached(response.cached);
+          refreshUsage(); // Sync AIUsageContext after quota consumed by engine
         },
         onError: (err: SmartError) => {
           setIsLoading(false);
