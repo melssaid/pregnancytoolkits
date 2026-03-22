@@ -1,0 +1,143 @@
+/**
+ * Unified Smart Engine — Shared Types
+ * Single source of truth for all AI interactions across the app.
+ */
+
+// ── Section Contexts (14 domains the engine supports) ──
+export type SmartSection =
+  | "pregnancy-plan"
+  | "symptoms"
+  | "nutrition"
+  | "movement"
+  | "appointments"
+  | "sleep"
+  | "mental-wellbeing"
+  | "medications"
+  | "weight"
+  | "postpartum"
+  | "lab-checks"
+  | "safety"
+  | "ultrasound"
+  | "kick-analysis";
+
+// ── AI Tool Types (maps to edge function types) ──
+export type AIToolType =
+  | "symptom-analysis" | "meal-suggestion" | "pregnancy-assistant" | "weekly-summary"
+  | "posture-coach" | "walking-coach" | "stretch-reminder" | "back-pain-relief"
+  | "leg-cramp-preventer" | "smoothie-generator" | "daily-tips" | "labor-tracker"
+  | "appointment-prep" | "kick-analysis" | "sleep-analysis" | "vitamin-advice"
+  | "bump-photos" | "baby-cry-analysis" | "postpartum-recovery"
+  | "hospital-bag" | "birth-position" | "partner-guide" | "lactation-prep"
+  | "nausea-relief" | "skincare-advice" | "birth-plan" | "mental-health"
+  | "pregnancy-plan" | "baby-growth-analysis"
+  | "weight-analysis" | "contraction-analysis";
+
+// ── Section → AI Tool Type mapping ──
+export const SECTION_TOOL_MAP: Record<SmartSection, AIToolType> = {
+  "pregnancy-plan": "pregnancy-plan",
+  "symptoms": "symptom-analysis",
+  "nutrition": "meal-suggestion",
+  "movement": "back-pain-relief",
+  "appointments": "appointment-prep",
+  "sleep": "sleep-analysis",
+  "mental-wellbeing": "mental-health",
+  "medications": "vitamin-advice",
+  "weight": "weight-analysis",
+  "postpartum": "postpartum-recovery",
+  "lab-checks": "pregnancy-assistant",
+  "safety": "symptom-analysis",
+  "ultrasound": "bump-photos",
+  "kick-analysis": "kick-analysis",
+};
+
+// ── Quota cost weights ──
+export type InsightWeight = 1 | 2;
+
+export const INSIGHT_WEIGHTS: Record<string, InsightWeight> = {
+  default: 1,
+  "kick-analysis": 1,
+  "ultrasound-text": 1,
+  "ultrasound-image": 2,
+};
+
+// ── Quota tiers ──
+export interface QuotaTier {
+  monthly: number;
+  label: string;
+}
+
+export const QUOTA_TIERS: Record<string, QuotaTier> = {
+  free: { monthly: 5, label: "Free" },
+  premium: { monthly: 40, label: "Premium" },
+};
+
+// ── Quota state ──
+export interface QuotaState {
+  used: number;
+  limit: number;
+  remaining: number;
+  tier: "free" | "premium";
+  monthKey: string; // "2026-03"
+  isExhausted: boolean;
+  isNearLimit: boolean;
+  adminBypass: boolean;
+}
+
+// ── Unified AI Request ──
+export interface SmartRequest {
+  section: SmartSection;
+  toolType?: AIToolType; // override the default section→tool mapping
+  messages: SmartMessage[];
+  context?: SmartContext;
+  weight?: InsightWeight; // cost of this request (default: 1)
+}
+
+export interface SmartMessage {
+  role: "user" | "assistant";
+  content: string | SmartContentPart[];
+}
+
+export interface SmartContentPart {
+  type: "text" | "image_url";
+  text?: string;
+  image_url?: { url: string };
+}
+
+export interface SmartContext {
+  week?: number;
+  trimester?: number;
+  symptoms?: string[];
+  preferences?: string[];
+  weight?: number;
+  contractionData?: unknown;
+  sleepData?: unknown;
+  language?: string;
+  [key: string]: unknown; // extensible for section-specific data
+}
+
+// ── Unified AI Response ──
+export interface SmartResponse {
+  content: string;
+  section: SmartSection;
+  timestamp: number;
+  cached: boolean;
+  cost: InsightWeight;
+}
+
+// ── Cache entry ──
+export interface CacheEntry {
+  content: string;
+  section: SmartSection;
+  timestamp: number;
+  expiresAt: number;
+  contentHash: string;
+}
+
+// ── Error types ──
+export type SmartErrorType = "quota_exhausted" | "rate_limit" | "payment" | "network" | "auth" | "unknown";
+
+export interface SmartError {
+  type: SmartErrorType;
+  message: string;
+  retryable: boolean;
+}
