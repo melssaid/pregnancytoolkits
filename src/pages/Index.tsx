@@ -243,13 +243,28 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
   );
 });
 
-// ── Footer Card — Launch Promo: Premium medical-grade design ────────────
+// ── Footer Card — Premium CTA: elegant, adaptive ───────────────────────
 const FooterCard = memo(function FooterCard() {
   const { i18n } = useTranslation();
+  const navigate = useNavigate();
   const lang = i18n.language?.split('-')[0] || 'en';
-  const { remaining, limit } = useAIUsage();
+  const { remaining, limit, isLimitReached, tier } = useAIUsage();
   const isAr = lang === 'ar';
+  const isFree = tier === 'free';
   const usagePercent = limit > 0 ? (remaining / limit) * 100 : 0;
+
+  const labels: Record<string, { title: string; desc: string; exhaustedTitle: string; exhaustedDesc: string; cta: string }> = {
+    en: { title: 'Premium Access', desc: '40 monthly analyses · All tools unlocked', exhaustedTitle: 'Insights Used Up', exhaustedDesc: 'Unlock more personalized insights with Premium', cta: 'View Plans' },
+    ar: { title: 'الوصول المميز', desc: '40 تحليل شهرياً · جميع الأدوات مفتوحة', exhaustedTitle: 'نفدت التحليلات', exhaustedDesc: 'افتحي المزيد من التحليلات المخصصة مع Premium', cta: 'عرض الخطط' },
+    de: { title: 'Premium-Zugang', desc: '40 monatliche Analysen · Alle Tools freigeschaltet', exhaustedTitle: 'Analysen aufgebraucht', exhaustedDesc: 'Schalten Sie mehr personalisierte Einblicke frei', cta: 'Pläne ansehen' },
+    fr: { title: 'Accès Premium', desc: '40 analyses mensuelles · Tous les outils débloqués', exhaustedTitle: 'Analyses épuisées', exhaustedDesc: 'Débloquez plus d\'analyses personnalisées avec Premium', cta: 'Voir les plans' },
+    es: { title: 'Acceso Premium', desc: '40 análisis mensuales · Todas las herramientas', exhaustedTitle: 'Análisis agotados', exhaustedDesc: 'Desbloquea más análisis personalizados con Premium', cta: 'Ver planes' },
+    pt: { title: 'Acesso Premium', desc: '40 análises mensais · Todas as ferramentas', exhaustedTitle: 'Análises esgotadas', exhaustedDesc: 'Desbloqueie mais análises personalizadas com Premium', cta: 'Ver planos' },
+    tr: { title: 'Premium Erişim', desc: '40 aylık analiz · Tüm araçlar açık', exhaustedTitle: 'Analizler tükendi', exhaustedDesc: 'Premium ile daha fazla kişiselleştirilmiş analiz açın', cta: 'Planları gör' },
+  };
+  const l = labels[lang] || labels.en;
+
+  const showExhausted = isLimitReached && isFree;
 
   return (
     <motion.div
@@ -258,10 +273,12 @@ const FooterCard = memo(function FooterCard() {
       transition={{ duration: 0.4, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
       className="mt-4 px-1"
     >
-      <div className="rounded-2xl overflow-hidden bg-card border border-border/40 shadow-sm">
-        
+      <button
+        onClick={() => navigate('/pricing-demo')}
+        className="w-full text-start rounded-2xl overflow-hidden bg-card border border-border/40 shadow-sm hover:shadow-md hover:border-primary/20 transition-all duration-300 group"
+      >
         {/* Accent bar */}
-        <div className="h-[2.5px] bg-gradient-to-r from-primary/30 via-primary to-primary/30 relative overflow-hidden">
+        <div className={`h-[2.5px] relative overflow-hidden ${showExhausted ? 'bg-gradient-to-r from-primary/50 via-primary to-primary/50' : 'bg-gradient-to-r from-primary/30 via-primary to-primary/30'}`}>
           <motion.div
             className="absolute h-full w-1/3 bg-gradient-to-r from-transparent via-white/40 to-transparent"
             animate={{ x: ['-100%', '400%'] }}
@@ -270,70 +287,65 @@ const FooterCard = memo(function FooterCard() {
         </div>
 
         <div className="px-4 py-3.5 flex items-center gap-3">
-          {/* Gift icon with glow */}
+          {/* Icon */}
           <div className="relative flex-shrink-0">
-            <motion.div
-              className="absolute inset-0 rounded-xl bg-primary/20 blur-md"
-              animate={{ scale: [1, 1.4, 1], opacity: [0.3, 0.6, 0.3] }}
-              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-            />
-            <motion.div 
-              className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-primary/15 to-primary/5 flex items-center justify-center border border-primary/20 overflow-hidden"
-              animate={{ scale: [1, 1.06, 1] }}
-              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-            >
+            {showExhausted && (
               <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent"
-                animate={{ x: ['-100%', '200%'] }}
-                transition={{ duration: 2, repeat: Infinity, repeatDelay: 3, ease: 'linear' }}
+                className="absolute inset-0 rounded-xl bg-primary/20 blur-md"
+                animate={{ scale: [1, 1.4, 1], opacity: [0.3, 0.6, 0.3] }}
+                transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
               />
-              <Gift className="w-5 h-5 text-primary relative z-10" strokeWidth={1.6} />
-            </motion.div>
+            )}
+            <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-primary/15 to-primary/5 flex items-center justify-center border border-primary/20">
+              <Crown className="w-5 h-5 text-primary" strokeWidth={1.6} />
+            </div>
           </div>
 
-          {/* Title + status */}
+          {/* Text */}
           <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-1.5">
-              <h4 className="text-[13px] font-bold text-foreground leading-none" style={{ fontFamily: "'Tajawal', sans-serif" }}>
-                {isAr ? 'عرض الإطلاق' : 'Launch Offer'}
-              </h4>
-              <span className="inline-flex items-center gap-0.5 px-1.5 py-px rounded-md bg-primary/10 text-primary text-[9px] font-bold uppercase">
-                <Sparkles className="w-2.5 h-2.5" strokeWidth={2.5} />
-                {isAr ? 'مجاني' : 'FREE'}
-              </span>
-            </div>
+            <h4 className="text-[13px] font-bold text-foreground leading-none" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+              {showExhausted ? l.exhaustedTitle : l.title}
+            </h4>
             <p className="text-[10.5px] text-muted-foreground mt-0.5 leading-snug">
-              {isAr ? '10 أيام — جميع الأدوات مفتوحة' : '10 Days — All tools unlocked'}
+              {showExhausted ? l.exhaustedDesc : l.desc}
             </p>
           </div>
 
-          {/* Active dot */}
-          <div className="flex flex-col items-center gap-0.5 flex-shrink-0">
-            <motion.div 
-              className="w-2 h-2 rounded-full bg-[hsl(152,60%,48%)]"
-              animate={{ opacity: [0.6, 1, 0.6] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            />
-            <span className="text-[8px] font-bold text-[hsl(152,50%,42%)] dark:text-[hsl(152,50%,58%)] uppercase">
-              {isAr ? 'مفعّل' : 'Active'}
+          {/* CTA chip */}
+          <div className="flex-shrink-0">
+            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-primary/10 text-primary text-[10px] font-bold group-hover:bg-primary/15 transition-colors">
+              {l.cta}
+              {isAr ? <ChevronLeft className="w-3 h-3" /> : <ChevronRight className="w-3 h-3" />}
             </span>
           </div>
         </div>
 
-        {/* Usage bar */}
-        <div className="px-4 pb-3.5">
-          <div className="flex items-center justify-between mb-1.5">
-            <span className="text-[10px] text-muted-foreground flex items-center gap-1">
-              <Brain className="w-3 h-3 text-primary/40" strokeWidth={1.8} />
-              {isAr ? 'التحليلات المتبقية' : 'Remaining analyses'}
-            </span>
-            <span className="text-[12px] font-bold text-primary tabular-nums" style={{ fontFamily: "'Cairo', sans-serif" }}>
-              {remaining}<span className="text-[10px] opacity-40 font-normal">/{limit}</span>
-            </span>
+        {/* Usage bar — only show for free users */}
+        {isFree && (
+          <div className="px-4 pb-3.5">
+            <div className="flex items-center justify-between mb-1.5">
+              <span className="text-[10px] text-muted-foreground flex items-center gap-1">
+                <Brain className="w-3 h-3 text-primary/40" strokeWidth={1.8} />
+                {isAr ? 'التحليلات المتبقية' : 'Remaining analyses'}
+              </span>
+              <span className="text-[12px] font-bold text-primary tabular-nums" style={{ fontFamily: "'Cairo', sans-serif" }}>
+                {remaining}<span className="text-[10px] opacity-40 font-normal">/{limit}</span>
+              </span>
+            </div>
+            <div className="h-[5px] rounded-full bg-muted/50 overflow-hidden">
+              <motion.div
+                className={`h-full rounded-full ${isLimitReached ? 'bg-destructive' : 'bg-gradient-to-r from-primary to-primary/60'}`}
+                initial={{ width: 0 }}
+                animate={{ width: `${usagePercent}%` }}
+                transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              />
+            </div>
           </div>
-          <div className="h-[5px] rounded-full bg-muted/50 overflow-hidden">
-            <motion.div
-              className="h-full rounded-full bg-gradient-to-r from-primary to-primary/60"
+        )}
+      </button>
+    </motion.div>
+  );
+});
               initial={{ width: 0 }}
               animate={{ width: `${usagePercent}%` }}
               transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
