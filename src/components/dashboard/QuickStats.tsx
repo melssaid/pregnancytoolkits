@@ -75,7 +75,7 @@ export function QuickStats({
   return (
     <div className="space-y-2">
       {/* 4 compact stat cards in 2x2 grid */}
-      <div className="grid grid-cols-4 gap-1.5">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
         {stats.map((stat, i) => {
           const Icon = stat.icon;
           return (
@@ -87,7 +87,7 @@ export function QuickStats({
             >
               <Link
                 to={stat.href}
-                className="flex flex-col items-center p-2 rounded-xl bg-card border border-border/40 hover:border-primary/30 transition-all group text-center min-h-[76px] justify-center"
+                className="flex flex-col items-center p-2.5 rounded-xl bg-card border border-border/40 hover:border-primary/30 transition-all group text-center min-h-[72px] justify-center"
               >
                 <div className={`w-7 h-7 rounded-lg ${stat.bg} flex items-center justify-center mb-1`}>
                   <Icon className={`w-3.5 h-3.5 ${stat.color}`} />
@@ -96,7 +96,7 @@ export function QuickStats({
                   {stat.value}
                   {stat.unit && <span className="text-[9px] font-medium text-muted-foreground ms-0.5">{stat.unit}</span>}
                 </p>
-                <p className="text-[8px] text-muted-foreground mt-0.5 leading-tight whitespace-normal break-words overflow-wrap-anywhere w-full">{t(stat.labelKey)}</p>
+                <p className="text-[10px] text-muted-foreground mt-0.5 leading-tight whitespace-normal break-words overflow-wrap-anywhere w-full">{t(stat.labelKey)}</p>
               </Link>
             </motion.div>
           );

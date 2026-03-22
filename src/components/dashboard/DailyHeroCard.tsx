@@ -76,15 +76,15 @@ export const DailyHeroCard = memo(function DailyHeroCard({ week, dueDate }: Dail
           <p className="text-[11px] font-semibold text-primary/80 whitespace-normal leading-tight">
             {t(`dailyDashboard.trimester.${trimesterKey}`)}
           </p>
-          <div className="flex items-center gap-3 mt-2">
-            <div>
-              <span className="text-lg font-bold text-foreground">{daysRemaining}</span>
-              <span className="text-[10px] text-muted-foreground ms-1">{t("dailyDashboard.daysLeft")}</span>
+          <div className="flex items-center gap-2 mt-2 flex-wrap">
+            <div className="flex items-baseline gap-1">
+              <span className="text-lg font-bold text-foreground leading-none">{daysRemaining}</span>
+              <span className="text-[9px] text-muted-foreground whitespace-nowrap">{t("dailyDashboard.daysLeft")}</span>
             </div>
-            <div className="w-px h-5 bg-border/50" />
-            <div>
-              <span className="text-lg font-bold text-foreground">{Math.round(progress)}%</span>
-              <span className="text-[10px] text-muted-foreground ms-1">{t("dailyDashboard.complete")}</span>
+            <div className="w-px h-4 bg-border/50 flex-shrink-0" />
+            <div className="flex items-baseline gap-1">
+              <span className="text-lg font-bold text-foreground leading-none">{Math.round(progress)}%</span>
+              <span className="text-[9px] text-muted-foreground whitespace-nowrap">{t("dailyDashboard.complete")}</span>
             </div>
           </div>
           {/* Mini progress bar */}
