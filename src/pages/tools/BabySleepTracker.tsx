@@ -9,9 +9,8 @@ import { format, differenceInMinutes, startOfDay, subDays, eachDayOfInterval } f
 import { formatLocalized } from "@/lib/dateLocale";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useAnalytics } from "@/hooks/useAnalytics";
-import { usePregnancyAI } from "@/hooks/usePregnancyAI";
+import { useSmartInsight } from "@/hooks/useSmartInsight";
 import { AIActionButton } from '@/components/ai/AIActionButton';
-import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { AIResponseFrame } from "@/components/ai/AIResponseFrame";
 import { PrintableReport } from '@/components/PrintableReport';
@@ -31,17 +30,14 @@ const BabySleepTracker = () => {
   const { t } = useTranslation();
   const { currentLanguage } = useLanguage();
   const { trackAction } = useAnalytics("baby-sleep-tracker");
-  const { streamChat, isLoading: aiLoading } = usePregnancyAI();
-
-  useResetOnLanguageChange(() => {
-    setAiAdvice('');
-    setShowAiAdvice(false);
+  const { generate, isLoading: aiLoading, content: aiAdvice } = useSmartInsight({
+    section: 'sleep',
+    toolType: 'sleep-analysis',
   });
 
   const [sessions, setSessions] = useState<SleepSession[]>([]);
   const [activeSleep, setActiveSleep] = useState<SleepSession | null>(null);
   const [elapsedTime, setElapsedTime] = useState(0);
-  const [aiAdvice, setAiAdvice] = useState<string>("");
   const [showAiAdvice, setShowAiAdvice] = useState(false);
 
   useEffect(() => {
@@ -166,20 +162,17 @@ const BabySleepTracker = () => {
     return "child (2+ years)";
   };
 
-  // Sleep quality score (0-100) based on consistency and total
   const getSleepQuality = () => {
     if (sessions.length < 3) return null;
     const weeklyAvg = getLast7DaysAverage();
     const avgHours = weeklyAvg / 60;
     
-    // Score based on recommended range (12-17 hours for babies)
     let score = 0;
     if (avgHours >= 12 && avgHours <= 17) score = 90;
     else if (avgHours >= 10 && avgHours <= 19) score = 70;
     else if (avgHours >= 8) score = 50;
     else score = 30;
     
-    // Adjust for consistency (check if sessions exist on recent days)
     const days = eachDayOfInterval({ start: subDays(new Date(), 6), end: new Date() });
     let daysWithData = 0;
     days.forEach(day => {
@@ -213,7 +206,6 @@ const BabySleepTracker = () => {
 
   const getAIAdvice = async () => {
     if (sessions.length < 2) {
-      setAiAdvice(t('toolsInternal.babySleep.noDataYet'));
       setShowAiAdvice(true);
       return;
     }
@@ -239,15 +231,9 @@ const BabySleepTracker = () => {
 
 Provide 3 specific tips to improve this baby's sleep schedule. Keep response under 150 words. Be encouraging and supportive.`;
 
-    setAiAdvice("");
     setShowAiAdvice(true);
 
-    await streamChat({
-      type: "sleep-analysis",
-      messages: [{ role: "user", content: prompt }],
-      onDelta: (text) => setAiAdvice(prev => prev + text),
-      onDone: () => {},
-    });
+    await generate({ prompt });
   };
 
   const stats = getTodayStats();
@@ -441,86 +427,34 @@ Provide 3 specific tips to improve this baby's sleep schedule. Keep response und
                   ? Math.max(0, differenceInMinutes(new Date(session.endTime), new Date(session.startTime)))
                   : 0;
                 return (
-                  <div
-                    key={session.id}
-                    className="flex items-center justify-between py-2 px-2.5 rounded-lg bg-muted/40 hover:bg-muted/60 transition-colors"
-                  >
-                    <div className="flex items-center gap-2.5 min-w-0 flex-1">
-                      {session.type === "night" ? (
-                        <Moon className="h-4 w-4 text-primary shrink-0" />
+                  <div key={session.id} className="flex items-center justify-between p-2 rounded-lg bg-muted/40">
+                    <div className="flex items-center gap-2">
+                      {session.type === "nap" ? (
+                        <Sun className="h-3.5 w-3.5 text-amber-500" />
                       ) : (
-                        <Sun className="h-4 w-4 text-amber-500 shrink-0" />
+                        <Moon className="h-3.5 w-3.5 text-primary" />
                       )}
-                      <div className="min-w-0 flex-1">
-                        <p className="text-xs font-medium truncate">
-                          {formatLocalized(new Date(session.startTime), "MMM d", currentLanguage)}
-                          <span className="text-muted-foreground mx-1">·</span>
-                          {formatLocalized(new Date(session.startTime), "HH:mm", currentLanguage)}
-                          {session.endTime && (
-                            <>
-                              <ChevronRight className="inline h-3 w-3 text-muted-foreground mx-0.5" />
-                              {formatLocalized(new Date(session.endTime), "HH:mm", currentLanguage)}
-                            </>
-                          )}
-                        </p>
-                        <p className="text-[10px] text-muted-foreground">
-                          {session.type === "night" ? t('toolsInternal.babySleep.nightSleep') : t('toolsInternal.babySleep.napTime')}
-                          <span className="mx-1">·</span>
-                          {formatDuration(duration)}
-                        </p>
-                      </div>
+                      <span className="text-xs font-medium">{formatDuration(duration)}</span>
                     </div>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={() => deleteSession(session.id)}
-                      className="h-7 w-7 shrink-0"
-                    >
-                      <Trash2 className="h-3.5 w-3.5 text-destructive/60" />
-                    </Button>
+                    <div className="flex items-center gap-2">
+                      <span className="text-[10px] text-muted-foreground">
+                        {formatLocalized(new Date(session.startTime), "MMM d, HH:mm", currentLanguage)}
+                      </span>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-6 w-6"
+                        onClick={() => deleteSession(session.id)}
+                      >
+                        <Trash2 className="h-3 w-3 text-muted-foreground" />
+                      </Button>
+                    </div>
                   </div>
                 );
               })}
             </CardContent>
           </Card>
         )}
-
-        {/* Sleep Reference Guide */}
-        <Card className="bg-muted/30">
-          <CardContent className="pt-3 pb-3">
-            <h4 className="text-xs font-semibold mb-2 flex items-center gap-1.5">
-              <Clock className="h-3.5 w-3.5 text-muted-foreground" />
-              {t('toolsInternal.babySleep.recommendedSleep')}
-            </h4>
-            <div className="space-y-1 text-xs text-muted-foreground">
-              <div className="flex justify-between p-1.5 bg-background/60 rounded">
-                <span>{t('toolsInternal.babySleep.newborn')}</span>
-                <span className="font-medium text-foreground">14-17 {t('toolsInternal.babySleep.hours')}</span>
-              </div>
-              <div className="flex justify-between p-1.5 bg-background/60 rounded">
-                <span>{t('toolsInternal.babySleep.infant')}</span>
-                <span className="font-medium text-foreground">12-16 {t('toolsInternal.babySleep.hours')}</span>
-              </div>
-              <div className="flex justify-between p-1.5 bg-background/60 rounded">
-                <span>{t('toolsInternal.babySleep.toddler')}</span>
-                <span className="font-medium text-foreground">11-14 {t('toolsInternal.babySleep.hours')}</span>
-              </div>
-              <div className="flex justify-between p-1.5 bg-background/60 rounded">
-                <span>{t('toolsInternal.babySleep.child')}</span>
-                <span className="font-medium text-foreground">10-13 {t('toolsInternal.babySleep.hours')}</span>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Disclaimer */}
-        <div className="flex items-start gap-2 p-3 rounded-lg bg-muted/20">
-          <AlertTriangle className="h-3.5 w-3.5 text-muted-foreground shrink-0 mt-0.5" />
-          <p className="text-[10px] text-muted-foreground leading-relaxed">
-            {t('toolsInternal.babySleep.disclaimer')}
-          </p>
-        </div>
-
       </div>
     </ToolFrame>
   );

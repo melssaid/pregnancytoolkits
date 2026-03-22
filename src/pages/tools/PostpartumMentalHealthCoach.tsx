@@ -7,8 +7,7 @@ import { Button } from '@/components/ui/button';
 import { AlertTriangle, CheckCircle, HelpCircle, Brain, Sun, Loader2, Sparkles, ArrowRight, ArrowLeft, RotateCcw, Crown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { VideoLibrary } from '@/components/VideoLibrary';
-import { usePregnancyAI } from '@/hooks/usePregnancyAI';
-import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
+import { useSmartInsight } from '@/hooks/useSmartInsight';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { AIResponseFrame } from '@/components/ai/AIResponseFrame';
 import { mentalHealthVideosByLang } from '@/data/videoData';
@@ -57,20 +56,13 @@ export default function PostpartumMentalHealthCoach() {
   const [showResults, setShowResults] = useState(false);
   const [direction, setDirection] = useState(1);
 
-  const { streamChat, isLoading: aiLoading } = usePregnancyAI();
+  const { generate, isLoading: aiLoading, content: aiCopingPlan } = useSmartInsight({
+    section: 'mental-wellbeing',
+    toolType: 'mental-health',
+  });
   const { isLimitReached } = useAIUsage();
   const navigate = useNavigate();
-  const [aiCopingPlan, setAiCopingPlan] = useState('');
   const [showAICoping, setShowAICoping] = useState(false);
-
-  useResetOnLanguageChange(() => {
-    setCurrentQuestion(0);
-    setAnswers({});
-    setShowResults(false);
-    setAiCopingPlan('');
-    setShowAICoping(false);
-    setDirection(1);
-  });
 
   const maxScore = questions.length * 3;
   const getScore = () => Object.values(answers).reduce((sum, v) => sum + v, 0);
@@ -105,7 +97,6 @@ export default function PostpartumMentalHealthCoach() {
 
   const getAICopingPlan = async () => {
     setShowAICoping(true);
-    setAiCopingPlan('');
     const score = getScore();
     const level = getRiskLevel(score);
     const answersSummary = buildAnswersSummary();
@@ -119,30 +110,8 @@ ${answersSummary}
 `;
 
     const prompts: Record<string, string> = {
-      en: `As a postpartum wellness guide, analyze these detailed screening results and create a personalized coping plan:
-
-${detailedContext}
-
-Based on the specific areas where the mother scored higher, provide targeted advice. Include:
-1. Analysis of the key concern areas based on her specific answers
-2. Daily routines tailored to her struggles
-3. Self-care tips for her specific symptoms
-4. Breathing and relaxation exercises
-5. When to seek professional support
-6. Partner/family support suggestions
-7. Baby bonding activities that may help`,
-      ar: `بصفتك مرشدة صحية متخصصة في فترة ما بعد الولادة، حللي نتائج الفحص التالية وأنشئي خطة تكيف مخصصة:
-
-${detailedContext}
-
-بناءً على المجالات التي سجلت فيها الأم درجات أعلى، قدمي نصائح موجهة. تشمل:
-1. تحليل المجالات الرئيسية المثيرة للقلق بناءً على إجاباتها المحددة
-2. روتين يومي مصمم لمعالجة مشاكلها الخاصة
-3. نصائح عناية ذاتية لأعراضها المحددة
-4. تمارين تنفس واسترخاء
-5. متى يجب طلب الدعم المهني
-6. اقتراحات لدعم الشريك والعائلة
-7. أنشطة ترابط مع الطفل قد تساعدها`,
+      en: `As a postpartum wellness guide, analyze these detailed screening results and create a personalized coping plan:\n\n${detailedContext}\n\nBased on the specific areas where the mother scored higher, provide targeted advice. Include:\n1. Analysis of the key concern areas based on her specific answers\n2. Daily routines tailored to her struggles\n3. Self-care tips for her specific symptoms\n4. Breathing and relaxation exercises\n5. When to seek professional support\n6. Partner/family support suggestions\n7. Baby bonding activities that may help`,
+      ar: `بصفتك مرشدة صحية متخصصة في فترة ما بعد الولادة، حللي نتائج الفحص التالية وأنشئي خطة تكيف مخصصة:\n\n${detailedContext}\n\nبناءً على المجالات التي سجلت فيها الأم درجات أعلى، قدمي نصائح موجهة.`,
       de: `Als postpartale Wellness-Beraterin, analysiere diese Screening-Ergebnisse und erstelle einen personalisierten Bewältigungsplan:\n\n${detailedContext}`,
       fr: `En tant que guide bien-être postnatal, analysez ces résultats de dépistage et créez un plan personnalisé:\n\n${detailedContext}`,
       es: `Como guía de bienestar posparto, analiza estos resultados de evaluación y crea un plan personalizado:\n\n${detailedContext}`,
@@ -150,12 +119,9 @@ ${detailedContext}
       tr: `Doğum sonrası sağlık rehberi olarak, bu tarama sonuçlarını analiz edin ve kişiselleştirilmiş bir başa çıkma planı oluşturun:\n\n${detailedContext}`,
     };
 
-    await streamChat({
-      type: 'mental-health',
-      messages: [{ role: 'user', content: prompts[lang] || prompts.en }],
+    await generate({
+      prompt: prompts[lang] || prompts.en,
       context: { language: lang },
-      onDelta: (text) => setAiCopingPlan(prev => prev + text),
-      onDone: () => {},
     });
   };
 
@@ -163,7 +129,6 @@ ${detailedContext}
     setCurrentQuestion(0);
     setAnswers({});
     setShowResults(false);
-    setAiCopingPlan('');
     setShowAICoping(false);
     setDirection(1);
   };

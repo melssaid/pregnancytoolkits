@@ -6,8 +6,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
 import { VitaminService } from '@/services/localStorageServices';
 import { ToolFrame } from '@/components/ToolFrame';
-import { usePregnancyAI } from '@/hooks/usePregnancyAI';
-import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
+import { useSmartInsight } from '@/hooks/useSmartInsight';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { AIResponseFrame } from '@/components/ai/AIResponseFrame';
 import { WeekSlider } from '@/components/WeekSlider';
@@ -46,14 +45,11 @@ const VitaminTracker: React.FC = () => {
   const [currentWeek, setCurrentWeek] = useState(userProfile.pregnancyWeek || 0);
   const [isLoading, setIsLoading] = useState(true);
   const [savingId, setSavingId] = useState<string | null>(null);
-  const [aiAnalysis, setAiAnalysis] = useState('');
   const [showAiAnalysis, setShowAiAnalysis] = useState(false);
   const { toast } = useToast();
-  const { streamChat, isLoading: aiLoading } = usePregnancyAI();
-
-  useResetOnLanguageChange(() => {
-    setAiAnalysis('');
-    setShowAiAnalysis(false);
+  const { generate, isLoading: aiLoading, content: aiAnalysis, reset: resetAI } = useSmartInsight({
+    section: 'medications',
+    toolType: 'vitamin-advice',
   });
 
   useEffect(() => {
@@ -126,19 +122,12 @@ const VitaminTracker: React.FC = () => {
 
   const getAIAnalysis = async () => {
     setShowAiAnalysis(true);
-    setAiAnalysis('');
     const takenVitamins = VITAMINS.filter(v => isVitaminTakenToday(v.name)).map(v => v.name);
     const missedVitamins = VITAMINS.filter(v => !isVitaminTakenToday(v.name)).map(v => v.name);
     const weeklyData = Object.entries(weeklyStats).map(([name, count]) => `${name}: ${count}/7 days`).join(', ');
     const prompt = `As a prenatal nutrition guide, analyze this vitamin intake data for a woman in week ${currentWeek} of pregnancy:\n\n**Today:** Taken: ${takenVitamins.join(', ') || 'None'}, Missed: ${missedVitamins.join(', ') || 'All taken!'}, Progress: ${getTodayProgress()}%\n**Weekly:** ${weeklyData}\n\nProvide:\n1. **Intake Assessment** - Score and overview\n2. **Priority Vitamins** - Most important for week ${currentWeek}\n3. **Interaction Notes** - Important combinations\n4. **Absorption Tips** - How to maximize benefits\n5. **Weekly Goals** - 3 actionable goals`;
 
-    await streamChat({
-      type: 'pregnancy-assistant',
-      messages: [{ role: 'user', content: prompt }],
-      context: { week: currentWeek },
-      onDelta: (text) => setAiAnalysis(prev => prev + text),
-      onDone: () => {},
-    });
+    await generate({ prompt, context: { week: currentWeek } });
   };
 
   const weeklyStats = getWeeklyStats();
