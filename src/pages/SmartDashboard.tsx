@@ -17,7 +17,6 @@ import { SymptomsSummary } from "@/components/dashboard/SymptomsSummary";
 import { FetalMovementCard } from "@/components/dashboard/FetalMovementCard";
 import { WeightTrendCard } from "@/components/dashboard/WeightTrendCard";
 import { AppointmentsCard } from "@/components/dashboard/AppointmentsCard";
-import { DailyAIInsight } from "@/components/dashboard/DailyAIInsight";
 import { RecentAIResults } from "@/components/dashboard/RecentAIResults";
 
 const SmartDashboard = () => {
@@ -77,9 +76,6 @@ const SmartDashboard = () => {
 
         {/* 10. Recent AI Results */}
         <RecentAIResults />
-
-        {/* 11. AI Insight */}
-        <DailyAIInsight week={profile.pregnancyWeek} />
       </main>
     </Layout>
   );

@@ -7,7 +7,7 @@ import { RelatedTools } from "./RelatedTools";
 import { ToolIcon, hasToolIcon } from "./ToolIcon";
 import { BottomNavigation } from "./BottomNavigation";
 import { LanguageDropdown } from "./LanguageDropdown";
-import { ToolInsightTabs } from "./ToolInsightTabs";
+
 import { FertilityDailyTip } from "./FertilityDailyTip";
 
 import { SEOHead } from "./SEOHead";
@@ -277,10 +277,6 @@ export function ToolFrame({
             </motion.div>
           )}
 
-          {/* AI Insight - only for top 15 tools (skip fertility tools) */}
-          {toolId && DAILY_TIP_TOOL_IDS.has(toolId) && (
-            <ToolInsightTabs toolId={toolId} />
-          )}
 
           {/* Fertility Expert tip — only for fertility tools */}
           {toolId && FERTILITY_TOOL_IDS.has(toolId) && (
