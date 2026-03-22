@@ -18,14 +18,14 @@ interface AIActionButtonProps {
   showUsage?: boolean;
 }
 
-const usageLabels: Record<string, { remaining: string; of: string; free: string; pro: string; upgrade: string; limitReached: string; resetsDaily: string }> = {
-  en: { remaining: 'remaining', of: 'of', free: 'Free', pro: 'PRO', upgrade: 'Upgrade for 30 daily', limitReached: 'Daily limit reached', resetsDaily: 'Resets daily' },
-  ar: { remaining: 'متبقي', of: 'من', free: 'مجاني', pro: 'PRO', upgrade: 'ترقية لـ 30 يومياً', limitReached: 'تم استنفاد الحد اليومي', resetsDaily: 'يتجدد يومياً' },
-  de: { remaining: 'übrig', of: 'von', free: 'Gratis', pro: 'PRO', upgrade: 'Upgrade für 30 täglich', limitReached: 'Tageslimit erreicht', resetsDaily: 'Täglich zurückgesetzt' },
-  fr: { remaining: 'restants', of: 'sur', free: 'Gratuit', pro: 'PRO', upgrade: 'Passer à 30 par jour', limitReached: 'Limite quotidienne atteinte', resetsDaily: 'Réinitialisation quotidienne' },
-  es: { remaining: 'restantes', of: 'de', free: 'Gratis', pro: 'PRO', upgrade: 'Mejora a 30 diarios', limitReached: 'Límite diario alcanzado', resetsDaily: 'Se renueva diariamente' },
-  pt: { remaining: 'restantes', of: 'de', free: 'Grátis', pro: 'PRO', upgrade: 'Upgrade para 30 diários', limitReached: 'Limite diário atingido', resetsDaily: 'Renova diariamente' },
-  tr: { remaining: 'kalan', of: '/', free: 'Ücretsiz', pro: 'PRO', upgrade: '30 günlük için yükseltin', limitReached: 'Günlük limit doldu', resetsDaily: 'Günlük sıfırlanır' },
+const usageLabels: Record<string, { remaining: string; of: string; free: string; pro: string; upgrade: string; limitReached: string; resetsMonthly: string }> = {
+  en: { remaining: 'remaining', of: 'of', free: 'Free', pro: 'PRO', upgrade: 'Upgrade for 40 monthly', limitReached: 'Monthly limit reached', resetsMonthly: 'Resets monthly' },
+  ar: { remaining: 'متبقي', of: 'من', free: 'مجاني', pro: 'PRO', upgrade: 'ترقية لـ 40 شهرياً', limitReached: 'تم استنفاد الحد الشهري', resetsMonthly: 'يتجدد شهرياً' },
+  de: { remaining: 'übrig', of: 'von', free: 'Gratis', pro: 'PRO', upgrade: 'Upgrade für 40 monatlich', limitReached: 'Monatslimit erreicht', resetsMonthly: 'Monatlich zurückgesetzt' },
+  fr: { remaining: 'restants', of: 'sur', free: 'Gratuit', pro: 'PRO', upgrade: 'Passer à 40 par mois', limitReached: 'Limite mensuelle atteinte', resetsMonthly: 'Réinitialisation mensuelle' },
+  es: { remaining: 'restantes', of: 'de', free: 'Gratis', pro: 'PRO', upgrade: 'Mejora a 40 mensuales', limitReached: 'Límite mensual alcanzado', resetsMonthly: 'Se renueva mensualmente' },
+  pt: { remaining: 'restantes', of: 'de', free: 'Grátis', pro: 'PRO', upgrade: 'Upgrade para 40 mensais', limitReached: 'Limite mensal atingido', resetsMonthly: 'Renova mensalmente' },
+  tr: { remaining: 'kalan', of: '/', free: 'Ücretsiz', pro: 'PRO', upgrade: '40 aylık için yükseltin', limitReached: 'Aylık limit doldu', resetsMonthly: 'Aylık sıfırlanır' },
 };
 
 /**

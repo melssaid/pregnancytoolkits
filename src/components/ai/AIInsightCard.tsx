@@ -4,22 +4,30 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Loader2, ChevronDown, ChevronUp, RefreshCw, Brain, Zap, Crown } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { usePregnancyAI } from '@/hooks/usePregnancyAI';
+import { useSmartInsight } from '@/hooks/useSmartInsight';
 import { useAIUsage } from '@/contexts/AIUsageContext';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { AIErrorBanner } from '@/components/ai/AIErrorBanner';
 import { useNavigate } from 'react-router-dom';
 import { PrintableReport } from '@/components/PrintableReport';
+import type { SmartSection, AIToolType, InsightWeight } from '@/services/smartEngine';
 
 interface AIInsightCardProps {
   title?: string;
   prompt: string;
-  context?: { week?: number; trimester?: number };
+  context?: { week?: number; trimester?: number; [key: string]: unknown };
   buttonText?: string;
   icon?: React.ReactNode;
   variant?: 'default' | 'compact' | 'banner';
   autoExpand?: boolean;
+  /** @deprecated Use `section` instead. Kept for backward compatibility. */
   aiType?: string;
+  /** Smart Engine section context — maps to unified quota + cache */
+  section?: SmartSection;
+  /** Override the default tool type for this section */
+  toolType?: AIToolType;
+  /** Cost weight (default 1) */
+  weight?: InsightWeight;
   showPrintButton?: boolean;
   showDisclaimer?: boolean;
   printTitle?: string;
@@ -49,15 +57,46 @@ const MiniUsageBar: React.FC = () => {
   );
 };
 
+// Map legacy aiType to SmartSection
+const AITYPE_TO_SECTION: Record<string, SmartSection> = {
+  'symptom-analysis': 'symptoms',
+  'meal-suggestion': 'nutrition',
+  'pregnancy-assistant': 'pregnancy-plan',
+  'weekly-summary': 'pregnancy-plan',
+  'kick-analysis': 'kick-analysis',
+  'weight-analysis': 'weight',
+  'contraction-analysis': 'safety',
+  'sleep-analysis': 'sleep',
+  'vitamin-advice': 'medications',
+  'postpartum-recovery': 'postpartum',
+  'mental-health': 'mental-wellbeing',
+  'back-pain-relief': 'movement',
+  'appointment-prep': 'appointments',
+  'bump-photos': 'ultrasound',
+  'baby-cry-analysis': 'postpartum',
+  'birth-plan': 'pregnancy-plan',
+  'baby-growth-analysis': 'pregnancy-plan',
+};
+
 export const AIInsightCard: React.FC<AIInsightCardProps> = ({
-  title, prompt, context, buttonText, icon, variant = 'default', autoExpand = false, aiType,
+  title, prompt, context, buttonText, icon, variant = 'default', autoExpand = false,
+  aiType, section, toolType, weight = 1,
   showPrintButton = false, showDisclaimer = false, printTitle,
 }) => {
   const { t, i18n } = useTranslation();
   const currentLanguage = i18n.language?.split('-')[0] || 'en';
-  const { streamChat, isLoading, error, errorType, clearError } = usePregnancyAI();
+
+  // Resolve section from prop or legacy aiType
+  const resolvedSection: SmartSection = section || AITYPE_TO_SECTION[aiType || ''] || 'pregnancy-plan';
+  const resolvedToolType: AIToolType | undefined = toolType || (aiType as AIToolType) || undefined;
+
+  const { generate, isLoading, content: insight, error, errorType, clearError, quota } = useSmartInsight({
+    section: resolvedSection,
+    toolType: resolvedToolType,
+    weight,
+  });
+
   const { isLimitReached } = useAIUsage();
-  const [insight, setInsight] = useState('');
   const [isExpanded, setIsExpanded] = useState(autoExpand);
   const [hasGenerated, setHasGenerated] = useState(false);
   const prevLangRef = useRef(currentLanguage);
@@ -66,7 +105,6 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
     if (prevLangRef.current !== currentLanguage) {
       prevLangRef.current = currentLanguage;
       if (hasGenerated) {
-        setInsight('');
         setHasGenerated(false);
         setIsExpanded(false);
         clearError();
@@ -74,26 +112,18 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
     }
   }, [currentLanguage, hasGenerated, clearError]);
 
-  const contextWithLanguage = useMemo(() => ({
-    ...context,
-    language: currentLanguage,
-  }), [context, currentLanguage]);
-
   const displayTitle = title || t('toolsInternal.aiInsights.title');
   const displayButtonText = buttonText || t('toolsInternal.aiInsights.getInsights');
 
   const generateInsight = async () => {
     if (isLoading || isLimitReached) return;
-    setInsight('');
     clearError();
     setIsExpanded(true);
     setHasGenerated(true);
-    await streamChat({
-      type: (aiType as any) || 'pregnancy-assistant',
-      messages: [{ role: 'user', content: prompt }],
-      context: contextWithLanguage,
-      onDelta: (text) => setInsight(prev => prev + text),
-      onDone: () => {},
+    await generate({
+      prompt,
+      context: { ...context, language: currentLanguage },
+      skipCache: hasGenerated, // skip cache on regenerate
     });
   };
 

@@ -4,15 +4,17 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { WifiOff, Clock, CreditCard, AlertCircle, RefreshCw, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import type { AIErrorType } from '@/hooks/usePregnancyAI';
+import type { SmartErrorType } from '@/services/smartEngine';
 
 interface AIErrorBannerProps {
-  errorType: AIErrorType | null;
+  errorType: AIErrorType | SmartErrorType | null;
   message: string | null;
   onRetry?: () => void;
   onDismiss?: () => void;
 }
 
-const iconMap: Record<AIErrorType, React.ElementType> = {
+const iconMap: Record<string, React.ElementType> = {
+  quota_exhausted: Clock,
   rate_limit: Clock,
   payment: CreditCard,
   network: WifiOff,
@@ -20,7 +22,7 @@ const iconMap: Record<AIErrorType, React.ElementType> = {
   unknown: AlertCircle,
 };
 
-const colorMap: Record<AIErrorType, { bg: string; border: string; icon: string; badge: string }> = {
+const colorMap: Record<string, { bg: string; border: string; icon: string; badge: string }> = {
   rate_limit: {
     bg: 'bg-amber-50 dark:bg-amber-950/20',
     border: 'border-amber-200/60 dark:border-amber-800/40',
@@ -53,7 +55,7 @@ const colorMap: Record<AIErrorType, { bg: string; border: string; icon: string; 
   },
 };
 
-const titleKeyMap: Record<AIErrorType, string> = {
+const titleKeyMap: Record<string, string> = {
   rate_limit: 'aiErrors.rateLimitTitle',
   payment: 'aiErrors.paymentTitle',
   network: 'aiErrors.networkTitle',
