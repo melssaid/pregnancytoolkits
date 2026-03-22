@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Brain } from "lucide-react";
 import { ToolFrame } from "@/components/ToolFrame";
 import { SavedResultsViewer } from "@/components/ai/SavedResultsViewer";
-import { usePregnancyAI } from "@/hooks/usePregnancyAI";
+import { useResetOnLanguageChange } from "@/hooks/useResetOnLanguageChange";
 import { useResetOnLanguageChange } from "@/hooks/useResetOnLanguageChange";
 import { HealthStatsGrid } from "@/components/smart-plan/HealthStatsGrid";
 import { HealthInputForm } from "@/components/smart-plan/HealthInputForm";
@@ -17,7 +17,7 @@ const SmartPregnancyPlan = () => {
   const [planContent, setPlanContent] = useState('');
   const [researchEnhanced, setResearchEnhanced] = useState(false);
   const [enhancedLoading, setEnhancedLoading] = useState(false);
-  const { streamChat, isLoading, error } = usePregnancyAI();
+  const { isLimitReached, limit, refresh } = useAIUsage();
   const { isLimitReached, limit, refresh } = useAIUsage();
   const reportRef = useRef<HTMLDivElement>(null);
   const [limitError, setLimitError] = useState('');
