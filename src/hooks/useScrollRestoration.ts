@@ -61,15 +61,15 @@ export function useScrollRestoration() {
             requestAnimationFrame(() => {
               const maxScroll =
                 document.documentElement.scrollHeight - window.innerHeight;
-              if (maxScroll >= savedY || attempts >= 8) {
+              if (maxScroll >= savedY || attempts >= 12) {
                 window.scrollTo({ top: savedY, left: 0, behavior: "instant" });
               } else {
-                setTimeout(() => tryScroll(attempts + 1), 40);
+                setTimeout(() => tryScroll(attempts + 1), 60);
               }
             });
           };
           tryScroll();
-        }, 260);
+        }, 350);
         return () => clearTimeout(timer);
       }
     }

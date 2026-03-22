@@ -60,6 +60,13 @@ export const INSIGHT_WEIGHTS: Record<string, InsightWeight> = {
   "ultrasound-image": 2,
 };
 
+/** Centralized weight registry — all tools reference this */
+export const TOOL_WEIGHTS: Record<string, InsightWeight> = {
+  standard: 1,
+  "bump-photos": 2,
+  "ultrasound-image": 2,
+};
+
 // ── Quota tiers ──
 export interface QuotaTier {
   monthly: number;

@@ -19,7 +19,7 @@ export type {
   CacheEntry,
 } from "./types";
 
-export { SECTION_TOOL_MAP, INSIGHT_WEIGHTS, QUOTA_TIERS } from "./types";
+export { SECTION_TOOL_MAP, INSIGHT_WEIGHTS, QUOTA_TIERS, TOOL_WEIGHTS } from "./types";
 
 // Engine
 export { executeSmartRequest, type StreamOptions } from "./smartEngine";

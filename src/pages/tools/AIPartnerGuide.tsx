@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Sparkles, Heart } from "lucide-react";
 import { AIResponseFrame } from "@/components/ai/AIResponseFrame";
 import { PrintableReport } from '@/components/PrintableReport';
-import { Button } from "@/components/ui/button";
+import { AIActionButton } from "@/components/ai/AIActionButton";
 import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -140,14 +140,14 @@ Be warm, practical, and specific. Include real examples.`;
         </div>
 
         {/* Get Advice */}
-        <Button
+        <AIActionButton
           onClick={getAdvice}
-          disabled={isLoading || !selectedTopic}
-          className="w-full text-[13px] h-10"
-        >
-          <Sparkles className="w-3.5 h-3.5 me-1.5 shrink-0" />
-          <span>{isLoading ? t('toolsInternal.partnerGuide.gettingAdvice') : t('toolsInternal.partnerGuide.getAdvice')}</span>
-        </Button>
+          isLoading={isLoading}
+          disabled={!selectedTopic}
+          label={t('toolsInternal.partnerGuide.getAdvice')}
+          loadingLabel={t('toolsInternal.partnerGuide.gettingAdvice')}
+          icon={Sparkles}
+        />
 
         {/* AI Response */}
         {content && (

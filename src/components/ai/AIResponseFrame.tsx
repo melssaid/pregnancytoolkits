@@ -150,6 +150,19 @@ export const AIResponseFrame = ({
           )}
         </div>
 
+        {/* Post-analysis upgrade nudge for free users */}
+        {isFree && !isLoading && content && (
+          <button
+            onClick={() => navigate('/pricing-demo')}
+            className="mt-2 w-full flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-gradient-to-r from-primary/[0.06] to-primary/[0.02] border border-primary/15 hover:border-primary/30 transition-all"
+          >
+            <Crown className="w-3 h-3 text-primary shrink-0" />
+            <span className="text-[10px] font-semibold text-primary leading-tight">
+              {t('quotaExhausted.postAnalysisHint', { remaining, limit: 40 })}
+            </span>
+          </button>
+        )}
+
         <p className="mt-2 text-center text-[9px] font-semibold text-muted-foreground/70 tracking-wide">
           {t('ai.resultDisclaimer')}
         </p>
