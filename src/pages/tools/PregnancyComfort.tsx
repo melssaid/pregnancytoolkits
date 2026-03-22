@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { Moon, Clock, ThermometerSun, Brain, Loader2, Bed, Wind, Heart, Utensils, AlertCircle, Crown } from "lucide-react";
-import { Moon, Clock, ThermometerSun, Brain, Loader2, Bed, Wind, Heart, Utensils, AlertCircle, Crown } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
