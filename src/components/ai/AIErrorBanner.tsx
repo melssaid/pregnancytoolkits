@@ -4,10 +4,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { WifiOff, Clock, CreditCard, AlertCircle, RefreshCw, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import type { AIErrorType } from '@/hooks/usePregnancyAI';
+import type { SmartErrorType } from '@/services/smartEngine';
 
 interface AIErrorBannerProps {
-  errorType: AIErrorType | null;
+  errorType: AIErrorType | SmartErrorType | null;
   message: string | null;
+  onRetry?: () => void;
+  onDismiss?: () => void;
+}
   onRetry?: () => void;
   onDismiss?: () => void;
 }
