@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Loader2, ChevronDown, ChevronUp, RefreshCw, Brain, Zap, Crown } from 'lucide-react';
@@ -57,6 +57,51 @@ const MiniUsageBar: React.FC = () => {
   );
 };
 
+/** Upgrade CTA shown when quota is exhausted — replaces dead buttons */
+const QuotaExhaustedCTA: React.FC<{ icon?: React.ReactNode }> = ({ icon }) => {
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+  const { limit } = useAIUsage();
+
+  return (
+    <Card className="border-primary/20 bg-gradient-to-br from-primary/[0.06] to-primary/[0.02] overflow-hidden">
+      <CardContent className="pt-4 pb-4">
+        <div className="flex items-center gap-3">
+          <div className="p-2.5 rounded-xl bg-gradient-to-br from-primary/20 to-primary/10 shrink-0">
+            <Crown className="w-5 h-5 text-primary" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <h3 className="font-semibold text-sm text-foreground leading-snug">
+              {t('aiErrors.monthlyLimitTitle')}
+            </h3>
+            <p className="text-[11px] text-muted-foreground mt-0.5 leading-relaxed">
+              {t('quotaExhausted.upgradeHint')}
+            </p>
+          </div>
+        </div>
+        <motion.button
+          onClick={() => navigate('/pricing-demo')}
+          whileTap={{ scale: 0.97 }}
+          className="w-full mt-3 relative overflow-hidden rounded-xl"
+        >
+          <div
+            className="w-full flex items-center justify-center gap-2 px-4 py-2.5 font-semibold text-white text-[13px] rounded-xl"
+            style={{
+              background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(340 55% 50%), hsl(280 45% 45%))',
+              boxShadow: '0 4px 16px -4px hsl(var(--primary) / 0.3)',
+            }}
+          >
+            <Crown className="w-4 h-4 shrink-0" />
+            <span>{t('quotaExhausted.upgradeCTA')}</span>
+          </div>
+          <span className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" aria-hidden />
+        </motion.button>
+        <MiniUsageBar />
+      </CardContent>
+    </Card>
+  );
+};
+
 // Map legacy aiType to SmartSection
 const AITYPE_TO_SECTION: Record<string, SmartSection> = {
   'symptom-analysis': 'symptoms',
@@ -90,7 +135,7 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
   const resolvedSection: SmartSection = section || AITYPE_TO_SECTION[aiType || ''] || 'pregnancy-plan';
   const resolvedToolType: AIToolType | undefined = toolType || (aiType as AIToolType) || undefined;
 
-  const { generate, isLoading, content: insight, error, errorType, clearError, quota } = useSmartInsight({
+  const { generate, isLoading, content: insight, error, errorType, clearError } = useSmartInsight({
     section: resolvedSection,
     toolType: resolvedToolType,
     weight,
@@ -115,6 +160,11 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
   const displayTitle = title || t('toolsInternal.aiInsights.title');
   const displayButtonText = buttonText || t('toolsInternal.aiInsights.getInsights');
 
+  // If quota exhausted and no prior result, show upgrade CTA
+  if (isLimitReached && !hasGenerated) {
+    return <QuotaExhaustedCTA icon={icon} />;
+  }
+
   const generateInsight = async () => {
     if (isLoading || isLimitReached) return;
     clearError();
@@ -123,11 +173,11 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
     await generate({
       prompt,
       context: { ...context, language: currentLanguage },
-      skipCache: hasGenerated, // skip cache on regenerate
+      skipCache: hasGenerated,
     });
   };
 
-  const effectiveDisabled = isLoading || isLimitReached;
+  const effectiveDisabled = isLoading;
 
   /* ── COMPACT ── */
   if (variant === 'compact') {
@@ -142,17 +192,13 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
               className="w-full relative overflow-hidden rounded-2xl disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <div className="w-full flex items-center justify-center gap-2.5 px-5 py-3 font-semibold text-white text-[13px] rounded-2xl" style={{
-                background: isLimitReached
-                  ? 'linear-gradient(135deg, hsl(var(--muted-foreground)), hsl(var(--muted-foreground)))'
-                  : 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))',
-                boxShadow: isLimitReached ? 'none' : '0 4px 20px -4px hsl(var(--primary) / 0.5)',
+                background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))',
+                boxShadow: '0 4px 20px -4px hsl(var(--primary) / 0.5)',
               }}>
                 {isLoading ? <Loader2 className="h-4 w-4 animate-spin shrink-0" /> : (icon || <Brain className="h-4 w-4 shrink-0" />)}
                 <span className="truncate">{displayButtonText}</span>
               </div>
-              {!isLimitReached && (
-                <span className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" aria-hidden />
-              )}
+              <span className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" aria-hidden />
             </motion.button>
             <MiniUsageBar />
           </div>
@@ -213,17 +259,13 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
                 className="relative shrink-0 overflow-hidden rounded-xl disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <div className="flex items-center gap-1.5 px-3.5 py-2 font-semibold text-white text-[13px] rounded-xl" style={{
-                  background: isLimitReached
-                    ? 'linear-gradient(135deg, hsl(var(--muted-foreground)), hsl(var(--muted-foreground)))'
-                    : 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))',
-                  boxShadow: isLimitReached ? 'none' : '0 4px 16px -4px hsl(var(--primary) / 0.45)',
+                  background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))',
+                  boxShadow: '0 4px 16px -4px hsl(var(--primary) / 0.45)',
                 }}>
                   {isLoading ? <Loader2 className="h-3.5 w-3.5 animate-spin shrink-0" /> : <Brain className="h-3.5 w-3.5 shrink-0" />}
                   <span className="truncate">{t('toolsInternal.aiInsights.analyze')}</span>
                 </div>
-                {!isLimitReached && (
-                  <span className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" aria-hidden />
-                )}
+                <span className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" aria-hidden />
               </motion.button>
             </div>
 
@@ -281,17 +323,13 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
               className="relative shrink-0 overflow-hidden rounded-xl disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <div className="flex items-center gap-1.5 px-3.5 py-2 font-semibold text-white text-[13px] rounded-xl" style={{
-                background: isLimitReached
-                  ? 'linear-gradient(135deg, hsl(var(--muted-foreground)), hsl(var(--muted-foreground)))'
-                  : 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))',
-                boxShadow: isLimitReached ? 'none' : '0 4px 16px -4px hsl(var(--primary) / 0.45)',
+                background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))',
+                boxShadow: '0 4px 16px -4px hsl(var(--primary) / 0.45)',
               }}>
                 {isLoading ? <Loader2 className="h-3.5 w-3.5 animate-spin shrink-0" /> : <Brain className="h-3.5 w-3.5 shrink-0" />}
                 <span className="truncate">{t('toolsInternal.aiInsights.analyze')}</span>
               </div>
-              {!isLimitReached && (
-                <span className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" aria-hidden />
-              )}
+              <span className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" aria-hidden />
             </motion.button>
           ) : (
             <Button variant="ghost" size="sm" className="shrink-0 h-8 w-8 p-0 rounded-lg">

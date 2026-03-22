@@ -18,19 +18,19 @@ interface AIActionButtonProps {
   showUsage?: boolean;
 }
 
-const usageLabels: Record<string, { remaining: string; of: string; free: string; pro: string; upgrade: string; limitReached: string; resetsMonthly: string }> = {
-  en: { remaining: 'remaining', of: 'of', free: 'Free', pro: 'PRO', upgrade: 'Upgrade for 40 monthly', limitReached: 'Monthly limit reached', resetsMonthly: 'Resets monthly' },
-  ar: { remaining: 'متبقي', of: 'من', free: 'مجاني', pro: 'PRO', upgrade: 'ترقية لـ 40 شهرياً', limitReached: 'تم استنفاد الحد الشهري', resetsMonthly: 'يتجدد شهرياً' },
-  de: { remaining: 'übrig', of: 'von', free: 'Gratis', pro: 'PRO', upgrade: 'Upgrade für 40 monatlich', limitReached: 'Monatslimit erreicht', resetsMonthly: 'Monatlich zurückgesetzt' },
-  fr: { remaining: 'restants', of: 'sur', free: 'Gratuit', pro: 'PRO', upgrade: 'Passer à 40 par mois', limitReached: 'Limite mensuelle atteinte', resetsMonthly: 'Réinitialisation mensuelle' },
-  es: { remaining: 'restantes', of: 'de', free: 'Gratis', pro: 'PRO', upgrade: 'Mejora a 40 mensuales', limitReached: 'Límite mensual alcanzado', resetsMonthly: 'Se renueva mensualmente' },
-  pt: { remaining: 'restantes', of: 'de', free: 'Grátis', pro: 'PRO', upgrade: 'Upgrade para 40 mensais', limitReached: 'Limite mensal atingido', resetsMonthly: 'Renova mensalmente' },
-  tr: { remaining: 'kalan', of: '/', free: 'Ücretsiz', pro: 'PRO', upgrade: '40 aylık için yükseltin', limitReached: 'Aylık limit doldu', resetsMonthly: 'Aylık sıfırlanır' },
+const usageLabels: Record<string, { remaining: string; of: string; free: string; pro: string; upgrade: string; limitReached: string; resetsMonthly: string; unlockMore: string }> = {
+  en: { remaining: 'remaining', of: 'of', free: 'Free', pro: 'PRO', upgrade: 'Upgrade for 40 monthly', limitReached: 'Monthly limit reached', resetsMonthly: 'Resets monthly', unlockMore: 'Unlock more insights' },
+  ar: { remaining: 'متبقي', of: 'من', free: 'مجاني', pro: 'PRO', upgrade: 'ترقية لـ 40 شهرياً', limitReached: 'تم استنفاد الحد الشهري', resetsMonthly: 'يتجدد شهرياً', unlockMore: 'افتحي المزيد من التحليلات' },
+  de: { remaining: 'übrig', of: 'von', free: 'Gratis', pro: 'PRO', upgrade: 'Upgrade für 40 monatlich', limitReached: 'Monatslimit erreicht', resetsMonthly: 'Monatlich zurückgesetzt', unlockMore: 'Mehr Einblicke freischalten' },
+  fr: { remaining: 'restants', of: 'sur', free: 'Gratuit', pro: 'PRO', upgrade: 'Passer à 40 par mois', limitReached: 'Limite mensuelle atteinte', resetsMonthly: 'Réinitialisation mensuelle', unlockMore: 'Débloquer plus d\'analyses' },
+  es: { remaining: 'restantes', of: 'de', free: 'Gratis', pro: 'PRO', upgrade: 'Mejora a 40 mensuales', limitReached: 'Límite mensual alcanzado', resetsMonthly: 'Se renueva mensualmente', unlockMore: 'Desbloquear más análisis' },
+  pt: { remaining: 'restantes', of: 'de', free: 'Grátis', pro: 'PRO', upgrade: 'Upgrade para 40 mensais', limitReached: 'Limite mensal atingido', resetsMonthly: 'Renova mensalmente', unlockMore: 'Desbloquear mais análises' },
+  tr: { remaining: 'kalan', of: '/', free: 'Ücretsiz', pro: 'PRO', upgrade: '40 aylık için yükseltin', limitReached: 'Aylık limit doldu', resetsMonthly: 'Aylık sıfırlanır', unlockMore: 'Daha fazla analiz aç' },
 };
 
 /**
  * Unified AI action button with integrated usage counter.
- * Connected to global AIUsageContext for consistent tracking across all tools.
+ * When quota is exhausted, transforms into a premium upgrade CTA.
  */
 export const AIActionButton: React.FC<AIActionButtonProps> = ({
   onClick,
@@ -62,7 +62,48 @@ export const AIActionButton: React.FC<AIActionButtonProps> = ({
     return 'bg-emerald-500';
   };
 
-  const effectiveDisabled = disabled || isLoading || isLimitReached;
+  // When exhausted, show upgrade button instead of dead state
+  if (isLimitReached) {
+    return (
+      <div className="space-y-2">
+        <motion.button
+          onClick={() => navigate('/pricing-demo')}
+          whileTap={{ scale: 0.97 }}
+          whileHover={{ scale: 1.01 }}
+          className={`relative w-full overflow-hidden rounded-xl group focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 ${className}`}
+        >
+          <div
+            className={`w-full flex items-center justify-center gap-2 font-semibold text-white transition-all duration-300 ${isCompact ? 'px-4 h-10 text-xs rounded-xl' : 'px-5 h-[52px] text-sm rounded-xl'}`}
+            style={{
+              background: 'linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(340 55% 50%) 50%, hsl(280 45% 45%) 100%)',
+              boxShadow: '0 4px 16px -2px hsl(var(--primary) / 0.25)',
+            }}
+          >
+            <Crown className={`shrink-0 ${isCompact ? 'w-3.5 h-3.5' : 'w-[18px] h-[18px]'}`} />
+            <span className="truncate">{labels.unlockMore}</span>
+          </div>
+          <span
+            className="absolute inset-0 -translate-x-full group-hover:translate-x-full rtl:translate-x-full rtl:group-hover:-translate-x-full transition-transform duration-700 ease-out bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none"
+            aria-hidden
+          />
+        </motion.button>
+
+        {showUsage && (
+          <div className="flex items-center gap-2 px-1">
+            <Zap className="w-2.5 h-2.5 shrink-0 text-destructive" />
+            <div className="flex-1 h-1 rounded-full bg-muted/40 overflow-hidden">
+              <div className="h-full rounded-full bg-destructive w-full" />
+            </div>
+            <span className="text-[9px] text-muted-foreground font-medium tabular-nums shrink-0">
+              0 <span className="opacity-60">/ {limit}</span>
+            </span>
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  const effectiveDisabled = disabled || isLoading;
 
   return (
     <div className="space-y-2">
@@ -87,10 +128,8 @@ export const AIActionButton: React.FC<AIActionButtonProps> = ({
             ${isCompact ? 'px-4 h-10 text-xs rounded-xl' : 'px-5 h-[52px] text-sm rounded-xl'}
           `}
           style={{
-            background: isLimitReached
-              ? 'linear-gradient(135deg, hsl(var(--muted-foreground)) 0%, hsl(var(--muted-foreground)) 100%)'
-              : 'linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(330 65% 50%) 50%, hsl(270 55% 50%) 100%)',
-            boxShadow: isLoading || isLimitReached
+            background: 'linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(330 65% 50%) 50%, hsl(270 55% 50%) 100%)',
+            boxShadow: isLoading
               ? 'none'
               : '0 4px 16px -2px hsl(var(--primary) / 0.35), 0 1px 4px hsl(var(--primary) / 0.2)',
           }}
@@ -112,18 +151,16 @@ export const AIActionButton: React.FC<AIActionButtonProps> = ({
         </div>
 
         {/* Shimmer sweep on hover */}
-        {!isLimitReached && (
-          <span
-            className="absolute inset-0 -translate-x-full group-hover:translate-x-full rtl:translate-x-full rtl:group-hover:-translate-x-full transition-transform duration-700 ease-out bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none"
-            aria-hidden
-          />
-        )}
+        <span
+          className="absolute inset-0 -translate-x-full group-hover:translate-x-full rtl:translate-x-full rtl:group-hover:-translate-x-full transition-transform duration-700 ease-out bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none"
+          aria-hidden
+        />
       </motion.button>
 
       {/* Usage indicator — minimal single line */}
       {showUsage && (
         <div className="flex items-center gap-2 px-1">
-          <Zap className={`w-2.5 h-2.5 shrink-0 ${isLimitReached ? 'text-destructive' : 'text-primary'}`} />
+          <Zap className="w-2.5 h-2.5 shrink-0 text-primary" />
           <div className="flex-1 h-1 rounded-full bg-muted/40 overflow-hidden">
             <motion.div
               className={`h-full rounded-full ${getBarColor()}`}

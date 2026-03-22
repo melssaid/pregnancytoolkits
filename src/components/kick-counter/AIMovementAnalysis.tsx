@@ -104,8 +104,11 @@ export const AIMovementAnalysis: React.FC<AIMovementAnalysisProps> = ({
 
   // Step 2: Deep AI analysis (costs 1 quota)
   const runDeepAnalysis = async () => {
-    if (sessions.length < 3 || isLimitReached) return;
-    
+    if (sessions.length < 3) return;
+    if (isLimitReached) {
+      navigate('/pricing-demo');
+      return;
+    }
     setPhase('collecting');
     setProgress(0);
 
