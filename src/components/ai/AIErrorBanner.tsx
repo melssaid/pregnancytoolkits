@@ -4,8 +4,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { WifiOff, Clock, CreditCard, AlertCircle, RefreshCw, X, Crown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
-import type { AIErrorType } from '@/hooks/usePregnancyAI';
 import type { SmartErrorType } from '@/services/smartEngine';
+type AIErrorType = 'quota_exhausted' | 'rate_limit' | 'payment' | 'network' | 'auth' | 'unknown';
 
 interface AIErrorBannerProps {
   errorType: AIErrorType | SmartErrorType | null;

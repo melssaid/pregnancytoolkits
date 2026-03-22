@@ -5,8 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { ChevronLeft, ChevronRight, Gauge, Ruler, Calendar, Loader2, AlertCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { usePregnancyAI } from '@/hooks/usePregnancyAI';
-import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
+import { useSmartInsight } from '@/hooks/useSmartInsight';
 import { AIResponseFrame } from '@/components/ai/AIResponseFrame';
 import { AIErrorBanner } from '@/components/ai/AIErrorBanner';
 import {
@@ -66,14 +65,11 @@ const FetalDevelopment3D: React.FC = () => {
   const isRTL = i18n.language === 'ar';
   const [currentIndex, setCurrentIndex] = useState(4);
   const [userWeek, setUserWeek] = useState<number | null>(null);
-  const [aiInsight, setAiInsight] = useState('');
   const [activeAITab, setActiveAITab] = useState<'development' | 'nutrition' | 'exercise' | null>(null);
   
-  const { streamChat, isLoading: aiLoading, error: aiError, errorType } = usePregnancyAI();
-
-  useResetOnLanguageChange(() => {
-    setAiInsight('');
-    setActiveAITab(null);
+  const { generate, isLoading: aiLoading, content: aiInsight, error: aiError, errorType, reset } = useSmartInsight({
+    section: 'pregnancy-plan',
+    toolType: 'pregnancy-assistant',
   });
 
   useEffect(() => {
@@ -121,7 +117,7 @@ const FetalDevelopment3D: React.FC = () => {
   const getAIInsight = async (type: 'development' | 'nutrition' | 'exercise') => {
     if (aiLoading) return;
     setActiveAITab(type);
-    setAiInsight('');
+    reset();
 
     const babySize = t(`toolsInternal.fetalDevelopment.sizes.${currentData.sizeKey}`);
     const development = t(`toolsInternal.fetalDevelopment.developments.${currentData.developmentKey}`);
@@ -174,13 +170,7 @@ Provide:
 Focus on safety first, with modifications for common pregnancy discomforts.`
     };
 
-    await streamChat({
-      type: 'pregnancy-assistant',
-      messages: [{ role: 'user', content: prompts[type] }],
-      context: { week: currentData.week },
-      onDelta: (text) => setAiInsight((prev) => prev + text),
-      onDone: () => {},
-    });
+    await generate({ prompt: prompts[type], context: { week: currentData.week } });
   };
 
   const PrevIcon = isRTL ? ChevronRight : ChevronLeft;

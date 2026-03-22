@@ -6,9 +6,8 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { FileText, Brain, ChevronDown, ChevronUp, Archive, Trash2, Clock, Loader2, AlertCircle } from 'lucide-react';
-import { usePregnancyAI } from '@/hooks/usePregnancyAI';
+import { useSmartInsight } from '@/hooks/useSmartInsight';
 import { AIActionButton } from '@/components/ai/AIActionButton';
-import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { AIResponseFrame } from '@/components/ai/AIResponseFrame';
 import { safeParseLocalStorage, safeSaveToLocalStorage } from '@/lib/safeStorage';
@@ -79,10 +78,9 @@ export default function AIBirthPlanGenerator() {
   const [savedPlans, setSavedPlans] = useState<SavedPlan[]>([]);
   const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set([birthPlanCategories[0].titleKey]));
   const [showArchive, setShowArchive] = useState(false);
-  const { streamChat, isLoading, error } = usePregnancyAI();
-
-  useResetOnLanguageChange(() => {
-    setGeneratedPlan('');
+  const { generate, isLoading, error, content: streamedContent, reset } = useSmartInsight({
+    section: 'pregnancy-plan',
+    toolType: 'birth-plan',
   });
   const isInitialized = useRef(false);
 
@@ -125,14 +123,14 @@ export default function AIBirthPlanGenerator() {
     const langCode = i18n.language?.split('-')[0] || 'en';
     const langNames: Record<string, string> = { en: 'English', ar: 'Arabic', de: 'German', tr: 'Turkish', fr: 'French', es: 'Spanish', pt: 'Portuguese' };
 
-    await streamChat({
-      type: 'birth-plan',
-      messages: [{ role: 'user', content: `IMPORTANT: Write ENTIRE response in ${langNames[langCode] || 'English'}.\nCreate a comprehensive birth plan:\n${selectedPrefs}\n${additionalNotes ? `Notes: ${additionalNotes}` : ''}\nInclude introduction, organized sections, backup plans, and a flexibility note.` }],
-      context: { language: langCode },
+    const prompt = `IMPORTANT: Write ENTIRE response in ${langNames[langCode] || 'English'}.\nCreate a comprehensive birth plan:\n${selectedPrefs}\n${additionalNotes ? `Notes: ${additionalNotes}` : ''}\nInclude introduction, organized sections, backup plans, and a flexibility note.`;
+
+    await generate({
+      prompt,
       onDelta: (text) => setGeneratedPlan(prev => prev + text),
-      onDone: () => { toast.success(t('toolsInternal.birthPlan.planGenerated')); }
     });
-  }, [preferences, additionalNotes, streamChat, t, i18n.language]);
+    toast.success(t('toolsInternal.birthPlan.planGenerated'));
+  }, [preferences, additionalNotes, generate, t, i18n.language]);
 
   const savePlan = useCallback(() => {
     if (!generatedPlan) { toast.error(t('toolsInternal.birthPlan.selectPreference')); return; }

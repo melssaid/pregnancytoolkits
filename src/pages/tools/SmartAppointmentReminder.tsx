@@ -10,8 +10,7 @@ import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
 import { AppointmentService } from '@/services/supabaseServices';
 import { useUserProfile } from '@/hooks/useUserProfile';
-import { usePregnancyAI } from '@/hooks/usePregnancyAI';
-import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
+import { useSmartInsight } from '@/hooks/useSmartInsight';
 import { TimePicker } from '@/components/ui/time-picker';
 import { AIResultDisclaimer } from '@/components/compliance/AIResultDisclaimer';
 import { ToolFrame } from '@/components/ToolFrame';
@@ -80,9 +79,10 @@ const SmartAppointmentReminder: React.FC = () => {
   const [suggestedQuestions, setSuggestedQuestions] = useState<string[]>([]);
   const [isGeneratingQuestions, setIsGeneratingQuestions] = useState(false);
   const [formStep, setFormStep] = useState(0); // 0: type+date, 1: details, 2: questions
-  const { streamChat, error: aiError } = usePregnancyAI();
-
-  useResetOnLanguageChange(() => { setSuggestedQuestions([]); });
+  const { generate, error: aiError } = useSmartInsight({
+    section: 'appointments',
+    toolType: 'appointment-prep',
+  });
   const abortRef = useRef(false);
 
   useEffect(() => {
@@ -250,42 +250,39 @@ Focus on:
 
 Format as a numbered list (1-5), one question per line. Be concise and relevant.`;
 
-      await streamChat({
-        type: 'pregnancy-assistant',
-        messages: [{ role: 'user', content: prompt }],
+      await generate({
+        prompt,
         context: { week: currentWeek },
         onDelta: (text) => {
           if (abortRef.current) return;
           fullResponse += text;
         },
-        onDone: () => {
-          if (abortRef.current) return;
-          
-          const lines = fullResponse.split('\n');
-          const questions: string[] = [];
-          
-          for (const line of lines) {
-            const trimmed = line.trim();
-            const match = trimmed.match(/^(?:\d+[.)\-]|\*|\-)\s*(.+)/);
-            if (match && match[1] && match[1].length > 10) {
-              questions.push(match[1].trim());
-            }
-          }
-          
-          const finalQuestions = questions.slice(0, 5);
-          setSuggestedQuestions(finalQuestions);
-          
-          // Auto-add all generated questions to the form
-          setFormData(prev => {
-            const existing = new Set(prev.questions);
-            const newQuestions = finalQuestions.filter(q => !existing.has(q));
-            return {
-              ...prev,
-              questions: [...prev.questions, ...newQuestions]
-            };
-          });
-        }
       });
+
+      if (!abortRef.current) {
+        const lines = fullResponse.split('\n');
+        const questions: string[] = [];
+        
+        for (const line of lines) {
+          const trimmed = line.trim();
+          const match = trimmed.match(/^(?:\d+[.)\-]|\*|\-)\s*(.+)/);
+          if (match && match[1] && match[1].length > 10) {
+            questions.push(match[1].trim());
+          }
+        }
+        
+        const finalQuestions = questions.slice(0, 5);
+        setSuggestedQuestions(finalQuestions);
+        
+        setFormData(prev => {
+          const existing = new Set(prev.questions);
+          const newQuestions = finalQuestions.filter(q => !existing.has(q));
+          return {
+            ...prev,
+            questions: [...prev.questions, ...newQuestions]
+          };
+        });
+      }
       
     } catch (error) {
       console.error('Error generating questions:', error);
