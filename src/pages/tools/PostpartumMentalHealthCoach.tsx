@@ -163,13 +163,13 @@ ${answersSummary}
                     {t(`toolsInternal.mentalHealthCoach.riskLevels.${level}.title`)}
                   </h3>
                   <p className="text-xs text-muted-foreground">
-                    {t('toolsInternal.mentalHealthCoach.scoreLabel')}: {score}/{maxScore}
+                    {t('toolsInternal.mentalHealthCoach.score')}: {score}/{maxScore}
                   </p>
                 </div>
               </div>
 
               <p className="text-sm">
-                {t(`toolsInternal.mentalHealthCoach.riskLevels.${level}.description`)}
+                {t(`toolsInternal.mentalHealthCoach.riskLevels.${level}.message`)}
               </p>
 
               <div className="w-full bg-muted rounded-full h-3">
@@ -186,7 +186,7 @@ ${answersSummary}
               <div className="flex items-center gap-2">
                 <Sparkles className="w-5 h-5 text-violet-500" />
                 <h3 className="font-semibold text-sm">
-                  {t('toolsInternal.mentalHealthCoach.personalizedPlan')}
+                  {t('toolsInternal.mentalHealthCoach.aiPersonalizedPlan')}
                 </h3>
               </div>
               
@@ -232,10 +232,10 @@ ${answersSummary}
           </Card>
 
           <Button onClick={resetAll} variant="outline" className="w-full gap-2">
-            <RotateCcw className="w-4 h-4" /> {t('toolsInternal.mentalHealthCoach.retake')}
+            <RotateCcw className="w-4 h-4" /> {t('toolsInternal.mentalHealthCoach.takeScreeningAgain')}
           </Button>
 
-          {videos.length > 0 && <VideoLibrary videos={videos} title={t('toolsInternal.mentalHealthCoach.helpfulVideos')} />}
+          {videos.length > 0 && <VideoLibrary videos={videos} title={t('toolsInternal.mentalHealthCoach.mentalWellnessVideos')} />}
         </div>
       </ToolFrame>
     );

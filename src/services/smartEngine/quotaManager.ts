@@ -114,9 +114,13 @@ export function setTier(tier: "free" | "premium"): void {
 }
 
 /**
- * Admin reset for testing.
+ * Admin reset for testing. ONLY available in development.
  */
 export function resetQuota(): void {
+  if (typeof import.meta !== 'undefined' && import.meta.env?.PROD) {
+    console.warn('[quotaManager] resetQuota blocked in production');
+    return;
+  }
   localStorage.setItem(ADMIN_BYPASS_KEY, "true");
   writeQuota({ monthKey: getCurrentMonthKey(), used: 0, tier: "premium" });
 }
