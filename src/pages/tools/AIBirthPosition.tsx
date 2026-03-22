@@ -12,9 +12,8 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ToolFrame } from "@/components/ToolFrame";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
-import { usePregnancyAI } from "@/hooks/usePregnancyAI";
+import { useSmartInsight } from "@/hooks/useSmartInsight";
 import { AIActionButton } from '@/components/ai/AIActionButton';
-import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { useSettings } from "@/hooks/useSettings";
 import { VideoLibrary } from "@/components/VideoLibrary";
 import { birthPositionVideosByLang } from "@/data/videoData";
@@ -24,16 +23,11 @@ import { ToolHubNav, BIRTH_HUB_TABS } from "@/components/ToolHubNav";
 const AIBirthPosition = () => {
   const { t } = useTranslation();
   const { settings } = useSettings();
-  const { streamChat, isLoading } = usePregnancyAI();
+  const { generate, isLoading, content } = useSmartInsight({ section: 'pregnancy-plan', toolType: 'birth-position' });
 
-  useResetOnLanguageChange(() => {
-    setResponse('');
-  });
-  
   const [birthPlan, setBirthPlan] = useState("natural");
   const [conditions, setConditions] = useState<string[]>([]);
   const [laborStage, setLaborStage] = useState("early");
-  const [response, setResponse] = useState("");
 
   const birthPreferences = [
     { id: "natural", labelKey: "toolsInternal.birthPosition.natural" },
@@ -105,14 +99,7 @@ Provide detailed guidance on:
 
 Include safety considerations and when to change positions.`;
 
-    setResponse("");
-    await streamChat({
-      type: "birth-position",
-      messages: [{ role: "user", content: prompt }],
-      context: { week: Number(settings.pregnancyWeek) || 0 },
-      onDelta: (text) => setResponse((prev) => prev + text),
-      onDone: () => {},
-    });
+    await generate({ prompt, context: { week: Number(settings.pregnancyWeek) || 0 } });
   };
 
   return (
@@ -213,10 +200,10 @@ Include safety considerations and when to change positions.`;
         />
 
         {/* AI Response */}
-        {response && (
+        {content && (
           <PrintableReport title={t('toolsInternal.birthPosition.title')} isLoading={isLoading}>
             <AIResponseFrame
-              content={response}
+              content={content}
               isLoading={isLoading}
               title={t('toolsInternal.birthPosition.title')}
               icon={Baby}

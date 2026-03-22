@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Play, Pause, CheckCircle, Clock, AlertCircle, Brain } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AIActionButton } from '@/components/ai/AIActionButton';
-import { usePregnancyAI } from '@/hooks/usePregnancyAI';
+import { useSmartInsight } from '@/hooks/useSmartInsight';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { AIResponseFrame } from '@/components/ai/AIResponseFrame';
@@ -42,13 +42,11 @@ export default function AIBackPainRelief() {
   const [timeRemaining, setTimeRemaining] = useState(0);
   const [completedExercises, setCompletedExercises] = useState<string[]>([]);
   const [showAIAdvice, setShowAIAdvice] = useState(false);
-  const [aiResponse, setAiResponse] = useState('');
   const [painLocation, setPainLocation] = useState<string>('lower back');
 
-  const { streamChat, isLoading, error } = usePregnancyAI();
+  const { generate, isLoading, content, error } = useSmartInsight({ section: 'movement', toolType: 'back-pain-relief' });
 
   useResetOnLanguageChange(() => {
-    setAiResponse('');
     setShowAIAdvice(false);
   });
 
@@ -100,16 +98,11 @@ export default function AIBackPainRelief() {
 
   const getAIReliefAdvice = async () => {
     setShowAIAdvice(true);
-    setAiResponse('');
     const completedNames = completedExercises.map(id => {
       const ex = backPainExercises.find(e => e.id === id);
       return ex ? t(`toolsInternal.backPainRelief.${ex.nameKey}`) : null;
     }).filter(Boolean);
-    await streamChat({
-      type: 'back-pain-relief',
-      messages: [{
-        role: 'user',
-        content: `As a prenatal physiotherapy guide, provide personalized back pain relief advice:
+    const prompt = `As a prenatal physiotherapy guide, provide personalized back pain relief advice:
 
 **Pain Location:** ${painLocation}
 **Completed Exercises Today:** ${completedNames.join(', ') || 'None yet'}
@@ -119,11 +112,8 @@ Provide:
 2. **Relief Techniques** - Immediate comfort measures
 3. **Additional Exercises** - Safe exercises to try next
 4. **Prevention Tips** - Posture and daily habit recommendations
-5. **When to Consult** - Signs to share with a healthcare provider`,
-      }],
-      onDelta: (text) => setAiResponse(prev => prev + text),
-      onDone: () => {},
-    });
+5. **When to Consult** - Signs to share with a healthcare provider`;
+    await generate({ prompt });
   };
 
   if (showDisclaimer) {
@@ -204,10 +194,10 @@ Provide:
         </Card>
 
         {/* AI Response */}
-        {showAIAdvice && aiResponse && (
+        {showAIAdvice && content && (
           <PrintableReport title={t('toolsInternal.backPainRelief.aiCoach')} isLoading={isLoading}>
             <AIResponseFrame
-              content={aiResponse}
+              content={content}
               isLoading={isLoading}
               title={t('toolsInternal.backPainRelief.aiCoach')}
               icon={Brain}

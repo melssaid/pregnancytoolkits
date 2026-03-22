@@ -10,9 +10,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Checkbox } from "@/components/ui/checkbox";
 import { ToolFrame } from "@/components/ToolFrame";
 import MedicalDisclaimer from "@/components/compliance/MedicalDisclaimer";
-import { usePregnancyAI } from "@/hooks/usePregnancyAI";
+import { useSmartInsight } from "@/hooks/useSmartInsight";
 import { AIActionButton } from '@/components/ai/AIActionButton';
-import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { useSettings } from "@/hooks/useSettings";
 import { VideoLibrary } from "@/components/VideoLibrary";
 import { skincareVideosByLang } from "@/data/videoData";
@@ -23,20 +22,15 @@ import { SkincareRoutinePreview } from "@/components/skincare/SkincareRoutinePre
 const AIPregnancySkincare = () => {
   const { t, i18n } = useTranslation();
   const { settings } = useSettings();
-  const { streamChat, isLoading } = usePregnancyAI();
+  const { generate, isLoading, content } = useSmartInsight({ section: 'symptoms', toolType: 'skincare-advice' });
   
   const [disclaimerAccepted, setDisclaimerAccepted] = useState(false);
   const [skinType, setSkinType] = useState("combination");
   const [concerns, setConcerns] = useState<string[]>([]);
   const [budget, setBudget] = useState("medium");
-  const [response, setResponse] = useState("");
   const [showHint, setShowHint] = useState(true);
 
   const currentLang = i18n.language;
-
-  useResetOnLanguageChange(() => {
-    setResponse("");
-  });
 
   const toggleConcern = (id: string) => {
     setConcerns(prev =>
@@ -78,14 +72,7 @@ Provide a complete pregnancy-safe skincare routine:
 
 Include natural DIY options when appropriate. Focus ONLY on pregnancy-safe ingredients.`;
 
-    setResponse("");
-    await streamChat({
-      type: "skincare-advice",
-      messages: [{ role: "user", content: prompt }],
-      context: { week: Number(settings.pregnancyWeek) || 0 },
-      onDelta: (text) => setResponse((prev) => prev + text),
-      onDone: () => {},
-    });
+    await generate({ prompt, context: { week: Number(settings.pregnancyWeek) || 0 } });
   };
 
   if (!disclaimerAccepted) {
@@ -187,7 +174,7 @@ Include natural DIY options when appropriate. Focus ONLY on pregnancy-safe ingre
         </motion.div>
 
         {/* AI Response */}
-        {response && (
+        {content && (
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -195,7 +182,7 @@ Include natural DIY options when appropriate. Focus ONLY on pregnancy-safe ingre
           >
             <PrintableReport title={t('toolsInternal.skincare.yourRoutine')} isLoading={isLoading}>
               <AIResponseFrame
-                content={response}
+                content={content}
                 isLoading={isLoading}
                 title={t('toolsInternal.skincare.yourRoutine')}
                 icon={Sparkles}

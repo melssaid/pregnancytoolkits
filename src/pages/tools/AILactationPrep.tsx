@@ -12,9 +12,8 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { ToolFrame } from "@/components/ToolFrame";
 import MedicalDisclaimer from "@/components/compliance/MedicalDisclaimer";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
-import { usePregnancyAI } from "@/hooks/usePregnancyAI";
+import { useSmartInsight } from "@/hooks/useSmartInsight";
 import { AIActionButton } from '@/components/ai/AIActionButton';
-import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { useSettings } from "@/hooks/useSettings";
 import { VideoLibrary } from "@/components/VideoLibrary";
 import { lactationVideosByLang } from "@/data/videoData";
@@ -53,18 +52,13 @@ const essentialSupplies = [
 const AILactationPrep = () => {
   const { t } = useTranslation();
   const { settings } = useSettings();
-  const { streamChat, isLoading } = usePregnancyAI();
+  const { generate, isLoading, content } = useSmartInsight({ section: 'postpartum', toolType: 'lactation-prep' });
 
-  useResetOnLanguageChange(() => {
-    setResponse('');
-  });
-  
   const [disclaimerAccepted, setDisclaimerAccepted] = useState(false);
   const [feedingGoal, setFeedingGoal] = useState("");
   const [selectedConcerns, setSelectedConcerns] = useState<string[]>([]);
   const [firstTimeMom, setFirstTimeMom] = useState(true);
   const [returningToWork, setReturningToWork] = useState("");
-  const [response, setResponse] = useState("");
 
   const toggleConcern = (id: string) => {
     setSelectedConcerns(prev =>
@@ -103,14 +97,7 @@ ${returningToWork === "yes" ? "Include detailed back-to-work pumping plan and ri
 
 Be encouraging and realistic - breastfeeding has a learning curve!`;
 
-    setResponse("");
-    await streamChat({
-      type: "lactation-prep",
-      messages: [{ role: "user", content: prompt }],
-      context: { week: Number(settings.pregnancyWeek) || 0 },
-      onDelta: (text) => setResponse((prev) => prev + text),
-      onDone: () => {},
-    });
+    await generate({ prompt, context: { week: Number(settings.pregnancyWeek) || 0 } });
   };
 
   if (!disclaimerAccepted) {
@@ -231,10 +218,10 @@ Be encouraging and realistic - breastfeeding has a learning curve!`;
         />
 
         {/* AI Response */}
-        {response && (
+        {content && (
           <PrintableReport title={t('toolsInternal.lactationPrep.title')} isLoading={isLoading}>
             <AIResponseFrame
-              content={response}
+              content={content}
               isLoading={isLoading}
               title={t('toolsInternal.lactationPrep.title')}
             />
