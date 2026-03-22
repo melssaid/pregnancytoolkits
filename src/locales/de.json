@@ -8093,8 +8093,14 @@
     "generateInsight": "Meinen Einblick generieren",
     "quickActions": "Schnellaktionen",
     "suggestions": {
-      "hydration": { "title": "Flüssigkeit", "desc": "{{glasses}} Gläser heute — weiter so!" },
-      "movement": { "title": "Babybewegung", "desc": "{{kicks}} Tritte heute aufgezeichnet" }
+      "hydration": {
+        "title": "Flüssigkeit",
+        "desc": "{{glasses}} Gläser heute — weiter so!"
+      },
+      "movement": {
+        "title": "Babybewegung",
+        "desc": "{{kicks}} Tritte heute aufgezeichnet"
+      }
     },
     "actions": {
       "logSymptoms": "Symptome erfassen",
@@ -8136,5 +8142,9 @@
     "trendSlower": "Die Bewegung scheint etwas langsamer als Ihr übliches Muster. Das ist oft normal — die Aktivität kann von Tag zu Tag variieren.",
     "trendFaster": "Baby scheint in letzter Zeit aktiver zu sein! Die Bewegungszeiten sind kürzer als üblich.",
     "warningLong": "Wenn diese Veränderung anhält oder Sie beunruhigt, ziehen Sie in Betracht, Ihren Gesundheitsdienstleister zu kontaktieren."
+  },
+  "quotaExhausted": {
+    "upgradeHint": "Schalten Sie mehr personalisierte Einblicke mit Premium frei",
+    "upgradeCTA": "Weiter mit Premium"
   }
 }

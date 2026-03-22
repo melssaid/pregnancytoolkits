@@ -7807,8 +7807,14 @@
     "generateInsight": "İpucumu oluştur",
     "quickActions": "Hızlı İşlemler",
     "suggestions": {
-      "hydration": { "title": "Sıvı Alımı", "desc": "Bugün {{glasses}} bardak — devam edin!" },
-      "movement": { "title": "Bebek Hareketi", "desc": "Bugün {{kicks}} tekme kaydedildi" }
+      "hydration": {
+        "title": "Sıvı Alımı",
+        "desc": "Bugün {{glasses}} bardak — devam edin!"
+      },
+      "movement": {
+        "title": "Bebek Hareketi",
+        "desc": "Bugün {{kicks}} tekme kaydedildi"
+      }
     },
     "actions": {
       "logSymptoms": "Belirtileri kaydet",
@@ -7850,5 +7856,9 @@
     "trendSlower": "Hareket, son zamanki normal kalıbınıza göre biraz daha yavaş görünüyor. Bu genellikle normaldir — aktivite günden güne değişebilir.",
     "trendFaster": "Bebek son zamanlarda daha aktif görünüyor! Hareket süreleri normalden daha kısa.",
     "warningLong": "Bu değişiklik devam ederse veya sizi endişelendirirse, sağlık uzmanınızla iletişime geçmeyi düşünün."
+  },
+  "quotaExhausted": {
+    "upgradeHint": "Premium ile daha fazla kişiselleştirilmiş analiz açın",
+    "upgradeCTA": "Premium ile devam et"
   }
 }
