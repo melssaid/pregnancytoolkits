@@ -6226,7 +6226,9 @@
     "dismiss": "Fermer",
     "dailyLimitMsg": "Vous avez utilisé vos {{limit}} requêtes IA quotidiennes. Réessayez demain.",
     "dailyLimitTitle": "Limite quotidienne atteinte",
-    "remainingHint": "{{remaining}} sur {{limit}} requêtes restantes aujourd'hui"
+    "remainingHint": "{{remaining}} sur {{limit}} requêtes restantes aujourd'hui",
+    "monthlyLimitMsg": "Vous avez utilisé vos {{limit}} requêtes IA mensuelles. Votre quota se renouvelle le mois prochain.",
+    "monthlyLimitTitle": "Limite mensuelle atteinte"
   },
   "aiUsage": {
     "remaining": "{{remaining}}/{{limit}} requêtes restantes aujourd'hui",

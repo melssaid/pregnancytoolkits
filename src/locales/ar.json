@@ -6262,7 +6262,9 @@
     "dismiss": "إغلاق",
     "dailyLimitMsg": "لقد استخدمتِ جميع طلبات الذكاء الاصطناعي اليومية ({{limit}} طلب). يُرجى المحاولة غداً.",
     "dailyLimitTitle": "تم الوصول للحد اليومي",
-    "remainingHint": "متبقي {{remaining}} من {{limit}} طلب اليوم"
+    "remainingHint": "متبقي {{remaining}} من {{limit}} طلب اليوم",
+    "monthlyLimitMsg": "لقد استخدمتِ جميع طلبات الذكاء الاصطناعي الشهرية ({{limit}} طلب). تتجدد الحصة الشهر القادم.",
+    "monthlyLimitTitle": "تم الوصول للحد الشهري"
   },
   "aiUsage": {
     "remaining": "متبقي {{remaining}} من {{limit}} طلب يومي",

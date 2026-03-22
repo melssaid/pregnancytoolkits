@@ -6102,7 +6102,9 @@
     "dismiss": "Cerrar",
     "dailyLimitMsg": "Has usado todas las {{limit}} solicitudes diarias de IA. Inténtalo mañana.",
     "dailyLimitTitle": "Límite diario alcanzado",
-    "remainingHint": "{{remaining}} de {{limit}} solicitudes restantes hoy"
+    "remainingHint": "{{remaining}} de {{limit}} solicitudes restantes hoy",
+    "monthlyLimitMsg": "Has usado todas las {{limit}} solicitudes mensuales de IA. Tu cuota se renueva el próximo mes.",
+    "monthlyLimitTitle": "Límite mensual alcanzado"
   },
   "aiUsage": {
     "remaining": "{{remaining}}/{{limit}} solicitudes restantes hoy",

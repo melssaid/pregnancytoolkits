@@ -5958,7 +5958,9 @@
     "dismiss": "Dismiss",
     "dailyLimitMsg": "You've used all {{limit}} daily AI requests. Please try again tomorrow.",
     "dailyLimitTitle": "Daily Limit Reached",
-    "remainingHint": "{{remaining}} of {{limit}} requests remaining today"
+    "remainingHint": "{{remaining}} of {{limit}} requests remaining today",
+    "monthlyLimitMsg": "You've used all {{limit}} monthly AI requests. Your quota resets next month.",
+    "monthlyLimitTitle": "Monthly Limit Reached"
   },
   "aiUsage": {
     "remaining": "{{remaining}}/{{limit}} requests remaining today",

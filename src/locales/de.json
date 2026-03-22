@@ -6201,7 +6201,9 @@
     "dismiss": "Schließen",
     "dailyLimitMsg": "Sie haben alle {{limit}} täglichen KI-Anfragen verbraucht. Bitte versuchen Sie es morgen erneut.",
     "dailyLimitTitle": "Tageslimit erreicht",
-    "remainingHint": "{{remaining}} von {{limit}} Anfragen heute übrig"
+    "remainingHint": "{{remaining}} von {{limit}} Anfragen heute übrig",
+    "monthlyLimitMsg": "Sie haben alle {{limit}} monatlichen KI-Anfragen verbraucht. Ihr Kontingent wird nächsten Monat erneuert.",
+    "monthlyLimitTitle": "Monatslimit erreicht"
   },
   "aiUsage": {
     "remaining": "{{remaining}}/{{limit}} Anfragen heute übrig",
