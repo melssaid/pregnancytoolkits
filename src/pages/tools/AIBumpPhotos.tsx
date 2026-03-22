@@ -236,6 +236,13 @@ const AIBumpPhotos: React.FC = () => {
   };
 
   const analyzePhoto = async (photo: BumpPhoto) => {
+    if (isLimitReached) {
+      toast({
+        title: t('aiErrors.monthlyLimitTitle', 'Monthly limit reached'),
+        description: t('quotaExhausted.upgradeHint', 'Upgrade to Premium for more insights'),
+      });
+      return;
+    }
     try {
       setIsAnalyzing(true);
       setSelectedPhoto(photo);
