@@ -34,18 +34,8 @@ interface BumpPhoto {
   updated_at: string;
 }
 
-const MAX_DAILY_PHOTOS = 2;
 const MAX_FILE_SIZE_MB = 2;
 const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
-
-function getTodayKey() {
-  return new Date().toISOString().slice(0, 10); // YYYY-MM-DD
-}
-
-function getTodayUploadCount(photos: BumpPhoto[]): number {
-  const today = getTodayKey();
-  return photos.filter(p => p.created_at.startsWith(today)).length;
-}
 
 const AIBumpPhotos: React.FC = () => {
   const { t } = useTranslation();
@@ -74,13 +64,7 @@ const AIBumpPhotos: React.FC = () => {
     toolType: "bump-photos",
     weight: 2,
   });
-  const { isLimitReached } = useAIUsage();
-
-  useResetOnLanguageChange(() => { setAiAnalysis(''); });
-
-  const todayUploads = getTodayUploadCount(photos);
-  const remainingToday = Math.max(0, MAX_DAILY_PHOTOS - todayUploads);
-  const canUploadToday = remainingToday > 0;
+  const { isLimitReached, remaining } = useAIUsage();
 
   // Sync week from central profile
   useEffect(() => {
