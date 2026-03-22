@@ -4,7 +4,6 @@ import { Brain } from "lucide-react";
 import { ToolFrame } from "@/components/ToolFrame";
 import { SavedResultsViewer } from "@/components/ai/SavedResultsViewer";
 import { useResetOnLanguageChange } from "@/hooks/useResetOnLanguageChange";
-import { useResetOnLanguageChange } from "@/hooks/useResetOnLanguageChange";
 import { HealthStatsGrid } from "@/components/smart-plan/HealthStatsGrid";
 import { HealthInputForm } from "@/components/smart-plan/HealthInputForm";
 import { SmartPlanResultView } from "@/components/smart-plan/SmartPlanResultView";
@@ -17,7 +16,6 @@ const SmartPregnancyPlan = () => {
   const [planContent, setPlanContent] = useState('');
   const [researchEnhanced, setResearchEnhanced] = useState(false);
   const [enhancedLoading, setEnhancedLoading] = useState(false);
-  const { isLimitReached, limit, refresh } = useAIUsage();
   const { isLimitReached, limit, refresh } = useAIUsage();
   const reportRef = useRef<HTMLDivElement>(null);
   const [limitError, setLimitError] = useState('');
@@ -36,7 +34,6 @@ const SmartPregnancyPlan = () => {
   const bmi = getBMI();
   const calories = getCalories();
   const bloodPressure = `${health.bloodPressureSys}/${health.bloodPressureDia}`;
-  const combinedLoading = isLoading || enhancedLoading;
 
   useResetOnLanguageChange(() => setPlanContent(''));
 
@@ -53,7 +50,6 @@ const SmartPregnancyPlan = () => {
     const conditionsText = health.conditions.length > 0 ? health.conditions.join(', ') : 'none';
     const base = `Week ${health.week}, Weight: ${health.weight}kg, Height: ${health.height}cm, Age: ${health.age}, Pain: ${health.painLevel}/10, BP: ${health.bloodPressureSys}/${health.bloodPressureDia}, Sleep: ${health.sleepHours}hrs, Mood: ${health.mood}, Activity: ${health.activityLevel}, Conditions: ${conditionsText}`;
 
-    // Route through the unified smart engine for quota + caching
     await executeSmartRequest({
       request: {
         section: 'pregnancy-plan',
@@ -68,7 +64,7 @@ const SmartPregnancyPlan = () => {
       onDelta: (text) => setPlanContent(prev => prev + text),
       onDone: () => {
         setEnhancedLoading(false);
-        refresh(); // Sync UI with quota consumed by engine
+        refresh();
       },
       onError: (err) => {
         setEnhancedLoading(false);
@@ -80,7 +76,7 @@ const SmartPregnancyPlan = () => {
         refresh();
       },
     });
-  }, [streamChat, health, lang, isLimitReached, limit, t, refresh]);
+  }, [health, lang, isLimitReached, limit, t, refresh]);
 
   return (
     <ToolFrame title={t("smartPlan.title")} subtitle={t("smartPlan.subtitle")} icon={Brain} mood="nurturing" toolId="smart-pregnancy-plan">
@@ -100,7 +96,7 @@ const SmartPregnancyPlan = () => {
           calories={calories}
           bloodPressure={bloodPressure}
           researchEnhanced={researchEnhanced}
-          isLoading={combinedLoading}
+          isLoading={enhancedLoading}
           isRTL={isRTL}
           lang={lang}
           onGenerate={generatePlan}
@@ -108,8 +104,8 @@ const SmartPregnancyPlan = () => {
 
         <SavedResultsViewer toolId="smart-pregnancy-plan" onLoad={(r) => setPlanContent(r.content)} />
 
-        {(error || limitError) && (
-          <div className="rounded-xl border border-destructive/30 bg-destructive/5 p-4 text-destructive text-xs">{limitError || error}</div>
+        {limitError && (
+          <div className="rounded-xl border border-destructive/30 bg-destructive/5 p-4 text-destructive text-xs">{limitError}</div>
         )}
       </div>
     </ToolFrame>
