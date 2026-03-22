@@ -450,7 +450,7 @@ const BabyGrowth = () => {
                             )}
                           </div>
                           <p className="text-[10px] text-muted-foreground/60 mt-0.5">
-                            {formatLocalized(new Date(entry.date), "PP")}
+                            {formatLocalized(new Date(entry.date), "PP", lang)}
                           </p>
                         </div>
                         <Button
