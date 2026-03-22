@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 import { Brain } from "lucide-react";
 import { ToolFrame } from "@/components/ToolFrame";
 import { SavedResultsViewer } from "@/components/ai/SavedResultsViewer";
-import { usePregnancyAI } from "@/hooks/usePregnancyAI";
 import { useResetOnLanguageChange } from "@/hooks/useResetOnLanguageChange";
 import { HealthStatsGrid } from "@/components/smart-plan/HealthStatsGrid";
 import { HealthInputForm } from "@/components/smart-plan/HealthInputForm";
@@ -17,7 +16,6 @@ const SmartPregnancyPlan = () => {
   const [planContent, setPlanContent] = useState('');
   const [researchEnhanced, setResearchEnhanced] = useState(false);
   const [enhancedLoading, setEnhancedLoading] = useState(false);
-  const { streamChat, isLoading, error } = usePregnancyAI();
   const { isLimitReached, limit, refresh } = useAIUsage();
   const reportRef = useRef<HTMLDivElement>(null);
   const [limitError, setLimitError] = useState('');
@@ -36,7 +34,6 @@ const SmartPregnancyPlan = () => {
   const bmi = getBMI();
   const calories = getCalories();
   const bloodPressure = `${health.bloodPressureSys}/${health.bloodPressureDia}`;
-  const combinedLoading = isLoading || enhancedLoading;
 
   useResetOnLanguageChange(() => setPlanContent(''));
 
@@ -53,46 +50,33 @@ const SmartPregnancyPlan = () => {
     const conditionsText = health.conditions.length > 0 ? health.conditions.join(', ') : 'none';
     const base = `Week ${health.week}, Weight: ${health.weight}kg, Height: ${health.height}cm, Age: ${health.age}, Pain: ${health.painLevel}/10, BP: ${health.bloodPressureSys}/${health.bloodPressureDia}, Sleep: ${health.sleepHours}hrs, Mood: ${health.mood}, Activity: ${health.activityLevel}, Conditions: ${conditionsText}`;
 
-    try {
-      // Route through the unified smart engine for quota + caching
-      await executeSmartRequest({
-        request: {
-          section: 'pregnancy-plan',
-          toolType: 'pregnancy-plan',
-          weight: 1,
-          messages: [{
-            role: 'user',
-            content: `I'm in week ${health.week} of pregnancy. ${base}. Give me a personalized weekly pregnancy plan covering exercises, nutrition tips, and wellness recommendations.`,
-          }],
-          context: { week: health.week, weight: health.weight, language: lang },
-        },
-        onDelta: (text) => setPlanContent(prev => prev + text),
-        onDone: () => {
-          setEnhancedLoading(false);
-          refresh(); // Sync UI with quota consumed by engine
-        },
-        onError: (err) => {
-          setEnhancedLoading(false);
-          if (err.type === 'quota_exhausted') {
-            setLimitError(t('aiErrors.monthlyLimitMsg', { limit, remaining: 0 }));
-          } else {
-            setLimitError(err.message);
-          }
-          refresh();
-        },
-      });
-    } catch {
-      setEnhancedLoading(false);
-      // Fallback to streamChat (which also routes through smartEngine now)
-      await streamChat({
-        type: 'pregnancy-plan',
-        messages: [{ role: 'user', content: `I'm in week ${health.week} of pregnancy. ${base}. Give me a personalized weekly pregnancy plan covering exercises, nutrition tips, and wellness recommendations.` }],
+    await executeSmartRequest({
+      request: {
+        section: 'pregnancy-plan',
+        toolType: 'pregnancy-plan',
+        weight: 1,
+        messages: [{
+          role: 'user',
+          content: `I'm in week ${health.week} of pregnancy. ${base}. Give me a personalized weekly pregnancy plan covering exercises, nutrition tips, and wellness recommendations.`,
+        }],
         context: { week: health.week, weight: health.weight, language: lang },
-        onDelta: (text) => setPlanContent(prev => prev + text),
-        onDone: () => {},
-      });
-    }
-  }, [streamChat, health, lang, isLimitReached, limit, t, refresh]);
+      },
+      onDelta: (text) => setPlanContent(prev => prev + text),
+      onDone: () => {
+        setEnhancedLoading(false);
+        refresh();
+      },
+      onError: (err) => {
+        setEnhancedLoading(false);
+        if (err.type === 'quota_exhausted') {
+          setLimitError(t('aiErrors.monthlyLimitMsg', { limit, remaining: 0 }));
+        } else {
+          setLimitError(err.message);
+        }
+        refresh();
+      },
+    });
+  }, [health, lang, isLimitReached, limit, t, refresh]);
 
   return (
     <ToolFrame title={t("smartPlan.title")} subtitle={t("smartPlan.subtitle")} icon={Brain} mood="nurturing" toolId="smart-pregnancy-plan">
@@ -112,7 +96,7 @@ const SmartPregnancyPlan = () => {
           calories={calories}
           bloodPressure={bloodPressure}
           researchEnhanced={researchEnhanced}
-          isLoading={combinedLoading}
+          isLoading={enhancedLoading}
           isRTL={isRTL}
           lang={lang}
           onGenerate={generatePlan}
@@ -120,8 +104,8 @@ const SmartPregnancyPlan = () => {
 
         <SavedResultsViewer toolId="smart-pregnancy-plan" onLoad={(r) => setPlanContent(r.content)} />
 
-        {(error || limitError) && (
-          <div className="rounded-xl border border-destructive/30 bg-destructive/5 p-4 text-destructive text-xs">{limitError || error}</div>
+        {limitError && (
+          <div className="rounded-xl border border-destructive/30 bg-destructive/5 p-4 text-destructive text-xs">{limitError}</div>
         )}
       </div>
     </ToolFrame>
