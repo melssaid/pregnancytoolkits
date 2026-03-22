@@ -86,6 +86,11 @@ function SleepTab() {
     return issue ? t(`toolsInternal.sleepOptimizer.issues.${issue.key}`) : null;
   }).filter(Boolean);
 
+  const guardedAction = async (action: () => Promise<void>) => {
+    if (isLimitReached) { navigate('/pricing-demo'); return; }
+    await action();
+  };
+
   const analyzeSleep = async () => {
     const prompt = `As a pregnancy sleep wellness guide, analyze this sleep profile:\n\n**Pregnancy Week:** ${settings.pregnancyWeek || "Not specified"}\n**Current Sleep:** ${sleepHours[0]} hours/night\n**Bedtime:** ${bedtime}\n**Sleep Issues:** ${getIssueLabels().join(", ") || "None"}\n\nProvide:\n1. **Sleep Quality Assessment**\n2. **Optimal Sleep Position** for the current pregnancy stage\n3. **Pre-Sleep Routine**\n4. **Environment Optimization**\n5. **Natural Remedies**\n6. **When to Wake**`;
     setResponse("");
@@ -143,9 +148,9 @@ function SleepTab() {
 
       <div className="grid grid-cols-3 gap-1.5">
         {[
-          { onClick: analyzeSleep, tab: 'analysis', icon: Brain, label: t('toolsInternal.sleepOptimizer.sleepPlan') },
-          { onClick: generateMeditation, tab: 'meditation', icon: Wind, label: t('toolsInternal.sleepOptimizer.meditation') },
-          { onClick: generateRoutine, tab: 'routine', icon: Bed, label: t('toolsInternal.sleepOptimizer.routine') },
+          { onClick: () => guardedAction(analyzeSleep), tab: 'analysis', icon: isLimitReached ? Crown : Brain, label: isLimitReached ? t('quotaExhausted.upgradeCTA', 'Upgrade') : t('toolsInternal.sleepOptimizer.sleepPlan') },
+          { onClick: () => guardedAction(generateMeditation), tab: 'meditation', icon: isLimitReached ? Crown : Wind, label: isLimitReached ? t('quotaExhausted.upgradeCTA', 'Upgrade') : t('toolsInternal.sleepOptimizer.meditation') },
+          { onClick: () => guardedAction(generateRoutine), tab: 'routine', icon: isLimitReached ? Crown : Bed, label: isLimitReached ? t('quotaExhausted.upgradeCTA', 'Upgrade') : t('toolsInternal.sleepOptimizer.routine') },
         ].map(({ onClick, tab, icon: Icon, label }) => (
           <motion.button key={tab} onClick={onClick} disabled={isLoading} whileTap={{ scale: 0.92 }} className="relative overflow-hidden rounded-xl disabled:opacity-60">
             <div className={`flex flex-col items-center gap-0.5 py-2 px-1 text-xs rounded-xl font-medium transition-all ${activeTab === tab ? 'text-white' : 'text-foreground bg-muted/60 hover:bg-muted'}`}
