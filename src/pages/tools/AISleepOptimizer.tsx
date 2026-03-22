@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Moon, Clock, ThermometerSun, Brain, Loader2, Bed, Wind, Sparkles } from "lucide-react";
+import { Moon, Clock, ThermometerSun, Brain, Loader2, Bed, Wind } from "lucide-react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -12,10 +11,9 @@ import { ToolFrame } from "@/components/ToolFrame";
 import MedicalDisclaimer from "@/components/compliance/MedicalDisclaimer";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { PrintableReport } from '@/components/PrintableReport';
-import { usePregnancyAI } from "@/hooks/usePregnancyAI";
+import { useSmartInsight } from "@/hooks/useSmartInsight";
 import { useSettings } from "@/hooks/useSettings";
 import { VideoLibrary } from "@/components/VideoLibrary";
-import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { sleepVideosByLang } from "@/data/videoData";
 
 const sleepIssueKeys = [
@@ -32,22 +30,19 @@ const sleepIssueKeys = [
 const AISleepOptimizer = () => {
   const { t } = useTranslation();
   const { settings } = useSettings();
-  const { streamChat, isLoading } = usePregnancyAI();
 
-  useResetOnLanguageChange(() => {
-    setResponse('');
-    setMeditationScript('');
-    setRoutinePlan('');
-  });
-  
+  // Three separate smart insight hooks for three tabs
+  const analysisAI = useSmartInsight({ section: 'sleep', toolType: 'sleep-analysis' });
+  const meditationAI = useSmartInsight({ section: 'sleep', toolType: 'sleep-analysis' });
+  const routineAI = useSmartInsight({ section: 'sleep', toolType: 'sleep-analysis' });
+
+  const isLoading = analysisAI.isLoading || meditationAI.isLoading || routineAI.isLoading;
+
   const [disclaimerAccepted, setDisclaimerAccepted] = useState(false);
   const [sleepHours, setSleepHours] = useState([6]);
   const [bedtime, setBedtime] = useState("22:00");
   const [selectedIssues, setSelectedIssues] = useState<string[]>([]);
-  const [response, setResponse] = useState("");
   const [activeTab, setActiveTab] = useState<'analysis' | 'meditation' | 'routine'>('analysis');
-  const [meditationScript, setMeditationScript] = useState("");
-  const [routinePlan, setRoutinePlan] = useState("");
 
   const toggleIssue = (issueId: string) => {
     setSelectedIssues(prev =>
@@ -57,13 +52,16 @@ const AISleepOptimizer = () => {
     );
   };
 
-  const analyzeSleep = async () => {
-    const issueLabels = selectedIssues.map(id => {
-      const issue = sleepIssueKeys.find(i => i.id === id);
-      return issue ? t(`toolsInternal.sleepOptimizer.issues.${issue.key}`) : null;
-    }).filter(Boolean);
+  const getIssueLabels = () => selectedIssues.map(id => {
+    const issue = sleepIssueKeys.find(i => i.id === id);
+    return issue ? t(`toolsInternal.sleepOptimizer.issues.${issue.key}`) : null;
+  }).filter(Boolean);
 
-    const prompt = `As a pregnancy sleep wellness guide, analyze this sleep profile and provide personalized recommendations:
+  const analyzeSleep = async () => {
+    const issueLabels = getIssueLabels();
+    setActiveTab('analysis');
+    await analysisAI.generate({
+      prompt: `As a pregnancy sleep wellness guide, analyze this sleep profile and provide personalized recommendations:
 
 **Pregnancy Week:** ${settings.pregnancyWeek || "Not specified"}
 **Current Sleep:** ${sleepHours[0]} hours/night
@@ -78,25 +76,16 @@ Provide:
 5. **Natural Remedies** - Safe herbs, foods, and techniques
 6. **When to Wake** - Optimal wake time for circadian rhythm
 
-Include specific product recommendations (pillows, white noise) and YouTube links for pregnancy sleep meditation.`;
-
-    setResponse("");
-    await streamChat({
-      type: "sleep-analysis",
-      messages: [{ role: "user", content: prompt }],
+Include specific product recommendations (pillows, white noise) and YouTube links for pregnancy sleep meditation.`,
       context: { week: Number(settings.pregnancyWeek) || 0 },
-      onDelta: (text) => setResponse((prev) => prev + text),
-      onDone: () => {},
     });
   };
 
   const generateMeditation = async () => {
-    const issueLabels = selectedIssues.map(id => {
-      const issue = sleepIssueKeys.find(i => i.id === id);
-      return issue ? t(`toolsInternal.sleepOptimizer.issues.${issue.key}`) : null;
-    }).filter(Boolean);
-
-    const prompt = `As a pregnancy relaxation guide, create a calming bedtime meditation script:
+    const issueLabels = getIssueLabels();
+    setActiveTab('meditation');
+    await meditationAI.generate({
+      prompt: `As a pregnancy relaxation guide, create a calming bedtime meditation script:
 
 **Pregnancy Week:** ${settings.pregnancyWeek || "Not specified"}
 **Current Sleep Issues:** ${issueLabels.join(", ") || "General sleep difficulty"}
@@ -109,27 +98,16 @@ Create a 10-minute guided meditation script that includes:
 4. **Visualization** (3 mins) - Peaceful scene connecting with baby
 5. **Closing** (1 min) - Gentle transition to sleep
 
-Write it as a script that can be read aloud or followed along. Use calm, soothing language. Include pauses indicated by [...]. Make it pregnancy-specific and nurturing.`;
-
-    setMeditationScript("");
-    setActiveTab('meditation');
-    
-    await streamChat({
-      type: "sleep-analysis",
-      messages: [{ role: "user", content: prompt }],
+Write it as a script that can be read aloud or followed along. Use calm, soothing language. Include pauses indicated by [...]. Make it pregnancy-specific and nurturing.`,
       context: { week: Number(settings.pregnancyWeek) || 0 },
-      onDelta: (text) => setMeditationScript((prev) => prev + text),
-      onDone: () => {},
     });
   };
 
   const generateRoutine = async () => {
-    const issueLabels = selectedIssues.map(id => {
-      const issue = sleepIssueKeys.find(i => i.id === id);
-      return issue ? t(`toolsInternal.sleepOptimizer.issues.${issue.key}`) : null;
-    }).filter(Boolean);
-
-    const prompt = `As a pregnancy sleep wellness guide, create a complete evening routine:
+    const issueLabels = getIssueLabels();
+    setActiveTab('routine');
+    await routineAI.generate({
+      prompt: `As a pregnancy sleep wellness guide, create a complete evening routine:
 
 **Pregnancy Week:** ${settings.pregnancyWeek || "Not specified"}
 **Current Bedtime:** ${bedtime}
@@ -153,17 +131,8 @@ Design a detailed 2-hour wind-down routine:
 - Breathing exercises
 - Mental preparation
 
-Include specific times based on their ${bedtime} bedtime. Add product recommendations (pregnancy pillows, white noise, essential oils that are safe).`;
-
-    setRoutinePlan("");
-    setActiveTab('routine');
-    
-    await streamChat({
-      type: "sleep-analysis",
-      messages: [{ role: "user", content: prompt }],
+Include specific times based on their ${bedtime} bedtime. Add product recommendations (pregnancy pillows, white noise, essential oils that are safe).`,
       context: { week: Number(settings.pregnancyWeek) || 0 },
-      onDelta: (text) => setRoutinePlan((prev) => prev + text),
-      onDone: () => {},
     });
   };
 
@@ -246,10 +215,10 @@ Include specific times based on their ${bedtime} bedtime. Add product recommenda
         {/* AI Action Buttons */}
         <div className="grid grid-cols-3 gap-1.5">
           {[
-            { onClick: analyzeSleep, tab: 'analysis', icon: Brain, label: t('toolsInternal.sleepOptimizer.sleepPlan') },
-            { onClick: generateMeditation, tab: 'meditation', icon: Wind, label: t('toolsInternal.sleepOptimizer.meditation') },
-            { onClick: generateRoutine, tab: 'routine', icon: Bed, label: t('toolsInternal.sleepOptimizer.routine') },
-          ].map(({ onClick, tab, icon: Icon, label }) => (
+            { onClick: analyzeSleep, tab: 'analysis', icon: Brain, label: t('toolsInternal.sleepOptimizer.sleepPlan'), ai: analysisAI },
+            { onClick: generateMeditation, tab: 'meditation', icon: Wind, label: t('toolsInternal.sleepOptimizer.meditation'), ai: meditationAI },
+            { onClick: generateRoutine, tab: 'routine', icon: Bed, label: t('toolsInternal.sleepOptimizer.routine'), ai: routineAI },
+          ].map(({ onClick, tab, icon: Icon, label, ai }) => (
             <motion.button
               key={tab}
               onClick={onClick}
@@ -261,7 +230,7 @@ Include specific times based on their ${bedtime} bedtime. Add product recommenda
                 className={`flex flex-col items-center gap-0.5 py-2 px-1 text-xs rounded-xl font-medium transition-all ${activeTab === tab ? 'text-white' : 'text-foreground bg-muted/60 hover:bg-muted'}`}
                 style={activeTab === tab ? { background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))' } : {}}
               >
-                {isLoading && activeTab === tab ? <Loader2 className="w-4 h-4 animate-spin" /> : <Icon className="w-4 h-4" />}
+                {ai.isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Icon className="w-4 h-4" />}
                 <span className="text-[10px]">{label}</span>
               </div>
             </motion.button>
@@ -269,35 +238,35 @@ Include specific times based on their ${bedtime} bedtime. Add product recommenda
         </div>
 
         {/* AI Response - Tabbed Content */}
-        {(response || meditationScript || routinePlan) && (
+        {(analysisAI.content || meditationAI.content || routineAI.content) && (
           <PrintableReport title={t('toolsInternal.sleepOptimizer.title')} isLoading={isLoading}>
             <Card className="p-3 bg-gradient-to-br from-violet-50 to-indigo-50 dark:from-violet-950/30 dark:to-indigo-950/30">
               <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as any)}>
                 <TabsList className="w-full mb-3">
-                  <TabsTrigger value="analysis" className="flex-1" disabled={!response}>
+                  <TabsTrigger value="analysis" className="flex-1" disabled={!analysisAI.content}>
                     <Brain className="w-4 h-4 me-1" />
                     {t('toolsInternal.sleepOptimizer.sleepPlan')}
                   </TabsTrigger>
-                  <TabsTrigger value="meditation" className="flex-1" disabled={!meditationScript}>
+                  <TabsTrigger value="meditation" className="flex-1" disabled={!meditationAI.content}>
                     <Wind className="w-4 h-4 me-1" />
                     {t('toolsInternal.sleepOptimizer.meditation')}
                   </TabsTrigger>
-                  <TabsTrigger value="routine" className="flex-1" disabled={!routinePlan}>
+                  <TabsTrigger value="routine" className="flex-1" disabled={!routineAI.content}>
                     <Bed className="w-4 h-4 me-1" />
                     {t('toolsInternal.sleepOptimizer.routine')}
                   </TabsTrigger>
                 </TabsList>
                 
                 <TabsContent value="analysis" className="max-h-[400px] overflow-y-auto">
-                  {response && <MarkdownRenderer content={response} isLoading={isLoading && activeTab === 'analysis'} />}
+                  {analysisAI.content && <MarkdownRenderer content={analysisAI.content} isLoading={analysisAI.isLoading} />}
                 </TabsContent>
                 
                 <TabsContent value="meditation" className="max-h-[400px] overflow-y-auto">
-                  {meditationScript && <MarkdownRenderer content={meditationScript} isLoading={isLoading && activeTab === 'meditation'} />}
+                  {meditationAI.content && <MarkdownRenderer content={meditationAI.content} isLoading={meditationAI.isLoading} />}
                 </TabsContent>
                 
                 <TabsContent value="routine" className="max-h-[400px] overflow-y-auto">
-                  {routinePlan && <MarkdownRenderer content={routinePlan} isLoading={isLoading && activeTab === 'routine'} />}
+                  {routineAI.content && <MarkdownRenderer content={routineAI.content} isLoading={routineAI.isLoading} />}
                 </TabsContent>
               </Tabs>
             </Card>
