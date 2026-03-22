@@ -9,7 +9,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useUserProfile } from "@/hooks/useUserProfile";
 import { useTrackingStats } from "@/hooks/useTrackingStats";
-import { usePregnancyAI } from "@/hooks/usePregnancyAI";
+import { useSmartInsight } from "@/hooks/useSmartInsight";
 import { AIActionButton } from "@/components/ai/AIActionButton";
 import { AIResponseFrame } from "@/components/ai/AIResponseFrame";
 import { InlineDisclaimer } from "@/components/compliance/InlineDisclaimer";
@@ -30,8 +30,6 @@ const DailyInsights = () => {
   const navigate = useNavigate();
   const { profile } = useUserProfile();
   const { stats } = useTrackingStats();
-  const [aiContent, setAiContent] = useState("");
-  const [aiLoading, setAiLoading] = useState(false);
   const [showAI, setShowAI] = useState(false);
   const [savedTips, setSavedTips] = useState<SavedTip[]>(() =>
     safeParseLocalStorage<SavedTip[]>(SAVED_TIPS_KEY, [])
@@ -41,9 +39,11 @@ const DailyInsights = () => {
   const week = profile.pregnancyWeek || 0;
   const trimester = week <= 13 ? 1 : week <= 27 ? 2 : 3;
 
-  const { generateContent, isLoading, error } = usePregnancyAI();
+  const { generate, isLoading, content: aiContent, error } = useSmartInsight({
+    section: 'pregnancy-plan',
+    toolType: 'daily-tips',
+  });
 
-  // Current tip from TodaysInsightCard logic
   const currentTipKey = useMemo(() => {
     const w = week;
     const water = stats.dailyTracking.waterGlasses;
@@ -90,21 +90,12 @@ const DailyInsights = () => {
 
   const handleGenerateInsight = useCallback(async () => {
     setShowAI(true);
-    setAiLoading(true);
-    setAiContent("");
-    try {
-      const prompt = `Give me a personalized daily insight for pregnancy week ${week} (trimester ${trimester}).
+    const prompt = `Give me a personalized daily insight for pregnancy week ${week} (trimester ${trimester}).
 Context: Water intake today: ${stats.dailyTracking.waterGlasses} glasses. Kicks today: ${stats.dailyTracking.todayKicks}. Vitamins taken: ${stats.dailyTracking.vitaminsTaken}. Upcoming appointments: ${stats.planning.upcomingAppointments}.
 ${profile.healthConditions?.length ? `Health conditions: ${profile.healthConditions.join(", ")}` : ""}
 Provide: 1 main recommendation, 2 secondary tips (nutrition + activity). Keep it concise and actionable.`;
-      const result = await generateContent(prompt);
-      setAiContent(result || "");
-    } catch {
-      // error handled by hook
-    } finally {
-      setAiLoading(false);
-    }
-  }, [week, trimester, stats, profile.healthConditions, generateContent]);
+    await generate({ prompt });
+  }, [week, trimester, stats, profile.healthConditions, generate]);
 
   const suggestions = [
     {
@@ -143,7 +134,6 @@ Provide: 1 main recommendation, 2 secondary tips (nutrition + activity). Keep it
       />
 
       <main className="container py-4 space-y-4 pb-24">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -273,10 +263,10 @@ Provide: 1 main recommendation, 2 secondary tips (nutrition + activity). Keep it
                 </h2>
               </div>
 
-              {showAI && (aiContent || aiLoading || error) ? (
+              {showAI && (aiContent || isLoading || error) ? (
                 <AIResponseFrame
                   content={aiContent}
-                  isLoading={aiLoading || isLoading}
+                  isLoading={isLoading}
                   toolId="daily-insights"
                 />
               ) : (
@@ -286,7 +276,7 @@ Provide: 1 main recommendation, 2 secondary tips (nutrition + activity). Keep it
                   </p>
                   <AIActionButton
                     onClick={handleGenerateInsight}
-                    isLoading={aiLoading || isLoading}
+                    isLoading={isLoading}
                     label={t("dailyInsights.generateInsight")}
                   />
                 </div>
@@ -350,7 +340,6 @@ Provide: 1 main recommendation, 2 secondary tips (nutrition + activity). Keep it
           </Card>
         </motion.div>
 
-        {/* Trust Section */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

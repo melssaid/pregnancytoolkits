@@ -11,9 +11,8 @@ import { formatLocalized } from "@/lib/dateLocale";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { BabyGrowthChart } from "@/components/charts/BabyGrowthChart";
 import { toast } from "sonner";
-import { usePregnancyAI } from "@/hooks/usePregnancyAI";
+import { useSmartInsight } from "@/hooks/useSmartInsight";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
-import { useResetOnLanguageChange } from "@/hooks/useResetOnLanguageChange";
 import { AIActionButton } from "@/components/ai/AIActionButton";
 
 interface GrowthEntry {
@@ -28,7 +27,6 @@ interface GrowthEntry {
 
 const STORAGE_KEY = "baby-growth-entries";
 
-// WHO growth standards (simplified percentiles)
 const WHO_WEIGHT_BOYS = [
   { month: 0, p3: 2.5, p50: 3.3, p97: 4.3 },
   { month: 3, p3: 5.1, p50: 6.4, p97: 7.9 },
@@ -61,12 +59,9 @@ const BabyGrowth = () => {
   const [showHistory, setShowHistory] = useState(false);
   const [showOptional, setShowOptional] = useState(false);
 
-  // AI State
-  const [aiResult, setAiResult] = useState('');
-  const { streamChat, isLoading: aiLoading } = usePregnancyAI();
-
-  useResetOnLanguageChange(() => {
-    setAiResult('');
+  const { generate, isLoading: aiLoading, content: aiResult, reset } = useSmartInsight({
+    section: 'pregnancy-plan',
+    toolType: 'baby-growth-analysis',
   });
 
   useEffect(() => {
@@ -79,24 +74,12 @@ const BabyGrowth = () => {
   const lang = currentLanguage?.split("-")[0] || "en";
 
   const runAIAnalysis = async () => {
-    setAiResult('');
     const data = entries.slice(0, 10).map(e => ({
       age: e.ageMonths, weight: e.weight, height: e.height, head: e.headCirc, gender: e.gender
     }));
     const latestAge = entries.length > 0 ? entries[entries.length - 1].ageMonths : 6;
-    const prompt = `As a pediatric wellness guide, provide a comprehensive, warm analysis for a baby. Do NOT use clinical or diagnostic terms.
-
-**Growth Entries:**
-${data.map(d => `- ${d.age} months: ${d.weight}kg${d.height ? `, ${d.height}cm` : ''}${d.head ? `, head ${d.head}cm` : ''} (${d.gender})`).join('\n')}
-
-Cover these areas concisely:
-1. **📊 Growth Pattern** - Overall trend and how it compares to typical growth
-2. **🍼 Nutrition Tips** - Age-appropriate feeding advice for ${latestAge} months
-3. **🧒 Milestones** - Key developmental milestones at this age
-4. **💡 Tips** - Practical suggestions for healthy growth
-
-Write in ${lang}. Be warm, encouraging, and concise.`;
-    await streamChat({ type: 'baby-growth-analysis', messages: [{ role: 'user', content: prompt }], context: { language: lang }, onDelta: (text) => setAiResult(prev => prev + text), onDone: () => {} });
+    const prompt = `As a pediatric wellness guide, provide a comprehensive, warm analysis for a baby. Do NOT use clinical or diagnostic terms.\n\n**Growth Entries:**\n${data.map(d => `- ${d.age} months: ${d.weight}kg${d.height ? `, ${d.height}cm` : ''}${d.head ? `, head ${d.head}cm` : ''} (${d.gender})`).join('\n')}\n\nCover these areas concisely:\n1. **📊 Growth Pattern** - Overall trend and how it compares to typical growth\n2. **🍼 Nutrition Tips** - Age-appropriate feeding advice for ${latestAge} months\n3. **🧒 Milestones** - Key developmental milestones at this age\n4. **💡 Tips** - Practical suggestions for healthy growth\n\nWrite in ${lang}. Be warm, encouraging, and concise.`;
+    await generate({ prompt });
   };
 
   const getPercentileInfo = useCallback((age: number, w: number, g: "boy" | "girl") => {
@@ -141,7 +124,6 @@ Write in ${lang}. Be warm, encouraging, and concise.`;
     setEntries(updated);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
 
-    // Reset form
     setAgeMonths("");
     setWeight("");
     setHeight("");
@@ -157,7 +139,6 @@ Write in ${lang}. Be warm, encouraging, and concise.`;
     toast.success(t('toolsInternal.babyGrowth.deleted'));
   };
 
-  // Live preview of percentile while typing
   const livePercentile = canSave
     ? getPercentileInfo(parseInt(ageMonths), parseFloat(weight), gender)
     : null;
@@ -199,7 +180,6 @@ Write in ${lang}. Be warm, encouraging, and concise.`;
 
         {/* ── Input Card ── */}
         <div className="rounded-2xl bg-card border border-border/50 p-4 space-y-4">
-          {/* Age + Weight — side by side */}
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-1.5">
               <Label className="text-xs text-muted-foreground">{t('toolsInternal.babyGrowth.ageMonths')}</Label>
@@ -236,7 +216,6 @@ Write in ${lang}. Be warm, encouraging, and concise.`;
             </div>
           </div>
 
-          {/* Optional fields toggle */}
           <button
             onClick={() => setShowOptional(!showOptional)}
             className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
@@ -326,7 +305,6 @@ Write in ${lang}. Be warm, encouraging, and concise.`;
                   </div>
                 )}
 
-                {/* Visual bar */}
                 <div className="relative h-2 rounded-full bg-muted overflow-hidden">
                   {liveRange && (
                     <>
@@ -351,7 +329,6 @@ Write in ${lang}. Be warm, encouraging, and concise.`;
             )}
           </AnimatePresence>
 
-          {/* Save Button */}
           <Button
             onClick={saveEntry}
             disabled={!canSave}
@@ -366,7 +343,7 @@ Write in ${lang}. Be warm, encouraging, and concise.`;
           </p>
         </div>
 
-        {/* ── Growth Chart (auto-shown when entries exist) ── */}
+        {/* ── Growth Chart ── */}
         {entries.length > 0 && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -421,21 +398,19 @@ Write in ${lang}. Be warm, encouraging, and concise.`;
           </motion.div>
         )}
 
-        {/* ── History Section ── */}
+        {/* ── History ── */}
         {entries.length > 0 && (
-          <div className="space-y-2">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+          >
             <button
               onClick={() => setShowHistory(!showHistory)}
-              className="w-full flex items-center justify-between py-2.5 px-1"
+              className="flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground transition-colors w-full justify-center py-2"
             >
-              <span className="text-sm font-semibold text-foreground">
-                {t('toolsInternal.babyGrowth.tabs.history')} ({entries.length})
-              </span>
-              {showHistory ? (
-                <ChevronUp className="w-4 h-4 text-muted-foreground" />
-              ) : (
-                <ChevronDown className="w-4 h-4 text-muted-foreground" />
-              )}
+              {showHistory ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+              {t('toolsInternal.babyGrowth.history')} ({entries.length})
             </button>
 
             <AnimatePresence>
@@ -444,58 +419,73 @@ Write in ${lang}. Be warm, encouraging, and concise.`;
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: "auto", opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.25 }}
-                  className="overflow-hidden space-y-2"
+                  className="overflow-hidden space-y-2 mt-2"
                 >
                   {entries.map((entry) => {
-                    const info = getPercentileInfo(entry.ageMonths, entry.weight, entry.gender);
+                    const pInfo = getPercentileInfo(entry.ageMonths, entry.weight, entry.gender);
                     return (
-                      <motion.div
+                      <div
                         key={entry.id}
-                        layout
-                        className="flex items-center gap-3 rounded-xl bg-card border border-border/50 p-3"
+                        className="flex items-center justify-between p-3 rounded-xl bg-card border border-border/30"
                       >
-                        <div className="text-lg">
-                          {entry.gender === "boy" ? "👦" : "👧"}
-                        </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2">
                             <span className="text-sm font-semibold">
-                              {t('toolsInternal.babyGrowth.month', { month: entry.ageMonths })}
+                              {entry.ageMonths} {t('toolsInternal.babyGrowth.monthUnit')}
                             </span>
-                            <span className={`text-xs font-medium ${info.color}`}>
-                              {entry.weight} kg
+                            <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-medium ${pInfo.color} bg-current/10`}>
+                              {pInfo.percentile}
                             </span>
                           </div>
-                          <div className="flex items-center gap-2 text-[10px] text-muted-foreground">
-                            <span>{formatLocalized(new Date(entry.date), "d MMM yyyy", currentLanguage)}</span>
-                            {entry.height && <span>• {entry.height} cm</span>}
-                            {entry.headCirc && <span>• ⊘ {entry.headCirc} cm</span>}
+                          <div className="flex gap-3 mt-0.5">
+                            <span className="text-xs text-muted-foreground">
+                              <Gauge className="w-3 h-3 inline me-0.5" />
+                              {entry.weight}kg
+                            </span>
+                            {entry.height && (
+                              <span className="text-xs text-muted-foreground">
+                                <Ruler className="w-3 h-3 inline me-0.5" />
+                                {entry.height}cm
+                              </span>
+                            )}
                           </div>
+                          <p className="text-[10px] text-muted-foreground/60 mt-0.5">
+                            {formatLocalized(new Date(entry.date), "PP")}
+                          </p>
                         </div>
-                        <button
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="h-8 w-8 text-muted-foreground hover:text-destructive"
                           onClick={() => deleteEntry(entry.id)}
-                          className="p-2 rounded-lg hover:bg-destructive/10 transition-colors shrink-0"
                         >
-                          <Trash2 className="w-3.5 h-3.5 text-destructive/60" />
-                        </button>
-                      </motion.div>
+                          <Trash2 className="w-3.5 h-3.5" />
+                        </Button>
+                      </div>
                     );
                   })}
                 </motion.div>
               )}
             </AnimatePresence>
-          </div>
+          </motion.div>
         )}
 
-        {/* Empty state hint */}
+        {/* ── Empty State ── */}
         {entries.length === 0 && (
-          <div className="text-center py-6 space-y-2">
-            <Baby className="w-10 h-10 text-muted-foreground/30 mx-auto" />
-            <p className="text-xs text-muted-foreground">
-              {t('toolsInternal.babyGrowth.noMeasurements')}
-            </p>
-          </div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="text-center py-8 space-y-3"
+          >
+            <div className="w-16 h-16 mx-auto rounded-2xl bg-primary/10 flex items-center justify-center">
+              <Baby className="w-8 h-8 text-primary" />
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-foreground">{t('toolsInternal.babyGrowth.emptyTitle')}</p>
+              <p className="text-xs text-muted-foreground mt-1">{t('toolsInternal.babyGrowth.emptyDesc')}</p>
+            </div>
+          </motion.div>
         )}
       </motion.div>
     </ToolFrame>
