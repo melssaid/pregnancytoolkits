@@ -7,7 +7,7 @@ import { RelatedTools } from "./RelatedTools";
 import { ToolIcon, hasToolIcon } from "./ToolIcon";
 import { BottomNavigation } from "./BottomNavigation";
 import { LanguageDropdown } from "./LanguageDropdown";
-import { ToolInsightTabs } from "./ToolInsightTabs";
+
 import { FertilityDailyTip } from "./FertilityDailyTip";
 
 import { SEOHead } from "./SEOHead";

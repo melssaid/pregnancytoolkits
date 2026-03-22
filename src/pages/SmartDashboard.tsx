@@ -76,9 +76,6 @@ const SmartDashboard = () => {
 
         {/* 10. Recent AI Results */}
         <RecentAIResults />
-
-        {/* 11. AI Insight */}
-        <DailyAIInsight week={profile.pregnancyWeek} />
       </main>
     </Layout>
   );
