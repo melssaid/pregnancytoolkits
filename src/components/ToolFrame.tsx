@@ -18,15 +18,6 @@ const FERTILITY_TOOL_IDS = new Set([
   "nutrition-supplements", "preconception-checkup",
 ]);
 
-// Only these 15 core tools show "Today's Tip" (AI daily insight)
-const DAILY_TIP_TOOL_IDS = new Set([
-  "pregnancy-assistant", "weekly-summary", "smart-pregnancy-plan",
-  "fetal-growth", "kick-counter", "weight-gain",
-  "ai-meal-suggestion", "vitamin-tracker",
-  "wellness-diary", "ai-fitness-coach", "pregnancy-comfort",
-  "ai-birth-plan",
-  "postpartum-mental-health", "baby-cry-translator", "baby-sleep-tracker",
-]);
 
 interface ToolFrameProps {
   children: React.ReactNode;
