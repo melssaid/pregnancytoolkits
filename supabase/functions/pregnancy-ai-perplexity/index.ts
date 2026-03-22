@@ -725,26 +725,26 @@ Deno.serve(async (req) => {
       }
     }
 
-    const DAILY_LIMIT = isPremium ? PREMIUM_DAILY_LIMIT : FREE_DAILY_LIMIT;
+    const MONTHLY_LIMIT = isPremium ? PREMIUM_MONTHLY_LIMIT : FREE_MONTHLY_LIMIT;
 
     // ── Admin bypass check (dev/testing only) ──
     const adminBypass = req.headers.get("X-Admin-Bypass") === "true";
 
     // ── Server-side daily limit check ──
     const userId = authenticatedUserId;
-    const dailyUsed = await getDailyUsageCount(rateLimitId, userId);
-    const dailyRemaining = Math.max(0, DAILY_LIMIT - dailyUsed);
+    const monthlyUsed = await getMonthlyUsageCount(rateLimitId, userId);
+    const monthlyRemaining = Math.max(0, MONTHLY_LIMIT - monthlyUsed);
     
-    if (dailyUsed >= DAILY_LIMIT && !adminBypass) {
+    if (monthlyUsed >= MONTHLY_LIMIT && !adminBypass) {
       return new Response(
-        JSON.stringify({ error: "daily_limit_reached", used: dailyUsed, limit: DAILY_LIMIT, remaining: 0 }),
+        JSON.stringify({ error: "daily_limit_reached", used: monthlyUsed, limit: MONTHLY_LIMIT, remaining: 0 }),
         {
           status: 429,
           headers: {
             ...corsHeaders,
             "Content-Type": "application/json",
-            "X-Daily-Limit": String(DAILY_LIMIT),
-            "X-Daily-Used": String(dailyUsed),
+            "X-Daily-Limit": String(MONTHLY_LIMIT),
+            "X-Daily-Used": String(monthlyUsed),
             "X-Daily-Remaining": "0",
             "X-Subscription-Tier": subscriptionTier,
           },
