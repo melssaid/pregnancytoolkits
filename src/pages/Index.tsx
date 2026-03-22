@@ -346,16 +346,8 @@ const FooterCard = memo(function FooterCard() {
     </motion.div>
   );
 });
-              initial={{ width: 0 }}
-              animate={{ width: `${usagePercent}%` }}
-              transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            />
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  );
-});
+
+
 
 // ── Main page ───────────────────────────────────────────────────────────
 const Index = () => {
