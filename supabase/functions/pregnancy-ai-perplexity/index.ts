@@ -777,7 +777,7 @@ Deno.serve(async (req) => {
     const systemPrompt = buildSystemPrompt(type, context, lang);
     const tuning = MODEL_TUNING[type];
 
-    console.log(`[AI] type=${type} lang=${lang} tier=${subscriptionTier} used=${dailyUsed}/${DAILY_LIMIT} temp=${tuning.temperature}`);
+    console.log(`[AI] type=${type} lang=${lang} tier=${subscriptionTier} used=${monthlyUsed}/${MONTHLY_LIMIT} temp=${tuning.temperature}`);
 
     // ── Call Lovable AI (Gemini) ──
     const MAX_RETRIES = 2;
@@ -785,9 +785,9 @@ Deno.serve(async (req) => {
 
     // Usage headers to include in successful responses
     const usageHeaders = {
-      "X-Daily-Limit": String(DAILY_LIMIT),
-      "X-Daily-Used": String(dailyUsed + 1),
-      "X-Daily-Remaining": String(Math.max(0, dailyRemaining - 1)),
+      "X-Daily-Limit": String(MONTHLY_LIMIT),
+      "X-Daily-Used": String(monthlyUsed + 1),
+      "X-Daily-Remaining": String(Math.max(0, monthlyRemaining - 1)),
       "X-Subscription-Tier": subscriptionTier,
     };
 
