@@ -47,9 +47,9 @@ const VALID_TYPES: AIType[] = [
 const MAX_MESSAGES = 20;
 const MAX_CONTENT_LENGTH = 10000;
 
-// ── Daily usage limits by tier ──
-const FREE_DAILY_LIMIT = 10;
-const PREMIUM_DAILY_LIMIT = 30;
+// ── Monthly usage limits by tier ──
+const FREE_MONTHLY_LIMIT = 5;
+const PREMIUM_MONTHLY_LIMIT = 40;
 
 // ── Rate limiting (per-minute burst protection) ──
 const RATE_LIMIT_WINDOW_MS = 60_000;
@@ -68,8 +68,8 @@ function checkRateLimit(id: string): boolean {
   return true;
 }
 
-// ── Server-side daily usage check ──
-async function getDailyUsageCount(clientId: string, userId: string | null): Promise<number> {
+// ── Server-side monthly usage check ──
+async function getMonthlyUsageCount(clientId: string, userId: string | null): Promise<number> {
   try {
     const { createClient } = await import("https://esm.sh/@supabase/supabase-js@2");
     const adminClient = createClient(
@@ -77,9 +77,10 @@ async function getDailyUsageCount(clientId: string, userId: string | null): Prom
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "",
     );
     
-    // Get today's start in UTC
-    const todayStart = new Date();
-    todayStart.setUTCHours(0, 0, 0, 0);
+    // Get first day of current month in UTC
+    const monthStart = new Date();
+    monthStart.setUTCDate(1);
+    monthStart.setUTCHours(0, 0, 0, 0);
     
     // Query by user_id first, fallback to client_id
     const filterCol = userId ? "user_id" : "client_id";
@@ -90,16 +91,16 @@ async function getDailyUsageCount(clientId: string, userId: string | null): Prom
       .select("*", { count: "exact", head: true })
       .eq(filterCol, filterVal)
       .eq("success", true)
-      .gte("created_at", todayStart.toISOString());
+      .gte("created_at", monthStart.toISOString());
     
     if (error) {
-      console.error("[AI] daily usage check error:", error.message);
+      console.error("[AI] monthly usage check error:", error.message);
       return 0; // Fail open — don't block on DB errors
     }
     
     return count || 0;
   } catch (e) {
-    console.error("[AI] daily usage check failed:", String(e).substring(0, 100));
+    console.error("[AI] monthly usage check failed:", String(e).substring(0, 100));
     return 0; // Fail open
   }
 }
