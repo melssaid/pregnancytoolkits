@@ -25,7 +25,7 @@ export const QuickActionsBar = memo(function QuickActionsBar() {
       transition={{ delay: 0.12 }}
     >
       <h3 className="text-xs font-bold text-foreground mb-2.5 whitespace-normal leading-tight">{t("dailyDashboard.quickActions.title")}</h3>
-      <div className="grid grid-cols-4 gap-2">
+      <div className="grid grid-cols-4 gap-1.5">
         {actions.map((action, i) => (
           <Link key={action.id} to={action.href}>
             <motion.div
@@ -38,7 +38,7 @@ export const QuickActionsBar = memo(function QuickActionsBar() {
               <div className="relative w-9 h-9 rounded-xl bg-background/80 backdrop-blur-sm border border-border/20 flex items-center justify-center shadow-sm">
                 <action.icon className="w-[18px] h-[18px] text-primary" strokeWidth={1.75} />
               </div>
-              <span className="text-[9px] font-medium text-foreground/80 text-center leading-tight line-clamp-2 whitespace-normal">
+              <span className="text-[10px] font-medium text-foreground/80 text-center leading-tight line-clamp-2 whitespace-normal overflow-wrap-anywhere">
                 {t(`dailyDashboard.quickActions.${action.labelKey}`)}
               </span>
             </motion.div>
