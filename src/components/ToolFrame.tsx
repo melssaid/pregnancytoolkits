@@ -277,10 +277,6 @@ export function ToolFrame({
             </motion.div>
           )}
 
-          {/* AI Insight - only for top 15 tools (skip fertility tools) */}
-          {toolId && DAILY_TIP_TOOL_IDS.has(toolId) && (
-            <ToolInsightTabs toolId={toolId} />
-          )}
 
           {/* Fertility Expert tip — only for fertility tools */}
           {toolId && FERTILITY_TOOL_IDS.has(toolId) && (
