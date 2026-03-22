@@ -66,6 +66,7 @@ const AIBumpPhotos: React.FC = () => {
   });
   const { isLimitReached, remaining } = useAIUsage();
 
+  useResetOnLanguageChange(() => { setAiAnalysis(''); });
   // Sync week from central profile
   useEffect(() => {
     if (userProfile.pregnancyWeek) setCurrentWeek(userProfile.pregnancyWeek);
@@ -102,16 +103,7 @@ const AIBumpPhotos: React.FC = () => {
     const file = event.target.files?.[0];
     if (!file) return;
 
-    // Check daily limit
-    if (!canUploadToday) {
-      toast({
-        title: t('toolsInternal.bumpPhotos.dailyLimitReachedTitle'),
-        description: t('toolsInternal.bumpPhotos.dailyLimitReachedDesc'),
-        variant: 'destructive'
-      });
-      return;
-    }
-
+    // Upload is always allowed (quota is checked at AI analysis time)
     if (!file.type.startsWith('image/')) {
       toast({
         title: t('toolsInternal.kickCounter.error'),
@@ -168,18 +160,6 @@ const AIBumpPhotos: React.FC = () => {
         title: t('toolsInternal.bumpPhotos.photoSaved'),
         description: t('toolsInternal.bumpPhotos.photoSavedDesc', { week: currentWeek })
       });
-
-      // Friendly reminder when only 1 upload remains today
-      const newTodayCount = getTodayUploadCount(updatedPhotos);
-      const newRemaining = MAX_DAILY_PHOTOS - newTodayCount;
-      if (newRemaining === 1) {
-        setTimeout(() => {
-          toast({
-            title: t('toolsInternal.bumpPhotos.lastPhotoReminderTitle'),
-            description: t('toolsInternal.bumpPhotos.lastPhotoReminderDesc'),
-          });
-        }, 1500);
-      }
 
       // Auto analyze
       analyzePhoto(photo);
@@ -434,14 +414,10 @@ const AIBumpPhotos: React.FC = () => {
               <div className="grid grid-cols-2 gap-3">
                 {/* Camera Button */}
                 <motion.div
-                  whileHover={canUploadToday ? { scale: 1.02 } : undefined}
-                  whileTap={canUploadToday ? { scale: 0.97 } : undefined}
-                  className={`flex flex-col items-center justify-center border-2 border-dashed rounded-xl p-5 transition-colors ${
-                    canUploadToday
-                      ? 'border-primary/30 bg-primary/5 hover:bg-primary/10 cursor-pointer'
-                      : 'border-muted/30 bg-muted/5 opacity-50 cursor-not-allowed'
-                  }`}
-                  onClick={() => canUploadToday && fileInputRef.current?.click()}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="flex flex-col items-center justify-center border-2 border-dashed rounded-xl p-5 transition-colors border-primary/30 bg-primary/5 hover:bg-primary/10 cursor-pointer"
+                  onClick={() => fileInputRef.current?.click()}
                 >
                   <div className="p-3 rounded-full bg-primary/10 mb-2">
                     <Camera className="w-7 h-7 text-primary" />
@@ -451,14 +427,10 @@ const AIBumpPhotos: React.FC = () => {
 
                 {/* Gallery Upload Button */}
                 <motion.div
-                  whileHover={canUploadToday ? { scale: 1.02 } : undefined}
-                  whileTap={canUploadToday ? { scale: 0.97 } : undefined}
-                  className={`flex flex-col items-center justify-center border-2 border-dashed rounded-xl p-5 transition-colors ${
-                    canUploadToday
-                      ? 'border-primary/30 bg-primary/5 hover:bg-primary/10 cursor-pointer'
-                      : 'border-muted/30 bg-muted/5 opacity-50 cursor-not-allowed'
-                  }`}
-                  onClick={() => canUploadToday && galleryInputRef.current?.click()}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="flex flex-col items-center justify-center border-2 border-dashed rounded-xl p-5 transition-colors border-primary/30 bg-primary/5 hover:bg-primary/10 cursor-pointer"
+                  onClick={() => galleryInputRef.current?.click()}
                 >
                   <div className="p-3 rounded-full bg-primary/10 mb-2">
                     <ImageIcon className="w-7 h-7 text-primary" />
@@ -468,17 +440,15 @@ const AIBumpPhotos: React.FC = () => {
               </div>
             )}
 
-            {/* Compact daily progress bar */}
+            {/* Quota usage indicator */}
             <div className="pt-1 space-y-2">
               <div className="flex items-center justify-between">
-                <span className={`text-xs font-medium ${canUploadToday ? 'text-foreground' : 'text-destructive'}`}>
-                  {canUploadToday 
-                    ? t('toolsInternal.bumpPhotos.dailyLimitRemaining', { remaining: remainingToday })
-                    : t('toolsInternal.bumpPhotos.dailyLimitReached')}
+                <span className={`text-xs font-medium ${isLimitReached ? 'text-destructive' : 'text-foreground'}`}>
+                  {isLimitReached 
+                    ? t('aiErrors.monthlyLimitTitle', 'Monthly limit reached')
+                    : t('toolsInternal.bumpPhotos.analysisQuotaRemaining', { remaining, defaultValue: '{{remaining}} analyses remaining' })}
                 </span>
-                <span className="text-[10px] text-muted-foreground">{todayUploads}/{MAX_DAILY_PHOTOS}</span>
               </div>
-              <Progress value={(todayUploads / MAX_DAILY_PHOTOS) * 100} className="h-1.5" />
             </div>
           </CardContent>
         </Card>
