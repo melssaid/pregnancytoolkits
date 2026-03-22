@@ -28,7 +28,7 @@ type AnalysisPhase = 'idle' | 'rule-summary' | 'collecting' | 'analyzing' | 'gen
 /**
  * Rule-based pre-analysis — runs locally without AI, no quota cost.
  */
-function generateRuleSummary(sessions: KickSession[], week: number, t: (key: string, fallback?: string) => string): string {
+function generateRuleSummary(sessions: KickSession[], week: number, t: (key: string, fallback: string) => string): string {
   if (sessions.length < 3) return '';
   
   const recent = sessions.slice(0, 7);
@@ -97,7 +97,7 @@ export const AIMovementAnalysis: React.FC<AIMovementAnalysisProps> = ({
 
   // Step 1: Show rule-based summary first (free, no AI)
   const showRuleSummary = () => {
-    const summary = generateRuleSummary(sessions, currentWeek, t);
+    const summary = generateRuleSummary(sessions, currentWeek, (key: string, fallback: string) => t(key, fallback));
     setRuleSummary(summary);
     setPhase('rule-summary');
   };
