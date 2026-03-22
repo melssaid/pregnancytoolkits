@@ -6,9 +6,8 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { FileText, Brain, ChevronDown, ChevronUp, Archive, Trash2, Clock, Loader2, AlertCircle } from 'lucide-react';
-import { usePregnancyAI } from '@/hooks/usePregnancyAI';
+import { useSmartInsight } from '@/hooks/useSmartInsight';
 import { AIActionButton } from '@/components/ai/AIActionButton';
-import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { AIResponseFrame } from '@/components/ai/AIResponseFrame';
 import { safeParseLocalStorage, safeSaveToLocalStorage } from '@/lib/safeStorage';
@@ -79,10 +78,9 @@ export default function AIBirthPlanGenerator() {
   const [savedPlans, setSavedPlans] = useState<SavedPlan[]>([]);
   const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set([birthPlanCategories[0].titleKey]));
   const [showArchive, setShowArchive] = useState(false);
-  const { streamChat, isLoading, error } = usePregnancyAI();
-
-  useResetOnLanguageChange(() => {
-    setGeneratedPlan('');
+  const { generate, isLoading, error, content: streamedContent, reset } = useSmartInsight({
+    section: 'pregnancy-plan',
+    toolType: 'birth-plan',
   });
   const isInitialized = useRef(false);
 
