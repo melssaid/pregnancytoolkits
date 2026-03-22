@@ -8252,5 +8252,9 @@
     "trendSlower": "Movement appears slightly slower than your recent usual pattern. This is often normal — activity can vary day to day.",
     "trendFaster": "Baby seems more active recently! Movement times are shorter than usual.",
     "warningLong": "If this change continues or worries you, consider contacting your healthcare provider."
+  },
+  "quotaExhausted": {
+    "upgradeHint": "Unlock more personalized insights with Premium",
+    "upgradeCTA": "Continue with Premium"
   }
 }

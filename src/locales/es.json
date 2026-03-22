@@ -7807,8 +7807,14 @@
     "generateInsight": "Generar mi consejo",
     "quickActions": "Acciones rápidas",
     "suggestions": {
-      "hydration": { "title": "Hidratación", "desc": "{{glasses}} vasos hoy — ¡sigue así!" },
-      "movement": { "title": "Movimiento bebé", "desc": "{{kicks}} patadas registradas hoy" }
+      "hydration": {
+        "title": "Hidratación",
+        "desc": "{{glasses}} vasos hoy — ¡sigue así!"
+      },
+      "movement": {
+        "title": "Movimiento bebé",
+        "desc": "{{kicks}} patadas registradas hoy"
+      }
     },
     "actions": {
       "logSymptoms": "Registrar síntomas",
@@ -7850,5 +7856,9 @@
     "trendSlower": "El movimiento parece ligeramente más lento que tu patrón habitual reciente. Esto suele ser normal — la actividad puede variar de un día a otro.",
     "trendFaster": "¡El bebé parece más activo recientemente! Los tiempos de movimiento son más cortos de lo habitual.",
     "warningLong": "Si este cambio continúa o te preocupa, considera contactar a tu profesional de salud."
+  },
+  "quotaExhausted": {
+    "upgradeHint": "Desbloquea más análisis personalizados con Premium",
+    "upgradeCTA": "Continuar con Premium"
   }
 }
