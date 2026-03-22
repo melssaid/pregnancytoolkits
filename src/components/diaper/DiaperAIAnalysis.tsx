@@ -3,9 +3,8 @@ import { useTranslation } from "react-i18next";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Brain } from "lucide-react";
-import { usePregnancyAI } from "@/hooks/usePregnancyAI";
+import { useSmartInsight } from "@/hooks/useSmartInsight";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
-import { useResetOnLanguageChange } from "@/hooks/useResetOnLanguageChange";
 import { AILoadingDots } from "@/components/ai/AILoadingDots";
 import { AIActionButton } from "@/components/ai/AIActionButton";
 import { AIErrorBanner } from "@/components/ai/AIErrorBanner";
@@ -24,14 +23,11 @@ interface DiaperAIAnalysisProps {
 
 export const DiaperAIAnalysis = ({ entries, todayStats }: DiaperAIAnalysisProps) => {
   const { t } = useTranslation();
-  const { streamChat, isLoading: aiLoading, error, errorType, clearError } = usePregnancyAI();
-  const [aiInsight, setAiInsight] = useState('');
-  const [showAiInsight, setShowAiInsight] = useState(false);
-
-  useResetOnLanguageChange(() => {
-    setAiInsight('');
-    setShowAiInsight(false);
+  const { generate, isLoading: aiLoading, content: aiInsight, error, errorType, clearError, reset } = useSmartInsight({
+    section: 'postpartum',
+    toolType: 'baby-cry-analysis', // closest postpartum tool type
   });
+  const [showAiInsight, setShowAiInsight] = useState(false);
 
   const analyzeWithAI = async () => {
     const last24h = entries.filter(e => differenceInHours(new Date(), new Date(e.time)) <= 24);
@@ -41,14 +37,10 @@ export const DiaperAIAnalysis = ({ entries, todayStats }: DiaperAIAnalysisProps)
       total24h: last24h.length,
     };
 
-    setAiInsight('');
     setShowAiInsight(true);
 
-    await streamChat({
-      type: 'pregnancy-assistant',
-      messages: [{
-        role: 'user',
-        content: `Analyze my baby's diaper patterns:
+    await generate({
+      prompt: `Analyze my baby's diaper patterns:
         
 Today's stats:
 - Wet diapers: ${todayStats.wet}
@@ -75,10 +67,7 @@ Remind me of typical diaper counts for different ages
 Signs that would warrant calling the pediatrician
 
 ## Tips
-Helpful tips for diaper changes and tracking`
-      }],
-      onDelta: (text) => setAiInsight(prev => prev + text),
-      onDone: () => {},
+Helpful tips for diaper changes and tracking`,
     });
   };
 

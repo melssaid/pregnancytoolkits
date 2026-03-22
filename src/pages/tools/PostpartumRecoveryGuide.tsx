@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   Heart,
   Brain,
-  Loader2,
   Calendar,
   CheckCircle2,
   Baby,
@@ -19,10 +18,9 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { ToolFrame } from "@/components/ToolFrame";
-import { usePregnancyAI } from "@/hooks/usePregnancyAI";
+import { useSmartInsight } from "@/hooks/useSmartInsight";
 import { AIActionButton } from '@/components/ai/AIActionButton';
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
-import { useResetOnLanguageChange } from "@/hooks/useResetOnLanguageChange";
 
 
 type BirthType = "vaginal" | "cesarean";
@@ -52,14 +50,13 @@ const PHASE_COLORS = {
 export default function PostpartumRecoveryGuide() {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === "ar";
-  const { streamChat, isLoading, error } = usePregnancyAI();
-
-  useResetOnLanguageChange(() => {
-    setAiAdvice('');
+  const { generate, isLoading, content: aiAdvice, error, reset: resetAI } = useSmartInsight({
+    section: 'postpartum',
+    toolType: 'postpartum-recovery',
   });
+
   const [birthType, setBirthType] = useState<BirthType | null>(null);
   const [currentPhase, setCurrentPhase] = useState(0);
-  const [aiAdvice, setAiAdvice] = useState<string>("");
   const [checklist, setChecklist] = useState<Record<string, ChecklistItem[]>>({});
 
   const CHECKLIST_KEYS: Record<RecoveryPhase, string[]> = {
@@ -97,24 +94,18 @@ export default function PostpartumRecoveryGuide() {
   };
 
   const getAIAdvice = async (phase: RecoveryPhase) => {
-    setAiAdvice("");
     const phaseLabel = t(`toolsInternal.postpartumRecovery.phases.${phase}.title`);
     const birthLabel = t(`toolsInternal.postpartumRecovery.birthTypes.${birthType}`);
 
-    const prompt = `As a postpartum wellness specialist, provide detailed recovery guidance for a woman who had a ${birthLabel} delivery, currently in the "${phaseLabel}" phase:
+    await generate({
+      prompt: `As a postpartum wellness specialist, provide detailed recovery guidance for a woman who had a ${birthLabel} delivery, currently in the "${phaseLabel}" phase:
 
 1. **Physical Recovery** - Tips specific to ${birthLabel} delivery
 2. **Emotional Wellness** - Mental health and adjustment guidance
 3. **Exercise Recommendations** - Safe activities for this phase
 4. **Nutrition** - Recovery and breastfeeding nutrition tips
-5. **Signs to Share with Provider** - What to watch for`;
-
-    await streamChat({
-      type: "postpartum-recovery",
-      messages: [{ role: "user", content: prompt }],
+5. **Signs to Share with Provider** - What to watch for`,
       context: { trimester: 4 },
-      onDelta: (chunk) => setAiAdvice((prev) => prev + chunk),
-      onDone: () => {},
     });
   };
 
@@ -130,7 +121,6 @@ export default function PostpartumRecoveryGuide() {
         toolId="postpartum-recovery"
       >
         <div className="space-y-4">
-          {/* Welcome */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -147,7 +137,6 @@ export default function PostpartumRecoveryGuide() {
             </p>
           </motion.div>
 
-          {/* Birth Type Selection */}
           <div className="space-y-3">
             <p className="text-sm font-medium text-center text-foreground">
               {t("toolsInternal.postpartumRecovery.selectBirthType")}
@@ -200,7 +189,7 @@ export default function PostpartumRecoveryGuide() {
             size="icon"
             className="h-8 w-8 rounded-lg shrink-0"
             disabled={currentPhase === 0}
-            onClick={() => { setCurrentPhase((p) => p - 1); setAiAdvice(""); }}
+            onClick={() => { setCurrentPhase((p) => p - 1); resetAI(); }}
           >
             {isRTL ? <ArrowRight className="w-4 h-4" /> : <ArrowLeft className="w-4 h-4" />}
           </Button>
@@ -210,7 +199,7 @@ export default function PostpartumRecoveryGuide() {
               {PHASES.map((p, i) => (
                 <button
                   key={p}
-                  onClick={() => { setCurrentPhase(i); setAiAdvice(""); }}
+                  onClick={() => { setCurrentPhase(i); resetAI(); }}
                   className={`flex-1 h-1.5 rounded-full transition-all ${
                     i === currentPhase
                       ? "bg-primary"
@@ -228,7 +217,7 @@ export default function PostpartumRecoveryGuide() {
             size="icon"
             className="h-8 w-8 rounded-lg shrink-0"
             disabled={currentPhase === PHASES.length - 1}
-            onClick={() => { setCurrentPhase((p) => p + 1); setAiAdvice(""); }}
+            onClick={() => { setCurrentPhase((p) => p + 1); resetAI(); }}
           >
             {isRTL ? <ArrowLeft className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}
           </Button>
@@ -262,7 +251,6 @@ export default function PostpartumRecoveryGuide() {
                 </p>
               </CardHeader>
               <CardContent className="space-y-4">
-                {/* Progress */}
                 <div className="space-y-1.5">
                   <div className="flex justify-between text-xs">
                     <span className="text-muted-foreground">
@@ -273,7 +261,6 @@ export default function PostpartumRecoveryGuide() {
                   <Progress value={getPhaseProgress(phase)} className="h-2" />
                 </div>
 
-                {/* Checklist */}
                 <div className="space-y-2">
                   {(checklist[phase] || []).map((item) => (
                     <motion.button
@@ -307,7 +294,6 @@ export default function PostpartumRecoveryGuide() {
                   ))}
                 </div>
 
-                {/* AI Advice Button */}
                 <AIActionButton
                   onClick={() => getAIAdvice(phase)}
                   isLoading={isLoading}
@@ -354,7 +340,7 @@ export default function PostpartumRecoveryGuide() {
             variant="ghost"
             size="sm"
             className="text-xs text-muted-foreground"
-            onClick={() => { setBirthType(null); setCurrentPhase(0); setAiAdvice(""); setChecklist({}); }}
+            onClick={() => { setBirthType(null); setCurrentPhase(0); resetAI(); setChecklist({}); }}
           >
             {t("toolsInternal.postpartumRecovery.changeBirthType")}
           </Button>

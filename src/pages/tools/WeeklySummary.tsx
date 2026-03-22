@@ -4,11 +4,10 @@ import { Baby, RefreshCw, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ToolFrame } from "@/components/ToolFrame";
 import { MedicalDisclaimer } from "@/components/compliance";
-import { usePregnancyAI } from "@/hooks/usePregnancyAI";
+import { useSmartInsight } from "@/hooks/useSmartInsight";
 import { AIActionButton } from "@/components/ai/AIActionButton";
 import { AIResponseFrame } from "@/components/ai/AIResponseFrame";
 import { PrintableReport } from "@/components/PrintableReport";
-import { useResetOnLanguageChange } from "@/hooks/useResetOnLanguageChange";
 import { WeekSlider } from "@/components/WeekSlider";
 import { useUserProfile } from "@/hooks/useUserProfile";
 import { safeParseLocalStorage, safeSaveToLocalStorage } from "@/lib/safeStorage";
@@ -36,76 +35,70 @@ function loadSavedSummaries(): WeeklySummaryEntry[] {
 
 function saveSummary(week: number, content: string) {
   const entries = loadSavedSummaries();
-  // Replace existing entry for same week, or prepend
   const filtered = entries.filter(e => e.week !== week);
   const newEntry: WeeklySummaryEntry = { week, content, generatedAt: new Date().toISOString() };
-  const updated = [newEntry, ...filtered].slice(0, 20); // keep max 20
+  const updated = [newEntry, ...filtered].slice(0, 20);
   safeSaveToLocalStorage(STORAGE_KEY, updated);
 }
 
 export default function WeeklySummary() {
   const { t } = useTranslation();
-  const { streamChat, isLoading, error } = usePregnancyAI();
+  const { generate, isLoading, content: aiSummary, error, reset: resetAI } = useSmartInsight({
+    section: 'pregnancy-plan',
+    toolType: 'weekly-summary',
+  });
   const { profile: userProfile, setPregnancyWeek } = useUserProfile();
   const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [week, setWeek] = useState<number>(userProfile.pregnancyWeek || 20);
-  const [aiSummary, setAiSummary] = useState("");
   const [showAI, setShowAI] = useState(false);
+  const [savedContent, setSavedContent] = useState("");
 
   // Load saved AI result for the current week
   useEffect(() => {
     const saved = loadSavedSummaries().find(e => e.week === week);
     if (saved && !showAI) {
-      setAiSummary(saved.content);
+      setSavedContent(saved.content);
       setShowAI(true);
     }
   }, [week]);
 
-  useResetOnLanguageChange(() => {
-    setAiSummary("");
-    setShowAI(false);
-  });
-
   const handleWeekChange = useCallback((newWeek: number) => {
     setWeek(newWeek);
-    // Auto-save week to user profile
     setPregnancyWeek(newWeek);
-    // Load saved result for new week
+    resetAI();
     const saved = loadSavedSummaries().find(e => e.week === newWeek);
     if (saved) {
-      setAiSummary(saved.content);
+      setSavedContent(saved.content);
       setShowAI(true);
     } else {
-      setAiSummary("");
+      setSavedContent("");
       setShowAI(false);
     }
-  }, [setPregnancyWeek]);
-
-  const accumulatedRef = useRef("");
+  }, [setPregnancyWeek, resetAI]);
 
   const generateAIInsight = async () => {
-    setAiSummary("");
+    setSavedContent("");
     setShowAI(true);
-    accumulatedRef.current = "";
 
     const prompt = `As a pregnancy wellness guide, provide a comprehensive personalized analysis for week ${week} of pregnancy. Include specific advice, warnings to watch for, and personalized tips based on this stage.`;
 
-    await streamChat({
-      type: "weekly-summary",
-      messages: [{ role: "user", content: prompt }],
+    await generate({
+      prompt,
       context: { week },
       onDelta: (chunk) => {
-        accumulatedRef.current += chunk;
-        setAiSummary(prev => prev + chunk);
-      },
-      onDone: () => {
-        // Save result locally
-        if (accumulatedRef.current.length > 10) {
-          saveSummary(week, accumulatedRef.current);
-        }
+        // We'll save after completion using content from the hook
       },
     });
   };
+
+  // Save to localStorage when generation completes
+  useEffect(() => {
+    if (!isLoading && aiSummary && aiSummary.length > 10) {
+      saveSummary(week, aiSummary);
+    }
+  }, [isLoading, aiSummary, week]);
+
+  const displayContent = aiSummary || savedContent;
 
   if (showDisclaimer) {
     return (
@@ -125,7 +118,6 @@ export default function WeeklySummary() {
       toolId="weekly-summary"
     >
       <div className="space-y-4">
-        {/* Week Selector */}
         <WeekSlider
           week={week}
           onChange={handleWeekChange}
@@ -133,10 +125,7 @@ export default function WeeklySummary() {
           label={t("toolsInternal.weeklySummary.pregnancyWeek")}
         />
 
-        {/* Hero Section */}
         <WeeklyHeroSection week={week} />
-
-        {/* Editorial Content Cards */}
         <FetalDevelopmentCard week={week} />
         <BodyChangesCard week={week} />
         <NutritionFocusCard week={week} />
@@ -144,10 +133,8 @@ export default function WeeklySummary() {
         <DoctorQuestionsCard week={week} />
         <WeeklyChecklistCard week={week} />
 
-        {/* Divider */}
         <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent" />
 
-        {/* AI Insight Section */}
         {!showAI && !isLoading && (
           <motion.div
             initial={{ opacity: 0 }}
@@ -170,7 +157,6 @@ export default function WeeklySummary() {
           </motion.div>
         )}
 
-        {/* AI Result */}
         <AnimatePresence>
           {(showAI || isLoading) && (
             <motion.div
@@ -182,14 +168,14 @@ export default function WeeklySummary() {
               <PrintableReport title={t("toolsInternal.weeklySummary.weekSummary", { week })} isLoading={isLoading}>
                 <AIResponseFrame
                   title={t("weeklyJourney.sections.aiInsight")}
-                  content={aiSummary}
+                  content={displayContent}
                   isLoading={isLoading}
                   icon={Baby}
                   toolId="weekly-summary"
                 />
               </PrintableReport>
 
-              {!isLoading && aiSummary && (
+              {!isLoading && displayContent && (
                 <div className="flex gap-2">
                   <motion.button
                     whileTap={{ scale: 0.92 }}
@@ -206,7 +192,6 @@ export default function WeeklySummary() {
           )}
         </AnimatePresence>
 
-        {/* Error */}
         {error && (
           <div className="p-4 rounded-xl border border-destructive/50 bg-destructive/10">
             <p className="text-sm text-destructive text-center">{error}</p>
