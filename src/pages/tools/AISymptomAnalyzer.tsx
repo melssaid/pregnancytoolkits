@@ -18,8 +18,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { WeekSlider } from '@/components/WeekSlider';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { useTranslation } from 'react-i18next';
-import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
-import { usePregnancyAI } from '@/hooks/usePregnancyAI';
+import { useSmartInsight } from '@/hooks/useSmartInsight';
 import { AIActionButton } from '@/components/ai/AIActionButton';
 import { safeParseLocalStorage, safeSaveToLocalStorage } from '@/lib/safeStorage';
 import { toast } from 'sonner';
@@ -56,7 +55,10 @@ interface DiaryEntry {
 
 const AISymptomAnalyzer: React.FC = () => {
   const { t } = useTranslation();
-  const { streamChat, isLoading: aiLoading } = usePregnancyAI();
+  const { generate, isLoading: aiLoading, content: aiInsight, reset: resetAI } = useSmartInsight({
+    section: 'symptoms',
+    toolType: 'symptom-analysis',
+  });
   const [showDisclaimer, setShowDisclaimer] = useState(true);
   const { profile: userProfile } = useUserProfile();
   const [currentWeek, setCurrentWeek] = useState(userProfile.pregnancyWeek || 12);
@@ -65,16 +67,10 @@ const AISymptomAnalyzer: React.FC = () => {
   const [selectedSymptoms, setSelectedSymptoms] = useState<string[]>([]);
   const [selectedMood, setSelectedMood] = useState<string>('');
   const [notes, setNotes] = useState('');
-  const [aiInsight, setAiInsight] = useState('');
-  const [isGettingInsight, setIsGettingInsight] = useState(false);
 
   const [entries, setEntries] = useState<DiaryEntry[]>([]);
   const [showHistory, setShowHistory] = useState(false);
   const [expandedEntry, setExpandedEntry] = useState<string | null>(null);
-
-  useResetOnLanguageChange(() => {
-    setAiInsight('');
-  });
 
   useEffect(() => {
     const saved = safeParseLocalStorage<DiaryEntry[]>(
@@ -92,8 +88,6 @@ const AISymptomAnalyzer: React.FC = () => {
 
   const getAIInsight = useCallback(async () => {
     if (selectedSymptoms.length === 0) return;
-    setIsGettingInsight(true);
-    setAiInsight('');
 
     const symptomNames = selectedSymptoms.map(id =>
       t(`toolsInternal.symptomAnalyzer.symptoms.${id}`)
@@ -104,14 +98,11 @@ const AISymptomAnalyzer: React.FC = () => {
 
 Provide brief, supportive wellness insights about these feelings during week ${currentWeek}. Include practical comfort tips and when to share with a healthcare provider. Keep it concise and warm.`;
 
-    await streamChat({
-      type: "symptom-analysis",
-      messages: [{ role: "user", content: prompt }],
+    await generate({
+      prompt,
       context: { week: currentWeek, symptoms: selectedSymptoms },
-      onDelta: (text) => setAiInsight(prev => prev + text),
-      onDone: () => setIsGettingInsight(false),
     });
-  }, [selectedSymptoms, selectedMood, notes, currentWeek, streamChat, t]);
+  }, [selectedSymptoms, selectedMood, notes, currentWeek, generate, t]);
 
   const saveEntry = () => {
     if (selectedSymptoms.length === 0 && !selectedMood) {
@@ -139,8 +130,7 @@ Provide brief, supportive wellness insights about these feelings during week ${c
     setSelectedSymptoms([]);
     setSelectedMood('');
     setNotes('');
-    setAiInsight('');
-
+    resetAI();
 
     toast.success(t('toolsInternal.symptomAnalyzer.entrySaved'));
   };
@@ -329,7 +319,7 @@ Provide brief, supportive wellness insights about these feelings during week ${c
         {/* AI Insight Button — always visible */}
         <AIActionButton
           onClick={getAIInsight}
-          isLoading={isGettingInsight}
+          isLoading={aiLoading}
           disabled={aiLoading || (selectedSymptoms.length === 0 && !selectedMood)}
           label={t('toolsInternal.symptomAnalyzer.getInsights')}
           loadingLabel={t('toolsInternal.symptomAnalyzer.analyzing')}
@@ -337,10 +327,10 @@ Provide brief, supportive wellness insights about these feelings during week ${c
 
         {/* AI Response */}
         {aiInsight && (
-          <PrintableReport title={t('toolsInternal.symptomAnalyzer.aiWellnessNotes')} isLoading={isGettingInsight}>
+          <PrintableReport title={t('toolsInternal.symptomAnalyzer.aiWellnessNotes')} isLoading={aiLoading}>
             <AIResponseFrame
               content={aiInsight}
-              isLoading={isGettingInsight}
+              isLoading={aiLoading}
               title={t('toolsInternal.symptomAnalyzer.aiWellnessNotes')}
               icon={Brain}
               toolId="ai-symptom-analyzer"

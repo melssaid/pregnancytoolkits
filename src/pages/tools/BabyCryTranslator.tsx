@@ -1,12 +1,8 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   Baby,
-  Mic,
-  MicOff,
-  Brain,
-  Loader2,
   Volume2,
   Clock,
   AlertCircle,
@@ -19,10 +15,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ToolFrame } from "@/components/ToolFrame";
-import { usePregnancyAI } from "@/hooks/usePregnancyAI";
+import { useSmartInsight } from "@/hooks/useSmartInsight";
 import { AIActionButton } from '@/components/ai/AIActionButton';
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
-import { useResetOnLanguageChange } from "@/hooks/useResetOnLanguageChange";
 
 interface CryLog {
   id: string;
@@ -47,16 +42,15 @@ const CONTEXT_OPTIONS = ["afterFeeding", "beforeSleep", "afterWaking", "duringCh
 
 export default function BabyCryTranslator() {
   const { t } = useTranslation();
-  const { streamChat, isLoading, error } = usePregnancyAI();
-
-  useResetOnLanguageChange(() => {
-    setAnalysis('');
+  const { generate, isLoading, content: analysis, error, reset } = useSmartInsight({
+    section: 'postpartum',
+    toolType: 'baby-cry-analysis',
   });
+
   const [selectedPatterns, setSelectedPatterns] = useState<string[]>([]);
   const [duration, setDuration] = useState<string>("");
   const [context, setContext] = useState<string>("");
   const [babyAgeWeeks, setBabyAgeWeeks] = useState<number>(4);
-  const [analysis, setAnalysis] = useState<string>("");
   const [cryLog, setCryLog] = useState<CryLog[]>([]);
 
   const togglePattern = (id: string) => {
@@ -67,7 +61,6 @@ export default function BabyCryTranslator() {
 
   const analyzesCry = async () => {
     if (selectedPatterns.length === 0) return;
-    setAnalysis("");
 
     const patternsText = selectedPatterns
       .map((id) => t(`toolsInternal.babyCryTranslator.patterns.${id}`))
@@ -86,32 +79,32 @@ Provide insights on what the baby might be communicating and practical soothing 
 
     let fullAnalysis = "";
 
-    await streamChat({
-      type: "baby-cry-analysis",
-      messages: [{ role: "user", content: prompt }],
+    await generate({
+      prompt,
       context: { week: babyAgeWeeks },
       onDelta: (chunk) => {
         fullAnalysis += chunk;
-        setAnalysis((prev) => prev + chunk);
-      },
-      onDone: () => {
-        const logEntry: CryLog = {
-          id: Date.now().toString(),
-          timestamp: new Date(),
-          duration: durationText,
-          selectedPatterns: [...selectedPatterns],
-          analysis: fullAnalysis,
-        };
-        setCryLog((prev) => [logEntry, ...prev].slice(0, 10));
       },
     });
+
+    // Save to cry log after completion
+    if (fullAnalysis) {
+      const logEntry: CryLog = {
+        id: Date.now().toString(),
+        timestamp: new Date(),
+        duration: durationText,
+        selectedPatterns: [...selectedPatterns],
+        analysis: fullAnalysis,
+      };
+      setCryLog((prev) => [logEntry, ...prev].slice(0, 10));
+    }
   };
 
   const resetForm = () => {
     setSelectedPatterns([]);
     setDuration("");
     setContext("");
-    setAnalysis("");
+    reset();
   };
 
   return (
