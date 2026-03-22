@@ -25,7 +25,7 @@ type AIType =
   | "nausea-relief" | "skincare-advice" | "birth-plan" | "mental-health" | "pregnancy-plan" | "baby-growth-analysis"
   | "weight-analysis" | "contraction-analysis";
 
-export type AIErrorType = "rate_limit" | "payment" | "network" | "auth" | "unknown";
+export type AIErrorType = "quota_exhausted" | "rate_limit" | "payment" | "network" | "auth" | "unknown";
 
 type MessageContentPart = { type: string; text?: string; image_url?: { url: string } };
 
@@ -84,7 +84,7 @@ const AITYPE_TO_SECTION: Record<string, SmartSection> = {
 
 function mapErrorType(smartErr: SmartError['type']): AIErrorType {
   switch (smartErr) {
-    case 'quota_exhausted': return 'rate_limit';
+    case 'quota_exhausted': return 'quota_exhausted';
     case 'rate_limit': return 'rate_limit';
     case 'payment': return 'payment';
     case 'network': return 'network';

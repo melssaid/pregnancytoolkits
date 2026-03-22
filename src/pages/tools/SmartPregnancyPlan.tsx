@@ -53,45 +53,33 @@ const SmartPregnancyPlan = () => {
     const conditionsText = health.conditions.length > 0 ? health.conditions.join(', ') : 'none';
     const base = `Week ${health.week}, Weight: ${health.weight}kg, Height: ${health.height}cm, Age: ${health.age}, Pain: ${health.painLevel}/10, BP: ${health.bloodPressureSys}/${health.bloodPressureDia}, Sleep: ${health.sleepHours}hrs, Mood: ${health.mood}, Activity: ${health.activityLevel}, Conditions: ${conditionsText}`;
 
-    try {
-      // Route through the unified smart engine for quota + caching
-      await executeSmartRequest({
-        request: {
-          section: 'pregnancy-plan',
-          toolType: 'pregnancy-plan',
-          weight: 1,
-          messages: [{
-            role: 'user',
-            content: `I'm in week ${health.week} of pregnancy. ${base}. Give me a personalized weekly pregnancy plan covering exercises, nutrition tips, and wellness recommendations.`,
-          }],
-          context: { week: health.week, weight: health.weight, language: lang },
-        },
-        onDelta: (text) => setPlanContent(prev => prev + text),
-        onDone: () => {
-          setEnhancedLoading(false);
-          refresh(); // Sync UI with quota consumed by engine
-        },
-        onError: (err) => {
-          setEnhancedLoading(false);
-          if (err.type === 'quota_exhausted') {
-            setLimitError(t('aiErrors.monthlyLimitMsg', { limit, remaining: 0 }));
-          } else {
-            setLimitError(err.message);
-          }
-          refresh();
-        },
-      });
-    } catch {
-      setEnhancedLoading(false);
-      // Fallback to streamChat (which also routes through smartEngine now)
-      await streamChat({
-        type: 'pregnancy-plan',
-        messages: [{ role: 'user', content: `I'm in week ${health.week} of pregnancy. ${base}. Give me a personalized weekly pregnancy plan covering exercises, nutrition tips, and wellness recommendations.` }],
+    // Route through the unified smart engine for quota + caching
+    await executeSmartRequest({
+      request: {
+        section: 'pregnancy-plan',
+        toolType: 'pregnancy-plan',
+        weight: 1,
+        messages: [{
+          role: 'user',
+          content: `I'm in week ${health.week} of pregnancy. ${base}. Give me a personalized weekly pregnancy plan covering exercises, nutrition tips, and wellness recommendations.`,
+        }],
         context: { week: health.week, weight: health.weight, language: lang },
-        onDelta: (text) => setPlanContent(prev => prev + text),
-        onDone: () => {},
-      });
-    }
+      },
+      onDelta: (text) => setPlanContent(prev => prev + text),
+      onDone: () => {
+        setEnhancedLoading(false);
+        refresh(); // Sync UI with quota consumed by engine
+      },
+      onError: (err) => {
+        setEnhancedLoading(false);
+        if (err.type === 'quota_exhausted') {
+          setLimitError(t('aiErrors.monthlyLimitMsg', { limit, remaining: 0 }));
+        } else {
+          setLimitError(err.message);
+        }
+        refresh();
+      },
+    });
   }, [streamChat, health, lang, isLimitReached, limit, t, refresh]);
 
   return (
