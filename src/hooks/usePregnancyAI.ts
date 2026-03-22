@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useAIUsageLimit } from "./useAIUsageLimit";
 import { supabase } from "@/integrations/supabase/client";
 
-const STORAGE_KEY = 'ai_daily_usage';
+const STORAGE_KEY = 'ai_monthly_usage';
 function isAdminBypass(): boolean {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
