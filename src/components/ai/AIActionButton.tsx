@@ -80,7 +80,7 @@ export const AIActionButton: React.FC<AIActionButtonProps> = ({
             }}
           >
             <Crown className={`shrink-0 ${isCompact ? 'w-3.5 h-3.5' : 'w-[18px] h-[18px]'}`} />
-            <span className="truncate">{labels.unlockMore}</span>
+            <span className="truncate min-w-0">{labels.unlockMore}</span>
           </div>
           <span
             className="absolute inset-0 -translate-x-full group-hover:translate-x-full rtl:translate-x-full rtl:group-hover:-translate-x-full transition-transform duration-700 ease-out bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none"
@@ -137,7 +137,7 @@ export const AIActionButton: React.FC<AIActionButtonProps> = ({
           {isLoading ? (
             <div className="flex items-center gap-2.5">
               <Loader2 className={`animate-spin shrink-0 ${isCompact ? 'w-3.5 h-3.5' : 'w-[18px] h-[18px]'}`} />
-              <span className="truncate">{loadingLabel || label}</span>
+              <span className="truncate min-w-0">{loadingLabel || label}</span>
             </div>
           ) : (
             <div className="flex items-center gap-2.5">
@@ -145,7 +145,7 @@ export const AIActionButton: React.FC<AIActionButtonProps> = ({
                 <Icon className={`${isCompact ? 'w-3.5 h-3.5' : 'w-[18px] h-[18px]'}`} />
                 <Sparkles className={`absolute -top-1 -end-1.5 text-yellow-300 opacity-80 ${isCompact ? 'w-2 h-2' : 'w-2.5 h-2.5'}`} />
               </div>
-              <span className="truncate">{label}</span>
+              <span className="truncate min-w-0">{label}</span>
             </div>
           )}
         </div>

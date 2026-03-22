@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { ToolFrame } from "@/components/ToolFrame";
-import { usePregnancyAI } from "@/hooks/usePregnancyAI";
+import { useSmartChat, type ChatMessage } from "@/hooks/useSmartChat";
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 
@@ -28,7 +28,10 @@ const quickQuestions = [
 
 export default function PregnancyAssistant() {
   const { t } = useTranslation();
-  const { streamChat, isLoading, error } = usePregnancyAI();
+  const { sendChat, isLoading, error } = useSmartChat({
+    section: "pregnancy-plan",
+    toolType: "pregnancy-assistant",
+  });
 
   useResetOnLanguageChange(() => {
     setMessages([]);
@@ -47,14 +50,20 @@ export default function PregnancyAssistant() {
     if (!text.trim() || isLoading) return;
 
     const userMessage: Message = { role: "user", content: text };
-    setMessages((prev) => [...prev, userMessage]);
+    const updatedMessages = [...messages, userMessage];
+    setMessages(updatedMessages);
     setInput("");
 
     let assistantContent = "";
 
-    await streamChat({
-      type: "pregnancy-assistant",
-      messages: [...messages, userMessage],
+    // Build ChatMessage[] for full conversation history
+    const chatHistory: ChatMessage[] = updatedMessages.map((m) => ({
+      role: m.role,
+      content: m.content,
+    }));
+
+    await sendChat({
+      messages: chatHistory,
       onDelta: (chunk) => {
         assistantContent += chunk;
         setMessages((prev) => {

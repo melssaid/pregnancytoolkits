@@ -478,3 +478,9 @@ html[dir="rtl"] .rtl-flip {
   pointer-events: none;
   z-index: 1;
 }
+
+/* Utility: overflow-wrap anywhere for multilingual text */
+.overflow-wrap-anywhere {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}

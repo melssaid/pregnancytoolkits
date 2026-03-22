@@ -87,16 +87,16 @@ export function QuickStats({
             >
               <Link
                 to={stat.href}
-                className="flex flex-col items-center p-2.5 rounded-xl bg-card border border-border/40 hover:border-primary/30 transition-all group text-center"
+                className="flex flex-col items-center p-2 rounded-xl bg-card border border-border/40 hover:border-primary/30 transition-all group text-center min-h-[76px] justify-center"
               >
-                <div className={`w-7 h-7 rounded-lg ${stat.bg} flex items-center justify-center mb-1.5`}>
+                <div className={`w-7 h-7 rounded-lg ${stat.bg} flex items-center justify-center mb-1`}>
                   <Icon className={`w-3.5 h-3.5 ${stat.color}`} />
                 </div>
                 <p className="text-sm font-bold text-foreground leading-none group-hover:text-primary transition-colors">
                   {stat.value}
                   {stat.unit && <span className="text-[9px] font-medium text-muted-foreground ms-0.5">{stat.unit}</span>}
                 </p>
-                <p className="text-[9px] text-muted-foreground mt-1 leading-tight">{t(stat.labelKey)}</p>
+                <p className="text-[8px] text-muted-foreground mt-0.5 leading-tight whitespace-normal break-words overflow-wrap-anywhere w-full">{t(stat.labelKey)}</p>
               </Link>
             </motion.div>
           );
@@ -156,7 +156,7 @@ export function QuickStats({
                   <Calendar className="w-3.5 h-3.5 text-primary" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-[10px] font-semibold text-foreground group-hover:text-primary transition-colors leading-tight truncate">
+                  <p className="text-[10px] font-semibold text-foreground group-hover:text-primary transition-colors leading-tight whitespace-normal break-words">
                     {t("dashboard.quickStats.nextAppointment")}
                   </p>
                   <p className="text-[9px] text-muted-foreground truncate">{nextAppointment}</p>
