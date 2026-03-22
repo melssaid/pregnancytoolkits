@@ -123,14 +123,14 @@ export default function AIBirthPlanGenerator() {
     const langCode = i18n.language?.split('-')[0] || 'en';
     const langNames: Record<string, string> = { en: 'English', ar: 'Arabic', de: 'German', tr: 'Turkish', fr: 'French', es: 'Spanish', pt: 'Portuguese' };
 
-    await streamChat({
-      type: 'birth-plan',
-      messages: [{ role: 'user', content: `IMPORTANT: Write ENTIRE response in ${langNames[langCode] || 'English'}.\nCreate a comprehensive birth plan:\n${selectedPrefs}\n${additionalNotes ? `Notes: ${additionalNotes}` : ''}\nInclude introduction, organized sections, backup plans, and a flexibility note.` }],
-      context: { language: langCode },
+    const prompt = `IMPORTANT: Write ENTIRE response in ${langNames[langCode] || 'English'}.\nCreate a comprehensive birth plan:\n${selectedPrefs}\n${additionalNotes ? `Notes: ${additionalNotes}` : ''}\nInclude introduction, organized sections, backup plans, and a flexibility note.`;
+
+    await generate({
+      prompt,
       onDelta: (text) => setGeneratedPlan(prev => prev + text),
-      onDone: () => { toast.success(t('toolsInternal.birthPlan.planGenerated')); }
     });
-  }, [preferences, additionalNotes, streamChat, t, i18n.language]);
+    toast.success(t('toolsInternal.birthPlan.planGenerated'));
+  }, [preferences, additionalNotes, generate, t, i18n.language]);
 
   const savePlan = useCallback(() => {
     if (!generatedPlan) { toast.error(t('toolsInternal.birthPlan.selectPreference')); return; }
