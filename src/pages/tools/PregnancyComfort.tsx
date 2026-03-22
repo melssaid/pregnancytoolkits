@@ -13,6 +13,7 @@ import { ToolFrame } from "@/components/ToolFrame";
 import MedicalDisclaimer from "@/components/compliance/MedicalDisclaimer";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { usePregnancyAI } from "@/hooks/usePregnancyAI";
+import { useAIUsage } from "@/contexts/AIUsageContext";
 import { AIActionButton } from '@/components/ai/AIActionButton';
 import { AIResponseFrame } from '@/components/ai/AIResponseFrame';
 import { PrintableReport } from '@/components/PrintableReport';
