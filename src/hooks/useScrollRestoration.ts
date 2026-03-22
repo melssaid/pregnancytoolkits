@@ -40,17 +40,22 @@ export function useScrollRestoration() {
   useEffect(() => {
     const currentKey = location.pathname + location.search;
 
+    // Same key — skip (e.g. hash-only change or re-render)
+    if (currentKey === prevKeyRef.current) return;
+
     if (navType !== "POP") {
-      // PUSH / REPLACE: save the previous page's scroll before moving forward,
-      // then scroll to top of the new page
-      writePosition(prevKeyRef.current, 0); // reset outgoing page isn't needed
-      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+      // PUSH / REPLACE: save the ACTUAL scroll of the outgoing page, then go to top
+      writePosition(prevKeyRef.current, window.scrollY);
+      // Use rAF to ensure DOM has settled before scrolling
+      requestAnimationFrame(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+      });
     } else {
       // POP (back / forward): restore saved position
       const savedY = readPositions()[currentKey] ?? 0;
 
       if (savedY > 0) {
-        // Wait for exit (80ms) + enter (150ms) animations + small buffer
+        // Wait for lazy-load + animations to settle
         const timer = setTimeout(() => {
           const tryScroll = (attempts = 0) => {
             requestAnimationFrame(() => {
