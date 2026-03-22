@@ -30,6 +30,7 @@ export function useSmartInsight({ section, toolType, weight = 1 }: UseSmartInsig
   const [errorType, setErrorType] = useState<SmartErrorType | null>(null);
   const [wasCached, setWasCached] = useState(false);
   const { i18n, t } = useTranslation();
+  const { refresh: refreshUsage } = useAIUsage();
   const langRef = useRef(i18n.language);
   langRef.current = i18n.language;
 
