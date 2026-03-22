@@ -63,8 +63,10 @@ const quickRemedies = [
 // ═══════════════════════════════════════════════════════════════
 function SleepTab() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const { settings } = useSettings();
   const { streamChat, isLoading } = usePregnancyAI();
+  const { isLimitReached } = useAIUsage();
 
   const [sleepHours, setSleepHours] = useState([6]);
   const [bedtime, setBedtime] = useState("22:00");
