@@ -12,11 +12,9 @@ interface AIErrorBannerProps {
   onRetry?: () => void;
   onDismiss?: () => void;
 }
-  onRetry?: () => void;
-  onDismiss?: () => void;
-}
 
-const iconMap: Record<AIErrorType, React.ElementType> = {
+const iconMap: Record<string, React.ElementType> = {
+  quota_exhausted: Clock,
   rate_limit: Clock,
   payment: CreditCard,
   network: WifiOff,
