@@ -6102,7 +6102,9 @@
     "dismiss": "Fechar",
     "dailyLimitMsg": "Você usou todas as {{limit}} solicitações diárias de IA. Tente novamente amanhã.",
     "dailyLimitTitle": "Limite diário atingido",
-    "remainingHint": "{{remaining}} de {{limit}} solicitações restantes hoje"
+    "remainingHint": "{{remaining}} de {{limit}} solicitações restantes hoje",
+    "monthlyLimitMsg": "Você usou todas as {{limit}} solicitações mensais de IA. Sua cota será renovada no próximo mês.",
+    "monthlyLimitTitle": "Limite mensal atingido"
   },
   "aiUsage": {
     "remaining": "{{remaining}}/{{limit}} solicitações restantes hoje",
@@ -7829,5 +7831,24 @@
       "title": "Dicas salvas",
       "week": "Semana {{week}}"
     }
+  },
+  "kickAnalysis": {
+    "title": "Analisar movimento",
+    "minSessions": "Registre pelo menos 3 sessões para desbloquear a análise de movimento",
+    "sessionCount": "{{count}} sessões registradas",
+    "quickCheck": "Verificação rápida",
+    "quickSummary": "Resumo rápido",
+    "deepAnalysis": "Análise IA profunda",
+    "basedOn": "Baseado em {{count}} sessões",
+    "reAnalyze": "Re-analisar",
+    "ready": "Pronto para analisar",
+    "collecting": "Coletando dados da sessão...",
+    "analyzing": "Analisando padrões de movimento...",
+    "generating": "Gerando insights personalizados...",
+    "complete": "Análise concluída",
+    "trendStable": "O padrão de movimento de hoje parece similar aos seus registros recentes.",
+    "trendSlower": "O movimento parece ligeiramente mais lento que seu padrão habitual recente. Isso geralmente é normal — a atividade pode variar de dia para dia.",
+    "trendFaster": "O bebê parece mais ativo recentemente! Os tempos de movimento estão mais curtos que o habitual.",
+    "warningLong": "Se esta mudança persistir ou preocupá-la, considere entrar em contato com seu profissional de saúde."
   }
 }

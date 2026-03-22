@@ -6102,7 +6102,9 @@
     "dismiss": "Kapat",
     "dailyLimitMsg": "Günlük {{limit}} yapay zeka isteğinizi kullandınız. Lütfen yarın tekrar deneyin.",
     "dailyLimitTitle": "Günlük limite ulaşıldı",
-    "remainingHint": "Bugün {{remaining}}/{{limit}} istek kaldı"
+    "remainingHint": "Bugün {{remaining}}/{{limit}} istek kaldı",
+    "monthlyLimitMsg": "Aylık {{limit}} yapay zeka isteğinizi kullandınız. Kotanız gelecek ay yenilenir.",
+    "monthlyLimitTitle": "Aylık limite ulaşıldı"
   },
   "aiUsage": {
     "remaining": "Bugün {{remaining}}/{{limit}} istek kaldı",
@@ -7829,5 +7831,24 @@
       "title": "Kaydedilen İpuçları",
       "week": "Hafta {{week}}"
     }
+  },
+  "kickAnalysis": {
+    "title": "Hareketi analiz et",
+    "minSessions": "Hareket analizini açmak için en az 3 seans kaydedin",
+    "sessionCount": "{{count}} seans kaydedildi",
+    "quickCheck": "Hızlı kontrol",
+    "quickSummary": "Hızlı özet",
+    "deepAnalysis": "Derin yapay zeka analizi",
+    "basedOn": "{{count}} seansa dayalı",
+    "reAnalyze": "Tekrar analiz et",
+    "ready": "Analiz için hazır",
+    "collecting": "Seans verileri toplanıyor...",
+    "analyzing": "Hareket kalıpları analiz ediliyor...",
+    "generating": "Kişiselleştirilmiş bilgiler oluşturuluyor...",
+    "complete": "Analiz tamamlandı",
+    "trendStable": "Bugünkü hareket kalıbı son kayıtlarınıza benzer görünüyor.",
+    "trendSlower": "Hareket, son zamanki normal kalıbınıza göre biraz daha yavaş görünüyor. Bu genellikle normaldir — aktivite günden güne değişebilir.",
+    "trendFaster": "Bebek son zamanlarda daha aktif görünüyor! Hareket süreleri normalden daha kısa.",
+    "warningLong": "Bu değişiklik devam ederse veya sizi endişelendirirse, sağlık uzmanınızla iletişime geçmeyi düşünün."
   }
 }

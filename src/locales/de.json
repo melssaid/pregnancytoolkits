@@ -6201,7 +6201,9 @@
     "dismiss": "Schließen",
     "dailyLimitMsg": "Sie haben alle {{limit}} täglichen KI-Anfragen verbraucht. Bitte versuchen Sie es morgen erneut.",
     "dailyLimitTitle": "Tageslimit erreicht",
-    "remainingHint": "{{remaining}} von {{limit}} Anfragen heute übrig"
+    "remainingHint": "{{remaining}} von {{limit}} Anfragen heute übrig",
+    "monthlyLimitMsg": "Sie haben alle {{limit}} monatlichen KI-Anfragen verbraucht. Ihr Kontingent wird nächsten Monat erneuert.",
+    "monthlyLimitTitle": "Monatslimit erreicht"
   },
   "aiUsage": {
     "remaining": "{{remaining}}/{{limit}} Anfragen heute übrig",
@@ -8115,5 +8117,24 @@
       "title": "Gespeicherte Tipps",
       "week": "Woche {{week}}"
     }
+  },
+  "kickAnalysis": {
+    "title": "Bewegung analysieren",
+    "minSessions": "Zeichnen Sie mindestens 3 Sitzungen auf, um die Bewegungsanalyse freizuschalten",
+    "sessionCount": "{{count}} Sitzungen aufgezeichnet",
+    "quickCheck": "Schnellcheck",
+    "quickSummary": "Kurzzusammenfassung",
+    "deepAnalysis": "Tiefe KI-Analyse",
+    "basedOn": "Basierend auf {{count}} Sitzungen",
+    "reAnalyze": "Erneut analysieren",
+    "ready": "Bereit zur Analyse",
+    "collecting": "Sitzungsdaten werden erfasst...",
+    "analyzing": "Bewegungsmuster werden analysiert...",
+    "generating": "Personalisierte Einblicke werden erstellt...",
+    "complete": "Analyse abgeschlossen",
+    "trendStable": "Das heutige Bewegungsmuster sieht ähnlich aus wie Ihre letzten Aufzeichnungen.",
+    "trendSlower": "Die Bewegung scheint etwas langsamer als Ihr übliches Muster. Das ist oft normal — die Aktivität kann von Tag zu Tag variieren.",
+    "trendFaster": "Baby scheint in letzter Zeit aktiver zu sein! Die Bewegungszeiten sind kürzer als üblich.",
+    "warningLong": "Wenn diese Veränderung anhält oder Sie beunruhigt, ziehen Sie in Betracht, Ihren Gesundheitsdienstleister zu kontaktieren."
   }
 }

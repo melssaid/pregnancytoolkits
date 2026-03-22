@@ -6226,7 +6226,9 @@
     "dismiss": "Fermer",
     "dailyLimitMsg": "Vous avez utilisé vos {{limit}} requêtes IA quotidiennes. Réessayez demain.",
     "dailyLimitTitle": "Limite quotidienne atteinte",
-    "remainingHint": "{{remaining}} sur {{limit}} requêtes restantes aujourd'hui"
+    "remainingHint": "{{remaining}} sur {{limit}} requêtes restantes aujourd'hui",
+    "monthlyLimitMsg": "Vous avez utilisé vos {{limit}} requêtes IA mensuelles. Votre quota se renouvelle le mois prochain.",
+    "monthlyLimitTitle": "Limite mensuelle atteinte"
   },
   "aiUsage": {
     "remaining": "{{remaining}}/{{limit}} requêtes restantes aujourd'hui",
@@ -8140,5 +8142,24 @@
       "title": "Conseils sauvegardés",
       "week": "Semaine {{week}}"
     }
+  },
+  "kickAnalysis": {
+    "title": "Analyser les mouvements",
+    "minSessions": "Enregistrez au moins 3 séances pour débloquer l'analyse des mouvements",
+    "sessionCount": "{{count}} séances enregistrées",
+    "quickCheck": "Vérification rapide",
+    "quickSummary": "Résumé rapide",
+    "deepAnalysis": "Analyse IA approfondie",
+    "basedOn": "Basé sur {{count}} séances",
+    "reAnalyze": "Ré-analyser",
+    "ready": "Prêt à analyser",
+    "collecting": "Collecte des données de séance...",
+    "analyzing": "Analyse des schémas de mouvement...",
+    "generating": "Génération d'informations personnalisées...",
+    "complete": "Analyse terminée",
+    "trendStable": "Le schéma de mouvement d'aujourd'hui semble similaire à vos enregistrements récents.",
+    "trendSlower": "Les mouvements semblent légèrement plus lents que votre schéma habituel récent. C'est souvent normal — l'activité peut varier d'un jour à l'autre.",
+    "trendFaster": "Bébé semble plus actif récemment ! Les temps de mouvement sont plus courts que d'habitude.",
+    "warningLong": "Si ce changement persiste ou vous inquiète, envisagez de contacter votre professionnel de santé."
   }
 }
