@@ -15,6 +15,7 @@ import { useToast } from '@/hooks/use-toast';
 import { BumpPhotoService } from '@/services/localStorageServices';
 import { useUserProfile } from '@/hooks/useUserProfile';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
+import { useAIUsage } from '@/contexts/AIUsageContext';
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { PrintableReport } from '@/components/PrintableReport';
