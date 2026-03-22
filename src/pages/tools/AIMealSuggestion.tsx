@@ -15,7 +15,6 @@ import {
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import {
   Select,
   SelectContent,
@@ -26,10 +25,8 @@ import {
 import { Checkbox } from "@/components/ui/checkbox";
 import { ToolFrame } from "@/components/ToolFrame";
 import { MedicalDisclaimer } from "@/components/compliance";
-import { usePregnancyAI } from "@/hooks/usePregnancyAI";
+import { useSmartInsight } from "@/hooks/useSmartInsight";
 import { AIActionButton } from '@/components/ai/AIActionButton';
-import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
-import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { AILoadingDots } from "@/components/ai/AILoadingDots";
 import { VideoLibrary } from "@/components/VideoLibrary";
 import { nutritionVideosByLang } from "@/data/videoData";
@@ -44,10 +41,9 @@ const PREP_TIME_IDS = ["quick", "medium", "elaborate"] as const;
 
 export default function AIMealSuggestion() {
   const { t } = useTranslation();
-  const { streamChat, isLoading, error } = usePregnancyAI();
-
-  useResetOnLanguageChange(() => {
-    setSuggestion('');
+  const { generate, isLoading, content, error, reset } = useSmartInsight({
+    section: 'nutrition',
+    toolType: 'meal-suggestion',
   });
 
   const [showDisclaimer, setShowDisclaimer] = useState(true);
@@ -57,7 +53,6 @@ export default function AIMealSuggestion() {
   const [selectedCraving, setSelectedCraving] = useState<string>("");
   const [allergies, setAllergies] = useState<string[]>([]);
   const [prepTime, setPrepTime] = useState<string>("medium");
-  const [suggestion, setSuggestion] = useState<string>("");
 
   const togglePreference = (id: string) => {
     setPreferences((prev) =>
@@ -72,8 +67,6 @@ export default function AIMealSuggestion() {
   };
 
   const getSuggestion = async () => {
-    setSuggestion("");
-
     const mealLabel = t(`toolsInternal.mealSuggestion.mealTypes.${mealType}`);
     const prefsText = preferences
       .map((id) => t(`toolsInternal.mealSuggestion.preferences.${id}`))
@@ -98,12 +91,9 @@ ${allergyText ? `**Allergies/Intolerances:** ${allergyText}. Please avoid these 
 
 Provide an easy recipe with ingredients, preparation steps, and nutritional values.`;
 
-    await streamChat({
-      type: "meal-suggestion",
-      messages: [{ role: "user", content: prompt }],
+    await generate({
+      prompt,
       context: { trimester: parseInt(trimester) },
-      onDelta: (chunk) => setSuggestion((prev) => prev + chunk),
-      onDone: () => {},
     });
   };
 
@@ -125,7 +115,7 @@ Provide an easy recipe with ingredients, preparation steps, and nutritional valu
     >
       <ToolHubNav tabs={NUTRITION_HUB_TABS} />
       <div className="space-y-3">
-        {!suggestion ? (
+        {!content ? (
           <>
             {/* Trimester & Meal Type */}
             <div className="grid grid-cols-2 gap-2">
@@ -281,7 +271,7 @@ Provide an easy recipe with ingredients, preparation steps, and nutritional valu
             {/* Suggestion Result */}
             <PrintableReport title={t("toolsInternal.mealSuggestion.mealSuggestion")} isLoading={isLoading}>
               <AIResponseFrame
-                content={suggestion}
+                content={content}
                 isLoading={isLoading}
                 title={t("toolsInternal.mealSuggestion.mealSuggestion")}
                 subtitle={t(`toolsInternal.mealSuggestion.mealTypes.${mealType}`)}
@@ -293,7 +283,7 @@ Provide an easy recipe with ingredients, preparation steps, and nutritional valu
             {/* Actions */}
             <div className="flex gap-2">
               <Button
-                onClick={() => setSuggestion("")}
+                onClick={reset}
                 variant="outline"
                 className="flex-1 rounded-xl text-xs h-9 gap-1.5"
               >
