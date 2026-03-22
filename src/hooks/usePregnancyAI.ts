@@ -1,19 +1,18 @@
+/**
+ * usePregnancyAI — Legacy-compatible wrapper
+ * NOW routes ALL calls through the unified Smart Engine.
+ * This gives all ~29 tool pages automatic quota, caching, and consistency.
+ */
+
 import { useState, useCallback, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { useAIUsageLimit } from "./useAIUsageLimit";
-import { supabase } from "@/integrations/supabase/client";
-
-const STORAGE_KEY = 'ai_monthly_usage';
-function isAdminBypass(): boolean {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) {
-      const parsed = JSON.parse(raw);
-      return parsed.adminBypass === true;
-    }
-  } catch {}
-  return false;
-}
+import { useAIUsage } from "@/contexts/AIUsageContext";
+import {
+  executeSmartRequest,
+  type SmartSection,
+  type AIToolType,
+  type SmartError,
+} from "@/services/smartEngine";
 
 // Must match all types accepted by the edge function
 type AIType =
@@ -42,9 +41,56 @@ interface AIContext {
   preferences?: string[];
   walkMinutes?: number;
   weight?: number;
-  contractionData?: any;
-  sleepData?: any;
+  contractionData?: unknown;
+  sleepData?: unknown;
   language?: string;
+  [key: string]: unknown;
+}
+
+// ── AIType → SmartSection mapping ──
+const AITYPE_TO_SECTION: Record<string, SmartSection> = {
+  'symptom-analysis': 'symptoms',
+  'meal-suggestion': 'nutrition',
+  'pregnancy-assistant': 'pregnancy-plan',
+  'weekly-summary': 'pregnancy-plan',
+  'kick-analysis': 'kick-analysis',
+  'weight-analysis': 'weight',
+  'contraction-analysis': 'safety',
+  'sleep-analysis': 'sleep',
+  'vitamin-advice': 'medications',
+  'postpartum-recovery': 'postpartum',
+  'mental-health': 'mental-wellbeing',
+  'back-pain-relief': 'movement',
+  'appointment-prep': 'appointments',
+  'bump-photos': 'ultrasound',
+  'baby-cry-analysis': 'postpartum',
+  'birth-plan': 'pregnancy-plan',
+  'baby-growth-analysis': 'pregnancy-plan',
+  'pregnancy-plan': 'pregnancy-plan',
+  'posture-coach': 'movement',
+  'walking-coach': 'movement',
+  'stretch-reminder': 'movement',
+  'leg-cramp-preventer': 'movement',
+  'smoothie-generator': 'nutrition',
+  'daily-tips': 'pregnancy-plan',
+  'labor-tracker': 'safety',
+  'hospital-bag': 'pregnancy-plan',
+  'birth-position': 'pregnancy-plan',
+  'partner-guide': 'pregnancy-plan',
+  'lactation-prep': 'postpartum',
+  'nausea-relief': 'symptoms',
+  'skincare-advice': 'symptoms',
+};
+
+function mapErrorType(smartErr: SmartError['type']): AIErrorType {
+  switch (smartErr) {
+    case 'quota_exhausted': return 'rate_limit';
+    case 'rate_limit': return 'rate_limit';
+    case 'payment': return 'payment';
+    case 'network': return 'network';
+    case 'auth': return 'auth';
+    default: return 'unknown';
+  }
 }
 
 export function usePregnancyAI() {
@@ -52,53 +98,10 @@ export function usePregnancyAI() {
   const [error, setError] = useState<string | null>(null);
   const [errorType, setErrorType] = useState<AIErrorType | null>(null);
   const { i18n, t } = useTranslation();
-  const { isLimitReached, remaining, incrementUsage, syncFromServer, syncLimit, limit, tier } = useAIUsageLimit();
+  const { remaining, limit, tier, refresh } = useAIUsage();
 
   const languageRef = useRef(i18n.language);
   languageRef.current = i18n.language;
-
-  // Use refs to avoid stale closures in streamChat callback
-  const isLimitReachedRef = useRef(isLimitReached);
-  const limitRef = useRef(limit);
-  useEffect(() => { isLimitReachedRef.current = isLimitReached; }, [isLimitReached]);
-  useEffect(() => { limitRef.current = limit; }, [limit]);
-
-  const resolveError = useCallback((status?: number, rawMsg?: string): { msg: string; type: AIErrorType } => {
-    if (status === 429) return { msg: t('aiErrors.rateLimitMsg'), type: 'rate_limit' };
-    if (status === 402) return { msg: t('aiErrors.paymentMsg'), type: 'payment' };
-    if (status === 401) return { msg: t('aiErrors.networkMsg'), type: 'auth' };
-    const lower = rawMsg?.toLowerCase() || '';
-    if (lower.includes('fetch') || lower.includes('network') || lower.includes('connect') || lower.includes('failed')) {
-      return { msg: t('aiErrors.networkMsg'), type: 'network' };
-    }
-    if (lower.includes('auth')) {
-      return { msg: t('aiErrors.networkMsg'), type: 'auth' };
-    }
-    return { msg: t('aiErrors.unknownMsg'), type: 'unknown' };
-  }, [t]);
-
-  /**
-   * Get the best available authorization token.
-   * Priority: session access_token > anon key (fallback)
-   */
-  const getAuthHeader = useCallback(async (): Promise<string> => {
-    try {
-      // Try existing session
-      const { data: { session } } = await supabase.auth.getSession();
-      if (session?.access_token) return `Bearer ${session.access_token}`;
-
-      // Try anonymous sign-in
-      const { data, error: authError } = await supabase.auth.signInAnonymously();
-      if (!authError && data.session?.access_token) {
-        return `Bearer ${data.session.access_token}`;
-      }
-    } catch {
-      // Auth failed — fall through to anon key
-    }
-
-    // Fallback: use anon key (edge function has verify_jwt=false so this works)
-    return `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`;
-  }, []);
 
   const streamChat = useCallback(
     async ({
@@ -114,132 +117,55 @@ export function usePregnancyAI() {
       onDelta: (text: string) => void;
       onDone: () => void;
     }) => {
-      // Check daily limit using ref for fresh value
-      if (isLimitReachedRef.current) {
-        const limitMsg = t('aiErrors.dailyLimitMsg', { limit: limitRef.current, remaining: 0 });
-        setError(limitMsg);
-        setErrorType('rate_limit');
-        onDone();
-        return;
-      }
-
       setIsLoading(true);
       setError(null);
       setErrorType(null);
 
-      const currentLang = languageRef.current?.split('-')[0] || 'en';
-      const contextWithLanguage = {
-        ...context,
-        language: context?.language || currentLang,
-      };
+      const section: SmartSection = AITYPE_TO_SECTION[type] || 'pregnancy-plan';
+      const lang = languageRef.current?.split('-')[0] || 'en';
 
-      try {
-        const authHeader = await getAuthHeader();
-
-        const headers: Record<string, string> = {
-          "Content-Type": "application/json",
-          Authorization: authHeader,
-        };
-        if (isAdminBypass()) {
-          headers["X-Admin-Bypass"] = "true";
-        }
-
-        const response = await fetch(
-          `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/pregnancy-ai-perplexity`,
-          {
-            method: "POST",
-            headers,
-            body: JSON.stringify({ type, messages, context: contextWithLanguage }),
-          }
-        );
-
-        // Sync server-reported usage from headers
-        const serverUsed = response.headers.get("X-Daily-Used");
-        if (serverUsed) syncFromServer(parseInt(serverUsed, 10));
-        const serverLimit = response.headers.get("X-Daily-Limit");
-        const serverTier = response.headers.get("X-Subscription-Tier");
-        if (serverLimit) syncLimit(parseInt(serverLimit, 10), serverTier === 'premium' ? 'premium' : 'free');
-
-        if (!response.ok) {
-          // Read server error for better diagnostics
-          let serverMsg: string | undefined;
-          let isDailyLimit = false;
-          try {
-            const errBody = await response.json();
-            serverMsg = errBody?.error;
-            isDailyLimit = serverMsg === "daily_limit_reached";
-          } catch { /* ignore */ }
-
-          // Server-enforced daily limit
-          if (isDailyLimit) {
-            const limitMsg = t('aiErrors.dailyLimitMsg', { limit, remaining: 0 });
-            setError(limitMsg);
-            setErrorType('rate_limit');
-            onDone();
-            return;
-          }
-
-          // On 401, try refresh + retry once
-          if (response.status === 401) {
-            try {
-              const { data: { session } } = await supabase.auth.refreshSession();
-              if (session?.access_token) {
-                const retryResp = await fetch(
-                  `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/pregnancy-ai-perplexity`,
-                  {
-                    method: "POST",
-                    headers: {
-                      "Content-Type": "application/json",
-                      Authorization: `Bearer ${session.access_token}`,
-                      ...(isAdminBypass() ? { "X-Admin-Bypass": "true" } : {}),
-                    },
-                    body: JSON.stringify({ type, messages, context: contextWithLanguage }),
-                  }
-                );
-                if (retryResp.ok && retryResp.body) {
-                  const retryUsed = retryResp.headers.get("X-Daily-Used");
-                  if (retryUsed) syncFromServer(parseInt(retryUsed, 10));
-                  const retryLimit = retryResp.headers.get("X-Daily-Limit");
-                  const retryTier = retryResp.headers.get("X-Subscription-Tier");
-                  if (retryLimit) syncLimit(parseInt(retryLimit, 10), retryTier === 'premium' ? 'premium' : 'free');
-                  await processStream(retryResp.body, onDelta);
-                  incrementUsage();
-                  onDone();
-                  return;
-                }
-              }
-            } catch { /* retry failed */ }
-          }
-
-          const { msg, type: errType } = resolveError(response.status, serverMsg);
-          setError(msg);
-          setErrorType(errType);
+      await executeSmartRequest({
+        request: {
+          section,
+          toolType: type as AIToolType,
+          weight: 1,
+          messages: messages.map(m => ({
+            role: m.role,
+            content: m.content as string | { type: "text" | "image_url"; text?: string; image_url?: { url: string } }[],
+          })),
+          context: { ...context, language: lang },
+        },
+        onDelta,
+        onDone: () => {
+          setIsLoading(false);
+          // Refresh AIUsageContext to pick up quota consumed by smartEngine
+          refresh();
           onDone();
-          return;
-        }
+        },
+        onError: (err: SmartError) => {
+          setIsLoading(false);
+          const mappedType = mapErrorType(err.type);
+          setErrorType(mappedType);
 
-        if (!response.body) {
-          setError(t('aiErrors.networkMsg'));
-          setErrorType('network');
+          if (err.type === 'quota_exhausted') {
+            setError(t('aiErrors.monthlyLimitMsg', { limit, remaining: 0 }));
+          } else if (err.type === 'rate_limit') {
+            setError(t('aiErrors.rateLimitMsg'));
+          } else if (err.type === 'payment') {
+            setError(t('aiErrors.paymentMsg'));
+          } else if (err.type === 'network' || err.type === 'auth') {
+            setError(t('aiErrors.networkMsg'));
+          } else {
+            setError(t('aiErrors.unknownMsg'));
+          }
+
+          // Refresh context in case server sync happened inside engine
+          refresh();
           onDone();
-          return;
-        }
-
-        await processStream(response.body, onDelta);
-        incrementUsage();
-        onDone();
-      } catch (err) {
-        console.error("[AI] streamChat error:", err);
-        const raw = err instanceof Error ? err.message : String(err);
-        const { msg, type: errType } = resolveError(undefined, raw);
-        setError(msg);
-        setErrorType(errType);
-        onDone();
-      } finally {
-        setIsLoading(false);
-      }
+        },
+      });
     },
-    [resolveError, incrementUsage, syncFromServer, syncLimit, t, getAuthHeader]
+    [t, limit, refresh]
   );
 
   const generateContent = useCallback(
@@ -260,14 +186,13 @@ export function usePregnancyAI() {
         });
         return result || null;
       } catch (err) {
-        const raw = err instanceof Error ? err.message : "";
-        const { msg, type: errType } = resolveError(undefined, raw);
-        setError(msg);
-        setErrorType(errType);
+        const msg = err instanceof Error ? err.message : "";
+        setError(msg || t('aiErrors.unknownMsg'));
+        setErrorType('unknown');
         return null;
       }
     },
-    [streamChat, resolveError]
+    [streamChat, t]
   );
 
   const clearError = useCallback(() => {
@@ -276,43 +201,4 @@ export function usePregnancyAI() {
   }, []);
 
   return { streamChat, generateContent, isLoading, error, errorType, clearError, aiRemaining: remaining, aiLimit: limit, aiTier: tier };
-}
-
-/** Parse SSE stream and emit deltas */
-async function processStream(
-  body: ReadableStream<Uint8Array>,
-  onDelta: (text: string) => void,
-) {
-  const reader = body.getReader();
-  const decoder = new TextDecoder();
-  let buffer = "";
-
-  while (true) {
-    const { done, value } = await reader.read();
-    if (done) break;
-
-    buffer += decoder.decode(value, { stream: true });
-
-    let newlineIndex: number;
-    while ((newlineIndex = buffer.indexOf("\n")) !== -1) {
-      let line = buffer.slice(0, newlineIndex);
-      buffer = buffer.slice(newlineIndex + 1);
-
-      if (line.endsWith("\r")) line = line.slice(0, -1);
-      if (line.startsWith(":") || line.trim() === "") continue;
-      if (!line.startsWith("data: ")) continue;
-
-      const jsonStr = line.slice(6).trim();
-      if (jsonStr === "[DONE]") return;
-
-      try {
-        const parsed = JSON.parse(jsonStr);
-        const content = parsed.choices?.[0]?.delta?.content;
-        if (content) onDelta(content);
-      } catch {
-        buffer = line + "\n" + buffer;
-        break;
-      }
-    }
-  }
 }

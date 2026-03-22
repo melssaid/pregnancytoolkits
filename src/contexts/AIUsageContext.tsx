@@ -1,26 +1,20 @@
 /**
  * Global AI Usage Context
- * Single source of truth for daily AI usage across all components.
- * Server headers are the authority; localStorage is optimistic cache.
- * Admin reset sets a session bypass that prevents server re-sync.
+ * Single source of truth — delegates to quotaManager for all storage.
+ * No more dual localStorage keys; everything goes through smart_quota_v2.
  */
 
 import { createContext, useContext, useState, useCallback, useEffect, useRef, type ReactNode } from 'react';
-
-const STORAGE_KEY = 'ai_monthly_usage';
-const FREE_LIMIT = 5;
-const PREMIUM_LIMIT = 40;
-const ADMIN_BYPASS_LIMIT = 999;
+import {
+  getQuotaState,
+  consumeQuota,
+  syncFromServer as qmSyncFromServer,
+  setTier as qmSetTier,
+  resetQuota as qmResetQuota,
+  type QuotaState,
+} from '@/services/smartEngine';
 
 export type SubscriptionTier = 'free' | 'premium';
-
-interface UsageData {
-  monthKey: string;
-  count: number;
-  limit: number;
-  tier: SubscriptionTier;
-  adminBypass?: boolean;
-}
 
 interface AIUsageContextValue {
   remaining: number;
@@ -29,102 +23,79 @@ interface AIUsageContextValue {
   tier: SubscriptionTier;
   isLimitReached: boolean;
   isNearLimit: boolean;
+  /** @deprecated Quota is now consumed automatically by the smart engine. Only use for legacy edge cases. */
   incrementUsage: () => void;
   syncFromServer: (serverUsed: number) => void;
   syncLimit: (newLimit: number, newTier?: SubscriptionTier) => void;
   resetUsage: () => void;
+  /** Force re-read from quotaManager (e.g. after engine consumed quota) */
+  refresh: () => void;
 }
 
-function getMonthKey(): string {
-  const now = new Date();
-  return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
-}
-
-function getLocalUsage(): UsageData {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) {
-      const parsed = JSON.parse(raw) as UsageData;
-      if (parsed.monthKey === getMonthKey()) {
-        if (parsed.limit !== FREE_LIMIT && parsed.limit !== PREMIUM_LIMIT && parsed.limit !== ADMIN_BYPASS_LIMIT) {
-          parsed.limit = parsed.tier === 'premium' ? PREMIUM_LIMIT : FREE_LIMIT;
-        }
-        return parsed;
-      }
-    }
-  } catch {}
-  return { monthKey: getMonthKey(), count: 0, limit: FREE_LIMIT, tier: 'free', adminBypass: false };
-}
-
-function setLocalUsage(data: Partial<UsageData>): void {
-  const current = getLocalUsage();
-  localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...current, ...data, monthKey: getMonthKey() }));
+function readState(): QuotaState {
+  return getQuotaState();
 }
 
 const AIUsageContext = createContext<AIUsageContextValue | null>(null);
 
 export function AIUsageProvider({ children }: { children: ReactNode }) {
-  const local = getLocalUsage();
-  const [count, setCount] = useState(local.count);
-  const [limit, setLimit] = useState(local.adminBypass ? ADMIN_BYPASS_LIMIT : (local.limit || FREE_LIMIT));
-  const [tier, setTier] = useState<SubscriptionTier>(local.tier || 'free');
-  const adminBypassRef = useRef(local.adminBypass || false);
+  const [state, setState] = useState<QuotaState>(readState);
+
+  // Refresh on mount and periodically when tab gains focus
+  const refresh = useCallback(() => setState(readState()), []);
 
   useEffect(() => {
-    const stored = getLocalUsage();
-    setCount(stored.count);
-    adminBypassRef.current = stored.adminBypass || false;
-    setLimit(stored.adminBypass ? ADMIN_BYPASS_LIMIT : (stored.limit || FREE_LIMIT));
-    setTier(stored.tier || 'free');
-  }, []);
+    // Listen for storage changes from other tabs or from smartEngine writes
+    const onStorage = (e: StorageEvent) => {
+      if (e.key?.includes('smart_quota') || e.key?.includes('smart_admin')) refresh();
+    };
+    window.addEventListener('storage', onStorage);
+    window.addEventListener('focus', refresh);
+    return () => {
+      window.removeEventListener('storage', onStorage);
+      window.removeEventListener('focus', refresh);
+    };
+  }, [refresh]);
 
-  const remaining = Math.max(0, limit - count);
-  const isLimitReached = count >= limit;
-  const isNearLimit = remaining <= 2 && remaining > 0;
+  // Poll after any action to keep UI in sync
+  const afterAction = useCallback(() => {
+    // Use setTimeout to let localStorage settle
+    setTimeout(() => setState(readState()), 0);
+  }, []);
 
   const incrementUsage = useCallback(() => {
-    setCount(prev => {
-      const newCount = prev + 1;
-      setLocalUsage({ count: newCount });
-      return newCount;
-    });
-  }, []);
+    consumeQuota(1);
+    afterAction();
+  }, [afterAction]);
 
   const syncFromServer = useCallback((serverUsed: number) => {
-    // Skip server sync if admin bypass is active
-    if (adminBypassRef.current) return;
-    setCount(serverUsed);
-    setLocalUsage({ count: serverUsed });
-  }, []);
+    qmSyncFromServer(serverUsed);
+    afterAction();
+  }, [afterAction]);
 
   const syncLimit = useCallback((newLimit: number, newTier?: SubscriptionTier) => {
-    // Skip server sync if admin bypass is active
-    if (adminBypassRef.current) return;
-    setLimit(newLimit);
-    if (newTier) setTier(newTier);
-    setLocalUsage({ limit: newLimit, tier: newTier || 'free' });
-  }, []);
+    if (newTier) qmSetTier(newTier);
+    afterAction();
+  }, [afterAction]);
 
   const resetUsage = useCallback(() => {
-    adminBypassRef.current = true;
-    setCount(0);
-    setLimit(ADMIN_BYPASS_LIMIT);
-    setTier('premium');
-    setLocalUsage({ count: 0, limit: ADMIN_BYPASS_LIMIT, tier: 'premium', adminBypass: true });
-  }, []);
+    qmResetQuota();
+    afterAction();
+  }, [afterAction]);
 
   return (
     <AIUsageContext.Provider value={{
-      remaining,
-      used: count,
-      limit,
-      tier,
-      isLimitReached,
-      isNearLimit,
+      remaining: state.remaining,
+      used: state.used,
+      limit: state.limit,
+      tier: state.tier,
+      isLimitReached: state.isExhausted,
+      isNearLimit: state.isNearLimit,
       incrementUsage,
       syncFromServer,
       syncLimit,
       resetUsage,
+      refresh,
     }}>
       {children}
     </AIUsageContext.Provider>
@@ -134,20 +105,20 @@ export function AIUsageProvider({ children }: { children: ReactNode }) {
 export function useAIUsage(): AIUsageContextValue {
   const ctx = useContext(AIUsageContext);
   if (!ctx) {
-    const local = getLocalUsage();
-    const lim = local.adminBypass ? ADMIN_BYPASS_LIMIT : (local.limit || FREE_LIMIT);
-    const remaining = Math.max(0, lim - local.count);
+    // Fallback for usage outside provider
+    const s = readState();
     return {
-      remaining,
-      used: local.count,
-      limit: lim,
-      tier: local.tier || 'free',
-      isLimitReached: local.count >= lim,
-      isNearLimit: remaining <= 2 && remaining > 0,
+      remaining: s.remaining,
+      used: s.used,
+      limit: s.limit,
+      tier: s.tier,
+      isLimitReached: s.isExhausted,
+      isNearLimit: s.isNearLimit,
       incrementUsage: () => {},
       syncFromServer: () => {},
       syncLimit: () => {},
       resetUsage: () => {},
+      refresh: () => {},
     };
   }
   return ctx;
