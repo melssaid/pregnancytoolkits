@@ -7,15 +7,15 @@
 
 import { createContext, useContext, useState, useCallback, useEffect, useRef, type ReactNode } from 'react';
 
-const STORAGE_KEY = 'ai_daily_usage';
-const FREE_LIMIT = 10;
-const PREMIUM_LIMIT = 30;
+const STORAGE_KEY = 'ai_monthly_usage';
+const FREE_LIMIT = 5;
+const PREMIUM_LIMIT = 40;
 const ADMIN_BYPASS_LIMIT = 999;
 
 export type SubscriptionTier = 'free' | 'premium';
 
 interface UsageData {
-  date: string;
+  monthKey: string;
   count: number;
   limit: number;
   tier: SubscriptionTier;
@@ -35,8 +35,9 @@ interface AIUsageContextValue {
   resetUsage: () => void;
 }
 
-function getTodayKey(): string {
-  return new Date().toISOString().split('T')[0];
+function getMonthKey(): string {
+  const now = new Date();
+  return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
 }
 
 function getLocalUsage(): UsageData {
@@ -44,7 +45,7 @@ function getLocalUsage(): UsageData {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) {
       const parsed = JSON.parse(raw) as UsageData;
-      if (parsed.date === getTodayKey()) {
+      if (parsed.monthKey === getMonthKey()) {
         if (parsed.limit !== FREE_LIMIT && parsed.limit !== PREMIUM_LIMIT && parsed.limit !== ADMIN_BYPASS_LIMIT) {
           parsed.limit = parsed.tier === 'premium' ? PREMIUM_LIMIT : FREE_LIMIT;
         }
@@ -52,12 +53,12 @@ function getLocalUsage(): UsageData {
       }
     }
   } catch {}
-  return { date: getTodayKey(), count: 0, limit: FREE_LIMIT, tier: 'free', adminBypass: false };
+  return { monthKey: getMonthKey(), count: 0, limit: FREE_LIMIT, tier: 'free', adminBypass: false };
 }
 
 function setLocalUsage(data: Partial<UsageData>): void {
   const current = getLocalUsage();
-  localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...current, ...data, date: getTodayKey() }));
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...current, ...data, monthKey: getMonthKey() }));
 }
 
 const AIUsageContext = createContext<AIUsageContextValue | null>(null);

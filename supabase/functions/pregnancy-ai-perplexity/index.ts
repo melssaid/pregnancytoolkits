@@ -47,9 +47,9 @@ const VALID_TYPES: AIType[] = [
 const MAX_MESSAGES = 20;
 const MAX_CONTENT_LENGTH = 10000;
 
-// ── Daily usage limits by tier ──
-const FREE_DAILY_LIMIT = 10;
-const PREMIUM_DAILY_LIMIT = 30;
+// ── Monthly usage limits by tier ──
+const FREE_MONTHLY_LIMIT = 5;
+const PREMIUM_MONTHLY_LIMIT = 40;
 
 // ── Rate limiting (per-minute burst protection) ──
 const RATE_LIMIT_WINDOW_MS = 60_000;
@@ -68,8 +68,8 @@ function checkRateLimit(id: string): boolean {
   return true;
 }
 
-// ── Server-side daily usage check ──
-async function getDailyUsageCount(clientId: string, userId: string | null): Promise<number> {
+// ── Server-side monthly usage check ──
+async function getMonthlyUsageCount(clientId: string, userId: string | null): Promise<number> {
   try {
     const { createClient } = await import("https://esm.sh/@supabase/supabase-js@2");
     const adminClient = createClient(
@@ -77,9 +77,10 @@ async function getDailyUsageCount(clientId: string, userId: string | null): Prom
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "",
     );
     
-    // Get today's start in UTC
-    const todayStart = new Date();
-    todayStart.setUTCHours(0, 0, 0, 0);
+    // Get first day of current month in UTC
+    const monthStart = new Date();
+    monthStart.setUTCDate(1);
+    monthStart.setUTCHours(0, 0, 0, 0);
     
     // Query by user_id first, fallback to client_id
     const filterCol = userId ? "user_id" : "client_id";
@@ -90,16 +91,16 @@ async function getDailyUsageCount(clientId: string, userId: string | null): Prom
       .select("*", { count: "exact", head: true })
       .eq(filterCol, filterVal)
       .eq("success", true)
-      .gte("created_at", todayStart.toISOString());
+      .gte("created_at", monthStart.toISOString());
     
     if (error) {
-      console.error("[AI] daily usage check error:", error.message);
+      console.error("[AI] monthly usage check error:", error.message);
       return 0; // Fail open — don't block on DB errors
     }
     
     return count || 0;
   } catch (e) {
-    console.error("[AI] daily usage check failed:", String(e).substring(0, 100));
+    console.error("[AI] monthly usage check failed:", String(e).substring(0, 100));
     return 0; // Fail open
   }
 }
@@ -724,26 +725,26 @@ Deno.serve(async (req) => {
       }
     }
 
-    const DAILY_LIMIT = isPremium ? PREMIUM_DAILY_LIMIT : FREE_DAILY_LIMIT;
+    const MONTHLY_LIMIT = isPremium ? PREMIUM_MONTHLY_LIMIT : FREE_MONTHLY_LIMIT;
 
     // ── Admin bypass check (dev/testing only) ──
     const adminBypass = req.headers.get("X-Admin-Bypass") === "true";
 
     // ── Server-side daily limit check ──
     const userId = authenticatedUserId;
-    const dailyUsed = await getDailyUsageCount(rateLimitId, userId);
-    const dailyRemaining = Math.max(0, DAILY_LIMIT - dailyUsed);
+    const monthlyUsed = await getMonthlyUsageCount(rateLimitId, userId);
+    const monthlyRemaining = Math.max(0, MONTHLY_LIMIT - monthlyUsed);
     
-    if (dailyUsed >= DAILY_LIMIT && !adminBypass) {
+    if (monthlyUsed >= MONTHLY_LIMIT && !adminBypass) {
       return new Response(
-        JSON.stringify({ error: "daily_limit_reached", used: dailyUsed, limit: DAILY_LIMIT, remaining: 0 }),
+        JSON.stringify({ error: "daily_limit_reached", used: monthlyUsed, limit: MONTHLY_LIMIT, remaining: 0 }),
         {
           status: 429,
           headers: {
             ...corsHeaders,
             "Content-Type": "application/json",
-            "X-Daily-Limit": String(DAILY_LIMIT),
-            "X-Daily-Used": String(dailyUsed),
+            "X-Daily-Limit": String(MONTHLY_LIMIT),
+            "X-Daily-Used": String(monthlyUsed),
             "X-Daily-Remaining": "0",
             "X-Subscription-Tier": subscriptionTier,
           },
@@ -776,7 +777,7 @@ Deno.serve(async (req) => {
     const systemPrompt = buildSystemPrompt(type, context, lang);
     const tuning = MODEL_TUNING[type];
 
-    console.log(`[AI] type=${type} lang=${lang} tier=${subscriptionTier} used=${dailyUsed}/${DAILY_LIMIT} temp=${tuning.temperature}`);
+    console.log(`[AI] type=${type} lang=${lang} tier=${subscriptionTier} used=${monthlyUsed}/${MONTHLY_LIMIT} temp=${tuning.temperature}`);
 
     // ── Call Lovable AI (Gemini) ──
     const MAX_RETRIES = 2;
@@ -784,9 +785,9 @@ Deno.serve(async (req) => {
 
     // Usage headers to include in successful responses
     const usageHeaders = {
-      "X-Daily-Limit": String(DAILY_LIMIT),
-      "X-Daily-Used": String(dailyUsed + 1),
-      "X-Daily-Remaining": String(Math.max(0, dailyRemaining - 1)),
+      "X-Daily-Limit": String(MONTHLY_LIMIT),
+      "X-Daily-Used": String(monthlyUsed + 1),
+      "X-Daily-Remaining": String(Math.max(0, monthlyRemaining - 1)),
       "X-Subscription-Tier": subscriptionTier,
     };
 
