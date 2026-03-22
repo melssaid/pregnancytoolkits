@@ -10,10 +10,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { ToolFrame } from "@/components/ToolFrame";
 import MedicalDisclaimer from "@/components/compliance/MedicalDisclaimer";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
-import { usePregnancyAI } from "@/hooks/usePregnancyAI";
+import { useSmartInsight } from "@/hooks/useSmartInsight";
 import { useSettings } from "@/hooks/useSettings";
 import { VideoLibrary } from "@/components/VideoLibrary";
-import { useResetOnLanguageChange } from "@/hooks/useResetOnLanguageChange";
 import { partnerVideosByLang } from "@/data/videoData";
 const TOPIC_KEYS = [
   "emotional",
@@ -29,17 +28,12 @@ const TOPIC_KEYS = [
 const AIPartnerGuide = () => {
   const { t, i18n } = useTranslation();
   const { settings } = useSettings();
-  const { streamChat, isLoading } = usePregnancyAI();
+  const { generate, isLoading, content } = useSmartInsight({ section: 'pregnancy-plan', toolType: 'partner-guide' });
   
   const [disclaimerAccepted, setDisclaimerAccepted] = useState(false);
   const [selectedTopic, setSelectedTopic] = useState<string>("");
   const [trimester, setTrimester] = useState<string>("second");
   const [partnerType, setPartnerType] = useState<string>("husband");
-  const [response, setResponse] = useState("");
-
-  useResetOnLanguageChange(() => {
-    setResponse('');
-  });
 
   const currentLang = i18n.language;
 
@@ -71,14 +65,7 @@ Provide compassionate, practical advice including:
 
 Be warm, practical, and specific. Include real examples.`;
 
-    setResponse("");
-    await streamChat({
-      type: "partner-guide",
-      messages: [{ role: "user", content: prompt }],
-      context: { week: Number(settings.pregnancyWeek) || 0 },
-      onDelta: (text) => setResponse((prev) => prev + text),
-      onDone: () => {},
-    });
+    await generate({ prompt, context: { week: Number(settings.pregnancyWeek) || 0 } });
   };
 
   if (!disclaimerAccepted) {
@@ -163,10 +150,10 @@ Be warm, practical, and specific. Include real examples.`;
         </Button>
 
         {/* AI Response */}
-        {response && (
+        {content && (
           <PrintableReport title={t('toolsInternal.partnerGuide.getAdvice')} isLoading={isLoading}>
             <AIResponseFrame
-              content={response}
+              content={content}
               isLoading={isLoading}
               title={t('toolsInternal.partnerGuide.getAdvice')}
               icon={Heart}

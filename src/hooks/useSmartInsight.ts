@@ -110,6 +110,13 @@ export function useSmartInsight({ section, toolType, weight = 1 }: UseSmartInsig
     setErrorType(null);
   }, []);
 
+  const reset = useCallback(() => {
+    setContent("");
+    setError(null);
+    setErrorType(null);
+    setWasCached(false);
+  }, []);
+
   return {
     generate,
     isLoading,
@@ -117,6 +124,7 @@ export function useSmartInsight({ section, toolType, weight = 1 }: UseSmartInsig
     error,
     errorType,
     clearError,
+    reset,
     wasCached,
     canAfford: canAfford(weight),
     quota,

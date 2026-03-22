@@ -12,9 +12,8 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { ToolFrame } from "@/components/ToolFrame";
 import MedicalDisclaimer from "@/components/compliance/MedicalDisclaimer";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
-import { usePregnancyAI } from "@/hooks/usePregnancyAI";
+import { useSmartInsight } from "@/hooks/useSmartInsight";
 import { AIActionButton } from '@/components/ai/AIActionButton';
-import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { useSettings } from "@/hooks/useSettings";
 import { VideoLibrary } from "@/components/VideoLibrary";
 import { nauseaVideosByLang } from "@/data/videoData";
@@ -43,17 +42,12 @@ const quickRemedies = [
 const AINauseaRelief = () => {
   const { t } = useTranslation();
   const { settings } = useSettings();
-  const { streamChat, isLoading } = usePregnancyAI();
+  const { generate, isLoading, content } = useSmartInsight({ section: 'symptoms', toolType: 'nausea-relief' });
 
-  useResetOnLanguageChange(() => {
-    setResponse('');
-  });
-  
   const [disclaimerAccepted, setDisclaimerAccepted] = useState(false);
   const [severity, setSeverity] = useState([5]);
   const [triggers, setTriggers] = useState<string[]>([]);
   const [vomiting, setVomiting] = useState(false);
-  const [response, setResponse] = useState("");
 
   const toggleTrigger = (id: string) => {
     setTriggers(prev =>
@@ -87,14 +81,7 @@ ${severity[0] >= 8 ? "⚠️ Note: Severity is high - include information about 
 
 Be compassionate - morning sickness is exhausting!`;
 
-    setResponse("");
-    await streamChat({
-      type: "nausea-relief",
-      messages: [{ role: "user", content: prompt }],
-      context: { week: Number(settings.pregnancyWeek) || 0 },
-      onDelta: (text) => setResponse((prev) => prev + text),
-      onDone: () => {},
-    });
+    await generate({ prompt, context: { week: Number(settings.pregnancyWeek) || 0 } });
   };
 
   if (!disclaimerAccepted) {
@@ -215,10 +202,10 @@ Be compassionate - morning sickness is exhausting!`;
         />
 
         {/* AI Response */}
-        {response && (
+        {content && (
           <PrintableReport title={t('toolsInternal.nauseaRelief.title')} isLoading={isLoading}>
             <AIResponseFrame
-              content={response}
+              content={content}
               isLoading={isLoading}
               title={t('toolsInternal.nauseaRelief.title')}
               toolId="ai-nausea-relief"
