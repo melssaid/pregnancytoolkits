@@ -70,6 +70,7 @@ const AIBumpPhotos: React.FC = () => {
   const abortRef = useRef(false);
   const { toast } = useToast();
   const { streamChat } = usePregnancyAI();
+  const { isLimitReached } = useAIUsage();
 
   useResetOnLanguageChange(() => { setAiAnalysis(''); });
 
