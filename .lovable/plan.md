@@ -1,43 +1,78 @@
 
 
-## Plan: "Today's Insight" Preview Card + New "Daily Insights" Screen
+## AI Entry Points Audit & Cleanup Plan
 
-### What We're Building
+### Current State — All AI Entry Points Found
 
-1. **A preview card on SmartDashboard** — lightweight "Today's Insight" card showing a short contextual message based on pregnancy week + tracked data, with a "View full insight" CTA navigating to `/daily-insights`
+#### Dashboard (SmartDashboard.tsx) — 3 overlapping AI sections:
+| # | Component | What it does | Verdict |
+|---|-----------|-------------|---------|
+| 1 | `TodaysInsightCard` | Static tip based on week + data, CTA → `/daily-insights` | **KEEP** — clean entry point |
+| 2 | `RecentAIResults` | Shows latest saved AI results from various tools | **KEEP** — useful recap |
+| 3 | `DailyAIInsight` | Another AI card with Brain icon + quick prompt chips → `/tools/pregnancy-assistant` | **REMOVE** — overlaps with TodaysInsightCard, redundant CTA to assistant |
 
-2. **A new `/daily-insights` page** — full intelligent experience with:
-   - Main AI-generated recommendation (contextual to week, symptoms, hydration, etc.)
-   - 2 secondary suggestion cards (nutrition, activity, etc.)
-   - Quick action buttons (track symptoms, log water, view appointments)
-   - Trust/disclaimer section
+#### Tool-Level AI (inside individual tools) — Legitimate, keep all:
+| Component | Used In | Verdict |
+|-----------|---------|---------|
+| `AIActionButton` | 22 tool pages (BackPain, BirthPlan, Skincare, etc.) | **KEEP** — primary analyze CTA per tool |
+| `AIInsightCard` | 11 tools (KickCounter, WeightGain, Contraction, DueDate, etc.) | **KEEP** — unified analysis card |
+| `DiaperAIAnalysis` | DiaperTracker | **KEEP** — specialized but singular |
+| `AIMovementAnalysis` | KickCounter (component exists) | **CHECK** — may overlap with `AIInsightCard` in same page |
 
-### Files to Create
+#### Auto-Loading AI (ToolFrame level):
+| Component | Scope | Verdict |
+|-----------|-------|---------|
+| `ToolInsightTabs` | Auto-loads AI tips for ~15 tools via ToolFrame | **REMOVE** — generates unsolicited AI content, consumes quota silently, overlaps with in-tool `AIInsightCard`/`AIActionButton` |
+| `FertilityDailyTip` | Fertility tools only, static tips (no AI call) | **KEEP** — no AI quota usage, just static i18n tips |
 
-| File | Purpose |
-|------|---------|
-| `src/components/dashboard/TodaysInsightCard.tsx` | Preview card for dashboard — generates a short contextual tip from local data (no AI call), with CTA to `/daily-insights` |
-| `src/pages/DailyInsights.tsx` | Full insights screen with AI-powered main recommendation, secondary suggestions, quick actions, trust section |
+#### Quick Actions referencing AI:
+| Location | Item | Verdict |
+|----------|------|---------|
+| `QuickActionsBar` | "Assistant" button → pregnancy-assistant | **KEEP** — single clean entry |
+| `QuickActions` (home) | "Assistant" pill → pregnancy-assistant | **KEEP** — same pattern |
 
-### Files to Modify
+---
 
-| File | Change |
-|------|--------|
-| `src/pages/SmartDashboard.tsx` | Insert `<TodaysInsightCard />` between Risk Alerts and Daily Priorities (position 2.5) |
-| `src/components/AnimatedRoutes.tsx` | Add lazy import + route for `/daily-insights` |
-| `src/locales/en.json` | Add `dailyInsights.*` keys |
-| `src/locales/ar.json` | Arabic translations |
-| `src/locales/de.json` | German translations |
-| `src/locales/es.json` | Spanish translations |
-| `src/locales/fr.json` | French translations |
-| `src/locales/pt.json` | Portuguese translations |
-| `src/locales/tr.json` | Turkish translations |
+### Cleanup Actions
 
-### Technical Details
+#### 1. Remove `DailyAIInsight` from Dashboard
+- **File**: `src/pages/SmartDashboard.tsx` — remove import and `<DailyAIInsight>` (line 20, 82)
+- **Reason**: `TodaysInsightCard` already serves as the AI entry point on dashboard. Having both is confusing — two cards that say "ask AI" in different styles
 
-**TodaysInsightCard** — Pure client-side logic, no AI call. Uses `useUserProfile` and `useTrackingStats` to pick a contextual tip from a week-based map (e.g., week 28 → hydration focus, week 36 → hospital bag reminder). Renders as a gradient card with Sparkles icon, short text, and a "View full insight →" button.
+#### 2. Remove `ToolInsightTabs` from ToolFrame
+- **File**: `src/components/ToolFrame.tsx` — remove import (line 10) and rendering block (lines 280-283)
+- **Reason**: Auto-fires AI requests when user scrolls, silently consuming quota. Tools already have their own `AIActionButton` or `AIInsightCard` for intentional AI usage
+- **Note**: Don't delete the component file yet — just disconnect it. Can be fully removed in next phase
 
-**DailyInsights page** — Uses `usePregnancyAI` to generate a main recommendation via streaming. Secondary suggestions are derived from local data (upcoming appointments, vitamin status, symptom trends). Quick actions link to existing tools. Trust section uses existing `InlineDisclaimer`.
+#### 3. Check `AIMovementAnalysis` vs `AIInsightCard` in KickCounter
+- **File**: `src/pages/tools/SmartKickCounter.tsx`
+- **Action**: Verify if both are rendered. If `AIInsightCard` is present, the separate `AIMovementAnalysis` component is redundant
+- Need to read the file to confirm
 
-**Data sources**: `useUserProfile` (week, due date, conditions), `useTrackingStats` (kicks, water, vitamins, symptoms), `safeParseLocalStorage` for wellness diary entries and appointments.
+#### Summary of Changes
+
+| Action | File | Change |
+|--------|------|--------|
+| Remove | `SmartDashboard.tsx` | Delete `DailyAIInsight` import + usage |
+| Remove | `ToolFrame.tsx` | Delete `ToolInsightTabs` import + rendering |
+| Keep | `TodaysInsightCard` | Clean dashboard AI entry point |
+| Keep | `RecentAIResults` | Useful saved results recap |
+| Keep | All `AIActionButton` in tools | Intentional, user-triggered |
+| Keep | All `AIInsightCard` in tools | Unified analysis pattern |
+| Keep | `FertilityDailyTip` | Static, no AI cost |
+| Keep | `QuickActionsBar` assistant link | Single clean CTA |
+
+### Screens Cleaned
+1. **SmartDashboard** — from 3 AI sections → 2 (TodaysInsight + RecentResults)
+2. **ToolFrame** (affects ~15 tools) — remove auto-loading AI tips that consume quota
+
+### Unified CTA Labels Kept
+- "Analyze" / "تحليل" — `AIActionButton` in tools
+- "View Insight" / "عرض التفاصيل" — `TodaysInsightCard` CTA
+- Tool-specific labels (Analyze Movement, Generate Plan, etc.) — contextual and clear
+
+### What This Prepares For
+- Clean base for unified quota system (no hidden AI calls eating quota)
+- Clear separation: dashboard = overview, tools = intentional AI usage
+- Single AI entry point pattern per screen
 
