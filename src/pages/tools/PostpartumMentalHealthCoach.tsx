@@ -4,7 +4,7 @@ import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { AlertTriangle, CheckCircle, HelpCircle, Brain, Sun, Loader2, Sparkles, ArrowRight, ArrowLeft, RotateCcw } from 'lucide-react';
+import { AlertTriangle, CheckCircle, HelpCircle, Brain, Sun, Loader2, Sparkles, ArrowRight, ArrowLeft, RotateCcw, Crown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { VideoLibrary } from '@/components/VideoLibrary';
 import { usePregnancyAI } from '@/hooks/usePregnancyAI';
@@ -13,6 +13,8 @@ import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { AIResponseFrame } from '@/components/ai/AIResponseFrame';
 import { mentalHealthVideosByLang } from '@/data/videoData';
 import { PrintableReport } from '@/components/PrintableReport';
+import { useAIUsage } from '@/contexts/AIUsageContext';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 
 interface ScreeningQuestion {
@@ -56,6 +58,8 @@ export default function PostpartumMentalHealthCoach() {
   const [direction, setDirection] = useState(1);
 
   const { streamChat, isLoading: aiLoading } = usePregnancyAI();
+  const { isLimitReached } = useAIUsage();
+  const navigate = useNavigate();
   const [aiCopingPlan, setAiCopingPlan] = useState('');
   const [showAICoping, setShowAICoping] = useState(false);
 
@@ -222,14 +226,24 @@ ${detailedContext}
               </div>
               
               {!showAICoping ? (
-                <Button
-                  onClick={getAICopingPlan}
-                  disabled={aiLoading}
-                  className="w-full bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 gap-2"
-                >
-                  {aiLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Brain className="w-4 h-4" />}
-                  {t('toolsInternal.mentalHealthCoach.generateMyPlan')}
-                </Button>
+                isLimitReached ? (
+                  <Button
+                    onClick={() => navigate('/pricing-demo')}
+                    className="w-full bg-gradient-to-r from-primary to-primary/80 gap-2"
+                  >
+                    <Crown className="w-4 h-4" />
+                    {t('quotaExhausted.upgradeCTA', 'Upgrade to Premium')}
+                  </Button>
+                ) : (
+                  <Button
+                    onClick={getAICopingPlan}
+                    disabled={aiLoading}
+                    className="w-full bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 gap-2"
+                  >
+                    {aiLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Brain className="w-4 h-4" />}
+                    {t('toolsInternal.mentalHealthCoach.generateMyPlan')}
+                  </Button>
+                )
               ) : (
                 <div className="max-h-[500px] overflow-y-auto">
                   {aiCopingPlan ? (
