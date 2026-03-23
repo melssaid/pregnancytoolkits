@@ -10,7 +10,7 @@ import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { AIErrorBanner } from '@/components/ai/AIErrorBanner';
 import { useNavigate } from 'react-router-dom';
 import { PrintableReport } from '@/components/PrintableReport';
-import type { SmartSection, AIToolType, InsightWeight } from '@/services/smartEngine';
+import type { SmartSection, AIToolType } from '@/services/smartEngine';
 
 interface AIInsightCardProps {
   title?: string;
@@ -26,8 +26,6 @@ interface AIInsightCardProps {
   section?: SmartSection;
   /** Override the default tool type for this section */
   toolType?: AIToolType;
-  /** Cost weight (default 1) */
-  weight?: InsightWeight;
   showPrintButton?: boolean;
   showDisclaimer?: boolean;
   printTitle?: string;
