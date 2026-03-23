@@ -10,7 +10,6 @@ import {
   consumeQuota,
   syncFromServer as qmSyncFromServer,
   setTier as qmSetTier,
-  resetQuota as qmResetQuota,
   type QuotaState,
 } from '@/services/smartEngine';
 
@@ -25,9 +24,10 @@ interface AIUsageContextValue {
   isNearLimit: boolean;
   /** @deprecated Quota is now consumed automatically by the smart engine. Only use for legacy edge cases. */
   incrementUsage: () => void;
-  syncFromServer: (serverUsed: number) => void;
   syncLimit: (newLimit: number, newTier?: SubscriptionTier) => void;
+  /** @deprecated Dev-only. No-op in production. */
   resetUsage: () => void;
+  /** Force re-read from quotaManager (e.g. after engine consumed quota) */
   /** Force re-read from quotaManager (e.g. after engine consumed quota) */
   refresh: () => void;
 }
@@ -118,9 +118,17 @@ export function AIUsageProvider({ children }: { children: ReactNode }) {
     afterAction();
   }, [afterAction]);
 
+  // THIS MUST NEVER BE EXPOSED IN PRODUCTION
   const resetUsage = useCallback(() => {
-    qmResetQuota();
-    afterAction();
+    if (import.meta.env.PROD) {
+      console.warn('[AIUsageContext] resetUsage blocked in production');
+      return;
+    }
+    // Dev-only: import directly from quotaManager (not public API)
+    import('@/services/smartEngine/quotaManager').then(m => {
+      m.resetQuota();
+      afterAction();
+    });
   }, [afterAction]);
 
   return (

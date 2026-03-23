@@ -62,7 +62,6 @@ const AIBumpPhotos: React.FC = () => {
   const { sendChat, isLoading: isSmartLoading } = useSmartChat({
     section: "ultrasound",
     toolType: "bump-photos",
-    weight: 2,
   });
   const { isLimitReached, remaining } = useAIUsage();
 
