@@ -902,7 +902,14 @@
     "dailyExportRemaining": "{{count}} تقارير متبقية اليوم",
     "dailyExportLimitReached": "تم الوصول للحد اليومي. حاول مرة أخرى غداً.",
     "back": "رجوع",
-    "next": "التالي"
+    "next": "التالي",
+    "days": "أيام",
+    "month": "شهر",
+    "months": "أشهر",
+    "premium": "بريميوم",
+    "subscribe": "اشتراك",
+    "unlock": "فتح جميع الأدوات",
+    "loading": "جارٍ التحميل..."
   },
   "settings": {
     "title": "الإعدادات",
@@ -1164,7 +1171,8 @@
     "health": "الصحة",
     "mustHave": "ضروري",
     "niceToHave": "مفضل",
-    "canWait": "يمكن الانتظار"
+    "canWait": "يمكن الانتظار",
+    "estimatedCost": "التكلفة التقديرية"
   },
   "appUpdated": {
     "title": "تم تحديث التطبيق، جاري إعادة التحميل...",
@@ -1216,6 +1224,11 @@
           "title": "رعاية المولود - الأسبوع الأول",
           "description": "دليل طبيب الأطفال للأسبوع الأول",
           "category": "رعاية ذاتية"
+        },
+        "v5": {
+          "title": "Managing Pregnancy Anxiety",
+          "description": "Practical strategies for coping with anxiety during pregnancy",
+          "category": "Anxiety"
         }
       },
       "riskLevels": {
@@ -1689,7 +1702,8 @@
       "warningNoMovements": "عدم وجود حركات لفترة طويلة",
       "whenToCallDoctor": "متى تتصلين بالطبيب",
       "aiAnalysisTitle": "تحليل ذكي للحركة",
-      "aiAnalysisButton": "تحليل الحركة بالذكاء الاصطناعي"
+      "aiAnalysisButton": "تحليل الحركة بالذكاء الاصطناعي",
+      "exportPDF": "شاركي يومياتك مع طبيبك"
     },
     "symptomAnalyzer": {
       "title": "يوميات عافية الحامل",
@@ -1860,7 +1874,8 @@
       "hours": "ساعات",
       "days": "أيام",
       "weeks": "أسابيع",
-      "analyzing": "جاري التحليل..."
+      "analyzing": "جاري التحليل...",
+      "remember": "تذكّري"
     },
     "weekSlider": {
       "currentWeek": "أسبوع الحمل الحالي",
@@ -2221,7 +2236,8 @@
       "iron": "الحديد",
       "folate": "حمض الفوليك",
       "calcium": "الكالسيوم",
-      "omega3": "أوميغا 3"
+      "omega3": "أوميغا 3",
+      "addedToList": "تمت الإضافة إلى قائمتك"
     },
     "partnerGuide": {
       "title": "دليل الشريك الذكي",
@@ -2923,9 +2939,9 @@
       "addFirst": "أضيفي أول موعد لك!",
       "details": "التفاصيل",
       "notificationHint": "سيتم إرسال التذكيرات تلقائياً: قبل يوم، صباح الموعد، وقبل ساعتين من موعدك.",
-      "questionsHint": "يمكن للذكاء الاصطناعي اقتراح أسئلة مناسبة للأسبوع {{week}}",
+      "questionsHint": "Questions for the doctor",
       "skipQuestions": "تخطي — حفظ بدون أسئلة",
-      "savedWithQuestions": "تم الحفظ مع {{count}} أسئلة للطبيب/ة"
+      "savedWithQuestions": "Saved with questions"
     },
     "babyGrowth": {
       "title": "نمو الطفل",
@@ -2946,13 +2962,18 @@
       "tabs": {
         "add": "إضافة قياس",
         "chart": "مخطط النمو",
-        "history": "السجل"
+        "history": "السجل",
+        "overview": "نظرة عامة",
+        "milestones": "المراحل التطورية"
       },
       "status": {
         "label": "الحالة",
         "normal": "طبيعي",
         "belowNormal": "أقل من الطبيعي",
-        "aboveNormal": "أعلى من الطبيعي"
+        "aboveNormal": "أعلى من الطبيعي",
+        "onTrack": "على المسار",
+        "below": "أقل من المتوسط",
+        "above": "أعلى من المتوسط"
       },
       "ageMonths": "العمر (بالأشهر)",
       "monthUnit": "شهر",
@@ -3092,7 +3113,7 @@
       "avoid": "تجنّب",
       "caution": "احذر",
       "safe": "آمن",
-      "askAI": "اسأل AI عن طعام",
+      "askAI": "Ask AI about \"{{term}}\"",
       "foodQuestion": "هل {{food}} آمن أثناء الحمل؟",
       "status": {
         "safe": "آمن",
@@ -3140,6 +3161,25 @@
           "name": "الدجاج",
           "reason": "مصدر بروتين ممتاز. يجب طهيه جيداً."
         }
+      },
+      "searchPlaceholder": "ابحثي عن طعام...",
+      "noResults": "لا توجد نتائج لـ \"{{term}}\"",
+      "aiAnalysis": "تحليل ذكي للطعام",
+      "analyzing": "جارٍ التحليل...",
+      "quickRules": "قواعد سريعة",
+      "filters": {
+        "all": "الكل",
+        "safe": "آمن",
+        "limit": "بحذر",
+        "avoid": "تجنبي"
+      },
+      "rules": {
+        "avoid": "تجنبي",
+        "avoidDesc": "تجنبي الأطعمة النيئة أو غير المطبوخة جيداً",
+        "cook": "اطبخي جيداً",
+        "cookDesc": "اطبخي اللحوم والبيض حتى النضج الكامل",
+        "wash": "اغسلي",
+        "washDesc": "اغسلي الفواكه والخضروات جيداً قبل الأكل"
       }
     },
     "gestationalDiabetes": {
@@ -3178,7 +3218,19 @@
     },
     "babyGear": {
       "title": "مستلزمات الطفل الأساسية",
-      "subtitle": "قائمة أساسيات لقدوم مولودك"
+      "subtitle": "قائمة أساسيات لقدوم مولودك",
+      "categories": "الفئات",
+      "sleeping": "النوم",
+      "feeding": "الرضاعة",
+      "bathing": "الاستحمام",
+      "clothing": "الملابس",
+      "travel": "التنقل",
+      "health": "الصحة",
+      "mustHave": "ضروري",
+      "niceToHave": "مفيد",
+      "canWait": "يمكن الانتظار",
+      "totalEstimate": "التكلفة الإجمالية التقديرية",
+      "aiRecommendations": "توصيات ذكية"
     },
     "cycleTracker": {
       "title": "متتبع الدورة والتبويض",
@@ -3850,6 +3902,314 @@
     "twwCompanion": {
       "days": "أيام",
       "subtitle": "رفيق فترة الانتظار مع نصائح يومية"
+    },
+    "birthStory": {
+      "title": "مولّد قصة الولادة بالذكاء الاصطناعي",
+      "subtitle": "أنشئي قصة جميلة لوصول طفلك كتذكار",
+      "babyDetails": "تفاصيل المولود",
+      "babyName": "اسم المولود",
+      "birthDate": "تاريخ الولادة",
+      "birthTime": "وقت الولادة",
+      "weight": "الوزن (مثال: 3.2 كغ)",
+      "length": "الطول (مثال: 50 سم)",
+      "location": "مكان الولادة (مستشفى، مركز ولادة، إلخ)",
+      "deliveryType": "نوع الولادة",
+      "naturalBirth": "ولادة طبيعية",
+      "csection": "ولادة قيصرية",
+      "waterBirth": "ولادة مائية",
+      "homeBirth": "ولادة منزلية",
+      "personalTouch": "لمسة شخصية",
+      "firstFeeling": "أول شعور عندما رأيتِ طفلك",
+      "firstFeelingPlaceholder": "صفي تلك اللحظة السحرية الأولى...",
+      "specialMoments": "لحظات مميزة للتذكر",
+      "specialMomentsPlaceholder": "أي تفاصيل خاصة، من كان حاضراً، لحظات مضحكة، إلخ...",
+      "dedicatedTo": "مُهداة إلى... (اختياري)",
+      "creating": "جارٍ إنشاء قصتك...",
+      "generate": "إنشاء قصة الولادة",
+      "yourStory": "قصة ولادتك",
+      "storyGenerated": "تم إنشاء القصة!",
+      "storyReady": "قصة ولادتك الجميلة جاهزة.",
+      "downloaded": "تم التحميل!",
+      "storySaved": "تم حفظ قصة ولادتك.",
+      "copied": "تم النسخ!",
+      "copiedToClipboard": "تم نسخ القصة.",
+      "keepsakeTitle": "أنشئي تذكاراً",
+      "keepsakeDesc": "يمكن حفظ هذه القصة وطباعتها وإضافتها لألبوم الطفل أو مشاركتها مع العائلة."
+    },
+    "postureCoach": {
+      "title": "دليل وضعية الجسم الذكي",
+      "subtitle": "حسّني وضعية جسمك أثناء الحمل لتقليل آلام الظهر",
+      "yourTrimester": "الثلث الحالي",
+      "todaysProgress": "تقدم اليوم",
+      "getAIAdvice": "احصلي على نصيحة ذكية للوضعية",
+      "aiPostureCoach": "مدرب الوضعية الذكي",
+      "postureExercises": "تمارين الوضعية",
+      "warning": "توقفي عن أي تمرين إذا شعرتِ بألم أو دوخة أو انزعاج. استشيري طبيبك."
+    },
+    "massageGuide": {
+      "title": "دليل تدليك الحمل",
+      "subtitle": "تقنيات تدليك آمنة لراحة الحمل",
+      "yourTrimester": "الثلث الحالي",
+      "generalSafety": "السلامة العامة",
+      "safety1": "تجنبي تدليك البطن مباشرة",
+      "safety2": "استخدمي ضغطاً لطيفاً فقط",
+      "safety3": "توقفي إذا شعرتِ بأي انزعاج",
+      "safety4": "استشيري طبيبك قبل البدء",
+      "howToDoIt": "كيفية التنفيذ",
+      "safetyNotes": "ملاحظات السلامة",
+      "markComplete": "وضع علامة مكتمل",
+      "massageTechniques": "تقنيات التدليك"
+    },
+    "bmi": {
+      "title": "حاسبة مؤشر كتلة الجسم للحمل",
+      "subtitle": "احسبي مؤشر كتلة الجسم والزيادة الموصى بها في الوزن",
+      "unitSystem": "نظام القياس",
+      "imperial": "إمبراطوري",
+      "metric": "متري",
+      "prePregnancyWeight": "الوزن قبل الحمل",
+      "height": "الطول",
+      "calculateBtn": "احسبي",
+      "prePregnancyBMI": "مؤشر كتلة الجسم قبل الحمل",
+      "recommendedGain": "الزيادة الموصى بها",
+      "pounds": "كغ",
+      "weeklyGainTitle": "معدل الزيادة الأسبوعي",
+      "lbsPerWeek": "كغ/أسبوع",
+      "firstTrimesterNote": "الزيادة في الثلث الأول عادةً 0.5-2 كغ إجمالاً",
+      "aiGuideTitle": "دليل ذكي للوزن",
+      "getPersonalizedPlan": "احصلي على خطة مخصصة",
+      "disclaimer": "هذه الحاسبة للأغراض التعليمية فقط. استشيري طبيبك.",
+      "categories": {
+        "underweight": "نقص الوزن",
+        "normalweight": "وزن طبيعي",
+        "overweight": "زيادة الوزن",
+        "obese": "سمنة"
+      }
+    },
+    "healthMonitor": {
+      "title": "مراقب الصحة",
+      "subtitle": "تتبعي مؤشراتك الصحية أثناء الحمل",
+      "weight": "الوزن",
+      "bloodPressure": "ضغط الدم",
+      "risks": "عوامل الخطر",
+      "normal": "طبيعي",
+      "normalForWeek": "طبيعي للأسبوع {{week}}",
+      "pretermBirth": "الولادة المبكرة",
+      "preeclampsia": "تسمم الحمل",
+      "low": "منخفض",
+      "medium": "متوسط"
+    },
+    "nutritionOptimizer": {
+      "title": "مخطط التغذية الذكي",
+      "subtitle": "خطط تغذية مخصصة لكل ثلث من الحمل",
+      "pregnancyWeek": "أسبوع الحمل",
+      "trimester": "الثلث",
+      "dietaryPreference": "التفضيل الغذائي",
+      "standard": "عادي",
+      "vegetarian": "نباتي",
+      "vegan": "نباتي صرف",
+      "keyNutrients": "العناصر الغذائية الأساسية للأسبوع {{week}}",
+      "sampleMealPlan": "نموذج خطة وجبات",
+      "breakfast": "الفطور",
+      "lunch": "الغداء",
+      "snack": "وجبة خفيفة",
+      "dinner": "العشاء",
+      "infoNote": "المعلومات الغذائية للأغراض التعليمية فقط. استشيري طبيبك."
+    },
+    "snackPlanner": {
+      "title": "Smart Snack Planner",
+      "subtitle": "Healthy pregnancy snacks for every craving",
+      "feelingHungry": "Feeling Hungry?",
+      "letAIPick": "Let AI pick a perfect snack for you",
+      "surpriseMe": "Surprise Me!",
+      "calories": "cal",
+      "prepTime": "prep time",
+      "ingredients": "Ingredients",
+      "howToMake": "How to make",
+      "snackingTipsTitle": "Smart Snacking Tips",
+      "snackingTips": {
+        "tip1": "Aim for snacks combining protein + carbs for sustained energy",
+        "tip2": "Keep portable snacks in your bag for unexpected hunger",
+        "tip3": "Eat every 2-3 hours to maintain stable blood sugar",
+        "tip4": "Stay hydrated - sometimes thirst feels like hunger"
+      },
+      "categories": {
+        "all": "All",
+        "quick": "Quick",
+        "energy": "Energy",
+        "protein": "Protein",
+        "comfort": "Comfort"
+      },
+      "snacks": {
+        "1": "Apple with Almond Butter",
+        "2": "Greek Yogurt Parfait",
+        "3": "Trail Mix Power Bites",
+        "4": "Avocado Toast",
+        "5": "Hummus & Veggie Sticks",
+        "6": "Cheese & Crackers",
+        "7": "Banana Energy Bites",
+        "8": "Cottage Cheese Bowl"
+      },
+      "benefits": {
+        "1": "Sustained energy from fiber and healthy fats",
+        "2": "Protein and probiotics for gut health",
+        "3": "Quick energy boost anytime",
+        "4": "Healthy fats for baby brain development",
+        "5": "Fiber and plant protein",
+        "6": "Calcium and protein combo",
+        "7": "Natural energy from potassium",
+        "8": "High protein for muscle and baby growth"
+      },
+      "ingredientItems": {
+        "1": {
+          "0": "1 medium apple",
+          "1": "2 tbsp almond butter"
+        },
+        "2": {
+          "0": "1 cup Greek yogurt",
+          "1": "1/4 cup granola",
+          "2": "1/2 cup berries",
+          "3": "Honey drizzle"
+        },
+        "3": {
+          "0": "Mixed nuts",
+          "1": "Dark chocolate chips",
+          "2": "Dried cranberries"
+        },
+        "4": {
+          "0": "1 slice whole grain bread",
+          "1": "1/2 avocado",
+          "2": "Salt",
+          "3": "Everything bagel seasoning"
+        },
+        "5": {
+          "0": "1/4 cup hummus",
+          "1": "Carrot sticks",
+          "2": "Cucumber slices",
+          "3": "Bell pepper strips"
+        },
+        "6": {
+          "0": "4 whole grain crackers",
+          "1": "2 oz cheddar cheese"
+        },
+        "7": {
+          "0": "1 banana",
+          "1": "1 cup oats",
+          "2": "2 tbsp peanut butter",
+          "3": "1 tbsp honey"
+        },
+        "8": {
+          "0": "1 cup cottage cheese",
+          "1": "Pineapple chunks",
+          "2": "Walnuts"
+        }
+      },
+      "recipes": {
+        "2": "Layer yogurt, granola, and berries. Drizzle with honey.",
+        "4": "Toast bread, mash avocado on top, season to taste.",
+        "7": "Mash banana, mix all ingredients, roll into balls, refrigerate."
+      },
+      "nutrients": {
+        "fiber": "Fiber",
+        "healthyfats": "Healthy Fats",
+        "vitamine": "Vitamin E",
+        "protein": "Protein",
+        "calcium": "Calcium",
+        "probiotics": "Probiotics",
+        "iron": "Iron",
+        "omega3": "Omega-3",
+        "antioxidants": "Antioxidants",
+        "folate": "Folate",
+        "vitamina": "Vitamin A",
+        "vitamind": "Vitamin D",
+        "potassium": "Potassium",
+        "bvitamins": "B Vitamins"
+      }
+    },
+    "recipeModifier": {
+      "title": "AI Recipe Modifier",
+      "subtitle": "Make any recipe pregnancy-safe",
+      "pasteRecipe": "Paste Your Recipe",
+      "placeholder": "Paste your recipe here including all ingredients and instructions...",
+      "analyzing": "Analyzing...",
+      "analyzeRecipe": "Analyze Recipe",
+      "exampleTitle": "Example ingredients we check:",
+      "ingredientsToModify": "Ingredients to Modify ({{count}})",
+      "recipeSafe": "Recipe Looks Safe!",
+      "noUnsafeFound": "No obvious unsafe ingredients detected",
+      "safeFound": "Safe Ingredients Found",
+      "modifiedRecipe": "Modified Recipe",
+      "safetyTips": "Safety Tips",
+      "analyzeAnother": "Analyze Another Recipe",
+      "disclaimer": "⚠️ This tool provides general guidance. Always consult your healthcare provider about specific dietary restrictions during your pregnancy.",
+      "selectPreference": "Please select at least one preference"
+    },
+    "workoutPlanner": {
+      "title": "Personalized Workout Planner",
+      "subtitle": "Safe pregnancy exercises for each trimester",
+      "selectTrimester": "Select Your Trimester",
+      "trimester": "Trimester",
+      "beforeYouStart": "Before You Start",
+      "safetyNotice": "Always get clearance from your healthcare provider before starting any exercise program during pregnancy.",
+      "availableWorkouts": "Available Workouts",
+      "startWorkout": "Start Workout",
+      "endWorkout": "End",
+      "exercise": "Exercise",
+      "of": "of",
+      "modification": "Modification",
+      "completeExercise": "Complete Exercise",
+      "completed": "Completed",
+      "workoutComplete": "Workout Complete! 🎉",
+      "greatJob": "Great job taking care of yourself and your baby!",
+      "backToWorkouts": "Back to Workouts",
+      "intensity": {
+        "low": "low intensity",
+        "moderate": "moderate intensity"
+      }
+    },
+    "ovulation": {
+      "subtitle": "Find your most fertile days",
+      "calculateTitle": "Calculate Your Fertile Window",
+      "calculateDesc": "Enter your cycle details to discover your best days ✨",
+      "firstDayLastPeriod": "First Day of Last Period",
+      "avgCycleLength": "Average Cycle Length (days)",
+      "cycleRange": "Most cycles range from 21-35 days",
+      "calculateBtn": "Calculate Ovulation",
+      "saveCalculation": "Save This Calculation",
+      "daysUntilOvulation": "Days Until Ovulation",
+      "getReady": "Get ready for your fertile window!",
+      "ovulationDay": "Ovulation Day",
+      "peakFertility": "Peak fertility day",
+      "nextPeriod": "Next Period",
+      "expectedStart": "Expected start",
+      "fertileWindow": "Fertile Window",
+      "bestDays": "Your best days for conception",
+      "start": "Start",
+      "end": "End",
+      "sixDays": "6 days of peak fertility",
+      "aiFertilityInsights": "AI Fertility Insights",
+      "getPersonalizedAdvice": "Get Personalized Fertility Advice",
+      "tip": "Tip",
+      "tipText": "For the best chances, try to be intimate during your fertile window, especially 1-2 days before ovulation.",
+      "savedCalculations": "Saved Calculations",
+      "ovulation": "Ovulation",
+      "cycle": "Cycle",
+      "days": "days",
+      "fertile": "Fertile",
+      "saved": "Saved!",
+      "savedDesc": "Your ovulation calculation has been saved.",
+      "deleted": "Deleted",
+      "deletedDesc": "Result removed from history.",
+      "disclaimer": "This calculator provides estimates based on average cycle patterns. Individual cycles may vary. Consider using ovulation predictor kits for more accuracy."
+    },
+    "fertileWindow": {
+      "lastPeriod": "أول يوم من آخر دورة",
+      "cycleLength": "طول الدورة",
+      "calculate": "احسبي",
+      "yourWindow": "Your Fertile Window",
+      "windowStart": "Window opens",
+      "windowEnd": "Window closes",
+      "estimatedOvulation": "Estimated ovulation day",
+      "disclaimer": "هذه تقديرات. استشيري طبيبك للتخطيط الأمثل."
     }
   },
   "welcome": {
@@ -4693,7 +5053,15 @@
       "5": "حمص مع أعواد الخضار",
       "6": "جبنة وكراكرز",
       "7": "كرات طاقة الموز",
-      "8": "طبق الجبنة القريش"
+      "8": "طبق الجبنة القريش",
+      "appleAlmondButter": "Apple with Almond Butter",
+      "greekYogurtParfait": "Greek Yogurt Parfait",
+      "trailMix": "Trail Mix Power Bites",
+      "avocadoToast": "Avocado Toast",
+      "hummusVeggies": "Hummus & Veggie Sticks",
+      "cheeseCrackers": "Cheese & Crackers",
+      "bananaEnergyBites": "Banana Energy Bites",
+      "cottageCheeseBowl": "Cottage Cheese Bowl"
     },
     "benefits": {
       "1": "طاقة مستدامة من الألياف والدهون الصحية",
@@ -6394,7 +6762,8 @@
     "fertility-academy": "مركز تعليمي شامل للخصوبة يضم دروساً وعلامات الجسم وتقنيات إدارة التوتر. المحتوى للتوعية العامة. طبيبتك يمكنها تقديم نصائح خاصة بحالتك.",
     "nutrition-supplements": "دليل شامل لتغذية ما قبل الحمل والمكملات التحضيرية. المعلومات الغذائية وتفاصيل المكملات إرشادية عامة. استشيري طبيبتك أو أخصائية التغذية لخطة مخصصة لاحتياجاتك.",
     "tww-companion": "تشجيع يومي ومعلومات خلال أسبوعي الانتظار بعد التبويض. المحتوى للدعم النفسي والتثقيف. اختبار الحمل هو الطريقة الوحيدة لتأكيد الحمل.",
-    "preconception-checkup": "قائمة بالفحوصات الشائعة الموصى بها قبل محاولة الحمل. هذا دليل عام. طبيبتك ستحدد الفحوصات التي تحتاجينها."
+    "preconception-checkup": "قائمة بالفحوصات الشائعة الموصى بها قبل محاولة الحمل. هذا دليل عام. طبيبتك ستحدد الفحوصات التي تحتاجينها.",
+    "fertile-window": "حددي أيام الخصوبة بدقة"
   },
   "paywall": {
     "title": "ميزة مميزة ✨",
@@ -8044,5 +8413,345 @@
     "upgradeHint": "افتحي المزيد من التحليلات المخصصة مع Premium",
     "upgradeCTA": "تابعي مع Premium",
     "postAnalysisHint": "ترقّي للاشتراك المميز للحصول على 40 تحليل شهرياً ورؤى أعمق"
+  },
+  "subscription": {
+    "subscribeNow": "احصلي على بريميوم - $0.79/شهر",
+    "premiumFeature": "ميزة بريميوم",
+    "unlockAccess": "افتحي جميع الأدوات الـ 30",
+    "subscribeToAccess": "اشتركي للوصول"
+  },
+  "dueDatePage": {
+    "title": "العد التنازلي لوصول طفلك",
+    "subtitle": "احسبي الموعد المتوقع لوصول مولودك",
+    "lmpTab": "آخر دورة شهرية",
+    "conceptionTab": "تاريخ الإخصاب",
+    "lmpLabel": "أول يوم من آخر دورة شهرية",
+    "conceptionLabel": "تاريخ الإخصاب",
+    "calculateBtn": "احسبي موعد الولادة",
+    "timeline": "الجدول الزمني لحملك",
+    "estimatedDueDate": "موعد الولادة المتوقع",
+    "currentlyAt": "أنتِ حالياً في",
+    "weeksAndDays": "{{weeks}} أسبوع و {{days}} يوم",
+    "trimester": "الثلث {{number}}",
+    "conception": "الإخصاب",
+    "secondTrimester": "الثلث الثاني",
+    "thirdTrimester": "الثلث الثالث",
+    "info": "حوالي 5% فقط من الأطفال يولدون في موعدهم المتوقع بالضبط. معظمهم يولدون خلال أسبوعين قبل أو بعد الموعد."
+  },
+  "kickCounterPage": {
+    "title": "يوميات حركة الجنين",
+    "subtitle": "سجّلي حركات طفلك خلال اليوم",
+    "timeElapsed": "الوقت المنقضي",
+    "startCounting": "ابدئي التسجيل",
+    "kicks": "حركات",
+    "endSession": "حفظ الإدخال",
+    "goal": "الهدف: 10 حركات خلال ساعتين",
+    "moreToGo": "{{count}} حركة متبقية للتسجيل",
+    "recentSessions": "الإدخالات الأخيرة",
+    "info": "ابتداءً من الأسبوع 28، سجّلي حركات الجنين يومياً. شاركي يومياتك مع طبيبك إذا لاحظتِ تغيرات في نمط الحركة.",
+    "exportPDF": "شاركي يومياتك مع طبيبك"
+  },
+  "contractionPage": {
+    "title": "سجل الانقباضات",
+    "subtitle": "سجّلي مدة وتكرار الانقباضات في يومياتك",
+    "contractionStarted": "بدأ الانقباض",
+    "contractionEnded": "انتهى الانقباض",
+    "avgDuration": "متوسط المدة",
+    "avgInterval": "متوسط الفاصل",
+    "contractionLog": "سجل الانقباضات",
+    "sinceLastContraction": "{{minutes}} دقيقة منذ الأخير",
+    "duration": "المدة",
+    "callProvider": "فكّري في التواصل مع طبيبك",
+    "callProviderDesc": "الانقباضات كل 5 دقائق وتستمر 45+ ثانية. قد ترغبين في مشاركة هذا السجل مع طبيبك.",
+    "rule511": "قاعدة 5-1-1",
+    "rule511Desc": "ينصح كثير من الأطباء بالتواصل عندما تكون الانقباضات كل 5 دقائق، وتستمر دقيقة واحدة، لمدة ساعة واحدة.",
+    "exportPDF": "شاركي يومياتك مع طبيبك"
+  },
+  "preeclampsiaPage": {
+    "title": "فحص التوعية بتسمم الحمل",
+    "subtitle": "تعرّفي على عوامل خطر تسمم الحمل",
+    "highRisk": "عوامل الخطر العالي",
+    "moderateRisk": "عوامل الخطر المتوسط",
+    "firstPregnancy": "الحمل الأول",
+    "previousPreeclampsia": "تسمم حمل سابق",
+    "chronicHypertension": "ارتفاع ضغط الدم المزمن",
+    "diabetes": "داء السكري",
+    "kidneyDisease": "أمراض الكلى",
+    "obesity": "السمنة (مؤشر كتلة الجسم > 30)",
+    "age35Plus": "العمر 35+",
+    "multiplePregnancy": "حمل متعدد (توأم أو أكثر)",
+    "familyHistory": "تاريخ عائلي",
+    "calculate": "مراجعة عواملي",
+    "lowRiskResult": "عوامل قليلة",
+    "moderateRiskResult": "بعض العوامل موجودة",
+    "highRiskResult": "عوامل متعددة موجودة",
+    "disclaimer": "هذا تقييم أولي فقط. استشيري دائماً مقدم الرعاية الصحية."
+  },
+  "fitnessPage": {
+    "title": "دليل اللياقة الذكي",
+    "currentWeek": "الأسبوع الحالي",
+    "selectTrimester": "اختاري الثلث",
+    "exerciseLevel": "مستوى النشاط",
+    "beginner": "مبتدئة",
+    "intermediate": "متوسطة",
+    "advanced": "متقدمة",
+    "generatePlan": "إنشاء خطة تمارين",
+    "safeExercises": "تمارين آمنة",
+    "avoidExercises": "تمارين يجب تجنبها",
+    "disclaimer": "استشيري طبيبك قبل البدء بأي برنامج تمارين."
+  },
+  "forbiddenFoodsPage": {
+    "title": "الأطعمة الممنوعة",
+    "searchPlaceholder": "ابحثي عن الأطعمة...",
+    "forbidden": "تجنبي",
+    "caution": "بحذر",
+    "safe": "آمن",
+    "forbiddenTitle": "أطعمة يجب تجنبها",
+    "cautionTitle": "تناولي بحذر",
+    "safeTitle": "بدائل آمنة",
+    "disclaimer": "هذا دليل عام. استشيري طبيبك حول القيود الغذائية الخاصة بحملك."
+  },
+  "nutrition": {
+    "breakfast": "الفطور",
+    "lunch": "الغداء",
+    "dinner": "العشاء",
+    "snack": "وجبة خفيفة",
+    "addFoodFirst": "أضيفي عنصراً غذائياً واحداً على الأقل",
+    "mealLogged": "تم تسجيل الوجبة: {{meal}}",
+    "noMeals": "لا توجد وجبات",
+    "logMealFirst": "سجّلي وجبة واحدة على الأقل أولاً",
+    "weekInfo": "الأسبوع {{week}} - سجّلي وجباتك واحصلي على نصائح ذكية",
+    "mealsCount": "{{count}} وجبة",
+    "notLogged": "لم يُسجّل",
+    "totalCalories": "إجمالي السعرات اليوم",
+    "cal": "سعرة",
+    "goalCalories": "الهدف: ~2200 سعرة أثناء الحمل",
+    "logNewMeal": "تسجيل وجبة جديدة",
+    "enterFood": "أدخلي اسم الطعام...",
+    "caloriesOptional": "السعرات (اختياري)",
+    "caloriesPlaceholder": "عدد السعرات",
+    "saveMeal": "حفظ الوجبة",
+    "todaysMeals": "وجبات اليوم",
+    "analyzeDay": "مراجعة اليوم",
+    "aiTip": "نصيحة ذكية",
+    "dailyAnalysis": "مراجعة التغذية اليومية",
+    "tipsTitle": "نصائح تغذية الحمل",
+    "tip1": "تناولي 5-6 وجبات صغيرة بدلاً من 3 وجبات كبيرة",
+    "tip2": "اشربي 8-10 أكواب ماء يومياً",
+    "tip3": "تجنبي الأطعمة النيئة والأجبان غير المبسترة",
+    "tip4": "ركّزي على البروتين والحديد والكالسيوم"
+  },
+  "nauseaRelief": {
+    "title": "دليل الراحة من الغثيان الذكي",
+    "subtitle": "استراتيجيات شخصية لتخفيف غثيان الصباح",
+    "quickRemedies": "علاجات سريعة",
+    "nauseaSeverity": "شدة الغثيان",
+    "vomitingCheckbox": "أعاني من القيء وليس فقط الغثيان",
+    "triggersTitle": "ما الذي يثير غثيانك؟",
+    "severeWarningTitle": "تحذير الغثيان الشديد",
+    "severeWarningDesc": "إذا لم تستطيعي الاحتفاظ بأي طعام/ماء لمدة 24 ساعة، أو رأيتِ دماً في القيء، أو شعرتِ بدوخة/إغماء، تواصلي مع طبيبك فوراً.",
+    "getReliefPlan": "احصلي على خطة راحة ذكية",
+    "encouragingNote": "غثيان الحمل مزعج لكنه عادةً علامة صحية. معظم الحالات تتحسن بعد الأسبوع 12-14.",
+    "videosTitle": "فيديوهات مفيدة",
+    "videosSubtitle": "نصائح الخبراء لتخفيف الغثيان",
+    "severityLabels": {
+      "mild": "خفيف",
+      "moderate": "متوسط",
+      "severe": "شديد"
+    },
+    "triggers": {
+      "morning": "Worst in morning",
+      "evening": "Worst in evening",
+      "allDay": "All day",
+      "smells": "الروائح",
+      "emptyStomach": "المعدة الفارغة",
+      "afterEating": "After eating",
+      "motion": "الحركة",
+      "cooking": "Cooking smells"
+    },
+    "remedies": {
+      "lemonWater": {
+        "name": "ماء الليمون",
+        "tip": "اشربي ماءً بارداً مع شرائح ليمون طوال اليوم"
+      },
+      "ginger": {
+        "name": "الزنجبيل",
+        "tip": "جربي شاي الزنجبيل أو بسكويت الزنجبيل"
+      },
+      "iceChips": {
+        "name": "Ice chips",
+        "tip": "Suck on ice when queasy"
+      },
+      "dryCrackers": {
+        "name": "Dry crackers",
+        "tip": "Keep by bedside"
+      },
+      "peppermint": {
+        "name": "النعناع",
+        "tip": "استنشقي زيت النعناع أو اشربي شاي النعناع"
+      },
+      "banana": {
+        "name": "Banana",
+        "tip": "Easy on stomach"
+      }
+    }
+  },
+  "weeklySummary": {
+    "subtitle": "ملخص أسبوعي شامل لحملك",
+    "daysToGo": "{{days}} يوم متبقي",
+    "pregnancyWeek": "أسبوع الحمل",
+    "week": "الأسبوع {{week}}",
+    "showSummary": "عرض ملخص الأسبوع {{week}}",
+    "babyGrowth": "نمو الجنين",
+    "momsHealth": "صحة الأم",
+    "checkups": "الفحوصات",
+    "normal": "طبيعي",
+    "good": "جيد",
+    "complete": "مكتمل",
+    "weekSummary": "ملخص الأسبوع {{week}}",
+    "differentWeek": "أسبوع مختلف",
+    "refresh": "تحديث",
+    "trackTip": "نصيحة متابعة",
+    "approximatelyRemaining": "{{days}} يوم تقريباً متبقي",
+    "trimester": {
+      "first": "الثلث الأول",
+      "second": "الثلث الثاني",
+      "third": "الثلث الثالث"
+    }
+  },
+  "backPainRelief": {
+    "title": "دليل راحة الظهر",
+    "subtitle": "تمارين آمنة أثناء الحمل لراحة الظهر",
+    "whereHurts": "أين يؤلمك؟",
+    "todaysRoutine": "روتين الراحة اليوم",
+    "exercisesCompleted": "تمارين مكتملة",
+    "getAdvice": "احصلي على نصيحة ذكية لتخفيف الألم",
+    "aiCoachTitle": "مدرب تخفيف الألم الذكي",
+    "exercisesTitle": "تمارين آلام الظهر",
+    "safetyNotice": "ملاحظة أمان مهمة",
+    "safetyWarning": "توقفي فوراً إذا شعرتِ بألم حاد أو دوخة أو انقباضات. استشيري دائماً طبيبك قبل التمرين.",
+    "steps": "الخطوات",
+    "painLocations": {
+      "lowerBack": "أسفل الظهر",
+      "upperBack": "أعلى الظهر",
+      "fullBack": "Full Back",
+      "hips": "الوركان"
+    },
+    "exercises": {
+      "catCow": {
+        "name": "وضعية القطة والبقرة",
+        "desc": "تمدد لطيف للعمود الفقري يخفف التوتر في الظهر",
+        "target": "Lower & Upper Back"
+      },
+      "pelvicTilt": {
+        "name": "إمالة الحوض",
+        "desc": "تقوّي عضلات البطن وتخفف ضغط أسفل الظهر",
+        "target": "Lower Back & Core"
+      },
+      "childPose": {
+        "name": "Child's Pose",
+        "desc": "Gentle stretch for the entire back",
+        "target": "Full Back"
+      },
+      "piriformis": {
+        "name": "Piriformis Stretch",
+        "desc": "Relieve sciatic pain and hip tension",
+        "target": "Hips & Lower Back"
+      },
+      "wallPush": {
+        "name": "Wall Push-Up",
+        "desc": "Strengthen upper back and shoulders",
+        "target": "Upper Back & Arms"
+      },
+      "sideStretch": {
+        "name": "Side Body Stretch",
+        "desc": "Stretch the sides of your torso",
+        "target": "Side Body"
+      }
+    },
+    "difficulty": {
+      "easy": "سهل",
+      "moderate": "Moderate"
+    }
+  },
+  "sleepOptimizer": {
+    "title": "محسّن النوم الذكي",
+    "subtitle": "حسّني نومك أثناء الحمل بنصائح مخصصة",
+    "currentSleep": "{{hours}} ساعات نوم حالياً",
+    "usualBedtime": "وقت النوم المعتاد",
+    "sleepChallenges": "تحديات النوم",
+    "sleepPlan": "احصلي على خطة نوم ذكية",
+    "meditation": "تأمل قبل النوم",
+    "routine": "روتين النوم",
+    "sleepTip": "نصيحة نوم",
+    "videosTitle": "فيديوهات مفيدة",
+    "videosSubtitle": "نصائح الخبراء لنوم أفضل أثناء الحمل",
+    "sleepIssues": {
+      "backPain": "آلام الظهر",
+      "urination": "Frequent urination",
+      "legCramps": "تشنجات الساق",
+      "heartburn": "حرقة المعدة",
+      "anxiety": "القلق",
+      "babyMovements": "حركات الجنين",
+      "hotFlashes": "Hot flashes",
+      "snoring": "الشخير"
+    }
+  },
+  "aiInsights": {
+    "title": "تحليلات ذكية",
+    "getInsights": "احصلي على تحليلات",
+    "analyze": "تحليل",
+    "regenerate": "إعادة التحليل",
+    "personalizedRec": "توصيات مخصصة",
+    "analyzing": "جارٍ التحليل...",
+    "generatingInsights": "جارٍ إنشاء التحليلات...",
+    "clickToExpand": "اضغطي للتوسيع",
+    "clickToCollapse": "اضغطي للطي"
+  },
+  "vitaminTracker": {
+    "subtitle": "تتبعي مكملاتك اليومية أثناء الحمل",
+    "pregnancyWeek": "أسبوع الحمل",
+    "todaysProgress": "تقدم اليوم",
+    "vitaminsCount": "{{taken}} من {{total}} فيتامينات",
+    "aiAnalysisTitle": "تحليل ذكي للمكملات",
+    "analyzeRoutine": "تحليل روتيني",
+    "analyzingIntake": "جارٍ تحليل تناولك...",
+    "alreadyTaken": "تم التناول",
+    "alreadyTakenDesc": "سبق تسجيل {{name}} اليوم",
+    "logged": "تم التسجيل",
+    "loggedDesc": "تم تسجيل {{name}} بنجاح",
+    "failedToLog": "فشل تسجيل الفيتامين",
+    "done": "تم",
+    "take": "تناولي",
+    "thisWeek": "هذا الأسبوع",
+    "weeklyStats": "إحصائيات أسبوعية",
+    "days": "أيام",
+    "recentHistory": "السجل الأخير",
+    "tipTitle": "نصيحة اليوم",
+    "tipContent": "تناولي فيتامينات الحمل مع وجبة لامتصاص أفضل. فيتامين C يعزز امتصاص الحديد.",
+    "vitamins": {
+      "folicAcid": "حمض الفوليك",
+      "iron": "الحديد",
+      "calcium": "الكالسيوم",
+      "vitaminD": "فيتامين د",
+      "omega3": "أوميغا 3",
+      "prenatal": "فيتامين الحمل"
+    },
+    "dosages": {
+      "folicAcid": "400-800 ميكروغرام يومياً",
+      "iron": "27 ملغ يومياً",
+      "calcium": "1000 ملغ يومياً",
+      "vitaminD": "600 وحدة دولية يومياً",
+      "omega3": "200 ملغ DHA يومياً",
+      "prenatal": "قرص واحد يومياً"
+    },
+    "importance": {
+      "folicAcid": "يمنع عيوب الأنبوب العصبي",
+      "iron": "يدعم زيادة حجم الدم ويمنع فقر الدم",
+      "calcium": "يبني عظام وأسنان الجنين",
+      "vitaminD": "يساعد على امتصاص الكالسيوم ودعم المناعة",
+      "omega3": "ضروري لنمو دماغ وعيون الجنين",
+      "prenatal": "أساسي لنمو الجنين الشامل"
+    }
   }
 }
