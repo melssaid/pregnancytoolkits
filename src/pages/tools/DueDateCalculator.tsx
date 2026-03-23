@@ -15,6 +15,7 @@ import { useNotifications } from "@/hooks/useNotifications";
 import { AIInsightCard } from "@/components/ai/AIInsightCard";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useInAppReview } from "@/hooks/useInAppReview";
 import { VideoLibrary } from "@/components/VideoLibrary";
 import { dueDateVideosByLang } from "@/data/videoData";
 import { Calendar as CalendarUI } from "@/components/ui/calendar";
@@ -42,6 +43,7 @@ export default function DueDateCalculator() {
   const { currentLanguage } = useLanguage();
   const { toast } = useToast();
   const { addNotification } = useNotifications();
+  const { maybePromptReview } = useInAppReview();
   const { profile: userProfile, setLastPeriodDate: saveProfileLMP } = useUserProfile();
   const [lmpDate, setLmpDate] = useState<Date | undefined>(
     userProfile.lastPeriodDate ? new Date(userProfile.lastPeriodDate + "T00:00:00") : undefined
@@ -97,6 +99,7 @@ export default function DueDateCalculator() {
       firstTrimesterEnd: addWeeks(lmp, 13),
       secondTrimesterEnd: addWeeks(lmp, 27),
     });
+    maybePromptReview('due_date_calculated');
   };
 
   const saveResult = () => {
