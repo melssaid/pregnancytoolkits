@@ -10,20 +10,19 @@ import {
   executeSmartRequest,
   getQuotaState,
   canAfford,
+  resolveWeight,
   type SmartSection,
   type SmartError,
   type SmartErrorType,
-  type InsightWeight,
   type AIToolType,
 } from "@/services/smartEngine";
 
 export interface UseSmartInsightOptions {
   section: SmartSection;
   toolType?: AIToolType;
-  weight?: InsightWeight;
 }
 
-export function useSmartInsight({ section, toolType, weight = 1 }: UseSmartInsightOptions) {
+export function useSmartInsight({ section, toolType }: UseSmartInsightOptions) {
   const [isLoading, setIsLoading] = useState(false);
   const [content, setContent] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -47,6 +46,7 @@ export function useSmartInsight({ section, toolType, weight = 1 }: UseSmartInsig
     prevLangRef.current = i18n.language;
   }, [i18n.language, content]);
 
+  const resolvedWeight = resolveWeight(toolType, section);
   const quota = getQuotaState();
 
   const generate = useCallback(
@@ -73,7 +73,6 @@ export function useSmartInsight({ section, toolType, weight = 1 }: UseSmartInsig
         request: {
           section,
           toolType,
-          weight,
           messages: [{ role: "user", content: prompt }],
           context: { ...context, language: lang },
         },
@@ -102,7 +101,7 @@ export function useSmartInsight({ section, toolType, weight = 1 }: UseSmartInsig
         skipCache,
       });
     },
-    [section, toolType, weight, t, quota.limit]
+    [section, toolType, t, quota.limit]
   );
 
   const clearError = useCallback(() => {
@@ -126,7 +125,7 @@ export function useSmartInsight({ section, toolType, weight = 1 }: UseSmartInsig
     clearError,
     reset,
     wasCached,
-    canAfford: canAfford(weight),
+    canAfford: canAfford(resolvedWeight),
     quota,
   };
 }

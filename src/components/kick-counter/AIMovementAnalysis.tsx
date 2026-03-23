@@ -73,7 +73,6 @@ export const AIMovementAnalysis: React.FC<AIMovementAnalysisProps> = ({
   const { generate, isLoading, content: aiAnalysis, error, errorType, clearError } = useSmartInsight({
     section: 'kick-analysis',
     toolType: 'kick-analysis',
-    weight: 1,
   });
   
   const [ruleSummary, setRuleSummary] = useState('');

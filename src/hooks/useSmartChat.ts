@@ -10,12 +10,12 @@ import {
   executeSmartRequest,
   getQuotaState,
   canAfford,
+  resolveWeight,
   type SmartSection,
   type SmartError,
   type SmartErrorType,
   type SmartMessage,
   type SmartContentPart,
-  type InsightWeight,
   type AIToolType,
 } from "@/services/smartEngine";
 
@@ -27,10 +27,9 @@ export interface ChatMessage {
 export interface UseSmartChatOptions {
   section: SmartSection;
   toolType?: AIToolType;
-  weight?: InsightWeight;
 }
 
-export function useSmartChat({ section, toolType, weight = 1 }: UseSmartChatOptions) {
+export function useSmartChat({ section, toolType }: UseSmartChatOptions) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [errorType, setErrorType] = useState<SmartErrorType | null>(null);
@@ -38,8 +37,8 @@ export function useSmartChat({ section, toolType, weight = 1 }: UseSmartChatOpti
   const { refresh: refreshUsage } = useAIUsage();
   const langRef = useRef(i18n.language);
   langRef.current = i18n.language;
+  const resolvedWeight = resolveWeight(toolType, section);
   const quota = getQuotaState();
-
   /**
    * Send a multi-turn chat with streaming.
    * Accepts full conversation history for context continuity.
@@ -66,7 +65,6 @@ export function useSmartChat({ section, toolType, weight = 1 }: UseSmartChatOpti
         request: {
           section,
           toolType,
-          weight,
           messages: messages.map((m) => ({
             role: m.role,
             content: m.content as string | SmartContentPart[],
@@ -96,7 +94,7 @@ export function useSmartChat({ section, toolType, weight = 1 }: UseSmartChatOpti
         skipCache: true, // Multi-turn chats should not cache
       });
     },
-    [section, toolType, weight, t, quota.limit, refreshUsage]
+    [section, toolType, t, quota.limit, refreshUsage]
   );
 
   const clearError = useCallback(() => {
@@ -110,7 +108,7 @@ export function useSmartChat({ section, toolType, weight = 1 }: UseSmartChatOpti
     error,
     errorType,
     clearError,
-    canAfford: canAfford(weight),
+    canAfford: canAfford(resolvedWeight),
     quota,
   };
 }

@@ -10,7 +10,7 @@ import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { AIErrorBanner } from '@/components/ai/AIErrorBanner';
 import { useNavigate } from 'react-router-dom';
 import { PrintableReport } from '@/components/PrintableReport';
-import type { SmartSection, AIToolType, InsightWeight } from '@/services/smartEngine';
+import type { SmartSection, AIToolType } from '@/services/smartEngine';
 
 interface AIInsightCardProps {
   title?: string;
@@ -26,8 +26,6 @@ interface AIInsightCardProps {
   section?: SmartSection;
   /** Override the default tool type for this section */
   toolType?: AIToolType;
-  /** Cost weight (default 1) */
-  weight?: InsightWeight;
   showPrintButton?: boolean;
   showDisclaimer?: boolean;
   printTitle?: string;
@@ -125,7 +123,7 @@ const AITYPE_TO_SECTION: Record<string, SmartSection> = {
 
 export const AIInsightCard: React.FC<AIInsightCardProps> = ({
   title, prompt, context, buttonText, icon, variant = 'default', autoExpand = false,
-  aiType, section, toolType, weight = 1,
+  aiType, section, toolType,
   showPrintButton = false, showDisclaimer = false, printTitle,
 }) => {
   const { t, i18n } = useTranslation();
@@ -138,7 +136,6 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
   const { generate, isLoading, content: insight, error, errorType, clearError } = useSmartInsight({
     section: resolvedSection,
     toolType: resolvedToolType,
-    weight,
   });
 
   const { isLimitReached } = useAIUsage();

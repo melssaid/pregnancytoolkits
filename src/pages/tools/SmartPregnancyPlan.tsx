@@ -8,17 +8,12 @@ import { HealthStatsGrid } from "@/components/smart-plan/HealthStatsGrid";
 import { HealthInputForm } from "@/components/smart-plan/HealthInputForm";
 import { SmartPlanResultView } from "@/components/smart-plan/SmartPlanResultView";
 import { useHealthData } from "@/components/smart-plan/useHealthData";
-import { useAIUsage } from "@/contexts/AIUsageContext";
-import { executeSmartRequest } from "@/services/smartEngine";
+import { useSmartInsight } from "@/hooks/useSmartInsight";
 
 const SmartPregnancyPlan = () => {
   const { t, i18n } = useTranslation();
-  const [planContent, setPlanContent] = useState('');
   const [researchEnhanced, setResearchEnhanced] = useState(false);
-  const [enhancedLoading, setEnhancedLoading] = useState(false);
-  const { isLimitReached, limit, refresh } = useAIUsage();
   const reportRef = useRef<HTMLDivElement>(null);
-  const [limitError, setLimitError] = useState('');
 
   const { health, update, getBMI, getCalories, getTrimester, progress, daysRemaining } = useHealthData();
 
@@ -35,48 +30,30 @@ const SmartPregnancyPlan = () => {
   const calories = getCalories();
   const bloodPressure = `${health.bloodPressureSys}/${health.bloodPressureDia}`;
 
-  useResetOnLanguageChange(() => setPlanContent(''));
+  const {
+    generate,
+    isLoading: enhancedLoading,
+    content: planContent,
+    error: limitError,
+    reset,
+  } = useSmartInsight({
+    section: 'pregnancy-plan',
+    toolType: 'pregnancy-plan',
+  });
+
+  useResetOnLanguageChange(() => reset());
 
   const generatePlan = useCallback(async () => {
-    if (isLimitReached) {
-      setLimitError(t('aiErrors.monthlyLimitMsg', { limit, remaining: 0 }));
-      return;
-    }
-    setPlanContent('');
-    setLimitError('');
-    setEnhancedLoading(true);
-    setResearchEnhanced(false);
-
     const conditionsText = health.conditions.length > 0 ? health.conditions.join(', ') : 'none';
     const base = `Week ${health.week}, Weight: ${health.weight}kg, Height: ${health.height}cm, Age: ${health.age}, Pain: ${health.painLevel}/10, BP: ${health.bloodPressureSys}/${health.bloodPressureDia}, Sleep: ${health.sleepHours}hrs, Mood: ${health.mood}, Activity: ${health.activityLevel}, Conditions: ${conditionsText}`;
 
-    await executeSmartRequest({
-      request: {
-        section: 'pregnancy-plan',
-        toolType: 'pregnancy-plan',
-        weight: 1,
-        messages: [{
-          role: 'user',
-          content: `I'm in week ${health.week} of pregnancy. ${base}. Give me a personalized weekly pregnancy plan covering exercises, nutrition tips, and wellness recommendations.`,
-        }],
-        context: { week: health.week, weight: health.weight, language: lang },
-      },
-      onDelta: (text) => setPlanContent(prev => prev + text),
-      onDone: () => {
-        setEnhancedLoading(false);
-        refresh();
-      },
-      onError: (err) => {
-        setEnhancedLoading(false);
-        if (err.type === 'quota_exhausted') {
-          setLimitError(t('aiErrors.monthlyLimitMsg', { limit, remaining: 0 }));
-        } else {
-          setLimitError(err.message);
-        }
-        refresh();
-      },
+    setResearchEnhanced(false);
+
+    await generate({
+      prompt: `I'm in week ${health.week} of pregnancy. ${base}. Give me a personalized weekly pregnancy plan covering exercises, nutrition tips, and wellness recommendations.`,
+      context: { week: health.week, weight: health.weight },
     });
-  }, [health, lang, isLimitReached, limit, t, refresh]);
+  }, [health, generate]);
 
   return (
     <ToolFrame title={t("smartPlan.title")} subtitle={t("smartPlan.subtitle")} icon={Brain} mood="nurturing" toolId="smart-pregnancy-plan">
@@ -102,7 +79,7 @@ const SmartPregnancyPlan = () => {
           onGenerate={generatePlan}
         />
 
-        <SavedResultsViewer toolId="smart-pregnancy-plan" onLoad={(r) => setPlanContent(r.content)} />
+        <SavedResultsViewer toolId="smart-pregnancy-plan" onLoad={(r) => reset()} />
 
         {limitError && (
           <div className="rounded-xl border border-destructive/30 bg-destructive/5 p-4 text-destructive text-xs">{limitError}</div>

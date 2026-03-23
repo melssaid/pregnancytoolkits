@@ -1,5 +1,6 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import { getQuotaState, canAfford, consumeQuota, setTier, clearAdminBypass } from '../quotaManager';
+import { resolveWeight, TOOL_WEIGHT_REGISTRY } from '../types';
 
 const STORAGE_KEY = 'smart_quota_v2';
 const ADMIN_KEY = 'smart_admin_bypass';
@@ -80,14 +81,77 @@ describe('quotaManager', () => {
   });
 
   it('resets when month changes', () => {
-    // Simulate old month data
     localStorage.setItem(STORAGE_KEY, JSON.stringify({
       monthKey: '2020-01',
       used: 99,
       tier: 'free',
     }));
     const state = getQuotaState();
-    expect(state.used).toBe(0); // reset because month changed
+    expect(state.used).toBe(0);
     expect(state.remaining).toBe(5);
+  });
+
+  it('does not double-deduct on sequential calls', () => {
+    consumeQuota(1);
+    consumeQuota(1);
+    const state = getQuotaState();
+    expect(state.used).toBe(2); // exactly 2, not more
+  });
+
+  it('weight-2 tool exhausts free quota faster', () => {
+    consumeQuota(2); // 2 used
+    consumeQuota(2); // 4 used
+    expect(canAfford(2)).toBe(false); // only 1 remaining
+    expect(canAfford(1)).toBe(true);
+    consumeQuota(1); // 5 used
+    expect(getQuotaState().isExhausted).toBe(true);
+  });
+});
+
+describe('TOOL_WEIGHT_REGISTRY', () => {
+  it('bump-photos has weight 2', () => {
+    expect(TOOL_WEIGHT_REGISTRY['bump-photos']).toBe(2);
+  });
+
+  it('all standard tools have weight 1', () => {
+    const standardTools = [
+      'symptom-analysis', 'meal-suggestion', 'pregnancy-assistant',
+      'kick-analysis', 'sleep-analysis', 'mental-health', 'weight-analysis',
+      'partner-guide', 'hospital-bag', 'birth-plan', 'contraction-analysis',
+    ] as const;
+    for (const tool of standardTools) {
+      expect(TOOL_WEIGHT_REGISTRY[tool]).toBe(1);
+    }
+  });
+
+  it('registry covers every AIToolType', () => {
+    // All keys in registry should be valid AIToolType values
+    const keys = Object.keys(TOOL_WEIGHT_REGISTRY);
+    expect(keys.length).toBeGreaterThanOrEqual(30);
+    for (const key of keys) {
+      expect([1, 2]).toContain(TOOL_WEIGHT_REGISTRY[key as keyof typeof TOOL_WEIGHT_REGISTRY]);
+    }
+  });
+});
+
+describe('resolveWeight', () => {
+  it('resolves bump-photos to weight 2 from toolType', () => {
+    expect(resolveWeight('bump-photos')).toBe(2);
+  });
+
+  it('resolves standard tool to weight 1 from toolType', () => {
+    expect(resolveWeight('symptom-analysis')).toBe(1);
+  });
+
+  it('resolves weight from section when no toolType', () => {
+    expect(resolveWeight(undefined, 'ultrasound')).toBe(2); // maps to bump-photos
+  });
+
+  it('resolves weight from section for standard sections', () => {
+    expect(resolveWeight(undefined, 'symptoms')).toBe(1);
+  });
+
+  it('defaults to 1 for unknown inputs', () => {
+    expect(resolveWeight(undefined, undefined)).toBe(1);
   });
 });
