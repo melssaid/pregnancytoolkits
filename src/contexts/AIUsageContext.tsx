@@ -1,7 +1,7 @@
 /**
  * Global AI Usage Context
  * Single source of truth — delegates to quotaManager for all storage.
- * No more dual localStorage keys; everything goes through smart_quota_v2.
+ * Syncs from server on mount to prevent localStorage-clearing exploit.
  */
 
 import { createContext, useContext, useState, useCallback, useEffect, useRef, type ReactNode } from 'react';
@@ -36,13 +36,53 @@ function readState(): QuotaState {
   return getQuotaState();
 }
 
+/** Fetch real usage from server to prevent localStorage clearing exploit */
+async function fetchServerQuota(): Promise<{ used: number; limit: number; tier: 'free' | 'premium' } | null> {
+  try {
+    const { supabase } = await import('@/integrations/supabase/client');
+    const { data: { session } } = await supabase.auth.getSession();
+    const token = session?.access_token || import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+
+    const res = await fetch(
+      `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/pregnancy-ai-perplexity`,
+      {
+        method: 'GET',
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+    if (!res.ok) return null;
+    return await res.json();
+  } catch {
+    return null;
+  }
+}
+
 const AIUsageContext = createContext<AIUsageContextValue | null>(null);
 
 export function AIUsageProvider({ children }: { children: ReactNode }) {
   const [state, setState] = useState<QuotaState>(readState);
+  const hasSynced = useRef(false);
 
   // Refresh on mount and periodically when tab gains focus
   const refresh = useCallback(() => setState(readState()), []);
+
+  // Sync from server on first mount to prevent localStorage clearing exploit
+  useEffect(() => {
+    if (hasSynced.current) return;
+    hasSynced.current = true;
+    fetchServerQuota().then((server) => {
+      if (!server) return;
+      // If server reports higher usage than local, trust server
+      const local = getQuotaState();
+      if (server.used > local.used) {
+        qmSyncFromServer(server.used, server.tier);
+      }
+      if (server.tier === 'premium' && local.tier !== 'premium') {
+        qmSetTier('premium');
+      }
+      refresh();
+    });
+  }, [refresh]);
 
   useEffect(() => {
     // Listen for storage changes from other tabs or from smartEngine writes

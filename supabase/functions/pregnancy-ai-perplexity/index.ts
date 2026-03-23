@@ -658,6 +658,64 @@ Deno.serve(async (req) => {
     return new Response(null, { headers: corsHeaders });
   }
 
+  // ── GET handler: return current monthly usage for quota sync ──
+  if (req.method === "GET") {
+    try {
+      const authHeader = req.headers.get("Authorization");
+      if (!authHeader?.startsWith("Bearer ")) {
+        return new Response(JSON.stringify({ used: 0, limit: 5, tier: "free" }), {
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
+
+      let clientId = getClientId(req);
+      let userId: string | null = null;
+      let isPremium = false;
+
+      const { createClient } = await import("https://esm.sh/@supabase/supabase-js@2");
+      try {
+        const supabaseClient = createClient(
+          Deno.env.get("SUPABASE_URL") ?? "",
+          Deno.env.get("SUPABASE_ANON_KEY") ?? "",
+          { global: { headers: { Authorization: authHeader } } }
+        );
+        const { data: { user } } = await supabaseClient.auth.getUser();
+        if (user?.id) { clientId = user.id; userId = user.id; }
+      } catch {}
+
+      // Check subscription
+      if (userId) {
+        try {
+          const adminClient = createClient(
+            Deno.env.get("SUPABASE_URL") ?? "",
+            Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "",
+          );
+          const { data: sub } = await adminClient
+            .from("subscriptions")
+            .select("status, subscription_type")
+            .eq("user_id", userId)
+            .eq("status", "active")
+            .order("created_at", { ascending: false })
+            .limit(1)
+            .maybeSingle();
+          if (sub && sub.subscription_type !== "trial") isPremium = true;
+        } catch {}
+      }
+
+      const monthlyUsed = await getMonthlyUsageCount(clientId, userId);
+      const limit = isPremium ? PREMIUM_MONTHLY_LIMIT : FREE_MONTHLY_LIMIT;
+
+      return new Response(JSON.stringify({ used: monthlyUsed, limit, tier: isPremium ? "premium" : "free" }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    } catch (e) {
+      console.error("[AI] GET quota error:", e);
+      return new Response(JSON.stringify({ used: 0, limit: 5, tier: "free" }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+  }
+
   try {
     // ── Authentication (graceful — accepts JWT or anon key) ──
     const authHeader = req.headers.get("Authorization");

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { 
   Camera, Upload, Trash2, Download, Sparkles, ChevronLeft, ChevronRight, 
   Loader2, Image as ImageIcon, HardDrive, AlertTriangle, Shield, 
-  Calendar, X, RefreshCw, Info, Columns, Clock, Edit3, Check
+  Calendar, X, RefreshCw, Info, Columns, Clock, Edit3, Check, Crown
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
@@ -440,7 +440,7 @@ const AIBumpPhotos: React.FC = () => {
               </div>
             )}
 
-            {/* Quota usage indicator */}
+            {/* Quota usage indicator + upgrade CTA */}
             <div className="pt-1 space-y-2">
               <div className="flex items-center justify-between">
                 <span className={`text-xs font-medium ${isLimitReached ? 'text-destructive' : 'text-foreground'}`}>
@@ -449,6 +449,19 @@ const AIBumpPhotos: React.FC = () => {
                     : t('toolsInternal.bumpPhotos.analysisQuotaRemaining', { remaining, defaultValue: '{{remaining}} analyses remaining' })}
                 </span>
               </div>
+              {isLimitReached && (
+                <button
+                  onClick={() => { window.location.href = '/pricing-demo'; }}
+                  className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-white text-xs font-semibold transition-all"
+                  style={{
+                    background: 'linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(340 55% 50%) 50%, hsl(280 45% 45%) 100%)',
+                    boxShadow: '0 4px 16px -2px hsl(var(--primary) / 0.25)',
+                  }}
+                >
+                  <Crown className="w-4 h-4" />
+                  {t('quotaExhausted.unlockMore', 'Unlock more analyses with Premium')}
+                </button>
+              )}
             </div>
           </CardContent>
         </Card>
