@@ -2384,6 +2384,12 @@
   },
   "settings": {
     "aboutApp": "Über die App",
+    "trust": {
+      "title": "Ihre Privatsphäre, geschützt",
+      "localData": "Ihre Gesundheitsdaten bleiben auf Ihrem Gerät — sie werden nie auf unsere Server hochgeladen",
+      "noAdSharing": "Keine Gesundheitsinformationen werden an Werbetreibende oder Dritte weitergegeben",
+      "noAIStorage": "KI-Gespräche werden in Echtzeit verarbeitet und nicht auf unseren Servern gespeichert"
+    },
     "aiReset": {
       "button": "Versuche zurücksetzen (Premium)",
       "status": "Verwendet: {{used}}/{{limit}} • Verbleibend: {{remaining}}",

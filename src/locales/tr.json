@@ -2384,6 +2384,12 @@
   },
   "settings": {
     "aboutApp": "Uygulama Hakkında",
+    "trust": {
+      "title": "Gizliliğiniz Korunuyor",
+      "localData": "Sağlık verileriniz cihazınızda kalır — sunucularımıza yüklenmez",
+      "noAdSharing": "Sağlık bilgileri reklamcılar veya üçüncü taraflarla paylaşılmaz",
+      "noAIStorage": "Yapay zekâ konuşmaları anlık olarak işlenir ve sunucularımızda saklanmaz"
+    },
     "aiReset": {
       "button": "Denemeleri Sıfırla (Premium)",
       "status": "Kullanılan: {{used}}/{{limit}} • Kalan: {{remaining}}",
