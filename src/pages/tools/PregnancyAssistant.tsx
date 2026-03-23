@@ -159,7 +159,7 @@ export default function PregnancyAssistant() {
         )}
 
         {/* Sticky input at bottom */}
-        <div className="sticky bottom-[4.5rem] z-30 mt-8 mb-3 bg-background/95 backdrop-blur-sm rounded-2xl border border-border/40 shadow-lg">
+        <div className="sticky bottom-[4.5rem] z-30 mt-14 mb-3 bg-background/95 backdrop-blur-sm rounded-2xl border border-border/40 shadow-lg">
           <InputArea
             input={input}
             setInput={setInput}
