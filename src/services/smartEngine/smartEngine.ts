@@ -33,7 +33,7 @@ function isAdminBypass(): boolean {
 }
 
 // ── Error classification ──
-function classifyError(status?: number, message?: string): SmartError {
+export function classifyError(status?: number, message?: string): SmartError {
   if (status === 429) return { type: "rate_limit", message: message || "Rate limit exceeded", retryable: true };
   if (status === 402) return { type: "payment", message: message || "Payment required", retryable: false };
   if (status === 401) return { type: "auth", message: message || "Authentication failed", retryable: true };

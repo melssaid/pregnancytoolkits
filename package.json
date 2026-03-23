@@ -10,7 +10,9 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "validate:locales": "npx tsx scripts/validate-locales.ts",
+    "prelaunch": "npm run validate:locales && vitest run src/services/smartEngine"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",
