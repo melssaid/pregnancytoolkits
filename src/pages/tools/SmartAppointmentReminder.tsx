@@ -435,7 +435,7 @@ Format as a numbered list (1-5), one question per line. Be concise and relevant.
         {/* Add Button */}
         {!showForm && (
           <Button
-            className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground py-5 gap-2"
+            className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground py-5 gap-2 text-sm whitespace-normal" style={{ overflowWrap: 'anywhere' }}
             onClick={() => setShowForm(true)}
           >
             <Plus className="w-5 h-5" />
