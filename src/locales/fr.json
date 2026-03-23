@@ -195,59 +195,59 @@
     "totalToday": "Total de sommeil aujourd'hui"
   },
   "backPainRelief": {
-    "aiCoachTitle": "AI Pain Relief Coach",
+    "aiCoachTitle": "Coach IA soulagement de la douleur",
     "difficulty": {
-      "easy": "Easy",
-      "moderate": "Moderate"
+      "easy": "Facile",
+      "moderate": "Modéré"
     },
     "exercises": {
       "catCow": {
-        "desc": "Alternating spinal flexion and extension",
-        "name": "Cat-Cow Stretch",
-        "target": "Lower & Upper Back"
+        "name": "Étirement Chat-Vache",
+        "desc": "Flexion et extension alternées de la colonne",
+        "target": "Bas et haut du dos"
       },
       "childPose": {
-        "desc": "Gentle stretch for the entire back",
-        "name": "Child's Pose",
-        "target": "Full Back"
+        "name": "Posture de l'Enfant",
+        "desc": "Étirement doux pour tout le dos",
+        "target": "Dos complet"
       },
       "pelvicTilt": {
-        "desc": "Strengthen core and relieve lower back pressure",
-        "name": "Pelvic Tilts",
-        "target": "Lower Back & Core"
+        "name": "Bascule du bassin",
+        "desc": "Renforcer le tronc et soulager la pression lombaire",
+        "target": "Bas du dos et tronc"
       },
       "piriformis": {
-        "desc": "Relieve sciatic pain and hip tension",
-        "name": "Piriformis Stretch",
-        "target": "Hips & Lower Back"
+        "name": "Étirement du piriforme",
+        "desc": "Soulager la douleur sciatique et la tension des hanches",
+        "target": "Hanches et bas du dos"
       },
       "sideStretch": {
-        "desc": "Stretch the sides of your torso",
-        "name": "Side Body Stretch",
-        "target": "Side Body"
+        "name": "Étirement latéral",
+        "desc": "Étirer les côtés du torse",
+        "target": "Corps latéral"
       },
       "wallPush": {
-        "desc": "Strengthen upper back and shoulders",
-        "name": "Wall Push-Up",
-        "target": "Upper Back & Arms"
+        "name": "Pompes au mur",
+        "desc": "Renforcer le haut du dos et les épaules",
+        "target": "Haut du dos et bras"
       }
     },
-    "exercisesCompleted": "exercises completed",
-    "exercisesTitle": "Back Pain Exercises",
-    "getAdvice": "Get AI Pain Relief Advice",
+    "exercisesCompleted": "exercices terminés",
+    "exercisesTitle": "Exercices pour le mal de dos",
+    "getAdvice": "Obtenir des conseils IA anti-douleur",
     "painLocations": {
-      "fullBack": "Full Back",
-      "hips": "Hips & Sciatic",
-      "lowerBack": "Lower Back",
-      "upperBack": "Upper Back"
+      "fullBack": "Dos complet",
+      "hips": "Hanches et sciatique",
+      "lowerBack": "Bas du dos",
+      "upperBack": "Haut du dos"
     },
-    "safetyNotice": "Important Safety Notice",
-    "safetyWarning": "Stop immediately if you experience sharp pain, dizziness, or contractions. Always consult your healthcare provider before starting any exercise program during pregnancy.",
-    "steps": "Steps:",
-    "subtitle": "Pregnancy-safe exercises for back comfort",
-    "title": "Back Comfort Guide",
-    "todaysRoutine": "Today's Relief Routine",
-    "whereHurts": "Where does it hurt?"
+    "safetyNotice": "Avis de sécurité important",
+    "safetyWarning": "Arrêtez immédiatement si vous ressentez une douleur aiguë, des vertiges ou des contractions. Consultez toujours votre professionnel de santé avant de commencer tout programme d'exercice pendant la grossesse.",
+    "steps": "Étapes :",
+    "subtitle": "Exercices sûrs pendant la grossesse pour le confort du dos",
+    "title": "Guide confort du dos",
+    "todaysRoutine": "Routine soulagement du jour",
+    "whereHurts": "Où avez-vous mal ?"
   },
   "categories": {
     "ai": "Outils IA",
@@ -7852,14 +7852,14 @@
     "selectPreference": "Please select at least one preference"
   },
   "toolsInternal.fertileWindow": {
-    "lastPeriod": "First day of your last period",
-    "cycleLength": "Average cycle length (days)",
-    "calculate": "Find My Fertile Window",
-    "yourWindow": "Your Fertile Window",
-    "windowStart": "Window opens",
-    "windowEnd": "Window closes",
-    "estimatedOvulation": "Estimated ovulation day",
-    "disclaimer": "This is an estimate based on average cycle data. Actual ovulation may vary. Consult your healthcare provider for personalized guidance."
+    "lastPeriod": "Premier jour de vos dernières règles",
+    "cycleLength": "Durée moyenne du cycle (jours)",
+    "calculate": "Calculer la fenêtre fertile",
+    "yourWindow": "Votre fenêtre fertile",
+    "windowStart": "Début de la fenêtre",
+    "windowEnd": "Fin de la fenêtre",
+    "estimatedOvulation": "Jour d'ovulation estimé",
+    "disclaimer": "Ceci est une estimation basée sur des données de cycle moyennes. L'ovulation réelle peut varier. Consultez votre professionnel de santé pour des conseils personnalisés."
   },
   "toolsInternal.fertilityAcademy": {
     "lessonsCount": "{{count}} learning modules",
