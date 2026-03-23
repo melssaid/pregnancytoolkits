@@ -148,7 +148,6 @@ export function ContractionStats({ contractions }: ContractionStatsProps) {
           <span className="text-[9px] text-muted-foreground block leading-tight mt-0.5 whitespace-normal break-words overflow-wrap-anywhere">
             {card.label}
           </span>
-          </span>
         </div>
       ))}
     </motion.div>
