@@ -54,24 +54,23 @@ const App = () => {
 
         const alreadyRecovered = sessionStorage.getItem(CHUNK_RECOVERY_KEY) === "1";
         if (alreadyRecovered) {
-          toast.error("Still seeing cache mismatch", {
-            description: "Please do one hard refresh (Ctrl/Cmd + Shift + R).",
-            duration: 3500,
-          });
+          // Don't show error on second attempt — just let it pass
+          console.warn("[ChunkRecovery] Already recovered once this session, skipping reload.");
           return;
         }
 
         sessionStorage.setItem(CHUNK_RECOVERY_KEY, "1");
         
-        toast.error("Refreshing app cache...", {
-          description: "Reloading with a clean module cache.",
-          duration: 2500,
-        });
-
-        void recoverFromChunkError().finally(() => {
-          const nextUrl = new URL(window.location.href);
-          nextUrl.searchParams.set("__cache_bust", Date.now().toString());
-          window.location.replace(nextUrl.toString());
+        // Only clear stale caches, don't force reload immediately
+        void recoverFromChunkError().then(() => {
+          toast.info("Updating app...", {
+            description: "Please wait a moment.",
+            duration: 2000,
+          });
+          // Use a gentle retry: re-navigate to the same route instead of hard reload
+          setTimeout(() => {
+            window.location.reload();
+          }, 500);
         });
       }
     };
