@@ -14,6 +14,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 
 import { useUserProfile } from '@/hooks/useUserProfile';
+import { useInAppReview } from '@/hooks/useInAppReview';
 
 const SmartKickCounter: React.FC = () => {
   const { t } = useTranslation();
@@ -23,6 +24,7 @@ const SmartKickCounter: React.FC = () => {
   const [startTime, setStartTime] = useState<Date | null>(null);
   const [elapsedTime, setElapsedTime] = useState(0);
   const { profile: userProfile } = useUserProfile();
+  const { maybePromptReview } = useInAppReview();
   const [currentWeek, setCurrentWeek] = useState(userProfile.pregnancyWeek || 0);
   const [history, setHistory] = useState<any[]>([]);
   const [notes, setNotes] = useState('');
@@ -127,8 +129,8 @@ const SmartKickCounter: React.FC = () => {
       
       const sessionHistory = await KickService.getHistory(10);
       setHistory(sessionHistory);
-      
-      
+      maybePromptReview('kick_count_complete');
+
 
       
     } catch (error: any) {
