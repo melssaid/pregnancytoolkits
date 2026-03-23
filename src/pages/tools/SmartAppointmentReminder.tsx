@@ -410,24 +410,24 @@ Format as a numbered list (1-5), one question per line. Be concise and relevant.
         {/* Quick Stats */}
         <div className="grid grid-cols-3 gap-2">
           <Card className="bg-gradient-to-br from-primary/10 to-primary/5 border-primary/20">
-            <CardContent className="p-3 text-center">
-              <Calendar className="w-4 h-4 mx-auto mb-1 text-primary" />
-              <p className="text-lg font-bold text-primary">{upcoming.length}</p>
-              <p className="text-[10px] text-muted-foreground">{t('toolsInternal.appointmentReminder.upcoming')}</p>
+            <CardContent className="p-2.5 text-center">
+              <Calendar className="w-3.5 h-3.5 mx-auto mb-0.5 text-primary" />
+              <p className="text-sm font-bold text-primary">{upcoming.length}</p>
+              <p className="text-[9px] text-muted-foreground line-clamp-1" style={{ overflowWrap: 'anywhere' }}>{t('toolsInternal.appointmentReminder.upcoming')}</p>
             </CardContent>
           </Card>
           <Card className="bg-gradient-to-br from-accent/10 to-accent/5 border-accent/20">
-            <CardContent className="p-3 text-center">
-              <Bell className="w-4 h-4 mx-auto mb-1 text-accent-foreground" />
-              <p className="text-lg font-bold text-foreground">{currentWeek}</p>
-              <p className="text-[10px] text-muted-foreground">{t('common.week')}</p>
+            <CardContent className="p-2.5 text-center">
+              <Bell className="w-3.5 h-3.5 mx-auto mb-0.5 text-accent-foreground" />
+              <p className="text-sm font-bold text-foreground">{currentWeek}</p>
+              <p className="text-[9px] text-muted-foreground line-clamp-1">{t('common.week')}</p>
             </CardContent>
           </Card>
           <Card className="bg-gradient-to-br from-muted/50 to-muted/30 border-border/50">
-            <CardContent className="p-3 text-center">
-              <Clock className="w-4 h-4 mx-auto mb-1 text-muted-foreground" />
-              <p className="text-lg font-bold text-muted-foreground">{past.length}</p>
-              <p className="text-[10px] text-muted-foreground">{t('toolsInternal.appointmentReminder.past')}</p>
+            <CardContent className="p-2.5 text-center">
+              <Clock className="w-3.5 h-3.5 mx-auto mb-0.5 text-muted-foreground" />
+              <p className="text-sm font-bold text-muted-foreground">{past.length}</p>
+              <p className="text-[9px] text-muted-foreground line-clamp-1" style={{ overflowWrap: 'anywhere' }}>{t('toolsInternal.appointmentReminder.past')}</p>
             </CardContent>
           </Card>
         </div>
