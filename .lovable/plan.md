@@ -1,19 +1,22 @@
 
 
-# Pre-Launch Quality Check Plan
+# إضافة استدعاء useInAppReview في عداد الركلات وحاسبة موعد الولادة
 
-## What This Does
-The `npm run prelaunch` command runs two checks sequentially:
-1. **Locale Validation** (`validate:locales`) — Compares all 6 non-English locale files against `en.json` for missing keys, extra keys, and broken placeholders
-2. **Smart Engine Tests** (`vitest run src/services/smartEngine`) — Runs 3 test suites: `quotaManager.test.ts`, `cacheManager.test.ts`, `errorClassification.test.ts`
+## التغييرات
 
-## Execution
-This is a read-only diagnostic task. I will run the prelaunch command and report results — number of locale issues found, test pass/fail status, and any specific failures that need fixing.
+### 1. SmartKickCounter.tsx
+- استيراد `useInAppReview` من `@/hooks/useInAppReview`
+- استدعاء `maybePromptReview('kick_count_complete')` بعد حفظ الجلسة بنجاح (سطر ~128، بعد `setHistory`)
 
-## Files Involved
-- `scripts/validate-locales.ts` — locale validator
-- `src/services/smartEngine/__tests__/quotaManager.test.ts`
-- `src/services/smartEngine/__tests__/cacheManager.test.ts`
-- `src/services/smartEngine/__tests__/errorClassification.test.ts`
-- `src/locales/*.json` (7 files)
+### 2. DueDateCalculator.tsx
+- استيراد `useInAppReview` من `@/hooks/useInAppReview`
+- استدعاء `maybePromptReview('due_date_calculated')` بعد حساب موعد الولادة (نهاية دالة `calculate`، سطر ~100)
+
+## الملفات المتأثرة
+| ملف | تغيير |
+|-----|--------|
+| `src/pages/tools/SmartKickCounter.tsx` | إضافة import + استدعاء بعد حفظ الجلسة |
+| `src/pages/tools/DueDateCalculator.tsx` | إضافة import + استدعاء بعد الحساب |
+
+تغييرات بسيطة — سطرين إضافة في كل ملف.
 
