@@ -4092,11 +4092,9 @@
       "yourWindow": "Tu ventana fértil"
     },
     "fertilityAcademy": {
-      "lessons": "Lecciones",
       "lessonsCount": "{{count}} módulos educativos"
     },
     "fertilitySigns": {
-      "signs": "Señales",
       "signsCount": "{{count}} señales que debes conocer"
     },
     "fetalDevelopment": {
@@ -5462,10 +5460,7 @@
       "yourTrimester": "Su trimestre"
     },
     "preconceptionCheckup": {
-      "ai": "Análisis IA",
       "allComplete": "¡Excelente preparación! Discute tus resultados con tu médico.",
-      "categories": "Categorías",
-      "checks": "Chequeos",
       "disclaimer": "Esta lista es una referencia educativa para organizar conversaciones con tu médico. No reemplaza el consejo médico profesional, diagnóstico o tratamiento. Todos los exámenes deben ser discutidos y ordenados por un profesional de salud calificado.",
       "progressLabel": "Exámenes registrados",
       "related": {
@@ -5477,7 +5472,6 @@
       "tracked": "registrado"
     },
     "preconceptionNutrition": {
-      "categories": "Categorías",
       "categoriesCount": "{{count}} categorías nutricionales"
     },
     "preeclampsia": {
@@ -5498,8 +5492,7 @@
       "warningSigns": "Señales de Advertencia a Observar"
     },
     "prenatalVitamins": {
-      "supplementsCount": "{{count}} suplementos para revisar",
-      "vitamins": "Vitaminas"
+      "supplementsCount": "{{count}} suplementos para revisar"
     },
     "recipeModifier": {
       "analyzeAnother": "Analizar otra receta",
@@ -5767,7 +5760,6 @@
       "title": "Planificador de Snacks Inteligente"
     },
     "stressFertility": {
-      "topics": "Temas",
       "topicsCount": "{{count}} temas para explorar"
     },
     "stressRelief": {
@@ -5939,7 +5931,6 @@
       "week": "Semana {{week}}"
     },
     "twwCompanion": {
-      "days": "Días",
       "subtitle": "Tu guía diaria durante las dos semanas de espera"
     },
     "vitaminTracker": {

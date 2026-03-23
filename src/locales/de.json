@@ -4092,11 +4092,9 @@
       "yourWindow": "Dein fruchtbares Fenster"
     },
     "fertilityAcademy": {
-      "lessons": "Lektionen",
       "lessonsCount": "{{count}} Lernmodule"
     },
     "fertilitySigns": {
-      "signs": "Anzeichen",
       "signsCount": "{{count}} Anzeichen, die du kennen solltest"
     },
     "fetalDevelopment": {
@@ -5462,10 +5460,7 @@
       "yourTrimester": "Ihr Trimester"
     },
     "preconceptionCheckup": {
-      "ai": "KI-Analyse",
       "allComplete": "Hervorragende Vorbereitung! Bespreche deine Ergebnisse mit deinem Arzt.",
-      "categories": "Kategorien",
-      "checks": "Untersuchungen",
       "disclaimer": "Diese Checkliste ist eine Bildungsreferenz, um Gespräche mit Ihrem Arzt zu organisieren. Sie ersetzt keine professionelle medizinische Beratung, Diagnose oder Behandlung. Alle Untersuchungen sollten mit einem qualifizierten Gesundheitsfachmann besprochen und angeordnet werden.",
       "progressLabel": "Untersuchungen erfasst",
       "related": {
@@ -5477,7 +5472,6 @@
       "tracked": "erfasst"
     },
     "preconceptionNutrition": {
-      "categories": "Kategorien",
       "categoriesCount": "{{count}} Ernährungskategorien"
     },
     "preeclampsia": {
@@ -5498,8 +5492,7 @@
       "warningSigns": "Warnsignale"
     },
     "prenatalVitamins": {
-      "supplementsCount": "{{count}} Nahrungsergänzungsmittel",
-      "vitamins": "Vitamine"
+      "supplementsCount": "{{count}} Nahrungsergänzungsmittel"
     },
     "recipeModifier": {
       "analyzeAnother": "Ein weiteres Rezept analysieren",
@@ -5767,7 +5760,6 @@
       "title": "Intelligenter Snack-Planer"
     },
     "stressFertility": {
-      "topics": "Themen",
       "topicsCount": "{{count}} Themen zum Erkunden"
     },
     "stressRelief": {
@@ -5939,7 +5931,6 @@
       "week": "Woche {{week}}"
     },
     "twwCompanion": {
-      "days": "Tage",
       "subtitle": "Dein täglicher Begleiter durch die Zwei-Wochen-Wartezeit"
     },
     "vitaminTracker": {

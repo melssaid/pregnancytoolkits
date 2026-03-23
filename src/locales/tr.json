@@ -4092,11 +4092,9 @@
       "yourWindow": "Verimli Penceren"
     },
     "fertilityAcademy": {
-      "lessons": "Dersler",
       "lessonsCount": "{{count}} eğitim modülü"
     },
     "fertilitySigns": {
-      "signs": "Belirtiler",
       "signsCount": "{{count}} bilmen gereken işaret"
     },
     "fetalDevelopment": {
@@ -5462,10 +5460,7 @@
       "yourTrimester": "Trimesteriniz"
     },
     "preconceptionCheckup": {
-      "ai": "Yapay Zeka Analizi",
       "allComplete": "Harika hazırlık! Sonuçlarınızı doktorunuzla tartışın.",
-      "categories": "Kategoriler",
-      "checks": "Kontroller",
       "disclaimer": "Bu liste, doktorunuzla görüşmelerinizi organize etmenize yardımcı olacak eğitici bir referanstır. Profesyonel tıbbi tavsiye, teşhis veya tedavinin yerini almaz. Tüm taramalar ve testler nitelikli bir sağlık profesyoneli tarafından tartışılmalı ve istenmelidir.",
       "progressLabel": "Takip edilen taramalar",
       "related": {
@@ -5477,7 +5472,6 @@
       "tracked": "takip edilen"
     },
     "preconceptionNutrition": {
-      "categories": "Kategoriler",
       "categoriesCount": "{{count}} beslenme kategorisi"
     },
     "preeclampsia": {
@@ -5498,8 +5492,7 @@
       "warningSigns": "İzlenmesi Gereken Uyarı İşaretleri"
     },
     "prenatalVitamins": {
-      "supplementsCount": "{{count}} incelenecek takviye",
-      "vitamins": "Vitaminler"
+      "supplementsCount": "{{count}} incelenecek takviye"
     },
     "recipeModifier": {
       "analyzeAnother": "Başka bir tarif analiz et",
@@ -5767,7 +5760,6 @@
       "title": "Akıllı Atıştırmalık Planlayıcısı"
     },
     "stressFertility": {
-      "topics": "Konular",
       "topicsCount": "{{count}} keşfedilecek konu"
     },
     "stressRelief": {
@@ -5939,7 +5931,6 @@
       "week": "Hafta {{week}}"
     },
     "twwCompanion": {
-      "days": "Günler",
       "subtitle": "İki haftalık bekleme döneminde günlük rehberin"
     },
     "vitaminTracker": {

@@ -4092,11 +4092,9 @@
       "yourWindow": "Your Fertile Window"
     },
     "fertilityAcademy": {
-      "lessons": "الدروس",
       "lessonsCount": "{{count}} وحدة تعليمية"
     },
     "fertilitySigns": {
-      "signs": "العلامات",
       "signsCount": "{{count}} علامة يجب معرفتها"
     },
     "fetalDevelopment": {
@@ -5462,10 +5460,7 @@
       "yourTrimester": "الثلث الحالي"
     },
     "preconceptionCheckup": {
-      "ai": "تحليل ذكي",
       "allComplete": "تحضير ممتاز! ناقشي نتائجك مع طبيبك المختص.",
-      "categories": "الفئات",
-      "checks": "الفحوصات",
       "disclaimer": "هذه القائمة مرجع تعليمي لمساعدتك في تنظيم محادثاتك مع طبيبك المختص. لا تُغني عن الاستشارة الطبية أو التشخيص أو العلاج المهني. جميع الفحوصات والتحاليل يجب مناقشتها وطلبها من قِبل مختص صحي مؤهل.",
       "progressLabel": "فحوصات مُتابَعة",
       "related": {
@@ -5477,7 +5472,6 @@
       "tracked": "مُتابَع"
     },
     "preconceptionNutrition": {
-      "categories": "الفئات",
       "categoriesCount": "{{count}} فئة غذائية"
     },
     "preeclampsia": {
@@ -5498,8 +5492,7 @@
       "warningSigns": "علامات التحذير"
     },
     "prenatalVitamins": {
-      "supplementsCount": "{{count}} مكمل للمراجعة",
-      "vitamins": "الفيتامينات"
+      "supplementsCount": "{{count}} مكمل للمراجعة"
     },
     "recipeModifier": {
       "analyzeAnother": "Analyze Another Recipe",
@@ -5767,7 +5760,6 @@
       "title": "Smart Snack Planner"
     },
     "stressFertility": {
-      "topics": "المواضيع",
       "topicsCount": "{{count}} موضوع للاستكشاف"
     },
     "stressRelief": {
@@ -5939,7 +5931,6 @@
       "week": "الأسبوع {{week}}"
     },
     "twwCompanion": {
-      "days": "الأيام",
       "subtitle": "دليلك اليومي خلال أسبوعي الانتظار"
     },
     "vitaminTracker": {
