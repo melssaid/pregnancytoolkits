@@ -1480,7 +1480,7 @@
     "weeklySummary": {
       "title": "Resumo Semanal",
       "subtitle": "Acompanhamento semanal inteligente da sua gravidez",
-      "daysToGo": "{{days}} days to go",
+      "daysToGo": "{{days}} dias restantes",
       "pregnancyWeek": "Semana de Gravidez",
       "week": "Semana {{week}}",
       "showSummary": "Mostrar resumo da semana {{week}}",

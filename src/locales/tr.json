@@ -1480,7 +1480,7 @@
     "weeklySummary": {
       "title": "Haftalık Özet",
       "subtitle": "Hamileliğinizi akıllı haftalık takip",
-      "daysToGo": "{{days}} days to go",
+      "daysToGo": "{{days}} gün kaldı",
       "pregnancyWeek": "Hamilelik Haftası",
       "week": "Hafta {{week}}",
       "showSummary": "Hafta {{week}} özetini göster",
