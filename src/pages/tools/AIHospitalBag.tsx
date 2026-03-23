@@ -325,10 +325,10 @@ Include seasonal considerations and hospital-specific recommendations.`;
             { icon: Heart, label: t('toolsInternal.hospitalBag.partner'), count: items.filter(i => i.category === 'partner').length, color: 'from-purple-500/20 to-violet-500/20' },
             { icon: Briefcase, label: t('toolsInternal.hospitalBag.documents'), count: items.filter(i => i.category === 'documents').length, color: 'from-amber-500/20 to-orange-500/20' },
           ].map(({ icon: Icon, label, count, color }) => (
-            <Card key={label} className={`p-2.5 bg-gradient-to-br ${color} border-border/30 text-center overflow-hidden`}>
-              <Icon className="w-4 h-4 mx-auto mb-1 text-muted-foreground" />
-              <p className="text-base font-bold">{count}</p>
-              <p className="text-[10px] text-muted-foreground leading-tight">{label}</p>
+            <Card key={label} className={`p-2 bg-gradient-to-br ${color} border-border/30 text-center overflow-hidden`}>
+              <Icon className="w-3.5 h-3.5 mx-auto mb-0.5 text-muted-foreground" />
+              <p className="text-sm font-bold">{count}</p>
+              <p className="text-[9px] text-muted-foreground leading-tight line-clamp-1" style={{ overflowWrap: 'anywhere' }}>{label}</p>
             </Card>
           ))}
         </div>
