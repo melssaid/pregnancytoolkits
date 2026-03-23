@@ -1480,7 +1480,7 @@
     "weeklySummary": {
       "title": "Wöchentliche Einblicke",
       "subtitle": "Intelligente wöchentliche Verfolgung Ihrer Schwangerschaft",
-      "daysToGo": "{{days}} Tage verbleibend",
+      "daysToGo": "{{days}} Tage noch",
       "pregnancyWeek": "Schwangerschaftswoche",
       "week": "Woche {{week}}",
       "showSummary": "Zusammenfassung Woche {{week}} anzeigen",
