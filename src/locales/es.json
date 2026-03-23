@@ -2384,6 +2384,12 @@
   },
   "settings": {
     "aboutApp": "Acerca de la aplicación",
+    "trust": {
+      "title": "Tu privacidad, protegida",
+      "localData": "Tus datos de salud permanecen en tu dispositivo — nunca se suben a nuestros servidores",
+      "noAdSharing": "No se comparte información de salud con anunciantes ni terceros",
+      "noAIStorage": "Las conversaciones de IA se procesan en tiempo real y no se almacenan en nuestros servidores"
+    },
     "aiReset": {
       "button": "Restablecer intentos (Premium)",
       "status": "Usado: {{used}}/{{limit}} • Restante: {{remaining}}",
