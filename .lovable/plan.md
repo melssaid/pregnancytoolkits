@@ -1,87 +1,73 @@
 
 
-# Launch Finalization Plan
+# Medical Terminology & Translation Audit Plan
 
-## Audit Summary
+## Findings
 
-**Architecture is clean.** The prior hardening work is solid:
-- `resetQuota` / `clearAdminBypass` are NOT in public exports (index.ts) — confirmed
-- Weight resolution is centralized via `resolveWeight()` in types.ts — confirmed
-- No hardcoded AI weights remain (the `weight: 0.9` hits are pregnancy body weight distribution data, not AI quota)
-- `usePregnancyAI` is deleted — confirmed
-- `AIErrorBanner` safely falls back to 'unknown' for unrecognized error types — confirmed
+### 1. Medical Terminology Status (Core Journey Terms)
+All 6 languages use correct obstetric terminology for "My Pregnancy":
+- AR: **حملي** (obstetric pregnancy) — correct
+- DE: **Meine Schwangerschaft** — correct
+- FR: **Ma Grossesse** — correct
+- ES: **Mi Embarazo** — correct
+- PT: **Minha Gravidez** — correct
+- TR: **Hamileliğim** — correct
 
-## Remaining Work
+No ambiguity with "carrying things" in any language.
 
-### 1. Wire locale validation into package.json
-The script `scripts/validate-locales.ts` uses `__dirname` (CommonJS) but package.json has `"type": "module"`. Need to fix the script to use ESM-compatible path resolution, then add npm scripts.
+### 2. Critical Medical Error: German "Nachgeburt"
+**de.json line 623**: `"postpartum": "Nachgeburt"` — "Nachgeburt" means **placenta/afterbirth** (the organ expelled after delivery), NOT the postpartum period. Must be **"Wochenbett"** (which is correctly used elsewhere in the same file).
 
-**File: `scripts/validate-locales.ts`**
-- Replace `__dirname` with `import.meta.url` + `fileURLToPath`
-- Change `import` to ESM syntax (already uses `import`, just fix path)
+Also line 5314: `"Nachgeburtliche Planung"` → should be `"Wochenbettplanung"`.
 
-**File: `package.json`**
-- Add `"validate:locales": "npx tsx scripts/validate-locales.ts"`
-- Add `"prelaunch": "npm run validate:locales && vitest run src/services/smartEngine"`
+### 3. Untranslated Medical Content Blocks (~20 Fertility Academy Lessons)
+The `fertilityAcademy` lessons section has **titles translated** but **content bodies left in English** in ALL 6 non-English locales. This is the biggest gap — approximately 20 long-form medical education articles about:
+- Menstrual cycle phases, ovulation process, fertilization
+- Hormones (FSH, LH, estrogen, progesterone, AMH)
+- Age and fertility, PCOS management, endometriosis
+- Male fertility, supplements, sleep, exercise balance
+- Assisted reproduction, epigenetics, emotional wellbeing
 
-### 2. Expand test coverage
-The existing test file covers quota and registry well but is missing:
-- Cache hit vs cache miss tests
-- Error classification tests
-- AIErrorBanner safe fallback behavior
+### 4. Untranslated Exercise Strings
+`backPainRelief` exercises in **ar.json** and **fr.json** have English strings:
+- "Upper Back", "Wall Push-Up", "Strengthen upper back and shoulders"
+- "Important Safety Notice", "Steps:", exercise descriptions
 
-**File: `src/services/smartEngine/__tests__/quotaManager.test.ts`**
-Add these test groups:
-- `describe('cacheManager')` — test `buildCacheKey`, `getCached` (miss), `setCache` + `getCached` (hit), expired cache eviction
-- `describe('error classification')` — test `classifyError` for all 6 error types (need to export it or test via integration)
+### 5. Untranslated Ovulation Tool Keys (ar.json)
+Lines 7858-7863: `windowStart`, `windowEnd`, `estimatedOvulation`, `disclaimer` — all in English.
 
-Since `classifyError` is not exported, add a new test file:
+---
 
-**File: `src/services/smartEngine/__tests__/cacheManager.test.ts`**
-- Cache miss returns null
-- Cache hit returns stored content
-- Expired cache returns null
-- `invalidateSection` clears section entries
-- `clearAllCache` clears all entries
+## Plan
 
-**File: `src/services/smartEngine/__tests__/errorClassification.test.ts`**
-- Export `classifyError` from smartEngine.ts (it's a pure function, safe to export)
-- Test all 6 error types: 429→rate_limit, 402→payment, 401→auth, network keywords→network, unknown fallback
+### Step 1: Fix German medical error (2 lines)
+- Line 623: `"Nachgeburt"` → `"Wochenbett"`
+- Line 5314: `"Nachgeburtliche Planung"` → `"Wochenbettplanung"`
 
-### 3. Export classifyError for testability
-**File: `src/services/smartEngine/smartEngine.ts`**
-- Add `export` to `classifyError` function
+### Step 2: Translate Fertility Academy content (6 files × ~20 lessons)
+Translate all `toolsInternal.fertilityAcademy.lessons.*` content bodies into proper medical Arabic, German, French, Spanish, Portuguese, and Turkish. All content must use obstetric/gynecological terminology appropriate for patient education.
 
-**File: `src/services/smartEngine/index.ts`**
-- Add `classifyError` to exports
+Cultural note for Arabic: references to alcohol consumption will be replaced with culturally appropriate alternatives per existing policy.
 
-### 4. Fix locale script ESM compatibility
-**File: `scripts/validate-locales.ts`**
-- Use `fileURLToPath(import.meta.url)` instead of `__dirname`
+### Step 3: Translate backPainRelief exercise strings
+Fix untranslated exercise names, targets, and safety notices in ar.json and fr.json.
+
+### Step 4: Translate ovulation tool keys in ar.json
+Translate `windowStart`, `windowEnd`, `estimatedOvulation`, `disclaimer`.
 
 ---
 
 ## Files Changed
 
-| File | Change |
-|------|--------|
-| `package.json` | Add `validate:locales` and `prelaunch` scripts |
-| `scripts/validate-locales.ts` | Fix ESM compatibility (`__dirname` → `import.meta.url`) |
-| `src/services/smartEngine/smartEngine.ts` | Export `classifyError` |
-| `src/services/smartEngine/index.ts` | Add `classifyError` export |
-| `src/services/smartEngine/__tests__/cacheManager.test.ts` | New — cache hit/miss/expiry tests |
-| `src/services/smartEngine/__tests__/errorClassification.test.ts` | New — error normalization tests |
+| File | Changes |
+|------|---------|
+| `src/locales/de.json` | Fix "Nachgeburt" → "Wochenbett" (2 spots) + translate ~20 fertility lessons |
+| `src/locales/ar.json` | Translate ~20 fertility lessons + exercise strings + ovulation keys |
+| `src/locales/fr.json` | Translate ~20 fertility lessons + exercise strings |
+| `src/locales/es.json` | Translate ~20 fertility lessons |
+| `src/locales/pt.json` | Translate ~20 fertility lessons |
+| `src/locales/tr.json` | Translate ~20 fertility lessons |
 
-## Final Status
-
-- Quota safety: OK (production guards in place, not publicly exported)
-- Weight correctness: OK (centralized registry, zero hardcoded weights)
-- AI path unification: OK (useSmartInsight + useSmartChat only, legacy deleted)
-- i18n integrity: OK (validation script wired into npm)
-- Production safety: OK (admin bypass guarded, error banner handles unknowns)
-- Test coverage: Expanded (quota + cache + error classification)
-
-## Remaining Real Risks
-- Locale key mismatches can only be fully validated by running the script against current JSON files — will be runnable via `npm run validate:locales`
-- Server-side quota sync depends on `ai_usage_logs` table existing and edge function GET handler — already implemented
+## Scale
+~120 content blocks total (20 lessons × 6 languages), each containing detailed medical text. This is the largest remaining translation gap before launch.
 
