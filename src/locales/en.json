@@ -1138,6 +1138,12 @@
     "privacyPoint1": "All your health data is stored locally on your device only",
     "privacyPoint2": "We don't collect or share your personal information",
     "privacyPoint3": "You can export your data anytime",
+    "trust": {
+      "title": "Your Privacy, Protected",
+      "localData": "Your health data stays on your device — never uploaded to our servers",
+      "noAdSharing": "No health information is shared with advertisers or third parties",
+      "noAIStorage": "AI conversations are processed in real-time and not stored on our servers"
+    },
     "aboutApp": "About the App",
     "appTagline": "Pregnancy Toolkits - Your journey companion",
     "version": "Version",
