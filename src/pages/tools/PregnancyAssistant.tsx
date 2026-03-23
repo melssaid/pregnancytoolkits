@@ -103,16 +103,16 @@ export default function PregnancyAssistant() {
                 className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
               >
                 {msg.role === "user" ? (
-                  <div className="max-w-[85%] rounded-2xl px-3.5 py-2.5 shadow-sm bg-gradient-to-br from-primary to-pink-500 text-primary-foreground rounded-tr-sm">
-                    <p className="text-sm whitespace-pre-wrap leading-relaxed">
+                  <div className="max-w-[85%] rounded-2xl px-3.5 py-2.5 shadow-sm bg-gradient-to-br from-primary to-pink-500 text-primary-foreground rounded-te-sm" dir="auto">
+                    <p className="text-sm whitespace-pre-wrap leading-relaxed text-start">
                       {msg.content}
                     </p>
                   </div>
                 ) : (
                   <div className="w-full rounded-2xl overflow-hidden shadow-sm border border-primary/15">
                     <div className="h-1 w-full" style={{ background: 'linear-gradient(90deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))' }} />
-                    <div className="px-3.5 py-3 bg-card">
-                      <div className="prose prose-sm max-w-none text-sm">
+                    <div className="px-3.5 py-3 bg-card" dir="auto">
+                      <div className="prose prose-sm max-w-none text-sm text-start">
                         <MarkdownRenderer content={msg.content} accentColor="primary" />
                       </div>
                       <p className="text-[7px] text-muted-foreground/30 text-end mt-2">
