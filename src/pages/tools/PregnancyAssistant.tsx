@@ -1,10 +1,9 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
 import { Send, Bot, User, Loader2, Heart, Baby, Coffee, Apple, Stethoscope, Moon, Dumbbell, UtensilsCrossed, SmilePlus, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { ToolFrame } from "@/components/ToolFrame";
 import { useSmartChat, type ChatMessage } from "@/hooks/useSmartChat";
 import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
@@ -38,11 +37,22 @@ export default function PregnancyAssistant() {
   });
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const chatContainerRef = useRef<HTMLDivElement>(null);
+  const isUserScrolledUp = useRef(false);
 
+  // Track if user has scrolled up manually
+  const handleScroll = useCallback(() => {
+    const container = chatContainerRef.current;
+    if (!container) return;
+    const distanceFromBottom = container.scrollHeight - container.scrollTop - container.clientHeight;
+    isUserScrolledUp.current = distanceFromBottom > 80;
+  }, []);
+
+  // Auto-scroll to bottom when new messages arrive (unless user scrolled up)
   useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    if (!isUserScrolledUp.current && messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
     }
   }, [messages]);
 
@@ -53,10 +63,10 @@ export default function PregnancyAssistant() {
     const updatedMessages = [...messages, userMessage];
     setMessages(updatedMessages);
     setInput("");
+    isUserScrolledUp.current = false;
 
     let assistantContent = "";
 
-    // Build ChatMessage[] for full conversation history
     const chatHistory: ChatMessage[] = updatedMessages.map((m) => ({
       role: m.role,
       content: m.content,
@@ -89,27 +99,93 @@ export default function PregnancyAssistant() {
       toolId="pregnancy-assistant"
       noCard
     >
-      <div className="space-y-3">
-        <div className="overflow-hidden">
+      <div className="flex flex-col" style={{ height: "calc(100dvh - 180px)", minHeight: "400px" }}>
+        {/* Chat area — grows to fill */}
+        <div className="flex-1 min-h-0 overflow-hidden">
           {messages.length === 0 ? (
-            <WelcomeView onSend={sendMessage} />
+            <div className="h-full overflow-y-auto overscroll-contain">
+              <WelcomeView onSend={sendMessage} />
+            </div>
           ) : (
-            <ChatView
-              messages={messages}
-              isLoading={isLoading}
-              scrollRef={scrollRef}
-            />
-          )}
+            <div
+              ref={chatContainerRef}
+              onScroll={handleScroll}
+              className="h-full overflow-y-auto overscroll-contain scroll-smooth"
+              style={{ WebkitOverflowScrolling: "touch" }}
+            >
+              <div className="p-3 space-y-4">
+                <AnimatePresence mode="popLayout">
+                  {messages.map((msg, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, y: 15, scale: 0.97 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      transition={{ duration: 0.25 }}
+                      className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
+                    >
+                      {msg.role === "user" ? (
+                        <div className="max-w-[85%] rounded-2xl px-3.5 py-2.5 shadow-sm bg-gradient-to-br from-primary to-pink-500 text-primary-foreground rounded-tr-sm">
+                          <p className="text-sm whitespace-pre-wrap leading-relaxed">
+                            {msg.content}
+                          </p>
+                        </div>
+                      ) : (
+                        <div className="w-full rounded-2xl overflow-hidden shadow-sm border border-primary/15">
+                          <div className="h-1 w-full" style={{ background: 'linear-gradient(90deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))' }} />
+                          <div className="px-3.5 py-3 bg-card">
+                            <div className="prose prose-sm max-w-none text-sm">
+                              <MarkdownRenderer content={msg.content} accentColor="primary" />
+                            </div>
+                            <p className="text-[7px] text-muted-foreground/30 text-end mt-2">
+                              {t('ai.resultDisclaimer')}
+                            </p>
+                          </div>
+                        </div>
+                      )}
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
 
-          {error && (
-            <div className="px-3 pb-2">
-              <div className="flex items-center gap-2 p-2.5 rounded-lg bg-destructive/10 border border-destructive/20">
-                <Heart className="w-3.5 h-3.5 text-destructive shrink-0" />
-                <p className="text-xs text-destructive font-medium">{error}</p>
+                {isLoading && messages[messages.length - 1]?.role === "user" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="flex justify-start"
+                  >
+                    <div className="bg-card border border-border/60 rounded-2xl px-4 py-3 shadow-sm">
+                      <div className="flex gap-1.5">
+                        {[0, 1, 2].map((i) => (
+                          <motion.div
+                            key={i}
+                            className="w-1.5 h-1.5 rounded-full bg-primary"
+                            animate={{ y: [0, -5, 0], opacity: [0.4, 1, 0.4] }}
+                            transition={{ duration: 0.6, repeat: Infinity, delay: i * 0.15 }}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+
+                {/* Invisible scroll anchor */}
+                <div ref={messagesEndRef} className="h-1" />
               </div>
             </div>
           )}
+        </div>
 
+        {/* Error */}
+        {error && (
+          <div className="px-3 py-2 shrink-0">
+            <div className="flex items-center gap-2 p-2.5 rounded-lg bg-destructive/10 border border-destructive/20">
+              <Heart className="w-3.5 h-3.5 text-destructive shrink-0" />
+              <p className="text-xs text-destructive font-medium">{error}</p>
+            </div>
+          </div>
+        )}
+
+        {/* Input — pinned to bottom */}
+        <div className="shrink-0">
           <InputArea
             input={input}
             setInput={setInput}
@@ -118,7 +194,10 @@ export default function PregnancyAssistant() {
           />
         </div>
 
-        <TrustIndicators />
+        {/* Trust indicators */}
+        <div className="shrink-0 pb-2">
+          <TrustIndicators />
+        </div>
       </div>
     </ToolFrame>
   );
@@ -145,7 +224,6 @@ function WelcomeView({ onSend }: { onSend: (text: string) => void }) {
           <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary via-pink-500 to-rose-400 flex items-center justify-center shadow-lg shadow-primary/30 rotate-3">
             <Bot className="w-8 h-8 text-white drop-shadow-sm" />
           </div>
-          {/* Floating sparkle */}
           <motion.div
             className="absolute -top-1.5 -right-1.5"
             animate={{ rotate: [0, 15, -15, 0], scale: [1, 1.2, 1] }}
@@ -155,7 +233,6 @@ function WelcomeView({ onSend }: { onSend: (text: string) => void }) {
               <Sparkles className="w-3 h-3 text-white" />
             </div>
           </motion.div>
-          {/* Pulse ring */}
           <motion.div
             className="absolute inset-0 rounded-2xl border-2 border-primary/30 rotate-3"
             animate={{ scale: [1, 1.15, 1], opacity: [0.5, 0, 0.5] }}
@@ -178,7 +255,7 @@ function WelcomeView({ onSend }: { onSend: (text: string) => void }) {
           </p>
         </motion.div>
 
-        {/* Animated Quick Questions Grid */}
+        {/* Quick Questions Grid */}
         <div className="grid grid-cols-2 gap-2 w-full max-w-sm">
           {quickQuestions.map((q, i) => (
             <motion.button
@@ -196,14 +273,12 @@ function WelcomeView({ onSend }: { onSend: (text: string) => void }) {
               onClick={() => onSend(t(q.textKey))}
               className={`group relative flex items-center gap-2 p-2.5 rounded-xl ${q.bg} border border-border/30 hover:border-primary/30 hover:shadow-md transition-shadow duration-200 text-start overflow-hidden min-w-0`}
             >
-              {/* Gradient icon badge */}
               <div className={`p-1.5 rounded-lg bg-gradient-to-br ${q.gradient} shadow-sm shrink-0`}>
                 <q.icon className="w-3.5 h-3.5 text-white" />
               </div>
               <span className="text-[11px] font-medium text-foreground/80 leading-tight line-clamp-2 break-words">
                 {t(q.textKey)}
               </span>
-              {/* Hover shine effect */}
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -skew-x-12 opacity-0 group-hover:opacity-100"
                 initial={{ x: "-100%" }}
@@ -215,77 +290,6 @@ function WelcomeView({ onSend }: { onSend: (text: string) => void }) {
         </div>
       </motion.div>
     </div>
-  );
-}
-
-/* ─── Chat View ─── */
-function ChatView({
-  messages,
-  isLoading,
-  scrollRef,
-}: {
-  messages: Message[];
-  isLoading: boolean;
-  scrollRef: React.RefObject<HTMLDivElement>;
-}) {
-  const { t } = useTranslation();
-  return (
-    <ScrollArea className="h-[calc(100vh-320px)] min-h-[320px] max-h-[450px]" ref={scrollRef}>
-      <div className="p-3 space-y-4">
-        <AnimatePresence mode="popLayout">
-          {messages.map((msg, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 15, scale: 0.97 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.25 }}
-              className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
-            >
-              {msg.role === "user" ? (
-                <div className="max-w-[85%] rounded-2xl px-3.5 py-2.5 shadow-sm bg-gradient-to-br from-primary to-pink-500 text-primary-foreground rounded-tr-sm">
-                  <p className="text-sm whitespace-pre-wrap leading-relaxed">
-                    {msg.content}
-                  </p>
-                </div>
-              ) : (
-                <div className="w-full rounded-2xl overflow-hidden shadow-sm border border-primary/15">
-                  <div className="h-1 w-full" style={{ background: 'linear-gradient(90deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))' }} />
-                  <div className="px-3.5 py-3 bg-card">
-                    <div className="prose prose-sm max-w-none text-sm">
-                      <MarkdownRenderer content={msg.content} accentColor="primary" />
-                    </div>
-                    <p className="text-[7px] text-muted-foreground/30 text-end mt-2">
-                      {t('ai.resultDisclaimer')}
-                    </p>
-                  </div>
-                </div>
-              )}
-            </motion.div>
-          ))}
-        </AnimatePresence>
-
-        {isLoading && messages[messages.length - 1]?.role === "user" && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="flex justify-start"
-          >
-            <div className="bg-card border border-border/60 rounded-2xl px-4 py-3 shadow-sm">
-              <div className="flex gap-1.5">
-                {[0, 1, 2].map((i) => (
-                  <motion.div
-                    key={i}
-                    className="w-1.5 h-1.5 rounded-full bg-primary"
-                    animate={{ y: [0, -5, 0], opacity: [0.4, 1, 0.4] }}
-                    transition={{ duration: 0.6, repeat: Infinity, delay: i * 0.15 }}
-                  />
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </div>
-    </ScrollArea>
   );
 }
 
