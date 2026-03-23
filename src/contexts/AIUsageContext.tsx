@@ -24,10 +24,10 @@ interface AIUsageContextValue {
   isNearLimit: boolean;
   /** @deprecated Quota is now consumed automatically by the smart engine. Only use for legacy edge cases. */
   incrementUsage: () => void;
+  syncFromServer: (serverUsed: number) => void;
   syncLimit: (newLimit: number, newTier?: SubscriptionTier) => void;
   /** @deprecated Dev-only. No-op in production. */
   resetUsage: () => void;
-  /** Force re-read from quotaManager (e.g. after engine consumed quota) */
   /** Force re-read from quotaManager (e.g. after engine consumed quota) */
   refresh: () => void;
 }

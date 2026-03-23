@@ -125,7 +125,7 @@ const AITYPE_TO_SECTION: Record<string, SmartSection> = {
 
 export const AIInsightCard: React.FC<AIInsightCardProps> = ({
   title, prompt, context, buttonText, icon, variant = 'default', autoExpand = false,
-  aiType, section, toolType, weight = 1,
+  aiType, section, toolType,
   showPrintButton = false, showDisclaimer = false, printTitle,
 }) => {
   const { t, i18n } = useTranslation();
@@ -138,7 +138,6 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
   const { generate, isLoading, content: insight, error, errorType, clearError } = useSmartInsight({
     section: resolvedSection,
     toolType: resolvedToolType,
-    weight,
   });
 
   const { isLimitReached } = useAIUsage();
