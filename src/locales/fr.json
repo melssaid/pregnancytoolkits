@@ -4092,183 +4092,11 @@
       "yourWindow": "Votre fenêtre fertile"
     },
     "fertilityAcademy": {
-      "lessons": {
-        "ageAndFertility": {
-          "content": "L'âge est l'un des facteurs les plus significatifs affectant la fertilité :\n\n• Les femmes naissent avec tous les ovules qu'elles auront jamais — environ 1–2 millions à la naissance.\n• À la puberté, il reste environ 300 000–400 000 ovules. Seuls environ 300–400 seront ovulés au cours d'une vie.\n• La fertilité atteint son pic au milieu de la vingtaine. Un déclin progressif commence après 30 ans.\n• Après 35 ans, le déclin s'accélère. La qualité et la quantité des ovules diminuent.\n• À 40 ans, la chance de conception naturelle par cycle tombe à environ 5%.\n\nCela ne signifie pas que la grossesse après 35 est impossible — de nombreuses femmes conçoivent naturellement.",
-          "title": "Âge et fertilité"
-        },
-        "assistedReproduction": {
-          "content": "Quand la conception naturelle ne réussit pas, des options efficaces existent :\n\n• Stimulation de l'ovulation : Médicaments stimulant la production d'ovules — traitement de première ligne.\n• Insémination intra-utérine (IIU) : Sperme traité injecté directement dans l'utérus.\n• Fécondation in vitro (FIV) : La technique la plus avancée. Taux de réussite 30–50% par cycle.\n• ICSI : Un seul spermatozoïde injecté directement dans l'ovule.\n• Test génétique préimplantatoire (PGT) : Dépistage des anomalies chromosomiques des embryons.\n• Chaque option a des indications spécifiques — un spécialiste vous guide vers la plus adaptée.",
-          "title": "Techniques de reproduction assistée"
-        },
-        "cervicalHealth": {
-          "content": "Le col de l'utérus joue un rôle fondamental dans la fertilité :\n\n• Il produit de la glaire qui change tout au long du cycle pour faciliter ou bloquer le passage des spermatozoïdes.\n• La glaire fertile nourrit les spermatozoïdes et prolonge leur durée de vie jusqu'à 5 jours.\n• Les infections cervicales chroniques peuvent réduire la qualité de la glaire.\n• Les procédures cervicales antérieures peuvent affecter la production de glaire.\n• Un pH vaginal sain soutient l'environnement cervical optimal.",
-          "title": "Santé cervicale & fertilité"
-        },
-        "commonMyths": {
-          "content": "Séparons les faits de la fiction :\n\nMythe : On ne peut tomber enceinte que le jour de l'ovulation.\nFait : La fenêtre fertile s'étend sur environ 6 jours.\n\nMythe : La position pendant les rapports affecte la conception.\nFait : Aucune preuve scientifique ne le soutient.\n\nMythe : La contraception cause l'infertilité.\nFait : La fertilité revient typiquement en 1–3 mois.\n\nMythe : Le stress cause directement l'infertilité.\nFait : Le stress modéré seul empêche rarement la conception.\n\nMythe : Il faut avoir des rapports tous les jours.\nFait : Tous les 1–2 jours pendant la fenêtre fertile est suffisant.",
-          "title": "Mythes fréquents"
-        },
-        "emotionalWellbeing": {
-          "content": "Essayer de concevoir peut être des montagnes russes émotionnelles :\n\n• Il est normal de ressentir espoir, excitation, frustration et tristesse — parfois tout dans un seul cycle.\n• Environ 1 couple sur 6 rencontre des difficultés de conception. Vous n'êtes pas seule.\n• Le chagrin après un test négatif est valide. Permettez-vous de ressentir sans vous juger.\n• La communication avec votre partenaire est essentielle.\n• Envisagez de rejoindre un groupe de soutien.\n• Un accompagnement professionnel peut fournir des stratégies adaptées à votre situation.\n• Rappelez-vous : votre valeur n'est pas définie par votre fertilité.",
-          "title": "Bien-être émotionnel"
-        },
-        "endometriosisAwareness": {
-          "content": "L'endométriose affecte 1 femme sur 10 :\n\n• Du tissu similaire à la muqueuse utérine se développe hors de l'utérus, causant inflammation et adhérences.\n• Peut affecter les trompes, les ovaires et la qualité des ovules.\n• Symptômes : douleurs menstruelles sévères, douleurs pendant les rapports, parfois aucun symptôme.\n• Un diagnostic précoce améliore les résultats. La laparoscopie est le standard.\n• De nombreuses femmes touchées conçoivent naturellement ou avec assistance.",
-          "title": "Endométriose & fertilité"
-        },
-        "environmentalToxins": {
-          "content": "L'exposition quotidienne aux toxines environnementales peut affecter votre fertilité :\n\n• Le BPA dans les plastiques imite l'œstrogène et perturbe l'équilibre hormonal.\n• Les phtalates dans les cosmétiques perturbent le système endocrinien.\n• Les pesticides sur les fruits et légumes sont liés à une qualité d'ovules inférieure.\n• Les métaux lourds (plomb, mercure) affectent ovules et spermatozoïdes.\n• Étapes pratiques : contenants en verre, produits de nettoyage naturels, bien laver les fruits.\n• Filtrer l'eau potable réduit l'exposition aux polluants.",
-          "title": "Toxines environnementales & fertilité"
-        },
-        "epigeneticsFertility": {
-          "content": "Les découvertes épigénétiques ont changé notre compréhension de la fertilité :\n\n• Votre nutrition et votre mode de vie peuvent influencer l'expression génétique de votre futur enfant.\n• La carence en folate avant la grossesse affecte la programmation génétique fœtale.\n• Le stress chronique peut laisser des 'empreintes' sur l'ADN transmises à l'embryon.\n• La pollution cause des changements épigénétiques pouvant affecter les générations.\n• Bonne nouvelle : les changements épigénétiques négatifs sont réversibles avec un mode de vie sain.\n• 3–6 mois d'améliorations avant la grossesse font une vraie différence.",
-          "title": "Épigénétique & santé générationnelle"
-        },
-        "exerciseBalance": {
-          "content": "L'exercice est une arme à double tranchant pour la fertilité :\n\n• L'activité modérée (150 minutes/semaine) améliore l'ovulation et la fertilité.\n• L'exercice intense continu peut arrêter l'ovulation.\n• La marche, la natation et le yoga sont parmi les meilleures options.\n• La musculation modérée améliore la sensibilité à l'insuline (utile pour le SOPK).\n• Le yoga de fertilité combine mouvement et réduction du stress.\n• Si vos règles disparaissent avec un exercice intense, réduisez immédiatement l'intensité.",
-          "title": "Équilibrer exercice & fertilité"
-        },
-        "fertilityPreservation": {
-          "content": "La préservation de la fertilité vous offre de la flexibilité dans la planification :\n\n• Congélation d'ovules : Âge idéal avant 35 ans. Excellents résultats avec les techniques modernes.\n• Congélation d'embryons : Option pour les couples mariés. Taux de réussite supérieurs aux ovules seuls.\n• Raisons : maternité tardive, chimiothérapie, conditions médicales.\n• Le processus nécessite 10–14 jours de stimulation hormonale puis le prélèvement d'ovules.\n• Le coût et le stockage sont des facteurs à considérer.",
-          "title": "Préservation de la fertilité"
-        },
-        "fertilizationBasics": {
-          "content": "Après l'ovulation, la fécondation peut se produire dans la trompe de Fallope :\n\n• Sur les millions de spermatozoïdes libérés, seuls quelques centaines atteignent l'ovule.\n• Un spermatozoïde pénètre la couche externe de l'ovule, déclenchant une réaction chimique empêchant les autres spermatozoïdes d'entrer.\n• L'ovule fécondé (zygote) commence à se diviser en voyageant vers l'utérus pendant 3–4 jours.\n• Environ 6–10 jours après l'ovulation, le blastocyste s'implante dans la muqueuse utérine.\n• L'implantation peut provoquer de légers saignements.\n• Une fois implanté, le corps commence à produire de l'hCG — l'hormone détectée par les tests de grossesse.",
-          "title": "Bases de la fécondation"
-        },
-        "geneticFactors": {
-          "content": "Les gènes jouent un rôle plus important qu'attendu dans la fertilité :\n\n• Le dépistage génétique des porteurs révèle le risque de transmettre des maladies génétiques.\n• La mutation MTHFR affecte le métabolisme du folate — le méthylfolate peut être préférable.\n• Le syndrome de Turner et les anomalies chromosomiques affectent la réserve ovarienne.\n• Les antécédents familiaux de ménopause précoce peuvent signaler un déclin précoce.\n• Le caryotypage est recommandé en cas de fausses couches récurrentes.",
-          "title": "Facteurs génétiques & fertilité"
-        },
-        "hormonesRole": {
-          "content": "Plusieurs hormones orchestrent votre fertilité :\n\n• FSH : Stimule la croissance folliculaire dans les ovaires. Testée au jour 3 de votre cycle.\n\n• LH : Déclenche l'ovulation. Les kits de prédiction de l'ovulation détectent la poussée de LH.\n\n• Œstrogène : Favorise le développement folliculaire et épaissit la muqueuse utérine.\n\n• Progestérone : Produite après l'ovulation, elle maintient la muqueuse utérine pour l'implantation potentielle.\n\n• AMH : Reflète le nombre d'ovules restants. Utile pour la planification de la fertilité.\n\n• Hormones thyroïdiennes (TSH, T3, T4) : Les déséquilibres peuvent perturber l'ovulation et la régularité du cycle.",
-          "title": "Rôle des hormones"
-        },
-        "immunologyFertility": {
-          "content": "Le système immunitaire joue un rôle délicat dans la grossesse :\n\n• Le corps doit accepter l'embryon sans le rejeter.\n• Les cellules NK utérines aident à l'implantation — mais une activité excessive peut l'entraver.\n• Les anticorps antiphospholipides sont liés aux fausses couches récurrentes.\n• Les maladies auto-immunes (lupus, Hashimoto) peuvent affecter la fertilité.\n• L'inflammation pelvienne chronique peut endommager les trompes.\n• Un mode de vie anti-inflammatoire soutient une immunité équilibrée.",
-          "title": "Immunologie & fertilité"
-        },
-        "implantationWindow": {
-          "content": "La fenêtre d'implantation est la brève période où la muqueuse utérine est prête à recevoir l'embryon :\n\n• Se produit typiquement entre les jours 6–10 après l'ovulation.\n• L'endomètre sécrète des protéines spéciales aidant l'embryon à s'attacher.\n• La progestérone joue un rôle central dans la préparation de la muqueuse.\n• Facteurs affectant la qualité : inflammation chronique, épaisseur insuffisante ou troubles immunitaires.\n• Le repos et une bonne nutrition pendant la phase lutéale soutiennent le processus.",
-          "title": "La fenêtre d'implantation"
-        },
-        "lifestyleFactors": {
-          "content": "Vos habitudes quotidiennes influencent significativement la fertilité :\n\n• Poids : L'insuffisance pondérale (IMC < 18,5) et le surpoids (IMC > 30) peuvent perturber l'ovulation. Un changement de poids de 5–10% peut améliorer la régularité du cycle.\n\n• Tabac : Réduit la qualité des ovules et accélère leur perte.\n\n• Alcool : La consommation excessive est liée à des cycles irréguliers.\n\n• Caféine : Plus de 200–300mg/jour peut légèrement réduire la fertilité.\n\n• Exercice : L'activité modérée soutient la fertilité. L'exercice intense excessif peut perturber l'ovulation.\n\n• Sommeil : Un mauvais sommeil perturbe les hormones reproductrices. Visez 7–9 heures par nuit.",
-          "title": "Facteurs liés au mode de vie"
-        },
-        "maleFertility": {
-          "content": "La fertilité masculine est tout aussi importante dans le parcours de conception :\n\n• La production de spermatozoïdes prend environ 74 jours. Les changements de mode de vie nécessitent du temps.\n• Une santé optimale des spermatozoïdes nécessite : éviter la chaleur excessive, maintenir un poids sain et gérer le stress.\n• Facteurs réduisant la qualité du sperme : tabac, alcool excessif, certains médicaments.\n• Le spermogramme est un test simple et non-invasif.\n• L'âge affecte aussi la fertilité masculine — la qualité du sperme diminue après 40 ans.\n• Nutriments clés : zinc, sélénium, vitamine C, vitamine E, folate et oméga-3.",
-          "title": "Fertilité masculine"
-        },
-        "menstrualCycle": {
-          "content": "Votre cycle menstruel se divise en quatre phases principales :\n\n1. Phase menstruelle (Jours 1–5) : La muqueuse utérine se détache, marquant le début d'un nouveau cycle.\n\n2. Phase folliculaire (Jours 1–13) : La FSH stimule les ovaires pour développer des follicules. L'œstrogène augmente et épaissit la muqueuse utérine.\n\n3. Ovulation (~Jour 14) : Une poussée de LH déclenche la libération d'un ovule mature. C'est votre moment le plus fertile.\n\n4. Phase lutéale (Jours 15–28) : Le follicule vide devient le corps jaune et produit de la progestérone. Sans fécondation, les hormones chutent et le cycle recommence.\n\nComprendre ces phases vous aide à identifier votre fenêtre fertile et à travailler avec le rythme naturel de votre corps.",
-          "title": "Comprendre le cycle menstruel"
-        },
-        "mindBodyConnection": {
-          "content": "La relation entre l'esprit et le corps est plus profonde qu'on ne l'imagine pour la fertilité :\n\n• Le stress chronique active l'axe HPA qui supprime les hormones reproductrices.\n• Les techniques de relaxation (méditation, yoga, respiration profonde) améliorent mesurellement les résultats de fertilité.\n• La thérapie cognitivo-comportementale (TCC) montre des résultats positifs pour l'anxiété liée à la fertilité.\n• La visualisation positive et les affirmations activent des voies neuronales soutenant l'équilibre hormonal.\n• Les groupes de soutien réduisent le sentiment d'isolement.\n• L'art, la musique et l'écriture créative sont des outils thérapeutiques efficaces.\n• Cherchez une aide professionnelle si l'anxiété ou la tristesse dominent votre vie.",
-          "title": "La connexion corps-esprit"
-        },
-        "nutritionFertility": {
-          "content": "L'alimentation affecte directement la qualité des ovules et des spermatozoïdes :\n\n• Le régime méditerranéen a montré les meilleurs résultats dans les études de fertilité.\n• Les graisses saines (oméga-3, huile d'olive) soutiennent la production hormonale.\n• Les protéines végétales peuvent être meilleures que les protéines animales pour certaines femmes.\n• Évitez les graisses trans — elles doublent le risque d'infertilité liée à l'ovulation.\n• Les aliments biologiques réduisent l'exposition aux pesticides perturbateurs hormonaux.",
-          "title": "Nutrition optimale pour la fertilité"
-        },
-        "optimizingTiming": {
-          "content": "Le timing est crucial pour maximiser vos chances :\n\n• Les meilleurs jours pour la conception sont les 2–3 jours avant l'ovulation et le jour de l'ovulation.\n• Des rapports tous les 1–2 jours pendant la fenêtre fertile donnent les meilleurs résultats.\n• L'éjaculation quotidienne ne réduit pas significativement la qualité du sperme chez la plupart des hommes.\n• Certains lubrifiants commerciaux peuvent réduire la motilité des spermatozoïdes. Utilisez des marques fertilitaires si nécessaire.\n• Suivez votre cycle 2–3 mois avant d'essayer activement.",
-          "title": "Optimiser le timing"
-        },
-        "ovulationProcess": {
-          "content": "L'ovulation est la libération d'un ovule mature par l'un de vos ovaires :\n\n• Dans les jours précédant l'ovulation, l'augmentation de l'œstrogène fait croître le follicule dominant.\n• Une poussée soudaine de LH provoque la rupture du follicule et la libération de l'ovule dans la trompe de Fallope.\n• L'ovule survit 12–24 heures après sa libération. Les spermatozoïdes peuvent survivre jusqu'à 5 jours dans le tractus reproducteur.\n• Cela signifie que votre fenêtre fertile s'étend sur environ 6 jours — les 5 jours avant l'ovulation et le jour de l'ovulation lui-même.\n\nCertaines femmes ressentent une légère douleur ou crampe (mittelschmerz) pendant l'ovulation.",
-          "title": "Comment fonctionne l'ovulation"
-        },
-        "pcosManagement": {
-          "content": "Le Syndrome des Ovaires Polykystiques (SOPK) affecte 8–13% des femmes :\n\n• La cause la plus fréquente d'anovulation et d'infertilité liée à l'ovulation.\n• Symptômes clés : règles irrégulières, acné, pilosité excessive, résistance à l'insuline.\n• Les changements de mode de vie sont très efficaces : perdre 5–10% du poids peut restaurer l'ovulation.\n• L'inositol montre des résultats prometteurs pour améliorer la sensibilité à l'insuline.\n• Un régime faible en sucre et équilibré soutient la régularité hormonale.\n• Des médicaments comme le clomifène ou le létrozole stimulent l'ovulation avec succès dans de nombreux cas.",
-          "title": "Gérer le SOPK & fertilité"
-        },
-        "recurrentLoss": {
-          "content": "La perte récurrente de grossesse (deux ou plus) nécessite une évaluation complète :\n\n• 15–20% des grossesses se terminent par une fausse couche — la plupart dues à des anomalies chromosomiques.\n• Causes traitables : troubles de la coagulation, anomalies utérines, problèmes thyroïdiens.\n• Le septum utérin est l'anomalie utérine la plus courante et peut être corrigé chirurgicalement.\n• Le syndrome antiphospholipide est traitable avec aspirine et héparine.\n• Le soutien psychologique est essentiel.\n• 60–70% des couples avec une perte récurrente inexpliquée réussissent lors de la grossesse suivante.",
-          "title": "Comprendre la perte récurrente"
-        },
-        "secondaryInfertility": {
-          "content": "L'infertilité secondaire signifie des difficultés à concevoir après un enfant précédent :\n\n• Représente environ 50% des cas d'infertilité — mais est moins discutée.\n• Causes : âge avançant, changements de poids, complications de grossesse antérieure.\n• Les adhérences de césarienne ou d'infection peuvent affecter la fertilité.\n• Les attentes sociales augmentent la charge psychologique.\n• Ne tardez pas à chercher de l'aide — les mêmes critères de temps s'appliquent.",
-          "title": "Infertilité secondaire"
-        },
-        "sleepHormones": {
-          "content": "Le sommeil n'est pas un luxe — c'est une nécessité biologique pour la fertilité :\n\n• La mélatonine (hormone du sommeil) agit comme antioxydant protégeant les ovules.\n• Moins de 6 heures de sommeil augmente le cortisol et supprime le GnRH et l'ovulation.\n• Le travail posté est associé à des problèmes de cycle et de fertilité accrus.\n• Le rythme circadien régule la sécrétion de FSH et LH.\n• La lumière bleue des écrans supprime la mélatonine.\n• Objectif : 7–9 heures de sommeil dans une pièce sombre et fraîche avec une routine constante.",
-          "title": "Sommeil & hormones de fertilité"
-        },
-        "supplementsGuide": {
-          "content": "Les compléments peuvent soutenir votre fertilité — mais tous ne sont pas égaux :\n\n• Acide folique/méthylfolate : Essentiel — commencez 3 mois avant d'essayer.\n• CoQ10 (200–600mg) : Soutient l'énergie des ovules, surtout après 35 ans.\n• Vitamine D (1000–2000 UI) : La plupart des femmes sont carencées.\n• Oméga-3 DHA (200–300mg) : Pour la santé hormonale et l'inflammation.\n• Inositol (4g myo + 100mg d-chiro) : Particulièrement utile avec le SOPK.\n• Fer : Uniquement si les tests montrent une carence.\n• Consultez toujours votre médecin avant de commencer tout nouveau complément.",
-          "title": "Guide intelligent des compléments"
-        },
-        "thyroidFertility": {
-          "content": "Les troubles thyroïdiens sont parmi les causes les plus traitables de problèmes de fertilité :\n\n• L'hypothyroïdie peut causer des cycles irréguliers, l'absence d'ovulation ou une fausse couche précoce.\n• L'hyperthyroïdie est liée à des règles irrégulières et des difficultés de conception.\n• Même l'hypothyroïdie subclinique (TSH 2,5–4,0) peut affecter la fertilité.\n• Les anticorps thyroïdiens (Anti-TPO) sont fréquents et peuvent impacter l'implantation.\n• Les tests TSH et FT4 sont recommandés pour toutes les femmes planifiant une grossesse.\n• Le traitement par lévothyroxine est sûr et efficace pendant les essais de conception.",
-          "title": "Thyroïde & fertilité"
-        },
-        "trackingMethods": {
-          "content": "Plusieurs méthodes peuvent vous aider à identifier votre fenêtre fertile :\n\n1. Méthode du calendrier : Suivez les durées de cycle sur plusieurs mois. L'ovulation se produit typiquement 14 jours avant les prochaines règles.\n\n2. Température basale (BBT) : Prenez votre température chaque matin avant de vous lever. Une légère hausse (0,2–0,5°C) confirme l'ovulation.\n\n3. Observation de la glaire cervicale : À l'approche de l'ovulation, la glaire devient claire, étirable et glissante.\n\n4. Tests d'ovulation (OPK) : Détectent la poussée de LH 12–36 heures avant l'ovulation.\n\n5. Moniteurs de fertilité : Appareils avancés qui suivent plusieurs hormones.\n\n6. Position du col : Le col devient plus haut, plus doux et plus ouvert autour de l'ovulation.\n\nCombiner plusieurs méthodes augmente la précision.",
-          "title": "Méthodes de suivi"
-        },
-        "whenToSeekHelp": {
-          "content": "Envisagez une consultation en fertilité si :\n\n• Vous avez moins de 35 ans et essayez depuis 12 mois sans succès.\n• Vous avez 35–39 ans et essayez depuis 6 mois.\n• Vous avez 40 ans ou plus — consultez tôt.\n• Vos règles sont irrégulières ou absentes.\n• Vous avez une condition connue : endométriose, SOPK, trouble thyroïdien.\n• Vous avez eu des fausses couches récurrentes (2 ou plus).\n\nUn spécialiste en fertilité peut effectuer des tests et discuter des options allant des changements de mode de vie à la reproduction assistée.",
-          "title": "Quand consulter"
-        }
-      },
+      "lessons": "Leçons",
       "lessonsCount": "{{count}} modules d'apprentissage"
     },
     "fertilitySigns": {
-      "signs": {
-        "basalTemp": {
-          "description": "Après l'ovulation, la progestérone provoque une augmentation de 0,2 à 0,5°C. En suivant votre température sur plusieurs cycles, vous identifierez votre schéma d'ovulation.",
-          "tip": "Prenez votre température chaque matin à la même heure, avant de vous lever. Utilisez un thermomètre BBT.",
-          "title": "Température basale"
-        },
-        "bloating": {
-          "description": "Les changements hormonaux autour de l'ovulation peuvent causer rétention d'eau et légers ballonnements — signe de la transition vers la phase lutéale.",
-          "tip": "Rester hydratée et réduire le sel aide à gérer les ballonnements liés à l'ovulation.",
-          "title": "Légers ballonnements"
-        },
-        "breastTenderness": {
-          "description": "La progestérone croissante après l'ovulation peut causer une sensibilité et une sensation de plénitude des seins. L'un des symptômes les plus courants de la phase lutéale.",
-          "tip": "Suivez le début et la fin de la sensibilité pour la corréler avec votre schéma d'ovulation.",
-          "title": "Sensibilité des seins"
-        },
-        "cervicalMucus": {
-          "description": "À l'approche de l'ovulation, la glaire devient plus abondante, claire et élastique — semblable au blanc d'œuf cru. Elle facilite le passage des spermatozoïdes. Après l'ovulation, elle devient plus épaisse ou s'assèche.",
-          "tip": "Vérifiez quotidiennement en vous essuyant. La glaire la plus fertile s'étire entre les doigts sans se casser.",
-          "title": "Changements de la glaire cervicale"
-        },
-        "cervicalPosition": {
-          "description": "Pendant la fenêtre fertile, le col remonte, s'adoucit et s'ouvre légèrement. Après l'ovulation, il redescend, durcit et se ferme.",
-          "tip": "Vérifiez dans la même position chaque jour. Cela demande de la pratique — soyez patiente.",
-          "title": "Position du col utérin"
-        },
-        "heightenedSenses": {
-          "description": "Certaines femmes rapportent un odorat plus développé pendant l'ovulation, possiblement dû à l'œstrogène élevé.",
-          "tip": "Si les odeurs semblent plus fortes à mi-cycle, cela peut être un indicateur personnel d'ovulation.",
-          "title": "Sens aiguisés"
-        },
-        "libidoChanges": {
-          "description": "Beaucoup de femmes remarquent une augmentation naturelle du désir autour de l'ovulation, due à la montée d'œstrogène et de testostérone.",
-          "tip": "Soyez attentive à ces changements — ils coïncident souvent avec vos jours les plus fertiles.",
-          "title": "Changements de désir"
-        },
-        "lightSpotting": {
-          "description": "De légères pertes rosées autour de l'ovulation peuvent être causées par la baisse d'œstrogène ou la rupture du follicule. Généralement très légères et brèves.",
-          "tip": "Le spotting d'ovulation diffère du saignement d'implantation (6–12 jours après). Suivez le timing.",
-          "title": "Spotting d'ovulation"
-        },
-        "moodShifts": {
-          "description": "L'augmentation de l'œstrogène améliore souvent l'humeur et l'énergie. Après l'ovulation, la progestérone peut apporter calme ou irritabilité. Ces fluctuations sont normales.",
-          "tip": "Tenir un journal d'humeur quotidien peut révéler des schémas liés à vos phases de cycle.",
-          "title": "Changements d'humeur et d'énergie"
-        },
-        "ovulationPain": {
-          "description": "Certaines femmes ressentent une légère douleur dans le bas-ventre pendant l'ovulation, causée par la rupture du follicule. Elle dure de quelques minutes à quelques heures.",
-          "tip": "Notez de quel côté vous ressentez la sensation — elle peut alterner entre les cycles.",
-          "title": "Douleur d'ovulation (Mittelschmerz)"
-        }
-      },
+      "signs": "Signes",
       "signsCount": "{{count}} signes à connaître"
     },
     "fetalDevelopment": {
@@ -5571,10 +5399,7 @@
           "desc": "Dépistage dépression post-partum",
           "title": "Bilan santé mentale"
         },
-        "nutrition": {
-          "desc": "Repas riches en fer et protéines",
-          "title": "Repas nutritifs"
-        },
+        "nutrition": "Manger des repas nutritifs",
         "painManagement": {
           "desc": "Prenez les médicaments prescrits",
           "title": "Gestion de la douleur"
@@ -5583,10 +5408,7 @@
           "desc": "Renforcez doucement votre sangle abdominale",
           "title": "Exercices posturaux"
         },
-        "rest": {
-          "desc": "Dormez quand bébé dort",
-          "title": "Prioriser le repos"
-        },
+        "rest": "Se reposer suffisamment",
         "returnToExercise": {
           "desc": "Augmentez progressivement l'activité",
           "title": "Reprise du sport"
@@ -5611,14 +5433,8 @@
       "getAIAdvice": "Obtenir des conseils IA",
       "phases": {
         "month2": "Mois 2-3",
-        "week1": {
-          "description": "Repos, soins et lien avec bébé",
-          "title": "Semaine 1 — Repos et guérison"
-        },
-        "week2": {
-          "description": "Mouvements doux et routines",
-          "title": "Semaine 2 — Début en douceur"
-        },
+        "week1": "Semaine 1",
+        "week2": "Semaine 2-3",
         "week3_4": {
           "description": "Exercices légers et bien-être émotionnel",
           "title": "Semaines 3-4 — Renforcement"
@@ -5646,71 +5462,10 @@
       "yourTrimester": "Votre trimestre"
     },
     "preconceptionCheckup": {
-      "ai": {
-        "analyze": "Analyser ma préparation",
-        "priorityTitle": "Recommandations prioritaires",
-        "readinessTitle": "Aperçu de la préparation",
-        "timelineTitle": "Calendrier suggéré",
-        "tipsTitle": "Conseils utiles",
-        "title": "Analyse de préparation"
-      },
+      "ai": "Analyse IA",
       "allComplete": "Excellente préparation ! Discutez de vos résultats avec votre médecin.",
-      "categories": {
-        "essential": "Examens de santé essentiels",
-        "medications": "Médicaments & Vaccinations",
-        "screening": "Dépistage infections & immunité",
-        "specialized": "Évaluations spécialisées"
-      },
-      "checks": {
-        "bloodWork": {
-          "description": "Vérifie l'anémie, les infections et la santé sanguine. Identifie la carence en fer à traiter avant la grossesse.",
-          "title": "Numération formule sanguine"
-        },
-        "dental": {
-          "description": "Les maladies gingivales sont liées à la prématurité. Les changements hormonaux peuvent aggraver les problèmes existants.",
-          "title": "Bilan dentaire"
-        },
-        "generalCheckup": {
-          "description": "Examen physique complet pour évaluer votre santé, tension artérielle, poids et discuter de vos projets de grossesse.",
-          "title": "Bilan de santé général"
-        },
-        "geneticScreening": {
-          "description": "Teste si vous ou votre partenaire portez des gènes pour la mucoviscidose, la drépanocytose ou la thalassémie.",
-          "title": "Dépistage génétique"
-        },
-        "hepatitis": {
-          "description": "L'hépatite B peut être transmise au bébé à la naissance. Connaître votre statut permet la prévention.",
-          "title": "Dépistage hépatite B & C"
-        },
-        "hiv": {
-          "description": "Le dépistage routinier protège votre santé et celle de votre futur bébé. La détection précoce permet un traitement efficace.",
-          "title": "Dépistage VIH & IST"
-        },
-        "medications": {
-          "description": "Passez en revue tous les médicaments et compléments. Certains ne sont pas sûrs pendant la grossesse — organisez des alternatives.",
-          "title": "Revue des médicaments"
-        },
-        "mentalHealth": {
-          "description": "Discutez de tout antécédent de dépression ou d'anxiété avec votre médecin. Les conditions existantes peuvent être gérées proactivement.",
-          "title": "Évaluation de la santé mentale"
-        },
-        "pap": {
-          "description": "Dépiste les anomalies cervicales. À faire de préférence avant la grossesse.",
-          "title": "Frottis cervical"
-        },
-        "rubella": {
-          "description": "La rubéole pendant la grossesse peut causer des malformations graves. Vaccination recommandée au moins 1 mois avant.",
-          "title": "Immunité contre la rubéole"
-        },
-        "thyroid": {
-          "description": "Les troubles thyroïdiens sont fréquents et peuvent significativement affecter fertilité et grossesse.",
-          "title": "Test thyroïdien (TSH)"
-        },
-        "vaccinations": {
-          "description": "Assurez-vous d'être à jour sur les vaccins recommandés. Certains ne peuvent pas être administrés pendant la grossesse.",
-          "title": "Revue des vaccinations"
-        }
-      },
+      "categories": "Catégories",
+      "checks": "Examens",
       "disclaimer": "Cette liste est une référence éducative pour organiser vos discussions avec votre médecin. Elle ne remplace pas un avis médical, un diagnostic ou un traitement professionnel. Tous les examens doivent être discutés et prescrits par un professionnel de santé qualifié.",
       "progressLabel": "Examens suivis",
       "related": {
@@ -5722,58 +5477,7 @@
       "tracked": "suivi"
     },
     "preconceptionNutrition": {
-      "categories": {
-        "antioxidants": {
-          "description": "Protègent les ovules et spermatozoïdes du stress oxydatif. Vitamines C et E, sélénium et CoQ10 sont particulièrement importants.",
-          "foods": "Baies, tomates, poivrons, noix, graines, thé vert, légumes verts, patates douces",
-          "title": "Aliments antioxydants"
-        },
-        "avoidList": {
-          "description": "Certains aliments peuvent impacter négativement la fertilité. Les réduire lors de la conception optimise la préparation du corps.",
-          "foods": "Caféine excessive (>200 mg/jour), alcool, graisses trans, aliments ultra-transformés, poissons à haute teneur en mercure, sucre excessif",
-          "title": "Aliments à réduire"
-        },
-        "calcium": {
-          "description": "Vital pour la fonction reproductive et le développement embryonnaire. Visez 1000 mg/jour.",
-          "foods": "Produits laitiers, laits végétaux enrichis, chou frisé, brocoli, amandes, sardines, tofu, figues",
-          "title": "Sources de calcium"
-        },
-        "folateRich": {
-          "description": "Le folate est crucial pour prévenir les anomalies du tube neural. Dose recommandée : 400–800 µg/jour. Commencez 1–3 mois avant la conception.",
-          "foods": "Légumes verts foncés, lentilles, pois chiches, asperges, brocoli, avocat, céréales enrichies, agrumes, betteraves",
-          "title": "Aliments riches en folates"
-        },
-        "hydration": {
-          "description": "L'eau est essentielle pour la production de glaire cervicale, le transport des nutriments et l'équilibre hormonal. Visez 8–10 verres/jour.",
-          "foods": "Eau, tisanes, eau de coco, fruits riches en eau (pastèque, concombre, oranges)",
-          "title": "Hydratation"
-        },
-        "ironSources": {
-          "description": "Le fer soutient la production sanguine et le transport d'oxygène. Les femmes ont besoin d'environ 18 mg/jour. La carence peut affecter l'ovulation.",
-          "foods": "Viande rouge, volaille, poisson, lentilles, épinards, céréales enrichies, graines de citrouille, tofu, chocolat noir",
-          "title": "Aliments riches en fer"
-        },
-        "omega3": {
-          "description": "Soutiennent la production hormonale, réduisent l'inflammation et sont essentiels au développement cérébral et oculaire du fœtus.",
-          "foods": "Saumon, sardines, maquereau, noix, graines de chia, lin, chanvre, suppléments DHA à base d'algues",
-          "title": "Acides gras oméga-3"
-        },
-        "protein": {
-          "description": "Fournissent les éléments constitutifs des hormones et des cellules. Remplacer une partie des protéines animales par des végétales peut améliorer les résultats.",
-          "foods": "Œufs, volaille, poisson, légumineuses, noix, graines, yaourt grec, tofu, quinoa",
-          "title": "Protéines de qualité"
-        },
-        "vitaminD": {
-          "description": "Ses récepteurs se trouvent dans les ovaires et l'utérus. La carence est liée aux cycles irréguliers et au SOPK.",
-          "foods": "Exposition au soleil (15–20 min/jour), poisson gras, jaunes d'œufs, lait enrichi, champignons",
-          "title": "Sources de vitamine D"
-        },
-        "zinc": {
-          "description": "Essentiel pour l'équilibre hormonal, la qualité des ovules et la division cellulaire. Rôle crucial dans la fertilité masculine aussi.",
-          "foods": "Huîtres, bœuf, graines de citrouille, noix de cajou, pois chiches, lentilles, yaourt, fromage, céréales complètes",
-          "title": "Sources de zinc"
-        }
-      },
+      "categories": "Catégories",
       "categoriesCount": "{{count}} catégories nutritionnelles"
     },
     "preeclampsia": {
@@ -5795,68 +5499,7 @@
     },
     "prenatalVitamins": {
       "supplementsCount": "{{count}} suppléments à examiner",
-      "vitamins": {
-        "calcium": {
-          "description": "Si l'apport maternel est insuffisant, le bébé puisera le calcium dans les os de la mère. Constituer des réserves protège la santé osseuse.",
-          "dosage": "1000 mg/jour. Mieux absorbé en doses de 500 mg ou moins.",
-          "title": "Calcium"
-        },
-        "coq10": {
-          "description": "Antioxydant soutenant la fonction mitochondriale des ovules, particulièrement pour les femmes de plus de 35 ans.",
-          "dosage": "100–600 mg/jour. La forme Ubiquinol est mieux absorbée. Consultez votre médecin.",
-          "title": "CoQ10"
-        },
-        "folicAcid": {
-          "description": "Le supplément préconceptionnel le plus important. Réduit significativement le risque d'anomalies du tube neural. Commencez 1–3 mois avant.",
-          "dosage": "400–800 µg/jour. Certaines femmes nécessitent 4–5 mg — consultez votre médecin.",
-          "title": "Acide folique (Vitamine B9)"
-        },
-        "iodine": {
-          "description": "Essentiel pour la thyroïde, qui affecte directement la fertilité et le développement cérébral du fœtus.",
-          "dosage": "150 µg avant la grossesse, 220 µg pendant. Vérifiez votre supplément prénatal.",
-          "title": "Iode"
-        },
-        "iron": {
-          "description": "Les besoins augmentent de 18 à 27 mg/jour pendant la grossesse. Constituer des réserves prévient l'anémie.",
-          "dosage": "18 mg/jour. Prendre avec de la vitamine C. Éviter calcium et thé simultanément.",
-          "title": "Fer"
-        },
-        "omega3DHA": {
-          "description": "Crucial pour le développement cérébral et rétinien du fœtus. Commencer avant la grossesse assure des réserves suffisantes.",
-          "dosage": "200–300 mg DHA/jour. Choisir des suppléments testés pour le mercure.",
-          "title": "Oméga-3 DHA"
-        },
-        "probiotics": {
-          "description": "Un microbiome sain soutient la fertilité et un pH vaginal optimal pour la survie des spermatozoïdes.",
-          "dosage": "Probiotique multi-souches avec Lactobacillus. Aliments fermentés : yaourt, kéfir, choucroute.",
-          "title": "Probiotiques"
-        },
-        "vitaminB12": {
-          "description": "Travaille avec le folate pour la synthèse de l'ADN et le système nerveux. Carence plus fréquente chez les végétariennes.",
-          "dosage": "2,4 µg/jour. Les véganes doivent supplémenter.",
-          "title": "Vitamine B12"
-        },
-        "vitaminC": {
-          "description": "Antioxydant puissant protégeant les ovules, améliorant l'absorption du fer et soutenant l'immunité.",
-          "dosage": "75–90 mg/jour. Présente dans les agrumes, baies et poivrons.",
-          "title": "Vitamine C"
-        },
-        "vitaminD": {
-          "description": "Soutient l'immunité, l'absorption du calcium et la santé reproductive. La carence est liée au diabète gestationnel et à la prééclampsie.",
-          "dosage": "600–2000 UI/jour. Dose plus élevée si carence avérée.",
-          "title": "Vitamine D"
-        },
-        "vitaminE": {
-          "description": "Soutient l'épaisseur et la qualité de la muqueuse utérine et protège les membranes cellulaires.",
-          "dosage": "15 mg/jour. Présente dans les noix, graines et huiles végétales.",
-          "title": "Vitamine E"
-        },
-        "zinc": {
-          "description": "Soutient la qualité des ovules, l'équilibre hormonal, l'immunité et la synthèse de l'ADN.",
-          "dosage": "8 mg/jour. La plupart des suppléments prénataux en contiennent suffisamment.",
-          "title": "Zinc"
-        }
-      }
+      "vitamins": "Vitamines"
     },
     "recipeModifier": {
       "analyzeAnother": "Analyser une autre recette",
@@ -6124,58 +5767,7 @@
       "title": "Planificateur de Collations Intelligent"
     },
     "stressFertility": {
-      "topics": {
-        "acceptance": {
-          "content": "L'acceptation ne signifie pas abandonner — c'est reconnaître que certaines choses échappent à votre contrôle tout en vous concentrant sur ce que vous pouvez influencer.",
-          "practice": "Répétez : 'Je fais tout ce que je peux. Je fais confiance à mon corps et à mon parcours. Le résultat ne définit pas ma valeur.'",
-          "title": "Pratiquer l'acceptation"
-        },
-        "breathing": {
-          "content": "La respiration contrôlée active le nerf vague, déclenchant la relaxation. Elle abaisse le rythme cardiaque, la tension et le cortisol.",
-          "practice": "Respiration carrée : inspirez 4 temps → retenez 4 → expirez 4 → retenez 4. Pendant 5 minutes.",
-          "title": "Techniques de respiration"
-        },
-        "cortisol": {
-          "content": "Le cortisol est l'hormone du stress principale. En petites doses, il est utile. Chroniquement élevé, il supprime les hormones reproductives et perturbe le sommeil.",
-          "practice": "Technique 4-7-8 : inspirez 4 secondes, retenez 7, expirez 8. Répétez 4 fois.",
-          "title": "Comprendre le cortisol"
-        },
-        "exercise": {
-          "content": "L'exercice modéré régulier est l'un des meilleurs anti-stress. Mais l'exercice excessif peut supprimer l'ovulation. L'équilibre est la clé.",
-          "practice": "Cette semaine : 30 min de mouvement modéré 5 jours : marche, yoga, natation ou danse.",
-          "title": "Mouvement et gestion du stress"
-        },
-        "journaling": {
-          "content": "Écrire sur ses émotions réduit le stress et améliore l'immunité. L'objectif : traiter les émotions et célébrer les petites victoires.",
-          "practice": "Ce soir, écrivez : 1) Gratitude, 2) Inquiétude à libérer, 3) Chose gentille faite pour vous-même.",
-          "title": "Journal thérapeutique"
-        },
-        "mindfulness": {
-          "content": "La pleine conscience signifie être présente sans jugement. Les études montrent qu'elle réduit anxiété et dépression. Même 10 minutes par jour abaissent le cortisol.",
-          "practice": "Scan corporel de 5 min : fermez les yeux, respirez, déplacez votre attention des orteils à la tête.",
-          "title": "Pleine conscience et fertilité"
-        },
-        "professionalHelp": {
-          "content": "Si l'anxiété affecte votre vie quotidienne, sommeil ou relations, un soutien professionnel peut aider.",
-          "practice": "Cherchez un thérapeute spécialisé en psychologie reproductive. Beaucoup proposent des séances virtuelles.",
-          "title": "Quand chercher un soutien professionnel"
-        },
-        "sleep": {
-          "content": "Le sommeil est le moment de réparation et de production hormonale. Un mauvais sommeil perturbe la mélatonine et augmente le cortisol. Moins de 6h est lié à une fertilité réduite.",
-          "practice": "Routine du soir : pas d'écrans 30 min avant, lumières tamisées, lavande, chambre fraîche (18–20°C).",
-          "title": "Sommeil et fertilité"
-        },
-        "socialSupport": {
-          "content": "L'isolement amplifie le stress. Partager votre parcours avec des proches de confiance réduit considérablement la charge émotionnelle.",
-          "practice": "Identifiez une personne de confiance. Partagez quelque chose de votre parcours cette semaine.",
-          "title": "Construire votre réseau de soutien"
-        },
-        "stressHormones": {
-          "content": "Le stress chronique libère cortisol et adrénaline, perturbant l'axe HPG — la voie hormonale contrôlant l'ovulation. Un cortisol élevé peut supprimer la GnRH.",
-          "practice": "Identifiez vos 3 principaux facteurs de stress cette semaine. Pour chacun, notez une petite action pour réduire son impact.",
-          "title": "Comment le stress affecte la fertilité"
-        }
-      },
+      "topics": "Sujets",
       "topicsCount": "{{count}} sujets à explorer"
     },
     "stressRelief": {
@@ -6347,78 +5939,7 @@
       "week": "Semaine {{week}}"
     },
     "twwCompanion": {
-      "days": {
-        "day1": {
-          "body": "Si l'ovulation a eu lieu hier, l'ovule voyage dans la trompe de Fallope. La fécondation se produit dans les 12–24 heures. Aujourd'hui, vous ne pouvez pas influencer le résultat — et c'est normal.",
-          "tip": "Respirez profondément. Le voyage a commencé. Concentrez-vous sur quelque chose qui vous plaît aujourd'hui.",
-          "title": "Ovulation + 1"
-        },
-        "day10": {
-          "body": "Si l'implantation a réussi, l'hCG double environ toutes les 48 heures. Certains tests sensibles peuvent détecter une grossesse précoce. Un résultat négatif ne signifie pas que vous n'êtes pas enceinte.",
-          "tip": "Négatif aujourd'hui ? Ne perdez pas espoir. Beaucoup de grossesses réussies ne se montrent positives qu'aux jours 12–14.",
-          "title": "Presque là"
-        },
-        "day11": {
-          "body": "L'hCG continue de monter. Vous remarquez peut-être de légers crampes, sensibilité mammaire ou fatigue. Ces symptômes peuvent aussi être dus à la progestérone.",
-          "tip": "L'observation des symptômes est naturelle mais peut augmenter l'anxiété. Restez présente dans votre quotidien.",
-          "title": "Anticipation croissante"
-        },
-        "day12": {
-          "body": "La plupart des tests deviennent fiables à partir d'aujourd'hui. Utilisez les premières urines du matin. Une ligne faible est un résultat positif.",
-          "tip": "Quel que soit le résultat : un cycle ne définit pas votre parcours. Soyez douce avec vous-même.",
-          "title": "Tests plus fiables"
-        },
-        "day13": {
-          "body": "Demain vos règles sont attendues (cycle de 28 jours). Si elles n'arrivent pas et le test montre une ligne faible, les félicitations pourraient être de mise.",
-          "tip": "Préparez-vous émotionnellement aux deux résultats. Les deux sont valides.",
-          "title": "La veille"
-        },
-        "day14": {
-          "body": "Aujourd'hui vos règles sont attendues. Leur absence avec un test positif est un indicateur fort. Si positif, contactez votre médecin pour le premier rendez-vous (vers 6–8 semaines).",
-          "tip": "Positif ? Célébrez ce moment. Négatif ? Vous êtes forte et résiliente. Les deux résultats méritent de la compassion.",
-          "title": "Le jour de la réponse"
-        },
-        "day2": {
-          "body": "Si fécondation il y a, la cellule commence à se diviser — d'abord en 2, puis 4 cellules. Ce petit amas voyage vers l'utérus.",
-          "tip": "Restez hydratée et mangez sainement. Votre corps fait un travail incroyable au niveau cellulaire.",
-          "title": "Débuts cellulaires"
-        },
-        "day3": {
-          "body": "Les cellules forment une boule solide appelée morula (environ 16 cellules). La progestérone monte, préparant la muqueuse utérine.",
-          "tip": "L'activité douce est tout à fait acceptable. Pas besoin de modifier votre routine.",
-          "title": "Stade morula"
-        },
-        "day4": {
-          "body": "La morula atteint l'utérus vers le jour 4. Elle forme une cavité remplie de liquide, devenant un blastocyste. La muqueuse s'épaissit.",
-          "tip": "Pratiquez la pleine conscience ou des étirements légers. Gérer l'attente fait partie du parcours.",
-          "title": "Entrée dans l'utérus"
-        },
-        "day5": {
-          "body": "Le blastocyste a deux groupes cellulaires : la masse cellulaire interne (futur embryon) et le trophoblaste (futur placenta). Il flotte dans la cavité utérine.",
-          "tip": "Bon jour pour écrire vos pensées et sentiments. L'expression de soi est thérapeutique.",
-          "title": "Formation du blastocyste"
-        },
-        "day6": {
-          "body": "Le blastocyste cherche un site idéal. Les cellules du trophoblaste commencent à s'enfoncer dans la muqueuse. De légers saignements sont possibles.",
-          "tip": "De légers saignements sont normaux à ce stade. Pas de panique — et ne testez pas encore.",
-          "title": "L'implantation peut commencer"
-        },
-        "day7": {
-          "body": "Les jours 6–10 sont la fenêtre d'implantation typique. Le blastocyste s'enfonce plus profondément. Des signaux précoces s'échangent entre l'embryon et votre corps.",
-          "tip": "Continuez vos activités normales. Reposez-vous quand nécessaire. Faites confiance au processus.",
-          "title": "Fenêtre d'implantation"
-        },
-        "day8": {
-          "body": "Si l'implantation progresse, de petites quantités d'hCG sont produites. Cette hormone maintient le corps jaune actif. Les niveaux sont encore trop bas pour être détectés.",
-          "tip": "Résistez à l'envie de tester. L'hCG a besoin de temps. La patience est votre meilleure alliée.",
-          "title": "Début de l'hCG"
-        },
-        "day9": {
-          "body": "Les niveaux d'hCG augmentent mais peuvent être sous le seuil de détection. L'implantation devrait être complète ou presque.",
-          "tip": "Offrez-vous quelque chose d'apaisant — un bain chaud, votre thé préféré, ou une promenade dans la nature.",
-          "title": "Signaux croissants"
-        }
-      },
+      "days": "Jours",
       "subtitle": "Votre guide quotidien pendant les deux semaines d'attente"
     },
     "vitaminTracker": {

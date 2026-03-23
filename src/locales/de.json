@@ -4092,183 +4092,11 @@
       "yourWindow": "Dein fruchtbares Fenster"
     },
     "fertilityAcademy": {
-      "lessons": {
-        "ageAndFertility": {
-          "content": "Das Alter ist einer der bedeutendsten Faktoren für die Fruchtbarkeit:\n\n• Frauen werden mit allen Eizellen geboren, die sie jemals haben werden — etwa 1–2 Millionen bei der Geburt.\n• Bis zur Pubertät bleiben etwa 300.000–400.000 Eizellen übrig. Nur etwa 300–400 werden im Laufe eines Lebens freigesetzt.\n• Die Fruchtbarkeit erreicht ihren Höhepunkt Mitte der 20er. Ein allmählicher Rückgang beginnt nach dem 30. Lebensjahr.\n• Nach 35 beschleunigt sich der Rückgang. Sowohl Eizellqualität als auch -menge nehmen ab.\n• Mit 40 sinkt die Chance auf natürliche Empfängnis pro Zyklus auf etwa 5%.\n\nDas bedeutet nicht, dass eine Schwangerschaft nach 35 unmöglich ist — viele Frauen werden natürlich schwanger.",
-          "title": "Alter und Fruchtbarkeit"
-        },
-        "assistedReproduction": {
-          "content": "Wenn natürliche Empfängnis nicht gelingt, gibt es wirksame Optionen:\n\n• Ovulationsstimulation: Medikamente, die die Eiproduktion anregen — Erstlinienbehandlung.\n• Intrauterine Insemination (IUI): Aufbereitete Spermien werden direkt in die Gebärmutter injiziert.\n• In-vitro-Fertilisation (IVF): Die fortschrittlichste Technik. Erfolgsraten 30–50% pro Zyklus.\n• ICSI: Ein einzelnes Spermium wird direkt in die Eizelle injiziert.\n• PGT: Screening von Embryonen auf chromosomale Anomalien.\n• Jede Option hat spezifische Indikationen — ein Spezialist leitet dich zur geeignetsten.",
-          "title": "Assistierte Reproduktionstechniken"
-        },
-        "cervicalHealth": {
-          "content": "Der Gebärmutterhals spielt eine fundamentale Rolle bei der Fruchtbarkeit:\n\n• Er produziert Schleim, der sich im Laufe des Zyklus verändert, um den Spermientransport zu erleichtern oder zu blockieren.\n• Fruchtbarer Schleim nährt Spermien und verlängert ihre Lebensdauer auf bis zu 5 Tage.\n• Chronische Zervixinfektionen können die Schleimqualität verschlechtern.\n• Frühere Zervixeingriffe können die Schleimproduktion beeinflussen.\n• Ein gesunder vaginaler pH-Wert unterstützt die optimale Zervixumgebung.",
-          "title": "Zervixgesundheit & Fruchtbarkeit"
-        },
-        "commonMyths": {
-          "content": "Trennen wir Fakten von Fiktion:\n\nMythos: Man kann nur am Tag des Eisprungs schwanger werden.\nFakt: Das fruchtbare Fenster umfasst etwa 6 Tage.\n\nMythos: Die Position beim Geschlechtsverkehr beeinflusst die Empfängnis.\nFakt: Keine wissenschaftlichen Beweise unterstützen dies.\n\nMythos: Verhütung verursacht Unfruchtbarkeit.\nFakt: Die Fruchtbarkeit kehrt typischerweise innerhalb von 1–3 Monaten zurück.\n\nMythos: Stress verursacht direkt Unfruchtbarkeit.\nFakt: Moderater Stress allein verhindert selten eine Empfängnis.\n\nMythos: Man muss täglich Geschlechtsverkehr haben.\nFakt: Alle 1–2 Tage während des fruchtbaren Fensters ist ausreichend.",
-          "title": "Häufige Mythen"
-        },
-        "emotionalWellbeing": {
-          "content": "Der Versuch schwanger zu werden kann eine emotionale Achterbahn sein:\n\n• Es ist normal, Hoffnung, Aufregung, Frustration und Traurigkeit zu fühlen — manchmal alles in einem Zyklus.\n• Etwa 1 von 6 Paaren hat Schwierigkeiten, schwanger zu werden. Du bist nicht allein.\n• Trauer nach einem negativen Test ist berechtigt. Erlaube dir zu fühlen, ohne zu urteilen.\n• Kommunikation mit deinem Partner ist essenziell.\n• Erwäge einer Unterstützungsgemeinschaft beizutreten.\n• Professionelle Beratung kann auf deine Situation zugeschnittene Bewältigungsstrategien bieten.\n• Denke daran: Dein Wert wird nicht durch deine Fruchtbarkeit definiert.",
-          "title": "Emotionales Wohlbefinden"
-        },
-        "endometriosisAwareness": {
-          "content": "Endometriose betrifft 1 von 10 Frauen:\n\n• Gewebe, ähnlich der Gebärmutterschleimhaut, wächst außerhalb der Gebärmutter und verursacht Entzündungen und Verwachsungen.\n• Es kann Eileiter, Eierstöcke und Eizellqualität beeinflussen.\n• Symptome: starke Periodenschmerzen, Schmerzen beim Geschlechtsverkehr, und manchmal keine Symptome.\n• Frühe Diagnose verbessert die Ergebnisse. Laparoskopie ist der Goldstandard.\n• Viele betroffene Frauen werden natürlich oder mit Unterstützung schwanger.",
-          "title": "Endometriose & Fruchtbarkeit"
-        },
-        "environmentalToxins": {
-          "content": "Tägliche Exposition gegenüber Umweltgiften kann deine Fruchtbarkeit beeinflussen:\n\n• BPA in Kunststoffen imitiert Östrogen und stört das Hormongleichgewicht.\n• Phthalate in Kosmetika und Duftstoffen stören das Hormonsystem.\n• Pestizide auf Obst und Gemüse sind mit niedrigerer Eizellqualität verbunden.\n• Schwermetalle (Blei, Quecksilber) beeinflussen Eizellen und Spermien.\n• Praktische Schritte: Glasbehälter statt Plastik, natürliche Reinigungsprodukte, Obst gut waschen.\n• Trinkwasser filtern reduziert die Schadstoffexposition.",
-          "title": "Umweltgifte & Fruchtbarkeit"
-        },
-        "epigeneticsFertility": {
-          "content": "Epigenetische Entdeckungen haben unser Verständnis von Fruchtbarkeit verändert:\n\n• Deine Ernährung und dein Lebensstil können die Genexpression deines zukünftigen Kindes beeinflussen.\n• Folatmangel vor der Schwangerschaft beeinflusst die fetale Genprogrammierung.\n• Chronischer Stress kann 'Abdrücke' auf der DNA hinterlassen, die auf den Embryo übertragen werden.\n• Umweltverschmutzung verursacht epigenetische Veränderungen, die Generationen betreffen können.\n• Gute Nachricht: Negative epigenetische Veränderungen sind mit einem gesunden Lebensstil umkehrbar.\n• 3–6 Monate Verbesserungen vor der Schwangerschaft machen einen echten Unterschied.",
-          "title": "Epigenetik & Generationengesundheit"
-        },
-        "exerciseBalance": {
-          "content": "Bewegung ist ein zweischneidiges Schwert für die Fruchtbarkeit:\n\n• Moderate Aktivität (150 Minuten/Woche) verbessert den Eisprung und die Fruchtbarkeit.\n• Kontinuierlich intensives Training kann den Eisprung stoppen.\n• Gehen, Schwimmen und Yoga gehören zu den besten Optionen.\n• Moderates Krafttraining verbessert die Insulinsensitivität (hilfreich bei PCOS).\n• Fruchtbarkeits-Yoga kombiniert Bewegung mit Stressabbau.\n• Wenn deine Periode bei intensivem Training ausbleibt, reduziere die Intensität sofort.",
-          "title": "Sport & Fruchtbarkeit ausbalancieren"
-        },
-        "fertilityPreservation": {
-          "content": "Fruchtbarkeitserhaltung gibt dir Flexibilität bei der Planung:\n\n• Einfrieren von Eizellen: Ideales Alter vor 35. Hervorragende Ergebnisse mit modernen Techniken.\n• Einfrieren von Embryonen: Option für verheiratete Paare. Höhere Erfolgsraten als Eizellen allein.\n• Gründe: verzögerter Kinderwunsch, Chemotherapie, medizinische Erkrankungen.\n• Der Prozess erfordert 10–14 Tage hormonelle Stimulation und dann Eizellentnahme.\n• Kosten und Lagerung sind zu berücksichtigende Faktoren.",
-          "title": "Fruchtbarkeitserhaltung"
-        },
-        "fertilizationBasics": {
-          "content": "Nach dem Eisprung kann die Befruchtung im Eileiter stattfinden:\n\n• Von den Millionen freigesetzten Spermien erreichen nur wenige Hundert die Eizelle.\n• Ein Spermium durchdringt die äußere Schicht der Eizelle und löst eine chemische Reaktion aus, die andere Spermien am Eindringen hindert.\n• Die befruchtete Eizelle (Zygote) beginnt sich zu teilen, während sie 3–4 Tage zur Gebärmutter wandert.\n• Etwa 6–10 Tage nach dem Eisprung nistet sich die Blastozyste in die Gebärmutterschleimhaut ein.\n• Die Einnistung kann eine leichte Schmierblutung verursachen.\n• Nach der Einnistung beginnt der Körper hCG zu produzieren — das von Schwangerschaftstests erkannte Hormon.",
-          "title": "Grundlagen der Befruchtung"
-        },
-        "geneticFactors": {
-          "content": "Gene spielen eine größere Rolle als erwartet bei der Fruchtbarkeit:\n\n• Genetische Trägerscreenings zeigen das Risiko, genetische Erkrankungen an Kinder weiterzugeben.\n• Die MTHFR-Mutation beeinflusst den Folatstoffwechsel — Methylfolat kann besser sein.\n• Turner-Syndrom und Chromosomenanomalien beeinflussen die Eierstockreserve.\n• Familiengeschichte mit früher Menopause kann auf einen frühen Reserverückgang hinweisen.\n• Karyotypisierung wird bei wiederkehrenden Fehlgeburten empfohlen.",
-          "title": "Genetische Faktoren & Fruchtbarkeit"
-        },
-        "hormonesRole": {
-          "content": "Mehrere Hormone steuern deine Fruchtbarkeit:\n\n• FSH: Stimuliert das Follikelwachstum in den Eierstöcken. Wird am Tag 3 deines Zyklus getestet.\n\n• LH: Löst den Eisprung aus. Ovulationstests erkennen den LH-Anstieg.\n\n• Östrogen: Fördert die Follikelentwicklung und verdickt die Gebärmutterschleimhaut.\n\n• Progesteron: Wird nach dem Eisprung produziert und erhält die Gebärmutterschleimhaut.\n\n• AMH: Spiegelt die Anzahl verbleibender Eizellen wider. Nützlich für die Fruchtbarkeitsplanung.\n\n• Schilddrüsenhormone (TSH, T3, T4): Ungleichgewichte können den Eisprung und die Zyklusregelmäßigkeit stören.",
-          "title": "Rolle der Hormone"
-        },
-        "immunologyFertility": {
-          "content": "Das Immunsystem spielt eine heikle Rolle bei der Schwangerschaft:\n\n• Der Körper muss den Embryo akzeptieren, ohne ihn abzustoßen.\n• Uterine NK-Zellen helfen bei der Einnistung — aber übermäßige Aktivität kann sie behindern.\n• Antiphospholipid-Antikörper sind mit wiederkehrenden Fehlgeburten verbunden.\n• Autoimmunerkrankungen (Lupus, Hashimoto) können die Fruchtbarkeit beeinflussen.\n• Chronische Beckenentzündung kann die Eileiter schädigen.\n• Ein entzündungshemmender Lebensstil unterstützt eine ausgewogene Immunität.",
-          "title": "Immunologie & Fruchtbarkeit"
-        },
-        "implantationWindow": {
-          "content": "Das Einnistungsfenster ist die kurze Periode, in der die Gebärmutterschleimhaut bereit ist, den Embryo aufzunehmen:\n\n• Tritt typischerweise zwischen Tag 6–10 nach dem Eisprung auf.\n• Während dieser Zeit sondert das Endometrium spezielle Proteine ab, die dem Embryo bei der Anhaftung helfen.\n• Progesteron spielt eine zentrale Rolle bei der Vorbereitung der Schleimhaut.\n• Einflussfaktoren: chronische Entzündung, unzureichende Schleimhautdicke oder Immunstörungen.\n• Ruhe und gute Ernährung in der Lutealphase unterstützen den Einnistungsprozess.",
-          "title": "Das Einnistungsfenster"
-        },
-        "lifestyleFactors": {
-          "content": "Deine täglichen Gewohnheiten beeinflussen die Fruchtbarkeit erheblich:\n\n• Gewicht: Sowohl Untergewicht (BMI < 18,5) als auch Übergewicht (BMI > 30) können den Eisprung stören. Schon eine 5–10%ige Gewichtsänderung kann die Zyklusregelmäßigkeit verbessern.\n\n• Rauchen: Reduziert die Eizellqualität und beschleunigt den Eizellverlust.\n\n• Alkohol: Starker Konsum ist mit unregelmäßigen Zyklen und verringerter Fruchtbarkeit verbunden.\n\n• Koffein: Mehr als 200–300mg täglich kann die Fruchtbarkeit leicht verringern.\n\n• Bewegung: Moderate Aktivität unterstützt die Fruchtbarkeit. Übermäßig intensives Training kann den Eisprung stören.\n\n• Schlaf: Schlechter Schlaf stört die Fortpflanzungshormone. Strebe 7–9 Stunden pro Nacht an.",
-          "title": "Lebensstilfaktoren"
-        },
-        "maleFertility": {
-          "content": "Männliche Fruchtbarkeit ist auf der Empfängnisreise gleich wichtig:\n\n• Die Spermienproduktion dauert etwa 74 Tage. Lebensstiländerungen brauchen Zeit.\n• Optimale Spermiengesundheit erfordert: übermäßige Hitze vermeiden, gesundes Gewicht halten und Stress managen.\n• Faktoren, die die Spermienqualität reduzieren: Rauchen, übermäßiger Alkohol, bestimmte Medikamente.\n• Ein Spermiogramm ist ein einfacher, nicht-invasiver Test.\n• Das Alter beeinflusst auch die männliche Fruchtbarkeit — die Spermienqualität nimmt nach 40 allmählich ab.\n• Wichtige Nährstoffe: Zink, Selen, Vitamin C, Vitamin E, Folat und Omega-3.",
-          "title": "Männliche Fruchtbarkeit"
-        },
-        "menstrualCycle": {
-          "content": "Dein Menstruationszyklus ist in vier Hauptphasen unterteilt:\n\n1. Menstruationsphase (Tage 1–5): Die Gebärmutterschleimhaut wird abgestoßen und markiert den Beginn eines neuen Zyklus.\n\n2. Follikelphase (Tage 1–13): FSH regt die Eierstöcke an, Follikel zu entwickeln. Östrogen steigt und die Gebärmutterschleimhaut verdickt sich.\n\n3. Eisprung (~Tag 14): Ein LH-Anstieg löst die Freisetzung einer reifen Eizelle aus. Dies ist dein fruchtbarster Moment.\n\n4. Lutealphase (Tage 15–28): Der leere Follikel wird zum Gelbkörper und produziert Progesteron. Wenn keine Befruchtung stattfindet, sinken die Hormonspiegel und der Zyklus beginnt erneut.\n\nDas Verständnis dieser Phasen hilft dir, dein fruchtbares Fenster zu identifizieren.",
-          "title": "Den Menstruationszyklus verstehen"
-        },
-        "mindBodyConnection": {
-          "content": "Die Beziehung zwischen Geist und Körper ist tiefer als wir bei der Fruchtbarkeit denken:\n\n• Chronischer Stress aktiviert die HPA-Achse, die Fortpflanzungshormone unterdrückt.\n• Entspannungstechniken (Meditation, Yoga, tiefes Atmen) verbessern messbar die Fruchtbarkeitsergebnisse.\n• Kognitive Verhaltenstherapie (KVT) zeigt positive Ergebnisse bei Fruchtbarkeitsangst.\n• Positive Visualisierung und Affirmationen aktivieren neurale Bahnen, die das Hormongleichgewicht unterstützen.\n• Selbsthilfegruppen reduzieren Isolationsgefühle und verbessern die psychische Gesundheit.\n• Kunst, Musik und kreatives Schreiben sind wirksame therapeutische Werkzeuge auf dem Fruchtbarkeitsweg.\n• Suche professionelle Hilfe, wenn Angst oder Traurigkeit dein Leben dominieren.",
-          "title": "Die Geist-Körper-Verbindung"
-        },
-        "nutritionFertility": {
-          "content": "Die Ernährung beeinflusst direkt die Eizell- und Spermienqualität:\n\n• Die Mittelmeerdiät hat in Fruchtbarkeitsstudien die besten Ergebnisse gezeigt.\n• Gesunde Fette (Omega-3, Olivenöl) unterstützen die Hormonproduktion.\n• Pflanzliches Protein kann für manche Frauen besser sein als tierisches.\n• Vermeiden Sie Transfette — sie verdoppeln das Risiko für eisprungbedingte Unfruchtbarkeit.\n• Bio-Lebensmittel reduzieren die Exposition gegenüber hormonschädigenden Pestiziden.",
-          "title": "Optimale Ernährung für Fruchtbarkeit"
-        },
-        "optimizingTiming": {
-          "content": "Timing ist entscheidend, um deine Chancen zu maximieren:\n\n• Die besten Tage für die Empfängnis sind die 2–3 Tage vor dem Eisprung und der Eisprungtag selbst.\n• Geschlechtsverkehr alle 1–2 Tage während des fruchtbaren Fensters liefert die besten Ergebnisse.\n• Tägliche Ejakulation reduziert die Spermienqualität bei den meisten Männern nicht wesentlich.\n• Manche Gleitmittel können die Spermienmotilität reduzieren. Verwende bei Bedarf fruchtbarkeitsfreundliche Marken.\n• Verfolge deinen Zyklus 2–3 Monate, bevor du aktiv versuchst.",
-          "title": "Timing optimieren"
-        },
-        "ovulationProcess": {
-          "content": "Der Eisprung ist die Freisetzung einer reifen Eizelle aus einem deiner Eierstöcke:\n\n• In den Tagen vor dem Eisprung lässt steigendes Östrogen den dominanten Follikel wachsen.\n• Ein starker LH-Anstieg bewirkt, dass der Follikel platzt und die Eizelle in den Eileiter freigesetzt wird.\n• Die Eizelle überlebt 12–24 Stunden nach der Freisetzung. Spermien können bis zu 5 Tage im Fortpflanzungstrakt überleben.\n• Das bedeutet, dein fruchtbares Fenster umfasst etwa 6 Tage — die 5 Tage vor dem Eisprung und den Tag des Eisprungs selbst.\n\nManche Frauen spüren ein leichtes Ziehen oder Krampfen (Mittelschmerz) während des Eisprungs.",
-          "title": "So funktioniert der Eisprung"
-        },
-        "pcosManagement": {
-          "content": "Das Polyzystische Ovarsyndrom (PCOS) betrifft 8–13% der Frauen:\n\n• Die häufigste Ursache für Anovulation und eisprungbedingte Unfruchtbarkeit.\n• Hauptsymptome: unregelmäßige Perioden, Akne, übermäßiger Haarwuchs, Insulinresistenz.\n• Lebensstiländerungen sind sehr wirksam: 5–10% Gewichtsverlust kann den Eisprung wiederherstellen.\n• Inositol zeigt vielversprechende Ergebnisse bei der Verbesserung der Insulinsensitivität.\n• Eine zuckerarme, ausgewogene Ernährung unterstützt die hormonelle Regelmäßigkeit.\n• Medikamente wie Clomifen oder Letrozol stimulieren in vielen Fällen erfolgreich den Eisprung.",
-          "title": "PCOS & Fruchtbarkeit"
-        },
-        "recurrentLoss": {
-          "content": "Wiederholter Schwangerschaftsverlust (zwei oder mehr) erfordert umfassende Abklärung:\n\n• 15–20% der Schwangerschaften enden in einer Fehlgeburt — meist aufgrund chromosomaler Anomalien.\n• Behandelbare Ursachen: Gerinnungsstörungen, Gebärmutteranomalien, Schilddrüsenprobleme.\n• Das Uterusseptum ist die häufigste Gebärmutteranomalie und kann chirurgisch korrigiert werden.\n• Antiphospholipid-Syndrom ist mit Aspirin und Heparin behandelbar.\n• Psychologische Unterstützung ist essenziell.\n• 60–70% der Paare mit ungeklärtem wiederkehrendem Verlust haben in der nächsten Schwangerschaft Erfolg.",
-          "title": "Wiederholte Fehlgeburten verstehen"
-        },
-        "secondaryInfertility": {
-          "content": "Sekundäre Unfruchtbarkeit bedeutet Schwierigkeiten, nach einem vorherigen Kind schwanger zu werden:\n\n• Macht etwa 50% der Unfruchtbarkeitsfälle aus — wird aber weniger besprochen.\n• Ursachen: fortschreitendes Alter, Gewichtsveränderungen, Komplikationen früherer Schwangerschaften.\n• Verwachsungen durch Kaiserschnitt oder Infektion können die Fruchtbarkeit beeinflussen.\n• Gesellschaftliche Erwartungen erhöhen die psychische Belastung.\n• Verzögere nicht, Hilfe zu suchen — die gleichen Zeitkriterien gelten.",
-          "title": "Sekundäre Unfruchtbarkeit"
-        },
-        "sleepHormones": {
-          "content": "Schlaf ist kein Luxus — er ist eine biologische Notwendigkeit für die Fruchtbarkeit:\n\n• Melatonin (Schlafhormon) wirkt als Antioxidans, das Eizellen schützt.\n• Weniger als 6 Stunden Schlaf erhöht Cortisol und unterdrückt GnRH und Eisprung.\n• Schichtarbeit ist mit erhöhten Zyklus- und Fruchtbarkeitsproblemen verbunden.\n• Der zirkadiane Rhythmus reguliert die FSH- und LH-Sekretion.\n• Blaues Licht von Bildschirmen unterdrückt Melatonin.\n• Ziel: 7–9 Stunden Schlaf in einem dunklen, kühlen Raum mit konsistenter Routine.",
-          "title": "Schlaf & Fruchtbarkeitshormone"
-        },
-        "supplementsGuide": {
-          "content": "Nahrungsergänzungsmittel können deine Fruchtbarkeit unterstützen — aber nicht alle sind gleich:\n\n• Folsäure/Methylfolat: Essenziell — beginne 3 Monate vor dem Versuch.\n• CoQ10 (200–600mg): Unterstützt die Eizellenergie, besonders nach 35.\n• Vitamin D (1000–2000 IE): Die meisten Frauen haben einen Mangel.\n• Omega-3 DHA (200–300mg): Für Hormongesundheit und Entzündung.\n• Inositol (4g Myo + 100mg D-Chiro): Besonders hilfreich bei PCOS.\n• Eisen: Nur bei nachgewiesenem Mangel.\n• Konsultiere immer deinen Arzt vor Beginn neuer Nahrungsergänzungsmittel.",
-          "title": "Smarter Nahrungsergänzungs-Guide"
-        },
-        "thyroidFertility": {
-          "content": "Schilddrüsenerkrankungen gehören zu den am besten behandelbaren Ursachen von Fruchtbarkeitsproblemen:\n\n• Hypothyreose kann unregelmäßige Zyklen, ausbleibenden Eisprung oder frühe Fehlgeburt verursachen.\n• Hyperthyreose ist mit unregelmäßigen Perioden und Empfängnisschwierigkeiten verbunden.\n• Selbst subklinische Hypothyreose (TSH 2,5–4,0) kann die Fruchtbarkeit beeinflussen.\n• Schilddrüsenantikörper (Anti-TPO) sind häufig und können die Einnistung beeinflussen.\n• TSH- und FT4-Tests werden für alle Frauen empfohlen, die eine Schwangerschaft planen.\n• Levothyroxin-Behandlung ist sicher und wirksam beim Kinderwunsch.",
-          "title": "Schilddrüse & Fruchtbarkeit"
-        },
-        "trackingMethods": {
-          "content": "Mehrere Methoden können dir helfen, dein fruchtbares Fenster zu identifizieren:\n\n1. Kalendermethode: Verfolge Zykluslängen über mehrere Monate. Der Eisprung findet typischerweise 14 Tage vor der nächsten Periode statt.\n\n2. Basaltemperatur (BBT): Miss jeden Morgen vor dem Aufstehen deine Temperatur. Ein leichter Anstieg (0,2–0,5°C) bestätigt den Eisprung.\n\n3. Zervixschleimbeobachtung: Vor dem Eisprung wird der Schleim klar, dehnbar und glitschig.\n\n4. Ovulationstests (OPKs): Erkennen den LH-Anstieg 12–36 Stunden vor dem Eisprung.\n\n5. Fruchtbarkeitsmonitore: Fortschrittliche Geräte, die mehrere Hormone verfolgen.\n\n6. Zervixposition: Der Gebärmutterhals wird um den Eisprung herum höher, weicher und offener.\n\nDie Kombination mehrerer Methoden erhöht die Genauigkeit.",
-          "title": "Tracking-Methoden"
-        },
-        "whenToSeekHelp": {
-          "content": "Erwäge professionelle Fruchtbarkeitsberatung wenn:\n\n• Du unter 35 bist und es 12 Monate lang ohne Erfolg versuchst.\n• Du 35–39 bist und es 6 Monate lang versuchst.\n• Du 40 oder älter bist — konsultiere frühzeitig.\n• Du unregelmäßige oder ausbleibende Perioden hast.\n• Du eine bekannte Erkrankung hast: Endometriose, PCOS, Schilddrüsenstörung.\n• Du wiederholt Fehlgeburten (2 oder mehr) erlitten hast.\n\nEin Fruchtbarkeitsspezialist kann Tests durchführen und Optionen von Lebensstiländerungen bis zu assistierter Reproduktion besprechen.",
-          "title": "Wann Sie Hilfe suchen sollten"
-        }
-      },
+      "lessons": "Lektionen",
       "lessonsCount": "{{count}} Lernmodule"
     },
     "fertilitySigns": {
-      "signs": {
-        "basalTemp": {
-          "description": "Nach dem Eisprung steigt die Ruhetemperatur um 0,2–0,5°C durch Progesteron. Durch Verfolgung über mehrere Zyklen kannst du dein typisches Eisprungmuster erkennen.",
-          "tip": "Miss jeden Morgen zur gleichen Zeit, bevor du aufstehst. Verwende ein BBT-Thermometer für Genauigkeit.",
-          "title": "Basaltemperaturanstieg"
-        },
-        "bloating": {
-          "description": "Hormonelle Veränderungen um den Eisprung können zu Wassereinlagerungen und leichten Blähungen führen — ein Zeichen für den Übergang in die Lutealphase.",
-          "tip": "Ausreichend trinken und Natrium reduzieren hilft bei eisprungbedingten Blähungen.",
-          "title": "Leichte Blähungen"
-        },
-        "breastTenderness": {
-          "description": "Steigendes Progesteron nach dem Eisprung kann Brustempfindlichkeit und Völlegefühl verursachen. Eines der häufigsten Lutealphase-Symptome.",
-          "tip": "Verfolge Beginn und Ende der Empfindlichkeit, um sie mit deinem Eisprungmuster zu korrelieren.",
-          "title": "Brustempfindlichkeit"
-        },
-        "cervicalMucus": {
-          "description": "Vor dem Eisprung wird der Zervixschleim reichlicher, klar und dehnbar — ähnlich wie rohes Eiweiß. Dieser ‚fertile' Schleim hilft den Spermien, leichter durch den Gebärmutterhals zu gelangen. Nach dem Eisprung wird er dicker oder trocknet aus.",
-          "tip": "Prüfe den Schleim täglich vor dem Wasserlassen. Der fruchtbarste Schleim lässt sich zwischen den Fingern dehnen, ohne zu reißen.",
-          "title": "Veränderungen des Zervixschleims"
-        },
-        "cervicalPosition": {
-          "description": "Während des fruchtbaren Fensters wird der Gebärmutterhals höher, weicher und öffnet sich leicht. Nach dem Eisprung senkt er sich, wird fester und schließt sich.",
-          "tip": "Prüfe die Position täglich in der gleichen Haltung. Es braucht Übung — sei geduldig mit dir.",
-          "title": "Veränderung der Zervixposition"
-        },
-        "heightenedSenses": {
-          "description": "Manche Frauen berichten über einen schärferen Geruchssinn während des Eisprungs, möglicherweise durch erhöhtes Östrogen.",
-          "tip": "Wenn Gerüche zur Zyklusmitte stärker erscheinen, könnte dies ein persönlicher Eisprungindikator sein.",
-          "title": "Geschärfte Sinne"
-        },
-        "libidoChanges": {
-          "description": "Viele Frauen erleben um den Eisprung herum eine natürliche Steigerung der Lust durch den Anstieg von Östrogen und Testosteron.",
-          "tip": "Achte auf diese natürlichen Verschiebungen — sie fallen oft mit deinen fruchtbarsten Tagen zusammen.",
-          "title": "Veränderungen der Lust"
-        },
-        "lightSpotting": {
-          "description": "Leichte rosa oder braune Schmierblutung um den Eisprungtag kann durch den Östrogenabfall oder das Platzen des Follikels verursacht werden. Normalerweise sehr leicht und kurz.",
-          "tip": "Eisprungblutung unterscheidet sich von der Einnistungsblutung (6–12 Tage nach Eisprung). Achte auf das Timing.",
-          "title": "Eisprungblutung"
-        },
-        "moodShifts": {
-          "description": "Steigendes Östrogen verbessert oft Stimmung und Energie. Nach dem Eisprung kann Progesteron Ruhe oder auch Reizbarkeit bringen. Diese Schwankungen sind hormonbedingt und normal.",
-          "tip": "Tägliches Stimmungstagebuch kann Muster aufdecken, die mit deinen Zyklusphasen korrelieren.",
-          "title": "Stimmungs- und Energieveränderungen"
-        },
-        "ovulationPain": {
-          "description": "Manche Frauen spüren ein leichtes Ziehen im Unterbauch während des Eisprungs. Dies wird durch das Platzen des Follikels verursacht und dauert Minuten bis Stunden.",
-          "tip": "Notiere, auf welcher Seite du den Schmerz spürst — er kann zwischen den Zyklen wechseln.",
-          "title": "Eisprungschmerz (Mittelschmerz)"
-        }
-      },
+      "signs": "Anzeichen",
       "signsCount": "{{count}} Anzeichen, die du kennen solltest"
     },
     "fetalDevelopment": {
@@ -5571,10 +5399,7 @@
           "desc": "Postpartale Depression überprüfen",
           "title": "Psychische Gesundheit"
         },
-        "nutrition": {
-          "desc": "Eisen- und proteinreiche Mahlzeiten",
-          "title": "Nahrhafte Mahlzeiten"
-        },
+        "nutrition": "Nährstoffreiche Mahlzeiten essen",
         "painManagement": {
           "desc": "Nehmen Sie verschriebene Medikamente",
           "title": "Schmerzmanagement"
@@ -5583,10 +5408,7 @@
           "desc": "Stärken Sie sanft Ihre Körpermitte",
           "title": "Haltungsübungen"
         },
-        "rest": {
-          "desc": "Schlafen Sie, wenn das Baby schläft",
-          "title": "Ruhe priorisieren"
-        },
+        "rest": "Ausreichend Ruhe bekommen",
         "returnToExercise": {
           "desc": "Aktivitätsniveau schrittweise steigern",
           "title": "Zurück zum Sport"
@@ -5611,14 +5433,8 @@
       "getAIAdvice": "KI-Erholungsberatung erhalten",
       "phases": {
         "month2": "Monat 2-3",
-        "week1": {
-          "description": "Fokus auf Ruhe, Wundpflege und Bindung",
-          "title": "Woche 1 — Ruhe & Heilung"
-        },
-        "week2": {
-          "description": "Sanfte Bewegung und Routinen",
-          "title": "Woche 2 — Sanfter Start"
-        },
+        "week1": "Woche 1",
+        "week2": "Woche 2-3",
         "week3_4": {
           "description": "Leichte Übungen und emotionales Wohlbefinden",
           "title": "Wochen 3-4 — Kraft aufbauen"
@@ -5646,71 +5462,10 @@
       "yourTrimester": "Ihr Trimester"
     },
     "preconceptionCheckup": {
-      "ai": {
-        "analyze": "Meine Vorbereitung analysieren",
-        "priorityTitle": "Prioritätsempfehlungen",
-        "readinessTitle": "Bereitschaftsübersicht",
-        "timelineTitle": "Vorgeschlagener Zeitplan",
-        "tipsTitle": "Hilfreiche Tipps",
-        "title": "Vorbereitungs-Einblicke"
-      },
+      "ai": "KI-Analyse",
       "allComplete": "Hervorragende Vorbereitung! Bespreche deine Ergebnisse mit deinem Arzt.",
-      "categories": {
-        "essential": "Grundlegende Gesundheitschecks",
-        "medications": "Medikamente & Impfungen",
-        "screening": "Infektions- & Immunitätsscreening",
-        "specialized": "Spezialisierte Untersuchungen"
-      },
-      "checks": {
-        "bloodWork": {
-          "description": "Prüft auf Anämie, Infektionen und allgemeine Blutgesundheit. Identifiziert Eisenmangel, der vor der Schwangerschaft behandelt werden sollte.",
-          "title": "Großes Blutbild"
-        },
-        "dental": {
-          "description": "Zahnfleischerkrankungen sind mit Frühgeburt verbunden. Hormonelle Veränderungen können bestehende Probleme verschlimmern.",
-          "title": "Zahnarztbesuch"
-        },
-        "generalCheckup": {
-          "description": "Umfassende körperliche Untersuchung zur Beurteilung deiner Gesundheit, Blutdruck, Gewicht und Besprechung deiner Schwangerschaftspläne.",
-          "title": "Allgemeine Gesundheitsuntersuchung"
-        },
-        "geneticScreening": {
-          "description": "Prüft, ob du oder dein Partner Träger von Genen für Mukoviszidose, Sichelzellanämie oder Thalassämie seid.",
-          "title": "Genetisches Carrier-Screening"
-        },
-        "hepatitis": {
-          "description": "Hepatitis B kann während der Geburt auf das Baby übertragen werden. Frühzeitige Kenntnis ermöglicht Vorbeugung.",
-          "title": "Hepatitis B & C Screening"
-        },
-        "hiv": {
-          "description": "Routinemäßiges Screening schützt deine Gesundheit und die deines zukünftigen Babys. Früherkennung ermöglicht wirksame Behandlung.",
-          "title": "HIV- & STI-Screening"
-        },
-        "medications": {
-          "description": "Überprüfe alle Medikamente und Nahrungsergänzungsmittel. Manche sind in der Schwangerschaft nicht sicher — Alternativen vorab arrangieren.",
-          "title": "Medikamentenüberprüfung"
-        },
-        "mentalHealth": {
-          "description": "Besprich jede Vorgeschichte von Depression oder Angst mit deiner Ärztin. Bestehende Erkrankungen können proaktiv behandelt werden.",
-          "title": "Psychische Gesundheitsbewertung"
-        },
-        "pap": {
-          "description": "Untersucht auf Veränderungen am Gebärmutterhals. Am besten vor der Schwangerschaft durchführen.",
-          "title": "Abstrich / Gebärmutterhalsscreening"
-        },
-        "rubella": {
-          "description": "Röteln in der Schwangerschaft können schwere Geburtsfehler verursachen. Impfung mindestens 1 Monat vor dem Versuch empfohlen.",
-          "title": "Röteln-Immunität"
-        },
-        "thyroid": {
-          "description": "Schilddrüsenerkrankungen sind häufig und können Fruchtbarkeit und Schwangerschaft erheblich beeinflussen.",
-          "title": "Schilddrüsentest (TSH)"
-        },
-        "vaccinations": {
-          "description": "Stelle sicher, dass du bei empfohlenen Impfungen (MMR, Varizellen, Grippe, Tdap) aktuell bist. Manche können nicht in der Schwangerschaft gegeben werden.",
-          "title": "Impfüberprüfung"
-        }
-      },
+      "categories": "Kategorien",
+      "checks": "Untersuchungen",
       "disclaimer": "Diese Checkliste ist eine Bildungsreferenz, um Gespräche mit Ihrem Arzt zu organisieren. Sie ersetzt keine professionelle medizinische Beratung, Diagnose oder Behandlung. Alle Untersuchungen sollten mit einem qualifizierten Gesundheitsfachmann besprochen und angeordnet werden.",
       "progressLabel": "Untersuchungen erfasst",
       "related": {
@@ -5722,58 +5477,7 @@
       "tracked": "erfasst"
     },
     "preconceptionNutrition": {
-      "categories": {
-        "antioxidants": {
-          "description": "Schützen Eizellen und Spermien vor oxidativem Stress. Vitamin C, E, Selen und CoQ10 sind besonders wichtig.",
-          "foods": "Beeren, Tomaten, Paprika, Nüsse, Samen, Grüner Tee, Blattgemüse, Süßkartoffeln",
-          "title": "Antioxidantienreiche Lebensmittel"
-        },
-        "avoidList": {
-          "description": "Bestimmte Lebensmittel können die Fruchtbarkeit negativ beeinflussen. Reduziere sie bei aktiver Kinderwunschplanung.",
-          "foods": "Übermäßiges Koffein (>200 mg/Tag), Alkohol, Transfette, hochverarbeitete Lebensmittel, Fische mit hohem Quecksilbergehalt, übermäßiger Zucker",
-          "title": "Zu reduzierende Lebensmittel"
-        },
-        "calcium": {
-          "description": "Wichtig für die Fortpflanzungsfunktion und embryonale Entwicklung. Ziel: 1000 mg täglich.",
-          "foods": "Milchprodukte, angereicherte Pflanzenmilch, Grünkohl, Brokkoli, Mandeln, Sardinen, Tofu, Feigen",
-          "title": "Kalziumquellen"
-        },
-        "folateRich": {
-          "description": "Folat ist entscheidend zur Vorbeugung von Neuralrohrdefekten. Empfohlene Tagesdosis: 400–800 µg. Beginne 1–3 Monate vor der Empfängnis.",
-          "foods": "Dunkelgrünes Blattgemüse, Linsen, Kichererbsen, Spargel, Brokkoli, Avocado, angereicherte Cerealien, Zitrusfrüchte, Rote Bete",
-          "title": "Folatreiche Lebensmittel"
-        },
-        "hydration": {
-          "description": "Wasser ist essentiell für die Zervixschleimproduktion, den Nährstofftransport und das Hormongleichgewicht. Ziel: 8–10 Gläser täglich.",
-          "foods": "Wasser, Kräutertees, Kokoswasser, wasserreiche Früchte (Wassermelone, Gurke, Orangen)",
-          "title": "Flüssigkeitszufuhr"
-        },
-        "ironSources": {
-          "description": "Eisen unterstützt die Blutbildung und den Sauerstofftransport. Frauen benötigen ca. 18 mg täglich. Eisenmangel kann den Eisprung beeinträchtigen.",
-          "foods": "Rotes Fleisch, Geflügel, Fisch, Linsen, Spinat, angereicherte Cerealien, Kürbiskerne, Tofu, dunkle Schokolade",
-          "title": "Eisenreiche Lebensmittel"
-        },
-        "omega3": {
-          "description": "Unterstützen die Hormonproduktion, reduzieren Entzündungen und sind essentiell für die Gehirn- und Augenentwicklung des Fötus.",
-          "foods": "Lachs, Sardinen, Makrele, Walnüsse, Chiasamen, Leinsamen, Hanfsamen, Algen-DHA-Ergänzungen",
-          "title": "Omega-3-Fettsäuren"
-        },
-        "protein": {
-          "description": "Liefert Bausteine für Hormone und Zellen. Der Ersatz tierischer Proteine durch pflanzliche kann die Ergebnisse verbessern.",
-          "foods": "Eier, Geflügel, Fisch, Hülsenfrüchte, Nüsse, Samen, Griechischer Joghurt, Tofu, Quinoa",
-          "title": "Hochwertiges Protein"
-        },
-        "vitaminD": {
-          "description": "Rezeptoren finden sich in Eierstöcken und Gebärmutter. Mangel ist mit unregelmäßigen Zyklen und PCOS verbunden.",
-          "foods": "Sonnenlicht (15–20 Min/Tag), fettiger Fisch, Eigelb, angereicherte Milch, UV-exponierte Pilze",
-          "title": "Vitamin-D-Quellen"
-        },
-        "zinc": {
-          "description": "Essentiell für Hormonbalance, Eizellenqualität und Zellteilung. Spielt auch eine wichtige Rolle für die männliche Fruchtbarkeit.",
-          "foods": "Austern, Rindfleisch, Kürbiskerne, Cashews, Kichererbsen, Linsen, Joghurt, Käse, Vollkorn",
-          "title": "Zinkquellen"
-        }
-      },
+      "categories": "Kategorien",
       "categoriesCount": "{{count}} Ernährungskategorien"
     },
     "preeclampsia": {
@@ -5795,68 +5499,7 @@
     },
     "prenatalVitamins": {
       "supplementsCount": "{{count}} Nahrungsergänzungsmittel",
-      "vitamins": {
-        "calcium": {
-          "description": "Bei unzureichender Zufuhr bezieht das Baby Kalzium aus den Knochen der Mutter. Reserven aufbauen schützt die Knochengesundheit.",
-          "dosage": "1000 mg täglich aus Nahrung und Ergänzungen. Am besten in Dosen von 500 mg oder weniger.",
-          "title": "Kalzium"
-        },
-        "coq10": {
-          "description": "Antioxidans, das die Mitochondrienfunktion in Eizellen unterstützt, besonders für Frauen über 35.",
-          "dosage": "100–600 mg täglich. Ubiquinol-Form wird besser aufgenommen. Ärztin konsultieren.",
-          "title": "CoQ10"
-        },
-        "folicAcid": {
-          "description": "Das wichtigste Präkonzeptionspräparat. Reduziert das Risiko von Neuralrohrdefekten erheblich. Beginne 1–3 Monate vor dem Versuch.",
-          "dosage": "400–800 µg täglich. Manche Frauen benötigen 4–5 mg — frage deine Ärztin.",
-          "title": "Folsäure (Vitamin B9)"
-        },
-        "iodine": {
-          "description": "Essentiell für die Schilddrüsenfunktion, die Fruchtbarkeit und Gehirnentwicklung des Fötus direkt beeinflusst.",
-          "dosage": "150 µg vor der Schwangerschaft, 220 µg währenddessen. Prüfe dein Pränatalpräparat.",
-          "title": "Jod"
-        },
-        "iron": {
-          "description": "Der Bedarf steigt in der Schwangerschaft von 18 auf 27 mg täglich. Vorherige Reserven aufbauen verhindert Blutarmut.",
-          "dosage": "18 mg täglich. Mit Vitamin C einnehmen. Kalzium und Tee gleichzeitig vermeiden.",
-          "title": "Eisen"
-        },
-        "omega3DHA": {
-          "description": "Essentiell für die Gehirn- und Netzhautentwicklung des Fötus. Frühzeitige Supplementierung sichert ausreichende Reserven.",
-          "dosage": "200–300 mg DHA täglich. Auf Quecksilber getestete Präparate wählen.",
-          "title": "Omega-3 DHA"
-        },
-        "probiotics": {
-          "description": "Ein gesundes Mikrobiom unterstützt die Fruchtbarkeit und optimalen vaginalen pH-Wert.",
-          "dosage": "Multistamm-Probiotikum mit Lactobacillus. Fermentierte Lebensmittel: Joghurt, Kefir, Sauerkraut.",
-          "title": "Probiotika"
-        },
-        "vitaminB12": {
-          "description": "Arbeitet mit Folat für DNA-Synthese und Nervensystem. Mangel häufiger bei Vegetarierinnen und Veganerinnen.",
-          "dosage": "2,4 µg täglich. Veganerinnen sollten supplementieren.",
-          "title": "Vitamin B12"
-        },
-        "vitaminC": {
-          "description": "Starkes Antioxidans, schützt Eizellen, verbessert Eisenaufnahme und unterstützt das Immunsystem.",
-          "dosage": "75–90 mg täglich. In Zitrusfrüchten, Beeren und Paprika enthalten.",
-          "title": "Vitamin C"
-        },
-        "vitaminD": {
-          "description": "Unterstützt Immunfunktion, Kalziumaufnahme und reproduktive Gesundheit. Mangel ist mit Schwangerschaftsdiabetes und Präeklampsie verbunden.",
-          "dosage": "600–2000 IE täglich. Bei nachgewiesenem Mangel ggf. höhere Dosis.",
-          "title": "Vitamin D"
-        },
-        "vitaminE": {
-          "description": "Unterstützt Dicke und Qualität der Gebärmutterschleimhaut und schützt Zellmembranen.",
-          "dosage": "15 mg täglich. In Nüssen, Samen und Pflanzenölen enthalten.",
-          "title": "Vitamin E"
-        },
-        "zinc": {
-          "description": "Unterstützt Eizellenqualität, Hormonbalance, Immunfunktion und DNA-Synthese.",
-          "dosage": "8 mg täglich. Die meisten Pränatalpräparate enthalten ausreichend.",
-          "title": "Zink"
-        }
-      }
+      "vitamins": "Vitamine"
     },
     "recipeModifier": {
       "analyzeAnother": "Ein weiteres Rezept analysieren",
@@ -6124,58 +5767,7 @@
       "title": "Intelligenter Snack-Planer"
     },
     "stressFertility": {
-      "topics": {
-        "acceptance": {
-          "content": "Akzeptanz bedeutet nicht Aufgeben — sondern anzuerkennen, dass manches außerhalb deiner Kontrolle liegt, während du dich auf das Beeinflussbare konzentrierst.",
-          "practice": "Sage: ‚Ich tue alles, was ich kann. Ich vertraue meinem Körper und meiner Reise. Das Ergebnis definiert nicht meinen Wert.'",
-          "title": "Akzeptanz üben"
-        },
-        "breathing": {
-          "content": "Kontrolliertes Atmen aktiviert den Vagusnerv und löst die Entspannungsreaktion aus. Senkt Herzfrequenz, Blutdruck und Cortisol.",
-          "practice": "Box-Breathing: 4 Zähler einatmen → 4 halten → 4 ausatmen → 4 halten. 5 Minuten wiederholen.",
-          "title": "Atemtechniken"
-        },
-        "cortisol": {
-          "content": "Cortisol ist das primäre Stresshormon. In kleinen Mengen hilfreich, aber chronisch erhöht kann es reproduktive Hormone unterdrücken und den Schlaf stören.",
-          "practice": "4-7-8-Atemtechnik: 4 Sekunden einatmen, 7 halten, 8 ausatmen. 4 Mal wiederholen.",
-          "title": "Cortisol verstehen"
-        },
-        "exercise": {
-          "content": "Regelmäßige moderate Bewegung ist einer der effektivsten Stressabbauer. Aber übermäßig intensives Training kann den Eisprung unterdrücken. Balance ist der Schlüssel.",
-          "practice": "Diese Woche: 30 Minuten moderate Bewegung an 5 Tagen: Spazierengehen, Yoga, Schwimmen oder Tanzen.",
-          "title": "Bewegung & Stressabbau"
-        },
-        "journaling": {
-          "content": "Über Emotionen zu schreiben reduziert nachweislich Stress und verbessert die Immunfunktion. Ziel: Emotionen verarbeiten und kleine Erfolge feiern.",
-          "practice": "Schreibe heute Abend: 1) Wofür bin ich dankbar, 2) Welche Sorge möchte ich loslassen, 3) Was habe ich mir Gutes getan.",
-          "title": "Therapeutisches Tagebuchschreiben"
-        },
-        "mindfulness": {
-          "content": "Achtsamkeit bedeutet vollständige Präsenz ohne Urteil. Studien zeigen, dass sie Angst und Depression bei Fruchtbarkeitsbehandlungen reduziert. Schon 10 Minuten täglich senken Cortisol.",
-          "practice": "5-Minuten-Körperscan: Augen schließen, tief atmen, Aufmerksamkeit von den Zehen zum Kopf bewegen.",
-          "title": "Achtsamkeit für die Fruchtbarkeit"
-        },
-        "professionalHelp": {
-          "content": "Wenn Angst oder Traurigkeit dein tägliches Leben, deinen Schlaf oder deine Beziehungen beeinträchtigt, kann professionelle Unterstützung helfen.",
-          "practice": "Suche eine Therapeutin, die auf reproduktive Psychologie spezialisiert ist. Viele bieten virtuelle Sitzungen an.",
-          "title": "Wann professionelle Hilfe suchen"
-        },
-        "sleep": {
-          "content": "Im Schlaf repariert der Körper, produziert Hormone und verarbeitet Emotionen. Schlechter Schlaf stört Melatonin und erhöht Cortisol. Weniger als 6 Stunden sind mit geringerer Fruchtbarkeit verbunden.",
-          "practice": "Abendroutine: 30 Min vor dem Schlafengehen kein Bildschirm, gedämpftes Licht, Lavendel, kühles Schlafzimmer (18–20°C).",
-          "title": "Schlaf & Fruchtbarkeit"
-        },
-        "socialSupport": {
-          "content": "Soziale Isolation verstärkt Stress. Deine Reise mit vertrauten Menschen zu teilen, kann die emotionale Last erheblich reduzieren.",
-          "practice": "Identifiziere eine Person, der du vertraust. Teile diese Woche etwas über deine Reise.",
-          "title": "Dein Unterstützungsnetzwerk"
-        },
-        "stressHormones": {
-          "content": "Chronischer Stress löst Cortisol und Adrenalin aus, die die HPG-Achse stören können — den Hormonweg, der den Eisprung steuert. Erhöhtes Cortisol kann GnRH unterdrücken.",
-          "practice": "Identifiziere deine 3 größten Stressfaktoren dieser Woche. Schreibe für jeden eine kleine Maßnahme auf.",
-          "title": "Wie Stress die Fruchtbarkeit beeinflusst"
-        }
-      },
+      "topics": "Themen",
       "topicsCount": "{{count}} Themen zum Erkunden"
     },
     "stressRelief": {
@@ -6347,78 +5939,7 @@
       "week": "Woche {{week}}"
     },
     "twwCompanion": {
-      "days": {
-        "day1": {
-          "body": "Wenn gestern der Eisprung war, reist die Eizelle durch den Eileiter. Die Befruchtung geschieht normalerweise innerhalb von 12–24 Stunden. Heute kannst du das Ergebnis nicht beeinflussen — und das ist okay.",
-          "tip": "Atme tief ein. Die Reise hat begonnen. Widme dich heute etwas, das dir Freude macht.",
-          "title": "Eisprung + 1"
-        },
-        "day10": {
-          "body": "Bei erfolgter Einnistung verdoppeln sich die hCG-Spiegel etwa alle 48 Stunden. Manche empfindliche Tests können eine frühe Schwangerschaft erkennen. Ein negatives Ergebnis heute bedeutet nicht, dass du nicht schwanger bist.",
-          "tip": "Negativ heute? Verliere nicht die Hoffnung. Viele erfolgreiche Schwangerschaften zeigen erst an Tag 12–14 positiv.",
-          "title": "Fast geschafft"
-        },
-        "day11": {
-          "body": "hCG steigt weiter. Du bemerkst vielleicht leichte Krämpfe, Brustspannen oder Müdigkeit. Diese Symptome können auch durch Progesteron verursacht sein.",
-          "tip": "Symptombeobachtung ist natürlich, kann aber Angst verstärken. Versuche, im Alltag präsent zu bleiben.",
-          "title": "Wachsende Vorfreude"
-        },
-        "day12": {
-          "body": "Die meisten Heimtests werden ab heute zuverlässiger. Verwende den ersten Morgenurin. Ein schwacher Strich ist ein positives Ergebnis.",
-          "tip": "Egal wie das Ergebnis — ein Zyklus definiert nicht deine Reise. Sei sanft zu dir.",
-          "title": "Tests werden zuverlässiger"
-        },
-        "day13": {
-          "body": "Morgen wird deine Periode erwartet (bei 28-Tage-Zyklus). Bleibt sie aus und der Test zeigt einen schwachen Strich, könnten Glückwünsche angebracht sein.",
-          "tip": "Bereite dich emotional auf beide Ergebnisse vor. Beide sind gültig.",
-          "title": "Der Vorabend"
-        },
-        "day14": {
-          "body": "Heute wird die Periode erwartet. Eine ausgebliebene Periode plus positiver Test ist ein starker Hinweis auf Schwangerschaft. Bei positivem Test: Kontaktiere deine Ärztin für den ersten Termin (ca. 6–8 Wochen).",
-          "tip": "Positiv? Feiere diesen Moment. Negativ? Du bist stark und widerstandsfähig. Beide Ergebnisse verdienen Mitgefühl.",
-          "title": "Der Tag der Antwort"
-        },
-        "day2": {
-          "body": "Bei Befruchtung beginnt die Zelle sich zu teilen — erst in 2, dann 4 Zellen. Diese Zellgruppe wandert durch den Eileiter zur Gebärmutter.",
-          "tip": "Bleib hydratisiert und iss nährstoffreich. Dein Körper leistet Unglaubliches auf zellulärer Ebene.",
-          "title": "Zelluläre Anfänge"
-        },
-        "day3": {
-          "body": "Die Zellen bilden eine feste Kugel namens Morula (ca. 16 Zellen). Sie setzt ihre Reise durch den Eileiter fort. Progesteron steigt und bereitet die Gebärmutterschleimhaut vor.",
-          "tip": "Sanfte Aktivität ist völlig in Ordnung. Du musst deine normale Routine nicht einschränken.",
-          "title": "Morula-Stadium"
-        },
-        "day4": {
-          "body": "Die Morula erreicht um Tag 4 die Gebärmutter. Sie beginnt einen flüssigkeitsgefüllten Hohlraum zu bilden und wird zur Blastozyste. Die Schleimhaut wird dick und empfänglich.",
-          "tip": "Übe Achtsamkeit oder leichtes Dehnen. Den Erwartungsdruck zu managen ist Teil der Reise.",
-          "title": "Eintritt in die Gebärmutter"
-        },
-        "day5": {
-          "body": "Die Blastozyste hat zwei Zellgruppen: die innere Zellmasse (wird zum Embryo) und den Trophoblasten (wird zur Plazenta). Sie schwebt frei in der Gebärmutterhöhle.",
-          "tip": "Ein guter Tag zum Tagebuchschreiben. Selbstausdruck ist therapeutisch.",
-          "title": "Blastozystenbildung"
-        },
-        "day6": {
-          "body": "Die Blastozyste sucht die ideale Einnistungsstelle. Trophoblastzellen beginnen in die Schleimhaut einzudringen. Manche Frauen bemerken leichte Schmierblutungen.",
-          "tip": "Leichte Schmierblutung ist in dieser Phase normal. Nicht in Panik geraten — und noch nicht testen.",
-          "title": "Einnistung kann beginnen"
-        },
-        "day7": {
-          "body": "Tage 6–10 sind das typische Einnistungsfenster. Die Blastozyste gräbt sich tiefer in die Schleimhaut. Frühe Signale werden zwischen Embryo und deinem Körper ausgetauscht.",
-          "tip": "Führe deine normalen Aktivitäten fort. Ruhe dich aus, wenn du musst. Vertraue dem Prozess.",
-          "title": "Einnistungsfenster"
-        },
-        "day8": {
-          "body": "Bei fortschreitender Einnistung werden winzige Mengen hCG produziert. Dieses Hormon hält den Gelbkörper aktiv. Die Spiegel sind noch zu niedrig für einen Test.",
-          "tip": "Widerstehe dem Drang zu testen. hCG braucht Zeit zum Aufbau. Geduld ist jetzt dein größter Verbündeter.",
-          "title": "hCG beginnt"
-        },
-        "day9": {
-          "body": "hCG-Spiegel steigen, liegen aber möglicherweise noch unter der Nachweisgrenze. Die Einnistung sollte abgeschlossen oder fast abgeschlossen sein.",
-          "tip": "Gönne dir etwas Beruhigendes — ein warmes Bad, deinen Lieblingstee oder einen Spaziergang in der Natur.",
-          "title": "Steigende Signale"
-        }
-      },
+      "days": "Tage",
       "subtitle": "Dein täglicher Begleiter durch die Zwei-Wochen-Wartezeit"
     },
     "vitaminTracker": {
