@@ -159,7 +159,7 @@ export function QuickStats({
                   <p className="text-[10px] font-semibold text-foreground group-hover:text-primary transition-colors leading-tight whitespace-normal break-words">
                     {t("dashboard.quickStats.nextAppointment")}
                   </p>
-                  <p className="text-[9px] text-muted-foreground truncate">{nextAppointment}</p>
+                  <p className="text-[9px] text-muted-foreground whitespace-normal break-words">{nextAppointment}</p>
                 </div>
               </Link>
             </motion.div>
