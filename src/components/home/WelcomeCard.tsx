@@ -104,7 +104,7 @@ const WelcomeCard = memo(function WelcomeCard() {
 
         {/* Text content */}
         <div className="flex-1 min-w-0 pt-0.5">
-          <h2 className="text-base font-bold text-foreground leading-tight ar-heading" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+          <h2 className="text-lg font-bold text-foreground leading-tight ar-heading" style={{ fontFamily: "'Tajawal', sans-serif" }}>
             {greeting}
           </h2>
           {week > 0 && (

@@ -106,8 +106,8 @@ const ToolRow = memo(function ToolRow({ tool, isRTL, isLocked = false }: { tool:
           )}
         </div>
         <div className="flex-1 min-w-0">
-          <h3 className="text-[13px] font-bold text-foreground leading-snug" style={{ fontFamily: "'Tajawal', sans-serif", overflowWrap: 'anywhere' }}>{t(tool.titleKey)}</h3>
-          <p className="text-[11px] text-muted-foreground mt-0.5 leading-relaxed line-clamp-2">{t(tool.descriptionKey)}</p>
+          <h3 className="text-[12px] font-semibold text-foreground leading-snug line-clamp-2" style={{ fontFamily: "'Tajawal', sans-serif", overflowWrap: 'anywhere' }}>{t(tool.titleKey)}</h3>
+          <p className="text-[10.5px] text-muted-foreground mt-0.5 leading-relaxed line-clamp-2" style={{ overflowWrap: 'anywhere' }}>{t(tool.descriptionKey)}</p>
         </div>
         {isLocked ? (
           <Lock className="flex-shrink-0 w-4 h-4 text-muted-foreground/40" />
@@ -183,7 +183,7 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
         <div className="relative flex items-center gap-2.5 w-full">
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2">
-              <h2 className={`text-lg sm:text-xl font-extrabold ${config.headerText} tracking-tight leading-snug break-words ar-heading`}>
+              <h2 className={`text-xl sm:text-2xl font-extrabold ${config.headerText} tracking-tight leading-snug break-words ar-heading`} style={{ overflowWrap: 'anywhere' }}>
                 {t(`journeys.${config.key}`)}
               </h2>
               <span className={`text-[10px] font-bold ${config.headerText} bg-white/20 backdrop-blur-sm px-2 py-0.5 rounded-full`}>
