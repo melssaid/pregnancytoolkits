@@ -53,19 +53,65 @@ export const SECTION_TOOL_MAP: Record<SmartSection, AIToolType> = {
 // ── Quota cost weights ──
 export type InsightWeight = 1 | 2;
 
-export const INSIGHT_WEIGHTS: Record<string, InsightWeight> = {
-  default: 1,
+/**
+ * TOOL_WEIGHT_REGISTRY — THE SINGLE SOURCE OF TRUTH for AI request costs.
+ * Keyed by AIToolType. Every tool defaults to weight 1.
+ * Only high-cost tools (image analysis) are explicitly listed as weight 2.
+ *
+ * THIS MUST NEVER BE BYPASSED. All weight resolution goes through resolveWeight().
+ */
+export const TOOL_WEIGHT_REGISTRY: Record<AIToolType, InsightWeight> = {
+  "symptom-analysis": 1,
+  "meal-suggestion": 1,
+  "pregnancy-assistant": 1,
+  "weekly-summary": 1,
+  "posture-coach": 1,
+  "walking-coach": 1,
+  "stretch-reminder": 1,
+  "back-pain-relief": 1,
+  "leg-cramp-preventer": 1,
+  "smoothie-generator": 1,
+  "daily-tips": 1,
+  "labor-tracker": 1,
+  "appointment-prep": 1,
   "kick-analysis": 1,
-  "ultrasound-text": 1,
-  "ultrasound-image": 2,
+  "sleep-analysis": 1,
+  "vitamin-advice": 1,
+  "bump-photos": 2,       // ultrasound image analysis — higher cost
+  "baby-cry-analysis": 1,
+  "postpartum-recovery": 1,
+  "hospital-bag": 1,
+  "birth-position": 1,
+  "partner-guide": 1,
+  "lactation-prep": 1,
+  "nausea-relief": 1,
+  "skincare-advice": 1,
+  "birth-plan": 1,
+  "mental-health": 1,
+  "pregnancy-plan": 1,
+  "baby-growth-analysis": 1,
+  "weight-analysis": 1,
+  "contraction-analysis": 1,
 };
 
-/** Centralized weight registry — all tools reference this */
-export const TOOL_WEIGHTS: Record<string, InsightWeight> = {
-  standard: 1,
-  "bump-photos": 2,
-  "ultrasound-image": 2,
-};
+/**
+ * Resolve the weight for a given tool/section.
+ * Uses TOOL_WEIGHT_REGISTRY as the ONLY source.
+ * Components MUST NOT pass weight manually — this function is the authority.
+ */
+export function resolveWeight(toolType?: AIToolType, section?: SmartSection): InsightWeight {
+  if (toolType && TOOL_WEIGHT_REGISTRY[toolType] !== undefined) {
+    return TOOL_WEIGHT_REGISTRY[toolType];
+  }
+  // Fallback: resolve toolType from section, then look up registry
+  if (section) {
+    const mapped = SECTION_TOOL_MAP[section];
+    if (mapped && TOOL_WEIGHT_REGISTRY[mapped] !== undefined) {
+      return TOOL_WEIGHT_REGISTRY[mapped];
+    }
+  }
+  return 1; // safe default
+}
 
 // ── Quota tiers ──
 export interface QuotaTier {

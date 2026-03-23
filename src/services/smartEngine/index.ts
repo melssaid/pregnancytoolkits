@@ -19,7 +19,7 @@ export type {
   CacheEntry,
 } from "./types";
 
-export { SECTION_TOOL_MAP, INSIGHT_WEIGHTS, QUOTA_TIERS, TOOL_WEIGHTS } from "./types";
+export { SECTION_TOOL_MAP, QUOTA_TIERS, TOOL_WEIGHT_REGISTRY, resolveWeight } from "./types";
 
 // Engine
 export { executeSmartRequest, type StreamOptions } from "./smartEngine";
@@ -31,9 +31,11 @@ export {
   consumeQuota,
   syncFromServer,
   setTier,
-  resetQuota,
-  clearAdminBypass,
 } from "./quotaManager";
+
+// THIS MUST NEVER BE EXPOSED IN PRODUCTION
+// resetQuota and clearAdminBypass are intentionally NOT exported.
+// They remain in quotaManager.ts for direct test imports only.
 
 // Cache
 export {

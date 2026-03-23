@@ -12,7 +12,7 @@ import {
   type SmartErrorType,
   type InsightWeight,
   SECTION_TOOL_MAP,
-  INSIGHT_WEIGHTS,
+  resolveWeight,
 } from "./types";
 import { canAfford, consumeQuota, getQuotaState, syncFromServer, setTier } from "./quotaManager";
 import { buildCacheKey, getCached, setCache, contentHash } from "./cacheManager";
@@ -103,8 +103,9 @@ export async function executeSmartRequest({
   onError,
   skipCache = false,
 }: StreamOptions): Promise<void> {
-  const weight: InsightWeight = request.weight || INSIGHT_WEIGHTS[request.section] as InsightWeight || 1;
   const toolType = request.toolType || SECTION_TOOL_MAP[request.section];
+  // Weight is ALWAYS resolved from the centralized registry — never from request
+  const weight: InsightWeight = resolveWeight(toolType, request.section);
 
   // 1. Quota check
   if (!canAfford(weight)) {
