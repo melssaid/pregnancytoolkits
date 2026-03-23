@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { SEOHead } from '@/components/SEOHead';
 import { 
-  Globe, User, Download, Trash2, Shield, Heart, 
+  Globe, User, Download, Trash2, Heart, 
   ChevronRight, ChevronLeft, Lock, RotateCcw
 } from 'lucide-react';
 import { useAIUsage } from '@/contexts/AIUsageContext';
