@@ -142,7 +142,7 @@ export interface SmartRequest {
   toolType?: AIToolType; // override the default section→tool mapping
   messages: SmartMessage[];
   context?: SmartContext;
-  weight?: InsightWeight; // cost of this request (default: 1)
+  // weight is resolved centrally by resolveWeight() — do NOT pass manually
 }
 
 export interface SmartMessage {

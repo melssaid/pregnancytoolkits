@@ -127,7 +127,12 @@ export function resetQuota(): void {
 
 /**
  * Clear admin bypass.
+ * THIS MUST NEVER BE EXPOSED IN PRODUCTION — only reachable via direct import in tests.
  */
 export function clearAdminBypass(): void {
+  if (typeof import.meta !== 'undefined' && import.meta.env?.PROD) {
+    console.warn('[quotaManager] clearAdminBypass blocked in production');
+    return;
+  }
   localStorage.removeItem(ADMIN_BYPASS_KEY);
 }
