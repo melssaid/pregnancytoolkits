@@ -98,32 +98,32 @@ export const KickPatternVisualizer: React.FC<PatternVisualizerProps> = ({ sessio
               </motion.span>
             </div>
           </div>
-          <div className="min-w-0 overflow-hidden">
-            <h3 className="font-semibold text-foreground">{t('kickPattern.movementScore')}</h3>
-            <p className="text-sm text-muted-foreground">
+          <div className="min-w-0">
+            <h3 className="font-semibold text-foreground whitespace-normal break-words">{t('kickPattern.movementScore')}</h3>
+            <p className="text-sm text-muted-foreground whitespace-normal break-words">
               {healthScore >= 80 ? t('kickPattern.excellent') : healthScore >= 60 ? t('kickPattern.good') : t('kickPattern.needsAttention')}
             </p>
           </div>
         </div>
         
         {/* Trend Indicator */}
-        <div className="text-right">
+        <div className="text-end min-w-0 flex-shrink-0">
           <div className="flex items-center gap-1 justify-end">
             {trend === 'improving' ? (
-              <TrendingUp className="w-5 h-5 text-emerald-500" />
+              <TrendingUp className="w-5 h-5 text-emerald-500 shrink-0" />
             ) : trend === 'declining' ? (
-              <TrendingDown className="w-5 h-5 text-amber-500" />
+              <TrendingDown className="w-5 h-5 text-amber-500 shrink-0" />
             ) : (
-              <Minus className="w-5 h-5 text-blue-500" />
+              <Minus className="w-5 h-5 text-blue-500 shrink-0" />
             )}
-            <span className={`text-sm font-medium ${
+            <span className={`text-sm font-medium whitespace-normal ${
               trend === 'improving' ? 'text-emerald-600' : 
               trend === 'declining' ? 'text-amber-600' : 'text-blue-600'
             }`}>
               {trend === 'stable' ? t('kickPattern.stable') : `${trendPercentage.toFixed(0)}%`}
             </span>
           </div>
-          <p className="text-xs text-muted-foreground mt-0.5">
+          <p className="text-xs text-muted-foreground mt-0.5 whitespace-normal break-words">
             {trend === 'improving' ? t('kickPattern.gettingFaster') : 
              trend === 'declining' ? t('kickPattern.slowingDown') : t('kickPattern.consistent')}
           </p>

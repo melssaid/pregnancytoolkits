@@ -332,7 +332,24 @@ html[lang="ar"] .ar-heading {
   }
 
   .grid-item-safe > * {
-    @apply truncate;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  /* ═══════════════════════════════════════════════════════════════
+     TRUNCATE SAFETY — prevent mid-word clipping in Arabic/German
+     Converts single-line truncation into soft line clamping so
+     long words wrap instead of being cut with ellipsis.
+     ═══════════════════════════════════════════════════════════════ */
+  [dir="rtl"] .truncate,
+  [lang="ar"] .truncate {
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    overflow-wrap: anywhere;
   }
 
   /* RTL Utilities */
