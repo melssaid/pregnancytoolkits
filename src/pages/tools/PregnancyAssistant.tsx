@@ -280,7 +280,8 @@ function InputArea({
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder={t("pregnancyAssistant.placeholder")}
-          className="min-h-[44px] max-h-[100px] resize-none rounded-xl border-0 bg-transparent shadow-none text-sm flex-1 focus-visible:ring-0"
+          className="min-h-[44px] max-h-[100px] resize-none rounded-xl border-0 bg-transparent shadow-none text-sm flex-1 focus-visible:ring-0 text-start"
+          dir="auto"
           onKeyDown={(e) => {
             if (e.key === "Enter" && !e.shiftKey) {
               e.preventDefault();
