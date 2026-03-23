@@ -22,7 +22,7 @@ export type {
 export { SECTION_TOOL_MAP, QUOTA_TIERS, TOOL_WEIGHT_REGISTRY, resolveWeight } from "./types";
 
 // Engine
-export { executeSmartRequest, type StreamOptions } from "./smartEngine";
+export { executeSmartRequest, classifyError, type StreamOptions } from "./smartEngine";
 
 // Quota
 export {
