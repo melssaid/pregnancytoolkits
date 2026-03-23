@@ -4092,10 +4092,12 @@
       "yourWindow": "Sua janela fértil"
     },
     "fertilityAcademy": {
-      "lessonsCount": "{{count}} módulos de aprendizagem"
+      "lessonsCount": "{{count}} módulos de aprendizagem",
+      "lessons": "Lições"
     },
     "fertilitySigns": {
-      "signsCount": "{{count}} sinais que você deve conhecer"
+      "signsCount": "{{count}} sinais que você deve conhecer",
+      "signs": "Sinais"
     },
     "fetalDevelopment": {
       "aiWeeklyInsights": "Insights semanais de IA",
@@ -5469,10 +5471,14 @@
         "nutrition": "Guia nutricional",
         "nutritionDesc": "Nutrição e suplementos pré-concepção"
       },
-      "tracked": "acompanhado"
+      "tracked": "acompanhado",
+      "ai": "Análise IA",
+      "categories": "Categorias",
+      "checks": "Exames"
     },
     "preconceptionNutrition": {
-      "categoriesCount": "{{count}} categorias nutricionais"
+      "categoriesCount": "{{count}} categorias nutricionais",
+      "categories": "Categorias"
     },
     "preeclampsia": {
       "age35Plus": "Idade 35+",
@@ -5492,7 +5498,8 @@
       "warningSigns": "Sinais de Alerta a Observar"
     },
     "prenatalVitamins": {
-      "supplementsCount": "{{count}} suplementos para revisar"
+      "supplementsCount": "{{count}} suplementos para revisar",
+      "vitamins": "Vitaminas"
     },
     "recipeModifier": {
       "analyzeAnother": "Analisar outra receita",
@@ -5760,7 +5767,8 @@
       "title": "Planejador de Lanches Inteligente"
     },
     "stressFertility": {
-      "topicsCount": "{{count}} tópicos para explorar"
+      "topicsCount": "{{count}} tópicos para explorar",
+      "topics": "Temas"
     },
     "stressRelief": {
       "affirmations": {
@@ -5931,7 +5939,8 @@
       "week": "Semana {{week}}"
     },
     "twwCompanion": {
-      "subtitle": "Seu guia diário durante as duas semanas de espera"
+      "subtitle": "Seu guia diário durante as duas semanas de espera",
+      "days": "Dias"
     },
     "vitaminTracker": {
       "aiAnalysisTitle": "Insights de Suplementos IA",

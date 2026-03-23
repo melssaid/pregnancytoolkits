@@ -4092,10 +4092,12 @@
       "yourWindow": "Verimli Penceren"
     },
     "fertilityAcademy": {
-      "lessonsCount": "{{count}} eğitim modülü"
+      "lessonsCount": "{{count}} eğitim modülü",
+      "lessons": "Dersler"
     },
     "fertilitySigns": {
-      "signsCount": "{{count}} bilmen gereken işaret"
+      "signsCount": "{{count}} bilmen gereken işaret",
+      "signs": "Belirtiler"
     },
     "fetalDevelopment": {
       "aiWeeklyInsights": "Yapay Zeka Haftalık İçgörüler",
@@ -5469,10 +5471,14 @@
         "nutrition": "Beslenme Rehberi",
         "nutritionDesc": "Gebelik öncesi beslenme ve takviyeler"
       },
-      "tracked": "takip edilen"
+      "tracked": "takip edilen",
+      "ai": "Yapay Zeka Analizi",
+      "categories": "Kategoriler",
+      "checks": "Kontroller"
     },
     "preconceptionNutrition": {
-      "categoriesCount": "{{count}} beslenme kategorisi"
+      "categoriesCount": "{{count}} beslenme kategorisi",
+      "categories": "Kategoriler"
     },
     "preeclampsia": {
       "age35Plus": "35 yaş üstü",
@@ -5492,7 +5498,8 @@
       "warningSigns": "İzlenmesi Gereken Uyarı İşaretleri"
     },
     "prenatalVitamins": {
-      "supplementsCount": "{{count}} incelenecek takviye"
+      "supplementsCount": "{{count}} incelenecek takviye",
+      "vitamins": "Vitaminler"
     },
     "recipeModifier": {
       "analyzeAnother": "Başka bir tarif analiz et",
@@ -5760,7 +5767,8 @@
       "title": "Akıllı Atıştırmalık Planlayıcısı"
     },
     "stressFertility": {
-      "topicsCount": "{{count}} keşfedilecek konu"
+      "topicsCount": "{{count}} keşfedilecek konu",
+      "topics": "Konular"
     },
     "stressRelief": {
       "affirmations": {
@@ -5931,7 +5939,8 @@
       "week": "Hafta {{week}}"
     },
     "twwCompanion": {
-      "subtitle": "İki haftalık bekleme döneminde günlük rehberin"
+      "subtitle": "İki haftalık bekleme döneminde günlük rehberin",
+      "days": "Günler"
     },
     "vitaminTracker": {
       "aiAnalysisTitle": "AI Takviye İçgörüleri",

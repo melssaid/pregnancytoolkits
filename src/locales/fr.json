@@ -4092,10 +4092,12 @@
       "yourWindow": "Votre fenêtre fertile"
     },
     "fertilityAcademy": {
-      "lessonsCount": "{{count}} modules d'apprentissage"
+      "lessonsCount": "{{count}} modules d'apprentissage",
+      "lessons": "Leçons"
     },
     "fertilitySigns": {
-      "signsCount": "{{count}} signes à connaître"
+      "signsCount": "{{count}} signes à connaître",
+      "signs": "Signes"
     },
     "fetalDevelopment": {
       "aiWeeklyInsights": "Aperçus IA hebdomadaires",
@@ -5469,10 +5471,14 @@
         "nutrition": "Guide nutritionnel",
         "nutritionDesc": "Nutrition & compléments préconception"
       },
-      "tracked": "suivi"
+      "tracked": "suivi",
+      "ai": "Analyse IA",
+      "categories": "Catégories",
+      "checks": "Examens"
     },
     "preconceptionNutrition": {
-      "categoriesCount": "{{count}} catégories nutritionnelles"
+      "categoriesCount": "{{count}} catégories nutritionnelles",
+      "categories": "Catégories"
     },
     "preeclampsia": {
       "age35Plus": "Age 35+",
@@ -5492,7 +5498,8 @@
       "warningSigns": "Signes d'alerte"
     },
     "prenatalVitamins": {
-      "supplementsCount": "{{count}} suppléments à examiner"
+      "supplementsCount": "{{count}} suppléments à examiner",
+      "vitamins": "Vitamines"
     },
     "recipeModifier": {
       "analyzeAnother": "Analyser une autre recette",
@@ -5760,7 +5767,8 @@
       "title": "Planificateur de Collations Intelligent"
     },
     "stressFertility": {
-      "topicsCount": "{{count}} sujets à explorer"
+      "topicsCount": "{{count}} sujets à explorer",
+      "topics": "Sujets"
     },
     "stressRelief": {
       "affirmations": {
@@ -5931,7 +5939,8 @@
       "week": "Semaine {{week}}"
     },
     "twwCompanion": {
-      "subtitle": "Votre guide quotidien pendant les deux semaines d'attente"
+      "subtitle": "Votre guide quotidien pendant les deux semaines d'attente",
+      "days": "Jours"
     },
     "vitaminTracker": {
       "aiAnalysisTitle": "Analyse IA des Vitamines",

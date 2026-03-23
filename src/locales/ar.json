@@ -4092,10 +4092,12 @@
       "yourWindow": "Your Fertile Window"
     },
     "fertilityAcademy": {
-      "lessonsCount": "{{count}} وحدة تعليمية"
+      "lessonsCount": "{{count}} وحدة تعليمية",
+      "lessons": "الدروس"
     },
     "fertilitySigns": {
-      "signsCount": "{{count}} علامة يجب معرفتها"
+      "signsCount": "{{count}} علامة يجب معرفتها",
+      "signs": "العلامات"
     },
     "fetalDevelopment": {
       "aiWeeklyInsights": "رؤى الذكاء الاصطناعي الأسبوعية",
@@ -5469,10 +5471,14 @@
         "nutrition": "دليل التغذية",
         "nutritionDesc": "تغذية ومكملات ما قبل الحمل"
       },
-      "tracked": "مُتابَع"
+      "tracked": "مُتابَع",
+      "ai": "تحليل ذكي",
+      "categories": "الفئات",
+      "checks": "الفحوصات"
     },
     "preconceptionNutrition": {
-      "categoriesCount": "{{count}} فئة غذائية"
+      "categoriesCount": "{{count}} فئة غذائية",
+      "categories": "الفئات"
     },
     "preeclampsia": {
       "age35Plus": "العمر 35+",
@@ -5492,7 +5498,8 @@
       "warningSigns": "علامات التحذير"
     },
     "prenatalVitamins": {
-      "supplementsCount": "{{count}} مكمل للمراجعة"
+      "supplementsCount": "{{count}} مكمل للمراجعة",
+      "vitamins": "الفيتامينات"
     },
     "recipeModifier": {
       "analyzeAnother": "Analyze Another Recipe",
@@ -5760,7 +5767,8 @@
       "title": "Smart Snack Planner"
     },
     "stressFertility": {
-      "topicsCount": "{{count}} موضوع للاستكشاف"
+      "topicsCount": "{{count}} موضوع للاستكشاف",
+      "topics": "المواضيع"
     },
     "stressRelief": {
       "affirmations": {
@@ -5931,7 +5939,8 @@
       "week": "الأسبوع {{week}}"
     },
     "twwCompanion": {
-      "subtitle": "دليلك اليومي خلال أسبوعي الانتظار"
+      "subtitle": "دليلك اليومي خلال أسبوعي الانتظار",
+      "days": "الأيام"
     },
     "vitaminTracker": {
       "aiAnalysisTitle": "تحليل المكملات الذكي",

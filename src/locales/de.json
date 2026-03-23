@@ -4092,10 +4092,12 @@
       "yourWindow": "Dein fruchtbares Fenster"
     },
     "fertilityAcademy": {
-      "lessonsCount": "{{count}} Lernmodule"
+      "lessonsCount": "{{count}} Lernmodule",
+      "lessons": "Lektionen"
     },
     "fertilitySigns": {
-      "signsCount": "{{count}} Anzeichen, die du kennen solltest"
+      "signsCount": "{{count}} Anzeichen, die du kennen solltest",
+      "signs": "Anzeichen"
     },
     "fetalDevelopment": {
       "aiWeeklyInsights": "KI-Wocheneinblicke",
@@ -5469,10 +5471,14 @@
         "nutrition": "Ernährungsratgeber",
         "nutritionDesc": "Ernährung & Nahrungsergänzung vor der Schwangerschaft"
       },
-      "tracked": "erfasst"
+      "tracked": "erfasst",
+      "ai": "KI-Analyse",
+      "categories": "Kategorien",
+      "checks": "Untersuchungen"
     },
     "preconceptionNutrition": {
-      "categoriesCount": "{{count}} Ernährungskategorien"
+      "categoriesCount": "{{count}} Ernährungskategorien",
+      "categories": "Kategorien"
     },
     "preeclampsia": {
       "age35Plus": "Age 35+",
@@ -5492,7 +5498,8 @@
       "warningSigns": "Warnsignale"
     },
     "prenatalVitamins": {
-      "supplementsCount": "{{count}} Nahrungsergänzungsmittel"
+      "supplementsCount": "{{count}} Nahrungsergänzungsmittel",
+      "vitamins": "Vitamine"
     },
     "recipeModifier": {
       "analyzeAnother": "Ein weiteres Rezept analysieren",
@@ -5760,7 +5767,8 @@
       "title": "Intelligenter Snack-Planer"
     },
     "stressFertility": {
-      "topicsCount": "{{count}} Themen zum Erkunden"
+      "topicsCount": "{{count}} Themen zum Erkunden",
+      "topics": "Themen"
     },
     "stressRelief": {
       "affirmations": {
@@ -5931,7 +5939,8 @@
       "week": "Woche {{week}}"
     },
     "twwCompanion": {
-      "subtitle": "Dein täglicher Begleiter durch die Zwei-Wochen-Wartezeit"
+      "subtitle": "Dein täglicher Begleiter durch die Zwei-Wochen-Wartezeit",
+      "days": "Tage"
     },
     "vitaminTracker": {
       "aiAnalysisTitle": "KI-Vitaminanalyse",
