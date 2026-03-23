@@ -195,59 +195,59 @@
     "totalToday": "Total de sueño hoy"
   },
   "backPainRelief": {
-    "aiCoachTitle": "AI Pain Relief Coach",
+    "aiCoachTitle": "Coach IA alivio del dolor",
     "difficulty": {
-      "easy": "Easy",
-      "moderate": "Moderate"
+      "easy": "Fácil",
+      "moderate": "Moderado"
     },
     "exercises": {
       "catCow": {
-        "desc": "Alternating spinal flexion and extension",
-        "name": "Cat-Cow Stretch",
-        "target": "Lower & Upper Back"
+        "name": "Estiramiento Gato-Vaca",
+        "desc": "Flexión y extensión alternada de la columna",
+        "target": "Espalda baja y alta"
       },
       "childPose": {
-        "desc": "Gentle stretch for the entire back",
-        "name": "Child's Pose",
-        "target": "Full Back"
+        "name": "Postura del Niño",
+        "desc": "Estiramiento suave para toda la espalda",
+        "target": "Espalda completa"
       },
       "pelvicTilt": {
-        "desc": "Strengthen core and relieve lower back pressure",
-        "name": "Pelvic Tilts",
-        "target": "Lower Back & Core"
+        "name": "Inclinación pélvica",
+        "desc": "Fortalecer el tronco y aliviar la presión lumbar",
+        "target": "Espalda baja y tronco"
       },
       "piriformis": {
-        "desc": "Relieve sciatic pain and hip tension",
-        "name": "Piriformis Stretch",
-        "target": "Hips & Lower Back"
+        "name": "Estiramiento del piriforme",
+        "desc": "Aliviar el dolor ciático y la tensión de cadera",
+        "target": "Caderas y espalda baja"
       },
       "sideStretch": {
-        "desc": "Stretch the sides of your torso",
-        "name": "Side Body Stretch",
-        "target": "Side Body"
+        "name": "Estiramiento lateral",
+        "desc": "Estirar los lados del torso",
+        "target": "Cuerpo lateral"
       },
       "wallPush": {
-        "desc": "Strengthen upper back and shoulders",
-        "name": "Wall Push-Up",
-        "target": "Upper Back & Arms"
+        "name": "Flexiones en la pared",
+        "desc": "Fortalecer la espalda alta y los hombros",
+        "target": "Espalda alta y brazos"
       }
     },
-    "exercisesCompleted": "exercises completed",
-    "exercisesTitle": "Back Pain Exercises",
-    "getAdvice": "Get AI Pain Relief Advice",
+    "exercisesCompleted": "ejercicios completados",
+    "exercisesTitle": "Ejercicios para el dolor de espalda",
+    "getAdvice": "Obtener consejo IA para el dolor",
     "painLocations": {
-      "fullBack": "Full Back",
-      "hips": "Hips & Sciatic",
-      "lowerBack": "Lower Back",
-      "upperBack": "Upper Back"
+      "fullBack": "Espalda completa",
+      "hips": "Caderas y ciática",
+      "lowerBack": "Espalda baja",
+      "upperBack": "Espalda alta"
     },
-    "safetyNotice": "Important Safety Notice",
-    "safetyWarning": "Stop immediately if you experience sharp pain, dizziness, or contractions. Always consult your healthcare provider before starting any exercise program during pregnancy.",
-    "steps": "Steps:",
-    "subtitle": "Pregnancy-safe exercises for back comfort",
-    "title": "Back Comfort Guide",
-    "todaysRoutine": "Today's Relief Routine",
-    "whereHurts": "Where does it hurt?"
+    "safetyNotice": "Aviso de seguridad importante",
+    "safetyWarning": "Detenga inmediatamente si experimenta dolor agudo, mareos o contracciones. Consulte siempre a su profesional de salud antes de iniciar cualquier programa de ejercicio durante el embarazo.",
+    "steps": "Pasos:",
+    "subtitle": "Ejercicios seguros durante el embarazo para el confort de la espalda",
+    "title": "Guía confort de espalda",
+    "todaysRoutine": "Rutina de alivio de hoy",
+    "whereHurts": "¿Dónde te duele?"
   },
   "categories": {
     "ai": "Herramientas IA",
@@ -7852,14 +7852,14 @@
     "selectPreference": "Please select at least one preference"
   },
   "toolsInternal.fertileWindow": {
-    "lastPeriod": "First day of your last period",
-    "cycleLength": "Average cycle length (days)",
-    "calculate": "Find My Fertile Window",
-    "yourWindow": "Your Fertile Window",
-    "windowStart": "Window opens",
-    "windowEnd": "Window closes",
-    "estimatedOvulation": "Estimated ovulation day",
-    "disclaimer": "This is an estimate based on average cycle data. Actual ovulation may vary. Consult your healthcare provider for personalized guidance."
+    "lastPeriod": "Primer día de tu último período",
+    "cycleLength": "Duración promedio del ciclo (días)",
+    "calculate": "Calcular ventana fértil",
+    "yourWindow": "Tu ventana fértil",
+    "windowStart": "La ventana se abre",
+    "windowEnd": "La ventana se cierra",
+    "estimatedOvulation": "Día estimado de ovulación",
+    "disclaimer": "Esta es una estimación basada en datos de ciclo promedio. La ovulación real puede variar. Consulta a tu profesional de salud para orientación personalizada."
   },
   "toolsInternal.fertilityAcademy": {
     "lessonsCount": "{{count}} learning modules",

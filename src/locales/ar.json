@@ -198,45 +198,45 @@
     "aiCoachTitle": "مدرب تخفيف الألم الذكي",
     "difficulty": {
       "easy": "سهل",
-      "moderate": "Moderate"
+      "moderate": "متوسط"
     },
     "exercises": {
       "catCow": {
         "desc": "تمدد لطيف للعمود الفقري يخفف التوتر في الظهر",
         "name": "وضعية القطة والبقرة",
-        "target": "Lower & Upper Back"
+        "target": "أسفل وأعلى الظهر"
       },
       "childPose": {
-        "desc": "Gentle stretch for the entire back",
-        "name": "Child's Pose",
-        "target": "Full Back"
+        "desc": "تمدد لطيف للظهر بالكامل",
+        "name": "وضعية الطفل",
+        "target": "الظهر بالكامل"
       },
       "pelvicTilt": {
         "desc": "تقوّي عضلات البطن وتخفف ضغط أسفل الظهر",
         "name": "إمالة الحوض",
-        "target": "Lower Back & Core"
+        "target": "أسفل الظهر والعضلات الأساسية"
       },
       "piriformis": {
-        "desc": "Relieve sciatic pain and hip tension",
-        "name": "Piriformis Stretch",
-        "target": "Hips & Lower Back"
+        "desc": "تخفيف ألم العصب الوركي وتوتر الورك",
+        "name": "تمدد العضلة الكمثرية",
+        "target": "الوركان وأسفل الظهر"
       },
       "sideStretch": {
-        "desc": "Stretch the sides of your torso",
-        "name": "Side Body Stretch",
-        "target": "Side Body"
+        "desc": "تمدد جانبي الجذع",
+        "name": "تمدد الجانب",
+        "target": "الجسم الجانبي"
       },
       "wallPush": {
-        "desc": "Strengthen upper back and shoulders",
-        "name": "Wall Push-Up",
-        "target": "Upper Back & Arms"
+        "desc": "تقوية أعلى الظهر والكتفين",
+        "name": "ضغط الحائط",
+        "target": "أعلى الظهر والذراعين"
       }
     },
     "exercisesCompleted": "تمارين مكتملة",
     "exercisesTitle": "تمارين آلام الظهر",
     "getAdvice": "احصلي على نصيحة ذكية لتخفيف الألم",
     "painLocations": {
-      "fullBack": "Full Back",
+      "fullBack": "الظهر بالكامل",
       "hips": "الوركان",
       "lowerBack": "أسفل الظهر",
       "upperBack": "أعلى الظهر"
@@ -7852,14 +7852,14 @@
     "selectPreference": "Please select at least one preference"
   },
   "toolsInternal.fertileWindow": {
-    "lastPeriod": "First day of your last period",
-    "cycleLength": "Average cycle length (days)",
-    "calculate": "Find My Fertile Window",
-    "yourWindow": "Your Fertile Window",
-    "windowStart": "Window opens",
-    "windowEnd": "Window closes",
-    "estimatedOvulation": "Estimated ovulation day",
-    "disclaimer": "This is an estimate based on average cycle data. Actual ovulation may vary. Consult your healthcare provider for personalized guidance."
+    "lastPeriod": "أول يوم من آخر دورة شهرية",
+    "cycleLength": "متوسط طول الدورة (بالأيام)",
+    "calculate": "احسبي نافذة الخصوبة",
+    "yourWindow": "نافذة الخصوبة الخاصة بكِ",
+    "windowStart": "بداية النافذة",
+    "windowEnd": "نهاية النافذة",
+    "estimatedOvulation": "يوم الإباضة المتوقع",
+    "disclaimer": "هذا تقدير مبني على بيانات الدورة المتوسطة. قد يختلف موعد الإباضة الفعلي. استشيري طبيبتكِ للحصول على إرشادات مخصصة."
   },
   "toolsInternal.fertilityAcademy": {
     "lessonsCount": "{{count}} learning modules",
