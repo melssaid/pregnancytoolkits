@@ -84,6 +84,7 @@ const LandingEN = lazy(() => import("@/pages/LandingEN"));
 const AIUsageDashboard = lazy(() => import("@/pages/AIUsageDashboard"));
 const PricingDemo = lazy(() => import("@/pages/PricingDemo"));
 const IconStylePreview = lazy(() => import("@/pages/IconStylePreview"));
+const LanguageSelection = lazy(() => import("@/pages/LanguageSelection"));
 
 export function AnimatedRoutes() {
   return (
@@ -95,6 +96,7 @@ export function AnimatedRoutes() {
         <Route path="/dashboard" element={<PageTransition><SmartDashboard /></PageTransition>} />
         <Route path="/daily-insights" element={<PageTransition><DailyInsights /></PageTransition>} />
         <Route path="/settings" element={<PageTransition><Settings /></PageTransition>} />
+        <Route path="/language" element={<PageTransition><LanguageSelection /></PageTransition>} />
         <Route path="/privacy" element={<PageTransition><PrivacyPolicy /></PageTransition>} />
         <Route path="/terms" element={<PageTransition><TermsOfService /></PageTransition>} />
         <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
