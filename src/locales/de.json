@@ -358,7 +358,7 @@
     "seconds": "Sekunden",
     "share": "Teilen",
     "showLess": "Weniger Anzeigen",
-    "start": "Start",
+    "start": "Starten",
     "stop": "Stopp",
     "subscribe": "Abonnieren",
     "success": "Erfolg",
@@ -1631,20 +1631,20 @@
     "quickRemedies": "Quick Relief Remedies",
     "remedies": {
       "banana": {
-        "name": "Banana",
-        "tip": "Easy on stomach"
+        "name": "Banane",
+        "tip": "Magenschonend"
       },
       "dryCrackers": {
-        "name": "Dry crackers",
-        "tip": "Keep by bedside"
+        "name": "Trockene Cracker",
+        "tip": "Neben das Bett legen"
       },
       "ginger": {
         "name": "Ginger",
         "tip": "Tea, candies, or fresh"
       },
       "iceChips": {
-        "name": "Ice chips",
-        "tip": "Suck on ice when queasy"
+        "name": "Eisstückchen",
+        "tip": "Bei Übelkeit lutschen"
       },
       "lemonWater": {
         "name": "Lemon water",
@@ -1665,12 +1665,12 @@
     "subtitle": "Personalized relief strategies for morning sickness",
     "title": "AI Nausea Comfort Guide",
     "triggers": {
-      "afterEating": "After eating",
-      "allDay": "All day",
-      "cooking": "Cooking smells",
+      "afterEating": "Nach dem Essen",
+      "allDay": "Den ganzen Tag",
+      "cooking": "Kochgerüche",
       "emptyStomach": "Empty stomach",
-      "evening": "Worst in evening",
-      "morning": "Worst in morning",
+      "evening": "Abends am schlimmsten",
+      "morning": "Morgens am schlimmsten",
       "motion": "Motion/car rides",
       "smells": "Strong smells"
     },
@@ -2555,10 +2555,10 @@
       "babyMovements": "Baby movements",
       "backPain": "Back pain",
       "heartburn": "Heartburn",
-      "hotFlashes": "Hot flashes",
+      "hotFlashes": "Hitzewallungen",
       "legCramps": "Leg cramps",
       "snoring": "Snoring/breathing issues",
-      "urination": "Frequent urination"
+      "urination": "Häufiges Wasserlassen"
     },
     "sleepPlan": "Sleep Plan",
     "sleepTip": "💡 Left-side sleeping is recommended after week 20 for optimal blood flow",
