@@ -4099,7 +4099,128 @@
     },
     "fertilityAcademy": {
       "lessonsCount": "{{count}} eğitim modülü",
-      "lessons": "Dersler"
+      "lessons": {
+        "menstrualCycle": {
+          "title": "Adet Döngünüzü Anlamak",
+          "content": "Adet döngünüz dört ana aşamaya ayrılır:\n\n1. Adet Aşaması (1-5. günler): Rahim astarı dökülür. Yeni bir döngünün başlangıcı.\n\n2. Foliküler Aşama (1-13. günler): FSH yumurtalıklarda folikül büyümesini uyarır. Baskın bir folikül olgunlaşır.\n\n3. Yumurtlama Aşaması (yaklaşık 14. gün): LH artışı olgun yumurtanın serbest bırakılmasını tetikler. En verimli dönem.\n\n4. Luteal Aşama (15-28. günler): Korpus luteum progesteron üretir. Döllenme olmazsa hormonlar düşer ve döngü yeniden başlar.\n\nNormal döngü 21-35 gün sürer."
+        },
+        "ovulationProcess": {
+          "title": "Yumurtlama Nasıl Çalışır",
+          "content": "Yumurtlama, yumurtalıklardan olgun bir yumurtanın serbest bırakılmasıdır:\n\n• Foliküller FSH etkisiyle büyümeye başlar.\n• Baskın bir folikül öne çıkar.\n• Yükselen östrojen LH artışını tetikler.\n• LH artışı folikülün açılmasını ve yumurtanın serbest bırakılmasını sağlar.\n• Yumurta tüpten geçer, burada döllenme gerçekleşebilir.\n• Yumurta yumurtlamadan sonra sadece 12-24 saat yaşar.\n\nYumurtlama belirtileri: servikal mukus değişimi, hafif yan ağrısı, hafif vücut sıcaklığı artışı."
+        },
+        "hormonesRole": {
+          "title": "Temel Doğurganlık Hormonları",
+          "content": "Birçok hormon doğurganlığınızı yönetir:\n\n• FSH: Yumurtalıklarda folikül büyümesini uyarır. Döngünün 3. gününde test edilir.\n\n• LH: Yumurtlamayı tetikler. Yumurtlama testleri LH artışını tespit eder.\n\n• Östrojen: Folikül gelişimini destekler ve rahim astarını kalınlaştırır.\n\n• Progesteron: Yumurtlamadan sonra üretilir, rahim astarını korur.\n\n• AMH: Kalan yumurta sayısını yansıtır.\n\n• Tiroid Hormonları: Dengesizlikleri yumurtlamayı ve döngü düzenini bozabilir."
+        },
+        "fertilizationBasics": {
+          "title": "Döllenme ve Tutunma",
+          "content": "Yumurtlamadan sonra tüpte döllenme gerçekleşebilir:\n\n• Milyonlarca spermden sadece birkaç yüz yumurtaya ulaşır.\n• Bir sperm yumurtanın dış tabakasını deler ve kimyasal tepkime başlatır.\n• Döllenmiş yumurta 3-4 gün içinde rahme doğru ilerlerken bölünmeye başlar.\n• Yumurtlamadan 6-10 gün sonra blastosist rahim astarına tutunur.\n• Tutunma hafif kanama yapabilir.\n• Tutunmadan sonra vücut hCG üretmeye başlar — hamilelik testlerinin tespit ettiği hormon."
+        },
+        "ageAndFertility": {
+          "title": "Yaş ve Doğurganlık",
+          "content": "Yaş, doğurganlığı etkileyen en önemli faktörlerden biridir:\n\n• Kadınlar doğumda yaklaşık 1-2 milyon yumurtayla doğar.\n• Ergenlikte yaklaşık 300.000-400.000 yumurta kalır. Sadece 300-400 tanesi yaşam boyunca yumurtlar.\n• Doğurganlık 20'li yaşların ortasında zirve yapar. 30'dan sonra kademeli düşüş başlar.\n• 35'ten sonra düşüş hızlanır.\n• 40 yaşında döngü başına doğal gebelik şansı yaklaşık %5'e düşer.\n• Erkek doğurganlığı da yaşla birlikte azalır, ancak daha yavaş.\n\n35'ten sonra hamilelik imkansız değildir — birçok kadın doğal yollarla hamile kalır."
+        },
+        "lifestyleFactors": {
+          "title": "Doğurganlığı Etkileyen Yaşam Tarzı Faktörleri",
+          "content": "Günlük alışkanlıklarınız doğurganlığı önemli ölçüde etkiler:\n\n• Kilo: Hem zayıflık hem de fazla kilo yumurtlamayı bozabilir.\n• Sigara: Yumurta kalitesini düşürür ve tüplere zarar verir.\n• Kafein: Günde 200-300 mg'dan fazlası doğurganlığı hafifçe azaltabilir.\n• Egzersiz: Ölçülü aktivite destekler, aşırı yoğun egzersiz yumurtlamayı bozabilir.\n• Uyku: Yetersiz uyku üreme hormonlarını bozar. 7-9 saat hedefleyin.\n• Çevresel toksinler: Pestisitler, ağır metaller ve bazı plastiklere maruziyeti sınırlayın."
+        },
+        "commonMyths": {
+          "title": "Doğurganlık Mitleri ve Gerçekler",
+          "content": "Gerçekleri kurgulardan ayıralım:\n\nMit: Sadece yumurtlama gününde hamile kalabilirsiniz.\nGerçek: Verimli pencere yaklaşık 6 gün sürer. Spermler 5 güne kadar yaşayabilir.\n\nMit: Cinsel ilişki pozisyonu gebeliği etkiler.\nGerçek: Bunu destekleyen bilimsel kanıt yoktur.\n\nMit: Doğum kontrolü kısırlığa neden olur.\nGerçek: Doğurganlık genellikle 1-3 ay içinde geri döner.\n\nMit: Stres doğrudan kısırlığa neden olur.\nGerçek: Orta düzey stres tek başına nadiren gebeliği engeller.\n\nMit: Her gün cinsel ilişki gereklidir.\nGerçek: Verimli pencerede her 1-2 gün yeterlidir."
+        },
+        "whenToSeekHelp": {
+          "title": "Ne Zaman Uzman Görüşü Almalısınız",
+          "content": "Doğurganlık uzmanına danışmayı düşünün:\n\n• 35 yaş altındaysanız ve bir yıl sonra hamile kalamadıysanız.\n• 35 yaş üstündeyseniz ve 6 ay sonra hamile kalamadıysanız.\n• Düzensiz veya hiç adet görmüyorsanız.\n• Endometriozis veya pelvik enflamatuar hastalık geçmişiniz varsa.\n• İki veya daha fazla düşük yaşadıysanız.\n• Doğurganlığı etkileyen bilinen sağlık durumlarınız varsa.\n\nİlk değerlendirme: hormon testleri, ultrason ve partnerin sperm analizi."
+        },
+        "optimizingTiming": {
+          "title": "Gebe Kalma Zamanlamasını Optimize Etmek",
+          "content": "Zamanlama çok önemlidir:\n\n• En iyi günler yumurtlamadan önceki gün veya iki gündür.\n• Spermler 5 güne kadar yaşar, yumurta sadece 12-24 saat.\n• Verimli pencerede her 1-2 gün ilişki en iyi şansı verir.\n• LH artışını tespit etmek için yumurtlama testleri kullanın.\n• Servikal mukusu izleyin — yumurtlamadan önce berrak ve esnek olur.\n• Bazal vücut sıcaklığını takip edin.\n• Yumurtlamayı beklemeyin — birkaç gün önce başlayın."
+        },
+        "nutritionFertility": {
+          "title": "Doğurganlık İçin Optimal Beslenme",
+          "content": "Diyet yumurta ve sperm kalitesini doğrudan etkiler:\n\n• Akdeniz diyeti iyileştirilmiş doğurganlık sonuçları gösterir.\n• Folik asit (günde 400-800 µg) gebelikten 3 ay önce başlanmalıdır.\n• Demir: Sağlıklı yumurtlama için gerekli.\n• Omega-3: Yumurta sağlığını destekler, iltihabı azaltır.\n• Antioksidanlar: C, E vitamini ve çinko kaliteyi artırır.\n• D vitamini: Eksikliği azalmış doğurganlıkla ilişkilidir.\n• Trans yağlar ve işlenmiş gıdalardan kaçının.\n• Günde en az 8 bardak su için."
+        },
+        "maleFertility": {
+          "title": "Erkek Doğurganlığı Temelleri",
+          "content": "Erkek doğurganlığı eşit derecede önemlidir:\n\n• Sperm üretimi yaklaşık 74 gün sürer. Bugün yaptığınız 3 ay sonra etkisini gösterir.\n• Aşırı ısı (sıcak banyo, sauna, kucakta laptop) sperm üretimini bozar.\n• Bol iç çamaşırı testis sıcaklığı için daha iyidir.\n• Faydalı takviyeler: çinko, C vitamini, CoQ10 ve selenyum.\n• Sigara ve alkol sperm sayısını ve hareketliliğini azaltır.\n• Stres testosteron seviyelerini etkileyebilir.\n• Spermiyogram erkek doğurganlığını değerlendirmenin ilk adımıdır."
+        },
+        "trackingMethods": {
+          "title": "Doğurganlık Takip Yöntemleri",
+          "content": "Çeşitli yöntemler doğurganlığınızı takip etmenize yardımcı olur:\n\n• Bazal vücut sıcaklığı (BBT): Her sabah kalkmadan önce ölçün. Hafif artış yumurtlamayı doğrular.\n• Servikal mukus: Kuruluktan yapışkanlığa, yumurtlamadan önce berrak ve esnekliğe değişir.\n• Yumurtlama testleri (OPK): LH artışını yumurtlamadan 24-36 saat önce tespit eder.\n• Döngü takip uygulamaları: Kalıpları izlemeye ve yumurtlamayı tahmin etmeye yardımcı olur.\n• Doğurganlık monitörleri: Daha doğru bir resim için birden fazla hormonu ölçer.\n\nBirden fazla yöntemi birleştirmek en doğru sonuçları verir."
+        },
+        "implantationWindow": {
+          "title": "Tutunma Penceresi",
+          "content": "Tutunma penceresi, rahim astarının embriyoyu kabul etmeye hazır olduğu kısa dönemdir:\n\n• Genellikle yumurtlamadan 6-10 gün sonra gerçekleşir.\n• Sadece yaklaşık 4 gün sürer.\n• Embriyo gelişimi ile rahim astarı hazırlığı arasında hassas senkronizasyon gerektirir.\n• Progesteron astarı hazırlamada kilit rol oynar.\n• Bazı kadınlar hafif kramplar veya hafif kanama hissedebilir.\n• Başarılı tutunmadan sonra hCG üretimi başlar.\n• hCG yumurtlamadan 10-14 gün sonra idrarda tespit edilebilir."
+        },
+        "supplementsGuide": {
+          "title": "Akıllı Takviye Rehberi",
+          "content": "Takviyeler doğurganlığınızı destekleyebilir:\n\n• Folik asit/Metilfolat: Nöral tüp defektlerini önlemek için gerekli. Gebelikten 3 ay önce başlayın.\n• CoQ10: Özellikle 35 yaş üstünde yumurta kalitesini iyileştirebilir.\n• D vitamini: Hormonal denge için önemli.\n• Omega-3: Yumurta sağlığını destekler.\n• Demir: Oksijen taşınması ve sağlıklı yumurtlama için gerekli.\n• Çinko: Hücre bölünmesi ve yumurta gelişimi için önemli.\n• İnositol: PCOS'ta özellikle faydalı.\n\nHerhangi bir takviye başlamadan önce doktorunuza danışın."
+        },
+        "exerciseBalance": {
+          "title": "Egzersiz ve Doğurganlık Dengesi",
+          "content": "Egzersiz doğurganlık için iki ucu keskin bir kılıçtır:\n\n• Ölçülü aktivite (haftada 150 dk) doğurganlığı destekler.\n• Yürüyüş, yüzme ve yoga mükemmel seçeneklerdir.\n• Aşırı yoğun antrenman (haftada 5+ saat) yumurtlamayı bozabilir.\n• Profesyonel sporcular düzensiz döngülere daha yatkındır.\n• Aşırı düşük vücut yağı hormon üretimini etkiler.\n• Düzensiz döngünüz varsa antrenman yoğunluğunu azaltmak faydalı olabilir.\n• Hedef düzenli, ölçülü hareket — aşırı zorlama değil."
+        },
+        "sleepHormones": {
+          "title": "Uyku ve Doğurganlık Hormonları",
+          "content": "Uyku bir lüks değil — doğurganlık için biyolojik bir gerekliliktir:\n\n• Melatonin yumurtaları oksidatif stresten korur.\n• Uyku eksikliği FSH ve LH salgısını bozar.\n• Gece vardiyası çalışanlarında düzensiz döngü oranları daha yüksektir.\n• Ekranlardan gelen mavi ışık melatonin üretimini baskılar.\n• Hedef: 7-9 saat kesintisiz uyku.\n• Düzenli bir uyku rutini sürdürün.\n• Yatak odasını karanlık ve serin tutun.\n• Öğleden sonra kafeinden kaçının."
+        },
+        "emotionalWellbeing": {
+          "title": "Yolculukta Duygusal Sağlık",
+          "content": "Çocuk sahibi olmaya çalışmak duygusal bir roller coaster olabilir:\n\n• Umut, hayal kırıklığı ve endişe hissetmek normaldir.\n• Kronik stres üreme hormonlarını etkileyebilir.\n• Gevşeme teknikleri: meditasyon, yoga, derin nefes egzersizleri.\n• Yolculuğunuzu başkalarıyla karşılaştırmayın.\n• Partnerinizle duygularınız hakkında açıkça konuşun.\n• Bunalmış hissediyorsanız psikolojik danışmanlık düşünün.\n• Destek grupları aidiyet duygusu sağlayabilir.\n• Yardım istemek güç işaretidir."
+        },
+        "cervicalHealth": {
+          "title": "Servikal Sağlık ve Doğurganlık",
+          "content": "Rahim ağzı doğurganlıkta temel bir rol oynar:\n\n• Hormonal etkiyle döngü boyunca değişen mukus üretir.\n• Yumurtlama civarında mukus ince ve esnek olur, spermlerin hareketini kolaylaştırır.\n• Yumurtlamadan sonra kalın ve yapışkan olarak koruyucu bariyer oluşturur.\n• Bazı ilaçlar servikal mukus kalitesini etkileyebilir.\n• Enfeksiyonlar servikal sağlığı etkileyebilir.\n• Düzenli kontroller önemlidir.\n• Yeterli sıvı alımı sağlıklı mukus üretimini destekler."
+        },
+        "pcosManagement": {
+          "title": "PCOS ve Doğurganlık Yönetimi",
+          "content": "Polikistik Over Sendromu (PCOS) kadınların %8-13'ünü etkiler:\n\n• Düzensiz yumurtlamanın en yaygın nedeni.\n• Belirtiler: düzensiz döngüler, akne, aşırı tüylenme, kilo artışı.\n• İnsülin direnci yaygındır — şeker ve rafine karbonhidratları azaltmak faydalıdır.\n• %5-10 kilo kaybı yumurtlamayı geri getirebilir.\n• İnositol yumurta kalitesini iyileştirmede umut verici sonuçlar gösterir.\n• Düzenli fiziksel aktivite insülin duyarlılığını artırır.\n• PCOS kısırlık demek değildir — birçok kadın başarıyla hamile kalır."
+        },
+        "endometriosisAwareness": {
+          "title": "Endometriozis ve Doğurganlık",
+          "content": "Endometriozis her 10 kadından 1'ini etkiler:\n\n• Rahim astarına benzer doku rahmin dışında büyür.\n• Yumurtalıkları, tüpleri ve çevresindeki dokuları etkileyebilir.\n• Belirtiler: şiddetli adet ağrısı, ilişki sırasında ağrı, ağır kanama.\n• Yumurta kalitesini ve tutunma ortamını etkileyebilir.\n• Erken teşhis etkili tedavi için önemlidir.\n• Seçenekler: hormonal tedavi, laparoskopi veya yardımcı üreme.\n• Uygun tedaviyle birçok kadın başarıyla hamile kalır."
+        },
+        "thyroidFertility": {
+          "title": "Tiroid ve Doğurganlık",
+          "content": "Tiroid doğurganlıkta kritik bir rol oynar:\n\n• Hipertiroidizm düzensiz döngülere neden olabilir.\n• Hipotiroidizm yumurtlama sorunları ve artan düşük riskiyle ilişkilidir.\n• Gebelik için optimal TSH: 0,5-2,5 mU/L.\n• Tiroid antikorları normal TSH ile bile doğurganlığı etkileyebilir.\n• Tiroid testleri basit ve erişilebilirdir.\n• Levotiroksin tedavisi güvenlidir ve gebelik şansını önemli ölçüde artırır.\n• Gebelik boyunca tiroid seviyelerinin izlenmesi önerilir."
+        },
+        "geneticFactors": {
+          "title": "Genetik Faktörler ve Doğurganlık",
+          "content": "Genler doğurganlıkta beklenenden daha büyük rol oynar:\n\n• Taşıyıcı genetik taramalar gebelik öncesi kalıtsal hastalıkları ortaya çıkarabilir.\n• Bazı genetik durumlar doğurganlığı doğrudan etkiler.\n• Ailede erken menopoz öyküsü azalmış yumurta rezervine işaret edebilir.\n• Genetik danışmanlık endişeli çiftler için mevcuttur.\n• Preimplantasyon genetik testi IVF ile mümkündür.\n• Aile öyküsünü anlamak erken planlamaya yardımcı olur."
+        },
+        "environmentalToxins": {
+          "title": "Çevresel Toksinler ve Doğurganlık",
+          "content": "Günlük çevresel toksinlere maruz kalma doğurganlığınızı etkileyebilir:\n\n• Plastiklerdeki BPA östrojeni taklit eder ve hormonları bozabilir.\n• Gıdalardaki pestisitler yumurta kalitesini etkileyebilir.\n• Ağır metaller (kurşun, cıva) doğurganlık sorunlarıyla ilişkilidir.\n• Kokulu ürünlerdeki ftalatlar hormonları etkileyebilir.\n\nMaruziyeti azaltmak için:\n• Plastik yerine cam veya paslanmaz çelik kaplar kullanın.\n• Mümkünse organik gıdalar tercih edin.\n• Sentetik kokulu ürünlerden kaçının.\n• Evin havalandırmasını iyileştirin."
+        },
+        "fertilityPreservation": {
+          "title": "Doğurganlık Koruma",
+          "content": "Doğurganlık koruma, aile planlamanızda esneklik sağlar:\n\n• Yumurta dondurma: 35 yaş öncesi en iyi sonuçlar.\n• Embriyo dondurma: Çiftler için seçenek.\n• Yumurtalık dokusu dondurma: Daha yeni teknik.\n• Nedenler: kanser tedavisi, aile planlamasını erteleme, tıbbi durumlar.\n• Başarı oranları dondurma sırasındaki yaşa bağlıdır.\n• Maliyetler ülke ve kliniğe göre değişir.\n• Seçenekleriniz için bir doğurganlık uzmanına danışın."
+        },
+        "mindBodyConnection": {
+          "title": "Zihin-Beden Bağlantısı",
+          "content": "Zihin ve beden arasındaki ilişki doğurganlıkta düşündüğümüzden daha derindir:\n\n• Kronik stres yumurtlamayı bozabilecek kortizolü artırır.\n• Farkındalık ve meditasyon teknikleri iyileştirilmiş doğurganlık sonuçları gösterir.\n• Doğurganlık yogası üreme organlarına kan akışını artırır.\n• Bilişsel davranışçı terapi doğurganlık kaygısını yönetmeye yardımcı olur.\n• Akupunktur rahme kan akışını iyileştirebilir.\n• Bu yolculukta yalnız olmadığınızı unutmayın."
+        },
+        "immunologyFertility": {
+          "title": "İmmünoloji ve Doğurganlık",
+          "content": "Bağışıklık sistemi gebelikte hassas bir rol oynar:\n\n• Vücut embriyoyu reddetmeden kabul etmelidir.\n• Rahimdeki doğal öldürücü (NK) hücreler dengeli olduğunda tutunmaya yardımcı olur.\n• Bazı otoimmün hastalıklar doğurganlığı etkileyebilir.\n• Antifosfolipid sendromu tekrarlayan düşüklerle ilişkilidir.\n• İmmünolojik testler karmaşık durumlar için mevcuttur.\n• Çoğu bağışıklıkla ilgili doğurganlık sorunu tedavi edilebilir."
+        },
+        "assistedReproduction": {
+          "title": "Yardımcı Üreme Teknikleri",
+          "content": "Doğal gebelik başarılı olmadığında etkili seçenekler vardır:\n\n• Yumurtlama uyarımı: Yumurta üretimini teşvik eden ilaçlar.\n• Rahim içi aşılama (IUI): İşlenmiş spermlerin rahme enjeksiyonu.\n• Tüp bebek (IVF): Yumurtaların vücut dışında döllenip embriyoların transfer edilmesi.\n• ICSI: Tek bir spermin doğrudan yumurtaya enjeksiyonu.\n• Yumurta veya sperm bağışı: Özel durumlar için seçenek.\n\nBaşarı oranları yaş ve nedene bağlıdır. En iyi seçenek için uzmanınıza danışın."
+        },
+        "epigeneticsFertility": {
+          "title": "Epigenetik ve Kuşak Sağlığı",
+          "content": "Epigenetik keşifler doğurganlık anlayışımızı değiştirdi:\n\n• Beslenmeniz ve alışkanlıklarınız çocuklarınızın gen ifadesini etkileyebilir.\n• Toksinlere maruz kalma gelecek nesillerin doğurganlığını etkileyebilir.\n• Gebelik öncesi iyi beslenme yumurtaların epigenetik sağlığını iyileştirir.\n• Rahimdeki hormonal ortam fetal gelişimi etkiler.\n• Kronik stres epigenetik izler bırakabilir.\n• Gebelik öncesi sağlıklı yaşam tarzı kuşak sağlığını olumlu etkiler."
+        },
+        "recurrentLoss": {
+          "title": "Tekrarlayan Gebelik Kaybını Anlamak",
+          "content": "Tekrarlayan gebelik kaybı (iki veya daha fazla) kapsamlı değerlendirme gerektirir:\n\n• Bilinen gebeliklerin %15-25'i düşükle sonuçlanır.\n• Erken düşüklerin çoğu kromozom anomalilerinden kaynaklanır.\n• Olası nedenler: hormonal sorunlar, uterus anomalileri, bağışıklık bozuklukları, pıhtılaşma bozuklukları.\n• Testler: genetik testler, uterus görüntüleme, bağışıklık testleri.\n• Tedavi nedene bağlıdır.\n• Tedavi sonrası başarı oranı birçok durumda yüksektir.\n• Psikolojik destek bu süreçte çok önemlidir."
+        },
+        "secondaryInfertility": {
+          "title": "İkincil Kısırlık",
+          "content": "İkincil kısırlık, önceki bir çocuktan sonra gebe kalmada zorluk anlamına gelir:\n\n• Birçoğunun düşündüğünden daha yaygındır.\n• Nedenler: yaşlanma, hormonal değişiklikler, önceki doğum komplikasyonları.\n• Yaşam tarzı faktörleri: kilo değişimi, stres seviyesi, yeni alışkanlıklar.\n• Önceki gebeliğin tekrar kolay gebe kalmayı garanti ettiğini varsaymayın.\n• Aynı doğurganlık testleri uygulanır.\n• Mevcut tedaviler birincil kısırlık için olduğu kadar etkilidir."
+        }
+      }
     },
     "fertilitySigns": {
       "signsCount": "{{count}} bilmen gereken işaret",
