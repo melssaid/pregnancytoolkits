@@ -84,6 +84,7 @@ const LandingEN = lazy(() => import("@/pages/LandingEN"));
 const AIUsageDashboard = lazy(() => import("@/pages/AIUsageDashboard"));
 const PricingDemo = lazy(() => import("@/pages/PricingDemo"));
 const IconStylePreview = lazy(() => import("@/pages/IconStylePreview"));
+const LanguageSelection = lazy(() => import("@/pages/LanguageSelection"));
 
 export function AnimatedRoutes() {
   return (
