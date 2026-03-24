@@ -4099,7 +4099,128 @@
     },
     "fertilityAcademy": {
       "lessonsCount": "{{count}} Lernmodule",
-      "lessons": "Lektionen"
+      "lessons": {
+        "menstrualCycle": {
+          "title": "Ihren Menstruationszyklus verstehen",
+          "content": "Ihr Menstruationszyklus ist in vier Hauptphasen unterteilt:\n\n1. Menstruationsphase (Tage 1–5): Die Gebärmutterschleimhaut wird abgestoßen. Dies markiert den Beginn eines neuen Zyklus.\n\n2. Follikelphase (Tage 1–13): FSH regt das Follikelwachstum in den Eierstöcken an. Ein dominanter Follikel reift heran.\n\n3. Ovulationsphase (ca. Tag 14): Ein LH-Anstieg löst die Freisetzung der reifen Eizelle aus. Dies ist die fruchtbarste Phase.\n\n4. Lutealphase (Tage 15–28): Der Gelbkörper produziert Progesteron zur Vorbereitung der Gebärmutter. Ohne Befruchtung sinken die Hormone und der Zyklus beginnt erneut.\n\nEin normaler Zyklus dauert 21–35 Tage."
+        },
+        "ovulationProcess": {
+          "title": "Wie der Eisprung funktioniert",
+          "content": "Der Eisprung ist die Freisetzung einer reifen Eizelle aus einem Eierstock:\n\n• Follikel beginnen unter FSH-Einfluss zu wachsen.\n• Ein dominanter Follikel setzt sich durch.\n• Steigendes Östrogen löst einen LH-Anstieg aus.\n• Der LH-Anstieg bewirkt das Aufbrechen des Follikels und die Freisetzung der Eizelle.\n• Die Eizelle wandert durch den Eileiter, wo eine Befruchtung stattfinden kann.\n• Die Eizelle überlebt nur 12–24 Stunden nach dem Eisprung.\n\nAnzeichen des Eisprungs: Veränderung des Zervixschleims, leichter Seitenschmerz, minimaler Temperaturanstieg."
+        },
+        "hormonesRole": {
+          "title": "Wichtige Fruchtbarkeitshormone",
+          "content": "Mehrere Hormone steuern Ihre Fruchtbarkeit:\n\n• FSH (Follikelstimulierendes Hormon): Stimuliert das Follikelwachstum. Wird am 3. Zyklustag getestet.\n\n• LH (Luteinisierendes Hormon): Löst den Eisprung aus. Ovulationstests erkennen den LH-Anstieg.\n\n• Östrogen (Östradiol): Fördert Follikelentwicklung und baut die Gebärmutterschleimhaut auf.\n\n• Progesteron: Wird nach dem Eisprung produziert und erhält die Gebärmutterschleimhaut.\n\n• AMH (Anti-Müller-Hormon): Gibt Aufschluss über die Eizellreserve.\n\n• Schilddrüsenhormone (TSH, T3, T4): Ungleichgewichte können den Eisprung und die Zyklusregelmäßigkeit stören."
+        },
+        "fertilizationBasics": {
+          "title": "Befruchtung und Einnistung",
+          "content": "Nach dem Eisprung kann die Befruchtung im Eileiter stattfinden:\n\n• Von Millionen Spermien erreichen nur wenige Hundert die Eizelle.\n• Ein Spermium durchdringt die äußere Schicht der Eizelle und löst eine chemische Reaktion aus.\n• Die befruchtete Eizelle (Zygote) beginnt sich zu teilen, während sie in 3–4 Tagen zur Gebärmutter wandert.\n• Um Tag 6–10 nach dem Eisprung nistet sich die Blastozyste in der Gebärmutterschleimhaut ein.\n• Die Einnistung kann eine leichte Blutung verursachen.\n• Nach der Einnistung beginnt der Körper mit der hCG-Produktion — das Hormon, das Schwangerschaftstests erkennen."
+        },
+        "ageAndFertility": {
+          "title": "Alter und Fruchtbarkeit",
+          "content": "Das Alter ist einer der wichtigsten Faktoren für die Fruchtbarkeit:\n\n• Frauen werden mit allen Eizellen geboren — etwa 1–2 Millionen bei der Geburt.\n• Bis zur Pubertät verbleiben ca. 300.000–400.000. Nur 300–400 werden im Leben freigesetzt.\n• Die Fruchtbarkeit erreicht ihren Höhepunkt Mitte 20. Ein allmählicher Rückgang beginnt nach 30.\n• Nach 35 beschleunigt sich der Rückgang. Eizellqualität und -menge nehmen ab.\n• Mit 40 sinkt die Chance auf natürliche Empfängnis pro Zyklus auf etwa 5 %.\n• Auch die männliche Fruchtbarkeit nimmt mit dem Alter ab, wenn auch langsamer.\n\nDas bedeutet nicht, dass eine Schwangerschaft nach 35 unmöglich ist — viele Frauen werden auf natürlichem Wege schwanger."
+        },
+        "lifestyleFactors": {
+          "title": "Lebensstilfaktoren und Fruchtbarkeit",
+          "content": "Ihre täglichen Gewohnheiten beeinflussen die Fruchtbarkeit erheblich:\n\n• Gewicht: Sowohl Unter- als auch Übergewicht können den Eisprung stören.\n\n• Rauchen: Verringert die Eizellqualität und schädigt die Eileiter.\n\n• Koffein: Mehr als 200–300 mg täglich kann die Fruchtbarkeit leicht verringern.\n\n• Bewegung: Moderate Aktivität unterstützt die Fruchtbarkeit. Übermäßig intensives Training kann den Eisprung stören.\n\n• Schlaf: Schlafmangel stört die Fortpflanzungshormone. Streben Sie 7–9 Stunden an.\n\n• Umweltgifte: Begrenzen Sie die Exposition gegenüber Pestiziden, Schwermetallen und bestimmten Kunststoffen."
+        },
+        "commonMyths": {
+          "title": "Fruchtbarkeitsmythen vs. Fakten",
+          "content": "Trennen wir Fakten von Fiktion:\n\nMythos: Man kann nur am Eisprungtag schwanger werden.\nFakt: Das fruchtbare Fenster umfasst etwa 6 Tage. Spermien können bis zu 5 Tage überleben.\n\nMythos: Die Stellung beim Geschlechtsverkehr beeinflusst die Empfängnis.\nFakt: Dafür gibt es keinen wissenschaftlichen Beleg.\n\nMythos: Verhütungsmittel verursachen Unfruchtbarkeit.\nFakt: Die Fruchtbarkeit kehrt normalerweise innerhalb von 1–3 Monaten zurück.\n\nMythos: Stress verursacht direkt Unfruchtbarkeit.\nFakt: Moderater Stress allein verhindert selten eine Empfängnis.\n\nMythos: Man muss jeden Tag Geschlechtsverkehr haben.\nFakt: Alle 1–2 Tage während des fruchtbaren Fensters ist ausreichend."
+        },
+        "whenToSeekHelp": {
+          "title": "Wann Sie einen Spezialisten aufsuchen sollten",
+          "content": "Erwägen Sie eine Konsultation beim Fruchtbarkeitsspezialisten, wenn:\n\n• Sie unter 35 sind und nach einem Jahr nicht schwanger geworden sind.\n• Sie über 35 sind und nach 6 Monaten nicht schwanger geworden sind.\n• Ihre Zyklen sehr unregelmäßig oder ausgeblieben sind.\n• Sie eine Vorgeschichte mit Endometriose oder Beckenentzündung haben.\n• Sie zwei oder mehr Fehlgeburten hatten.\n• Sie bekannte Erkrankungen haben, die die Fruchtbarkeit beeinflussen.\n\nDie Erstuntersuchung umfasst normalerweise: Hormontests, Ultraschall und Spermiogramm des Partners."
+        },
+        "optimizingTiming": {
+          "title": "Timing für die Empfängnis optimieren",
+          "content": "Das Timing ist entscheidend:\n\n• Die besten Tage für die Empfängnis sind der Tag oder die zwei Tage vor dem Eisprung.\n• Spermien überleben bis zu 5 Tage, aber die Eizelle nur 12–24 Stunden.\n• Geschlechtsverkehr alle 1–2 Tage während des fruchtbaren Fensters ist optimal.\n• Verwenden Sie Ovulationstests zur Erkennung des LH-Anstiegs.\n• Beobachten Sie den Zervixschleim — er wird vor dem Eisprung klar und dehnbar.\n• Verfolgen Sie die Basaltemperatur — sie steigt nach dem Eisprung leicht an.\n• Warten Sie nicht auf den Eisprung — beginnen Sie einige Tage vorher."
+        },
+        "nutritionFertility": {
+          "title": "Optimale Ernährung für die Fruchtbarkeit",
+          "content": "Die Ernährung beeinflusst direkt die Eizell- und Spermienqualität:\n\n• Die Mittelmeerdiät zeigt verbesserte Fruchtbarkeitsergebnisse.\n• Folsäure (400–800 µg täglich) ist 3 Monate vor der Empfängnis essenziell.\n• Eisen: Wichtig für einen gesunden Eisprung.\n• Omega-3: Unterstützt die Eizellgesundheit und reduziert Entzündungen.\n• Antioxidantien: Vitamin C, E und Zink verbessern die Qualität.\n• Vitamin D: Mangel wird mit verringerter Fruchtbarkeit in Verbindung gebracht.\n• Vermeiden Sie Transfette und stark verarbeitete Lebensmittel.\n• Trinken Sie ausreichend — mindestens 8 Gläser Wasser täglich."
+        },
+        "maleFertility": {
+          "title": "Männliche Fruchtbarkeit",
+          "content": "Die männliche Fruchtbarkeit ist ebenso wichtig:\n\n• Die Spermienproduktion dauert etwa 74 Tage. Was Sie heute tun, wirkt sich in 3 Monaten aus.\n• Übermäßige Hitze (heiße Bäder, Sauna, Laptop auf dem Schoß) schädigt die Spermienproduktion.\n• Lockere Unterwäsche ist besser für die Hodentemperatur.\n• Hilfreiche Nahrungsergänzungen: Zink, Vitamin C, CoQ10 und Selen.\n• Rauchen und Alkohol reduzieren Spermienzahl und -beweglichkeit.\n• Stress kann den Testosteronspiegel beeinflussen.\n• Ein Spermiogramm ist der erste Schritt zur Bewertung der männlichen Fruchtbarkeit."
+        },
+        "trackingMethods": {
+          "title": "Methoden zur Fruchtbarkeitsverfolgung",
+          "content": "Verschiedene Methoden helfen Ihnen, Ihre Fruchtbarkeit zu verfolgen:\n\n• Basaltemperatur (BBT): Messen Sie jeden Morgen vor dem Aufstehen. Ein leichter Anstieg bestätigt den Eisprung.\n• Zervixschleim: Verändert sich von trocken zu klebrig zu klar und dehnbar vor dem Eisprung.\n• Ovulationstests (OPKs): Erkennen den LH-Anstieg 24–36 Stunden vor dem Eisprung.\n• Zyklus-Tracking-Apps: Helfen, Muster zu erkennen und den Eisprung vorherzusagen.\n• Fruchtbarkeitsmonitore: Messen mehrere Hormone für ein genaueres Bild.\n\nDie Kombination mehrerer Methoden liefert die genauesten Ergebnisse."
+        },
+        "implantationWindow": {
+          "title": "Das Einnistungsfenster",
+          "content": "Das Einnistungsfenster ist der kurze Zeitraum, in dem die Gebärmutterschleimhaut bereit ist:\n\n• Tritt normalerweise zwischen Tag 6 und 10 nach dem Eisprung auf.\n• Dauert nur etwa 4 Tage.\n• Die Einnistung erfordert eine präzise Synchronisation zwischen Embryo und Gebärmutterschleimhaut.\n• Progesteron spielt eine Schlüsselrolle bei der Vorbereitung der Schleimhaut.\n• Manche Frauen spüren leichte Krämpfe oder eine leichte Blutung.\n• Nach erfolgreicher Einnistung beginnt die hCG-Produktion.\n• hCG ist im Urin 10–14 Tage nach dem Eisprung nachweisbar."
+        },
+        "supplementsGuide": {
+          "title": "Intelligenter Nahrungsergänzungsratgeber",
+          "content": "Nahrungsergänzungsmittel können Ihre Fruchtbarkeit unterstützen:\n\n• Folsäure/Methylfolat: Essenziell zur Vorbeugung von Neuralrohrdefekten. 3 Monate vor der Empfängnis beginnen.\n• CoQ10: Kann die Eizellqualität verbessern, besonders ab 35.\n• Vitamin D: Wichtig für das hormonelle Gleichgewicht.\n• Omega-3 (DHA/EPA): Unterstützt die Eizellgesundheit.\n• Eisen: Für Sauerstofftransport und gesunden Eisprung.\n• Zink: Wichtig für Zellteilung und Eizellentwicklung.\n• Inositol: Besonders hilfreich bei PCOS.\n\nSprechen Sie immer mit Ihrem Arzt, bevor Sie Nahrungsergänzungsmittel einnehmen."
+        },
+        "exerciseBalance": {
+          "title": "Balance zwischen Sport und Fruchtbarkeit",
+          "content": "Sport ist ein zweischneidiges Schwert für die Fruchtbarkeit:\n\n• Moderate Aktivität (150 Min/Woche) unterstützt die Fruchtbarkeit.\n• Spazierengehen, Schwimmen und Yoga sind ausgezeichnete Optionen.\n• Übermäßig intensives Training (>5 Std/Woche) kann den Eisprung stören.\n• Leistungssportlerinnen sind anfälliger für Zyklusunregelmäßigkeiten.\n• Ein zu niedriger Körperfettanteil beeinflusst die Hormonproduktion.\n• Bei unregelmäßigem Zyklus kann eine Reduzierung der Trainingsintensität helfen.\n• Das Ziel ist regelmäßige, moderate Bewegung — kein Übertraining."
+        },
+        "sleepHormones": {
+          "title": "Schlaf und Fruchtbarkeitshormone",
+          "content": "Schlaf ist kein Luxus — er ist biologisch notwendig für die Fruchtbarkeit:\n\n• Melatonin schützt Eizellen vor oxidativem Stress.\n• Schlafmangel stört die FSH- und LH-Ausschüttung.\n• Schichtarbeiterinnen haben höhere Raten von Zyklusunregelmäßigkeiten.\n• Blaues Licht von Bildschirmen unterdrückt die Melatoninproduktion.\n• Ziel: 7–9 Stunden ununterbrochener Schlaf.\n• Halten Sie einen festen Schlafrhythmus ein.\n• Halten Sie das Schlafzimmer dunkel und kühl.\n• Vermeiden Sie Koffein am Nachmittag."
+        },
+        "emotionalWellbeing": {
+          "title": "Emotionales Wohlbefinden auf der Kinderwunschreise",
+          "content": "Der Kinderwunsch kann eine emotionale Achterbahnfahrt sein:\n\n• Es ist normal, Hoffnung, Enttäuschung und Angst zu empfinden.\n• Chronischer Stress kann die Fortpflanzungshormone beeinflussen.\n• Entspannungstechniken: Meditation, Yoga, Atemübungen.\n• Vergleichen Sie Ihre Reise nicht mit der anderer.\n• Sprechen Sie offen mit Ihrem Partner über Ihre Gefühle.\n• Erwägen Sie psychologische Beratung bei Überforderung.\n• Selbsthilfegruppen können ein Gefühl der Zugehörigkeit vermitteln.\n• Denken Sie daran: Hilfe zu suchen ist ein Zeichen von Stärke."
+        },
+        "cervicalHealth": {
+          "title": "Zervixgesundheit und Fruchtbarkeit",
+          "content": "Der Gebärmutterhals spielt eine grundlegende Rolle bei der Fruchtbarkeit:\n\n• Er produziert Schleim, der sich im Zyklusverlauf hormonbedingt verändert.\n• Um den Eisprung wird der Schleim dünn und dehnbar, um Spermien zu unterstützen.\n• Nach dem Eisprung wird er dick und klebrig als Schutzbarriere.\n• Einige Medikamente können die Qualität des Zervixschleims beeinflussen.\n• Infektionen können die Zervixgesundheit beeinträchtigen.\n• Regelmäßige Vorsorgeuntersuchungen sind wichtig.\n• Ausreichende Flüssigkeitszufuhr unterstützt eine gesunde Schleimproduktion."
+        },
+        "pcosManagement": {
+          "title": "PCOS und Fruchtbarkeit managen",
+          "content": "Das Polyzystische Ovarialsyndrom (PCOS) betrifft 8–13 % der Frauen:\n\n• Häufigste Ursache für unregelmäßigen Eisprung.\n• Symptome: unregelmäßige Zyklen, Akne, vermehrter Haarwuchs, Gewichtszunahme.\n• Insulinresistenz ist häufig — Zucker- und Kohlenhydratreduktion hilft.\n• 5–10 % Gewichtsverlust kann den Eisprung wiederherstellen.\n• Inositol zeigt vielversprechende Ergebnisse bei der Eizellqualität.\n• Regelmäßige Bewegung verbessert die Insulinsensitivität.\n• PCOS bedeutet nicht Unfruchtbarkeit — viele Frauen werden erfolgreich schwanger."
+        },
+        "endometriosisAwareness": {
+          "title": "Endometriose und Fruchtbarkeit",
+          "content": "Endometriose betrifft 1 von 10 Frauen:\n\n• Gewebe ähnlich der Gebärmutterschleimhaut wächst außerhalb der Gebärmutter.\n• Kann Eierstöcke, Eileiter und umliegendes Gewebe betreffen.\n• Symptome: starke Menstruationsschmerzen, Schmerzen beim Geschlechtsverkehr, starke Blutungen.\n• Kann die Eizellqualität und Einnistungsumgebung beeinflussen.\n• Früherkennung ist wichtig für eine wirksame Behandlung.\n• Optionen umfassen: Hormontherapie, Laparoskopie oder assistierte Reproduktion.\n• Viele betroffene Frauen werden mit der richtigen Behandlung schwanger."
+        },
+        "thyroidFertility": {
+          "title": "Schilddrüse und Fruchtbarkeit",
+          "content": "Die Schilddrüse spielt eine entscheidende Rolle bei der Fruchtbarkeit:\n\n• Schilddrüsenüberfunktion kann unregelmäßige Zyklen verursachen.\n• Schilddrüsenunterfunktion ist mit Eisprungproblemen und erhöhtem Fehlgeburtsrisiko verbunden.\n• Optimaler TSH-Wert für eine Schwangerschaft: 0,5–2,5 mU/l.\n• Schilddrüsen-Antikörper können die Fruchtbarkeit beeinflussen.\n• Schilddrüsentests sind einfach und verfügbar.\n• Levothyroxin-Behandlung ist sicher und verbessert die Empfängnischancen.\n• Schilddrüsenwerte sollten während der gesamten Schwangerschaft überwacht werden."
+        },
+        "geneticFactors": {
+          "title": "Genetische Faktoren und Fruchtbarkeit",
+          "content": "Gene spielen eine größere Rolle als erwartet bei der Fruchtbarkeit:\n\n• Trägergenetische Screenings können Erbkrankheiten vor der Empfängnis aufdecken.\n• Einige genetische Bedingungen beeinflussen die Fruchtbarkeit direkt.\n• Familiäre Vorgeschichte früher Menopause kann auf verminderte Eizellreserve hindeuten.\n• Genetische Beratung ist für besorgte Paare verfügbar.\n• Präimplantationsdiagnostik (PGT) ist bei IVF möglich.\n• Das Verständnis der Familiengeschichte hilft bei der frühzeitigen Planung."
+        },
+        "environmentalToxins": {
+          "title": "Umweltgifte und Fruchtbarkeit",
+          "content": "Tägliche Exposition gegenüber Umweltgiften kann Ihre Fruchtbarkeit beeinflussen:\n\n• BPA in Kunststoffen ahmt Östrogen nach und kann Hormone stören.\n• Pestizide in Lebensmitteln können die Eizellqualität beeinflussen.\n• Schwermetalle (Blei, Quecksilber) sind mit Fruchtbarkeitsproblemen verbunden.\n• Phthalate in Duftstoffen können Hormone beeinflussen.\n\nZur Reduzierung der Exposition:\n• Verwenden Sie Glas- oder Edelstahlbehälter statt Plastik.\n• Wählen Sie Bio-Lebensmittel, wenn möglich.\n• Vermeiden Sie synthetische Duftstoffe.\n• Sorgen Sie für gute Belüftung im Haus."
+        },
+        "fertilityPreservation": {
+          "title": "Fertilitätserhalt",
+          "content": "Fertilitätserhalt gibt Ihnen Flexibilität bei der Familienplanung:\n\n• Einfrieren von Eizellen: Beste Ergebnisse vor dem 35. Lebensjahr.\n• Einfrieren von Embryonen: Option für Paare.\n• Einfrieren von Eierstockgewebe: Neuere Technik.\n• Gründe: Krebsbehandlung, Aufschieben der Familienplanung, medizinische Bedingungen.\n• Erfolgsraten hängen vom Alter zum Zeitpunkt des Einfrierens ab.\n• Kosten variieren je nach Land und Klinik.\n• Konsultieren Sie einen Fruchtbarkeitsspezialisten für Ihre Optionen."
+        },
+        "mindBodyConnection": {
+          "title": "Die Verbindung von Geist und Körper",
+          "content": "Die Beziehung zwischen Geist und Körper ist bei der Fruchtbarkeit tiefer als wir denken:\n\n• Chronischer Stress erhöht Cortisol, das den Eisprung stören kann.\n• Achtsamkeits- und Meditationstechniken zeigen verbesserte Fruchtbarkeitsergebnisse.\n• Fruchtbarkeitsyoga verbessert die Durchblutung der Fortpflanzungsorgane.\n• Kognitive Verhaltenstherapie hilft bei der Bewältigung von Fruchtbarkeitsangst.\n• Akupunktur kann die Gebärmutterdurchblutung verbessern.\n• Denken Sie daran, dass Sie auf dieser Reise nicht allein sind."
+        },
+        "immunologyFertility": {
+          "title": "Immunologie und Fruchtbarkeit",
+          "content": "Das Immunsystem spielt eine heikle Rolle bei der Schwangerschaft:\n\n• Der Körper muss den Embryo akzeptieren, ohne ihn abzustoßen.\n• Natürliche Killerzellen (NK) in der Gebärmutter unterstützen die Einnistung, wenn sie im Gleichgewicht sind.\n• Einige Autoimmunerkrankungen können die Fruchtbarkeit beeinflussen.\n• Das Antiphospholipid-Syndrom ist mit wiederkehrenden Fehlgeburten verbunden.\n• Immunologische Tests sind für komplexe Fälle verfügbar.\n• Die meisten immunbedingten Fruchtbarkeitsprobleme sind behandelbar."
+        },
+        "assistedReproduction": {
+          "title": "Techniken der assistierten Reproduktion",
+          "content": "Wenn natürliche Empfängnis nicht gelingt, gibt es wirksame Optionen:\n\n• Ovulationsstimulation: Medikamente zur Anregung der Eizellproduktion.\n• Intrauterine Insemination (IUI): Aufbereitete Spermien werden in die Gebärmutter eingebracht.\n• In-vitro-Fertilisation (IVF): Eizellen werden außerhalb des Körpers befruchtet und Embryonen übertragen.\n• ICSI: Ein einzelnes Spermium wird direkt in die Eizelle injiziert.\n• Eizell- oder Samenspende: Option für besondere Fälle.\n\nErfolgsraten hängen von Alter und Ursache ab. Konsultieren Sie einen Spezialisten."
+        },
+        "epigeneticsFertility": {
+          "title": "Epigenetik und Generationsgesundheit",
+          "content": "Epigenetische Entdeckungen haben unser Verständnis der Fruchtbarkeit verändert:\n\n• Ihre Ernährung und Gewohnheiten können die Genexpression Ihrer Kinder beeinflussen.\n• Toxinexposition kann die Fruchtbarkeit zukünftiger Generationen beeinflussen.\n• Gute Ernährung vor der Empfängnis verbessert die epigenetische Gesundheit der Eizellen.\n• Die hormonelle Umgebung in der Gebärmutter beeinflusst die fetale Entwicklung.\n• Chronischer Stress kann epigenetische Spuren hinterlassen.\n• Ein gesunder Lebensstil vor der Empfängnis wirkt sich positiv auf die Generationsgesundheit aus."
+        },
+        "recurrentLoss": {
+          "title": "Wiederholten Schwangerschaftsverlust verstehen",
+          "content": "Wiederholter Schwangerschaftsverlust (zwei oder mehr) erfordert eine umfassende Untersuchung:\n\n• 15–25 % der bekannten Schwangerschaften enden mit einer Fehlgeburt.\n• Die meisten frühen Fehlgeburten sind auf Chromosomenanomalien zurückzuführen.\n• Mögliche Ursachen: hormonelle Probleme, Uterusanomalien, Immunstörungen, Gerinnungsstörungen.\n• Untersuchungen umfassen: genetische Tests, Uterusbildgebung, Immuntests.\n• Die Behandlung hängt von der Ursache ab.\n• Die Erfolgsrate nach Behandlung ist in vielen Fällen hoch.\n• Psychologische Unterstützung ist in dieser Zeit sehr wichtig."
+        },
+        "secondaryInfertility": {
+          "title": "Sekundäre Unfruchtbarkeit",
+          "content": "Sekundäre Unfruchtbarkeit bedeutet Schwierigkeiten, nach einem vorherigen Kind schwanger zu werden:\n\n• Häufiger als viele denken.\n• Ursachen können sein: Altern, hormonelle Veränderungen, Komplikationen früherer Geburten.\n• Lebensstilfaktoren: Gewichtsveränderung, Stresslevel, neue Gewohnheiten.\n• Gehen Sie nicht davon aus, dass eine frühere Schwangerschaft eine erneute Empfängnis garantiert.\n• Dieselben Fruchtbarkeitsuntersuchungen gelten.\n• Verfügbare Behandlungen sind ebenso wirksam wie bei primärer Unfruchtbarkeit."
+        }
+      }
     },
     "fertilitySigns": {
       "signsCount": "{{count}} Anzeichen, die du kennen solltest",

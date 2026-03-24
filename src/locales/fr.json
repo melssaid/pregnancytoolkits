@@ -4099,7 +4099,128 @@
     },
     "fertilityAcademy": {
       "lessonsCount": "{{count}} modules d'apprentissage",
-      "lessons": "Leçons"
+      "lessons": {
+        "menstrualCycle": {
+          "title": "Comprendre votre cycle menstruel",
+          "content": "Votre cycle menstruel se divise en quatre phases principales :\n\n1. Phase menstruelle (jours 1-5) : La muqueuse utérine se détache. C'est le début d'un nouveau cycle.\n\n2. Phase folliculaire (jours 1-13) : La FSH stimule la croissance des follicules dans les ovaires. Un follicule dominant mûrit.\n\n3. Phase d'ovulation (environ jour 14) : Une poussée de LH déclenche la libération de l'ovule mature. C'est la période la plus fertile.\n\n4. Phase lutéale (jours 15-28) : Le corps jaune produit de la progestérone pour préparer l'utérus. Sans fécondation, les hormones chutent et le cycle recommence.\n\nUn cycle normal dure 21 à 35 jours."
+        },
+        "ovulationProcess": {
+          "title": "Comment fonctionne l'ovulation",
+          "content": "L'ovulation est la libération d'un ovule mature par l'un de vos ovaires :\n\n• Les follicules commencent à croître sous l'influence de la FSH.\n• Un follicule dominant émerge.\n• L'augmentation de l'œstrogène déclenche un pic de LH.\n• Le pic de LH provoque l'ouverture du follicule et la libération de l'ovule.\n• L'ovule voyage dans la trompe de Fallope où la fécondation peut avoir lieu.\n• L'ovule ne survit que 12 à 24 heures après l'ovulation.\n\nSignes d'ovulation : changement de la glaire cervicale, légère douleur latérale, légère augmentation de la température corporelle."
+        },
+        "hormonesRole": {
+          "title": "Hormones clés de la fertilité",
+          "content": "Plusieurs hormones orchestrent votre fertilité :\n\n• FSH (Hormone folliculo-stimulante) : Stimule la croissance des follicules. Testée au 3e jour du cycle.\n\n• LH (Hormone lutéinisante) : Déclenche l'ovulation. Les tests d'ovulation détectent le pic de LH.\n\n• Œstrogène (Œstradiol) : Favorise le développement folliculaire et épaissit la muqueuse utérine.\n\n• Progestérone : Produite après l'ovulation, elle maintient la muqueuse utérine.\n\n• AMH (Hormone anti-müllérienne) : Reflète le nombre d'ovules restants (réserve ovarienne).\n\n• Hormones thyroïdiennes : Les déséquilibres peuvent perturber l'ovulation et la régularité du cycle."
+        },
+        "fertilizationBasics": {
+          "title": "Fécondation et implantation",
+          "content": "Après l'ovulation, la fécondation peut avoir lieu dans la trompe de Fallope :\n\n• Parmi les millions de spermatozoïdes, seuls quelques centaines atteignent l'ovule.\n• Un spermatozoïde pénètre la couche externe de l'ovule, déclenchant une réaction chimique.\n• L'ovule fécondé (zygote) commence à se diviser en se dirigeant vers l'utérus sur 3-4 jours.\n• Vers le 6e-10e jour après l'ovulation, le blastocyste s'implante dans la muqueuse utérine.\n• L'implantation peut provoquer de légers saignements.\n• Après l'implantation, le corps commence à produire l'hCG — l'hormone détectée par les tests de grossesse."
+        },
+        "ageAndFertility": {
+          "title": "Âge et fertilité",
+          "content": "L'âge est l'un des facteurs les plus importants affectant la fertilité :\n\n• Les femmes naissent avec tous les ovules qu'elles auront — environ 1 à 2 millions à la naissance.\n• À la puberté, il en reste environ 300 000 à 400 000. Seuls 300 à 400 seront libérés au cours de la vie.\n• La fertilité atteint son pic au milieu de la vingtaine. Un déclin progressif commence après 30 ans.\n• Après 35 ans, le déclin s'accélère. La qualité et la quantité des ovules diminuent.\n• À 40 ans, la chance de conception naturelle par cycle tombe à environ 5 %.\n• La fertilité masculine décline aussi avec l'âge, mais plus progressivement.\n\nCela ne signifie pas qu'une grossesse après 35 ans est impossible — de nombreuses femmes conçoivent naturellement."
+        },
+        "lifestyleFactors": {
+          "title": "Facteurs de mode de vie affectant la fertilité",
+          "content": "Vos habitudes quotidiennes impactent significativement la fertilité :\n\n• Poids : L'insuffisance pondérale et le surpoids peuvent perturber l'ovulation.\n• Tabac : Réduit la qualité des ovules et endommage les trompes.\n• Caféine : Plus de 200-300 mg par jour peut légèrement réduire la fertilité.\n• Exercice : L'activité modérée soutient la fertilité. L'exercice intensif excessif peut perturber l'ovulation.\n• Sommeil : Le manque de sommeil perturbe les hormones reproductives. Visez 7-9 heures.\n• Toxines : Limitez l'exposition aux pesticides, métaux lourds et certains plastiques."
+        },
+        "commonMyths": {
+          "title": "Mythes vs. faits sur la fertilité",
+          "content": "Séparons les faits de la fiction :\n\nMythe : Vous ne pouvez tomber enceinte que le jour de l'ovulation.\nFait : La fenêtre fertile dure environ 6 jours. Les spermatozoïdes peuvent survivre jusqu'à 5 jours.\n\nMythe : La position pendant les rapports affecte la conception.\nFait : Aucune preuve scientifique ne le soutient.\n\nMythe : La contraception cause l'infertilité.\nFait : La fertilité revient généralement dans les 1 à 3 mois.\n\nMythe : Le stress cause directement l'infertilité.\nFait : Le stress modéré seul empêche rarement la conception.\n\nMythe : Il faut des rapports quotidiens.\nFait : Tous les 1-2 jours pendant la fenêtre fertile suffit."
+        },
+        "whenToSeekHelp": {
+          "title": "Quand consulter un spécialiste",
+          "content": "Envisagez de consulter un spécialiste de la fertilité si :\n\n• Vous avez moins de 35 ans et n'êtes pas tombée enceinte après un an.\n• Vous avez plus de 35 ans et n'êtes pas tombée enceinte après 6 mois.\n• Vos cycles sont très irréguliers ou absents.\n• Vous avez des antécédents d'endométriose ou de maladie inflammatoire pelvienne.\n• Vous avez eu deux fausses couches ou plus.\n• Vous avez des conditions médicales connues affectant la fertilité.\n\nLe bilan initial comprend : analyses hormonales, échographie et spermogramme du partenaire."
+        },
+        "optimizingTiming": {
+          "title": "Optimiser le timing pour la conception",
+          "content": "Le timing est crucial :\n\n• Les meilleurs jours sont le jour ou les deux jours précédant l'ovulation.\n• Les spermatozoïdes survivent jusqu'à 5 jours, mais l'ovule seulement 12-24 heures.\n• Des rapports tous les 1-2 jours pendant la fenêtre fertile donnent la meilleure chance.\n• Utilisez des tests d'ovulation pour détecter le pic de LH.\n• Surveillez la glaire cervicale — elle devient claire et filante avant l'ovulation.\n• Suivez la température basale — elle augmente légèrement après l'ovulation.\n• N'attendez pas l'ovulation — commencez quelques jours avant."
+        },
+        "nutritionFertility": {
+          "title": "Nutrition optimale pour la fertilité",
+          "content": "L'alimentation affecte directement la qualité des ovules et des spermatozoïdes :\n\n• Le régime méditerranéen montre de meilleurs résultats de fertilité.\n• Acide folique (400-800 µg/jour) essentiel 3 mois avant la conception.\n• Fer : nécessaire pour une ovulation saine.\n• Oméga-3 : soutient la santé des ovules et réduit l'inflammation.\n• Antioxydants : vitamines C, E et zinc améliorent la qualité.\n• Vitamine D : sa carence est liée à une fertilité réduite.\n• Évitez les graisses trans et les aliments ultra-transformés.\n• Buvez au moins 8 verres d'eau par jour."
+        },
+        "maleFertility": {
+          "title": "Fertilité masculine essentielle",
+          "content": "La fertilité masculine est tout aussi importante :\n\n• La production de spermatozoïdes prend environ 74 jours. Ce que vous faites aujourd'hui affecte la qualité dans 3 mois.\n• La chaleur excessive (bains chauds, sauna, ordinateur sur les genoux) nuit à la production de spermatozoïdes.\n• Les sous-vêtements amples sont meilleurs pour la température testiculaire.\n• Suppléments utiles : zinc, vitamine C, CoQ10 et sélénium.\n• Le tabac et l'alcool réduisent le nombre et la mobilité des spermatozoïdes.\n• Le stress peut affecter les niveaux de testostérone.\n• Le spermogramme est la première étape de l'évaluation de la fertilité masculine."
+        },
+        "trackingMethods": {
+          "title": "Méthodes de suivi de la fertilité",
+          "content": "Plusieurs méthodes vous aident à suivre votre fertilité :\n\n• Température basale (BBT) : Mesurez chaque matin avant de vous lever. Une légère hausse confirme l'ovulation.\n• Glaire cervicale : Change de sèche à collante à claire et filante avant l'ovulation.\n• Tests d'ovulation (OPK) : Détectent le pic de LH 24-36 heures avant l'ovulation.\n• Applications de suivi : Aident à repérer les schémas et prédire l'ovulation.\n• Moniteurs de fertilité : Mesurent plusieurs hormones pour une image plus précise.\n\nCombiner plusieurs méthodes donne les résultats les plus précis."
+        },
+        "implantationWindow": {
+          "title": "La fenêtre d'implantation",
+          "content": "La fenêtre d'implantation est la brève période où la muqueuse utérine est prête :\n\n• Se produit généralement entre le 6e et le 10e jour après l'ovulation.\n• Dure environ 4 jours seulement.\n• Nécessite une synchronisation précise entre le développement de l'embryon et la préparation de la muqueuse.\n• La progestérone joue un rôle clé dans la préparation de la muqueuse.\n• Certaines femmes ressentent de légères crampes ou un léger saignement.\n• Après une implantation réussie, la production d'hCG commence.\n• L'hCG est détectable dans l'urine 10-14 jours après l'ovulation."
+        },
+        "supplementsGuide": {
+          "title": "Guide intelligent des suppléments",
+          "content": "Les suppléments peuvent soutenir votre fertilité :\n\n• Acide folique/Méthylfolate : Essentiel pour prévenir les anomalies du tube neural. Commencez 3 mois avant.\n• CoQ10 : Peut améliorer la qualité des ovules, surtout après 35 ans.\n• Vitamine D : Important pour l'équilibre hormonal.\n• Oméga-3 (DHA/EPA) : Soutient la santé des ovules.\n• Fer : Pour le transport d'oxygène et une ovulation saine.\n• Zinc : Important pour la division cellulaire.\n• Inositol : Particulièrement utile pour le SOPK.\n\nConsultez toujours votre médecin avant de commencer des suppléments."
+        },
+        "exerciseBalance": {
+          "title": "Équilibrer exercice et fertilité",
+          "content": "L'exercice est une épée à double tranchant pour la fertilité :\n\n• L'activité modérée (150 min/semaine) soutient la fertilité.\n• La marche, la natation et le yoga sont d'excellents choix.\n• L'exercice excessivement intense (>5h/semaine) peut perturber l'ovulation.\n• Les sportives professionnelles sont plus sujettes aux irrégularités.\n• Un taux de graisse corporelle trop bas affecte la production hormonale.\n• Si votre cycle est irrégulier, réduire l'intensité peut aider.\n• L'objectif est un mouvement régulier et modéré — pas le surmenage."
+        },
+        "sleepHormones": {
+          "title": "Sommeil et hormones de fertilité",
+          "content": "Le sommeil n'est pas un luxe — c'est une nécessité biologique pour la fertilité :\n\n• La mélatonine protège les ovules du stress oxydatif.\n• Le manque de sommeil perturbe la sécrétion de FSH et LH.\n• Les travailleuses de nuit ont des taux plus élevés d'irrégularités.\n• La lumière bleue des écrans supprime la production de mélatonine.\n• Objectif : 7-9 heures de sommeil ininterrompu.\n• Maintenez une routine de sommeil régulière.\n• Gardez la chambre sombre et fraîche.\n• Évitez la caféine l'après-midi."
+        },
+        "emotionalWellbeing": {
+          "title": "Bien-être émotionnel dans le parcours",
+          "content": "Essayer de concevoir peut être des montagnes russes émotionnelles :\n\n• Il est normal de ressentir espoir, déception et anxiété.\n• Le stress chronique peut affecter les hormones reproductives.\n• Techniques de relaxation : méditation, yoga, exercices de respiration.\n• Ne comparez pas votre parcours à celui des autres.\n• Parlez ouvertement avec votre partenaire de vos sentiments.\n• Envisagez un soutien psychologique si vous vous sentez dépassée.\n• Les groupes de soutien offrent un sentiment d'appartenance.\n• Demander de l'aide est un signe de force."
+        },
+        "cervicalHealth": {
+          "title": "Santé cervicale et fertilité",
+          "content": "Le col de l'utérus joue un rôle fondamental dans la fertilité :\n\n• Il produit une glaire qui change au cours du cycle sous l'influence hormonale.\n• Autour de l'ovulation, la glaire devient fine et filante pour faciliter le passage des spermatozoïdes.\n• Après l'ovulation, elle devient épaisse et collante comme barrière protectrice.\n• Certains médicaments peuvent affecter la qualité de la glaire cervicale.\n• Les infections peuvent impacter la santé cervicale.\n• Des examens réguliers sont importants.\n• Une bonne hydratation soutient une production saine de glaire."
+        },
+        "pcosManagement": {
+          "title": "Gérer le SOPK et la fertilité",
+          "content": "Le Syndrome des Ovaires Polykystiques (SOPK) touche 8-13 % des femmes :\n\n• Cause la plus fréquente d'ovulation irrégulière.\n• Symptômes : cycles irréguliers, acné, pilosité excessive, prise de poids.\n• La résistance à l'insuline est fréquente — réduire sucres et glucides raffinés aide.\n• Une perte de 5-10 % du poids peut restaurer l'ovulation.\n• L'inositol montre des résultats prometteurs sur la qualité des ovules.\n• L'activité physique régulière améliore la sensibilité à l'insuline.\n• Le SOPK ne signifie pas infertilité — beaucoup de femmes tombent enceintes avec succès."
+        },
+        "endometriosisAwareness": {
+          "title": "Endométriose et fertilité",
+          "content": "L'endométriose touche 1 femme sur 10 :\n\n• Un tissu semblable à la muqueuse utérine se développe en dehors de l'utérus.\n• Peut affecter les ovaires, les trompes et les tissus environnants.\n• Symptômes : douleurs menstruelles sévères, douleur pendant les rapports, saignements abondants.\n• Peut affecter la qualité des ovules et l'environnement d'implantation.\n• Le diagnostic précoce est important pour un traitement efficace.\n• Options : thérapie hormonale, cœlioscopie ou procréation assistée.\n• Avec un traitement approprié, beaucoup de femmes tombent enceintes."
+        },
+        "thyroidFertility": {
+          "title": "Thyroïde et fertilité",
+          "content": "La thyroïde joue un rôle crucial dans la fertilité :\n\n• L'hyperthyroïdie peut causer des cycles irréguliers.\n• L'hypothyroïdie est liée à des problèmes d'ovulation et un risque accru de fausse couche.\n• TSH optimale pour la grossesse : 0,5-2,5 mU/L.\n• Les anticorps thyroïdiens peuvent affecter la fertilité même avec une TSH normale.\n• Les tests thyroïdiens sont simples et accessibles.\n• Le traitement par lévothyroxine est sûr et améliore significativement les chances.\n• La surveillance des niveaux thyroïdiens est recommandée pendant toute la grossesse."
+        },
+        "geneticFactors": {
+          "title": "Facteurs génétiques et fertilité",
+          "content": "Les gènes jouent un rôle plus important que prévu dans la fertilité :\n\n• Le dépistage génétique des porteurs peut révéler des maladies héréditaires avant la conception.\n• Certaines conditions génétiques affectent directement la fertilité.\n• Des antécédents familiaux de ménopause précoce peuvent indiquer une réserve ovarienne diminuée.\n• Le conseil génétique est disponible pour les couples préoccupés.\n• Le diagnostic génétique préimplantatoire (DPI) est possible avec la FIV.\n• Comprendre l'histoire familiale aide à la planification précoce."
+        },
+        "environmentalToxins": {
+          "title": "Toxines environnementales et fertilité",
+          "content": "L'exposition quotidienne aux toxines environnementales peut affecter votre fertilité :\n\n• Le BPA dans les plastiques imite l'œstrogène et peut perturber les hormones.\n• Les pesticides dans les aliments peuvent affecter la qualité des ovules.\n• Les métaux lourds (plomb, mercure) sont liés à des problèmes de fertilité.\n• Les phtalates dans les produits parfumés peuvent affecter les hormones.\n\nPour réduire l'exposition :\n• Utilisez des contenants en verre ou en acier inoxydable.\n• Choisissez des aliments biologiques quand possible.\n• Évitez les produits à parfum synthétique.\n• Améliorez la ventilation de votre maison."
+        },
+        "fertilityPreservation": {
+          "title": "Préservation de la fertilité",
+          "content": "La préservation de la fertilité vous offre une flexibilité :\n\n• Congélation d'ovules : Meilleurs résultats avant 35 ans.\n• Congélation d'embryons : Option pour les couples.\n• Congélation de tissu ovarien : Technique plus récente.\n• Raisons : traitement du cancer, report de la parentalité, conditions médicales.\n• Les taux de réussite dépendent de l'âge au moment de la congélation.\n• Les coûts varient selon le pays et la clinique.\n• Consultez un spécialiste pour connaître vos options."
+        },
+        "mindBodyConnection": {
+          "title": "La connexion corps-esprit",
+          "content": "La relation entre l'esprit et le corps est plus profonde qu'on ne l'imagine dans la fertilité :\n\n• Le stress chronique augmente le cortisol qui peut perturber l'ovulation.\n• La méditation et la pleine conscience montrent des résultats améliorés.\n• Le yoga de fertilité améliore la circulation vers les organes reproducteurs.\n• La thérapie cognitive comportementale aide à gérer l'anxiété.\n• L'acupuncture peut améliorer le flux sanguin vers l'utérus.\n• N'oubliez pas que vous n'êtes pas seule dans ce parcours."
+        },
+        "immunologyFertility": {
+          "title": "Immunologie et fertilité",
+          "content": "Le système immunitaire joue un rôle délicat dans la grossesse :\n\n• Le corps doit accepter l'embryon sans le rejeter.\n• Les cellules NK dans l'utérus aident à l'implantation quand elles sont équilibrées.\n• Certaines maladies auto-immunes peuvent affecter la fertilité.\n• Le syndrome des antiphospholipides est lié aux fausses couches récurrentes.\n• Des tests immunologiques sont disponibles pour les cas complexes.\n• La plupart des problèmes immunitaires liés à la fertilité sont traitables."
+        },
+        "assistedReproduction": {
+          "title": "Techniques de procréation assistée",
+          "content": "Quand la conception naturelle ne réussit pas, des options efficaces existent :\n\n• Stimulation de l'ovulation : Médicaments pour stimuler la production d'ovules.\n• Insémination intra-utérine (IIU) : Injection de spermatozoïdes préparés dans l'utérus.\n• Fécondation in vitro (FIV) : Fécondation des ovules hors du corps et transfert d'embryons.\n• ICSI : Injection d'un seul spermatozoïde directement dans l'ovule.\n• Don d'ovules ou de sperme : Option pour les cas particuliers.\n\nLes taux de réussite dépendent de l'âge et de la cause. Consultez un spécialiste."
+        },
+        "epigeneticsFertility": {
+          "title": "Épigénétique et santé générationnelle",
+          "content": "Les découvertes épigénétiques ont changé notre compréhension de la fertilité :\n\n• Votre alimentation et vos habitudes peuvent affecter l'expression génique de vos enfants.\n• L'exposition aux toxines peut affecter la fertilité des générations futures.\n• Une bonne nutrition avant la conception améliore la santé épigénétique des ovules.\n• L'environnement hormonal dans l'utérus affecte le développement fœtal.\n• Le stress chronique peut laisser des empreintes épigénétiques.\n• Un mode de vie sain avant la conception a un impact positif sur la santé des générations."
+        },
+        "recurrentLoss": {
+          "title": "Comprendre les fausses couches récurrentes",
+          "content": "Les fausses couches récurrentes (deux ou plus) nécessitent une évaluation complète :\n\n• 15-25 % des grossesses connues se terminent par une fausse couche.\n• La plupart des fausses couches précoces sont dues à des anomalies chromosomiques.\n• Causes possibles : problèmes hormonaux, anomalies utérines, troubles immunitaires, troubles de la coagulation.\n• Examens : tests génétiques, imagerie utérine, tests immunitaires.\n• Le traitement dépend de la cause.\n• Le taux de réussite après traitement est élevé dans de nombreux cas.\n• Le soutien psychologique est très important pendant cette épreuve."
+        },
+        "secondaryInfertility": {
+          "title": "Infertilité secondaire",
+          "content": "L'infertilité secondaire signifie des difficultés à concevoir après avoir eu un enfant :\n\n• Plus fréquente qu'on ne le pense.\n• Les causes peuvent inclure : vieillissement, changements hormonaux, complications de naissances précédentes.\n• Facteurs de mode de vie : changement de poids, niveau de stress, nouvelles habitudes.\n• Ne présumez pas qu'une grossesse précédente garantit une conception facile.\n• Les mêmes examens de fertilité s'appliquent.\n• Les traitements disponibles sont tout aussi efficaces que pour l'infertilité primaire."
+        }
+      }
     },
     "fertilitySigns": {
       "signsCount": "{{count}} signes à connaître",
