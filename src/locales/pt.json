@@ -4099,128 +4099,7 @@
     },
     "fertilityAcademy": {
       "lessonsCount": "{{count}} módulos de aprendizagem",
-      "lessons": {
-        "menstrualCycle": {
-          "title": "Comprendre seu ciclo menstrual",
-          "content": "Seu ciclo menstrual se divise en quatre phases principales :\n\n1. Phase menstrualle (jours 1-5) : La mucosa uterina se détache. C'est le début d'un nouveau ciclo.\n\n2. Phase folliculaire (jours 1-13) : La FSH stimule la croissance des folículos dans les ovários. Un folículo dominant mûrit.\n\n3. Phase d'ovulation (environ jour 14) : Une poussée de LH déclenche la libération de l'óvulo mature. C'est la période la plus fertile.\n\n4. Phase lutéale (jours 15-28) : Le corps jaune produit de la progesterona pour préparer l'útero. Sans fecundação, les hormônios chutent et le ciclo recommence.\n\nUn ciclo normal dure 21 à 35 jours."
-        },
-        "ovulationProcess": {
-          "title": "Comment fonctionne a ovulação",
-          "content": "A ovulação est la libération d'un óvulo mature par l'un de vos ovários :\n\n• Les folículos commencent à croître sous l'influence de la FSH.\n• Un folículo dominant émerge.\n• L'augmentation de l'estrogênio déclenche un pic de LH.\n• Le pic de LH provoque l'ouverture du folículo et la libération de l'óvulo.\n• L'óvulo voyage dans la trompa de Falópio où la fecundação peut avoir lieu.\n• L'óvulo ne survit que 12 à 24 heures après a ovulação.\n\nSignes d'ovulation : changement de la glaire cervicale, légère douleur latérale, légère augmentation de la température corporelle."
-        },
-        "hormonesRole": {
-          "title": "Hormônios clés de la fertilidade",
-          "content": "Plusieurs hormônios orchestrent seu fertilidade :\n\n• FSH (Hormone folliculo-stimulante) : Stimule la croissance des folículos. Testée au 3e jour du ciclo.\n\n• LH (Hormone lutéinisante) : Déclenche a ovulação. Les tests d'ovulation détectent le pic de LH.\n\n• Œstrogène (Œstradiol) : Favorise le développement folliculaire et épaissit la mucosa uterina.\n\n• Progestérone : Produite après a ovulação, elle maintient la mucosa uterina.\n\n• AMH (Hormone anti-müllérienne) : Reflète le nombre d'óvulos restants (réserve ovarianone).\n\n• Hormônios thyroïdiennes : Les déséquilibres peuvent perturber a ovulação et la régularité du ciclo."
-        },
-        "fertilizationBasics": {
-          "title": "Fecundação et implantação",
-          "content": "Après a ovulação, la fecundação peut avoir lieu dans la trompa de Falópio :\n\n• Parmi les millions de espermatozoides, seuls quelques centaines atteignent l'óvulo.\n• Un espermatozoide pénètre la couche externe de l'óvulo, déclenchant une réaction chimique.\n• L'óvulo fécondé (zygote) commence à se diviser en se dirigeant vers l'útero sur 3-4 jours.\n• Vers le 6e-10e jour après a ovulação, le blastocyste s'implante dans la mucosa uterina.\n• L'implantação peut provoquer de légers saignements.\n• Après l'implantação, le corps commence à produire l'hCG — l'hormone détectée par les tests de gravidez."
-        },
-        "ageAndFertility": {
-          "title": "Âge et fertilidade",
-          "content": "L'âge est l'un des facteurs les plus importants affectant la fertilidade :\n\n• Les femmes naissent avec tous les óvulos qu'elles auront — environ 1 à 2 millions à la naissance.\n• À la puberté, il en reste environ 300 000 à 400 000. Seuls 300 à 400 seront libérés au cours de la vie.\n• La fertilidade atteint son pic au milieu de la vingtaine. Un déclin progressif commence après 30 ans.\n• Après 35 ans, le déclin s'accélère. La qualité et la quantité des óvulos diminuent.\n• À 40 ans, la chance de conception naturelle par ciclo tombe à environ 5 %.\n• La fertilidade masculine décline aussi avec l'âge, mais plus progressivement.\n\nCela ne signifie pas qu'une gravidez après 35 ans est impossible — de nombreuses femmes conçoivent naturellement."
-        },
-        "lifestyleFactors": {
-          "title": "Facteurs de mode de vie affectant la fertilidade",
-          "content": "Vos habitudes quotidiennes impactent significativement la fertilidade :\n\n• Poids : L'insuffisance pondérale et le surpoids peuvent perturber a ovulação.\n• Tabac : Réduit la qualité des óvulos et endommage les trompes.\n• Caféine : Plus de 200-300 mg par jour peut légèrement réduire la fertilidade.\n• Exercice : L'activité modérée soutient la fertilidade. L'exercice intensif excessif peut perturber a ovulação.\n• Sommeil : Le manque de sommeil perturbe les hormônios reproductives. Visez 7-9 heures.\n• Toxines : Limitez l'exposition aux pesticides, métaux lourds et certains plastiques."
-        },
-        "commonMyths": {
-          "title": "Mythes vs. faits sur la fertilidade",
-          "content": "Séparons les faits de la fiction :\n\nMythe : Você ne pouvez tomber enceinte que le jour de a ovulação.\nFait : La fenêtre fertile dure environ 6 jours. Les espermatozoides peuvent survivre jusqu'à 5 jours.\n\nMythe : La position pendant les rapports affecte la conception.\nFait : Aucune preuve scientifique ne le soutient.\n\nMythe : La contraception cause l'infertilidade.\nFait : La fertilidade revient généralement dans les 1 à 3 mois.\n\nMythe : Le stress cause directement l'infertilidade.\nFait : Le stress modéré seul empêche rarement la conception.\n\nMythe : Il faut des rapports quotidiens.\nFait : Tous les 1-2 jours pendant la fenêtre fertile suffit."
-        },
-        "whenToSeekHelp": {
-          "title": "Quand consulter un spécialiste",
-          "content": "Envisagez de consulter un spécialiste de la fertilidade si :\n\n• Você avez moins de 35 ans et n'êtes pas tombée enceinte après un an.\n• Você avez plus de 35 ans et n'êtes pas tombée enceinte après 6 mois.\n• Vos ciclos sont très irréguliers ou absents.\n• Você avez des antécédents d'endométriose ou de maladie inflammatoire pelvienne.\n• Você avez eu deux fausses couches ou plus.\n• Você avez des conditions médicales connues affectant la fertilidade.\n\nLe bilan initial comprend : analyses hormonales, échographie et spermogramme du partenaire."
-        },
-        "optimizingTiming": {
-          "title": "Optimiser le timing pour la conception",
-          "content": "Le timing est crucial :\n\n• Les meilleurs jours sont le jour ou les deux jours précédant a ovulação.\n• Les espermatozoides survivent jusqu'à 5 jours, mais l'óvulo seulement 12-24 heures.\n• Des rapports tous les 1-2 jours pendant la fenêtre fertile donnent la meilleure chance.\n• Utilisez des tests d'ovulation pour détecter le pic de LH.\n• Surveillez la glaire cervicale — elle devient claire et filante avant a ovulação.\n• Suivez la température basale — elle augmente légèrement après a ovulação.\n• N'attendez pas a ovulação — commencez quelques jours avant."
-        },
-        "nutritionFertility": {
-          "title": "Nutrition optimale pour la fertilidade",
-          "content": "L'alimentation affecte directement la qualité des óvulos et des espermatozoides :\n\n• Le régime méditerranéen montre de meilleurs résultats de fertilidade.\n• Acide folique (400-800 µg/jour) essentiel 3 mois avant la conception.\n• Fer : nécessaire pour une ovulation saine.\n• Oméga-3 : soutient la saúde des óvulos et réduit l'inflammation.\n• Antioxydants : vitamines C, E et zinc améliorent la qualité.\n• Vitamine D : sa carence est liée à une fertilidade réduite.\n• Évitez les graisses trans et les aliments ultra-transformés.\n• Buvez au moins 8 verres d'eau par jour."
-        },
-        "maleFertility": {
-          "title": "Fertilidade masculine essentielle",
-          "content": "La fertilidade masculine est tout aussi importante :\n\n• La production de espermatozoides prend environ 74 jours. Ce que você faites aujourd'hui affecte la qualité dans 3 mois.\n• La chaleur excessive (bains chauds, sauna, ordinateur sur les genoux) nuit à la production de espermatozoides.\n• Les sous-vêtements amples sont meilleurs pour la température testiculaire.\n• Suppléments utiles : zinc, vitamine C, CoQ10 et sélénium.\n• Le tabac et l'alcool réduisent le nombre et la mobilité des espermatozoides.\n• Le stress peut affecter les niveaux de testostérone.\n• Le spermogramme est la première étape de l'évaluation de la fertilidade masculine."
-        },
-        "trackingMethods": {
-          "title": "Méthodes de suivi de la fertilidade",
-          "content": "Plusieurs méthodes você aident à suivre seu fertilidade :\n\n• Température basale (BBT) : Mesurez chaque matin avant de você lever. Une légère hausse confirme a ovulação.\n• Glaire cervicale : Change de sèche à collante à claire et filante avant a ovulação.\n• Tests d'ovulation (OPK) : Détectent le pic de LH 24-36 heures avant a ovulação.\n• Applications de suivi : Aident à repérer les schémas et prédire a ovulação.\n• Moniteurs de fertilidade : Mesurent plusieurs hormônios pour une image plus précise.\n\nCombiner plusieurs méthodes donne les résultats les plus précis."
-        },
-        "implantationWindow": {
-          "title": "La fenêtre d'implantação",
-          "content": "La fenêtre d'implantação est la brève période où la mucosa uterina est prête :\n\n• Se produit généralement entre le 6e et le 10e jour après a ovulação.\n• Dure environ 4 jours seulement.\n• Nécessite une synchronisation précise entre le développement de l'embrião et la préparation de la mucosa.\n• La progesterona joue un rôle clé dans la préparation de la mucosa.\n• Certaines femmes ressentent de légères crampes ou un léger saignement.\n• Après une implantação réussie, la production d'hCG commence.\n• L'hCG est détectable dans l'urine 10-14 jours après a ovulação."
-        },
-        "supplementsGuide": {
-          "title": "Guide intelligent des suppléments",
-          "content": "Les suppléments peuvent soutenir seu fertilidade :\n\n• Acide folique/Méthylfolate : Essentiel pour prévenir les anomalies du tube neural. Commencez 3 mois avant.\n• CoQ10 : Peut améliorer la qualité des óvulos, surtout après 35 ans.\n• Vitamine D : Important pour l'équilibre hormonal.\n• Oméga-3 (DHA/EPA) : Soutient la saúde des óvulos.\n• Fer : Pour le transport d'oxygène et une ovulation saine.\n• Zinc : Important pour la division cellulaire.\n• Inositol : Particulièrement utile pour le SOPK.\n\nConsultez toujours seu médico avant de commencer des suppléments."
-        },
-        "exerciseBalance": {
-          "title": "Équilibrer exercice et fertilidade",
-          "content": "L'exercice est une épée à double tranchant pour la fertilidade :\n\n• L'activité modérée (150 min/semaine) soutient la fertilidade.\n• La marche, la natation et le yoga sont d'excellents choix.\n• L'exercice excessivement intense (>5h/semaine) peut perturber a ovulação.\n• Les sportives professionnelles sont plus sujettes aux irrégularités.\n• Un taux de graisse corporelle trop bas affecte la production hormonale.\n• Si seu ciclo est irrégulier, réduire l'intensité peut aider.\n• L'objectif est un mouvement régulier et modéré — pas le surmenage."
-        },
-        "sleepHormones": {
-          "title": "Sommeil et hormônios de fertilidade",
-          "content": "Le sommeil n'est pas un luxe — c'est une nécessité biologique pour la fertilidade :\n\n• La mélatonine protège les óvulos du stress oxydatif.\n• Le manque de sommeil perturbe la sécrétion de FSH et LH.\n• Les travailleuses de nuit ont des taux plus élevés d'irrégularités.\n• La lumière bleue des écrans supprime la production de mélatonine.\n• Objectif : 7-9 heures de sommeil ininterrompu.\n• Maintenez une routine de sommeil régulière.\n• Gardez la chambre sombre et fraîche.\n• Évitez la caféine l'après-midi."
-        },
-        "emotionalWellbeing": {
-          "title": "Bien-être émotionnel dans le parcours",
-          "content": "Essayer de concevoir peut être des montagnes russes émotionnelles :\n\n• Il est normal de ressentir espoir, déception et anxiété.\n• Le stress chronique peut affecter les hormônios reproductives.\n• Techniques de relaxation : méditation, yoga, exercices de respiration.\n• Ne comparez pas seu parcours à celui des autres.\n• Parlez ouvertement avec seu partenaire de vos sentiments.\n• Envisagez un soutien psychologique si você você sentez dépassée.\n• Les groupes de soutien offrent un sentiment d'appartenance.\n• Demander de l'aide est un signe de force."
-        },
-        "cervicalHealth": {
-          "title": "Saúde cervicale et fertilidade",
-          "content": "Le col de l'útero joue un rôle fondamental dans la fertilidade :\n\n• Il produit une glaire qui change au cours du ciclo sous l'influence hormonale.\n• Autour de a ovulação, la glaire devient fine et filante pour faciliter le passage des espermatozoides.\n• Après a ovulação, elle devient épaisse et collante comme barrière protectrice.\n• Certains médicaments peuvent affecter la qualité de la glaire cervicale.\n• Les infections peuvent impacter la saúde cervicale.\n• Des examens réguliers sont importants.\n• Une bonne hydratation soutient une production saine de glaire."
-        },
-        "pcosManagement": {
-          "title": "Gérer le SOPK et la fertilidade",
-          "content": "Le Syndrome des Ovaires Polykystiques (SOPK) touche 8-13 % des femmes :\n\n• Cause la plus fréquente d'ovulation irrégulière.\n• Sintomas : ciclos irréguliers, acné, pilosité excessive, prise de poids.\n• La résistance à l'insuline est fréquente — réduire sucres et glucides raffinés aide.\n• Une perte de 5-10 % du poids peut restaurer a ovulação.\n• L'inositol montre des résultats prometteurs sur la qualité des óvulos.\n• L'activité physique régulière améliore la sensibilité à l'insuline.\n• Le SOPK ne signifie pas infertilidade — beaucoup de femmes tombent enceintes avec succès."
-        },
-        "endometriosisAwareness": {
-          "title": "Endométriose et fertilidade",
-          "content": "L'endométriose touche 1 femme sur 10 :\n\n• Un tissu semblable à la mucosa uterina se développe en dehors de l'útero.\n• Peut affecter les ovários, les trompes et les tissus environnants.\n• Sintomas : douleurs menstrualles sévères, douleur pendant les rapports, saignements abondants.\n• Peut affecter la qualité des óvulos et l'environnement d'implantação.\n• Le diagnostic précoce est important pour un tratamento efficace.\n• Options : thérapie hormonale, cœlioscopie ou procréation assistée.\n• Avec un tratamento approprié, beaucoup de femmes tombent enceintes."
-        },
-        "thyroidFertility": {
-          "title": "Thyroïde et fertilidade",
-          "content": "La thyroïde joue un rôle crucial dans la fertilidade :\n\n• L'hyperthyroïdie peut causer des ciclos irréguliers.\n• L'hypothyroïdie est liée à des problèmes d'ovulation et un risque accru de fausse couche.\n• TSH optimale pour la gravidez : 0,5-2,5 mU/L.\n• Les anticorps thyroïdiens peuvent affecter la fertilidade même avec une TSH normale.\n• Les tests thyroïdiens sont simples et accessibles.\n• Le tratamento par lévothyroxine est sûr et améliore significativement les chances.\n• La surveillance des niveaux thyroïdiens est recommandée pendant toute la gravidez."
-        },
-        "geneticFactors": {
-          "title": "Facteurs génétiques et fertilidade",
-          "content": "Les gènes jouent un rôle plus important que prévu dans la fertilidade :\n\n• Le dépistage génétique des porteurs peut révéler des maladies héréditaires avant la conception.\n• Certaines conditions génétiques affectent directement la fertilidade.\n• Des antécédents familiaux de ménopause précoce peuvent indiquer une réserve ovarianone diminuée.\n• Le conseil génétique est disponible pour les couples préoccupés.\n• Le diagnostic génétique préimplantatoire (DPI) est possible avec la FIV.\n• Comprendre l'histoire familiale aide à la planification précoce."
-        },
-        "environmentalToxins": {
-          "title": "Toxines environnementales et fertilidade",
-          "content": "L'exposition quotidienne aux toxines environnementales peut affecter seu fertilidade :\n\n• Le BPA dans les plastiques imite l'estrogênio et peut perturber les hormônios.\n• Les pesticides dans les aliments peuvent affecter la qualité des óvulos.\n• Les métaux lourds (plomb, mercure) sont liés à des problèmes de fertilidade.\n• Les phtalates dans les produits parfumés peuvent affecter les hormônios.\n\nPour réduire l'exposition :\n• Utilisez des contenants en verre ou en acier inoxydable.\n• Choisissez des aliments biologiques quand possible.\n• Évitez les produits à parfum synthétique.\n• Améliorez la ventilation de seu maison."
-        },
-        "fertilityPreservation": {
-          "title": "Préservation de la fertilidade",
-          "content": "La préservation de la fertilidade você offre une flexibilité :\n\n• Congélation d'óvulos : Meilleurs résultats avant 35 ans.\n• Congélation d'embriãos : Option pour les couples.\n• Congélation de tissu ovariano : Technique plus récente.\n• Raisons : tratamento du cancer, report de la parentalité, conditions médicales.\n• Les taux de réussite dépendent de l'âge au moment de la congélation.\n• Les coûts varient selon le pays et la clinique.\n• Consultez un spécialiste pour connaître vos options."
-        },
-        "mindBodyConnection": {
-          "title": "La connexion corps-esprit",
-          "content": "La relation entre l'esprit et le corps est plus profonde qu'on ne l'imagine dans la fertilidade :\n\n• Le stress chronique augmente le cortisol qui peut perturber a ovulação.\n• La méditation et la pleine conscience montrent des résultats améliorés.\n• Le yoga de fertilidade améliore la circulation vers les organes reproducteurs.\n• La thérapie cognitive comportementale aide à gérer l'anxiété.\n• L'acupuncture peut améliorer le flux sanguin vers l'útero.\n• N'oubliez pas que você n'êtes pas seule dans ce parcours."
-        },
-        "immunologyFertility": {
-          "title": "Immunologie et fertilidade",
-          "content": "Le système immunitaire joue un rôle délicat dans la gravidez :\n\n• Le corps doit accepter l'embrião sans le rejeter.\n• Les cellules NK dans l'útero aident à l'implantação quand elles sont équilibrées.\n• Certaines maladies auto-immunes peuvent affecter la fertilidade.\n• Le syndrome des antiphospholipides est lié aux fausses couches récurrentes.\n• Des tests immunologiques sont disponibles pour les cas complexes.\n• La plupart des problèmes immunitaires liés à la fertilidade sont traitables."
-        },
-        "assistedReproduction": {
-          "title": "Techniques de procréation assistée",
-          "content": "Quand la conception naturelle ne réussit pas, des options efficaces existent :\n\n• Stimulation de a ovulação : Médicaments pour stimuler la production d'óvulos.\n• Insémination intra-uterina (IIU) : Injection de espermatozoides préparés dans l'útero.\n• Fecundação in vitro (FIV) : Fecundação des óvulos hors du corps et transfert d'embriãos.\n• ICSI : Injection d'un seul espermatozoide directement dans l'óvulo.\n• Don d'óvulos ou de sperme : Option pour les cas particuliers.\n\nLes taux de réussite dépendent de l'âge et de la cause. Consultez un spécialiste."
-        },
-        "epigeneticsFertility": {
-          "title": "Épigénétique et saúde générationnelle",
-          "content": "Les découvertes épigénétiques ont changé notre compréhension de la fertilidade :\n\n• Seu alimentation et vos habitudes peuvent affecter l'expression génique de vos enfants.\n• L'exposition aux toxines peut affecter la fertilidade des générations futures.\n• Une bonne nutrition avant la conception améliore la saúde épigénétique des óvulos.\n• L'environnement hormonal dans l'útero affecte le développement fœtal.\n• Le stress chronique peut laisser des empreintes épigénétiques.\n• Un mode de vie sain avant la conception a un impact positif sur la saúde des générations."
-        },
-        "recurrentLoss": {
-          "title": "Comprendre les fausses couches récurrentes",
-          "content": "Les fausses couches récurrentes (deux ou plus) nécessitent une évaluation complète :\n\n• 15-25 % des gravidezs connues se terminent par une fausse couche.\n• La plupart des fausses couches précoces sont dues à des anomalies chromosomiques.\n• Causes possibles : problèmes hormonaux, anomalies uterinas, troubles immunitaires, troubles de la coagulation.\n• Examens : tests génétiques, imagerie uterina, tests immunitaires.\n• Le tratamento dépend de la cause.\n• Le taux de réussite après tratamento est élevé dans de nombreux cas.\n• Le soutien psychologique est très important pendant cette épreuve."
-        },
-        "secondaryInfertility": {
-          "title": "Infertilidade secondaire",
-          "content": "L'infertilidade secondaire signifie des difficultés à concevoir après avoir eu un enfant :\n\n• Plus fréquente qu'on ne le pense.\n• Les causes peuvent inclure : vieillissement, changements hormonaux, complications de naissances précédentes.\n• Facteurs de mode de vie : changement de poids, niveau de stress, nouvelles habitudes.\n• Ne présumez pas qu'une gravidez précédente garantit une conception facile.\n• Les mêmes examens de fertilidade s'appliquent.\n• Les tratamentos disponibles sont tout aussi efficaces que pour l'infertilidade primaire."
-        }
-      }
+      "lessons": "Lições"
     },
     "fertilitySigns": {
       "signsCount": "{{count}} sinais que você deve conhecer",
@@ -7993,31 +7872,31 @@
     "lessons": {
       "menstrualCycle": {
         "title": "Entendendo seu ciclo menstrual",
-        "content": "Your menstrual cycle is divided into four main phases:\n\n1. Menstrual Phase (Days 1–5): The uterine lining sheds, marking the start of a new cycle.\n\n2. Follicular Phase (Days 1–13): Follicle-stimulating hormone (FSH) prompts the ovaries to develop follicles. Estrogen rises, thickening the uterine lining.\n\n3. Ovulation (Day 14 approx.): A surge in luteinizing hormone (LH) triggers the release of a mature egg. This is your most fertile moment.\n\n4. Luteal Phase (Days 15–28): The empty follicle becomes the corpus luteum, producing progesterone to maintain the lining. If fertilization doesn't occur, hormone levels drop and the cycle restarts.\n\nUnderstanding these phases helps you identify your fertile window and work with your body's natural rhythm."
+        "content": "Seu ciclo menstrual é dividido em quatro fases principais:\n\n1. Fase menstrual (dias 1-5): O revestimento uterino se desprende, marcando o início de um novo ciclo.\n\n2. Fase folicular (dias 1-13): O hormônio folículo-estimulante (FSH) estimula os ovários a desenvolver folículos. O estrogênio aumenta, espessando o revestimento uterino.\n\n3. Ovulação (aproximadamente dia 14): Um pico de LH desencadeia a liberação de um óvulo maduro. Este é seu momento mais fértil.\n\n4. Fase lútea (dias 15-28): O folículo vazio se torna o corpo lúteo, produzindo progesterona. Sem fecundação, os níveis hormonais caem e o ciclo recomeça.\n\nCompreender estas fases ajuda a identificar sua janela fértil."
       },
       "ovulationProcess": {
         "title": "Como a ovulação funciona",
         "content": "Ovulation is the release of a mature egg from one of your ovaries. Here's what happens:\n\n• In the days leading up to ovulation, rising estrogen levels cause the dominant follicle to grow.\n• A sharp LH surge triggers the follicle to rupture and release the egg into the fallopian tube.\n• The egg survives 12–24 hours after release. Sperm can survive up to 5 days in the reproductive tract.\n• This means your fertile window spans roughly 6 days — the 5 days before ovulation and the day of ovulation itself.\n\nSome women feel a twinge or mild cramp (mittelschmerz) during ovulation. Others notice changes in cervical mucus, which becomes clear and stretchy like raw egg whites."
       },
       "fertilizationBasics": {
-        "title": "Fertilização e implantação",
-        "content": "After ovulation, fertilization can occur in the fallopian tube:\n\n• Of the millions of sperm released, only a few hundred reach the egg.\n• One sperm penetrates the egg's outer layer, triggering a chemical reaction that prevents other sperm from entering.\n• The fertilized egg (zygote) begins dividing as it travels toward the uterus over 3–4 days.\n• Around day 6–10 after ovulation, the blastocyst implants into the uterine lining.\n• Implantation may cause light spotting, known as implantation bleeding.\n• Once implanted, the body begins producing hCG — the hormone detected by pregnancy tests."
+        "title": "Fecundação e implantação",
+        "content": "Após a ovulação, a fecundação pode ocorrer na trompa de Falópio:\n\n• Dos milhões de espermatozoides liberados, apenas algumas centenas alcançam o óvulo.\n• Um espermatozoide penetra a camada externa do óvulo, desencadeando uma reação química que impede a entrada de outros.\n• O óvulo fecundado (zigoto) começa a se dividir enquanto viaja para o útero durante 3-4 dias.\n• Por volta do dia 6-10 após a ovulação, o blastocisto se implanta no revestimento uterino.\n• A implantação pode causar um sangramento leve (sangramento de implantação).\n• Uma vez implantado, o corpo começa a produzir hCG — o hormônio detectado pelos testes de gravidez."
       },
       "hormonesRole": {
         "title": "Hormônios-chave da fertilidade",
-        "content": "Several hormones orchestrate your fertility:\n\n• FSH (Follicle-Stimulating Hormone): Stimulates follicle growth in the ovaries. Tested on Day 3 of your cycle to assess ovarian reserve.\n\n• LH (Luteinizing Hormone): Triggers ovulation. Ovulation predictor kits detect the LH surge.\n\n• Estrogen (Estradiol): Promotes follicle development and thickens the uterine lining. Also affects cervical mucus quality.\n\n• Progesterone: Produced after ovulation, it maintains the uterine lining for potential implantation. Low progesterone can affect cycle regularity.\n\n• AMH (Anti-Müllerian Hormone): Reflects the number of remaining eggs (ovarian reserve). Useful for fertility planning.\n\n• Thyroid Hormones (TSH, T3, T4): Thyroid imbalances can disrupt ovulation and cycle regularity."
+        "content": "Vários hormônios orquestram sua fertilidade:\n\n• FSH (Hormônio Folículo-Estimulante): Estimula o crescimento folicular. Testado no dia 3 do ciclo para avaliar a reserva ovariana.\n\n• LH (Hormônio Luteinizante): Desencadeia a ovulação. Os testes de ovulação detectam o pico de LH.\n\n• Estrogênio (Estradiol): Promove o desenvolvimento folicular e espessa o revestimento uterino.\n\n• Progesterona: Produzida após a ovulação, mantém o revestimento uterino para uma possível implantação.\n\n• AMH (Hormônio Anti-Mülleriano): Reflete a quantidade de óvulos restantes (reserva ovariana).\n\n• Hormônios tireoidianos (TSH, T3, T4): Desequilíbrios tireoidianos podem perturbar a ovulação e a regularidade do ciclo."
       },
       "ageAndFertility": {
         "title": "Idade e fertilidade",
-        "content": "Age is one of the most significant factors affecting fertility:\n\n• Women are born with all the eggs they will ever have — about 1–2 million at birth.\n• By puberty, roughly 300,000–400,000 eggs remain. Only about 300–400 will ovulate during a lifetime.\n• Fertility peaks in the mid-20s. A gradual decline begins after age 30.\n• After 35, the decline accelerates. Egg quality and quantity both decrease.\n• By age 40, the chance of natural conception per cycle drops to about 5%.\n• Male fertility also declines with age, though more gradually.\n\nThis doesn't mean pregnancy after 35 is impossible — many women conceive naturally. But understanding timing helps with planning."
+        "content": "A idade é um dos fatores mais significativos que afetam a fertilidade:\n\n• As mulheres nascem com todos os óvulos que terão — aproximadamente 1-2 milhões ao nascer.\n• Na puberdade, restam aproximadamente 300.000-400.000 óvulos. Apenas cerca de 300-400 serão liberados durante a vida.\n• A fertilidade atinge o pico em meados dos 20 anos. Um declínio gradual começa após os 30.\n• Após os 35, o declínio se acelera. Tanto a qualidade quanto a quantidade de óvulos diminuem.\n• Aos 40, a chance de concepção natural por ciclo cai para aproximadamente 5%.\n• A fertilidade masculina também diminui com a idade, embora mais gradualmente.\n\nIsso não significa que a gravidez após os 35 seja impossível — muitas mulheres concebem naturalmente."
       },
       "lifestyleFactors": {
-        "title": "Fatores do estilo de vida que afetam a fertilidade",
-        "content": "Your daily habits significantly impact fertility:\n\n• Weight: Both underweight (BMI < 18.5) and overweight (BMI > 30) can disrupt ovulation. Even a 5–10% weight change can improve cycle regularity.\n\n• Smoking: Reduces egg quality, damages the fallopian tubes, and accelerates egg loss. Secondhand smoke is also harmful.\n\n• Alcohol: Heavy drinking is linked to irregular cycles and reduced fertility. Moderate to no alcohol is safest when trying to conceive.\n\n• Caffeine: More than 200–300mg daily (about 2 cups of coffee) may slightly reduce fertility.\n\n• Exercise: Moderate activity supports fertility. Excessive intense exercise can disrupt ovulation.\n\n• Sleep: Poor sleep disrupts reproductive hormones. Aim for 7–9 hours per night.\n\n• Environmental Toxins: Limit exposure to pesticides, heavy metals, and certain plastics (BPA)."
+        "title": "Fatores de estilo de vida que afetam a fertilidade",
+        "content": "Seus hábitos diários impactam significativamente a fertilidade:\n\n• Peso: Tanto o baixo peso (IMC < 18,5) quanto o sobrepeso (IMC > 30) podem perturbar a ovulação. Mesmo uma mudança de peso de 5-10% pode melhorar a regularidade do ciclo.\n\n• Tabagismo: Reduz a qualidade dos óvulos, danifica as trompas de Falópio e acelera a perda de óvulos.\n\n• Álcool: O consumo excessivo está ligado a ciclos irregulares e fertilidade reduzida.\n\n• Cafeína: Mais de 200-300 mg diários (cerca de 2 xícaras de café) pode reduzir levemente a fertilidade.\n\n• Exercício: Atividade moderada apoia a fertilidade. Exercício intenso excessivo pode perturbar a ovulação.\n\n• Sono: O sono ruim perturba os hormônios reprodutivos. Mire em 7-9 horas por noite.\n\n• Toxinas ambientais: Limite a exposição a pesticidas, metais pesados e certos plásticos (BPA)."
       },
       "commonMyths": {
         "title": "Mitos vs. fatos sobre fertilidade",
-        "content": "Let's separate fact from fiction:\n\nMyth: You can only get pregnant on ovulation day.\nFact: The fertile window spans about 6 days. Sperm can survive up to 5 days.\n\nMyth: Position during intercourse affects conception.\nFact: No scientific evidence supports this. Sperm reach the cervix within seconds.\n\nMyth: Birth control causes infertility.\nFact: Fertility typically returns within 1–3 months after stopping most contraceptives.\n\nMyth: Stress directly causes infertility.\nFact: While severe chronic stress can affect hormones, moderate stress alone rarely prevents conception.\n\nMyth: You need to have intercourse every day.\nFact: Every 1–2 days during the fertile window is sufficient. Daily intercourse doesn't reduce sperm quality.\n\nMyth: Herbal supplements guarantee fertility.\nFact: Some may help, but none are scientifically proven to guarantee conception. Always consult your doctor."
+        "content": "Vamos separar fatos de ficção:\n\nMito: Você só pode engravidar no dia da ovulação.\nFato: A janela fértil abrange cerca de 6 dias. Os espermatozoides podem sobreviver até 5 dias.\n\nMito: A posição durante a relação afeta a concepção.\nFato: Não há evidência científica que apoie isso. Os espermatozoides alcançam o colo do útero em segundos.\n\nMito: Anticoncepcionais causam infertilidade.\nFato: A fertilidade tipicamente retorna em 1-3 meses após parar a maioria dos contraceptivos.\n\nMito: O estresse causa diretamente infertilidade.\nFato: O estresse crônico severo pode afetar os hormônios, mas o estresse moderado raramente impede a concepção.\n\nMito: Você precisa ter relações todos os dias.\nFato: A cada 1-2 dias durante a janela fértil é suficiente."
       },
       "whenToSeekHelp": {
         "title": "Quando consultar um especialista",
@@ -8029,7 +7908,7 @@
       },
       "emotionalWellbeing": {
         "title": "Bem-estar emocional na jornada",
-        "content": "Trying to conceive can be an emotional rollercoaster:\n\n• It's normal to feel hope, excitement, frustration, and sadness — sometimes all in one cycle.\n• About 1 in 6 couples experience difficulty conceiving. You are not alone.\n• Grief after a negative test is valid. Allow yourself to feel without judgment.\n• Communication with your partner is essential. Share your feelings openly.\n• Consider joining a support community — connecting with others on the same journey can be comforting.\n• Set boundaries around pregnancy announcements and baby showers if they feel triggering.\n• Professional counseling can provide coping strategies tailored to your situation.\n• Remember: your worth is not defined by your fertility. Be kind to yourself."
+        "content": "Tentar conceber pode ser uma montanha-russa emocional:\n\n• É normal sentir esperança, empolgação, frustração e tristeza — às vezes tudo em um ciclo.\n• Cerca de 1 em cada 6 casais tem dificuldade para conceber. Você não está sozinha.\n• O luto após um teste negativo é válido. Permita-se sentir sem julgamento.\n• A comunicação com seu parceiro é essencial. Compartilhe seus sentimentos abertamente.\n• Considere participar de um grupo de apoio.\n• Estabeleça limites em relação a anúncios de gravidez se forem dolorosos.\n• O aconselhamento profissional pode fornecer estratégias de enfrentamento adaptadas.\n• Lembre-se: seu valor não é definido pela sua fertilidade. Seja gentil consigo mesma."
       },
       "trackingMethods": {
         "title": "Métodos de rastreamento de fertilidade",
@@ -8041,11 +7920,11 @@
       },
       "implantationWindow": {
         "title": "A janela de implantação",
-        "content": "The implantation window is the brief period when the uterine lining is ready to receive the embryo:\n\n• Typically occurs between days 6–10 after ovulation.\n• During this time, the endometrium secretes special proteins that help the embryo attach.\n• Progesterone plays a central role in preparing the lining.\n• Factors affecting window quality: chronic inflammation, insufficient lining thickness, or immune disorders.\n• Rest and good nutrition during the luteal phase support the implantation process."
+        "content": "A janela de implantação é o breve período em que o revestimento uterino está pronto para receber o embrião:\n\n• Ocorre tipicamente entre os dias 6-10 após a ovulação.\n• Durante esse tempo, o endométrio secreta proteínas especiais que ajudam o embrião a se fixar.\n• A progesterona desempenha um papel central na preparação do revestimento.\n• Fatores que afetam a qualidade: inflamação crônica, espessura insuficiente do revestimento ou distúrbios imunológicos.\n• O descanso e a boa nutrição durante a fase lútea apoiam o processo de implantação."
       },
       "cervicalHealth": {
         "title": "Saúde cervical e fertilidade",
-        "content": "The cervix plays a fundamental role in fertility:\n\n• It produces mucus that changes throughout the cycle to facilitate or block sperm passage.\n• Fertile mucus nourishes sperm and extends their lifespan up to 5 days.\n• Chronic cervical infections may reduce mucus quality.\n• Previous cervical procedures (like cone biopsies) may affect mucus production.\n• Maintaining healthy vaginal pH supports the optimal cervical environment for fertility."
+        "content": "O colo do útero desempenha um papel fundamental na fertilidade:\n\n• Produz muco que muda ao longo do ciclo para facilitar ou bloquear a passagem dos espermatozoides.\n• O muco fértil nutre os espermatozoides e estende sua vida útil por até 5 dias.\n• Infecções cervicais crônicas podem reduzir a qualidade do muco.\n• Procedimentos cervicais anteriores (como biópsias de cone) podem afetar a produção de muco.\n• Manter um pH vaginal saudável apoia o ambiente cervical ideal para a fertilidade."
       },
       "thyroidFertility": {
         "title": "Tireoide e fertilidade",
@@ -8073,11 +7952,11 @@
       },
       "supplementsGuide": {
         "title": "Guia inteligente de suplementos",
-        "content": "Supplements can support your fertility — but not all are equal:\n\n• Folic acid/methylfolate: Essential — start 3 months before trying.\n• CoQ10 (200–600mg): Supports egg energy, especially after 35.\n• Vitamin D (1000–2000 IU): Most women are deficient.\n• Omega-3 DHA (200–300mg): For hormone health and inflammation.\n• Inositol (4g myo + 100mg d-chiro): Especially helpful with PCOS.\n• Iron: Only if tests show deficiency — excess is harmful.\n• Always consult your doctor before starting any new supplement."
+        "content": "Suplementos podem apoiar sua fertilidade — mas nem todos são iguais:\n\n• Ácido fólico/metilfolato: Essencial — comece 3 meses antes de tentar.\n• CoQ10 (200-600 mg): Apoia a energia do óvulo, especialmente após os 35.\n• Vitamina D (1000-2000 UI): A maioria das mulheres é deficiente.\n• Ômega-3 DHA (200-300 mg): Para saúde hormonal e inflamação.\n• Inositol (4 g mio + 100 mg d-quiro): Especialmente útil com SOP.\n• Ferro: Somente se os exames mostrarem deficiência — o excesso é prejudicial.\n• Sempre consulte seu médico antes de iniciar qualquer suplemento novo."
       },
       "environmentalToxins": {
         "title": "Toxinas ambientais e fertilidade",
-        "content": "Daily exposure to environmental toxins can affect your fertility:\n\n• BPA in plastics mimics estrogen and disrupts hormonal balance.\n• Phthalates in cosmetics and fragrances disrupt the endocrine system.\n• Pesticides on fruits and vegetables are linked to lower egg quality.\n• Heavy metals (lead, mercury) affect both eggs and sperm.\n• Practical steps: glass containers instead of plastic, natural cleaning products, wash fruits well.\n• Filtering drinking water reduces pollutant exposure."
+        "content": "A exposição diária a toxinas ambientais pode afetar sua fertilidade:\n\n• O BPA nos plásticos imita o estrogênio e perturba o equilíbrio hormonal.\n• Os ftalatos em cosméticos e fragrâncias perturbam o sistema endócrino.\n• Os pesticidas em frutas e vegetais estão ligados a menor qualidade de óvulos.\n• Metais pesados (chumbo, mercúrio) afetam tanto óvulos quanto espermatozoides.\n• Passos práticos: recipientes de vidro em vez de plástico, produtos de limpeza naturais, lavar bem as frutas.\n• Filtrar a água potável reduz a exposição a poluentes."
       },
       "geneticFactors": {
         "title": "Fatores genéticos e fertilidade",
@@ -8085,7 +7964,7 @@
       },
       "immunologyFertility": {
         "title": "Imunologia e fertilidade",
-        "content": "The immune system plays a delicate role in pregnancy:\n\n• The body must accept the embryo (half its genes from the father) without rejecting it.\n• Uterine NK cells help with implantation — but excessive activity may hinder it.\n• Antiphospholipid antibodies are linked to recurrent miscarriage.\n• Autoimmune diseases (lupus, Hashimoto's) may affect fertility.\n• Chronic pelvic inflammation can damage the tubes.\n• An anti-inflammatory lifestyle (nutrition, sleep, movement) supports balanced immunity."
+        "content": "O sistema imunológico desempenha um papel delicado na gravidez:\n\n• O corpo deve aceitar o embrião (metade de seus genes vêm do pai) sem rejeitá-lo.\n• As células NK uterinas ajudam na implantação — mas atividade excessiva pode dificultá-la.\n• Os anticorpos antifosfolipídeos estão ligados ao aborto recorrente.\n• Doenças autoimunes (lúpus, Hashimoto) podem afetar a fertilidade.\n• A inflamação pélvica crônica pode danificar as trompas.\n• Um estilo de vida anti-inflamatório (nutrição, sono, movimento) apoia um sistema imunológico equilibrado."
       },
       "secondaryInfertility": {
         "title": "Infertilidade secundária",
@@ -8109,7 +7988,7 @@
       },
       "mindBodyConnection": {
         "title": "A conexão mente-corpo",
-        "content": "The relationship between mind and body is deeper than we imagine in fertility:\n\n• Chronic stress activates the HPA axis which suppresses reproductive hormones.\n• Relaxation techniques (meditation, yoga, deep breathing) measurably improve fertility outcomes.\n• Cognitive behavioral therapy (CBT) has shown positive results in reducing fertility anxiety.\n• Positive visualization and affirmations activate neural pathways that support hormonal balance.\n• Support groups reduce feelings of isolation and improve mental health.\n• Art, music, and creative writing are effective therapeutic tools during the fertility journey.\n• Seek professional help if anxiety or sadness begin to dominate your life."
+        "content": "A relação entre mente e corpo é mais profunda do que imaginamos na fertilidade:\n\n• O estresse crônico ativa o eixo HPA que suprime os hormônios reprodutivos.\n• Técnicas de relaxamento (meditação, yoga, respiração profunda) melhoram mensuravelmente os resultados de fertilidade.\n• A terapia cognitivo-comportamental (TCC) mostrou resultados positivos na redução da ansiedade por fertilidade.\n• A visualização positiva e afirmações ativam vias neurais que apoiam o equilíbrio hormonal.\n• Grupos de apoio reduzem o isolamento e melhoram a saúde mental.\n• Arte, música e escrita criativa são ferramentas terapêuticas eficazes durante a jornada de fertilidade.\n• Procure ajuda profissional se a ansiedade ou tristeza começarem a dominar sua vida."
       }
     }
   },
