@@ -128,7 +128,7 @@ const Settings: React.FC = () => {
                       initial={{ opacity: 0, y: 8 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: i * 0.04 }}
-                      onClick={() => setActiveView(item.id)}
+                      onClick={() => item.id === 'language' ? navigate('/language') : setActiveView(item.id)}
                       className="w-full flex items-center gap-3 px-4 py-3.5 hover:bg-muted/40 transition-colors active:scale-[0.99]"
                     >
                       <div className={cn("w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0", item.iconBg)}>
