@@ -769,7 +769,7 @@
       "health": "Salud",
       "home": "Inicio",
       "nutrition": "Nutrición",
-      "videos": "Videos"
+      "videos": "Vídeos"
     },
     "tools": "herramientas",
     "trackingTools": {
@@ -5469,7 +5469,7 @@
     },
     "preconceptionCheckup": {
       "allComplete": "¡Excelente preparación! Discute tus resultados con tu médico.",
-      "disclaimer": "Esta lista es una referencia educativa para organizar conversaciones con tu médico. No reemplaza el consejo médico profesional, diagnóstico o tratamiento. Todos los exámenes deben ser discutidos y ordenados por un profesional de salud calificado.",
+      "disclaimer": "Esta lista es una referencia educativa para ayudarte a organizar tus citas médicas previas al embarazo. No sustituye la consulta médica.",
       "progressLabel": "Exámenes registrados",
       "related": {
         "academy": "Academia de fertilidad",

@@ -250,7 +250,7 @@
     "whereHurts": "Wo tut es weh?"
   },
   "categories": {
-    "ai": "Smart Tools",
+    "ai": "KI-Werkzeuge",
     "all": "Alle",
     "fertility": "Fruchtbarkeitsplanung",
     "labor": "Wehen & Geburt",
@@ -1682,7 +1682,7 @@
   "nav": {
     "aiTools": "KI-Tools",
     "alerts": "Benachrichtigungen",
-    "dashboard": "Dashboard",
+    "dashboard": "Übersicht",
     "home": "Start",
     "more": "Mehr",
     "search": "Suche",
@@ -5469,7 +5469,7 @@
     },
     "preconceptionCheckup": {
       "allComplete": "Hervorragende Vorbereitung! Bespreche deine Ergebnisse mit deinem Arzt.",
-      "disclaimer": "Diese Checkliste ist eine Bildungsreferenz, um Gespräche mit Ihrem Arzt zu organisieren. Sie ersetzt keine professionelle medizinische Beratung, Diagnose oder Behandlung. Alle Untersuchungen sollten mit einem qualifizierten Gesundheitsfachmann besprochen und angeordnet werden.",
+      "disclaimer": "Diese Checkliste ist eine Bildungsreferenz zur Organisation Ihrer vorgeburtlichen Arzttermine. Sie ersetzt keine ärztliche Beratung.",
       "progressLabel": "Untersuchungen erfasst",
       "related": {
         "academy": "Fruchtbarkeitsakademie",

@@ -5469,7 +5469,7 @@
     },
     "preconceptionCheckup": {
       "allComplete": "Harika hazırlık! Sonuçlarınızı doktorunuzla tartışın.",
-      "disclaimer": "Bu liste, doktorunuzla görüşmelerinizi organize etmenize yardımcı olacak eğitici bir referanstır. Profesyonel tıbbi tavsiye, teşhis veya tedavinin yerini almaz. Tüm taramalar ve testler nitelikli bir sağlık profesyoneli tarafından tartışılmalı ve istenmelidir.",
+      "disclaimer": "Bu kontrol listesi, hamilelik öncesi doktor randevularınızı organize etmenize yardımcı olacak eğitici bir referanstır. Tıbbi danışmanlığın yerini tutmaz.",
       "progressLabel": "Takip edilen taramalar",
       "related": {
         "academy": "Doğurganlık Akademisi",
