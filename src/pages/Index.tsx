@@ -271,14 +271,14 @@ const FooterCard = memo(function FooterCard() {
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-      className="mt-4 px-1"
+      className="mt-3"
     >
       <button
         onClick={() => navigate('/pricing-demo')}
-        className="w-full text-start rounded-2xl overflow-hidden bg-card border border-border/40 shadow-sm hover:shadow-md hover:border-primary/20 transition-all duration-300 group"
+        className="w-full text-start rounded-xl overflow-hidden bg-gradient-to-br from-primary/[0.06] via-card to-accent/[0.04] border border-primary/15 shadow-sm hover:shadow-md hover:border-primary/25 transition-all duration-300 group"
       >
         {/* Accent bar */}
-        <div className={`h-[2.5px] relative overflow-hidden ${showExhausted ? 'bg-gradient-to-r from-primary/50 via-primary to-primary/50' : 'bg-gradient-to-r from-primary/30 via-primary to-primary/30'}`}>
+        <div className={`h-[2px] relative overflow-hidden ${showExhausted ? 'bg-gradient-to-r from-primary/50 via-primary to-primary/50' : 'bg-gradient-to-r from-primary/20 via-primary/60 to-primary/20'}`}>
           <motion.div
             className="absolute h-full w-1/3 bg-gradient-to-r from-transparent via-white/40 to-transparent"
             animate={{ x: ['-100%', '400%'] }}
@@ -286,53 +286,53 @@ const FooterCard = memo(function FooterCard() {
           />
         </div>
 
-        <div className="px-4 py-3.5 flex items-center gap-3">
+        <div className="px-3 py-3 flex items-center gap-2.5">
           {/* Icon */}
           <div className="relative flex-shrink-0">
             {showExhausted && (
               <motion.div
-                className="absolute inset-0 rounded-xl bg-primary/20 blur-md"
+                className="absolute inset-0 rounded-lg bg-primary/20 blur-md"
                 animate={{ scale: [1, 1.4, 1], opacity: [0.3, 0.6, 0.3] }}
                 transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
               />
             )}
-            <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-primary/15 to-primary/5 flex items-center justify-center border border-primary/20">
-              <Crown className="w-5 h-5 text-primary" strokeWidth={1.6} />
+            <div className="relative w-9 h-9 rounded-lg bg-gradient-to-br from-primary/15 to-primary/5 flex items-center justify-center border border-primary/20">
+              <Crown className="w-4 h-4 text-primary" strokeWidth={1.8} />
             </div>
           </div>
 
           {/* Text */}
           <div className="flex-1 min-w-0">
-            <h4 className="text-[13px] font-bold text-foreground leading-none" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+            <h4 className="text-[12px] font-bold text-foreground leading-tight" style={{ fontFamily: "'Tajawal', sans-serif" }}>
               {showExhausted ? l.exhaustedTitle : l.title}
             </h4>
-            <p className="text-[10.5px] text-muted-foreground mt-0.5 leading-snug">
+            <p className="text-[10px] text-muted-foreground mt-0.5 leading-snug">
               {showExhausted ? l.exhaustedDesc : l.desc}
             </p>
           </div>
 
           {/* CTA chip */}
           <div className="flex-shrink-0">
-            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-primary/10 text-primary text-[10px] font-bold group-hover:bg-primary/15 transition-colors">
+            <span className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-md bg-primary/10 text-primary text-[9px] font-bold group-hover:bg-primary/15 transition-colors">
               {l.cta}
-              {isAr ? <ChevronLeft className="w-3 h-3" /> : <ChevronRight className="w-3 h-3" />}
+              {isAr ? <ChevronLeft className="w-2.5 h-2.5" /> : <ChevronRight className="w-2.5 h-2.5" />}
             </span>
           </div>
         </div>
 
         {/* Usage bar — only show for free users */}
         {isFree && (
-          <div className="px-4 pb-3.5">
-            <div className="flex items-center justify-between mb-1.5">
-              <span className="text-[10px] text-muted-foreground flex items-center gap-1">
-                <Brain className="w-3 h-3 text-primary/40" strokeWidth={1.8} />
+          <div className="px-3 pb-2.5">
+            <div className="flex items-center justify-between mb-1">
+              <span className="text-[9px] text-muted-foreground flex items-center gap-1">
+                <Brain className="w-2.5 h-2.5 text-primary/40" strokeWidth={1.8} />
                 {isAr ? 'التحليلات المتبقية' : 'Remaining analyses'}
               </span>
-              <span className="text-[12px] font-bold text-primary tabular-nums" style={{ fontFamily: "'Cairo', sans-serif" }}>
-                {remaining}<span className="text-[10px] opacity-40 font-normal">/{limit}</span>
+              <span className="text-[11px] font-bold text-primary tabular-nums" style={{ fontFamily: "'Cairo', sans-serif" }}>
+                {remaining}<span className="text-[9px] opacity-40 font-normal">/{limit}</span>
               </span>
             </div>
-            <div className="h-[5px] rounded-full bg-muted/50 overflow-hidden">
+            <div className="h-[4px] rounded-full bg-muted/50 overflow-hidden">
               <motion.div
                 className={`h-full rounded-full ${isLimitReached ? 'bg-destructive' : 'bg-gradient-to-r from-primary to-primary/60'}`}
                 initial={{ width: 0 }}
