@@ -61,7 +61,7 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
             className
           )}
         >
-          <span className="text-[18px] leading-none flex items-center justify-center w-full h-full">{currentLang.flag}</span>
+          <span className="text-[15px] leading-none flex items-center justify-center w-full h-full mt-[1px]">{currentLang.flag}</span>
           <span className="absolute -top-[3px] -end-[3px] w-[9px] h-[9px] rounded-full bg-emerald-500 ring-[2px] ring-background" />
         </MotionButton>
       </PopoverTrigger>
