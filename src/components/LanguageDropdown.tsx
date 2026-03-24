@@ -52,8 +52,8 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           className={cn(
-            "inline-flex items-center justify-center",
-            "h-9 w-9 rounded-lg",
+            "relative inline-flex items-center justify-center",
+            "h-10 w-10 rounded-xl",
             "bg-muted/60 hover:bg-muted",
             "border border-border/50 hover:border-border",
             "transition-all duration-200",
@@ -61,7 +61,8 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
             className
           )}
         >
-          <span className="text-sm leading-none">{currentLang.flag}</span>
+          <span className="text-[18px] leading-none flex items-center justify-center w-full h-full">{currentLang.flag}</span>
+          <span className="absolute -top-[3px] -end-[3px] w-[9px] h-[9px] rounded-full bg-emerald-500 ring-[2px] ring-background" />
         </MotionButton>
       </PopoverTrigger>
       
