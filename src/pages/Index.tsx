@@ -92,27 +92,27 @@ const ToolRow = memo(function ToolRow({ tool, isRTL, isLocked = false }: { tool:
 
   return (
     <Link to={isLocked ? "#" : tool.href} onClick={handleClick} className="block">
-      <div className={`group flex items-center gap-3 p-3 rounded-2xl bg-card/60 backdrop-blur-sm shadow-[0_1px_3px_0_hsl(0,0%,0%,0.04)] ${style.toolHover} ${style.hoverShadow} ${style.hoverBorder} border border-border/10 transition-all duration-250 hover:-translate-y-[1px] ${isLocked ? "opacity-50" : ""}`}>
-        <div className={`flex-shrink-0 w-10 h-10 rounded-xl ${style.iconBg} border border-border/15 flex items-center justify-center shadow-sm group-hover:shadow-md transition-all duration-250 group-hover:scale-105 ${isLocked ? "grayscale-[30%]" : ""}`}>
+      <div className={`group flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-card/60 backdrop-blur-sm shadow-[0_1px_3px_0_hsl(0,0%,0%,0.04)] ${style.toolHover} ${style.hoverShadow} ${style.hoverBorder} border border-border/10 transition-all duration-250 hover:-translate-y-[1px] ${isLocked ? "opacity-50" : ""}`}>
+        <div className={`flex-shrink-0 w-9 h-9 rounded-lg ${style.iconBg} border border-border/15 flex items-center justify-center shadow-sm group-hover:shadow-md transition-all duration-250 group-hover:scale-105 ${isLocked ? "grayscale-[30%]" : ""}`}>
           {hasPng ? (
             <img
               src={tool.pngIcon}
               alt=""
-              className="w-6 h-6 object-contain opacity-80"
+              className="w-5 h-5 object-contain opacity-80"
               loading="lazy"
             />
           ) : (
-            <ToolIcon className={`w-5 h-5 ${style.iconColor} group-hover:opacity-100 transition-opacity duration-250`} strokeWidth={1.8} />
+            <ToolIcon className={`w-[18px] h-[18px] ${style.iconColor} group-hover:opacity-100 transition-opacity duration-250`} strokeWidth={1.8} />
           )}
         </div>
         <div className="flex-1 min-w-0">
           <h3 className="text-[12px] font-semibold text-foreground leading-snug line-clamp-2" style={{ fontFamily: "'Tajawal', sans-serif", overflowWrap: 'anywhere' }}>{t(tool.titleKey)}</h3>
-          <p className="text-[10.5px] text-muted-foreground mt-0.5 leading-relaxed line-clamp-2" style={{ overflowWrap: 'anywhere' }}>{t(tool.descriptionKey)}</p>
+          <p className="text-[10px] text-muted-foreground mt-0.5 leading-snug line-clamp-2" style={{ overflowWrap: 'anywhere' }}>{t(tool.descriptionKey)}</p>
         </div>
         {isLocked ? (
-          <Lock className="flex-shrink-0 w-4 h-4 text-muted-foreground/40" />
+          <Lock className="flex-shrink-0 w-3.5 h-3.5 text-muted-foreground/40" />
         ) : (
-          <ChevronIcon className="flex-shrink-0 w-4 h-4 text-muted-foreground/20 group-hover:text-muted-foreground/60 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5 transition-all duration-250" />
+          <ChevronIcon className="flex-shrink-0 w-3.5 h-3.5 text-muted-foreground/20 group-hover:text-muted-foreground/60 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5 transition-all duration-250" />
         )}
       </div>
     </Link>
@@ -175,7 +175,7 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
       {/* Gradient Header — clickable to toggle */}
       <button
         onClick={toggle}
-        className={`${config.headerGradient} px-4 py-3.5 relative overflow-hidden w-full text-start min-h-[68px] flex items-center`}
+        className={`${config.headerGradient} px-3.5 py-3 relative overflow-hidden w-full text-start min-h-[60px] flex items-center`}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent" />
         <div className="absolute -top-6 -end-6 w-24 h-24 rounded-full bg-white/10 blur-2xl" />
@@ -183,14 +183,14 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
         <div className="relative flex items-center gap-2.5 w-full">
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2">
-              <h2 className={`text-xl sm:text-2xl font-extrabold ${config.headerText} tracking-tight leading-snug break-words ar-heading`} style={{ overflowWrap: 'anywhere' }}>
+              <h2 className={`text-lg sm:text-xl font-extrabold ${config.headerText} tracking-tight leading-snug break-words ar-heading`} style={{ overflowWrap: 'anywhere' }}>
                 {t(`journeys.${config.key}`)}
               </h2>
-              <span className={`text-[10px] font-bold ${config.headerText} bg-white/20 backdrop-blur-sm px-2 py-0.5 rounded-full`}>
+              <span className={`text-[9px] font-bold ${config.headerText} bg-white/20 backdrop-blur-sm px-1.5 py-0.5 rounded-full`}>
                 {totalTools}
               </span>
             </div>
-            <p className={`text-[12px] ${config.headerText} opacity-75 mt-0.5 leading-snug break-words`}>
+            <p className={`text-[11px] ${config.headerText} opacity-75 mt-0.5 leading-snug break-words`}>
               {t(`journeys.${config.key}Desc`)}
             </p>
           </div>
@@ -218,7 +218,7 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
             }}
             className="overflow-hidden"
           >
-            <div className="px-3 pb-4 pt-2 space-y-1.5">
+            <div className="px-2.5 pb-3 pt-1.5 space-y-1.5">
               {toolsByCategory.map(({ catKey, tools }) => (
                 <div key={catKey}>
                   <div className="space-y-2">
@@ -359,8 +359,8 @@ const Index = () => {
       <SEOHead />
       <div className="pointer-events-none fixed inset-x-0 bottom-0 h-[30vh] bg-gradient-to-t from-primary/10 via-primary/5 to-transparent z-30" />
 
-      <section className="pt-5 pb-0 relative z-10">
-        <div className="px-3 sm:px-4 md:px-6 lg:px-8 max-w-4xl mx-auto space-y-4 pb-6">
+      <section className="pt-4 pb-0 relative z-10">
+        <div className="px-2.5 sm:px-4 md:px-6 lg:px-8 max-w-4xl mx-auto space-y-3 pb-6">
 
           {journeyConfigs.map((config, index) => (
             <JourneyCard key={config.key} config={config} index={index} isSubscriptionActive={subLoading || isUnlocked} tier={subLoading ? undefined : tier} />
