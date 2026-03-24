@@ -40,17 +40,17 @@ export function CycleInsightsCards({ stats }: Props) {
   return (
     <div className="space-y-3">
       {/* Key dates */}
-      <div className="grid grid-cols-3 gap-2">
+      <div className="grid grid-cols-3 gap-1.5">
         {cards.map((card, i) => (
           <motion.div
             key={i}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 * i }}
-            className={cn("rounded-2xl border p-3 text-center", card.bg)}
+            className={cn("rounded-xl border p-2.5 text-center min-w-0", card.bg)}
           >
-            <p className="text-[10px] text-muted-foreground font-medium mb-1">{card.label}</p>
-            <p className={cn("text-xs font-bold", card.color)}>{card.value}</p>
+            <p className="text-[9px] text-muted-foreground font-medium mb-0.5 whitespace-normal break-words leading-tight" style={{ overflowWrap: 'anywhere' }}>{card.label}</p>
+            <p className={cn("text-[11px] font-bold whitespace-normal break-words", card.color)} style={{ overflowWrap: 'anywhere' }}>{card.value}</p>
           </motion.div>
         ))}
       </div>
@@ -60,23 +60,23 @@ export function CycleInsightsCards({ stats }: Props) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.4 }}
-        className="flex items-center justify-between rounded-2xl bg-muted/30 border border-border/40 px-4 py-3"
+        className="flex items-center justify-between rounded-xl bg-muted/30 border border-border/40 px-3 py-2.5"
       >
-        <div className="text-center flex-1">
+        <div className="text-center flex-1 min-w-0">
           <p className="text-base font-bold text-foreground">{stats.avgCycle}</p>
-          <p className="text-[10px] text-muted-foreground font-medium">{t('toolsInternal.cycleTracker.avgCycleLength')}</p>
+          <p className="text-[9px] text-muted-foreground font-medium whitespace-normal break-words leading-tight" style={{ overflowWrap: 'anywhere' }}>{t('toolsInternal.cycleTracker.avgCycleLength')}</p>
         </div>
-        <div className="w-px h-8 bg-border/40" />
-        <div className="text-center flex-1">
+        <div className="w-px h-8 bg-border/40 shrink-0" />
+        <div className="text-center flex-1 min-w-0">
           <p className="text-base font-bold text-foreground">{stats.avgPeriod}</p>
-          <p className="text-[10px] text-muted-foreground font-medium">{t('toolsInternal.cycleTracker.avgPeriodLength')}</p>
+          <p className="text-[9px] text-muted-foreground font-medium whitespace-normal break-words leading-tight" style={{ overflowWrap: 'anywhere' }}>{t('toolsInternal.cycleTracker.avgPeriodLength')}</p>
         </div>
-        <div className="w-px h-8 bg-border/40" />
-        <div className="text-center flex-1">
+        <div className="w-px h-8 bg-border/40 shrink-0" />
+        <div className="text-center flex-1 min-w-0">
           <p className={cn("text-xs font-bold", stats.isRegular ? "text-emerald-600 dark:text-emerald-400" : "text-amber-600 dark:text-amber-400")}>
             {stats.isRegular ? t('toolsInternal.cycleTracker.regular') : t('toolsInternal.cycleTracker.irregular')}
           </p>
-          <p className="text-[10px] text-muted-foreground font-medium">{t('toolsInternal.cycleTracker.regularity')}</p>
+          <p className="text-[9px] text-muted-foreground font-medium whitespace-normal break-words leading-tight" style={{ overflowWrap: 'anywhere' }}>{t('toolsInternal.cycleTracker.regularity')}</p>
         </div>
       </motion.div>
 

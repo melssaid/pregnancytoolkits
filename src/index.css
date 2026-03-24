@@ -336,6 +336,17 @@ html[lang="ar"] .ar-heading {
     word-break: break-word;
   }
 
+  /* Global stat card text safety — prevents clipping in small grid cells */
+  .grid > div {
+    min-width: 0;
+  }
+
+  .grid > div p,
+  .grid > div span {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
   /* ═══════════════════════════════════════════════════════════════
      TRUNCATE SAFETY — prevent mid-word clipping in Arabic/German
      Converts single-line truncation into soft line clamping so

@@ -19,12 +19,12 @@ export function HealthStatsGrid({ week, bmi, calories, bloodPressure }: HealthSt
   ];
 
   return (
-    <div className="grid grid-cols-4 gap-2">
+    <div className="grid grid-cols-4 gap-1.5">
       {stats.map((stat, i) => (
-        <div key={i} className="text-center p-2 rounded-xl bg-muted/40 border border-border/30">
-          <stat.icon className={`w-4 h-4 mx-auto mb-0.5 ${stat.color}`} />
-          <p className="text-sm font-bold">{stat.value}</p>
-          <p className="text-[9px] text-muted-foreground">{stat.label}</p>
+        <div key={i} className="text-center p-2 rounded-xl bg-muted/40 border border-border/30 min-w-0">
+          <stat.icon className={`w-3.5 h-3.5 mx-auto mb-0.5 ${stat.color}`} />
+          <p className="text-sm font-bold tabular-nums">{stat.value}</p>
+          <p className="text-[8px] text-muted-foreground leading-tight whitespace-normal break-words" style={{ overflowWrap: 'anywhere' }}>{stat.label}</p>
         </div>
       ))}
     </div>
