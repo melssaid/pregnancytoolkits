@@ -85,6 +85,7 @@ const AIUsageDashboard = lazy(() => import("@/pages/AIUsageDashboard"));
 const PricingDemo = lazy(() => import("@/pages/PricingDemo"));
 const IconStylePreview = lazy(() => import("@/pages/IconStylePreview"));
 const LanguageSelection = lazy(() => import("@/pages/LanguageSelection"));
+const LanguageStylePreview = lazy(() => import("@/pages/LanguageStylePreview"));
 
 export function AnimatedRoutes() {
   return (
@@ -97,6 +98,7 @@ export function AnimatedRoutes() {
         <Route path="/daily-insights" element={<PageTransition><DailyInsights /></PageTransition>} />
         <Route path="/settings" element={<PageTransition><Settings /></PageTransition>} />
         <Route path="/language" element={<PageTransition><LanguageSelection /></PageTransition>} />
+        <Route path="/language-styles" element={<PageTransition><LanguageStylePreview /></PageTransition>} />
         <Route path="/privacy" element={<PageTransition><PrivacyPolicy /></PageTransition>} />
         <Route path="/terms" element={<PageTransition><TermsOfService /></PageTransition>} />
         <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
