@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { SEOHead } from '@/components/SEOHead';
+import { useNavigate } from 'react-router-dom';
 import { 
   Globe, User, Download, Trash2, Heart, 
   ChevronRight, ChevronLeft, Lock, RotateCcw
@@ -27,6 +28,7 @@ const Settings: React.FC = () => {
   const isRTL = i18n.language === 'ar';
   const [activeView, setActiveView] = useState<SettingsView>('main');
   const { used, limit, remaining, resetUsage } = useAIUsage();
+  const navigate = useNavigate();
   const ChevronIcon = isRTL ? ChevronLeft : ChevronRight;
 
   const settingsItems: {
