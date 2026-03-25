@@ -101,7 +101,7 @@ const MiniUsageBar: React.FC<{ toolType?: AIToolType; section?: SmartSection }> 
 };
 
 /** Upgrade CTA shown when quota is exhausted — replaces dead buttons */
-const QuotaExhaustedCTA: React.FC<{ icon?: React.ReactNode }> = ({ icon }) => {
+const QuotaExhaustedCTA: React.FC<{ icon?: React.ReactNode; toolType?: AIToolType; section?: SmartSection }> = ({ icon, toolType, section }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { limit } = useAIUsage();
