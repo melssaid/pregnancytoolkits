@@ -10,7 +10,7 @@ import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { AIErrorBanner } from '@/components/ai/AIErrorBanner';
 import { useNavigate } from 'react-router-dom';
 import { PrintableReport } from '@/components/PrintableReport';
-import type { SmartSection, AIToolType } from '@/services/smartEngine';
+
 
 interface AIInsightCardProps {
   title?: string;
