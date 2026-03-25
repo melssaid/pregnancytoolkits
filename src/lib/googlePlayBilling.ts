@@ -158,19 +158,18 @@ let listenerActive = false;
  * Call once on app mount. Returns a cleanup function.
  */
 export function listenForPurchaseSuccess(
-  onSuccess?: () => void,
+  onSuccess?: (productId: string) => void,
   onError?: (msg: string) => void,
 ): () => void {
   if (listenerActive) return () => {};
   listenerActive = true;
 
   const handler = async (event: MessageEvent) => {
-    // Validate message structure
     let data: any;
     try {
       data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
     } catch {
-      return; // Not JSON — ignore
+      return;
     }
 
     if (data?.type !== 'PURCHASE_SUCCESS') return;
@@ -181,7 +180,7 @@ export function listenForPurchaseSuccess(
 
     const success = await handlePurchaseSuccess(data as PurchaseSuccessPayload);
     if (success) {
-      onSuccess?.();
+      onSuccess?.(data.productId);
     } else {
       onError?.('Failed to activate subscription');
     }
@@ -189,10 +188,9 @@ export function listenForPurchaseSuccess(
 
   window.addEventListener('message', handler);
 
-  // Also expose a global function for Android JavascriptInterface
   (window as any).onPurchaseSuccess = (token: string, productId: string, orderId?: string) => {
     handlePurchaseSuccess({ type: 'PURCHASE_SUCCESS', purchaseToken: token, productId, orderId })
-      .then(ok => ok ? onSuccess?.() : onError?.('Activation failed'));
+      .then(ok => ok ? onSuccess?.(productId) : onError?.('Activation failed'));
   };
 
   return () => {
