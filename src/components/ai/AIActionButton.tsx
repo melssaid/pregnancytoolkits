@@ -47,6 +47,8 @@ export const AIActionButton: React.FC<AIActionButtonProps> = ({
   className = '',
   variant = 'default',
   showUsage = true,
+  toolType,
+  section,
 }) => {
   const Icon = CustomIcon || Brain;
   const navigate = useNavigate();
@@ -57,6 +59,7 @@ export const AIActionButton: React.FC<AIActionButtonProps> = ({
   const labels = usageLabels[lang] || usageLabels.en;
   const isFree = tier === 'free';
   const pct = limit > 0 ? Math.round((used / limit) * 100) : 0;
+  const weight = resolveWeight(toolType, section);
 
   // Color based on remaining percentage
   const getBarColor = () => {
