@@ -139,7 +139,7 @@ const QuotaExhaustedCTA: React.FC<{ icon?: React.ReactNode; toolType?: AIToolTyp
           </div>
           <span className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" aria-hidden />
         </motion.button>
-        <MiniUsageBar />
+        <MiniUsageBar toolType={toolType} section={section} />
       </CardContent>
     </Card>
   );
