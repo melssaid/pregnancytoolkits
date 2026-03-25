@@ -1,5 +1,6 @@
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
+import { listenForPurchaseSuccess } from "@/lib/googlePlayBilling";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter } from "react-router-dom";
@@ -39,6 +40,22 @@ const App = () => {
   useEffect(() => {
     initializeAuth();
     prefetchCriticalRoutes();
+  }, []);
+
+  // Listen for Google Play purchase success from native wrapper
+  useEffect(() => {
+    const cleanup = listenForPurchaseSuccess(
+      () => {
+        toast.success("🎉 Premium activated!");
+        // Refresh subscription status across the app
+        queryClient.invalidateQueries({ queryKey: ['subscription'] });
+      },
+      (msg) => {
+        console.error('[Billing]', msg);
+        toast.error("Subscription activation failed. Please try again.");
+      },
+    );
+    return cleanup;
   }, []);
 
   // Handle dynamic import failures (e.g., after app updates)
