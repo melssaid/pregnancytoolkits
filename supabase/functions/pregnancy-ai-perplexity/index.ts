@@ -897,7 +897,7 @@ Deno.serve(async (req) => {
         if (response.ok) {
           // Log successful AI usage (fire-and-forget)
           const elapsed = Date.now() - requestStartTime;
-          logAIUsage(type, lang, rateLimitId, userId, tuning.max_tokens, true, elapsed).catch(() => {});
+          logAIUsage(type, lang, ipClientId, userId, tuning.max_tokens, true, elapsed).catch(() => {});
 
           return new Response(response.body, {
             headers: { ...corsHeaders, ...usageHeaders, "Content-Type": "text/event-stream" },
