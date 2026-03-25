@@ -455,7 +455,7 @@ Deno.serve(async (req) => {
     // Log usage (fire-and-forget)
     const elapsed = Date.now() - requestStartTime;
     const aiType = mode === "plan" ? "pregnancy-plan-enhanced" : "health-report-enhanced";
-    logAIUsage(aiType, lang, rateLimitId, userId, 2000, true, elapsed).catch(() => {});
+    logAIUsage(aiType, lang, ipClientId, userId, 2000, true, elapsed).catch(() => {});
 
     const dailyRemaining = Math.max(0, DAILY_LIMIT - dailyUsed - 1);
 
