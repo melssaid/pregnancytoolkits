@@ -167,19 +167,35 @@ export const AIActionButton: React.FC<AIActionButtonProps> = ({
 
       {/* Usage indicator — minimal single line */}
       {showUsage && (
-        <div className="flex items-center gap-2 px-1">
-          <Zap className="w-2.5 h-2.5 shrink-0 text-primary" />
-          <div className="flex-1 h-1 rounded-full bg-muted/40 overflow-hidden">
-            <motion.div
-              className={`h-full rounded-full ${getBarColor()}`}
-              initial={{ width: 0 }}
-              animate={{ width: `${Math.min(pct, 100)}%` }}
-              transition={{ duration: 0.6, ease: 'easeOut' }}
-            />
+        <div className="space-y-1">
+          <div className="flex items-center gap-2 px-1">
+            <Zap className="w-2.5 h-2.5 shrink-0 text-primary" />
+            <div className="flex-1 h-1 rounded-full bg-muted/40 overflow-hidden">
+              <motion.div
+                className={`h-full rounded-full ${getBarColor()}`}
+                initial={{ width: 0 }}
+                animate={{ width: `${Math.min(pct, 100)}%` }}
+                transition={{ duration: 0.6, ease: 'easeOut' }}
+              />
+            </div>
+            <span className="text-[9px] text-muted-foreground font-medium tabular-nums shrink-0">
+              {remaining} <span className="opacity-60">/ {limit}</span>
+            </span>
           </div>
-          <span className="text-[9px] text-muted-foreground font-medium tabular-nums shrink-0">
-            {remaining} <span className="opacity-60">/ {limit}</span>
-          </span>
+
+          {/* Cost hint for free users */}
+          {isFree && (
+            <p className="text-[9px] text-muted-foreground/70 text-center leading-tight px-1">
+              {weight === 2 ? labels.costHint2 : labels.costHint1}
+              {' · '}
+              <span
+                className="text-primary/80 cursor-pointer hover:underline"
+                onClick={(e) => { e.stopPropagation(); navigate('/pricing-demo'); }}
+              >
+                {labels.upgradeHint}
+              </span>
+            </p>
+          )}
         </div>
       )}
     </div>
