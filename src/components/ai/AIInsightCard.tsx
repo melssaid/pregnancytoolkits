@@ -204,7 +204,7 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
 
   // If quota exhausted and no prior result, show upgrade CTA
   if (isLimitReached && !hasGenerated) {
-    return <QuotaExhaustedCTA icon={icon} />;
+    return <QuotaExhaustedCTA icon={icon} toolType={resolvedToolType} section={resolvedSection} />;
   }
 
   const generateInsight = async () => {
