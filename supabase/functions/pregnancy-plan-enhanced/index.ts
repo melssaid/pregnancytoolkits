@@ -317,7 +317,8 @@ Deno.serve(async (req) => {
       return jsonError("Authentication required", 401);
     }
 
-    let rateLimitId = getClientId(req);
+    const ipClientId = getClientId(req);
+    let rateLimitId = ipClientId;
     let userId: string | null = null;
 
     // Try to verify JWT for user-level identification
@@ -372,9 +373,9 @@ Deno.serve(async (req) => {
       return jsonError("Rate limit exceeded. Please wait a minute before trying again.", 429);
     }
 
-    // ── Server-side daily limit check ──
+    // ── Server-side daily limit check — use IP as primary ──
     const adminBypass = req.headers.get("X-Admin-Bypass") === "true";
-    const dailyUsed = await getDailyUsageCount(rateLimitId, userId);
+    const dailyUsed = await getDailyUsageCount(ipClientId, userId);
     if (dailyUsed >= DAILY_LIMIT && !adminBypass) {
       return new Response(
         JSON.stringify({ error: "daily_limit_reached", used: dailyUsed, limit: DAILY_LIMIT, remaining: 0 }),
