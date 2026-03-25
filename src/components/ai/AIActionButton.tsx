@@ -61,13 +61,13 @@ export const AIActionButton: React.FC<AIActionButtonProps> = ({
   const pct = limit > 0 ? Math.round((used / limit) * 100) : 0;
   const weight = resolveWeight(toolType, section);
 
-  // Color based on remaining percentage
-  const getBarColor = () => {
-    if (isLimitReached) return 'bg-destructive';
+  // Gradient bar style based on remaining percentage
+  const getBarGradient = () => {
+    if (isLimitReached) return 'linear-gradient(90deg, hsl(0 72% 51%), hsl(0 72% 40%))';
     const remainPct = (remaining / limit) * 100;
-    if (remainPct <= 15) return 'bg-destructive';
-    if (remainPct <= 40) return 'bg-amber-500';
-    return 'bg-emerald-500';
+    if (remainPct <= 15) return 'linear-gradient(90deg, hsl(0 72% 51%), hsl(25 95% 53%))';
+    if (remainPct <= 40) return 'linear-gradient(90deg, hsl(38 92% 50%), hsl(25 95% 53%))';
+    return 'linear-gradient(90deg, hsl(var(--primary)), hsl(330 65% 50%))';
   };
 
   // When exhausted, show upgrade button instead of dead state
