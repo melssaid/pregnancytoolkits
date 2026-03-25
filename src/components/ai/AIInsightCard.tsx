@@ -10,7 +10,7 @@ import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { AIErrorBanner } from '@/components/ai/AIErrorBanner';
 import { useNavigate } from 'react-router-dom';
 import { PrintableReport } from '@/components/PrintableReport';
-import type { SmartSection, AIToolType } from '@/services/smartEngine';
+
 
 interface AIInsightCardProps {
   title?: string;
@@ -31,32 +31,77 @@ interface AIInsightCardProps {
   printTitle?: string;
 }
 
-/** Mini usage bar shown inline with AI buttons in insight cards */
-const MiniUsageBar: React.FC = () => {
+import { resolveWeight, type AIToolType, type SmartSection } from '@/services/smartEngine/types';
+import { useTranslation as useTranslationImport } from 'react-i18next';
+
+const miniUsageLabels: Record<string, { costHint1: string; costHint2: string; upgradeHint: string }> = {
+  en: { costHint1: 'Uses 1 credit', costHint2: 'Uses 2 credits', upgradeHint: 'Get 40/month with Premium →' },
+  ar: { costHint1: 'تستهلك نقطة واحدة', costHint2: 'تستهلك نقطتين', upgradeHint: 'ترقّي للحصول على 40 تحليل شهرياً ←' },
+  de: { costHint1: '1 Credit verbraucht', costHint2: '2 Credits verbraucht', upgradeHint: '40/Monat mit Premium erhalten →' },
+  fr: { costHint1: 'Utilise 1 crédit', costHint2: 'Utilise 2 crédits', upgradeHint: 'Obtenez 40/mois avec Premium →' },
+  es: { costHint1: 'Usa 1 crédito', costHint2: 'Usa 2 créditos', upgradeHint: 'Obtén 40/mes con Premium →' },
+  pt: { costHint1: 'Usa 1 crédito', costHint2: 'Usa 2 créditos', upgradeHint: 'Obtenha 40/mês com Premium →' },
+  tr: { costHint1: '1 kredi kullanır', costHint2: '2 kredi kullanır', upgradeHint: 'Premium ile 40/ay alın →' },
+};
+
+/** Professional usage bar matching AIActionButton design */
+const MiniUsageBar: React.FC<{ toolType?: AIToolType; section?: SmartSection }> = ({ toolType, section }) => {
   const { remaining, used, limit, isLimitReached, tier } = useAIUsage();
   const navigate = useNavigate();
+  const { i18n } = useTranslationImport();
+  const lang = i18n.language?.split('-')[0] || 'en';
+  const labels = miniUsageLabels[lang] || miniUsageLabels.en;
   const isFree = tier === 'free';
   const pct = limit > 0 ? Math.round((used / limit) * 100) : 0;
-  const barColor = isLimitReached ? 'bg-destructive' : (remaining / limit) * 100 <= 15 ? 'bg-destructive' : (remaining / limit) * 100 <= 40 ? 'bg-amber-500' : 'bg-emerald-500';
+  const weight = resolveWeight(toolType, section);
+
+  const getBarGradient = () => {
+    if (isLimitReached) return 'linear-gradient(90deg, hsl(0 72% 51%), hsl(0 72% 40%))';
+    const remainPct = (remaining / limit) * 100;
+    if (remainPct <= 15) return 'linear-gradient(90deg, hsl(0 72% 51%), hsl(25 95% 53%))';
+    if (remainPct <= 40) return 'linear-gradient(90deg, hsl(38 92% 50%), hsl(25 95% 53%))';
+    return 'linear-gradient(90deg, hsl(var(--primary)), hsl(330 65% 50%))';
+  };
 
   return (
-    <div className="flex items-center gap-2 px-1 mt-2">
-      <Zap className={`w-2.5 h-2.5 shrink-0 ${isLimitReached ? 'text-destructive' : 'text-primary'}`} />
-      <div className="flex-1 h-1 rounded-full bg-muted/40 overflow-hidden">
-        <div className={`h-full rounded-full ${barColor} transition-all`} style={{ width: `${Math.min(pct, 100)}%` }} />
+    <div className="space-y-1.5 mt-2">
+      <div className="flex items-center gap-2.5 px-1">
+        <Zap className={`w-3 h-3 shrink-0 ${isLimitReached ? 'text-destructive' : 'text-primary'}`} />
+        <div className="flex-1 h-2 rounded-full bg-muted/30 overflow-hidden" style={{ boxShadow: 'inset 0 1px 2px hsl(0 0% 0% / 0.08)' }}>
+          <motion.div
+            className="h-full rounded-full"
+            style={{ background: getBarGradient() }}
+            initial={{ width: 0 }}
+            animate={{ width: `${Math.min(pct, 100)}%` }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+          />
+        </div>
+        <span className="text-[10px] text-muted-foreground font-semibold tabular-nums shrink-0">
+          {remaining} <span className="opacity-50">/ {limit}</span>
+        </span>
       </div>
-      <span className="text-[9px] text-muted-foreground font-medium tabular-nums shrink-0">{remaining}/{limit}</span>
+
       {isFree && (
-        <button onClick={() => navigate('/pricing-demo')} className="shrink-0">
-          <Crown className="w-2.5 h-2.5 text-primary" />
-        </button>
+        <p className="text-[10px] text-muted-foreground/60 text-center leading-tight px-1">
+          <span className="inline-flex items-center gap-1">
+            <span className="inline-block w-1.5 h-1.5 rounded-full bg-primary/60" />
+            {weight === 2 ? labels.costHint2 : labels.costHint1}
+          </span>
+          {' · '}
+          <span
+            className="text-primary/70 cursor-pointer hover:text-primary hover:underline transition-colors"
+            onClick={(e) => { e.stopPropagation(); navigate('/pricing-demo'); }}
+          >
+            {labels.upgradeHint}
+          </span>
+        </p>
       )}
     </div>
   );
 };
 
 /** Upgrade CTA shown when quota is exhausted — replaces dead buttons */
-const QuotaExhaustedCTA: React.FC<{ icon?: React.ReactNode }> = ({ icon }) => {
+const QuotaExhaustedCTA: React.FC<{ icon?: React.ReactNode; toolType?: AIToolType; section?: SmartSection }> = ({ icon, toolType, section }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { limit } = useAIUsage();
@@ -94,7 +139,7 @@ const QuotaExhaustedCTA: React.FC<{ icon?: React.ReactNode }> = ({ icon }) => {
           </div>
           <span className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" aria-hidden />
         </motion.button>
-        <MiniUsageBar />
+        <MiniUsageBar toolType={toolType} section={section} />
       </CardContent>
     </Card>
   );
@@ -159,7 +204,7 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
 
   // If quota exhausted and no prior result, show upgrade CTA
   if (isLimitReached && !hasGenerated) {
-    return <QuotaExhaustedCTA icon={icon} />;
+    return <QuotaExhaustedCTA icon={icon} toolType={resolvedToolType} section={resolvedSection} />;
   }
 
   const generateInsight = async () => {
@@ -197,7 +242,7 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
               </div>
               <span className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" aria-hidden />
             </motion.button>
-            <MiniUsageBar />
+            <MiniUsageBar toolType={resolvedToolType} section={resolvedSection} />
           </div>
         )}
 
@@ -266,7 +311,7 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
               </motion.button>
             </div>
 
-            <MiniUsageBar />
+            <MiniUsageBar toolType={resolvedToolType} section={resolvedSection} />
 
             <AnimatePresence>
               {insight && !error && (
@@ -336,7 +381,7 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
         </div>
 
         {/* Mini usage bar */}
-        {!hasGenerated && <MiniUsageBar />}
+        {!hasGenerated && <MiniUsageBar toolType={resolvedToolType} section={resolvedSection} />}
 
         {/* Error banner */}
         {error && (
