@@ -704,7 +704,8 @@ Deno.serve(async (req) => {
           { global: { headers: { Authorization: authHeader } } }
         );
         const { data: { user } } = await supabaseClient.auth.getUser();
-        if (user?.id) { clientId = user.id; userId = user.id; }
+        if (user?.id) { userId = user.id; }
+        // NOTE: clientId stays as IP — never override with user.id
       } catch {}
 
       // Check subscription
