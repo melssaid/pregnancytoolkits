@@ -323,6 +323,8 @@ Provide brief, supportive wellness insights about these feelings during week ${c
           disabled={aiLoading || (selectedSymptoms.length === 0 && !selectedMood)}
           label={t('toolsInternal.symptomAnalyzer.getInsights')}
           loadingLabel={t('toolsInternal.symptomAnalyzer.analyzing')}
+          toolType="symptom-analysis"
+          section="symptoms"
         />
 
         {/* AI Response */}

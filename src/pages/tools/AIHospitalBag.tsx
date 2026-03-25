@@ -374,7 +374,7 @@ Include seasonal considerations and hospital-specific recommendations.`;
         </div>
 
         {/* AI Button */}
-        <AIActionButton onClick={getPersonalizedList} isLoading={isLoading} label={t('toolsInternal.hospitalBag.getAIList')} loadingLabel={t('toolsInternal.hospitalBag.generating')} icon={Briefcase} />
+        <AIActionButton onClick={getPersonalizedList} isLoading={isLoading} label={t('toolsInternal.hospitalBag.getAIList')} loadingLabel={t('toolsInternal.hospitalBag.generating')} icon={Briefcase} toolType="hospital-bag" section="pregnancy-plan" />
 
         {/* Secondary Actions */}
         <div className="grid grid-cols-2 gap-2">

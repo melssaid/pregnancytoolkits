@@ -147,6 +147,8 @@ Be warm, practical, and specific. Include real examples.`;
           label={t('toolsInternal.partnerGuide.getAdvice')}
           loadingLabel={t('toolsInternal.partnerGuide.gettingAdvice')}
           icon={Sparkles}
+          toolType="partner-guide"
+          section="pregnancy-plan"
         />
 
         {/* AI Response */}

@@ -199,6 +199,8 @@ Be compassionate - morning sickness is exhausting!`;
           isLoading={isLoading}
           label={t('toolsInternal.nauseaRelief.getReliefPlan')}
           loadingLabel={t('toolsInternal.nauseaRelief.creatingPlan')}
+          toolType="nausea-relief"
+          section="symptoms"
         />
 
         {/* AI Response */}

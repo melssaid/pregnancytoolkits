@@ -168,6 +168,8 @@ Include natural DIY options when appropriate. Focus ONLY on pregnancy-safe ingre
                 isLoading={isLoading}
                 label={t('toolsInternal.skincare.getRoutine')}
                 loadingLabel={t('toolsInternal.skincare.creatingRoutine')}
+                toolType="skincare-advice"
+                section="symptoms"
               />
             </CardContent>
           </Card>

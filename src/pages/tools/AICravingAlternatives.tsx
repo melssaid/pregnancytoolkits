@@ -136,6 +136,8 @@ Keep suggestions practical, delicious, and easy to prepare. Focus on satisfying 
                   label={t('toolsInternal.cravingAlternatives.findAlternatives')}
                   loadingLabel={t('toolsInternal.common.analyzing', { defaultValue: '...' })}
                   className="flex-1"
+                  toolType="meal-suggestion"
+                  section="nutrition"
                 />
                 {(craving || content) && (
                   <Button variant="outline" onClick={handleReset} className="h-10 w-10 p-0">

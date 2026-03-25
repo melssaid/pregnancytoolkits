@@ -369,6 +369,8 @@ Provide 3 specific tips to improve this baby's sleep schedule. Keep response und
           isLoading={aiLoading}
           label={t('toolsInternal.babySleep.getAISleepAdvice')}
           loadingLabel={t('toolsInternal.babySleep.analyzing')}
+          toolType="sleep-analysis"
+          section="sleep"
         />
 
         {/* AI Advice Card */}

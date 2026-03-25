@@ -294,6 +294,8 @@ function NauseaTab() {
         isLoading={isLoading}
         label={t('toolsInternal.nauseaRelief.getReliefPlan')}
         loadingLabel={t('toolsInternal.nauseaRelief.creatingPlan')}
+        toolType="nausea-relief"
+        section="symptoms"
       />
 
       {response && (

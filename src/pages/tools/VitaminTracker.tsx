@@ -174,6 +174,8 @@ const VitaminTracker: React.FC = () => {
               loadingLabel={t('toolsInternal.vitaminTracker.analyzing')}
               icon={Brain}
               variant="compact"
+              toolType="vitamin-advice"
+              section="medications"
             />
           </CardContent>
         </Card>

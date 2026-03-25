@@ -153,6 +153,8 @@ export default function WeeklySummary() {
               isLoading={isLoading}
               label={t("weeklyJourney.generateAI")}
               loadingLabel={t("toolsInternal.weeklySummary.generating")}
+              toolType="weekly-summary"
+              section="pregnancy-plan"
             />
           </motion.div>
         )}
