@@ -81,24 +81,48 @@ async function getMonthlyUsageCount(clientId: string, userId: string | null): Pr
     const monthStart = new Date();
     monthStart.setUTCDate(1);
     monthStart.setUTCHours(0, 0, 0, 0);
+    const monthISO = monthStart.toISOString();
     
-    // Query by user_id first, fallback to client_id
-    const filterCol = userId ? "user_id" : "client_id";
-    const filterVal = userId || clientId;
+    // Query by BOTH client_id (IP) and user_id, take the MAX.
+    // This prevents exploit: clearing app data creates a new anonymous user_id,
+    // but the IP-based count still catches them.
+    const queries: Promise<number>[] = [];
     
-    const { count, error } = await adminClient
-      .from("ai_usage_logs")
-      .select("*", { count: "exact", head: true })
-      .eq(filterCol, filterVal)
-      .eq("success", true)
-      .gte("created_at", monthStart.toISOString());
-    
-    if (error) {
-      console.error("[AI] monthly usage check error:", error.message);
-      return 0; // Fail open — don't block on DB errors
+    // Always query by IP (client_id)
+    if (clientId && clientId !== "unknown") {
+      queries.push(
+        adminClient
+          .from("ai_usage_logs")
+          .select("*", { count: "exact", head: true })
+          .eq("client_id", clientId)
+          .eq("success", true)
+          .gte("created_at", monthISO)
+          .then(({ count, error }) => {
+            if (error) console.error("[AI] IP usage check error:", error.message);
+            return count || 0;
+          })
+      );
     }
     
-    return count || 0;
+    // Also query by user_id if available
+    if (userId) {
+      queries.push(
+        adminClient
+          .from("ai_usage_logs")
+          .select("*", { count: "exact", head: true })
+          .eq("user_id", userId)
+          .eq("success", true)
+          .gte("created_at", monthISO)
+          .then(({ count, error }) => {
+            if (error) console.error("[AI] user usage check error:", error.message);
+            return count || 0;
+          })
+      );
+    }
+    
+    if (queries.length === 0) return 0;
+    const results = await Promise.all(queries);
+    return Math.max(...results);
   } catch (e) {
     console.error("[AI] monthly usage check failed:", String(e).substring(0, 100));
     return 0; // Fail open
