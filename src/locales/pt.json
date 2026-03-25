@@ -5350,112 +5350,119 @@
       "wife": "Esposa"
     },
     "postpartumRecovery": {
-      "aiAdviceTitle": "Conselhos de recuperação personalizados",
+      "subtitle": "Seu guia personalizado de recuperação pós-parto",
+      "welcomeTitle": "Sua jornada de recuperação",
+      "welcomeDesc": "Um plano de recuperação de 6 semanas adaptado à sua experiência de parto",
+      "selectBirthType": "Como foi o seu parto?",
       "birthTypes": {
-        "assisted": "Parto assistido",
+        "vaginal": "Parto vaginal",
         "cesarean": "Cesariana",
-        "vaginal": "Parto normal"
+        "assisted": "Parto assistido"
       },
       "changeBirthType": "Alterar tipo de parto",
+      "progress": "Progresso",
+      "getAIAdvice": "Obter conselho IA de recuperação",
+      "aiAdviceTitle": "Conselhos de recuperação personalizados",
+      "phases": {
+        "week1": {
+          "title": "Semana 1 — Descanso e cura",
+          "description": "Concentre-se no descanso, cuidado da ferida e vínculo com o bebê"
+        },
+        "week2": {
+          "title": "Semana 2 — Início suave",
+          "description": "Comece com movimento suave e estabeleça rotinas"
+        },
+        "week3_4": {
+          "title": "Semanas 3-4 — Fortalecimento",
+          "description": "Exercícios leves e verificação de saúde emocional"
+        },
+        "week5_6": {
+          "title": "Semanas 5-6 — Novo normal",
+          "description": "Retorno à atividade e planejamento de longo prazo"
+        }
+      },
       "checklist": {
-        "checkup": "Consulta pós-parto",
-        "doctorVisit": {
-          "desc": "Agende seu check-up pós-parto",
-          "title": "Visita ao médico"
+        "rest": {
+          "title": "Priorizar o descanso",
+          "desc": "Durma quando o bebê dormir, aceite ajuda dos outros"
         },
-        "emotionalCheck": {
-          "desc": "Monitore seu humor",
-          "title": "Controle emocional"
-        },
-        "exercise": "Caminhadas leves",
-        "feedingSchedule": {
-          "desc": "Estabeleça uma rotina regular",
-          "title": "Horário de alimentação"
-        },
-        "fullCheckup": {
-          "desc": "Exame médico pós-parto completo",
-          "title": "Check-up completo"
-        },
-        "gentleWalking": {
-          "desc": "Passeios curtos em casa",
-          "title": "Caminhada leve"
-        },
-        "hydrate": "Manter-se hidratada",
         "hydration": {
-          "desc": "8-10 copos de água por dia",
-          "title": "Manter-se hidratada"
-        },
-        "intimacyReadiness": {
-          "desc": "Converse com seu parceiro quando estiver pronta",
-          "title": "Preparação para intimidade"
-        },
-        "kegelExercises": {
-          "desc": "Comece exercícios do assoalho pélvico",
-          "title": "Exercícios de Kegel"
-        },
-        "lightExercise": {
-          "desc": "Alongamentos suaves e caminhada",
-          "title": "Exercício leve"
-        },
-        "longTermPlan": {
-          "desc": "Contracepção e planos futuros",
-          "title": "Plano de longo prazo"
-        },
-        "mentalHealthCheck": {
-          "desc": "Triagem de depressão pós-parto",
-          "title": "Saúde mental"
-        },
-        "nutrition": "Comer refeições nutritivas",
-        "painManagement": {
-          "desc": "Tome os medicamentos prescritos",
-          "title": "Gestão da dor"
-        },
-        "posturalExercises": {
-          "desc": "Fortaleça o core suavemente",
-          "title": "Exercícios posturais"
-        },
-        "rest": "Descansar adequadamente",
-        "returnToExercise": {
-          "desc": "Aumente gradualmente a atividade",
-          "title": "Voltar ao exercício"
-        },
-        "selfCare": {
-          "desc": "Estabeleça práticas de autocuidado",
-          "title": "Rotina de autocuidado"
-        },
-        "sleepRoutine": {
-          "desc": "Crie um ambiente de descanso",
-          "title": "Rotina de sono"
-        },
-        "socialSupport": {
-          "desc": "Mantenha-se conectada com seus queridos",
-          "title": "Apoio social"
+          "title": "Manter-se hidratada",
+          "desc": "Beba 8-10 copos de água por dia"
         },
         "woundCare": {
-          "desc": "Siga as instruções do médico",
-          "title": "Cuidado da ferida"
-        }
-      },
-      "getAIAdvice": "Obter conselho IA",
-      "phases": {
-        "month2": "Mês 2-3",
-        "week1": "Semana 1",
-        "week2": "Semana 2-3",
-        "week3_4": {
-          "description": "Exercícios leves e bem-estar emocional",
-          "title": "Semanas 3-4 — Fortalecimento"
+          "title": "Cuidado da ferida",
+          "desc": "Siga as instruções da sua médica para os cuidados"
         },
-        "week4": "Semana 4-6",
-        "week5_6": {
-          "description": "Retorno à atividade e planejamento",
-          "title": "Semanas 5-6 — Novo normal"
+        "feedingSchedule": {
+          "title": "Horário de amamentação",
+          "desc": "Estabeleça uma rotina de alimentação regular"
+        },
+        "painManagement": {
+          "title": "Controle da dor",
+          "desc": "Tome os medicamentos prescritos conforme orientação"
+        },
+        "gentleWalking": {
+          "title": "Caminhada leve",
+          "desc": "Passeios curtos dentro de casa"
+        },
+        "emotionalCheck": {
+          "title": "Verificação emocional",
+          "desc": "Monitore seu humor e sentimentos"
+        },
+        "nutrition": {
+          "title": "Refeições nutritivas",
+          "desc": "Coma refeições ricas em ferro e proteínas"
+        },
+        "sleepRoutine": {
+          "title": "Rotina de sono",
+          "desc": "Crie um ambiente de sono reparador"
+        },
+        "socialSupport": {
+          "title": "Apoio social",
+          "desc": "Mantenha contato com seus entes queridos"
+        },
+        "lightExercise": {
+          "title": "Exercício leve",
+          "desc": "Alongamento suave e caminhada"
+        },
+        "posturalExercises": {
+          "title": "Exercícios posturais",
+          "desc": "Fortaleça suavemente seu abdômen"
+        },
+        "kegelExercises": {
+          "title": "Exercícios de Kegel",
+          "desc": "Comece exercícios do assoalho pélvico"
+        },
+        "mentalHealthCheck": {
+          "title": "Verificação de saúde mental",
+          "desc": "Rastreio de depressão pós-parto"
+        },
+        "doctorVisit": {
+          "title": "Consulta médica",
+          "desc": "Agende sua consulta pós-parto"
+        },
+        "returnToExercise": {
+          "title": "Retorno ao exercício",
+          "desc": "Aumente gradualmente o nível de atividade"
+        },
+        "intimacyReadiness": {
+          "title": "Preparação para intimidade",
+          "desc": "Converse com seu parceiro quando estiver pronta"
+        },
+        "fullCheckup": {
+          "title": "Exame completo",
+          "desc": "Exame médico pós-parto completo"
+        },
+        "longTermPlan": {
+          "title": "Plano de longo prazo",
+          "desc": "Discuta contracepção e planos futuros"
+        },
+        "selfCare": {
+          "title": "Rotina de autocuidado",
+          "desc": "Estabeleça práticas sustentáveis de autocuidado"
         }
-      },
-      "progress": "Progresso",
-      "selectBirthType": "Como foi seu parto?",
-      "subtitle": "Sua jornada de recuperação personalizada após o parto",
-      "welcomeDesc": "Um plano de recuperação de 6 semanas adaptado ao seu parto",
-      "welcomeTitle": "Sua jornada de recuperação"
+      }
     },
     "postureCoach": {
       "aiPostureCoach": "Coach de Postura IA",

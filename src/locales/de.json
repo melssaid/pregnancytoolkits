@@ -5350,112 +5350,119 @@
       "wife": "Ehefrau"
     },
     "postpartumRecovery": {
-      "aiAdviceTitle": "Personalisierte Erholungsberatung",
+      "subtitle": "Ihr persönlicher Erholungsbegleiter nach der Geburt",
+      "welcomeTitle": "Ihre Erholungsreise",
+      "welcomeDesc": "Ein 6-wöchiger Erholungsplan, angepasst an Ihre Geburtserfahrung",
+      "selectBirthType": "Wie haben Sie entbunden?",
       "birthTypes": {
-        "assisted": "Assistierte Geburt",
+        "vaginal": "Vaginale Geburt",
         "cesarean": "Kaiserschnitt",
-        "vaginal": "Vaginale Geburt"
+        "assisted": "Assistierte Geburt"
       },
       "changeBirthType": "Geburtsart ändern",
+      "progress": "Fortschritt",
+      "getAIAdvice": "KI-Erholungsberatung erhalten",
+      "aiAdviceTitle": "Persönliche Erholungsberatung",
+      "phases": {
+        "week1": {
+          "title": "Woche 1 — Ruhe & Heilung",
+          "description": "Konzentrieren Sie sich auf Ruhe, Wundpflege und Bindung mit Ihrem Baby"
+        },
+        "week2": {
+          "title": "Woche 2 — Sanfter Start",
+          "description": "Beginnen Sie mit sanfter Bewegung und etablieren Sie Routinen"
+        },
+        "week3_4": {
+          "title": "Woche 3-4 — Kraft aufbauen",
+          "description": "Leichte Übungen und emotionale Gesundheitskontrolle"
+        },
+        "week5_6": {
+          "title": "Woche 5-6 — Neue Normalität",
+          "description": "Rückkehr zu Aktivitäten und langfristige Planung"
+        }
+      },
       "checklist": {
-        "checkup": "Nachsorgeuntersuchung",
-        "doctorVisit": {
-          "desc": "Vereinbaren Sie Ihre Nachsorge",
-          "title": "Arztbesuch"
+        "rest": {
+          "title": "Ruhe priorisieren",
+          "desc": "Schlafen Sie, wenn das Baby schläft, nehmen Sie Hilfe an"
         },
-        "emotionalCheck": {
-          "desc": "Überwachen Sie Ihre Stimmung",
-          "title": "Emotionale Kontrolle"
-        },
-        "exercise": "Sanfte Spaziergänge",
-        "feedingSchedule": {
-          "desc": "Etablieren Sie eine Routine",
-          "title": "Fütterungsplan"
-        },
-        "fullCheckup": {
-          "desc": "Komplette Nachsorgeuntersuchung",
-          "title": "Vollständige Untersuchung"
-        },
-        "gentleWalking": {
-          "desc": "Kurze Spaziergänge im Haus",
-          "title": "Sanftes Gehen"
-        },
-        "hydrate": "Hydratisiert bleiben",
         "hydration": {
-          "desc": "8-10 Gläser Wasser täglich",
-          "title": "Hydratisiert bleiben"
-        },
-        "intimacyReadiness": {
-          "desc": "Besprechen Sie es mit Ihrem Partner",
-          "title": "Intimität"
-        },
-        "kegelExercises": {
-          "desc": "Beginnen Sie mit Beckenbodenübungen",
-          "title": "Kegel-Übungen"
-        },
-        "lightExercise": {
-          "desc": "Sanftes Dehnen und Gehen",
-          "title": "Leichte Übungen"
-        },
-        "longTermPlan": {
-          "desc": "Verhütung und Zukunftsplanung",
-          "title": "Langfristiger Plan"
-        },
-        "mentalHealthCheck": {
-          "desc": "Postpartale Depression überprüfen",
-          "title": "Psychische Gesundheit"
-        },
-        "nutrition": "Nährstoffreiche Mahlzeiten essen",
-        "painManagement": {
-          "desc": "Nehmen Sie verschriebene Medikamente",
-          "title": "Schmerzmanagement"
-        },
-        "posturalExercises": {
-          "desc": "Stärken Sie sanft Ihre Körpermitte",
-          "title": "Haltungsübungen"
-        },
-        "rest": "Ausreichend Ruhe bekommen",
-        "returnToExercise": {
-          "desc": "Aktivitätsniveau schrittweise steigern",
-          "title": "Zurück zum Sport"
-        },
-        "selfCare": {
-          "desc": "Etablieren Sie Selbstfürsorge-Praktiken",
-          "title": "Selbstfürsorge"
-        },
-        "sleepRoutine": {
-          "desc": "Schaffen Sie eine erholsame Umgebung",
-          "title": "Schlafroutine"
-        },
-        "socialSupport": {
-          "desc": "Bleiben Sie mit Ihren Lieben verbunden",
-          "title": "Soziale Unterstützung"
+          "title": "Ausreichend trinken",
+          "desc": "Trinken Sie täglich 8-10 Gläser Wasser"
         },
         "woundCare": {
-          "desc": "Folgen Sie den Anweisungen Ihres Arztes",
-          "title": "Wundpflege"
-        }
-      },
-      "getAIAdvice": "KI-Erholungsberatung erhalten",
-      "phases": {
-        "month2": "Monat 2-3",
-        "week1": "Woche 1",
-        "week2": "Woche 2-3",
-        "week3_4": {
-          "description": "Leichte Übungen und emotionales Wohlbefinden",
-          "title": "Wochen 3-4 — Kraft aufbauen"
+          "title": "Wundpflege",
+          "desc": "Befolgen Sie die Anweisungen Ihrer Ärztin zur Wundpflege"
         },
-        "week4": "Woche 4-6",
-        "week5_6": {
-          "description": "Rückkehr zur Aktivität und langfristige Planung",
-          "title": "Wochen 5-6 — Neue Normalität"
+        "feedingSchedule": {
+          "title": "Fütterungsplan",
+          "desc": "Etablieren Sie einen regelmäßigen Fütterungsrhythmus"
+        },
+        "painManagement": {
+          "title": "Schmerzmanagement",
+          "desc": "Nehmen Sie verschriebene Medikamente wie angewiesen ein"
+        },
+        "gentleWalking": {
+          "title": "Sanftes Gehen",
+          "desc": "Kurze Spaziergänge im Haus"
+        },
+        "emotionalCheck": {
+          "title": "Emotionale Kontrolle",
+          "desc": "Beobachten Sie Ihre Stimmung und Gefühle"
+        },
+        "nutrition": {
+          "title": "Nahrhafte Mahlzeiten",
+          "desc": "Essen Sie eisen- und proteinreiche Mahlzeiten"
+        },
+        "sleepRoutine": {
+          "title": "Schlafroutine",
+          "desc": "Schaffen Sie eine erholsame Schlafumgebung"
+        },
+        "socialSupport": {
+          "title": "Soziale Unterstützung",
+          "desc": "Bleiben Sie mit Ihren Liebsten in Kontakt"
+        },
+        "lightExercise": {
+          "title": "Leichte Übungen",
+          "desc": "Sanftes Dehnen und Spazierengehen"
+        },
+        "posturalExercises": {
+          "title": "Haltungsübungen",
+          "desc": "Stärken Sie sanft Ihre Körpermitte"
+        },
+        "kegelExercises": {
+          "title": "Kegelübungen",
+          "desc": "Beginnen Sie mit Beckenbodenübungen"
+        },
+        "mentalHealthCheck": {
+          "title": "Psychische Gesundheit",
+          "desc": "Screening auf postpartale Depression"
+        },
+        "doctorVisit": {
+          "title": "Arztbesuch",
+          "desc": "Vereinbaren Sie Ihre Nachsorgeuntersuchung"
+        },
+        "returnToExercise": {
+          "title": "Rückkehr zum Sport",
+          "desc": "Aktivitätsniveau schrittweise steigern"
+        },
+        "intimacyReadiness": {
+          "title": "Bereitschaft für Intimität",
+          "desc": "Besprechen Sie es mit Ihrem Partner, wenn Sie bereit sind"
+        },
+        "fullCheckup": {
+          "title": "Vollständige Untersuchung",
+          "desc": "Komplette Nachsorgeuntersuchung"
+        },
+        "longTermPlan": {
+          "title": "Langfristiger Plan",
+          "desc": "Verhütung und Zukunftsplanung besprechen"
+        },
+        "selfCare": {
+          "title": "Selbstfürsorge-Routine",
+          "desc": "Dauerhafte Selbstfürsorge-Praktiken etablieren"
         }
-      },
-      "progress": "Fortschritt",
-      "selectBirthType": "Wie haben Sie entbunden?",
-      "subtitle": "Ihre personalisierte Erholungsreise nach der Geburt",
-      "welcomeDesc": "Ein 6-Wochen-Erholungsplan angepasst an Ihre Geburtserfahrung",
-      "welcomeTitle": "Ihre Erholungsreise"
+      }
     },
     "postureCoach": {
       "aiPostureCoach": "KI-Haltungs-Coach",
