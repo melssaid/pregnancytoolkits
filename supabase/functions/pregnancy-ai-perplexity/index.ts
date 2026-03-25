@@ -748,7 +748,8 @@ Deno.serve(async (req) => {
       return jsonError("Authentication required", 401);
     }
 
-    let rateLimitId = getClientId(req);
+    const ipClientId = getClientId(req);
+    let rateLimitId = ipClientId;
     let authenticatedUserId: string | null = null;
 
     // Try to verify JWT for user-level rate limiting
@@ -795,7 +796,6 @@ Deno.serve(async (req) => {
           const now = new Date();
           const isActiveSub = sub.status === "active" && sub.subscription_type !== "trial";
           const isActiveTrial = sub.status === "active" && sub.subscription_type === "trial" && new Date(sub.trial_end) > now;
-          // Premium = active paid subscription (not trial)
           if (isActiveSub) {
             isPremium = true;
             subscriptionTier = "premium";
@@ -813,9 +813,9 @@ Deno.serve(async (req) => {
     // ── Admin bypass check (dev/testing only) ──
     const adminBypass = req.headers.get("X-Admin-Bypass") === "true";
 
-    // ── Server-side daily limit check ──
+    // ── Server-side monthly limit check — use IP as primary identifier ──
     const userId = authenticatedUserId;
-    const monthlyUsed = await getMonthlyUsageCount(rateLimitId, userId);
+    const monthlyUsed = await getMonthlyUsageCount(ipClientId, userId);
     const monthlyRemaining = Math.max(0, MONTHLY_LIMIT - monthlyUsed);
     
     if (monthlyUsed >= MONTHLY_LIMIT && !adminBypass) {
