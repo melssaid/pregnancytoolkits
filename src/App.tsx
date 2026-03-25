@@ -8,13 +8,14 @@ import { HelmetProvider } from "react-helmet-async";
 import { SmartScrollRestoration } from "@/components/SmartScrollRestoration";
 import { AnimatedRoutes } from "@/components/AnimatedRoutes";
 import { AIUsageProvider } from "@/contexts/AIUsageContext";
-import { useEffect, lazy, Suspense } from "react";
+import { useEffect, useState, lazy, Suspense } from "react";
 import { initializeAuth } from "@/lib/auth";
 import { toast } from "sonner";
 import { prefetchCriticalRoutes } from "@/lib/routePrefetch";
 
 // Lazy-load OnboardingDisclaimer — heavy imports (Calendar, date-fns) only needed on first visit
 const OnboardingDisclaimer = lazy(() => import("@/components/OnboardingDisclaimer").then(m => ({ default: m.OnboardingDisclaimer })));
+const SubscriptionSuccessSheet = lazy(() => import("@/components/SubscriptionSuccessSheet"));
 
 const queryClient = new QueryClient();
 const CHUNK_RECOVERY_KEY = "pt_chunk_recovery_done";
@@ -36,6 +37,8 @@ const recoverFromChunkError = async () => {
 };
 
 const App = () => {
+  const [successSheet, setSuccessSheet] = useState<{ open: boolean; plan: 'monthly' | 'yearly' | null }>({ open: false, plan: null });
+
   // Initialize anonymous auth & prefetch critical routes
   useEffect(() => {
     initializeAuth();
@@ -45,9 +48,9 @@ const App = () => {
   // Listen for Google Play purchase success from native wrapper
   useEffect(() => {
     const cleanup = listenForPurchaseSuccess(
-      () => {
-        toast.success("🎉 Premium activated!");
-        // Refresh subscription status across the app
+      (productId) => {
+        const plan = productId === 'premium_yearly' ? 'yearly' : 'monthly';
+        setSuccessSheet({ open: true, plan });
         queryClient.invalidateQueries({ queryKey: ['subscription'] });
       },
       (msg) => {
@@ -110,6 +113,13 @@ const App = () => {
           <SmartScrollRestoration />
           <AnimatedRoutes />
           <Suspense fallback={null}><OnboardingDisclaimer /></Suspense>
+          <Suspense fallback={null}>
+            <SubscriptionSuccessSheet
+              open={successSheet.open}
+              planType={successSheet.plan}
+              onClose={() => setSuccessSheet({ open: false, plan: null })}
+            />
+          </Suspense>
         </BrowserRouter>
       </TooltipProvider>
       </AIUsageProvider>
