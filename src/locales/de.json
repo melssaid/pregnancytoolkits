@@ -5356,7 +5356,8 @@
       "selectBirthType": "Wie haben Sie entbunden?",
       "birthTypes": {
         "vaginal": "Vaginale Geburt",
-        "cesarean": "Kaiserschnitt"
+        "cesarean": "Kaiserschnitt",
+        "assisted": "Assistierte Geburt"
       },
       "changeBirthType": "Geburtsart ändern",
       "progress": "Fortschritt",

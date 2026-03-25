@@ -4247,19 +4247,8 @@
         "assisted": "Assisted Birth"
       },
       "changeBirthType": "Change birth type",
-      "phases": {
-        "week1": "Week 1",
-        "week2": "Week 2-3",
-        "week4": "Week 4-6",
-        "month2": "Month 2-3"
-      },
-      "checklist": {
-        "rest": "Get adequate rest",
-        "hydrate": "Stay hydrated",
-        "nutrition": "Eat nutritious meals",
-        "exercise": "Gentle walks",
-        "checkup": "Postpartum checkup"
-      },
+      "phases": {},
+      "checklist": {},
       "progress": "Recovery Progress",
       "getAIAdvice": "Get AI Recovery Advice",
       "aiAdviceTitle": "AI Recovery Guidance"

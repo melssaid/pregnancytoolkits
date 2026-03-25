@@ -5356,7 +5356,8 @@
       "selectBirthType": "Nasıl doğum yaptınız?",
       "birthTypes": {
         "vaginal": "Normal Doğum",
-        "cesarean": "Sezaryen"
+        "cesarean": "Sezaryen",
+        "assisted": "Yardımlı Doğum"
       },
       "changeBirthType": "Doğum türünü değiştir",
       "progress": "İlerleme",

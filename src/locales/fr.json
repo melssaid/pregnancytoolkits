@@ -5356,7 +5356,8 @@
       "selectBirthType": "Comment avez-vous accouché ?",
       "birthTypes": {
         "vaginal": "Accouchement vaginal",
-        "cesarean": "Césarienne"
+        "cesarean": "Césarienne",
+        "assisted": "Accouchement assisté"
       },
       "changeBirthType": "Changer le type d'accouchement",
       "progress": "Progression",
