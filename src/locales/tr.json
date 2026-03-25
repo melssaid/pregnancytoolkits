@@ -5350,112 +5350,118 @@
       "wife": "Karısı"
     },
     "postpartumRecovery": {
-      "aiAdviceTitle": "Kişiselleştirilmiş İyileşme Tavsiyesi",
+      "subtitle": "Doğum sonrası kişisel iyileşme rehberiniz",
+      "welcomeTitle": "İyileşme Yolculuğunuz",
+      "welcomeDesc": "Doğum deneyiminize göre özelleştirilmiş 6 haftalık iyileşme planı",
+      "selectBirthType": "Nasıl doğum yaptınız?",
       "birthTypes": {
-        "assisted": "Yardımlı doğum",
-        "cesarean": "Sezaryen",
-        "vaginal": "Normal Doğum"
+        "vaginal": "Normal Doğum",
+        "cesarean": "Sezaryen"
       },
       "changeBirthType": "Doğum türünü değiştir",
+      "progress": "İlerleme",
+      "getAIAdvice": "Yapay Zeka İyileşme Tavsiyesi Al",
+      "aiAdviceTitle": "Kişiselleştirilmiş İyileşme Tavsiyeleri",
+      "phases": {
+        "week1": {
+          "title": "Hafta 1 — Dinlenme ve İyileşme",
+          "description": "Dinlenmeye, yara bakımına ve bebeğinizle bağ kurmaya odaklanın"
+        },
+        "week2": {
+          "title": "Hafta 2 — Nazik Başlangıç",
+          "description": "Hafif hareketlere başlayın ve rutinler oluşturun"
+        },
+        "week3_4": {
+          "title": "Hafta 3-4 — Güç Kazanma",
+          "description": "Hafif egzersizler ve duygusal sağlık kontrolü"
+        },
+        "week5_6": {
+          "title": "Hafta 5-6 — Yeni Normal",
+          "description": "Aktiviteye dönüş ve uzun vadeli planlama"
+        }
+      },
       "checklist": {
-        "checkup": "Doğum sonrası kontrol",
-        "doctorVisit": {
-          "desc": "Doğum sonrası kontrolünüzü planlayın",
-          "title": "Doktor Ziyareti"
+        "rest": {
+          "title": "Dinlenmeye Öncelik Verin",
+          "desc": "Bebek uyurken uyuyun, yardım kabul edin"
         },
-        "emotionalCheck": {
-          "desc": "Ruh halinizi izleyin",
-          "title": "Duygusal Kontrol"
-        },
-        "exercise": "Hafif yürüyüşler",
-        "feedingSchedule": {
-          "desc": "Düzenli bir beslenme rutini oluşturun",
-          "title": "Beslenme Programı"
-        },
-        "fullCheckup": {
-          "desc": "Kapsamlı doğum sonrası muayene",
-          "title": "Tam Kontrol"
-        },
-        "gentleWalking": {
-          "desc": "Evde kısa yürüyüşler",
-          "title": "Hafif Yürüyüş"
-        },
-        "hydrate": "Bol su için",
         "hydration": {
-          "desc": "Günde 8-10 bardak su",
-          "title": "Su İçin"
-        },
-        "intimacyReadiness": {
-          "desc": "Hazır olduğunuzda partnerinizle konuşun",
-          "title": "Yakınlık Hazırlığı"
-        },
-        "kegelExercises": {
-          "desc": "Pelvik taban egzersizlerine başlayın",
-          "title": "Kegel Egzersizleri"
-        },
-        "lightExercise": {
-          "desc": "Nazik esneme ve yürüyüş",
-          "title": "Hafif Egzersiz"
-        },
-        "longTermPlan": {
-          "desc": "Doğum kontrolü ve gelecek planları",
-          "title": "Uzun Vadeli Plan"
-        },
-        "mentalHealthCheck": {
-          "desc": "Doğum sonrası depresyon taraması",
-          "title": "Ruh Sağlığı Kontrolü"
-        },
-        "nutrition": "Besleyici yemekler yiyin",
-        "painManagement": {
-          "desc": "Reçeteli ilaçları yönergelere göre alın",
-          "title": "Ağrı Yönetimi"
-        },
-        "posturalExercises": {
-          "desc": "Çekirdek kaslarınızı nazikçe güçlendirin",
-          "title": "Duruş Egzersizleri"
-        },
-        "rest": "Yeterli dinlenin",
-        "returnToExercise": {
-          "desc": "Aktivite seviyesini kademeli olarak artırın",
-          "title": "Spora Dönüş"
-        },
-        "selfCare": {
-          "desc": "Sürekli öz bakım alışkanlıkları edinin",
-          "title": "Öz Bakım Rutini"
-        },
-        "sleepRoutine": {
-          "desc": "Dinlendirici bir uyku ortamı oluşturun",
-          "title": "Uyku Rutini"
-        },
-        "socialSupport": {
-          "desc": "Sevdiklerinizle bağlantıda kalın",
-          "title": "Sosyal Destek"
+          "title": "Bol Su İçin",
+          "desc": "Günde 8-10 bardak su için"
         },
         "woundCare": {
-          "desc": "Doktor talimatlarını takip edin",
-          "title": "Yara Bakımı"
-        }
-      },
-      "getAIAdvice": "AI İyileşme Tavsiyesi Al",
-      "phases": {
-        "month2": "Ay 2-3",
-        "week1": "Hafta 1",
-        "week2": "Hafta 2-3",
-        "week3_4": {
-          "description": "Hafif egzersizler ve duygusal sağlık kontrolü",
-          "title": "Hafta 3-4 — Güç Kazanma"
+          "title": "Yara Bakımı",
+          "desc": "Doktorunuzun yara bakım talimatlarını uygulayın"
         },
-        "week4": "Hafta 4-6",
-        "week5_6": {
-          "description": "Aktiviteye dönüş ve uzun vadeli planlama",
-          "title": "Hafta 5-6 — Yeni Normal"
+        "feedingSchedule": {
+          "title": "Beslenme Programı",
+          "desc": "Düzenli bir beslenme rutini oluşturun"
+        },
+        "painManagement": {
+          "title": "Ağrı Yönetimi",
+          "desc": "Reçeteli ilaçları yönergelere göre alın"
+        },
+        "gentleWalking": {
+          "title": "Hafif Yürüyüş",
+          "desc": "Ev içinde kısa yürüyüşler"
+        },
+        "emotionalCheck": {
+          "title": "Duygusal Kontrol",
+          "desc": "Ruh halinizi ve duygularınızı takip edin"
+        },
+        "nutrition": {
+          "title": "Besleyici Yemekler",
+          "desc": "Demir ve protein açısından zengin yemekler yiyin"
+        },
+        "sleepRoutine": {
+          "title": "Uyku Rutini",
+          "desc": "Dinlendirici bir uyku ortamı oluşturun"
+        },
+        "socialSupport": {
+          "title": "Sosyal Destek",
+          "desc": "Sevdiklerinizle bağlantıda kalın"
+        },
+        "lightExercise": {
+          "title": "Hafif Egzersiz",
+          "desc": "Nazik germe ve yürüyüş"
+        },
+        "posturalExercises": {
+          "title": "Duruş Egzersizleri",
+          "desc": "Karın kaslarınızı nazikçe güçlendirin"
+        },
+        "kegelExercises": {
+          "title": "Kegel Egzersizleri",
+          "desc": "Pelvik taban egzersizlerine başlayın"
+        },
+        "mentalHealthCheck": {
+          "title": "Ruh Sağlığı Kontrolü",
+          "desc": "Doğum sonrası depresyon taraması"
+        },
+        "doctorVisit": {
+          "title": "Doktor Ziyareti",
+          "desc": "Doğum sonrası kontrolünüzü ayarlayın"
+        },
+        "returnToExercise": {
+          "title": "Egzersize Dönüş",
+          "desc": "Aktivite düzeyini kademeli olarak artırın"
+        },
+        "intimacyReadiness": {
+          "title": "Yakınlığa Hazırlık",
+          "desc": "Hazır olduğunuzda partnerinizle konuşun"
+        },
+        "fullCheckup": {
+          "title": "Tam Kontrol",
+          "desc": "Kapsamlı doğum sonrası muayene"
+        },
+        "longTermPlan": {
+          "title": "Uzun Vadeli Plan",
+          "desc": "Doğum kontrolü ve gelecek planlarını konuşun"
+        },
+        "selfCare": {
+          "title": "Öz Bakım Rutini",
+          "desc": "Sürdürülebilir öz bakım alışkanlıkları oluşturun"
         }
-      },
-      "progress": "İlerleme",
-      "selectBirthType": "Nasıl doğum yaptınız?",
-      "subtitle": "Doğum sonrası kişiselleştirilmiş iyileşme yolculuğunuz",
-      "welcomeDesc": "Doğum deneyiminize özel 6 haftalık iyileşme planı",
-      "welcomeTitle": "İyileşme Yolculuğunuz"
+      }
     },
     "postureCoach": {
       "aiPostureCoach": "Yapay Zeka Duruş Koçu",
