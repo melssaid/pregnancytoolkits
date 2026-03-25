@@ -4,6 +4,7 @@ import { Brain, Loader2, Sparkles, Crown, Zap } from 'lucide-react';
 import { useAIUsage } from '@/contexts/AIUsageContext';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import { resolveWeight, type AIToolType, type SmartSection } from '@/services/smartEngine/types';
 
 interface AIActionButtonProps {
   onClick: () => void;
@@ -16,6 +17,10 @@ interface AIActionButtonProps {
   variant?: 'default' | 'compact';
   /** Set false to hide the usage indicator below the button */
   showUsage?: boolean;
+  /** Tool type to show point cost hint */
+  toolType?: AIToolType;
+  /** Section to resolve tool type from if toolType not provided */
+  section?: SmartSection;
 }
 
 const usageLabels: Record<string, { remaining: string; of: string; free: string; pro: string; upgrade: string; limitReached: string; resetsMonthly: string; unlockMore: string }> = {
