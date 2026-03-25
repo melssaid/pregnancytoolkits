@@ -242,7 +242,7 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
               </div>
               <span className="absolute inset-0 -translate-x-full hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent pointer-events-none" aria-hidden />
             </motion.button>
-            <MiniUsageBar />
+            <MiniUsageBar toolType={resolvedToolType} section={resolvedSection} />
           </div>
         )}
 
@@ -311,7 +311,7 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
               </motion.button>
             </div>
 
-            <MiniUsageBar />
+            <MiniUsageBar toolType={resolvedToolType} section={resolvedSection} />
 
             <AnimatePresence>
               {insight && !error && (
@@ -381,7 +381,7 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
         </div>
 
         {/* Mini usage bar */}
-        {!hasGenerated && <MiniUsageBar />}
+        {!hasGenerated && <MiniUsageBar toolType={resolvedToolType} section={resolvedSection} />}
 
         {/* Error banner */}
         {error && (
