@@ -64,22 +64,44 @@ async function getDailyUsageCount(clientId: string, userId: string | null): Prom
     );
     const todayStart = new Date();
     todayStart.setUTCHours(0, 0, 0, 0);
+    const todayISO = todayStart.toISOString();
     
-    const filterCol = userId ? "user_id" : "client_id";
-    const filterVal = userId || clientId;
+    // Query by BOTH client_id (IP) and user_id, take the MAX
+    const queries: Promise<number>[] = [];
     
-    const { count, error } = await adminClient
-      .from("ai_usage_logs")
-      .select("*", { count: "exact", head: true })
-      .eq(filterCol, filterVal)
-      .eq("success", true)
-      .gte("created_at", todayStart.toISOString());
-    
-    if (error) {
-      console.error("[Enhanced] daily usage check error:", error.message);
-      return 0;
+    if (clientId && clientId !== "unknown") {
+      queries.push(
+        adminClient
+          .from("ai_usage_logs")
+          .select("*", { count: "exact", head: true })
+          .eq("client_id", clientId)
+          .eq("success", true)
+          .gte("created_at", todayISO)
+          .then(({ count, error }) => {
+            if (error) console.error("[Enhanced] IP usage check error:", error.message);
+            return count || 0;
+          })
+      );
     }
-    return count || 0;
+    
+    if (userId) {
+      queries.push(
+        adminClient
+          .from("ai_usage_logs")
+          .select("*", { count: "exact", head: true })
+          .eq("user_id", userId)
+          .eq("success", true)
+          .gte("created_at", todayISO)
+          .then(({ count, error }) => {
+            if (error) console.error("[Enhanced] user usage check error:", error.message);
+            return count || 0;
+          })
+      );
+    }
+    
+    if (queries.length === 0) return 0;
+    const results = await Promise.all(queries);
+    return Math.max(...results);
   } catch (e) {
     console.error("[Enhanced] daily usage check failed:", String(e).substring(0, 100));
     return 0;
