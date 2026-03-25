@@ -97,13 +97,13 @@ export const AIActionButton: React.FC<AIActionButtonProps> = ({
         </motion.button>
 
         {showUsage && (
-          <div className="flex items-center gap-2 px-1">
-            <Zap className="w-2.5 h-2.5 shrink-0 text-destructive" />
-            <div className="flex-1 h-1 rounded-full bg-muted/40 overflow-hidden">
-              <div className="h-full rounded-full bg-destructive w-full" />
+          <div className="flex items-center gap-2.5 px-1">
+            <Zap className="w-3 h-3 shrink-0 text-destructive" />
+            <div className="flex-1 h-2 rounded-full bg-muted/30 overflow-hidden" style={{ boxShadow: 'inset 0 1px 2px hsl(0 0% 0% / 0.08)' }}>
+              <div className="h-full rounded-full w-full" style={{ background: getBarGradient() }} />
             </div>
-            <span className="text-[9px] text-muted-foreground font-medium tabular-nums shrink-0">
-              0 <span className="opacity-60">/ {limit}</span>
+            <span className="text-[10px] text-muted-foreground font-semibold tabular-nums shrink-0">
+              0 <span className="opacity-50">/ {limit}</span>
             </span>
           </div>
         )}
