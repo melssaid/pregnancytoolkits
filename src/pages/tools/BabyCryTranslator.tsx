@@ -246,6 +246,8 @@ Provide insights on what the baby might be communicating and practical soothing 
               label={t("toolsInternal.babyCryTranslator.analyzeButton")}
               loadingLabel={t("toolsInternal.babyCryTranslator.analyzing", "Analyzing...")}
               icon={Baby}
+              toolType="baby-cry-analysis"
+              section="postpartum"
             />
           </>
         ) : (
@@ -290,6 +292,8 @@ Provide insights on what the baby might be communicating and practical soothing 
                 isLoading={isLoading}
                 label={t("toolsInternal.babyCryTranslator.reanalyze")}
                 className="flex-1"
+                toolType="baby-cry-analysis"
+                section="postpartum"
               />
             </div>
           </>

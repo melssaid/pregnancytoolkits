@@ -215,6 +215,8 @@ Be encouraging and realistic - breastfeeding has a learning curve!`;
           isLoading={isLoading}
           label={t('toolsInternal.lactationPrep.getAIGuide')}
           loadingLabel={t('toolsInternal.lactationPrep.creatingGuide')}
+          toolType="lactation-prep"
+          section="postpartum"
         />
 
         {/* AI Response */}

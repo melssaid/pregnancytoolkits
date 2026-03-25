@@ -200,6 +200,8 @@ export default function AIBirthPlanGenerator() {
           isLoading={isLoading}
           label={t('toolsInternal.birthPlan.generateButton')}
           loadingLabel={t('toolsInternal.birthPlan.generating')}
+          toolType="birth-plan"
+          section="pregnancy-plan"
         />
 
         {error && <Card className="border-destructive/30 bg-destructive/5"><CardContent className="p-3 text-destructive text-xs">{error}</CardContent></Card>}

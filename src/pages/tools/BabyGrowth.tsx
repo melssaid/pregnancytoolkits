@@ -368,6 +368,8 @@ const BabyGrowth = () => {
               label={t('toolsInternal.babyGrowth.aiAnalysis')}
               loadingLabel={t('toolsInternal.babyGrowth.analyzing')}
               icon={Baby}
+              toolType="baby-growth-analysis"
+              section="pregnancy-plan"
             />
 
             <AnimatePresence>

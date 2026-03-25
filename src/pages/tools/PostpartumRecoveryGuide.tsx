@@ -298,6 +298,8 @@ export default function PostpartumRecoveryGuide() {
                   onClick={() => getAIAdvice(phase)}
                   isLoading={isLoading}
                   label={t("toolsInternal.postpartumRecovery.getAIAdvice")}
+                  toolType="postpartum-recovery"
+                  section="postpartum"
                 />
               </CardContent>
             </Card>

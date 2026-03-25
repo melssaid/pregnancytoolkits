@@ -197,6 +197,8 @@ Include safety considerations and when to change positions.`;
           label={t('toolsInternal.birthPosition.getPositions')}
           loadingLabel={t('toolsInternal.birthPosition.analyzing')}
           icon={Baby}
+          toolType="birth-position"
+          section="pregnancy-plan"
         />
 
         {/* AI Response */}

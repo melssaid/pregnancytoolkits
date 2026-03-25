@@ -264,6 +264,8 @@ Provide an easy recipe with ingredients, preparation steps, and nutritional valu
               isLoading={isLoading}
               label={t("toolsInternal.mealSuggestion.suggestMeal")}
               loadingLabel={t("toolsInternal.common.analyzing", { defaultValue: "..." })}
+              toolType="meal-suggestion"
+              section="nutrition"
             />
           </>
         ) : (

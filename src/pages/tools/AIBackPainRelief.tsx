@@ -189,6 +189,8 @@ Provide:
               label={t('toolsInternal.backPainRelief.getAIAdvice')}
               loadingLabel={t('toolsInternal.backPainRelief.analyzing')}
               icon={Brain}
+              toolType="back-pain-relief"
+              section="movement"
             />
           </CardContent>
         </Card>

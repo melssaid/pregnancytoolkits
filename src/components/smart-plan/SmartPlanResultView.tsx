@@ -57,6 +57,8 @@ export const SmartPlanResultView = forwardRef<HTMLDivElement, SmartPlanResultVie
           onClick={onGenerate}
           isLoading={isLoading}
           label={t("smartPlan.getAIPlan", "Get Smart Plan")}
+          toolType="pregnancy-plan"
+          section="pregnancy-plan"
         />
       </motion.div>
     );

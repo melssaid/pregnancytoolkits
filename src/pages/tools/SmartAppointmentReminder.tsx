@@ -679,6 +679,8 @@ Format as a numbered list (1-5), one question per line. Be concise and relevant.
                             icon={Sparkles}
                             variant="compact"
                             showUsage={true}
+                            toolType="appointment-prep"
+                            section="appointments"
                           />
 
                           {/* Selected Questions */}
