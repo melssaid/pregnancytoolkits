@@ -76,8 +76,6 @@ export const TimeSinceLastChange = ({ lastChangeTime }: TimeSinceLastChangeProps
               <TimeUnit value={elapsed.hours} label={t('diaperPage.h')} isUrgent={isUrgent} />
               <span className="text-muted-foreground text-lg">:</span>
               <TimeUnit value={elapsed.minutes} label={t('diaperPage.m')} isUrgent={isUrgent} />
-              <span className="text-muted-foreground text-lg">:</span>
-              <TimeUnit value={elapsed.seconds} label={t('diaperPage.s')} isUrgent={isUrgent} />
             </div>
           </div>
         </CardContent>
