@@ -10,23 +10,22 @@ interface TimeSinceLastChangeProps {
 
 export const TimeSinceLastChange = ({ lastChangeTime }: TimeSinceLastChangeProps) => {
   const { t } = useTranslation();
-  const [elapsed, setElapsed] = useState({ hours: 0, minutes: 0, seconds: 0 });
+  const [elapsed, setElapsed] = useState({ hours: 0, minutes: 0 });
 
   useEffect(() => {
     if (!lastChangeTime) return;
 
     const update = () => {
       const diff = Date.now() - new Date(lastChangeTime).getTime();
-      const totalSeconds = Math.floor(diff / 1000);
+      const totalMinutes = Math.floor(diff / 60000);
       setElapsed({
-        hours: Math.floor(totalSeconds / 3600),
-        minutes: Math.floor((totalSeconds % 3600) / 60),
-        seconds: totalSeconds % 60,
+        hours: Math.floor(totalMinutes / 60),
+        minutes: totalMinutes % 60,
       });
     };
 
     update();
-    const interval = setInterval(update, 1000);
+    const interval = setInterval(update, 60000);
     return () => clearInterval(interval);
   }, [lastChangeTime]);
 
