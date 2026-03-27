@@ -120,21 +120,14 @@ jobs:
           JDK_PATH="${JAVA_HOME_17_X64:-${JAVA_HOME}}"
           SDK_PATH="${ANDROID_HOME:-/usr/local/lib/android/sdk}"
           mkdir -p "$HOME/.bubblewrap"
-          cat > "$HOME/.bubblewrap/config.json" << EOF
-          {
-            "jdkPath": "$JDK_PATH",
-            "androidSdkPath": "$SDK_PATH"
-          }
-          EOF
-          # Remove leading whitespace from heredoc
-          python3 -c "
-          import json
-          with open('$HOME/.bubblewrap/config.json') as f:
-              data = json.load(f)
-          with open('$HOME/.bubblewrap/config.json', 'w') as f:
-              json.dump(data, f)
-          "
-          echo "Bubblewrap config:" && cat "$HOME/.bubblewrap/config.json"
+          python3 -c "import json; json.dump({'jdkPath':'$JDK_PATH','androidSdkPath':'$SDK_PATH'}, open('$HOME/.bubblewrap/config.json','w'))"
+          echo "=== Bubblewrap config ==="
+          cat "$HOME/.bubblewrap/config.json"
+          echo ""
+          echo "=== Verify SDK path exists ==="
+          test -d "$SDK_PATH" && echo "SDK dir OK" || echo "SDK dir MISSING: $SDK_PATH"
+          test -d "$SDK_PATH/build-tools" && echo "build-tools OK" || echo "build-tools MISSING"
+          test -d "$SDK_PATH/platforms" && echo "platforms OK" || echo "platforms MISSING"
 
       - name: Build Android TWA (AAB + APK)
         run: |
@@ -144,6 +137,8 @@ jobs:
         env:
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
           STORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
+          JAVA_HOME: ${{ env.JAVA_HOME }}
+          ANDROID_HOME: ${{ env.ANDROID_HOME }}
 
       - name: Upload AAB artifact
         uses: actions/upload-artifact@v4
