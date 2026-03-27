@@ -354,7 +354,7 @@ export function useNotifications() {
       });
       return cleaned.length !== prev.length ? cleaned : prev;
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, []); // Run once on mount only
 
   // Generate smart reminders
@@ -691,7 +691,7 @@ export function useNotifications() {
     // Check once every 6 hours (not on every settings change)
     const interval = setInterval(generateSmartReminders, 6 * 60 * 60 * 1000);
     return () => { clearTimeout(timeout); clearInterval(interval); };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, [settings]);
 
   const addNotification = useCallback((notification: Omit<Notification, 'id' | 'time' | 'read'>) => {
