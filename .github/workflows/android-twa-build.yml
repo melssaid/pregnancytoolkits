@@ -58,6 +58,9 @@ jobs:
     defaults:
       run:
         shell: bash
+    env:
+      ANDROID_HOME: /usr/local/lib/android/sdk
+      ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
 
     steps:
       - name: Checkout
@@ -74,49 +77,30 @@ jobs:
           distribution: "temurin"
           java-version: "17"
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-
-      - name: Resolve Android SDK path for CI
+      - name: Verify Android SDK
         run: |
-          CANDIDATES=(
-            "${ANDROID_HOME:-}"
-            "${ANDROID_SDK_ROOT:-}"
-            "/usr/local/lib/android/sdk"
-            "$HOME/android-sdk"
-            "$HOME/android/sdk"
-          )
+          echo "JAVA_HOME=$JAVA_HOME"
+          echo "ANDROID_HOME=$ANDROID_HOME"
+          ls "$ANDROID_HOME/build-tools/" || echo "build-tools missing"
+          ls "$ANDROID_HOME/platforms/" || echo "platforms missing"
+          ls "$ANDROID_HOME/platform-tools/" || echo "platform-tools missing"
+          ls "$ANDROID_HOME/cmdline-tools/" || echo "cmdline-tools missing"
 
-          for path in "${CANDIDATES[@]}"; do
-            if [ -n "$path" ] && [ -d "$path" ]; then
-              echo "ANDROID_HOME=$path" >> "$GITHUB_ENV"
-              echo "ANDROID_SDK_ROOT=$path" >> "$GITHUB_ENV"
-              echo "Resolved Android SDK path: $path"
-              exit 0
-            fi
-          done
-
-          echo "Android SDK path not found"
-          exit 1
-
-      - name: Install required Android SDK packages
+      - name: Install Android SDK packages
         run: |
-          if command -v sdkmanager >/dev/null 2>&1; then
-            SDKMANAGER="sdkmanager"
-          elif [ -x "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" ]; then
-            SDKMANAGER="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
-          elif [ -x "$ANDROID_HOME/cmdline-tools/bin/sdkmanager" ]; then
-            SDKMANAGER="$ANDROID_HOME/cmdline-tools/bin/sdkmanager"
-          else
-            echo "sdkmanager not found"
-            exit 1
-          fi
-
-          "$SDKMANAGER" --install "platform-tools" "platforms;android-34" "build-tools;34.0.0"
-          yes | "$SDKMANAGER" --licenses >/dev/null || true
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses >/dev/null 2>&1 || true
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --install \
+            "platform-tools" "platforms;android-34" "build-tools;34.0.0" || true
 
       - name: Install Bubblewrap CLI
         run: npm install -g @bubblewrap/cli
+
+      - name: Configure Bubblewrap (non-interactive)
+        run: |
+          mkdir -p "$HOME/.bubblewrap"
+          echo '{"jdkPath":"'"$JAVA_HOME"'","androidSdkPath":"'"$ANDROID_HOME"'"}' > "$HOME/.bubblewrap/config.json"
+          echo "--- Config ---"
+          cat "$HOME/.bubblewrap/config.json"
 
       - name: Decode keystore
         run: |
@@ -125,7 +109,7 @@ jobs:
         env:
           KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
 
-      - name: Patch TWA manifest (signing key + version)
+      - name: Patch TWA manifest
         run: |
           VERSION_CODE="${{ github.event.inputs.version_code || '1' }}"
           VERSION_NAME="${{ github.event.inputs.version_name || '1.0.0' }}"
@@ -137,63 +121,46 @@ jobs:
             '.signingKey.alias = $alias | .signingKey.path = $keyPath | .appVersionCode = $vcode | .appVersionName = $vname' \
             twa-manifest.json > twa-manifest.patched.json
           mv twa-manifest.patched.json twa-manifest.json
+          echo "--- Manifest ---"
+          cat twa-manifest.json
         env:
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
 
-      - name: Debug environment paths
+      - name: Initialize TWA project
         run: |
-          echo "JAVA_HOME=$JAVA_HOME"
-          echo "ANDROID_HOME=$ANDROID_HOME"
-          echo "ANDROID_SDK_ROOT=$ANDROID_SDK_ROOT"
-          java -version 2>&1
-          echo "--- SDK contents ---"
-          ls -la "$ANDROID_HOME/" 2>/dev/null || echo "ANDROID_HOME not found"
-          ls "$ANDROID_HOME/build-tools/" 2>/dev/null || echo "build-tools not found"
-          ls "$ANDROID_HOME/platforms/" 2>/dev/null || echo "platforms not found"
-          ls "$ANDROID_HOME/platform-tools/" 2>/dev/null || echo "platform-tools not found"
-
-      - name: Prepare Bubblewrap config (non-interactive)
-        run: |
-          SDK_PATH="${ANDROID_HOME}"
-          JDK_PATH="${JAVA_HOME}"
-
-          test -d "$SDK_PATH" || { echo "SDK dir missing: $SDK_PATH"; exit 1; }
-          test -d "$SDK_PATH/build-tools" || { echo "build-tools missing"; exit 1; }
-          test -d "$SDK_PATH/platform-tools" || { echo "platform-tools missing"; exit 1; }
-
-          mkdir -p "$HOME/.bubblewrap"
-          python3 << PYEOF
-          import json
-          config = {
-              "jdkPath": "${JDK_PATH}",
-              "androidSdkPath": "${SDK_PATH}"
-          }
-          with open("$HOME/.bubblewrap/config.json", "w") as f:
-              json.dump(config, f)
-          print("Config written:", json.dumps(config))
-          PYEOF
+          printf 'n\n' | bubblewrap init --manifest="https://pregnancytoolkits.lovable.app/manifest.json" --directory="."
+        env:
+          BUBBLEWRAP_KEYSTORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
+          BUBBLEWRAP_KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
 
       - name: Build Android TWA (AAB + APK)
         run: |
           printf 'n\n' | bubblewrap build --skipPwaValidation
         env:
-          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-          STORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
-          BUBBLEWRAP_KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
           BUBBLEWRAP_KEYSTORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
-          ANDROID_HOME: ${{ env.ANDROID_HOME }}
-          ANDROID_SDK_ROOT: ${{ env.ANDROID_SDK_ROOT }}
+          BUBBLEWRAP_KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+
+      - name: List output files
+        run: |
+          echo "--- Root ---"
+          ls -la *.apk *.aab 2>/dev/null || echo "No APK/AAB in root"
+          echo "--- app-release-bundle ---"
+          ls -la app-release-bundle/ 2>/dev/null || echo "No app-release-bundle dir"
 
       - name: Upload AAB artifact
         uses: actions/upload-artifact@v4
         with:
           name: app-release.aab
-          path: app-release-bundle/app-release.aab
+          path: |
+            app-release-bundle/app-release.aab
+            *.aab
           if-no-files-found: warn
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
           name: app-release.apk
-          path: app-release.apk
+          path: |
+            app-release.apk
+            *.apk
           if-no-files-found: warn
