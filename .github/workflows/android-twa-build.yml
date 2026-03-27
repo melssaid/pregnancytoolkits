@@ -122,8 +122,10 @@ jobs:
 
       - name: Configure Bubblewrap paths and validate
         run: |
-          bubblewrap updateConfig --jdkPath="$JAVA_HOME" --androidSdkPath="$ANDROID_HOME"
-          bubblewrap doctor
+          mkdir -p "$HOME/.bubblewrap"
+          echo '{"jdkPath":"'"$JAVA_HOME"'","androidSdkPath":"'"$ANDROID_HOME"'"}' > "$HOME/.bubblewrap/config.json"
+          cat "$HOME/.bubblewrap/config.json"
+          printf 'n\n' | bubblewrap doctor
 
       - name: Decode keystore
         run: |
