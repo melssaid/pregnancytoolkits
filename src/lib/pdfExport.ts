@@ -320,6 +320,7 @@ const _reshapedCache = new Map<string, string>();
 function sanitizeText(text: string): string {
   if (!text) return '';
   return text
+    // eslint-disable-next-line no-misleading-character-class
     .replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{27BF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{2702}-\u{27B0}\u{1FA00}-\u{1FA6F}\u{1FA70}-\u{1FAFF}\u{20E3}\u{FE0F}]/gu, '')
     .replace(/\s{2,}/g, ' ')
     .trim();
