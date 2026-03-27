@@ -1,4 +1,4 @@
-name: Android TWA Build (Signed)
+name: Android Build (APK + AAB)
 
 on:
   workflow_dispatch:
@@ -6,89 +6,117 @@ on:
     branches: ["main"]
 
 jobs:
-  build-twa:
+  build:
     runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash
 
-    env:
-      KEYSTORE_PATH: ${{ github.workspace }}/upload-keystore.jks
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Validate TWA manifest exists
-        run: |
-          [ -f "twa-manifest.json" ] || { echo "twa-manifest.json not found in repo root"; exit 1; }
-
-      - name: Validate required signing secrets
-        run: |
-          [ -n "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" ] || { echo "Missing ANDROID_KEYSTORE_BASE64"; exit 1; }
-          [ -n "${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" ] || { echo "Missing ANDROID_KEYSTORE_PASSWORD"; exit 1; }
-          [ -n "${{ secrets.ANDROID_KEY_ALIAS }}" ] || { echo "Missing ANDROID_KEY_ALIAS"; exit 1; }
-          [ -n "${{ secrets.ANDROID_KEY_PASSWORD }}" ] || { echo "Missing ANDROID_KEY_PASSWORD"; exit 1; }
-
-      - name: Setup Java 17
+      - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: "17"
 
-      - name: Setup Node 20
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "20"
 
-      - name: Install Bubblewrap
-        run: npm i -g @bubblewrap/cli
+      - name: Detect project type
+        id: detect
+        run: |
+          if [ -f "./gradlew" ]; then
+            echo "type=gradle" >> $GITHUB_OUTPUT
+            echo "dir=." >> $GITHUB_OUTPUT
+          elif [ -f "./android/gradlew" ]; then
+            echo "type=gradle" >> $GITHUB_OUTPUT
+            echo "dir=./android" >> $GITHUB_OUTPUT
+          elif [ -f "./twa/gradlew" ]; then
+            echo "type=gradle" >> $GITHUB_OUTPUT
+            echo "dir=./twa" >> $GITHUB_OUTPUT
+          elif [ -f "./twa-manifest.json" ]; then
+            echo "type=twa" >> $GITHUB_OUTPUT
+            echo "dir=." >> $GITHUB_OUTPUT
+          else
+            echo "No Android Gradle project or twa-manifest.json found."
+            exit 1
+          fi
+
+      - name: Validate signing secrets
+        run: |
+          test -n "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" || (echo "Missing secret: ANDROID_KEYSTORE_BASE64" && exit 1)
+          test -n "${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" || (echo "Missing secret: ANDROID_KEYSTORE_PASSWORD" && exit 1)
+          test -n "${{ secrets.ANDROID_KEY_ALIAS }}" || (echo "Missing secret: ANDROID_KEY_ALIAS" && exit 1)
+          test -n "${{ secrets.ANDROID_KEY_PASSWORD }}" || (echo "Missing secret: ANDROID_KEY_PASSWORD" && exit 1)
 
       - name: Decode keystore
         run: |
-          echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 -d > "$KEYSTORE_PATH"
-          ls -lah "$KEYSTORE_PATH"
+          echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 --decode > "${{ github.workspace }}/upload-keystore.jks"
 
-      - name: Patch twa-manifest signing config
-        env:
-          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
-          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
-          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+      # ---------- Gradle Android ----------
+      - name: Create key.properties (Gradle)
+        if: steps.detect.outputs.type == 'gradle'
+        working-directory: ${{ steps.detect.outputs.dir }}
         run: |
-          node <<'NODE'
-          const fs = require('fs');
-          const path = 'twa-manifest.json';
-          const m = JSON.parse(fs.readFileSync(path, 'utf8'));
+          cat > key.properties <<EOF
+          storeFile=${{ github.workspace }}/upload-keystore.jks
+          storePassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}
+          keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}
+          EOF
 
-          m.signingKey = m.signingKey || {};
-          m.signingKey.path = process.env.KEYSTORE_PATH;
-          m.signingKey.alias = process.env.ANDROID_KEY_ALIAS;
-          m.signingKey.password = process.env.ANDROID_KEY_PASSWORD;
-          m.signingKey.keyStorePassword = process.env.ANDROID_KEYSTORE_PASSWORD;
+      - name: Build APK/AAB with Gradle
+        if: steps.detect.outputs.type == 'gradle'
+        working-directory: ${{ steps.detect.outputs.dir }}
+        run: |
+          chmod +x ./gradlew
+          ./gradlew assembleRelease bundleRelease --stacktrace
 
-          fs.writeFileSync(path, JSON.stringify(m, null, 2));
-          console.log('Updated signingKey in twa-manifest.json');
-          NODE
+      # ---------- Bubblewrap TWA ----------
+      - name: Install Bubblewrap
+        if: steps.detect.outputs.type == 'twa'
+        run: npm i -g @bubblewrap/cli
 
-      - name: Build TWA Android project
-        run: bubblewrap build
+      - name: Patch twa-manifest signing
+        if: steps.detect.outputs.type == 'twa'
+        run: |
+          node -e "
+          const fs=require('fs');
+          const p='twa-manifest.json';
+          const j=JSON.parse(fs.readFileSync(p,'utf8'));
+          j.signingKey=j.signingKey||{};
+          j.signingKey.path='${process.env.GITHUB_WORKSPACE}/upload-keystore.jks';
+          j.signingKey.alias='${{ secrets.ANDROID_KEY_ALIAS }}';
+          j.signingKey.password='${{ secrets.ANDROID_KEY_PASSWORD }}';
+          fs.writeFileSync(p, JSON.stringify(j,null,2));
+          "
 
-      - name: Upload APK
+      - name: Build APK/AAB with Bubblewrap
+        if: steps.detect.outputs.type == 'twa'
+        run: |
+          bubblewrap build
+
+      - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
           name: app-release-apk
           path: |
             ./**/build/outputs/apk/release/*.apk
-            ./**/release/*.apk
             ./**/app-release*.apk
+            ./**/release/*.apk
           if-no-files-found: error
 
-      - name: Upload AAB
+      - name: Upload AAB artifact
         uses: actions/upload-artifact@v4
         with:
           name: app-release-aab
           path: |
             ./**/build/outputs/bundle/release/*.aab
-            ./**/release/*.aab
             ./**/app-release*.aab
+            ./**/release/*.aab
           if-no-files-found: error
