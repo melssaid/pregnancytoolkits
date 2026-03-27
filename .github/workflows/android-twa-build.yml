@@ -175,7 +175,7 @@ jobs:
 
       - name: Build Android TWA (AAB + APK)
         run: |
-          bubblewrap build --skipPwaValidation \
+          printf 'n\n' | bubblewrap build --skipPwaValidation \
             --signingKeyPassword "$KEY_PASSWORD" \
             --keystorePassword "$STORE_PASSWORD"
         env:
