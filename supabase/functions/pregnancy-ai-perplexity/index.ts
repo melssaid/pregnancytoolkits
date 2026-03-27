@@ -692,7 +692,7 @@ Deno.serve(async (req) => {
         });
       }
 
-      let clientId = getClientId(req);
+      const clientId = getClientId(req);
       let userId: string | null = null;
       let isPremium = false;
 
