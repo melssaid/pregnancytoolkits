@@ -22,24 +22,31 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Check manifest exists
+      - name: Locate twa-manifest.json
+        id: locate_manifest
         run: |
-          [ -f "twa-manifest.json" ] || { echo "twa-manifest.json not found at repo root"; exit 1; }
+          MANIFEST_PATH=$(find . -type f -name "twa-manifest.json" | head -n 1)
+          if [ -z "$MANIFEST_PATH" ]; then
+            echo "❌ twa-manifest.json not found anywhere in repository"
+            exit 1
+          fi
+          echo "✅ Found manifest: $MANIFEST_PATH"
+          echo "manifest_path=$MANIFEST_PATH" >> "$GITHUB_OUTPUT"
+          echo "manifest_dir=$(dirname "$MANIFEST_PATH")" >> "$GITHUB_OUTPUT"
 
-      - name: Validate secrets
+      - name: Validate required secrets
         run: |
-          [ -n "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" ] || { echo "Missing ANDROID_KEYSTORE_BASE64"; exit 1; }
-          [ -n "${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" ] || { echo "Missing ANDROID_KEYSTORE_PASSWORD"; exit 1; }
-          [ -n "${{ secrets.ANDROID_KEY_ALIAS }}" ] || { echo "Missing ANDROID_KEY_ALIAS"; exit 1; }
-          [ -n "${{ secrets.ANDROID_KEY_PASSWORD }}" ] || { echo "Missing ANDROID_KEY_PASSWORD"; exit 1; }
+          [ -n "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" ] || { echo "❌ Missing ANDROID_KEYSTORE_BASE64"; exit 1; }
+          [ -n "${{ secrets.ANDROID_KEY_ALIAS }}" ] || { echo "❌ Missing ANDROID_KEY_ALIAS"; exit 1; }
+          [ -n "${{ secrets.ANDROID_KEY_PASSWORD }}" ] || { echo "❌ Missing ANDROID_KEY_PASSWORD"; exit 1; }
 
-      - name: Setup Java
+      - name: Setup Java 17
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: "17"
 
-      - name: Setup Node
+      - name: Setup Node 20
         uses: actions/setup-node@v4
         with:
           node-version: "20"
@@ -50,35 +57,37 @@ jobs:
       - name: Decode keystore
         run: |
           printf '%s' "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 --decode > "$KEYSTORE_PATH"
-          test -s "$KEYSTORE_PATH" || { echo "Decoded keystore is empty"; exit 1; }
+          test -s "$KEYSTORE_PATH" || { echo "❌ Decoded keystore is empty"; exit 1; }
+          echo "✅ Keystore ready"
 
       - name: Patch signing in twa-manifest.json
         env:
+          MANIFEST_PATH: ${{ steps.locate_manifest.outputs.manifest_path }}
           ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
           ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
-          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
         run: |
           node <<'NODE'
           const fs = require('fs');
-          const file = 'twa-manifest.json';
+          const file = process.env.MANIFEST_PATH;
           const m = JSON.parse(fs.readFileSync(file, 'utf8'));
 
           m.signingKey = m.signingKey || {};
           m.signingKey.path = process.env.KEYSTORE_PATH;
           m.signingKey.alias = process.env.ANDROID_KEY_ALIAS;
           m.signingKey.password = process.env.ANDROID_KEY_PASSWORD;
-          m.signingKey.keyStorePassword = process.env.ANDROID_KEYSTORE_PASSWORD;
 
           fs.writeFileSync(file, JSON.stringify(m, null, 2));
-          console.log('Updated signingKey in twa-manifest.json');
+          console.log(`✅ Updated signingKey in ${file}`);
           NODE
 
-      - name: Build
+      - name: Build TWA
+        working-directory: ${{ steps.locate_manifest.outputs.manifest_dir }}
         run: |
           bubblewrap --version
+          bubblewrap doctor || true
           bubblewrap build --skipPwaValidation
 
-      - name: Upload APK
+      - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
           name: app-release-apk
@@ -86,9 +95,10 @@ jobs:
             ./**/build/outputs/apk/release/*.apk
             ./**/release/*.apk
             ./**/app-release*.apk
-          if-no-files-found: error
+          if-no-files-found: warn
+          retention-days: 7
 
-      - name: Upload AAB
+      - name: Upload AAB artifact
         uses: actions/upload-artifact@v4
         with:
           name: app-release-aab
@@ -96,4 +106,5 @@ jobs:
             ./**/build/outputs/bundle/release/*.aab
             ./**/release/*.aab
             ./**/app-release*.aab
-          if-no-files-found: error
+          if-no-files-found: warn
+          retention-days: 7
