@@ -7,13 +7,12 @@ interface Appointment {
   id: string;
   user_id: string;
   title: string;
-  date: string;
-  time: string;
-  location?: string;
-  doctor?: string;
-  notes?: string;
-  type?: string;
-  reminder?: boolean;
+  doctor_name: string | null;
+  location: string | null;
+  appointment_date: string;
+  notes: string | null;
+  questions: string[];
+  reminder_sent: boolean;
   created_at: string;
   updated_at: string;
 }
@@ -39,12 +38,13 @@ export const AppointmentService = {
     }
   },
 
-  async create(data: Omit<Appointment, 'id' | 'user_id' | 'created_at' | 'updated_at'>): Promise<Appointment> {
+  async add(data: Omit<Appointment, 'id' | 'user_id' | 'created_at' | 'updated_at' | 'reminder_sent'>): Promise<Appointment> {
     const now = new Date().toISOString();
     const appointment: Appointment = {
       ...data,
       id: generateId(),
       user_id: getUserId(),
+      reminder_sent: false,
       created_at: now,
       updated_at: now
     };
