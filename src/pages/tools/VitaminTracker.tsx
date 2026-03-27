@@ -1,329 +1,200 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import { motion } from 'framer-motion';
-import { Pill, Check, Clock, TrendingUp, Loader2, Brain, RefreshCw, Droplets, Sun, Fish, Bone, Dna } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { useToast } from '@/hooks/use-toast';
-import { VitaminService } from '@/services/localStorageServices';
-import { ToolFrame } from '@/components/ToolFrame';
-import { useSmartInsight } from '@/hooks/useSmartInsight';
-import { MarkdownRenderer } from '@/components/MarkdownRenderer';
-import { AIResponseFrame } from '@/components/ai/AIResponseFrame';
-import { WeekSlider } from '@/components/WeekSlider';
-import { useTranslation } from 'react-i18next';
-import { useUserProfile } from '@/hooks/useUserProfile';
-import { AIActionButton } from '@/components/ai/AIActionButton';
+// src/pages/tools/VitaminTracker.tsx
+import React, { useCallback, useEffect, useState, ChangeEvent, FormEvent } from 'react';
+import type { VitaminEntry } from '../../types';
+import { loadFromLocalStorage, saveToLocalStorage, removeFromLocalStorage } from '../../services/localStorageServices';
 
+const STORAGE_KEY = 'vitamin-tracker-entries';
 
-interface VitaminDef {
-  id: string;
-  nameKey: string;
-  icon: React.ElementType;
+function makeId(): string {
+  return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 9)}`;
 }
 
-const VITAMIN_DEFS: VitaminDef[] = [
-  { id: 'folic-acid', nameKey: 'folicAcid', icon: Dna },
-  { id: 'iron', nameKey: 'iron', icon: Droplets },
-  { id: 'calcium', nameKey: 'calcium', icon: Bone },
-  { id: 'vitamin-d', nameKey: 'vitaminD', icon: Sun },
-  { id: 'omega-3', nameKey: 'omega3', icon: Fish },
-];
-
-interface Vitamin {
-  id: string;
-  name: string;
-  dosage: string;
-  icon: React.ElementType;
-  importance: string;
-}
+const initialForm = {
+  vitaminName: '',
+  dose: '',
+  takenAt: new Date().toISOString().slice(0, 16), // yyyy-mm-ddThh:mm for input[type=datetime-local]
+  notes: '',
+};
 
 const VitaminTracker: React.FC = () => {
-  const { t } = useTranslation();
-  const { profile: userProfile } = useUserProfile();
-  const [todayLogs, setTodayLogs] = useState<any[]>([]);
-  const [weekHistory, setWeekHistory] = useState<any[]>([]);
-  const [currentWeek, setCurrentWeek] = useState(userProfile.pregnancyWeek || 0);
-  const [isLoading, setIsLoading] = useState(true);
-  const [savingId, setSavingId] = useState<string | null>(null);
-  const [showAiAnalysis, setShowAiAnalysis] = useState(false);
-  const { toast } = useToast();
-  const { generate, isLoading: aiLoading, content: aiAnalysis, reset: resetAI } = useSmartInsight({
-    section: 'medications',
-    toolType: 'vitamin-advice',
-  });
+  const [entries, setEntries] = useState<VitaminEntry[]>([]);
+  const [form, setForm] = useState(() => ({ ...initialForm }));
+
+  // Load stored entries from localStorage
+  const loadData = useCallback(() => {
+    try {
+      const stored = loadFromLocalStorage<VitaminEntry[]>(STORAGE_KEY);
+      setEntries(stored ?? []);
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error('VitaminTracker loadData error:', err);
+      setEntries([]);
+    }
+  }, []);
 
   useEffect(() => {
-    if (userProfile.pregnancyWeek) setCurrentWeek(userProfile.pregnancyWeek);
-  }, [userProfile.pregnancyWeek]);
+    loadData();
+  }, [loadData]);
 
-  const VITAMINS: Vitamin[] = useMemo(() => VITAMIN_DEFS.map(v => ({
-    id: v.id,
-    name: t(`toolsInternal.vitaminTracker.vitamins.${v.nameKey}`),
-    dosage: t(`toolsInternal.vitaminTracker.dosages.${v.nameKey}`),
-    icon: v.icon,
-    importance: t(`toolsInternal.vitaminTracker.importance.${v.nameKey}`)
-  })), [t]);
-
-  useEffect(() => { loadData(); }, []);
-
-  const loadData = async () => {
+  // Save the full entries array to storage
+  const persistEntries = useCallback((next: VitaminEntry[]) => {
     try {
-      setIsLoading(true);
-      const [today, history] = await Promise.all([
-        VitaminService.getTodayLogs(),
-        VitaminService.getHistory(7)
-      ]);
-      setTodayLogs(today);
-      setWeekHistory(history);
-    } catch (error: any) {
-      toast({ title: t('common.error'), description: error.message, variant: 'destructive' });
-    } finally {
-      setIsLoading(false);
+      saveToLocalStorage<VitaminEntry[]>(STORAGE_KEY, next);
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error('VitaminTracker persistEntries error:', err);
     }
-  };
+  }, []);
 
-  const handleTakeVitamin = async (vitamin: Vitamin) => {
-    const alreadyTaken = todayLogs.some(log => log.vitamin_name === vitamin.name);
-    if (alreadyTaken) {
-      toast({
-        title: t('toolsInternal.vitaminTracker.alreadyTaken'),
-        description: t('toolsInternal.vitaminTracker.alreadyTakenDesc', { name: vitamin.name }),
-      });
-      return;
-    }
+  const handleChange = useCallback((e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  }, []);
+
+  const handleAdd = useCallback(
+    (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      try {
+        const entry: VitaminEntry = {
+          id: makeId(),
+          userId: 'local', // placeholder; replace with real user id when available
+          vitaminName: form.vitaminName.trim() || 'Unnamed vitamin',
+          dose: form.dose.trim() || '',
+          takenAt: new Date(form.takenAt).toISOString(),
+          notes: form.notes?.trim() || undefined,
+        };
+
+        setEntries((prev) => {
+          const next = [...prev, entry];
+          persistEntries(next);
+          return next;
+        });
+
+        setForm({ ...initialForm, takenAt: new Date().toISOString().slice(0, 16) });
+      } catch (err) {
+        // eslint-disable-next-line no-console
+        console.error('VitaminTracker handleAdd error:', err);
+      }
+    },
+    [form, persistEntries],
+  );
+
+  const handleDelete = useCallback(
+    (id: string) => {
+      try {
+        setEntries((prev) => {
+          const next = prev.filter((p) => p.id !== id);
+          persistEntries(next);
+          return next;
+        });
+      } catch (err) {
+        // eslint-disable-next-line no-console
+        console.error('VitaminTracker handleDelete error:', err);
+      }
+    },
+    [persistEntries],
+  );
+
+  const handleClearAll = useCallback(() => {
     try {
-      setSavingId(vitamin.id);
-      const newLog = await VitaminService.log(vitamin.name, vitamin.dosage, currentWeek);
-      setTodayLogs(prev => [...prev, newLog]);
-      setWeekHistory(prev => [newLog, ...prev]);
-      toast({
-        title: t('toolsInternal.vitaminTracker.logged'),
-        description: t('toolsInternal.vitaminTracker.loggedDesc', { name: vitamin.name })
-      });
-    } catch (error: any) {
-      toast({ title: t('toolsInternal.vitaminTracker.failedToLog'), description: error.message, variant: 'destructive' });
-    } finally {
-      setSavingId(null);
+      setEntries([]);
+      removeFromLocalStorage(STORAGE_KEY);
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error('VitaminTracker handleClearAll error:', err);
     }
-  };
-
-  const isVitaminTakenToday = (vitaminName: string) => todayLogs.some(log => log.vitamin_name === vitaminName);
-
-  const getWeeklyStats = () => {
-    const stats: Record<string, number> = {};
-    VITAMINS.forEach(v => { stats[v.name] = weekHistory.filter(log => log.vitamin_name === v.name).length; });
-    return stats;
-  };
-
-  const getTodayProgress = () => {
-    const taken = VITAMINS.filter(v => isVitaminTakenToday(v.name)).length;
-    return Math.round((taken / VITAMINS.length) * 100);
-  };
-
-  const getAIAnalysis = async () => {
-    setShowAiAnalysis(true);
-    const takenVitamins = VITAMINS.filter(v => isVitaminTakenToday(v.name)).map(v => v.name);
-    const missedVitamins = VITAMINS.filter(v => !isVitaminTakenToday(v.name)).map(v => v.name);
-    const weeklyData = Object.entries(weeklyStats).map(([name, count]) => `${name}: ${count}/7 days`).join(', ');
-    const prompt = `As a prenatal nutrition guide, analyze this vitamin intake data for a woman in week ${currentWeek} of pregnancy:\n\n**Today:** Taken: ${takenVitamins.join(', ') || 'None'}, Missed: ${missedVitamins.join(', ') || 'All taken!'}, Progress: ${getTodayProgress()}%\n**Weekly:** ${weeklyData}\n\nProvide:\n1. **Intake Assessment** - Score and overview\n2. **Priority Vitamins** - Most important for week ${currentWeek}\n3. **Interaction Notes** - Important combinations\n4. **Absorption Tips** - How to maximize benefits\n5. **Weekly Goals** - 3 actionable goals`;
-
-    await generate({ prompt, context: { week: currentWeek } });
-  };
-
-  const weeklyStats = getWeeklyStats();
-  const todayProgress = getTodayProgress();
-
-  if (isLoading) {
-    return (
-      <ToolFrame title={t('tools.vitaminTracker.title')} subtitle={t('toolsInternal.vitaminTracker.subtitle')} mood="joyful" toolId="vitamin-tracker">
-        <div className="flex items-center justify-center py-12">
-          <Loader2 className="w-8 h-8 animate-spin text-primary" />
-        </div>
-      </ToolFrame>
-    );
-  }
+  }, []);
 
   return (
-    <ToolFrame title={t('tools.vitaminTracker.title')} subtitle={t('toolsInternal.vitaminTracker.subtitle')} mood="joyful" toolId="vitamin-tracker">
-      <div className="space-y-4">
-        {/* Week Selector */}
-        <WeekSlider week={currentWeek} onChange={setCurrentWeek} showTrimester label={t('toolsInternal.vitaminTracker.pregnancyWeek')} />
+    <section aria-label="vitamin-tracker" className="p-4 bg-white rounded-md shadow-sm">
+      <h2 className="text-lg font-semibold mb-3">Vitamin Tracker</h2>
 
-        {/* Progress + AI */}
-        <Card>
-          <CardContent className="p-3 space-y-3">
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-medium text-muted-foreground">
-                {t('toolsInternal.vitaminTracker.vitaminsCount', { taken: todayLogs.length, total: VITAMINS.length })}
-              </span>
-              <span className="text-xs font-bold text-primary">{todayProgress}%</span>
-            </div>
-            <div className="h-1.5 bg-muted rounded-full overflow-hidden">
-              <motion.div
-                className="h-full bg-primary rounded-full"
-                initial={{ width: 0 }}
-                animate={{ width: `${todayProgress}%` }}
-                transition={{ duration: 0.5 }}
-              />
-            </div>
-
-            <AIActionButton
-              onClick={getAIAnalysis}
-              isLoading={aiLoading}
-              label={t('toolsInternal.vitaminTracker.analyzeRoutine')}
-              loadingLabel={t('toolsInternal.vitaminTracker.analyzing')}
-              icon={Brain}
-              variant="compact"
-              toolType="vitamin-advice"
-              section="medications"
-            />
-          </CardContent>
-        </Card>
-
-        {/* AI Analysis */}
-        {showAiAnalysis && (
-          <AIResponseFrame
-            content={aiAnalysis || ''}
-            isLoading={aiLoading}
-            title={t('toolsInternal.vitaminTracker.aiAnalysisTitle')}
-            icon={Brain}
-            footer={
-              !aiAnalysis ? (
-                <div className="flex items-center justify-center py-6 text-muted-foreground">
-                  <Loader2 className="w-4 h-4 animate-spin mr-2" />
-                  <span className="text-xs">{t('toolsInternal.vitaminTracker.analyzingIntake')}</span>
-                </div>
-              ) : undefined
-            }
+      <form onSubmit={handleAdd} className="space-y-2 mb-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+          <input
+            name="vitaminName"
+            value={form.vitaminName}
+            onChange={handleChange}
+            placeholder="Vitamin name"
+            className="border rounded p-2"
+            aria-label="vitamin-name"
           />
-        )}
 
-        {/* Vitamins List */}
-        <div className="space-y-2">
-          {VITAMINS.map((vitamin, index) => {
-            const taken = isVitaminTakenToday(vitamin.name);
-            const isSaving = savingId === vitamin.id;
-            const weekCount = weeklyStats[vitamin.name] || 0;
-            const Icon = vitamin.icon;
+          <input
+            name="dose"
+            value={form.dose}
+            onChange={handleChange}
+            placeholder="Dose (e.g., 10mg)"
+            className="border rounded p-2"
+            aria-label="dose"
+          />
 
-            return (
-              <motion.div
-                key={vitamin.id}
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.05 }}
-              >
-                <Card className={`transition-all ${taken ? 'opacity-60 border-primary/30 bg-primary/5' : 'border-border'}`}>
-                  <CardContent className="p-3">
-                    <div className="flex items-center gap-3">
-                      <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${
-                        taken ? 'bg-primary/10' : 'bg-muted/50'
-                      }`}>
-                        {taken ? (
-                          <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', damping: 12 }}>
-                            <Check className="w-5 h-5 text-primary" />
-                          </motion.div>
-                        ) : (
-                          <Icon className="w-5 h-5 text-muted-foreground" />
-                        )}
-                      </div>
-
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-start justify-between gap-2">
-                          <div className="min-w-0 flex-1">
-                            <h3 className="font-semibold text-sm text-foreground">{vitamin.name}</h3>
-                            <p className="text-[10px] text-muted-foreground">{vitamin.dosage}</p>
-                          </div>
-                          <div className="flex flex-col items-end gap-1 flex-shrink-0">
-                            <Button
-                              variant={taken ? 'outline' : 'default'}
-                              size="sm"
-                              onClick={() => handleTakeVitamin(vitamin)}
-                              disabled={taken || isSaving}
-                              className="text-[11px] h-7 px-2.5 gap-1"
-                            >
-                              {isSaving ? (
-                                <Loader2 className="w-3 h-3 animate-spin" />
-                              ) : taken ? (
-                                <><Check className="w-3 h-3" /> {t('toolsInternal.vitaminTracker.done')}</>
-                              ) : (
-                                t('toolsInternal.vitaminTracker.take')
-                              )}
-                            </Button>
-                            <span className="text-[9px] text-muted-foreground">
-                              {weekCount}/7 {t('toolsInternal.vitaminTracker.thisWeek')}
-                            </span>
-                          </div>
-                        </div>
-                        <p className="text-[10px] text-muted-foreground mt-0.5 line-clamp-1">{vitamin.importance}</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            );
-          })}
+          <input
+            name="takenAt"
+            value={form.takenAt}
+            onChange={handleChange}
+            type="datetime-local"
+            className="border rounded p-2"
+            aria-label="taken-at"
+          />
         </div>
 
-        {/* Weekly Stats */}
-        <Card>
-          <CardContent className="p-3">
-            <div className="flex items-center gap-2 mb-3">
-              <TrendingUp className="w-4 h-4 text-primary" />
-              <h3 className="text-xs font-semibold">{t('toolsInternal.vitaminTracker.weeklyStats')}</h3>
-            </div>
-            <div className="grid grid-cols-5 gap-2">
-              {VITAMINS.map(vitamin => {
-                const count = weeklyStats[vitamin.name] || 0;
-                const percentage = Math.round((count / 7) * 100);
-                const Icon = vitamin.icon;
-                return (
-                  <div key={vitamin.id} className="text-center p-2 bg-muted/30 rounded-lg">
-                    <Icon className="w-4 h-4 mx-auto text-primary mb-1" />
-                    <div className="w-full bg-muted rounded-full h-1 mt-1">
-                      <div className="bg-primary h-1 rounded-full transition-all duration-500" style={{ width: `${percentage}%` }} />
-                    </div>
-                    <p className="text-[9px] text-muted-foreground mt-1">{count}/7</p>
-                  </div>
-                );
-              })}
-            </div>
-          </CardContent>
-        </Card>
+        <div>
+          <textarea
+            name="notes"
+            value={form.notes}
+            onChange={handleChange}
+            placeholder="Notes (optional)"
+            className="w-full border rounded p-2"
+            rows={2}
+            aria-label="notes"
+          />
+        </div>
 
-        {/* Recent History */}
-        {weekHistory.length > 0 && (
-          <Card>
-            <CardContent className="p-3">
-              <div className="flex items-center gap-2 mb-2">
-                <Clock className="w-4 h-4 text-primary" />
-                <h3 className="text-xs font-semibold">{t('toolsInternal.vitaminTracker.recentHistory')}</h3>
-              </div>
-              <div className="space-y-1.5 max-h-32 overflow-y-auto">
-                {weekHistory.slice(0, 8).map((log, index) => {
-                  const vitDef = VITAMIN_DEFS.find(v => {
-                    const translatedName = t(`toolsInternal.vitaminTracker.vitamins.${v.nameKey}`);
-                    return translatedName === log.vitamin_name;
-                  });
-                  const Icon = vitDef?.icon || Pill;
-                  return (
-                    <div key={log.id || index} className="flex items-center justify-between p-1.5 bg-muted/30 rounded-lg">
-                      <div className="flex items-center gap-2">
-                        <Icon className="w-3 h-3 text-muted-foreground" />
-                        <span className="text-xs font-medium">{log.vitamin_name}</span>
-                      </div>
-                      <span className="text-[10px] text-muted-foreground">
-                        {new Date(log.taken_at).toLocaleDateString(undefined, { weekday: 'short', hour: '2-digit', minute: '2-digit' })}
-                      </span>
+        <div className="flex gap-2">
+          <button type="submit" className="px-3 py-1 bg-blue-600 text-white rounded">
+            Add
+          </button>
+          <button type="button" onClick={handleClearAll} className="px-3 py-1 bg-red-600 text-white rounded">
+            Clear All
+          </button>
+        </div>
+      </form>
+
+      <div>
+        {entries.length === 0 ? (
+          <p className="text-sm text-gray-600">No vitamin entries yet.</p>
+        ) : (
+          <ul className="space-y-2">
+            {entries
+              .slice()
+              .sort((a, b) => new Date(b.takenAt).getTime() - new Date(a.takenAt).getTime())
+              .map((e) => (
+                <li key={e.id} className="border rounded p-2 flex justify-between items-start">
+                  <div>
+                    <div className="font-medium">
+                      {e.vitaminName} {e.dose ? <span className="text-sm text-gray-500">— {e.dose}</span> : null}
                     </div>
-                  );
-                })}
-              </div>
-            </CardContent>
-          </Card>
+                    <div className="text-xs text-gray-600">{new Date(e.takenAt).toLocaleString()}</div>
+                    {e.notes ? <div className="mt-1 text-sm">{e.notes}</div> : null}
+                  </div>
+
+                  <div className="ml-4 flex flex-col items-end">
+                    <button
+                      type="button"
+                      onClick={() => handleDelete(e.id)}
+                      className="text-xs text-red-600 hover:underline"
+                      aria-label={`delete-${e.id}`}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </li>
+              ))}
+          </ul>
         )}
       </div>
-    </ToolFrame>
+    </section>
   );
 };
 
