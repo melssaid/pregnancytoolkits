@@ -76,7 +76,7 @@ const SmartWeightGainAnalyzer: React.FC = () => {
     saveEntries(updated);
     setNewWeight('');
     toast({ title: t('toolsInternal.weightGain.added') });
-  }, [newWeight, entries, currentWeek, toast, t]);
+  }, [newWeight, entries, profile.pregnancyWeek, toast, t]);
 
   const deleteEntry = useCallback((id: string) => {
     const updated = entries.filter(e => e.id !== id);
