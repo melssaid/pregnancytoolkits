@@ -1,7 +1,7 @@
 // src/services/supabaseServices.ts
 // تأكد من تعديل مسار استيراد العميل إذا كان مكانه مختلفاً في مشروعك.
 // شائع: '../lib/supabaseClient' أو './supabaseClient' أو 'src/lib/supabase'
-import { supabase } from '../lib/supabaseClient'; // <-- غيّر هذا المسار إذا لزم
+import { supabase } from '@/integrations/supabase/client';
 import type { PostgrestError } from '@supabase/supabase-js';
 import type { Profile, VitaminEntry, WeightEntry } from '../types';
 
