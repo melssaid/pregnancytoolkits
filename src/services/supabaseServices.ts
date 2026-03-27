@@ -1,514 +1,198 @@
-import { supabase } from '@/integrations/supabase/client';
-import { ensureAuthenticated } from '@/lib/auth';
-
-// =====================================================
-// HELPER FUNCTIONS
-// =====================================================
-
-/**
- * Get the local-only user ID for localStorage operations.
- * This ID is NEVER sent to Supabase - only used as a localStorage namespace.
- */
-const getLocalUserId = (): string => {
-  let userId = localStorage.getItem('pregnancy_user_id');
-  if (!userId) {
-    userId = 'user_' + Math.random().toString(36).substring(2, 15);
-    localStorage.setItem('pregnancy_user_id', userId);
-  }
-  return userId;
-};
+// src/services/supabaseServices.ts
+// تأكد من تعديل مسار استيراد العميل إذا كان مكانه مختلفاً في مشروعك.
+// شائع: '../lib/supabaseClient' أو './supabaseClient' أو 'src/lib/supabase'
+import { supabase } from '../lib/supabaseClient'; // <-- غيّر هذا المسار إذا لزم
+import type { PostgrestError } from '@supabase/supabase-js';
+import type { Profile, VitaminEntry, WeightEntry } from '../types';
 
 /**
- * Get the authenticated Supabase user ID.
- * Uses anonymous auth for seamless experience with proper RLS isolation.
+ * Generic helper: select all rows from a table with typed rows.
  */
-const getAuthUserId = async (): Promise<string> => {
-  const user = await ensureAuthenticated();
-  if (!user?.id) {
-    throw new Error('Authentication failed - cannot perform Supabase operation');
-  }
-  return user.id;
-};
-
-const getLocalData = <T>(key: string): T[] => {
+export async function selectAllFromTable<T = unknown>(table: string): Promise<T[] | null> {
   try {
-    const data = localStorage.getItem(key);
-    return data ? JSON.parse(data) : [];
-  } catch {
-    return [];
+    const { data, error } = await supabase.from<T>(table).select('*');
+    if (error) {
+      // eslint-disable-next-line no-console
+      console.error(`selectAllFromTable(${table}) supabase error:`, error);
+      return null;
+    }
+    return data ?? null;
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.error(`selectAllFromTable(${table}) unexpected error:`, err);
+    return null;
   }
-};
+}
 
-const setLocalData = <T>(key: string, data: T[]): void => {
-  localStorage.setItem(key, JSON.stringify(data));
-};
-
-const generateId = (): string => {
-  return 'id_' + Date.now() + '_' + Math.random().toString(36).substring(2, 9);
-};
-
-// Check if Supabase is properly configured
-const isSupabaseConfigured = (): boolean => {
+/**
+ * Generic helper: select one row by a column (commonly id).
+ */
+export async function selectOneBy<T = unknown>(table: string, column: string, value: string): Promise<T | null> {
   try {
-    const url = import.meta.env.VITE_SUPABASE_URL;
-    const key = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
-    return !!(url && key && url.includes('supabase'));
-  } catch {
+    const { data, error } = await supabase.from<T>(table).select('*').eq(column, value).limit(1).maybeSingle();
+    if (error) {
+      // eslint-disable-next-line no-console
+      console.error(`selectOneBy ${table}.${column}=${value} supabase error:`, error);
+      return null;
+    }
+    return (data as T) ?? null;
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.error(`selectOneBy ${table}.${column}=${value} unexpected error:`, err);
+    return null;
+  }
+}
+
+/**
+ * Generic helper: insert a single item and return the inserted row (if selected).
+ */
+export async function insertItem<T = unknown>(table: string, item: T): Promise<T | null> {
+  try {
+    const { data, error } = await supabase.from<T>(table).insert(item).select().limit(1).maybeSingle();
+    if (error) {
+      // eslint-disable-next-line no-console
+      console.error(`insertItem ${table} error:`, error);
+      return null;
+    }
+    return (data as T) ?? null;
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.error(`insertItem ${table} unexpected error:`, err);
+    return null;
+  }
+}
+
+/**
+ * Generic helper: update a row by a column and return the updated row.
+ */
+export async function updateItem<T = unknown>(table: string, column: string, value: string, patch: Partial<T>): Promise<T | null> {
+  try {
+    const { data, error } = await supabase.from<T>(table).update(patch).eq(column, value).select().limit(1).maybeSingle();
+    if (error) {
+      // eslint-disable-next-line no-console
+      console.error(`updateItem ${table} ${column}=${value} error:`, error);
+      return null;
+    }
+    return (data as T) ?? null;
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.error(`updateItem ${table} ${column}=${value} unexpected error:`, err);
+    return null;
+  }
+}
+
+/**
+ * Generic helper: delete a row by a column.
+ */
+export async function deleteItem(table: string, column: string, value: string): Promise<boolean> {
+  try {
+    const { error } = await supabase.from(table).delete().eq(column, value);
+    if (error) {
+      // eslint-disable-next-line no-console
+      console.error(`deleteItem ${table} ${column}=${value} error:`, error);
+      return false;
+    }
+    return true;
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.error(`deleteItem ${table} ${column}=${value} unexpected error:`, err);
     return false;
   }
-};
+}
 
-// =====================================================
-// USER PROFILE SERVICE (localStorage)
-// =====================================================
-export const UserProfileService = {
-  async get() {
-    const userId = getLocalUserId();
-    const profiles = getLocalData<any>('user_profiles');
-    return profiles.find(p => p.user_id === userId) || null;
-  },
+/* === Application-specific helpers (typed) === */
 
-  async upsert(profile: any) {
-    const userId = getLocalUserId();
-    let profiles = getLocalData<any>('user_profiles');
-    const index = profiles.findIndex(p => p.user_id === userId);
-    
-    const updatedProfile = {
-      id: index >= 0 ? profiles[index].id : generateId(),
-      user_id: userId,
-      ...profile,
-      updated_at: new Date().toISOString()
-    };
-    
-    if (index >= 0) {
-      profiles[index] = updatedProfile;
-    } else {
-      profiles.push(updatedProfile);
+/**
+ * Get all profiles (typed).
+ */
+export async function getProfiles(): Promise<Profile[] | null> {
+  return selectAllFromTable<Profile>('profiles');
+}
+
+/**
+ * Get a single profile by id.
+ */
+export async function getProfileById(id: string): Promise<Profile | null> {
+  return selectOneBy<Profile>('profiles', 'id', id);
+}
+
+/**
+ * Upsert a profile (insert or update) and return the resulting profile.
+ */
+export async function upsertProfile(profile: Profile): Promise<Profile | null> {
+  try {
+    const { data, error } = await supabase.from<Profile>('profiles').upsert(profile).select().limit(1).maybeSingle();
+    if (error) {
+      // eslint-disable-next-line no-console
+      console.error('upsertProfile supabase error:', error);
+      return null;
     }
-    
-    setLocalData('user_profiles', profiles);
-    return updatedProfile;
+    return (data as Profile) ?? null;
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.error('upsertProfile unexpected error:', err);
+    return null;
   }
-};
+}
 
-// =====================================================
-// VITAMIN SERVICE (localStorage)
-// =====================================================
-export const VitaminService = {
-  async log(vitaminName: string, dosage: string, week: number) {
-    const userId = getLocalUserId();
-    const logs = getLocalData<any>('vitamin_logs');
-    
-    const newLog = {
-      id: generateId(),
-      user_id: userId,
-      vitamin_name: vitaminName,
-      dosage: dosage,
-      week: week,
-      taken_at: new Date().toISOString(),
-      created_at: new Date().toISOString()
-    };
-    
-    logs.push(newLog);
-    setLocalData('vitamin_logs', logs);
-    return newLog;
-  },
-
-  async getTodayLogs() {
-    const userId = getLocalUserId();
-    const logs = getLocalData<any>('vitamin_logs');
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    
-    return logs
-      .filter(log => 
-        log.user_id === userId && 
-        new Date(log.taken_at) >= today
-      )
-      .sort((a, b) => new Date(b.taken_at).getTime() - new Date(a.taken_at).getTime());
-  },
-
-  async getHistory(days: number = 7) {
-    const userId = getLocalUserId();
-    const logs = getLocalData<any>('vitamin_logs');
-    const startDate = new Date();
-    startDate.setDate(startDate.getDate() - days);
-    
-    return logs
-      .filter(log => 
-        log.user_id === userId && 
-        new Date(log.taken_at) >= startDate
-      )
-      .sort((a, b) => new Date(b.taken_at).getTime() - new Date(a.taken_at).getTime());
+/**
+ * Get vitamin entries for a user (example).
+ */
+export async function getVitaminEntriesForUser(userId: string): Promise<VitaminEntry[] | null> {
+  try {
+    const { data, error } = await supabase.from<VitaminEntry>('vitamin_entries').select('*').eq('user_id', userId);
+    if (error) {
+      // eslint-disable-next-line no-console
+      console.error('getVitaminEntriesForUser supabase error:', error);
+      return null;
+    }
+    return data ?? null;
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.error('getVitaminEntriesForUser unexpected error:', err);
+    return null;
   }
-};
+}
 
-// =====================================================
-// KICK COUNTER SERVICE (localStorage)
-// =====================================================
-export const KickService = {
-  async startSession(week: number) {
-    const userId = getLocalUserId();
-    const sessions = getLocalData<any>('kick_sessions');
-    
-    const newSession = {
-      id: generateId(),
-      user_id: userId,
-      week: week,
-      kicks: [],
-      total_kicks: 0,
-      started_at: new Date().toISOString(),
-      ended_at: null,
-      duration_minutes: null,
-      notes: null
-    };
-    
-    sessions.push(newSession);
-    setLocalData('kick_sessions', sessions);
-    return newSession;
-  },
+/**
+ * Add a vitamin entry.
+ */
+export async function addVitaminEntry(entry: VitaminEntry): Promise<VitaminEntry | null> {
+  return insertItem<VitaminEntry>('vitamin_entries', entry);
+}
 
-  async getActiveSession() {
-    const userId = getLocalUserId();
-    const sessions = getLocalData<any>('kick_sessions');
-    return sessions
-      .filter(s => s.user_id === userId && !s.ended_at)
-      .sort((a, b) => new Date(b.started_at).getTime() - new Date(a.started_at).getTime())[0] || null;
-  },
-
-  async addKick(sessionId: string, currentKicks: any[], timestamp: string) {
-    const sessions = getLocalData<any>('kick_sessions');
-    const index = sessions.findIndex(s => s.id === sessionId);
-    
-    if (index >= 0) {
-      const newKicks = [...currentKicks, { time: timestamp }];
-      sessions[index].kicks = newKicks;
-      sessions[index].total_kicks = newKicks.length;
-      setLocalData('kick_sessions', sessions);
-      return newKicks;
+/**
+ * Get weight entries for a user (example).
+ */
+export async function getWeightEntriesForUser(userId: string): Promise<WeightEntry[] | null> {
+  try {
+    const { data, error } = await supabase.from<WeightEntry>('weight_entries').select('*').eq('user_id', userId);
+    if (error) {
+      // eslint-disable-next-line no-console
+      console.error('getWeightEntriesForUser supabase error:', error);
+      return null;
     }
-    return currentKicks;
-  },
-
-  async endSession(sessionId: string, durationMinutes: number, notes?: string) {
-    const sessions = getLocalData<any>('kick_sessions');
-    const index = sessions.findIndex(s => s.id === sessionId);
-    
-    if (index >= 0) {
-      sessions[index].ended_at = new Date().toISOString();
-      sessions[index].duration_minutes = durationMinutes;
-      sessions[index].notes = notes || null;
-      setLocalData('kick_sessions', sessions);
-    }
-  },
-
-  async getHistory(limit: number = 10) {
-    const userId = getLocalUserId();
-    const sessions = getLocalData<any>('kick_sessions');
-    
-    return sessions
-      .filter(s => s.user_id === userId && s.ended_at)
-      .sort((a, b) => new Date(b.started_at).getTime() - new Date(a.started_at).getTime())
-      .slice(0, limit);
+    return data ?? null;
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.error('getWeightEntriesForUser unexpected error:', err);
+    return null;
   }
+}
+
+/* Export an explicit default object for convenience (optional) */
+const SupabaseService = {
+  selectAllFromTable,
+  selectOneBy,
+  insertItem,
+  updateItem,
+  deleteItem,
+  getProfiles,
+  getProfileById,
+  upsertProfile,
+  getVitaminEntriesForUser,
+  addVitaminEntry,
+  getWeightEntriesForUser,
 };
 
-// =====================================================
-// BUMP PHOTO SERVICE (Supabase with localStorage fallback)
-// =====================================================
-export const BumpPhotoService = {
-  async upload(file: File, week: number, caption?: string) {
-    // Try Supabase first with authenticated user ID
-    if (isSupabaseConfigured()) {
-      try {
-        const authUserId = await getAuthUserId();
-        const fileName = `${authUserId}/${week}_${Date.now()}.${file.name.split('.').pop()}`;
-        
-        // Upload to storage
-        const { error: uploadError } = await supabase.storage
-          .from('bump-photos')
-          .upload(fileName, file);
-        
-        if (uploadError) throw uploadError;
-        
-        // Generate a signed URL (1 hour expiry) instead of a public URL
-        const { data: urlData, error: urlError } = await supabase.storage
-          .from('bump-photos')
-          .createSignedUrl(fileName, 3600);
-        
-        if (urlError) throw urlError;
-        
-        // Save to database - store path for on-demand URL generation
-        const { data, error } = await supabase
-          .from('bump_photos')
-          .insert({
-            user_id: authUserId,
-            week: week,
-            storage_path: fileName,
-            image_ref: urlData.signedUrl,
-            caption: caption || null
-          })
-          .select()
-          .single();
-        
-        if (error) throw error;
-        return data;
-      } catch (e) {
-        console.warn('Supabase upload failed, using localStorage:', e);
-      }
-    }
-    
-    // Fallback to localStorage with base64
-    const localUserId = getLocalUserId();
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => {
-        const photos = getLocalData<any>('bump_photos');
-        const newPhoto = {
-          id: generateId(),
-          user_id: localUserId,
-          week: week,
-          image_ref: reader.result as string,
-          storage_path: `local_${Date.now()}`,
-          caption: caption || null,
-          ai_analysis: null,
-          created_at: new Date().toISOString()
-        };
-        photos.push(newPhoto);
-        setLocalData('bump_photos', photos);
-        resolve(newPhoto);
-      };
-      reader.onerror = reject;
-      reader.readAsDataURL(file);
-    });
-  },
-
-  async getAll() {
-    // Try Supabase first with authenticated user
-    if (isSupabaseConfigured()) {
-      try {
-        const authUserId = await getAuthUserId();
-        const { data, error } = await supabase
-          .from('bump_photos')
-          .select('*')
-          .eq('user_id', authUserId)
-          .order('week', { ascending: true });
-        
-        if (!error && data) {
-          // Regenerate signed URLs for all photos (stored URLs may have expired)
-          const photosWithFreshUrls = await Promise.all(
-            data.map(async (photo) => {
-              if (photo.storage_path && !photo.storage_path.startsWith('local_')) {
-                try {
-                  const { data: urlData, error: urlError } = await supabase.storage
-                    .from('bump-photos')
-                    .createSignedUrl(photo.storage_path, 3600); // 1 hour expiry
-                  if (!urlError && urlData) {
-                    return { ...photo, image_ref: urlData.signedUrl };
-                  }
-                } catch {
-                  // Fall back to stored URL
-                }
-              }
-              return photo;
-            })
-          );
-          return photosWithFreshUrls;
-        }
-      } catch (e) {
-        console.warn('Supabase fetch failed, using localStorage:', e);
-      }
-    }
-    
-    // Fallback to localStorage
-    const localUserId = getLocalUserId();
-    const photos = getLocalData<any>('bump_photos');
-    return photos
-      .filter(p => p.user_id === localUserId)
-      .sort((a, b) => a.week - b.week);
-  },
-
-  async updateAnalysis(photoId: string, analysis: string) {
-    // Try Supabase first
-    if (isSupabaseConfigured()) {
-      try {
-        const { error } = await supabase
-          .from('bump_photos')
-          .update({ ai_analysis: analysis })
-          .eq('id', photoId);
-        
-        if (!error) return;
-      } catch (e) {
-        console.warn('Supabase update failed, using localStorage:', e);
-      }
-    }
-    
-    // Fallback to localStorage
-    const photos = getLocalData<any>('bump_photos');
-    const index = photos.findIndex(p => p.id === photoId);
-    if (index >= 0) {
-      photos[index].ai_analysis = analysis;
-      setLocalData('bump_photos', photos);
-    }
-  },
-
-  async delete(photoId: string, storagePath: string) {
-    // Try Supabase first
-    if (isSupabaseConfigured() && !storagePath.startsWith('local_')) {
-      try {
-        await supabase.storage
-          .from('bump-photos')
-          .remove([storagePath]);
-        
-        const { error } = await supabase
-          .from('bump_photos')
-          .delete()
-          .eq('id', photoId);
-        
-        if (!error) return;
-      } catch (e) {
-        console.warn('Supabase delete failed, using localStorage:', e);
-      }
-    }
-    
-    // Fallback to localStorage
-    let photos = getLocalData<any>('bump_photos');
-    photos = photos.filter(p => p.id !== photoId);
-    setLocalData('bump_photos', photos);
-  }
-};
-
-// =====================================================
-// APPOINTMENT SERVICE (localStorage)
-// =====================================================
-export const AppointmentService = {
-  async add(appointment: any) {
-    const userId = getLocalUserId();
-    const appointments = getLocalData<any>('appointments');
-    
-    const newAppointment = {
-      id: generateId(),
-      user_id: userId,
-      ...appointment,
-      reminder_sent: false,
-      created_at: new Date().toISOString()
-    };
-    
-    appointments.push(newAppointment);
-    // Keep max 50 appointments
-    const trimmed = appointments.length > 50 ? appointments.slice(-50) : appointments;
-    setLocalData('appointments', trimmed);
-    return newAppointment;
-  },
-
-  async getAll() {
-    const userId = getLocalUserId();
-    const appointments = getLocalData<any>('appointments');
-    
-    return appointments
-      .filter(a => a.user_id === userId)
-      .sort((a, b) => new Date(a.appointment_date).getTime() - new Date(b.appointment_date).getTime());
-  },
-
-  async update(id: string, updates: any) {
-    const appointments = getLocalData<any>('appointments');
-    const index = appointments.findIndex(a => a.id === id);
-    
-    if (index >= 0) {
-      appointments[index] = { ...appointments[index], ...updates };
-      setLocalData('appointments', appointments);
-    }
-  },
-
-  async delete(id: string) {
-    let appointments = getLocalData<any>('appointments');
-    appointments = appointments.filter(a => a.id !== id);
-    setLocalData('appointments', appointments);
-  }
-};
-
-// =====================================================
-// NUTRITION SERVICE (localStorage)
-// =====================================================
-export const NutritionService = {
-  async logMeal(mealType: string, foods: any[], calories?: number, week?: number) {
-    const userId = getLocalUserId();
-    const logs = getLocalData<any>('nutrition_logs');
-    
-    const newLog = {
-      id: generateId(),
-      user_id: userId,
-      meal_type: mealType,
-      foods: foods,
-      calories: calories || null,
-      ai_suggestions: null,
-      week: week || null,
-      created_at: new Date().toISOString()
-    };
-    
-    logs.push(newLog);
-    setLocalData('nutrition_logs', logs);
-    return newLog;
-  },
-
-  async getTodayMeals() {
-    const userId = getLocalUserId();
-    const logs = getLocalData<any>('nutrition_logs');
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    
-    return logs
-      .filter(log => 
-        log.user_id === userId && 
-        new Date(log.created_at) >= today
-      )
-      .sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime());
-  },
-
-  async updateAiSuggestions(id: string, suggestions: string) {
-    const logs = getLocalData<any>('nutrition_logs');
-    const index = logs.findIndex(l => l.id === id);
-    
-    if (index >= 0) {
-      logs[index].ai_suggestions = suggestions;
-      setLocalData('nutrition_logs', logs);
-    }
-  },
-
-  async delete(id: string) {
-    let logs = getLocalData<any>('nutrition_logs');
-    logs = logs.filter(l => l.id !== id);
-    setLocalData('nutrition_logs', logs);
-  }
-};
-
-// =====================================================
-// HEALTH TRACKING SERVICE (localStorage)
-// =====================================================
-export const HealthService = {
-  async log(data: any) {
-    const userId = getLocalUserId();
-    const logs = getLocalData<any>('health_tracking');
-    
-    const newLog = {
-      id: generateId(),
-      user_id: userId,
-      ...data,
-      created_at: new Date().toISOString()
-    };
-    
-    logs.push(newLog);
-    setLocalData('health_tracking', logs);
-    return newLog;
-  },
-
-  async getHistory(limit: number = 30) {
-    const userId = getLocalUserId();
-    const logs = getLocalData<any>('health_tracking');
-    
-    return logs
-      .filter(l => l.user_id === userId)
-      .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
-      .slice(0, limit);
-  }
-};
+export default SupabaseService;
