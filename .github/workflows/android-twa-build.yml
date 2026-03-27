@@ -1,4 +1,4 @@
-name: Android TWA Build
+name: Android Build (Signed APK + AAB)
 
 on:
   workflow_dispatch:
@@ -6,7 +6,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  build-android:
     runs-on: ubuntu-latest
 
     steps:
@@ -20,46 +20,48 @@ jobs:
           java-version: "17"
           cache: gradle
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x ./gradlew
-
-      # ينشئ keystore مؤقت داخل الـ runner (للتجربة/الإخراج فقط)
-      - name: Generate temporary keystore
+      - name: Verify required secrets exist
+        shell: bash
         run: |
-          keytool -genkeypair -v \
-            -storetype JKS \
-            -keystore ${{ github.workspace }}/upload-keystore.jks \
-            -alias upload \
-            -keyalg RSA \
-            -keysize 2048 \
-            -validity 10000 \
-            -storepass android \
-            -keypass android \
-            -dname "CN=GitHub,O=GitHub,OU=CI,L=NA,S=NA,C=US"
+          test -n "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" || (echo "Missing secret: ANDROID_KEYSTORE_BASE64" && exit 1)
+          test -n "${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" || (echo "Missing secret: ANDROID_KEYSTORE_PASSWORD" && exit 1)
+          test -n "${{ secrets.ANDROID_KEY_ALIAS }}" || (echo "Missing secret: ANDROID_KEY_ALIAS" && exit 1)
+          test -n "${{ secrets.ANDROID_KEY_PASSWORD }}" || (echo "Missing secret: ANDROID_KEY_PASSWORD" && exit 1)
+
+      - name: Decode keystore
+        shell: bash
+        run: |
+          echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 --decode > ${{ github.workspace }}/upload-keystore.jks
 
       - name: Create key.properties
+        shell: bash
         run: |
           cat > key.properties <<EOF
           storeFile=${{ github.workspace }}/upload-keystore.jks
-          storePassword=android
-          keyAlias=upload
-          keyPassword=android
+          storePassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}
+          keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}
           EOF
 
-      - name: Build APK (release)
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
+      - name: Build Release APK
         run: ./gradlew assembleRelease --stacktrace
 
-      - name: Build AAB (release)
+      - name: Build Release AAB
         run: ./gradlew bundleRelease --stacktrace
 
-      - name: Upload APK
+      - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
           name: app-release-apk
           path: app/build/outputs/apk/release/*.apk
+          if-no-files-found: error
 
-      - name: Upload AAB
+      - name: Upload AAB artifact
         uses: actions/upload-artifact@v4
         with:
           name: app-release-aab
           path: app/build/outputs/bundle/release/*.aab
+          if-no-files-found: error
