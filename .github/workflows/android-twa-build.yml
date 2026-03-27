@@ -1,4 +1,4 @@
-name: Android TWA Build (Signed)
+name: android-twa-build-signed
 
 on:
   workflow_dispatch:
@@ -19,43 +19,40 @@ jobs:
       KEYSTORE_PATH: ${{ github.workspace }}/upload-keystore.jks
 
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Validate required files
+      - name: Check manifest exists
         run: |
-          [ -f "twa-manifest.json" ] || { echo "❌ twa-manifest.json not found in repository root"; exit 1; }
-          echo "✅ Found twa-manifest.json"
+          [ -f "twa-manifest.json" ] || { echo "twa-manifest.json not found at repo root"; exit 1; }
 
-      - name: Validate required secrets
+      - name: Validate secrets
         run: |
-          [ -n "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" ] || { echo "❌ Missing secret: ANDROID_KEYSTORE_BASE64"; exit 1; }
-          [ -n "${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" ] || { echo "❌ Missing secret: ANDROID_KEYSTORE_PASSWORD"; exit 1; }
-          [ -n "${{ secrets.ANDROID_KEY_ALIAS }}" ] || { echo "❌ Missing secret: ANDROID_KEY_ALIAS"; exit 1; }
-          [ -n "${{ secrets.ANDROID_KEY_PASSWORD }}" ] || { echo "❌ Missing secret: ANDROID_KEY_PASSWORD"; exit 1; }
-          echo "✅ All required secrets are present"
+          [ -n "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" ] || { echo "Missing ANDROID_KEYSTORE_BASE64"; exit 1; }
+          [ -n "${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" ] || { echo "Missing ANDROID_KEYSTORE_PASSWORD"; exit 1; }
+          [ -n "${{ secrets.ANDROID_KEY_ALIAS }}" ] || { echo "Missing ANDROID_KEY_ALIAS"; exit 1; }
+          [ -n "${{ secrets.ANDROID_KEY_PASSWORD }}" ] || { echo "Missing ANDROID_KEY_PASSWORD"; exit 1; }
 
-      - name: Setup Java 17
+      - name: Setup Java
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: "17"
 
-      - name: Setup Node.js 20
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: "20"
 
-      - name: Install Bubblewrap CLI
-        run: npm install -g @bubblewrap/cli
+      - name: Install Bubblewrap
+        run: npm i -g @bubblewrap/cli
 
-      - name: Decode Android keystore
+      - name: Decode keystore
         run: |
           printf '%s' "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 --decode > "$KEYSTORE_PATH"
-          test -s "$KEYSTORE_PATH" || { echo "❌ Keystore decode failed"; exit 1; }
-          echo "✅ Keystore decoded successfully"
+          test -s "$KEYSTORE_PATH" || { echo "Decoded keystore is empty"; exit 1; }
 
-      - name: Patch twa-manifest signing config
+      - name: Patch signing in twa-manifest.json
         env:
           ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
           ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
@@ -64,28 +61,24 @@ jobs:
           node <<'NODE'
           const fs = require('fs');
           const file = 'twa-manifest.json';
-          const manifest = JSON.parse(fs.readFileSync(file, 'utf8'));
+          const m = JSON.parse(fs.readFileSync(file, 'utf8'));
 
-          manifest.signingKey = manifest.signingKey || {};
-          manifest.signingKey.path = process.env.KEYSTORE_PATH;
-          manifest.signingKey.alias = process.env.ANDROID_KEY_ALIAS;
-          manifest.signingKey.password = process.env.ANDROID_KEY_PASSWORD;
-          manifest.signingKey.keyStorePassword = process.env.ANDROID_KEYSTORE_PASSWORD;
+          m.signingKey = m.signingKey || {};
+          m.signingKey.path = process.env.KEYSTORE_PATH;
+          m.signingKey.alias = process.env.ANDROID_KEY_ALIAS;
+          m.signingKey.password = process.env.ANDROID_KEY_PASSWORD;
+          m.signingKey.keyStorePassword = process.env.ANDROID_KEYSTORE_PASSWORD;
 
-          fs.writeFileSync(file, JSON.stringify(manifest, null, 2));
-          console.log('✅ Updated signingKey in twa-manifest.json');
+          fs.writeFileSync(file, JSON.stringify(m, null, 2));
+          console.log('Updated signingKey in twa-manifest.json');
           NODE
 
-      - name: Verify Bubblewrap environment
+      - name: Build
         run: |
           bubblewrap --version
-          bubblewrap doctor || true
-
-      - name: Build signed APK and AAB
-        run: |
           bubblewrap build --skipPwaValidation
 
-      - name: Upload APK artifact
+      - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: app-release-apk
@@ -94,9 +87,8 @@ jobs:
             ./**/release/*.apk
             ./**/app-release*.apk
           if-no-files-found: error
-          retention-days: 7
 
-      - name: Upload AAB artifact
+      - name: Upload AAB
         uses: actions/upload-artifact@v4
         with:
           name: app-release-aab
@@ -105,4 +97,3 @@ jobs:
             ./**/release/*.aab
             ./**/app-release*.aab
           if-no-files-found: error
-          retention-days: 7
