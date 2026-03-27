@@ -1,7 +1,21 @@
-// src/pages/tools/VitaminTracker.tsx
-import React, { useCallback, useEffect, useState, ChangeEvent, FormEvent } from 'react';
-import type { VitaminEntry } from '../../types';
-import { loadFromLocalStorage, saveToLocalStorage, removeFromLocalStorage } from '../../services/localStorageServices';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Pill, Plus, Trash2, Clock } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { ToolFrame } from '@/components/ToolFrame';
+import { useToast } from '@/hooks/use-toast';
+import { loadFromLocalStorage, saveToLocalStorage, removeFromLocalStorage } from '@/services/localStorageServices';
+
+interface VitaminEntry {
+  id: string;
+  vitaminName: string;
+  dose: string;
+  takenAt: string;
+  notes?: string;
+}
 
 const STORAGE_KEY = 'vitamin-tracker-entries';
 
@@ -9,192 +23,142 @@ function makeId(): string {
   return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 9)}`;
 }
 
-const initialForm = {
-  vitaminName: '',
-  dose: '',
-  takenAt: new Date().toISOString().slice(0, 16), // yyyy-mm-ddThh:mm for input[type=datetime-local]
-  notes: '',
-};
-
 const VitaminTracker: React.FC = () => {
+  const { t } = useTranslation();
+  const { toast } = useToast();
   const [entries, setEntries] = useState<VitaminEntry[]>([]);
-  const [form, setForm] = useState(() => ({ ...initialForm }));
-
-  // Load stored entries from localStorage
-  const loadData = useCallback(() => {
-    try {
-      const stored = loadFromLocalStorage<VitaminEntry[]>(STORAGE_KEY);
-      setEntries(stored ?? []);
-    } catch (err) {
-      // eslint-disable-next-line no-console
-      console.error('VitaminTracker loadData error:', err);
-      setEntries([]);
-    }
-  }, []);
+  const [vitaminName, setVitaminName] = useState('');
+  const [dose, setDose] = useState('');
+  const [notes, setNotes] = useState('');
 
   useEffect(() => {
-    loadData();
-  }, [loadData]);
+    const stored = loadFromLocalStorage<VitaminEntry[]>(STORAGE_KEY);
+    setEntries(stored ?? []);
+  }, []);
 
-  // Save the full entries array to storage
   const persistEntries = useCallback((next: VitaminEntry[]) => {
-    try {
-      saveToLocalStorage<VitaminEntry[]>(STORAGE_KEY, next);
-    } catch (err) {
-      // eslint-disable-next-line no-console
-      console.error('VitaminTracker persistEntries error:', err);
+    saveToLocalStorage(STORAGE_KEY, next);
+  }, []);
+
+  const handleAdd = useCallback(() => {
+    if (!vitaminName.trim()) {
+      toast({ title: t('common.error'), description: t('toolsInternal.vitaminTracker.nameRequired', 'Please enter vitamin name'), variant: 'destructive' });
+      return;
     }
-  }, []);
+    const entry: VitaminEntry = {
+      id: makeId(),
+      vitaminName: vitaminName.trim(),
+      dose: dose.trim(),
+      takenAt: new Date().toISOString(),
+      notes: notes.trim() || undefined,
+    };
+    const next = [...entries, entry];
+    setEntries(next);
+    persistEntries(next);
+    setVitaminName('');
+    setDose('');
+    setNotes('');
+    toast({ title: t('toolsInternal.vitaminTracker.added', 'Vitamin logged ✓') });
+  }, [vitaminName, dose, notes, entries, persistEntries, toast, t]);
 
-  const handleChange = useCallback((e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
-  }, []);
-
-  const handleAdd = useCallback(
-    (e: FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      try {
-        const entry: VitaminEntry = {
-          id: makeId(),
-          userId: 'local', // placeholder; replace with real user id when available
-          vitaminName: form.vitaminName.trim() || 'Unnamed vitamin',
-          dose: form.dose.trim() || '',
-          takenAt: new Date(form.takenAt).toISOString(),
-          notes: form.notes?.trim() || undefined,
-        };
-
-        setEntries((prev) => {
-          const next = [...prev, entry];
-          persistEntries(next);
-          return next;
-        });
-
-        setForm({ ...initialForm, takenAt: new Date().toISOString().slice(0, 16) });
-      } catch (err) {
-        // eslint-disable-next-line no-console
-        console.error('VitaminTracker handleAdd error:', err);
-      }
-    },
-    [form, persistEntries],
-  );
-
-  const handleDelete = useCallback(
-    (id: string) => {
-      try {
-        setEntries((prev) => {
-          const next = prev.filter((p) => p.id !== id);
-          persistEntries(next);
-          return next;
-        });
-      } catch (err) {
-        // eslint-disable-next-line no-console
-        console.error('VitaminTracker handleDelete error:', err);
-      }
-    },
-    [persistEntries],
-  );
+  const handleDelete = useCallback((id: string) => {
+    const next = entries.filter(e => e.id !== id);
+    setEntries(next);
+    persistEntries(next);
+  }, [entries, persistEntries]);
 
   const handleClearAll = useCallback(() => {
-    try {
-      setEntries([]);
-      removeFromLocalStorage(STORAGE_KEY);
-    } catch (err) {
-      // eslint-disable-next-line no-console
-      console.error('VitaminTracker handleClearAll error:', err);
-    }
+    setEntries([]);
+    removeFromLocalStorage(STORAGE_KEY);
   }, []);
 
   return (
-    <section aria-label="vitamin-tracker" className="p-4 bg-white rounded-md shadow-sm">
-      <h2 className="text-lg font-semibold mb-3">Vitamin Tracker</h2>
+    <ToolFrame
+      toolId="vitamin-tracker"
+      title={t('tools.vitaminTracker.title', 'Vitamin Tracker')}
+      subtitle={t('tools.vitaminTracker.subtitle', 'Log your daily vitamins & supplements')}
+      icon={Pill}
+    >
+      <div className="space-y-4">
+        {/* Add Entry */}
+        <Card>
+          <CardHeader className="pb-3">
+            <CardTitle className="text-base flex items-center gap-2">
+              <Plus className="w-4 h-4" />
+              {t('toolsInternal.vitaminTracker.addEntry', 'Log Vitamin')}
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            <div className="grid grid-cols-2 gap-2">
+              <Input
+                placeholder={t('toolsInternal.vitaminTracker.vitaminName', 'Vitamin name')}
+                value={vitaminName}
+                onChange={(e) => setVitaminName(e.target.value)}
+              />
+              <Input
+                placeholder={t('toolsInternal.vitaminTracker.dose', 'Dose (e.g. 10mg)')}
+                value={dose}
+                onChange={(e) => setDose(e.target.value)}
+              />
+            </div>
+            <Textarea
+              placeholder={t('toolsInternal.vitaminTracker.notes', 'Notes (optional)')}
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
+              rows={2}
+            />
+            <Button onClick={handleAdd} className="w-full">
+              <Plus className="w-4 h-4 me-1" />
+              {t('common.add', 'Add')}
+            </Button>
+          </CardContent>
+        </Card>
 
-      <form onSubmit={handleAdd} className="space-y-2 mb-4">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-          <input
-            name="vitaminName"
-            value={form.vitaminName}
-            onChange={handleChange}
-            placeholder="Vitamin name"
-            className="border rounded p-2"
-            aria-label="vitamin-name"
-          />
-
-          <input
-            name="dose"
-            value={form.dose}
-            onChange={handleChange}
-            placeholder="Dose (e.g., 10mg)"
-            className="border rounded p-2"
-            aria-label="dose"
-          />
-
-          <input
-            name="takenAt"
-            value={form.takenAt}
-            onChange={handleChange}
-            type="datetime-local"
-            className="border rounded p-2"
-            aria-label="taken-at"
-          />
-        </div>
-
-        <div>
-          <textarea
-            name="notes"
-            value={form.notes}
-            onChange={handleChange}
-            placeholder="Notes (optional)"
-            className="w-full border rounded p-2"
-            rows={2}
-            aria-label="notes"
-          />
-        </div>
-
-        <div className="flex gap-2">
-          <button type="submit" className="px-3 py-1 bg-blue-600 text-white rounded">
-            Add
-          </button>
-          <button type="button" onClick={handleClearAll} className="px-3 py-1 bg-red-600 text-white rounded">
-            Clear All
-          </button>
-        </div>
-      </form>
-
-      <div>
-        {entries.length === 0 ? (
-          <p className="text-sm text-gray-600">No vitamin entries yet.</p>
-        ) : (
-          <ul className="space-y-2">
-            {entries
-              .slice()
-              .sort((a, b) => new Date(b.takenAt).getTime() - new Date(a.takenAt).getTime())
-              .map((e) => (
-                <li key={e.id} className="border rounded p-2 flex justify-between items-start">
-                  <div>
-                    <div className="font-medium">
-                      {e.vitaminName} {e.dose ? <span className="text-sm text-gray-500">— {e.dose}</span> : null}
+        {/* History */}
+        <Card>
+          <CardHeader className="pb-3 flex flex-row items-center justify-between">
+            <CardTitle className="text-base">
+              {t('toolsInternal.vitaminTracker.history', 'Today\'s Log')}
+              {entries.length > 0 && <span className="text-muted-foreground font-normal ms-2">({entries.length})</span>}
+            </CardTitle>
+            {entries.length > 0 && (
+              <Button variant="ghost" size="sm" onClick={handleClearAll} className="text-destructive">
+                <Trash2 className="w-3.5 h-3.5 me-1" />
+                {t('common.clearAll', 'Clear')}
+              </Button>
+            )}
+          </CardHeader>
+          <CardContent>
+            {entries.length === 0 ? (
+              <p className="text-sm text-muted-foreground text-center py-4">
+                {t('toolsInternal.vitaminTracker.noEntries', 'No vitamins logged yet.')}
+              </p>
+            ) : (
+              <div className="space-y-2 max-h-72 overflow-y-auto">
+                {[...entries].reverse().map(entry => (
+                  <div key={entry.id} className="flex items-center justify-between py-2.5 px-3 bg-muted/30 rounded-lg">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2">
+                        <span className="font-medium text-foreground">{entry.vitaminName}</span>
+                        {entry.dose && <span className="text-xs text-muted-foreground bg-muted/50 px-1.5 py-0.5 rounded">{entry.dose}</span>}
+                      </div>
+                      <div className="flex items-center gap-1 text-xs text-muted-foreground mt-0.5">
+                        <Clock className="w-3 h-3" />
+                        {new Date(entry.takenAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                      </div>
+                      {entry.notes && <p className="text-xs text-muted-foreground mt-1">{entry.notes}</p>}
                     </div>
-                    <div className="text-xs text-gray-600">{new Date(e.takenAt).toLocaleString()}</div>
-                    {e.notes ? <div className="mt-1 text-sm">{e.notes}</div> : null}
+                    <Button variant="ghost" size="sm" onClick={() => handleDelete(entry.id)}>
+                      <Trash2 className="w-3.5 h-3.5 text-destructive" />
+                    </Button>
                   </div>
-
-                  <div className="ml-4 flex flex-col items-end">
-                    <button
-                      type="button"
-                      onClick={() => handleDelete(e.id)}
-                      className="text-xs text-red-600 hover:underline"
-                      aria-label={`delete-${e.id}`}
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </li>
-              ))}
-          </ul>
-        )}
+                ))}
+              </div>
+            )}
+          </CardContent>
+        </Card>
       </div>
-    </section>
+    </ToolFrame>
   );
 };
 
