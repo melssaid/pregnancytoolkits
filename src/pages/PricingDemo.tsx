@@ -24,8 +24,15 @@ export default function PricingDemo() {
   const [selected, setSelected] = useState<PlanType>("yearly");
   const isAr = i18n.language === "ar";
 
-  const handleSubscribe = () => {
-    const sent = requestPurchase(selected);
+  const handleSubscribe = async () => {
+    const sent = await requestPurchase(
+      selected,
+      () => {
+        toast.success(t("pricing.subscriptionSuccess") || "Subscription activated!");
+        navigate("/");
+      },
+      (msg) => toast.error(msg),
+    );
     if (!sent) {
       toast.info(t("pricing.trialNote"));
     }
