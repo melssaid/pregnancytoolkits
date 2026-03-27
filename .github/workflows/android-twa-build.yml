@@ -1,4 +1,4 @@
-name: android-twa-build-signed
+name: android-build-signed
 
 on:
   workflow_dispatch:
@@ -22,21 +22,25 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Locate twa-manifest.json
-        id: locate_manifest
+      - name: Locate gradle wrapper
+        id: locate
         run: |
-          MANIFEST_PATH=$(find . -type f -name "twa-manifest.json" | head -n 1)
-          if [ -z "$MANIFEST_PATH" ]; then
-            echo "❌ twa-manifest.json not found anywhere in repository"
+          if [ -f "./gradlew" ]; then
+            echo "workdir=." >> "$GITHUB_OUTPUT"
+          elif [ -f "./android/gradlew" ]; then
+            echo "workdir=./android" >> "$GITHUB_OUTPUT"
+          elif [ -f "./twa/gradlew" ]; then
+            echo "workdir=./twa" >> "$GITHUB_OUTPUT"
+          else
+            echo "❌ gradlew not found in ., ./android, or ./twa"
             exit 1
           fi
-          echo "✅ Found manifest: $MANIFEST_PATH"
-          echo "manifest_path=$MANIFEST_PATH" >> "$GITHUB_OUTPUT"
-          echo "manifest_dir=$(dirname "$MANIFEST_PATH")" >> "$GITHUB_OUTPUT"
+          echo "✅ Gradle dir: $(cat $GITHUB_OUTPUT | tail -n1)"
 
       - name: Validate required secrets
         run: |
           [ -n "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" ] || { echo "❌ Missing ANDROID_KEYSTORE_BASE64"; exit 1; }
+          [ -n "${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" ] || { echo "❌ Missing ANDROID_KEYSTORE_PASSWORD"; exit 1; }
           [ -n "${{ secrets.ANDROID_KEY_ALIAS }}" ] || { echo "❌ Missing ANDROID_KEY_ALIAS"; exit 1; }
           [ -n "${{ secrets.ANDROID_KEY_PASSWORD }}" ] || { echo "❌ Missing ANDROID_KEY_PASSWORD"; exit 1; }
 
@@ -45,57 +49,38 @@ jobs:
         with:
           distribution: temurin
           java-version: "17"
-
-      - name: Setup Node 20
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-
-      - name: Install Bubblewrap
-        run: npm i -g @bubblewrap/cli
+          cache: gradle
 
       - name: Decode keystore
         run: |
           printf '%s' "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 --decode > "$KEYSTORE_PATH"
-          test -s "$KEYSTORE_PATH" || { echo "❌ Decoded keystore is empty"; exit 1; }
-          echo "✅ Keystore ready"
+          test -s "$KEYSTORE_PATH" || { echo "❌ Keystore decode failed"; exit 1; }
 
-      - name: Patch signing in twa-manifest.json
-        env:
-          MANIFEST_PATH: ${{ steps.locate_manifest.outputs.manifest_path }}
-          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
-          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+      - name: Create key.properties
+        working-directory: ${{ steps.locate.outputs.workdir }}
         run: |
-          node <<'NODE'
-          const fs = require('fs');
-          const file = process.env.MANIFEST_PATH;
-          const m = JSON.parse(fs.readFileSync(file, 'utf8'));
+          cat > key.properties <<EOF
+          storeFile=${KEYSTORE_PATH}
+          storePassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}
+          keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}
+          EOF
+          echo "✅ key.properties created in $(pwd)"
 
-          m.signingKey = m.signingKey || {};
-          m.signingKey.path = process.env.KEYSTORE_PATH;
-          m.signingKey.alias = process.env.ANDROID_KEY_ALIAS;
-          m.signingKey.password = process.env.ANDROID_KEY_PASSWORD;
-
-          fs.writeFileSync(file, JSON.stringify(m, null, 2));
-          console.log(`✅ Updated signingKey in ${file}`);
-          NODE
-
-      - name: Build TWA
-        working-directory: ${{ steps.locate_manifest.outputs.manifest_dir }}
+      - name: Build signed APK + AAB
+        working-directory: ${{ steps.locate.outputs.workdir }}
         run: |
-          bubblewrap --version
-          bubblewrap doctor || true
-          bubblewrap build --skipPwaValidation
+          chmod +x ./gradlew
+          ./gradlew clean assembleRelease bundleRelease --stacktrace
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
           name: app-release-apk
           path: |
-            ./**/build/outputs/apk/release/*.apk
-            ./**/release/*.apk
-            ./**/app-release*.apk
-          if-no-files-found: warn
+            ${{ steps.locate.outputs.workdir }}/app/build/outputs/apk/release/*.apk
+            ${{ steps.locate.outputs.workdir }}/**/build/outputs/apk/release/*.apk
+          if-no-files-found: error
           retention-days: 7
 
       - name: Upload AAB artifact
@@ -103,8 +88,7 @@ jobs:
         with:
           name: app-release-aab
           path: |
-            ./**/build/outputs/bundle/release/*.aab
-            ./**/release/*.aab
-            ./**/app-release*.aab
-          if-no-files-found: warn
+            ${{ steps.locate.outputs.workdir }}/app/build/outputs/bundle/release/*.aab
+            ${{ steps.locate.outputs.workdir }}/**/build/outputs/bundle/release/*.aab
+          if-no-files-found: error
           retention-days: 7
