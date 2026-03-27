@@ -77,20 +77,20 @@ jobs:
           distribution: "temurin"
           java-version: "17"
 
-      - name: Verify Android SDK
-        run: |
-          echo "JAVA_HOME=$JAVA_HOME"
-          echo "ANDROID_HOME=$ANDROID_HOME"
-          ls "$ANDROID_HOME/build-tools/" || echo "build-tools missing"
-          ls "$ANDROID_HOME/platforms/" || echo "platforms missing"
-          ls "$ANDROID_HOME/platform-tools/" || echo "platform-tools missing"
-          ls "$ANDROID_HOME/cmdline-tools/" || echo "cmdline-tools missing"
-
       - name: Install Android SDK packages
         run: |
           yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses >/dev/null 2>&1 || true
           "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --install \
-            "platform-tools" "platforms;android-34" "build-tools;34.0.0" || true
+            "platform-tools" "platforms;android-34" "build-tools;34.0.0"
+
+      - name: Verify environment
+        run: |
+          echo "JAVA_HOME=$JAVA_HOME"
+          echo "ANDROID_HOME=$ANDROID_HOME"
+          java -version 2>&1
+          ls "$ANDROID_HOME/build-tools/"
+          ls "$ANDROID_HOME/platforms/"
+          ls "$ANDROID_HOME/platform-tools/" | head -5
 
       - name: Install Bubblewrap CLI
         run: npm install -g @bubblewrap/cli
@@ -99,7 +99,6 @@ jobs:
         run: |
           mkdir -p "$HOME/.bubblewrap"
           echo '{"jdkPath":"'"$JAVA_HOME"'","androidSdkPath":"'"$ANDROID_HOME"'"}' > "$HOME/.bubblewrap/config.json"
-          echo "--- Config ---"
           cat "$HOME/.bubblewrap/config.json"
 
       - name: Decode keystore
@@ -121,17 +120,6 @@ jobs:
             '.signingKey.alias = $alias | .signingKey.path = $keyPath | .appVersionCode = $vcode | .appVersionName = $vname' \
             twa-manifest.json > twa-manifest.patched.json
           mv twa-manifest.patched.json twa-manifest.json
-          echo "--- Manifest ---"
-          cat twa-manifest.json
-        env:
-          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
-
-      - name: Initialize TWA project
-        run: |
-          printf 'n\n' | bubblewrap init --manifest="https://pregnancytoolkits.lovable.app/manifest.json" --directory="."
-        env:
-          BUBBLEWRAP_KEYSTORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
-          BUBBLEWRAP_KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
 
       - name: Build Android TWA (AAB + APK)
         run: |
@@ -140,27 +128,16 @@ jobs:
           BUBBLEWRAP_KEYSTORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
           BUBBLEWRAP_KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
 
-      - name: List output files
-        run: |
-          echo "--- Root ---"
-          ls -la *.apk *.aab 2>/dev/null || echo "No APK/AAB in root"
-          echo "--- app-release-bundle ---"
-          ls -la app-release-bundle/ 2>/dev/null || echo "No app-release-bundle dir"
-
       - name: Upload AAB artifact
         uses: actions/upload-artifact@v4
         with:
           name: app-release.aab
-          path: |
-            app-release-bundle/app-release.aab
-            *.aab
+          path: app-release-bundle/app-release.aab
           if-no-files-found: warn
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
           name: app-release.apk
-          path: |
-            app-release.apk
-            *.apk
+          path: app-release.apk
           if-no-files-found: warn
