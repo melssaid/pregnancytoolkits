@@ -62,14 +62,14 @@ const SmartWeightGainAnalyzer: React.FC = () => {
   const addEntry = useCallback(() => {
     const weight = parseFloat(newWeight);
     if (isNaN(weight) || weight <= 0 || weight > 300) {
-      toast({ title: t('common.error'), description: t('toolsInternal.weightGain.invalidWeight'), variant: 'destructive' });
+      toast({ title: t('common.error'), description: t('toolsInternal.weightGain.invalidWeight', 'Invalid weight'), variant: 'destructive' });
       return;
     }
     const entry: WeightEntry = {
       id: `${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
       date: new Date().toISOString(),
       weightKg: weight,
-      week: currentWeek || 1,
+      week: profile.pregnancyWeek || 1,
     };
     const updated = [...entries, entry];
     setEntries(updated);
@@ -103,7 +103,7 @@ const SmartWeightGainAnalyzer: React.FC = () => {
       toolId="weight-gain"
       title={t('tools.weightGain.title', 'Weight Gain Analyzer')}
       subtitle={t('tools.weightGain.subtitle', 'Track and analyze your pregnancy weight gain')}
-      icon={<Scale className="w-5 h-5" />}
+      icon={Scale}
     >
       <div className="space-y-4">
         {/* Add Weight Entry */}
