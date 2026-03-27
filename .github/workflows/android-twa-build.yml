@@ -1,15 +1,25 @@
-name: Build Android TWA (AAB + APK)
+name: Build Android TWA (Signed AAB + APK)
 
 on:
   workflow_dispatch:
   push:
     branches: [ "main", "main-work" ]
 
+permissions:
+  contents: read
+
+concurrency:
+  group: android-twa-build-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 35
+
     env:
       JAVA_VERSION: "17"
+      KEYSTORE_PATH: android/app/release.keystore
 
     steps:
       - name: Checkout
@@ -20,55 +30,19 @@ jobs:
         with:
           distribution: temurin
           java-version: ${{ env.JAVA_VERSION }}
+          cache: gradle
 
-      - name: Generate keystore (temporary for build)
+      - name: Validate required secrets
+        shell: bash
         run: |
-          keytool -genkeypair -v \
-            -keystore android/app/release.keystore \
-            -alias upload \
-            -storepass "123456" \
-            -keypass "123456" \
-            -keyalg RSA \
-            -keysize 2048 \
-            -validity 10000 \
-            -dname "CN=Pregnancy Toolkits, OU=Mobile, O=PregnancyToolkits, L=NA, S=NA, C=US"
-
-      - name: Create keystore.properties
-        run: |
-          cat > android/keystore.properties <<EOF
-          storeFile=app/release.keystore
-          storePassword=123456
-          keyAlias=upload
-          keyPassword=123456
-          EOF
-
-      - name: Print signing SHA-256 fingerprint
-        run: |
-          keytool -list -v \
-            -keystore android/app/release.keystore \
-            -storepass "123456" \
-            -alias "upload" \
-            -keypass "123456" | grep "SHA256:" || true
-
-      - name: Grant execute permission for gradlew
-        run: chmod +x android/gradlew
-
-      - name: Build Release AAB
-        working-directory: android
-        run: ./gradlew bundleRelease --no-daemon
-
-      - name: Build Debug APK
-        working-directory: android
-        run: ./gradlew assembleDebug --no-daemon
-
-      - name: Upload AAB artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: app-release-aab
-          path: android/app/build/outputs/bundle/release/app-release.aab
-
-      - name: Upload APK artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: app-debug-apk
-          path: android/app/build/outputs/apk/debug/app-debug.apk
+          missing=0
+          for v in ANDROID_KEYSTORE_BASE64 ANDROID_KEYSTORE_PASSWORD ANDROID_KEY_ALIAS ANDROID_KEY_PASSWORD; do
+            if [ -z "${!v}" ]; then
+              echo "::error::Missing required secret: $v"
+              missing=1
+            fi
+          done
+          if [ "$missing" -ne 0 ]; then
+            exit 1
+         ](#)
+
