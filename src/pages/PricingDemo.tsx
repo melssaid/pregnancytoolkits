@@ -273,13 +273,22 @@ export default function PricingDemo() {
           transition={{ duration: 0.45, delay: 0.28 }}
           className="mt-5 space-y-2"
         >
+          {!canPurchase && (
+            <div className="flex items-center gap-2 p-3 rounded-xl bg-muted/60 border border-border mb-2">
+              <Download className="w-5 h-5 text-primary shrink-0" />
+              <p className="text-[11px] text-muted-foreground leading-snug"
+                style={{ fontFamily: isAr ? "'Tajawal', sans-serif" : undefined }}>
+                {t("pricing.downloadFromPlay")}
+              </p>
+            </div>
+          )}
           <Button
             onClick={handleSubscribe}
             size="lg"
             className="w-full h-[46px] text-[13px] font-bold rounded-2xl shadow-lg shadow-primary/20 whitespace-normal leading-snug"
             style={{ fontFamily: isAr ? "'Almarai', sans-serif" : "'Montserrat', sans-serif" }}
           >
-            {t("pricing.cta")}
+            {canPurchase ? t("pricing.cta") : t("pricing.downloadApp")}
           </Button>
 
           <p
