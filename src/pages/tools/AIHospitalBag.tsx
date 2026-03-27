@@ -201,7 +201,7 @@ const AIHospitalBag = () => {
 
   useEffect(() => {
     safeSaveToLocalStorage("hospital-bag-items", items);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
   }, []);
 
   const togglePacked = (itemId: string) => {
