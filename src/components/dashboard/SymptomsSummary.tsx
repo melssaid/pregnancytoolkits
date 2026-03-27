@@ -38,7 +38,7 @@ function getToday() {
 function loadData() {
   const today = getToday();
   let moodEmoji = "";
-  let moodLabel = "";
+  const moodLabel = "";
   let moodKey = "";
   let symptoms: string[] = [];
   let hasData = false;
