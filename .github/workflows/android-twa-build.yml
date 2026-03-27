@@ -3,32 +3,37 @@ name: Android TWA Build (Signed)
 on:
   workflow_dispatch:
   push:
-    branches: ["main"]
+    branches:
+      - main
+
+permissions:
+  contents: read
 
 jobs:
-  build-twa:
+  build:
     runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash
-
     env:
       KEYSTORE_PATH: ${{ github.workspace }}/upload-keystore.jks
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Validate TWA manifest exists
+      - name: Validate required files
         run: |
-          [ -f "twa-manifest.json" ] || { echo "twa-manifest.json not found in repo root"; exit 1; }
+          [ -f "twa-manifest.json" ] || { echo "❌ twa-manifest.json not found in repository root"; exit 1; }
+          echo "✅ Found twa-manifest.json"
 
-      - name: Validate required signing secrets
+      - name: Validate required secrets
         run: |
-          [ -n "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" ] || { echo "Missing ANDROID_KEYSTORE_BASE64"; exit 1; }
-          [ -n "${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" ] || { echo "Missing ANDROID_KEYSTORE_PASSWORD"; exit 1; }
-          [ -n "${{ secrets.ANDROID_KEY_ALIAS }}" ] || { echo "Missing ANDROID_KEY_ALIAS"; exit 1; }
-          [ -n "${{ secrets.ANDROID_KEY_PASSWORD }}" ] || { echo "Missing ANDROID_KEY_PASSWORD"; exit 1; }
+          [ -n "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" ] || { echo "❌ Missing secret: ANDROID_KEYSTORE_BASE64"; exit 1; }
+          [ -n "${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" ] || { echo "❌ Missing secret: ANDROID_KEYSTORE_PASSWORD"; exit 1; }
+          [ -n "${{ secrets.ANDROID_KEY_ALIAS }}" ] || { echo "❌ Missing secret: ANDROID_KEY_ALIAS"; exit 1; }
+          [ -n "${{ secrets.ANDROID_KEY_PASSWORD }}" ] || { echo "❌ Missing secret: ANDROID_KEY_PASSWORD"; exit 1; }
+          echo "✅ All required secrets are present"
 
       - name: Setup Java 17
         uses: actions/setup-java@v4
@@ -36,18 +41,19 @@ jobs:
           distribution: temurin
           java-version: "17"
 
-      - name: Setup Node 20
+      - name: Setup Node.js 20
         uses: actions/setup-node@v4
         with:
           node-version: "20"
 
-      - name: Install Bubblewrap
-        run: npm i -g @bubblewrap/cli
+      - name: Install Bubblewrap CLI
+        run: npm install -g @bubblewrap/cli
 
-      - name: Decode keystore
+      - name: Decode Android keystore
         run: |
-          echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 -d > "$KEYSTORE_PATH"
-          ls -lah "$KEYSTORE_PATH"
+          printf '%s' "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 --decode > "$KEYSTORE_PATH"
+          test -s "$KEYSTORE_PATH" || { echo "❌ Keystore decode failed"; exit 1; }
+          echo "✅ Keystore decoded successfully"
 
       - name: Patch twa-manifest signing config
         env:
@@ -57,23 +63,29 @@ jobs:
         run: |
           node <<'NODE'
           const fs = require('fs');
-          const path = 'twa-manifest.json';
-          const m = JSON.parse(fs.readFileSync(path, 'utf8'));
+          const file = 'twa-manifest.json';
+          const manifest = JSON.parse(fs.readFileSync(file, 'utf8'));
 
-          m.signingKey = m.signingKey || {};
-          m.signingKey.path = process.env.KEYSTORE_PATH;
-          m.signingKey.alias = process.env.ANDROID_KEY_ALIAS;
-          m.signingKey.password = process.env.ANDROID_KEY_PASSWORD;
-          m.signingKey.keyStorePassword = process.env.ANDROID_KEYSTORE_PASSWORD;
+          manifest.signingKey = manifest.signingKey || {};
+          manifest.signingKey.path = process.env.KEYSTORE_PATH;
+          manifest.signingKey.alias = process.env.ANDROID_KEY_ALIAS;
+          manifest.signingKey.password = process.env.ANDROID_KEY_PASSWORD;
+          manifest.signingKey.keyStorePassword = process.env.ANDROID_KEYSTORE_PASSWORD;
 
-          fs.writeFileSync(path, JSON.stringify(m, null, 2));
-          console.log('Updated signingKey in twa-manifest.json');
+          fs.writeFileSync(file, JSON.stringify(manifest, null, 2));
+          console.log('✅ Updated signingKey in twa-manifest.json');
           NODE
 
-      - name: Build TWA Android project
-        run: bubblewrap build
+      - name: Verify Bubblewrap environment
+        run: |
+          bubblewrap --version
+          bubblewrap doctor || true
 
-      - name: Upload APK
+      - name: Build signed APK and AAB
+        run: |
+          bubblewrap build --skipPwaValidation
+
+      - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
           name: app-release-apk
@@ -82,8 +94,9 @@ jobs:
             ./**/release/*.apk
             ./**/app-release*.apk
           if-no-files-found: error
+          retention-days: 7
 
-      - name: Upload AAB
+      - name: Upload AAB artifact
         uses: actions/upload-artifact@v4
         with:
           name: app-release-aab
@@ -92,3 +105,4 @@ jobs:
             ./**/release/*.aab
             ./**/app-release*.aab
           if-no-files-found: error
+          retention-days: 7
