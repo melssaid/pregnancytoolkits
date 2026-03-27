@@ -106,7 +106,157 @@ export const BumpPhotoService = {
       reader.readAsDataURL(file);
     });
 
+    const now = new Date().toISOString();
     const photo: BumpPhoto = {
       id: generateId(),
-     *
-
+      user_id: getUserId(),
+      week,
+      image_ref: base64,
+      storage_path: `local/${generateId()}`,
+      caption: caption || null,
+      ai_analysis: null,
+      created_at: now,
+      updated_at: now
+    };
+
+    const photos = loadData<BumpPhoto>('bump_photos');
+    photos.push(photo);
+    saveData('bump_photos', photos);
+    return photo;
+  },
+
+  async getByWeek(week: number): Promise<BumpPhoto[]> {
+    return loadData<BumpPhoto>('bump_photos').filter(p => p.week === week);
+  },
+
+  async getAll(): Promise<BumpPhoto[]> {
+    return loadData<BumpPhoto>('bump_photos');
+  },
+
+  async delete(id: string, _storagePath?: string): Promise<void> {
+    const photos = loadData<BumpPhoto>('bump_photos').filter(p => p.id !== id);
+    saveData('bump_photos', photos);
+  },
+
+  async updateCaption(id: string, caption: string): Promise<void> {
+    const photos = loadData<BumpPhoto>('bump_photos').map(p =>
+      p.id === id ? { ...p, caption, updated_at: new Date().toISOString() } : p
+    );
+    saveData('bump_photos', photos);
+  },
+
+  async updateAnalysis(id: string, analysis: string): Promise<void> {
+    const photos = loadData<BumpPhoto>('bump_photos').map(p =>
+      p.id === id ? { ...p, ai_analysis: analysis, updated_at: new Date().toISOString() } : p
+    );
+    saveData('bump_photos', photos);
+  }
+};
+
+export const VitaminLogService = {
+  async log(entry: Omit<VitaminLog, 'id' | 'user_id' | 'created_at'>): Promise<VitaminLog> {
+    const log: VitaminLog = {
+      ...entry,
+      id: generateId(),
+      user_id: getUserId(),
+      created_at: new Date().toISOString()
+    };
+    const logs = loadData<VitaminLog>('vitamin_logs');
+    logs.push(log);
+    saveData('vitamin_logs', logs);
+    return log;
+  },
+
+  async getAll(): Promise<VitaminLog[]> {
+    return loadData<VitaminLog>('vitamin_logs');
+  }
+};
+
+export const KickSessionService = {
+  async save(session: Omit<KickSession, 'id' | 'user_id'>): Promise<KickSession> {
+    const entry: KickSession = {
+      ...session,
+      id: generateId(),
+      user_id: getUserId()
+    };
+    const sessions = loadData<KickSession>('kick_sessions');
+    sessions.push(entry);
+    saveData('kick_sessions', sessions);
+    return entry;
+  },
+
+  async getAll(): Promise<KickSession[]> {
+    return loadData<KickSession>('kick_sessions');
+  },
+
+  async getActiveSession(): Promise<KickSession | null> {
+    const sessions = loadData<KickSession>('kick_sessions');
+    return sessions.find(s => !s.ended_at) || null;
+  },
+
+  async getHistory(limit = 10): Promise<KickSession[]> {
+    const sessions = loadData<KickSession>('kick_sessions')
+      .filter(s => s.ended_at)
+      .sort((a, b) => new Date(b.started_at).getTime() - new Date(a.started_at).getTime());
+    return sessions.slice(0, limit);
+  },
+
+  async startSession(week: number): Promise<KickSession> {
+    const session: KickSession = {
+      id: generateId(),
+      user_id: getUserId(),
+      week,
+      kicks: [],
+      total_kicks: 0,
+      started_at: new Date().toISOString(),
+      ended_at: null,
+      duration_minutes: null,
+      notes: null
+    };
+    const sessions = loadData<KickSession>('kick_sessions');
+    sessions.push(session);
+    saveData('kick_sessions', sessions);
+    return session;
+  },
+
+  async addKick(sessionId: string, currentKicks: Kick[], timestamp: string): Promise<Kick[]> {
+    const sessions = loadData<KickSession>('kick_sessions');
+    const idx = sessions.findIndex(s => s.id === sessionId);
+    if (idx === -1) return currentKicks;
+    const newKick: Kick = { time: timestamp };
+    const updatedKicks = [...currentKicks, newKick];
+    sessions[idx].kicks = updatedKicks;
+    sessions[idx].total_kicks = updatedKicks.length;
+    saveData('kick_sessions', sessions);
+    return updatedKicks;
+  },
+
+  async endSession(sessionId: string, durationMinutes: number, notes?: string): Promise<void> {
+    const sessions = loadData<KickSession>('kick_sessions');
+    const idx = sessions.findIndex(s => s.id === sessionId);
+    if (idx === -1) return;
+    sessions[idx].ended_at = new Date().toISOString();
+    sessions[idx].duration_minutes = durationMinutes;
+    sessions[idx].notes = notes || null;
+    saveData('kick_sessions', sessions);
+  }
+};
+
+export const KickService = KickSessionService;
+
+export function loadFromLocalStorage<T>(key: string): T | null {
+  try {
+    const stored = localStorage.getItem(key);
+    return stored ? (JSON.parse(stored) as T) : null;
+  } catch {
+    return null;
+  }
+}
+
+export function saveToLocalStorage<T>(key: string, data: T): void {
+  localStorage.setItem(key, JSON.stringify(data));
+}
+
+export function removeFromLocalStorage(key: string): void {
+  localStorage.removeItem(key);
+}
