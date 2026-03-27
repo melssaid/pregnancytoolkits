@@ -101,12 +101,13 @@ jobs:
 
       - name: Build Android TWA (AAB + APK)
         run: |
-          bubblewrap build --skipPwaValidation \
+          yes | bubblewrap build --skipPwaValidation \
             --signingKeyPassword "$KEY_PASSWORD" \
             --keystorePassword "$STORE_PASSWORD"
         env:
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
           STORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
+          JAVA_HOME: ${{ env.JAVA_HOME }}
 
       - name: Upload AAB artifact
         uses: actions/upload-artifact@v4
