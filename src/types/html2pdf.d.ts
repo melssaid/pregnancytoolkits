@@ -5,7 +5,12 @@ declare module 'html2pdf.js' {
     margin?: number | [number, number, number, number];
     jsPDF?: unknown;
     html2canvas?: unknown;
-    // أضف حقولًا إضافية حسب الحاجة لكن تجنّب any
+    pagebreak?: {
+      mode?: 'css' | 'legacy';
+      before?: string;
+      after?: string;
+    };
+    // أضف خيارات إضافية إذا استخدمت خيارات خاصة
   }
 
   export default function html2pdf(element: HTMLElement | Element, options?: Html2PdfOptions): Promise<void>;
