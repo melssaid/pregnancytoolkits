@@ -1,198 +1,201 @@
-// src/services/supabaseServices.ts
-// Replace the import path for `supabase` below if your client is located elsewhere.
-// Common locations: '../lib/supabaseClient', './supabaseClient', '../utils/supabase'
-import { supabase } from '../lib/supabaseClient'; // <-- adjust this path if needed
-import type { PostgrestError } from '@supabase/supabase-js';
-import type { Profile, VitaminEntry, WeightEntry } from '../types';
+// src/pages/tools/VitaminTracker.tsx
+import React, { useCallback, useEffect, useState, ChangeEvent, FormEvent } from 'react';
+import type { VitaminEntry } from '../../types';
+import { loadFromLocalStorage, saveToLocalStorage, removeFromLocalStorage } from '../../services/localStorageServices';
 
-/**
- * Generic helper: select all rows from a table with typed rows.
- */
-export async function selectAllFromTable<T = unknown>(table: string): Promise<T[] | null> {
-  try {
-    const { data, error } = await supabase.from<T>(table).select('*');
-    if (error) {
-      // eslint-disable-next-line no-console
-      console.error(`selectAllFromTable(${table}) supabase error:`, error);
-      return null;
-    }
-    return data ?? null;
-  } catch (err) {
-    // eslint-disable-next-line no-console
-    console.error(`selectAllFromTable(${table}) unexpected error:`, err);
-    return null;
-  }
+const STORAGE_KEY = 'vitamin-tracker-entries';
+
+function makeId(): string {
+  return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 9)}`;
 }
 
-/**
- * Generic helper: select one row by a column (commonly id).
- */
-export async function selectOneBy<T = unknown>(table: string, column: string, value: string): Promise<T | null> {
-  try {
-    const { data, error } = await supabase.from<T>(table).select('*').eq(column, value).limit(1).maybeSingle();
-    if (error) {
-      // eslint-disable-next-line no-console
-      console.error(`selectOneBy ${table}.${column}=${value} supabase error:`, error);
-      return null;
-    }
-    return (data as T) ?? null;
-  } catch (err) {
-    // eslint-disable-next-line no-console
-    console.error(`selectOneBy ${table}.${column}=${value} unexpected error:`, err);
-    return null;
-  }
-}
-
-/**
- * Generic helper: insert a single item and return the inserted row (if selected).
- */
-export async function insertItem<T = unknown>(table: string, item: T): Promise<T | null> {
-  try {
-    const { data, error } = await supabase.from<T>(table).insert(item).select().limit(1).maybeSingle();
-    if (error) {
-      // eslint-disable-next-line no-console
-      console.error(`insertItem ${table} error:`, error);
-      return null;
-    }
-    return (data as T) ?? null;
-  } catch (err) {
-    // eslint-disable-next-line no-console
-    console.error(`insertItem ${table} unexpected error:`, err);
-    return null;
-  }
-}
-
-/**
- * Generic helper: update a row by a column and return the updated row.
- */
-export async function updateItem<T = unknown>(table: string, column: string, value: string, patch: Partial<T>): Promise<T | null> {
-  try {
-    const { data, error } = await supabase.from<T>(table).update(patch).eq(column, value).select().limit(1).maybeSingle();
-    if (error) {
-      // eslint-disable-next-line no-console
-      console.error(`updateItem ${table} ${column}=${value} error:`, error);
-      return null;
-    }
-    return (data as T) ?? null;
-  } catch (err) {
-    // eslint-disable-next-line no-console
-    console.error(`updateItem ${table} ${column}=${value} unexpected error:`, err);
-    return null;
-  }
-}
-
-/**
- * Generic helper: delete a row by a column.
- */
-export async function deleteItem(table: string, column: string, value: string): Promise<boolean> {
-  try {
-    const { error } = await supabase.from(table).delete().eq(column, value);
-    if (error) {
-      // eslint-disable-next-line no-console
-      console.error(`deleteItem ${table} ${column}=${value} error:`, error);
-      return false;
-    }
-    return true;
-  } catch (err) {
-    // eslint-disable-next-line no-console
-    console.error(`deleteItem ${table} ${column}=${value} unexpected error:`, err);
-    return false;
-  }
-}
-
-/* === Application-specific helpers (typed) === */
-
-/**
- * Get all profiles (typed).
- */
-export async function getProfiles(): Promise<Profile[] | null> {
-  return selectAllFromTable<Profile>('profiles');
-}
-
-/**
- * Get a single profile by id.
- */
-export async function getProfileById(id: string): Promise<Profile | null> {
-  return selectOneBy<Profile>('profiles', 'id', id);
-}
-
-/**
- * Upsert a profile (insert or update) and return the resulting profile.
- */
-export async function upsertProfile(profile: Profile): Promise<Profile | null> {
-  try {
-    const { data, error } = await supabase.from<Profile>('profiles').upsert(profile).select().limit(1).maybeSingle();
-    if (error) {
-      // eslint-disable-next-line no-console
-      console.error('upsertProfile supabase error:', error);
-      return null;
-    }
-    return (data as Profile) ?? null;
-  } catch (err) {
-    // eslint-disable-next-line no-console
-    console.error('upsertProfile unexpected error:', err);
-    return null;
-  }
-}
-
-/**
- * Get vitamin entries for a user (example).
- */
-export async function getVitaminEntriesForUser(userId: string): Promise<VitaminEntry[] | null> {
-  try {
-    const { data, error } = await supabase.from<VitaminEntry>('vitamin_entries').select('*').eq('user_id', userId);
-    if (error) {
-      // eslint-disable-next-line no-console
-      console.error('getVitaminEntriesForUser supabase error:', error);
-      return null;
-    }
-    return data ?? null;
-  } catch (err) {
-    // eslint-disable-next-line no-console
-    console.error('getVitaminEntriesForUser unexpected error:', err);
-    return null;
-  }
-}
-
-/**
- * Add a vitamin entry.
- */
-export async function addVitaminEntry(entry: VitaminEntry): Promise<VitaminEntry | null> {
-  return insertItem<VitaminEntry>('vitamin_entries', entry);
-}
-
-/**
- * Get weight entries for a user (example).
- */
-export async function getWeightEntriesForUser(userId: string): Promise<WeightEntry[] | null> {
-  try {
-    const { data, error } = await supabase.from<WeightEntry>('weight_entries').select('*').eq('user_id', userId);
-    if (error) {
-      // eslint-disable-next-line no-console
-      console.error('getWeightEntriesForUser supabase error:', error);
-      return null;
-    }
-    return data ?? null;
-  } catch (err) {
-    // eslint-disable-next-line no-console
-    console.error('getWeightEntriesForUser unexpected error:', err);
-    return null;
-  }
-}
-
-/* Export an explicit default object for convenience (optional) */
-const SupabaseService = {
-  selectAllFromTable,
-  selectOneBy,
-  insertItem,
-  updateItem,
-  deleteItem,
-  getProfiles,
-  getProfileById,
-  upsertProfile,
-  getVitaminEntriesForUser,
-  addVitaminEntry,
-  getWeightEntriesForUser,
+const initialForm = {
+  vitaminName: '',
+  dose: '',
+  takenAt: new Date().toISOString().slice(0, 16), // yyyy-mm-ddThh:mm for input[type=datetime-local]
+  notes: '',
 };
 
-export default SupabaseService;
+const VitaminTracker: React.FC = () => {
+  const [entries, setEntries] = useState<VitaminEntry[]>([]);
+  const [form, setForm] = useState(() => ({ ...initialForm }));
+
+  // Load stored entries from localStorage
+  const loadData = useCallback(() => {
+    try {
+      const stored = loadFromLocalStorage<VitaminEntry[]>(STORAGE_KEY);
+      setEntries(stored ?? []);
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error('VitaminTracker loadData error:', err);
+      setEntries([]);
+    }
+  }, []);
+
+  useEffect(() => {
+    loadData();
+  }, [loadData]);
+
+  // Save the full entries array to storage
+  const persistEntries = useCallback((next: VitaminEntry[]) => {
+    try {
+      saveToLocalStorage<VitaminEntry[]>(STORAGE_KEY, next);
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error('VitaminTracker persistEntries error:', err);
+    }
+  }, []);
+
+  const handleChange = useCallback((e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  }, []);
+
+  const handleAdd = useCallback(
+    (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      try {
+        const entry: VitaminEntry = {
+          id: makeId(),
+          userId: 'local', // placeholder; replace with real user id when available
+          vitaminName: form.vitaminName.trim() || 'Unnamed vitamin',
+          dose: form.dose.trim() || '',
+          takenAt: new Date(form.takenAt).toISOString(),
+          notes: form.notes?.trim() || undefined,
+        };
+
+        setEntries((prev) => {
+          const next = [...prev, entry];
+          persistEntries(next);
+          return next;
+        });
+
+        setForm({ ...initialForm, takenAt: new Date().toISOString().slice(0, 16) });
+      } catch (err) {
+        // eslint-disable-next-line no-console
+        console.error('VitaminTracker handleAdd error:', err);
+      }
+    },
+    [form, persistEntries],
+  );
+
+  const handleDelete = useCallback(
+    (id: string) => {
+      try {
+        setEntries((prev) => {
+          const next = prev.filter((p) => p.id !== id);
+          persistEntries(next);
+          return next;
+        });
+      } catch (err) {
+        // eslint-disable-next-line no-console
+        console.error('VitaminTracker handleDelete error:', err);
+      }
+    },
+    [persistEntries],
+  );
+
+  const handleClearAll = useCallback(() => {
+    try {
+      setEntries([]);
+      removeFromLocalStorage(STORAGE_KEY);
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error('VitaminTracker handleClearAll error:', err);
+    }
+  }, []);
+
+  return (
+    <section aria-label="vitamin-tracker" className="p-4 bg-white rounded-md shadow-sm">
+      <h2 className="text-lg font-semibold mb-3">Vitamin Tracker</h2>
+
+      <form onSubmit={handleAdd} className="space-y-2 mb-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+          <input
+            name="vitaminName"
+            value={form.vitaminName}
+            onChange={handleChange}
+            placeholder="Vitamin name"
+            className="border rounded p-2"
+            aria-label="vitamin-name"
+          />
+
+          <input
+            name="dose"
+            value={form.dose}
+            onChange={handleChange}
+            placeholder="Dose (e.g., 10mg)"
+            className="border rounded p-2"
+            aria-label="dose"
+          />
+
+          <input
+            name="takenAt"
+            value={form.takenAt}
+            onChange={handleChange}
+            type="datetime-local"
+            className="border rounded p-2"
+            aria-label="taken-at"
+          />
+        </div>
+
+        <div>
+          <textarea
+            name="notes"
+            value={form.notes}
+            onChange={handleChange}
+            placeholder="Notes (optional)"
+            className="w-full border rounded p-2"
+            rows={2}
+            aria-label="notes"
+          />
+        </div>
+
+        <div className="flex gap-2">
+          <button type="submit" className="px-3 py-1 bg-blue-600 text-white rounded">
+            Add
+          </button>
+          <button type="button" onClick={handleClearAll} className="px-3 py-1 bg-red-600 text-white rounded">
+            Clear All
+          </button>
+        </div>
+      </form>
+
+      <div>
+        {entries.length === 0 ? (
+          <p className="text-sm text-gray-600">No vitamin entries yet.</p>
+        ) : (
+          <ul className="space-y-2">
+            {entries
+              .slice()
+              .sort((a, b) => new Date(b.takenAt).getTime() - new Date(a.takenAt).getTime())
+              .map((e) => (
+                <li key={e.id} className="border rounded p-2 flex justify-between items-start">
+                  <div>
+                    <div className="font-medium">
+                      {e.vitaminName} {e.dose ? <span className="text-sm text-gray-500">— {e.dose}</span> : null}
+                    </div>
+                    <div className="text-xs text-gray-600">{new Date(e.takenAt).toLocaleString()}</div>
+                    {e.notes ? <div className="mt-1 text-sm">{e.notes}</div> : null}
+                  </div>
+
+                  <div className="ml-4 flex flex-col items-end">
+                    <button
+                      type="button"
+                      onClick={() => handleDelete(e.id)}
+                      className="text-xs text-red-600 hover:underline"
+                      aria-label={`delete-${e.id}`}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </li>
+              ))}
+          </ul>
+        )}
+      </div>
+    </section>
+  );
+};
+
+export default VitaminTracker;
