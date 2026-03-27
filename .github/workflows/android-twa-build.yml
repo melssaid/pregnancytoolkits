@@ -30,28 +30,28 @@ jobs:
           echo "Top-level files:"
           ls -la
           echo "Searching for gradlew..."
-          find . -maxdepth 6 -type f -name "gradlew"
+          find . -maxdepth 6 -type f -name gradlew
 
-          if [ -f "./gradlew" ]; then
-            WORKDIR="."
-          elif [ -f "./android/gradlew" ]; then
-            WORKDIR="./android"
-          elif [ -f "./twa/gradlew" ]; then
-            WORKDIR="./twa"
+          if [ -f ./gradlew ]; then
+            WORKDIR=.
+          elif [ -f ./android/gradlew ]; then
+            WORKDIR=./android
+          elif [ -f ./twa/gradlew ]; then
+            WORKDIR=./twa
           else
-            echo "❌ gradlew not found in ., ./android, or ./twa"
+            echo "gradlew not found in ., ./android, or ./twa"
             exit 1
           fi
 
           echo "workdir=$WORKDIR" >> "$GITHUB_OUTPUT"
-          echo "✅ Using workdir=$WORKDIR"
+          echo "Using workdir=$WORKDIR"
 
       - name: Validate required secrets
         run: |
-          [ -n "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" ] || { echo "❌ Missing ANDROID_KEYSTORE_BASE64"; exit 1; }
-          [ -n "${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" ] || { echo "❌ Missing ANDROID_KEYSTORE_PASSWORD"; exit 1; }
-          [ -n "${{ secrets.ANDROID_KEY_ALIAS }}" ] || { echo "❌ Missing ANDROID_KEY_ALIAS"; exit 1; }
-          [ -n "${{ secrets.ANDROID_KEY_PASSWORD }}" ] || { echo "❌ Missing ANDROID_KEY_PASSWORD"; exit 1; }
+          [ -n "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" ] || { echo "Missing ANDROID_KEYSTORE_BASE64"; exit 1; }
+          [ -n "${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" ] || { echo "Missing ANDROID_KEYSTORE_PASSWORD"; exit 1; }
+          [ -n "${{ secrets.ANDROID_KEY_ALIAS }}" ] || { echo "Missing ANDROID_KEY_ALIAS"; exit 1; }
+          [ -n "${{ secrets.ANDROID_KEY_PASSWORD }}" ] || { echo "Missing ANDROID_KEY_PASSWORD"; exit 1; }
 
       - name: Setup Java 17
         uses: actions/setup-java@v4
@@ -63,15 +63,44 @@ jobs:
       - name: Decode keystore
         run: |
           printf '%s' "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 --decode > "$KEYSTORE_PATH"
-          test -s "$KEYSTORE_PATH" || { echo "❌ Keystore decode failed"; exit 1; }
-          echo "✅ Keystore decoded"
+          test -s "$KEYSTORE_PATH" || { echo "Keystore decode failed"; exit 1; }
+          echo "Keystore decoded"
 
       - name: Create key.properties
         working-directory: ${{ steps.locate.outputs.workdir }}
         run: |
-          cat > key.properties <<EOF
-          storeFile=${KEYSTORE_PATH}
-          storePassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
-          keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}
-          keyPassword=${{ secrets.AND](#)
-
+          {
+            echo "storeFile=$KEYSTORE_PATH"
+            echo "storePassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}"
+            echo "keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}"
+            echo "keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}"
+          } > key.properties
+          echo "Created $(pwd)/key.properties"
+          cat key.properties | sed 's/=.*$/=***/'
+
+      - name: Build signed APK and AAB
+        working-directory: ${{ steps.locate.outputs.workdir }}
+        run: |
+          chmod +x ./gradlew
+          ./gradlew --version
+          ./gradlew clean assembleRelease bundleRelease --stacktrace
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release-apk
+          path: |
+            ${{ steps.locate.outputs.workdir }}/app/build/outputs/apk/release/*.apk
+            ${{ steps.locate.outputs.workdir }}/**/build/outputs/apk/release/*.apk
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Upload AAB artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release-aab
+          path: |
+            ${{ steps.locate.outputs.workdir }}/app/build/outputs/bundle/release/*.aab
+            ${{ steps.locate.outputs.workdir }}/**/build/outputs/bundle/release/*.aab
+          if-no-files-found: error
+          retention-days: 7
