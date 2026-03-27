@@ -106,7 +106,72 @@ export const BumpPhotoService = {
       reader.readAsDataURL(file);
     });
 
+    const now = new Date().toISOString();
     const photo: BumpPhoto = {
       id: generateId(),
-     *
-
+      user_id: getUserId(),
+      week,
+      image_ref: base64,
+      storage_path: `local/${generateId()}`,
+      caption: caption || null,
+      ai_analysis: null,
+      created_at: now,
+      updated_at: now
+    };
+
+    const photos = loadData<BumpPhoto>('bump_photos');
+    photos.push(photo);
+    saveData('bump_photos', photos);
+    return photo;
+  },
+
+  async getByWeek(week: number): Promise<BumpPhoto[]> {
+    return loadData<BumpPhoto>('bump_photos').filter(p => p.week === week);
+  },
+
+  async getAll(): Promise<BumpPhoto[]> {
+    return loadData<BumpPhoto>('bump_photos');
+  },
+
+  async delete(id: string): Promise<void> {
+    const photos = loadData<BumpPhoto>('bump_photos').filter(p => p.id !== id);
+    saveData('bump_photos', photos);
+  }
+};
+
+export const VitaminLogService = {
+  async log(entry: Omit<VitaminLog, 'id' | 'user_id' | 'created_at'>): Promise<VitaminLog> {
+    const log: VitaminLog = {
+      ...entry,
+      id: generateId(),
+      user_id: getUserId(),
+      created_at: new Date().toISOString()
+    };
+    const logs = loadData<VitaminLog>('vitamin_logs');
+    logs.push(log);
+    saveData('vitamin_logs', logs);
+    return log;
+  },
+
+  async getAll(): Promise<VitaminLog[]> {
+    return loadData<VitaminLog>('vitamin_logs');
+  }
+};
+
+export const KickSessionService = {
+  async save(session: Omit<KickSession, 'id' | 'user_id'>): Promise<KickSession> {
+    const entry: KickSession = {
+      ...session,
+      id: generateId(),
+      user_id: getUserId()
+    };
+    const sessions = loadData<KickSession>('kick_sessions');
+    sessions.push(entry);
+    saveData('kick_sessions', sessions);
+    return entry;
+  },
+
+  async getAll(): Promise<KickSession[]> {
+    return loadData<KickSession>('kick_sessions');
+  }
+};
