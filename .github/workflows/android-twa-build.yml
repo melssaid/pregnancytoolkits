@@ -22,20 +22,29 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Locate gradle wrapper
+      - name: Locate gradle wrapper (debug)
         id: locate
         run: |
+          echo "Repository root:"
+          pwd
+          echo "Top-level files:"
+          ls -la
+          echo "Searching for gradlew..."
+          find . -maxdepth 6 -type f -name "gradlew"
+
           if [ -f "./gradlew" ]; then
-            echo "workdir=." >> "$GITHUB_OUTPUT"
+            WORKDIR="."
           elif [ -f "./android/gradlew" ]; then
-            echo "workdir=./android" >> "$GITHUB_OUTPUT"
+            WORKDIR="./android"
           elif [ -f "./twa/gradlew" ]; then
-            echo "workdir=./twa" >> "$GITHUB_OUTPUT"
+            WORKDIR="./twa"
           else
             echo "❌ gradlew not found in ., ./android, or ./twa"
             exit 1
           fi
-          echo "✅ Gradle dir: $(cat $GITHUB_OUTPUT | tail -n1)"
+
+          echo "workdir=$WORKDIR" >> "$GITHUB_OUTPUT"
+          echo "✅ Using workdir=$WORKDIR"
 
       - name: Validate required secrets
         run: |
@@ -55,6 +64,7 @@ jobs:
         run: |
           printf '%s' "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 --decode > "$KEYSTORE_PATH"
           test -s "$KEYSTORE_PATH" || { echo "❌ Keystore decode failed"; exit 1; }
+          echo "✅ Keystore decoded"
 
       - name: Create key.properties
         working-directory: ${{ steps.locate.outputs.workdir }}
@@ -63,32 +73,5 @@ jobs:
           storeFile=${KEYSTORE_PATH}
           storePassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
           keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}
-          keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}
-          EOF
-          echo "✅ key.properties created in $(pwd)"
-
-      - name: Build signed APK + AAB
-        working-directory: ${{ steps.locate.outputs.workdir }}
-        run: |
-          chmod +x ./gradlew
-          ./gradlew clean assembleRelease bundleRelease --stacktrace
-
-      - name: Upload APK artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: app-release-apk
-          path: |
-            ${{ steps.locate.outputs.workdir }}/app/build/outputs/apk/release/*.apk
-            ${{ steps.locate.outputs.workdir }}/**/build/outputs/apk/release/*.apk
-          if-no-files-found: error
-          retention-days: 7
-
-      - name: Upload AAB artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: app-release-aab
-          path: |
-            ${{ steps.locate.outputs.workdir }}/app/build/outputs/bundle/release/*.aab
-            ${{ steps.locate.outputs.workdir }}/**/build/outputs/bundle/release/*.aab
-          if-no-files-found: error
-          retention-days: 7
+          keyPassword=${{ secrets.AND](#)
+
