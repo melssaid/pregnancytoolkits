@@ -2,10 +2,10 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
-import { Check, X, Sparkles, Brain, Shield, Zap, Heart, Crown } from "lucide-react";
+import { Check, X, Sparkles, Brain, Shield, Zap, Heart, Crown, Download } from "lucide-react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
-import { requestPurchase, type PlanType } from "@/lib/googlePlayBilling";
+import { requestPurchase, isDigitalGoodsAvailable, type PlanType } from "@/lib/googlePlayBilling";
 import { useNavigate, Link } from "react-router-dom";
 import pricingLogo from "@/assets/pricing-logo.webp";
 
@@ -17,14 +17,21 @@ const features = [
   { icon: Sparkles, key: "feature5" },
 ];
 
+const GOOGLE_PLAY_URL = "https://play.google.com/store/apps/details?id=com.pregnancytoolkits.app";
+
 export default function PricingDemo() {
   const { t, i18n } = useTranslation();
   const { isRTL } = useLanguage();
   const navigate = useNavigate();
   const [selected, setSelected] = useState<PlanType>("yearly");
   const isAr = i18n.language === "ar";
+  const canPurchase = isDigitalGoodsAvailable();
 
   const handleSubscribe = async () => {
+    if (!canPurchase) {
+      window.open(GOOGLE_PLAY_URL, "_blank");
+      return;
+    }
     const sent = await requestPurchase(
       selected,
       () => {
@@ -266,13 +273,22 @@ export default function PricingDemo() {
           transition={{ duration: 0.45, delay: 0.28 }}
           className="mt-5 space-y-2"
         >
+          {!canPurchase && (
+            <div className="flex items-center gap-2 p-3 rounded-xl bg-muted/60 border border-border mb-2">
+              <Download className="w-5 h-5 text-primary shrink-0" />
+              <p className="text-[11px] text-muted-foreground leading-snug"
+                style={{ fontFamily: isAr ? "'Tajawal', sans-serif" : undefined }}>
+                {t("pricing.downloadFromPlay")}
+              </p>
+            </div>
+          )}
           <Button
             onClick={handleSubscribe}
             size="lg"
             className="w-full h-[46px] text-[13px] font-bold rounded-2xl shadow-lg shadow-primary/20 whitespace-normal leading-snug"
             style={{ fontFamily: isAr ? "'Almarai', sans-serif" : "'Montserrat', sans-serif" }}
           >
-            {t("pricing.cta")}
+            {canPurchase ? t("pricing.cta") : t("pricing.downloadApp")}
           </Button>
 
           <p
