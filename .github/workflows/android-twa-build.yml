@@ -1,5 +1,8 @@
 name: Android TWA Build
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 on:
   workflow_dispatch:
     inputs:
@@ -77,29 +80,50 @@ jobs:
           distribution: "temurin"
           java-version: "17"
 
+      - name: Resolve sdkmanager binary
+        run: |
+          if [ -x "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" ]; then
+            echo "SDKMANAGER=$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" >> "$GITHUB_ENV"
+          elif [ -x "$ANDROID_HOME/cmdline-tools/bin/sdkmanager" ]; then
+            echo "SDKMANAGER=$ANDROID_HOME/cmdline-tools/bin/sdkmanager" >> "$GITHUB_ENV"
+          elif command -v sdkmanager >/dev/null 2>&1; then
+            echo "SDKMANAGER=$(command -v sdkmanager)" >> "$GITHUB_ENV"
+          else
+            echo "sdkmanager not found"
+            exit 1
+          fi
+
       - name: Install Android SDK packages
         run: |
-          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses >/dev/null 2>&1 || true
-          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --install \
-            "platform-tools" "platforms;android-34" "build-tools;34.0.0"
+          yes | "$SDKMANAGER" --licenses >/dev/null 2>&1 || true
+          "$SDKMANAGER" --install "platform-tools" "platforms;android-34" "build-tools;34.0.0"
+
+      - name: Normalize Android SDK layout for Bubblewrap
+        run: |
+          mkdir -p "$ANDROID_HOME/tools"
+          if [ ! -e "$ANDROID_HOME/tools/bin" ] && [ -d "$ANDROID_HOME/cmdline-tools/latest/bin" ]; then
+            ln -s "$ANDROID_HOME/cmdline-tools/latest/bin" "$ANDROID_HOME/tools/bin"
+          fi
 
       - name: Verify environment
         run: |
           echo "JAVA_HOME=$JAVA_HOME"
           echo "ANDROID_HOME=$ANDROID_HOME"
+          echo "ANDROID_SDK_ROOT=$ANDROID_SDK_ROOT"
           java -version 2>&1
+          test -d "$ANDROID_HOME/build-tools" || { echo "build-tools missing"; exit 1; }
+          test -d "$ANDROID_HOME/platform-tools" || { echo "platform-tools missing"; exit 1; }
+          test -d "$ANDROID_HOME/platforms" || { echo "platforms missing"; exit 1; }
           ls "$ANDROID_HOME/build-tools/"
           ls "$ANDROID_HOME/platforms/"
-          ls "$ANDROID_HOME/platform-tools/" | head -5
 
       - name: Install Bubblewrap CLI
-        run: npm install -g @bubblewrap/cli
+        run: npm install -g @bubblewrap/cli@1.24.1
 
-      - name: Configure Bubblewrap (non-interactive)
+      - name: Configure Bubblewrap paths and validate
         run: |
-          mkdir -p "$HOME/.bubblewrap"
-          echo '{"jdkPath":"'"$JAVA_HOME"'","androidSdkPath":"'"$ANDROID_HOME"'"}' > "$HOME/.bubblewrap/config.json"
-          cat "$HOME/.bubblewrap/config.json"
+          bubblewrap updateConfig --jdkPath="$JAVA_HOME" --androidSdkPath="$ANDROID_HOME"
+          bubblewrap doctor
 
       - name: Decode keystore
         run: |
@@ -107,6 +131,16 @@ jobs:
           chmod 600 "${{ github.workspace }}/android.keystore"
         env:
           KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+
+      - name: Preflight required secrets
+        run: |
+          test -n "$KEY_ALIAS" || { echo "Missing KEY_ALIAS secret"; exit 1; }
+          test -n "$STORE_PASSWORD" || { echo "Missing STORE_PASSWORD secret"; exit 1; }
+          test -n "$KEY_PASSWORD" || { echo "Missing KEY_PASSWORD secret"; exit 1; }
+        env:
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          STORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
 
       - name: Patch TWA manifest
         run: |
@@ -120,24 +154,36 @@ jobs:
             '.signingKey.alias = $alias | .signingKey.path = $keyPath | .appVersionCode = $vcode | .appVersionName = $vname' \
             twa-manifest.json > twa-manifest.patched.json
           mv twa-manifest.patched.json twa-manifest.json
+          echo "Patched twa-manifest.json"
+        env:
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
 
       - name: Build Android TWA (AAB + APK)
         run: |
-          printf 'n\n' | bubblewrap build --skipPwaValidation
+          printf 'n\n' | bubblewrap build --skipPwaValidation --manifest="twa-manifest.json"
         env:
           BUBBLEWRAP_KEYSTORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
           BUBBLEWRAP_KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+
+      - name: List output files
+        run: |
+          ls -la .
+          ls -la app-release-bundle || true
 
       - name: Upload AAB artifact
         uses: actions/upload-artifact@v4
         with:
           name: app-release.aab
-          path: app-release-bundle/app-release.aab
+          path: |
+            app-release-bundle/app-release.aab
+            *.aab
           if-no-files-found: warn
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
           name: app-release.apk
-          path: app-release.apk
+          path: |
+            app-release.apk
+            *.apk
           if-no-files-found: warn
