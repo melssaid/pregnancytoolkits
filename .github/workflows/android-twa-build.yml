@@ -12,111 +12,109 @@ jobs:
       run:
         shell: bash
 
+    env:
+      KEYSTORE_PATH: ${{ github.workspace }}/upload-keystore.jks
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up JDK 17
+      - name: Setup Java 17
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: "17"
 
-      - name: Set up Node.js
+      - name: Setup Node 20
         uses: actions/setup-node@v4
         with:
           node-version: "20"
 
-      - name: Detect project type
+      - name: Detect Android build mode
         id: detect
         run: |
           if [ -f "./gradlew" ]; then
-            echo "type=gradle" >> $GITHUB_OUTPUT
-            echo "dir=." >> $GITHUB_OUTPUT
+            echo "mode=gradle" >> "$GITHUB_OUTPUT"
+            echo "workdir=." >> "$GITHUB_OUTPUT"
           elif [ -f "./android/gradlew" ]; then
-            echo "type=gradle" >> $GITHUB_OUTPUT
-            echo "dir=./android" >> $GITHUB_OUTPUT
+            echo "mode=gradle" >> "$GITHUB_OUTPUT"
+            echo "workdir=./android" >> "$GITHUB_OUTPUT"
           elif [ -f "./twa/gradlew" ]; then
-            echo "type=gradle" >> $GITHUB_OUTPUT
-            echo "dir=./twa" >> $GITHUB_OUTPUT
+            echo "mode=gradle" >> "$GITHUB_OUTPUT"
+            echo "workdir=./twa" >> "$GITHUB_OUTPUT"
           elif [ -f "./twa-manifest.json" ]; then
-            echo "type=twa" >> $GITHUB_OUTPUT
-            echo "dir=." >> $GITHUB_OUTPUT
+            echo "mode=twa" >> "$GITHUB_OUTPUT"
+            echo "workdir=." >> "$GITHUB_OUTPUT"
           else
-            echo "No Android Gradle project or twa-manifest.json found."
+            echo "No gradlew or twa-manifest.json found."
             exit 1
           fi
 
-      - name: Validate signing secrets
+      - name: Validate required secrets
         run: |
-          test -n "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" || (echo "Missing secret: ANDROID_KEYSTORE_BASE64" && exit 1)
-          test -n "${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" || (echo "Missing secret: ANDROID_KEYSTORE_PASSWORD" && exit 1)
-          test -n "${{ secrets.ANDROID_KEY_ALIAS }}" || (echo "Missing secret: ANDROID_KEY_ALIAS" && exit 1)
-          test -n "${{ secrets.ANDROID_KEY_PASSWORD }}" || (echo "Missing secret: ANDROID_KEY_PASSWORD" && exit 1)
+          [ -n "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" ] || { echo "Missing ANDROID_KEYSTORE_BASE64"; exit 1; }
+          [ -n "${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" ] || { echo "Missing ANDROID_KEYSTORE_PASSWORD"; exit 1; }
+          [ -n "${{ secrets.ANDROID_KEY_ALIAS }}" ] || { echo "Missing ANDROID_KEY_ALIAS"; exit 1; }
+          [ -n "${{ secrets.ANDROID_KEY_PASSWORD }}" ] || { echo "Missing ANDROID_KEY_PASSWORD"; exit 1; }
 
       - name: Decode keystore
         run: |
-          echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 --decode > "${{ github.workspace }}/upload-keystore.jks"
+          echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 -d > "$KEYSTORE_PATH"
+          ls -lah "$KEYSTORE_PATH"
 
-      # ---------- Gradle Android ----------
-      - name: Create key.properties (Gradle)
-        if: steps.detect.outputs.type == 'gradle'
-        working-directory: ${{ steps.detect.outputs.dir }}
+      # -----------------------
+      # Gradle path
+      # -----------------------
+      - name: Create key.properties for Gradle
+        if: steps.detect.outputs.mode == 'gradle'
+        working-directory: ${{ steps.detect.outputs.workdir }}
         run: |
           cat > key.properties <<EOF
-          storeFile=${{ github.workspace }}/upload-keystore.jks
+          storeFile=${KEYSTORE_PATH}
           storePassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
           keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}
           keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}
           EOF
+          echo "key.properties created in $(pwd)"
 
-      - name: Build APK/AAB with Gradle
-        if: steps.detect.outputs.type == 'gradle'
-        working-directory: ${{ steps.detect.outputs.dir }}
+      - name: Build release APK/AAB with Gradle
+        if: steps.detect.outputs.mode == 'gradle'
+        working-directory: ${{ steps.detect.outputs.workdir }}
         run: |
           chmod +x ./gradlew
-          ./gradlew assembleRelease bundleRelease --stacktrace
+          ./gradlew --version
+          ./gradlew clean assembleRelease bundleRelease --stacktrace
 
-      # ---------- Bubblewrap TWA ----------
-      - name: Install Bubblewrap
-        if: steps.detect.outputs.type == 'twa'
+      # -----------------------
+      # Bubblewrap TWA path
+      # -----------------------
+      - name: Install Bubblewrap CLI
+        if: steps.detect.outputs.mode == 'twa'
         run: npm i -g @bubblewrap/cli
 
-      - name: Patch twa-manifest signing
-        if: steps.detect.outputs.type == 'twa'
+      - name: Patch twa-manifest.json signing info
+        if: steps.detect.outputs.mode == 'twa'
         run: |
-          node -e "
-          const fs=require('fs');
-          const p='twa-manifest.json';
-          const j=JSON.parse(fs.readFileSync(p,'utf8'));
-          j.signingKey=j.signingKey||{};
-          j.signingKey.path='${process.env.GITHUB_WORKSPACE}/upload-keystore.jks';
-          j.signingKey.alias='${{ secrets.ANDROID_KEY_ALIAS }}';
-          j.signingKey.password='${{ secrets.ANDROID_KEY_PASSWORD }}';
-          fs.writeFileSync(p, JSON.stringify(j,null,2));
-          "
+          node <<'NODE'
+          const fs = require('fs');
+          const p = 'twa-manifest.json';
+          const j = JSON.parse(fs.readFileSync(p, 'utf8'));
 
-      - name: Build APK/AAB with Bubblewrap
-        if: steps.detect.outputs.type == 'twa'
-        run: |
-          bubblewrap build
+          // دعم أكثر من شكل للمفاتيح
+          j.signingKey = j.signingKey || {};
+          j.signingKey.path = process.env.KEYSTORE_PATH;
+          j.signingKey.alias = process.env.ANDROID_KEY_ALIAS;
+          j.signingKey.password = process.env.ANDROID_KEY_PASSWORD;
 
-      - name: Upload APK artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: app-release-apk
-          path: |
-            ./**/build/outputs/apk/release/*.apk
-            ./**/app-release*.apk
-            ./**/release/*.apk
-          if-no-files-found: error
+          // بعض الإصدارات تحتاج password في root signingKey
+          // وبعضها قد يستفيد من keyStorePassword
+          j.signingKey.keyStorePassword = process.env.ANDROID_KEYSTORE_PASSWORD;
 
-      - name: Upload AAB artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: app-release-aab
-          path: |
-            ./**/build/outputs/bundle/release/*.aab
-            ./**/app-release*.aab
-            ./**/release/*.aab
-          if-no-files-found: error
+          fs.writeFileSync(p, JSON.stringify(j, null, 2));
+          console.log('Patched', p);
+          NODE
+        env:
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID](#)
+
