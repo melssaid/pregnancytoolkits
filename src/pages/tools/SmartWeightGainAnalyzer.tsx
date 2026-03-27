@@ -50,7 +50,7 @@ function getGuidance(weeklyGain: number, t: (key: string) => string): { message:
 
 const SmartWeightGainAnalyzer: React.FC = () => {
   const { t } = useTranslation();
-  const { currentWeek } = useUserProfile();
+  const { profile } = useUserProfile();
   const { toast } = useToast();
   const [entries, setEntries] = useState<WeightEntry[]>([]);
   const [newWeight, setNewWeight] = useState('');
