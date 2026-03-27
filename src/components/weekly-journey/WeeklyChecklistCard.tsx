@@ -31,7 +31,7 @@ export const WeeklyChecklistCard = memo(function WeeklyChecklistCard({ week }: P
   useEffect(() => {
     const saved = safeParseLocalStorage<boolean[]>(`${STORAGE_PREFIX}${week}`, []);
     setChecked(items.map((_, i) => saved[i] || false));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, [week]);
 
   const toggle = useCallback((index: number) => {

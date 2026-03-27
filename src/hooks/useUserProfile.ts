@@ -109,7 +109,7 @@ export function useUserProfile() {
         };
       });
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, [profile.lastPeriodDate]);
 
   const updateProfile = useCallback((updates: Partial<Omit<UserProfile, "updatedAt">>) => {

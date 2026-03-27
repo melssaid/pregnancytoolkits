@@ -76,7 +76,7 @@ export function useScrollRestoration() {
 
     prevKeyRef.current = currentKey;
     scrollSavedRef.current = false;
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, [location.pathname, location.search]);
 
   // Continuously save scroll position while user scrolls (debounced)
