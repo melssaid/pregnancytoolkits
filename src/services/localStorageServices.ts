@@ -172,6 +172,24 @@ export const VitaminLogService = {
   }
 };
 
+export const KickSessionService = {
+  async save(session: Omit<KickSession, 'id' | 'user_id'>): Promise<KickSession> {
+    const entry: KickSession = {
+      ...session,
+      id: generateId(),
+      user_id: getUserId()
+    };
+    const sessions = loadData<KickSession>('kick_sessions');
+    sessions.push(entry);
+    saveData('kick_sessions', sessions);
+    return entry;
+  },
+
+  async getAll(): Promise<KickSession[]> {
+    return loadData<KickSession>('kick_sessions');
+  }
+};
+
 export const KickService = KickSessionService;
 
 export function loadFromLocalStorage<T>(key: string): T | null {
@@ -190,37 +208,3 @@ export function saveToLocalStorage<T>(key: string, data: T): void {
 export function removeFromLocalStorage(key: string): void {
   localStorage.removeItem(key);
 }
-
-export const KickSessionService = {
-  async save(session: Omit<KickSession, 'id' | 'user_id'>): Promise<KickSession> {
-    const entry: KickSession = {
-      ...session,
-      id: generateId(),
-      user_id: getUserId()
-    };
-    const sessions = loadData<KickSession>('kick_sessions');
-    sessions.push(entry);
-    saveData('kick_sessions', sessions);
-    return entry;
-  },
-
-  async getAll(): Promise<KickSession[]> {
-    return loadData<KickSession>('kick_sessions');
-  }
-};
-  async save(session: Omit<KickSession, 'id' | 'user_id'>): Promise<KickSession> {
-    const entry: KickSession = {
-      ...session,
-      id: generateId(),
-      user_id: getUserId()
-    };
-    const sessions = loadData<KickSession>('kick_sessions');
-    sessions.push(entry);
-    saveData('kick_sessions', sessions);
-    return entry;
-  },
-
-  async getAll(): Promise<KickSession[]> {
-    return loadData<KickSession>('kick_sessions');
-  }
-};
