@@ -1,0 +1,43 @@
+{
+  "packageId": "com.pregnancytoolkits.app",
+  "host": "pregnancytoolkits.lovable.app",
+  "name": "Pregnancy Toolkits - Lifestyle & Educational Companion",
+  "launcherName": "Pregnancy Toolkits",
+  "display": "standalone",
+  "orientation": "portrait",
+  "themeColor": "#d4608a",
+  "navigationColor": "#d4608a",
+  "navigationColorDark": "#d4608a",
+  "navigationDividerColor": "#d4608a",
+  "navigationDividerColorDark": "#d4608a",
+  "backgroundColor": "#faf6f2",
+  "enableNotifications": false,
+  "startUrl": "/",
+  "iconUrl": "https://pregnancytoolkits.lovable.app/icons/icon-512x512.png",
+  "maskableIconUrl": "https://pregnancytoolkits.lovable.app/icons/icon-512x512.png",
+  "monochromeIconUrl": "https://pregnancytoolkits.lovable.app/icons/icon-512x512.png",
+  "splashScreenFadeOutDuration": 300,
+  "signingKey": {
+    "path": "./android.keystore",
+    "alias": "android"
+  },
+  "appVersionCode": 1,
+  "appVersionName": "1.0.0",
+  "shortcuts": [],
+  "generatorApp": "bubblewrap-cli",
+  "webManifestUrl": "https://pregnancytoolkits.lovable.app/manifest.json",
+  "fallbackType": "customtabs",
+  "features": {
+    "locationDelegation": { "enabled": false },
+    "playBilling": { "enabled": false }
+  },
+  "alphaDependencies": {
+    "enabled": false
+  },
+  "enableSiteSettingsShortcut": true,
+  "isChromeOSOnly": false,
+  "isMetaQuest": false,
+  "fullScopeUrl": "https://pregnancytoolkits.lovable.app/",
+  "minSdkVersion": 19,
+  "fingerprints": []
+}

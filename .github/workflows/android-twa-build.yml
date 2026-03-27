@@ -1,7 +1,16 @@
-name: web-build-check
+name: Android TWA Build
 
 on:
   workflow_dispatch:
+    inputs:
+      version_code:
+        description: "Android version code (integer, e.g. 2)"
+        required: false
+        default: "1"
+      version_name:
+        description: "Android version name (e.g. 1.0.1)"
+        required: false
+        default: "1.0.0"
   push:
     branches: [main]
   pull_request:
@@ -10,6 +19,8 @@ on:
 jobs:
   web-build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     defaults:
       run:
         shell: bash
@@ -35,3 +46,78 @@ jobs:
 
       - name: Test
         run: npm test --if-present
+
+  android-twa:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'push' && github.ref == 'refs/heads/main')
+    needs: [web-build]
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Setup Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version: "17"
+
+      - name: Install Bubblewrap CLI
+        run: npm install -g @bubblewrap/cli
+
+      - name: Decode keystore
+        run: |
+          echo "$KEYSTORE_BASE64" | base64 --decode > "${{ github.workspace }}/android.keystore"
+          chmod 600 "${{ github.workspace }}/android.keystore"
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+
+      - name: Patch TWA manifest (signing key + version)
+        run: |
+          VERSION_CODE="${{ github.event.inputs.version_code || '1' }}"
+          VERSION_NAME="${{ github.event.inputs.version_name || '1.0.0' }}"
+          jq \
+            --arg alias "$KEY_ALIAS" \
+            --arg keyPath "${{ github.workspace }}/android.keystore" \
+            --argjson vcode "$VERSION_CODE" \
+            --arg vname "$VERSION_NAME" \
+            '.signingKey.alias = $alias | .signingKey.path = $keyPath | .appVersionCode = $vcode | .appVersionName = $vname' \
+            twa-manifest.json > twa-manifest.patched.json
+          mv twa-manifest.patched.json twa-manifest.json
+        env:
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+
+      - name: Build Android TWA (AAB + APK)
+        run: |
+          bubblewrap build --skipPwaValidation \
+            --signingKeyPassword "$KEY_PASSWORD" \
+            --keystorePassword "$STORE_PASSWORD"
+        env:
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          STORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
+
+      - name: Upload AAB artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release.aab
+          path: app-release-bundle/app-release.aab
+          if-no-files-found: warn
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release.apk
+          path: app-release.apk
+          if-no-files-found: warn
