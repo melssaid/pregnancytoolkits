@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { Moon, Clock, ThermometerSun, Brain, Loader2, Bed, Wind, Heart, Utensils, AlertCircle, Crown } from "lucide-react";
+import { Moon, Clock, ThermometerSun, Brain, Bed, Wind, Heart, Utensils, AlertCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -13,7 +13,7 @@ import { ToolFrame } from "@/components/ToolFrame";
 import MedicalDisclaimer from "@/components/compliance/MedicalDisclaimer";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { useSmartInsight } from "@/hooks/useSmartInsight";
-import { useAIUsage } from "@/contexts/AIUsageContext";
+
 import { AIActionButton } from '@/components/ai/AIActionButton';
 import { AIResponseFrame } from '@/components/ai/AIResponseFrame';
 import { PrintableReport } from '@/components/PrintableReport';
