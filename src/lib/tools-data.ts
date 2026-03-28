@@ -83,8 +83,9 @@ export const toolsData: Tool[] = [
   // NUTRITION & DIET
   // ═══════════════════════════════════════════════════════════════
   { id: "ai-meal-suggestion", titleKey: "tools.aiMealSuggestion.title", descriptionKey: "tools.aiMealSuggestion.description", icon: Utensils, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/meal.png", categoryKey: "categories.nutrition", href: "/tools/ai-meal-suggestion", priority: 10, hasAI: true },
+  { id: "ai-craving-alternatives", titleKey: "tools.aiCravingAlternatives.title", descriptionKey: "tools.aiCravingAlternatives.description", icon: Sparkles, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/healthy-food.png", categoryKey: "categories.nutrition", href: "/tools/ai-craving-alternatives", priority: 11, hasAI: true },
+  { id: "smart-grocery-list", titleKey: "tools.smartGroceryList.title", descriptionKey: "tools.smartGroceryList.description", icon: CheckSquare, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/shopping-cart--v1.png", categoryKey: "categories.nutrition", href: "/tools/smart-grocery-list", priority: 12, hasAI: true },
   { id: "vitamin-tracker", titleKey: "tools.vitaminTracker.title", descriptionKey: "tools.vitaminTracker.description", icon: Pill, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/pill.png", categoryKey: "categories.nutrition", href: "/tools/vitamin-tracker", priority: 13, hasAI: true },
-  
 
   // ═══════════════════════════════════════════════════════════════
   // WELLNESS & FITNESS (Hub)
@@ -93,7 +94,7 @@ export const toolsData: Tool[] = [
   { id: "ai-fitness-coach", titleKey: "tools.aiFitnessCoach.title", descriptionKey: "tools.aiFitnessCoach.description", icon: Dumbbell, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/dumbbell.png", categoryKey: "categories.wellness", href: "/tools/ai-fitness-coach", priority: 17, hasAI: true },
   { id: "pregnancy-comfort", titleKey: "tools.pregnancyComfort.title", descriptionKey: "tools.pregnancyComfort.description", icon: Bed, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/sleeping-in-bed.png", categoryKey: "categories.wellness", href: "/tools/pregnancy-comfort", priority: 19, hasAI: true },
   { id: "ai-pregnancy-skincare", titleKey: "tools.aiSkincare.title", descriptionKey: "tools.aiSkincare.description", icon: Palette, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/spa.png", categoryKey: "categories.wellness", href: "/tools/ai-skincare", priority: 21, hasAI: true },
-  
+  { id: "ai-back-pain-relief", titleKey: "tools.aiBackPainRelief.title", descriptionKey: "tools.aiBackPainRelief.description", icon: Activity, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/spine.png", categoryKey: "categories.wellness", href: "/tools/ai-back-pain-relief", priority: 22, hasAI: true },
 
   // Mental health moved to postpartum section
 
@@ -131,7 +132,6 @@ export const categoryKeys = [
   "categories.pregnancy",
   "categories.nutrition",
   "categories.wellness",
-  "categories.labor",
   "categories.preparation",
   "categories.postpartum",
 ];
@@ -163,7 +163,9 @@ const toolRelationships: Record<string, string[]> = {
   // AI Core
   "pregnancy-assistant": ["wellness-diary", "weekly-summary", "ai-meal-suggestion"],
   "weekly-summary": ["pregnancy-assistant", "fetal-growth", "weight-gain"],
-  "ai-meal-suggestion": ["vitamin-tracker", "weekly-summary", "wellness-diary"],
+  "ai-meal-suggestion": ["vitamin-tracker", "ai-craving-alternatives", "smart-grocery-list"],
+  "ai-craving-alternatives": ["ai-meal-suggestion", "smart-grocery-list", "vitamin-tracker"],
+  "smart-grocery-list": ["ai-meal-suggestion", "ai-craving-alternatives", "vitamin-tracker"],
 
   // Fertility
   "cycle-tracker": ["due-date-calculator", "pregnancy-assistant", "weekly-summary"],
@@ -182,8 +184,9 @@ const toolRelationships: Record<string, string[]> = {
   // Wellness
   "wellness-diary": ["pregnancy-assistant", "ai-fitness-coach", "pregnancy-comfort"],
   "ai-fitness-coach": ["vitamin-tracker", "weight-gain", "wellness-diary"],
-  "pregnancy-comfort": ["wellness-diary", "ai-fitness-coach", "ai-meal-suggestion"],
-  "vitamin-tracker": ["ai-meal-suggestion", "wellness-diary", "pregnancy-comfort"],
+  "pregnancy-comfort": ["wellness-diary", "ai-back-pain-relief", "ai-fitness-coach"],
+  "ai-back-pain-relief": ["pregnancy-comfort", "ai-fitness-coach", "wellness-diary"],
+  "vitamin-tracker": ["ai-meal-suggestion", "smart-grocery-list", "pregnancy-comfort"],
 
   // Mental Health
   "postpartum-mental-health": ["pregnancy-comfort", "pregnancy-assistant", "wellness-diary"],
@@ -258,7 +261,6 @@ const journeyCategoryMap: Record<JourneyKey, string[]> = {
     "categories.pregnancy",
     "categories.nutrition",
     "categories.wellness",
-    "categories.labor",
     "categories.preparation",
   ],
   postpartum: [
