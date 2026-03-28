@@ -136,15 +136,15 @@ export const VideoLibrary: React.FC<VideoLibraryProps> = ({
 
           {/* Category Filter */}
           {categories.length > 2 && (
-            <ScrollArea className="w-full mb-3">
-              <div className="flex gap-2 pb-2">
+            <div className="w-full mb-3 overflow-x-auto scrollbar-hide">
+              <div className="flex gap-2 py-1 px-0.5 min-w-min">
                 {categories.map(cat => (
                   <Button
                     key={cat}
                     variant={activeCategory === cat ? "default" : "outline"}
                     size="sm"
                     onClick={() => setActiveCategory(cat)}
-                    className={`text-xs whitespace-nowrap ${
+                    className={`text-xs whitespace-nowrap shrink-0 h-8 ${
                       activeCategory === cat 
                         ? colors.chipActive
                         : ''
@@ -154,7 +154,7 @@ export const VideoLibrary: React.FC<VideoLibraryProps> = ({
                   </Button>
                 ))}
               </div>
-            </ScrollArea>
+            </div>
           )}
 
           {/* Video Grid */}
