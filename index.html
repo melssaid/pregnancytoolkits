@@ -88,8 +88,8 @@
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
     
     <!-- Google Play Store & App Indexing -->
-    <meta name="google-play-app" content="app-id=com.pregnancytoolkits.app" />
-    <link rel="alternate" href="android-app://com.pregnancytoolkits.app/https/pregnancytoolkits.lovable.app" />
+    <meta name="google-play-app" content="app-id=app.pregnancytoolkits.android" />
+    <link rel="alternate" href="android-app://app.pregnancytoolkits.android/https/pregnancytoolkits.lovable.app" />
     
     <!-- Structured Data - WebApplication + FAQ + Organization -->
     <script type="application/ld+json">
@@ -204,16 +204,12 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <!-- Splash overlay (outside #root so React doesn't displace it) -->
     <div id="splash-overlay" style="position:fixed;inset:0;z-index:9999;background:linear-gradient(160deg,#fdf2f8 0%,#fce7f3 50%,#f5e6f0 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.4s ease,visibility 0.4s ease;will-change:opacity;">
-      <div style="position:relative;display:flex;align-items:center;justify-content:center;">
-        <div style="position:absolute;width:88px;height:88px;border-radius:50%;border:1.5px solid rgba(212,96,138,0.2);animation:splash-ripple 2.4s ease-out infinite;"></div>
-        <div style="position:absolute;width:88px;height:88px;border-radius:50%;border:1.5px solid rgba(212,96,138,0.15);animation:splash-ripple 2.4s ease-out 0.8s infinite;"></div>
-        <div style="position:absolute;width:88px;height:88px;border-radius:50%;border:1px solid rgba(212,96,138,0.1);animation:splash-ripple 2.4s ease-out 1.6s infinite;"></div>
-        <div style="position:absolute;width:72px;height:72px;border-radius:50%;background:radial-gradient(circle,rgba(212,96,138,0.1) 0%,transparent 70%);animation:splash-breathe 3s ease-in-out infinite;"></div>
-        <div style="position:relative;z-index:1;width:96px;height:96px;display:flex;align-items:center;justify-content:center;">
-          <img src="/splash-logo-v2.webp?v=5" alt="" width="96" height="96" fetchpriority="high" decoding="sync" style="width:96px;height:96px;object-fit:contain;display:block;border-radius:50%;" />
-        </div>
+      <div style="position:relative;display:flex;align-items:center;justify-content:center;width:min(280px,70vw);aspect-ratio:832/1504;">
+        <video autoplay muted playsinline loop preload="auto" style="width:100%;height:100%;object-fit:contain;border-radius:24px;" aria-hidden="true">
+          <source src="/splash-video.mp4" type="video/mp4" />
+        </video>
       </div>
-      <div style="margin-top:28px;text-align:center;animation:splash-pill-enter 0.5s ease-out 0.2s both;">
+      <div style="margin-top:20px;text-align:center;animation:splash-pill-enter 0.5s ease-out 0.2s both;">
         <div style="display:inline-flex;flex-direction:column;align-items:center;gap:10px;">
           <div style="display:flex;gap:6px;align-items:center;justify-content:center;">
             <div style="width:7px;height:7px;border-radius:50%;background:rgba(212,96,138,0.7);animation:splash-dot 1.4s ease-in-out infinite;"></div>
