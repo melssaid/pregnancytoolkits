@@ -27,8 +27,15 @@
     "generatingInsights": "Generating personalized insights...",
     "getInsights": "Get AI Insights",
     "personalizedRec": "Personalized recommendations",
-    "regenerate": "Regenerate",
-    "title": "AI Insights"
+    "regenerate": "Régénérer",
+    "title": "Aperçus IA",
+    "subtitle": "Analyse personnalisée de votre grossesse",
+    "generate": "Générer des aperçus",
+    "generating": "Analyse en cours...",
+    "disclaimer": "Les résultats IA sont informatifs et ne remplacent pas l'avis médical",
+    "weekLabel": "Semaine {{week}}",
+    "error": "Erreur lors de la génération. Veuillez réessayer.",
+    "empty": "Aucun aperçu disponible"
   },
   "aiUsage": {
     "dailyRequests": "Requêtes IA quotidiennes",
@@ -42,7 +49,8 @@
     "resetsDaily": "Réinitialisation quotidienne",
     "subscribePro": "S'abonner à Pro",
     "upgradeHint": "Abonnez-vous à Pro pour {{limit}} requêtes quotidiennes",
-    "usedOf": "{{used}} sur {{limit}} utilisées aujourd'hui"
+    "usedOf": "{{used}} sur {{limit}} utilisées aujourd'hui",
+    "disclaimer": "Les résultats IA ne remplacent pas l'avis médical"
   },
   "app": {
     "allTools": "Tous les outils",
@@ -183,7 +191,8 @@
     "percentile": "Percentile",
     "title": "Croissance bébé",
     "trackGrowth": "Suivre la croissance",
-    "weight": "Poids (kg)"
+    "weight": "Poids (kg)",
+    "disclaimer": "Valeurs indicatives. Chaque bébé grandit à son propre rythme."
   },
   "babySleepPage": {
     "duration": "Durée",
@@ -276,7 +285,7 @@
       "month": "Mois",
       "noData": "Ajoutez au moins une mesure pour afficher le graphique",
       "normalRange": "Plage normale",
-      "title": "Courbe de croissance - Normes OMS",
+      "title": "Croissance du bébé",
       "weightKg": "Poids (kg)",
       "yourBaby": "Votre bébé",
       "yourBabyBoy": "Poids de votre bébé",
@@ -291,7 +300,7 @@
       "kicks": "coups",
       "min": "min",
       "noData": "Enregistrez au moins 2 séances pour afficher le graphique",
-      "title": "Activité fœtale - 7 dernières séances"
+      "title": "Mouvements du bébé"
     },
     "mood": {
       "average": "Moyenne",
@@ -301,23 +310,25 @@
         "bad": "Mauvais",
         "good": "Bon",
         "great": "Excellent",
-        "okay": "Correct",
+        "okay": "Bien",
         "veryBad": "Très mauvais"
       },
       "noData": "Enregistrez votre humeur au moins 3 fois pour afficher le graphique",
       "stable": "Stable",
-      "title": "Suivi de l'humeur - 2 dernières semaines"
+      "title": "Suivi de l'humeur"
     },
     "weight": {
       "gain": "Gain",
       "noData": "Ajoutez au moins deux mesures pour afficher le graphique",
       "prePregnancyWeight": "Poids avant grossesse",
       "recommendedRange": "Plage recommandée",
-      "title": "Suivi du poids par semaines",
+      "title": "Suivi du poids",
       "week": "Semaine",
       "weight": "Poids",
-      "yourActualWeight": "Votre poids réel"
-    }
+      "yourActualWeight": "Votre poids réel",
+      "current": "Poids actuel"
+    },
+    "noData": "Aucune donnée disponible"
   },
   "common": {
     "add": "Ajouter",
@@ -339,7 +350,7 @@
     "exportFailed": "Échec de l'exportation",
     "exporting": "Exportation...",
     "hours": "heures",
-    "info": "Information",
+    "info": "Info",
     "loading": "Chargement...",
     "min": "min",
     "minutes": "minutes",
@@ -369,7 +380,10 @@
     "week": "Semaine",
     "weeks": "Semaines",
     "yes": "Oui",
-    "yesterday": "Hier"
+    "yesterday": "Hier",
+    "search": "Rechercher",
+    "darkMode": "Mode sombre",
+    "lightMode": "Mode clair"
   },
   "compliance": {
     "disclaimerCompact": "À titre informatif uniquement. Consultez votre professionnel de santé.",
@@ -385,10 +399,11 @@
     "fromLMP": "From Last Period",
     "getAIAdvice": "Get AI Conception Advice",
     "gettingAdvice": "Getting personalized advice...",
-    "info": "Conception typically occurs around 2 weeks after the first day of your last period, during ovulation.",
+    "info": "La conception a généralement lieu environ 2 semaines après le premier jour de vos dernières règles, pendant l'ovulation.",
     "knowDueDate": "Know Your Due Date?",
     "lmpDate": "First Day of Last Period",
-    "planningPregnancy": "Planning a Pregnancy?"
+    "planningPregnancy": "Planning a Pregnancy?",
+    "learnMore": "En savoir plus"
   },
   "contractionPage": {
     "avgDuration": "Durée moyenne",
@@ -404,7 +419,8 @@
     "rule511Desc": "De nombreux médecins recommandent de les contacter quand les contractions sont espacées de 5 minutes, durent 1 minute chacune, depuis au moins 1 heure.",
     "sinceLastContraction": "{{minutes}} min depuis la dernière",
     "subtitle": "Consignez la durée et la fréquence des contractions",
-    "title": "Journal des contractions"
+    "title": "Journal des contractions",
+    "disclaimer": "Contactez votre médecin si les contractions sont régulières et rapprochées."
   },
   "cookieConsent": {
     "accept": "Accepter",
@@ -483,7 +499,9 @@
     "weight": {
       "empty": "Enregistrez votre poids",
       "title": "Tendance du poids"
-    }
+    },
+    "greeting": "Bonjour",
+    "weekLabel": "Semaine {{week}}"
   },
   "dailyInsights": {
     "actions": {
@@ -532,7 +550,7 @@
     "aiPoweredTip": "AI-Powered Tip",
     "aiTip": "AI Tip",
     "categories": {
-      "baby": "Baby",
+      "baby": "Bébé",
       "exercise": "Exercise",
       "health": "Health",
       "mental": "Mental",
@@ -544,69 +562,87 @@
     "tipOfTheDay": "Tip of the Day",
     "tips": {
       "t1": {
-        "detail": "Aim for 8-10 glasses of water daily to support amniotic fluid and reduce swelling.",
+        "detail": "Visez 8 à 10 verres d'eau par jour pour soutenir le liquide amniotique et réduire les gonflements.",
         "tip": "Stay hydrated!"
       },
       "t10": {
-        "detail": "After week 28, track baby movements. You should feel 10 kicks in 2 hours.",
+        "detail": "Après la semaine 28, suivez les mouvements du bébé. Vous devriez sentir 10 coups en 2 heures.",
         "tip": "Count those kicks"
       },
       "t11": {
-        "detail": "Reduce swelling by putting your feet up for 15 minutes several times a day.",
+        "detail": "Réduisez les gonflements en surélevant vos pieds 15 minutes plusieurs fois par jour.",
         "tip": "Elevate your feet"
       },
       "t12": {
-        "detail": "A protein-rich breakfast stabilizes blood sugar and reduces nausea.",
+        "detail": "Un petit-déjeuner riche en protéines stabilise la glycémie et réduit les nausées.",
         "tip": "Don't skip breakfast"
       },
       "t13": {
-        "detail": "Gentle stretching relieves back pain and prepares your body for labor.",
+        "detail": "Des étirements doux soulagent le mal de dos et préparent votre corps à l'accouchement.",
         "tip": "Practice prenatal yoga"
       },
       "t14": {
-        "detail": "Step away from screens for 30 minutes to reduce stress and eye strain.",
+        "detail": "Éloignez-vous des écrans pendant 30 minutes pour réduire le stress et la fatigue oculaire.",
         "tip": "Take a tech break"
       },
       "t15": {
-        "detail": "Play calming music for baby - they'll recognize it after birth!",
+        "detail": "Faites écouter de la musique apaisante à bébé – il la reconnaîtra après la naissance !",
         "tip": "Create a nursery playlist"
       },
       "t2": {
-        "detail": "Leafy greens like spinach and kale are packed with folate essential for neural development.",
+        "detail": "Les légumes verts comme les épinards et le chou frisé sont riches en folate essentiel au développement neural.",
         "tip": "Eat your greens"
       },
       "t3": {
-        "detail": "Walking improves circulation, reduces swelling, and helps with labor preparation.",
+        "detail": "La marche améliore la circulation, réduit les gonflements et aide à préparer l'accouchement.",
         "tip": "Take a 15-minute walk"
       },
       "t4": {
-        "detail": "Write down 3 things you're grateful for today. This reduces stress and improves mood.",
+        "detail": "Notez 3 choses pour lesquelles vous êtes reconnaissante aujourd'hui. Cela réduit le stress et améliore l'humeur.",
         "tip": "Practice gratitude"
       },
       "t5": {
-        "detail": "Your baby can hear you! Reading or singing strengthens your bond.",
+        "detail": "Votre bébé peut vous entendre ! Lire ou chanter renforce votre lien.",
         "tip": "Talk to your baby"
       },
       "t6": {
-        "detail": "This position improves blood flow to your baby and reduces pressure on organs.",
+        "detail": "Cette position améliore la circulation sanguine vers votre bébé et réduit la pression sur les organes.",
         "tip": "Sleep on your left side"
       },
       "t7": {
-        "detail": "Salmon, walnuts, and chia seeds support baby's brain development.",
+        "detail": "Le saumon, les noix et les graines de chia soutiennent le développement cérébral de votre bébé.",
         "tip": "Include omega-3s"
       },
       "t8": {
-        "detail": "Pelvic floor exercises prepare you for labor and prevent incontinence.",
+        "detail": "Les exercices du plancher pelvien vous préparent à l'accouchement et préviennent l'incontinence.",
         "tip": "Do your Kegels"
       },
       "t9": {
-        "detail": "Join a prenatal class or online community for support and shared experiences.",
+        "detail": "Rejoignez un cours prénatal ou une communauté en ligne pour du soutien et des expériences partagées.",
         "tip": "Connect with other moms"
       }
     },
     "title": "Daily Pregnancy Tips",
-    "trimester": "Trimester",
-    "yourFavorites": "Your Favorites"
+    "trimester": "Trimestre",
+    "yourFavorites": "Your Favorites",
+    "tip1": "Buvez au moins 8 verres d'eau par jour",
+    "tip2": "Faites une petite promenade au grand air",
+    "tip3": "Mangez une poignée de noix en collation",
+    "tip4": "Pratiquez 5 minutes de respiration profonde",
+    "tip5": "Prenez vos vitamines",
+    "tip6": "Reposez-vous quand vous êtes fatiguée",
+    "tip7": "Mangez des aliments riches en fer",
+    "tip8": "Faites des étirements légers",
+    "tip9": "Écrivez vos pensées dans un journal",
+    "tip10": "Écoutez de la musique apaisante",
+    "tip11": "Mangez des aliments riches en calcium",
+    "tip12": "Évitez de rester debout trop longtemps",
+    "tip13": "Parlez à votre bébé",
+    "tip14": "Faites des exercices du périnée",
+    "tip15": "Dormez sur le côté gauche",
+    "tip16": "Mangez des aliments riches en fibres",
+    "tip17": "Évitez la caféine l'après-midi",
+    "tip18": "Surélevez vos pieds"
   },
   "dashboard": {
     "aiTools": "Outils alimentés par l'IA",
@@ -674,8 +710,12 @@
         "good": "Bonne",
         "great": "Super",
         "low": "Basse",
-        "normal": "Normale",
-        "okay": "Correcte"
+        "normal": "Normal",
+        "okay": "Correcte",
+        "happy": "Heureuse",
+        "sad": "Triste",
+        "tired": "Fatiguée",
+        "energetic": "Énergique"
       },
       "noSymptoms": "Aucun",
       "saveAnalyze": "Enregistrer et réviser",
@@ -808,6 +848,12 @@
         "tips": "Conseils santé pour la grossesse",
         "yoga": "Exercices de yoga prénatal"
       }
+    },
+    "riskAlert": {
+      "title": "Alertes de santé",
+      "subtitle": "Points importants pour cette semaine",
+      "noRisks": "Aucune alerte – tout va bien !",
+      "disclaimer": "Ne remplace pas l'avis médical"
     }
   },
   "diaperPage": {
@@ -839,7 +885,8 @@
     "total": "Total",
     "weeklyTrend": "Tendance hebdomadaire",
     "wet": "Mouillée",
-    "yesterday": "Hier"
+    "yesterday": "Hier",
+    "disclaimer": "Consultez votre pédiatre en cas de doute."
   },
   "doctorQuestions": {
     "addQuestion": "Add Question",
@@ -911,7 +958,28 @@
     },
     "typeQuestion": "Type your question here...",
     "week": "Week",
-    "yourQuestions": "Your Questions"
+    "yourQuestions": "Your Questions",
+    "title": "Questions pour le médecin",
+    "subtitle": "Questions importantes pour votre prochain rendez-vous",
+    "generate": "Créer des questions",
+    "generating": "Création en cours...",
+    "regenerate": "Nouvelles questions",
+    "copy": "Copier",
+    "copied": "Copié !",
+    "weekLabel": "Pour la semaine {{week}}",
+    "forWeek": "Pour la semaine {{week}}",
+    "disclaimer": "Adaptez les questions à votre situation personnelle",
+    "category": {
+      "general": "Général",
+      "tests": "Examens",
+      "symptoms": "Symptômes",
+      "nutrition": "Nutrition",
+      "exercise": "Exercice",
+      "mental": "Santé mentale",
+      "birth": "Accouchement"
+    },
+    "print": "Imprimer",
+    "save": "Sauvegarder"
   },
   "dueDatePage": {
     "calculateBtn": "Calculer la date",
@@ -929,7 +997,8 @@
     "timeline": "Votre chronologie de grossesse",
     "title": "Compte à rebours bébé",
     "trimester": "{{number}}ème trimestre",
-    "weeksAndDays": "{{weeks}} semaines, {{days}} jours"
+    "weeksAndDays": "{{weeks}} semaines, {{days}} jours",
+    "disclaimer": "Estimation seulement. Consultez votre médecin pour confirmation."
   },
   "encryption": {
     "dataEncrypted": "Données chiffrées",
@@ -1147,10 +1216,10 @@
     "score": "Score",
     "smartNutrition": "Nutrition intelligente de grossesse",
     "smartNutritionDesc": "Planifiez vos repas, suivez les nutriments et découvrez les super-aliments pour vous et votre bébé.",
-    "subtitle": "Liste de courses IA pour la nutrition de grossesse",
+    "subtitle": "Liste de courses adaptée à la grossesse",
     "super": "Super",
     "superfoodsAdded": "{{count}} super-aliments ajoutés à votre liste",
-    "title": "Liste de courses intelligente",
+    "title": "Liste de courses",
     "weekFocus": "Focus semaine {{week}}",
     "weeklyRecommendations": {
       "calciumFoods": "Aliments riches en calcium",
@@ -1163,7 +1232,14 @@
       "vitaminD": "Sources de vitamine D",
       "wholeGrains": "Céréales complètes"
     },
-    "yourList": "Votre liste"
+    "yourList": "Votre liste",
+    "generate": "Créer la liste",
+    "generating": "Création en cours...",
+    "weekLabel": "Pour la semaine {{week}}",
+    "regenerate": "Nouvelle liste",
+    "copy": "Copier",
+    "copied": "Copié !",
+    "disclaimer": "Consultez votre médecin pour les besoins alimentaires spéciaux"
   },
   "home": {
     "aiSubtitle": "Outils d'IA avancés",
@@ -1177,7 +1253,9 @@
     "exercises": "Exercices",
     "meals": "Repas",
     "positions": "Positions",
-    "shopping": "Courses"
+    "shopping": "Courses",
+    "popular": "Populaire",
+    "searchPlaceholder": "Rechercher un outil..."
   },
   "insightTabs": {
     "dailyTip": "Conseil du jour",
@@ -1212,7 +1290,10 @@
     "step3": "Relâchez pendant 5 secondes et laissez les muscles se détendre complètement.",
     "step4": "Répétez 10 à 15 fois par série, 3 séries par jour pour de meilleurs résultats.",
     "streak": "Jours consécutifs",
-    "todayReps": "Répétitions aujourd'hui"
+    "todayReps": "Répétitions aujourd'hui",
+    "tip1": "Contractez les muscles du plancher pelvien pendant 5 secondes",
+    "tip2": "Répétez l'exercice 10 fois",
+    "encouragement": "Des exercices réguliers du périnée renforcent la musculature pour l'accouchement"
   },
   "kickAnalysis": {
     "analyzing": "Analyse des schémas de mouvement...",
@@ -1244,7 +1325,8 @@
     "startCounting": "Commencer à compter",
     "subtitle": "Consignez les mouvements de votre bébé tout au long de la journée",
     "timeElapsed": "Temps écoulé",
-    "title": "Journal des mouvements bébé"
+    "title": "Journal des mouvements bébé",
+    "disclaimer": "Contactez votre médecin si vous remarquez une diminution des mouvements."
   },
   "kickPattern": {
     "consistent": "Régulier",
@@ -1261,7 +1343,9 @@
     "needsAttention": "Attention requise",
     "recordAtLeast": "Enregistrez au moins 2 séances pour voir l'analyse des schémas",
     "slowingDown": "Ralentit",
-    "stable": "Stable"
+    "stable": "Stable",
+    "title": "Schéma des mouvements",
+    "noData": "Pas encore de données"
   },
   "laborLinks": {
     "birthPlanLink": "Générateur de plan de naissance",
@@ -1307,7 +1391,7 @@
       "storageBags": "Storage bags"
     },
     "suppliesChecklist": "Breastfeeding Supplies Checklist",
-    "supportNote": "If you're struggling with breastfeeding, reach out to a lactation consultant (IBCLC). Many hospitals offer free support. Fed is best - whatever works for you and baby!",
+    "supportNote": "Si vous rencontrez des difficultés avec l'allaitement, consultez une consultante en lactation (IBCLC). De nombreux hôpitaux offrent un soutien gratuit.",
     "title": "AI Lactation Preparation",
     "videosSubtitle": "Expert guidance for nursing success",
     "videosTitle": "Breastfeeding Videos",
@@ -1316,7 +1400,8 @@
       "6months": "After 6 months",
       "no": "Not returning / Stay-at-home",
       "year": "After 1 year"
-    }
+    },
+    "tip": "Commencez tôt à vous informer sur l'allaitement"
   },
   "layout": {
     "contactPage": {
@@ -1540,7 +1625,10 @@
       "launchBanner": "🎁 Offre de lancement — 10 jours gratuits",
       "premium": "Vos données restent privées",
       "scienceBacked": "Scientifique"
-    }
+    },
+    "home": "Accueil",
+    "tools": "Outils",
+    "dashboard": "Tableau de bord"
   },
   "legCrampPreventer": {
     "aiCoachTitle": "AI Cramp Prevention Coach",
@@ -1622,10 +1710,11 @@
       "night": "Night"
     },
     "title": "AI Leg Cramp Preventer",
-    "warning": "Frequent or severe leg cramps, especially with swelling, redness, or warmth, should be reported to your healthcare provider immediately."
+    "warning": "Des crampes fréquentes ou sévères, surtout avec gonflement, rougeur ou chaleur, doivent être signalées à votre médecin.",
+    "tip": "Étirez vos mollets avant le coucher"
   },
   "nauseaRelief": {
-    "encouragingNote": "Remember: Morning sickness usually peaks around weeks 8-10 and improves significantly by week 12-14. You've got this!",
+    "encouragingNote": "Rappelez-vous : les nausées matinales atteignent généralement leur pic vers les semaines 8-10 et s'améliorent significativement vers la semaine 12-14.",
     "getReliefPlan": "Get AI Relief Plan",
     "nauseaSeverity": "Nausea Severity",
     "quickRemedies": "Quick Relief Remedies",
@@ -1655,7 +1744,7 @@
         "tip": "Inhale or tea"
       }
     },
-    "severeWarningDesc": "If you can't keep any food/water down for 24 hours, see blood in vomit, or feel dizzy/faint, contact your healthcare provider immediately.",
+    "severeWarningDesc": "Si vous ne pouvez garder ni nourriture ni eau pendant 24 heures, voyez du sang dans vos vomissements ou vous sentez étourdie, contactez immédiatement votre médecin.",
     "severeWarningTitle": "Severe Nausea Warning",
     "severityLabels": {
       "mild": "Mild",
@@ -1677,7 +1766,9 @@
     "triggersTitle": "What triggers your nausea?",
     "videosSubtitle": "Techniques and tips to ease morning sickness",
     "videosTitle": "Nausea Comfort Videos",
-    "vomitingCheckbox": "I'm experiencing vomiting, not just nausea"
+    "vomitingCheckbox": "I'm experiencing vomiting, not just nausea",
+    "waterReminder": "Buvez de petites gorgées d'eau",
+    "gingerTip": "Essayez le thé ou les bonbons au gingembre"
   },
   "nav": {
     "aiTools": "Outils IA",
@@ -1709,7 +1800,7 @@
     "remindYou": "Nous vous rappellerons les vitamines, exercices et plus",
     "reminderSettings": "Paramètres de rappel",
     "stretching": "Étirements",
-    "title": "Notifications",
+    "title": "Centre de notifications",
     "vitamins": "Vitamines",
     "water": "Eau"
   },
@@ -1717,7 +1808,7 @@
     "aiGeneral": "Les résultats des outils IA sont à titre informatif uniquement.",
     "allCaughtUp": "Tout à jour !",
     "appointment2hTitle": "⏰ Rendez-vous dans 2 heures !",
-    "appointmentMsg": "{{title}} à {{time}}",
+    "appointmentMsg": "Vous avez bientôt un rendez-vous médical",
     "appointmentMsgDoctor": "{{title}} avec {{doctor}} à {{time}}",
     "appointmentMsgDoctorLocation": "{{title}} avec {{doctor}} à {{time}} - {{location}}",
     "appointmentMsgLocation": "{{title}} à {{time}} - {{location}}",
@@ -1754,11 +1845,11 @@
     "disclaimerTitle": "Avis important",
     "emergency": "En cas d'urgence, appelez les services d'urgence ou rendez-vous à l'hôpital le plus proche.",
     "enablePush": "Activer les alertes push",
-    "exercise": "Exercice",
+    "exercise": "Rappel exercice",
     "exerciseReminderMsg": "Une courte marche boostera votre énergie et votre humeur !",
     "exerciseReminderTitle": "🚶‍♀️ Temps de marche",
     "inAppActive": "✓ Les alertes dans l'app sont toujours actives",
-    "kegel": "Kegel",
+    "kegel": "Exercice périnéal",
     "kegelReminderMsg": "Renforcez votre plancher pelvien — faites vos exercices de Kegel quotidiens !",
     "kegelReminderTitle": "💪 Exercice de Kegel",
     "kickHint": "Daily kick counting reminder",
@@ -1807,7 +1898,7 @@
     "vitaminReminderTitle": "💊 Rappel vitamines",
     "vitamins": "Vitamines",
     "vitaminsHint": "Daily reminder at 8:00 AM",
-    "water": "Eau",
+    "water": "Rappel hydratation",
     "waterHint": "Daily reminder at 9:00 AM",
     "waterReminderMsg": "C'est l'heure de boire un verre d'eau !",
     "waterReminderTitle": "💧 Restez hydratée",
@@ -1852,7 +1943,43 @@
     "weeklyTipReminders": "Conseils hebdomadaires",
     "weeklyTipTitle": "🤰 Mise à jour semaine {{week}}",
     "welcome": "👋 Bienvenue !",
-    "welcomeDesc": "Profitez de 30+ outils intelligents pour suivre votre grossesse facilement et en toute sécurité."
+    "welcomeDesc": "Profitez de 30+ outils intelligents pour suivre votre grossesse facilement et en toute sécurité.",
+    "empty": "Aucune notification",
+    "markAllRead": "Tout marquer comme lu",
+    "clear": "Tout effacer",
+    "today": "Aujourd'hui",
+    "earlier": "Plus tôt",
+    "settings": "Paramètres",
+    "waterMsg": "C'est l'heure de boire un verre d'eau !",
+    "vitamin": "Rappel vitamines",
+    "vitaminMsg": "Avez-vous pris vos vitamines aujourd'hui ?",
+    "exerciseMsg": "C'est l'heure d'une petite promenade !",
+    "kick": "Mouvements du bébé",
+    "kickMsg": "Avez-vous compté les coups de votre bébé aujourd'hui ?",
+    "appointment": "Rappel rendez-vous",
+    "sleep": "Rappel repos",
+    "sleepMsg": "C'est l'heure de se reposer !",
+    "mood": "Journal d'humeur",
+    "moodMsg": "Comment vous sentez-vous aujourd'hui ?",
+    "weight": "Suivi du poids",
+    "weightMsg": "Vous êtes-vous pesée cette semaine ?",
+    "milestone": "Étape importante",
+    "milestoneMsg": "Votre bébé a atteint une nouvelle étape !",
+    "tip": "Conseil du jour",
+    "tipMsg": "Nouveau conseil de grossesse disponible",
+    "photo": "Rappel photo du ventre",
+    "photoMsg": "Documentez votre ventre cette semaine !",
+    "kegelMsg": "C'est l'heure de vos exercices périnéaux !",
+    "stretch": "Étirements",
+    "stretchMsg": "Faites une pause étirement",
+    "breathe": "Exercice de respiration",
+    "breatheMsg": "Prenez un moment pour respirer profondément",
+    "journal": "Journal",
+    "journalMsg": "Notez vos pensées",
+    "snack": "Rappel collation",
+    "snackMsg": "C'est l'heure d'une collation saine !",
+    "contraction": "Minuteur de contractions",
+    "contractionMsg": "N'oubliez pas de documenter vos contractions"
   },
   "nutrition": {
     "addFoodFirst": "Ajoutez au moins un aliment",
@@ -1882,7 +2009,10 @@
     "tipsTitle": "Conseils nutrition grossesse",
     "todaysMeals": "Repas d'aujourd'hui",
     "totalCalories": "Calories totales aujourd'hui",
-    "weekInfo": "Semaine {{week}} - Enregistrez vos repas et obtenez des conseils IA"
+    "weekInfo": "Semaine {{week}} - Enregistrez vos repas et obtenez des conseils IA",
+    "supplementsGuide": {
+      "title": "Guide des compléments alimentaires"
+    }
   },
   "nutritionLinks": {
     "cravingLink": "Alternatives aux envies",
@@ -1903,12 +2033,12 @@
       "neuralDevelopment": "Neural tube development",
       "reducesNausea": "Reduces nausea"
     },
-    "breakfast": "Breakfast",
+    "breakfast": "Petit-déjeuner",
     "dietaryPreference": "Dietary Preference",
-    "dinner": "Dinner",
-    "infoNote": "Nutritional needs vary. Consult your healthcare provider for personalized advice.",
+    "dinner": "Dîner",
+    "infoNote": "Les besoins nutritionnels varient. Consultez votre professionnel de santé pour des conseils personnalisés.",
     "keyNutrients": "Key Nutrients for Week {{week}}",
-    "lunch": "Lunch",
+    "lunch": "Déjeuner",
     "meals": {
       "appleAlmondButter": "Apple slices with almond butter",
       "avocadoToast": "Avocado toast",
@@ -1940,13 +2070,13 @@
       "calcium": "Calcium",
       "folicAcid": "Folic Acid",
       "iron": "Iron",
-      "omega3": "Omega-3 (DHA)",
-      "vitaminB6": "Vitamin B6",
-      "vitaminK": "Vitamin K"
+      "omega3": "Oméga-3 (DHA)",
+      "vitaminB6": "Vitamine B6",
+      "vitaminK": "Vitamine K"
     },
     "pregnancyWeek": "Pregnancy Week",
     "sampleMealPlan": "Sample Meal Plan",
-    "snack": "Snack",
+    "snack": "Collation",
     "sources": {
       "bananas": "Bananas",
       "broccoli": "Broccoli",
@@ -1968,9 +2098,14 @@
     "standard": "Standard",
     "subtitle": "Personalized nutrition plans for each trimester",
     "title": "Smart Nutrition Planner",
-    "trimester": "Trimester",
-    "vegan": "Vegan",
-    "vegetarian": "Vegetarian"
+    "trimester": "Trimestre",
+    "vegan": "Végétalien",
+    "vegetarian": "Vegetarian",
+    "calories": "Calories",
+    "protein": "Protéines",
+    "iron": "Fer",
+    "calcium": "Calcium",
+    "fiber": "Fibres"
   },
   "onboarding": {
     "accept": "Je comprends & continuer",
@@ -1990,7 +2125,7 @@
     "lastPeriod": "Date des dernières règles",
     "next": "Continuer",
     "notPregnant": "Non enceinte",
-    "optional": "optionnel",
+    "optional": "Optionnel",
     "pregnancyStatus": "Statut de grossesse",
     "pregnancyWeek": "Semaine de grossesse actuelle",
     "pregnant": "Enceinte",
@@ -2007,7 +2142,9 @@
       "pregnant": "Ma grossesse",
       "pregnantDesc": "Votre compagnon complet de grossesse",
       "subtitle": "Nous personnaliserons tout pour vous",
-      "title": "Où en êtes-vous dans votre parcours ?"
+      "title": "Où en êtes-vous dans votre parcours ?",
+      "ttcLabel": "Projet bébé",
+      "postpartumLabel": "Post-partum"
     },
     "step3": {
       "bloodType": "Groupe sanguin",
@@ -2066,11 +2203,14 @@
     "maybeLater": "Peut-être plus tard",
     "startTrial": "S'abonner maintenant",
     "subscribeButton": "S'abonner maintenant",
-    "subtitle": "Abonnez-vous pour accéder à tous les outils",
-    "title": "Fonctionnalité Premium ✨",
+    "subtitle": "Accès illimité à toutes les fonctionnalités",
+    "title": "Débloquer Premium",
     "toolLocked": "\"{{tool}}\" is available for subscribers only",
     "trialDesc": "Débloquez toutes les fonctionnalités premium",
-    "trialTitle": "Accès Premium 🎁"
+    "trialTitle": "Accès Premium 🎁",
+    "feature1": "Analyses IA illimitées",
+    "feature2": "Tous les outils Premium",
+    "cta": "Passer à Premium"
   },
   "postpartumLinks": {
     "babySleepLink": "Suivi du sommeil bébé",
@@ -2098,7 +2238,8 @@
     "obesity": "Obésité (IMC > 30)",
     "previousPreeclampsia": "Prééclampsie antérieure",
     "subtitle": "Vérifiez vos facteurs de risque",
-    "title": "Vérification de sensibilisation à la prééclampsie"
+    "title": "Vérification de sensibilisation à la prééclampsie",
+    "learnMore": "En savoir plus"
   },
   "preeclampsiaRisk": {
     "aiCoachTitle": "Coach IA de prévention de la prééclampsie",
@@ -2236,7 +2377,7 @@
       "5": "Super"
     },
     "save": "Enregistrer",
-    "saved": "Enregistré ✓",
+    "saved": "Sauvegardé !",
     "symptomNames": {
       "backpain": "Mal de dos",
       "cramps": "Crampes",
@@ -2248,8 +2389,9 @@
       "swelling": "Gonflement"
     },
     "symptoms": "Symptômes",
-    "title": "Enregistrez votre journée",
-    "trend": "Tendance"
+    "title": "Entrée rapide",
+    "trend": "Tendance",
+    "mood": "Humeur"
   },
   "quotaExhausted": {
     "postAnalysisHint": "Passez au Premium pour 40 analyses mensuelles et des insights approfondis",
@@ -2358,6 +2500,18 @@
           "3": "Severe abdominal pain with weight changes"
         }
       }
+    },
+    "callDoctor": {
+      "title": "Quand appeler le médecin",
+      "subtitle": "Consultez immédiatement en cas de ces symptômes",
+      "bleeding": "Saignements vaginaux",
+      "headache": "Maux de tête sévères persistants",
+      "vision": "Troubles de la vision",
+      "swelling": "Gonflement soudain du visage ou des mains",
+      "fever": "Fièvre supérieure à 38°C",
+      "movement": "Diminution significative des mouvements du bébé",
+      "pain": "Douleurs abdominales intenses",
+      "contractions": "Contractions régulières avant la 37e semaine"
     }
   },
   "searchDialog": {
@@ -2425,10 +2579,11 @@
       "importantText": "Enregistrez le fichier de sauvegarde dans un endroit sûr comme Google Drive, iCloud, ou envoyez-le par email.",
       "importing": "Import des données en cours...",
       "invalidFile": "Fichier de sauvegarde invalide",
-      "lastBackup": "Dernière sauvegarde :",
+      "lastBackup": "Dernière sauvegarde : {{date}}",
       "noData": "Aucune donnée",
       "noDataDesc": "Aucune donnée à exporter",
-      "title": "Sauvegarde des données"
+      "title": "Sauvegarde des données",
+      "auto": "Sauvegarde automatique"
     },
     "clearData": {
       "allSettings": "Tous les paramètres",
@@ -2549,7 +2704,7 @@
   },
   "sleepOptimizer": {
     "currentSleep": "Current Sleep: {{hours}} hours/night",
-    "meditation": "Meditation",
+    "meditation": "Méditation",
     "routine": "Routine",
     "sleepChallenges": "Sleep Challenges",
     "sleepIssues": {
@@ -2563,12 +2718,15 @@
       "urination": "Mictions fréquentes"
     },
     "sleepPlan": "Sleep Plan",
-    "sleepTip": "💡 Left-side sleeping is recommended after week 20 for optimal blood flow",
+    "sleepTip": "💡 Dormir sur le côté gauche est recommandé après la semaine 20 pour une circulation optimale",
     "subtitle": "Personalized sleep guidance for pregnancy",
     "title": "AI Sleep Tips",
     "usualBedtime": "Usual Bedtime",
     "videosSubtitle": "Expert tips for better sleep during pregnancy",
-    "videosTitle": "Pregnancy Sleep Videos"
+    "videosTitle": "Pregnancy Sleep Videos",
+    "tip1": "Dormez sur le côté gauche",
+    "tip2": "Utilisez un coussin d'allaitement entre les genoux",
+    "tip3": "Évitez les écrans avant le coucher"
   },
   "smartPlan": {
     "activityLevel": "Niveau d'activité",
@@ -2634,7 +2792,7 @@
     "summary": "Résumé",
     "summaryText": "Continuez à suivre votre plan personnalisé et consultez votre médecin pour toute préoccupation.",
     "systolic": "Systolique",
-    "title": "Plan de Grossesse Intelligent",
+    "title": "Plan intelligent",
     "trimester1": "Premier trimestre",
     "trimester2": "Deuxième trimestre",
     "trimester3": "Troisième trimestre",
@@ -2646,56 +2804,69 @@
     "weeklyReport": "Rapport Hebdomadaire",
     "weight": "Poids",
     "yourData": "Vos Données",
-    "yourHealthData": "Vos informations personnelles"
+    "yourHealthData": "Vos informations personnelles",
+    "disclaimer": "Ne remplace pas l'avis médical"
   },
   "smoothieAI": {
     "aiGenerate": "AI Generate",
     "aiGeneratedRecipe": "AI-Generated Recipe",
     "allRecipes": "All Recipes for Trimester {{trimester}}",
     "benefits": {
-      "boostsIron": "Boosts iron levels and prevents anemia",
-      "brainDev": "Supports baby brain development with Omega-3s",
-      "calmsNausea": "Helps calm morning sickness",
-      "fightsFatigue": "Fights fatigue and provides sustained energy",
-      "promotesSleep": "Promotes relaxation and better sleep",
-      "strengthensBones": "Strengthens bones for you and baby"
+      "fightsFatigue": "Combat la fatigue",
+      "boostsIron": "Augmente le fer",
+      "promotesSleep": "Favorise le sommeil",
+      "calmsNausea": "Calme les nausées",
+      "brainDev": "Développement cérébral",
+      "strengthensBones": "Renforce les os"
     },
     "createCustom": "Create a Custom AI Smoothie",
     "ingredients": {
-      "1banana": "1 banana",
-      "1cupAlmondMilk": "1 cup almond milk",
-      "1cupBlueberries": "1 cup blueberries",
-      "1cupCherries": "1 cup cherries",
-      "1cupCoconutWater": "1 cup coconut water",
-      "1cupFortifiedAlmondMilk": "1 cup fortified almond milk",
-      "1cupGreekYogurt": "1 cup Greek yogurt",
-      "1cupMilk": "1 cup milk",
-      "1cupSpinach": "1 cup spinach",
-      "1cupStrawberries": "1 cup strawberries",
-      "1greenApple": "1 green apple",
-      "1inchGinger": "1 inch ginger",
+      "1banana": "1 banane",
+      "1cupSpinach": "1 tasse d'épinards",
+      "halfCupGreekYogurt": "1/2 tasse de yaourt grec",
+      "1tbspAlmondButter": "1 c.s. de beurre d'amande",
+      "1cupAlmondMilk": "1 tasse de lait d'amande",
+      "1tbspHoney": "1 c.s. de miel",
+      "1cupStrawberries": "1 tasse de fraises",
+      "halfCupBeets": "1/2 tasse de betteraves",
       "1orange": "1 orange",
-      "1tbspAlmondButter": "1 tbsp almond butter",
-      "1tbspChiaSeeds": "1 tbsp chia seeds",
-      "1tbspFlaxseed": "1 tbsp flaxseed",
-      "1tbspHoney": "1 tbsp honey",
-      "1tbspMapleSyrup": "1 tbsp maple syrup",
-      "1tbspOats": "1 tbsp oats",
-      "1tbspSesameSeeds": "1 tbsp sesame seeds",
-      "1tbspWalnuts": "1 tbsp walnuts",
-      "2tbspAlmondButter": "2 tbsp almond butter",
-      "freshMint": "Fresh mint",
-      "halfCucumber": "1/2 cucumber",
-      "halfCupBeets": "1/2 cup beets",
-      "halfCupGreekYogurt": "1/2 cup Greek yogurt",
-      "halfCupMilk": "1/2 cup milk",
-      "halfCupPomegranate": "1/2 cup pomegranate",
-      "halfLemon": "1/2 lemon",
-      "honeyToTaste": "Honey to taste",
-      "quarterAvocado": "1/4 avocado",
-      "quarterTspCinnamon": "1/4 tsp cinnamon"
+      "halfCupPomegranate": "1/2 tasse de grenade",
+      "1tbspChiaSeeds": "1 c.s. de graines de chia",
+      "1cupCherries": "1 tasse de cerises",
+      "halfCupMilk": "1/2 tasse de lait",
+      "quarterTspCinnamon": "1/4 c.c. de cannelle",
+      "1tbspOats": "1 c.s. de flocons d'avoine",
+      "halfCucumber": "1/2 concombre",
+      "1greenApple": "1 pomme verte",
+      "1inchGinger": "2,5 cm de gingembre",
+      "halfLemon": "1/2 citron",
+      "1cupCoconutWater": "1 tasse d'eau de coco",
+      "freshMint": "Menthe fraîche",
+      "1cupMango": "1 tasse de mangue",
+      "halfCupPineapple": "1/2 tasse d'ananas",
+      "1tbspFlaxSeeds": "1 c.s. de graines de lin",
+      "1cupBlueberries": "1 tasse de myrtilles",
+      "halfCupRaspberries": "1/2 tasse de framboises",
+      "1tbspWalnuts": "1 c.s. de noix",
+      "1cupPeaches": "1 tasse de pêches",
+      "halfCupCarrots": "1/2 tasse de carottes",
+      "1tbspPumpkinSeeds": "1 c.s. de graines de courge",
+      "1cupWatermelon": "1 tasse de pastèque",
+      "halfAvocado": "1/2 avocat",
+      "1tbspCocoa": "1 c.s. de cacao",
+      "1tbspPeanutButter": "1 c.s. de beurre de cacahuète",
+      "1dateFruit": "1 datte",
+      "quarterAvocado": "1/4 avocat",
+      "1tbspFlaxseed": "1 c.s. de graines de lin",
+      "1cupMilk": "1 tasse de lait",
+      "1tbspMapleSyrup": "1 c.s. de sirop d'érable",
+      "1cupGreekYogurt": "1 tasse de yaourt grec",
+      "2tbspAlmondButter": "2 c.s. de beurre d'amande",
+      "1cupFortifiedAlmondMilk": "1 tasse de lait d'amande enrichi",
+      "1tbspSesameSeeds": "1 c.s. de sésame",
+      "honeyToTaste": "Miel au goût"
     },
-    "instructions": "Instructions",
+    "instructions": "Préparation",
     "instructionsText": {
       "brainBuilderInstructions": "Blend until smooth. Consume in the morning to boost brain function.",
       "calciumCrushInstructions": "Blend yogurt and banana first, then add remaining ingredients. Great as a snack.",
@@ -2716,9 +2887,42 @@
       "nauseaRelief": "Nausea Relief Green",
       "sleepBetter": "Sleep Better Smoothie"
     },
-    "subtitle": "Nutritious smoothie recipes for each trimester",
-    "title": "Pregnancy Smoothie AI",
-    "trimester": "Trimester"
+    "subtitle": "Des smoothies sains pour votre grossesse",
+    "title": "Recettes de smoothies",
+    "trimester": "Trimestre",
+    "generate": "Créer une recette",
+    "generating": "Création en cours...",
+    "servings": "Portions",
+    "prepTime": "Temps de préparation",
+    "category": "Catégorie",
+    "energyBoost": "Boost d'énergie",
+    "ironRich": "Riche en fer",
+    "calciumBoost": "Boost de calcium",
+    "fiberRich": "Riche en fibres",
+    "antiNausea": "Anti-nausées",
+    "proteinPacked": "Riche en protéines",
+    "vitaminC": "Vitamine C",
+    "omega3": "Oméga 3",
+    "hydrating": "Hydratant",
+    "antioxidant": "Antioxydants",
+    "folateRich": "Riche en folate",
+    "magnesium": "Magnésium",
+    "selectCategory": "Choisir une catégorie",
+    "customRequest": "Demande personnalisée",
+    "placeholder": "ex : sans produits laitiers, extra protéines...",
+    "regenerate": "Nouvelle recette",
+    "save": "Sauvegarder",
+    "saved": "Sauvegardé",
+    "favorites": "Favoris",
+    "noFavorites": "Aucun favori",
+    "removeFavorite": "Supprimer",
+    "nutritionInfo": "Informations nutritionnelles",
+    "perServing": "Par portion",
+    "disclaimer": "Consultez votre médecin en cas d'intolérances",
+    "trimesterNote": "Adapté à votre {{trimester}}e trimestre",
+    "loading": "Chargement...",
+    "error": "Erreur lors de la création. Veuillez réessayer.",
+    "fresh": "Frais"
   },
   "snackPlanner": {
     "calories": "calories",
@@ -2751,9 +2955,13 @@
       "hummusVeggies": "Hummus & Veggie Sticks",
       "trailMix": "Trail Mix Power Bites"
     },
-    "subtitle": "Healthy pregnancy snacks for every craving",
+    "subtitle": "Collations saines pour votre grossesse",
     "surpriseMe": "Surprise Me!",
-    "title": "Smart Snack Planner"
+    "title": "Planificateur de collations",
+    "generate": "Suggérer des collations",
+    "generating": "Création en cours...",
+    "regenerate": "Nouvelles suggestions",
+    "disclaimer": "Consultez votre médecin en cas d'allergies"
   },
   "socialProof": {
     "exportDesc": "Partager avec votre médecin",
@@ -2765,7 +2973,8 @@
     "tools": "30 Outils",
     "toolsDesc": "Pour votre parcours",
     "trackDesc": "Coups de pied, contractions et plus",
-    "trackEverything": "Tout suivre"
+    "trackEverything": "Tout suivre",
+    "users": "Plus de {{count}} utilisatrices nous font confiance"
   },
   "stretchReminder": {
     "aiStretchCoach": "Coach d'étirement IA",
@@ -2831,7 +3040,8 @@
     "title": "Rappel d'Étirement Intelligent",
     "todaysProgress": "Progrès du jour",
     "trimester": "Trimestre",
-    "yourTrimester": "Votre trimestre"
+    "yourTrimester": "Votre trimestre",
+    "tip": "Faites des pauses d'étirement régulières"
   },
   "subscription": {
     "premiumFeature": "Fonctionnalité Premium",
@@ -2868,7 +3078,8 @@
     "trialRemaining": "Premium actif",
     "unlimitedAI": "40 analyses IA par mois",
     "unlockFullAccess": "Débloquer l'accès complet",
-    "yearly": "Annuel"
+    "yearly": "Annuel",
+    "features": "Fonctionnalités Premium"
   },
   "symptomAnalyzer": {
     "evidence": {
@@ -2923,7 +3134,8 @@
     "vitamin-tracker": "Suivez votre prise quotidienne de vitamines. Les dosages doivent être déterminés par votre médecin.",
     "weekly-summary": "Suivez le développement hebdomadaire de votre bébé. Les informations sont éducatives. En cas de changements préoccupants, consultez votre médecin.",
     "weight-gain": "Suivez votre prise de poids pendant la grossesse. Les résultats sont des indications générales. Discutez de vos préoccupations avec votre médecin.",
-    "wellness-diary": "Enregistrez vos émotions quotidiennement. En cas de tristesse persistante ou d'anxiété sévère, parlez à un professionnel."
+    "wellness-diary": "Enregistrez vos émotions quotidiennement. En cas de tristesse persistante ou d'anxiété sévère, parlez à un professionnel.",
+    "disclaimer": "Ne remplace pas l'avis médical"
   },
   "tools": {
     "aiBackPainRelief": {
@@ -3072,7 +3284,7 @@
     },
     "preconceptionCheckup": {
       "description": "Examens essentiels avant la grossesse.",
-      "title": "Bilan préconceptionnel"
+      "title": "Bilan pré-conceptionnel"
     },
     "preeclampsiaRisk": {
       "description": "Découvrez les facteurs courants de la prééclampsie.",
@@ -3295,7 +3507,7 @@
         "aboveNormal": "Au-dessus de la normale",
         "below": "Sous la moyenne",
         "belowNormal": "Sous la normale",
-        "label": "État",
+        "label": "Statut",
         "normal": "Normal",
         "onTrack": "En bonne voie"
       },
@@ -3880,7 +4092,11 @@
         "pizza": "Pizza",
         "popcorn": "Popcorn",
         "soda": "Soda",
-        "tacos": "Tacos"
+        "tacos": "Tacos",
+        "chips": "Chips",
+        "cake": "Gâteau",
+        "fries": "Frites",
+        "candy": "Bonbons"
       },
       "emotionalComfort": "Réconfort émotionnel",
       "emotionalComfortDesc": "certains aliments apportent un soulagement psychologique",
@@ -3967,7 +4183,7 @@
         "bad": "Mauvais",
         "good": "Bien",
         "great": "Super",
-        "okay": "Correct"
+        "okay": "Bien"
       },
       "nextPeriod": "Prochaines règles",
       "nextPeriodDate": "Prochaines règles",
@@ -4040,7 +4256,7 @@
       "subtitle": "Suivre les changes et les habitudes",
       "title": "Suivi des couches",
       "todayCount": "Today's Changes",
-      "wet": "Wet"
+      "wet": "Mouillée"
     },
     "dueDate": {
       "aiGuideTitle": "Guide IA Grossesse",
@@ -4101,11 +4317,183 @@
     },
     "fertilityAcademy": {
       "lessonsCount": "{{count}} modules d'apprentissage",
-      "lessons": "Leçons"
+      "lessons": {
+        "menstrualCycle": {
+          "title": "Le cycle menstruel",
+          "content": "Le cycle menstruel dure en moyenne 28 jours et comprend quatre phases : les règles, la phase folliculaire, l'ovulation et la phase lutéale."
+        },
+        "ovulationProcess": {
+          "title": "L'ovulation",
+          "content": "L'ovulation a lieu environ au milieu de votre cycle. Les jours les plus fertiles sont 2-3 jours avant et le jour de l'ovulation."
+        },
+        "fertilizationBasics": {
+          "title": "Bases de la fécondation",
+          "content": "La fécondation a lieu quand un spermatozoïde pénètre un ovule dans la trompe de Fallope."
+        },
+        "hormonesRole": {
+          "title": "Le rôle des hormones",
+          "content": "FSH, LH, œstrogène et progestérone régulent votre cycle de fertilité."
+        },
+        "ageAndFertility": {
+          "title": "Âge et fertilité",
+          "content": "La fertilité diminue naturellement après 35 ans. La qualité et la quantité des ovules baissent avec l'âge."
+        },
+        "lifestyleFactors": {
+          "title": "Facteurs de mode de vie",
+          "content": "Alimentation, exercice, gestion du stress et sommeil influencent considérablement la fertilité."
+        },
+        "commonMyths": {
+          "title": "Mythes courants",
+          "content": "Beaucoup de mythes sur la fertilité persistent. Découvrez lesquels sont scientifiquement prouvés."
+        },
+        "whenToSeekHelp": {
+          "title": "Quand consulter",
+          "content": "Si vous avez moins de 35 ans et ne tombez pas enceinte après un an, consultez un spécialiste."
+        },
+        "maleFertility": {
+          "title": "Fertilité masculine",
+          "content": "La fertilité masculine dépend de la qualité, quantité et mobilité des spermatozoïdes."
+        },
+        "emotionalWellbeing": {
+          "title": "Bien-être émotionnel",
+          "content": "Le parcours de conception peut être émotionnellement éprouvant. Prenez soin de votre santé mentale."
+        },
+        "trackingMethods": {
+          "title": "Méthodes de suivi",
+          "content": "Température basale, observation de la glaire cervicale et tests d'ovulation sont des méthodes efficaces."
+        },
+        "optimizingTiming": {
+          "title": "Optimiser le timing",
+          "content": "Des rapports tous les 1-2 jours pendant la fenêtre fertile maximisent les chances."
+        },
+        "implantationWindow": {
+          "title": "La fenêtre d'implantation",
+          "content": "L'implantation a lieu 6-12 jours après l'ovulation."
+        },
+        "cervicalHealth": {
+          "title": "Santé cervicale",
+          "content": "Le col de l'utérus joue un rôle important dans la fertilité. La glaire cervicale change au cours du cycle."
+        },
+        "thyroidFertility": {
+          "title": "Thyroïde et fertilité",
+          "content": "Les troubles thyroïdiens peuvent perturber l'ovulation. Un simple test sanguin peut les détecter."
+        },
+        "pcosManagement": {
+          "title": "Gestion du SOPK",
+          "content": "Le syndrome des ovaires polykystiques est une cause fréquente d'infertilité. Le traitement existe."
+        },
+        "endometriosisAwareness": {
+          "title": "Sensibilisation à l'endométriose",
+          "content": "L'endométriose touche environ 10% des femmes en âge de procréer."
+        },
+        "nutritionFertility": {
+          "title": "Nutrition et fertilité",
+          "content": "Une alimentation équilibrée riche en folate, fer et oméga-3 soutient la fertilité."
+        },
+        "sleepHormones": {
+          "title": "Sommeil et hormones",
+          "content": "Un sommeil suffisant est essentiel pour la régulation hormonale."
+        },
+        "exerciseBalance": {
+          "title": "Exercice en équilibre",
+          "content": "L'exercice modéré favorise la fertilité, tandis que l'excès peut la nuire."
+        },
+        "supplementsGuide": {
+          "title": "Guide des compléments",
+          "content": "Acide folique, vitamine D, CoQ10 et oméga-3 sont parmi les compléments essentiels."
+        },
+        "environmentalToxins": {
+          "title": "Toxines environnementales",
+          "content": "Pesticides et perturbateurs endocriniens peuvent affecter la fertilité."
+        },
+        "geneticFactors": {
+          "title": "Facteurs génétiques",
+          "content": "Les facteurs génétiques peuvent influencer la fertilité. Le conseil génétique peut aider."
+        },
+        "immunologyFertility": {
+          "title": "Immunologie et fertilité",
+          "content": "Le système immunitaire joue un rôle dans l'implantation et le maintien de la grossesse."
+        },
+        "secondaryInfertility": {
+          "title": "Infertilité secondaire",
+          "content": "La difficulté à concevoir après une grossesse précédente touche de nombreux couples."
+        },
+        "recurrentLoss": {
+          "title": "Fausses couches récurrentes",
+          "content": "Les fausses couches récurrentes nécessitent des examens spécialisés."
+        },
+        "fertilityPreservation": {
+          "title": "Préservation de la fertilité",
+          "content": "La congélation d'ovules et d'embryons offre des options de planification familiale."
+        },
+        "assistedReproduction": {
+          "title": "Reproduction assistée",
+          "content": "FIV, ICSI et IIU sont des méthodes éprouvées de reproduction assistée."
+        },
+        "epigeneticsFertility": {
+          "title": "Épigénétique et fertilité",
+          "content": "Les facteurs épigénétiques influencent l'activation des gènes."
+        },
+        "mindBodyConnection": {
+          "title": "Connexion corps-esprit",
+          "content": "Méditation, yoga et pleine conscience peuvent réduire le stress et favoriser la fertilité."
+        }
+      }
     },
     "fertilitySigns": {
       "signsCount": "{{count}} signes à connaître",
-      "signs": "Signes"
+      "signs": {
+        "cervicalMucus": {
+          "title": "Glaire cervicale",
+          "description": "Devient claire et filante autour de l'ovulation – le signe le plus fertile",
+          "tip": "Observez quotidiennement la consistance de votre glaire cervicale"
+        },
+        "basalTemp": {
+          "title": "Température basale",
+          "description": "Une légère hausse de température après l'ovulation confirme qu'elle a eu lieu",
+          "tip": "Mesurez votre température chaque matin avant de vous lever"
+        },
+        "cervicalPosition": {
+          "title": "Position du col",
+          "description": "Le col devient plus mou, haut et ouvert autour de l'ovulation",
+          "tip": "Vérifiez la position régulièrement à la même heure"
+        },
+        "ovulationPain": {
+          "title": "Douleur d'ovulation",
+          "description": "Un léger tiraillement d'un côté du bas-ventre peut indiquer l'ovulation",
+          "tip": "Notez de quel côté la douleur apparaît"
+        },
+        "breastTenderness": {
+          "title": "Sensibilité des seins",
+          "description": "Des seins sensibles après l'ovulation indiquent une augmentation de la progestérone",
+          "tip": "C'est normal et signe d'une ovulation réussie"
+        },
+        "libidoChanges": {
+          "title": "Changements de libido",
+          "description": "Un désir sexuel accru peut être un signe naturel des jours les plus fertiles",
+          "tip": "Utilisez ces signaux naturels de votre corps"
+        },
+        "moodShifts": {
+          "title": "Changements d'humeur",
+          "description": "Les changements hormonaux pendant le cycle peuvent affecter l'humeur",
+          "tip": "Tenez un journal d'humeur en parallèle du suivi du cycle"
+        },
+        "bloating": {
+          "title": "Ballonnements",
+          "description": "De légers ballonnements autour de l'ovulation sont normaux et hormonaux",
+          "tip": "Buvez suffisamment d'eau et bougez"
+        },
+        "lightSpotting": {
+          "title": "Légers saignements",
+          "description": "Un léger saignement autour de l'ovulation peut être causé par la chute hormonale",
+          "tip": "De légers saignements autour de l'ovulation sont normaux"
+        },
+        "heightenedSenses": {
+          "title": "Sens aiguisés",
+          "description": "Un odorat renforcé autour de l'ovulation est un signe subtil de fertilité",
+          "tip": "Soyez attentive aux changements de perception sensorielle"
+        }
+      }
     },
     "fetalDevelopment": {
       "aiWeeklyInsights": "Aperçus IA hebdomadaires",
@@ -4169,7 +4557,25 @@
         "raspberry": "Framboise",
         "squash": "Courge",
         "sweetPea": "Petit pois",
-        "watermelon": "Pastèque"
+        "watermelon": "Pastèque",
+        "poppy": "Graine de pavot",
+        "sesame": "Graine de sésame",
+        "lentil": "Lentille",
+        "blueberry": "Myrtille",
+        "cherry": "Cerise",
+        "olive": "Olive",
+        "fig": "Figue",
+        "plum": "Prune",
+        "peach": "Pêche",
+        "apple": "Pomme",
+        "orange": "Orange",
+        "pear": "Poire",
+        "turnip": "Navet",
+        "mango": "Mangue",
+        "pomegranate": "Grenade",
+        "coconut": "Noix de coco",
+        "cauliflower": "Chou-fleur",
+        "pineapple": "Ananas"
       },
       "subtitle": "Le parcours de croissance de votre bébé semaine par semaine",
       "thisWeeksDevelopment": "Développement de cette semaine",
@@ -4227,7 +4633,7 @@
         "strength": "Force",
         "warmup": "Échauffement"
       },
-      "categoriesCount": "{{count}} categories",
+      "categoriesCount": "{{count}} catégories",
       "completed": "Terminé",
       "cooldown": {
         "duration": "3-5 minutes",
@@ -4278,7 +4684,7 @@
         "birdDog": "Chien-Oiseau",
         "butterflyStretch": "Étirement papillon",
         "calfRaises": "Calf Raises",
-        "catCow": "Étirement chat-vache",
+        "catCow": "Chat-Vache",
         "childPose": "Posture de l'enfant",
         "deepBreathing": "Respiration profonde",
         "figureFour": "Figure-Four Stretch",
@@ -4286,10 +4692,10 @@
         "gluteBridge": "Pont fessier",
         "hamstringStretch": "Hamstring Stretch",
         "hipCircles": "Hip Circles",
-        "kegelExercise": "Kegel Exercise",
+        "kegelExercise": "Exercice de Kegel",
         "lowImpactJacks": "Low-Impact Jacks",
         "neckRolls": "Rotations du cou",
-        "pelvicTilts": "Bascules du bassin",
+        "pelvicTilts": "Bascule du bassin",
         "prenatalSquats": "Squats prénataux",
         "savasana": "Savasana",
         "seatedMarching": "Marche assise",
@@ -4301,7 +4707,14 @@
         "stepTouch": "Pas chassé",
         "sumoSquat": "Sumo Squat",
         "wallPushups": "Pompes murales",
-        "wallSit": "Wall Sit"
+        "wallSit": "Wall Sit",
+        "squats": "Squats",
+        "wallPushUps": "Pompes murales",
+        "sideStretches": "Étirements latéraux",
+        "prenatalYoga": "Yoga prénatal",
+        "bridgeExercise": "Le pont",
+        "legLifts": "Levées de jambes",
+        "shoulderRolls": "Rotations d'épaules"
       },
       "fitnessVideos": "Vidéos Fitness Prénatal",
       "fitnessVideosSubtitle": "Guides d'entraînement sûrs pour chaque trimestre",
@@ -4309,7 +4722,7 @@
       "generating": "Création du programme...",
       "greatJob": "Bravo ! Vous avez terminé votre entraînement aujourd'hui !",
       "intermediate": "Intermédiaire",
-      "libraryStats": "{{count}} exercises available",
+      "libraryStats": "{{count}} exercices disponibles",
       "muscleGroups": {
         "ankles": "Ankles & Feet",
         "arms": "Poitrine & triceps",
@@ -4777,7 +5190,7 @@
       "startContraction": "Démarrer la contraction",
       "subtitle": "Consignez vos schémas de contractions",
       "title": "Journal des contractions",
-      "transition": "Phase intensive",
+      "transition": "Phase de transition",
       "transitionDesc": "Contactez votre médecin avec ce journal",
       "understand": "J'ai compris",
       "walkGently": "Marcher doucement entre les contractions",
@@ -4876,7 +5289,8 @@
         "gluten": "Gluten",
         "nuts": "Noix",
         "seafood": "Fruits de mer",
-        "soy": "Soja"
+        "soy": "Soja",
+        "shellfish": "Fruits de mer"
       },
       "allergiesLabel": "Allergies et intolérances",
       "cravings": {
@@ -5058,7 +5472,7 @@
       "postpartumSupport": "Support post-partum",
       "previousQuestion": "Question précédente",
       "psiName": "Soutien international post-partum",
-      "psiNumber": "1-800-944-4773",
+      "psiNumber": "3114",
       "question": "Question",
       "responseBreakdown": "Détail des réponses",
       "retake": "Refaire l'évaluation",
@@ -5111,7 +5525,8 @@
         }
       },
       "videosSubtitle": "Ressources de soutien et d'auto-soins",
-      "youreNotAlone": "Vous n'êtes pas seule"
+      "youreNotAlone": "Vous n'êtes pas seule",
+      "emergencyNote": "En cas de crise : appelez le 3114"
     },
     "mobilityCoach": {
       "adjustGoal": "Ajuster l'objectif (minutes/semaine)",
@@ -5224,7 +5639,7 @@
       "subtitle": "Plans nutritionnels personnalisés pour chaque trimestre",
       "title": "Planificateur de Nutrition Intelligent",
       "trimester": "Trimestre",
-      "vegan": "Végan",
+      "vegan": "Végétalien",
       "vegetarian": "Végétarien"
     },
     "ovulation": {
@@ -5257,7 +5672,7 @@
       "savedCalculations": "Calculs sauvegardés",
       "savedDesc": "Votre calcul d'ovulation a été sauvegardé.",
       "sixDays": "6 jours de fertilité maximale",
-      "start": "Début",
+      "start": "Démarrer",
       "subtitle": "Trouvez vos jours les plus fertiles",
       "tip": "Conseil",
       "tipText": "Pour les meilleures chances, essayez d'avoir des relations pendant votre fenêtre fertile, surtout 1-2 jours avant l'ovulation.",
@@ -5284,42 +5699,50 @@
         "appointments": {
           "desc": "Participer aux soins prénataux",
           "icon": "🏥",
-          "label": "Rendez-vous Médicaux"
+          "label": "Rendez-vous Médicaux",
+          "title": "Rendez-vous médicaux"
         },
         "bonding": {
           "desc": "Se connecter avant la naissance",
           "icon": "👶",
-          "label": "Lien avec Bébé"
+          "label": "Lien avec Bébé",
+          "title": "Lien avec le bébé"
         },
         "communication": {
           "desc": "Comprendre les sautes d'humeur",
           "icon": "💬",
-          "label": "Communication"
+          "label": "Communication",
+          "title": "Communication"
         },
         "emotional": {
           "desc": "Comment être présent émotionnellement",
           "icon": "💝",
-          "label": "Soutien Émotionnel"
+          "label": "Soutien Émotionnel",
+          "title": "Soutien émotionnel"
         },
         "intimacy": {
           "desc": "Maintenir la proximité",
           "icon": "❤️",
-          "label": "Intimité et Connexion"
+          "label": "Intimité et Connexion",
+          "title": "Intimité"
         },
         "labor": {
           "desc": "Être prêt pour le jour J",
           "icon": "⏰",
-          "label": "Préparation à l'Accouchement"
+          "label": "Préparation à l'Accouchement",
+          "title": "Préparation à l'accouchement"
         },
         "physical": {
           "desc": "Massage, aide aux tâches",
           "icon": "🤲",
-          "label": "Confort Physique"
+          "label": "Confort Physique",
+          "title": "Aide physique"
         },
         "postpartum": {
           "desc": "Après l'arrivée du bébé",
           "icon": "🏠",
-          "label": "Planification Post-partum"
+          "label": "Planification Post-partum",
+          "title": "Post-partum"
         }
       },
       "trimester": "Trimestre",
@@ -5487,19 +5910,131 @@
         "nutritionDesc": "Nutrition & compléments préconception"
       },
       "tracked": "suivi",
-      "ai": "Analyse IA",
-      "categories": "Catégories",
-      "checks": "Examens"
+      "ai": {
+        "title": "Preparation Insights",
+        "analyze": "Analyze My Preparation",
+        "readinessTitle": "Readiness Overview",
+        "priorityTitle": "Priority Recommendations",
+        "tipsTitle": "Helpful Tips",
+        "timelineTitle": "Suggested Timeline"
+      },
+      "categories": {
+        "essential": "Essential Health Checks",
+        "screening": "Infection & Immunity Screening",
+        "specialized": "Specialized Assessments",
+        "medications": "Medications & Vaccinations"
+      },
+      "checks": {
+        "generalCheckup": {
+          "title": "General Health Checkup",
+          "description": "A comprehensive physical exam to assess your overall health, blood pressure, weight, and discuss your pregnancy plans."
+        },
+        "bloodWork": {
+          "title": "Complete Blood Count (CBC)",
+          "description": "Checks for anemia, infections, and overall blood health. Identifies iron deficiency that should be addressed before pregnancy."
+        },
+        "pap": {
+          "title": "Pap Smear / Cervical Screening",
+          "description": "Screens for cervical abnormalities. Best done before pregnancy to address any issues without the added complexity of pregnancy."
+        },
+        "thyroid": {
+          "title": "Thyroid Function Test (TSH)",
+          "description": "Thyroid disorders are common and can significantly affect fertility and pregnancy. Both hypothyroidism and hyperthyroidism should be managed before conceiving."
+        },
+        "rubella": {
+          "title": "Rubella (German Measles) Immunity",
+          "description": "Rubella during pregnancy can cause serious birth defects. If you're not immune, vaccination is recommended at least 1 month before trying to conceive."
+        },
+        "hepatitis": {
+          "title": "Hepatitis B & C Screening",
+          "description": "Hepatitis B can be transmitted to the baby during birth. Knowing your status allows for preventive measures. Hepatitis C requires monitoring during pregnancy."
+        },
+        "hiv": {
+          "title": "HIV & STI Screening",
+          "description": "Routine screening for HIV and sexually transmitted infections protects both your health and your future baby's health. Early detection enables effective treatment."
+        },
+        "dental": {
+          "title": "Dental Checkup",
+          "description": "Gum disease is linked to preterm birth and low birth weight. Hormonal changes during pregnancy can worsen existing dental issues. Complete any necessary dental work before conceiving."
+        },
+        "geneticScreening": {
+          "title": "Genetic Carrier Screening",
+          "description": "Tests whether you or your partner carry genes for conditions like cystic fibrosis, sickle cell disease, or thalassemia. Results help with informed family planning decisions."
+        },
+        "mentalHealth": {
+          "title": "Mental Health Assessment",
+          "description": "Discuss any history of depression, anxiety, or other mental health conditions with your healthcare provider. Pre-existing conditions can be managed proactively during pregnancy."
+        },
+        "medications": {
+          "title": "Medication Review",
+          "description": "Review all current medications, supplements, and herbal remedies with your doctor. Some medications are not safe during pregnancy and alternatives should be arranged in advance."
+        },
+        "vaccinations": {
+          "title": "Vaccination Review",
+          "description": "Ensure you're up to date on recommended vaccinations including MMR, varicella, flu, and Tdap. Some vaccines cannot be given during pregnancy, so complete them beforehand."
+        }
+      }
     },
     "preconceptionNutrition": {
       "categoriesCount": "{{count}} catégories nutritionnelles",
-      "categories": "Catégories"
+      "categories": {
+        "folateRich": {
+          "title": "Riche en folate",
+          "description": "L'acide folique est crucial pour le développement du tube neural",
+          "foods": "Épinards, brocoli, lentilles, avocat, asperges, pois chiches"
+        },
+        "ironSources": {
+          "title": "Sources de fer",
+          "description": "Le fer soutient la formation du sang et prévient l'anémie",
+          "foods": "Viande rouge, légumineuses, graines de courge, quinoa, tofu"
+        },
+        "omega3": {
+          "title": "Oméga-3",
+          "description": "Les oméga-3 soutiennent la production hormonale et la qualité des ovules",
+          "foods": "Saumon, maquereau, noix, graines de chia, graines de lin"
+        },
+        "antioxidants": {
+          "title": "Antioxydants",
+          "description": "Les antioxydants protègent les ovules du stress oxydatif",
+          "foods": "Baies, chocolat noir, noix, thé vert, tomates"
+        },
+        "zinc": {
+          "title": "Zinc",
+          "description": "Le zinc est important pour la division cellulaire et la régulation hormonale",
+          "foods": "Huîtres, bœuf, graines de courge, noix de cajou, yaourt"
+        },
+        "vitaminD": {
+          "title": "Vitamine D",
+          "description": "La vitamine D soutient l'équilibre hormonal et l'immunité",
+          "foods": "Saumon, œufs, lait enrichi, champignons, soleil"
+        },
+        "calcium": {
+          "title": "Calcium",
+          "description": "Le calcium est important pour les os et les dents du bébé",
+          "foods": "Lait, yaourt, fromage, brocoli, amandes, sésame"
+        },
+        "protein": {
+          "title": "Protéines",
+          "description": "Les protéines sont les éléments constitutifs de la division cellulaire",
+          "foods": "Poulet, poisson, œufs, haricots, quinoa, yaourt grec"
+        },
+        "hydration": {
+          "title": "Hydratation",
+          "description": "Boire suffisamment d'eau soutient la glaire cervicale et la circulation",
+          "foods": "Eau, tisane, concombre, pastèque, eau de coco"
+        },
+        "avoidList": {
+          "title": "À éviter",
+          "description": "Ces aliments et substances peuvent affecter la fertilité",
+          "foods": "Caféine excessive, graisses trans, aliments ultra-transformés, poisson cru"
+        }
+      }
     },
     "preeclampsia": {
       "age35Plus": "Age 35+",
       "calculateRisk": "Review My Factors",
       "chronicHypertension": "Chronic high blood pressure",
-      "diabetes": "Diabetes",
+      "diabetes": "Diabète",
       "familyHistory": "Family history of preeclampsia",
       "firstPregnancy": "First pregnancy",
       "highRiskFactors": "Key Factors",
@@ -5514,7 +6049,68 @@
     },
     "prenatalVitamins": {
       "supplementsCount": "{{count}} suppléments à examiner",
-      "vitamins": "Vitamines"
+      "vitamins": {
+        "folicAcid": {
+          "title": "Acide folique",
+          "description": "Prévient les défauts du tube neural et soutient la synthèse d'ADN",
+          "dosage": "400-800 μg par jour"
+        },
+        "iron": {
+          "description": "Soutient la production sanguine accrue et prévient l'anémie",
+          "dosage": "27 mg par jour",
+          "title": "Iron"
+        },
+        "vitaminD": {
+          "description": "Favorise l'absorption du calcium et le développement osseux",
+          "dosage": "600-1000 UI par jour",
+          "title": "Vitamin D"
+        },
+        "omega3DHA": {
+          "title": "Oméga-3 DHA",
+          "description": "Soutient le développement cérébral et oculaire du bébé",
+          "dosage": "200-300 mg par jour"
+        },
+        "calcium": {
+          "description": "Construit des os et des dents solides chez le bébé",
+          "dosage": "1000 mg par jour",
+          "title": "Calcium"
+        },
+        "iodine": {
+          "title": "Iodine",
+          "description": "Iodine is essential for thyroid function, which directly impacts fertility and fetal brain development. Deficiency is the leading preventable cause of intellectual disability worldwide.",
+          "dosage": "Recommended: 150mcg daily before pregnancy, 220mcg during pregnancy. Check that your prenatal vitamin includes iodine."
+        },
+        "zinc": {
+          "title": "Zinc",
+          "description": "Zinc supports egg quality, hormone balance, and immune function. It also plays a key role in DNA synthesis and cell division — critical processes in early pregnancy.",
+          "dosage": "Recommended: 8mg daily for women. Most prenatal vitamins contain adequate zinc."
+        },
+        "vitaminB12": {
+          "title": "Vitamin B12",
+          "description": "B12 works with folate to support DNA synthesis and nervous system development. Deficiency is more common in vegetarians and vegans. Low B12 levels are associated with recurrent miscarriage and neural tube defects.",
+          "dosage": "Recommended: 2.4mcg daily. Vegans should supplement as B12 is found primarily in animal products."
+        },
+        "vitaminC": {
+          "title": "Vitamin C",
+          "description": "Vitamin C is a powerful antioxidant that protects eggs from oxidative damage. It also enhances iron absorption and supports immune function. Progesterone levels may also benefit from adequate vitamin C intake.",
+          "dosage": "Recommended: 75–90mg daily. Easily obtained from citrus fruits, berries, and bell peppers."
+        },
+        "vitaminE": {
+          "title": "Vitamin E",
+          "description": "Vitamin E supports endometrial lining thickness and quality, which is important for implantation. It also protects cell membranes from oxidative stress and supports overall reproductive health.",
+          "dosage": "Recommended: 15mg (22 IU) daily. Found in nuts, seeds, and vegetable oils."
+        },
+        "coq10": {
+          "title": "CoQ10 (Coenzyme Q10)",
+          "description": "CoQ10 is an antioxidant that supports mitochondrial function in eggs. As egg quality naturally declines with age, CoQ10 supplementation may help maintain cellular energy production. Research is ongoing but promising, especially for women over 35.",
+          "dosage": "Common dosage: 100–600mg daily. Ubiquinol form is better absorbed than ubiquinone. Consult your doctor."
+        },
+        "probiotics": {
+          "title": "Probiotics",
+          "description": "A healthy vaginal and gut microbiome supports fertility. Lactobacillus strains help maintain optimal vaginal pH, which is important for sperm survival. Gut health also affects hormone metabolism and nutrient absorption.",
+          "dosage": "Choose a multi-strain probiotic with Lactobacillus strains. Consume fermented foods: yogurt, kefir, sauerkraut, kimchi."
+        }
+      }
     },
     "recipeModifier": {
       "analyzeAnother": "Analyser une autre recette",
@@ -5543,35 +6139,43 @@
       "concerns": {
         "acne": {
           "icon": "🔴",
-          "label": "Acné de Grossesse"
+          "label": "Acné de Grossesse",
+          "title": "Acné"
         },
         "dryness": {
           "icon": "🏜️",
-          "label": "Peau Sèche"
+          "label": "Peau Sèche",
+          "title": "Peau sèche"
         },
         "glow": {
           "icon": "💫",
-          "label": "Je veux cet éclat de grossesse!"
+          "label": "Je veux cet éclat de grossesse!",
+          "title": "Éclat de grossesse"
         },
         "itching": {
           "icon": "🤚",
-          "label": "Démangeaisons (PUPPP)"
+          "label": "Démangeaisons (PUPPP)",
+          "title": "Démangeaisons"
         },
         "melasma": {
           "icon": "🟤",
-          "label": "Mélasma/Taches Sombres"
+          "label": "Mélasma/Taches Sombres",
+          "title": "Mélasma"
         },
         "oiliness": {
           "icon": "✨",
-          "label": "Peau Grasse/Brillante"
+          "label": "Peau Grasse/Brillante",
+          "title": "Peau grasse"
         },
         "sensitivity": {
           "icon": "❗",
-          "label": "Sensibilité"
+          "label": "Sensibilité",
+          "title": "Peau sensible"
         },
         "stretchMarks": {
           "icon": "〰️",
-          "label": "Vergetures"
+          "label": "Vergetures",
+          "title": "Vergetures"
         }
       },
       "creatingRoutine": "Création de la routine...",
@@ -5582,7 +6186,7 @@
       "ingredientsToAvoid": "Ingrédients à Éviter Pendant la Grossesse",
       "morning": "Matin",
       "morningSteps": "Nettoyer → Hydrater → SPF",
-      "normal": "Normale",
+      "normal": "Normal",
       "oily": "Grasse",
       "selectConcernsHint": "Sélectionnez vos préoccupations cutanées",
       "sensitive": "Sensible",
@@ -5596,32 +6200,38 @@
         "chemicalSunscreens": {
           "icon": "⚠️",
           "name": "Écrans Solaires Chimiques",
-          "risk": "medium"
+          "risk": "medium",
+          "title": "Écrans solaires chimiques"
         },
         "essentialOils": {
           "icon": "⚠️",
           "name": "Huiles Essentielles (certaines)",
-          "risk": "medium"
+          "risk": "medium",
+          "title": "Huiles essentielles"
         },
         "formaldehyde": {
           "icon": "🚫",
           "name": "Formaldéhyde",
-          "risk": "high"
+          "risk": "high",
+          "title": "Formaldéhyde"
         },
         "hydroquinone": {
           "icon": "🚫",
           "name": "Hydroquinone",
-          "risk": "high"
+          "risk": "high",
+          "title": "Hydroquinone"
         },
         "retinol": {
           "icon": "🚫",
           "name": "Rétinol/Rétinoïdes",
-          "risk": "high"
+          "risk": "high",
+          "title": "Rétinol"
         },
         "salicylic": {
           "icon": "⚠️",
           "name": "Acide Salicylique (% élevé)",
-          "risk": "medium"
+          "risk": "medium",
+          "title": "Acide salicylique"
         }
       },
       "videos": {
@@ -5688,7 +6298,12 @@
         "comfort": "Confort",
         "energy": "Énergie",
         "protein": "Protéines",
-        "quick": "Rapide"
+        "quick": "Rapide",
+        "nuts": "Noix",
+        "fruits": "Fruits",
+        "dairy": "Produits laitiers",
+        "grains": "Céréales",
+        "vegetables": "Légumes"
       },
       "feelingHungry": "Vous avez faim?",
       "howToMake": "Comment préparer",
@@ -5783,7 +6398,58 @@
     },
     "stressFertility": {
       "topicsCount": "{{count}} sujets à explorer",
-      "topics": "Sujets"
+      "topics": {
+        "stressHormones": {
+          "title": "How Stress Affects Fertility",
+          "content": "Chronic stress triggers the release of cortisol and adrenaline, which can disrupt the hypothalamic-pituitary-gonadal (HPG) axis — the hormonal pathway that controls ovulation. Elevated cortisol may suppress GnRH (gonadotropin-releasing hormone), leading to irregular or absent ovulation. While moderate daily stress is unlikely to prevent conception, prolonged high stress can delay time to pregnancy.",
+          "practice": "Identify your top 3 stress triggers this week. For each one, write down one small action you can take to reduce its impact."
+        },
+        "cortisol": {
+          "title": "Understanding Cortisol",
+          "content": "Cortisol is your body's primary stress hormone. In small bursts, it's helpful — providing energy and focus. But when cortisol remains chronically elevated, it can suppress reproductive hormones, disrupt sleep, increase inflammation, and affect mood. The goal isn't to eliminate stress entirely (impossible!) but to manage your stress response.",
+          "practice": "Practice the 4-7-8 breathing technique: Inhale for 4 seconds, hold for 7, exhale for 8. Repeat 4 times. This activates the parasympathetic nervous system."
+        },
+        "mindfulness": {
+          "title": "Mindfulness for Fertility",
+          "content": "Mindfulness is the practice of being fully present without judgment. Studies show that mindfulness-based stress reduction (MBSR) programs can reduce anxiety and depression in women undergoing fertility treatment, and may improve outcomes. Even 10 minutes of daily mindfulness practice can lower cortisol levels and improve emotional resilience.",
+          "practice": "Try a 5-minute body scan: Close your eyes, breathe deeply, and slowly move your attention from your toes to your head, noticing sensations without trying to change them."
+        },
+        "breathing": {
+          "title": "Breathing Techniques",
+          "content": "Controlled breathing directly activates the vagus nerve, triggering the relaxation response. This lowers heart rate, blood pressure, and cortisol. It's one of the fastest ways to shift from a stress state to a calm state. Different techniques serve different purposes — some energize, others calm.",
+          "practice": "Box Breathing: Inhale 4 counts → Hold 4 counts → Exhale 4 counts → Hold 4 counts. Repeat for 5 minutes. Ideal before bed or during anxious moments."
+        },
+        "journaling": {
+          "title": "Therapeutic Journaling",
+          "content": "Writing about your emotions has been scientifically shown to reduce stress, improve immune function, and provide clarity. For fertility journaling, the goal isn't to track symptoms obsessively, but to process emotions, celebrate small wins, and release fears.",
+          "practice": "Tonight, write down: 1) One thing I'm grateful for today, 2) One worry I want to release, 3) One kind thing I did for myself."
+        },
+        "sleep": {
+          "title": "Sleep & Fertility",
+          "content": "Sleep is when your body repairs, produces hormones, and processes emotions. Poor sleep disrupts melatonin (which protects egg quality), increases cortisol, and impairs FSH and LH regulation. Women who sleep fewer than 6 hours per night have been shown to have lower fertility rates.",
+          "practice": "Create a wind-down routine: No screens 30 min before bed, dim lights, use lavender essential oil, and keep your bedroom cool (18–20°C)."
+        },
+        "exercise": {
+          "title": "Movement & Stress Relief",
+          "content": "Regular moderate exercise is one of the most effective stress relievers. It releases endorphins, improves sleep, and helps regulate hormones. However, excessive intense exercise (marathon training, high-intensity daily workouts) can suppress ovulation. Balance is key.",
+          "practice": "This week, aim for 30 minutes of moderate movement 5 days: walking, yoga, swimming, or dancing. Notice how your mood shifts afterward."
+        },
+        "socialSupport": {
+          "title": "Building Your Support Network",
+          "content": "Social isolation amplifies stress. Sharing your fertility journey with trusted friends, family, or a support group can significantly reduce emotional burden. You don't have to share with everyone — even one supportive person makes a difference.",
+          "practice": "Identify one person you trust. Share one thing about your journey with them this week. Connection is healing."
+        },
+        "professionalHelp": {
+          "title": "When to Seek Professional Support",
+          "content": "If anxiety or sadness about fertility is affecting your daily life, sleep, relationships, or work, professional support can help. Therapists specializing in reproductive mental health understand the unique challenges of this journey. Cognitive Behavioral Therapy (CBT) is particularly effective for fertility-related anxiety.",
+          "practice": "If you're considering therapy, look for a therapist who specializes in reproductive psychology or perinatal mental health. Many offer virtual sessions."
+        },
+        "acceptance": {
+          "title": "Practicing Acceptance",
+          "content": "Acceptance doesn't mean giving up — it means acknowledging that some things are beyond your control while focusing on what you can influence. This shift from control to acceptance can significantly reduce stress and improve emotional wellbeing during the fertility journey.",
+          "practice": "Repeat this affirmation: 'I am doing everything I can. I trust my body and my journey. The outcome does not define my worth.'"
+        }
+      }
     },
     "stressRelief": {
       "affirmations": {
@@ -5811,14 +6477,15 @@
         },
         "grounding54321": {
           "desc": "A sensory technique to reduce anxiety",
-          "name": "5-4-3-2-1 Grounding",
+          "name": "Ancrage 5-4-3-2-1",
           "steps": [
             "Notice 5 things you can SEE",
             "Notice 4 things you can TOUCH",
             "Notice 3 things you can HEAR",
             "Notice 2 things you can SMELL",
             "Notice 1 thing you can TASTE"
-          ]
+          ],
+          "description": "Comptez 5 choses que vous voyez, 4 que vous touchez, 3 que vous entendez, 2 que vous sentez, 1 que vous goûtez"
         },
         "progressiveRelaxation": {
           "desc": "Release tension from head to toe",
@@ -5925,7 +6592,7 @@
       "moods": {
         "good": "Bien",
         "great": "Très bien",
-        "okay": "Correct",
+        "okay": "Bien",
         "tired": "Fatiguée",
         "tough": "Difficile"
       },
@@ -5955,7 +6622,78 @@
     },
     "twwCompanion": {
       "subtitle": "Votre guide quotidien pendant les deux semaines d'attente",
-      "days": "Jours"
+      "days": {
+        "day1": {
+          "title": "Ovulation Day + 1",
+          "body": "If ovulation occurred yesterday, the egg is now traveling through the fallopian tube. If fertilization happens, it typically occurs within 12–24 hours of ovulation. Today, there's nothing you can do to influence the outcome — and that's okay.",
+          "tip": "Take a deep breath. The journey has begun. Focus on something you enjoy today."
+        },
+        "day2": {
+          "title": "Cellular Beginnings",
+          "body": "If fertilization occurred, the single-celled zygote begins dividing — first into 2 cells, then 4. This tiny cluster of cells is traveling through the fallopian tube toward the uterus. It's powered entirely by its own energy stores.",
+          "tip": "Stay hydrated and eat nourishing foods. Your body is doing incredible work at the cellular level."
+        },
+        "day3": {
+          "title": "The Morula Stage",
+          "body": "The dividing cells form a solid ball called a morula (about 16 cells). It continues its journey through the fallopian tube. Progesterone is rising, preparing the uterine lining for potential implantation.",
+          "tip": "Gentle activity is perfectly fine. There's no need to restrict your normal routine."
+        },
+        "day4": {
+          "title": "Entering the Uterus",
+          "body": "The morula typically enters the uterus around day 4. It begins forming a fluid-filled cavity, transitioning into a blastocyst. The uterine lining is becoming thick and receptive under progesterone's influence.",
+          "tip": "Practice mindfulness or light stretching. Managing anticipation is part of the journey."
+        },
+        "day5": {
+          "title": "Blastocyst Formation",
+          "body": "The blastocyst now has two distinct cell groups: the inner cell mass (which becomes the embryo) and the trophoblast (which becomes the placenta). It floats freely in the uterine cavity.",
+          "tip": "This is a good day to journal your thoughts and feelings. Self-expression is therapeutic."
+        },
+        "day6": {
+          "title": "Implantation May Begin",
+          "body": "The blastocyst begins searching for an ideal implantation site on the uterine wall. The trophoblast cells start burrowing into the endometrium. Some women experience light spotting (implantation bleeding) around this time.",
+          "tip": "Light spotting at this stage can be normal. Don't panic — and don't test yet. It's too early."
+        },
+        "day7": {
+          "title": "Implantation Window",
+          "body": "Days 6–10 are the typical implantation window. The blastocyst is embedding deeper into the uterine lining. Early signals are being exchanged between the embryo and your body.",
+          "tip": "Continue your normal activities. Rest when you need to. Trust the process."
+        },
+        "day8": {
+          "title": "hCG Begins",
+          "body": "If implantation is progressing, tiny amounts of hCG (human chorionic gonadotropin) begin to be produced. This hormone signals your body to maintain the corpus luteum, which keeps producing progesterone. Levels are still too low to detect on a test.",
+          "tip": "Resist the urge to test. hCG needs time to build. Patience is your greatest ally right now."
+        },
+        "day9": {
+          "title": "Rising Signals",
+          "body": "hCG levels are rising but may still be below the detection threshold of most home pregnancy tests. Implantation should be complete or nearly complete. Your body is starting to respond to the new hormonal signals.",
+          "tip": "Treat yourself to something calming — a warm bath, your favorite tea, or a walk in nature."
+        },
+        "day10": {
+          "title": "Almost There",
+          "body": "By now, if implantation occurred, hCG levels are doubling roughly every 48 hours. Some sensitive tests might detect very early pregnancy. However, a negative result today doesn't mean you're not pregnant — levels vary widely.",
+          "tip": "If you test today and it's negative, don't lose hope. Many successful pregnancies don't show positive until day 12–14."
+        },
+        "day11": {
+          "title": "Building Anticipation",
+          "body": "hCG continues to rise. Some women begin to notice very early symptoms: mild cramping, breast tenderness, or fatigue. These symptoms can also be caused by progesterone in a non-pregnant cycle, so they're not reliable indicators.",
+          "tip": "Symptom-spotting is natural but can increase anxiety. Try to stay present and engaged in your daily life."
+        },
+        "day12": {
+          "title": "Testing Becomes More Reliable",
+          "body": "Most home pregnancy tests become more reliable from today onward. If testing, use first morning urine for the highest concentration of hCG. A faint line is still a positive result.",
+          "tip": "Whatever the result today, remember: one cycle does not define your journey. Be gentle with yourself."
+        },
+        "day13": {
+          "title": "The Eve of Knowing",
+          "body": "Tomorrow is typically the day your period would be expected (in a 28-day cycle). If it doesn't arrive and a test shows a faint positive, congratulations may be in order. If your period comes, allow yourself to grieve and know that each cycle is a new opportunity.",
+          "tip": "Prepare emotionally for both outcomes. Both are valid. Both are part of the journey."
+        },
+        "day14": {
+          "title": "The Answer Day",
+          "body": "This is typically the day your period is expected. A missed period combined with a positive pregnancy test is a strong indicator of pregnancy. If your test is positive, contact your healthcare provider to schedule your first appointment (usually around 6–8 weeks).",
+          "tip": "Positive? Celebrate this moment. Negative? You are strong, resilient, and this journey continues. Both outcomes deserve compassion."
+        }
+      }
     },
     "vitaminTracker": {
       "aiAnalysisTitle": "Analyse IA des Vitamines",
@@ -6049,7 +6787,7 @@
       "checkups": "Bilans",
       "complete": "Complet",
       "current": "Actuel",
-      "daysToGo": "{{days}} jours restants",
+      "daysToGo": "Encore {{days}} jours",
       "differentWeek": "Changer la semaine",
       "fetalDevLink": "Fetal Development",
       "fetalDevLinkDesc": "See your baby's size and development this week",
@@ -6221,7 +6959,7 @@
       "beforeYouStart": "Before You Start",
       "completeExercise": "Complete Exercise",
       "completed": "Terminé",
-      "endWorkout": "End",
+      "endWorkout": "Fin",
       "exercise": "Exercise",
       "greatJob": "Great job taking care of yourself and your baby!",
       "intensity": {
@@ -6229,14 +6967,15 @@
         "moderate": "moderate intensity"
       },
       "modification": "Modification",
-      "of": "of",
+      "of": "sur",
       "safetyNotice": "Always get clearance from your healthcare provider before starting any exercise program during pregnancy.",
       "selectTrimester": "Select Your Trimester",
       "startWorkout": "Start Workout",
       "subtitle": "Plans d'exercice sûrs pour chaque trimestre",
       "title": "Planificateur d'Exercices",
-      "trimester": "Trimester",
-      "workoutComplete": "Workout Complete! 🎉"
+      "trimester": "Trimestre",
+      "workoutComplete": "Workout Complete! 🎉",
+      "start": "Démarrer"
     }
   },
   "videoLibrary": {
@@ -6298,7 +7037,11 @@
       "vitaminD": "Vitamine D"
     },
     "vitaminsCount": "{{taken}} sur {{total}} vitamines prises aujourd'hui",
-    "weeklyStats": "Stats hebdomadaires"
+    "weeklyStats": "Stats hebdomadaires",
+    "taken": "Pris",
+    "missed": "Manqué",
+    "streak": "{{count}} jours consécutifs",
+    "reminder": "Définir un rappel"
   },
   "weeklyJourney": {
     "aiDescription": "Obtenez une analyse complète et personnalisée de votre semaine actuelle grâce à l'IA",
@@ -6336,9 +7079,9 @@
       },
       "w10": {
         "bodyChanges": {
-          "0": "Clothes start feeling tighter",
-          "1": "Energy may gradually return",
-          "2": "Nausea may start to ease"
+          "0": "Les nausées commencent peut-être à diminuer",
+          "1": "Les veines peuvent devenir plus visibles",
+          "2": "Léger arrondissement du ventre possible"
         },
         "checklist": {
           "0": "Envisagez le DPNI ou le dépistage du 1er trimestre",
@@ -6348,30 +7091,30 @@
           "4": "Commencez à acheter des vêtements de maternité"
         },
         "doctorQ": {
-          "0": "What does the latest ultrasound show?",
-          "1": "Is the baby developing normally?",
-          "2": "When can I know the gender?"
+          "0": "Le dépistage de la clarté nucale est-il recommandé ?",
+          "1": "Quelle est la taille du bébé maintenant ?",
+          "2": "Y a-t-il des signes de complications ?"
         },
         "fetalDev": {
-          "0": "Fingers and toes are complete",
-          "1": "Urine production begins",
-          "2": "Bones gradually harden",
-          "3": "Brain development accelerates"
+          "0": "Les organes vitaux sont complètement formés",
+          "1": "Les ongles commencent à pousser",
+          "2": "Le bébé peut avaler et donner des coups de pied",
+          "3": "Le squelette passe du cartilage à l'os"
         },
-        "mentalAffirmation": "One-third done! You're amazing",
-        "mentalTip": "Share your joy with loved ones — social support is important",
+        "mentalAffirmation": "Vous portez un petit miracle sous votre cœur",
+        "mentalTip": "Faites une promenade dans la nature – ça apaise l'esprit",
         "nutrients": {
           "0": "Iron",
           "1": "Vitamin C",
-          "2": "Protein"
+          "2": "Vitamine C"
         },
-        "nutritionTip": "Add citrus fruits to meals to improve iron absorption"
+        "nutritionTip": "La vitamine C favorise l'absorption du fer"
       },
       "w11": {
         "bodyChanges": {
-          "0": "Belly starts showing slightly",
-          "1": "You may feel warmer than usual",
-          "2": "Hair may become thicker"
+          "0": "L'énergie peut revenir",
+          "1": "Changements cutanés comme la linea nigra",
+          "2": "Appétit accru"
         },
         "checklist": {
           "0": "Vérifiez les résultats des tests de dépistage",
@@ -6381,30 +7124,30 @@
           "4": "Renseignez-vous tôt sur les modes de garde"
         },
         "doctorQ": {
-          "0": "Is the nuchal translucency test necessary?",
-          "1": "What are the risks of my pregnancy?",
-          "2": "Do I need additional tests?"
+          "0": "Dois-je faire un test prénatal ?",
+          "1": "Quels examens recommandez-vous ?",
+          "2": "Comment réduire le risque de fausse couche ?"
         },
         "fetalDev": {
-          "0": "Can open and close fists",
-          "1": "Tooth buds are forming",
-          "2": "Fine hair (lanugo) grows",
-          "3": "Genitals begin to differentiate"
+          "0": "Le bébé peut ouvrir et fermer les mains",
+          "1": "Les bourgeons dentaires apparaissent",
+          "2": "Le diaphragme se forme",
+          "3": "Les cheveux et ongles poussent"
         },
-        "mentalAffirmation": "Listen to your body — it knows what it needs",
-        "mentalTip": "It's okay to feel anxious — it's completely normal",
+        "mentalAffirmation": "Bientôt le premier trimestre sera terminé",
+        "mentalTip": "Tenez un journal de gratitude",
         "nutrients": {
           "0": "Calcium",
           "1": "Vitamin D",
-          "2": "Omega-3"
+          "2": "Iode"
         },
-        "nutritionTip": "Eat fatty fish twice a week for omega-3"
+        "nutritionTip": "L'iode est important pour la thyroïde et le développement cérébral"
       },
       "w12": {
         "bodyChanges": {
-          "0": "Uterus rises above pubic bone",
-          "1": "Nausea improves for most women",
-          "2": "Energy levels increase"
+          "0": "Le risque de fausse couche diminue significativement",
+          "1": "Le ventre de grossesse devient visible",
+          "2": "Les nausées s'atténuent souvent"
         },
         "checklist": {
           "0": "Célébrez la fin du 1er trimestre !",
@@ -6414,30 +7157,30 @@
           "4": "Commencez à hydrater votre peau contre les démangeaisons"
         },
         "doctorQ": {
-          "0": "What are my first trimester results?",
-          "1": "Can I fast during pregnancy?",
-          "2": "When should I start birth prep classes?"
+          "0": "Quel est le résultat du dépistage de clarté nucale ?",
+          "1": "Puis-je annoncer la grossesse maintenant ?",
+          "2": "Ai-je besoin d'autres analyses de sang ?"
         },
         "fetalDev": {
-          "0": "Nails are developing",
-          "1": "Kidneys produce urine",
-          "2": "Active movement inside the womb",
-          "3": "Vocal cords are forming"
+          "0": "Les réflexes se développent – le bébé peut sucer ses doigts",
+          "1": "Les reins commencent à produire de l'urine",
+          "2": "Le système nerveux mûrit",
+          "3": "Le sexe peut être visible à l'échographie"
         },
-        "mentalAffirmation": "First trimester done — you're a champion",
-        "mentalTip": "Celebrate the end of the first trimester — you deserve it",
+        "mentalAffirmation": "Le premier trimestre est terminé – célébrez cette étape !",
+        "mentalTip": "Réfléchissez à quand partager la bonne nouvelle",
         "nutrients": {
           "0": "Iron",
           "1": "Folic Acid",
-          "2": "Zinc"
+          "2": "Acide folique"
         },
-        "nutritionTip": "Pair iron-rich foods with vitamin C for better absorption"
+        "nutritionTip": "Continuez l'acide folique – important pour le développement"
       },
       "w13": {
         "bodyChanges": {
-          "0": "End of first trimester",
-          "1": "Miscarriage risk drops significantly",
-          "2": "Pregnancy glow may appear"
+          "0": "Bienvenue au deuxième trimestre !",
+          "1": "Plus d'énergie et moins de nausées",
+          "2": "L'appétit se normalise"
         },
         "checklist": {
           "0": "Bienvenue au deuxième trimestre !",
@@ -6447,30 +7190,30 @@
           "4": "Recherchez des cours de préparation à la naissance"
         },
         "doctorQ": {
-          "0": "Is everything normal so far?",
-          "1": "What vaccines are needed during pregnancy?",
-          "2": "Do I need medication adjustments?"
+          "0": "Quels tests sont prévus au deuxième trimestre ?",
+          "1": "Comment le bébé continue-t-il à se développer ?",
+          "2": "Puis-je faire du sport ?"
         },
         "fetalDev": {
-          "0": "Unique fingerprints form",
-          "1": "Liver produces bile",
-          "2": "Can suck and swallow",
-          "3": "Insulin production begins"
+          "0": "Le bébé a des empreintes digitales uniques",
+          "1": "Les cordes vocales se développent",
+          "2": "Le système digestif s'exerce",
+          "3": "Le bébé peut bâiller"
         },
-        "mentalAffirmation": "You and your baby are an amazing team",
-        "mentalTip": "Plan something fun — beautiful memories create happiness",
+        "mentalAffirmation": "Le deuxième trimestre – la phase dorée de la grossesse",
+        "mentalTip": "Profitez de l'énergie retrouvée pour des activités agréables",
         "nutrients": {
           "0": "Protein",
           "1": "Calcium",
-          "2": "Vitamin D"
+          "2": "Magnésium"
         },
-        "nutritionTip": "Increase protein intake to support rapid fetal growth"
+        "nutritionTip": "Le magnésium aide contre les crampes et favorise le sommeil"
       },
       "w14": {
         "bodyChanges": {
-          "0": "Second trimester begins — the best!",
-          "1": "Energy returns strongly",
-          "2": "Appetite improves"
+          "0": "Le ventre rond devient plus visible",
+          "1": "Cheveux et ongles poussent plus vite",
+          "2": "Nez bouché (rhinite de grossesse)"
         },
         "checklist": {
           "0": "Planifiez l'échographie morphologique (semaine 18-20)",
@@ -6480,30 +7223,30 @@
           "4": "Commencez une liste de naissance"
         },
         "doctorQ": {
-          "0": "What tests are needed in the second trimester?",
-          "1": "Do I need extra vitamins?",
-          "2": "How do I manage back pain?"
+          "0": "Le triple test est-il recommandé ?",
+          "1": "Comment gérer la constipation ?",
+          "2": "Quels sports sont sûrs ?"
         },
         "fetalDev": {
-          "0": "Can yawn and stretch",
-          "1": "Eyebrows and lashes grow",
-          "2": "Central nervous system develops",
-          "3": "Fingerprints are forming"
+          "0": "Le bébé peut faire des grimaces",
+          "1": "Le lanugo couvre le corps",
+          "2": "Le foie produit de la bile",
+          "3": "La thyroïde commence à produire des hormones"
         },
-        "mentalAffirmation": "Second trimester — time to enjoy",
-        "mentalTip": "Enjoy the second trimester energy — this is your time",
+        "mentalAffirmation": "Votre bébé grandit magnifiquement – vous êtes une super maman",
+        "mentalTip": "Planifiez une sortie agréable avec votre partenaire",
         "nutrients": {
           "0": "Iron",
           "1": "Omega-3",
-          "2": "Calcium"
+          "2": "Vitamine A"
         },
-        "nutritionTip": "Eat salmon or chia seeds for omega-3 fatty acids"
+        "nutritionTip": "Le bêta-carotène soutient le développement des yeux"
       },
       "w15": {
         "bodyChanges": {
-          "0": "Gums may bleed when brushing",
-          "1": "Nasal congestion is common",
-          "2": "Heartburn may appear"
+          "0": "Les saignements de nez peuvent être plus fréquents",
+          "1": "Les gencives peuvent être plus sensibles",
+          "2": "Légers vertiges possibles"
         },
         "checklist": {
           "0": "Faites une amniocentèse si recommandée",
@@ -6513,30 +7256,30 @@
           "4": "Commencez à choisir un prénom si vous le souhaitez"
         },
         "doctorQ": {
-          "0": "Are my iron levels normal?",
-          "1": "What exercises are safe during pregnancy?",
-          "2": "Do I need dietary changes?"
+          "0": "Les saignements de nez et des gencives sont-ils normaux ?",
+          "1": "Ai-je besoin de fer supplémentaire ?",
+          "2": "Quand sentirai-je les premiers mouvements ?"
         },
         "fetalDev": {
-          "0": "Hearing sense develops",
-          "1": "Moves freely in amniotic fluid",
-          "2": "Bones grow and harden",
-          "3": "Can sense light"
+          "0": "Le bébé peut percevoir la lumière",
+          "1": "Les os deviennent plus durs",
+          "2": "Le bébé avale du liquide amniotique",
+          "3": "Les papilles gustatives se développent"
         },
-        "mentalAffirmation": "Every day is a new chance to care for yourself",
-        "mentalTip": "Connect with other moms — shared experiences are helpful",
+        "mentalAffirmation": "Chaque semaine est un nouveau succès",
+        "mentalTip": "Commencez le yoga prénatal ou la natation",
         "nutrients": {
           "0": "Vitamin C",
           "1": "Iron",
-          "2": "Fiber"
+          "2": "Fer"
         },
-        "nutritionTip": "Eat more fruits and vegetables rich in vitamin C"
+        "nutritionTip": "Augmentez l'apport en fer – le volume sanguin continue d'augmenter"
       },
       "w16": {
         "bodyChanges": {
-          "0": "You may feel first fetal movements",
-          "1": "Belly is clearly visible",
-          "2": "Back pain may begin"
+          "0": "Premiers mouvements possibles (papillonnements)",
+          "1": "Éclat de grossesse de la peau",
+          "2": "Les maux de dos peuvent commencer"
         },
         "checklist": {
           "0": "Vous pourriez sentir les premiers mouvements !",
@@ -6546,30 +7289,30 @@
           "4": "Planifiez vos voyages avant le 3e trimestre"
         },
         "doctorQ": {
-          "0": "Are fetal movements normal?",
-          "1": "When should I have the anomaly scan?",
-          "2": "Is vaginal discharge normal?"
+          "0": "Est-ce mon bébé que je sens ?",
+          "1": "Dois-je faire de la rééducation ?",
+          "2": "Comment soulager les maux de dos ?"
         },
         "fetalDev": {
-          "0": "Facial muscles form",
-          "1": "Can make facial expressions",
-          "2": "Nails are fully grown",
-          "3": "Circulatory system develops"
+          "0": "Les ongles sont complètement formés",
+          "1": "Le système nerveux fonctionne",
+          "2": "Le bébé peut réagir aux sons",
+          "3": "Le tissu adipeux commence à se former"
         },
-        "mentalAffirmation": "Baby's first movements are their message to you",
-        "mentalTip": "Document your pregnancy moments — they'll be precious memories",
+        "mentalAffirmation": "La mi-parcours approche – vous êtes formidable",
+        "mentalTip": "Savourez la sensation des premiers mouvements",
         "nutrients": {
           "0": "Calcium",
           "1": "Magnesium",
-          "2": "Vitamin D"
+          "2": "Calcium"
         },
-        "nutritionTip": "Include dairy and sesame for calcium"
+        "nutritionTip": "Le calcium renforce les os de vous et votre bébé"
       },
       "w17": {
         "bodyChanges": {
-          "0": "Increased blood flow is noticeable",
-          "1": "You may feel dizzy sometimes",
-          "2": "Skin stretching begins"
+          "0": "Le ventre grandit visiblement",
+          "1": "Des vergetures peuvent apparaître",
+          "2": "L'équilibre peut changer"
         },
         "checklist": {
           "0": "Suivez les premiers coups de pied et mouvements",
@@ -6579,30 +7322,30 @@
           "4": "Parlez ou chantez à votre bébé — il vous entend !"
         },
         "doctorQ": {
-          "0": "What are the detailed scan results?",
-          "1": "Is fetal growth on track?",
-          "2": "How do I handle dizziness?"
+          "0": "Ma prise de poids est-elle normale ?",
+          "1": "Que faire contre les vergetures ?",
+          "2": "Dois-je m'inscrire à un cours de préparation ?"
         },
         "fetalDev": {
-          "0": "Fat begins accumulating under skin",
-          "1": "Touch sense develops",
-          "2": "Can hear your voice",
-          "3": "Umbilical cord grows stronger"
+          "0": "Le bébé développe des couches de graisse",
+          "1": "L'audition s'améliore",
+          "2": "Le cordon ombilical se renforce",
+          "3": "Les glandes sudoripares se forment"
         },
-        "mentalAffirmation": "You're building a life — the greatest achievement",
-        "mentalTip": "Set aside daily relaxation time — even just 10 minutes",
+        "mentalAffirmation": "Votre corps fait des choses incroyables – soyez fière",
+        "mentalTip": "Commencez à planifier la chambre du bébé",
         "nutrients": {
           "0": "Omega-3",
           "1": "Protein",
-          "2": "Iron"
+          "2": "Vitamine E"
         },
-        "nutritionTip": "Add walnuts and salmon to support baby's brain development"
+        "nutritionTip": "La vitamine E soutient la santé de la peau"
       },
       "w18": {
         "bodyChanges": {
-          "0": "Fetal movements are clearer now",
-          "1": "Stretch marks may appear",
-          "2": "Blood pressure may change"
+          "0": "Les mouvements du bébé deviennent plus clairs",
+          "1": "La tension artérielle peut baisser",
+          "2": "Rétention d'eau possible"
         },
         "checklist": {
           "0": "Préparez-vous pour l'échographie morphologique",
@@ -6612,30 +7355,30 @@
           "4": "Commencez un rituel de relaxation au coucher"
         },
         "doctorQ": {
-          "0": "Is the placenta position normal?",
-          "1": "What is the amniotic fluid volume?",
-          "2": "Do I need bed rest?"
+          "0": "Quand est l'échographie morphologique ?",
+          "1": "Peut-on connaître le sexe ?",
+          "2": "La tension artérielle est-elle normale ?"
         },
         "fetalDev": {
-          "0": "You may feel first movements",
-          "1": "Retina develops further",
-          "2": "Sensory nerves form",
-          "3": "Yawns and sleeps regularly"
+          "0": "Le bébé bâille, avale et a le hoquet",
+          "1": "La rétine devient sensible à la lumière",
+          "2": "Les organes génitaux sont reconnaissables",
+          "3": "La myéline enveloppe les nerfs"
         },
-        "mentalAffirmation": "Trust your instincts — you're a natural mom",
-        "mentalTip": "Talk to your baby — they can hear you and recognize your voice",
+        "mentalAffirmation": "Votre bébé entend votre voix – parlez-lui",
+        "mentalTip": "Lisez ou chantez pour votre bébé",
         "nutrients": {
           "0": "Iron",
           "1": "Calcium",
-          "2": "Vitamin B12"
+          "2": "DHA (Oméga-3)"
         },
-        "nutritionTip": "Eat red meat and spinach to prevent anemia"
+        "nutritionTip": "Le DHA favorise le développement du cerveau et des yeux"
       },
       "w19": {
         "bodyChanges": {
-          "0": "Pelvic and ligament pain is common",
-          "1": "Leg cramps may occur",
-          "2": "Sleep may become harder"
+          "0": "Douleurs des ligaments ronds (tiraillements latéraux)",
+          "1": "La pigmentation de la peau peut augmenter",
+          "2": "Vertiges en se levant rapidement"
         },
         "checklist": {
           "0": "Passez l'échographie morphologique",
@@ -6645,24 +7388,24 @@
           "4": "Commencez un brouillon de projet de naissance"
         },
         "doctorQ": {
-          "0": "Are fetal movements sufficient?",
-          "1": "What causes pelvic pain?",
-          "2": "Do I need a belly support band?"
+          "0": "Les douleurs ligamentaires sont-elles normales ?",
+          "1": "Comment éviter les vertiges ?",
+          "2": "La position du placenta est-elle correcte ?"
         },
         "fetalDev": {
-          "0": "Protective waxy coating forms",
-          "1": "All five senses develop",
-          "2": "Hair grows on the head",
-          "3": "Noticeably more active"
+          "0": "Le vernix caseosa recouvre la peau",
+          "1": "Le cerveau forme des zones spécialisées",
+          "2": "Les sens s'aiguisent",
+          "3": "Bras et jambes ont des proportions normales"
         },
-        "mentalAffirmation": "Almost halfway! Be proud of yourself",
-        "mentalTip": "Don't push yourself — ask for help when you need it",
+        "mentalAffirmation": "La mi-parcours est presque là – vous y arrivez",
+        "mentalTip": "Documentez votre ventre en photos",
         "nutrients": {
           "0": "Protein",
           "1": "Omega-3",
-          "2": "Magnesium"
+          "2": "Zinc"
         },
-        "nutritionTip": "Include eggs and nuts for protein and healthy fats"
+        "nutritionTip": "Le zinc soutient le système immunitaire et la division cellulaire"
       },
       "w2": {
         "checklist": {
@@ -6675,9 +7418,9 @@
       },
       "w20": {
         "bodyChanges": {
-          "0": "Halfway! Belly clearly showing",
-          "1": "Shortness of breath possible",
-          "2": "Movement is easier at this stage"
+          "0": "Le nombril peut ressortir",
+          "1": "Des brûlures d'estomac peuvent apparaître",
+          "2": "Essoufflement à l'effort"
         },
         "checklist": {
           "0": "Vous êtes à mi-chemin — célébrez !",
@@ -6687,30 +7430,30 @@
           "4": "Inscrivez-vous à un cours de préparation à l'accouchement"
         },
         "doctorQ": {
-          "0": "What are the morphology scan results?",
-          "1": "Are all fetal organs complete?",
-          "2": "How do I manage breathlessness?"
+          "0": "Comment s'est passée l'échographie morphologique ?",
+          "1": "Le volume de liquide amniotique est-il normal ?",
+          "2": "Que montre l'examen des organes ?"
         },
         "fetalDev": {
-          "0": "Halfway there! Baby growing fast",
-          "1": "Can swallow and produce meconium",
-          "2": "Taste buds develop",
-          "3": "Distinguishes sleep from wake"
+          "0": "Mi-parcours ! Le bébé mesure environ 25 cm",
+          "1": "La peau s'épaissit avec plusieurs couches",
+          "2": "Des cycles veille-sommeil se développent",
+          "3": "Le bébé boit du liquide amniotique quotidiennement"
         },
-        "mentalAffirmation": "Halfway there! Every step brings you closer to your dream",
-        "mentalTip": "Celebrate being halfway with something special",
+        "mentalAffirmation": "Mi-parcours accompli – vous et votre bébé êtes une super équipe !",
+        "mentalTip": "Célébrez cette étape – vous avez fait la moitié !",
         "nutrients": {
           "0": "Calcium",
           "1": "Iron",
-          "2": "Vitamin D"
+          "2": "Fibres"
         },
-        "nutritionTip": "Balance calcium and iron — don't take them together"
+        "nutritionTip": "Les fibres aident contre la constipation et les brûlures d'estomac"
       },
       "w21": {
         "bodyChanges": {
-          "0": "Stretch marks may increase",
-          "1": "Belly itching is possible",
-          "2": "Slight ankle swelling"
+          "0": "Des varices peuvent apparaître",
+          "1": "Crampes aux mollets la nuit",
+          "2": "La poitrine commence à produire du colostrum"
         },
         "checklist": {
           "0": "Continuez à suivre les mouvements du bébé",
@@ -6720,30 +7463,30 @@
           "4": "Recherchez des pédiatres dans votre zone"
         },
         "doctorQ": {
-          "0": "Is the baby's weight appropriate?",
-          "1": "What's the best sleeping position?",
-          "2": "Do I need a glucose test?"
+          "0": "Les crampes sont-elles un signe de carence en magnésium ?",
+          "1": "Le colostrum est-il normal à ce stade ?",
+          "2": "Combien de fois le bébé doit-il bouger ?"
         },
         "fetalDev": {
-          "0": "Absorbs nutrients from amniotic fluid",
-          "1": "Eyebrows are visible",
-          "2": "Immune system develops",
-          "3": "Practices breathing movements"
+          "0": "Les sourcils et les cils poussent",
+          "1": "Le bébé réagit au toucher",
+          "2": "Les poumons continuent de mûrir",
+          "3": "Le hoquet du bébé peut être perceptible"
         },
-        "mentalAffirmation": "Your baby feels your love and happiness",
-        "mentalTip": "Practice gentle yoga — it helps body and mind together",
+        "mentalAffirmation": "Votre bébé apprend quelque chose de nouveau chaque jour",
+        "mentalTip": "Prenez un bain tiède (pas chaud) pour vous détendre",
         "nutrients": {
           "0": "Omega-3",
           "1": "Protein",
-          "2": "Zinc"
+          "2": "Magnésium"
         },
-        "nutritionTip": "Eat fish and nuts for baby's brain development"
+        "nutritionTip": "Le magnésium contre les crampes – bananes et noix aident"
       },
       "w22": {
         "bodyChanges": {
-          "0": "Back pain more common",
-          "1": "Heartburn and bloating frequent",
-          "2": "Nighttime leg cramps"
+          "0": "Mouvements fœtaux plus forts",
+          "1": "Des hémorroïdes peuvent apparaître",
+          "2": "Douleurs dorsales et pelviennes"
         },
         "checklist": {
           "0": "Planifiez le test de glucose (semaine 24-28)",
@@ -6753,30 +7496,30 @@
           "4": "Commencez à congeler des repas pour le post-partum"
         },
         "doctorQ": {
-          "0": "Is blood flow in the umbilical cord normal?",
-          "1": "What are preterm labor signs?",
-          "2": "How do I prevent preeclampsia?"
+          "0": "Ai-je besoin d'un test de tolérance au glucose ?",
+          "1": "Que faire contre les hémorroïdes ?",
+          "2": "Comment est la croissance du bébé ?"
         },
         "fetalDev": {
-          "0": "Inner ear is fully formed",
-          "1": "Can hear external sounds",
-          "2": "Lungs are growing",
-          "3": "Responds to external stimuli"
+          "0": "Les paupières sont entièrement formées",
+          "1": "L'oreille interne mûrit – l'équilibre se développe",
+          "2": "Le lanugo devient plus dense",
+          "3": "Le bébé a des cycles de sommeil réguliers"
         },
-        "mentalAffirmation": "You're creating the most beautiful love story",
-        "mentalTip": "Read about labor — knowledge reduces fear",
+        "mentalAffirmation": "Votre bébé reconnaît votre voix – il vous aime déjà",
+        "mentalTip": "Inscrivez-vous à un cours de préparation à l'accouchement",
         "nutrients": {
           "0": "Iron",
           "1": "Vitamin C",
-          "2": "Calcium"
+          "2": "Vitamine D"
         },
-        "nutritionTip": "Add citrus and peppers to your meals for vitamin C"
+        "nutritionTip": "La vitamine D aide l'absorption du calcium pour des os solides"
       },
       "w23": {
         "bodyChanges": {
-          "0": "A dark line may appear on belly",
-          "1": "Mild swelling in hands and feet",
-          "2": "Insomnia may begin"
+          "0": "Contractions de Braxton-Hicks",
+          "1": "Chevilles et pieds gonflés",
+          "2": "L'essoufflement augmente"
         },
         "checklist": {
           "0": "Surveillez votre tension artérielle à chaque visite",
@@ -6786,30 +7529,30 @@
           "4": "Préparez la liste pour le sac de maternité"
         },
         "doctorQ": {
-          "0": "Is cervical length normal?",
-          "1": "What causes foot swelling?",
-          "2": "Do I need extra iron supplements?"
+          "0": "Les contractions d'entraînement sont-elles normales ?",
+          "1": "Quand dois-je m'inquiéter des gonflements ?",
+          "2": "Comment soutenir la maturation pulmonaire ?"
         },
         "fetalDev": {
-          "0": "Can distinguish your voice",
-          "1": "Lungs develop rapidly",
-          "2": "Brain grows intensively",
-          "3": "Practices breathing patterns"
+          "0": "Le bébé pèse environ 500g",
+          "1": "La peau est encore fine et translucide",
+          "2": "La maturation pulmonaire progresse",
+          "3": "Le bébé a un rythme veille-sommeil"
         },
-        "mentalAffirmation": "Don't compare your journey — yours is unique",
-        "mentalTip": "Sleep when you can — rest heals body and mind",
+        "mentalAffirmation": "Votre bébé devient plus fort chaque jour",
+        "mentalTip": "Surélevez les jambes en cas de chevilles gonflées",
         "nutrients": {
           "0": "Magnesium",
           "1": "Protein",
-          "2": "Omega-3"
+          "2": "Protéines"
         },
-        "nutritionTip": "Eat oats and bananas to reduce leg cramps"
+        "nutritionTip": "Augmentez l'apport en protéines pour la croissance du bébé"
       },
       "w24": {
         "bodyChanges": {
-          "0": "Gestational diabetes test needed",
-          "1": "Skin itching is common",
-          "2": "Bladder pressure increases"
+          "0": "Démangeaisons au ventre due à l'étirement de la peau",
+          "1": "La linea nigra fonce",
+          "2": "Problèmes de sommeil à cause de la taille du ventre"
         },
         "checklist": {
           "0": "Faites le test de diabète gestationnel",
@@ -6819,30 +7562,30 @@
           "4": "Vérifiez votre assurance maladie et congé maternité"
         },
         "doctorQ": {
-          "0": "What are my glucose test results?",
-          "1": "Is my blood pressure normal?",
-          "2": "How do I manage skin itching?"
+          "0": "Quand est le test de tolérance au glucose ?",
+          "1": "Mes taux de fer sont-ils corrects ?",
+          "2": "Comment mieux dormir ?"
         },
         "fetalDev": {
-          "0": "Footprints are forming",
-          "1": "Gaining weight steadily",
-          "2": "Lungs maturing gradually",
-          "3": "Sleeps in regular cycles"
+          "0": "Le bébé a des chances de survie en cas de naissance prématurée",
+          "1": "Les poumons produisent du surfactant",
+          "2": "L'organe de l'équilibre fonctionne",
+          "3": "La peau devient moins translucide"
         },
-        "mentalAffirmation": "Every day you spend means one day closer to meeting them",
-        "mentalTip": "Talk about your fears with someone you trust",
+        "mentalAffirmation": "Une étape importante – votre bébé serait viable",
+        "mentalTip": "Hydratez le ventre régulièrement contre les démangeaisons",
         "nutrients": {
           "0": "Iron",
           "1": "Calcium",
-          "2": "Fiber"
+          "2": "Fer"
         },
-        "nutritionTip": "Include fiber and water to prevent constipation"
+        "nutritionTip": "Le fer est particulièrement important – le volume sanguin est très élevé"
       },
       "w25": {
         "bodyChanges": {
-          "0": "Difficulty sleeping increases",
-          "1": "Heartburn more frequent",
-          "2": "Mild contractions possible"
+          "0": "Les brûlures d'estomac peuvent s'intensifier",
+          "1": "Engourdissement ou picotements dans les mains",
+          "2": "Les vergetures deviennent plus marquées"
         },
         "checklist": {
           "0": "Discutez des résultats du test de glucose avec votre médecin",
@@ -6852,30 +7595,30 @@
           "4": "Créez un document de préférences de naissance"
         },
         "doctorQ": {
-          "0": "Is the baby growing normally?",
-          "1": "What exercises suit this stage?",
-          "2": "When should I start kick counting?"
+          "0": "Que faire contre les brûlures d'estomac ?",
+          "1": "Les picotements dans les mains sont-ils normaux ?",
+          "2": "Quand commence le congé maternité ?"
         },
         "fetalDev": {
-          "0": "Can open eyes",
-          "1": "Responds to light and sound",
-          "2": "Airways are developing",
-          "3": "Increased physical activity"
+          "0": "Les narines s'ouvrent",
+          "1": "Le système nerveux mûrit rapidement",
+          "2": "Le bébé peut réagir aux bruits forts",
+          "3": "Le stockage de graisse augmente – bébé s'arrondit"
         },
-        "mentalAffirmation": "You are strong and capable of any challenge",
-        "mentalTip": "Make a list of things that make you happy and do them",
+        "mentalAffirmation": "Le troisième trimestre approche – la dernière ligne droite",
+        "mentalTip": "Parlez à votre employeur du congé maternité",
         "nutrients": {
           "0": "Omega-3",
           "1": "Protein",
-          "2": "Vitamin D"
+          "2": "Potassium"
         },
-        "nutritionTip": "Eat salmon and walnuts for baby's eye development"
+        "nutritionTip": "Le potassium aide contre la rétention d'eau et les crampes"
       },
       "w26": {
         "bodyChanges": {
-          "0": "Shortness of breath increases",
-          "1": "Rib pain is common",
-          "2": "Foot swelling worsens in evening"
+          "0": "Les troubles du sommeil augmentent",
+          "1": "Instabilité pelvienne",
+          "2": "Essoufflement à l'effort"
         },
         "checklist": {
           "0": "Le troisième trimestre approche !",
@@ -6885,30 +7628,30 @@
           "4": "Finalisez le choix du prénom"
         },
         "doctorQ": {
-          "0": "Do I need a tetanus vaccine?",
-          "1": "What are preeclampsia signs?",
-          "2": "Do I need to adjust my iron dose?"
+          "0": "Quel est le résultat du test de glucose ?",
+          "1": "Dois-je rédiger un projet de naissance ?",
+          "2": "Quels sont les signes d'accouchement prématuré ?"
         },
         "fetalDev": {
-          "0": "Eyelashes fully grown",
-          "1": "Actively practices breathing",
-          "2": "Can grasp the umbilical cord",
-          "3": "Nervous system develops"
+          "0": "Les yeux s'ouvrent pour la première fois",
+          "1": "Le bébé peut cligner des yeux",
+          "2": "Les ondes cérébrales montrent des réactions aux sons",
+          "3": "Les poumons continuent de mûrir"
         },
-        "mentalAffirmation": "Two-thirds done! You're incredible",
-        "mentalTip": "It's normal to worry about labor — talk about it",
+        "mentalAffirmation": "Votre bébé verra bientôt le monde – ce sera merveilleux",
+        "mentalTip": "Faites un projet de naissance et discutez-en",
         "nutrients": {
           "0": "Iron",
           "1": "Calcium",
-          "2": "Magnesium"
+          "2": "Oméga-3"
         },
-        "nutritionTip": "Eat more leafy greens for iron and magnesium"
+        "nutritionTip": "Les oméga-3 soutiennent le développement cérébral au dernier trimestre"
       },
       "w27": {
         "bodyChanges": {
-          "0": "End of second trimester",
-          "1": "Weight gain is noticeable",
-          "2": "Physical activity gets harder"
+          "0": "Le troisième trimestre commence !",
+          "1": "Crampes aux jambes plus fréquentes",
+          "2": "Syndrome des jambes sans repos possible"
         },
         "checklist": {
           "0": "Faites-vous vacciner contre la coqueluche (dTcaP)",
@@ -6918,30 +7661,30 @@
           "4": "Visitez la maternité"
         },
         "doctorQ": {
-          "0": "What are third trimester tests?",
-          "1": "Is the baby's position normal?",
-          "2": "How do I prepare for birth?"
+          "0": "À quelle fréquence les consultations prénatales ?",
+          "1": "Ai-je besoin de l'injection anti-D ?",
+          "2": "Quels sont les signes d'alerte au troisième trimestre ?"
         },
         "fetalDev": {
-          "0": "Sense of smell develops",
-          "1": "Regular sleep-wake cycles",
-          "2": "Bones hardening further",
-          "3": "Clearly recognizes your voice"
+          "0": "Le cerveau devient très actif",
+          "1": "Le bébé peut rêver (sommeil paradoxal)",
+          "2": "Les poumons s'exercent à respirer",
+          "3": "Le bébé réagit à la lumière et aux sons"
         },
-        "mentalAffirmation": "Second trimester ends — the final stretch begins",
-        "mentalTip": "Celebrate the end of the second trimester — amazing journey",
+        "mentalAffirmation": "Le dernier trimestre – bientôt votre bébé sera dans vos bras !",
+        "mentalTip": "Préparez le sac de maternité",
         "nutrients": {
           "0": "Protein",
           "1": "Omega-3",
-          "2": "Vitamin C"
+          "2": "Calcium"
         },
-        "nutritionTip": "Include protein in every meal for rapid fetal growth"
+        "nutritionTip": "Calcium et vitamine D pour renforcer les os au dernier trimestre"
       },
       "w28": {
         "bodyChanges": {
-          "0": "Third trimester begins",
-          "1": "Back pain may increase",
-          "2": "Mild foot swelling"
+          "0": "Consultations prénatales plus fréquentes",
+          "1": "L'essoufflement peut augmenter",
+          "2": "Les Braxton-Hicks deviennent plus fréquentes"
         },
         "checklist": {
           "0": "Commencez les visites prénatales bimensuelles",
@@ -6951,30 +7694,30 @@
           "4": "Commencez à préparer le sac de maternité"
         },
         "doctorQ": {
-          "0": "Is the baby in a normal position?",
-          "1": "When should I start kick counting?",
-          "2": "Do I need additional glucose testing?"
+          "0": "Dois-je compter les mouvements du bébé ?",
+          "1": "Quelle est la position du bébé ?",
+          "2": "Quand le sac de maternité doit-il être prêt ?"
         },
         "fetalDev": {
-          "0": "Eyes open and close regularly",
-          "1": "Brain developing rapidly",
-          "2": "Lungs practicing breathing",
-          "3": "Strong, regular movements"
+          "0": "Le bébé pèse environ 1 kg",
+          "1": "Les paupières s'ouvrent et se ferment",
+          "2": "Le bébé peut tousser et avaler",
+          "3": "La surface du cerveau se plisse de plus en plus"
         },
-        "mentalAffirmation": "Final trimester! The meeting is so close",
-        "mentalTip": "Start preparing your hospital bag — it gives you a sense of control",
+        "mentalAffirmation": "Encore 12 semaines – l'excitation grandit",
+        "mentalTip": "Discutez de vos souhaits de naissance avec la sage-femme",
         "nutrients": {
           "0": "Iron",
           "1": "Calcium",
-          "2": "Omega-3"
+          "2": "Fer"
         },
-        "nutritionTip": "Pair iron sources with vitamin C to improve absorption"
+        "nutritionTip": "Le fer est crucial maintenant – faites contrôler vos taux"
       },
       "w29": {
         "bodyChanges": {
-          "0": "Difficulty sleeping is obvious",
-          "1": "Heartburn is frequent",
-          "2": "Need to urinate increases"
+          "0": "La fatigue revient",
+          "1": "Envie d'uriner plus fréquente",
+          "2": "L'insomnie peut augmenter"
         },
         "checklist": {
           "0": "Comptez les mouvements fœtaux quotidiennement (10 en 2h)",
@@ -6984,24 +7727,24 @@
           "4": "Installez le siège auto"
         },
         "doctorQ": {
-          "0": "Are daily fetal movements sufficient?",
-          "1": "What are early labor signs?",
-          "2": "How do I ease back pain?"
+          "0": "Comment me préparer à l'accouchement ?",
+          "1": "Quelle position d'accouchement recommandez-vous ?",
+          "2": "Dois-je suivre un cours d'allaitement ?"
         },
         "fetalDev": {
-          "0": "Gaining weight quickly",
-          "1": "Lungs maturing further",
-          "2": "Immune system strengthening",
-          "3": "Responds to familiar sounds"
+          "0": "Le bébé prend du poids rapidement",
+          "1": "Les os sont entièrement développés mais encore souples",
+          "2": "Le bébé stocke calcium, fer et phosphore",
+          "3": "Les glandes surrénales produisent des hormones"
         },
-        "mentalAffirmation": "Every day makes your baby stronger and more complete",
-        "mentalTip": "Set aside daily time for meditation and quiet",
+        "mentalAffirmation": "Votre corps se prépare merveilleusement à l'accouchement",
+        "mentalTip": "Pratiquez les techniques de respiration pour l'accouchement",
         "nutrients": {
           "0": "Protein",
           "1": "Vitamin D",
-          "2": "Magnesium"
+          "2": "Vitamine K"
         },
-        "nutritionTip": "Increase protein for baby's rapid weight gain"
+        "nutritionTip": "La vitamine K soutient la coagulation sanguine – important pour l'accouchement"
       },
       "w3": {
         "checklist": {
@@ -7014,9 +7757,9 @@
       },
       "w30": {
         "bodyChanges": {
-          "0": "Breathlessness with effort",
-          "1": "Leg cramps common",
-          "2": "Uterus presses on organs"
+          "0": "Brûlures d'estomac intenses possibles",
+          "1": "Maux de dos plus intenses",
+          "2": "Fatigue et problèmes de sommeil"
         },
         "checklist": {
           "0": "Poursuivez les visites bimensuelles",
@@ -7026,30 +7769,30 @@
           "4": "Préparez les fournitures de récupération post-partum"
         },
         "doctorQ": {
-          "0": "Is the baby in the right position?",
-          "1": "What are pain relief options for labor?",
-          "2": "Do I need another ultrasound?"
+          "0": "Le bébé est-il bien positionné ?",
+          "1": "Que faire contre les brûlures d'estomac ?",
+          "2": "Quand commencer le massage du périnée ?"
         },
         "fetalDev": {
-          "0": "Practices breathing regularly",
-          "1": "Bones complete but soft",
-          "2": "Can track light sources",
-          "3": "Hair growing on head"
+          "0": "Le bébé s'exerce à respirer avec ses poumons",
+          "1": "Les yeux peuvent faire la mise au point",
+          "2": "Le bébé a des cycles veille-sommeil",
+          "3": "Le cerveau grandit rapidement"
         },
-        "mentalAffirmation": "Ten weeks until you hold your baby",
-        "mentalTip": "Discuss the birth plan with your partner — preparation reduces anxiety",
+        "mentalAffirmation": "Encore 10 semaines – vous y êtes presque !",
+        "mentalTip": "Commencez le massage du périnée (après avis médical)",
         "nutrients": {
           "0": "Iron",
           "1": "Calcium",
-          "2": "Vitamin K"
+          "2": "Magnésium"
         },
-        "nutritionTip": "Eat dark leafy greens for vitamin K and iron"
+        "nutritionTip": "Le magnésium favorise la relaxation musculaire et un meilleur sommeil"
       },
       "w31": {
         "bodyChanges": {
-          "0": "Braxton Hicks contractions possible",
-          "1": "Pelvic pain increases",
-          "2": "Fatigue returns strongly"
+          "0": "Essoufflement dû à la taille de l'utérus",
+          "1": "Allers aux toilettes plus fréquents",
+          "2": "Faux travail plus régulier"
         },
         "checklist": {
           "0": "Pratiquez les techniques de respiration quotidiennement",
@@ -7059,30 +7802,30 @@
           "4": "Faites le stock d'essentiels post-partum"
         },
         "doctorQ": {
-          "0": "What's the monitoring plan for the final weeks?",
-          "1": "Is the baby's weight suitable for delivery?",
-          "2": "When should I go to the hospital?"
+          "0": "Comment distinguer les fausses contractions des vraies ?",
+          "1": "Quand dois-je aller à la maternité ?",
+          "2": "Le bébé est-il en position d'accouchement ?"
         },
         "fetalDev": {
-          "0": "Gradually assumes birth position",
-          "1": "Brain processes information",
-          "2": "All five senses functional",
-          "3": "Gains 200g weekly"
+          "0": "Le bébé traite les informations des cinq sens",
+          "1": "L'iris réagit à la lumière",
+          "2": "Les poumons continuent de mûrir",
+          "3": "Le bébé prend du poids chaque jour"
         },
-        "mentalAffirmation": "You're doing something extraordinary",
-        "mentalTip": "It's okay to cry sometimes — hormones are fluctuating",
+        "mentalAffirmation": "Votre bébé est presque prêt pour le monde",
+        "mentalTip": "Préparez le sac de maternité – ça peut arriver bientôt",
         "nutrients": {
           "0": "Omega-3",
           "1": "Protein",
-          "2": "Iron"
+          "2": "Acide folique"
         },
-        "nutritionTip": "Add fatty fish to your meals for brain development"
+        "nutritionTip": "Continuez l'acide folique jusqu'à la fin de la grossesse"
       },
       "w32": {
         "bodyChanges": {
-          "0": "Difficulty bending over",
-          "1": "Heartburn and bloating frequent",
-          "2": "Insomnia is common"
+          "0": "Mouvements fœtaux plus forts et fréquents",
+          "1": "Possible écoulement de colostrum",
+          "2": "La rétention d'eau augmente"
         },
         "checklist": {
           "0": "Surveillez les signes d'accouchement prématuré",
@@ -7092,30 +7835,30 @@
           "4": "Discutez des options de gestion de la douleur"
         },
         "doctorQ": {
-          "0": "Is the baby head-down?",
-          "1": "What are signs of water breaking?",
-          "2": "Do I need a C-section?"
+          "0": "Quelle taille et quel poids fait le bébé ?",
+          "1": "Le volume de liquide amniotique est-il suffisant ?",
+          "2": "Ai-je besoin d'un monitoring fœtal ?"
         },
         "fetalDev": {
-          "0": "Nails reach fingertips",
-          "1": "Skin becomes smoother and thicker",
-          "2": "Breathes fluid to strengthen lungs",
-          "3": "Responds to music"
+          "0": "Le bébé a presque atteint sa position de naissance",
+          "1": "Les ongles ont atteint le bout des doigts",
+          "2": "La peau devient plus lisse grâce à la graisse",
+          "3": "Le système immunitaire se développe"
         },
-        "mentalAffirmation": "Very soon you'll hear their first cry",
-        "mentalTip": "Prepare baby's space — it gives you a sense of control",
+        "mentalAffirmation": "Encore 8 semaines – votre bébé est presque prêt",
+        "mentalTip": "Organisez les vêtements de bébé et la chambre",
         "nutrients": {
           "0": "Calcium",
           "1": "Vitamin D",
-          "2": "Iron"
+          "2": "Vitamine C"
         },
-        "nutritionTip": "Eat dairy and broccoli for calcium and vitamin D"
+        "nutritionTip": "La vitamine C renforce le système immunitaire – important pour maman et bébé"
       },
       "w33": {
         "bodyChanges": {
-          "0": "Bladder pressure increases",
-          "1": "Breathlessness more obvious",
-          "2": "Limb swelling common"
+          "0": "Douleurs sciatiques possibles",
+          "1": "Les fausses contractions s'intensifient",
+          "2": "Problèmes de sommeil à cause du ventre"
         },
         "checklist": {
           "0": "Notez les habitudes d'activité du bébé quotidiennement",
@@ -7125,30 +7868,30 @@
           "4": "Révisez les positions et techniques d'allaitement"
         },
         "doctorQ": {
-          "0": "What is my exact due date?",
-          "1": "Has the cervix started dilating?",
-          "2": "How do I recognize real labor?"
+          "0": "Que faire contre les douleurs sciatiques ?",
+          "1": "À quelle fréquence le monitoring fœtal ?",
+          "2": "Que se passe-t-il si le bébé est en siège ?"
         },
         "fetalDev": {
-          "0": "Bones harden except skull",
-          "1": "Dreams during sleep",
-          "2": "Immunity strengthens from mother",
-          "3": "Assumes head-down position"
+          "0": "Le bébé pèse environ 2 kg",
+          "1": "Les os du crâne restent flexibles pour l'accouchement",
+          "2": "Le système immunitaire se renforce",
+          "3": "Les pupilles se contractent et se dilatent"
         },
-        "mentalAffirmation": "Your body knows how to give birth — trust it",
-        "mentalTip": "Write a letter to your baby — you'll read it to them someday",
+        "mentalAffirmation": "Bientôt le jour J – votre bébé arrive",
+        "mentalTip": "Discutez du projet de naissance avec votre partenaire",
         "nutrients": {
           "0": "Protein",
           "1": "Iron",
-          "2": "Omega-3"
+          "2": "Protéines"
         },
-        "nutritionTip": "Increase protein — baby is gaining weight rapidly"
+        "nutritionTip": "Les protéines sont maintenant essentielles pour la croissance rapide du bébé"
       },
       "w34": {
         "bodyChanges": {
-          "0": "Uterus at highest point",
-          "1": "Fatigue is very noticeable",
-          "2": "Practice contractions more frequent"
+          "0": "Fatigue accrue",
+          "1": "Pression pelvienne accrue",
+          "2": "Allers aux toilettes plus fréquents"
         },
         "checklist": {
           "0": "Commencez les visites prénatales hebdomadaires",
@@ -7158,30 +7901,30 @@
           "4": "Discutez des options de banque de sang de cordon"
         },
         "doctorQ": {
-          "0": "Is the placenta in a good position?",
-          "1": "What is the amniotic fluid level?",
-          "2": "Does baby need a lung maturity injection?"
+          "0": "Le bébé est-il tête en bas ?",
+          "1": "Quand aller à la maternité en cas de contractions ?",
+          "2": "Ai-je besoin du test streptocoque B ?"
         },
         "fetalDev": {
-          "0": "Lungs nearly complete",
-          "1": "Can recognize voices",
-          "2": "Nails fully grown",
-          "3": "Accumulating fat layers"
+          "0": "Les poumons sont presque entièrement matures",
+          "1": "Le système nerveux central mûrit",
+          "2": "Le bébé a moins de place pour les grands mouvements",
+          "3": "Le vernix s'épaissit"
         },
-        "mentalAffirmation": "Tiredness is temporary, but motherhood is forever",
-        "mentalTip": "Take photos of your belly — they'll be beautiful memories",
+        "mentalAffirmation": "Plus que quelques semaines – l'excitation grandit",
+        "mentalTip": "Faites des exercices du périnée pour l'accouchement",
         "nutrients": {
           "0": "Calcium",
           "1": "Magnesium",
-          "2": "Vitamin K"
+          "2": "Vitamine D"
         },
-        "nutritionTip": "Eat magnesium-rich foods to reduce cramps"
+        "nutritionTip": "Vitamine D pour des os solides – crucial au dernier trimestre"
       },
       "w35": {
         "bodyChanges": {
-          "0": "Baby may drop into pelvis",
-          "1": "Breathing may improve slightly",
-          "2": "Pelvic pressure increases"
+          "0": "Fausses contractions plus fréquentes et fortes",
+          "1": "Pression sur la vessie accrue",
+          "2": "Gonflement des mains et pieds"
         },
         "checklist": {
           "0": "Faites le test du streptocoque du groupe B",
@@ -7191,30 +7934,30 @@
           "4": "Apprenez les bases des soins du nouveau-né"
         },
         "doctorQ": {
-          "0": "When should I stop working?",
-          "1": "What are signs labor is approaching?",
-          "2": "Is the umbilical cord position normal?"
+          "0": "Quand arrêter de travailler ?",
+          "1": "Comment reconnaître la rupture de la poche des eaux ?",
+          "2": "Que savoir sur le déclenchement ?"
         },
         "fetalDev": {
-          "0": "Kidneys fully functional",
-          "1": "Practices sucking and swallowing",
-          "2": "Brain growing very rapidly",
-          "3": "Skin is pink and smooth"
+          "0": "Le bébé prend environ 250g par semaine",
+          "1": "Les reins sont pleinement fonctionnels",
+          "2": "Le bébé descend dans le bassin",
+          "3": "Le lanugo disparaît"
         },
-        "mentalAffirmation": "Five weeks! The countdown has begun",
-        "mentalTip": "Start a birth preparation class if you haven't yet",
+        "mentalAffirmation": "Votre bébé se prépare pour son arrivée",
+        "mentalTip": "Vérifiez le sac de maternité et complétez-le",
         "nutrients": {
           "0": "Iron",
           "1": "Protein",
-          "2": "Vitamin C"
+          "2": "Fer"
         },
-        "nutritionTip": "Increase iron and protein to prepare for delivery"
+        "nutritionTip": "Alimentation riche en fer pour l'accouchement à venir"
       },
       "w36": {
         "bodyChanges": {
-          "0": "Difficulty walking long distances",
-          "1": "Sleep is very difficult",
-          "2": "Body preparing for labor"
+          "0": "Le bébé descend dans le bassin",
+          "1": "Respiration plus facile car la pression sur les poumons diminue",
+          "2": "Pertes vaginales accrues"
         },
         "checklist": {
           "0": "Bébé peut descendre — respirez plus facilement !",
@@ -7224,30 +7967,30 @@
           "4": "Confirmez votre équipe d'accompagnement à la naissance"
         },
         "doctorQ": {
-          "0": "Is the baby ready for birth?",
-          "1": "What is the suggested birth plan?",
-          "2": "How do I know labor has started?"
+          "0": "Le bébé est-il prêt pour la naissance ?",
+          "1": "Quels sont les signes du début du travail ?",
+          "2": "Dois-je apporter un projet de naissance ?"
         },
         "fetalDev": {
-          "0": "Lungs nearly ready",
-          "1": "Assumes final birth position",
-          "2": "Digestive system complete",
-          "3": "Gains 30g daily"
+          "0": "Le bébé est presque prêt pour la naissance",
+          "1": "Le foie et les reins fonctionnent",
+          "2": "Le système immunitaire est suffisamment fort",
+          "3": "Le bébé se met peut-être en position d'accouchement"
         },
-        "mentalAffirmation": "Every contraction brings you closer to your baby",
-        "mentalTip": "Breathe deeply when feeling anxious — everything will pass",
+        "mentalAffirmation": "Encore 4 semaines – vous serez une merveilleuse maman",
+        "mentalTip": "Visitez la salle d'accouchement de la maternité",
         "nutrients": {
           "0": "Calcium",
           "1": "Omega-3",
-          "2": "Iron"
+          "2": "Dattes"
         },
-        "nutritionTip": "Eat small, frequent meals to reduce heartburn"
+        "nutritionTip": "Des études montrent : les dattes peuvent favoriser la maturation du col"
       },
       "w37": {
         "bodyChanges": {
-          "0": "Signs of approaching labor possible",
-          "1": "Mucus plug loss possible",
-          "2": "Stronger, more frequent contractions"
+          "0": "Instinct de nidification",
+          "1": "Le bouchon muqueux peut se détacher",
+          "2": "Pression pelvienne plus forte"
         },
         "checklist": {
           "0": "Votre bébé est maintenant à terme précoce !",
@@ -7257,30 +8000,30 @@
           "4": "Sachez quand appeler votre médecin ou aller à l'hôpital"
         },
         "doctorQ": {
-          "0": "Can labor be induced now?",
-          "1": "What if delivery is delayed?",
-          "2": "Do I need weekly checkups?"
+          "0": "Comment reconnaître les vraies contractions ?",
+          "1": "Que signifie la perte du bouchon muqueux ?",
+          "2": "Quand faudrait-il déclencher l'accouchement ?"
         },
         "fetalDev": {
-          "0": "Considered full term",
-          "1": "Lungs are fully mature",
-          "2": "Can grip firmly",
-          "3": "Ready for life outside"
+          "0": "Le bébé est considéré comme presque à terme",
+          "1": "Les poumons produisent suffisamment de surfactant",
+          "2": "Le bébé s'exerce à téter et avaler",
+          "3": "La graisse rend le bébé plus potelé"
         },
-        "mentalAffirmation": "Your baby is fully grown — you're both ready",
-        "mentalTip": "Prioritize — not everything has to be perfect",
+        "mentalAffirmation": "Votre bébé peut arriver à tout moment – quelle excitation !",
+        "mentalTip": "Gardez votre téléphone chargé et le sac de maternité prêt",
         "nutrients": {
           "0": "Protein",
           "1": "Iron",
-          "2": "Vitamin D"
+          "2": "Vitamine C"
         },
-        "nutritionTip": "Eat dates — they may help ease labor"
+        "nutritionTip": "La vitamine C renforce le système immunitaire pour maman et nouveau-né"
       },
       "w38": {
         "bodyChanges": {
-          "0": "Noticeable swelling in feet and hands",
-          "1": "Severe pelvic pain",
-          "2": "Body is ready for delivery"
+          "0": "Contractions plus fortes et fréquentes",
+          "1": "Diarrhée possible comme signe précurseur",
+          "2": "Nervosité et excitation alternent"
         },
         "checklist": {
           "0": "Restez en mouvement — la marche aide",
@@ -7290,30 +8033,30 @@
           "4": "Entraînez-vous à chronométrer les contractions"
         },
         "doctorQ": {
-          "0": "Is the cervix ready?",
-          "1": "What are active labor signs?",
-          "2": "When exactly should I go to hospital?"
+          "0": "Mon col est-il déjà ouvert ?",
+          "1": "Quand sera déclenché l'accouchement si nécessaire ?",
+          "2": "Que m'attend pendant l'accouchement ?"
         },
         "fetalDev": {
-          "0": "All organs functioning efficiently",
-          "1": "Shedding lanugo",
-          "2": "Gaining final fat layers",
-          "3": "Awaiting labor signal"
+          "0": "Le bébé pèse environ 3 kg",
+          "1": "Tous les organes sont pleinement fonctionnels",
+          "2": "Le bébé perd le vernix",
+          "3": "Le lanugo a presque entièrement disparu"
         },
-        "mentalAffirmation": "The meeting is close — breathe deeply and trust",
-        "mentalTip": "Talk to your doctor about any birth concerns",
+        "mentalAffirmation": "Vous êtes prête – votre corps sait quoi faire",
+        "mentalTip": "Faites confiance à votre corps – il est fait pour ça",
         "nutrients": {
           "0": "Calcium",
           "1": "Magnesium",
-          "2": "Protein"
+          "2": "Aliments énergétiques"
         },
-        "nutritionTip": "Maintain daily protein and calcium intake"
+        "nutritionTip": "Mangez des repas énergétiques – vous aurez besoin de force pour l'accouchement"
       },
       "w39": {
         "bodyChanges": {
-          "0": "Contractions may be real",
-          "1": "Water breaking is possible",
-          "2": "Labor signs may appear"
+          "0": "Le travail peut commencer à tout moment",
+          "1": "L'instinct de nidification est à son maximum",
+          "2": "Insomnie et excitation"
         },
         "checklist": {
           "0": "Surveillez les contractions régulières",
@@ -7323,30 +8066,30 @@
           "4": "Révisez le plan d'alimentation du nouveau-né"
         },
         "doctorQ": {
-          "0": "Is everything ready for delivery?",
-          "1": "What procedures to expect at hospital?",
-          "2": "How do I cope with labor pain?"
+          "0": "Quels sont les signes que ça commence ?",
+          "1": "Quand aller à la maternité ?",
+          "2": "Que se passe-t-il après la naissance ?"
         },
         "fetalDev": {
-          "0": "Fully developed",
-          "1": "Ready for birth anytime",
-          "2": "Lungs producing surfactant",
-          "3": "Immunity at its strongest"
+          "0": "Le bébé est prêt pour la naissance",
+          "1": "Les cellules mammaires sont prêtes pour l'allaitement",
+          "2": "Le cerveau grandit encore rapidement",
+          "3": "Des anticorps sont transférés via le placenta"
         },
-        "mentalAffirmation": "You're ready for the most beautiful moment of your life",
-        "mentalTip": "Enjoy the last days of pregnancy — you'll miss them",
+        "mentalAffirmation": "Le grand jour est proche – vous allez merveilleusement y arriver",
+        "mentalTip": "Savourez les derniers jours de grossesse consciemment",
         "nutrients": {
           "0": "Iron",
           "1": "Protein",
-          "2": "Vitamin C"
+          "2": "Eau"
         },
-        "nutritionTip": "Eat light, easily digestible foods as labor approaches"
+        "nutritionTip": "Restez bien hydratée – important pour l'accouchement"
       },
       "w4": {
         "bodyChanges": {
-          "0": "You may feel unusually tired",
-          "1": "Breasts may be more sensitive",
-          "2": "Mood changes are possible"
+          "0": "Vous pourriez vous sentir inhabituellement fatiguée",
+          "1": "Les seins peuvent être plus sensibles",
+          "2": "Des changements d'humeur sont possibles"
         },
         "checklist": {
           "0": "Faites un test de grossesse à domicile",
@@ -7356,30 +8099,30 @@
           "4": "Commencez un journal de grossesse"
         },
         "doctorQ": {
-          "0": "Are my hCG hormone levels normal?",
-          "1": "What vitamins should I take?",
-          "2": "Are there foods I should avoid?"
+          "0": "Mes taux d'hCG sont-ils normaux ?",
+          "1": "Quelles vitamines dois-je prendre ?",
+          "2": "Y a-t-il des aliments à éviter ?"
         },
         "fetalDev": {
-          "0": "Three primary germ layers are forming",
-          "1": "The primitive heart begins to develop",
-          "2": "The neural tube is taking shape",
-          "3": "Blood flow to the uterus increases"
+          "0": "Trois couches germinales primaires se forment",
+          "1": "Le cœur primitif commence à se développer",
+          "2": "Le tube neural prend forme",
+          "3": "Le flux sanguin vers l'utérus augmente"
         },
-        "mentalAffirmation": "Your body is creating a miracle — trust it",
-        "mentalTip": "Get plenty of rest and don't overexert yourself in this early stage",
+        "mentalAffirmation": "Votre corps crée un miracle – faites-lui confiance",
+        "mentalTip": "Reposez-vous suffisamment et ne vous surmenez pas à ce stade précoce",
         "nutrients": {
           "0": "Folic Acid",
           "1": "Iron",
-          "2": "Vitamin B12"
+          "2": "Vitamine B12"
         },
-        "nutritionTip": "Take 400mcg folic acid daily to protect the neural tube"
+        "nutritionTip": "Prenez 400μg d'acide folique par jour pour protéger le tube neural"
       },
       "w40": {
         "bodyChanges": {
-          "0": "Due date! Be prepared",
-          "1": "Regular contractions mean labor",
-          "2": "Call doctor for any changes"
+          "0": "Le col se ramollit et s'ouvre",
+          "1": "Rupture possible de la poche des eaux",
+          "2": "Les vraies contractions commencent"
         },
         "checklist": {
           "0": "Votre date prévue est arrivée — soyez patiente !",
@@ -7389,30 +8132,30 @@
           "4": "Contactez votre médecin si les contractions commencent"
         },
         "doctorQ": {
-          "0": "Should we induce or wait?",
-          "1": "How long is it safe to wait past due?",
-          "2": "Is the baby okay?"
+          "0": "Faut-il déclencher l'accouchement ?",
+          "1": "Combien de temps puis-je dépasser le terme ?",
+          "2": "Quelles sont les options en cas de dépassement ?"
         },
         "fetalDev": {
-          "0": "Due date! All systems optimal",
-          "1": "Completely ready to meet the world",
-          "2": "Skull flexible for delivery",
-          "3": "All organs functioning perfectly"
+          "0": "Jour J ! Le bébé est à terme",
+          "1": "Le bébé pèse en moyenne 3,3-3,5 kg",
+          "2": "Tous les systèmes sont prêts pour la vie extérieure",
+          "3": "Le bébé a peu de place et bouge moins"
         },
-        "mentalAffirmation": "Due date! Be calm and confident",
-        "mentalTip": "Stay calm — your baby feels your emotions",
+        "mentalAffirmation": "Le jour est arrivé – vous êtes une héroïne !",
+        "mentalTip": "Faites confiance au processus de naissance – vous y arriverez",
         "nutrients": {
           "0": "Calcium",
           "1": "Iron",
-          "2": "Omega-3"
+          "2": "Repas légers"
         },
-        "nutritionTip": "Eat energy-rich meals in preparation for labor"
+        "nutritionTip": "Mangez des repas légers – maintenez votre énergie"
       },
       "w41": {
         "bodyChanges": {
-          "0": "Past due — follow up with doctor",
-          "1": "Labor may be induced",
-          "2": "Monitor movements and contractions"
+          "0": "Surveillance étroite par le médecin",
+          "1": "Un déclenchement possible est discuté",
+          "2": "Impatience et tension"
         },
         "checklist": {
           "0": "Discutez des options de déclenchement avec votre médecin",
@@ -7422,30 +8165,30 @@
           "4": "Restez proche de la maison et de l'hôpital"
         },
         "doctorQ": {
-          "0": "Do we need to induce labor now?",
-          "1": "What are risks of going past due?",
-          "2": "How are the placenta and fluid?"
+          "0": "Quand sera déclenché l'accouchement ?",
+          "1": "Comment le placenta est-il surveillé ?",
+          "2": "Existe-t-il des méthodes naturelles pour stimuler le travail ?"
         },
         "fetalDev": {
-          "0": "Continues gaining weight",
-          "1": "Placenta working at full capacity",
-          "2": "Doctor may suggest induction",
-          "3": "Monitor movements closely"
+          "0": "Le bébé continue de grandir après le terme",
+          "1": "Le placenta est surveillé",
+          "2": "Le bébé est toujours en bonne santé et actif",
+          "3": "Ongles et cheveux continuent de pousser"
         },
-        "mentalAffirmation": "Patience is beautiful — your baby is choosing their time",
-        "mentalTip": "Patience is key — every birth has its right time",
+        "mentalAffirmation": "Chaque bébé a son propre calendrier – patience",
+        "mentalTip": "Restez occupée et positive – ce sera bientôt",
         "nutrients": {
           "0": "Protein",
           "1": "Iron",
-          "2": "Calcium"
+          "2": "Feuilles de framboisier"
         },
-        "nutritionTip": "Continue eating healthy — baby still needs good nutrition"
+        "nutritionTip": "La tisane de feuilles de framboisier peut préparer l'utérus à l'accouchement"
       },
       "w42": {
         "bodyChanges": {
-          "0": "Follow up with your doctor daily",
-          "1": "Induction is very likely",
-          "2": "Don't worry — this is common"
+          "0": "L'accouchement est généralement déclenché",
+          "1": "Surveillance quotidienne possible",
+          "2": "Prête pour l'accouchement"
         },
         "checklist": {
           "0": "Suivez les conseils de votre médecin pour la suite",
@@ -7455,30 +8198,30 @@
           "4": "Faites confiance à votre équipe médicale — vous y êtes presque !"
         },
         "doctorQ": {
-          "0": "What is the induction plan?",
-          "1": "Is the baby still doing well?",
-          "2": "What is the next step?"
+          "0": "Comment se passe le déclenchement ?",
+          "1": "Quels sont les risques du dépassement de terme ?",
+          "2": "Que se passe-t-il après la naissance à la maternité ?"
         },
         "fetalDev": {
-          "0": "Past due — follow up with doctor",
-          "1": "Labor may be induced",
-          "2": "Continue counting kicks",
-          "3": "Be ready for hospital"
+          "0": "Le bébé est étroitement surveillé",
+          "1": "La plupart des bébés arrivent avant",
+          "2": "Le bébé est entièrement développé",
+          "3": "Le déclenchement est recommandé"
         },
-        "mentalAffirmation": "Very soon — everything will be just fine",
-        "mentalTip": "Trust your medical team — you're in safe hands",
+        "mentalAffirmation": "Votre bébé arrive – faites confiance au processus",
+        "mentalTip": "Restez calme – vous êtes prête et votre équipe vous soutient",
         "nutrients": {
           "0": "Protein",
           "1": "Iron",
-          "2": "Calcium"
+          "2": "Collations saines"
         },
-        "nutritionTip": "Stay hydrated and maintain balanced nutrition"
+        "nutritionTip": "Gardez des collations saines prêtes dans le sac de maternité"
       },
       "w5": {
         "bodyChanges": {
-          "0": "Morning sickness may begin",
-          "1": "Fatigue is very common",
-          "2": "Frequent urination starts"
+          "0": "Les nausées peuvent commencer",
+          "1": "Envie d'uriner plus fréquente",
+          "2": "Odorat plus sensible"
         },
         "checklist": {
           "0": "Confirmez la grossesse avec votre médecin",
@@ -7488,30 +8231,30 @@
           "4": "Évitez le port de charges lourdes"
         },
         "doctorQ": {
-          "0": "How do I manage severe nausea?",
-          "1": "When is my first ultrasound?",
-          "2": "Are my current medications safe?"
+          "0": "Quand faire la première échographie ?",
+          "1": "Les nausées légères sont-elles normales ?",
+          "2": "Quelles activités dois-je éviter ?"
         },
         "fetalDev": {
-          "0": "The heart starts beating",
-          "1": "Arm and leg buds appear",
-          "2": "The neural tube develops further",
-          "3": "Major organs begin forming"
+          "0": "Le cœur commence à battre",
+          "1": "Les bourgeons des bras et des jambes apparaissent",
+          "2": "Le tube neural continue de se développer",
+          "3": "Les organes majeurs commencent à se former"
         },
-        "mentalAffirmation": "Every day brings you closer to meeting your baby",
-        "mentalTip": "Talk to your partner about your feelings — sharing eases anxiety",
+        "mentalAffirmation": "Chaque jour apporte une nouvelle croissance – vous êtes formidable",
+        "mentalTip": "Partagez vos sentiments avec votre partenaire ou une personne de confiance",
         "nutrients": {
           "0": "Folic Acid",
           "1": "Vitamin B6",
-          "2": "Zinc"
+          "2": "Fer"
         },
-        "nutritionTip": "Eat small, frequent meals to reduce nausea"
+        "nutritionTip": "Mangez de petits repas fréquents contre les nausées"
       },
       "w6": {
         "bodyChanges": {
-          "0": "Nausea may increase",
-          "1": "Bloating is common",
-          "2": "Appetite changes are normal"
+          "0": "Les nausées matinales peuvent s'intensifier",
+          "1": "Fatigue et épuisement",
+          "2": "La sensibilité des seins peut augmenter"
         },
         "checklist": {
           "0": "Assistez à votre premier rendez-vous prénatal",
@@ -7521,30 +8264,30 @@
           "4": "Reposez-vous quand vous êtes fatiguée"
         },
         "doctorQ": {
-          "0": "Is the baby's heartbeat normal?",
-          "1": "What causes light bleeding?",
-          "2": "Can I exercise?"
+          "0": "Est-il normal d'être si fatiguée ?",
+          "1": "Que puis-je faire contre les nausées ?",
+          "2": "Quelles analyses de sang sont nécessaires ?"
         },
         "fetalDev": {
-          "0": "Nose, mouth, and ears take shape",
-          "1": "Intestines begin forming",
-          "2": "Brain grows rapidly",
-          "3": "Fingers start to form"
+          "0": "Les traits du visage commencent à se former",
+          "1": "Le cerveau se développe rapidement",
+          "2": "De minuscules doigts et orteils se forment",
+          "3": "Le foie commence à produire des cellules sanguines"
         },
-        "mentalAffirmation": "Nausea is temporary, but the joy is forever",
-        "mentalTip": "If nausea affects your mood, talk to your doctor",
+        "mentalAffirmation": "Votre petit miracle grandit chaque jour",
+        "mentalTip": "Accordez-vous suffisamment de sommeil – votre corps travaille dur",
         "nutrients": {
           "0": "Folic Acid",
           "1": "Vitamin C",
-          "2": "Iron"
+          "2": "Vitamine B6"
         },
-        "nutritionTip": "Try ginger or lemon to ease morning sickness"
+        "nutritionTip": "La vitamine B6 peut aider à soulager les nausées"
       },
       "w7": {
         "bodyChanges": {
-          "0": "Normal vaginal discharge increases",
-          "1": "Heartburn may appear",
-          "2": "Mood swings are common"
+          "0": "Des envies ou des aversions alimentaires peuvent apparaître",
+          "1": "Salivation accrue",
+          "2": "Légères crampes abdominales"
         },
         "checklist": {
           "0": "Continuez les vitamines prénatales quotidiennement",
@@ -7554,30 +8297,30 @@
           "4": "Discutez des options de dépistage génétique"
         },
         "doctorQ": {
-          "0": "Is the baby growing normally?",
-          "1": "What tests are needed at this stage?",
-          "2": "Is travel safe?"
+          "0": "Les crampes légères sont-elles normales ?",
+          "1": "Comment bien manger malgré les nausées ?",
+          "2": "Quand pourrai-je entendre le cœur battre ?"
         },
         "fetalDev": {
-          "0": "Facial features become distinct",
-          "1": "Hands and feet are growing",
-          "2": "The liver develops quickly",
-          "3": "Bone formation begins"
+          "0": "Les bras et les jambes s'allongent",
+          "1": "Le système digestif se forme",
+          "2": "Le cerveau produit environ 100 cellules nerveuses par minute",
+          "3": "Le cordon ombilical est pleinement fonctionnel"
         },
-        "mentalAffirmation": "You are stronger than you think",
-        "mentalTip": "Practice deep breathing for 5 minutes daily to reduce stress",
+        "mentalAffirmation": "Vous êtes plus forte que vous ne le pensez",
+        "mentalTip": "Ne vous inquiétez pas des petites choses – concentrez-vous sur l'essentiel",
         "nutrients": {
           "0": "Calcium",
           "1": "Vitamin D",
-          "2": "Folic Acid"
+          "2": "Zinc"
         },
-        "nutritionTip": "Include dairy daily to build your baby's bones"
+        "nutritionTip": "Mangez des aliments riches en protéines pour le développement du bébé"
       },
       "w8": {
         "bodyChanges": {
-          "0": "Uterus is growing and expanding",
-          "1": "Mild cramps are possible",
-          "2": "Sense of smell heightens"
+          "0": "L'utérus atteint la taille d'une orange",
+          "1": "Les nausées peuvent atteindre leur pic",
+          "2": "La constipation peut apparaître"
         },
         "checklist": {
           "0": "Planifiez votre échographie de datation",
@@ -7587,30 +8330,30 @@
           "4": "Partagez la nouvelle avec votre partenaire"
         },
         "doctorQ": {
-          "0": "Is the baby's size appropriate for its age?",
-          "1": "What warning signs should I watch for?",
-          "2": "Is intimacy safe?"
+          "0": "Quand est la première grande échographie ?",
+          "1": "Dois-je adapter mon travail ?",
+          "2": "Quels compléments alimentaires me faut-il ?"
         },
         "fetalDev": {
-          "0": "Limbs move for the first time",
-          "1": "Fingers are clearly visible",
-          "2": "The embryonic tail disappears",
-          "3": "The retina begins developing"
+          "0": "Doigts et orteils mieux définis",
+          "1": "Les yeux développent du pigment",
+          "2": "Tous les organes essentiels sont en place",
+          "3": "Le bébé commence à bouger (pas encore perceptible)"
         },
-        "mentalAffirmation": "Your baby hears your heartbeat and feels safe",
-        "mentalTip": "Journal your thoughts and feelings — writing is great therapy",
+        "mentalAffirmation": "Chaque semaine vous rapproche de votre bébé",
+        "mentalTip": "Parlez avec d'autres femmes enceintes – vous n'êtes pas seule",
         "nutrients": {
           "0": "Iron",
           "1": "Omega-3",
-          "2": "Protein"
+          "2": "Oméga-3"
         },
-        "nutritionTip": "Eat red meat or legumes to boost iron stores"
+        "nutritionTip": "Les oméga-3 soutiennent le développement cérébral de votre bébé"
       },
       "w9": {
         "bodyChanges": {
-          "0": "Weight may start increasing",
-          "1": "Hair and nail growth may change",
-          "2": "Skin changes are possible"
+          "0": "La taille peut s'épaissir",
+          "1": "Les fluctuations émotionnelles augmentent",
+          "2": "Le volume sanguin augmente significativement"
         },
         "checklist": {
           "0": "Passez votre échographie de datation",
@@ -7620,24 +8363,24 @@
           "4": "Commencez la planification financière pour bébé"
         },
         "doctorQ": {
-          "0": "What are my latest blood test results?",
-          "1": "Should I have genetic testing?",
-          "2": "How do I handle extreme fatigue?"
+          "0": "Les analyses de sang sont-elles normales ?",
+          "1": "Comment se développe le bébé ?",
+          "2": "Quels examens de suivi sont prévus ?"
         },
         "fetalDev": {
-          "0": "Major joints form",
-          "1": "Tooth buds form under gums",
-          "2": "Muscles are growing",
-          "3": "The digestive system develops"
+          "0": "La période embryonnaire se termine – c'est maintenant un fœtus",
+          "1": "Les muscles commencent à se développer",
+          "2": "Les organes génitaux externes commencent à se former",
+          "3": "Le placenta prend en charge la production hormonale"
         },
-        "mentalAffirmation": "Every challenge makes you a stronger mother",
-        "mentalTip": "Spend time in nature — it helps improve mood",
+        "mentalAffirmation": "Votre bébé grandit et se développe merveilleusement",
+        "mentalTip": "Planifiez des pauses de détente dans votre journée",
         "nutrients": {
           "0": "Calcium",
           "1": "Magnesium",
-          "2": "Vitamin B6"
+          "2": "Calcium"
         },
-        "nutritionTip": "Eat bananas and nuts to reduce muscle cramps"
+        "nutritionTip": "Le calcium est important pour le développement osseux de votre bébé"
       }
     }
   },
@@ -7646,7 +8389,7 @@
     "babyGrowth": "Baby Growth",
     "checkups": "Checkups",
     "complete": "Complete",
-    "daysToGo": "{{days}} days to go",
+    "daysToGo": "Encore {{days}} jours",
     "differentWeek": "Change Week",
     "good": "Good",
     "momsHealth": "Mom's Health",
@@ -7655,11 +8398,11 @@
     "refresh": "Refresh",
     "showSummary": "Afficher le résumé de la semaine {{week}}",
     "subtitle": "Suivi hebdomadaire intelligent de votre grossesse",
-    "trackTip": "Track your week to get personalized information about your baby's growth and your body changes",
+    "trackTip": "Suivez votre semaine pour obtenir des informations personnalisées sur la croissance de votre bébé et les changements de votre corps",
     "trimester": {
-      "first": "First Trimester",
-      "second": "Second Trimester",
-      "third": "Third Trimester"
+      "first": "Premier trimestre",
+      "second": "Deuxième trimestre",
+      "third": "Troisième trimestre"
     },
     "week": "Week {{week}}",
     "weekSummary": "Week {{week}} Summary"
@@ -7678,13 +8421,16 @@
   },
   "welcome": {
     "agreement": "By continuing, you agree to our Terms of Service",
-    "disclaimerText": "This app provides general wellness information only and is not a substitute for professional health guidance. Always consult your healthcare provider for any health concerns.",
+    "disclaimerText": "Cette application fournit des informations générales de bien-être uniquement et ne remplace pas les conseils médicaux professionnels.",
     "disclaimerTitle": "Important Notice",
-    "feature1": "30+ AI-powered pregnancy tools",
-    "feature2": "Personalized health tracking",
-    "getStarted": "Get Started",
-    "subtitle": "Your complete pregnancy companion",
-    "title": "Welcome to Pregnancy Toolkits"
+    "feature1": "30+ outils de grossesse alimentés par l'IA",
+    "feature2": "Suivi personnalisé semaine par semaine",
+    "getStarted": "Commencer maintenant",
+    "subtitle": "Votre compagnon de grossesse personnalisé",
+    "title": "Welcome to Pregnancy Toolkits",
+    "cta": "Commencer",
+    "feature3": "Conseils nutrition et bien-être",
+    "feature4": "Communauté de soutien bienveillante"
   },
   "wellnessStats": {
     "avgMood": "Humeur moy.",
