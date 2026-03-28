@@ -8178,77 +8178,77 @@
     }
   },
   "toolsInternal.twwCompanion": {
-    "subtitle": "Your daily guide through the two-week wait",
+    "subtitle": "دليلك اليومي خلال أسبوعي الانتظار",
     "days": {
       "day1": {
-        "title": "Ovulation Day + 1",
-        "body": "If ovulation occurred yesterday, the egg is now traveling through the fallopian tube. If fertilization happens, it typically occurs within 12–24 hours of ovulation. Today, there's nothing you can do to influence the outcome — and that's okay.",
-        "tip": "Take a deep breath. The journey has begun. Focus on something you enjoy today."
+        "title": "يوم الإباضة + 1",
+        "body": "إذا حدثت الإباضة بالأمس، فإن البويضة تنتقل الآن عبر قناة فالوب. إذا حدث الإخصاب، فعادة ما يحدث خلال 12-24 ساعة من الإباضة. اليوم، لا يوجد شيء يمكنك فعله للتأثير على النتيجة — وهذا طبيعي.",
+        "tip": "خذي نفساً عميقاً. الرحلة بدأت. ركزي على شيء تستمتعين به اليوم."
       },
       "day2": {
-        "title": "Cellular Beginnings",
-        "body": "If fertilization occurred, the single-celled zygote begins dividing — first into 2 cells, then 4. This tiny cluster of cells is traveling through the fallopian tube toward the uterus. It's powered entirely by its own energy stores.",
-        "tip": "Stay hydrated and eat nourishing foods. Your body is doing incredible work at the cellular level."
+        "title": "البدايات الخلوية",
+        "body": "إذا حدث الإخصاب، تبدأ الخلية الملقحة الواحدة بالانقسام — أولاً إلى خليتين، ثم 4. هذه المجموعة الصغيرة من الخلايا تتحرك عبر قناة فالوب نحو الرحم. تعمل بالكامل من مخزون طاقتها الخاص.",
+        "tip": "ابقي رطبة وتناولي أطعمة مغذية. جسمك يقوم بعمل مذهل على المستوى الخلوي."
       },
       "day3": {
-        "title": "The Morula Stage",
-        "body": "The dividing cells form a solid ball called a morula (about 16 cells). It continues its journey through the fallopian tube. Progesterone is rising, preparing the uterine lining for potential implantation.",
-        "tip": "Gentle activity is perfectly fine. There's no need to restrict your normal routine."
+        "title": "مرحلة الموريلا",
+        "body": "الخلايا المنقسمة تشكل كرة صلبة تسمى الموريلا (حوالي 16 خلية). تستمر في رحلتها عبر قناة فالوب. البروجسترون يرتفع، محضراً بطانة الرحم للانغراس المحتمل.",
+        "tip": "النشاط الخفيف مناسب تماماً. لا حاجة لتقييد روتينك الطبيعي."
       },
       "day4": {
-        "title": "Entering the Uterus",
-        "body": "The morula typically enters the uterus around day 4. It begins forming a fluid-filled cavity, transitioning into a blastocyst. The uterine lining is becoming thick and receptive under progesterone's influence.",
-        "tip": "Practice mindfulness or light stretching. Managing anticipation is part of the journey."
+        "title": "الدخول إلى الرحم",
+        "body": "الموريلا تدخل الرحم عادة حوالي اليوم 4. تبدأ بتشكيل تجويف مملوء بالسائل، متحولة إلى كيسة أريمية. بطانة الرحم تصبح سميكة ومستقبلة تحت تأثير البروجسترون.",
+        "tip": "مارسي اليقظة الذهنية أو التمدد الخفيف. إدارة الترقب جزء من الرحلة."
       },
       "day5": {
-        "title": "Blastocyst Formation",
-        "body": "The blastocyst now has two distinct cell groups: the inner cell mass (which becomes the embryo) and the trophoblast (which becomes the placenta). It floats freely in the uterine cavity.",
-        "tip": "This is a good day to journal your thoughts and feelings. Self-expression is therapeutic."
+        "title": "تشكل الكيسة الأريمية",
+        "body": "الكيسة الأريمية الآن لديها مجموعتان مميزتان من الخلايا: الكتلة الخلوية الداخلية (التي تصبح الجنين) والأرومة المغذية (التي تصبح المشيمة). تطفو حرة في تجويف الرحم.",
+        "tip": "هذا يوم جيد لتدوين أفكارك ومشاعرك. التعبير عن الذات علاجي."
       },
       "day6": {
-        "title": "Implantation May Begin",
-        "body": "The blastocyst begins searching for an ideal implantation site on the uterine wall. The trophoblast cells start burrowing into the endometrium. Some women experience light spotting (implantation bleeding) around this time.",
-        "tip": "Light spotting at this stage can be normal. Don't panic — and don't test yet. It's too early."
+        "title": "قد يبدأ الانغراس",
+        "body": "الكيسة الأريمية تبدأ بالبحث عن موقع مثالي للانغراس على جدار الرحم. خلايا الأرومة المغذية تبدأ بالتغلغل في بطانة الرحم. بعض النساء يعانين من بقع خفيفة (نزيف الانغراس) في هذا الوقت.",
+        "tip": "البقع الخفيفة في هذه المرحلة طبيعية. لا تقلقي — ولا تختبري بعد. إنه مبكر جداً."
       },
       "day7": {
-        "title": "Implantation Window",
-        "body": "Days 6–10 are the typical implantation window. The blastocyst is embedding deeper into the uterine lining. Early signals are being exchanged between the embryo and your body.",
-        "tip": "Continue your normal activities. Rest when you need to. Trust the process."
+        "title": "نافذة الانغراس",
+        "body": "الأيام 6-10 هي نافذة الانغراس النموذجية. الكيسة الأريمية تتعمق أكثر في بطانة الرحم. إشارات مبكرة يتم تبادلها بين الجنين وجسمك.",
+        "tip": "استمري في أنشطتك الطبيعية. استريحي عند الحاجة. ثقي بالعملية."
       },
       "day8": {
-        "title": "hCG Begins",
-        "body": "If implantation is progressing, tiny amounts of hCG (human chorionic gonadotropin) begin to be produced. This hormone signals your body to maintain the corpus luteum, which keeps producing progesterone. Levels are still too low to detect on a test.",
-        "tip": "Resist the urge to test. hCG needs time to build. Patience is your greatest ally right now."
+        "title": "يبدأ هرمون hCG",
+        "body": "إذا كان الانغراس يتقدم، تبدأ كميات صغيرة من hCG (هرمون موجهة الغدد التناسلية المشيمائية) بالإنتاج. هذا الهرمون يشير لجسمك للحفاظ على الجسم الأصفر، الذي يستمر في إنتاج البروجسترون. المستويات لا تزال أقل من أن تُكتشف في الاختبار.",
+        "tip": "قاومي الرغبة في الاختبار. hCG يحتاج وقتاً للتراكم. الصبر هو حليفك الأعظم الآن."
       },
       "day9": {
-        "title": "Rising Signals",
-        "body": "hCG levels are rising but may still be below the detection threshold of most home pregnancy tests. Implantation should be complete or nearly complete. Your body is starting to respond to the new hormonal signals.",
-        "tip": "Treat yourself to something calming — a warm bath, your favorite tea, or a walk in nature."
+        "title": "إشارات متصاعدة",
+        "body": "مستويات hCG ترتفع لكن قد تكون لا تزال تحت عتبة الكشف لمعظم اختبارات الحمل المنزلية. يجب أن يكون الانغراس قد اكتمل أو شارف على الاكتمال. جسمك يبدأ بالاستجابة للإشارات الهرمونية الجديدة.",
+        "tip": "دللي نفسك بشيء مهدئ — حمام دافئ، أو شايك المفضل، أو مشي في الطبيعة."
       },
       "day10": {
-        "title": "Almost There",
-        "body": "By now, if implantation occurred, hCG levels are doubling roughly every 48 hours. Some sensitive tests might detect very early pregnancy. However, a negative result today doesn't mean you're not pregnant — levels vary widely.",
-        "tip": "If you test today and it's negative, don't lose hope. Many successful pregnancies don't show positive until day 12–14."
+        "title": "اقتربنا",
+        "body": "الآن، إذا حدث الانغراس، مستويات hCG تتضاعف تقريباً كل 48 ساعة. بعض الاختبارات الحساسة قد تكشف الحمل المبكر جداً. لكن نتيجة سلبية اليوم لا تعني أنك لست حاملاً — المستويات تتفاوت بشكل كبير.",
+        "tip": "إذا اختبرت اليوم وكانت النتيجة سلبية، لا تفقدي الأمل. كثير من حالات الحمل الناجحة لا تظهر إيجابية حتى اليوم 12-14."
       },
       "day11": {
-        "title": "Building Anticipation",
-        "body": "hCG continues to rise. Some women begin to notice very early symptoms: mild cramping, breast tenderness, or fatigue. These symptoms can also be caused by progesterone in a non-pregnant cycle, so they're not reliable indicators.",
-        "tip": "Symptom-spotting is natural but can increase anxiety. Try to stay present and engaged in your daily life."
+        "title": "بناء الترقب",
+        "body": "hCG يستمر بالارتفاع. بعض النساء يبدأن بملاحظة أعراض مبكرة جداً: تشنجات خفيفة، حساسية الثدي، أو إرهاق. هذه الأعراض يمكن أن تسببها أيضاً البروجسترون في دورة غير حامل، لذا ليست مؤشرات موثوقة.",
+        "tip": "مراقبة الأعراض طبيعية لكن قد تزيد القلق. حاولي البقاء حاضرة ومنخرطة في حياتك اليومية."
       },
       "day12": {
-        "title": "Testing Becomes More Reliable",
-        "body": "Most home pregnancy tests become more reliable from today onward. If testing, use first morning urine for the highest concentration of hCG. A faint line is still a positive result.",
-        "tip": "Whatever the result today, remember: one cycle does not define your journey. Be gentle with yourself."
+        "title": "الاختبار يصبح أكثر موثوقية",
+        "body": "معظم اختبارات الحمل المنزلية تصبح أكثر موثوقية من اليوم فصاعداً. إذا اختبرت، استخدمي بول الصباح الأول لأعلى تركيز من hCG. خط خافت لا يزال نتيجة إيجابية.",
+        "tip": "مهما كانت النتيجة اليوم، تذكري: دورة واحدة لا تحدد رحلتك. كوني لطيفة مع نفسك."
       },
       "day13": {
-        "title": "The Eve of Knowing",
-        "body": "Tomorrow is typically the day your period would be expected (in a 28-day cycle). If it doesn't arrive and a test shows a faint positive, congratulations may be in order. If your period comes, allow yourself to grieve and know that each cycle is a new opportunity.",
-        "tip": "Prepare emotionally for both outcomes. Both are valid. Both are part of the journey."
+        "title": "عشية المعرفة",
+        "body": "غداً عادة هو اليوم المتوقع لدورتك (في دورة 28 يوماً). إذا لم تأتِ وأظهر الاختبار خطاً خافتاً إيجابياً، قد تكون التهنئة في محلها. إذا جاءت دورتك، اسمحي لنفسك بالحزن واعلمي أن كل دورة هي فرصة جديدة.",
+        "tip": "حضري نفسك عاطفياً لكلتا النتيجتين. كلاهما مشروع. كلاهما جزء من الرحلة."
       },
       "day14": {
-        "title": "The Answer Day",
-        "body": "This is typically the day your period is expected. A missed period combined with a positive pregnancy test is a strong indicator of pregnancy. If your test is positive, contact your healthcare provider to schedule your first appointment (usually around 6–8 weeks).",
-        "tip": "Positive? Celebrate this moment. Negative? You are strong, resilient, and this journey continues. Both outcomes deserve compassion."
+        "title": "يوم الإجابة",
+        "body": "هذا عادة هو اليوم المتوقع لدورتك. غياب الدورة مع اختبار حمل إيجابي هو مؤشر قوي على الحمل. إذا كان اختبارك إيجابياً، تواصلي مع مقدم الرعاية الصحية لتحديد موعدك الأول (عادة حوالي 6-8 أسابيع).",
+        "tip": "إيجابي؟ احتفلي بهذه اللحظة. سلبي؟ أنت قوية وصامدة وهذه الرحلة مستمرة. كلتا النتيجتين تستحقان التعاطف."
       }
     }
   },
