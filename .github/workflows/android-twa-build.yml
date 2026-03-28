@@ -183,7 +183,7 @@ jobs:
 
       - name: Initialize TWA project
         run: |
-          bubblewrap init --manifest="./twa-manifest.json" --directory="."
+          bubblewrap init --manifest="file://${{ github.workspace }}/twa-manifest.json" --directory="."
           test -f gradlew || { echo "ERROR: gradlew not generated"; exit 1; }
         env:
           BUBBLEWRAP_KEYSTORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
