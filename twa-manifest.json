@@ -38,7 +38,7 @@
   "isChromeOSOnly": false,
   "isMetaQuest": false,
   "fullScopeUrl": "https://pregnancytoolkits.lovable.app/",
-  "minSdkVersion": 19,
+  "minSdkVersion": 21,
 "fingerprints": [
     {
       "type": "sha256_cert",
