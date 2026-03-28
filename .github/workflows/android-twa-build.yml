@@ -181,7 +181,7 @@ jobs:
 
       - name: Generate TWA project
         run: |
-          bubblewrap update --skipVersionUpgrade --manifest="."
+          bubblewrap update --skipVersionUpgrade
           test -f gradlew || { echo "ERROR: gradlew not generated"; exit 1; }
           echo "TWA project generated successfully"
 
