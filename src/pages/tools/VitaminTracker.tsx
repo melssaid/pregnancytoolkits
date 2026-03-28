@@ -241,8 +241,7 @@ const VitaminTracker: React.FC = () => {
           section="medications"
           prompt={aiPrompt}
           title={t('toolsInternal.vitaminTracker.aiAnalysisTitle')}
-          buttonLabel={t('toolsInternal.vitaminTracker.analyzeRoutine')}
-          loadingLabel={t('toolsInternal.vitaminTracker.analyzingIntake')}
+          buttonText={t('toolsInternal.vitaminTracker.analyzeRoutine')}
         />
       </div>
     </ToolFrame>
