@@ -67,7 +67,7 @@
   "babyGear": {
     "categories": {
       "essential": "Essentiell",
-      "niceToHave": "Nice to Have",
+      "niceToHave": "Schön zu haben",
       "recommended": "Empfohlen"
     },
     "descriptions": {
@@ -95,7 +95,7 @@
     "filters": {
       "all": "Alle Artikel",
       "essential": "Essentiell",
-      "niceToHave": "Nice to Have",
+      "niceToHave": "Schön zu haben",
       "recommended": "Empfohlen"
     },
     "items": {
@@ -381,8 +381,8 @@
     "dueDate": "Due Date",
     "estimatedConception": "Estimated Conception Date",
     "fertileWindow": "Fertile Window",
-    "fromDueDate": "From Due Date",
-    "fromLMP": "From Last Period",
+    "fromDueDate": "Vom Geburtstermin",
+    "fromLMP": "Von der letzten Periode",
     "getAIAdvice": "Get AI Conception Advice",
     "gettingAdvice": "Getting personalized advice...",
     "info": "Conception typically occurs around 2 weeks after the first day of your last period, during ovulation.",
@@ -529,84 +529,84 @@
     "viewFull": "Alle Einblicke anzeigen"
   },
   "dailyTips": {
-    "aiPoweredTip": "AI-Powered Tip",
-    "aiTip": "AI Tip",
+    "aiPoweredTip": "KI-gestützter Tipp",
+    "aiTip": "KI-Tipp",
     "categories": {
       "baby": "Baby",
-      "exercise": "Exercise",
-      "health": "Health",
+      "exercise": "Übung",
+      "health": "Gesundheit",
       "mental": "Mental",
-      "nutrition": "Nutrition"
+      "nutrition": "Ernährung"
     },
-    "moreTips": "More Tips for Trimester",
-    "randomTip": "Random Tip",
-    "subtitle": "AI-curated tips for each trimester",
-    "tipOfTheDay": "Tip of the Day",
+    "moreTips": "Mehr Tipps für Trimester",
+    "randomTip": "Zufälliger Tipp",
+    "subtitle": "KI-kuratierte Tipps für jedes Trimester",
+    "tipOfTheDay": "Tipp des Tages",
     "tips": {
       "t1": {
         "detail": "Aim for 8-10 glasses of water daily to support amniotic fluid and reduce swelling.",
-        "tip": "Stay hydrated!"
+        "tip": "Bleiben Sie hydriert!"
       },
       "t10": {
         "detail": "After week 28, track baby movements. You should feel 10 kicks in 2 hours.",
-        "tip": "Count those kicks"
+        "tip": "Zählen Sie die Tritte"
       },
       "t11": {
         "detail": "Reduce swelling by putting your feet up for 15 minutes several times a day.",
-        "tip": "Elevate your feet"
+        "tip": "Legen Sie Ihre Füße hoch"
       },
       "t12": {
         "detail": "A protein-rich breakfast stabilizes blood sugar and reduces nausea.",
-        "tip": "Don't skip breakfast"
+        "tip": "Überspringen Sie das Frühstück nicht"
       },
       "t13": {
         "detail": "Gentle stretching relieves back pain and prepares your body for labor.",
-        "tip": "Practice prenatal yoga"
+        "tip": "Üben Sie pränatales Yoga"
       },
       "t14": {
         "detail": "Step away from screens for 30 minutes to reduce stress and eye strain.",
-        "tip": "Take a tech break"
+        "tip": "Machen Sie eine Technikpause"
       },
       "t15": {
         "detail": "Play calming music for baby - they'll recognize it after birth!",
-        "tip": "Create a nursery playlist"
+        "tip": "Erstellen Sie eine Kinderzimmer-Playlist"
       },
       "t2": {
         "detail": "Leafy greens like spinach and kale are packed with folate essential for neural development.",
-        "tip": "Eat your greens"
+        "tip": "Essen Sie Ihr Grünzeug"
       },
       "t3": {
         "detail": "Walking improves circulation, reduces swelling, and helps with labor preparation.",
-        "tip": "Take a 15-minute walk"
+        "tip": "Machen Sie einen 15-minütigen Spaziergang"
       },
       "t4": {
         "detail": "Write down 3 things you're grateful for today. This reduces stress and improves mood.",
-        "tip": "Practice gratitude"
+        "tip": "Üben Sie Dankbarkeit"
       },
       "t5": {
         "detail": "Your baby can hear you! Reading or singing strengthens your bond.",
-        "tip": "Talk to your baby"
+        "tip": "Sprechen Sie mit Ihrem Baby"
       },
       "t6": {
         "detail": "This position improves blood flow to your baby and reduces pressure on organs.",
-        "tip": "Sleep on your left side"
+        "tip": "Schlafen Sie auf der linken Seite"
       },
       "t7": {
         "detail": "Salmon, walnuts, and chia seeds support baby's brain development.",
-        "tip": "Include omega-3s"
+        "tip": "Nehmen Sie Omega-3 zu sich"
       },
       "t8": {
         "detail": "Pelvic floor exercises prepare you for labor and prevent incontinence.",
-        "tip": "Do your Kegels"
+        "tip": "Machen Sie Ihre Kegelübungen"
       },
       "t9": {
         "detail": "Join a prenatal class or online community for support and shared experiences.",
-        "tip": "Connect with other moms"
+        "tip": "Verbinden Sie sich mit anderen Müttern"
       }
     },
-    "title": "Daily Pregnancy Tips",
+    "title": "Tägliche Schwangerschaftstipps",
     "trimester": "Trimester",
-    "yourFavorites": "Your Favorites"
+    "yourFavorites": "Ihre Favoriten"
   },
   "dashboard": {
     "aiTools": "KI-gestützte Tools",
@@ -842,49 +842,49 @@
     "yesterday": "Gestern"
   },
   "doctorQuestions": {
-    "addQuestion": "Add Question",
-    "cancelVisit": "Cancel Visit",
+    "addQuestion": "Frage hinzufügen",
+    "cancelVisit": "Besuch abbrechen",
     "categories": {
       "checkups": {
         "icon": "🔬",
-        "label": "Checkups"
+        "label": "Untersuchungen"
       },
       "development": {
         "icon": "👶",
-        "label": "Baby Growth"
+        "label": "Baby-Wachstum"
       },
       "lifestyle": {
         "icon": "🏃",
-        "label": "Lifestyle"
+        "label": "Lebensstil"
       },
       "medications": {
         "icon": "💊",
-        "label": "Medications"
+        "label": "Medikamente"
       },
       "nutrition": {
         "icon": "🥗",
-        "label": "Nutrition"
+        "label": "Ernährung"
       },
       "other": {
         "icon": "❓",
-        "label": "Other"
+        "label": "Andere"
       },
       "preparation": {
         "icon": "📋",
-        "label": "Preparation"
+        "label": "Vorbereitung"
       },
       "warning": {
         "icon": "⚠️",
-        "label": "Warning Signs"
+        "label": "Warnzeichen"
       }
     },
-    "completeVisit": "Complete Visit",
-    "doctorVisit": "Doctor Visit",
+    "completeVisit": "Besuch abschließen",
+    "doctorVisit": "Arztbesuch",
     "pastVisits": "Past Visits",
     "priority": {
-      "high": "Important",
+      "high": "Wichtig",
       "low": "Normal",
-      "medium": "Medium"
+      "medium": "Mittel"
     },
     "questions": {
       "babyGrowthOnTrack": "Is baby's growth on track?",
@@ -896,8 +896,8 @@
       "testsNeeded": "What tests are needed at this stage?",
       "warningSymptoms": "What symptoms require immediate attention?"
     },
-    "questionsLabel": "questions",
-    "questionsLeft": "questions left",
+    "questionsLabel": "Fragen",
+    "questionsLeft": "Fragen übrig",
     "startNewVisit": "Start New Visit",
     "startVisitToAdd": "Start a new visit to add these questions to your list",
     "suggestedQuestions": "Suggested Questions",
@@ -910,8 +910,8 @@
       "writeDown": "Write down the doctor's answers immediately"
     },
     "typeQuestion": "Type your question here...",
-    "week": "Week",
-    "yourQuestions": "Your Questions"
+    "week": "Woche",
+    "yourQuestions": "Ihre Fragen"
   },
   "dueDatePage": {
     "calculateBtn": "Geburtstermin berechnen",
@@ -1069,7 +1069,7 @@
       "grains": "getreide",
       "other": "sonstiges",
       "produce": "obst & gemüse",
-      "protein": "protein"
+      "protein": "Protein"
     },
     "categoriesChart": "Kategorien",
     "categoryNames": {
@@ -1144,7 +1144,7 @@
     "recommendedSuperfoods": "Empfohlene Superfoods",
     "reset": "Zurücksetzen",
     "saveFailed": "Speichern fehlgeschlagen",
-    "score": "Score",
+    "score": "Punkte",
     "smartNutrition": "Intelligente Schwangerschaftsernährung",
     "smartNutritionDesc": "Planen Sie Mahlzeiten, verfolgen Sie Nährstoffe und entdecken Sie Superfoods für Sie und Ihr Baby.",
     "subtitle": "KI-gestützte Einkaufsliste für Schwangerschaftsernährung",
@@ -1204,7 +1204,7 @@
     "resetToday": "Heute zurücksetzen",
     "resume": "Fortsetzen",
     "setComplete": "Set abgeschlossen! {{reps}} Wiederholungen.",
-    "sets": "Sets",
+    "sets": "Sätze",
     "squeeze": "ANSPANNEN",
     "start": "Start",
     "step1": "Finde deine Beckenbodenmuskulatur — stelle dir vor, du stoppst den Urinfluss.",
@@ -1274,22 +1274,22 @@
   "lactationPrep": {
     "anyConcerns": "Any Concerns?",
     "concerns": {
-      "latch": "Latch difficulties",
-      "medical": "Previous breast surgery",
-      "multiples": "Having twins/multiples",
-      "pain": "Pain concerns",
-      "partnerFeeding": "Partner involvement",
-      "public": "Feeding in public",
-      "returningWork": "Returning to work",
-      "supply": "Milk supply worries"
+      "latch": "Anlegeschwierigkeiten",
+      "medical": "Vorherige Brustoperation",
+      "multiples": "Zwillinge/Mehrlinge",
+      "pain": "Schmerzbedenken",
+      "partnerFeeding": "Einbeziehung des Partners",
+      "public": "Stillen in der Öffentlichkeit",
+      "returningWork": "Rückkehr zur Arbeit",
+      "supply": "Sorgen um die Milchmenge"
     },
     "creatingGuide": "Creating Guide...",
     "feedingGoal": "Your Feeding Goal",
     "feedingGoals": {
       "combo": "Combination (breast + formula)",
-      "exclusive": "Exclusive breastfeeding",
-      "pumping": "Exclusive pumping",
-      "unsure": "Still deciding"
+      "exclusive": "Ausschließliches Stillen",
+      "pumping": "Ausschließliches Abpumpen",
+      "unsure": "Noch unentschlossen"
     },
     "firstTimeBreastfeeding": "This is my first time breastfeeding",
     "getLactationGuide": "Get AI Lactation Guide",
@@ -1548,10 +1548,10 @@
     "getAdvice": "Get AI Cramp Prevention Advice",
     "hideRelief": "Hide Relief Guide",
     "locations": {
-      "leftCalf": "Left Calf",
-      "leftThigh": "Left Thigh",
-      "rightCalf": "Right Calf",
-      "rightThigh": "Right Thigh"
+      "leftCalf": "Linke Wade",
+      "leftThigh": "Linker Oberschenkel",
+      "rightCalf": "Rechte Wade",
+      "rightThigh": "Rechter Oberschenkel"
     },
     "logCramp": "Log this cramp:",
     "preventionTips": {
@@ -1616,10 +1616,10 @@
     },
     "subtitle": "Prevent and manage pregnancy leg cramps with smart tips",
     "timeOfDay": {
-      "afternoon": "Afternoon",
-      "evening": "Evening",
-      "morning": "Morning",
-      "night": "Night"
+      "afternoon": "Nachmittag",
+      "evening": "Abend",
+      "morning": "Morgen",
+      "night": "Nacht"
     },
     "title": "AI Leg Cramp Preventer",
     "warning": "Frequent or severe leg cramps, especially with swelling, redness, or warmth, should be reported to your healthcare provider immediately."
@@ -1639,7 +1639,7 @@
         "tip": "Neben das Bett legen"
       },
       "ginger": {
-        "name": "Ginger",
+        "name": "Ingwer",
         "tip": "Tea, candies, or fresh"
       },
       "iceChips": {
@@ -1647,20 +1647,20 @@
         "tip": "Bei Übelkeit lutschen"
       },
       "lemonWater": {
-        "name": "Lemon water",
+        "name": "Zitronenwasser",
         "tip": "Sip slowly on waking"
       },
       "peppermint": {
-        "name": "Peppermint",
+        "name": "Pfefferminze",
         "tip": "Inhale or tea"
       }
     },
     "severeWarningDesc": "If you can't keep any food/water down for 24 hours, see blood in vomit, or feel dizzy/faint, contact your healthcare provider immediately.",
     "severeWarningTitle": "Severe Nausea Warning",
     "severityLabels": {
-      "mild": "Mild",
-      "moderate": "Moderate",
-      "severe": "Severe"
+      "mild": "Leicht",
+      "moderate": "Mäßig",
+      "severe": "Schwer"
     },
     "subtitle": "Personalized relief strategies for morning sickness",
     "title": "AI Nausea Comfort Guide",
@@ -1668,11 +1668,11 @@
       "afterEating": "Nach dem Essen",
       "allDay": "Den ganzen Tag",
       "cooking": "Kochgerüche",
-      "emptyStomach": "Empty stomach",
+      "emptyStomach": "Leerer Magen",
       "evening": "Abends am schlimmsten",
       "morning": "Morgens am schlimmsten",
-      "motion": "Motion/car rides",
-      "smells": "Strong smells"
+      "motion": "Bewegung/Autofahrten",
+      "smells": "Starke Gerüche"
     },
     "triggersTitle": "What triggers your nausea?",
     "videosSubtitle": "Techniques and tips to ease morning sickness",
@@ -1725,7 +1725,7 @@
     "appointmentTomorrowTitle": "📅 Termin morgen",
     "appointments": "Termine",
     "appointmentsHint": "Alert 2 hours before appointment",
-    "backup": "Backup",
+    "backup": "Sicherung",
     "backupEnabled": "Backup-Erinnerungen aktiviert",
     "backupEnabledDesc": "Du wirst wöchentlich an ein Backup erinnert.",
     "backupReminderMsgDays": "Es sind {{days}} Tage seit deinem letzten Backup vergangen. Schütze deine Schwangerschaftsdaten!",
@@ -1903,17 +1903,17 @@
       "neuralDevelopment": "Neural tube development",
       "reducesNausea": "Reduces nausea"
     },
-    "breakfast": "Breakfast",
-    "dietaryPreference": "Dietary Preference",
-    "dinner": "Dinner",
+    "breakfast": "Frühstück",
+    "dietaryPreference": "Ernährungspräferenz",
+    "dinner": "Abendessen",
     "infoNote": "Nutritional needs vary. Consult your healthcare provider for personalized advice.",
     "keyNutrients": "Key Nutrients for Week {{week}}",
-    "lunch": "Lunch",
+    "lunch": "Mittagessen",
     "meals": {
       "appleAlmondButter": "Apple slices with almond butter",
       "avocadoToast": "Avocado toast",
       "bakedSalmon": "Baked salmon with asparagus",
-      "banana": "Banana",
+      "banana": "Banane",
       "blackBeanBurrito": "Black bean burrito bowl",
       "chiaPudding": "Chia pudding with almond milk",
       "chickpeaCurry": "Chickpea curry",
@@ -1927,7 +1927,7 @@
       "leanBeefStirFry": "Lean beef stir-fry",
       "lentilBolognese": "Lentil bolognese",
       "lentilSoup": "Lentil soup",
-      "mixedNuts": "Mixed nuts",
+      "mixedNuts": "Gemischte Nüsse",
       "oatmealBerries": "Oatmeal with berries",
       "quinoaBowl": "Quinoa bowl with veggies",
       "smoothieBowl": "Smoothie bowl with seeds",
@@ -1937,40 +1937,40 @@
       "vegStirFryTofu": "Vegetable stir-fry with tofu"
     },
     "nutrients": {
-      "calcium": "Calcium",
-      "folicAcid": "Folic Acid",
-      "iron": "Iron",
+      "calcium": "Kalzium",
+      "folicAcid": "Folsäure",
+      "iron": "Eisen",
       "omega3": "Omega-3 (DHA)",
       "vitaminB6": "Vitamin B6",
       "vitaminK": "Vitamin K"
     },
-    "pregnancyWeek": "Pregnancy Week",
+    "pregnancyWeek": "Schwangerschaftswoche",
     "sampleMealPlan": "Sample Meal Plan",
     "snack": "Snack",
     "sources": {
-      "bananas": "Bananas",
-      "broccoli": "Broccoli",
-      "chiaSeeds": "Chia seeds",
-      "dairy": "Dairy",
-      "fattyFish": "Fatty fish",
-      "fortifiedCereals": "Fortified cereals",
-      "kale": "Kale",
-      "leafyGreens": "Leafy greens",
-      "legumes": "Legumes",
-      "lentils": "Lentils",
-      "nuts": "Nuts",
-      "redMeat": "Red meat",
-      "spinach": "Spinach",
+      "bananas": "Bananen",
+      "broccoli": "Brokkoli",
+      "chiaSeeds": "Chiasamen",
+      "dairy": "Milchprodukte",
+      "fattyFish": "Fettiger Fisch",
+      "fortifiedCereals": "Angereicherte Cerealien",
+      "kale": "Grünkohl",
+      "leafyGreens": "Blattgemüse",
+      "legumes": "Hülsenfrüchte",
+      "lentils": "Linsen",
+      "nuts": "Nüsse",
+      "redMeat": "Rotes Fleisch",
+      "spinach": "Spinat",
       "tofu": "Tofu",
-      "walnuts": "Walnuts",
-      "wholeGrains": "Whole grains"
+      "walnuts": "Walnüsse",
+      "wholeGrains": "Vollkornprodukte"
     },
     "standard": "Standard",
     "subtitle": "Personalized nutrition plans for each trimester",
     "title": "Smart Nutrition Planner",
     "trimester": "Trimester",
     "vegan": "Vegan",
-    "vegetarian": "Vegetarian"
+    "vegetarian": "Vegetarisch"
   },
   "onboarding": {
     "accept": "Verstanden & Fortfahren",
@@ -2471,12 +2471,12 @@
     "dataPrivacy": "Datenschutz",
     "deleteAccount": {
       "button": "Alle Daten löschen",
-      "confirmButton": "Löschung bestätigen",
+      "confirmButton": "Löschen bestätigen",
       "confirmDesc": "Alle auf diesem Gerät gespeicherten Daten werden dauerhaft gelöscht. Diese Aktion kann nicht rückgängig gemacht werden.",
       "confirmError": "Bestätigungsfehler",
       "confirmErrorDesc": "Bitte geben Sie \"{{word}}\" zur Bestätigung ein",
       "confirmTitle": "Datenlöschung bestätigen",
-      "confirmWarning": "Diese Aktion ist endgültig und kann nicht rückgängig gemacht werden!",
+      "confirmWarning": "Diese Aktion ist dauerhaft und kann nicht rückgängig gemacht werden!",
       "confirmWord": "LÖSCHEN",
       "description": "Alle auf diesem Gerät gespeicherten Daten dauerhaft löschen",
       "error": "Löschfehler",
@@ -2553,13 +2553,13 @@
     "routine": "Routine",
     "sleepChallenges": "Sleep Challenges",
     "sleepIssues": {
-      "anxiety": "Anxiety/racing thoughts",
-      "babyMovements": "Baby movements",
-      "backPain": "Back pain",
-      "heartburn": "Heartburn",
+      "anxiety": "Angst/rasende Gedanken",
+      "babyMovements": "Babybewegungen",
+      "backPain": "Rückenschmerzen",
+      "heartburn": "Sodbrennen",
       "hotFlashes": "Hitzewallungen",
-      "legCramps": "Leg cramps",
-      "snoring": "Snoring/breathing issues",
+      "legCramps": "Wadenkrämpfe",
+      "snoring": "Schnarchen/Atemprobleme",
       "urination": "Häufiges Wasserlassen"
     },
     "sleepPlan": "Sleep Plan",
@@ -2695,7 +2695,7 @@
       "quarterAvocado": "1/4 avocado",
       "quarterTspCinnamon": "1/4 tsp cinnamon"
     },
-    "instructions": "Instructions",
+    "instructions": "Anleitung",
     "instructionsText": {
       "brainBuilderInstructions": "Blend until smooth. Consume in the morning to boost brain function.",
       "calciumCrushInstructions": "Blend yogurt and banana first, then add remaining ingredients. Great as a snack.",
@@ -2704,10 +2704,10 @@
       "nauseaReliefInstructions": "Blend gently to keep it refreshing. Drink cold on an empty stomach.",
       "sleepBetterInstructions": "Blend until creamy. Drink 1 hour before bed for best results."
     },
-    "nutrition": "Nutrition",
+    "nutrition": "Ernährung",
     "preferencePlaceholder": "Any preferences? (e.g., high protein, low sugar)",
     "randomRecipe": "Random Recipe",
-    "selectTrimester": "Select Your Trimester",
+    "selectTrimester": "Wählen Sie Ihr Trimester",
     "smoothies": {
       "brainBuilder": "Brain Builder Blend",
       "calciumCrush": "Calcium Crush",
@@ -2721,19 +2721,19 @@
     "trimester": "Trimester"
   },
   "snackPlanner": {
-    "calories": "calories",
+    "calories": "Kalorien",
     "categories": {
       "all": "All",
-      "comfort": "Comfort",
-      "energy": "Energy",
+      "comfort": "Komfort",
+      "energy": "Energie",
       "protein": "Protein",
-      "quick": "Quick"
+      "quick": "Schnell"
     },
     "feelingHungry": "Feeling hungry?",
-    "howToMake": "How to make",
-    "ingredients": "Ingredients",
+    "howToMake": "Zubereitung",
+    "ingredients": "Zutaten",
     "letAIPick": "Let us pick a healthy snack for you!",
-    "prepTime": "prep time",
+    "prepTime": "Zubereitungszeit",
     "snackingTips": {
       "tip1": "Aim for snacks combining protein + carbs for sustained energy",
       "tip2": "Keep portable snacks in your bag for unexpected hunger",
@@ -2743,17 +2743,17 @@
     "snackingTipsTitle": "Smart Snacking Tips",
     "snacks": {
       "appleAlmondButter": "Apple with Almond Butter",
-      "avocadoToast": "Avocado Toast",
+      "avocadoToast": "Avocado-Toast",
       "bananaEnergyBites": "Banana Energy Bites",
       "cheeseCrackers": "Cheese & Crackers",
       "cottageCheeseBowl": "Cottage Cheese Bowl",
       "greekYogurtParfait": "Greek Yogurt Parfait",
       "hummusVeggies": "Hummus & Veggie Sticks",
-      "trailMix": "Trail Mix Power Bites"
+      "trailMix": "Trail-Mix-Energiebällchen"
     },
     "subtitle": "Healthy pregnancy snacks for every craving",
     "surpriseMe": "Surprise Me!",
-    "title": "Smart Snack Planner"
+    "title": "Smarter Snack-Planer"
   },
   "socialProof": {
     "exportDesc": "Mit deinem Arzt teilen",
@@ -3199,30 +3199,30 @@
         "afterBath": "Nach dem Baden",
         "afterFeeding": "Nach dem Füttern",
         "afterWaking": "Nach dem Aufwachen",
-        "beforeSleep": "Vor dem Schlafen",
+        "beforeSleep": "Vor dem Schlaf",
         "diaper": "Windel wechseln",
-        "duringChange": "Beim Wickeln",
+        "duringChange": "Beim Windelwechsel",
         "feeding": "Beim/Nach dem Füttern",
-        "noReason": "Ohne erkennbaren Grund",
+        "noReason": "Kein erkennbarer Grund",
         "sleeping": "Vor dem Schlafen",
         "unknown": "Unbekannt"
       },
       "cryDuration": "Wie lange?",
       "cryPattern": "Weinmuster",
       "durations": {
-        "1to5": "1-5 Min",
-        "5to15": "5-15 Min",
+        "1to5": "1-5 Min.",
+        "5to15": "5-15 Min.",
         "brief": "Kurz (< 5 Min.)",
         "moderate": "Mäßig (5-15 Min.)",
-        "over15": "Über 15 Min",
+        "over15": "Über 15 Min.",
         "prolonged": "Lang (> 15 Min.)",
-        "under1": "Unter 1 Min"
+        "under1": "Unter 1 Min."
       },
       "newAnalysis": "Neue Analyse",
       "patterns": {
         "continuous": "Dauerhaftes Weinen",
         "escalating": "Zunehmend",
-        "highPitch": "Hohe Tonlage",
+        "highPitch": "Hochtonig",
         "intermittent": "An und aus",
         "rhythmic": "Rhythmisch",
         "sudden": "Plötzliches Schreien",
@@ -3247,19 +3247,19 @@
       "whenCrying": "Wann weint das Baby?"
     },
     "babyGear": {
-      "aiRecommendations": "Get AI Recommendations",
+      "aiRecommendations": "KI-Empfehlungen erhalten",
       "bathing": "Baden",
-      "canWait": "Can Wait",
+      "canWait": "Kann warten",
       "categories": "Kategorien",
       "clothing": "Kleidung",
       "feeding": "Füttern",
-      "health": "Health & Safety",
-      "mustHave": "Must Have",
+      "health": "Gesundheit & Sicherheit",
+      "mustHave": "Unverzichtbar",
       "niceToHave": "Schön zu haben",
       "sleeping": "Schlafen",
       "subtitle": "KI-Empfehlungen für Babyausstattung",
       "title": "Babyausstattung",
-      "totalEstimate": "Total Estimated Cost",
+      "totalEstimate": "Geschätzte Gesamtkosten",
       "travel": "Reisen"
     },
     "babyGrowth": {
@@ -3686,7 +3686,7 @@
       "firstTrimesterNote": "Erstes Trimester: 1-4 Pfund insgesamt",
       "getPersonalizedPlan": "Personalisierten Plan erhalten",
       "height": "Größe",
-      "imperial": "Imperial (lbs, inches)",
+      "imperial": "Imperial (lbs, Zoll)",
       "lbsPerWeek": "lbs/Woche",
       "metric": "Metrisch (kg, cm)",
       "pounds": "Pfund",
@@ -3741,7 +3741,7 @@
       "localStorageDesc": "Ihre Fotos werden nur auf Ihrem Gerät gespeichert. Sie verlassen Ihr Handy nicht und werden auf keinen Server hochgeladen.",
       "localStorageTitle": "Lokaler Speicher",
       "localStorageWarning": "⚠️ Fotos werden nur auf Ihrem Gerät gespeichert. Wenn Sie die App-Daten löschen oder die App deinstallieren, werden alle Fotos dauerhaft gelöscht. Wir empfehlen ein Backup.",
-      "maxSize": "Max 2MB",
+      "maxSize": "Max. 2MB",
       "noPhotos": "Noch keine Fotos",
       "noPhotosDesc": "Beginnen Sie, Ihre Schwangerschaftsreise zu dokumentieren",
       "photoDeleted": "Foto gelöscht",
@@ -4031,15 +4031,15 @@
       "yourStatistics": "Ihre Statistiken"
     },
     "diaperTracker": {
-      "aiHealthTips": "AI Health Tips",
-      "both": "Both",
-      "dirty": "Dirty",
-      "logChange": "Log Change",
+      "aiHealthTips": "KI-Gesundheitstipps",
+      "both": "Beides",
+      "dirty": "Stuhl",
+      "logChange": "Wechsel eintragen",
       "noChanges": "Noch keine Wechsel heute",
-      "recentChanges": "Recent Changes",
+      "recentChanges": "Letzte Wechsel",
       "subtitle": "Windelwechsel verfolgen",
       "title": "Windel-Tracker",
-      "todayCount": "Today's Changes",
+      "todayCount": "Heutige Wechsel",
       "wet": "Wet"
     },
     "dueDate": {
@@ -4241,67 +4241,67 @@
       "dailyTip": "Täglicher Fitness-Tipp",
       "disclaimer": "Konsultieren Sie Ihren Arzt, bevor Sie ein Trainingsprogramm beginnen.",
       "exerciseDescs": {
-        "ankleCirclesDesc": "Lift one foot and rotate your ankle in slow circles, then switch direction.",
+        "ankleCirclesDesc": "Heben Sie einen Fuß an und drehen Sie Ihren Knöchel in langsamen Kreisen, dann wechseln Sie die Richtung.",
         "armCirclesDesc": "Strecken Sie die Arme zur Seite und machen kleine Kreise. Vergrößern Sie schrittweise.",
         "birdDogDesc": "Auf Händen und Knien, strecken Sie gegenüberliegenden Arm und Bein.",
         "butterflyStretchDesc": "Sitzen Sie mit zusammengeführten Füßen, Knie nach außen. Lehnen Sie sich sanft vor.",
-        "calfRaisesDesc": "Stand straight, raise your heels off the ground, hold, then lower slowly.",
+        "calfRaisesDesc": "Stehen Sie gerade, heben Sie die Fersen vom Boden, halten Sie und senken Sie langsam.",
         "catCowDesc": "Auf allen Vieren, wechseln Sie zwischen Hohlkreuz und Rundrücken.",
         "childPoseDesc": "Knien Sie und setzen Sie sich auf die Fersen. Strecken Sie die Arme nach vorne.",
         "deepBreathingDesc": "Atmen Sie tief durch die Nase für 4 Zähler ein, halten 4, atmen 6 durch den Mund aus.",
-        "figureFourDesc": "Lie down, place one ankle on the opposite knee, and pull gently towards you.",
-        "gentleTwistDesc": "Lie on your back, drop both knees gently to one side, then switch.",
+        "figureFourDesc": "Legen Sie sich hin, legen Sie einen Knöchel auf das gegenüberliegende Knie und ziehen Sie sanft zu sich.",
+        "gentleTwistDesc": "Legen Sie sich auf den Rücken, lassen Sie beide Knie sanft zu einer Seite fallen, dann wechseln.",
         "gluteBridgeDesc": "Liegen Sie auf dem Rücken, Knie gebeugt. Heben Sie die Hüften zur Decke und halten.",
-        "hamstringStretchDesc": "Sit and extend one leg forward, gently reaching for your toes.",
-        "hipCirclesDesc": "Stand with feet apart and rotate your hips in wide circles.",
-        "kegelExerciseDesc": "Squeeze your pelvic floor muscles as if stopping urination. Hold 5 seconds, release.",
-        "lowImpactJacksDesc": "Open arms and step one leg out at a time — a gentle version of jumping jacks.",
+        "hamstringStretchDesc": "Sitzen Sie und strecken Sie ein Bein nach vorne, greifen Sie sanft nach Ihren Zehen.",
+        "hipCirclesDesc": "Stehen Sie mit gespreizten Füßen und drehen Sie Ihre Hüften in weiten Kreisen.",
+        "kegelExerciseDesc": "Spannen Sie Ihre Beckenbodenmuskulatur an, als würden Sie das Wasserlassen stoppen. 5 Sekunden halten, loslassen.",
+        "lowImpactJacksDesc": "Öffnen Sie die Arme und strecken Sie abwechselnd ein Bein zur Seite — eine sanfte Version der Hampelmänner.",
         "neckRollsDesc": "Rollen Sie Ihren Kopf langsam in sanften Kreisen. Wechseln Sie nach 15 Sekunden die Richtung.",
         "pelvicTiltsDesc": "Kippen Sie sanft Ihr Becken vor und zurück, um den unteren Rücken zu entlasten.",
         "prenatalSquatsDesc": "Stehen Sie schulterbreit. Senken Sie sich sanft ab wie beim Hinsetzen.",
-        "savasanaDesc": "Lie on your back or side, close your eyes, breathe deeply and relax completely.",
+        "savasanaDesc": "Legen Sie sich auf den Rücken oder die Seite, schließen Sie die Augen, atmen Sie tief und entspannen Sie sich vollständig.",
         "seatedMarchingDesc": "Sitzen Sie auf einem stabilen Stuhl oder Ball. Heben Sie abwechselnd die Knie.",
-        "seatedTwistDesc": "Sit upright and slowly twist your torso to the right, then left, while breathing.",
-        "shoulderShrugsDesc": "Lift your shoulders towards your ears, then slowly lower them. Repeat.",
+        "seatedTwistDesc": "Sitzen Sie aufrecht und drehen Sie Ihren Oberkörper langsam nach rechts, dann links, während Sie atmen.",
+        "shoulderShrugsDesc": "Heben Sie Ihre Schultern zu den Ohren, dann senken Sie sie langsam. Wiederholen.",
         "sideLyingLegDesc": "Liegen Sie auf der Seite. Heben Sie das obere Bein langsam und senken kontrolliert.",
         "sideStretchDesc": "Stehen Sie aufrecht, strecken Sie einen Arm über den Kopf und neigen Sie sanft zur Seite.",
-        "standingMarchDesc": "March in place, lifting knees high alternately while swinging arms.",
+        "standingMarchDesc": "Marschieren Sie auf der Stelle, heben Sie abwechselnd die Knie hoch und schwingen Sie die Arme.",
         "stepTouchDesc": "Schreiten Sie rhythmisch von Seite zu Seite. Halten Sie den Rumpf angespannt.",
-        "sumoSquatDesc": "Stand with feet wider than shoulders, toes pointed out, and lower down.",
+        "sumoSquatDesc": "Stehen Sie mit Füßen breiter als schulterbreit, Zehen nach außen, und senken Sie sich ab.",
         "wallPushupsDesc": "Stehen Sie armlang von der Wand. Lehnen Sie sich vor und drücken Sie zurück.",
-        "wallSitDesc": "Lean your back against a wall and slide down until knees are at 90 degrees. Hold."
+        "wallSitDesc": "Lehnen Sie sich mit dem Rücken an eine Wand und gleiten Sie hinunter, bis die Knie 90 Grad erreichen. Halten."
       },
       "exerciseInProgress": "Übung läuft",
       "exerciseNames": {
-        "ankleCircles": "Ankle Circles",
+        "ankleCircles": "Knöchelkreise",
         "armCircles": "Armkreisen",
         "birdDog": "Vierfüßlerstand",
         "butterflyStretch": "Schmetterlings-Dehnung",
-        "calfRaises": "Calf Raises",
+        "calfRaises": "Wadenheben",
         "catCow": "Katze-Kuh-Dehnung",
         "childPose": "Kindeshaltung",
         "deepBreathing": "Tiefes Atmen",
-        "figureFour": "Figure-Four Stretch",
-        "gentleTwist": "Gentle Spinal Twist",
+        "figureFour": "Vierer-Dehnung",
+        "gentleTwist": "Sanfte Wirbelsäulendrehung",
         "gluteBridge": "Gesäßbrücke",
-        "hamstringStretch": "Hamstring Stretch",
-        "hipCircles": "Hip Circles",
-        "kegelExercise": "Kegel Exercise",
-        "lowImpactJacks": "Low-Impact Jacks",
+        "hamstringStretch": "Oberschenkeldehnung",
+        "hipCircles": "Hüftkreise",
+        "kegelExercise": "Kegelübung",
+        "lowImpactJacks": "Sanfte Hampelmänner",
         "neckRolls": "Nackenkreisen",
         "pelvicTilts": "Beckenkippen",
         "prenatalSquats": "Schwangerschafts-Kniebeugen",
         "savasana": "Savasana",
         "seatedMarching": "Sitzmarsch",
-        "seatedTwist": "Seated Twist",
-        "shoulderShrugs": "Shoulder Shrugs",
+        "seatedTwist": "Sitzende Drehung",
+        "shoulderShrugs": "Schulterheben",
         "sideLyingLeg": "Seitliches Beinheben",
         "sideStretch": "Seitdehnung",
-        "standingMarch": "Standing March",
+        "standingMarch": "Marschieren im Stehen",
         "stepTouch": "Seitschritt",
-        "sumoSquat": "Sumo Squat",
+        "sumoSquat": "Sumo-Kniebeuge",
         "wallPushups": "Wand-Liegestütze",
-        "wallSit": "Wall Sit"
+        "wallSit": "Wandsitzen"
       },
       "fitnessVideos": "Schwangerschafts-Fitness-Videos",
       "fitnessVideosSubtitle": "Sichere Trainingsanleitungen für jedes Trimester",
@@ -4311,10 +4311,10 @@
       "intermediate": "Fortgeschritten",
       "libraryStats": "{{count}} exercises available",
       "muscleGroups": {
-        "ankles": "Ankles & Feet",
+        "ankles": "Knöchel & Füße",
         "arms": "Brust & Trizeps",
         "back": "Unterer Rücken & Latissimus",
-        "calves": "Calf Muscles",
+        "calves": "Wadenmuskeln",
         "core": "Rumpf & tiefe Bauchmuskeln",
         "diaphragm": "Zwerchfell & Atemmuskulatur",
         "fullBody": "Ganzer Körper",
@@ -4323,7 +4323,7 @@
         "legs": "Quadrizeps & hintere Oberschenkel",
         "neck": "Nacken & oberer Trapezius",
         "obliques": "Schräge Bauchmuskeln",
-        "pelvicFloor": "Pelvic Floor",
+        "pelvicFloor": "Beckenboden",
         "pelvis": "Beckenboden",
         "shoulders": "Schultern & Deltamuskeln",
         "spine": "Wirbelsäule & Rückenmuskeln"
@@ -4517,18 +4517,18 @@
       "title": "Gestationsdiabetes-Aufklärung (Allgemeine Infos)"
     },
     "gestationalDiabetes": {
-      "age35Plus": "Age 35 or older",
-      "aiGuidance": "Get AI Guidance",
-      "calculateRisk": "Review My Factors",
-      "familyHistory": "Family history of diabetes",
+      "age35Plus": "Alter 35 oder älter",
+      "aiGuidance": "KI-Beratung erhalten",
+      "calculateRisk": "Meine Faktoren überprüfen",
+      "familyHistory": "Diabetes in der Familiengeschichte",
       "highRisk": "Hoch",
       "lowRisk": "Gering",
       "moderateRisk": "Mittel",
-      "overweight": "Overweight before pregnancy",
-      "pcos": "Polycystic ovary syndrome",
-      "prevention": "Prevention Tips",
-      "previousGDM": "Previous gestational diabetes",
-      "previousLargeBaby": "Previous baby over 4kg",
+      "overweight": "Übergewicht vor der Schwangerschaft",
+      "pcos": "Polyzystisches Ovarialsyndrom",
+      "prevention": "Präventionstipps",
+      "previousGDM": "Vorheriger Schwangerschaftsdiabetes",
+      "previousLargeBaby": "Vorheriges Baby über 4kg",
       "riskFactors": "Risikofaktoren",
       "subtitle": "Verständnis und Management",
       "title": "Schwangerschaftsdiabetes"
@@ -5105,9 +5105,9 @@
           "title": "Neugeborenenversorgung Woche 1"
         },
         "v5": {
-          "category": "Anxiety",
-          "description": "Practical strategies for coping with anxiety during pregnancy",
-          "title": "Managing Pregnancy Anxiety"
+          "category": "Angst",
+          "description": "Praktische Strategien zur Bewältigung von Angst während der Schwangerschaft",
+          "title": "Umgang mit Schwangerschaftsangst"
         }
       },
       "videosSubtitle": "Unterstützung und Selbstpflege-Ressourcen",
@@ -5482,12 +5482,14 @@
       "progressLabel": "Untersuchungen erfasst",
       "related": {
         "academy": "Fruchtbarkeitsakademie",
-        "academyDesc": "Umfassende Fruchtbarkeitsausbildung",
+        "academyDesc": "Umfassende Fruchtbarkeitsbildung",
         "nutrition": "Ernährungsratgeber",
         "nutritionDesc": "Ernährung & Nahrungsergänzung vor der Schwangerschaft"
       },
       "tracked": "erfasst",
-      "ai": "KI-Analyse",
+      "ai": {
+        "tipsTitle": "Hilfreiche Tipps"
+      },
       "categories": "Kategorien",
       "checks": "Untersuchungen"
     },
@@ -5496,25 +5498,38 @@
       "categories": "Kategorien"
     },
     "preeclampsia": {
-      "age35Plus": "Age 35+",
-      "calculateRisk": "Review My Factors",
-      "chronicHypertension": "Chronic high blood pressure",
+      "age35Plus": "Alter 35+",
+      "calculateRisk": "Meine Faktoren überprüfen",
+      "chronicHypertension": "Chronischer Bluthochdruck",
       "diabetes": "Diabetes",
-      "familyHistory": "Family history of preeclampsia",
-      "firstPregnancy": "First pregnancy",
-      "highRiskFactors": "Key Factors",
-      "kidneyDisease": "Kidney disease",
-      "moderateRiskFactors": "Additional Factors",
-      "multiplePregnancy": "Multiple pregnancy (twins, triplets)",
-      "obesity": "Obesity (BMI > 30)",
-      "previousPreeclampsia": "Previous preeclampsia",
+      "familyHistory": "Präeklampsie in der Familiengeschichte",
+      "firstPregnancy": "Erste Schwangerschaft",
+      "highRiskFactors": "Schlüsselfaktoren",
+      "kidneyDisease": "Nierenerkrankung",
+      "moderateRiskFactors": "Zusätzliche Faktoren",
+      "multiplePregnancy": "Mehrlingsschwangerschaft (Zwillinge, Drillinge)",
+      "obesity": "Adipositas (BMI > 30)",
+      "previousPreeclampsia": "Vorherige Präeklampsie",
       "subtitle": "Anzeichen und Risikofaktoren verstehen",
       "title": "Präeklampsie-Bewusstsein",
       "warningSigns": "Warnsignale"
     },
     "prenatalVitamins": {
       "supplementsCount": "{{count}} Nahrungsergänzungsmittel",
-      "vitamins": "Vitamine"
+      "vitamins": {
+        "iron": {
+          "title": "Eisen"
+        },
+        "vitaminD": {
+          "title": "Vitamin D"
+        },
+        "calcium": {
+          "title": "Kalzium"
+        },
+        "vitaminE": {
+          "title": "Vitamin E"
+        }
+      }
     },
     "recipeModifier": {
       "analyzeAnother": "Ein weiteres Rezept analysieren",
@@ -5596,32 +5611,32 @@
         "chemicalSunscreens": {
           "icon": "⚠️",
           "name": "Chemische Sonnenschutzmittel",
-          "risk": "medium"
+          "risk": "mittel"
         },
         "essentialOils": {
           "icon": "⚠️",
           "name": "Ätherische Öle (einige)",
-          "risk": "medium"
+          "risk": "mittel"
         },
         "formaldehyde": {
           "icon": "🚫",
           "name": "Formaldehyd",
-          "risk": "high"
+          "risk": "hoch"
         },
         "hydroquinone": {
           "icon": "🚫",
           "name": "Hydrochinon",
-          "risk": "high"
+          "risk": "hoch"
         },
         "retinol": {
           "icon": "🚫",
           "name": "Retinol/Retinoide",
-          "risk": "high"
+          "risk": "hoch"
         },
         "salicylic": {
           "icon": "⚠️",
           "name": "Salicylsäure (hoher %)",
-          "risk": "medium"
+          "risk": "mittel"
         }
       },
       "videos": {
@@ -5685,7 +5700,7 @@
       "calories": "kcal",
       "categories": {
         "all": "Alle",
-        "comfort": "Comfort",
+        "comfort": "Komfort",
         "energy": "Energie",
         "protein": "Protein",
         "quick": "Schnell"
@@ -5770,8 +5785,8 @@
       "snacks": {
         "1": "Apfel mit Mandelbutter",
         "2": "Griechischer Joghurt Parfait",
-        "3": "Trail Mix Power Bites",
-        "4": "Avocado Toast",
+        "3": "Trail-Mix-Energiebällchen",
+        "4": "Avocado-Toast",
         "5": "Hummus & Gemüsesticks",
         "6": "Käse & Cracker",
         "7": "Bananen-Energie-Bällchen",
@@ -5787,76 +5802,76 @@
     },
     "stressRelief": {
       "affirmations": {
-        "1": "I am capable of handling whatever comes my way",
-        "2": "My body knows how to grow this baby perfectly",
-        "3": "I trust my body and my instincts",
-        "4": "I am surrounded by love and support",
-        "5": "Each breath brings calm and peace",
-        "6": "I am strong, I am brave, I am enough",
-        "7": "My baby feels my love and calm energy",
-        "8": "I release worry and embrace peace"
+        "1": "Ich bin fähig, alles zu bewältigen, was auf mich zukommt",
+        "2": "Mein Körper weiß, wie er dieses Baby perfekt wachsen lässt",
+        "3": "Ich vertraue meinem Körper und meinen Instinkten",
+        "4": "Ich bin von Liebe und Unterstützung umgeben",
+        "5": "Jeder Atemzug bringt Ruhe und Frieden",
+        "6": "Ich bin stark, ich bin mutig, ich bin genug",
+        "7": "Mein Baby spürt meine Liebe und ruhige Energie",
+        "8": "Ich lasse Sorgen los und umarme den Frieden"
       },
-      "disclaimer": "These exercises are for general relaxation. If you experience severe anxiety or depression, please consult your healthcare provider.",
+      "disclaimer": "Diese Übungen dienen der allgemeinen Entspannung. Bei starker Angst oder Depression wenden Sie sich bitte an Ihren Arzt.",
       "exercises": {
         "boxBreathing": {
-          "desc": "A calming technique used by Navy SEALs",
-          "name": "Box Breathing",
+          "desc": "Eine beruhigende Technik, die von Navy SEALs verwendet wird",
+          "name": "Box-Atmung",
           "steps": [
-            "Breathe in slowly for 4 seconds",
-            "Hold your breath for 4 seconds",
-            "Exhale slowly for 4 seconds",
-            "Hold for 4 seconds",
-            "Repeat the cycle"
+            "Langsam 4 Sekunden einatmen",
+            "Atem 4 Sekunden anhalten",
+            "Langsam 4 Sekunden ausatmen",
+            "4 Sekunden halten",
+            "Den Zyklus wiederholen"
           ]
         },
         "grounding54321": {
-          "desc": "A sensory technique to reduce anxiety",
+          "desc": "Eine sensorische Technik zur Angstreduktion",
           "name": "5-4-3-2-1 Grounding",
           "steps": [
-            "Notice 5 things you can SEE",
-            "Notice 4 things you can TOUCH",
-            "Notice 3 things you can HEAR",
-            "Notice 2 things you can SMELL",
-            "Notice 1 thing you can TASTE"
+            "Beachten Sie 5 Dinge, die Sie SEHEN können",
+            "Beachten Sie 4 Dinge, die Sie BERÜHREN können",
+            "Beachten Sie 3 Dinge, die Sie HÖREN können",
+            "Beachten Sie 2 Dinge, die Sie RIECHEN können",
+            "Beachten Sie 1 Ding, das Sie SCHMECKEN können"
           ]
         },
         "progressiveRelaxation": {
-          "desc": "Release tension from head to toe",
-          "name": "Progressive Muscle Relaxation",
+          "desc": "Spannung von Kopf bis Fuß lösen",
+          "name": "Progressive Muskelentspannung",
           "steps": [
-            "Start with your feet - tense for 5 seconds, release",
-            "Move to your calves - tense and release",
-            "Continue to thighs, abdomen, hands, arms",
-            "Tense and release shoulders, neck, face",
-            "Feel the wave of relaxation through your body"
+            "Beginnen Sie mit den Füßen - 5 Sekunden anspannen, loslassen",
+            "Weiter zu den Waden - anspannen und loslassen",
+            "Weiter zu Oberschenkeln, Bauch, Händen, Armen",
+            "Schultern, Nacken, Gesicht anspannen und loslassen",
+            "Spüren Sie die Entspannungswelle durch Ihren Körper"
           ]
         },
         "safePlace": {
-          "desc": "Imagine your perfect peaceful sanctuary",
-          "name": "Safe Place Visualization",
+          "desc": "Stellen Sie sich Ihren perfekten friedlichen Zufluchtsort vor",
+          "name": "Visualisierung des sicheren Ortes",
           "steps": [
-            "Close your eyes and take deep breaths",
-            "Imagine a place where you feel completely safe",
-            "Notice the colors, sounds, and smells",
-            "Feel the peace and comfort surrounding you",
-            "Stay here as long as you need"
+            "Schließen Sie die Augen und atmen Sie tief ein",
+            "Stellen Sie sich einen Ort vor, an dem Sie sich völlig sicher fühlen",
+            "Beachten Sie die Farben, Geräusche und Gerüche",
+            "Spüren Sie den Frieden und die Geborgenheit um Sie herum",
+            "Bleiben Sie so lange Sie möchten"
           ]
         }
       },
-      "quickTips": "Quick Stress Relief Tips",
-      "relaxationExercises": "Relaxation Exercises",
+      "quickTips": "Schnelle Stressabbau-Tipps",
+      "relaxationExercises": "Entspannungsübungen",
       "subtitle": "Personalisierte Entspannungstechniken für die Schwangerschaft",
-      "tip1": "Take 3 deep breaths right now",
-      "tip2": "Step outside for fresh air if possible",
-      "tip3": "Drink a glass of water slowly",
-      "tip4": "Call someone who makes you smile",
-      "tip5": "Put your hand on your belly and connect with baby",
+      "tip1": "Atmen Sie jetzt 3 Mal tief ein und aus",
+      "tip2": "Gehen Sie wenn möglich an die frische Luft",
+      "tip3": "Trinken Sie langsam ein Glas Wasser",
+      "tip4": "Rufen Sie jemanden an, der Sie zum Lächeln bringt",
+      "tip5": "Legen Sie Ihre Hand auf den Bauch und verbinden Sie sich mit Ihrem Baby",
       "title": "KI-Stressabbau-Ratgeber",
-      "todaysAffirmation": "Today's Affirmation",
+      "todaysAffirmation": "Heutige Affirmation",
       "types": {
-        "breathing": "Breathing",
-        "grounding": "Grounding",
-        "visualization": "Visualization"
+        "breathing": "Atmung",
+        "grounding": "Erdung",
+        "visualization": "Visualisierung"
       }
     },
     "symptomAnalyzer": {
@@ -6032,15 +6047,15 @@
       "trimester3": "3. Trimester"
     },
     "weeklyInsights": {
-      "appointments": "Appointments to Consider",
-      "babyDevelopment": "Baby Development",
+      "appointments": "Empfohlene Termine",
+      "babyDevelopment": "Baby-Entwicklung",
       "babySize": "Babygröße",
-      "currentWeek": "Week {{week}}",
+      "currentWeek": "Woche {{week}}",
       "getInsights": "Einblicke erhalten",
       "subtitle": "Wöchentliche Schwangerschaftszusammenfassung",
-      "tips": "Tips for This Week",
+      "tips": "Tipps für diese Woche",
       "title": "Wöchentliche Einblicke",
-      "yourBody": "Your Body This Week"
+      "yourBody": "Ihr Körper diese Woche"
     },
     "weeklySummary": {
       "approximatelyRemaining": "Ungefähr {{days}} Tage verbleibend",
@@ -6216,27 +6231,27 @@
       "yourWeight": "Dein Gewicht"
     },
     "workoutPlanner": {
-      "availableWorkouts": "Available Workouts",
-      "backToWorkouts": "Back to Workouts",
-      "beforeYouStart": "Before You Start",
-      "completeExercise": "Complete Exercise",
+      "availableWorkouts": "Verfügbare Trainings",
+      "backToWorkouts": "Zurück zu den Trainings",
+      "beforeYouStart": "Bevor Sie beginnen",
+      "completeExercise": "Übung abschließen",
       "completed": "Abgeschlossen",
       "endWorkout": "End",
-      "exercise": "Exercise",
-      "greatJob": "Great job taking care of yourself and your baby!",
+      "exercise": "Übung",
+      "greatJob": "Toll gemacht! Sie kümmern sich gut um sich und Ihr Baby!",
       "intensity": {
-        "low": "low intensity",
-        "moderate": "moderate intensity"
+        "low": "niedrige Intensität",
+        "moderate": "mittlere Intensität"
       },
-      "modification": "Modification",
+      "modification": "Anpassung",
       "of": "of",
-      "safetyNotice": "Always get clearance from your healthcare provider before starting any exercise program during pregnancy.",
-      "selectTrimester": "Select Your Trimester",
-      "startWorkout": "Start Workout",
+      "safetyNotice": "Holen Sie immer die Freigabe Ihres Arztes ein, bevor Sie ein Trainingsprogramm während der Schwangerschaft beginnen.",
+      "selectTrimester": "Wählen Sie Ihr Trimester",
+      "startWorkout": "Training starten",
       "subtitle": "Sichere Trainingspläne für jedes Trimester",
       "title": "Trainingsplaner",
       "trimester": "Trimester",
-      "workoutComplete": "Workout Complete! 🎉"
+      "workoutComplete": "Training abgeschlossen! 🎉"
     }
   },
   "videoLibrary": {
@@ -6361,7 +6376,7 @@
         "mentalAffirmation": "One-third done! You're amazing",
         "mentalTip": "Share your joy with loved ones — social support is important",
         "nutrients": {
-          "0": "Iron",
+          "0": "Eisen",
           "1": "Vitamin C",
           "2": "Protein"
         },
@@ -6394,7 +6409,7 @@
         "mentalAffirmation": "Listen to your body — it knows what it needs",
         "mentalTip": "It's okay to feel anxious — it's completely normal",
         "nutrients": {
-          "0": "Calcium",
+          "0": "Kalzium",
           "1": "Vitamin D",
           "2": "Omega-3"
         },
@@ -6427,8 +6442,8 @@
         "mentalAffirmation": "First trimester done — you're a champion",
         "mentalTip": "Celebrate the end of the first trimester — you deserve it",
         "nutrients": {
-          "0": "Iron",
-          "1": "Folic Acid",
+          "0": "Eisen",
+          "1": "Folsäure",
           "2": "Zinc"
         },
         "nutritionTip": "Pair iron-rich foods with vitamin C for better absorption"
@@ -6461,7 +6476,7 @@
         "mentalTip": "Plan something fun — beautiful memories create happiness",
         "nutrients": {
           "0": "Protein",
-          "1": "Calcium",
+          "1": "Kalzium",
           "2": "Vitamin D"
         },
         "nutritionTip": "Increase protein intake to support rapid fetal growth"
@@ -6493,9 +6508,9 @@
         "mentalAffirmation": "Second trimester — time to enjoy",
         "mentalTip": "Enjoy the second trimester energy — this is your time",
         "nutrients": {
-          "0": "Iron",
+          "0": "Eisen",
           "1": "Omega-3",
-          "2": "Calcium"
+          "2": "Kalzium"
         },
         "nutritionTip": "Eat salmon or chia seeds for omega-3 fatty acids"
       },
@@ -6527,7 +6542,7 @@
         "mentalTip": "Connect with other moms — shared experiences are helpful",
         "nutrients": {
           "0": "Vitamin C",
-          "1": "Iron",
+          "1": "Eisen",
           "2": "Fiber"
         },
         "nutritionTip": "Eat more fruits and vegetables rich in vitamin C"
@@ -6559,7 +6574,7 @@
         "mentalAffirmation": "Baby's first movements are their message to you",
         "mentalTip": "Document your pregnancy moments — they'll be precious memories",
         "nutrients": {
-          "0": "Calcium",
+          "0": "Kalzium",
           "1": "Magnesium",
           "2": "Vitamin D"
         },
@@ -6594,7 +6609,7 @@
         "nutrients": {
           "0": "Omega-3",
           "1": "Protein",
-          "2": "Iron"
+          "2": "Eisen"
         },
         "nutritionTip": "Add walnuts and salmon to support baby's brain development"
       },
@@ -6625,8 +6640,8 @@
         "mentalAffirmation": "Trust your instincts — you're a natural mom",
         "mentalTip": "Talk to your baby — they can hear you and recognize your voice",
         "nutrients": {
-          "0": "Iron",
-          "1": "Calcium",
+          "0": "Eisen",
+          "1": "Kalzium",
           "2": "Vitamin B12"
         },
         "nutritionTip": "Eat red meat and spinach to prevent anemia"
@@ -6700,8 +6715,8 @@
         "mentalAffirmation": "Halfway there! Every step brings you closer to your dream",
         "mentalTip": "Celebrate being halfway with something special",
         "nutrients": {
-          "0": "Calcium",
-          "1": "Iron",
+          "0": "Kalzium",
+          "1": "Eisen",
           "2": "Vitamin D"
         },
         "nutritionTip": "Balance calcium and iron — don't take them together"
@@ -6766,9 +6781,9 @@
         "mentalAffirmation": "You're creating the most beautiful love story",
         "mentalTip": "Read about labor — knowledge reduces fear",
         "nutrients": {
-          "0": "Iron",
+          "0": "Eisen",
           "1": "Vitamin C",
-          "2": "Calcium"
+          "2": "Kalzium"
         },
         "nutritionTip": "Add citrus and peppers to your meals for vitamin C"
       },
@@ -6832,8 +6847,8 @@
         "mentalAffirmation": "Every day you spend means one day closer to meeting them",
         "mentalTip": "Talk about your fears with someone you trust",
         "nutrients": {
-          "0": "Iron",
-          "1": "Calcium",
+          "0": "Eisen",
+          "1": "Kalzium",
           "2": "Fiber"
         },
         "nutritionTip": "Include fiber and water to prevent constipation"
@@ -6898,8 +6913,8 @@
         "mentalAffirmation": "Two-thirds done! You're incredible",
         "mentalTip": "It's normal to worry about labor — talk about it",
         "nutrients": {
-          "0": "Iron",
-          "1": "Calcium",
+          "0": "Eisen",
+          "1": "Kalzium",
           "2": "Magnesium"
         },
         "nutritionTip": "Eat more leafy greens for iron and magnesium"
@@ -6964,8 +6979,8 @@
         "mentalAffirmation": "Final trimester! The meeting is so close",
         "mentalTip": "Start preparing your hospital bag — it gives you a sense of control",
         "nutrients": {
-          "0": "Iron",
-          "1": "Calcium",
+          "0": "Eisen",
+          "1": "Kalzium",
           "2": "Omega-3"
         },
         "nutritionTip": "Pair iron sources with vitamin C to improve absorption"
@@ -7039,8 +7054,8 @@
         "mentalAffirmation": "Ten weeks until you hold your baby",
         "mentalTip": "Discuss the birth plan with your partner — preparation reduces anxiety",
         "nutrients": {
-          "0": "Iron",
-          "1": "Calcium",
+          "0": "Eisen",
+          "1": "Kalzium",
           "2": "Vitamin K"
         },
         "nutritionTip": "Eat dark leafy greens for vitamin K and iron"
@@ -7074,7 +7089,7 @@
         "nutrients": {
           "0": "Omega-3",
           "1": "Protein",
-          "2": "Iron"
+          "2": "Eisen"
         },
         "nutritionTip": "Add fatty fish to your meals for brain development"
       },
@@ -7105,9 +7120,9 @@
         "mentalAffirmation": "Very soon you'll hear their first cry",
         "mentalTip": "Prepare baby's space — it gives you a sense of control",
         "nutrients": {
-          "0": "Calcium",
+          "0": "Kalzium",
           "1": "Vitamin D",
-          "2": "Iron"
+          "2": "Eisen"
         },
         "nutritionTip": "Eat dairy and broccoli for calcium and vitamin D"
       },
@@ -7139,7 +7154,7 @@
         "mentalTip": "Write a letter to your baby — you'll read it to them someday",
         "nutrients": {
           "0": "Protein",
-          "1": "Iron",
+          "1": "Eisen",
           "2": "Omega-3"
         },
         "nutritionTip": "Increase protein — baby is gaining weight rapidly"
@@ -7171,7 +7186,7 @@
         "mentalAffirmation": "Tiredness is temporary, but motherhood is forever",
         "mentalTip": "Take photos of your belly — they'll be beautiful memories",
         "nutrients": {
-          "0": "Calcium",
+          "0": "Kalzium",
           "1": "Magnesium",
           "2": "Vitamin K"
         },
@@ -7204,7 +7219,7 @@
         "mentalAffirmation": "Five weeks! The countdown has begun",
         "mentalTip": "Start a birth preparation class if you haven't yet",
         "nutrients": {
-          "0": "Iron",
+          "0": "Eisen",
           "1": "Protein",
           "2": "Vitamin C"
         },
@@ -7237,9 +7252,9 @@
         "mentalAffirmation": "Every contraction brings you closer to your baby",
         "mentalTip": "Breathe deeply when feeling anxious — everything will pass",
         "nutrients": {
-          "0": "Calcium",
+          "0": "Kalzium",
           "1": "Omega-3",
-          "2": "Iron"
+          "2": "Eisen"
         },
         "nutritionTip": "Eat small, frequent meals to reduce heartburn"
       },
@@ -7271,7 +7286,7 @@
         "mentalTip": "Prioritize — not everything has to be perfect",
         "nutrients": {
           "0": "Protein",
-          "1": "Iron",
+          "1": "Eisen",
           "2": "Vitamin D"
         },
         "nutritionTip": "Eat dates — they may help ease labor"
@@ -7303,7 +7318,7 @@
         "mentalAffirmation": "The meeting is close — breathe deeply and trust",
         "mentalTip": "Talk to your doctor about any birth concerns",
         "nutrients": {
-          "0": "Calcium",
+          "0": "Kalzium",
           "1": "Magnesium",
           "2": "Protein"
         },
@@ -7336,7 +7351,7 @@
         "mentalAffirmation": "You're ready for the most beautiful moment of your life",
         "mentalTip": "Enjoy the last days of pregnancy — you'll miss them",
         "nutrients": {
-          "0": "Iron",
+          "0": "Eisen",
           "1": "Protein",
           "2": "Vitamin C"
         },
@@ -7369,8 +7384,8 @@
         "mentalAffirmation": "Your body is creating a miracle — trust it",
         "mentalTip": "Get plenty of rest and don't overexert yourself in this early stage",
         "nutrients": {
-          "0": "Folic Acid",
-          "1": "Iron",
+          "0": "Folsäure",
+          "1": "Eisen",
           "2": "Vitamin B12"
         },
         "nutritionTip": "Take 400mcg folic acid daily to protect the neural tube"
@@ -7402,8 +7417,8 @@
         "mentalAffirmation": "Due date! Be calm and confident",
         "mentalTip": "Stay calm — your baby feels your emotions",
         "nutrients": {
-          "0": "Calcium",
-          "1": "Iron",
+          "0": "Kalzium",
+          "1": "Eisen",
           "2": "Omega-3"
         },
         "nutritionTip": "Eat energy-rich meals in preparation for labor"
@@ -7436,8 +7451,8 @@
         "mentalTip": "Patience is key — every birth has its right time",
         "nutrients": {
           "0": "Protein",
-          "1": "Iron",
-          "2": "Calcium"
+          "1": "Eisen",
+          "2": "Kalzium"
         },
         "nutritionTip": "Continue eating healthy — baby still needs good nutrition"
       },
@@ -7469,8 +7484,8 @@
         "mentalTip": "Trust your medical team — you're in safe hands",
         "nutrients": {
           "0": "Protein",
-          "1": "Iron",
-          "2": "Calcium"
+          "1": "Eisen",
+          "2": "Kalzium"
         },
         "nutritionTip": "Stay hydrated and maintain balanced nutrition"
       },
@@ -7501,7 +7516,7 @@
         "mentalAffirmation": "Every day brings you closer to meeting your baby",
         "mentalTip": "Talk to your partner about your feelings — sharing eases anxiety",
         "nutrients": {
-          "0": "Folic Acid",
+          "0": "Folsäure",
           "1": "Vitamin B6",
           "2": "Zinc"
         },
@@ -7534,9 +7549,9 @@
         "mentalAffirmation": "Nausea is temporary, but the joy is forever",
         "mentalTip": "If nausea affects your mood, talk to your doctor",
         "nutrients": {
-          "0": "Folic Acid",
+          "0": "Folsäure",
           "1": "Vitamin C",
-          "2": "Iron"
+          "2": "Eisen"
         },
         "nutritionTip": "Try ginger or lemon to ease morning sickness"
       },
@@ -7567,9 +7582,9 @@
         "mentalAffirmation": "You are stronger than you think",
         "mentalTip": "Practice deep breathing for 5 minutes daily to reduce stress",
         "nutrients": {
-          "0": "Calcium",
+          "0": "Kalzium",
           "1": "Vitamin D",
-          "2": "Folic Acid"
+          "2": "Folsäure"
         },
         "nutritionTip": "Include dairy daily to build your baby's bones"
       },
@@ -7600,7 +7615,7 @@
         "mentalAffirmation": "Your baby hears your heartbeat and feels safe",
         "mentalTip": "Journal your thoughts and feelings — writing is great therapy",
         "nutrients": {
-          "0": "Iron",
+          "0": "Eisen",
           "1": "Omega-3",
           "2": "Protein"
         },
@@ -7633,7 +7648,7 @@
         "mentalAffirmation": "Every challenge makes you a stronger mother",
         "mentalTip": "Spend time in nature — it helps improve mood",
         "nutrients": {
-          "0": "Calcium",
+          "0": "Kalzium",
           "1": "Magnesium",
           "2": "Vitamin B6"
         },
@@ -7643,25 +7658,25 @@
   },
   "weeklySummary": {
     "approximatelyRemaining": "Approximately {{days}} days remaining",
-    "babyGrowth": "Baby Growth",
-    "checkups": "Checkups",
-    "complete": "Complete",
+    "babyGrowth": "Baby-Wachstum",
+    "checkups": "Untersuchungen",
+    "complete": "Vollständig",
     "daysToGo": "{{days}} days to go",
-    "differentWeek": "Change Week",
-    "good": "Good",
-    "momsHealth": "Mom's Health",
+    "differentWeek": "Woche ändern",
+    "good": "Gut",
+    "momsHealth": "Gesundheit der Mutter",
     "normal": "Normal",
-    "pregnancyWeek": "Pregnancy Week",
-    "refresh": "Refresh",
+    "pregnancyWeek": "Schwangerschaftswoche",
+    "refresh": "Aktualisieren",
     "showSummary": "Show Week {{week}} Summary",
     "subtitle": "Smart weekly tracking for your pregnancy",
     "trackTip": "Track your week to get personalized information about your baby's growth and your body changes",
     "trimester": {
-      "first": "First Trimester",
-      "second": "Second Trimester",
-      "third": "Third Trimester"
+      "first": "Erstes Trimester",
+      "second": "Zweites Trimester",
+      "third": "Drittes Trimester"
     },
-    "week": "Week {{week}}",
+    "week": "Woche {{week}}",
     "weekSummary": "Week {{week}} Summary"
   },
   "weightGain": {
@@ -7677,14 +7692,14 @@
     }
   },
   "welcome": {
-    "agreement": "By continuing, you agree to our Terms of Service",
+    "agreement": "Durch Fortfahren stimmen Sie unseren Nutzungsbedingungen zu",
     "disclaimerText": "This app provides general wellness information only and is not a substitute for professional health guidance. Always consult your healthcare provider for any health concerns.",
-    "disclaimerTitle": "Important Notice",
+    "disclaimerTitle": "Wichtiger Hinweis",
     "feature1": "30+ AI-powered pregnancy tools",
-    "feature2": "Personalized health tracking",
-    "getStarted": "Get Started",
-    "subtitle": "Your complete pregnancy companion",
-    "title": "Welcome to Pregnancy Toolkits"
+    "feature2": "Personalisierte Gesundheitsverfolgung",
+    "getStarted": "Loslegen",
+    "subtitle": "Ihr vollständiger Schwangerschaftsbegleiter",
+    "title": "Willkommen bei Pregnancy Toolkits"
   },
   "wellnessStats": {
     "avgMood": "Ø Stimmung",
