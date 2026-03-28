@@ -42,7 +42,8 @@
     "resetsDaily": "Wird täglich zurückgesetzt",
     "subscribePro": "Pro abonnieren",
     "upgradeHint": "Abonnieren Sie Pro für {{limit}} tägliche Anfragen",
-    "usedOf": "{{used}} von {{limit}} heute verwendet"
+    "usedOf": "{{used}} von {{limit}} heute verwendet",
+    "disclaimer": "KI-Ergebnisse ersetzen nicht den ärztlichen Rat"
   },
   "app": {
     "allTools": "Alle Tools",
@@ -276,7 +277,7 @@
       "month": "Monat",
       "noData": "Fügen Sie mindestens eine Messung hinzu, um das Diagramm anzuzeigen",
       "normalRange": "Normalbereich",
-      "title": "Gewichtswachstumskurve - WHO-Standards",
+      "title": "Wachstum des Babys",
       "weightKg": "Gewicht (kg)",
       "yourBaby": "Ihr Baby",
       "yourBabyBoy": "Gewicht Ihres Babys",
@@ -291,7 +292,7 @@
       "kicks": "Tritte",
       "min": "Min",
       "noData": "Zeichnen Sie mindestens 2 Sitzungen auf, um das Diagramm anzuzeigen",
-      "title": "Fetale Aktivität - Letzte 7 Sitzungen"
+      "title": "Kindsbewegungen"
     },
     "mood": {
       "average": "Durchschnitt",
@@ -306,18 +307,20 @@
       },
       "noData": "Zeichnen Sie Ihre Stimmung mindestens 3 Mal auf, um das Diagramm anzuzeigen",
       "stable": "Stabil",
-      "title": "Stimmungsverfolgung - Letzte 2 Wochen"
+      "title": "Stimmungsverlauf"
     },
     "weight": {
       "gain": "Zunahme",
       "noData": "Fügen Sie mindestens zwei Messungen hinzu, um das Diagramm anzuzeigen",
       "prePregnancyWeight": "Gewicht vor der Schwangerschaft",
       "recommendedRange": "Empfohlener Bereich",
-      "title": "Gewichtsverfolgung über Wochen",
+      "title": "Gewichtsverlauf",
       "week": "Woche",
       "weight": "Gewicht",
-      "yourActualWeight": "Ihr tatsächliches Gewicht"
-    }
+      "yourActualWeight": "Ihr tatsächliches Gewicht",
+      "current": "Aktuelles Gewicht"
+    },
+    "noData": "Noch keine Daten vorhanden"
   },
   "common": {
     "add": "Hinzufügen",
@@ -369,7 +372,10 @@
     "week": "Woche",
     "weeks": "Wochen",
     "yes": "Ja",
-    "yesterday": "Gestern"
+    "yesterday": "Gestern",
+    "search": "Suchen",
+    "darkMode": "Dunkelmodus",
+    "lightMode": "Hellmodus"
   },
   "compliance": {
     "disclaimerCompact": "Nur zu Informationszwecken. Konsultieren Sie Ihren Arzt.",
@@ -388,7 +394,8 @@
     "info": "Conception typically occurs around 2 weeks after the first day of your last period, during ovulation.",
     "knowDueDate": "Kennen Sie Ihren Geburtstermin?",
     "lmpDate": "Erster Tag der letzten Periode",
-    "planningPregnancy": "Planen Sie eine Schwangerschaft?"
+    "planningPregnancy": "Planen Sie eine Schwangerschaft?",
+    "learnMore": "Mehr erfahren"
   },
   "contractionPage": {
     "avgDuration": "Durchschn. Dauer",
@@ -606,7 +613,25 @@
     },
     "title": "Tägliche Schwangerschaftstipps",
     "trimester": "Trimester",
-    "yourFavorites": "Ihre Favoriten"
+    "yourFavorites": "Ihre Favoriten",
+    "tip1": "Trinken Sie mindestens 8 Gläser Wasser täglich",
+    "tip2": "Machen Sie einen kurzen Spaziergang an der frischen Luft",
+    "tip3": "Essen Sie eine Handvoll Nüsse als Snack",
+    "tip4": "Praktizieren Sie 5 Minuten tiefes Atmen",
+    "tip5": "Nehmen Sie Ihre Vitamine ein",
+    "tip6": "Ruhen Sie sich aus, wenn Sie müde sind",
+    "tip7": "Essen Sie eisenreiche Lebensmittel",
+    "tip8": "Machen Sie leichte Dehnübungen",
+    "tip9": "Schreiben Sie Ihre Gedanken in ein Tagebuch",
+    "tip10": "Hören Sie beruhigende Musik",
+    "tip11": "Essen Sie kalziumreiche Lebensmittel",
+    "tip12": "Vermeiden Sie langes Stehen",
+    "tip13": "Sprechen Sie mit Ihrem Baby",
+    "tip14": "Machen Sie Beckenbodenübungen",
+    "tip15": "Schlafen Sie auf der linken Seite",
+    "tip16": "Essen Sie ballaststoffreiche Lebensmittel",
+    "tip17": "Vermeiden Sie Koffein am Nachmittag",
+    "tip18": "Legen Sie die Füße hoch"
   },
   "dashboard": {
     "aiTools": "KI-gestützte Tools",
@@ -808,6 +833,12 @@
         "tips": "Gesundheitstipps für die Schwangerschaft",
         "yoga": "Schwangerschaftsyoga-Übungen"
       }
+    },
+    "riskAlert": {
+      "title": "Gesundheitswarnungen",
+      "subtitle": "Wichtige Hinweise für diese Woche",
+      "noRisks": "Keine Warnungen – alles sieht gut aus!",
+      "disclaimer": "Ersetzen nicht den ärztlichen Rat"
     }
   },
   "diaperPage": {
@@ -911,7 +942,27 @@
     },
     "typeQuestion": "Geben Sie Ihre Frage hier ein...",
     "week": "Woche",
-    "yourQuestions": "Ihre Fragen"
+    "yourQuestions": "Ihre Fragen",
+    "title": "Fragen an den Arzt",
+    "subtitle": "Wichtige Fragen für Ihren nächsten Arzttermin",
+    "generate": "Fragen erstellen",
+    "generating": "Fragen werden erstellt...",
+    "regenerate": "Neue Fragen",
+    "copy": "Kopieren",
+    "copied": "Kopiert!",
+    "weekLabel": "Für Woche {{week}}",
+    "disclaimer": "Passen Sie die Fragen an Ihre persönliche Situation an",
+    "category": {
+      "general": "Allgemein",
+      "tests": "Untersuchungen",
+      "symptoms": "Symptome",
+      "nutrition": "Ernährung",
+      "exercise": "Bewegung",
+      "mental": "Psychische Gesundheit",
+      "birth": "Geburt"
+    },
+    "print": "Drucken",
+    "save": "Speichern"
   },
   "dueDatePage": {
     "calculateBtn": "Geburtstermin berechnen",
@@ -1147,10 +1198,10 @@
     "score": "Punkte",
     "smartNutrition": "Intelligente Schwangerschaftsernährung",
     "smartNutritionDesc": "Planen Sie Mahlzeiten, verfolgen Sie Nährstoffe und entdecken Sie Superfoods für Sie und Ihr Baby.",
-    "subtitle": "KI-gestützte Einkaufsliste für Schwangerschaftsernährung",
+    "subtitle": "Schwangerschaftsgerechte Einkaufsliste",
     "super": "Super",
     "superfoodsAdded": "{{count}} Superfoods zu Ihrer Liste hinzugefügt",
-    "title": "Intelligente Einkaufsliste",
+    "title": "Einkaufsliste",
     "weekFocus": "Fokus Woche {{week}}",
     "weeklyRecommendations": {
       "calciumFoods": "Kalziumreiche Lebensmittel",
@@ -1163,7 +1214,13 @@
       "vitaminD": "Vitamin-D-Quellen",
       "wholeGrains": "Vollkornprodukte"
     },
-    "yourList": "Ihre Liste"
+    "yourList": "Ihre Liste",
+    "generate": "Liste erstellen",
+    "generating": "Liste wird erstellt...",
+    "weekLabel": "Für Woche {{week}}",
+    "regenerate": "Neue Liste",
+    "copy": "Kopieren",
+    "copied": "Kopiert!"
   },
   "home": {
     "aiSubtitle": "Fortschrittliche KI-Tools",
@@ -1212,7 +1269,9 @@
     "step3": "Entspanne 5 Sekunden und lass die Muskeln vollständig locker.",
     "step4": "Wiederhole 10-15 Mal pro Set, 3 Sets täglich für beste Ergebnisse.",
     "streak": "Tage-Serie",
-    "todayReps": "Heutige Wiederholungen"
+    "todayReps": "Heutige Wiederholungen",
+    "tip1": "Spannen Sie die Beckenbodenmuskeln für 5 Sekunden an",
+    "tip2": "Wiederholen Sie die Übung 10 Mal"
   },
   "kickAnalysis": {
     "analyzing": "Bewegungsmuster werden analysiert...",
@@ -1316,7 +1375,8 @@
       "6months": "Nach 6 Monaten",
       "no": "Nicht zurückkehren / Zu Hause bleiben",
       "year": "Nach 1 Jahr"
-    }
+    },
+    "tip": "Beginnen Sie frühzeitig, sich über das Stillen zu informieren"
   },
   "layout": {
     "contactPage": {
@@ -1622,7 +1682,8 @@
       "night": "Nacht"
     },
     "title": "KI-Wadenkrampf-Prävention",
-    "warning": "Frequent or severe leg cramps, especially with swelling, redness, or warmth, should be reported to your healthcare provider immediately."
+    "warning": "Frequent or severe leg cramps, especially with swelling, redness, or warmth, should be reported to your healthcare provider immediately.",
+    "tip": "Dehnen Sie Ihre Waden vor dem Schlafengehen"
   },
   "nauseaRelief": {
     "encouragingNote": "Remember: Morning sickness usually peaks around weeks 8-10 and improves significantly by week 12-14. You've got this!",
@@ -1677,7 +1738,9 @@
     "triggersTitle": "Was löst Ihre Übelkeit aus?",
     "videosSubtitle": "Techniken und Tipps zur Linderung der Morgenübelkeit",
     "videosTitle": "Videos zur Übelkeitslinderung",
-    "vomitingCheckbox": "Ich habe Erbrechen, nicht nur Übelkeit"
+    "vomitingCheckbox": "Ich habe Erbrechen, nicht nur Übelkeit",
+    "waterReminder": "Trinken Sie kleine Schlucke Wasser",
+    "gingerTip": "Probieren Sie Ingwertee oder Ingwerbonbons"
   },
   "nav": {
     "aiTools": "KI-Tools",
@@ -1717,7 +1780,7 @@
     "aiGeneral": "KI-Tool-Ergebnisse dienen nur der allgemeinen Information.",
     "allCaughtUp": "Alles erledigt!",
     "appointment2hTitle": "⏰ Termin in 2 Stunden!",
-    "appointmentMsg": "{{title}} um {{time}}",
+    "appointmentMsg": "Sie haben bald einen Arzttermin",
     "appointmentMsgDoctor": "{{title}} bei {{doctor}} um {{time}}",
     "appointmentMsgDoctorLocation": "{{title}} bei {{doctor}} um {{time}} - {{location}}",
     "appointmentMsgLocation": "{{title}} um {{time}} - {{location}}",
@@ -1754,11 +1817,11 @@
     "disclaimerTitle": "Wichtiger Hinweis",
     "emergency": "In Notfällen rufe den Notdienst oder gehe ins nächste Krankenhaus.",
     "enablePush": "Push-Alarme aktivieren",
-    "exercise": "Übungen",
+    "exercise": "Bewegungserinnerung",
     "exerciseReminderMsg": "Ein kurzer Spaziergang steigert deine Energie und Stimmung!",
     "exerciseReminderTitle": "🚶‍♀️ Zeit für einen Spaziergang",
     "inAppActive": "✓ In-App-Benachrichtigungen sind immer aktiv",
-    "kegel": "Kegel",
+    "kegel": "Beckenbodenübung",
     "kegelReminderMsg": "Stärke deinen Beckenboden — mach deine täglichen Kegel-Übungen!",
     "kegelReminderTitle": "💪 Kegel-Übungszeit",
     "kickHint": "Tägliche Trittezähl-Erinnerung",
@@ -1807,7 +1870,7 @@
     "vitaminReminderTitle": "💊 Vitamin-Erinnerung",
     "vitamins": "Vitamine",
     "vitaminsHint": "Tägliche Erinnerung um 8:00 Uhr",
-    "water": "Wasser",
+    "water": "Trinkerinnerung",
     "waterHint": "Tägliche Erinnerung um 9:00 Uhr",
     "waterReminderMsg": "Zeit für ein Glas Wasser!",
     "waterReminderTitle": "💧 Trinken nicht vergessen",
@@ -1852,7 +1915,42 @@
     "weeklyTipReminders": "Wöchentliche Tipps",
     "weeklyTipTitle": "🤰 Woche {{week}} Update",
     "welcome": "👋 Willkommen!",
-    "welcomeDesc": "Genieße 30+ intelligente Tools für deine Schwangerschaft."
+    "welcomeDesc": "Genieße 30+ intelligente Tools für deine Schwangerschaft.",
+    "empty": "Keine Benachrichtigungen",
+    "markAllRead": "Alle als gelesen markieren",
+    "clear": "Alle löschen",
+    "today": "Heute",
+    "earlier": "Früher",
+    "waterMsg": "Zeit, ein Glas Wasser zu trinken!",
+    "vitamin": "Vitaminerinnerung",
+    "vitaminMsg": "Haben Sie Ihre Vitamine heute eingenommen?",
+    "exerciseMsg": "Zeit für einen kurzen Spaziergang!",
+    "kick": "Kindsbewegungen",
+    "kickMsg": "Haben Sie heute die Tritte Ihres Babys gezählt?",
+    "appointment": "Termin-Erinnerung",
+    "sleep": "Schlaferinnerung",
+    "sleepMsg": "Zeit, sich auszuruhen!",
+    "mood": "Stimmungstagebuch",
+    "moodMsg": "Wie fühlen Sie sich heute?",
+    "weight": "Gewichtskontrolle",
+    "weightMsg": "Haben Sie sich diese Woche gewogen?",
+    "milestone": "Meilenstein",
+    "milestoneMsg": "Ihr Baby hat einen neuen Meilenstein erreicht!",
+    "tip": "Täglicher Tipp",
+    "tipMsg": "Neuer Schwangerschaftstipp verfügbar",
+    "photo": "Bauchfoto-Erinnerung",
+    "photoMsg": "Dokumentieren Sie Ihren Bauch diese Woche!",
+    "kegelMsg": "Zeit für Ihre Beckenbodenübungen!",
+    "stretch": "Dehnübungen",
+    "stretchMsg": "Machen Sie eine kurze Dehnpause",
+    "breathe": "Atemübung",
+    "breatheMsg": "Nehmen Sie sich einen Moment zum tiefen Atmen",
+    "journal": "Tagebuch",
+    "journalMsg": "Schreiben Sie Ihre Gedanken auf",
+    "snack": "Snack-Erinnerung",
+    "snackMsg": "Zeit für einen gesunden Snack!",
+    "contraction": "Wehen-Timer",
+    "contractionMsg": "Denken Sie daran, Ihre Wehen zu dokumentieren"
   },
   "nutrition": {
     "addFoodFirst": "Fügen Sie mindestens ein Lebensmittel hinzu",
@@ -1882,7 +1980,10 @@
     "tipsTitle": "Schwangerschafts-Ernährungstipps",
     "todaysMeals": "Heutige Mahlzeiten",
     "totalCalories": "Gesamtkalorien heute",
-    "weekInfo": "Woche {{week}} - Protokollieren Sie Ihre Mahlzeiten und erhalten Sie KI-Tipps"
+    "weekInfo": "Woche {{week}} - Protokollieren Sie Ihre Mahlzeiten und erhalten Sie KI-Tipps",
+    "supplementsGuide": {
+      "title": "Nahrungsergänzungsmittel-Leitfaden"
+    }
   },
   "nutritionLinks": {
     "cravingLink": "Heißhunger-Alternativen",
@@ -1970,7 +2071,12 @@
     "title": "Smarter Ernährungsplaner",
     "trimester": "Trimester",
     "vegan": "Vegan",
-    "vegetarian": "Vegetarisch"
+    "vegetarian": "Vegetarisch",
+    "calories": "Kalorien",
+    "protein": "Eiweiß",
+    "iron": "Eisen",
+    "calcium": "Kalzium",
+    "fiber": "Ballaststoffe"
   },
   "onboarding": {
     "accept": "Verstanden & Fortfahren",
@@ -2007,7 +2113,9 @@
       "pregnant": "Meine Schwangerschaft",
       "pregnantDesc": "Ihre umfassende Schwangerschaftsbegleiterin",
       "subtitle": "Wir passen alles für Sie an",
-      "title": "Wo stehen Sie auf Ihrer Reise?"
+      "title": "Wo stehen Sie auf Ihrer Reise?",
+      "ttcLabel": "Kinderwunsch",
+      "postpartumLabel": "Nach der Geburt"
     },
     "step3": {
       "bloodType": "Blutgruppe",
@@ -2066,11 +2174,14 @@
     "maybeLater": "Vielleicht später",
     "startTrial": "Jetzt abonnieren",
     "subscribeButton": "Jetzt abonnieren",
-    "subtitle": "Abonnieren Sie für alle Smart-Tools",
-    "title": "Premium-Funktion ✨",
+    "subtitle": "Unbegrenzter Zugang zu allen Funktionen",
+    "title": "Premium freischalten",
     "toolLocked": "\"{{tool}}\" is available for subscribers only",
     "trialDesc": "Alle Premium-Funktionen freischalten",
-    "trialTitle": "Premium-Zugang 🎁"
+    "trialTitle": "Premium-Zugang 🎁",
+    "feature1": "Unbegrenzte KI-Analysen",
+    "feature2": "Alle Premium-Tools",
+    "cta": "Jetzt upgraden"
   },
   "postpartumLinks": {
     "babySleepLink": "Baby-Schlaf-Tracker",
@@ -2098,7 +2209,8 @@
     "obesity": "Adipositas (BMI > 30)",
     "previousPreeclampsia": "Frühere Präeklampsie",
     "subtitle": "Überprüfen Sie Ihre Präeklampsie-Risikofaktoren",
-    "title": "Präeklampsie-Bewusstseinsprüfung"
+    "title": "Präeklampsie-Bewusstseinsprüfung",
+    "learnMore": "Mehr erfahren"
   },
   "preeclampsiaRisk": {
     "aiCoachTitle": "KI-Präeklampsie-Präventionscoach",
@@ -2236,7 +2348,7 @@
       "5": "Super"
     },
     "save": "Speichern",
-    "saved": "Gespeichert ✓",
+    "saved": "Gespeichert!",
     "symptomNames": {
       "backpain": "Rückenschmerzen",
       "cramps": "Krämpfe",
@@ -2248,7 +2360,7 @@
       "swelling": "Schwellung"
     },
     "symptoms": "Symptome",
-    "title": "Tag protokollieren",
+    "title": "Schnelleintrag",
     "trend": "Trend"
   },
   "quotaExhausted": {
@@ -2358,6 +2470,16 @@
           "3": "Severe abdominal pain with weight changes"
         }
       }
+    },
+    "callDoctor": {
+      "title": "Wann Sie den Arzt anrufen sollten",
+      "subtitle": "Suchen Sie sofort ärztliche Hilfe bei diesen Symptomen",
+      "bleeding": "Vaginale Blutungen",
+      "headache": "Starke Kopfschmerzen, die nicht nachlassen",
+      "vision": "Sehstörungen oder verschwommenes Sehen",
+      "swelling": "Plötzliche Schwellung von Gesicht oder Händen",
+      "fever": "Fieber über 38°C",
+      "movement": "Deutlich weniger Kindsbewegungen"
     }
   },
   "searchDialog": {
@@ -2425,10 +2547,11 @@
       "importantText": "Speichern Sie die Sicherungsdatei an einem sicheren Ort wie Google Drive, iCloud oder senden Sie sie per E-Mail an sich selbst.",
       "importing": "Daten werden importiert...",
       "invalidFile": "Ungültige Sicherungsdatei",
-      "lastBackup": "Letzte Sicherung:",
+      "lastBackup": "Letzte Sicherung: {{date}}",
       "noData": "Keine Daten",
       "noDataDesc": "Keine Daten zum Exportieren gefunden",
-      "title": "Datensicherung"
+      "title": "Datensicherung",
+      "auto": "Automatische Sicherung"
     },
     "clearData": {
       "allSettings": "Alle Einstellungen",
@@ -2568,7 +2691,10 @@
     "title": "KI-Schlaftipps",
     "usualBedtime": "Übliche Schlafenszeit",
     "videosSubtitle": "Expertentipps für besseren Schlaf in der Schwangerschaft",
-    "videosTitle": "Schwangerschafts-Schlafvideos"
+    "videosTitle": "Schwangerschafts-Schlafvideos",
+    "tip1": "Schlafen Sie auf der linken Seite",
+    "tip2": "Verwenden Sie ein Stillkissen zwischen den Knien",
+    "tip3": "Vermeiden Sie Bildschirme vor dem Schlafengehen"
   },
   "smartPlan": {
     "activityLevel": "Aktivitätsniveau",
@@ -2646,56 +2772,17 @@
     "weeklyReport": "Wochenbericht",
     "weight": "Gewicht",
     "yourData": "Deine Daten",
-    "yourHealthData": "Ihre persönlichen Angaben"
+    "yourHealthData": "Ihre persönlichen Angaben",
+    "disclaimer": "Ersetzen nicht den ärztlichen Rat"
   },
   "smoothieAI": {
     "aiGenerate": "KI generieren",
     "aiGeneratedRecipe": "KI-generiertes Rezept",
     "allRecipes": "Alle Rezepte für Trimester {{trimester}}",
-    "benefits": {
-      "boostsIron": "Steigert Eisenwerte und beugt Anämie vor",
-      "brainDev": "Unterstützt die Gehirnentwicklung des Babys mit Omega-3",
-      "calmsNausea": "Hilft bei Morgenübelkeit",
-      "fightsFatigue": "Bekämpft Müdigkeit und liefert nachhaltige Energie",
-      "promotesSleep": "Fördert Entspannung und besseren Schlaf",
-      "strengthensBones": "Stärkt Knochen für Sie und Ihr Baby"
-    },
+    "benefits": "Vorteile",
     "createCustom": "Einen KI-Smoothie erstellen",
-    "ingredients": {
-      "1banana": "1 banana",
-      "1cupAlmondMilk": "1 cup almond milk",
-      "1cupBlueberries": "1 cup blueberries",
-      "1cupCherries": "1 cup cherries",
-      "1cupCoconutWater": "1 cup coconut water",
-      "1cupFortifiedAlmondMilk": "1 cup fortified almond milk",
-      "1cupGreekYogurt": "1 cup Greek yogurt",
-      "1cupMilk": "1 cup milk",
-      "1cupSpinach": "1 cup spinach",
-      "1cupStrawberries": "1 cup strawberries",
-      "1greenApple": "1 green apple",
-      "1inchGinger": "1 inch ginger",
-      "1orange": "1 orange",
-      "1tbspAlmondButter": "1 tbsp almond butter",
-      "1tbspChiaSeeds": "1 tbsp chia seeds",
-      "1tbspFlaxseed": "1 tbsp flaxseed",
-      "1tbspHoney": "1 tbsp honey",
-      "1tbspMapleSyrup": "1 tbsp maple syrup",
-      "1tbspOats": "1 tbsp oats",
-      "1tbspSesameSeeds": "1 tbsp sesame seeds",
-      "1tbspWalnuts": "1 tbsp walnuts",
-      "2tbspAlmondButter": "2 tbsp almond butter",
-      "freshMint": "Frische Minze",
-      "halfCucumber": "1/2 cucumber",
-      "halfCupBeets": "1/2 cup beets",
-      "halfCupGreekYogurt": "1/2 cup Greek yogurt",
-      "halfCupMilk": "1/2 cup milk",
-      "halfCupPomegranate": "1/2 cup pomegranate",
-      "halfLemon": "1/2 lemon",
-      "honeyToTaste": "Honig nach Geschmack",
-      "quarterAvocado": "1/4 avocado",
-      "quarterTspCinnamon": "1/4 tsp cinnamon"
-    },
-    "instructions": "Anleitung",
+    "ingredients": "Zutaten",
+    "instructions": "Zubereitung",
     "instructionsText": {
       "brainBuilderInstructions": "Blend until smooth. Consume in the morning to boost brain function.",
       "calciumCrushInstructions": "Blend yogurt and banana first, then add remaining ingredients. Great as a snack.",
@@ -2716,9 +2803,42 @@
       "nauseaRelief": "Übelkeitslinderung Grün",
       "sleepBetter": "Besser-Schlafen-Smoothie"
     },
-    "subtitle": "Nahrhafte Smoothie-Rezepte für jedes Trimester",
-    "title": "Schwangerschafts-Smoothie KI",
-    "trimester": "Trimester"
+    "subtitle": "Gesunde Smoothies für Ihre Schwangerschaft",
+    "title": "Smoothie-Rezepte",
+    "trimester": "Trimester",
+    "generate": "Rezept erstellen",
+    "generating": "Rezept wird erstellt...",
+    "servings": "Portionen",
+    "prepTime": "Zubereitungszeit",
+    "category": "Kategorie",
+    "energyBoost": "Energie-Boost",
+    "ironRich": "Eisenreich",
+    "calciumBoost": "Kalzium-Boost",
+    "fiberRich": "Ballaststoffreich",
+    "antiNausea": "Gegen Übelkeit",
+    "proteinPacked": "Proteinreich",
+    "vitaminC": "Vitamin C",
+    "omega3": "Omega 3",
+    "hydrating": "Feuchtigkeitsspendend",
+    "antioxidant": "Antioxidantien",
+    "folateRich": "Folsäurereich",
+    "magnesium": "Magnesium",
+    "selectCategory": "Kategorie wählen",
+    "customRequest": "Eigene Wünsche",
+    "placeholder": "z.B. ohne Milchprodukte, extra Eiweiß...",
+    "regenerate": "Neues Rezept",
+    "save": "Speichern",
+    "saved": "Gespeichert",
+    "favorites": "Favoriten",
+    "noFavorites": "Noch keine Favoriten",
+    "removeFavorite": "Entfernen",
+    "nutritionInfo": "Nährwertangaben",
+    "perServing": "Pro Portion",
+    "disclaimer": "Konsultieren Sie Ihren Arzt bei Unverträglichkeiten",
+    "trimesterNote": "Angepasst an Ihr {{trimester}}. Trimester",
+    "loading": "Wird geladen...",
+    "error": "Fehler beim Erstellen. Bitte versuchen Sie es erneut.",
+    "fresh": "Frisch"
   },
   "snackPlanner": {
     "calories": "Kalorien",
@@ -2751,9 +2871,13 @@
       "hummusVeggies": "Hummus & Gemüsesticks",
       "trailMix": "Trail-Mix-Energiebällchen"
     },
-    "subtitle": "Gesunde Schwangerschaftssnacks für jeden Heißhunger",
+    "subtitle": "Gesunde Snacks für Ihre Schwangerschaft",
     "surpriseMe": "Überraschen Sie mich!",
-    "title": "Smarter Snack-Planer"
+    "title": "Snack-Planer",
+    "generate": "Snacks vorschlagen",
+    "generating": "Wird erstellt...",
+    "regenerate": "Neue Vorschläge",
+    "disclaimer": "Konsultieren Sie Ihren Arzt bei Allergien"
   },
   "socialProof": {
     "exportDesc": "Mit deinem Arzt teilen",
@@ -2765,7 +2889,8 @@
     "tools": "30 Tools",
     "toolsDesc": "Für deine Reise",
     "trackDesc": "Tritte, Wehen & mehr",
-    "trackEverything": "Alles verfolgen"
+    "trackEverything": "Alles verfolgen",
+    "users": "Über {{count}} Nutzerinnen vertrauen uns"
   },
   "stretchReminder": {
     "aiStretchCoach": "KI-Dehncoach",
@@ -2831,7 +2956,8 @@
     "title": "Smarte Dehn-Erinnerung",
     "todaysProgress": "Heutiger Fortschritt",
     "trimester": "Trimester",
-    "yourTrimester": "Dein Trimester"
+    "yourTrimester": "Dein Trimester",
+    "tip": "Machen Sie regelmäßige Dehnpausen"
   },
   "subscription": {
     "premiumFeature": "Premium-Funktion",
@@ -2868,7 +2994,8 @@
     "trialRemaining": "Premium aktiv",
     "unlimitedAI": "40 monatliche KI-Analysen",
     "unlockFullAccess": "Vollen Zugang freischalten",
-    "yearly": "Jährlich"
+    "yearly": "Jährlich",
+    "features": "Premium-Funktionen"
   },
   "symptomAnalyzer": {
     "evidence": {
@@ -2923,7 +3050,8 @@
     "vitamin-tracker": "Verfolgen Sie Ihre tägliche Vitamin-Einnahme. Die Dosierung sollte von Ihrem Arzt bestimmt werden.",
     "weekly-summary": "Verfolgen Sie die wöchentliche Entwicklung Ihres Babys. Die Informationen sind allgemein und lehrreich. Bei Auffälligkeiten konsultieren Sie Ihre Ärztin.",
     "weight-gain": "Verfolgen Sie Ihre Gewichtszunahme während der Schwangerschaft. Ergebnisse sind allgemeine Richtwerte. Besprechen Sie Bedenken mit Ihrem Arzt.",
-    "wellness-diary": "Erfassen Sie täglich Ihre Stimmung und Ihr Wohlbefinden. Bei anhaltender Traurigkeit oder Angst sprechen Sie mit einem Fachmann."
+    "wellness-diary": "Erfassen Sie täglich Ihre Stimmung und Ihr Wohlbefinden. Bei anhaltender Traurigkeit oder Angst sprechen Sie mit einem Fachmann.",
+    "disclaimer": "Ersetzen nicht den ärztlichen Rat"
   },
   "tools": {
     "aiBackPainRelief": {
@@ -3858,7 +3986,7 @@
       "time": "Zeit",
       "title": "Wehentimer",
       "total": "Gesamt",
-      "trend": "Trend",
+      "trend": "Verlauf",
       "trendLengthening": "Weiter",
       "trendShortening": "Näher",
       "trendStable": "Stabil"
@@ -4227,7 +4355,7 @@
         "strength": "Kraft",
         "warmup": "Aufwärmen"
       },
-      "categoriesCount": "{{count}} categories",
+      "categoriesCount": "{{count}} Kategorien",
       "completed": "Abgeschlossen",
       "cooldown": {
         "duration": "3-5 Minuten",
@@ -4309,7 +4437,7 @@
       "generating": "Trainingsplan wird erstellt...",
       "greatJob": "Super! Sie haben Ihr Training heute geschafft!",
       "intermediate": "Fortgeschritten",
-      "libraryStats": "{{count}} exercises available",
+      "libraryStats": "{{count}} Übungen verfügbar",
       "muscleGroups": {
         "ankles": "Knöchel & Füße",
         "arms": "Brust & Trizeps",
@@ -4627,7 +4755,7 @@
       "notPacked": "Nicht gepackt",
       "optional": "Optional",
       "packed": "Gepackt",
-      "partner": "Partner",
+      "partner": "Partner/in",
       "progress": "Fortschritt",
       "recommended": "Empfohlen",
       "resetConfirm": "Sind Sie sicher, dass Sie die Liste zurücksetzen möchten? Alle benutzerdefinierten Artikel werden entfernt und die Standardliste wiederhergestellt.",
@@ -6074,7 +6202,7 @@
       "checkups": "Untersuchungen",
       "complete": "Vollständig",
       "current": "Aktuell",
-      "daysToGo": "{{days}} days to go",
+      "daysToGo": "Noch {{days}} Tage",
       "differentWeek": "Woche ändern",
       "fetalDevLink": "Fetale Entwicklung",
       "fetalDevLinkDesc": "3D-Ansicht der Entwicklung Ihres Babys",
@@ -6323,7 +6451,11 @@
       "vitaminD": "Vitamin D"
     },
     "vitaminsCount": "{{taken}} von {{total}} Vitaminen heute eingenommen",
-    "weeklyStats": "Wochenstatistik"
+    "weeklyStats": "Wochenstatistik",
+    "taken": "Eingenommen",
+    "missed": "Verpasst",
+    "streak": "{{count}} Tage in Folge",
+    "reminder": "Erinnerung einstellen"
   },
   "weeklyJourney": {
     "aiDescription": "Erhalten Sie eine umfassende, personalisierte Analyse Ihrer aktuellen Woche mit KI",
@@ -7671,7 +7803,7 @@
     "babyGrowth": "Baby-Wachstum",
     "checkups": "Untersuchungen",
     "complete": "Vollständig",
-    "daysToGo": "{{days}} days to go",
+    "daysToGo": "Noch {{days}} Tage",
     "differentWeek": "Woche ändern",
     "good": "Gut",
     "momsHealth": "Gesundheit der Mutter",
@@ -7681,11 +7813,7 @@
     "showSummary": "Zusammenfassung Woche {{week}} anzeigen",
     "subtitle": "Smarte wöchentliche Verfolgung Ihrer Schwangerschaft",
     "trackTip": "Track your week to get personalized information about your baby's growth and your body changes",
-    "trimester": {
-      "first": "Erstes Trimester",
-      "second": "Zweites Trimester",
-      "third": "Drittes Trimester"
-    },
+    "trimester": "Trimester",
     "week": "Woche {{week}}",
     "weekSummary": "Zusammenfassung Woche {{week}}"
   },
@@ -7708,8 +7836,9 @@
     "feature1": "30+ AI-powered pregnancy tools",
     "feature2": "Personalisierte Gesundheitsverfolgung",
     "getStarted": "Loslegen",
-    "subtitle": "Ihr vollständiger Schwangerschaftsbegleiter",
-    "title": "Willkommen bei Pregnancy Toolkits"
+    "subtitle": "Ihre persönliche Schwangerschaftsbegleitung",
+    "title": "Willkommen bei Pregnancy Toolkits",
+    "cta": "Los geht's"
   },
   "wellnessStats": {
     "avgMood": "Ø Stimmung",
