@@ -10,7 +10,7 @@ type AIType =
   | "symptom-analysis" | "meal-suggestion" | "pregnancy-assistant" | "weekly-summary"
   | "posture-coach" | "walking-coach" | "stretch-reminder" | "back-pain-relief"
   | "leg-cramp-preventer" | "smoothie-generator" | "daily-tips" | "labor-tracker"
-  | "appointment-prep" | "kick-analysis" | "sleep-analysis" | "vitamin-advice"
+  | "appointment-prep" | "kick-analysis" | "sleep-analysis" | "sleep-meditation" | "sleep-routine" | "vitamin-advice"
   | "bump-photos" | "baby-cry-analysis" | "postpartum-recovery"
   | "hospital-bag" | "birth-position" | "partner-guide" | "lactation-prep"
   | "nausea-relief" | "skincare-advice" | "birth-plan" | "mental-health" | "pregnancy-plan" | "baby-growth-analysis"
@@ -36,7 +36,7 @@ const VALID_TYPES: AIType[] = [
   "symptom-analysis", "meal-suggestion", "pregnancy-assistant", "weekly-summary",
   "posture-coach", "walking-coach", "stretch-reminder", "back-pain-relief",
   "leg-cramp-preventer", "smoothie-generator", "daily-tips", "labor-tracker",
-  "appointment-prep", "kick-analysis", "sleep-analysis", "vitamin-advice",
+  "appointment-prep", "kick-analysis", "sleep-analysis", "sleep-meditation", "sleep-routine", "vitamin-advice",
   "bump-photos", "baby-cry-analysis", "postpartum-recovery",
   "hospital-bag", "birth-position", "partner-guide", "lactation-prep",
   "nausea-relief", "skincare-advice", "birth-plan", "mental-health", "pregnancy-plan", "baby-growth-analysis",
