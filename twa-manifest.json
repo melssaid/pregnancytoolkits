@@ -32,7 +32,7 @@
       "enabled": false
     },
     "playBilling": {
-      "enabled": false
+      "enabled": true
     }
   },
   "alphaDependencies": {
