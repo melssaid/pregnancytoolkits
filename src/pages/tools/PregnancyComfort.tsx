@@ -63,15 +63,11 @@ const quickRemedies = [
 // ═══════════════════════════════════════════════════════════════
 function SleepTab() {
   const { t } = useTranslation();
-  const navigate = useNavigate();
   const { settings } = useSettings();
-  const { isLimitReached } = useAIUsage();
 
   const analysisAI = useSmartInsight({ section: 'sleep', toolType: 'sleep-analysis' });
-  const meditationAI = useSmartInsight({ section: 'sleep', toolType: 'sleep-analysis' });
-  const routineAI = useSmartInsight({ section: 'sleep', toolType: 'sleep-analysis' });
-
-  const isLoading = analysisAI.isLoading || meditationAI.isLoading || routineAI.isLoading;
+  const meditationAI = useSmartInsight({ section: 'sleep', toolType: 'sleep-meditation' });
+  const routineAI = useSmartInsight({ section: 'sleep', toolType: 'sleep-routine' });
 
   const [sleepHours, setSleepHours] = useState([6]);
   const [bedtime, setBedtime] = useState("22:00");
@@ -86,11 +82,6 @@ function SleepTab() {
     const issue = sleepIssueKeys.find(i => i.id === id);
     return issue ? t(`toolsInternal.sleepOptimizer.issues.${issue.key}`) : null;
   }).filter(Boolean);
-
-  const guardedAction = async (action: () => Promise<void>) => {
-    if (isLimitReached) { navigate('/pricing-demo'); return; }
-    await action();
-  };
 
   const analyzeSleep = async () => {
     const prompt = `As a pregnancy sleep wellness guide, analyze this sleep profile:\n\n**Pregnancy Week:** ${settings.pregnancyWeek || "Not specified"}\n**Current Sleep:** ${sleepHours[0]} hours/night\n**Bedtime:** ${bedtime}\n**Sleep Issues:** ${getIssueLabels().join(", ") || "None"}\n\nProvide:\n1. **Sleep Quality Assessment**\n2. **Optimal Sleep Position** for the current pregnancy stage\n3. **Pre-Sleep Routine**\n4. **Environment Optimization**\n5. **Natural Remedies**\n6. **When to Wake**`;
@@ -113,6 +104,7 @@ function SleepTab() {
   const response = analysisAI.content;
   const meditationScript = meditationAI.content;
   const routinePlan = routineAI.content;
+  const isLoading = analysisAI.isLoading || meditationAI.isLoading || routineAI.isLoading;
 
   return (
     <div className="space-y-4">
@@ -151,20 +143,42 @@ function SleepTab() {
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-1.5">
-        {[
-          { onClick: () => guardedAction(analyzeSleep), tab: 'analysis', icon: isLimitReached ? Crown : Brain, label: isLimitReached ? t('quotaExhausted.upgradeCTA', 'Upgrade') : t('toolsInternal.sleepOptimizer.sleepPlan') },
-          { onClick: () => guardedAction(generateMeditation), tab: 'meditation', icon: isLimitReached ? Crown : Wind, label: isLimitReached ? t('quotaExhausted.upgradeCTA', 'Upgrade') : t('toolsInternal.sleepOptimizer.meditation') },
-          { onClick: () => guardedAction(generateRoutine), tab: 'routine', icon: isLimitReached ? Crown : Bed, label: isLimitReached ? t('quotaExhausted.upgradeCTA', 'Upgrade') : t('toolsInternal.sleepOptimizer.routine') },
-        ].map(({ onClick, tab, icon: Icon, label }) => (
-          <motion.button key={tab} onClick={onClick} disabled={isLoading} whileTap={{ scale: 0.92 }} className="relative overflow-hidden rounded-xl disabled:opacity-60">
-            <div className={`flex flex-col items-center gap-0.5 py-2 px-1 text-xs rounded-xl font-medium transition-all ${activeTab === tab ? 'text-white' : 'text-foreground bg-muted/60 hover:bg-muted'}`}
-              style={activeTab === tab ? { background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))' } : {}}>
-              {isLoading && activeTab === tab ? <Loader2 className="w-4 h-4 animate-spin" /> : <Icon className="w-4 h-4" />}
-              <span className="text-[10px]">{label}</span>
-            </div>
-          </motion.button>
-        ))}
+      <div className="grid grid-cols-1 gap-2">
+        <AIActionButton
+          onClick={analyzeSleep}
+          isLoading={analysisAI.isLoading}
+          label={t('toolsInternal.sleepOptimizer.sleepPlan')}
+          loadingLabel={t('toolsInternal.common.analyzing', { defaultValue: '...' })}
+          icon={Brain}
+          toolType="sleep-analysis"
+          section="sleep"
+          variant="compact"
+          showUsage={false}
+        />
+        <div className="grid grid-cols-2 gap-2">
+          <AIActionButton
+            onClick={generateMeditation}
+            isLoading={meditationAI.isLoading}
+            label={t('toolsInternal.sleepOptimizer.meditation')}
+            loadingLabel={t('toolsInternal.common.analyzing', { defaultValue: '...' })}
+            icon={Wind}
+            toolType="sleep-meditation"
+            section="sleep"
+            variant="compact"
+            showUsage={false}
+          />
+          <AIActionButton
+            onClick={generateRoutine}
+            isLoading={routineAI.isLoading}
+            label={t('toolsInternal.sleepOptimizer.routine')}
+            loadingLabel={t('toolsInternal.common.analyzing', { defaultValue: '...' })}
+            icon={Bed}
+            toolType="sleep-routine"
+            section="sleep"
+            variant="compact"
+            showUsage={false}
+          />
+        </div>
       </div>
 
       {(response || meditationScript || routinePlan) && (
