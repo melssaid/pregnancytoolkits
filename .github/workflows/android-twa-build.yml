@@ -162,7 +162,7 @@ jobs:
 
       - name: Initialize TWA project
         run: |
-          printf '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n' | bubblewrap init --manifest="https://pregnancytoolkits.lovable.app/manifest.json" --directory="."
+          for i in $(seq 1 200); do echo; done | bubblewrap init --manifest="https://pregnancytoolkits.lovable.app/manifest.json" --directory="."
         env:
           BUBBLEWRAP_KEYSTORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
           BUBBLEWRAP_KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
