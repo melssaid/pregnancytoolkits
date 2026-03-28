@@ -1,24 +1,29 @@
+## خطة: توحيد تجربة التحميل
 
+### الوضع الحالي
 
-## Update assetlinks.json with correct package name
+- **السبلاش (أول تحميل)**: فيديو بملء الشاشة ✅ (تم بالفعل)
+- **ليةتحميل الأدوات الداخ(PageSkeleton)**: يكون للشعار والنقاط والخلفية الوردية كما كانوا سابقا لا تغير شئ
 
-Google Play Console is providing a new `assetlinks.json` snippet with the package name `app.pregnancytoolkits.android` instead of the current `com.pregnancytoolkits.app`.
+### المطلوب
 
-### Changes needed
+إبقاء الفيديو في السبلاش الأول كما هو، وتحديث شاشة تحميل الأدوات الداخلية لتعرض **الشعار (اللوجو) + نقاط تحميل وردية متحركة** بدلاً من الهياكل الرمادية.
 
-**File: `public/.well-known/assetlinks.json`**
-- Update `package_name` from `com.pregnancytoolkits.app` to `app.pregnancytoolkits.android`
-- Keep the same SHA-256 fingerprint (unchanged)
+### التغييرات
 
-### Technical detail
-The current file has:
-```json
-"package_name": "com.pregnancytoolkits.app"
-```
-Will be changed to:
-```json
-"package_name": "app.pregnancytoolkits.android"
-```
+**ملف: `src/components/PageSkeleton.tsx**`
 
-This ensures Android App Links work correctly, allowing the TWA app to open links from the website domain.
+- استبدال الهياكل الرمادية بتصميم مركزي يحتوي على:
+  - شعار `/splash-logo-v2.webp` بحجم مناسب في المنتصف
+  - 3 نقاط وردية متحركة أسفل الشعار (نفس أسلوب السبلاش القديم)
+  - خلفية ناعمة متدرجة من الوردي الفاتح
 
+**ملف: `src/components/PageSkeleton.tsx` (IndexSkeleton)**
+
+- نفس التحديث للـ IndexSkeleton
+
+### التفاصيل التقنية
+
+- النقاط: 3 دوائر وردية (`#d4608a`) بحجم 7px مع animation staggered delay
+- الشعار: صورة `/splash-logo-v2.webp` بعرض ~80px مع تأثير نبض خفيف
+- الخلفية: `#fdf2f8` (وردي فاتح) لتتناسق مع الثيم
