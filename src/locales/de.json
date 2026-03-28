@@ -342,7 +342,7 @@
     "exportFailed": "Export fehlgeschlagen",
     "exporting": "Exportieren...",
     "hours": "Stunden",
-    "info": "Information",
+    "info": "Info",
     "loading": "Laden...",
     "min": "Min",
     "minutes": "Minuten",
@@ -391,7 +391,7 @@
     "fromLMP": "Von der letzten Periode",
     "getAIAdvice": "KI-Empfängnisberatung erhalten",
     "gettingAdvice": "Personalisierte Beratung wird geladen...",
-    "info": "Conception typically occurs around 2 weeks after the first day of your last period, during ovulation.",
+    "info": "Die Empfängnis erfolgt typischerweise etwa 2 Wochen nach dem ersten Tag Ihrer letzten Periode, während des Eisprungs.",
     "knowDueDate": "Kennen Sie Ihren Geburtstermin?",
     "lmpDate": "Erster Tag der letzten Periode",
     "planningPregnancy": "Planen Sie eine Schwangerschaft?",
@@ -551,63 +551,63 @@
     "tipOfTheDay": "Tipp des Tages",
     "tips": {
       "t1": {
-        "detail": "Aim for 8-10 glasses of water daily to support amniotic fluid and reduce swelling.",
+        "detail": "Trinken Sie 8-10 Gläser Wasser täglich, um das Fruchtwasser zu unterstützen und Schwellungen zu reduzieren.",
         "tip": "Bleiben Sie hydriert!"
       },
       "t10": {
-        "detail": "After week 28, track baby movements. You should feel 10 kicks in 2 hours.",
+        "detail": "Ab Woche 28: Zählen Sie die Kindsbewegungen. Sie sollten 10 Tritte in 2 Stunden spüren.",
         "tip": "Zählen Sie die Tritte"
       },
       "t11": {
-        "detail": "Reduce swelling by putting your feet up for 15 minutes several times a day.",
+        "detail": "Reduzieren Sie Schwellungen, indem Sie mehrmals täglich 15 Minuten die Füße hochlegen.",
         "tip": "Legen Sie Ihre Füße hoch"
       },
       "t12": {
-        "detail": "A protein-rich breakfast stabilizes blood sugar and reduces nausea.",
+        "detail": "Ein eiweißreiches Frühstück stabilisiert den Blutzucker und reduziert Übelkeit.",
         "tip": "Überspringen Sie das Frühstück nicht"
       },
       "t13": {
-        "detail": "Gentle stretching relieves back pain and prepares your body for labor.",
+        "detail": "Sanftes Dehnen lindert Rückenschmerzen und bereitet Ihren Körper auf die Geburt vor.",
         "tip": "Üben Sie pränatales Yoga"
       },
       "t14": {
-        "detail": "Step away from screens for 30 minutes to reduce stress and eye strain.",
+        "detail": "Legen Sie 30 Minuten eine Bildschirmpause ein, um Stress und Augenbelastung zu reduzieren.",
         "tip": "Machen Sie eine Technikpause"
       },
       "t15": {
-        "detail": "Play calming music for baby - they'll recognize it after birth!",
+        "detail": "Spielen Sie Ihrem Baby beruhigende Musik vor – es wird sie nach der Geburt wiedererkennen!",
         "tip": "Erstellen Sie eine Kinderzimmer-Playlist"
       },
       "t2": {
-        "detail": "Leafy greens like spinach and kale are packed with folate essential for neural development.",
+        "detail": "Blattgemüse wie Spinat und Grünkohl sind reich an Folsäure, die für die Neuralentwicklung wichtig ist.",
         "tip": "Essen Sie Ihr Grünzeug"
       },
       "t3": {
-        "detail": "Walking improves circulation, reduces swelling, and helps with labor preparation.",
+        "detail": "Spazierengehen verbessert die Durchblutung, reduziert Schwellungen und bereitet auf die Geburt vor.",
         "tip": "Machen Sie einen 15-minütigen Spaziergang"
       },
       "t4": {
-        "detail": "Write down 3 things you're grateful for today. This reduces stress and improves mood.",
+        "detail": "Schreiben Sie 3 Dinge auf, für die Sie heute dankbar sind. Das reduziert Stress und verbessert die Stimmung.",
         "tip": "Üben Sie Dankbarkeit"
       },
       "t5": {
-        "detail": "Your baby can hear you! Reading or singing strengthens your bond.",
+        "detail": "Ihr Baby kann Sie hören! Vorlesen oder Singen stärkt Ihre Bindung.",
         "tip": "Sprechen Sie mit Ihrem Baby"
       },
       "t6": {
-        "detail": "This position improves blood flow to your baby and reduces pressure on organs.",
+        "detail": "Diese Position verbessert die Durchblutung Ihres Babys und reduziert den Organdruck.",
         "tip": "Schlafen Sie auf der linken Seite"
       },
       "t7": {
-        "detail": "Salmon, walnuts, and chia seeds support baby's brain development.",
+        "detail": "Lachs, Walnüsse und Chiasamen unterstützen die Gehirnentwicklung Ihres Babys.",
         "tip": "Nehmen Sie Omega-3 zu sich"
       },
       "t8": {
-        "detail": "Pelvic floor exercises prepare you for labor and prevent incontinence.",
+        "detail": "Beckenbodenübungen bereiten Sie auf die Geburt vor und beugen Inkontinenz vor.",
         "tip": "Machen Sie Ihre Kegelübungen"
       },
       "t9": {
-        "detail": "Join a prenatal class or online community for support and shared experiences.",
+        "detail": "Besuchen Sie einen Geburtsvorbereitungskurs oder eine Online-Community für Unterstützung.",
         "tip": "Verbinden Sie sich mit anderen Müttern"
       }
     },
@@ -962,7 +962,8 @@
       "birth": "Geburt"
     },
     "print": "Drucken",
-    "save": "Speichern"
+    "save": "Speichern",
+    "forWeek": "Für Woche {{week}}"
   },
   "dueDatePage": {
     "calculateBtn": "Geburtstermin berechnen",
@@ -1220,7 +1221,8 @@
     "weekLabel": "Für Woche {{week}}",
     "regenerate": "Neue Liste",
     "copy": "Kopieren",
-    "copied": "Kopiert!"
+    "copied": "Kopiert!",
+    "disclaimer": "Konsultieren Sie Ihren Arzt bei besonderen Ernährungsbedürfnissen"
   },
   "home": {
     "aiSubtitle": "Fortschrittliche KI-Tools",
@@ -1271,7 +1273,8 @@
     "streak": "Tage-Serie",
     "todayReps": "Heutige Wiederholungen",
     "tip1": "Spannen Sie die Beckenbodenmuskeln für 5 Sekunden an",
-    "tip2": "Wiederholen Sie die Übung 10 Mal"
+    "tip2": "Wiederholen Sie die Übung 10 Mal",
+    "encouragement": "Regelmäßige Beckenbodenübungen stärken die Muskulatur für die Geburt"
   },
   "kickAnalysis": {
     "analyzing": "Bewegungsmuster werden analysiert...",
@@ -1366,7 +1369,7 @@
       "storageBags": "Aufbewahrungsbeutel"
     },
     "suppliesChecklist": "Stillzubehör-Checkliste",
-    "supportNote": "If you're struggling with breastfeeding, reach out to a lactation consultant (IBCLC). Many hospitals offer free support. Fed is best - whatever works for you and baby!",
+    "supportNote": "Wenn Sie Schwierigkeiten beim Stillen haben, wenden Sie sich an eine Stillberaterin (IBCLC). Viele Krankenhäuser bieten kostenlose Unterstützung an.",
     "title": "KI-Stillvorbereitung",
     "videosSubtitle": "Expertenratschläge für erfolgreiches Stillen",
     "videosTitle": "Stillvideos",
@@ -1682,11 +1685,11 @@
       "night": "Nacht"
     },
     "title": "KI-Wadenkrampf-Prävention",
-    "warning": "Frequent or severe leg cramps, especially with swelling, redness, or warmth, should be reported to your healthcare provider immediately.",
+    "warning": "Häufige oder starke Wadenkrämpfe, besonders mit Schwellung, Rötung oder Wärme, sollten Ihrem Arzt gemeldet werden.",
     "tip": "Dehnen Sie Ihre Waden vor dem Schlafengehen"
   },
   "nauseaRelief": {
-    "encouragingNote": "Remember: Morning sickness usually peaks around weeks 8-10 and improves significantly by week 12-14. You've got this!",
+    "encouragingNote": "Denken Sie daran: Die morgendliche Übelkeit erreicht ihren Höhepunkt meist in Woche 8-10 und bessert sich deutlich bis Woche 12-14.",
     "getReliefPlan": "KI-Linderungsplan erhalten",
     "nauseaSeverity": "Schwere der Übelkeit",
     "quickRemedies": "Schnelle Linderungsmittel",
@@ -1716,7 +1719,7 @@
         "tip": "Einatmen oder als Tee"
       }
     },
-    "severeWarningDesc": "If you can't keep any food/water down for 24 hours, see blood in vomit, or feel dizzy/faint, contact your healthcare provider immediately.",
+    "severeWarningDesc": "Wenn Sie 24 Stunden lang keine Nahrung/Flüssigkeit bei sich behalten können, Blut im Erbrochenen sehen oder sich schwindelig fühlen, kontaktieren Sie sofort Ihren Arzt.",
     "severeWarningTitle": "Warnung bei schwerer Übelkeit",
     "severityLabels": {
       "mild": "Leicht",
@@ -1950,7 +1953,8 @@
     "snack": "Snack-Erinnerung",
     "snackMsg": "Zeit für einen gesunden Snack!",
     "contraction": "Wehen-Timer",
-    "contractionMsg": "Denken Sie daran, Ihre Wehen zu dokumentieren"
+    "contractionMsg": "Denken Sie daran, Ihre Wehen zu dokumentieren",
+    "settings": "Einstellungen"
   },
   "nutrition": {
     "addFoodFirst": "Fügen Sie mindestens ein Lebensmittel hinzu",
@@ -2007,7 +2011,7 @@
     "breakfast": "Frühstück",
     "dietaryPreference": "Ernährungspräferenz",
     "dinner": "Abendessen",
-    "infoNote": "Nutritional needs vary. Consult your healthcare provider for personalized advice.",
+    "infoNote": "Der Nährstoffbedarf variiert. Konsultieren Sie Ihren Arzt für persönliche Empfehlungen.",
     "keyNutrients": "Wichtige Nährstoffe für Woche {{week}}",
     "lunch": "Mittagessen",
     "meals": {
@@ -2096,7 +2100,7 @@
     "lastPeriod": "Datum der letzten Periode",
     "next": "Weiter",
     "notPregnant": "Nicht schwanger",
-    "optional": "optional",
+    "optional": "Optional",
     "pregnancyStatus": "Schwangerschaftsstatus",
     "pregnancyWeek": "Aktuelle Schwangerschaftswoche",
     "pregnant": "Schwanger",
@@ -2361,7 +2365,8 @@
     },
     "symptoms": "Symptome",
     "title": "Schnelleintrag",
-    "trend": "Trend"
+    "trend": "Trend",
+    "mood": "Stimmung"
   },
   "quotaExhausted": {
     "postAnalysisHint": "Upgrade auf Premium für 40 monatliche Analysen und tiefere Einblicke",
@@ -2479,7 +2484,9 @@
       "vision": "Sehstörungen oder verschwommenes Sehen",
       "swelling": "Plötzliche Schwellung von Gesicht oder Händen",
       "fever": "Fieber über 38°C",
-      "movement": "Deutlich weniger Kindsbewegungen"
+      "movement": "Deutlich weniger Kindsbewegungen",
+      "pain": "Starke Bauchschmerzen",
+      "contractions": "Regelmäßige Kontraktionen vor der 37. Woche"
     }
   },
   "searchDialog": {
@@ -2686,7 +2693,7 @@
       "urination": "Häufiges Wasserlassen"
     },
     "sleepPlan": "Schlafplan",
-    "sleepTip": "💡 Left-side sleeping is recommended after week 20 for optimal blood flow",
+    "sleepTip": "💡 Linksseitiges Schlafen wird ab Woche 20 empfohlen für optimale Durchblutung",
     "subtitle": "Personalisierte Schlafberatung für die Schwangerschaft",
     "title": "KI-Schlaftipps",
     "usualBedtime": "Übliche Schlafenszeit",
@@ -2781,7 +2788,43 @@
     "allRecipes": "Alle Rezepte für Trimester {{trimester}}",
     "benefits": "Vorteile",
     "createCustom": "Einen KI-Smoothie erstellen",
-    "ingredients": "Zutaten",
+    "ingredients": {
+      "1banana": "1 Banane",
+      "1cupSpinach": "1 Tasse Spinat",
+      "halfCupGreekYogurt": "1/2 Tasse Griechischer Joghurt",
+      "1tbspAlmondButter": "1 EL Mandelbutter",
+      "1cupAlmondMilk": "1 Tasse Mandelmilch",
+      "1tbspHoney": "1 EL Honig",
+      "1cupStrawberries": "1 Tasse Erdbeeren",
+      "halfCupBeets": "1/2 Tasse Rote Bete",
+      "1orange": "1 Orange",
+      "halfCupPomegranate": "1/2 Tasse Granatapfel",
+      "1tbspChiaSeeds": "1 EL Chiasamen",
+      "1cupCherries": "1 Tasse Kirschen",
+      "halfCupMilk": "1/2 Tasse Milch",
+      "quarterTspCinnamon": "1/4 TL Zimt",
+      "1tbspOats": "1 EL Haferflocken",
+      "halfCucumber": "1/2 Gurke",
+      "1greenApple": "1 grüner Apfel",
+      "1inchGinger": "2,5 cm Ingwer",
+      "halfLemon": "1/2 Zitrone",
+      "1cupCoconutWater": "1 Tasse Kokoswasser",
+      "freshMint": "Frische Minze",
+      "1cupMango": "1 Tasse Mango",
+      "halfCupPineapple": "1/2 Tasse Ananas",
+      "1tbspFlaxSeeds": "1 EL Leinsamen",
+      "1cupBlueberries": "1 Tasse Blaubeeren",
+      "halfCupRaspberries": "1/2 Tasse Himbeeren",
+      "1tbspWalnuts": "1 EL Walnüsse",
+      "1cupPeaches": "1 Tasse Pfirsiche",
+      "halfCupCarrots": "1/2 Tasse Karotten",
+      "1tbspPumpkinSeeds": "1 EL Kürbiskerne",
+      "1cupWatermelon": "1 Tasse Wassermelone",
+      "halfAvocado": "1/2 Avocado",
+      "1tbspCocoa": "1 EL Kakao",
+      "1tbspPeanutButter": "1 EL Erdnussbutter",
+      "1dateFruit": "1 Dattel"
+    },
     "instructions": "Zubereitung",
     "instructionsText": {
       "brainBuilderInstructions": "Blend until smooth. Consume in the morning to boost brain function.",
@@ -4004,11 +4047,15 @@
         "cookies": "Kekse",
         "donuts": "Donuts",
         "frenchFries": "Pommes Frites",
-        "iceCream": "Eiscreme",
+        "iceCream": "Eis",
         "pizza": "Pizza",
         "popcorn": "Popcorn",
         "soda": "Limonade",
-        "tacos": "Tacos"
+        "tacos": "Tacos",
+        "chips": "Chips",
+        "cake": "Kuchen",
+        "fries": "Pommes",
+        "candy": "Süßigkeiten"
       },
       "emotionalComfort": "Emotionaler Trost",
       "emotionalComfortDesc": "bestimmte Lebensmittel bieten psychologische Erleichterung",
@@ -4168,7 +4215,7 @@
       "subtitle": "Windelwechsel verfolgen",
       "title": "Windel-Tracker",
       "todayCount": "Heutige Wechsel",
-      "wet": "Wet"
+      "wet": "Nass"
     },
     "dueDate": {
       "aiGuideTitle": "KI-Schwangerschaftsführer",
@@ -4282,13 +4329,13 @@
         "avocado": "Avocado",
         "banana": "Banane",
         "bellPepper": "Paprika",
-        "cabbage": "Kohlkopf",
+        "cabbage": "Kohl",
         "cantaloupe": "Honigmelone",
         "corn": "Maiskolben",
         "eggplant": "Aubergine",
         "honeydew": "Galiamelone",
         "lemon": "Zitrone",
-        "lettuce": "Salatkopf",
+        "lettuce": "Kopfsalat",
         "lime": "Limette",
         "papaya": "Papaya",
         "poppySeed": "Mohnsamen",
@@ -4297,7 +4344,25 @@
         "raspberry": "Himbeere",
         "squash": "Kürbis",
         "sweetPea": "Erbse",
-        "watermelon": "Wassermelone"
+        "watermelon": "Wassermelone",
+        "poppy": "Mohnkorn",
+        "sesame": "Sesamkorn",
+        "lentil": "Linse",
+        "blueberry": "Blaubeere",
+        "cherry": "Kirsche",
+        "olive": "Olive",
+        "fig": "Feige",
+        "plum": "Pflaume",
+        "peach": "Pfirsich",
+        "apple": "Apfel",
+        "orange": "Orange",
+        "pear": "Birne",
+        "turnip": "Rübe",
+        "mango": "Mango",
+        "pomegranate": "Granatapfel",
+        "coconut": "Kokosnuss",
+        "cauliflower": "Blumenkohl",
+        "pineapple": "Ananas"
       },
       "subtitle": "Woche für Woche das Wachstum Ihres Babys verfolgen",
       "thisWeeksDevelopment": "Entwicklung dieser Woche",
@@ -4406,7 +4471,7 @@
         "birdDog": "Vierfüßlerstand",
         "butterflyStretch": "Schmetterlings-Dehnung",
         "calfRaises": "Wadenheben",
-        "catCow": "Katze-Kuh-Dehnung",
+        "catCow": "Katze-Kuh",
         "childPose": "Kindeshaltung",
         "deepBreathing": "Tiefes Atmen",
         "figureFour": "Vierer-Dehnung",
@@ -4414,10 +4479,10 @@
         "gluteBridge": "Gesäßbrücke",
         "hamstringStretch": "Oberschenkeldehnung",
         "hipCircles": "Hüftkreise",
-        "kegelExercise": "Kegelübung",
+        "kegelExercise": "Beckenbodenübung",
         "lowImpactJacks": "Sanfte Hampelmänner",
         "neckRolls": "Nackenkreisen",
-        "pelvicTilts": "Beckenkippen",
+        "pelvicTilts": "Beckenneigung",
         "prenatalSquats": "Schwangerschafts-Kniebeugen",
         "savasana": "Savasana",
         "seatedMarching": "Sitzmarsch",
@@ -4429,7 +4494,14 @@
         "stepTouch": "Seitschritt",
         "sumoSquat": "Sumo-Kniebeuge",
         "wallPushups": "Wand-Liegestütze",
-        "wallSit": "Wandsitzen"
+        "wallSit": "Wandsitzen",
+        "squats": "Kniebeugen",
+        "wallPushUps": "Wand-Liegestütze",
+        "sideStretches": "Seitliche Dehnung",
+        "prenatalYoga": "Schwangerschaftsyoga",
+        "bridgeExercise": "Brücke",
+        "legLifts": "Beinheben",
+        "shoulderRolls": "Schulterkreisen"
       },
       "fitnessVideos": "Schwangerschafts-Fitness-Videos",
       "fitnessVideosSubtitle": "Sichere Trainingsanleitungen für jedes Trimester",
@@ -4892,7 +4964,7 @@
         "strong": "Stark",
         "very-strong": "Sehr stark"
       },
-      "intensivePhase": "Intensive Phase",
+      "intensivePhase": "Intensivphase",
       "intensivePhaseDesc": "Kontaktieren Sie Ihren Arzt mit diesem Journal",
       "interval": "Intervall",
       "laborStage": "Geschätzte Phase",
@@ -4905,7 +4977,7 @@
       "startContraction": "Kontraktion starten",
       "subtitle": "Protokollieren Sie Ihre Kontraktionsmuster",
       "title": "Kontraktions-Tagebuch",
-      "transition": "Intensive Phase",
+      "transition": "Übergangsphase",
       "transitionDesc": "Kontaktieren Sie Ihren Arzt mit diesem Journal",
       "understand": "Verstanden",
       "walkGently": "Sanft dazwischen gehen",
@@ -5004,7 +5076,8 @@
         "gluten": "Gluten",
         "nuts": "Nüsse",
         "seafood": "Meeresfrüchte",
-        "soy": "Soja"
+        "soy": "Soja",
+        "shellfish": "Meeresfrüchte"
       },
       "allergiesLabel": "Allergien & Unverträglichkeiten",
       "cravings": {
@@ -5186,7 +5259,7 @@
       "postpartumSupport": "Postpartum-Unterstützung",
       "previousQuestion": "Vorherige Frage",
       "psiName": "Internationale Postpartum-Unterstützung",
-      "psiNumber": "1-800-944-4773",
+      "psiNumber": "0800-111-0111",
       "question": "Frage",
       "responseBreakdown": "Antwortübersicht",
       "retake": "Neu bewerten",
@@ -5239,7 +5312,8 @@
         }
       },
       "videosSubtitle": "Unterstützung und Selbstpflege-Ressourcen",
-      "youreNotAlone": "Du bist nicht allein"
+      "youreNotAlone": "Du bist nicht allein",
+      "emergencyNote": "Bei akuter Krise: Telefonseelsorge anrufen"
     },
     "mobilityCoach": {
       "adjustGoal": "Ziel anpassen (Minuten/Woche)",
@@ -5402,7 +5476,7 @@
       "gettingAdvice": "Rat wird eingeholt...",
       "husband": "Ehemann",
       "iAmHer": "Ich bin ihr/sein...",
-      "partner": "Partner",
+      "partner": "Partner/in",
       "partnerVideos": "Partner-Unterstützungsvideos",
       "partnerVideosSubtitle": "Lernen Sie, der beste unterstützende Partner zu sein",
       "quickDailyActions": "Schnelle Tägliche Aktionen",
@@ -5412,42 +5486,50 @@
         "appointments": {
           "desc": "An der Vorsorge teilnehmen",
           "icon": "🏥",
-          "label": "Arzttermine"
+          "label": "Arzttermine",
+          "title": "Arzttermine"
         },
         "bonding": {
           "desc": "Vor der Geburt verbinden",
           "icon": "👶",
-          "label": "Bindung zum Baby"
+          "label": "Bindung zum Baby",
+          "title": "Bindung zum Baby"
         },
         "communication": {
           "desc": "Stimmungsschwankungen verstehen",
           "icon": "💬",
-          "label": "Kommunikation"
+          "label": "Kommunikation",
+          "title": "Kommunikation"
         },
         "emotional": {
           "desc": "Wie man emotional präsent ist",
           "icon": "💝",
-          "label": "Emotionale Unterstützung"
+          "label": "Emotionale Unterstützung",
+          "title": "Emotionale Unterstützung"
         },
         "intimacy": {
           "desc": "Nähe aufrechterhalten",
           "icon": "❤️",
-          "label": "Intimität und Verbindung"
+          "label": "Intimität und Verbindung",
+          "title": "Intimität"
         },
         "labor": {
           "desc": "Bereit für den Tag sein",
           "icon": "⏰",
-          "label": "Geburtsvorbereitung"
+          "label": "Geburtsvorbereitung",
+          "title": "Geburtsvorbereitung"
         },
         "physical": {
           "desc": "Massage, Hilfe bei Aufgaben",
           "icon": "🤲",
-          "label": "Körperlicher Komfort"
+          "label": "Körperlicher Komfort",
+          "title": "Körperliche Hilfe"
         },
         "postpartum": {
           "desc": "Nach der Ankunft des Babys",
           "icon": "🏠",
-          "label": "Wochenbettplanung"
+          "label": "Wochenbettplanung",
+          "title": "Wochenbett"
         }
       },
       "trimester": "Trimester",
@@ -5696,35 +5778,43 @@
       "concerns": {
         "acne": {
           "icon": "🔴",
-          "label": "Schwangerschaftsakne"
+          "label": "Schwangerschaftsakne",
+          "title": "Akne"
         },
         "dryness": {
           "icon": "🏜️",
-          "label": "Trockene Haut"
+          "label": "Trockene Haut",
+          "title": "Trockene Haut"
         },
         "glow": {
           "icon": "💫",
-          "label": "Ich will diesen Schwangerschafts-Glow!"
+          "label": "Ich will diesen Schwangerschafts-Glow!",
+          "title": "Schwangerschaftsglow"
         },
         "itching": {
           "icon": "🤚",
-          "label": "Juckreiz (PUPPP)"
+          "label": "Juckreiz (PUPPP)",
+          "title": "Juckreiz"
         },
         "melasma": {
           "icon": "🟤",
-          "label": "Melasma/Dunkle Flecken"
+          "label": "Melasma/Dunkle Flecken",
+          "title": "Melasma"
         },
         "oiliness": {
           "icon": "✨",
-          "label": "Fettige/Glänzende Haut"
+          "label": "Fettige/Glänzende Haut",
+          "title": "Fettige Haut"
         },
         "sensitivity": {
           "icon": "❗",
-          "label": "Empfindlichkeit"
+          "label": "Empfindlichkeit",
+          "title": "Empfindliche Haut"
         },
         "stretchMarks": {
           "icon": "〰️",
-          "label": "Dehnungsstreifen"
+          "label": "Dehnungsstreifen",
+          "title": "Dehnungsstreifen"
         }
       },
       "creatingRoutine": "Routine wird erstellt...",
@@ -5749,32 +5839,38 @@
         "chemicalSunscreens": {
           "icon": "⚠️",
           "name": "Chemische Sonnenschutzmittel",
-          "risk": "mittel"
+          "risk": "mittel",
+          "title": "Chemische Sonnenschutzmittel"
         },
         "essentialOils": {
           "icon": "⚠️",
           "name": "Ätherische Öle (einige)",
-          "risk": "mittel"
+          "risk": "mittel",
+          "title": "Ätherische Öle"
         },
         "formaldehyde": {
           "icon": "🚫",
           "name": "Formaldehyd",
-          "risk": "hoch"
+          "risk": "hoch",
+          "title": "Formaldehyd"
         },
         "hydroquinone": {
           "icon": "🚫",
           "name": "Hydrochinon",
-          "risk": "hoch"
+          "risk": "hoch",
+          "title": "Hydrochinon"
         },
         "retinol": {
           "icon": "🚫",
           "name": "Retinol/Retinoide",
-          "risk": "hoch"
+          "risk": "hoch",
+          "title": "Retinol"
         },
         "salicylic": {
           "icon": "⚠️",
           "name": "Salicylsäure (hoher %)",
-          "risk": "mittel"
+          "risk": "mittel",
+          "title": "Salicylsäure"
         }
       },
       "videos": {
@@ -5841,7 +5937,12 @@
         "comfort": "Komfort",
         "energy": "Energie",
         "protein": "Protein",
-        "quick": "Schnell"
+        "quick": "Schnell",
+        "nuts": "Nüsse",
+        "fruits": "Früchte",
+        "dairy": "Milchprodukte",
+        "grains": "Getreide",
+        "vegetables": "Gemüse"
       },
       "feelingHungry": "Hungrig?",
       "howToMake": "Zubereitung",
@@ -5964,14 +6065,15 @@
         },
         "grounding54321": {
           "desc": "Eine sensorische Technik zur Angstreduktion",
-          "name": "5-4-3-2-1 Grounding",
+          "name": "5-4-3-2-1 Erdung",
           "steps": [
             "Beachten Sie 5 Dinge, die Sie SEHEN können",
             "Beachten Sie 4 Dinge, die Sie BERÜHREN können",
             "Beachten Sie 3 Dinge, die Sie HÖREN können",
             "Beachten Sie 2 Dinge, die Sie RIECHEN können",
             "Beachten Sie 1 Ding, das Sie SCHMECKEN können"
-          ]
+          ],
+          "description": "Zählen Sie 5 Dinge die Sie sehen, 4 die Sie berühren, 3 die Sie hören, 2 die Sie riechen, 1 das Sie schmecken"
         },
         "progressiveRelaxation": {
           "desc": "Spannung von Kopf bis Fuß lösen",
@@ -6374,7 +6476,7 @@
       "beforeYouStart": "Bevor Sie beginnen",
       "completeExercise": "Übung abschließen",
       "completed": "Abgeschlossen",
-      "endWorkout": "End",
+      "endWorkout": "Ende",
       "exercise": "Übung",
       "greatJob": "Toll gemacht! Sie kümmern sich gut um sich und Ihr Baby!",
       "intensity": {
@@ -6382,14 +6484,15 @@
         "moderate": "mittlere Intensität"
       },
       "modification": "Anpassung",
-      "of": "of",
+      "of": "von",
       "safetyNotice": "Holen Sie immer die Freigabe Ihres Arztes ein, bevor Sie ein Trainingsprogramm während der Schwangerschaft beginnen.",
       "selectTrimester": "Wählen Sie Ihr Trimester",
       "startWorkout": "Training starten",
       "subtitle": "Sichere Trainingspläne für jedes Trimester",
       "title": "Trainingsplaner",
       "trimester": "Trimester",
-      "workoutComplete": "Training abgeschlossen! 🎉"
+      "workoutComplete": "Training abgeschlossen! 🎉",
+      "start": "Start"
     }
   },
   "videoLibrary": {
@@ -7812,8 +7915,12 @@
     "refresh": "Aktualisieren",
     "showSummary": "Zusammenfassung Woche {{week}} anzeigen",
     "subtitle": "Smarte wöchentliche Verfolgung Ihrer Schwangerschaft",
-    "trackTip": "Track your week to get personalized information about your baby's growth and your body changes",
-    "trimester": "Trimester",
+    "trackTip": "Verfolgen Sie Ihre Woche, um personalisierte Informationen über das Wachstum Ihres Babys und die Veränderungen Ihres Körpers zu erhalten",
+    "trimester": {
+      "first": "Erstes Trimester",
+      "second": "Zweites Trimester",
+      "third": "Drittes Trimester"
+    },
     "week": "Woche {{week}}",
     "weekSummary": "Zusammenfassung Woche {{week}}"
   },
@@ -7831,9 +7938,9 @@
   },
   "welcome": {
     "agreement": "Durch Fortfahren stimmen Sie unseren Nutzungsbedingungen zu",
-    "disclaimerText": "This app provides general wellness information only and is not a substitute for professional health guidance. Always consult your healthcare provider for any health concerns.",
+    "disclaimerText": "Diese App bietet allgemeine Gesundheitsinformationen und ersetzt keine professionelle medizinische Beratung.",
     "disclaimerTitle": "Wichtiger Hinweis",
-    "feature1": "30+ AI-powered pregnancy tools",
+    "feature1": "30+ KI-gestützte Schwangerschafts-Tools",
     "feature2": "Personalisierte Gesundheitsverfolgung",
     "getStarted": "Loslegen",
     "subtitle": "Ihre persönliche Schwangerschaftsbegleitung",
