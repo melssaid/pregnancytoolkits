@@ -39,5 +39,10 @@
   "isMetaQuest": false,
   "fullScopeUrl": "https://pregnancytoolkits.lovable.app/",
   "minSdkVersion": 19,
-  "fingerprints": []
+"fingerprints": [
+    {
+      "type": "sha256_cert",
+      "value": "C7:32:88:FB:25:45:F6:BD:B4:91:94:76:83:18:2B:A8:91:4A:62:71:2D:DC:5D:9A:4D:D0:95:F7:A7:A4:BC:BC"
+    }
+  ]
 }
