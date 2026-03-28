@@ -1,17 +1,31 @@
 import React, { useMemo, useState, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Scale, Plus, Trash2, TrendingUp, TrendingDown, Minus } from 'lucide-react';
+import { Gauge, Plus, Trash2, TrendingUp } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ToolFrame } from '@/components/ToolFrame';
 import { useUserProfile } from '@/hooks/useUserProfile';
 import { useToast } from '@/hooks/use-toast';
+import { AIInsightCard } from '@/components/ai/AIInsightCard';
 
+// Advanced sub-components
+import { WeeklySummaryHero } from '@/components/weight-gain/WeeklySummaryHero';
+import { WeightGainChart } from '@/components/weight-gain/WeightGainChart';
+import { BMIScaleBar } from '@/components/weight-gain/BMIScaleBar';
+import { WeeklyRateGauge } from '@/components/weight-gain/WeeklyRateGauge';
+import { WeeklyGoalCard } from '@/components/weight-gain/WeeklyGoalCard';
+import { TrimesterComparison } from '@/components/weight-gain/TrimesterComparison';
+import { WeightDistributionCard } from '@/components/weight-gain/WeightDistributionCard';
+import { MedicalTipCard } from '@/components/weight-gain/MedicalTipCard';
+
+// ═══════════════════════════════════════════════════════════════
+// Types & Storage
+// ═══════════════════════════════════════════════════════════════
 interface WeightEntry {
   id: string;
   date: string;
-  weightKg: number;
+  weight: number;
   week: number;
 }
 
@@ -20,7 +34,13 @@ const STORAGE_KEY = 'weight_gain_entries';
 function loadEntries(): WeightEntry[] {
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
-    return stored ? JSON.parse(stored) : [];
+    if (!stored) return [];
+    const parsed = JSON.parse(stored);
+    // Migrate legacy entries that used `weightKg` instead of `weight`
+    return parsed.map((e: any) => ({
+      ...e,
+      weight: e.weight ?? e.weightKg ?? 0,
+    }));
   } catch {
     return [];
   }
@@ -30,24 +50,51 @@ function saveEntries(entries: WeightEntry[]) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
 }
 
-function getGuidance(weeklyGain: number, t: (key: string) => string): { message: string; color: string; icon: React.ReactNode } {
-  if (weeklyGain < 0.2) return {
-    message: t('toolsInternal.weightGain.belowRange'),
-    color: 'text-amber-600',
-    icon: <TrendingDown className="w-4 h-4" />
+// ═══════════════════════════════════════════════════════════════
+// IOM Weight Gain Guidelines (by pre-pregnancy BMI)
+// ═══════════════════════════════════════════════════════════════
+function getExpectedGainForWeek(week: number, bmiCategory: string): { min: number; max: number } {
+  // Total expected gain ranges (kg) by BMI category
+  const totalRanges: Record<string, { min: number; max: number }> = {
+    underweight: { min: 12.5, max: 18.0 },
+    normal:      { min: 11.5, max: 16.0 },
+    overweight:  { min: 7.0,  max: 11.5 },
+    obese:       { min: 5.0,  max: 9.0  },
   };
-  if (weeklyGain <= 0.5) return {
-    message: t('toolsInternal.weightGain.healthyRange'),
-    color: 'text-emerald-600',
-    icon: <TrendingUp className="w-4 h-4" />
-  };
+  const range = totalRanges[bmiCategory] || totalRanges.normal;
+  
+  // Linear interpolation — first trimester ~0.5-2kg, rest is linear
+  if (week <= 13) {
+    const firstTriMax = 2.0;
+    const ratio = week / 13;
+    return { min: ratio * 0.5, max: ratio * firstTriMax };
+  }
+  const remainingWeeks = 42 - 13;
+  const weeksBeyondFirst = week - 13;
+  const firstTriGainMin = 0.5;
+  const firstTriGainMax = 2.0;
   return {
-    message: t('toolsInternal.weightGain.aboveRange'),
-    color: 'text-amber-600',
-    icon: <TrendingUp className="w-4 h-4" />
+    min: firstTriGainMin + ((range.min - firstTriGainMin) / remainingWeeks) * weeksBeyondFirst,
+    max: firstTriGainMax + ((range.max - firstTriGainMax) / remainingWeeks) * weeksBeyondFirst,
   };
 }
 
+function getBMICategory(bmi: number): string {
+  if (bmi < 18.5) return 'underweight';
+  if (bmi < 25) return 'normal';
+  if (bmi < 30) return 'overweight';
+  return 'obese';
+}
+
+function getCurrentTrimester(week: number): 'first' | 'second' | 'third' {
+  if (week <= 13) return 'first';
+  if (week <= 26) return 'second';
+  return 'third';
+}
+
+// ═══════════════════════════════════════════════════════════════
+// Main Component
+// ═══════════════════════════════════════════════════════════════
 const SmartWeightGainAnalyzer: React.FC = () => {
   const { t } = useTranslation();
   const { profile } = useUserProfile();
@@ -59,6 +106,15 @@ const SmartWeightGainAnalyzer: React.FC = () => {
     setEntries(loadEntries());
   }, []);
 
+  const currentWeek = profile.pregnancyWeek || 20;
+  const heightCm = profile.height || 165;
+  const prePregnancyWeight = profile.prePregnancyWeight || 60;
+  const heightM = heightCm / 100;
+  const bmi = prePregnancyWeight / (heightM * heightM);
+  const bmiCategory = getBMICategory(bmi);
+  const trimester = getCurrentTrimester(currentWeek);
+
+  // ── Add / Delete entries ──
   const addEntry = useCallback(() => {
     const weight = parseFloat(newWeight);
     if (isNaN(weight) || weight <= 0 || weight > 300) {
@@ -68,15 +124,15 @@ const SmartWeightGainAnalyzer: React.FC = () => {
     const entry: WeightEntry = {
       id: `${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
       date: new Date().toISOString(),
-      weightKg: weight,
-      week: profile.pregnancyWeek || 1,
+      weight,
+      week: currentWeek,
     };
     const updated = [...entries, entry];
     setEntries(updated);
     saveEntries(updated);
     setNewWeight('');
     toast({ title: t('toolsInternal.weightGain.added') });
-  }, [newWeight, entries, profile.pregnancyWeek, toast, t]);
+  }, [newWeight, entries, currentWeek, toast, t]);
 
   const deleteEntry = useCallback((id: string) => {
     const updated = entries.filter(e => e.id !== id);
@@ -84,33 +140,116 @@ const SmartWeightGainAnalyzer: React.FC = () => {
     saveEntries(updated);
   }, [entries]);
 
+  // ── Computed analysis ──
   const analysis = useMemo(() => {
-    if (entries.length < 2) return null;
+    if (entries.length === 0) return null;
     const sorted = [...entries].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-    const first = sorted[0];
-    const last = sorted[sorted.length - 1];
-    const totalGain = last.weightKg - first.weightKg;
-    const msPerWeek = 7 * 24 * 60 * 60 * 1000;
-    const weeks = Math.max((new Date(last.date).getTime() - new Date(first.date).getTime()) / msPerWeek, 0.1);
-    const weeklyGain = totalGain / weeks;
-    return { totalGain, weeklyGain, weeks, first, last };
-  }, [entries]);
+    const latest = sorted[sorted.length - 1];
+    const previous = sorted.length >= 2 ? sorted[sorted.length - 2] : null;
+    const totalGain = latest.weight - prePregnancyWeight;
+    
+    // Weekly rate
+    let weeklyRate: number | null = null;
+    if (sorted.length >= 2) {
+      const first = sorted[0];
+      const msPerWeek = 7 * 24 * 60 * 60 * 1000;
+      const weeks = Math.max((new Date(latest.date).getTime() - new Date(first.date).getTime()) / msPerWeek, 0.1);
+      weeklyRate = (latest.weight - first.weight) / weeks;
+    }
 
-  const guidance = analysis ? getGuidance(analysis.weeklyGain, t) : null;
+    const expected = getExpectedGainForWeek(currentWeek, bmiCategory);
+    const status: 'below' | 'above' | 'normal' | null = 
+      totalGain < expected.min ? 'below' : totalGain > expected.max ? 'above' : 'normal';
+
+    return {
+      latestWeight: latest.weight,
+      previousWeight: previous?.weight ?? null,
+      totalGain,
+      weeklyRate,
+      status,
+      targetMin: expected.min,
+      targetMax: expected.max,
+    };
+  }, [entries, prePregnancyWeight, currentWeek, bmiCategory]);
+
+  // ── Chart data (weeks 4-42) ──
+  const chartData = useMemo(() => {
+    const data: { week: number; min: number; max: number; actual: number | null }[] = [];
+    for (let w = 4; w <= 42; w += 2) {
+      const expected = getExpectedGainForWeek(w, bmiCategory);
+      const weekEntry = entries.find(e => e.week === w);
+      data.push({
+        week: w,
+        min: parseFloat(expected.min.toFixed(1)),
+        max: parseFloat(expected.max.toFixed(1)),
+        actual: weekEntry ? parseFloat((weekEntry.weight - prePregnancyWeight).toFixed(1)) : null,
+      });
+    }
+    return data;
+  }, [entries, prePregnancyWeight, bmiCategory]);
+
+  // ── Healthy rate range based on BMI ──
+  const healthyRateRange = useMemo(() => {
+    if (currentWeek <= 13) return { min: 0.04, max: 0.15 };
+    const ranges: Record<string, { min: number; max: number }> = {
+      underweight: { min: 0.44, max: 0.58 },
+      normal: { min: 0.35, max: 0.50 },
+      overweight: { min: 0.23, max: 0.33 },
+      obese: { min: 0.17, max: 0.27 },
+    };
+    return ranges[bmiCategory] || ranges.normal;
+  }, [currentWeek, bmiCategory]);
+
+  // ── AI prompt context ──
+  const aiPrompt = useMemo(() => {
+    if (!analysis) return '';
+    return `Analyze pregnancy weight gain data:
+- Week: ${currentWeek}, Trimester: ${trimester}
+- Pre-pregnancy weight: ${prePregnancyWeight}kg, BMI: ${bmi.toFixed(1)} (${bmiCategory})
+- Current weight: ${analysis.latestWeight}kg, Total gain: ${analysis.totalGain.toFixed(1)}kg
+- Weekly rate: ${analysis.weeklyRate?.toFixed(2) ?? 'N/A'} kg/week
+- Expected range: ${analysis.targetMin.toFixed(1)}–${analysis.targetMax.toFixed(1)}kg
+- Status: ${analysis.status}
+- Entries: ${entries.length}
+
+Provide personalized advice with: 1) Assessment 2) Nutritional tips 3) Exercise recommendations 4) Weekly targets 5) When to consult doctor.`;
+  }, [analysis, currentWeek, trimester, prePregnancyWeight, bmi, bmiCategory, entries.length]);
 
   return (
     <ToolFrame
       toolId="weight-gain"
       title={t('tools.weightGain.title', 'Weight Gain Analyzer')}
       subtitle={t('tools.weightGain.subtitle', 'Track and analyze your pregnancy weight gain')}
-      icon={Scale}
+      icon={Gauge}
     >
       <div className="space-y-4">
+        {/* Hero Summary */}
+        {analysis && (
+          <WeeklySummaryHero
+            currentWeek={currentWeek}
+            latestWeight={analysis.latestWeight}
+            previousWeight={analysis.previousWeight}
+            totalGain={analysis.totalGain}
+            targetMin={analysis.targetMin}
+            targetMax={analysis.targetMax}
+            status={analysis.status}
+            t={t}
+          />
+        )}
+
+        {/* BMI Scale */}
+        <Card>
+          <CardContent className="p-4">
+            <h3 className="text-[12px] font-bold mb-3">{t('toolsInternal.weightGain.bmiTitle', 'Pre-Pregnancy BMI')}</h3>
+            <BMIScaleBar bmi={bmi} t={t} />
+          </CardContent>
+        </Card>
+
         {/* Add Weight Entry */}
         <Card>
           <CardHeader className="pb-3">
             <CardTitle className="text-base flex items-center gap-2">
-              <Plus className="w-4 h-4" />
+              <Plus className="w-4 h-4 text-primary" />
               {t('toolsInternal.weightGain.addEntry', 'Add Weight')}
             </CardTitle>
           </CardHeader>
@@ -134,38 +273,64 @@ const SmartWeightGainAnalyzer: React.FC = () => {
           </CardContent>
         </Card>
 
-        {/* Analysis */}
-        {analysis && guidance && (
-          <Card className="border-primary/20">
-            <CardHeader className="pb-3">
-              <CardTitle className="text-base flex items-center gap-2">
-                <TrendingUp className="w-4 h-4" />
-                {t('toolsInternal.weightGain.analysis', 'Analysis')}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <div className="grid grid-cols-2 gap-3">
-                <div className="bg-muted/50 rounded-lg p-3 text-center">
-                  <div className="text-2xl font-bold text-foreground">{analysis.totalGain.toFixed(1)}</div>
-                  <div className="text-xs text-muted-foreground">{t('toolsInternal.weightGain.totalKg', 'Total kg')}</div>
-                </div>
-                <div className="bg-muted/50 rounded-lg p-3 text-center">
-                  <div className="text-2xl font-bold text-foreground">{analysis.weeklyGain.toFixed(2)}</div>
-                  <div className="text-xs text-muted-foreground">{t('toolsInternal.weightGain.kgPerWeek', 'kg/week')}</div>
-                </div>
-              </div>
-              <div className={`flex items-center gap-2 text-sm ${guidance.color}`}>
-                {guidance.icon}
-                <span>{guidance.message}</span>
-              </div>
-            </CardContent>
-          </Card>
+        {/* Weight Gain Chart */}
+        {entries.length >= 1 && (
+          <WeightGainChart chartData={chartData} t={t} />
+        )}
+
+        {/* Weekly Rate Gauge */}
+        {analysis?.weeklyRate !== null && analysis?.weeklyRate !== undefined && (
+          <WeeklyRateGauge
+            rate={analysis.weeklyRate}
+            healthyMin={healthyRateRange.min}
+            healthyMax={healthyRateRange.max}
+            t={t}
+          />
+        )}
+
+        {/* Weekly Goal Card */}
+        {analysis && (
+          <WeeklyGoalCard
+            currentWeek={currentWeek}
+            currentWeight={analysis.latestWeight}
+            prePregnancyWeight={prePregnancyWeight}
+            getExpectedGainForWeek={(w) => getExpectedGainForWeek(w, bmiCategory)}
+            t={t}
+          />
+        )}
+
+        {/* Trimester Comparison */}
+        {entries.length >= 1 && (
+          <TrimesterComparison
+            entries={entries}
+            prePregnancyWeight={prePregnancyWeight}
+            currentTrimester={trimester}
+            t={t}
+          />
+        )}
+
+        {/* Weight Distribution */}
+        <WeightDistributionCard t={t} />
+
+        {/* Medical Tip */}
+        <MedicalTipCard trimester={trimester} t={t} />
+
+        {/* AI Analysis */}
+        {analysis && (
+          <AIInsightCard
+            title={t('toolsInternal.weightGain.aiAnalysis', 'AI Weight Analysis')}
+            prompt={aiPrompt}
+            toolType="weight-analysis"
+            section="weight"
+            context={{ week: currentWeek }}
+          />
         )}
 
         {/* History */}
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-base">
+            <CardTitle className="text-base flex items-center gap-2">
+              <TrendingUp className="w-4 h-4" />
               {t('toolsInternal.weightGain.history', 'History')}
               {entries.length > 0 && <span className="text-muted-foreground font-normal ms-2">({entries.length})</span>}
             </CardTitle>
@@ -180,7 +345,7 @@ const SmartWeightGainAnalyzer: React.FC = () => {
                 {[...entries].reverse().map(entry => (
                   <div key={entry.id} className="flex items-center justify-between py-2 px-3 bg-muted/30 rounded-lg">
                     <div>
-                      <span className="font-medium text-foreground">{entry.weightKg} kg</span>
+                      <span className="font-medium text-foreground">{entry.weight} kg</span>
                       <span className="text-xs text-muted-foreground ms-2">
                         {t('toolsInternal.weightGain.week', 'Week')} {entry.week}
                       </span>
