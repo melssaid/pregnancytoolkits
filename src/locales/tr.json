@@ -27,8 +27,15 @@
     "generatingInsights": "Generating personalized insights...",
     "getInsights": "Get AI Insights",
     "personalizedRec": "Personalized recommendations",
-    "regenerate": "Regenerate",
-    "title": "AI Insights"
+    "regenerate": "Yeniden oluştur",
+    "title": "Yapay Zeka Analizi",
+    "subtitle": "Hamileliğinizin kişiselleştirilmiş analizi",
+    "generate": "Analiz oluştur",
+    "generating": "Analiz ediliyor...",
+    "disclaimer": "Yapay zeka sonuçları bilgilendirme amaçlıdır ve tıbbi tavsiyenin yerini almaz",
+    "weekLabel": "Hafta {{week}}",
+    "error": "Oluşturma hatası. Lütfen tekrar deneyin.",
+    "empty": "Analiz mevcut değil"
   },
   "aiUsage": {
     "dailyRequests": "Günlük yapay zeka istekleri",
@@ -42,7 +49,8 @@
     "resetsDaily": "Günlük sıfırlanır",
     "subscribePro": "Pro'ya abone ol",
     "upgradeHint": "Günlük {{limit}} istek için Pro'ya abone olun",
-    "usedOf": "Bugün {{used}}/{{limit}} kullanıldı"
+    "usedOf": "Bugün {{used}}/{{limit}} kullanıldı",
+    "disclaimer": "Yapay zeka sonuçları tıbbi tavsiyenin yerini almaz"
   },
   "app": {
     "allTools": "Tüm Araçlar",
@@ -183,7 +191,8 @@
     "percentile": "Yüzdelik",
     "title": "Bebek Büyümesi",
     "trackGrowth": "Büyümeyi Takip Et",
-    "weight": "Ağırlık (kg)"
+    "weight": "Ağırlık (kg)",
+    "disclaimer": "Gösterge değerlerdir. Her bebek kendi hızında büyür."
   },
   "babySleepPage": {
     "duration": "Süre",
@@ -270,13 +279,13 @@
       "ageMonths": "Yaş (ay)",
       "kg": "kg",
       "maxPercentile": "Maksimum (%97)",
-      "median": "Medyan (%50)",
-      "medianPercentile": "Medyan (%50)",
+      "median": "Ortanca (%50)",
+      "medianPercentile": "Ortanca (%50)",
       "minPercentile": "Minimum (%3)",
       "month": "Ay",
       "noData": "Grafiği görüntülemek için en az bir ölçüm ekleyin",
       "normalRange": "Normal Aralık",
-      "title": "Ağırlık Büyüme Eğrisi - WHO Standartları",
+      "title": "Bebek büyümesi",
       "weightKg": "Ağırlık (kg)",
       "yourBaby": "Bebeğiniz",
       "yourBabyBoy": "Bebeğinizin ağırlığı",
@@ -291,7 +300,7 @@
       "kicks": "tekme",
       "min": "dk",
       "noData": "Grafiği görüntülemek için en az 2 seans kaydedin",
-      "title": "Fetüs Aktivitesi - Son 7 Seans"
+      "title": "Bebek hareketleri"
     },
     "mood": {
       "average": "Ortalama",
@@ -301,23 +310,25 @@
         "bad": "Kötü",
         "good": "İyi",
         "great": "Harika",
-        "okay": "Fena Değil",
+        "okay": "İyi",
         "veryBad": "Çok Kötü"
       },
       "noData": "Grafiği görüntülemek için ruh halinizi en az 3 kez kaydedin",
       "stable": "Stabil",
-      "title": "Ruh Hali Takibi - Son 2 Hafta"
+      "title": "Ruh hali takibi"
     },
     "weight": {
       "gain": "Artış",
       "noData": "Grafiği görüntülemek için en az iki ölçüm ekleyin",
       "prePregnancyWeight": "Hamilelik öncesi ağırlık",
       "recommendedRange": "Önerilen aralık",
-      "title": "Haftalık Kilo Takibi",
+      "title": "Kilo takibi",
       "week": "Hafta",
       "weight": "Ağırlık",
-      "yourActualWeight": "Gerçek ağırlığınız"
-    }
+      "yourActualWeight": "Gerçek ağırlığınız",
+      "current": "Mevcut kilo"
+    },
+    "noData": "Veri yok"
   },
   "common": {
     "add": "Ekle",
@@ -369,7 +380,10 @@
     "week": "Hafta",
     "weeks": "Hafta",
     "yes": "Evet",
-    "yesterday": "Dün"
+    "yesterday": "Dün",
+    "search": "Ara",
+    "darkMode": "Karanlık mod",
+    "lightMode": "Aydınlık mod"
   },
   "compliance": {
     "disclaimerCompact": "Yalnızca bilgi amaçlıdır. Sağlık uzmanınıza danışın.",
@@ -385,10 +399,11 @@
     "fromLMP": "Son Adet'ten",
     "getAIAdvice": "Yapay Zeka Gebe Kalma Tavsiyesi Al",
     "gettingAdvice": "Kişiselleştirilmiş tavsiye alınıyor...",
-    "info": "Gebe kalma genellikle son adetinizin ilk gününden yaklaşık 2 hafta sonra, yumurtlama sırasında gerçekleşir.",
+    "info": "Gebe kalma genellikle son adet döneminin ilk gününden yaklaşık 2 hafta sonra, yumurtlama sırasında gerçekleşir.",
     "knowDueDate": "Doğum Tarihinizi Biliyor musunuz?",
     "lmpDate": "Son Adetin İlk Günü",
-    "planningPregnancy": "Hamilelik mi Planlıyorsunuz?"
+    "planningPregnancy": "Hamilelik mi Planlıyorsunuz?",
+    "learnMore": "Daha fazla bilgi"
   },
   "contractionPage": {
     "avgDuration": "Ort. Süre",
@@ -404,7 +419,8 @@
     "rule511Desc": "Birçok doktor, kasılmalar 5 dakikada bir, 1 dakika süreyle ve en az 1 saat boyunca devam ederse kendileriyle iletişime geçmenizi önerir.",
     "sinceLastContraction": "Son kasılmadan {{minutes}} dk",
     "subtitle": "Kasılmaların süresini ve sıklığını kaydedin",
-    "title": "Kasılma Günlüğü"
+    "title": "Kasılma Günlüğü",
+    "disclaimer": "Kasılmalar düzenli ve sık ise doktorunuza başvurun."
   },
   "cookieConsent": {
     "accept": "Kabul Et",
@@ -483,7 +499,9 @@
     "weight": {
       "empty": "Mevcut kilonuzu kaydedin",
       "title": "Ağırlık trendi"
-    }
+    },
+    "greeting": "Merhaba",
+    "weekLabel": "Hafta {{week}}"
   },
   "dailyInsights": {
     "actions": {
@@ -532,7 +550,7 @@
     "aiPoweredTip": "AI-Powered Tip",
     "aiTip": "Yapay Zeka İpucu",
     "categories": {
-      "baby": "Baby",
+      "baby": "Bebek",
       "exercise": "Exercise",
       "health": "Health",
       "mental": "Mental",
@@ -544,69 +562,87 @@
     "tipOfTheDay": "Günün İpucu",
     "tips": {
       "t1": {
-        "detail": "Aim for 8-10 glasses of water daily to support amniotic fluid and reduce swelling.",
+        "detail": "Amniyotik sıvıyı desteklemek ve şişliği azaltmak için günde 8-10 bardak su içmeye çalışın.",
         "tip": "Stay hydrated!"
       },
       "t10": {
-        "detail": "After week 28, track baby movements. You should feel 10 kicks in 2 hours.",
+        "detail": "28. haftadan sonra bebek hareketlerini takip edin. 2 saatte 10 tekme hissetmelisiniz.",
         "tip": "Count those kicks"
       },
       "t11": {
-        "detail": "Reduce swelling by putting your feet up for 15 minutes several times a day.",
+        "detail": "Günde birkaç kez 15 dakika ayaklarınızı yükselterek şişliği azaltın.",
         "tip": "Elevate your feet"
       },
       "t12": {
-        "detail": "A protein-rich breakfast stabilizes blood sugar and reduces nausea.",
+        "detail": "Proteinli bir kahvaltı kan şekerini dengeler ve bulantıyı azaltır.",
         "tip": "Don't skip breakfast"
       },
       "t13": {
-        "detail": "Gentle stretching relieves back pain and prepares your body for labor.",
+        "detail": "Hafif germe hareketleri sırt ağrısını hafifletir ve vücudunuzu doğuma hazırlar.",
         "tip": "Practice prenatal yoga"
       },
       "t14": {
-        "detail": "Step away from screens for 30 minutes to reduce stress and eye strain.",
+        "detail": "Stresi ve göz yorgunluğunu azaltmak için ekranlardan 30 dakika uzaklaşın.",
         "tip": "Take a tech break"
       },
       "t15": {
-        "detail": "Play calming music for baby - they'll recognize it after birth!",
+        "detail": "Bebeğinize sakinleştirici müzik dinletin – doğumdan sonra tanıyacak!",
         "tip": "Create a nursery playlist"
       },
       "t2": {
-        "detail": "Leafy greens like spinach and kale are packed with folate essential for neural development.",
+        "detail": "Ispanak ve kara lahana gibi yeşillikler, sinir gelişimi için gerekli folat açısından zengindir.",
         "tip": "Eat your greens"
       },
       "t3": {
-        "detail": "Walking improves circulation, reduces swelling, and helps with labor preparation.",
+        "detail": "Yürüyüş kan dolaşımını iyileştirir, şişliği azaltır ve doğuma hazırlanmaya yardımcı olur.",
         "tip": "Take a 15-minute walk"
       },
       "t4": {
-        "detail": "Write down 3 things you're grateful for today. This reduces stress and improves mood.",
+        "detail": "Bugün minnettar olduğunuz 3 şey yazın. Stresi azaltır ve ruh halini iyileştirir.",
         "tip": "Practice gratitude"
       },
       "t5": {
-        "detail": "Your baby can hear you! Reading or singing strengthens your bond.",
+        "detail": "Bebeğiniz sizi duyabiliyor! Okumak veya şarkı söylemek bağınızı güçlendirir.",
         "tip": "Talk to your baby"
       },
       "t6": {
-        "detail": "This position improves blood flow to your baby and reduces pressure on organs.",
+        "detail": "Bu pozisyon bebeğinize kan dolaşımını iyileştirir ve organlar üzerindeki baskıyı azaltır.",
         "tip": "Sleep on your left side"
       },
       "t7": {
-        "detail": "Salmon, walnuts, and chia seeds support baby's brain development.",
+        "detail": "Somon, ceviz ve chia tohumları bebeğinizin beyin gelişimini destekler.",
         "tip": "Include omega-3s"
       },
       "t8": {
-        "detail": "Pelvic floor exercises prepare you for labor and prevent incontinence.",
+        "detail": "Pelvik taban egzersizleri sizi doğuma hazırlar ve idrar kaçırmayı önler.",
         "tip": "Do your Kegels"
       },
       "t9": {
-        "detail": "Join a prenatal class or online community for support and shared experiences.",
+        "detail": "Destek ve paylaşılan deneyimler için bir doğum öncesi sınıfa veya çevrimiçi topluluğa katılın.",
         "tip": "Connect with other moms"
       }
     },
     "title": "Günlük Hamilelik İpuçları",
     "trimester": "Trimester",
-    "yourFavorites": "Favorileriniz"
+    "yourFavorites": "Favorileriniz",
+    "tip1": "Günde en az 8 bardak su için",
+    "tip2": "Açık havada bir yürüyüş yapın",
+    "tip3": "Atıştırmalık olarak bir avuç kuruyemiş yiyin",
+    "tip4": "5 dakika derin nefes egzersizi yapın",
+    "tip5": "Vitaminlerinizi alın",
+    "tip6": "Yorgun olduğunuzda dinlenin",
+    "tip7": "Demir açısından zengin yiyecekler yiyin",
+    "tip8": "Hafif germe egzersizleri yapın",
+    "tip9": "Düşüncelerinizi bir günlüğe yazın",
+    "tip10": "Sakinleştirici müzik dinleyin",
+    "tip11": "Kalsiyum açısından zengin yiyecekler yiyin",
+    "tip12": "Uzun süre ayakta durmaktan kaçının",
+    "tip13": "Bebeğinizle konuşun",
+    "tip14": "Pelvik taban egzersizleri yapın",
+    "tip15": "Sol tarafınıza yatarak uyuyun",
+    "tip16": "Lif açısından zengin yiyecekler yiyin",
+    "tip17": "Öğleden sonra kafeinden kaçının",
+    "tip18": "Ayaklarınızı yükseltin"
   },
   "dashboard": {
     "aiTools": "AI Destekli Araçlar",
@@ -675,7 +711,11 @@
         "great": "Harika",
         "low": "Düşük",
         "normal": "Normal",
-        "okay": "Fena değil"
+        "okay": "Fena değil",
+        "happy": "Mutlu",
+        "sad": "Üzgün",
+        "tired": "Yorgun",
+        "energetic": "Enerjik"
       },
       "noSymptoms": "Yok",
       "saveAnalyze": "Kaydet ve İncele",
@@ -808,6 +848,12 @@
         "tips": "Hamilelik Sağlık İpuçları",
         "yoga": "Hamilelik Yoga Egzersizleri"
       }
+    },
+    "riskAlert": {
+      "title": "Sağlık uyarıları",
+      "subtitle": "Bu hafta için önemli noktalar",
+      "noRisks": "Uyarı yok – her şey yolunda!",
+      "disclaimer": "Tıbbi tavsiyenin yerini almaz"
     }
   },
   "diaperPage": {
@@ -839,7 +885,8 @@
     "total": "Toplam",
     "weeklyTrend": "Haftalık Eğilim",
     "wet": "Islak",
-    "yesterday": "Dün"
+    "yesterday": "Dün",
+    "disclaimer": "Şüphe durumunda çocuk doktorunuza danışın."
   },
   "doctorQuestions": {
     "addQuestion": "Soru Ekle",
@@ -911,7 +958,28 @@
     },
     "typeQuestion": "Sorunuzu buraya yazın...",
     "week": "Hafta",
-    "yourQuestions": "Sorularınız"
+    "yourQuestions": "Sorularınız",
+    "title": "Doktora sorular",
+    "subtitle": "Bir sonraki randevunuz için önemli sorular",
+    "generate": "Sorular oluştur",
+    "generating": "Oluşturuluyor...",
+    "regenerate": "Yeni sorular",
+    "copy": "Kopyala",
+    "copied": "Kopyalandı!",
+    "weekLabel": "{{week}}. hafta için",
+    "forWeek": "{{week}}. hafta için",
+    "disclaimer": "Soruları kişisel durumunuza uyarlayın",
+    "category": {
+      "general": "Genel",
+      "tests": "Testler",
+      "symptoms": "Belirtiler",
+      "nutrition": "Beslenme",
+      "exercise": "Egzersiz",
+      "mental": "Ruh sağlığı",
+      "birth": "Doğum"
+    },
+    "print": "Yazdır",
+    "save": "Kaydet"
   },
   "dueDatePage": {
     "calculateBtn": "Doğum Tarihini Hesapla",
@@ -929,7 +997,8 @@
     "timeline": "Hamilelik Zaman Çizelgeniz",
     "title": "Bebek Varış Geri Sayımı",
     "trimester": "{{number}}. Trimester",
-    "weeksAndDays": "{{weeks}} hafta, {{days}} gün"
+    "weeksAndDays": "{{weeks}} hafta, {{days}} gün",
+    "disclaimer": "Sadece tahminidir. Doğrulama için doktorunuza danışın."
   },
   "encryption": {
     "dataEncrypted": "Veriler Şifreli",
@@ -1147,10 +1216,10 @@
     "score": "Puan",
     "smartNutrition": "Akıllı Hamilelik Beslenmesi",
     "smartNutritionDesc": "Öğünleri planlayın, besinleri takip edin ve siz ve bebeğiniz için süper gıdaları keşfedin.",
-    "subtitle": "Hamilelik beslenmesi için AI destekli alışveriş listesi",
+    "subtitle": "Hamileliğe uygun alışveriş listesi",
     "super": "Süper",
     "superfoodsAdded": "{{count}} süper gıda listenize eklendi",
-    "title": "Akıllı Alışveriş Listesi",
+    "title": "Alışveriş listesi",
     "weekFocus": "Hafta {{week}} odak",
     "weeklyRecommendations": {
       "calciumFoods": "Kalsiyum açısından zengin gıdalar",
@@ -1163,7 +1232,14 @@
       "vitaminD": "D vitamini kaynakları",
       "wholeGrains": "Tam tahıllar"
     },
-    "yourList": "Listeniz"
+    "yourList": "Listeniz",
+    "generate": "Liste oluştur",
+    "generating": "Oluşturuluyor...",
+    "weekLabel": "{{week}}. hafta için",
+    "regenerate": "Yeni liste",
+    "copy": "Kopyala",
+    "copied": "Kopyalandı!",
+    "disclaimer": "Özel diyet ihtiyaçları için doktorunuza danışın"
   },
   "home": {
     "aiSubtitle": "Gelişmiş yapay zekâ araçları",
@@ -1177,7 +1253,9 @@
     "exercises": "Egzersizler",
     "meals": "Öğünler",
     "positions": "Pozisyonlar",
-    "shopping": "Alışveriş"
+    "shopping": "Alışveriş",
+    "popular": "Popüler",
+    "searchPlaceholder": "Araç ara..."
   },
   "insightTabs": {
     "dailyTip": "Günün İpucu",
@@ -1212,7 +1290,10 @@
     "step3": "5 saniye gevşetin ve kasların tamamen rahatlamasını sağlayın.",
     "step4": "Her sette 10-15 kez tekrarlayın, en iyi sonuçlar için günde 3 set yapın.",
     "streak": "Gün Serisi",
-    "todayReps": "Bugünkü Tekrarlar"
+    "todayReps": "Bugünkü Tekrarlar",
+    "tip1": "Pelvik taban kaslarını 5 saniye sıkın",
+    "tip2": "Egzersizi 10 kez tekrarlayın",
+    "encouragement": "Düzenli pelvik taban egzersizleri doğum kaslarını güçlendirir"
   },
   "kickAnalysis": {
     "analyzing": "Hareket kalıpları analiz ediliyor...",
@@ -1244,7 +1325,8 @@
     "startCounting": "Saymaya Başla",
     "subtitle": "Gün boyunca bebeğinizin hareketlerini kaydedin",
     "timeElapsed": "Geçen Süre",
-    "title": "Bebek Hareket Günlüğü"
+    "title": "Bebek Hareket Günlüğü",
+    "disclaimer": "Hareketlerde azalma fark ederseniz doktorunuza başvurun."
   },
   "kickPattern": {
     "consistent": "Tutarlı",
@@ -1261,7 +1343,9 @@
     "needsAttention": "Dikkat gerekiyor",
     "recordAtLeast": "Desen analizini görmek için en az 2 oturum kaydedin",
     "slowingDown": "Yavaşlıyor",
-    "stable": "Sabit"
+    "stable": "Sabit",
+    "title": "Hareket kalıbı",
+    "noData": "Henüz veri yok"
   },
   "laborLinks": {
     "birthPlanLink": "Doğum Planı Oluşturucu",
@@ -1307,7 +1391,7 @@
       "storageBags": "Storage bags"
     },
     "suppliesChecklist": "Breastfeeding Supplies Checklist",
-    "supportNote": "If you're struggling with breastfeeding, reach out to a lactation consultant (IBCLC). Many hospitals offer free support. Fed is best - whatever works for you and baby!",
+    "supportNote": "Emzirmede zorluk yaşıyorsanız bir laktasyon danışmanına (IBCLC) başvurun. Birçok hastane ücretsiz destek sunar.",
     "title": "AI Lactation Preparation",
     "videosSubtitle": "Expert guidance for nursing success",
     "videosTitle": "Breastfeeding Videos",
@@ -1316,7 +1400,8 @@
       "6months": "After 6 months",
       "no": "Not returning / Stay-at-home",
       "year": "After 1 year"
-    }
+    },
+    "tip": "Emzirme hakkında erken bilgilenin"
   },
   "layout": {
     "contactPage": {
@@ -1540,7 +1625,10 @@
       "launchBanner": "🎁 Lansman Teklifi — 10 gün ücretsiz",
       "premium": "Verilerin sana ait",
       "scienceBacked": "Bilimsel Temelli"
-    }
+    },
+    "home": "Ana Sayfa",
+    "tools": "Araçlar",
+    "dashboard": "Panel"
   },
   "legCrampPreventer": {
     "aiCoachTitle": "AI Cramp Prevention Coach",
@@ -1622,10 +1710,11 @@
       "night": "Night"
     },
     "title": "AI Leg Cramp Preventer",
-    "warning": "Frequent or severe leg cramps, especially with swelling, redness, or warmth, should be reported to your healthcare provider immediately."
+    "warning": "Sık veya şiddetli kramplar, özellikle şişlik, kızarıklık veya ısı ile birlikteyse doktorunuza bildirilmelidir.",
+    "tip": "Uyumadan önce baldırlarınızı gerin"
   },
   "nauseaRelief": {
-    "encouragingNote": "Remember: Morning sickness usually peaks around weeks 8-10 and improves significantly by week 12-14. You've got this!",
+    "encouragingNote": "Unutmayın: sabah bulantısı genellikle 8-10. haftalarda zirve yapar ve 12-14. haftada önemli ölçüde iyileşir.",
     "getReliefPlan": "Get AI Relief Plan",
     "nauseaSeverity": "Nausea Severity",
     "quickRemedies": "Quick Relief Remedies",
@@ -1655,7 +1744,7 @@
         "tip": "Inhale or tea"
       }
     },
-    "severeWarningDesc": "If you can't keep any food/water down for 24 hours, see blood in vomit, or feel dizzy/faint, contact your healthcare provider immediately.",
+    "severeWarningDesc": "24 saat boyunca yiyecek veya su tutamıyorsanız, kusmada kan görüyorsanız veya başınız dönüyorsa, derhal doktorunuza başvurun.",
     "severeWarningTitle": "Severe Nausea Warning",
     "severityLabels": {
       "mild": "Mild",
@@ -1677,7 +1766,9 @@
     "triggersTitle": "What triggers your nausea?",
     "videosSubtitle": "Techniques and tips to ease morning sickness",
     "videosTitle": "Nausea Comfort Videos",
-    "vomitingCheckbox": "I'm experiencing vomiting, not just nausea"
+    "vomitingCheckbox": "I'm experiencing vomiting, not just nausea",
+    "waterReminder": "Küçük yudumlar halinde su için",
+    "gingerTip": "Zencefil çayı veya şekerlemeleri deneyin"
   },
   "nav": {
     "aiTools": "AI Araçları",
@@ -1709,7 +1800,7 @@
     "remindYou": "Vitaminler, egzersizler ve daha fazlası hakkında hatırlatacağız",
     "reminderSettings": "Hatırlatma Ayarları",
     "stretching": "Esneme",
-    "title": "Bildirimler",
+    "title": "Bildirim merkezi",
     "vitamins": "Vitaminler",
     "water": "Su"
   },
@@ -1717,7 +1808,7 @@
     "aiGeneral": "Yapay zeka araç sonuçları yalnızca genel bilgi içindir.",
     "allCaughtUp": "Hepsi görüldü!",
     "appointment2hTitle": "⏰ 2 Saat Sonra Randevu!",
-    "appointmentMsg": "{{title}} saat {{time}}",
+    "appointmentMsg": "Yakında bir doktor randevunuz var",
     "appointmentMsgDoctor": "{{title}} - {{doctor}} saat {{time}}",
     "appointmentMsgDoctorLocation": "{{title}} - {{doctor}} saat {{time}} - {{location}}",
     "appointmentMsgLocation": "{{title}} saat {{time}} - {{location}}",
@@ -1754,11 +1845,11 @@
     "disclaimerTitle": "Önemli Bilgilendirme",
     "emergency": "Acil durumlarda acil servisi arayın veya en yakın hastaneye gidin.",
     "enablePush": "Anlık bildirimleri etkinleştir",
-    "exercise": "Egzersiz",
+    "exercise": "Egzersiz hatırlatıcısı",
     "exerciseReminderMsg": "Kısa bir yürüyüş enerjinizi ve ruh halinizi artıracak!",
     "exerciseReminderTitle": "🚶‍♀️ Yürüyüş Zamanı",
     "inAppActive": "✓ Uygulama içi uyarılar her zaman aktif",
-    "kegel": "Kegel",
+    "kegel": "Pelvik egzersiz",
     "kegelReminderMsg": "Pelvik taban kaslarınızı güçlendirin — günlük Kegel egzersizlerinizi yapın!",
     "kegelReminderTitle": "💪 Kegel Egzersizi Zamanı",
     "kickHint": "Daily kick counting reminder",
@@ -1807,7 +1898,7 @@
     "vitaminReminderTitle": "💊 Vitamin Hatırlatması",
     "vitamins": "Vitaminler",
     "vitaminsHint": "Daily reminder at 8:00 AM",
-    "water": "Su",
+    "water": "Su hatırlatıcısı",
     "waterHint": "Daily reminder at 9:00 AM",
     "waterReminderMsg": "Bir bardak su zamanı!",
     "waterReminderTitle": "💧 Su İçin",
@@ -1852,7 +1943,43 @@
     "weeklyTipReminders": "Haftalık İpuçları",
     "weeklyTipTitle": "🤰 Hafta {{week}} Güncelleme",
     "welcome": "👋 Hoş geldiniz!",
-    "welcomeDesc": "Hamileliğinizi kolayca ve güvenle takip etmek için 30+ akıllı aracın keyfini çıkarın."
+    "welcomeDesc": "Hamileliğinizi kolayca ve güvenle takip etmek için 30+ akıllı aracın keyfini çıkarın.",
+    "empty": "Bildirim yok",
+    "markAllRead": "Tümünü okundu işaretle",
+    "clear": "Tümünü sil",
+    "today": "Bugün",
+    "earlier": "Daha önce",
+    "settings": "Ayarlar",
+    "waterMsg": "Bir bardak su içme zamanı!",
+    "vitamin": "Vitamin hatırlatıcısı",
+    "vitaminMsg": "Bugün vitaminlerinizi aldınız mı?",
+    "exerciseMsg": "Yürüyüş zamanı!",
+    "kick": "Bebek hareketleri",
+    "kickMsg": "Bugün bebeğinizin tekmelerini saydınız mı?",
+    "appointment": "Randevu hatırlatıcısı",
+    "sleep": "Dinlenme hatırlatıcısı",
+    "sleepMsg": "Dinlenme zamanı!",
+    "mood": "Ruh hali günlüğü",
+    "moodMsg": "Bugün nasıl hissediyorsunuz?",
+    "weight": "Kilo takibi",
+    "weightMsg": "Bu hafta tartıldınız mı?",
+    "milestone": "Önemli adım",
+    "milestoneMsg": "Bebeğiniz yeni bir dönüm noktasına ulaştı!",
+    "tip": "Günün ipucu",
+    "tipMsg": "Yeni hamilelik ipucu mevcut",
+    "photo": "Fotoğraf hatırlatıcısı",
+    "photoMsg": "Bu hafta karnınızı belgeleyin!",
+    "kegelMsg": "Pelvik taban egzersizi zamanı!",
+    "stretch": "Germe",
+    "stretchMsg": "Germe molası verin",
+    "breathe": "Nefes egzersizi",
+    "breatheMsg": "Derin nefes almak için bir an durun",
+    "journal": "Günlük",
+    "journalMsg": "Düşüncelerinizi not edin",
+    "snack": "Atıştırmalık hatırlatıcısı",
+    "snackMsg": "Sağlıklı bir atıştırmalık zamanı!",
+    "contraction": "Kasılma zamanlayıcısı",
+    "contractionMsg": "Kasılmalarınızı belgelemeyi unutmayın"
   },
   "nutrition": {
     "addFoodFirst": "En az bir yiyecek ekleyin",
@@ -1882,7 +2009,10 @@
     "tipsTitle": "Hamilelik Beslenme İpuçları",
     "todaysMeals": "Bugünkü Öğünler",
     "totalCalories": "Bugün Toplam Kalori",
-    "weekInfo": "Hafta {{week}} - Öğünlerinizi kaydedin ve AI ipuçları alın"
+    "weekInfo": "Hafta {{week}} - Öğünlerinizi kaydedin ve AI ipuçları alın",
+    "supplementsGuide": {
+      "title": "Takviye kılavuzu"
+    }
   },
   "nutritionLinks": {
     "cravingLink": "Aşerme Alternatifleri",
@@ -1905,10 +2035,10 @@
     },
     "breakfast": "Kahvaltı",
     "dietaryPreference": "Diyet Tercihi",
-    "dinner": "Akşam Yemeği",
-    "infoNote": "Beslenme ihtiyaçları değişiklik gösterir. Kişisel tavsiye için sağlık uzmanınıza danışın.",
+    "dinner": "Akşam yemeği",
+    "infoNote": "Beslenme ihtiyaçları değişkendir. Kişiselleştirilmiş öneriler için sağlık uzmanınıza danışın.",
     "keyNutrients": "Hafta {{week}} için Temel Besinler",
-    "lunch": "Öğle Yemeği",
+    "lunch": "Öğle yemeği",
     "meals": {
       "appleAlmondButter": "Badem ezmeli elma dilimleri",
       "avocadoToast": "Avokadolu tost",
@@ -1970,7 +2100,12 @@
     "title": "Akıllı Beslenme Planlayıcısı",
     "trimester": "Trimester",
     "vegan": "Vegan",
-    "vegetarian": "Vejetaryen"
+    "vegetarian": "Vejetaryen",
+    "calories": "Kalori",
+    "protein": "Protein",
+    "iron": "Demir",
+    "calcium": "Kalsiyum",
+    "fiber": "Lif"
   },
   "onboarding": {
     "accept": "Anlıyorum ve devam et",
@@ -1985,12 +2120,12 @@
     "dueDateWillCompute": "Doğum tarihi otomatik hesaplanacak",
     "feature1": "Yapay zeka araçları",
     "feature2": "Hamilelik takibi",
-    "feature3": "Sağlık & Fitness",
+    "feature3": "Sağlık ve Fitness",
     "height": "Boy",
     "lastPeriod": "Son adet tarihi",
     "next": "Devam et",
     "notPregnant": "Hamile değil",
-    "optional": "isteğe bağlı",
+    "optional": "İsteğe bağlı",
     "pregnancyStatus": "Gebelik durumu",
     "pregnancyWeek": "Mevcut hamilelik haftası",
     "pregnant": "Hamile",
@@ -2007,7 +2142,9 @@
       "pregnant": "Hamileliğim",
       "pregnantDesc": "Kapsamlı hamilelik yol arkadaşınız",
       "subtitle": "Her şeyi sizin için kişiselleştireceğiz",
-      "title": "Yolculuğunuzda neredesiniz?"
+      "title": "Yolculuğunuzda neredesiniz?",
+      "ttcLabel": "Bebek planlama",
+      "postpartumLabel": "Doğum sonrası"
     },
     "step3": {
       "bloodType": "Kan grubu",
@@ -2066,11 +2203,14 @@
     "maybeLater": "Belki sonra",
     "startTrial": "Şimdi abone ol",
     "subscribeButton": "Şimdi Abone Ol",
-    "subtitle": "Tüm akıllı araçlara erişmek için abone olun",
-    "title": "Premium Özellik ✨",
+    "subtitle": "Tüm özelliklere sınırsız erişim",
+    "title": "Premium'u Aç",
     "toolLocked": "\"{{tool}}\" is available for subscribers only",
     "trialDesc": "Tüm premium özellikleri açın",
-    "trialTitle": "Premium Erişim 🎁"
+    "trialTitle": "Premium Erişim 🎁",
+    "feature1": "Sınırsız yapay zeka analizleri",
+    "feature2": "Tüm Premium araçlar",
+    "cta": "Premium'a geç"
   },
   "postpartumLinks": {
     "babySleepLink": "Bebek Uyku Takibi",
@@ -2098,7 +2238,8 @@
     "obesity": "Obezite (VKİ > 30)",
     "previousPreeclampsia": "Önceki preeklampsi",
     "subtitle": "Preeklampsi risk faktörlerinizi kontrol edin",
-    "title": "Preeklampsi Farkındalık Kontrolü"
+    "title": "Preeklampsi Farkındalık Kontrolü",
+    "learnMore": "Daha fazla bilgi"
   },
   "preeclampsiaRisk": {
     "aiCoachTitle": "Yapay Zeka Preeklampsi Önleme Koçu",
@@ -2236,7 +2377,7 @@
       "5": "Harika"
     },
     "save": "Kaydet",
-    "saved": "Kaydedildi ✓",
+    "saved": "Kaydedildi!",
     "symptomNames": {
       "backpain": "Sırt ağrısı",
       "cramps": "Kramplar",
@@ -2248,8 +2389,9 @@
       "swelling": "Şişlik"
     },
     "symptoms": "Belirtiler",
-    "title": "Gününüzü kaydedin",
-    "trend": "Eğilim"
+    "title": "Hızlı giriş",
+    "trend": "Eğilim",
+    "mood": "Ruh hali"
   },
   "quotaExhausted": {
     "postAnalysisHint": "Aylık 40 analiz ve daha derin bilgiler için Premium'a yükseltin",
@@ -2358,6 +2500,18 @@
           "3": "Severe abdominal pain with weight changes"
         }
       }
+    },
+    "callDoctor": {
+      "title": "Doktoru ne zaman aramalı",
+      "subtitle": "Bu belirtiler durumunda derhal başvurun",
+      "bleeding": "Vajinal kanama",
+      "headache": "Şiddetli sürekli baş ağrısı",
+      "vision": "Görme problemleri",
+      "swelling": "Yüz veya ellerde ani şişlik",
+      "fever": "38°C üzeri ateş",
+      "movement": "Bebek hareketlerinde belirgin azalma",
+      "pain": "Şiddetli karın ağrısı",
+      "contractions": "37. haftadan önce düzenli kasılmalar"
     }
   },
   "searchDialog": {
@@ -2425,10 +2579,11 @@
       "importantText": "Yedekleme dosyasını Google Drive, iCloud gibi güvenli bir yere kaydedin veya kendinize e-posta ile gönderin.",
       "importing": "Veriler içe aktarılıyor...",
       "invalidFile": "Geçersiz yedekleme dosyası",
-      "lastBackup": "Son yedekleme:",
+      "lastBackup": "Son yedekleme: {{date}}",
       "noData": "Veri yok",
       "noDataDesc": "Dışa aktarılacak veri bulunamadı",
-      "title": "Veri Yedekleme"
+      "title": "Veri Yedekleme",
+      "auto": "Otomatik yedekleme"
     },
     "clearData": {
       "allSettings": "Tüm ayarlar",
@@ -2549,8 +2704,8 @@
   },
   "sleepOptimizer": {
     "currentSleep": "Current Sleep: {{hours}} hours/night",
-    "meditation": "Meditation",
-    "routine": "Routine",
+    "meditation": "Meditasyon",
+    "routine": "Rutin",
     "sleepChallenges": "Sleep Challenges",
     "sleepIssues": {
       "anxiety": "Anxiety/racing thoughts",
@@ -2563,12 +2718,15 @@
       "urination": "Sık idrara çıkma"
     },
     "sleepPlan": "Sleep Plan",
-    "sleepTip": "💡 Left-side sleeping is recommended after week 20 for optimal blood flow",
+    "sleepTip": "💡 Sol tarafa yatmak 20. haftadan sonra optimal dolaşım için önerilir",
     "subtitle": "Personalized sleep guidance for pregnancy",
     "title": "AI Sleep Tips",
     "usualBedtime": "Usual Bedtime",
     "videosSubtitle": "Expert tips for better sleep during pregnancy",
-    "videosTitle": "Pregnancy Sleep Videos"
+    "videosTitle": "Pregnancy Sleep Videos",
+    "tip1": "Sol tarafınıza yatarak uyuyun",
+    "tip2": "Dizlerinizin arasına hamilelik yastığı koyun",
+    "tip3": "Uyumadan önce ekranlardan kaçının"
   },
   "smartPlan": {
     "activityLevel": "Aktivite Düzeyi",
@@ -2634,7 +2792,7 @@
     "summary": "Özet",
     "summaryText": "Kişiselleştirilmiş planınızı takip etmeye devam edin ve herhangi bir endişe için doktorunuza danışın.",
     "systolic": "Sistolik",
-    "title": "Akıllı Hamilelik Planı",
+    "title": "Akıllı plan",
     "trimester1": "Birinci Trimester",
     "trimester2": "İkinci Trimester",
     "trimester3": "Üçüncü Trimester",
@@ -2646,56 +2804,69 @@
     "weeklyReport": "Haftalık Rapor",
     "weight": "Ağırlık",
     "yourData": "Verileriniz",
-    "yourHealthData": "Kişisel Bilgileriniz"
+    "yourHealthData": "Kişisel Bilgileriniz",
+    "disclaimer": "Tıbbi tavsiyenin yerini almaz"
   },
   "smoothieAI": {
     "aiGenerate": "Yapay Zeka ile Oluştur",
     "aiGeneratedRecipe": "Yapay Zeka Tarafından Oluşturulan Tarif",
     "allRecipes": "Trimester {{trimester}} için Tüm Tarifler",
     "benefits": {
-      "boostsIron": "Boosts iron levels and prevents anemia",
-      "brainDev": "Supports baby brain development with Omega-3s",
-      "calmsNausea": "Helps calm morning sickness",
-      "fightsFatigue": "Fights fatigue and provides sustained energy",
-      "promotesSleep": "Promotes relaxation and better sleep",
-      "strengthensBones": "Strengthens bones for you and baby"
+      "fightsFatigue": "Yorgunlukla savaşır",
+      "boostsIron": "Demiri artırır",
+      "promotesSleep": "Uykuyu destekler",
+      "calmsNausea": "Bulantıyı yatıştırır",
+      "brainDev": "Beyin gelişimi",
+      "strengthensBones": "Kemikleri güçlendirir"
     },
     "createCustom": "Özel Yapay Zeka Smoothie Oluştur",
     "ingredients": {
-      "1banana": "1 banana",
-      "1cupAlmondMilk": "1 cup almond milk",
-      "1cupBlueberries": "1 cup blueberries",
-      "1cupCherries": "1 cup cherries",
-      "1cupCoconutWater": "1 cup coconut water",
-      "1cupFortifiedAlmondMilk": "1 cup fortified almond milk",
-      "1cupGreekYogurt": "1 cup Greek yogurt",
-      "1cupMilk": "1 cup milk",
-      "1cupSpinach": "1 cup spinach",
-      "1cupStrawberries": "1 cup strawberries",
-      "1greenApple": "1 green apple",
-      "1inchGinger": "1 inch ginger",
-      "1orange": "1 orange",
-      "1tbspAlmondButter": "1 tbsp almond butter",
-      "1tbspChiaSeeds": "1 tbsp chia seeds",
-      "1tbspFlaxseed": "1 tbsp flaxseed",
-      "1tbspHoney": "1 tbsp honey",
-      "1tbspMapleSyrup": "1 tbsp maple syrup",
-      "1tbspOats": "1 tbsp oats",
-      "1tbspSesameSeeds": "1 tbsp sesame seeds",
-      "1tbspWalnuts": "1 tbsp walnuts",
-      "2tbspAlmondButter": "2 tbsp almond butter",
-      "freshMint": "Fresh mint",
-      "halfCucumber": "1/2 cucumber",
-      "halfCupBeets": "1/2 cup beets",
-      "halfCupGreekYogurt": "1/2 cup Greek yogurt",
-      "halfCupMilk": "1/2 cup milk",
-      "halfCupPomegranate": "1/2 cup pomegranate",
-      "halfLemon": "1/2 lemon",
-      "honeyToTaste": "Honey to taste",
-      "quarterAvocado": "1/4 avocado",
-      "quarterTspCinnamon": "1/4 tsp cinnamon"
+      "1banana": "1 muz",
+      "1cupSpinach": "1 bardak ıspanak",
+      "halfCupGreekYogurt": "1/2 bardak Yunan yoğurdu",
+      "1tbspAlmondButter": "1 yemek kaşığı badem ezmesi",
+      "1cupAlmondMilk": "1 bardak badem sütü",
+      "1tbspHoney": "1 yemek kaşığı bal",
+      "1cupStrawberries": "1 bardak çilek",
+      "halfCupBeets": "1/2 bardak pancar",
+      "1orange": "1 portakal",
+      "halfCupPomegranate": "1/2 bardak nar",
+      "1tbspChiaSeeds": "1 yemek kaşığı chia tohumu",
+      "1cupCherries": "1 bardak kiraz",
+      "halfCupMilk": "1/2 bardak süt",
+      "quarterTspCinnamon": "1/4 çay kaşığı tarçın",
+      "1tbspOats": "1 yemek kaşığı yulaf",
+      "halfCucumber": "1/2 salatalık",
+      "1greenApple": "1 yeşil elma",
+      "1inchGinger": "2,5 cm zencefil",
+      "halfLemon": "1/2 limon",
+      "1cupCoconutWater": "1 bardak hindistancevizi suyu",
+      "freshMint": "Taze nane",
+      "1cupMango": "1 bardak mango",
+      "halfCupPineapple": "1/2 bardak ananas",
+      "1tbspFlaxSeeds": "1 yemek kaşığı keten tohumu",
+      "1cupBlueberries": "1 bardak yaban mersini",
+      "halfCupRaspberries": "1/2 bardak ahududu",
+      "1tbspWalnuts": "1 yemek kaşığı ceviz",
+      "1cupPeaches": "1 bardak şeftali",
+      "halfCupCarrots": "1/2 bardak havuç",
+      "1tbspPumpkinSeeds": "1 yemek kaşığı balkabağı çekirdeği",
+      "1cupWatermelon": "1 bardak karpuz",
+      "halfAvocado": "1/2 avokado",
+      "1tbspCocoa": "1 yemek kaşığı kakao",
+      "1tbspPeanutButter": "1 yemek kaşığı fıstık ezmesi",
+      "1dateFruit": "1 hurma",
+      "quarterAvocado": "1/4 avokado",
+      "1tbspFlaxseed": "1 yemek kaşığı keten tohumu",
+      "1cupMilk": "1 bardak süt",
+      "1tbspMapleSyrup": "1 yemek kaşığı akçaağaç şurubu",
+      "1cupGreekYogurt": "1 bardak Yunan yoğurdu",
+      "2tbspAlmondButter": "2 yemek kaşığı badem ezmesi",
+      "1cupFortifiedAlmondMilk": "1 bardak zenginleştirilmiş badem sütü",
+      "1tbspSesameSeeds": "1 yemek kaşığı susam",
+      "honeyToTaste": "Damak tadına göre bal"
     },
-    "instructions": "Talimatlar",
+    "instructions": "Hazırlama",
     "instructionsText": {
       "brainBuilderInstructions": "Blend until smooth. Consume in the morning to boost brain function.",
       "calciumCrushInstructions": "Blend yogurt and banana first, then add remaining ingredients. Great as a snack.",
@@ -2716,9 +2887,42 @@
       "nauseaRelief": "Nausea Relief Green",
       "sleepBetter": "Sleep Better Smoothie"
     },
-    "subtitle": "Her trimester için besleyici smoothie tarifleri",
-    "title": "Hamilelik Smoothie Yapay Zeka",
-    "trimester": "Trimester"
+    "subtitle": "Hamileliğiniz için sağlıklı smoothie'ler",
+    "title": "Smoothie tarifleri",
+    "trimester": "Trimester",
+    "generate": "Tarif oluştur",
+    "generating": "Oluşturuluyor...",
+    "servings": "Porsiyon",
+    "prepTime": "Hazırlama süresi",
+    "category": "Kategori",
+    "energyBoost": "Enerji artışı",
+    "ironRich": "Demir zengini",
+    "calciumBoost": "Kalsiyum artışı",
+    "fiberRich": "Lif zengini",
+    "antiNausea": "Bulantı giderici",
+    "proteinPacked": "Protein zengini",
+    "vitaminC": "C Vitamini",
+    "omega3": "Omega 3",
+    "hydrating": "Nemlendirici",
+    "antioxidant": "Antioksidanlar",
+    "folateRich": "Folat zengini",
+    "magnesium": "Magnezyum",
+    "selectCategory": "Kategori seçin",
+    "customRequest": "Özel istek",
+    "placeholder": "ör: sütsüz, ekstra protein...",
+    "regenerate": "Yeni tarif",
+    "save": "Kaydet",
+    "saved": "Kaydedildi",
+    "favorites": "Favoriler",
+    "noFavorites": "Favori yok",
+    "removeFavorite": "Kaldır",
+    "nutritionInfo": "Besin bilgisi",
+    "perServing": "Porsiyon başına",
+    "disclaimer": "İntoleranslar için doktorunuza danışın",
+    "trimesterNote": "{{trimester}}. trimesterinize uyarlanmış",
+    "loading": "Yükleniyor...",
+    "error": "Oluşturma hatası. Lütfen tekrar deneyin.",
+    "fresh": "Taze"
   },
   "snackPlanner": {
     "calories": "calories",
@@ -2751,9 +2955,13 @@
       "hummusVeggies": "Hummus & Veggie Sticks",
       "trailMix": "Trail Mix Power Bites"
     },
-    "subtitle": "Healthy pregnancy snacks for every craving",
+    "subtitle": "Hamileliğiniz için sağlıklı atıştırmalıklar",
     "surpriseMe": "Surprise Me!",
-    "title": "Smart Snack Planner"
+    "title": "Atıştırmalık planlayıcı",
+    "generate": "Atıştırmalık öner",
+    "generating": "Oluşturuluyor...",
+    "regenerate": "Yeni öneriler",
+    "disclaimer": "Alerji durumunda doktorunuza danışın"
   },
   "socialProof": {
     "exportDesc": "Doktorunla paylaş",
@@ -2765,7 +2973,8 @@
     "tools": "30 Araç",
     "toolsDesc": "Yolculuğun için",
     "trackDesc": "Tekmeler, kasılmalar ve daha fazlası",
-    "trackEverything": "Her şeyi takip et"
+    "trackEverything": "Her şeyi takip et",
+    "users": "{{count}}+ kullanıcı bize güveniyor"
   },
   "stretchReminder": {
     "aiStretchCoach": "AI Esneme Koçu",
@@ -2831,7 +3040,8 @@
     "title": "Akıllı Esneme Hatırlatıcısı",
     "todaysProgress": "Bugünün ilerlemesi",
     "trimester": "Trimester",
-    "yourTrimester": "Trimesteriniz"
+    "yourTrimester": "Trimesteriniz",
+    "tip": "Düzenli germe molaları verin"
   },
   "subscription": {
     "premiumFeature": "Premium Özellik",
@@ -2868,7 +3078,8 @@
     "trialRemaining": "Premium aktif",
     "unlimitedAI": "Aylık 40 yapay zeka analizi",
     "unlockFullAccess": "Tam Erişimi Aç",
-    "yearly": "Yıllık"
+    "yearly": "Yıllık",
+    "features": "Premium özellikler"
   },
   "symptomAnalyzer": {
     "evidence": {
@@ -2923,7 +3134,8 @@
     "vitamin-tracker": "Günlük vitamin alımınızı takip edin. Dozajlar doktorunuz tarafından belirlenmelidir.",
     "weekly-summary": "Bebeğinizin haftalık gelişimini takip edin. Bilgiler eğitim amaçlıdır. Endişe verici değişikliklerde doktorunuza başvurun.",
     "weight-gain": "Hamilelik kilo alımınızı takip edin. Sonuçlar genel yönergelerdir. Endişelerinizi doktorunuzla tartışın.",
-    "wellness-diary": "Günlük duygularınızı kaydedin. Kalıcı üzüntü veya şiddetli kaygıda bir uzmana danışın."
+    "wellness-diary": "Günlük duygularınızı kaydedin. Kalıcı üzüntü veya şiddetli kaygıda bir uzmana danışın.",
+    "disclaimer": "Tıbbi tavsiyenin yerini almaz"
   },
   "tools": {
     "aiBackPainRelief": {
@@ -3072,7 +3284,7 @@
     },
     "preconceptionCheckup": {
       "description": "Hamilelik öncesi temel testler.",
-      "title": "Gebelik Öncesi Kontrol"
+      "title": "Gebelik öncesi kontrol"
     },
     "preeclampsiaRisk": {
       "description": "Preeklampsiyle ilgili yaygın faktörleri öğrenin.",
@@ -6298,7 +6510,11 @@
       "vitaminD": "D Vitamini"
     },
     "vitaminsCount": "Bugün {{total}} vitaminden {{taken}} alındı",
-    "weeklyStats": "Haftalık İstatistikler"
+    "weeklyStats": "Haftalık İstatistikler",
+    "taken": "Alındı",
+    "missed": "Atlandı",
+    "streak": "{{count}} gün üst üste",
+    "reminder": "Hatırlatıcı kur"
   },
   "weeklyJourney": {
     "aiDescription": "Mevcut haftanız için yapay zeka ile kapsamlı, kişiselleştirilmiş bir analiz alın",
@@ -7646,7 +7862,7 @@
     "babyGrowth": "Baby Growth",
     "checkups": "Checkups",
     "complete": "Complete",
-    "daysToGo": "{{days}} days to go",
+    "daysToGo": "{{days}} gün kaldı",
     "differentWeek": "Change Week",
     "good": "Good",
     "momsHealth": "Mom's Health",
@@ -7655,11 +7871,11 @@
     "refresh": "Refresh",
     "showSummary": "Show Week {{week}} Summary",
     "subtitle": "Smart weekly tracking for your pregnancy",
-    "trackTip": "Track your week to get personalized information about your baby's growth and your body changes",
+    "trackTip": "Bebeğinizin büyümesi hakkında kişiselleştirilmiş bilgiler için haftanızı takip edin",
     "trimester": {
-      "first": "First Trimester",
-      "second": "Second Trimester",
-      "third": "Third Trimester"
+      "first": "Birinci trimester",
+      "second": "İkinci trimester",
+      "third": "Üçüncü trimester"
     },
     "week": "Week {{week}}",
     "weekSummary": "Week {{week}} Summary"
@@ -7678,13 +7894,16 @@
   },
   "welcome": {
     "agreement": "By continuing, you agree to our Terms of Service",
-    "disclaimerText": "This app provides general wellness information only and is not a substitute for professional health guidance. Always consult your healthcare provider for any health concerns.",
+    "disclaimerText": "Bu uygulama genel sağlık bilgileri sunar ve profesyonel tıbbi tavsiyenin yerini almaz.",
     "disclaimerTitle": "Important Notice",
-    "feature1": "30+ AI-powered pregnancy tools",
-    "feature2": "Personalized health tracking",
-    "getStarted": "Get Started",
-    "subtitle": "Your complete pregnancy companion",
-    "title": "Welcome to Pregnancy Toolkits"
+    "feature1": "30+ yapay zeka destekli hamilelik aracı",
+    "feature2": "Haftalık kişiselleştirilmiş takip",
+    "getStarted": "Şimdi başla",
+    "subtitle": "Kişiselleştirilmiş hamilelik asistanınız",
+    "title": "Welcome to Pregnancy Toolkits",
+    "cta": "Başla",
+    "feature3": "Beslenme ve sağlık ipuçları",
+    "feature4": "Destekleyici topluluk"
   },
   "wellnessStats": {
     "avgMood": "Ort. Ruh hali",
