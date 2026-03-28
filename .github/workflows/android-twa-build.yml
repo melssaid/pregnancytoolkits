@@ -160,9 +160,31 @@ jobs:
         env:
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
 
+      - name: Initialize TWA project
+        run: |
+          printf 'n\n' | bubblewrap init --manifest="https://pregnancytoolkits.lovable.app/manifest.json" --directory="."
+        env:
+          BUBBLEWRAP_KEYSTORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
+          BUBBLEWRAP_KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+
+      - name: Restore TWA manifest overrides
+        run: |
+          VERSION_CODE="${{ github.event.inputs.version_code || '1' }}"
+          VERSION_NAME="${{ github.event.inputs.version_name || '1.0.0' }}"
+          jq \
+            --arg alias "$KEY_ALIAS" \
+            --arg keyPath "${{ github.workspace }}/android.keystore" \
+            --argjson vcode "$VERSION_CODE" \
+            --arg vname "$VERSION_NAME" \
+            '.signingKey.alias = $alias | .signingKey.path = $keyPath | .appVersionCode = $vcode | .appVersionName = $vname' \
+            twa-manifest.json > twa-manifest.patched.json
+          mv twa-manifest.patched.json twa-manifest.json
+        env:
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+
       - name: Build Android TWA (AAB + APK)
         run: |
-          printf 'n\n' | bubblewrap build --skipPwaValidation --manifest="twa-manifest.json"
+          printf 'n\n' | bubblewrap build --skipPwaValidation
         env:
           BUBBLEWRAP_KEYSTORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
           BUBBLEWRAP_KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
