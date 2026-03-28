@@ -8007,18 +8007,18 @@
     "signs": {
       "cervicalMucus": {
         "title": "تغيرات مخاط عنق الرحم",
-        "description": "As ovulation approaches, cervical mucus becomes more abundant, clear, and stretchy — resembling raw egg whites. This 'fertile-quality' mucus helps sperm travel more easily through the cervix. After ovulation, mucus typically becomes thicker, cloudier, or dries up.",
-        "tip": "Check mucus daily by wiping before urination. The most fertile-type mucus stretches between your fingers without breaking."
+        "description": "مع اقتراب الإباضة، يصبح مخاط عنق الرحم أكثر وفرة وشفافية ومطاطية — يشبه بياض البيض النيء. هذا المخاط 'الخصب' يساعد الحيوانات المنوية على الانتقال بسهولة أكبر عبر عنق الرحم. بعد الإباضة، يصبح المخاط عادة أكثر سمكاً وعكارة أو يجف.",
+        "tip": "افحصي المخاط يومياً بالمسح قبل التبول. أكثر أنواع المخاط خصوبة يمتد بين أصابعك دون أن ينقطع."
       },
       "basalTemp": {
         "title": "تحول درجة حرارة الجسم الأساسية",
-        "description": "After ovulation, progesterone causes your resting body temperature to rise by 0.2–0.5°C. This shift confirms that ovulation has already occurred. By tracking BBT over several cycles, you can identify your typical ovulation pattern.",
-        "tip": "Take your temperature every morning at the same time, before getting out of bed. Use a BBT-specific thermometer for accuracy."
+        "description": "بعد الإباضة، يسبب البروجسترون ارتفاع درجة حرارة جسمك أثناء الراحة بمقدار 0.2-0.5 درجة مئوية. هذا التحول يؤكد أن الإباضة قد حدثت بالفعل. من خلال تتبع BBT على مدى عدة دورات، يمكنك تحديد نمط الإباضة الخاص بك.",
+        "tip": "قيسي حرارتك كل صباح في نفس الوقت، قبل النهوض من السرير. استخدمي ميزان حرارة مخصص لـ BBT للحصول على دقة أفضل."
       },
       "cervicalPosition": {
         "title": "تغيرات وضعية عنق الرحم",
-        "description": "During your fertile window, the cervix moves higher in the vaginal canal, becomes softer (like your lips vs. the tip of your nose), and opens slightly. After ovulation, it drops lower, firms up, and closes.",
-        "tip": "Check cervical position in the same position daily (e.g., standing with one foot elevated). It takes practice — be patient with yourself."
+        "description": "خلال نافذة الخصوبة، يرتفع عنق الرحم في القناة المهبلية، ويصبح أكثر ليونة (مثل شفتيك مقارنة بطرف أنفك)، وينفتح قليلاً. بعد الإباضة، ينخفض ويصبح أكثر صلابة وينغلق.",
+        "tip": "افحصي وضعية عنق الرحم في نفس الوضعية يومياً (مثلاً، الوقوف مع رفع قدم واحدة). يحتاج الأمر ممارسة — كوني صبورة مع نفسك."
       },
       "ovulationPain": {
         "title": "ألم الإباضة (ميتلشمرتس)",
@@ -8027,13 +8027,13 @@
       },
       "breastTenderness": {
         "title": "حساسية الثدي",
-        "description": "Rising progesterone after ovulation can cause breast tenderness, fullness, or sensitivity. This is one of the most commonly noticed luteal phase symptoms. Some women also experience this in the days leading up to ovulation due to rising estrogen.",
-        "tip": "Track when tenderness begins and ends to correlate it with your ovulation pattern over time."
+        "description": "ارتفاع البروجسترون بعد الإباضة قد يسبب حساسية أو امتلاء أو ألم في الثدي. هذا من أكثر أعراض المرحلة الأصفرية ملاحظة. بعض النساء يشعرن بهذا أيضاً في الأيام التي تسبق الإباضة بسبب ارتفاع الإستروجين.",
+        "tip": "تتبعي متى تبدأ الحساسية وتنتهي لربطها بنمط الإباضة عبر الوقت."
       },
       "libidoChanges": {
         "title": "تغيرات في الرغبة",
-        "description": "Many women experience a natural increase in desire around ovulation. This is driven by the surge in estrogen and testosterone that precedes the LH peak. It's one of the body's ways of optimizing the chance of conception.",
-        "tip": "Pay attention to these natural shifts — they often align with your most fertile days."
+        "description": "كثير من النساء يشهدن زيادة طبيعية في الرغبة حول فترة الإباضة. هذا مدفوع بارتفاع الإستروجين والتستوستيرون الذي يسبق ذروة LH. إنها إحدى طرق الجسم لتحسين فرصة الحمل.",
+        "tip": "انتبهي لهذه التحولات الطبيعية — غالباً ما تتوافق مع أكثر أيامك خصوبة."
       },
       "moodShifts": {
         "title": "تغيرات المزاج والطاقة",
@@ -8042,8 +8042,8 @@
       },
       "bloating": {
         "title": "انتفاخ خفيف",
-        "description": "Hormonal changes around ovulation, particularly rising progesterone, can cause water retention and mild bloating. This is a common sign that your body is transitioning into the luteal phase.",
-        "tip": "Staying hydrated and reducing sodium intake can help manage ovulation-related bloating."
+        "description": "التغيرات الهرمونية حول الإباضة، وخاصة ارتفاع البروجسترون، يمكن أن تسبب احتباس الماء وانتفاخاً خفيفاً. هذه علامة شائعة على أن جسمك ينتقل إلى المرحلة الأصفرية.",
+        "tip": "البقاء رطبة وتقليل تناول الصوديوم يمكن أن يساعد في إدارة الانتفاخ المرتبط بالإباضة."
       },
       "lightSpotting": {
         "title": "بقع دم الإباضة",
@@ -8052,8 +8052,8 @@
       },
       "heightenedSenses": {
         "title": "حواس مرهفة",
-        "description": "Some women report a more acute sense of smell during ovulation, possibly due to elevated estrogen levels. Research suggests this may be an evolutionary adaptation. Some also notice subtle changes in taste preferences.",
-        "tip": "If you notice scents seem stronger around mid-cycle, it may be a personal ovulation indicator worth tracking."
+        "description": "بعض النساء يلاحظن حاسة شم أكثر حدة أثناء الإباضة، ربما بسبب ارتفاع مستويات الإستروجين. تشير الأبحاث إلى أن هذا قد يكون تكيفاً تطورياً. بعضهن يلاحظن أيضاً تغيرات طفيفة في تفضيلات الذوق.",
+        "tip": "إذا لاحظت أن الروائح تبدو أقوى حول منتصف الدورة، فقد يكون مؤشراً شخصياً للإباضة يستحق التتبع."
       }
     }
   },
