@@ -162,7 +162,7 @@ jobs:
 
       - name: Initialize TWA project
         run: |
-          timeout 180 bash -c 'yes "" | bubblewrap init --manifest="https://pregnancytoolkits.lovable.app/manifest.json" --directory="."' || true
+          bubblewrap init --manifest="./twa-manifest.json" --directory="."
           test -f gradlew || { echo "ERROR: gradlew not generated"; exit 1; }
         env:
           BUBBLEWRAP_KEYSTORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
