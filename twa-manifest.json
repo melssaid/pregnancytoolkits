@@ -21,15 +21,19 @@
     "path": "./android.keystore",
     "alias": "android"
   },
-  "appVersionCode": 1,
-  "appVersionName": "1.0.0",
+  "appVersionCode": 10,
+  "appVersionName": "1.1.10",
   "shortcuts": [],
   "generatorApp": "bubblewrap-cli",
   "webManifestUrl": "https://pregnancytoolkits.lovable.app/manifest.json",
   "fallbackType": "customtabs",
   "features": {
-    "locationDelegation": { "enabled": false },
-    "playBilling": { "enabled": false }
+    "locationDelegation": {
+      "enabled": false
+    },
+    "playBilling": {
+      "enabled": false
+    }
   },
   "alphaDependencies": {
     "enabled": false
@@ -39,7 +43,7 @@
   "isMetaQuest": false,
   "fullScopeUrl": "https://pregnancytoolkits.lovable.app/",
   "minSdkVersion": 21,
-"fingerprints": [
+  "fingerprints": [
     {
       "type": "sha256_cert",
       "value": "C7:32:88:FB:25:45:F6:BD:B4:91:94:76:83:18:2B:A8:91:4A:62:71:2D:DC:5D:9A:4D:D0:95:F7:A7:A4:BC:BC"
