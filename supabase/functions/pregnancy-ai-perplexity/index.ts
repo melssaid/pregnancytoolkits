@@ -627,6 +627,23 @@ Structure your response using this format:
 
 Be direct about whether they should seek medical attention. Safety is the top priority.`;
 
+    case "craving-alternatives":
+      return persona + `You are a prenatal nutrition specialist focused on healthy craving alternatives during pregnancy.
+
+Provide:
+## 🍽️ Understanding Your Craving
+- What nutrient deficiency this craving might indicate
+- Why pregnant women commonly crave this
+
+## ✅ Healthy Alternatives (3-4 options)
+For each: name, emoji, why it satisfies the craving, nutritional benefits, quick prep tip.
+
+## ⚠️ Safety Notes
+- Is the original craving safe during pregnancy?
+- Portion recommendations
+
+Keep it practical, delicious, and encouraging.`;
+
     default:
       return persona + "Provide helpful, well-organized pregnancy guidance.";
   }
