@@ -189,7 +189,7 @@ export const AIActionButton: React.FC<AIActionButtonProps> = ({
             <p className="text-[10px] text-muted-foreground/60 text-center leading-tight px-1">
               <span className="inline-flex items-center gap-1">
                 <span className="inline-block w-1.5 h-1.5 rounded-full bg-primary/60" />
-                {weight === 2 ? labels.costHint2 : weight === 0.5 ? labels.costHint05 : labels.costHint1}
+                {weight === 0 ? labels.costHint0 : weight === 2 ? labels.costHint2 : weight === 0.5 ? labels.costHint05 : labels.costHint1}
               </span>
               {' · '}
               <span
