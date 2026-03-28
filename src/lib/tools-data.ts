@@ -83,7 +83,7 @@ export const toolsData: Tool[] = [
   // NUTRITION & DIET
   // ═══════════════════════════════════════════════════════════════
   { id: "ai-meal-suggestion", titleKey: "tools.aiMealSuggestion.title", descriptionKey: "tools.aiMealSuggestion.description", icon: Utensils, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/meal.png", categoryKey: "categories.nutrition", href: "/tools/ai-meal-suggestion", priority: 10, hasAI: true },
-  { id: "ai-craving-alternatives", titleKey: "tools.aiCravingAlternatives.title", descriptionKey: "tools.aiCravingAlternatives.description", icon: Sparkles, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/healthy-food.png", categoryKey: "categories.nutrition", href: "/tools/ai-craving-alternatives", priority: 11, hasAI: true },
+  
   { id: "smart-grocery-list", titleKey: "tools.smartGroceryList.title", descriptionKey: "tools.smartGroceryList.description", icon: CheckSquare, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/shopping-cart--v1.png", categoryKey: "categories.nutrition", href: "/tools/smart-grocery-list", priority: 12, hasAI: true },
   { id: "vitamin-tracker", titleKey: "tools.vitaminTracker.title", descriptionKey: "tools.vitaminTracker.description", icon: Pill, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/pill.png", categoryKey: "categories.nutrition", href: "/tools/vitamin-tracker", priority: 13, hasAI: true },
 
