@@ -1,7 +1,7 @@
 {
   "packageId": "app.pregnancytoolkits.android",
   "host": "pregnancytoolkits.lovable.app",
-  "name": "Pregnancy Toolkits - Lifestyle Companion",
+  "name": "Pregnancy Toolkits",
   "launcherName": "Pregnancy Toolkits",
   "display": "standalone",
   "orientation": "portrait",
