@@ -95,6 +95,7 @@ export const TOOL_WEIGHT_REGISTRY: Record<AIToolType, InsightWeight> = {
   "baby-growth-analysis": 1,
   "weight-analysis": 1,
   "contraction-analysis": 1,
+  "craving-alternatives": 0.5,  // lightweight craving swap suggestions
 };
 
 /**
