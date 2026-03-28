@@ -203,44 +203,11 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <!-- Splash overlay (outside #root so React doesn't displace it) -->
-    <div id="splash-overlay" style="position:fixed;inset:0;z-index:9999;background:linear-gradient(160deg,#fdf2f8 0%,#fce7f3 50%,#f5e6f0 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.4s ease,visibility 0.4s ease;will-change:opacity;">
-      <div style="position:relative;display:flex;align-items:center;justify-content:center;width:min(280px,70vw);aspect-ratio:832/1504;">
-        <video autoplay muted playsinline loop preload="auto" style="width:100%;height:100%;object-fit:contain;border-radius:24px;" aria-hidden="true">
-          <source src="/splash-video.mp4" type="video/mp4" />
-        </video>
-      </div>
-      <div style="margin-top:20px;text-align:center;animation:splash-pill-enter 0.5s ease-out 0.2s both;">
-        <div style="display:inline-flex;flex-direction:column;align-items:center;gap:10px;">
-          <div style="display:flex;gap:6px;align-items:center;justify-content:center;">
-            <div style="width:7px;height:7px;border-radius:50%;background:rgba(212,96,138,0.7);animation:splash-dot 1.4s ease-in-out infinite;"></div>
-            <div style="width:7px;height:7px;border-radius:50%;background:rgba(212,96,138,0.7);animation:splash-dot 1.4s ease-in-out 0.2s infinite;"></div>
-            <div style="width:7px;height:7px;border-radius:50%;background:rgba(212,96,138,0.7);animation:splash-dot 1.4s ease-in-out 0.4s infinite;"></div>
-          </div>
-          <span id="splash-text" style="font-size:11px;font-weight:600;color:rgba(160,60,100,0.6);letter-spacing:0.2px;direction:ltr;unicode-bidi:plaintext;font-family:'Tajawal','Plus Jakarta Sans',system-ui,-apple-system,sans-serif;"></span>
-        </div>
-      </div>
+    <div id="splash-overlay" style="position:fixed;inset:0;z-index:9999;background:#000;display:flex;align-items:center;justify-content:center;transition:opacity 0.4s ease,visibility 0.4s ease;will-change:opacity;">
+      <video autoplay muted playsinline loop preload="auto" style="width:100%;height:100%;object-fit:cover;" aria-hidden="true">
+        <source src="/splash-video.mp4" type="video/mp4" />
+      </video>
     </div>
-    <script>
-      (function(){
-        var m={ar:"جاري تحميل الأدوات",en:"Loading your tools",fr:"Chargement des outils",de:"Tools werden geladen",es:"Cargando herramientas",tr:"Araçlar yükleniyor",pt:"Carregando ferramentas"};
-        var raw=localStorage.getItem("user_selected_language")||localStorage.getItem("selected_language")||localStorage.getItem("i18nextLng")||"en";
-        var lang=raw.substring(0,2);
-        var isAr=lang==="ar";
-        document.documentElement.setAttribute("lang", lang);
-        document.documentElement.setAttribute("dir", isAr ? "rtl" : "ltr");
-        var el=document.getElementById("splash-text");
-        if(el){
-          el.textContent=m[lang]||m.en;
-          el.style.direction=isAr?"rtl":"ltr";
-        }
-      })();
-    </script>
-    <style>
-      @keyframes splash-ripple{0%{transform:scale(1);opacity:.7}100%{transform:scale(2.2);opacity:0}}
-      @keyframes splash-breathe{0%,100%{transform:scale(1);opacity:.5}50%{transform:scale(1.2);opacity:.7}}
-      @keyframes splash-pill-enter{0%{opacity:0;transform:translateY(8px)}100%{opacity:1;transform:translateY(0)}}
-      @keyframes splash-dot{0%,100%{transform:scale(0.6);opacity:0.3}50%{transform:scale(1.1);opacity:1}}
-    </style>
 
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
