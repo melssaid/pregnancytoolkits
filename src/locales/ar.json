@@ -8254,54 +8254,54 @@
     "topicsCount": "{{count}} موضوع للاستكشاف",
     "topics": {
       "stressHormones": {
-        "title": "How Stress Affects Fertility",
-        "content": "Chronic stress triggers the release of cortisol and adrenaline, which can disrupt the hypothalamic-pituitary-gonadal (HPG) axis — the hormonal pathway that controls ovulation. Elevated cortisol may suppress GnRH (gonadotropin-releasing hormone), leading to irregular or absent ovulation. While moderate daily stress is unlikely to prevent conception, prolonged high stress can delay time to pregnancy.",
-        "practice": "Identify your top 3 stress triggers this week. For each one, write down one small action you can take to reduce its impact."
+        "title": "كيف يؤثر التوتر على الخصوبة",
+        "content": "التوتر المزمن يحفز إفراز الكورتيزول والأدرينالين، مما قد يعطل محور المهاد-الغدة النخامية-الغدد التناسلية (HPG) — المسار الهرموني الذي يتحكم في الإباضة. ارتفاع الكورتيزول قد يثبط هرمون GnRH، مما يؤدي إلى إباضة غير منتظمة أو غائبة. بينما من غير المرجح أن يمنع التوتر اليومي المعتدل الحمل، فإن التوتر المزمن الشديد قد يؤخر حدوثه.",
+        "practice": "حددي أهم 3 مصادر للتوتر هذا الأسبوع. لكل مصدر، اكتبي إجراءً صغيراً يمكنك اتخاذه لتقليل تأثيره."
       },
       "cortisol": {
-        "title": "Understanding Cortisol",
-        "content": "Cortisol is your body's primary stress hormone. In small bursts, it's helpful — providing energy and focus. But when cortisol remains chronically elevated, it can suppress reproductive hormones, disrupt sleep, increase inflammation, and affect mood. The goal isn't to eliminate stress entirely (impossible!) but to manage your stress response.",
-        "practice": "Practice the 4-7-8 breathing technique: Inhale for 4 seconds, hold for 7, exhale for 8. Repeat 4 times. This activates the parasympathetic nervous system."
+        "title": "فهم الكورتيزول",
+        "content": "الكورتيزول هو هرمون التوتر الرئيسي في جسمك. في جرعات صغيرة، يكون مفيداً — يوفر الطاقة والتركيز. لكن عندما يبقى الكورتيزول مرتفعاً بشكل مزمن، يمكن أن يثبط الهرمونات التناسلية، ويعطل النوم، ويزيد الالتهاب، ويؤثر على المزاج. الهدف ليس القضاء على التوتر تماماً (مستحيل!) بل إدارة استجابتك للتوتر.",
+        "practice": "مارسي تقنية التنفس 4-7-8: استنشقي لمدة 4 ثوانٍ، احبسي لمدة 7، وازفري لمدة 8. كرري 4 مرات. هذا ينشط الجهاز العصبي الباراسمبثاوي."
       },
       "mindfulness": {
-        "title": "Mindfulness for Fertility",
-        "content": "Mindfulness is the practice of being fully present without judgment. Studies show that mindfulness-based stress reduction (MBSR) programs can reduce anxiety and depression in women undergoing fertility treatment, and may improve outcomes. Even 10 minutes of daily mindfulness practice can lower cortisol levels and improve emotional resilience.",
-        "practice": "Try a 5-minute body scan: Close your eyes, breathe deeply, and slowly move your attention from your toes to your head, noticing sensations without trying to change them."
+        "title": "اليقظة الذهنية للخصوبة",
+        "content": "اليقظة الذهنية هي ممارسة الحضور الكامل دون حكم. أظهرت الدراسات أن برامج تقليل التوتر القائمة على اليقظة الذهنية (MBSR) يمكن أن تقلل القلق والاكتئاب لدى النساء اللواتي يخضعن لعلاج الخصوبة، وقد تحسن النتائج. حتى 10 دقائق من ممارسة اليقظة الذهنية اليومية يمكن أن تخفض مستويات الكورتيزول وتحسن المرونة العاطفية.",
+        "practice": "جربي مسح الجسم لمدة 5 دقائق: أغلقي عينيك، تنفسي بعمق، وانقلي انتباهك ببطء من أصابع قدميك إلى رأسك، ملاحظةً الأحاسيس دون محاولة تغييرها."
       },
       "breathing": {
-        "title": "Breathing Techniques",
-        "content": "Controlled breathing directly activates the vagus nerve, triggering the relaxation response. This lowers heart rate, blood pressure, and cortisol. It's one of the fastest ways to shift from a stress state to a calm state. Different techniques serve different purposes — some energize, others calm.",
-        "practice": "Box Breathing: Inhale 4 counts → Hold 4 counts → Exhale 4 counts → Hold 4 counts. Repeat for 5 minutes. Ideal before bed or during anxious moments."
+        "title": "تقنيات التنفس",
+        "content": "التنفس المتحكم به ينشط مباشرة العصب المبهم، مما يحفز استجابة الاسترخاء. هذا يخفض معدل ضربات القلب وضغط الدم والكورتيزول. إنه من أسرع الطرق للانتقال من حالة التوتر إلى حالة الهدوء. تقنيات مختلفة تخدم أغراضاً مختلفة — بعضها ينشط وبعضها يهدئ.",
+        "practice": "التنفس المربع: استنشقي 4 عدات ← احبسي 4 عدات ← ازفري 4 عدات ← احبسي 4 عدات. كرري لمدة 5 دقائق. مثالي قبل النوم أو أثناء لحظات القلق."
       },
       "journaling": {
-        "title": "Therapeutic Journaling",
-        "content": "Writing about your emotions has been scientifically shown to reduce stress, improve immune function, and provide clarity. For fertility journaling, the goal isn't to track symptoms obsessively, but to process emotions, celebrate small wins, and release fears.",
-        "practice": "Tonight, write down: 1) One thing I'm grateful for today, 2) One worry I want to release, 3) One kind thing I did for myself."
+        "title": "الكتابة العلاجية",
+        "content": "الكتابة عن مشاعرك أثبتت علمياً أنها تقلل التوتر، وتحسن وظائف المناعة، وتوفر الوضوح. في كتابة يوميات الخصوبة، الهدف ليس تتبع الأعراض بهوس، بل معالجة المشاعر، والاحتفاء بالانتصارات الصغيرة، والتحرر من المخاوف.",
+        "practice": "الليلة، اكتبي: 1) شيء واحد أنا ممتنة له اليوم، 2) قلق واحد أريد التحرر منه، 3) شيء لطيف واحد فعلته لنفسي."
       },
       "sleep": {
-        "title": "Sleep & Fertility",
-        "content": "Sleep is when your body repairs, produces hormones, and processes emotions. Poor sleep disrupts melatonin (which protects egg quality), increases cortisol, and impairs FSH and LH regulation. Women who sleep fewer than 6 hours per night have been shown to have lower fertility rates.",
-        "practice": "Create a wind-down routine: No screens 30 min before bed, dim lights, use lavender essential oil, and keep your bedroom cool (18–20°C)."
+        "title": "النوم والخصوبة",
+        "content": "النوم هو الوقت الذي يصلح فيه جسمك نفسه، وينتج الهرمونات، ويعالج المشاعر. النوم السيئ يعطل الميلاتونين (الذي يحمي جودة البويضات)، ويزيد الكورتيزول، ويضعف تنظيم FSH وLH. النساء اللواتي ينمن أقل من 6 ساعات في الليلة لديهن معدلات خصوبة أقل.",
+        "practice": "أنشئي روتيناً للاسترخاء: لا شاشات قبل 30 دقيقة من النوم، أضواء خافتة، استخدمي زيت اللافندر العطري، وحافظي على غرفة نومك باردة (18-20 درجة مئوية)."
       },
       "exercise": {
-        "title": "Movement & Stress Relief",
-        "content": "Regular moderate exercise is one of the most effective stress relievers. It releases endorphins, improves sleep, and helps regulate hormones. However, excessive intense exercise (marathon training, high-intensity daily workouts) can suppress ovulation. Balance is key.",
-        "practice": "This week, aim for 30 minutes of moderate movement 5 days: walking, yoga, swimming, or dancing. Notice how your mood shifts afterward."
+        "title": "الحركة وتخفيف التوتر",
+        "content": "التمارين المعتدلة المنتظمة هي من أكثر مخففات التوتر فعالية. تطلق الإندورفين، وتحسن النوم، وتساعد في تنظيم الهرمونات. ومع ذلك، التمارين المكثفة المفرطة (تدريب الماراثون، التمارين عالية الشدة يومياً) يمكن أن تثبط الإباضة. التوازن هو المفتاح.",
+        "practice": "هذا الأسبوع، استهدفي 30 دقيقة من الحركة المعتدلة 5 أيام: المشي، اليوغا، السباحة، أو الرقص. لاحظي كيف يتغير مزاجك بعدها."
       },
       "socialSupport": {
-        "title": "Building Your Support Network",
-        "content": "Social isolation amplifies stress. Sharing your fertility journey with trusted friends, family, or a support group can significantly reduce emotional burden. You don't have to share with everyone — even one supportive person makes a difference.",
-        "practice": "Identify one person you trust. Share one thing about your journey with them this week. Connection is healing."
+        "title": "بناء شبكة دعمك",
+        "content": "العزلة الاجتماعية تضاعف التوتر. مشاركة رحلة الخصوبة مع أصدقاء أو عائلة أو مجموعة دعم موثوقة يمكن أن تقلل العبء العاطفي بشكل كبير. لا يتعين عليك المشاركة مع الجميع — حتى شخص واحد داعم يحدث فرقاً.",
+        "practice": "حددي شخصاً واحداً تثقين به. شاركيه شيئاً واحداً عن رحلتك هذا الأسبوع. التواصل شافٍ."
       },
       "professionalHelp": {
-        "title": "When to Seek Professional Support",
-        "content": "If anxiety or sadness about fertility is affecting your daily life, sleep, relationships, or work, professional support can help. Therapists specializing in reproductive mental health understand the unique challenges of this journey. Cognitive Behavioral Therapy (CBT) is particularly effective for fertility-related anxiety.",
-        "practice": "If you're considering therapy, look for a therapist who specializes in reproductive psychology or perinatal mental health. Many offer virtual sessions."
+        "title": "متى تطلبين الدعم المهني",
+        "content": "إذا كان القلق أو الحزن بشأن الخصوبة يؤثر على حياتك اليومية أو نومك أو علاقاتك أو عملك، فإن الدعم المهني يمكن أن يساعد. المعالجون المتخصصون في الصحة النفسية الإنجابية يفهمون التحديات الفريدة لهذه الرحلة. العلاج المعرفي السلوكي (CBT) فعال بشكل خاص لقلق الخصوبة.",
+        "practice": "إذا كنت تفكرين في العلاج النفسي، ابحثي عن معالج متخصص في علم النفس الإنجابي أو الصحة النفسية في الفترة المحيطة بالولادة. كثير منهم يقدمون جلسات افتراضية."
       },
       "acceptance": {
-        "title": "Practicing Acceptance",
-        "content": "Acceptance doesn't mean giving up — it means acknowledging that some things are beyond your control while focusing on what you can influence. This shift from control to acceptance can significantly reduce stress and improve emotional wellbeing during the fertility journey.",
-        "practice": "Repeat this affirmation: 'I am doing everything I can. I trust my body and my journey. The outcome does not define my worth.'"
+        "title": "ممارسة التقبل",
+        "content": "التقبل لا يعني الاستسلام — بل يعني الاعتراف بأن بعض الأمور خارج سيطرتك مع التركيز على ما يمكنك التأثير فيه. هذا التحول من السيطرة إلى التقبل يمكن أن يقلل التوتر بشكل كبير ويحسن الرفاهية العاطفية خلال رحلة الخصوبة.",
+        "practice": "رددي هذه العبارة: 'أنا أفعل كل ما بوسعي. أثق بجسمي ورحلتي. النتيجة لا تحدد قيمتي.'"
       }
     }
   },
