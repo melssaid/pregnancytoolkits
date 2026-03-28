@@ -215,6 +215,12 @@
         @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.7}}
       </style>
     </div>
+    <script>
+      // Hide HTML splash on first visit — VideoSplash component will handle it
+      if(!localStorage.getItem('pt_video_splash_seen')){
+        document.getElementById('splash-overlay').style.display='none';
+      }
+    </script>
 
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
