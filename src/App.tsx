@@ -89,6 +89,10 @@ const App = () => {
     };
   }, []);
 
+  if (showVideoSplash) {
+    return <VideoSplash onComplete={() => setShowVideoSplash(false)} />;
+  }
+
   return (
     <HelmetProvider>
     <QueryClientProvider client={queryClient}>
