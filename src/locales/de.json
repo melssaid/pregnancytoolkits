@@ -2786,7 +2786,14 @@
     "aiGenerate": "KI generieren",
     "aiGeneratedRecipe": "KI-generiertes Rezept",
     "allRecipes": "Alle Rezepte für Trimester {{trimester}}",
-    "benefits": "Vorteile",
+    "benefits": {
+      "fightsFatigue": "Bekämpft Müdigkeit",
+      "boostsIron": "Steigert den Eisenspiegel",
+      "promotesSleep": "Fördert den Schlaf",
+      "calmsNausea": "Lindert Übelkeit",
+      "brainDev": "Gehirnentwicklung",
+      "strengthensBones": "Stärkt die Knochen"
+    },
     "createCustom": "Einen KI-Smoothie erstellen",
     "ingredients": {
       "1banana": "1 Banane",
@@ -2823,7 +2830,16 @@
       "halfAvocado": "1/2 Avocado",
       "1tbspCocoa": "1 EL Kakao",
       "1tbspPeanutButter": "1 EL Erdnussbutter",
-      "1dateFruit": "1 Dattel"
+      "1dateFruit": "1 Dattel",
+      "quarterAvocado": "1/4 Avocado",
+      "1tbspFlaxseed": "1 EL Leinsamen",
+      "1cupMilk": "1 Tasse Milch",
+      "1tbspMapleSyrup": "1 EL Ahornsirup",
+      "1cupGreekYogurt": "1 Tasse Griechischer Joghurt",
+      "2tbspAlmondButter": "2 EL Mandelbutter",
+      "1cupFortifiedAlmondMilk": "1 Tasse angereicherte Mandelmilch",
+      "1tbspSesameSeeds": "1 EL Sesam",
+      "honeyToTaste": "Honig nach Geschmack"
     },
     "instructions": "Zubereitung",
     "instructionsText": {
@@ -4276,11 +4292,183 @@
     },
     "fertilityAcademy": {
       "lessonsCount": "{{count}} Lernmodule",
-      "lessons": "Lektionen"
+      "lessons": {
+        "menstrualCycle": {
+          "title": "Der Menstruationszyklus",
+          "content": "Der Menstruationszyklus dauert durchschnittlich 28 Tage und besteht aus vier Phasen: Menstruation, Follikelphase, Eisprung und Lutealphase. Das Verständnis Ihres Zyklus ist der erste Schritt zur Optimierung Ihrer Fruchtbarkeit."
+        },
+        "ovulationProcess": {
+          "title": "Der Eisprung",
+          "content": "Der Eisprung findet etwa in der Mitte Ihres Zyklus statt, wenn eine reife Eizelle aus dem Eierstock freigesetzt wird. Die fruchtbarsten Tage sind 2-3 Tage vor und der Tag des Eisprungs selbst."
+        },
+        "fertilizationBasics": {
+          "title": "Grundlagen der Befruchtung",
+          "content": "Die Befruchtung findet statt, wenn ein Spermium eine Eizelle im Eileiter durchdringt. Die befruchtete Eizelle wandert dann in die Gebärmutter und nistet sich in der Gebärmutterschleimhaut ein."
+        },
+        "hormonesRole": {
+          "title": "Die Rolle der Hormone",
+          "content": "FSH, LH, Östrogen und Progesteron steuern Ihren Fruchtbarkeitszyklus. Ein Ungleichgewicht dieser Hormone kann den Eisprung und die Fruchtbarkeit beeinflussen."
+        },
+        "ageAndFertility": {
+          "title": "Alter und Fruchtbarkeit",
+          "content": "Die Fruchtbarkeit nimmt ab dem 35. Lebensjahr natürlich ab. Die Eizellqualität und -menge sinken mit zunehmendem Alter. Frühzeitige Planung kann helfen."
+        },
+        "lifestyleFactors": {
+          "title": "Lebensstilfaktoren",
+          "content": "Ernährung, Bewegung, Stressmanagement, Schlaf und Umweltfaktoren beeinflussen die Fruchtbarkeit erheblich. Ein gesunder Lebensstil kann die Chancen auf eine Schwangerschaft verbessern."
+        },
+        "commonMyths": {
+          "title": "Häufige Mythen",
+          "content": "Viele Mythen über Fruchtbarkeit halten sich hartnäckig. Erfahren Sie, welche Überzeugungen wissenschaftlich belegt sind und welche nicht."
+        },
+        "whenToSeekHelp": {
+          "title": "Wann Hilfe suchen",
+          "content": "Wenn Sie unter 35 sind und nach einem Jahr nicht schwanger werden, oder über 35 und nach 6 Monaten, sollten Sie ärztliche Hilfe in Anspruch nehmen."
+        },
+        "maleFertility": {
+          "title": "Männliche Fruchtbarkeit",
+          "content": "Die männliche Fruchtbarkeit hängt von Spermienqualität, -menge und -beweglichkeit ab. Lebensstiländerungen können die Spermiengesundheit erheblich verbessern."
+        },
+        "emotionalWellbeing": {
+          "title": "Emotionales Wohlbefinden",
+          "content": "Die Kinderwunschreise kann emotional belastend sein. Achten Sie auf Ihre psychische Gesundheit und suchen Sie bei Bedarf Unterstützung."
+        },
+        "trackingMethods": {
+          "title": "Tracking-Methoden",
+          "content": "Basaltemperatur, Zervixschleim-Beobachtung, Ovulationstests und Zykluscomputer sind wirksame Methoden zur Bestimmung Ihrer fruchtbaren Tage."
+        },
+        "optimizingTiming": {
+          "title": "Optimales Timing",
+          "content": "Geschlechtsverkehr alle 1-2 Tage während des fruchtbaren Fensters maximiert die Chancen. Das fruchtbare Fenster umfasst etwa 6 Tage pro Zyklus."
+        },
+        "implantationWindow": {
+          "title": "Das Einnistungsfenster",
+          "content": "Die Einnistung erfolgt 6-12 Tage nach dem Eisprung. In dieser Zeit bereitet sich die Gebärmutterschleimhaut auf die befruchtete Eizelle vor."
+        },
+        "cervicalHealth": {
+          "title": "Zervixgesundheit",
+          "content": "Der Gebärmutterhals spielt eine wichtige Rolle bei der Fruchtbarkeit. Der Zervixschleim verändert sich im Zyklusverlauf und gibt Hinweise auf die Fruchtbarkeit."
+        },
+        "thyroidFertility": {
+          "title": "Schilddrüse und Fruchtbarkeit",
+          "content": "Schilddrüsenerkrankungen können den Eisprung stören und die Fruchtbarkeit beeinträchtigen. Ein einfacher Bluttest kann Schilddrüsenprobleme aufdecken."
+        },
+        "pcosManagement": {
+          "title": "PCOS-Management",
+          "content": "Das Polyzystische Ovarialsyndrom ist eine der häufigsten Ursachen für Unfruchtbarkeit. Gewichtsmanagement, Ernährung und medikamentöse Therapie können helfen."
+        },
+        "endometriosisAwareness": {
+          "title": "Endometriose-Bewusstsein",
+          "content": "Endometriose betrifft etwa 10% der Frauen im gebärfähigen Alter und kann die Fruchtbarkeit beeinträchtigen. Frühzeitige Diagnose und Behandlung sind wichtig."
+        },
+        "nutritionFertility": {
+          "title": "Ernährung und Fruchtbarkeit",
+          "content": "Eine ausgewogene Ernährung mit Folsäure, Eisen, Omega-3 und Antioxidantien unterstützt die Fruchtbarkeit bei beiden Partnern."
+        },
+        "sleepHormones": {
+          "title": "Schlaf und Hormone",
+          "content": "Ausreichend Schlaf ist entscheidend für die Hormonregulation. Schlafmangel kann den Eisprung stören und die Fruchtbarkeit beeinträchtigen."
+        },
+        "exerciseBalance": {
+          "title": "Bewegung in Balance",
+          "content": "Moderate Bewegung fördert die Fruchtbarkeit, während übermäßiges Training sie beeinträchtigen kann. Finden Sie das richtige Gleichgewicht."
+        },
+        "supplementsGuide": {
+          "title": "Nahrungsergänzungsmittel-Leitfaden",
+          "content": "Folsäure, Vitamin D, CoQ10 und Omega-3 gehören zu den wichtigsten Nahrungsergänzungsmitteln für die Kinderwunschzeit."
+        },
+        "environmentalToxins": {
+          "title": "Umweltgifte",
+          "content": "Pestizide, Weichmacher und andere Umweltchemikalien können die Fruchtbarkeit beeinträchtigen. Minimieren Sie die Exposition, wo möglich."
+        },
+        "geneticFactors": {
+          "title": "Genetische Faktoren",
+          "content": "Genetische Faktoren können die Fruchtbarkeit beeinflussen. Genetische Beratung kann bei der Familienplanung hilfreich sein."
+        },
+        "immunologyFertility": {
+          "title": "Immunologie und Fruchtbarkeit",
+          "content": "Das Immunsystem spielt eine wichtige Rolle bei der Einnistung und Schwangerschaftserhaltung. Immunologische Faktoren können manchmal die Ursache für Unfruchtbarkeit sein."
+        },
+        "secondaryInfertility": {
+          "title": "Sekundäre Unfruchtbarkeit",
+          "content": "Schwierigkeiten, nach einer vorherigen Schwangerschaft erneut schwanger zu werden, betreffen viele Paare. Die Ursachen können vielfältig sein."
+        },
+        "recurrentLoss": {
+          "title": "Wiederholte Fehlgeburten",
+          "content": "Wiederholte Fehlgeburten sind belastend und erfordern spezielle Untersuchungen. In vielen Fällen können Ursachen gefunden und behandelt werden."
+        },
+        "fertilityPreservation": {
+          "title": "Fruchtbarkeitserhaltung",
+          "content": "Einfrieren von Eizellen und Embryonen bietet Möglichkeiten zur Familienplanung. Dies kann besonders bei medizinischen Behandlungen relevant sein."
+        },
+        "assistedReproduction": {
+          "title": "Assistierte Reproduktion",
+          "content": "IVF, ICSI und IUI sind bewährte Methoden der assistierten Reproduktion. Ihr Arzt kann die beste Option für Ihre Situation empfehlen."
+        },
+        "epigeneticsFertility": {
+          "title": "Epigenetik und Fruchtbarkeit",
+          "content": "Epigenetische Faktoren beeinflussen, wie Gene aktiviert werden. Lebensstiländerungen können positive epigenetische Veränderungen bewirken."
+        },
+        "mindBodyConnection": {
+          "title": "Geist-Körper-Verbindung",
+          "content": "Meditation, Yoga und Achtsamkeit können Stress reduzieren und die Fruchtbarkeit positiv beeinflussen."
+        }
+      }
     },
     "fertilitySigns": {
       "signsCount": "{{count}} Anzeichen zum Kennen",
-      "signs": "Anzeichen"
+      "signs": {
+        "cervicalMucus": {
+          "title": "Zervixschleim",
+          "description": "Wird um den Eisprung klar, dehnbar und eiweißartig – das fruchtbarste Zeichen",
+          "tip": "Beobachten Sie täglich die Konsistenz Ihres Zervixschleims"
+        },
+        "basalTemp": {
+          "title": "Basaltemperatur",
+          "description": "Ein leichter Temperaturanstieg nach dem Eisprung bestätigt, dass der Eisprung stattgefunden hat",
+          "tip": "Messen Sie Ihre Temperatur jeden Morgen vor dem Aufstehen"
+        },
+        "cervicalPosition": {
+          "title": "Zervixposition",
+          "description": "Der Gebärmutterhals wird um den Eisprung weicher, höher und offener",
+          "tip": "Überprüfen Sie die Position regelmäßig zur gleichen Tageszeit"
+        },
+        "ovulationPain": {
+          "title": "Mittelschmerz",
+          "description": "Ein leichtes Ziehen auf einer Seite des Unterleibs kann den Eisprung anzeigen",
+          "tip": "Notieren Sie, auf welcher Seite der Schmerz auftritt"
+        },
+        "breastTenderness": {
+          "title": "Brustspannen",
+          "description": "Empfindliche Brüste nach dem Eisprung deuten auf erhöhtes Progesteron hin",
+          "tip": "Dies ist normal und ein Zeichen für einen erfolgten Eisprung"
+        },
+        "libidoChanges": {
+          "title": "Libido-Veränderungen",
+          "description": "Ein erhöhtes sexuelles Verlangen kann ein natürliches Zeichen für die fruchtbarsten Tage sein",
+          "tip": "Nutzen Sie diese natürlichen Signale Ihres Körpers"
+        },
+        "moodShifts": {
+          "title": "Stimmungsschwankungen",
+          "description": "Hormonelle Veränderungen während des Zyklus können die Stimmung beeinflussen",
+          "tip": "Führen Sie ein Stimmungstagebuch parallel zum Zyklustracking"
+        },
+        "bloating": {
+          "title": "Blähungen",
+          "description": "Leichte Blähungen um den Eisprung sind normal und hormonell bedingt",
+          "tip": "Trinken Sie ausreichend Wasser und bewegen Sie sich"
+        },
+        "lightSpotting": {
+          "title": "Leichte Schmierblutung",
+          "description": "Eine leichte Blutung um den Eisprung kann durch den Hormonabfall entstehen",
+          "tip": "Leichte Schmierblutungen um den Eisprung sind normal"
+        },
+        "heightenedSenses": {
+          "title": "Geschärfte Sinne",
+          "description": "Ein verstärkter Geruchssinn um den Eisprung ist ein subtiles Fruchtbarkeitszeichen",
+          "tip": "Achten Sie auf veränderte Sinneswahrnehmungen"
+        }
+      }
     },
     "fetalDevelopment": {
       "aiWeeklyInsights": "KI-Wocheneinblicke",
@@ -5711,11 +5899,111 @@
         "specialized": "Spezielle Untersuchungen",
         "medications": "Medikamente & Impfungen"
       },
-      "checks": "Untersuchungen"
+      "checks": {
+        "generalCheckup": {
+          "title": "General Health Checkup",
+          "description": "A comprehensive physical exam to assess your overall health, blood pressure, weight, and discuss your pregnancy plans."
+        },
+        "bloodWork": {
+          "title": "Complete Blood Count (CBC)",
+          "description": "Checks for anemia, infections, and overall blood health. Identifies iron deficiency that should be addressed before pregnancy."
+        },
+        "pap": {
+          "title": "Pap Smear / Cervical Screening",
+          "description": "Screens for cervical abnormalities. Best done before pregnancy to address any issues without the added complexity of pregnancy."
+        },
+        "thyroid": {
+          "title": "Thyroid Function Test (TSH)",
+          "description": "Thyroid disorders are common and can significantly affect fertility and pregnancy. Both hypothyroidism and hyperthyroidism should be managed before conceiving."
+        },
+        "rubella": {
+          "title": "Rubella (German Measles) Immunity",
+          "description": "Rubella during pregnancy can cause serious birth defects. If you're not immune, vaccination is recommended at least 1 month before trying to conceive."
+        },
+        "hepatitis": {
+          "title": "Hepatitis B & C Screening",
+          "description": "Hepatitis B can be transmitted to the baby during birth. Knowing your status allows for preventive measures. Hepatitis C requires monitoring during pregnancy."
+        },
+        "hiv": {
+          "title": "HIV & STI Screening",
+          "description": "Routine screening for HIV and sexually transmitted infections protects both your health and your future baby's health. Early detection enables effective treatment."
+        },
+        "dental": {
+          "title": "Dental Checkup",
+          "description": "Gum disease is linked to preterm birth and low birth weight. Hormonal changes during pregnancy can worsen existing dental issues. Complete any necessary dental work before conceiving."
+        },
+        "geneticScreening": {
+          "title": "Genetic Carrier Screening",
+          "description": "Tests whether you or your partner carry genes for conditions like cystic fibrosis, sickle cell disease, or thalassemia. Results help with informed family planning decisions."
+        },
+        "mentalHealth": {
+          "title": "Mental Health Assessment",
+          "description": "Discuss any history of depression, anxiety, or other mental health conditions with your healthcare provider. Pre-existing conditions can be managed proactively during pregnancy."
+        },
+        "medications": {
+          "title": "Medication Review",
+          "description": "Review all current medications, supplements, and herbal remedies with your doctor. Some medications are not safe during pregnancy and alternatives should be arranged in advance."
+        },
+        "vaccinations": {
+          "title": "Vaccination Review",
+          "description": "Ensure you're up to date on recommended vaccinations including MMR, varicella, flu, and Tdap. Some vaccines cannot be given during pregnancy, so complete them beforehand."
+        }
+      }
     },
     "preconceptionNutrition": {
       "categoriesCount": "{{count}} Ernährungskategorien",
-      "categories": "Kategorien"
+      "categories": {
+        "folateRich": {
+          "title": "Folsäurereich",
+          "description": "Folsäure ist entscheidend für die Neuralrohrentwicklung",
+          "foods": "Spinat, Brokkoli, Linsen, Avocado, Spargel, Kichererbsen"
+        },
+        "ironSources": {
+          "title": "Eisenquellen",
+          "description": "Eisen unterstützt die Blutbildung und beugt Anämie vor",
+          "foods": "Rotes Fleisch, Hülsenfrüchte, Kürbiskerne, Quinoa, Tofu"
+        },
+        "omega3": {
+          "title": "Omega-3-Fettsäuren",
+          "description": "Omega-3 unterstützt die Hormonproduktion und Eizellqualität",
+          "foods": "Lachs, Makrele, Walnüsse, Chiasamen, Leinsamen"
+        },
+        "antioxidants": {
+          "title": "Antioxidantien",
+          "description": "Antioxidantien schützen die Eizellen vor oxidativem Stress",
+          "foods": "Beeren, Dunkle Schokolade, Nüsse, Grüner Tee, Tomaten"
+        },
+        "zinc": {
+          "title": "Zink",
+          "description": "Zink ist wichtig für die Zellteilung und Hormonregulation",
+          "foods": "Austern, Rindfleisch, Kürbiskerne, Cashews, Joghurt"
+        },
+        "vitaminD": {
+          "title": "Vitamin D",
+          "description": "Vitamin D unterstützt die Hormonbalance und Immunfunktion",
+          "foods": "Lachs, Eier, angereicherte Milch, Pilze, Sonnenlicht"
+        },
+        "calcium": {
+          "title": "Kalzium",
+          "description": "Kalzium ist wichtig für starke Knochen und Zähne des Babys",
+          "foods": "Milch, Joghurt, Käse, Brokkoli, Mandeln, Sesam"
+        },
+        "protein": {
+          "title": "Eiweiß",
+          "description": "Eiweiß ist der Baustein für die Zellteilung und Gewebebildung",
+          "foods": "Huhn, Fisch, Eier, Bohnen, Quinoa, Griechischer Joghurt"
+        },
+        "hydration": {
+          "title": "Flüssigkeitszufuhr",
+          "description": "Ausreichend Wasser trinken unterstützt den Zervixschleim und die Durchblutung",
+          "foods": "Wasser, Kräutertee, Gurke, Wassermelone, Kokoswasser"
+        },
+        "avoidList": {
+          "title": "Zu vermeiden",
+          "description": "Diese Lebensmittel und Stoffe können die Fruchtbarkeit beeinträchtigen",
+          "foods": "Übermäßiges Koffein, Transfette, stark verarbeitete Lebensmittel, roher Fisch"
+        }
+      }
     },
     "preeclampsia": {
       "age35Plus": "Alter 35+",
@@ -5738,16 +6026,64 @@
       "supplementsCount": "{{count}} Nahrungsergänzungsmittel",
       "vitamins": {
         "iron": {
-          "title": "Eisen"
+          "title": "Eisen",
+          "description": "Unterstützt die erhöhte Blutproduktion und beugt Anämie vor",
+          "dosage": "27 mg täglich"
         },
         "vitaminD": {
-          "title": "Vitamin D"
+          "title": "Vitamin D",
+          "description": "Fördert die Kalziumaufnahme und Knochenentwicklung",
+          "dosage": "600-1000 IU täglich"
         },
         "calcium": {
-          "title": "Kalzium"
+          "title": "Kalzium",
+          "description": "Baut starke Knochen und Zähne beim Baby auf",
+          "dosage": "1000 mg täglich"
         },
         "vitaminE": {
-          "title": "Vitamin E"
+          "title": "Vitamin E",
+          "description": "Vitamin E supports endometrial lining thickness and quality, which is important for implantation. It also protects cell membranes from oxidative stress and supports overall reproductive health.",
+          "dosage": "Recommended: 15mg (22 IU) daily. Found in nuts, seeds, and vegetable oils."
+        },
+        "folicAcid": {
+          "title": "Folsäure",
+          "description": "Beugt Neuralrohrdefekten vor und unterstützt die DNA-Synthese",
+          "dosage": "400-800 μg täglich"
+        },
+        "omega3DHA": {
+          "title": "Omega-3 DHA",
+          "description": "Unterstützt die Gehirn- und Augenentwicklung des Babys",
+          "dosage": "200-300 mg täglich"
+        },
+        "iodine": {
+          "title": "Iodine",
+          "description": "Iodine is essential for thyroid function, which directly impacts fertility and fetal brain development. Deficiency is the leading preventable cause of intellectual disability worldwide.",
+          "dosage": "Recommended: 150mcg daily before pregnancy, 220mcg during pregnancy. Check that your prenatal vitamin includes iodine."
+        },
+        "zinc": {
+          "title": "Zinc",
+          "description": "Zinc supports egg quality, hormone balance, and immune function. It also plays a key role in DNA synthesis and cell division — critical processes in early pregnancy.",
+          "dosage": "Recommended: 8mg daily for women. Most prenatal vitamins contain adequate zinc."
+        },
+        "vitaminB12": {
+          "title": "Vitamin B12",
+          "description": "B12 works with folate to support DNA synthesis and nervous system development. Deficiency is more common in vegetarians and vegans. Low B12 levels are associated with recurrent miscarriage and neural tube defects.",
+          "dosage": "Recommended: 2.4mcg daily. Vegans should supplement as B12 is found primarily in animal products."
+        },
+        "vitaminC": {
+          "title": "Vitamin C",
+          "description": "Vitamin C is a powerful antioxidant that protects eggs from oxidative damage. It also enhances iron absorption and supports immune function. Progesterone levels may also benefit from adequate vitamin C intake.",
+          "dosage": "Recommended: 75–90mg daily. Easily obtained from citrus fruits, berries, and bell peppers."
+        },
+        "coq10": {
+          "title": "CoQ10 (Coenzyme Q10)",
+          "description": "CoQ10 is an antioxidant that supports mitochondrial function in eggs. As egg quality naturally declines with age, CoQ10 supplementation may help maintain cellular energy production. Research is ongoing but promising, especially for women over 35.",
+          "dosage": "Common dosage: 100–600mg daily. Ubiquinol form is better absorbed than ubiquinone. Consult your doctor."
+        },
+        "probiotics": {
+          "title": "Probiotics",
+          "description": "A healthy vaginal and gut microbiome supports fertility. Lactobacillus strains help maintain optimal vaginal pH, which is important for sperm survival. Gut health also affects hormone metabolism and nutrient absorption.",
+          "dosage": "Choose a multi-strain probiotic with Lactobacillus strains. Consume fermented foods: yogurt, kefir, sauerkraut, kimchi."
         }
       }
     },
@@ -6037,7 +6373,58 @@
     },
     "stressFertility": {
       "topicsCount": "{{count}} Themen zum Entdecken",
-      "topics": "Themen"
+      "topics": {
+        "stressHormones": {
+          "title": "How Stress Affects Fertility",
+          "content": "Chronic stress triggers the release of cortisol and adrenaline, which can disrupt the hypothalamic-pituitary-gonadal (HPG) axis — the hormonal pathway that controls ovulation. Elevated cortisol may suppress GnRH (gonadotropin-releasing hormone), leading to irregular or absent ovulation. While moderate daily stress is unlikely to prevent conception, prolonged high stress can delay time to pregnancy.",
+          "practice": "Identify your top 3 stress triggers this week. For each one, write down one small action you can take to reduce its impact."
+        },
+        "cortisol": {
+          "title": "Understanding Cortisol",
+          "content": "Cortisol is your body's primary stress hormone. In small bursts, it's helpful — providing energy and focus. But when cortisol remains chronically elevated, it can suppress reproductive hormones, disrupt sleep, increase inflammation, and affect mood. The goal isn't to eliminate stress entirely (impossible!) but to manage your stress response.",
+          "practice": "Practice the 4-7-8 breathing technique: Inhale for 4 seconds, hold for 7, exhale for 8. Repeat 4 times. This activates the parasympathetic nervous system."
+        },
+        "mindfulness": {
+          "title": "Mindfulness for Fertility",
+          "content": "Mindfulness is the practice of being fully present without judgment. Studies show that mindfulness-based stress reduction (MBSR) programs can reduce anxiety and depression in women undergoing fertility treatment, and may improve outcomes. Even 10 minutes of daily mindfulness practice can lower cortisol levels and improve emotional resilience.",
+          "practice": "Try a 5-minute body scan: Close your eyes, breathe deeply, and slowly move your attention from your toes to your head, noticing sensations without trying to change them."
+        },
+        "breathing": {
+          "title": "Breathing Techniques",
+          "content": "Controlled breathing directly activates the vagus nerve, triggering the relaxation response. This lowers heart rate, blood pressure, and cortisol. It's one of the fastest ways to shift from a stress state to a calm state. Different techniques serve different purposes — some energize, others calm.",
+          "practice": "Box Breathing: Inhale 4 counts → Hold 4 counts → Exhale 4 counts → Hold 4 counts. Repeat for 5 minutes. Ideal before bed or during anxious moments."
+        },
+        "journaling": {
+          "title": "Therapeutic Journaling",
+          "content": "Writing about your emotions has been scientifically shown to reduce stress, improve immune function, and provide clarity. For fertility journaling, the goal isn't to track symptoms obsessively, but to process emotions, celebrate small wins, and release fears.",
+          "practice": "Tonight, write down: 1) One thing I'm grateful for today, 2) One worry I want to release, 3) One kind thing I did for myself."
+        },
+        "sleep": {
+          "title": "Sleep & Fertility",
+          "content": "Sleep is when your body repairs, produces hormones, and processes emotions. Poor sleep disrupts melatonin (which protects egg quality), increases cortisol, and impairs FSH and LH regulation. Women who sleep fewer than 6 hours per night have been shown to have lower fertility rates.",
+          "practice": "Create a wind-down routine: No screens 30 min before bed, dim lights, use lavender essential oil, and keep your bedroom cool (18–20°C)."
+        },
+        "exercise": {
+          "title": "Movement & Stress Relief",
+          "content": "Regular moderate exercise is one of the most effective stress relievers. It releases endorphins, improves sleep, and helps regulate hormones. However, excessive intense exercise (marathon training, high-intensity daily workouts) can suppress ovulation. Balance is key.",
+          "practice": "This week, aim for 30 minutes of moderate movement 5 days: walking, yoga, swimming, or dancing. Notice how your mood shifts afterward."
+        },
+        "socialSupport": {
+          "title": "Building Your Support Network",
+          "content": "Social isolation amplifies stress. Sharing your fertility journey with trusted friends, family, or a support group can significantly reduce emotional burden. You don't have to share with everyone — even one supportive person makes a difference.",
+          "practice": "Identify one person you trust. Share one thing about your journey with them this week. Connection is healing."
+        },
+        "professionalHelp": {
+          "title": "When to Seek Professional Support",
+          "content": "If anxiety or sadness about fertility is affecting your daily life, sleep, relationships, or work, professional support can help. Therapists specializing in reproductive mental health understand the unique challenges of this journey. Cognitive Behavioral Therapy (CBT) is particularly effective for fertility-related anxiety.",
+          "practice": "If you're considering therapy, look for a therapist who specializes in reproductive psychology or perinatal mental health. Many offer virtual sessions."
+        },
+        "acceptance": {
+          "title": "Practicing Acceptance",
+          "content": "Acceptance doesn't mean giving up — it means acknowledging that some things are beyond your control while focusing on what you can influence. This shift from control to acceptance can significantly reduce stress and improve emotional wellbeing during the fertility journey.",
+          "practice": "Repeat this affirmation: 'I am doing everything I can. I trust my body and my journey. The outcome does not define my worth.'"
+        }
+      }
     },
     "stressRelief": {
       "affirmations": {
@@ -6210,7 +6597,78 @@
     },
     "twwCompanion": {
       "subtitle": "Dein täglicher Begleiter durch die Zwei-Wochen-Wartezeit",
-      "days": "Tage"
+      "days": {
+        "day1": {
+          "title": "Ovulation Day + 1",
+          "body": "If ovulation occurred yesterday, the egg is now traveling through the fallopian tube. If fertilization happens, it typically occurs within 12–24 hours of ovulation. Today, there's nothing you can do to influence the outcome — and that's okay.",
+          "tip": "Take a deep breath. The journey has begun. Focus on something you enjoy today."
+        },
+        "day2": {
+          "title": "Cellular Beginnings",
+          "body": "If fertilization occurred, the single-celled zygote begins dividing — first into 2 cells, then 4. This tiny cluster of cells is traveling through the fallopian tube toward the uterus. It's powered entirely by its own energy stores.",
+          "tip": "Stay hydrated and eat nourishing foods. Your body is doing incredible work at the cellular level."
+        },
+        "day3": {
+          "title": "The Morula Stage",
+          "body": "The dividing cells form a solid ball called a morula (about 16 cells). It continues its journey through the fallopian tube. Progesterone is rising, preparing the uterine lining for potential implantation.",
+          "tip": "Gentle activity is perfectly fine. There's no need to restrict your normal routine."
+        },
+        "day4": {
+          "title": "Entering the Uterus",
+          "body": "The morula typically enters the uterus around day 4. It begins forming a fluid-filled cavity, transitioning into a blastocyst. The uterine lining is becoming thick and receptive under progesterone's influence.",
+          "tip": "Practice mindfulness or light stretching. Managing anticipation is part of the journey."
+        },
+        "day5": {
+          "title": "Blastocyst Formation",
+          "body": "The blastocyst now has two distinct cell groups: the inner cell mass (which becomes the embryo) and the trophoblast (which becomes the placenta). It floats freely in the uterine cavity.",
+          "tip": "This is a good day to journal your thoughts and feelings. Self-expression is therapeutic."
+        },
+        "day6": {
+          "title": "Implantation May Begin",
+          "body": "The blastocyst begins searching for an ideal implantation site on the uterine wall. The trophoblast cells start burrowing into the endometrium. Some women experience light spotting (implantation bleeding) around this time.",
+          "tip": "Light spotting at this stage can be normal. Don't panic — and don't test yet. It's too early."
+        },
+        "day7": {
+          "title": "Implantation Window",
+          "body": "Days 6–10 are the typical implantation window. The blastocyst is embedding deeper into the uterine lining. Early signals are being exchanged between the embryo and your body.",
+          "tip": "Continue your normal activities. Rest when you need to. Trust the process."
+        },
+        "day8": {
+          "title": "hCG Begins",
+          "body": "If implantation is progressing, tiny amounts of hCG (human chorionic gonadotropin) begin to be produced. This hormone signals your body to maintain the corpus luteum, which keeps producing progesterone. Levels are still too low to detect on a test.",
+          "tip": "Resist the urge to test. hCG needs time to build. Patience is your greatest ally right now."
+        },
+        "day9": {
+          "title": "Rising Signals",
+          "body": "hCG levels are rising but may still be below the detection threshold of most home pregnancy tests. Implantation should be complete or nearly complete. Your body is starting to respond to the new hormonal signals.",
+          "tip": "Treat yourself to something calming — a warm bath, your favorite tea, or a walk in nature."
+        },
+        "day10": {
+          "title": "Almost There",
+          "body": "By now, if implantation occurred, hCG levels are doubling roughly every 48 hours. Some sensitive tests might detect very early pregnancy. However, a negative result today doesn't mean you're not pregnant — levels vary widely.",
+          "tip": "If you test today and it's negative, don't lose hope. Many successful pregnancies don't show positive until day 12–14."
+        },
+        "day11": {
+          "title": "Building Anticipation",
+          "body": "hCG continues to rise. Some women begin to notice very early symptoms: mild cramping, breast tenderness, or fatigue. These symptoms can also be caused by progesterone in a non-pregnant cycle, so they're not reliable indicators.",
+          "tip": "Symptom-spotting is natural but can increase anxiety. Try to stay present and engaged in your daily life."
+        },
+        "day12": {
+          "title": "Testing Becomes More Reliable",
+          "body": "Most home pregnancy tests become more reliable from today onward. If testing, use first morning urine for the highest concentration of hCG. A faint line is still a positive result.",
+          "tip": "Whatever the result today, remember: one cycle does not define your journey. Be gentle with yourself."
+        },
+        "day13": {
+          "title": "The Eve of Knowing",
+          "body": "Tomorrow is typically the day your period would be expected (in a 28-day cycle). If it doesn't arrive and a test shows a faint positive, congratulations may be in order. If your period comes, allow yourself to grieve and know that each cycle is a new opportunity.",
+          "tip": "Prepare emotionally for both outcomes. Both are valid. Both are part of the journey."
+        },
+        "day14": {
+          "title": "The Answer Day",
+          "body": "This is typically the day your period is expected. A missed period combined with a positive pregnancy test is a strong indicator of pregnancy. If your test is positive, contact your healthcare provider to schedule your first appointment (usually around 6–8 weeks).",
+          "tip": "Positive? Celebrate this moment. Negative? You are strong, resilient, and this journey continues. Both outcomes deserve compassion."
+        }
+      }
     },
     "vitaminTracker": {
       "aiAnalysisTitle": "KI-Vitaminanalyse",
