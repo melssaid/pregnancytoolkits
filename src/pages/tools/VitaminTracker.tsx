@@ -237,8 +237,8 @@ const VitaminTracker: React.FC = () => {
 
         {/* AI Analysis */}
         <AIInsightCard
-          toolType="vitamin-tracker"
-          section="vitamin"
+          toolType="vitamin-advice"
+          section="medications"
           prompt={aiPrompt}
           title={t('toolsInternal.vitaminTracker.aiAnalysisTitle')}
           buttonLabel={t('toolsInternal.vitaminTracker.analyzeRoutine')}
