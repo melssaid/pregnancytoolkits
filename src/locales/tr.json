@@ -4082,7 +4082,7 @@
       "common": "Yaygın İstekler",
       "cravings": {
         "bacon": "Pastırma",
-        "burger": "Burger",
+        "burger": "Hamburger",
         "cheese": "Peynir",
         "chocolate": "Çikolata",
         "cookies": "Kurabiye",
@@ -4090,9 +4090,13 @@
         "frenchFries": "Patates Kızartması",
         "iceCream": "Dondurma",
         "pizza": "Pizza",
-        "popcorn": "Patlamış Mısır",
-        "soda": "Gazlı İçecek",
-        "tacos": "Taco"
+        "popcorn": "Patlamış mısır",
+        "soda": "Gazlı içecek",
+        "tacos": "Taco",
+        "chips": "Cips",
+        "cake": "Pasta",
+        "fries": "Patates kızartması",
+        "candy": "Şekerleme"
       },
       "emotionalComfort": "Duygusal rahatlık",
       "emotionalComfortDesc": "bazı yiyecekler psikolojik rahatlık sağlar",
@@ -4553,7 +4557,25 @@
         "raspberry": "Ahududu",
         "squash": "Kabak",
         "sweetPea": "Bezelye",
-        "watermelon": "Karpuz"
+        "watermelon": "Karpuz",
+        "poppy": "Haşhaş tohumu",
+        "sesame": "Susam tohumu",
+        "lentil": "Mercimek",
+        "blueberry": "Yaban mersini",
+        "cherry": "Kiraz",
+        "olive": "Zeytin",
+        "fig": "İncir",
+        "plum": "Erik",
+        "peach": "Şeftali",
+        "apple": "Elma",
+        "orange": "Portakal",
+        "pear": "Armut",
+        "turnip": "Şalgam",
+        "mango": "Mango",
+        "pomegranate": "Nar",
+        "coconut": "Hindistancevizi",
+        "cauliflower": "Karnabahar",
+        "pineapple": "Ananas"
       },
       "subtitle": "Bebeğinizin büyüme yolculuğu hafta hafta",
       "thisWeeksDevelopment": "Bu Haftanın Gelişimi",
@@ -4658,22 +4680,22 @@
       "exerciseInProgress": "Egzersiz devam ediyor",
       "exerciseNames": {
         "ankleCircles": "Ankle Circles",
-        "armCircles": "Kol Daireleri",
+        "armCircles": "Kol çevirmeler",
         "birdDog": "Kuş-Köpek",
         "butterflyStretch": "Kelebek Germe",
         "calfRaises": "Calf Raises",
-        "catCow": "Kedi-İnek Germe",
+        "catCow": "Kedi-İnek",
         "childPose": "Çocuk Pozu",
-        "deepBreathing": "Derin Nefes",
+        "deepBreathing": "Derin nefes",
         "figureFour": "Figure-Four Stretch",
         "gentleTwist": "Gentle Spinal Twist",
         "gluteBridge": "Kalça Köprüsü",
         "hamstringStretch": "Hamstring Stretch",
         "hipCircles": "Hip Circles",
-        "kegelExercise": "Kegel Exercise",
+        "kegelExercise": "Kegel egzersizi",
         "lowImpactJacks": "Low-Impact Jacks",
         "neckRolls": "Boyun Çevirme",
-        "pelvicTilts": "Pelvis Eğimleri",
+        "pelvicTilts": "Pelvis eğimi",
         "prenatalSquats": "Hamilelik Squatları",
         "savasana": "Savasana",
         "seatedMarching": "Oturarak Yürüyüş",
@@ -4685,7 +4707,14 @@
         "stepTouch": "Adım Dokunuş",
         "sumoSquat": "Sumo Squat",
         "wallPushups": "Duvar Şınavları",
-        "wallSit": "Wall Sit"
+        "wallSit": "Wall Sit",
+        "squats": "Squat",
+        "wallPushUps": "Duvar şınavı",
+        "sideStretches": "Yan germe",
+        "prenatalYoga": "Doğum öncesi yoga",
+        "bridgeExercise": "Köprü",
+        "legLifts": "Bacak kaldırma",
+        "shoulderRolls": "Omuz döndürme"
       },
       "fitnessVideos": "Hamilelik Fitness Videoları",
       "fitnessVideosSubtitle": "Her trimester için güvenli antrenman rehberleri",
@@ -4753,7 +4782,7 @@
         "step3": "Müsait zamanınız?",
         "title": "Akıllı Antrenman"
       },
-      "start": "Başlat",
+      "start": "Başla",
       "subtitle": "Hamilelik aşamanıza göre güvenli egzersizler",
       "tips": {
         "tip1": "Antrenman günlerinde en az 8 bardak su için. Hidrasyon kas kramplarını önler.",
@@ -5009,9 +5038,9 @@
       "itemsPacked": "{{packed}}/{{total}} öğe paketlendi",
       "mom": "Anne",
       "notPacked": "Paketlenmedi",
-      "optional": "İsteğe Bağlı",
+      "optional": "İsteğe bağlı",
       "packed": "Paketlendi",
-      "partner": "Partner",
+      "partner": "Eş",
       "progress": "Paketleme İlerlemesi",
       "recommended": "Tavsiye Edilen",
       "resetConfirm": "Listeyi sıfırlamak istediğinizden emin misiniz? Bu, tüm özel öğeleri kaldırarak varsayılan listeyi geri yükleyecektir.",
@@ -5255,12 +5284,13 @@
     },
     "mealSuggestion": {
       "allergies": {
-        "dairy": "Süt Ürünleri",
+        "dairy": "Süt ürünleri",
         "eggs": "Yumurta",
         "gluten": "Gluten",
-        "nuts": "Kuruyemiş",
+        "nuts": "Kuruyemişler",
         "seafood": "Deniz Ürünleri",
-        "soy": "Soya"
+        "soy": "Soya",
+        "shellfish": "Deniz ürünleri"
       },
       "allergiesLabel": "Alerjiler ve İntoleranslar",
       "cravings": {
@@ -5276,8 +5306,8 @@
       "mealType": "Öğün Türü",
       "mealTypes": {
         "breakfast": "Kahvaltı",
-        "dinner": "Akşam Yemeği",
-        "lunch": "Öğle Yemeği",
+        "dinner": "Akşam yemeği",
+        "lunch": "Öğle yemeği",
         "snack": "Atıştırmalık"
       },
       "nutritionVideos": "Hamilelik Beslenme Videoları",
@@ -5495,7 +5525,8 @@
         }
       },
       "videosSubtitle": "Destek ve öz bakım kaynakları",
-      "youreNotAlone": "Yalnız değilsin"
+      "youreNotAlone": "Yalnız değilsin",
+      "emergencyNote": "Kriz durumunda: 182'yi arayın"
     },
     "mobilityCoach": {
       "adjustGoal": "Hedefi Ayarla (dakika/hafta)",
@@ -5658,7 +5689,7 @@
       "gettingAdvice": "Tavsiye alınıyor...",
       "husband": "Kocası",
       "iAmHer": "Ben onun...",
-      "partner": "Partneri",
+      "partner": "Eş",
       "partnerVideos": "Partner Destek Videoları",
       "partnerVideosSubtitle": "En iyi destek partneri olmayı öğrenin",
       "quickDailyActions": "Hızlı Günlük Eylemler",
@@ -5668,42 +5699,50 @@
         "appointments": {
           "desc": "Doğum öncesi bakıma katılım",
           "icon": "🏥",
-          "label": "Tıbbi Randevular"
+          "label": "Tıbbi Randevular",
+          "title": "Doktor randevuları"
         },
         "bonding": {
           "desc": "Doğumdan önce bağlanma",
           "icon": "👶",
-          "label": "Bebekle Bağ Kurma"
+          "label": "Bebekle Bağ Kurma",
+          "title": "Bebekle bağ kurma"
         },
         "communication": {
           "desc": "Ruh hali değişikliklerini anlama",
           "icon": "💬",
-          "label": "İletişim"
+          "label": "İletişim",
+          "title": "İletişim"
         },
         "emotional": {
           "desc": "Duygusal olarak nasıl hazır bulunulur",
           "icon": "💝",
-          "label": "Duygusal Destek"
+          "label": "Duygusal Destek",
+          "title": "Duygusal destek"
         },
         "intimacy": {
           "desc": "Yakınlığı sürdürme",
           "icon": "❤️",
-          "label": "Yakınlık ve Bağlantı"
+          "label": "Yakınlık ve Bağlantı",
+          "title": "Yakınlık"
         },
         "labor": {
           "desc": "D-günü için hazır olma",
           "icon": "⏰",
-          "label": "Doğum Hazırlığı"
+          "label": "Doğum Hazırlığı",
+          "title": "Doğuma hazırlık"
         },
         "physical": {
           "desc": "Masaj, görevlerde yardım",
           "icon": "🤲",
-          "label": "Fiziksel Konfor"
+          "label": "Fiziksel Konfor",
+          "title": "Fiziksel yardım"
         },
         "postpartum": {
           "desc": "Bebek geldikten sonra",
           "icon": "🏠",
-          "label": "Doğum Sonrası Planlama"
+          "label": "Doğum Sonrası Planlama",
+          "title": "Doğum sonrası"
         }
       },
       "trimester": "Trimester",
@@ -6100,35 +6139,43 @@
       "concerns": {
         "acne": {
           "icon": "🔴",
-          "label": "Hamilelik Aknesi"
+          "label": "Hamilelik Aknesi",
+          "title": "Akne"
         },
         "dryness": {
           "icon": "🏜️",
-          "label": "Kuru Cilt"
+          "label": "Kuru Cilt",
+          "title": "Kuru cilt"
         },
         "glow": {
           "icon": "💫",
-          "label": "Hamilelik parıltısı istiyorum!"
+          "label": "Hamilelik parıltısı istiyorum!",
+          "title": "Hamilelik parıltısı"
         },
         "itching": {
           "icon": "🤚",
-          "label": "Kaşıntı (PUPPP)"
+          "label": "Kaşıntı (PUPPP)",
+          "title": "Kaşıntı"
         },
         "melasma": {
           "icon": "🟤",
-          "label": "Melasma/Koyu Lekeler"
+          "label": "Melasma/Koyu Lekeler",
+          "title": "Melazma"
         },
         "oiliness": {
           "icon": "✨",
-          "label": "Yağlı/Parlak Cilt"
+          "label": "Yağlı/Parlak Cilt",
+          "title": "Yağlı cilt"
         },
         "sensitivity": {
           "icon": "❗",
-          "label": "Hassasiyet"
+          "label": "Hassasiyet",
+          "title": "Hassas cilt"
         },
         "stretchMarks": {
           "icon": "〰️",
-          "label": "Çatlaklar"
+          "label": "Çatlaklar",
+          "title": "Çatlaklar"
         }
       },
       "creatingRoutine": "Rutin oluşturuluyor...",
@@ -6153,32 +6200,38 @@
         "chemicalSunscreens": {
           "icon": "⚠️",
           "name": "Kimyasal Güneş Kremleri",
-          "risk": "medium"
+          "risk": "medium",
+          "title": "Kimyasal güneş kremleri"
         },
         "essentialOils": {
           "icon": "⚠️",
           "name": "Uçucu Yağlar (bazıları)",
-          "risk": "medium"
+          "risk": "medium",
+          "title": "Uçucu yağlar"
         },
         "formaldehyde": {
           "icon": "🚫",
           "name": "Formaldehit",
-          "risk": "high"
+          "risk": "high",
+          "title": "Formaldehit"
         },
         "hydroquinone": {
           "icon": "🚫",
           "name": "Hidrokinon",
-          "risk": "high"
+          "risk": "high",
+          "title": "Hidrokinon"
         },
         "retinol": {
           "icon": "🚫",
           "name": "Retinol/Retinoidler",
-          "risk": "high"
+          "risk": "high",
+          "title": "Retinol"
         },
         "salicylic": {
           "icon": "⚠️",
           "name": "Salisilik Asit (yüksek %)",
-          "risk": "medium"
+          "risk": "medium",
+          "title": "Salisilik asit"
         }
       },
       "videos": {
@@ -6245,7 +6298,12 @@
         "comfort": "Konfor",
         "energy": "Enerji",
         "protein": "Protein",
-        "quick": "Hızlı"
+        "quick": "Hızlı",
+        "nuts": "Kuruyemişler",
+        "fruits": "Meyveler",
+        "dairy": "Süt ürünleri",
+        "grains": "Tahıllar",
+        "vegetables": "Sebzeler"
       },
       "feelingHungry": "Acıktınız mı?",
       "howToMake": "Nasıl yapılır",
@@ -6419,14 +6477,15 @@
         },
         "grounding54321": {
           "desc": "A sensory technique to reduce anxiety",
-          "name": "5-4-3-2-1 Grounding",
+          "name": "Topraklama 5-4-3-2-1",
           "steps": [
             "Notice 5 things you can SEE",
             "Notice 4 things you can TOUCH",
             "Notice 3 things you can HEAR",
             "Notice 2 things you can SMELL",
             "Notice 1 thing you can TASTE"
-          ]
+          ],
+          "description": "Gördüğünüz 5, dokunduğunuz 4, duyduğunuz 3, kokladığınız 2, tattığınız 1 şey sayın"
         },
         "progressiveRelaxation": {
           "desc": "Release tension from head to toe",
@@ -6533,7 +6592,7 @@
       "moods": {
         "good": "İyi",
         "great": "Harika",
-        "okay": "İdare eder",
+        "okay": "İyi",
         "tired": "Yorgun",
         "tough": "Zor"
       },
@@ -6728,7 +6787,7 @@
       "checkups": "Kontroller",
       "complete": "Tamamlandı",
       "current": "Mevcut",
-      "daysToGo": "{{days}} days to go",
+      "daysToGo": "{{days}} gün kaldı",
       "differentWeek": "Haftayı Değiştir",
       "fetalDevLink": "Fetal Development",
       "fetalDevLinkDesc": "See your baby's size and development this week",

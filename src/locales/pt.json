@@ -4085,14 +4085,18 @@
         "burger": "Hambúrguer",
         "cheese": "Queijo",
         "chocolate": "Chocolate",
-        "cookies": "Biscoitos",
+        "cookies": "Bolachas",
         "donuts": "Donuts",
         "frenchFries": "Batata Frita",
-        "iceCream": "Sorvete",
+        "iceCream": "Gelado",
         "pizza": "Pizza",
-        "popcorn": "Pipoca",
+        "popcorn": "Pipocas",
         "soda": "Refrigerante",
-        "tacos": "Tacos"
+        "tacos": "Tacos",
+        "chips": "Batatas fritas",
+        "cake": "Bolo",
+        "fries": "Batatas fritas",
+        "candy": "Rebuçados"
       },
       "emotionalComfort": "Conforto emocional",
       "emotionalComfortDesc": "certos alimentos proporcionam alívio psicológico",
@@ -4538,22 +4542,40 @@
         "avocado": "Abacate",
         "banana": "Banana",
         "bellPepper": "Pimentão",
-        "cabbage": "Repolho",
-        "cantaloupe": "Melão",
+        "cabbage": "Couve",
+        "cantaloupe": "Meloa",
         "corn": "Espiga de milho",
-        "eggplant": "Berinjela",
-        "honeydew": "Melão verde",
+        "eggplant": "Beringela",
+        "honeydew": "Melão",
         "lemon": "Limão",
         "lettuce": "Alface",
-        "lime": "Limão-taiti",
-        "papaya": "Mamão",
+        "lime": "Lima",
+        "papaya": "Papaia",
         "poppySeed": "Semente de papoula",
         "prune": "Ameixa seca",
-        "pumpkin": "Abóbora",
+        "pumpkin": "Abóbora grande",
         "raspberry": "Framboesa",
         "squash": "Abóbora",
         "sweetPea": "Ervilha",
-        "watermelon": "Melancia"
+        "watermelon": "Melancia",
+        "poppy": "Semente de papoula",
+        "sesame": "Semente de sésamo",
+        "lentil": "Lentilha",
+        "blueberry": "Mirtilo",
+        "cherry": "Cereja",
+        "olive": "Azeitona",
+        "fig": "Figo",
+        "plum": "Ameixa",
+        "peach": "Pêssego",
+        "apple": "Maçã",
+        "orange": "Laranja",
+        "pear": "Pera",
+        "turnip": "Nabo",
+        "mango": "Manga",
+        "pomegranate": "Romã",
+        "coconut": "Coco",
+        "cauliflower": "Couve-flor",
+        "pineapple": "Ananás"
       },
       "subtitle": "A jornada de crescimento do seu bebê semana a semana",
       "thisWeeksDevelopment": "Desenvolvimento desta semana",
@@ -4658,22 +4680,22 @@
       "exerciseInProgress": "Exercício em andamento",
       "exerciseNames": {
         "ankleCircles": "Ankle Circles",
-        "armCircles": "Círculos de Braços",
+        "armCircles": "Círculos de braços",
         "birdDog": "Cachorro-Pássaro",
         "butterflyStretch": "Alongamento Borboleta",
         "calfRaises": "Calf Raises",
-        "catCow": "Alongamento Gato-Vaca",
+        "catCow": "Gato-Vaca",
         "childPose": "Postura da Criança",
-        "deepBreathing": "Respiração Profunda",
+        "deepBreathing": "Respiração profunda",
         "figureFour": "Figure-Four Stretch",
         "gentleTwist": "Gentle Spinal Twist",
         "gluteBridge": "Ponte de Glúteos",
         "hamstringStretch": "Hamstring Stretch",
         "hipCircles": "Hip Circles",
-        "kegelExercise": "Kegel Exercise",
+        "kegelExercise": "Exercício de Kegel",
         "lowImpactJacks": "Low-Impact Jacks",
         "neckRolls": "Rotações de Pescoço",
-        "pelvicTilts": "Inclinações Pélvicas",
+        "pelvicTilts": "Inclinação pélvica",
         "prenatalSquats": "Agachamentos Pré-natais",
         "savasana": "Savasana",
         "seatedMarching": "Marcha Sentada",
@@ -4685,7 +4707,14 @@
         "stepTouch": "Passo e Toque",
         "sumoSquat": "Sumo Squat",
         "wallPushups": "Flexões de Parede",
-        "wallSit": "Wall Sit"
+        "wallSit": "Wall Sit",
+        "squats": "Agachamentos",
+        "wallPushUps": "Flexões na parede",
+        "sideStretches": "Alongamentos laterais",
+        "prenatalYoga": "Yoga pré-natal",
+        "bridgeExercise": "Ponte",
+        "legLifts": "Elevações de pernas",
+        "shoulderRolls": "Rotações de ombros"
       },
       "fitnessVideos": "Vídeos de Fitness Pré-natal",
       "fitnessVideosSubtitle": "Guias de treino seguros para cada trimestre",
@@ -4712,7 +4741,7 @@
         "shoulders": "Ombros e Deltoides",
         "spine": "Coluna e Músculos Dorsais"
       },
-      "pause": "Pausar",
+      "pause": "Pausa",
       "restTime": "Tempo de Descanso",
       "resume": "Retomar",
       "safeExercises": "Exercícios Seguros",
@@ -4956,7 +4985,7 @@
     "hospitalBag": {
       "addCustomItem": "Adicionar item personalizado...",
       "all": "Tudo",
-      "baby": "Bebê",
+      "baby": "Bebé",
       "documents": "Documentos",
       "essential": "Essencial",
       "exportError": "Falha ao exportar a lista",
@@ -5011,7 +5040,7 @@
       "notPacked": "Não Empacotado",
       "optional": "Opcional",
       "packed": "Empacotado",
-      "partner": "Parceiro",
+      "partner": "Parceiro/a",
       "progress": "Progresso de Empacotamento",
       "recommended": "Recomendado",
       "resetConfirm": "Tem certeza de que deseja redefinir a lista? Isso removerá todos os itens personalizados e restaurará a lista padrão.",
@@ -5258,9 +5287,10 @@
         "dairy": "Laticínios",
         "eggs": "Ovos",
         "gluten": "Glúten",
-        "nuts": "Nozes",
+        "nuts": "Frutos secos",
         "seafood": "Frutos do mar",
-        "soy": "Soja"
+        "soy": "Soja",
+        "shellfish": "Marisco"
       },
       "allergiesLabel": "Alergias e intolerâncias",
       "cravings": {
@@ -5275,7 +5305,7 @@
       "mealSuggestion": "Sugestão de Refeição",
       "mealType": "Tipo de Refeição",
       "mealTypes": {
-        "breakfast": "Café da manhã",
+        "breakfast": "Pequeno-almoço",
         "dinner": "Jantar",
         "lunch": "Almoço",
         "snack": "Lanche"
@@ -5495,7 +5525,8 @@
         }
       },
       "videosSubtitle": "Recursos de apoio e autocuidado",
-      "youreNotAlone": "Você não está sozinha"
+      "youreNotAlone": "Você não está sozinha",
+      "emergencyNote": "Em caso de crise: ligue 112"
     },
     "mobilityCoach": {
       "adjustGoal": "Ajustar Meta (minutos/semana)",
@@ -5658,7 +5689,7 @@
       "gettingAdvice": "Obtendo conselho...",
       "husband": "Marido",
       "iAmHer": "Eu sou seu/sua...",
-      "partner": "Parceiro",
+      "partner": "Parceiro/a",
       "partnerVideos": "Vídeos de Apoio para Parceiros",
       "partnerVideosSubtitle": "Aprenda a ser o melhor parceiro de apoio",
       "quickDailyActions": "Ações Diárias Rápidas",
@@ -5668,42 +5699,50 @@
         "appointments": {
           "desc": "Participar do cuidado pré-natal",
           "icon": "🏥",
-          "label": "Consultas Médicas"
+          "label": "Consultas Médicas",
+          "title": "Consultas médicas"
         },
         "bonding": {
           "desc": "Conectar-se antes do nascimento",
           "icon": "👶",
-          "label": "Vínculo com o Bebê"
+          "label": "Vínculo com o Bebê",
+          "title": "Vínculo com o bebé"
         },
         "communication": {
           "desc": "Entender mudanças de humor",
           "icon": "💬",
-          "label": "Comunicação"
+          "label": "Comunicação",
+          "title": "Comunicação"
         },
         "emotional": {
           "desc": "Como estar emocionalmente presente",
           "icon": "💝",
-          "label": "Apoio Emocional"
+          "label": "Apoio Emocional",
+          "title": "Apoio emocional"
         },
         "intimacy": {
           "desc": "Manter a proximidade",
           "icon": "❤️",
-          "label": "Intimidade e Conexão"
+          "label": "Intimidade e Conexão",
+          "title": "Intimidade"
         },
         "labor": {
           "desc": "Estar pronto para o dia D",
           "icon": "⏰",
-          "label": "Preparação para o Parto"
+          "label": "Preparação para o Parto",
+          "title": "Preparação para o parto"
         },
         "physical": {
           "desc": "Massagem, ajuda nas tarefas",
           "icon": "🤲",
-          "label": "Conforto Físico"
+          "label": "Conforto Físico",
+          "title": "Ajuda física"
         },
         "postpartum": {
           "desc": "Depois que o bebê chegar",
           "icon": "🏠",
-          "label": "Planejamento Pós-parto"
+          "label": "Planejamento Pós-parto",
+          "title": "Pós-parto"
         }
       },
       "trimester": "Trimestre",
@@ -6100,35 +6139,43 @@
       "concerns": {
         "acne": {
           "icon": "🔴",
-          "label": "Acne da Gravidez"
+          "label": "Acne da Gravidez",
+          "title": "Acne"
         },
         "dryness": {
           "icon": "🏜️",
-          "label": "Pele Seca"
+          "label": "Pele Seca",
+          "title": "Pele seca"
         },
         "glow": {
           "icon": "💫",
-          "label": "Quero aquele brilho da gravidez!"
+          "label": "Quero aquele brilho da gravidez!",
+          "title": "Brilho de gravidez"
         },
         "itching": {
           "icon": "🤚",
-          "label": "Coceira (PUPPP)"
+          "label": "Coceira (PUPPP)",
+          "title": "Comichão"
         },
         "melasma": {
           "icon": "🟤",
-          "label": "Melasma/Manchas Escuras"
+          "label": "Melasma/Manchas Escuras",
+          "title": "Melasma"
         },
         "oiliness": {
           "icon": "✨",
-          "label": "Pele Oleosa/Brilhante"
+          "label": "Pele Oleosa/Brilhante",
+          "title": "Pele oleosa"
         },
         "sensitivity": {
           "icon": "❗",
-          "label": "Sensibilidade"
+          "label": "Sensibilidade",
+          "title": "Pele sensível"
         },
         "stretchMarks": {
           "icon": "〰️",
-          "label": "Estrias"
+          "label": "Estrias",
+          "title": "Estrias"
         }
       },
       "creatingRoutine": "Criando rotina...",
@@ -6153,32 +6200,38 @@
         "chemicalSunscreens": {
           "icon": "⚠️",
           "name": "Protetores Solares Químicos",
-          "risk": "medium"
+          "risk": "medium",
+          "title": "Protetores solares químicos"
         },
         "essentialOils": {
           "icon": "⚠️",
           "name": "Óleos Essenciais (alguns)",
-          "risk": "medium"
+          "risk": "medium",
+          "title": "Óleos essenciais"
         },
         "formaldehyde": {
           "icon": "🚫",
           "name": "Formaldeído",
-          "risk": "high"
+          "risk": "high",
+          "title": "Formaldeído"
         },
         "hydroquinone": {
           "icon": "🚫",
           "name": "Hidroquinona",
-          "risk": "high"
+          "risk": "high",
+          "title": "Hidroquinona"
         },
         "retinol": {
           "icon": "🚫",
           "name": "Retinol/Retinoides",
-          "risk": "high"
+          "risk": "high",
+          "title": "Retinol"
         },
         "salicylic": {
           "icon": "⚠️",
           "name": "Ácido Salicílico (alto %)",
-          "risk": "medium"
+          "risk": "medium",
+          "title": "Ácido salicílico"
         }
       },
       "videos": {
@@ -6244,8 +6297,13 @@
         "all": "Todos",
         "comfort": "Conforto",
         "energy": "Energia",
-        "protein": "Proteína",
-        "quick": "Rápido"
+        "protein": "Proteínas",
+        "quick": "Rápido",
+        "nuts": "Frutos secos",
+        "fruits": "Frutas",
+        "dairy": "Laticínios",
+        "grains": "Cereais",
+        "vegetables": "Legumes"
       },
       "feelingHungry": "Está com fome?",
       "howToMake": "Como preparar",
@@ -6419,14 +6477,15 @@
         },
         "grounding54321": {
           "desc": "A sensory technique to reduce anxiety",
-          "name": "5-4-3-2-1 Grounding",
+          "name": "Ancoragem 5-4-3-2-1",
           "steps": [
             "Notice 5 things you can SEE",
             "Notice 4 things you can TOUCH",
             "Notice 3 things you can HEAR",
             "Notice 2 things you can SMELL",
             "Notice 1 thing you can TASTE"
-          ]
+          ],
+          "description": "Conte 5 coisas que vê, 4 que toca, 3 que ouve, 2 que cheira, 1 que prova"
         },
         "progressiveRelaxation": {
           "desc": "Release tension from head to toe",
@@ -6533,7 +6592,7 @@
       "moods": {
         "good": "Bem",
         "great": "Ótimo",
-        "okay": "Normal",
+        "okay": "Bem",
         "tired": "Cansada",
         "tough": "Difícil"
       },
@@ -6728,7 +6787,7 @@
       "checkups": "Consultas",
       "complete": "Completo",
       "current": "Atual",
-      "daysToGo": "{{days}} days to go",
+      "daysToGo": "Faltam {{days}} dias",
       "differentWeek": "Mudar Semana",
       "fetalDevLink": "Fetal Development",
       "fetalDevLinkDesc": "See your baby's size and development this week",
