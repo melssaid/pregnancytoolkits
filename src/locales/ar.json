@@ -8021,9 +8021,9 @@
         "tip": "Check cervical position in the same position daily (e.g., standing with one foot elevated). It takes practice — be patient with yourself."
       },
       "ovulationPain": {
-        "title": "Ovulation Sensation (Mittelschmerz)",
-        "description": "Some women feel a mild twinge, cramp, or ache on one side of the lower abdomen during ovulation. This 'middle pain' (mittelschmerz) is caused by the follicle rupturing to release the egg. It typically lasts a few minutes to a few hours.",
-        "tip": "Note which side you feel the sensation — it may alternate sides each cycle as ovulation switches between ovaries."
+        "title": "ألم الإباضة (ميتلشمرتس)",
+        "description": "بعض النساء يشعرن بوخز خفيف أو تشنج أو ألم في جانب واحد من أسفل البطن أثناء الإباضة. هذا 'الألم الأوسط' (ميتلشمرتس) ناتج عن تمزق الجريب لإطلاق البويضة. يستمر عادة من بضع دقائق إلى بضع ساعات.",
+        "tip": "لاحظي في أي جانب تشعرين بالإحساس — قد يتناوب بين الجانبين كل دورة مع تناوب الإباضة بين المبيضين."
       },
       "breastTenderness": {
         "title": "حساسية الثدي",
@@ -8036,9 +8036,9 @@
         "tip": "Pay attention to these natural shifts — they often align with your most fertile days."
       },
       "moodShifts": {
-        "title": "Mood & Energy Shifts",
-        "description": "Estrogen rising in the follicular phase often brings improved mood, energy, and confidence. After ovulation, progesterone dominance may cause a shift toward calmness or, for some, irritability and fatigue. These fluctuations are normal and hormone-driven.",
-        "tip": "Journaling your mood daily can reveal patterns that correlate with your cycle phases."
+        "title": "تغيرات المزاج والطاقة",
+        "description": "ارتفاع الإستروجين في المرحلة الجريبية غالباً يجلب تحسناً في المزاج والطاقة والثقة. بعد الإباضة، قد يسبب هيمنة البروجسترون تحولاً نحو الهدوء أو، لدى بعض النساء، التهيج والإرهاق. هذه التقلبات طبيعية ومدفوعة هرمونياً.",
+        "tip": "تدوين مزاجك يومياً يمكن أن يكشف أنماطاً مرتبطة بمراحل دورتك."
       },
       "bloating": {
         "title": "انتفاخ خفيف",
@@ -8046,9 +8046,9 @@
         "tip": "Staying hydrated and reducing sodium intake can help manage ovulation-related bloating."
       },
       "lightSpotting": {
-        "title": "Ovulation Spotting",
-        "description": "A small amount of light pink or brown spotting around ovulation day is experienced by some women. It's caused by the slight drop in estrogen that occurs just before the LH surge, or by the follicle rupture itself. It's usually very light and brief.",
-        "tip": "Ovulation spotting is different from implantation bleeding (which occurs 6–12 days after ovulation). Track the timing carefully."
+        "title": "بقع دم الإباضة",
+        "description": "كمية صغيرة من البقع الوردية الفاتحة أو البنية حول يوم الإباضة تظهر عند بعض النساء. سببها الانخفاض الطفيف في الإستروجين قبل ارتفاع LH، أو تمزق الجريب نفسه. عادة ما تكون خفيفة جداً وقصيرة.",
+        "tip": "بقع الإباضة تختلف عن نزيف الانغراس (الذي يحدث بعد 6-12 يوماً من الإباضة). تتبعي التوقيت بدقة."
       },
       "heightenedSenses": {
         "title": "حواس مرهفة",
