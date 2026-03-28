@@ -94,7 +94,7 @@ export const toolsData: Tool[] = [
   { id: "ai-fitness-coach", titleKey: "tools.aiFitnessCoach.title", descriptionKey: "tools.aiFitnessCoach.description", icon: Dumbbell, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/dumbbell.png", categoryKey: "categories.wellness", href: "/tools/ai-fitness-coach", priority: 17, hasAI: true },
   { id: "pregnancy-comfort", titleKey: "tools.pregnancyComfort.title", descriptionKey: "tools.pregnancyComfort.description", icon: Bed, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/sleeping-in-bed.png", categoryKey: "categories.wellness", href: "/tools/pregnancy-comfort", priority: 19, hasAI: true },
   { id: "ai-pregnancy-skincare", titleKey: "tools.aiSkincare.title", descriptionKey: "tools.aiSkincare.description", icon: Palette, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/spa.png", categoryKey: "categories.wellness", href: "/tools/ai-skincare", priority: 21, hasAI: true },
-  { id: "ai-back-pain-relief", titleKey: "tools.aiBackPainRelief.title", descriptionKey: "tools.aiBackPainRelief.description", icon: Activity, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/spine.png", categoryKey: "categories.wellness", href: "/tools/ai-back-pain-relief", priority: 22, hasAI: true },
+  
 
   // Mental health moved to postpartum section
 
