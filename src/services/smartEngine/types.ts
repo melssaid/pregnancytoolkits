@@ -25,7 +25,7 @@ export type AIToolType =
   | "symptom-analysis" | "meal-suggestion" | "pregnancy-assistant" | "weekly-summary"
   | "posture-coach" | "walking-coach" | "stretch-reminder" | "back-pain-relief"
   | "leg-cramp-preventer" | "smoothie-generator" | "daily-tips" | "labor-tracker"
-  | "appointment-prep" | "kick-analysis" | "sleep-analysis" | "vitamin-advice"
+  | "appointment-prep" | "kick-analysis" | "sleep-analysis" | "sleep-meditation" | "sleep-routine" | "vitamin-advice"
   | "bump-photos" | "baby-cry-analysis" | "postpartum-recovery"
   | "hospital-bag" | "birth-position" | "partner-guide" | "lactation-prep"
   | "nausea-relief" | "skincare-advice" | "birth-plan" | "mental-health"
@@ -51,7 +51,7 @@ export const SECTION_TOOL_MAP: Record<SmartSection, AIToolType> = {
 };
 
 // ── Quota cost weights ──
-export type InsightWeight = 1 | 2;
+export type InsightWeight = 0.5 | 1 | 2;
 
 /**
  * TOOL_WEIGHT_REGISTRY — THE SINGLE SOURCE OF TRUTH for AI request costs.
@@ -75,9 +75,11 @@ export const TOOL_WEIGHT_REGISTRY: Record<AIToolType, InsightWeight> = {
   "labor-tracker": 1,
   "appointment-prep": 1,
   "kick-analysis": 1,
-  "sleep-analysis": 1,
+  "sleep-analysis": 0.5,      // sub-action of Pregnancy Comfort
+  "sleep-meditation": 0.5,    // sub-action of Pregnancy Comfort
+  "sleep-routine": 0.5,       // sub-action of Pregnancy Comfort
   "vitamin-advice": 1,
-  "bump-photos": 2,       // ultrasound image analysis — higher cost
+  "bump-photos": 2,           // ultrasound image analysis — higher cost
   "baby-cry-analysis": 1,
   "postpartum-recovery": 1,
   "hospital-bag": 1,

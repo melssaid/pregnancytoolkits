@@ -10,7 +10,7 @@ type AIType =
   | "symptom-analysis" | "meal-suggestion" | "pregnancy-assistant" | "weekly-summary"
   | "posture-coach" | "walking-coach" | "stretch-reminder" | "back-pain-relief"
   | "leg-cramp-preventer" | "smoothie-generator" | "daily-tips" | "labor-tracker"
-  | "appointment-prep" | "kick-analysis" | "sleep-analysis" | "vitamin-advice"
+  | "appointment-prep" | "kick-analysis" | "sleep-analysis" | "sleep-meditation" | "sleep-routine" | "vitamin-advice"
   | "bump-photos" | "baby-cry-analysis" | "postpartum-recovery"
   | "hospital-bag" | "birth-position" | "partner-guide" | "lactation-prep"
   | "nausea-relief" | "skincare-advice" | "birth-plan" | "mental-health" | "pregnancy-plan" | "baby-growth-analysis"
@@ -36,7 +36,7 @@ const VALID_TYPES: AIType[] = [
   "symptom-analysis", "meal-suggestion", "pregnancy-assistant", "weekly-summary",
   "posture-coach", "walking-coach", "stretch-reminder", "back-pain-relief",
   "leg-cramp-preventer", "smoothie-generator", "daily-tips", "labor-tracker",
-  "appointment-prep", "kick-analysis", "sleep-analysis", "vitamin-advice",
+  "appointment-prep", "kick-analysis", "sleep-analysis", "sleep-meditation", "sleep-routine", "vitamin-advice",
   "bump-photos", "baby-cry-analysis", "postpartum-recovery",
   "hospital-bag", "birth-position", "partner-guide", "lactation-prep",
   "nausea-relief", "skincare-advice", "birth-plan", "mental-health", "pregnancy-plan", "baby-growth-analysis",
@@ -151,6 +151,8 @@ const MODEL_TUNING: Record<AIType, { temperature: number; max_tokens: number }> 
   "appointment-prep":     { temperature: 0.4, max_tokens: 2500 },
   "kick-analysis":        { temperature: 0.2, max_tokens: 2500 },
   "sleep-analysis":       { temperature: 0.3, max_tokens: 2500 },
+  "sleep-meditation":     { temperature: 0.6, max_tokens: 2500 },
+  "sleep-routine":        { temperature: 0.5, max_tokens: 2500 },
   "vitamin-advice":       { temperature: 0.3, max_tokens: 2500 },
   "bump-photos":          { temperature: 0.5, max_tokens: 2500 },
   "baby-cry-analysis":    { temperature: 0.3, max_tokens: 2500 },
@@ -438,6 +440,30 @@ Be reassuring while emphasizing the importance of monitoring.`;
 ### ⚠️ When to Consult Your Pediatrician
 
 Be supportive and acknowledge that sleep challenges are common.`;
+
+    case "sleep-meditation":
+      return persona + `You are a certified prenatal meditation and mindfulness guide.
+
+## 🧘 Guided Meditation Script
+### Opening & Settling (1 min)
+### Body Scan & Relaxation (3 mins)
+### Deep Breathing Exercises (2 mins)
+### Peaceful Visualization (3 mins)
+### Gentle Closing (1 min)
+
+Use calm, soothing language with [...] pause markers. Focus on pregnancy-specific relaxation.`;
+
+    case "sleep-routine":
+      return persona + `You are a pregnancy sleep hygiene specialist.
+
+## 🌙 Wind-Down Routine
+### Hour 1 — Active Transition
+### Hour 2 — Passive Relaxation
+### Final 30 Minutes — Sleep Preparation
+### Environment Checklist
+### Weekly Progress Tips
+
+Provide practical, time-specific steps that are safe during pregnancy.`;
 
     case "vitamin-advice":
       return persona + `You are specialized in pregnancy supplement guidance.
