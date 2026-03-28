@@ -169,6 +169,7 @@ const MODEL_TUNING: Record<AIType, { temperature: number; max_tokens: number }> 
   "baby-growth-analysis": { temperature: 0.3, max_tokens: 2500 },
   "weight-analysis":      { temperature: 0.3, max_tokens: 2500 },
   "contraction-analysis": { temperature: 0.2, max_tokens: 3000 },
+  "craving-alternatives": { temperature: 0.7, max_tokens: 2000 },
 };
 
 // ── Language configuration ──
