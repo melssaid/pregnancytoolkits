@@ -34,14 +34,14 @@ interface AIInsightCardProps {
 import { resolveWeight, type AIToolType, type SmartSection } from '@/services/smartEngine/types';
 import { useTranslation as useTranslationImport } from 'react-i18next';
 
-const miniUsageLabels: Record<string, { costHint1: string; costHint2: string; upgradeHint: string }> = {
-  en: { costHint1: 'Uses 1 credit', costHint2: 'Uses 2 credits', upgradeHint: 'Get 40/month with Premium →' },
-  ar: { costHint1: 'تستهلك نقطة واحدة', costHint2: 'تستهلك نقطتين', upgradeHint: 'ترقّي للحصول على 40 تحليل شهرياً ←' },
-  de: { costHint1: '1 Credit verbraucht', costHint2: '2 Credits verbraucht', upgradeHint: '40/Monat mit Premium erhalten →' },
-  fr: { costHint1: 'Utilise 1 crédit', costHint2: 'Utilise 2 crédits', upgradeHint: 'Obtenez 40/mois avec Premium →' },
-  es: { costHint1: 'Usa 1 crédito', costHint2: 'Usa 2 créditos', upgradeHint: 'Obtén 40/mes con Premium →' },
-  pt: { costHint1: 'Usa 1 crédito', costHint2: 'Usa 2 créditos', upgradeHint: 'Obtenha 40/mês com Premium →' },
-  tr: { costHint1: '1 kredi kullanır', costHint2: '2 kredi kullanır', upgradeHint: 'Premium ile 40/ay alın →' },
+const miniUsageLabels: Record<string, { costHint0: string; costHint05: string; costHint1: string; costHint2: string; upgradeHint: string }> = {
+  en: { costHint0: 'Free ✨', costHint05: 'Uses ½ credit', costHint1: 'Uses 1 credit', costHint2: 'Uses 2 credits', upgradeHint: 'Get 40/month with Premium →' },
+  ar: { costHint0: 'مجاني ✨', costHint05: 'تستهلك نصف نقطة', costHint1: 'تستهلك نقطة واحدة', costHint2: 'تستهلك نقطتين', upgradeHint: 'ترقّي للحصول على 40 تحليل شهرياً ←' },
+  de: { costHint0: 'Kostenlos ✨', costHint05: '½ Credit', costHint1: '1 Credit verbraucht', costHint2: '2 Credits verbraucht', upgradeHint: '40/Monat mit Premium erhalten →' },
+  fr: { costHint0: 'Gratuit ✨', costHint05: '½ crédit', costHint1: 'Utilise 1 crédit', costHint2: 'Utilise 2 crédits', upgradeHint: 'Obtenez 40/mois avec Premium →' },
+  es: { costHint0: 'Gratis ✨', costHint05: '½ crédito', costHint1: 'Usa 1 crédito', costHint2: 'Usa 2 créditos', upgradeHint: 'Obtén 40/mes con Premium →' },
+  pt: { costHint0: 'Grátis ✨', costHint05: '½ crédito', costHint1: 'Usa 1 crédito', costHint2: 'Usa 2 créditos', upgradeHint: 'Obtenha 40/mês com Premium →' },
+  tr: { costHint0: 'Ücretsiz ✨', costHint05: '½ kredi', costHint1: '1 kredi kullanır', costHint2: '2 kredi kullanır', upgradeHint: 'Premium ile 40/ay alın →' },
 };
 
 /** Professional usage bar matching AIActionButton design */
@@ -85,7 +85,7 @@ const MiniUsageBar: React.FC<{ toolType?: AIToolType; section?: SmartSection }> 
         <p className="text-[10px] text-muted-foreground/60 text-center leading-tight px-1">
           <span className="inline-flex items-center gap-1">
             <span className="inline-block w-1.5 h-1.5 rounded-full bg-primary/60" />
-            {weight === 2 ? labels.costHint2 : labels.costHint1}
+            {weight === 0 ? labels.costHint0 : weight === 2 ? labels.costHint2 : weight === 0.5 ? labels.costHint05 : labels.costHint1}
           </span>
           {' · '}
           <span

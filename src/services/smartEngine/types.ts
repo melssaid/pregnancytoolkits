@@ -30,7 +30,8 @@ export type AIToolType =
   | "hospital-bag" | "birth-position" | "partner-guide" | "lactation-prep"
   | "nausea-relief" | "skincare-advice" | "birth-plan" | "mental-health"
   | "pregnancy-plan" | "baby-growth-analysis"
-  | "weight-analysis" | "contraction-analysis";
+  | "weight-analysis" | "contraction-analysis"
+  | "craving-alternatives";
 
 // ── Section → AI Tool Type mapping ──
 export const SECTION_TOOL_MAP: Record<SmartSection, AIToolType> = {
@@ -51,7 +52,7 @@ export const SECTION_TOOL_MAP: Record<SmartSection, AIToolType> = {
 };
 
 // ── Quota cost weights ──
-export type InsightWeight = 0.5 | 1 | 2;
+export type InsightWeight = 0 | 0.5 | 1 | 2;
 
 /**
  * TOOL_WEIGHT_REGISTRY — THE SINGLE SOURCE OF TRUTH for AI request costs.
@@ -71,7 +72,7 @@ export const TOOL_WEIGHT_REGISTRY: Record<AIToolType, InsightWeight> = {
   "back-pain-relief": 1,
   "leg-cramp-preventer": 1,
   "smoothie-generator": 1,
-  "daily-tips": 1,
+  "daily-tips": 0,              // free — encourages daily engagement
   "labor-tracker": 1,
   "appointment-prep": 1,
   "kick-analysis": 1,
@@ -86,7 +87,7 @@ export const TOOL_WEIGHT_REGISTRY: Record<AIToolType, InsightWeight> = {
   "birth-position": 1,
   "partner-guide": 1,
   "lactation-prep": 1,
-  "nausea-relief": 1,
+  "nausea-relief": 0.5,         // lightweight relief tips
   "skincare-advice": 1,
   "birth-plan": 1,
   "mental-health": 1,
@@ -94,6 +95,7 @@ export const TOOL_WEIGHT_REGISTRY: Record<AIToolType, InsightWeight> = {
   "baby-growth-analysis": 1,
   "weight-analysis": 1,
   "contraction-analysis": 1,
+  "craving-alternatives": 0.5,  // lightweight craving swap suggestions
 };
 
 /**

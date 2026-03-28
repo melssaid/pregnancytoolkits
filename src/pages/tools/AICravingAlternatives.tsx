@@ -35,7 +35,7 @@ const AICravingAlternatives: React.FC = () => {
   const [week, setWeek] = useState(20);
   const { generate, isLoading, content, error, reset } = useSmartInsight({
     section: 'nutrition',
-    toolType: 'meal-suggestion',
+    toolType: 'craving-alternatives',
   });
 
   const handleCravingSelect = useCallback((cravingName: string) => {

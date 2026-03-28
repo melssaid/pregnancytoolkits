@@ -14,7 +14,7 @@ type AIType =
   | "bump-photos" | "baby-cry-analysis" | "postpartum-recovery"
   | "hospital-bag" | "birth-position" | "partner-guide" | "lactation-prep"
   | "nausea-relief" | "skincare-advice" | "birth-plan" | "mental-health" | "pregnancy-plan" | "baby-growth-analysis"
-  | "weight-analysis" | "contraction-analysis";
+  | "weight-analysis" | "contraction-analysis" | "craving-alternatives";
 
 interface AIRequest {
   type: AIType;
@@ -40,7 +40,7 @@ const VALID_TYPES: AIType[] = [
   "bump-photos", "baby-cry-analysis", "postpartum-recovery",
   "hospital-bag", "birth-position", "partner-guide", "lactation-prep",
   "nausea-relief", "skincare-advice", "birth-plan", "mental-health", "pregnancy-plan", "baby-growth-analysis",
-  "weight-analysis", "contraction-analysis",
+  "weight-analysis", "contraction-analysis", "craving-alternatives",
 ];
 
 // ── Validation constants ──
@@ -169,6 +169,7 @@ const MODEL_TUNING: Record<AIType, { temperature: number; max_tokens: number }> 
   "baby-growth-analysis": { temperature: 0.3, max_tokens: 2500 },
   "weight-analysis":      { temperature: 0.3, max_tokens: 2500 },
   "contraction-analysis": { temperature: 0.2, max_tokens: 3000 },
+  "craving-alternatives": { temperature: 0.7, max_tokens: 2000 },
 };
 
 // ── Language configuration ──
@@ -625,6 +626,23 @@ Structure your response using this format:
 - Brief calming note
 
 Be direct about whether they should seek medical attention. Safety is the top priority.`;
+
+    case "craving-alternatives":
+      return persona + `You are a prenatal nutrition specialist focused on healthy craving alternatives during pregnancy.
+
+Provide:
+## 🍽️ Understanding Your Craving
+- What nutrient deficiency this craving might indicate
+- Why pregnant women commonly crave this
+
+## ✅ Healthy Alternatives (3-4 options)
+For each: name, emoji, why it satisfies the craving, nutritional benefits, quick prep tip.
+
+## ⚠️ Safety Notes
+- Is the original craving safe during pregnancy?
+- Portion recommendations
+
+Keep it practical, delicious, and encouraging.`;
 
     default:
       return persona + "Provide helpful, well-organized pregnancy guidance.";
