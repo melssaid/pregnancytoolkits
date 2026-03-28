@@ -7876,7 +7876,7 @@
     "disclaimer": "هذا تقدير مبني على بيانات الدورة المتوسطة. قد يختلف موعد الإباضة الفعلي. استشيري طبيبتكِ للحصول على إرشادات مخصصة."
   },
   "toolsInternal.fertilityAcademy": {
-    "lessonsCount": "{{count}} learning modules",
+    "lessonsCount": "{{count}} وحدة تعليمية",
     "lessons": {
       "menstrualCycle": {
         "title": "فهم الدورة الشهرية",
@@ -8001,7 +8001,7 @@
     }
   },
   "toolsInternal.fertilitySigns": {
-    "signsCount": "{{count}} signs to know",
+    "signsCount": "{{count}} علامة يجب معرفتها",
     "signs": {
       "cervicalMucus": {
         "title": "تغيرات مخاط عنق الرحم",
@@ -8251,7 +8251,7 @@
     }
   },
   "toolsInternal.stressFertility": {
-    "topicsCount": "{{count}} topics to explore",
+    "topicsCount": "{{count}} موضوع للاستكشاف",
     "topics": {
       "stressHormones": {
         "title": "How Stress Affects Fertility",
