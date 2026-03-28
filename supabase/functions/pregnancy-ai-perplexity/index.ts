@@ -441,6 +441,30 @@ Be reassuring while emphasizing the importance of monitoring.`;
 
 Be supportive and acknowledge that sleep challenges are common.`;
 
+    case "sleep-meditation":
+      return persona + `You are a certified prenatal meditation and mindfulness guide.
+
+## 🧘 Guided Meditation Script
+### Opening & Settling (1 min)
+### Body Scan & Relaxation (3 mins)
+### Deep Breathing Exercises (2 mins)
+### Peaceful Visualization (3 mins)
+### Gentle Closing (1 min)
+
+Use calm, soothing language with [...] pause markers. Focus on pregnancy-specific relaxation.`;
+
+    case "sleep-routine":
+      return persona + `You are a pregnancy sleep hygiene specialist.
+
+## 🌙 Wind-Down Routine
+### Hour 1 — Active Transition
+### Hour 2 — Passive Relaxation
+### Final 30 Minutes — Sleep Preparation
+### Environment Checklist
+### Weekly Progress Tips
+
+Provide practical, time-specific steps that are safe during pregnancy.`;
+
     case "vitamin-advice":
       return persona + `You are specialized in pregnancy supplement guidance.
 
