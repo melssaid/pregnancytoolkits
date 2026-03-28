@@ -162,8 +162,11 @@ jobs:
 
       - name: Initialize TWA project
         run: |
-          bubblewrap init --manifest="./twa-manifest.json" --directory="."
-          test -f gradlew || { echo "ERROR: gradlew not generated"; exit 1; }
+          python3 -m http.server 4173 --directory public >/tmp/pwa-manifest-server.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID 2>/dev/null || true' EXIT
+          timeout 180 bash -c 'yes "" | bubblewrap init --manifest="http://127.0.0.1:4173/manifest.json" --directory="."' || true
+          test -f gradlew || { echo "ERROR: gradlew not generated"; cat /tmp/pwa-manifest-server.log; exit 1; }
         env:
           BUBBLEWRAP_KEYSTORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
           BUBBLEWRAP_KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
