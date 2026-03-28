@@ -3203,7 +3203,11 @@
         "afterWaking": "بعد الاستيقاظ",
         "beforeSleep": "قبل النوم",
         "duringChange": "أثناء تغيير الحفاض",
-        "noReason": "بدون سبب واضح"
+        "noReason": "بدون سبب واضح",
+        "feeding": "أثناء/بعد الرضاعة",
+        "sleeping": "قبل النوم",
+        "diaper": "يحتاج تغيير الحفاض",
+        "unknown": "غير معروف"
       },
       "cryDuration": "مدة البكاء",
       "cryPattern": "نمط البكاء",
@@ -3211,7 +3215,10 @@
         "1to5": "١-٥ دقائق",
         "5to15": "٥-١٥ دقيقة",
         "over15": "أكثر من ١٥ دقيقة",
-        "under1": "أقل من دقيقة"
+        "under1": "أقل من دقيقة",
+        "brief": "قصير (< 5 دقائق)",
+        "moderate": "متوسط (5-15 دقيقة)",
+        "prolonged": "طويل (> 15 دقيقة)"
       },
       "newAnalysis": "تحليل جديد",
       "patterns": {
@@ -3219,7 +3226,9 @@
         "highPitch": "صوت حاد",
         "intermittent": "متقطع",
         "rhythmic": "إيقاعي",
-        "sudden": "صراخ مفاجئ"
+        "sudden": "صراخ مفاجئ",
+        "escalating": "متصاعد",
+        "weak": "ضعيف"
       },
       "reanalyze": "إعادة التحليل",
       "recentLogs": "التحليلات الأخيرة",
@@ -4443,7 +4452,7 @@
     "forbiddenFoods": {
       "aiAnalysis": "تحليل ذكي للطعام",
       "analyzing": "جارٍ التحليل...",
-      "askAI": "Ask AI about \"{{term}}\"",
+      "askAI": "اسأل الذكاء الاصطناعي عن \"{{term}}\"",
       "filters": {
         "all": "الكل",
         "avoid": "تجنبي",
@@ -5097,9 +5106,9 @@
           "title": "رعاية المولود - الأسبوع الأول"
         },
         "v5": {
-          "category": "Anxiety",
-          "description": "Practical strategies for coping with anxiety during pregnancy",
-          "title": "Managing Pregnancy Anxiety"
+          "title": "إدارة قلق الحمل",
+          "description": "استراتيجيات عملية للتعامل مع القلق أثناء الحمل",
+          "category": "القلق"
         }
       },
       "videosSubtitle": "موارد الدعم والرعاية الذاتية",
@@ -5220,41 +5229,41 @@
       "vegetarian": "نباتي"
     },
     "ovulation": {
-      "aiFertilityInsights": "AI Fertility Insights",
-      "avgCycleLength": "Average Cycle Length (days)",
-      "bestDays": "Your best days for conception",
-      "calculateBtn": "Calculate Ovulation",
-      "calculateDesc": "Enter your cycle details to discover your best days ✨",
-      "calculateTitle": "Calculate Your Fertile Window",
-      "cycle": "Cycle",
-      "cycleRange": "Most cycles range from 21-35 days",
-      "days": "days",
-      "daysUntilOvulation": "Days Until Ovulation",
-      "deleted": "Deleted",
-      "deletedDesc": "Result removed from history.",
-      "disclaimer": "This calculator provides estimates based on average cycle patterns. Individual cycles may vary. Consider using ovulation predictor kits for more accuracy.",
-      "end": "End",
-      "expectedStart": "Expected start",
-      "fertile": "Fertile",
-      "fertileWindow": "Fertile Window",
-      "firstDayLastPeriod": "First Day of Last Period",
-      "getPersonalizedAdvice": "Get Personalized Fertility Advice",
-      "getReady": "Get ready for your fertile window!",
-      "nextPeriod": "Next Period",
-      "ovulation": "Ovulation",
-      "ovulationDay": "Ovulation Day",
-      "peakFertility": "Peak fertility day",
-      "saveCalculation": "Save This Calculation",
-      "saved": "Saved!",
-      "savedCalculations": "Saved Calculations",
-      "savedDesc": "Your ovulation calculation has been saved.",
-      "sixDays": "6 days of peak fertility",
-      "start": "Start",
-      "subtitle": "Find your most fertile days",
-      "tip": "Tip",
-      "tipText": "For the best chances, try to be intimate during your fertile window, especially 1-2 days before ovulation.",
-      "videosSubtitle": "تعرّف على نافذة الخصوبة ودورة الإباضة",
-      "videosTitle": "فيديوهات الخصوبة والإباضة"
+      "aiFertilityInsights": "رؤى الذكاء الاصطناعي للخصوبة",
+      "avgCycleLength": "متوسط طول الدورة (أيام)",
+      "bestDays": "أفضل أيامك للحمل",
+      "calculateBtn": "حساب التبويض",
+      "calculateDesc": "أدخلي تفاصيل دورتك لاكتشاف أفضل أيامك ✨",
+      "calculateTitle": "احسبي نافذة الخصوبة",
+      "cycle": "الدورة",
+      "cycleRange": "معظم الدورات تتراوح بين 21-35 يوماً",
+      "days": "أيام",
+      "daysUntilOvulation": "أيام حتى التبويض",
+      "deleted": "تم الحذف",
+      "deletedDesc": "تمت إزالة النتيجة من السجل.",
+      "disclaimer": "هذه الحاسبة تقدم تقديرات بناءً على أنماط الدورة المتوسطة. قد تختلف الدورات الفردية. ضعي في اعتبارك استخدام أدوات التنبؤ بالتبويض لمزيد من الدقة.",
+      "end": "النهاية",
+      "expectedStart": "الموعد المتوقع",
+      "fertile": "خصبة",
+      "fertileWindow": "نافذة الخصوبة",
+      "firstDayLastPeriod": "أول يوم من آخر دورة",
+      "getPersonalizedAdvice": "احصلي على نصائح خصوبة مخصصة",
+      "getReady": "استعدي لنافذة الخصوبة!",
+      "nextPeriod": "الدورة القادمة",
+      "ovulation": "التبويض",
+      "ovulationDay": "يوم التبويض",
+      "peakFertility": "يوم ذروة الخصوبة",
+      "saveCalculation": "حفظ هذا الحساب",
+      "saved": "تم الحفظ!",
+      "savedCalculations": "الحسابات المحفوظة",
+      "savedDesc": "تم حفظ حساب التبويض.",
+      "sixDays": "6 أيام من ذروة الخصوبة",
+      "start": "البداية",
+      "subtitle": "اكتشفي أيام خصوبتك",
+      "tip": "نصيحة",
+      "tipText": "للحصول على أفضل الفرص، حاولي العلاقة الحميمة خلال نافذة الخصوبة، خاصة قبل 1-2 يوم من التبويض.",
+      "videosSubtitle": "تعرفي على نافذة الخصوبة ودورة التبويض",
+      "videosTitle": "فيديوهات الخصوبة والتبويض"
     },
     "partnerGuide": {
       "action1": "اسأل \"كيف حالك اليوم؟\" واستمع بانتباه",
@@ -5509,22 +5518,22 @@
       "vitamins": "الفيتامينات"
     },
     "recipeModifier": {
-      "analyzeAnother": "Analyze Another Recipe",
-      "analyzeRecipe": "Analyze Recipe",
-      "analyzing": "Analyzing...",
-      "disclaimer": "⚠️ This tool provides general guidance. Always consult your healthcare provider about specific dietary restrictions during your pregnancy.",
-      "exampleTitle": "Example ingredients we check:",
-      "ingredientsToModify": "Ingredients to Modify ({{count}})",
-      "modifiedRecipe": "Modified Recipe",
-      "noUnsafeFound": "No obvious unsafe ingredients detected",
-      "pasteRecipe": "Paste Your Recipe",
-      "placeholder": "Paste your recipe here including all ingredients and instructions...",
-      "recipeSafe": "Recipe Looks Safe!",
-      "safeFound": "Safe Ingredients Found",
-      "safetyTips": "Safety Tips",
-      "selectPreference": "Please select at least one preference",
-      "subtitle": "Make any recipe pregnancy-safe",
-      "title": "AI Recipe Modifier"
+      "title": "معدّل الوصفات بالذكاء الاصطناعي",
+      "subtitle": "اجعلي أي وصفة آمنة للحمل",
+      "pasteRecipe": "الصقي وصفتك",
+      "placeholder": "الصقي وصفتك هنا بما في ذلك جميع المكونات والتعليمات...",
+      "analyzing": "جارٍ التحليل...",
+      "analyzeRecipe": "تحليل سلامة الوصفة",
+      "exampleTitle": "أمثلة على المكونات التي نفحصها:",
+      "ingredientsToModify": "مكونات تحتاج تعديل ({{count}})",
+      "recipeSafe": "الوصفة تبدو آمنة!",
+      "noUnsafeFound": "لم يتم اكتشاف مكونات غير آمنة",
+      "safeFound": "مكونات آمنة",
+      "modifiedRecipe": "الوصفة المعدّلة",
+      "safetyTips": "نصائح السلامة",
+      "analyzeAnother": "تحليل وصفة أخرى",
+      "disclaimer": "⚠️ هذه الأداة تقدم إرشادات عامة. استشيري طبيبتك دائماً حول القيود الغذائية أثناء الحمل.",
+      "selectPreference": "يرجى اختيار تفضيل واحد على الأقل"
     },
     "skincare": {
       "budgetHigh": "💎 فاخر",
@@ -5588,32 +5597,32 @@
         "chemicalSunscreens": {
           "icon": "⚠️",
           "name": "واقيات الشمس الكيميائية",
-          "risk": "medium"
+          "risk": "متوسط"
         },
         "essentialOils": {
           "icon": "⚠️",
           "name": "الزيوت الأساسية (بعضها)",
-          "risk": "medium"
+          "risk": "متوسط"
         },
         "formaldehyde": {
           "icon": "🚫",
           "name": "الفورمالديهايد",
-          "risk": "high"
+          "risk": "مرتفع"
         },
         "hydroquinone": {
           "icon": "🚫",
           "name": "الهيدروكينون",
-          "risk": "high"
+          "risk": "مرتفع"
         },
         "retinol": {
           "icon": "🚫",
           "name": "الريتينول/الريتينويدات",
-          "risk": "high"
+          "risk": "مرتفع"
         },
         "salicylic": {
           "icon": "⚠️",
           "name": "حمض الساليسيليك (نسبة عالية)",
-          "risk": "medium"
+          "risk": "متوسط"
         }
       },
       "videos": {
@@ -5665,14 +5674,14 @@
     },
     "snackPlanner": {
       "benefits": {
-        "1": "Sustained energy from fiber and healthy fats",
-        "2": "Protein and probiotics for gut health",
-        "3": "Quick energy boost anytime",
-        "4": "Healthy fats for baby brain development",
-        "5": "Fiber and plant protein",
-        "6": "Calcium and protein combo",
-        "7": "Natural energy from potassium",
-        "8": "High protein for muscle and baby growth"
+        "1": "طاقة مستدامة من الألياف والدهون الصحية",
+        "2": "بروتين وبروبيوتيك لصحة الأمعاء",
+        "3": "دفعة طاقة سريعة في أي وقت",
+        "4": "دهون صحية لنمو دماغ الطفل",
+        "5": "ألياف وبروتين نباتي",
+        "6": "كالسيوم وبروتين معاً",
+        "7": "طاقة طبيعية من البوتاسيوم",
+        "8": "بروتين عالي لنمو العضلات والطفل"
       },
       "calories": "سعرة",
       "categories": {
@@ -5690,27 +5699,27 @@
           "1": "2 tbsp almond butter"
         },
         "2": {
-          "0": "1 cup Greek yogurt",
-          "1": "1/4 cup granola",
-          "2": "1/2 cup berries",
-          "3": "Honey drizzle"
+          "0": "كوب زبادي يوناني",
+          "1": "¼ كوب جرانولا",
+          "2": "½ كوب توت",
+          "3": "رشة عسل"
         },
         "3": {
-          "0": "Mixed nuts",
-          "1": "Dark chocolate chips",
-          "2": "Dried cranberries"
+          "0": "مكسرات مشكلة",
+          "1": "رقائق شوكولاتة داكنة",
+          "2": "توت بري مجفف"
         },
         "4": {
-          "0": "1 slice whole grain bread",
-          "1": "1/2 avocado",
-          "2": "Salt",
-          "3": "Everything bagel seasoning"
+          "0": "شريحة خبز حبوب كاملة",
+          "1": "½ أفوكادو",
+          "2": "ملح",
+          "3": "توابل حسب الرغبة"
         },
         "5": {
-          "0": "1/4 cup hummus",
-          "1": "Carrot sticks",
-          "2": "Cucumber slices",
-          "3": "Bell pepper strips"
+          "0": "¼ كوب حمص",
+          "1": "أعواد جزر",
+          "2": "شرائح خيار",
+          "3": "شرائح فلفل"
         },
         "6": {
           "0": "4 whole grain crackers",
@@ -5723,34 +5732,34 @@
           "3": "1 tbsp honey"
         },
         "8": {
-          "0": "1 cup cottage cheese",
-          "1": "Pineapple chunks",
-          "2": "Walnuts"
+          "0": "كوب جبن قريش",
+          "1": "قطع أناناس",
+          "2": "جوز"
         }
       },
       "ingredients": "المكونات",
       "letAIPick": "دعي الذكاء الاصطناعي يختار لك وجبة مثالية",
       "nutrients": {
-        "antioxidants": "Antioxidants",
-        "bvitamins": "B Vitamins",
-        "calcium": "Calcium",
-        "fiber": "Fiber",
-        "folate": "Folate",
-        "healthyfats": "Healthy Fats",
-        "iron": "Iron",
-        "omega3": "Omega-3",
-        "potassium": "Potassium",
-        "probiotics": "Probiotics",
-        "protein": "Protein",
-        "vitamina": "Vitamin A",
-        "vitamind": "Vitamin D",
-        "vitamine": "Vitamin E"
+        "fiber": "الألياف",
+        "healthyfats": "دهون صحية",
+        "vitamine": "فيتامين هـ",
+        "protein": "البروتين",
+        "calcium": "الكالسيوم",
+        "probiotics": "بروبيوتيك",
+        "iron": "الحديد",
+        "omega3": "أوميغا-3",
+        "antioxidants": "مضادات الأكسدة",
+        "folate": "حمض الفوليك",
+        "vitamina": "فيتامين أ",
+        "vitamind": "فيتامين د",
+        "potassium": "البوتاسيوم",
+        "bvitamins": "فيتامينات ب"
       },
       "prepTime": "وقت التحضير",
       "recipes": {
-        "2": "Layer yogurt, granola, and berries. Drizzle with honey.",
-        "4": "Toast bread, mash avocado on top, season to taste.",
-        "7": "Mash banana, mix all ingredients, roll into balls, refrigerate."
+        "2": "رتّبي الزبادي والجرانولا والتوت، ثم أضيفي العسل.",
+        "4": "حمّصي الخبز، اهرسي الأفوكادو فوقه، وتبّليه حسب الرغبة.",
+        "7": "اهرسي الموز واخلطي المكونات، شكّلي كرات وضعيها في الثلاجة."
       },
       "snackingTips": {
         "tip2": "احتفظي بوجبات خفيفة في حقيبتك للجوع المفاجئ",
@@ -6208,27 +6217,27 @@
       "yourWeight": "وزنك"
     },
     "workoutPlanner": {
-      "availableWorkouts": "Available Workouts",
-      "backToWorkouts": "Back to Workouts",
-      "beforeYouStart": "Before You Start",
-      "completeExercise": "Complete Exercise",
-      "completed": "Completed",
-      "endWorkout": "End",
-      "exercise": "Exercise",
-      "greatJob": "Great job taking care of yourself and your baby!",
+      "title": "مخطط التمارين الشخصي",
+      "subtitle": "تمارين آمنة للحمل حسب كل ثلث",
+      "selectTrimester": "اختاري الثلث الحالي",
+      "trimester": "الثلث",
+      "beforeYouStart": "قبل البدء",
+      "safetyNotice": "احصلي دائماً على موافقة طبيبتك قبل بدء أي برنامج رياضي أثناء الحمل.",
+      "availableWorkouts": "التمارين المتاحة",
+      "startWorkout": "ابدئي التمرين",
+      "endWorkout": "إنهاء",
+      "exercise": "تمرين",
+      "of": "من",
+      "modification": "التعديل",
+      "completeExercise": "إكمال التمرين",
+      "completed": "مكتمل",
+      "workoutComplete": "تم إكمال التمرين! 🎉",
+      "greatJob": "أحسنتِ! اعتنيتِ بنفسك وبطفلك!",
+      "backToWorkouts": "العودة للتمارين",
       "intensity": {
-        "low": "low intensity",
-        "moderate": "moderate intensity"
-      },
-      "modification": "Modification",
-      "of": "of",
-      "safetyNotice": "Always get clearance from your healthcare provider before starting any exercise program during pregnancy.",
-      "selectTrimester": "Select Your Trimester",
-      "startWorkout": "Start Workout",
-      "subtitle": "Safe pregnancy exercises for each trimester",
-      "title": "Personalized Workout Planner",
-      "trimester": "Trimester",
-      "workoutComplete": "Workout Complete! 🎉"
+        "low": "كثافة منخفضة",
+        "moderate": "كثافة متوسطة"
+      }
     }
   },
   "videoLibrary": {
@@ -7684,704 +7693,5 @@
     "mostCommon": "الأكثر شيوعاً",
     "symptoms": "أعراض",
     "title": "ملخص العافية"
-  },
-  "toolsInternal.babyCryTranslator": {
-    "subtitle": "Understand what your baby is trying to tell you",
-    "babyAge": "Baby's Age",
-    "weeks": "weeks",
-    "cryPattern": "Crying Pattern",
-    "cryDuration": "How Long?",
-    "whenCrying": "When Does Baby Cry?",
-    "analyzeButton": "Analyze Crying Pattern",
-    "analysisResult": "Cry Analysis",
-    "newAnalysis": "New Analysis",
-    "reanalyze": "Re-analyze",
-    "recentLogs": "Recent Analyses",
-    "tipsTitle": "Helpful Tips",
-    "patterns": {
-      "continuous": "Continuous crying",
-      "intermittent": "On and off",
-      "highPitch": "High-pitched",
-      "whimpering": "أنين خفيف",
-      "rhythmic": "Rhythmic",
-      "sudden": "Sudden screaming",
-      "escalating": "تصاعدي",
-      "weak": "ضعيف"
-    },
-    "durations": {
-      "under1": "Under 1 min",
-      "1to5": "1-5 min",
-      "5to15": "5-15 min",
-      "over15": "Over 15 min",
-      "brief": "قصير (< ٥ دقائق)",
-      "moderate": "متوسط (٥-١٥ دقيقة)",
-      "prolonged": "مطوّل (> ١٥ دقيقة)"
-    },
-    "contexts": {
-      "afterFeeding": "After feeding",
-      "beforeSleep": "Before sleep",
-      "afterWaking": "After waking",
-      "duringChange": "During diaper change",
-      "noReason": "No apparent reason",
-      "afterBath": "After bath",
-      "feeding": "أثناء/بعد الرضاعة",
-      "sleeping": "قبل النوم",
-      "diaper": "يحتاج تغيير الحفاض",
-      "unknown": "غير معروف"
-    },
-    "tips": {
-      "tip1": "Every baby has a unique crying pattern — learn yours",
-      "tip2": "Babies cry 1-3 hours daily on average — it's normal",
-      "tip3": "If crying is unusual or persistent, consult your pediatrician"
-    }
-  },
-  "toolsInternal.postpartumRecovery": {
-    "subtitle": "Your personalized recovery journey after birth",
-    "welcomeTitle": "Your Recovery Journey",
-    "welcomeDesc": "A guided 6-week recovery plan tailored to your birth experience",
-    "selectBirthType": "How did you deliver?",
-    "birthTypes": {
-      "vaginal": "Vaginal Birth",
-      "cesarean": "C-Section"
-    },
-    "progress": "Progress",
-    "getAIAdvice": "Get AI Recovery Advice",
-    "aiAdviceTitle": "Personalized Recovery Advice",
-    "changeBirthType": "Change birth type",
-    "phases": {
-      "week1": {
-        "title": "الأسبوع 1 — الراحة والتعافي",
-        "description": "Focus on rest, wound care, and bonding with your baby"
-      },
-      "week2": {
-        "title": "Week 2 — Gentle Start",
-        "description": "Begin gentle movement and establish routines"
-      },
-      "week3_4": {
-        "title": "Weeks 3-4 — Building Strength",
-        "description": "Light exercises and emotional wellness check"
-      },
-      "week5_6": {
-        "title": "Weeks 5-6 — New Normal",
-        "description": "Return to activity and long-term planning"
-      }
-    },
-    "checklist": {
-      "rest": {
-        "title": "Prioritize Rest",
-        "desc": "Sleep when baby sleeps, accept help from others"
-      },
-      "hydration": {
-        "title": "Stay Hydrated",
-        "desc": "Drink 8-10 glasses of water daily"
-      },
-      "woundCare": {
-        "title": "Wound Care",
-        "desc": "Follow your doctor's wound care instructions"
-      },
-      "feedingSchedule": {
-        "title": "Feeding Schedule",
-        "desc": "Establish a consistent feeding routine"
-      },
-      "painManagement": {
-        "title": "Pain Management",
-        "desc": "Take prescribed medications as directed"
-      },
-      "gentleWalking": {
-        "title": "Gentle Walking",
-        "desc": "Short walks around the house"
-      },
-      "emotionalCheck": {
-        "title": "Emotional Check-in",
-        "desc": "Monitor your mood and feelings"
-      },
-      "nutrition": {
-        "title": "Nutritious Meals",
-        "desc": "Eat iron-rich, protein-packed meals"
-      },
-      "sleepRoutine": {
-        "title": "Sleep Routine",
-        "desc": "Create a restful sleep environment"
-      },
-      "socialSupport": {
-        "title": "Social Support",
-        "desc": "Stay connected with loved ones"
-      },
-      "lightExercise": {
-        "title": "Light Exercise",
-        "desc": "Gentle stretching and walking"
-      },
-      "posturalExercises": {
-        "title": "Postural Exercises",
-        "desc": "Strengthen your core gently"
-      },
-      "kegelExercises": {
-        "title": "Kegel Exercises",
-        "desc": "Start pelvic floor exercises"
-      },
-      "mentalHealthCheck": {
-        "title": "Mental Health Check",
-        "desc": "Screen for postpartum depression"
-      },
-      "doctorVisit": {
-        "title": "Doctor Visit",
-        "desc": "Schedule your postpartum checkup"
-      },
-      "returnToExercise": {
-        "title": "Return to Exercise",
-        "desc": "Gradually increase activity level"
-      },
-      "intimacyReadiness": {
-        "title": "Intimacy Readiness",
-        "desc": "Discuss with your partner when ready"
-      },
-      "fullCheckup": {
-        "title": "Full Checkup",
-        "desc": "Complete postpartum medical exam"
-      },
-      "longTermPlan": {
-        "title": "Long-term Plan",
-        "desc": "Discuss contraception and future plans"
-      },
-      "selfCare": {
-        "title": "Self-Care Routine",
-        "desc": "Establish ongoing self-care practices"
-      }
-    }
-  },
-  "toolsInternal.recipeModifier": {
-    "title": "AI Recipe Modifier",
-    "subtitle": "Make any recipe pregnancy-safe",
-    "pasteRecipe": "Paste Your Recipe",
-    "placeholder": "Paste your recipe here including all ingredients and instructions...",
-    "analyzing": "Analyzing...",
-    "analyzeRecipe": "Analyze Recipe",
-    "exampleTitle": "Example ingredients we check:",
-    "ingredientsToModify": "Ingredients to Modify ({{count}})",
-    "recipeSafe": "Recipe Looks Safe!",
-    "noUnsafeFound": "No obvious unsafe ingredients detected",
-    "safeFound": "Safe Ingredients Found",
-    "modifiedRecipe": "Modified Recipe",
-    "safetyTips": "Safety Tips",
-    "analyzeAnother": "Analyze Another Recipe",
-    "disclaimer": "⚠️ This tool provides general guidance. Always consult your healthcare provider about specific dietary restrictions during your pregnancy.",
-    "selectPreference": "Please select at least one preference"
-  },
-  "toolsInternal.fertileWindow": {
-    "lastPeriod": "أول يوم من آخر دورة شهرية",
-    "cycleLength": "متوسط طول الدورة (بالأيام)",
-    "calculate": "احسبي نافذة الخصوبة",
-    "yourWindow": "نافذة الخصوبة الخاصة بكِ",
-    "windowStart": "بداية النافذة",
-    "windowEnd": "نهاية النافذة",
-    "estimatedOvulation": "يوم الإباضة المتوقع",
-    "disclaimer": "هذا تقدير مبني على بيانات الدورة المتوسطة. قد يختلف موعد الإباضة الفعلي. استشيري طبيبتكِ للحصول على إرشادات مخصصة."
-  },
-  "toolsInternal.fertilityAcademy": {
-    "lessonsCount": "{{count}} وحدة تعليمية",
-    "lessons": {
-      "menstrualCycle": {
-        "title": "فهم الدورة الشهرية",
-        "content": "تنقسم الدورة الشهرية إلى أربع مراحل رئيسية:\n\n1. مرحلة الحيض (الأيام 1-5): يتم طرح بطانة الرحم، مما يشير إلى بداية دورة جديدة.\n\n2. المرحلة الجريبية (الأيام 1-13): يحفز هرمون FSH نمو الجريبات في المبيضين. يرتفع الإستروجين ويزداد سمك بطانة الرحم.\n\n3. مرحلة الإباضة (حوالي اليوم 14): يؤدي ارتفاع هرمون LH إلى إطلاق البويضة الناضجة. هذه هي أكثر فترة خصوبة.\n\n4. المرحلة الأصفرية (الأيام 15-28): ينتج الجسم الأصفر البروجسترون للحفاظ على بطانة الرحم. إذا لم يحدث إخصاب، تنخفض الهرمونات وتبدأ الدورة من جديد.\n\nفهم هذه المراحل يساعدك على تحديد نافذة الخصوبة والعمل مع إيقاع جسمك الطبيعي."
-      },
-      "ovulationProcess": {
-        "title": "كيف تحدث الإباضة",
-        "content": "الإباضة هي إطلاق بويضة ناضجة من أحد المبيضين. إليك ما يحدث:\n\n• في الأيام التي تسبق الإباضة، تؤدي مستويات الإستروجين المتزايدة إلى نمو الجريب المسيطر.\n• ارتفاع حاد في LH يحفز تمزق الجريب وإطلاق البويضة في قناة فالوب.\n• تبقى البويضة حية 12-24 ساعة بعد الإطلاق. يمكن للحيوانات المنوية البقاء حتى 5 أيام في الجهاز التناسلي.\n• هذا يعني أن نافذة الخصوبة تمتد حوالي 6 أيام — الـ 5 أيام قبل الإباضة ويوم الإباضة نفسه.\n\nبعض النساء يشعرن بوخز أو تشنج خفيف (ميتلشمرتس) أثناء الإباضة. أخريات يلاحظن تغيرات في مخاط عنق الرحم، الذي يصبح شفافاً ومطاطاً مثل بياض البيض النيء."
-      },
-      "fertilizationBasics": {
-        "title": "الإخصاب والانغراس",
-        "content": "بعد الإباضة، يمكن أن يحدث الإخصاب في قناة فالوب:\n\n• من بين ملايين الحيوانات المنوية، يصل بضع مئات فقط إلى البويضة.\n• يخترق حيوان منوي واحد الطبقة الخارجية للبويضة، مما يُحدث تفاعلاً كيميائياً يمنع دخول حيوانات منوية أخرى.\n• تبدأ البويضة المخصبة (الزيجوت) بالانقسام أثناء رحلتها نحو الرحم خلال 3-4 أيام.\n• حوالي اليوم 6-10 بعد الإباضة، تنغرس الكيسة الأريمية في بطانة الرحم.\n• قد يسبب الانغراس نزفاً خفيفاً يُعرف بنزيف الانغراس.\n• بمجرد الانغراس، يبدأ الجسم بإنتاج هرمون hCG — الهرمون الذي تكشفه اختبارات الحمل."
-      },
-      "hormonesRole": {
-        "title": "هرمونات الخصوبة الرئيسية",
-        "content": "تنظم عدة هرمونات خصوبتك:\n\n• FSH (هرمون تحفيز الجريبات): يحفز نمو الجريبات في المبيضين. يُفحص في اليوم الثالث من الدورة لتقييم مخزون البويضات.\n\n• LH (الهرمون اللوتيني): يُطلق الإباضة. أشرطة اختبار الإباضة تكشف ارتفاعه.\n\n• الإستروجين: يعزز نمو الجريبات ويزيد سمك بطانة الرحم. يؤثر أيضاً على جودة مخاط عنق الرحم.\n\n• البروجسترون: يُنتج بعد الإباضة للحفاظ على بطانة الرحم للانغراس المحتمل.\n\n• AMH (هرمون مضاد مولر): يعكس عدد البويضات المتبقية (مخزون المبيض).\n\n• هرمونات الغدة الدرقية (TSH، T3، T4): اضطرابات الغدة الدرقية يمكن أن تعطل الإباضة وانتظام الدورة."
-      },
-      "ageAndFertility": {
-        "title": "العمر والخصوبة",
-        "content": "العمر من أهم العوامل المؤثرة على الخصوبة:\n\n• تولد المرأة بجميع البويضات التي ستمتلكها — حوالي 1-2 مليون عند الولادة.\n• عند البلوغ، يتبقى حوالي 300,000-400,000 بويضة. فقط حوالي 300-400 ستتم إباضتها خلال العمر.\n• تبلغ الخصوبة ذروتها في منتصف العشرينيات. يبدأ انخفاض تدريجي بعد سن 30.\n• بعد 35، يتسارع الانخفاض. تنخفض جودة وكمية البويضات.\n• بحلول سن 40، تنخفض فرصة الحمل الطبيعي لكل دورة إلى حوالي 5%.\n• خصوبة الرجل تنخفض أيضاً مع العمر، لكن بشكل أكثر تدريجاً.\n\nهذا لا يعني أن الحمل بعد 35 مستحيل — كثير من النساء يحملن طبيعياً. لكن فهم التوقيت يساعد في التخطيط."
-      },
-      "lifestyleFactors": {
-        "title": "عوامل نمط الحياة المؤثرة على الخصوبة",
-        "content": "عاداتك اليومية تؤثر بشكل كبير على الخصوبة:\n\n• الوزن: نقص الوزن (مؤشر كتلة الجسم < 18.5) وزيادة الوزن (مؤشر كتلة الجسم > 30) يمكن أن يعطلا الإباضة. حتى تغيير 5-10% في الوزن يمكن أن يحسن انتظام الدورة.\n\n• التدخين: يقلل جودة البويضات ويُتلف قناتي فالوب ويسرّع فقدان البويضات.\n\n• الكافيين: أكثر من 200-300 ملغ يومياً (حوالي كوبين من القهوة) قد يقلل الخصوبة قليلاً.\n\n• التمارين: النشاط المعتدل يدعم الخصوبة. التمارين المكثفة المفرطة قد تعطل الإباضة.\n\n• النوم: قلة النوم تعطل الهرمونات التناسلية. استهدفي 7-9 ساعات في الليلة.\n\n• السموم البيئية: قللي التعرض للمبيدات والمعادن الثقيلة وبعض البلاستيك (BPA)."
-      },
-      "commonMyths": {
-        "title": "خرافات الخصوبة مقابل الحقائق",
-        "content": "لنفصل الحقيقة عن الخيال:\n\nخرافة: لا يمكنك الحمل إلا في يوم الإباضة.\nحقيقة: نافذة الخصوبة تمتد حوالي 6 أيام. يمكن للحيوانات المنوية البقاء حتى 5 أيام.\n\nخرافة: وضعية الجماع تؤثر على الحمل.\nحقيقة: لا يوجد دليل علمي يدعم ذلك. تصل الحيوانات المنوية إلى عنق الرحم خلال ثوانٍ.\n\nخرافة: موانع الحمل تسبب العقم.\nحقيقة: تعود الخصوبة عادة خلال 1-3 أشهر بعد التوقف عن معظم وسائل منع الحمل.\n\nخرافة: التوتر يسبب العقم مباشرة.\nحقيقة: بينما قد يؤثر التوتر المزمن الشديد على الهرمونات، فإن التوتر المعتدل وحده نادراً ما يمنع الحمل.\n\nخرافة: تحتاجين للجماع كل يوم.\nحقيقة: كل 1-2 أيام خلال نافذة الخصوبة كافٍ. الجماع اليومي لا يقلل جودة الحيوانات المنوية.\n\nخرافة: المكملات العشبية تضمن الخصوبة.\nحقيقة: بعضها قد يساعد، لكن لا شيء مثبت علمياً لضمان الحمل. استشيري طبيبك دائماً."
-      },
-      "whenToSeekHelp": {
-        "title": "متى تستشيرين أخصائي",
-        "content": "فكري في استشارة أخصائي خصوبة إذا:\n\n• كنت تحت 35 عاماً وتحاولين منذ 12 شهراً دون نجاح.\n• كنت بين 35-39 عاماً وتحاولين منذ 6 أشهر.\n• كنت 40 عاماً أو أكبر — استشيري مبكراً، لأن الوقت عامل مهم.\n• لديك دورات شهرية غير منتظمة أو غائبة.\n• لديك حالة معروفة: بطانة الرحم المهاجرة، تكيس المبايض، اضطراب الغدة الدرقية، أو جراحة حوضية سابقة.\n• تعرضت لإجهاض متكرر (مرتين أو أكثر).\n• لدى شريكك مخاوف خصوبة معروفة.\n\nيمكن لأخصائي الخصوبة إجراء فحوصات (تحاليل هرمونية، أشعة صوتية، تحليل السائل المنوي) ومناقشة الخيارات من تغييرات نمط الحياة إلى الإنجاب المساعد."
-      },
-      "maleFertility": {
-        "title": "أساسيات خصوبة الرجل",
-        "content": "خصوبة الرجل مهمة بنفس القدر في رحلة الحمل:\n\n• إنتاج الحيوانات المنوية يستغرق حوالي 74 يوماً. تغييرات نمط الحياة تحتاج وقتاً لتظهر نتائجها.\n• صحة الحيوانات المنوية المثلى تتطلب: تجنب الحرارة المفرطة (أحواض المياه الساخنة، أجهزة الكمبيوتر المحمولة على الحضن)، الحفاظ على وزن صحي، وإدارة التوتر.\n• عوامل تقلل جودة الحيوانات المنوية: التدخين، الإفراط في الكحول، بعض الأدوية، الستيرويدات البنائية، والمخدرات الترفيهية.\n• تحليل السائل المنوي فحص بسيط وغير جراحي يقيّم عدد الحيوانات المنوية وحركتها وشكلها.\n• العمر يؤثر على خصوبة الرجل أيضاً — تنخفض جودة الحيوانات المنوية تدريجياً بعد سن 40.\n• العناصر الغذائية الأساسية لصحة الحيوانات المنوية: الزنك، السيلينيوم، فيتامين C، فيتامين E، الفولات، وأحماض أوميغا-3 الدهنية."
-      },
-      "emotionalWellbeing": {
-        "title": "الرفاهية العاطفية في رحلة الحمل",
-        "content": "محاولة الحمل قد تكون رحلة عاطفية متقلبة:\n\n• من الطبيعي أن تشعري بالأمل والحماس والإحباط والحزن — أحياناً كلها في دورة واحدة.\n• حوالي 1 من كل 6 أزواج يواجهون صعوبة في الحمل. لست وحدك.\n• الحزن بعد نتيجة سلبية أمر مشروع. اسمحي لنفسك بالشعور دون حكم.\n• التواصل مع شريكك ضروري. شاركي مشاعرك بصراحة.\n• فكري في الانضمام لمجتمع دعم — التواصل مع آخرين في نفس الرحلة قد يكون مريحاً.\n• ضعي حدوداً حول إعلانات الحمل وحفلات استقبال المواليد إذا شعرت أنها مؤلمة.\n• الاستشارة المهنية يمكن أن توفر استراتيجيات تكيف مخصصة لوضعك.\n• تذكري: قيمتك لا تُحدد بخصوبتك. كوني لطيفة مع نفسك."
-      },
-      "trackingMethods": {
-        "title": "طرق تتبع الخصوبة",
-        "content": "عدة طرق يمكن أن تساعدك في تحديد نافذة الخصوبة:\n\n1. طريقة التقويم: تتبعي أطوال الدورة على مدى عدة أشهر. الإباضة عادة تحدث قبل 14 يوماً من الدورة التالية.\n\n2. درجة حرارة الجسم القاعدية (BBT): قيسي حرارتك كل صباح قبل النهوض. ارتفاع طفيف (0.2-0.5 درجة) يؤكد حدوث الإباضة.\n\n3. مراقبة مخاط عنق الرحم: مع اقتراب الإباضة، يصبح المخاط شفافاً ومطاطاً وزلقاً.\n\n4. أشرطة اختبار الإباضة (OPKs): تكشف ارتفاع هرمون LH في البول قبل 12-36 ساعة من الإباضة.\n\n5. أجهزة مراقبة الخصوبة: أجهزة متقدمة تتتبع عدة هرمونات.\n\n6. وضعية عنق الرحم: يصبح أعلى وأنعم وأكثر انفتاحاً حول الإباضة.\n\nالجمع بين عدة طرق يزيد الدقة."
-      },
-      "optimizingTiming": {
-        "title": "تحسين توقيت الحمل",
-        "content": "التوقيت حاسم لتعظيم فرصك:\n\n• أفضل أيام للحمل هي اليومان أو الثلاثة قبل الإباضة ويوم الإباضة نفسه.\n• الجماع كل 1-2 أيام خلال نافذة الخصوبة يعطي أفضل النتائج.\n• جودة الحيوانات المنوية لا تتأثر بشكل كبير بالقذف اليومي لدى معظم الرجال.\n• بعد الجماع، الاستلقاء لمدة 10-15 دقيقة قد يحسن انتقال الحيوانات المنوية قليلاً، رغم محدودية الأدلة.\n• المزلقات: بعض المزلقات التجارية قد تقلل حركة الحيوانات المنوية. استخدمي علامات صديقة للخصوبة إذا لزم الأمر.\n• تتبعي دورتك لمدة 2-3 أشهر قبل المحاولة النشطة، لفهم نمطك الشخصي.\n• ابقي رطبة وحافظي على نظام غذائي متوازن خلال نافذة الخصوبة.\n• يجب على كلا الشريكين تجنب الإفراط في الكحول خلال نافذة الخصوبة."
-      },
-      "implantationWindow": {
-        "title": "نافذة الانغراس",
-        "content": "نافذة الانغراس هي الفترة القصيرة التي تكون فيها بطانة الرحم مستعدة لاستقبال الجنين:\n\n• تحدث عادة بين الأيام 6-10 بعد الإباضة.\n• خلال هذا الوقت، تفرز بطانة الرحم بروتينات خاصة تساعد الجنين على الالتصاق.\n• يلعب البروجسترون دوراً محورياً في تحضير البطانة.\n• عوامل تؤثر على جودة النافذة: الالتهاب المزمن، عدم كفاية سمك البطانة، أو اضطرابات المناعة.\n• الراحة والتغذية الجيدة خلال المرحلة الأصفرية تدعم عملية الانغراس."
-      },
-      "cervicalHealth": {
-        "title": "صحة عنق الرحم والخصوبة",
-        "content": "يلعب عنق الرحم دوراً أساسياً في الخصوبة:\n\n• ينتج مخاطاً يتغير طوال الدورة لتسهيل أو منع مرور الحيوانات المنوية.\n• المخاط الخصب يغذي الحيوانات المنوية ويطيل عمرها حتى 5 أيام.\n• التهابات عنق الرحم المزمنة قد تقلل جودة المخاط.\n• إجراءات عنق الرحم السابقة (مثل الخزعة المخروطية) قد تؤثر على إنتاج المخاط.\n• الحفاظ على درجة حموضة مهبلية صحية يدعم بيئة عنق الرحم المثالية للخصوبة."
-      },
-      "thyroidFertility": {
-        "title": "الغدة الدرقية والخصوبة",
-        "content": "اضطرابات الغدة الدرقية من أكثر أسباب مشاكل الخصوبة القابلة للعلاج:\n\n• قصور الغدة الدرقية يمكن أن يسبب دورات غير منتظمة، أو غياب الإباضة، أو إجهاض مبكر.\n• فرط نشاط الغدة الدرقية مرتبط بدورات غير منتظمة وصعوبة في الحمل.\n• حتى قصور الغدة الدرقية دون السريري (TSH 2.5-4.0) قد يؤثر على الخصوبة.\n• الأجسام المضادة للغدة الدرقية (Anti-TPO) شائعة وقد تؤثر على الانغراس.\n• يُوصى بفحص TSH وFT4 لجميع النساء اللواتي يخططن للحمل.\n• علاج الليفوثيروكسين آمن وفعال أثناء محاولة الحمل."
-      },
-      "pcosManagement": {
-        "title": "إدارة تكيس المبايض والخصوبة",
-        "content": "متلازمة تكيس المبايض (PCOS) تؤثر على 8-13% من النساء:\n\n• السبب الأكثر شيوعاً لغياب الإباضة والعقم المرتبط بالإباضة.\n• الأعراض الرئيسية: دورات غير منتظمة، حب الشباب، نمو شعر زائد، مقاومة الأنسولين.\n• تغييرات نمط الحياة فعالة جداً: فقدان 5-10% من الوزن يمكن أن يستعيد الإباضة.\n• الإينوسيتول أظهر نتائج واعدة في تحسين حساسية الأنسولين وجودة البويضات.\n• النظام الغذائي المنخفض السكر والمتوازن يدعم انتظام الهرمونات.\n• أدوية مثل الكلوميفين أو الليتروزول تنجح في تحفيز الإباضة في كثير من الحالات."
-      },
-      "endometriosisAwareness": {
-        "title": "بطانة الرحم المهاجرة والخصوبة",
-        "content": "بطانة الرحم المهاجرة تؤثر على 1 من كل 10 نساء:\n\n• نسيج مشابه لبطانة الرحم ينمو خارج الرحم، مسبباً التهاباً والتصاقات.\n• يمكن أن تؤثر على الأنابيب والمبيضين وجودة البويضات.\n• الأعراض: ألم شديد في الدورة، ألم أثناء الجماع، وأحياناً لا أعراض.\n• التشخيص المبكر يحسن النتائج. المنظار هو المعيار الذهبي.\n• كثير من النساء المصابات يحملن طبيعياً أو بمساعدة.\n• استشيري أخصائي خصوبة إذا كان لديك تاريخ عائلي أو أعراض مشبوهة."
-      },
-      "nutritionFertility": {
-        "title": "التغذية المثلى للخصوبة",
-        "content": "النظام الغذائي يؤثر مباشرة على جودة البويضات والحيوانات المنوية:\n\n• نظام البحر الأبيض المتوسط أظهر أفضل النتائج في دراسات الخصوبة.\n• الدهون الصحية (أوميغا-3، زيت الزيتون) تدعم إنتاج الهرمونات.\n• البروتين النباتي قد يكون أفضل من البروتين الحيواني لبعض النساء.\n• تجنبي الدهون المتحولة، التي تضاعف خطر العقم المرتبط بالإباضة.\n• الأطعمة العضوية تقلل التعرض للمبيدات المعطلة للهرمونات.\n• الحديد من مصادر نباتية + فيتامين C يحسن الامتصاص بشكل كبير."
-      },
-      "sleepHormones": {
-        "title": "النوم وهرمونات الخصوبة",
-        "content": "النوم ليس رفاهية — إنه ضرورة بيولوجية للخصوبة:\n\n• الميلاتونين (هرمون النوم) يعمل كمضاد أكسدة يحمي البويضات.\n• أقل من 6 ساعات نوم يرفع الكورتيزول، الذي يثبط GnRH والإباضة.\n• العمل بنظام المناوبات مرتبط بزيادة مشاكل الدورة والخصوبة.\n• الإيقاع اليومي ينظم إفراز FSH وLH.\n• الضوء الأزرق من الشاشات يثبط الميلاتونين ويعطل الإيقاع.\n• الهدف: 7-9 ساعات نوم في غرفة مظلمة وباردة مع روتين ثابت."
-      },
-      "exerciseBalance": {
-        "title": "التوازن بين التمارين والخصوبة",
-        "content": "التمارين سلاح ذو حدين للخصوبة:\n\n• النشاط المعتدل (150 دقيقة/أسبوع) يحسن الإباضة والخصوبة.\n• التمارين المكثفة المستمرة قد تسبب 'نقص الطاقة النسبي' الذي يوقف الإباضة.\n• المشي والسباحة واليوغا من أفضل الخيارات.\n• تمارين القوة المعتدلة تحسن حساسية الأنسولين (مفيد لتكيس المبايض).\n• يوغا الخصوبة تجمع بين الحركة وتقليل التوتر.\n• إذا اختفت دورتك مع التمارين المكثفة، قللي الشدة فوراً.\n• التوازن بين الحركة والراحة هو المفتاح."
-      },
-      "supplementsGuide": {
-        "title": "دليل المكملات الذكي",
-        "content": "المكملات يمكن أن تدعم خصوبتك — لكن ليست كلها متساوية:\n\n• حمض الفوليك/ميثيل فولات: ضروري — ابدئي قبل 3 أشهر من المحاولة.\n• CoQ10 (200-600 ملغ): يدعم طاقة البويضات، خاصة بعد 35.\n• فيتامين D (1000-2000 وحدة دولية): معظم النساء يعانين من نقصه.\n• أوميغا-3 DHA (200-300 ملغ): لصحة الهرمونات والالتهاب.\n• الإينوسيتول (4 غ ميو + 100 ملغ دي-كايرو): مفيد بشكل خاص لتكيس المبايض.\n• الحديد: فقط إذا أظهرت الفحوصات نقصاً — الزيادة ضارة.\n• استشيري طبيبك دائماً قبل البدء بأي مكمل جديد."
-      },
-      "environmentalToxins": {
-        "title": "السموم البيئية والخصوبة",
-        "content": "التعرض اليومي للسموم البيئية يمكن أن يؤثر على خصوبتك:\n\n• BPA في البلاستيك يقلد الإستروجين ويعطل التوازن الهرموني.\n• الفثالات في مستحضرات التجميل والعطور تعطل جهاز الغدد الصماء.\n• المبيدات على الفواكه والخضروات مرتبطة بانخفاض جودة البويضات.\n• المعادن الثقيلة (الرصاص، الزئبق) تؤثر على البويضات والحيوانات المنوية.\n• خطوات عملية: حاويات زجاجية بدل البلاستيكية، منتجات تنظيف طبيعية، غسل الفواكه جيداً.\n• تصفية مياه الشرب تقلل التعرض للملوثات."
-      },
-      "geneticFactors": {
-        "title": "العوامل الوراثية والخصوبة",
-        "content": "الجينات تلعب دوراً أكبر مما هو متوقع في الخصوبة:\n\n• الفحص الجيني للحامل يكشف خطر نقل أمراض وراثية للأطفال.\n• طفرة MTHFR تؤثر على استقلاب الفولات — الميثيل فولات قد يكون أفضل.\n• متلازمة تيرنر والتشوهات الكروموسومية تؤثر على مخزون المبيض.\n• تاريخ عائلي من انقطاع الطمث المبكر قد يشير إلى انخفاض مبكر في المخزون.\n• فحص النمط الكاريوتيبي يُوصى به في حالات الإجهاض المتكرر.\n• الاستشارة الوراثية متاحة ومفيدة لمن لديهم تاريخ عائلي محدد."
-      },
-      "immunologyFertility": {
-        "title": "المناعة والخصوبة",
-        "content": "يلعب الجهاز المناعي دوراً دقيقاً في الحمل:\n\n• يجب على الجسم أن يقبل الجنين (نصف جيناته من الأب) دون رفضه.\n• خلايا NK الرحمية تساعد في الانغراس — لكن النشاط المفرط قد يعيقه.\n• الأجسام المضادة للفوسفوليبيد مرتبطة بالإجهاض المتكرر.\n• أمراض المناعة الذاتية (الذئبة، هاشيموتو) قد تؤثر على الخصوبة.\n• الالتهاب الحوضي المزمن يمكن أن يتلف قناتي فالوب.\n• نمط حياة مضاد للالتهاب (تغذية، نوم، حركة) يدعم توازن المناعة."
-      },
-      "secondaryInfertility": {
-        "title": "العقم الثانوي",
-        "content": "العقم الثانوي يعني صعوبة الحمل بعد إنجاب طفل سابق:\n\n• يمثل حوالي 50% من حالات العقم — لكنه أقل نقاشاً.\n• الأسباب: تقدم العمر، تغيرات الوزن، مضاعفات من حمل سابق.\n• الالتصاقات من الولادة القيصرية أو العدوى قد تؤثر على الخصوبة.\n• التغيرات الهرمونية بعد الولادة الأولى قد لا تعود طبيعية تماماً.\n• التوقعات الاجتماعية ('لديك طفل، كوني ممتنة') تزيد العبء النفسي.\n• لا تؤجلي طلب المساعدة — نفس معايير الوقت تنطبق."
-      },
-      "recurrentLoss": {
-        "title": "فهم الإجهاض المتكرر",
-        "content": "فقدان الحمل المتكرر (مرتين أو أكثر) يتطلب تقييماً شاملاً:\n\n• 15-20% من حالات الحمل تنتهي بالإجهاض — معظمها بسبب تشوهات كروموسومية.\n• أسباب قابلة للعلاج: اضطرابات التخثر، تشوهات الرحم، مشاكل الغدة الدرقية.\n• الحاجز الرحمي أكثر تشوهات الرحم شيوعاً ويمكن تصحيحه جراحياً.\n• متلازمة مضادات الفوسفوليبيد قابلة للعلاج بالأسبرين والهيبارين.\n• الدعم النفسي ضروري — الحزن والقلق بعد الفقدان طبيعيان ومشروعان.\n• 60-70% من الأزواج ذوي الفقدان المتكرر غير المفسر ينجحون في الحمل التالي."
-      },
-      "fertilityPreservation": {
-        "title": "حفظ الخصوبة",
-        "content": "حفظ الخصوبة خيار متاح يمنحك مرونة في التخطيط:\n\n• تجميد البويضات: العمر المثالي قبل 35. نتائج ممتازة مع التقنيات الحديثة.\n• تجميد الأجنة: خيار للمتزوجين. معدلات نجاح أعلى من البويضات وحدها.\n• أسباب التجميد: تأخير الإنجاب، العلاج الكيميائي، حالات طبية.\n• تتطلب العملية تحفيزاً هرمونياً لمدة 10-14 يوماً ثم سحب البويضات.\n• التكلفة والتخزين عوامل يجب مراعاتها.\n• استشيري أخصائي خصوبة لتقييم ما إذا كان مناسباً لحالتك."
-      },
-      "assistedReproduction": {
-        "title": "تقنيات الإنجاب المساعد",
-        "content": "عندما لا ينجح الحمل الطبيعي، هناك خيارات فعالة:\n\n• تحفيز الإباضة: أدوية تحفز إنتاج البويضات — العلاج الأول.\n• التلقيح داخل الرحم (IUI): حيوانات منوية معالجة تُحقن مباشرة في الرحم.\n• الإخصاب في المختبر (IVF): التقنية الأكثر تقدماً. معدلات نجاح 30-50% لكل دورة.\n• الحقن المجهري (ICSI): حقن حيوان منوي واحد مباشرة في البويضة.\n• الفحص الجيني قبل الزرع (PGT): فحص الأجنة للتشوهات الكروموسومية.\n• كل خيار له مؤشرات محددة — أخصائي الخصوبة يرشدك للأنسب."
-      },
-      "epigeneticsFertility": {
-        "title": "علم التخلق والصحة بين الأجيال",
-        "content": "اكتشافات علم التخلق غيرت فهمنا للخصوبة:\n\n• تغذيتك ونمط حياتك يمكن أن يؤثرا على التعبير الجيني لطفلك المستقبلي.\n• نقص الفولات قبل الحمل يؤثر على البرمجة الجينية للجنين.\n• التوتر المزمن يمكن أن يترك 'بصمات' على الحمض النووي تنتقل إلى الجنين.\n• التلوث والسموم البيئية تسبب تغيرات فوق جينية قد تؤثر على أجيال.\n• الخبر الجيد: التغيرات فوق الجينية السلبية قابلة للعكس بنمط حياة صحي.\n• 3-6 أشهر من التحسينات قبل الحمل تحدث فرقاً حقيقياً في صحة الجنين."
-      },
-      "mindBodyConnection": {
-        "title": "الترابط بين العقل والجسم",
-        "content": "العلاقة بين العقل والجسم أعمق مما نتصور في الخصوبة:\n\n• التوتر المزمن ينشط محور HPA الذي يثبط الهرمونات التناسلية.\n• تقنيات الاسترخاء (التأمل، اليوغا، التنفس العميق) تحسن نتائج الخصوبة بشكل ملموس.\n• العلاج المعرفي السلوكي (CBT) أظهر نتائج إيجابية في تقليل قلق الخصوبة.\n• التصور الإيجابي والتأكيدات تنشط مسارات عصبية تدعم التوازن الهرموني.\n• مجموعات الدعم تقلل الشعور بالعزلة وتحسن الصحة النفسية.\n• الفن والموسيقى والكتابة الإبداعية أدوات علاجية فعالة خلال رحلة الخصوبة.\n• اطلبي المساعدة المهنية إذا بدأ القلق أو الحزن يسيطر على حياتك."
-      }
-    }
-  },
-  "toolsInternal.fertilitySigns": {
-    "signsCount": "{{count}} علامة يجب معرفتها",
-    "signs": {
-      "cervicalMucus": {
-        "title": "تغيرات مخاط عنق الرحم",
-        "description": "مع اقتراب الإباضة، يصبح مخاط عنق الرحم أكثر وفرة وشفافية ومطاطية — يشبه بياض البيض النيء. هذا المخاط 'الخصب' يساعد الحيوانات المنوية على الانتقال بسهولة أكبر عبر عنق الرحم. بعد الإباضة، يصبح المخاط عادة أكثر سمكاً وعكارة أو يجف.",
-        "tip": "افحصي المخاط يومياً بالمسح قبل التبول. أكثر أنواع المخاط خصوبة يمتد بين أصابعك دون أن ينقطع."
-      },
-      "basalTemp": {
-        "title": "تحول درجة حرارة الجسم الأساسية",
-        "description": "بعد الإباضة، يسبب البروجسترون ارتفاع درجة حرارة جسمك أثناء الراحة بمقدار 0.2-0.5 درجة مئوية. هذا التحول يؤكد أن الإباضة قد حدثت بالفعل. من خلال تتبع BBT على مدى عدة دورات، يمكنك تحديد نمط الإباضة الخاص بك.",
-        "tip": "قيسي حرارتك كل صباح في نفس الوقت، قبل النهوض من السرير. استخدمي ميزان حرارة مخصص لـ BBT للحصول على دقة أفضل."
-      },
-      "cervicalPosition": {
-        "title": "تغيرات وضعية عنق الرحم",
-        "description": "خلال نافذة الخصوبة، يرتفع عنق الرحم في القناة المهبلية، ويصبح أكثر ليونة (مثل شفتيك مقارنة بطرف أنفك)، وينفتح قليلاً. بعد الإباضة، ينخفض ويصبح أكثر صلابة وينغلق.",
-        "tip": "افحصي وضعية عنق الرحم في نفس الوضعية يومياً (مثلاً، الوقوف مع رفع قدم واحدة). يحتاج الأمر ممارسة — كوني صبورة مع نفسك."
-      },
-      "ovulationPain": {
-        "title": "ألم الإباضة (ميتلشمرتس)",
-        "description": "بعض النساء يشعرن بوخز خفيف أو تشنج أو ألم في جانب واحد من أسفل البطن أثناء الإباضة. هذا 'الألم الأوسط' (ميتلشمرتس) ناتج عن تمزق الجريب لإطلاق البويضة. يستمر عادة من بضع دقائق إلى بضع ساعات.",
-        "tip": "لاحظي في أي جانب تشعرين بالإحساس — قد يتناوب بين الجانبين كل دورة مع تناوب الإباضة بين المبيضين."
-      },
-      "breastTenderness": {
-        "title": "حساسية الثدي",
-        "description": "ارتفاع البروجسترون بعد الإباضة قد يسبب حساسية أو امتلاء أو ألم في الثدي. هذا من أكثر أعراض المرحلة الأصفرية ملاحظة. بعض النساء يشعرن بهذا أيضاً في الأيام التي تسبق الإباضة بسبب ارتفاع الإستروجين.",
-        "tip": "تتبعي متى تبدأ الحساسية وتنتهي لربطها بنمط الإباضة عبر الوقت."
-      },
-      "libidoChanges": {
-        "title": "تغيرات في الرغبة",
-        "description": "كثير من النساء يشهدن زيادة طبيعية في الرغبة حول فترة الإباضة. هذا مدفوع بارتفاع الإستروجين والتستوستيرون الذي يسبق ذروة LH. إنها إحدى طرق الجسم لتحسين فرصة الحمل.",
-        "tip": "انتبهي لهذه التحولات الطبيعية — غالباً ما تتوافق مع أكثر أيامك خصوبة."
-      },
-      "moodShifts": {
-        "title": "تغيرات المزاج والطاقة",
-        "description": "ارتفاع الإستروجين في المرحلة الجريبية غالباً يجلب تحسناً في المزاج والطاقة والثقة. بعد الإباضة، قد يسبب هيمنة البروجسترون تحولاً نحو الهدوء أو، لدى بعض النساء، التهيج والإرهاق. هذه التقلبات طبيعية ومدفوعة هرمونياً.",
-        "tip": "تدوين مزاجك يومياً يمكن أن يكشف أنماطاً مرتبطة بمراحل دورتك."
-      },
-      "bloating": {
-        "title": "انتفاخ خفيف",
-        "description": "التغيرات الهرمونية حول الإباضة، وخاصة ارتفاع البروجسترون، يمكن أن تسبب احتباس الماء وانتفاخاً خفيفاً. هذه علامة شائعة على أن جسمك ينتقل إلى المرحلة الأصفرية.",
-        "tip": "البقاء رطبة وتقليل تناول الصوديوم يمكن أن يساعد في إدارة الانتفاخ المرتبط بالإباضة."
-      },
-      "lightSpotting": {
-        "title": "بقع دم الإباضة",
-        "description": "كمية صغيرة من البقع الوردية الفاتحة أو البنية حول يوم الإباضة تظهر عند بعض النساء. سببها الانخفاض الطفيف في الإستروجين قبل ارتفاع LH، أو تمزق الجريب نفسه. عادة ما تكون خفيفة جداً وقصيرة.",
-        "tip": "بقع الإباضة تختلف عن نزيف الانغراس (الذي يحدث بعد 6-12 يوماً من الإباضة). تتبعي التوقيت بدقة."
-      },
-      "heightenedSenses": {
-        "title": "حواس مرهفة",
-        "description": "بعض النساء يلاحظن حاسة شم أكثر حدة أثناء الإباضة، ربما بسبب ارتفاع مستويات الإستروجين. تشير الأبحاث إلى أن هذا قد يكون تكيفاً تطورياً. بعضهن يلاحظن أيضاً تغيرات طفيفة في تفضيلات الذوق.",
-        "tip": "إذا لاحظت أن الروائح تبدو أقوى حول منتصف الدورة، فقد يكون مؤشراً شخصياً للإباضة يستحق التتبع."
-      }
-    }
-  },
-  "toolsInternal.preconceptionNutrition": {
-    "categoriesCount": "{{count}} nutrition categories",
-    "categories": {
-      "folateRich": {
-        "title": "Folate-Rich Foods",
-        "description": "Folate (vitamin B9) is critical for preventing neural tube defects and supporting healthy cell division. The recommended daily intake when trying to conceive is 400–800mcg. Start folate supplementation at least 1–3 months before conception.",
-        "foods": "Dark leafy greens (spinach, kale), lentils, chickpeas, asparagus, broccoli, avocado, fortified cereals, citrus fruits, beets, Brussels sprouts"
-      },
-      "ironSources": {
-        "title": "Iron-Rich Foods",
-        "description": "Iron supports healthy blood production and oxygen transport, which are essential for a developing pregnancy. Women of childbearing age need about 18mg daily. Iron deficiency is common and can affect ovulation and cycle regularity.",
-        "foods": "Red meat, poultry, fish, lentils, spinach, fortified cereals, pumpkin seeds, tofu, dark chocolate, quinoa, dried apricots"
-      },
-      "omega3": {
-        "title": "Omega-3 Fatty Acids",
-        "description": "Omega-3s support hormone production, reduce inflammation, and are essential for fetal brain and eye development. DHA and EPA are the most bioavailable forms. ALA from plant sources is also beneficial but converts less efficiently.",
-        "foods": "Salmon, sardines, mackerel, walnuts, chia seeds, flaxseeds, hemp seeds, algae-based DHA supplements, fortified eggs"
-      },
-      "antioxidants": {
-        "title": "Antioxidant-Rich Foods",
-        "description": "Antioxidants protect eggs and sperm from oxidative stress caused by free radicals. Vitamins C and E, selenium, and CoQ10 are particularly important. A colorful, varied diet provides a broad spectrum of antioxidants.",
-        "foods": "Berries (blueberries, strawberries, raspberries), tomatoes, bell peppers, nuts, seeds, green tea, dark leafy greens, sweet potatoes, carrots"
-      },
-      "zinc": {
-        "title": "Zinc Sources",
-        "description": "Zinc is essential for hormone balance, egg quality, and cell division. It also plays a crucial role in male fertility — supporting sperm production and testosterone levels. The recommended daily intake is 8mg for women.",
-        "foods": "Oysters, beef, pumpkin seeds, cashews, chickpeas, lentils, yogurt, cheese, whole grains, dark chocolate"
-      },
-      "vitaminD": {
-        "title": "Vitamin D Sources",
-        "description": "Vitamin D receptors are found in the ovaries and uterus, suggesting a direct role in fertility. Deficiency is associated with irregular cycles, PCOS, and reduced IVF success rates. Many people are deficient, especially in northern climates.",
-        "foods": "Sunlight exposure (15–20 min daily), fatty fish (salmon, tuna), egg yolks, fortified milk, mushrooms exposed to UV light, cod liver oil"
-      },
-      "calcium": {
-        "title": "Calcium Sources",
-        "description": "Calcium is vital for reproductive function, supporting the development of embryonic structures. Adequate calcium intake before pregnancy helps build reserves for the baby's skeletal development. Aim for 1000mg daily.",
-        "foods": "Dairy products (milk, yogurt, cheese), fortified plant milks, kale, broccoli, almonds, sardines with bones, tofu, figs"
-      },
-      "protein": {
-        "title": "Quality Protein",
-        "description": "Protein provides the building blocks for hormones and new cells. Research suggests that replacing some animal protein with plant protein may improve fertility outcomes. Aim for a balanced mix of both sources.",
-        "foods": "Eggs, lean poultry, fish, legumes (beans, lentils), nuts, seeds, Greek yogurt, tofu, tempeh, quinoa"
-      },
-      "hydration": {
-        "title": "Hydration",
-        "description": "Water is essential for cervical mucus production, nutrient transport, and hormone balance. Dehydration can reduce cervical mucus quality and affect blood flow to the reproductive organs. Aim for 8–10 glasses daily.",
-        "foods": "Water, herbal teas (raspberry leaf, ginger), coconut water, water-rich fruits (watermelon, cucumber, oranges), broths"
-      },
-      "avoidList": {
-        "title": "Foods to Minimize",
-        "description": "Certain foods and substances may negatively impact fertility. While occasional consumption is unlikely to cause harm, reducing these when actively trying to conceive can optimize your body's readiness.",
-        "foods": "Excessive caffeine (>200mg/day), alcohol, trans fats, highly processed foods, raw fish (sushi), high-mercury fish (swordfish, king mackerel), excessive sugar, artificial sweeteners"
-      }
-    }
-  },
-  "toolsInternal.prenatalVitamins": {
-    "supplementsCount": "{{count}} supplements to review",
-    "vitamins": {
-      "folicAcid": {
-        "title": "Folic Acid (Vitamin B9)",
-        "description": "The most important preconception supplement. Folic acid significantly reduces the risk of neural tube defects (spina bifida, anencephaly). Start taking it at least 1–3 months before trying to conceive for maximum benefit.",
-        "dosage": "Recommended: 400–800mcg daily. Some women (with history of NTDs, on certain medications) may need 4–5mg — consult your doctor."
-      },
-      "iron": {
-        "title": "Iron",
-        "description": "Iron requirements increase dramatically during pregnancy (from 18mg to 27mg daily). Building iron stores before conception helps prevent iron-deficiency anemia, which is associated with preterm birth and low birth weight.",
-        "dosage": "Recommended: 18mg daily pre-pregnancy. Take with vitamin C to improve absorption. Avoid taking with calcium or tea."
-      },
-      "vitaminD": {
-        "title": "Vitamin D",
-        "description": "Vitamin D supports immune function, calcium absorption, and reproductive health. Deficiency is linked to pregnancy complications including gestational diabetes and preeclampsia. Most people need supplementation, especially in winter months.",
-        "dosage": "Recommended: 600–2000 IU daily. Your doctor may test your levels and recommend a higher dose if deficient."
-      },
-      "omega3DHA": {
-        "title": "Omega-3 DHA",
-        "description": "DHA is crucial for fetal brain and retinal development. Starting supplementation before pregnancy ensures adequate stores from the earliest stages of embryonic development. EPA also supports maternal cardiovascular health.",
-        "dosage": "Recommended: 200–300mg DHA daily. Choose supplements tested for mercury and contaminants."
-      },
-      "calcium": {
-        "title": "Calcium",
-        "description": "If the mother's calcium intake is insufficient during pregnancy, the baby will draw calcium from her bones. Building strong calcium reserves before pregnancy protects maternal bone health.",
-        "dosage": "Recommended: 1000mg daily from food and supplements combined. Best absorbed in doses of 500mg or less at a time."
-      },
-      "iodine": {
-        "title": "Iodine",
-        "description": "Iodine is essential for thyroid function, which directly impacts fertility and fetal brain development. Deficiency is the leading preventable cause of intellectual disability worldwide.",
-        "dosage": "Recommended: 150mcg daily before pregnancy, 220mcg during pregnancy. Check that your prenatal vitamin includes iodine."
-      },
-      "zinc": {
-        "title": "Zinc",
-        "description": "Zinc supports egg quality, hormone balance, and immune function. It also plays a key role in DNA synthesis and cell division — critical processes in early pregnancy.",
-        "dosage": "Recommended: 8mg daily for women. Most prenatal vitamins contain adequate zinc."
-      },
-      "vitaminB12": {
-        "title": "Vitamin B12",
-        "description": "B12 works with folate to support DNA synthesis and nervous system development. Deficiency is more common in vegetarians and vegans. Low B12 levels are associated with recurrent miscarriage and neural tube defects.",
-        "dosage": "Recommended: 2.4mcg daily. Vegans should supplement as B12 is found primarily in animal products."
-      },
-      "vitaminC": {
-        "title": "Vitamin C",
-        "description": "Vitamin C is a powerful antioxidant that protects eggs from oxidative damage. It also enhances iron absorption and supports immune function. Progesterone levels may also benefit from adequate vitamin C intake.",
-        "dosage": "Recommended: 75–90mg daily. Easily obtained from citrus fruits, berries, and bell peppers."
-      },
-      "vitaminE": {
-        "title": "Vitamin E",
-        "description": "Vitamin E supports endometrial lining thickness and quality, which is important for implantation. It also protects cell membranes from oxidative stress and supports overall reproductive health.",
-        "dosage": "Recommended: 15mg (22 IU) daily. Found in nuts, seeds, and vegetable oils."
-      },
-      "coq10": {
-        "title": "CoQ10 (Coenzyme Q10)",
-        "description": "CoQ10 is an antioxidant that supports mitochondrial function in eggs. As egg quality naturally declines with age, CoQ10 supplementation may help maintain cellular energy production. Research is ongoing but promising, especially for women over 35.",
-        "dosage": "Common dosage: 100–600mg daily. Ubiquinol form is better absorbed than ubiquinone. Consult your doctor."
-      },
-      "probiotics": {
-        "title": "Probiotics",
-        "description": "A healthy vaginal and gut microbiome supports fertility. Lactobacillus strains help maintain optimal vaginal pH, which is important for sperm survival. Gut health also affects hormone metabolism and nutrient absorption.",
-        "dosage": "Choose a multi-strain probiotic with Lactobacillus strains. Consume fermented foods: yogurt, kefir, sauerkraut, kimchi."
-      }
-    }
-  },
-  "toolsInternal.twwCompanion": {
-    "subtitle": "دليلك اليومي خلال أسبوعي الانتظار",
-    "days": {
-      "day1": {
-        "title": "يوم الإباضة + 1",
-        "body": "إذا حدثت الإباضة بالأمس، فإن البويضة تنتقل الآن عبر قناة فالوب. إذا حدث الإخصاب، فعادة ما يحدث خلال 12-24 ساعة من الإباضة. اليوم، لا يوجد شيء يمكنك فعله للتأثير على النتيجة — وهذا طبيعي.",
-        "tip": "خذي نفساً عميقاً. الرحلة بدأت. ركزي على شيء تستمتعين به اليوم."
-      },
-      "day2": {
-        "title": "البدايات الخلوية",
-        "body": "إذا حدث الإخصاب، تبدأ الخلية الملقحة الواحدة بالانقسام — أولاً إلى خليتين، ثم 4. هذه المجموعة الصغيرة من الخلايا تتحرك عبر قناة فالوب نحو الرحم. تعمل بالكامل من مخزون طاقتها الخاص.",
-        "tip": "ابقي رطبة وتناولي أطعمة مغذية. جسمك يقوم بعمل مذهل على المستوى الخلوي."
-      },
-      "day3": {
-        "title": "مرحلة الموريلا",
-        "body": "الخلايا المنقسمة تشكل كرة صلبة تسمى الموريلا (حوالي 16 خلية). تستمر في رحلتها عبر قناة فالوب. البروجسترون يرتفع، محضراً بطانة الرحم للانغراس المحتمل.",
-        "tip": "النشاط الخفيف مناسب تماماً. لا حاجة لتقييد روتينك الطبيعي."
-      },
-      "day4": {
-        "title": "الدخول إلى الرحم",
-        "body": "الموريلا تدخل الرحم عادة حوالي اليوم 4. تبدأ بتشكيل تجويف مملوء بالسائل، متحولة إلى كيسة أريمية. بطانة الرحم تصبح سميكة ومستقبلة تحت تأثير البروجسترون.",
-        "tip": "مارسي اليقظة الذهنية أو التمدد الخفيف. إدارة الترقب جزء من الرحلة."
-      },
-      "day5": {
-        "title": "تشكل الكيسة الأريمية",
-        "body": "الكيسة الأريمية الآن لديها مجموعتان مميزتان من الخلايا: الكتلة الخلوية الداخلية (التي تصبح الجنين) والأرومة المغذية (التي تصبح المشيمة). تطفو حرة في تجويف الرحم.",
-        "tip": "هذا يوم جيد لتدوين أفكارك ومشاعرك. التعبير عن الذات علاجي."
-      },
-      "day6": {
-        "title": "قد يبدأ الانغراس",
-        "body": "الكيسة الأريمية تبدأ بالبحث عن موقع مثالي للانغراس على جدار الرحم. خلايا الأرومة المغذية تبدأ بالتغلغل في بطانة الرحم. بعض النساء يعانين من بقع خفيفة (نزيف الانغراس) في هذا الوقت.",
-        "tip": "البقع الخفيفة في هذه المرحلة طبيعية. لا تقلقي — ولا تختبري بعد. إنه مبكر جداً."
-      },
-      "day7": {
-        "title": "نافذة الانغراس",
-        "body": "الأيام 6-10 هي نافذة الانغراس النموذجية. الكيسة الأريمية تتعمق أكثر في بطانة الرحم. إشارات مبكرة يتم تبادلها بين الجنين وجسمك.",
-        "tip": "استمري في أنشطتك الطبيعية. استريحي عند الحاجة. ثقي بالعملية."
-      },
-      "day8": {
-        "title": "يبدأ هرمون hCG",
-        "body": "إذا كان الانغراس يتقدم، تبدأ كميات صغيرة من hCG (هرمون موجهة الغدد التناسلية المشيمائية) بالإنتاج. هذا الهرمون يشير لجسمك للحفاظ على الجسم الأصفر، الذي يستمر في إنتاج البروجسترون. المستويات لا تزال أقل من أن تُكتشف في الاختبار.",
-        "tip": "قاومي الرغبة في الاختبار. hCG يحتاج وقتاً للتراكم. الصبر هو حليفك الأعظم الآن."
-      },
-      "day9": {
-        "title": "إشارات متصاعدة",
-        "body": "مستويات hCG ترتفع لكن قد تكون لا تزال تحت عتبة الكشف لمعظم اختبارات الحمل المنزلية. يجب أن يكون الانغراس قد اكتمل أو شارف على الاكتمال. جسمك يبدأ بالاستجابة للإشارات الهرمونية الجديدة.",
-        "tip": "دللي نفسك بشيء مهدئ — حمام دافئ، أو شايك المفضل، أو مشي في الطبيعة."
-      },
-      "day10": {
-        "title": "اقتربنا",
-        "body": "الآن، إذا حدث الانغراس، مستويات hCG تتضاعف تقريباً كل 48 ساعة. بعض الاختبارات الحساسة قد تكشف الحمل المبكر جداً. لكن نتيجة سلبية اليوم لا تعني أنك لست حاملاً — المستويات تتفاوت بشكل كبير.",
-        "tip": "إذا اختبرت اليوم وكانت النتيجة سلبية، لا تفقدي الأمل. كثير من حالات الحمل الناجحة لا تظهر إيجابية حتى اليوم 12-14."
-      },
-      "day11": {
-        "title": "بناء الترقب",
-        "body": "hCG يستمر بالارتفاع. بعض النساء يبدأن بملاحظة أعراض مبكرة جداً: تشنجات خفيفة، حساسية الثدي، أو إرهاق. هذه الأعراض يمكن أن تسببها أيضاً البروجسترون في دورة غير حامل، لذا ليست مؤشرات موثوقة.",
-        "tip": "مراقبة الأعراض طبيعية لكن قد تزيد القلق. حاولي البقاء حاضرة ومنخرطة في حياتك اليومية."
-      },
-      "day12": {
-        "title": "الاختبار يصبح أكثر موثوقية",
-        "body": "معظم اختبارات الحمل المنزلية تصبح أكثر موثوقية من اليوم فصاعداً. إذا اختبرت، استخدمي بول الصباح الأول لأعلى تركيز من hCG. خط خافت لا يزال نتيجة إيجابية.",
-        "tip": "مهما كانت النتيجة اليوم، تذكري: دورة واحدة لا تحدد رحلتك. كوني لطيفة مع نفسك."
-      },
-      "day13": {
-        "title": "عشية المعرفة",
-        "body": "غداً عادة هو اليوم المتوقع لدورتك (في دورة 28 يوماً). إذا لم تأتِ وأظهر الاختبار خطاً خافتاً إيجابياً، قد تكون التهنئة في محلها. إذا جاءت دورتك، اسمحي لنفسك بالحزن واعلمي أن كل دورة هي فرصة جديدة.",
-        "tip": "حضري نفسك عاطفياً لكلتا النتيجتين. كلاهما مشروع. كلاهما جزء من الرحلة."
-      },
-      "day14": {
-        "title": "يوم الإجابة",
-        "body": "هذا عادة هو اليوم المتوقع لدورتك. غياب الدورة مع اختبار حمل إيجابي هو مؤشر قوي على الحمل. إذا كان اختبارك إيجابياً، تواصلي مع مقدم الرعاية الصحية لتحديد موعدك الأول (عادة حوالي 6-8 أسابيع).",
-        "tip": "إيجابي؟ احتفلي بهذه اللحظة. سلبي؟ أنت قوية وصامدة وهذه الرحلة مستمرة. كلتا النتيجتين تستحقان التعاطف."
-      }
-    }
-  },
-  "toolsInternal.stressFertility": {
-    "topicsCount": "{{count}} موضوع للاستكشاف",
-    "topics": {
-      "stressHormones": {
-        "title": "كيف يؤثر التوتر على الخصوبة",
-        "content": "التوتر المزمن يحفز إفراز الكورتيزول والأدرينالين، مما قد يعطل محور المهاد-الغدة النخامية-الغدد التناسلية (HPG) — المسار الهرموني الذي يتحكم في الإباضة. ارتفاع الكورتيزول قد يثبط هرمون GnRH، مما يؤدي إلى إباضة غير منتظمة أو غائبة. بينما من غير المرجح أن يمنع التوتر اليومي المعتدل الحمل، فإن التوتر المزمن الشديد قد يؤخر حدوثه.",
-        "practice": "حددي أهم 3 مصادر للتوتر هذا الأسبوع. لكل مصدر، اكتبي إجراءً صغيراً يمكنك اتخاذه لتقليل تأثيره."
-      },
-      "cortisol": {
-        "title": "فهم الكورتيزول",
-        "content": "الكورتيزول هو هرمون التوتر الرئيسي في جسمك. في جرعات صغيرة، يكون مفيداً — يوفر الطاقة والتركيز. لكن عندما يبقى الكورتيزول مرتفعاً بشكل مزمن، يمكن أن يثبط الهرمونات التناسلية، ويعطل النوم، ويزيد الالتهاب، ويؤثر على المزاج. الهدف ليس القضاء على التوتر تماماً (مستحيل!) بل إدارة استجابتك للتوتر.",
-        "practice": "مارسي تقنية التنفس 4-7-8: استنشقي لمدة 4 ثوانٍ، احبسي لمدة 7، وازفري لمدة 8. كرري 4 مرات. هذا ينشط الجهاز العصبي الباراسمبثاوي."
-      },
-      "mindfulness": {
-        "title": "اليقظة الذهنية للخصوبة",
-        "content": "اليقظة الذهنية هي ممارسة الحضور الكامل دون حكم. أظهرت الدراسات أن برامج تقليل التوتر القائمة على اليقظة الذهنية (MBSR) يمكن أن تقلل القلق والاكتئاب لدى النساء اللواتي يخضعن لعلاج الخصوبة، وقد تحسن النتائج. حتى 10 دقائق من ممارسة اليقظة الذهنية اليومية يمكن أن تخفض مستويات الكورتيزول وتحسن المرونة العاطفية.",
-        "practice": "جربي مسح الجسم لمدة 5 دقائق: أغلقي عينيك، تنفسي بعمق، وانقلي انتباهك ببطء من أصابع قدميك إلى رأسك، ملاحظةً الأحاسيس دون محاولة تغييرها."
-      },
-      "breathing": {
-        "title": "تقنيات التنفس",
-        "content": "التنفس المتحكم به ينشط مباشرة العصب المبهم، مما يحفز استجابة الاسترخاء. هذا يخفض معدل ضربات القلب وضغط الدم والكورتيزول. إنه من أسرع الطرق للانتقال من حالة التوتر إلى حالة الهدوء. تقنيات مختلفة تخدم أغراضاً مختلفة — بعضها ينشط وبعضها يهدئ.",
-        "practice": "التنفس المربع: استنشقي 4 عدات ← احبسي 4 عدات ← ازفري 4 عدات ← احبسي 4 عدات. كرري لمدة 5 دقائق. مثالي قبل النوم أو أثناء لحظات القلق."
-      },
-      "journaling": {
-        "title": "الكتابة العلاجية",
-        "content": "الكتابة عن مشاعرك أثبتت علمياً أنها تقلل التوتر، وتحسن وظائف المناعة، وتوفر الوضوح. في كتابة يوميات الخصوبة، الهدف ليس تتبع الأعراض بهوس، بل معالجة المشاعر، والاحتفاء بالانتصارات الصغيرة، والتحرر من المخاوف.",
-        "practice": "الليلة، اكتبي: 1) شيء واحد أنا ممتنة له اليوم، 2) قلق واحد أريد التحرر منه، 3) شيء لطيف واحد فعلته لنفسي."
-      },
-      "sleep": {
-        "title": "النوم والخصوبة",
-        "content": "النوم هو الوقت الذي يصلح فيه جسمك نفسه، وينتج الهرمونات، ويعالج المشاعر. النوم السيئ يعطل الميلاتونين (الذي يحمي جودة البويضات)، ويزيد الكورتيزول، ويضعف تنظيم FSH وLH. النساء اللواتي ينمن أقل من 6 ساعات في الليلة لديهن معدلات خصوبة أقل.",
-        "practice": "أنشئي روتيناً للاسترخاء: لا شاشات قبل 30 دقيقة من النوم، أضواء خافتة، استخدمي زيت اللافندر العطري، وحافظي على غرفة نومك باردة (18-20 درجة مئوية)."
-      },
-      "exercise": {
-        "title": "الحركة وتخفيف التوتر",
-        "content": "التمارين المعتدلة المنتظمة هي من أكثر مخففات التوتر فعالية. تطلق الإندورفين، وتحسن النوم، وتساعد في تنظيم الهرمونات. ومع ذلك، التمارين المكثفة المفرطة (تدريب الماراثون، التمارين عالية الشدة يومياً) يمكن أن تثبط الإباضة. التوازن هو المفتاح.",
-        "practice": "هذا الأسبوع، استهدفي 30 دقيقة من الحركة المعتدلة 5 أيام: المشي، اليوغا، السباحة، أو الرقص. لاحظي كيف يتغير مزاجك بعدها."
-      },
-      "socialSupport": {
-        "title": "بناء شبكة دعمك",
-        "content": "العزلة الاجتماعية تضاعف التوتر. مشاركة رحلة الخصوبة مع أصدقاء أو عائلة أو مجموعة دعم موثوقة يمكن أن تقلل العبء العاطفي بشكل كبير. لا يتعين عليك المشاركة مع الجميع — حتى شخص واحد داعم يحدث فرقاً.",
-        "practice": "حددي شخصاً واحداً تثقين به. شاركيه شيئاً واحداً عن رحلتك هذا الأسبوع. التواصل شافٍ."
-      },
-      "professionalHelp": {
-        "title": "متى تطلبين الدعم المهني",
-        "content": "إذا كان القلق أو الحزن بشأن الخصوبة يؤثر على حياتك اليومية أو نومك أو علاقاتك أو عملك، فإن الدعم المهني يمكن أن يساعد. المعالجون المتخصصون في الصحة النفسية الإنجابية يفهمون التحديات الفريدة لهذه الرحلة. العلاج المعرفي السلوكي (CBT) فعال بشكل خاص لقلق الخصوبة.",
-        "practice": "إذا كنت تفكرين في العلاج النفسي، ابحثي عن معالج متخصص في علم النفس الإنجابي أو الصحة النفسية في الفترة المحيطة بالولادة. كثير منهم يقدمون جلسات افتراضية."
-      },
-      "acceptance": {
-        "title": "ممارسة التقبل",
-        "content": "التقبل لا يعني الاستسلام — بل يعني الاعتراف بأن بعض الأمور خارج سيطرتك مع التركيز على ما يمكنك التأثير فيه. هذا التحول من السيطرة إلى التقبل يمكن أن يقلل التوتر بشكل كبير ويحسن الرفاهية العاطفية خلال رحلة الخصوبة.",
-        "practice": "رددي هذه العبارة: 'أنا أفعل كل ما بوسعي. أثق بجسمي ورحلتي. النتيجة لا تحدد قيمتي.'"
-      }
-    }
-  },
-  "toolsInternal.preconceptionCheckup": {
-    "progressLabel": "Screenings tracked",
-    "tracked": "tracked",
-    "allComplete": "Great preparation! Discuss your results with your healthcare provider.",
-    "categories": {
-      "essential": "Essential Health Checks",
-      "screening": "Infection & Immunity Screening",
-      "specialized": "Specialized Assessments",
-      "medications": "Medications & Vaccinations"
-    },
-    "ai": {
-      "title": "Preparation Insights",
-      "analyze": "Analyze My Preparation",
-      "readinessTitle": "Readiness Overview",
-      "priorityTitle": "Priority Recommendations",
-      "tipsTitle": "Helpful Tips",
-      "timelineTitle": "Suggested Timeline"
-    },
-    "related": {
-      "academy": "Fertility Academy",
-      "academyDesc": "Comprehensive fertility education",
-      "nutrition": "Nutrition Guide",
-      "nutritionDesc": "Preconception nutrition & supplements"
-    },
-    "disclaimer": "This checklist is an educational reference to help you organize conversations with your healthcare provider. It does not replace professional medical advice, diagnosis, or treatment. All screenings and tests should be discussed with and ordered by a qualified healthcare professional.",
-    "checks": {
-      "generalCheckup": {
-        "title": "General Health Checkup",
-        "description": "A comprehensive physical exam to assess your overall health, blood pressure, weight, and discuss your pregnancy plans."
-      },
-      "bloodWork": {
-        "title": "Complete Blood Count (CBC)",
-        "description": "Checks for anemia, infections, and overall blood health. Identifies iron deficiency that should be addressed before pregnancy."
-      },
-      "pap": {
-        "title": "Pap Smear / Cervical Screening",
-        "description": "Screens for cervical abnormalities. Best done before pregnancy to address any issues without the added complexity of pregnancy."
-      },
-      "thyroid": {
-        "title": "Thyroid Function Test (TSH)",
-        "description": "Thyroid disorders are common and can significantly affect fertility and pregnancy. Both hypothyroidism and hyperthyroidism should be managed before conceiving."
-      },
-      "rubella": {
-        "title": "Rubella (German Measles) Immunity",
-        "description": "Rubella during pregnancy can cause serious birth defects. If you're not immune, vaccination is recommended at least 1 month before trying to conceive."
-      },
-      "hepatitis": {
-        "title": "Hepatitis B & C Screening",
-        "description": "Hepatitis B can be transmitted to the baby during birth. Knowing your status allows for preventive measures. Hepatitis C requires monitoring during pregnancy."
-      },
-      "hiv": {
-        "title": "HIV & STI Screening",
-        "description": "Routine screening for HIV and sexually transmitted infections protects both your health and your future baby's health. Early detection enables effective treatment."
-      },
-      "dental": {
-        "title": "Dental Checkup",
-        "description": "Gum disease is linked to preterm birth and low birth weight. Hormonal changes during pregnancy can worsen existing dental issues. Complete any necessary dental work before conceiving."
-      },
-      "geneticScreening": {
-        "title": "Genetic Carrier Screening",
-        "description": "Tests whether you or your partner carry genes for conditions like cystic fibrosis, sickle cell disease, or thalassemia. Results help with informed family planning decisions."
-      },
-      "mentalHealth": {
-        "title": "Mental Health Assessment",
-        "description": "Discuss any history of depression, anxiety, or other mental health conditions with your healthcare provider. Pre-existing conditions can be managed proactively during pregnancy."
-      },
-      "medications": {
-        "title": "Medication Review",
-        "description": "Review all current medications, supplements, and herbal remedies with your doctor. Some medications are not safe during pregnancy and alternatives should be arranged in advance."
-      },
-      "vaccinations": {
-        "title": "Vaccination Review",
-        "description": "Ensure you're up to date on recommended vaccinations including MMR, varicella, flu, and Tdap. Some vaccines cannot be given during pregnancy, so complete them beforehand."
-      }
-    }
-  },
-  "toolsInternal.walkingCoach.minutes": "دقائق"
+  }
 }
