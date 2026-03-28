@@ -2,4 +2,6 @@
 /robots.txt     /robots.txt     200
 /sitemap.xml    /sitemap.xml    200
 /manifest.json  /manifest.json  200
+/.well-known/*  /.well-known/:splat  200
+/icons/*        /icons/:splat        200
 /*    /index.html   200
