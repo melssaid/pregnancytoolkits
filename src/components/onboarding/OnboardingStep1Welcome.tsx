@@ -5,7 +5,7 @@ import { Shield, Globe, Check, Lock, Sparkles, ChevronLeft, ChevronRight } from 
 import { cn } from '@/lib/utils';
 import { useLanguage } from '@/contexts/LanguageContext';
 
-const logoImage = "/logo.webp";
+const logoImage = "/splash-logo-v2.webp";
 
 const languages = [
   { code: 'en', name: 'English', flag: '🇺🇸' },
