@@ -2,25 +2,26 @@
 
 ## المشكلة
 
-الخطأ `EISDIR: illegal operation on a directory, read` سببه أن `--manifest="."` يمرر مجلد بدل ملف. أمر `bubblewrap update` لا يقبل `--manifest` بنفس طريقة `init`.
+`bubblewrap update` يحاول تحميل أيقونات التطبيق من الروابط المحددة في `twa-manifest.json`:
+- `https://pregnancytoolkits.lovable.app/icons/icon-512x512.png` → **404 Not Found**
+
+هذه الملفات غير موجودة في `public/icons/`. المجلد يحتوي فقط على أيقونات الأدوات، وليس أيقونات التطبيق بالأحجام المطلوبة (72, 96, 128, 144, 152, 192, 384, 512).
 
 ## الحل
 
-تغيير سطر 184 في `.github/workflows/android-twa-build.yml`:
+### 1. إنشاء أيقونات التطبيق بجميع الأحجام المطلوبة
 
-**من:**
-```bash
-bubblewrap update --skipVersionUpgrade --manifest="."
+يجب إنشاء الملفات التالية في `public/icons/`:
+
+```text
+icon-72x72.png
+icon-96x96.png
+icon-128x128.png
+icon-144x144.png
+icon-152x152.png
+icon-192x192.png
+icon-384x384.png
+icon-512x512.png
 ```
 
-**إلى:**
-```bash
-bubblewrap update --skipVersionUpgrade
-```
-
-`bubblewrap update` يقرأ `twa-manifest.json` تلقائياً من المجلد الحالي بدون الحاجة لـ `--manifest`. إزالة هذا الخيار يحل المشكلة.
-
-## التغيير
-
-ملف واحد فقط: `.github/workflows/android-twa-build.yml` سطر 184.
-
+**السؤال**: هل لديك أيقونة التطبيق ال
