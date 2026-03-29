@@ -82,10 +82,7 @@ const DiaperTracker = lazy(() => import("@/pages/tools/DiaperTracker"));
 const VideoLibraryPage = lazy(() => import("@/pages/VideoLibraryPage"));
 const LandingEN = lazy(() => import("@/pages/LandingEN"));
 const AIUsageDashboard = lazy(() => import("@/pages/AIUsageDashboard"));
-const PricingDemo = lazy(() => import("@/pages/PricingDemo"));
-const IconStylePreview = lazy(() => import("@/pages/IconStylePreview"));
 const LanguageSelection = lazy(() => import("@/pages/LanguageSelection"));
-const LanguageStylePreview = lazy(() => import("@/pages/LanguageStylePreview"));
 
 export function AnimatedRoutes() {
   return (
@@ -98,14 +95,12 @@ export function AnimatedRoutes() {
         <Route path="/daily-insights" element={<PageTransition><DailyInsights /></PageTransition>} />
         <Route path="/settings" element={<PageTransition><Settings /></PageTransition>} />
         <Route path="/language" element={<PageTransition><LanguageSelection /></PageTransition>} />
-        <Route path="/language-styles" element={<PageTransition><LanguageStylePreview /></PageTransition>} />
+        <Route path="/language-styles" element={<Navigate to="/settings" replace />} />
+        <Route path="/pricing-demo" element={<Navigate to="/" replace />} />
+        <Route path="/icon-preview" element={<Navigate to="/" replace />} />
         <Route path="/privacy" element={<PageTransition><PrivacyPolicy /></PageTransition>} />
         <Route path="/terms" element={<PageTransition><TermsOfService /></PageTransition>} />
         <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
-        <Route path="/pricing-demo" element={<PageTransition><PricingDemo /></PageTransition>} />
-        <Route path="/icon-preview" element={<PageTransition><IconStylePreview /></PageTransition>} />
-        
-        
         
         {/* AI-POWERED CORE TOOLS */}
         <Route path="/tools/pregnancy-assistant" element={<PageTransition variant="tool"><PregnancyAssistant /></PageTransition>} />
