@@ -301,23 +301,7 @@ ${countriesDesc}
     setIsGeneratingLocal(false);
   }, [selectedCountries, generate]);
 
-  // Parse localized listings from AI content
-  useMemo(() => {
-    if (!aiContent || activeTab !== "localized") return;
-    try {
-      let jsonStr = aiContent;
-      const jsonMatch = aiContent.match(/\[[\s\S]*\]/);
-      if (jsonMatch) jsonStr = jsonMatch[0];
-      const parsed = JSON.parse(jsonStr) as CountryListing[];
-      if (Array.isArray(parsed) && parsed.length > 0 && parsed[0].country) {
-        setLocalizedListings(parsed);
-      }
-    } catch {
-      // Still streaming
-    }
-  }, [aiContent, activeTab]);
-
-  // Validation helpers
+  // ═══════════════════════════════════════════
   // ═══════════════════════════════════════════
   const validateField = (text: string, limit: number) => {
     const len = text.length;
