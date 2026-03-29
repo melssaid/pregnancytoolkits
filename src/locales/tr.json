@@ -2215,7 +2215,9 @@
     "bonusDesc": "5 bonus yapay zeka puanı ücretsiz talep edin — ayda bir kez, sınırlı süreli teklif!",
     "bonusClaim": "Şimdi talep et",
     "bonusSuccess": "5 puan eklendi! ✅",
-    "bonusSuccessDesc": "Ücretsiz puanlarınız eklendi. Yapay zeka araçlarınızın keyfini çıkarın!"
+    "bonusSuccessDesc": "Ücretsiz puanlarınız eklendi. Yapay zeka araçlarınızın keyfini çıkarın!",
+    "googlePlayNotice": "Google Play faturalandırması henüz bağlanmadı. Bu süreçte geçici bir hediye olarak 5 ücretsiz puan alabilirsiniz!",
+    "bonusAlreadyClaimed": "Bu ay ücretsiz puanlarınızı zaten aldınız. Yeni puanlar gelecek ay kullanılabilir olacak."
   },
   "postpartumLinks": {
     "babySleepLink": "Bebek Uyku Takibi",

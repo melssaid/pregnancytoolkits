@@ -6625,7 +6625,9 @@
     "bonusDesc": "Claim 5 bonus AI points for free — once per month, limited time offer!",
     "bonusClaim": "Claim Now",
     "bonusSuccess": "5 Points Added! ✅",
-    "bonusSuccessDesc": "Your free points have been added. Enjoy your AI tools!"
+    "bonusSuccessDesc": "Your free points have been added. Enjoy your AI tools!",
+    "googlePlayNotice": "Google Play billing is not connected yet. In the meantime, you can claim 5 free points as a temporary gift!",
+    "bonusAlreadyClaimed": "You've already claimed your free points this month. New points will be available next month."
   },
   "dailyDashboard": {
     "pageTitle": "Daily Dashboard",
