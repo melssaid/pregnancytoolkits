@@ -77,8 +77,10 @@ export function ToolFrame({
   showRelated = true,
   noCard = false,
 }: ToolFrameProps) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const styles = moodStyles[mood];
+  const isRTL = i18n.language === "ar";
+  const dir = isRTL ? "rtl" : "ltr";
   
   // Check if we have a custom icon for this tool
   const hasCustomIcon = toolId && hasToolIcon(toolId);
