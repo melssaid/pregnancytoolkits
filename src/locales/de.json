@@ -3772,7 +3772,8 @@
         "tip3": "Bleiben Sie mit ärztlich genehmigten Übungen körperlich aktiv",
         "tip4": "Nehmen Sie alle Vorsorgeuntersuchungen zur regelmäßigen Überwachung wahr",
         "tip5": "Begrenzen Sie zuckerhaltige Lebensmittel und raffinierte Kohlenhydrate"
-      }
+      },
+      "reset": "Zurücksetzen"
     },
     "healthMonitor": {
       "title": "Gesundheitsüberwachungssystem",
@@ -4994,11 +4995,11 @@
       }
     },
     "warningSigns": {
-      "headaches": "Starke Kopfschmerzen, die nicht nachlassen",
-      "vision": "Sehveränderungen (Verschwommenheit, Flecken sehen)",
-      "abdominalPain": "Oberbauchschmerzen (besonders rechte Seite)",
-      "swelling": "Plötzliche Schwellungen (Gesicht, Hände, Füße)",
-      "weightGain": "Plötzliche Gewichtszunahme (mehr als 2,5 kg in einer Woche)"
+      "headaches": "Schwere oder anhaltende Kopfschmerzen, die nicht auf Behandlung ansprechen",
+      "vision": "Sehveränderungen: verschwommenes Sehen, Lichtempfindlichkeit oder Flimmern",
+      "abdominalPain": "Oberbauchschmerzen, besonders unter den Rippen auf der rechten Seite",
+      "swelling": "Plötzliche Schwellung von Gesicht, Händen oder Füßen",
+      "weightGain": "Schnelle Gewichtszunahme (mehr als 2 kg pro Woche)"
     },
     "evidence": {
       "title": "Was ist Präeklampsie?",

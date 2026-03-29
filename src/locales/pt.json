@@ -3772,7 +3772,8 @@
         "tip3": "Mantenha-se fisicamente ativa com exercícios aprovados pelo médico",
         "tip4": "Compareça a todas as consultas pré-natais para monitoramento regular",
         "tip5": "Limite alimentos açucarados e carboidratos refinados"
-      }
+      },
+      "reset": "Redefinir"
     },
     "healthMonitor": {
       "title": "Sistema de Monitoramento de Saúde",
@@ -4950,7 +4951,7 @@
     "riskFactorsDesc": "Marque todos os fatores que se aplicam para entender seu perfil",
     "calculateRisk": "Revisar meus fatores",
     "yourRiskFactors": "Seus fatores:",
-    "warningSignsTitle": "Sinais de Alerta para Observar",
+    "warningSignsTitle": "Sinais de alerta a observar",
     "warningNote": "Se você experimentar qualquer um desses sintomas, contate imediatamente seu médico.",
     "disclaimer": "Esta ferramenta identifica fatores de risco mas não pode prever pré-eclâmpsia. Não substitui avaliação profissional.",
     "aiCoachTitle": "Coach IA de Prevenção de Pré-eclâmpsia",
@@ -4994,11 +4995,11 @@
       }
     },
     "warningSigns": {
-      "headaches": "Dores de cabeça severas que não passam",
-      "vision": "Alterações na visão (embaçamento, ver manchas)",
-      "abdominalPain": "Dor abdominal superior (especialmente lado direito)",
-      "swelling": "Inchaço repentino (rosto, mãos, pés)",
-      "weightGain": "Ganho de peso repentino (mais de 2,5 kg em uma semana)"
+      "headaches": "Dores de cabeça severas ou persistentes que não respondem ao tratamento",
+      "vision": "Alterações visuais: visão turva, sensibilidade à luz ou ver pontos",
+      "abdominalPain": "Dor abdominal alta, especialmente sob as costelas do lado direito",
+      "swelling": "Inchaço súbito do rosto, mãos ou pés",
+      "weightGain": "Ganho de peso rápido (mais de 2 kg em uma semana)"
     },
     "evidence": {
       "title": "O que é pré-eclâmpsia?",
