@@ -3218,7 +3218,8 @@
       "qualityFair": "Orta",
       "qualityNeedsAttention": "Dikkat Gerekiyor",
       "startedAt": "Başlama saati",
-      "analyzing": "Analiz ediliyor..."
+      "analyzing": "Analiz ediliyor...",
+      "weeklyChart": "7 Günlük Uyku"
     },
     "diaperTracker": {
       "title": "Bez Takibi",
@@ -4309,19 +4310,23 @@
       "phases": {
         "week1": {
           "title": "Hafta 1 — Dinlenme ve İyileşme",
-          "description": "Dinlenmeye, yara bakımına ve bebeğinizle bağ kurmaya odaklanın"
+          "description": "Dinlenmeye, yara bakımına ve bebeğinizle bağ kurmaya odaklanın",
+          "short": "Hafta 1"
         },
         "week2": {
           "title": "Hafta 2 — Nazik Başlangıç",
-          "description": "Hafif hareketlere başlayın ve rutinler oluşturun"
+          "description": "Hafif hareketlere başlayın ve rutinler oluşturun",
+          "short": "Hafta 2"
         },
         "week3_4": {
           "title": "Hafta 3-4 — Güç Kazanma",
-          "description": "Hafif egzersizler ve duygusal sağlık kontrolü"
+          "description": "Hafif egzersizler ve duygusal sağlık kontrolü",
+          "short": "Hafta 3-4"
         },
         "week5_6": {
           "title": "Hafta 5-6 — Yeni Normal",
-          "description": "Aktiviteye dönüş ve uzun vadeli planlama"
+          "description": "Aktiviteye dönüş ve uzun vadeli planlama",
+          "short": "Hafta 5-6"
         }
       },
       "checklist": {
@@ -4408,7 +4413,8 @@
       },
       "progress": "İlerleme",
       "getAIAdvice": "Yapay Zeka İyileşme Tavsiyesi Al",
-      "aiAdviceTitle": "Kişiselleştirilmiş İyileşme Tavsiyeleri"
+      "aiAdviceTitle": "Kişiselleştirilmiş İyileşme Tavsiyeleri",
+      "overallProgress": "Genel İyileşme"
     },
     "fertilityAcademy": {
       "lessons": {
@@ -8063,6 +8069,15 @@
       "activeLabor": "Kasılma düzeniniz aktif doğumun yaklaştığını gösteriyor. Hastanenizi aramayı düşünün.",
       "highBP": "Yüksek tansiyon tespit edildi. Lütfen sağlık uzmanınıza danışın.",
       "lowBP": "Düşük tansiyon tespit edildi. Dinlenin ve bol sıvı alın. Belirtiler devam ederse doktorunuza danışın."
+    },
+    "whenToCallDoctor": {
+      "postpartum": {
+        "title": "Ne zaman yardım aramalısınız",
+        "item1": "Saatte birden fazla pedi ıslatacak kadar yoğun kanama",
+        "item2": "Bir günden fazla süren 38°C üzeri ateş",
+        "item3": "Yara enfeksiyonu belirtileri (kızarıklık, şişlik, akıntı)",
+        "item4": "Süregelen üzüntü, kaygı veya kendine zarar verme düşünceleri"
+      }
     }
   },
   "gdm": {

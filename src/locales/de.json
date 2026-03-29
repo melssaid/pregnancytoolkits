@@ -3218,7 +3218,8 @@
       "qualityFair": "Befriedigend",
       "qualityNeedsAttention": "Benötigt Aufmerksamkeit",
       "startedAt": "Gestartet um",
-      "analyzing": "Analyse..."
+      "analyzing": "Analyse...",
+      "weeklyChart": "7-Tage-Schlaf"
     },
     "diaperTracker": {
       "title": "Windel-Tracker",
@@ -4309,19 +4310,23 @@
       "phases": {
         "week1": {
           "title": "Woche 1 — Ruhe & Heilung",
-          "description": "Fokus auf Ruhe, Wundpflege und Bindung mit Ihrem Baby"
+          "description": "Fokus auf Ruhe, Wundpflege und Bindung mit Ihrem Baby",
+          "short": "Woche 1"
         },
         "week2": {
           "title": "Woche 2 — Sanfter Start",
-          "description": "Beginnen Sie mit sanfter Bewegung und etablieren Sie Routinen"
+          "description": "Beginnen Sie mit sanfter Bewegung und etablieren Sie Routinen",
+          "short": "Woche 2"
         },
         "week3_4": {
           "title": "Wochen 3-4 — Kraft aufbauen",
-          "description": "Leichte Übungen und emotionale Wellness-Kontrolle"
+          "description": "Leichte Übungen und emotionale Wellness-Kontrolle",
+          "short": "Woche 3-4"
         },
         "week5_6": {
           "title": "Wochen 5-6 — Neue Normalität",
-          "description": "Rückkehr zur Aktivität und Langzeitplanung"
+          "description": "Rückkehr zur Aktivität und Langzeitplanung",
+          "short": "Woche 5-6"
         }
       },
       "checklist": {
@@ -4408,7 +4413,8 @@
       },
       "progress": "Fortschritt",
       "getAIAdvice": "KI-Erholungsberatung erhalten",
-      "aiAdviceTitle": "Personalisierte Erholungsberatung"
+      "aiAdviceTitle": "Personalisierte Erholungsberatung",
+      "overallProgress": "Gesamte Erholung"
     },
     "fertilityAcademy": {
       "lessons": {
@@ -8063,6 +8069,15 @@
       "activeLabor": "Ihr Wehenmuster deutet auf eine bevorstehende aktive Geburt hin. Erwägen Sie, Ihr Krankenhaus zu kontaktieren.",
       "highBP": "Erhöhter Blutdruck festgestellt. Bitte wenden Sie sich zeitnah an Ihre Ärztin.",
       "lowBP": "Niedriger Blutdruck festgestellt. Ruhen Sie sich aus und trinken Sie ausreichend. Konsultieren Sie Ihre Ärztin bei anhaltenden Symptomen."
+    },
+    "whenToCallDoctor": {
+      "postpartum": {
+        "title": "Wann Sie Hilfe suchen sollten",
+        "item1": "Starke Blutung, die mehr als eine Binde pro Stunde durchtränkt",
+        "item2": "Fieber über 38°C, das länger als einen Tag anhält",
+        "item3": "Anzeichen einer Wundinfektion (Rötung, Schwellung, Ausfluss)",
+        "item4": "Anhaltende Traurigkeit, Angst oder Gedanken an Selbstverletzung"
+      }
     }
   },
   "gdm": {

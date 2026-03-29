@@ -3218,7 +3218,8 @@
       "qualityFair": "Passable",
       "qualityNeedsAttention": "Nécessite attention",
       "startedAt": "Commencé à",
-      "analyzing": "Analyse..."
+      "analyzing": "Analyse...",
+      "weeklyChart": "Sommeil 7 jours"
     },
     "diaperTracker": {
       "title": "Suivi des couches",
@@ -4309,19 +4310,23 @@
       "phases": {
         "week1": {
           "title": "Semaine 1 — Repos et guérison",
-          "description": "Concentrez-vous sur le repos, les soins de la plaie et le lien avec votre bébé"
+          "description": "Concentrez-vous sur le repos, les soins de la plaie et le lien avec votre bébé",
+          "short": "Sem. 1"
         },
         "week2": {
           "title": "Semaine 2 — Début en douceur",
-          "description": "Commencez des mouvements doux et établissez des routines"
+          "description": "Commencez des mouvements doux et établissez des routines",
+          "short": "Sem. 2"
         },
         "week3_4": {
           "title": "Semaines 3-4 — Renforcement",
-          "description": "Exercices légers et bilan de santé émotionnelle"
+          "description": "Exercices légers et bilan de santé émotionnelle",
+          "short": "Sem. 3-4"
         },
         "week5_6": {
           "title": "Semaines 5-6 — Nouvelle normalité",
-          "description": "Reprise d'activité et planification à long terme"
+          "description": "Reprise d'activité et planification à long terme",
+          "short": "Sem. 5-6"
         }
       },
       "checklist": {
@@ -4408,7 +4413,8 @@
       },
       "progress": "Progression",
       "getAIAdvice": "Obtenir des conseils IA de récupération",
-      "aiAdviceTitle": "Conseils de récupération personnalisés"
+      "aiAdviceTitle": "Conseils de récupération personnalisés",
+      "overallProgress": "Récupération globale"
     },
     "fertilityAcademy": {
       "lessons": {
@@ -8063,6 +8069,15 @@
       "activeLabor": "Votre schéma de contractions suggère un travail actif imminent. Envisagez de contacter votre hôpital.",
       "highBP": "Tension artérielle élevée détectée. Veuillez consulter votre professionnel de santé rapidement.",
       "lowBP": "Tension artérielle basse détectée. Reposez-vous et hydratez-vous. Consultez si les symptômes persistent."
+    },
+    "whenToCallDoctor": {
+      "postpartum": {
+        "title": "Quand consulter",
+        "item1": "Saignement abondant imbibant plus d'une serviette par heure",
+        "item2": "Fièvre supérieure à 38°C persistant plus d'un jour",
+        "item3": "Signes d'infection de la plaie (rougeur, gonflement, écoulement)",
+        "item4": "Sentiments persistants de tristesse, d'anxiété ou pensées autodestructrices"
+      }
     }
   },
   "gdm": {

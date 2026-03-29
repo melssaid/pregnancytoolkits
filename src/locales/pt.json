@@ -3218,7 +3218,8 @@
       "qualityFair": "Regular",
       "qualityNeedsAttention": "Precisa de Atenção",
       "startedAt": "Começou às",
-      "analyzing": "Analisando..."
+      "analyzing": "Analisando...",
+      "weeklyChart": "Sono 7 dias"
     },
     "diaperTracker": {
       "title": "Rastreador de Fraldas",
@@ -4309,19 +4310,23 @@
       "phases": {
         "week1": {
           "title": "Semana 1 — Descanso e cura",
-          "description": "Concentre-se no descanso, cuidado da ferida e vínculo com o bebê"
+          "description": "Concentre-se no descanso, cuidado da ferida e vínculo com o bebê",
+          "short": "Sem. 1"
         },
         "week2": {
           "title": "Semana 2 — Início suave",
-          "description": "Comece com movimento suave e estabeleça rotinas"
+          "description": "Comece com movimento suave e estabeleça rotinas",
+          "short": "Sem. 2"
         },
         "week3_4": {
           "title": "Semanas 3-4 — Fortalecimento",
-          "description": "Exercícios leves e verificação de saúde emocional"
+          "description": "Exercícios leves e verificação de saúde emocional",
+          "short": "Sem. 3-4"
         },
         "week5_6": {
           "title": "Semanas 5-6 — Novo normal",
-          "description": "Retorno à atividade e planejamento de longo prazo"
+          "description": "Retorno à atividade e planejamento de longo prazo",
+          "short": "Sem. 5-6"
         }
       },
       "checklist": {
@@ -4408,7 +4413,8 @@
       },
       "progress": "Progresso",
       "getAIAdvice": "Obter conselho IA de recuperação",
-      "aiAdviceTitle": "Conselhos de recuperação personalizados"
+      "aiAdviceTitle": "Conselhos de recuperação personalizados",
+      "overallProgress": "Recuperação geral"
     },
     "fertilityAcademy": {
       "lessons": {
@@ -8063,6 +8069,15 @@
       "activeLabor": "Seu padrão de contrações sugere que o trabalho de parto ativo pode estar se aproximando. Considere entrar em contato com o hospital.",
       "highBP": "Pressão arterial elevada detectada. Consulte seu profissional de saúde prontamente.",
       "lowBP": "Pressão arterial baixa detectada. Descanse e hidrate-se. Consulte se os sintomas persistirem."
+    },
+    "whenToCallDoctor": {
+      "postpartum": {
+        "title": "Quando procurar ajuda",
+        "item1": "Sangramento intenso encharcando mais de um absorvente por hora",
+        "item2": "Febre acima de 38°C persistindo por mais de um dia",
+        "item3": "Sinais de infecção na ferida (vermelhidão, inchaço, secreção)",
+        "item4": "Sentimentos persistentes de tristeza, ansiedade ou pensamentos de autolesão"
+      }
     }
   },
   "gdm": {
