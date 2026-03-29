@@ -188,8 +188,9 @@ ${kwListEn ? `الكلمات الإنجليزية: ${kwListEn}` : ""}
 ]`;
 
     try {
-      await generate(prompt, {
-        language: "ar",
+      await generate({
+        prompt,
+        context: { language: "ar" },
       });
     } catch {
       toast.error("فشل التوليد");
