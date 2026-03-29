@@ -82,10 +82,7 @@ const DiaperTracker = lazy(() => import("@/pages/tools/DiaperTracker"));
 const VideoLibraryPage = lazy(() => import("@/pages/VideoLibraryPage"));
 const LandingEN = lazy(() => import("@/pages/LandingEN"));
 const AIUsageDashboard = lazy(() => import("@/pages/AIUsageDashboard"));
-const PricingDemo = lazy(() => import("@/pages/PricingDemo"));
-const IconStylePreview = lazy(() => import("@/pages/IconStylePreview"));
 const LanguageSelection = lazy(() => import("@/pages/LanguageSelection"));
-const LanguageStylePreview = lazy(() => import("@/pages/LanguageStylePreview"));
 
 export function AnimatedRoutes() {
   return (
