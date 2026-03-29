@@ -8193,5 +8193,13 @@
     "growth": "Wachstum",
     "dueDate": "Termin",
     "symptoms": "Symptome"
+  },
+  "progressIndicator": {
+    "week": "Woche {{week}}",
+    "ofJourney": "{{percent}}% der Reise",
+    "start": "Start",
+    "birth": "Geburt",
+    "daysUntilBaby": "Tage bis du dein Baby triffst 💕",
+    "keyMilestones": "Wichtige Meilensteine:"
   }
 }

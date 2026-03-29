@@ -8193,5 +8193,13 @@
     "growth": "Crescimento",
     "dueDate": "Data",
     "symptoms": "Sintomas"
+  },
+  "progressIndicator": {
+    "week": "Semana {{week}}",
+    "ofJourney": "{{percent}}% da jornada",
+    "start": "Início",
+    "birth": "Nascimento",
+    "daysUntilBaby": "dias até conhecer seu bebê 💕",
+    "keyMilestones": "Marcos importantes:"
   }
 }

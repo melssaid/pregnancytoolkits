@@ -8193,5 +8193,13 @@
     "growth": "النمو",
     "dueDate": "الموعد",
     "symptoms": "الأعراض"
+  },
+  "progressIndicator": {
+    "week": "الأسبوع {{week}}",
+    "ofJourney": "{{percent}}% من الرحلة",
+    "start": "البداية",
+    "birth": "الولادة",
+    "daysUntilBaby": "يوم حتى تلتقي بطفلك 💕",
+    "keyMilestones": "المراحل الرئيسية:"
   }
 }

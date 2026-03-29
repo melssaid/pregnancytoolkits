@@ -8193,5 +8193,13 @@
     "growth": "Growth",
     "dueDate": "Due Date",
     "symptoms": "Symptoms"
+  },
+  "progressIndicator": {
+    "week": "Week {{week}}",
+    "ofJourney": "{{percent}}% of journey",
+    "start": "Start",
+    "birth": "Birth",
+    "daysUntilBaby": "days until you meet your baby 💕",
+    "keyMilestones": "Key Milestones:"
   }
 }
