@@ -8550,65 +8550,72 @@
     }
   },
   "toolsInternal.preconceptionCheckup": {
-    "ai": "Yapay Zeka",
+    "ai": {
+      "title": "Yapay Zeka Analizi",
+      "analyze": "Hazırlığımı Analiz Et",
+      "readinessTitle": "Hazırlık Değerlendirmesi",
+      "priorityTitle": "Öncelikli Adımlar",
+      "tipsTitle": "Kişisel İpuçları",
+      "timelineTitle": "Önerilen Zaman Çizelgesi"
+    },
     "allComplete": "Tüm kontroller tamamlandı!",
     "categories": {
       "medical": "Tıbbi",
       "lifestyle": "Yaşam Tarzı",
       "nutrition": "Beslenme",
-      "mental": "Zihinsel Sağlık"
+      "mental": "Zihinsel Sağlık",
+      "essential": "Temel",
+      "screening": "Tarama",
+      "specialized": "Uzman",
+      "medications": "İlaçlar"
     },
     "disclaimer": "Bu kontrol listesi bilgi amaçlıdır. Kişisel tıbbi tavsiyelerin yerine geçmez.",
     "progressLabel": "İlerleme",
     "tracked": "takip ediliyor",
     "checks": {
-      "gynecologistVisit": {
-        "title": "Jinekolog Ziyareti",
-        "description": "Gebelik öncesi kapsamlı muayene yaptırın. Pap smear, pelvik muayene ve genel üreme sağlığı kontrolü."
+      "generalCheckup": {
+        "title": "Genel Sağlık Kontrolü",
+        "description": "Gebelik öncesi kapsamlı fizik muayene ve sağlık geçmişi değerlendirmesi."
       },
-      "bloodTests": {
+      "bloodWork": {
         "title": "Kan Testleri",
-        "description": "Tam kan sayımı, kan grubu, Rh faktörü, tiroid fonksiyonu, kan şekeri ve bulaşıcı hastalık taramaları."
+        "description": "Tam kan sayımı, kan grubu, Rh faktörü, demir ve vitamin düzeyleri kontrolü."
       },
-      "vaccinations": {
-        "title": "Aşı Kontrolü",
-        "description": "Kızamıkçık, su çiçeği ve hepatit B bağışıklığınızı kontrol ettirin. Gebelik sırasında bazı aşılar yapılamaz."
+      "pap": {
+        "title": "Pap Smear",
+        "description": "Servikal kanser taraması. Son 3 yılda yapılmadıysa yaptırın."
       },
-      "dentalCheckup": {
+      "thyroid": {
+        "title": "Tiroid Testi",
+        "description": "TSH ve tiroid hormon seviyeleri. Tiroid bozuklukları doğurganlığı etkiler."
+      },
+      "rubella": {
+        "title": "Kızamıkçık Bağışıklığı",
+        "description": "Kızamıkçık antikor testi. Bağışıklık yoksa aşılama gerekir, gebelikten 1 ay önce."
+      },
+      "hepatitis": {
+        "title": "Hepatit B Taraması",
+        "description": "Hepatit B yüzey antijeni testi. Bebeğe bulaşmayı önlemek için önemlidir."
+      },
+      "hiv": {
+        "title": "HIV Testi",
+        "description": "HIV taraması önerilir. Erken tespit ve tedavi ile bebeğe bulaşma önlenebilir."
+      },
+      "dental": {
         "title": "Diş Kontrolü",
-        "description": "Diş eti hastalığı erken doğum riskini artırabilir. Gebelik öncesi diş tedavilerinizi tamamlayın."
+        "description": "Diş eti hastalığı erken doğum riskiyle ilişkilidir. Tedavileri gebelik öncesi tamamlayın."
       },
-      "geneticCounseling": {
-        "title": "Genetik Danışmanlık",
-        "description": "Ailede bilinen genetik hastalıklar varsa veya etnik risk faktörleriniz varsa danışmanlık alın."
+      "geneticScreening": {
+        "title": "Genetik Tarama",
+        "description": "Aile öyküsüne göre taşıyıcılık testleri. Genetik danışmanlık düşünün."
       },
-      "chronicConditions": {
-        "title": "Kronik Hastalık Yönetimi",
-        "description": "Diyabet, hipertansiyon, epilepsi veya otoimmün hastalığınız varsa ilaçlarınızı gözden geçirin."
+      "mentalHealth": {
+        "title": "Zihinsel Sağlık Değerlendirmesi",
+        "description": "Kaygı veya depresyon taraması. Gebelik öncesi destek almak önemlidir."
       },
-      "folicAcid": {
-        "title": "Folik Asit Başlatma",
-        "description": "Gebelikten en az 1 ay önce günlük 400 mcg folik asit almaya başlayın."
-      },
-      "weightManagement": {
-        "title": "Kilo Yönetimi",
-        "description": "Sağlıklı BMI aralığına ulaşmak doğurganlığı artırır ve gebelik komplikasyonlarını azaltır."
-      },
-      "smokingCessation": {
-        "title": "Sigarayı Bırakma",
-        "description": "Sigara yumurta kalitesini düşürür, düşük riskini artırır ve bebeğin gelişimini olumsuz etkiler."
-      },
-      "alcoholReduction": {
-        "title": "Alkol Azaltma",
-        "description": "Gebelik planlarken alkol tüketimini tamamen bırakmak en güvenli yaklaşımdır."
-      },
-      "exerciseRoutine": {
-        "title": "Egzersiz Rutini",
-        "description": "Düzenli orta düzeyde egzersiz programı oluşturun. Haftada 150 dakika hedefleyin."
-      },
-      "stressManagement": {
-        "title": "Stres Yönetimi",
-        "description": "Stres azaltma teknikleri öğrenin — meditasyon, yoga veya nefes egzersizleri."
+      "medications": {
+        "title": "İlaç Gözden Geçirme",
+        "description": "Mevcut ilaçlarınızı doktorunuzla gözden geçirin. Bazıları gebelikte güvenli olmayabilir."
       }
     }
   }
