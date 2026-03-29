@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import { AlertTriangle, CheckCircle, HelpCircle, Brain, Sun, Loader2, Sparkles, ArrowRight, ArrowLeft, RotateCcw, Crown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { VideoLibrary } from '@/components/VideoLibrary';
