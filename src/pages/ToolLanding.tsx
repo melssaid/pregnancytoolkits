@@ -6,8 +6,10 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Baby, ArrowRight, CheckCircle2, Smartphone, Sparkles,
-  Shield, Globe, Star,
+  Shield, Globe, Star, Download, ExternalLink,
 } from "lucide-react";
+
+const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=app.pregnancytoolkits.android";
 
 // SEO-optimized descriptions per tool (EN)
 const toolSEO: Record<string, { h1: string; desc: string; longDesc: string; keywords: string; faqs: { q: string; a: string }[] }> = {
@@ -197,17 +199,30 @@ export default function ToolLanding() {
             {seo.desc}
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center pt-2">
+            <a href={PLAY_STORE_URL} target="_blank" rel="noopener noreferrer">
+              <Button size="lg" className="gap-2 text-base w-full sm:w-auto bg-primary hover:bg-primary/90">
+                <Download className="h-5 w-5" />
+                Download on Google Play
+              </Button>
+            </a>
             <Link to={tool.href}>
-              <Button size="lg" className="gap-2 text-base w-full sm:w-auto">
-                <Smartphone className="h-5 w-5" />
-                Use This Tool — Free
-              </Button>
-            </Link>
-            <Link to="/en">
               <Button variant="outline" size="lg" className="gap-2 text-base w-full sm:w-auto">
-                Explore All 35+ Tools
+                <Smartphone className="h-5 w-5" />
+                Use in Browser — Free
               </Button>
             </Link>
+          </div>
+
+          {/* Google Play Badge */}
+          <div className="pt-4">
+            <a href={PLAY_STORE_URL} target="_blank" rel="noopener noreferrer" className="inline-block">
+              <img
+                src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
+                alt="Get it on Google Play"
+                className="h-14 mx-auto"
+                loading="lazy"
+              />
+            </a>
           </div>
         </div>
       </section>
@@ -310,19 +325,35 @@ export default function ToolLanding() {
 
       {/* CTA */}
       <section className="container py-12 text-center">
-        <div className="max-w-xl mx-auto space-y-4">
+        <div className="max-w-xl mx-auto space-y-5">
           <h2 className="text-2xl font-bold text-foreground">
             Ready to Use {toolTitle}?
           </h2>
           <p className="text-muted-foreground text-sm">
             Join thousands of expecting parents who use Pregnancy Toolkits every day. Free forever.
           </p>
-          <Link to={tool.href}>
-            <Button size="lg" className="gap-2">
-              <Baby className="h-5 w-5" />
-              Start Now — Free
-            </Button>
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <a href={PLAY_STORE_URL} target="_blank" rel="noopener noreferrer">
+              <Button size="lg" className="gap-2 w-full sm:w-auto">
+                <Download className="h-5 w-5" />
+                Get the App — Free
+              </Button>
+            </a>
+            <Link to={tool.href}>
+              <Button variant="outline" size="lg" className="gap-2 w-full sm:w-auto">
+                <ExternalLink className="h-4 w-4" />
+                Open in Browser
+              </Button>
+            </Link>
+          </div>
+          <a href={PLAY_STORE_URL} target="_blank" rel="noopener noreferrer" className="inline-block">
+            <img
+              src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
+              alt="Get it on Google Play"
+              className="h-14 mx-auto"
+              loading="lazy"
+            />
+          </a>
         </div>
       </section>
 
