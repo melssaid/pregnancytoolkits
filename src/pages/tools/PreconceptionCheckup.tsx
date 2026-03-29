@@ -9,6 +9,7 @@ import {
 import { ToolFrame } from "@/components/ToolFrame";
 import { Card, CardContent } from "@/components/ui/card";
 import { AIInsightCard } from "@/components/ai/AIInsightCard";
+import WhatsAppShareButton from "@/components/WhatsAppShareButton";
 
 const CATEGORIES = [
   {
@@ -270,6 +271,18 @@ Important: Frame all advice as general educational information, not medical dire
             </motion.div>
           );
         })}
+
+        {/* ── WhatsApp Share ─────────────────────────────────────── */}
+        {completedCount > 0 && (
+          <div className="flex justify-center">
+            <WhatsAppShareButton onClick={() => {
+              const done = CATEGORIES.flatMap(c => c.checks.filter(ch => completed.includes(ch)).map(ch => `✔️ ${t(`toolsInternal.preconceptionCheckup.checks.${ch}.title`)}`));
+              const pending = CATEGORIES.flatMap(c => c.checks.filter(ch => !completed.includes(ch)).map(ch => `◻️ ${t(`toolsInternal.preconceptionCheckup.checks.${ch}.title`)}`));
+              const text = `🩺 *${t('toolsInternal.preconceptionCheckup.title')}*\n📊 ${completedCount}/${totalChecks} (${progress}%)\n\n${done.join('\n')}${pending.length ? '\n\n' + pending.join('\n') : ''}`;
+              window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+            }} />
+          </div>
+        )}
 
         {/* ── AI Analysis ─────────────────────────────────────────── */}
         {completedCount > 0 && (
