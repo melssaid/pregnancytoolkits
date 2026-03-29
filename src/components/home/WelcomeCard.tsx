@@ -136,8 +136,8 @@ const WelcomeCard = memo(function WelcomeCard() {
               <span className="text-sm font-black text-primary leading-none" style={{ fontFamily: "'Cairo', sans-serif" }}>
                 {week}
               </span>
-              <span className="text-[8px] text-muted-foreground font-medium">
-                {lang === "ar" ? "أسبوع" : "week"}
+            <span className="text-[8px] text-muted-foreground font-medium">
+                {({ ar: "أسبوع", de: "Woche", tr: "hafta", fr: "sem.", es: "sem.", pt: "sem." })[lang] || "week"}
               </span>
             </div>
           </div>
