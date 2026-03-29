@@ -2,12 +2,14 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
-import { Check, X, Sparkles, Brain, Shield, Zap, Heart, Crown, Download } from "lucide-react";
+import { Check, X, Sparkles, Brain, Shield, Zap, Heart, Crown, Download, Gift, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { requestPurchase, isDigitalGoodsAvailable, type PlanType } from "@/lib/googlePlayBilling";
 import { useNavigate, Link } from "react-router-dom";
 import pricingLogo from "@/assets/pricing-logo.webp";
+import { canClaimBonus, claimBonus, isPromoActive } from "@/services/smartEngine";
+import { useAIUsage } from "@/contexts/AIUsageContext";
 
 const features = [
   { icon: Brain, key: "feature1" },
@@ -26,6 +28,19 @@ export default function PricingDemo() {
   const [selected, setSelected] = useState<PlanType>("yearly");
   const isAr = i18n.language === "ar";
   const canPurchase = isDigitalGoodsAvailable();
+  const { refresh } = useAIUsage();
+  const [bonusAvailable, setBonusAvailable] = useState(() => isPromoActive() && canClaimBonus());
+  const [bonusClaimed, setBonusClaimed] = useState(false);
+
+  const handleClaimBonus = () => {
+    const result = claimBonus();
+    if (result.success) {
+      setBonusClaimed(true);
+      setBonusAvailable(false);
+      refresh();
+      toast.success(t('paywall.bonusSuccess'));
+    }
+  };
 
   const handleSubscribe = async () => {
     if (!canPurchase) {
@@ -195,8 +210,55 @@ export default function PricingDemo() {
             ))}
           </motion.div>
 
+          {/* Bonus Points Promo */}
+          {bonusAvailable && !bonusClaimed && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2 }}
+              className="relative rounded-2xl overflow-hidden border-2 border-emerald-400/40 mb-4"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 via-teal-500/5 to-emerald-500/10" />
+              <div className="relative px-4 py-3.5 flex items-center gap-3">
+                <motion.div
+                  animate={{ rotate: [0, 10, -10, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 2 }}
+                  className="w-11 h-11 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center flex-shrink-0 shadow-md shadow-emerald-500/25"
+                >
+                  <Zap className="w-5 h-5 text-white" />
+                </motion.div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-bold text-foreground">{t('paywall.bonusTitle')}</p>
+                  <p className="text-[11px] text-muted-foreground leading-relaxed">{t('paywall.bonusDesc')}</p>
+                  <Button
+                    onClick={handleClaimBonus}
+                    size="sm"
+                    className="mt-2 h-8 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-xs font-bold hover:from-emerald-600 hover:to-teal-600 shadow-md"
+                  >
+                    <Gift className="w-3.5 h-3.5 me-1.5" />
+                    {t('paywall.bonusClaim')}
+                  </Button>
+                </div>
+              </div>
+            </motion.div>
+          )}
 
-          {/* Plan cards — compact side by side */}
+          {/* Bonus Claimed Success */}
+          {bonusClaimed && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="rounded-2xl border-2 border-emerald-400/40 bg-emerald-500/10 px-4 py-4 flex items-center gap-3 mb-4"
+            >
+              <CheckCircle2 className="w-8 h-8 text-emerald-500 flex-shrink-0" />
+              <div>
+                <p className="text-sm font-bold text-foreground">{t('paywall.bonusSuccess')}</p>
+                <p className="text-[11px] text-muted-foreground">{t('paywall.bonusSuccessDesc')}</p>
+              </div>
+            </motion.div>
+          )}
+
+
           <motion.div
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
