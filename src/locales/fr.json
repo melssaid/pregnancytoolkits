@@ -3237,18 +3237,18 @@
       "title": "Diabète gestationnel",
       "subtitle": "Comprendre et gérer le diabète gestationnel",
       "riskFactors": "Facteurs de risque",
-      "age35Plus": "Age 35 or older",
-      "overweight": "Overweight before pregnancy",
-      "familyHistory": "Family history of diabetes",
-      "previousGDM": "Previous gestational diabetes",
-      "previousLargeBaby": "Previous baby over 4kg",
-      "pcos": "Polycystic ovary syndrome",
-      "calculateRisk": "Review My Factors",
+      "age35Plus": "Âge de 35 ans ou plus",
+      "overweight": "Surpoids avant la grossesse",
+      "familyHistory": "Antécédents familiaux de diabète",
+      "previousGDM": "Diabète gestationnel lors d'une grossesse précédente",
+      "previousLargeBaby": "Bébé précédent de plus de 4 kg",
+      "pcos": "Syndrome des ovaires polykystiques (SOPK)",
+      "calculateRisk": "Vérifier mes facteurs",
       "lowRisk": "Faible",
       "moderateRisk": "Modéré",
       "highRisk": "Élevé",
-      "prevention": "Prevention Tips",
-      "aiGuidance": "Get AI Guidance"
+      "prevention": "Conseils de prévention",
+      "aiGuidance": "Obtenir des conseils IA"
     },
     "preeclampsia": {
       "title": "Sensibilisation à la prééclampsie",
@@ -8005,18 +8005,18 @@
       },
       "gestationalDiabetes": {
         "items": {
-          "0": "Extreme thirst or unusually frequent urination",
-          "1": "Blurred vision or persistent headaches",
-          "2": "Severe nausea preventing eating or drinking",
-          "3": "Reduced fetal movement"
+          "0": "Soif extrême ou mictions anormalement fréquentes",
+          "1": "Vision floue ou maux de tête persistants",
+          "2": "Nausées sévères empêchant de manger ou boire",
+          "3": "Réduction des mouvements fœtaux"
         }
       },
       "weightGain": {
         "items": {
-          "0": "Sudden weight gain of more than 1 kg in a week",
-          "1": "Swelling in face, hands, or feet",
-          "2": "No weight gain for two consecutive weeks",
-          "3": "Severe abdominal pain with weight changes"
+          "0": "Prise de poids soudaine de plus de 1 kg en une semaine",
+          "1": "Gonflement du visage, des mains ou des pieds",
+          "2": "Aucune prise de poids pendant deux semaines consécutives",
+          "3": "Douleurs abdominales sévères avec variations de poids"
         }
       }
     },
