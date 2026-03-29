@@ -8261,5 +8261,16 @@
     "upgradeHint": "افتحي المزيد من التحليلات المخصصة مع Premium",
     "upgradeCTA": "تابعي مع Premium",
     "postAnalysisHint": "ترقّي للاشتراك المميز للحصول على 40 تحليل شهرياً ورؤى أعمق"
-  }
+  },
+  "tools.weightGain.subtitle": "تابعي وحلّلي زيادة الوزن خلال الحمل",
+  "toolsInternal.babyGrowth.emptyTitle": "لا توجد سجلات بعد",
+  "toolsInternal.babyGrowth.emptyDesc": "ابدئي بإضافة سجلات نمو طفلك لعرض السجل والاتجاهات.",
+  "toolsInternal.babyGrowth.history": "سجل النمو",
+  "toolsInternal.bumpPhotos.analysisQuotaRemaining": "متبقي {{remaining}} تحليلات",
+  "toolsInternal.weightGain.added": "تمت إضافة قياس الوزن",
+  "toolsInternal.weightGain.bmiTitle": "مؤشر كتلة الجسم قبل الحمل",
+  "toolsInternal.weightGain.history": "السجل",
+  "toolsInternal.weightGain.invalidWeight": "يرجى إدخال وزن صحيح",
+  "toolsInternal.weightGain.noEntries": "لا توجد سجلات وزن بعد. أضيفي أول سجل بالأعلى.",
+  "toolsInternal.weightGain.weightPlaceholder": "الوزن بالكيلوغرام"
 }

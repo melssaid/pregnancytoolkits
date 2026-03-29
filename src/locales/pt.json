@@ -8261,5 +8261,16 @@
     "upgradeHint": "Desbloqueie mais análises personalizadas com Premium",
     "upgradeCTA": "Continuar com Premium",
     "postAnalysisHint": "Atualize para Premium para 40 análises mensais e insights mais profundos"
-  }
+  },
+  "tools.weightGain.subtitle": "Acompanhe e analise seu ganho de peso na gravidez",
+  "toolsInternal.babyGrowth.emptyTitle": "Ainda não há registros",
+  "toolsInternal.babyGrowth.emptyDesc": "Comece a adicionar registros de crescimento do bebê para ver histórico e tendências.",
+  "toolsInternal.babyGrowth.history": "Histórico de crescimento",
+  "toolsInternal.bumpPhotos.analysisQuotaRemaining": "{{remaining}} análises restantes",
+  "toolsInternal.weightGain.added": "Registro de peso adicionado",
+  "toolsInternal.weightGain.bmiTitle": "IMC pré-gestacional",
+  "toolsInternal.weightGain.history": "Histórico",
+  "toolsInternal.weightGain.invalidWeight": "Digite um peso válido",
+  "toolsInternal.weightGain.noEntries": "Ainda não há registros de peso. Adicione o primeiro acima.",
+  "toolsInternal.weightGain.weightPlaceholder": "Peso em kg"
 }

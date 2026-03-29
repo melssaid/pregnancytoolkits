@@ -8261,5 +8261,16 @@
     "upgradeHint": "Schalten Sie mehr personalisierte Einblicke mit Premium frei",
     "upgradeCTA": "Weiter mit Premium",
     "postAnalysisHint": "Upgrade auf Premium für 40 monatliche Analysen und tiefere Einblicke"
-  }
+  },
+  "tools.weightGain.subtitle": "Verfolge und analysiere deine Gewichtszunahme in der Schwangerschaft",
+  "toolsInternal.babyGrowth.emptyTitle": "Noch keine Einträge",
+  "toolsInternal.babyGrowth.emptyDesc": "Füge Wachstumseinträge deines Babys hinzu, um Verlauf und Trends zu sehen.",
+  "toolsInternal.babyGrowth.history": "Wachstumsverlauf",
+  "toolsInternal.bumpPhotos.analysisQuotaRemaining": "{{remaining}} Analysen verbleibend",
+  "toolsInternal.weightGain.added": "Gewichtseintrag hinzugefügt",
+  "toolsInternal.weightGain.bmiTitle": "BMI vor der Schwangerschaft",
+  "toolsInternal.weightGain.history": "Verlauf",
+  "toolsInternal.weightGain.invalidWeight": "Bitte gib ein gültiges Gewicht ein",
+  "toolsInternal.weightGain.noEntries": "Noch keine Gewichtseinträge. Füge oben deinen ersten Eintrag hinzu.",
+  "toolsInternal.weightGain.weightPlaceholder": "Gewicht in kg"
 }
