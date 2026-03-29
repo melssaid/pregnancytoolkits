@@ -2383,6 +2383,42 @@
           "icon": "❤️",
           "desc": "Maintaining closeness"
         }
+      },
+      "heroTitle": "Be Her Best Support",
+      "heroDesc": "Practical guidance to support your partner through every stage of pregnancy",
+      "dailyChecklist": "Daily Support Checklist",
+      "dailyChecklistDesc": "Small actions that make a big difference",
+      "checkAsk": "Ask 'How are you feeling?' and truly listen",
+      "checkMassage": "Offer a gentle back or foot massage",
+      "checkTask": "Take over a household task without being asked",
+      "checkRead": "Read or talk to the baby bump together",
+      "checkWater": "Bring her water and healthy snacks",
+      "checkListen": "Listen without trying to fix everything",
+      "checkCompliment": "Give a sincere compliment about her strength",
+      "allDone": "Amazing! You completed all daily actions!",
+      "proTips": "Pro Partner Tips",
+      "tips": {
+        "doSay": {
+          "title": "Things to Say",
+          "item1": "You're doing an incredible job growing our baby",
+          "item2": "How can I help you feel more comfortable?",
+          "item3": "I'm so proud of how strong you are",
+          "item4": "Let me handle that - you rest"
+        },
+        "dontSay": {
+          "title": "Things to Avoid",
+          "item1": "Don't compare her to other pregnant women",
+          "item2": "Don't dismiss her symptoms as 'just hormones'",
+          "item3": "Don't make decisions about the baby without her",
+          "item4": "Don't comment on her body changes negatively"
+        },
+        "gestureIdeas": {
+          "title": "Special Gesture Ideas",
+          "item1": "Write her a love letter about your growing family",
+          "item2": "Prepare a relaxation evening with candles and music",
+          "item3": "Create a photo album of the pregnancy journey",
+          "item4": "Plan a gentle babymoon getaway together"
+        }
       }
     },
     "bumpPhotos": {

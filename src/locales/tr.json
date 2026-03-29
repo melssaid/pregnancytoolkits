@@ -2383,6 +2383,42 @@
           "icon": "❤️",
           "desc": "Yakınlığı sürdürme"
         }
+      },
+      "heroTitle": "Onun en iyi destegi ol",
+      "heroDesc": "Esinizi hamileligin her asamasinda desteklemek icin pratik rehber",
+      "dailyChecklist": "Gunluk Destek Kontrol Listesi",
+      "dailyChecklistDesc": "Buyuk fark yaratan kucuk eylemler",
+      "checkAsk": "Bugun nasil hissediyorsun? diye sor ve gercekten dinle",
+      "checkMassage": "Nazik bir sirt veya ayak masaji teklif et",
+      "checkTask": "Sorulmadan bir ev isini ustlen",
+      "checkRead": "Birlikte karnina okuyun veya konusun",
+      "checkWater": "Ona su ve saglikli atistirmaliklar getir",
+      "checkListen": "Her seyi cozmeye calismadan dinle",
+      "checkCompliment": "Gucu hakkinda icten bir iltifat et",
+      "allDone": "Harika! Tum gunluk gorevleri tamamladin!",
+      "proTips": "Profesyonel Partner Ipuclari",
+      "tips": {
+        "doSay": {
+          "title": "Soylenecek seyler",
+          "item1": "Bebegimizi buyutmekte harika bir is cikariyorsun",
+          "item2": "Seni daha rahat hissettirecek ne yapabilirim?",
+          "item3": "Gucunle gurur duyuyorum",
+          "item4": "Birak ben hallederim - sen dinlen"
+        },
+        "dontSay": {
+          "title": "Kacinilacak seyler",
+          "item1": "Onu diger hamilelerle karsilastirma",
+          "item2": "Belirtilerini 'sadece hormonlar' diye gecistirme",
+          "item3": "Bebek hakkinda onsuz karar verme",
+          "item4": "Vucudundaki degisiklikler hakkinda olumsuz yorum yapma"
+        },
+        "gestureIdeas": {
+          "title": "Ozel jest fikirleri",
+          "item1": "Buyuyen aileniz hakkinda bir ask mektubu yaz",
+          "item2": "Mumlar ve muzikle bir rahatlama aksami hazirla",
+          "item3": "Hamilelik yolculugunun fotograf albumunu olustur",
+          "item4": "Birlikte huzurlu bir babymoon kacamagi planlayin"
+        }
       }
     },
     "bumpPhotos": {
