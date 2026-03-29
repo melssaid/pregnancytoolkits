@@ -136,3 +136,65 @@ export function clearAdminBypass(): void {
   }
   localStorage.removeItem(ADMIN_BYPASS_KEY);
 }
+
+// ── Temporary Bonus Points (promo until Google Play billing connected) ──
+const BONUS_KEY = "smart_bonus_claimed_v1";
+// Promo expires after 6 days from first deploy — set a fixed end date
+const PROMO_END_DATE = new Date("2026-04-04T23:59:59Z");
+const BONUS_AMOUNT = 5;
+
+interface BonusClaim {
+  monthKey: string;
+  claimed: boolean;
+}
+
+function readBonusClaim(): BonusClaim | null {
+  try {
+    const raw = localStorage.getItem(BONUS_KEY);
+    if (raw) return JSON.parse(raw);
+  } catch { /* corrupted */ }
+  return null;
+}
+
+/**
+ * Check if the bonus promo is still active and hasn't been claimed this month.
+ */
+export function canClaimBonus(): boolean {
+  if (new Date() > PROMO_END_DATE) return false;
+  const claim = readBonusClaim();
+  if (!claim) return true;
+  // Already claimed this month
+  if (claim.monthKey === getCurrentMonthKey() && claim.claimed) return false;
+  // New month — can claim again
+  return true;
+}
+
+/**
+ * Check if promo period is still active.
+ */
+export function isPromoActive(): boolean {
+  return new Date() <= PROMO_END_DATE;
+}
+
+/**
+ * Claim 5 bonus points. Reduces used count (grants free credits).
+ * Can only be claimed once per month during promo period.
+ */
+export function claimBonus(): { success: boolean; newState: QuotaState } {
+  if (!canClaimBonus()) {
+    return { success: false, newState: getQuotaState() };
+  }
+  const stored = readQuota();
+  // Grant bonus by reducing used (minimum 0)
+  stored.used = Math.max(0, stored.used - BONUS_AMOUNT);
+  stored.monthKey = getCurrentMonthKey();
+  writeQuota(stored);
+  // Mark as claimed
+  try {
+    localStorage.setItem(BONUS_KEY, JSON.stringify({
+      monthKey: getCurrentMonthKey(),
+      claimed: true,
+    }));
+  } catch { /* storage full */ }
+  return { success: true, newState: getQuotaState() };
+}
