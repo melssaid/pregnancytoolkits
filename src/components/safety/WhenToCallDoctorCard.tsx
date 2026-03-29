@@ -19,6 +19,7 @@ const itemCounts: Record<Context, number> = {
   preeclampsia: 5,
   gestationalDiabetes: 4,
   weightGain: 4,
+  postpartum: 4,
   general: 5,
 };
 
