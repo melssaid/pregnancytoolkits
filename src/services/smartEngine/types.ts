@@ -85,7 +85,7 @@ export const TOOL_WEIGHT_REGISTRY: Record<AIToolType, InsightWeight> = {
   "postpartum-recovery": 1,
   "hospital-bag": 1,
   "birth-position": 1,
-  "partner-guide": 1,
+  "partner-guide": 0.5,          // lightweight partner support tips
   "lactation-prep": 1,
   "nausea-relief": 0.5,         // lightweight relief tips
   "skincare-advice": 0.5,       // quick skincare routine
