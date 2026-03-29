@@ -32,7 +32,7 @@ const TOPICS = [
   { key: "intimacy", icon: Star, gradient: "from-pink-500 to-fuchsia-400", bg: "bg-pink-500/10 border-pink-500/20" },
 ] as const;
 
-const PARTNER_TYPES = ["husband", "partner", "boyfriend", "wife"] as const;
+const PARTNER_TYPES = ["husband"] as const;
 const TRIMESTERS = ["first", "second", "third"] as const;
 
 // ── Daily Checklist Keys ─────────────────────────────────────────
@@ -141,26 +141,8 @@ Be warm, practical, and specific. Include real examples.`;
               </div>
             </div>
 
-            {/* Partner type + trimester selectors as chips */}
+            {/* Trimester selector */}
             <div className="space-y-2.5">
-              <div>
-                <p className="text-[10px] font-semibold text-muted-foreground mb-1.5">{t("toolsInternal.partnerGuide.iAmHer")}</p>
-                <div className="flex flex-wrap gap-1.5">
-                  {PARTNER_TYPES.map(pt => (
-                    <button
-                      key={pt}
-                      onClick={() => setPartnerType(pt)}
-                      className={`px-3 py-1.5 rounded-full text-[11px] font-medium transition-all ${
-                        partnerType === pt
-                          ? "bg-primary text-primary-foreground shadow-sm"
-                          : "bg-muted/60 text-muted-foreground hover:bg-muted"
-                      }`}
-                    >
-                      {t(`toolsInternal.partnerGuide.${pt}`)}
-                    </button>
-                  ))}
-                </div>
-              </div>
 
               <div>
                 <p className="text-[10px] font-semibold text-muted-foreground mb-1.5">{t("toolsInternal.partnerGuide.trimester")}</p>
