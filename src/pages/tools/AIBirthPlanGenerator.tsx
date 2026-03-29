@@ -308,10 +308,7 @@ export default function AIBirthPlanGenerator() {
               <Button size="sm" variant="outline" onClick={savePlan} disabled={savedPlans.length >= MAX_SAVED_PLANS} className="text-xs">
                 {t('common.save')}
               </Button>
-              <Button size="sm" variant="outline" onClick={handleShareWhatsApp} className="text-xs text-green-600 border-green-300 hover:bg-green-50 dark:hover:bg-green-950/30">
-                <Share2 className="w-3 h-3 me-1" />
-                WhatsApp
-              </Button>
+              <WhatsAppShareButton onClick={handleShareWhatsApp} />
             </div>
             <PrintableReport title={t('toolsInternal.birthPlan.title')} isLoading={isLoading}>
               <AIResponseFrame
