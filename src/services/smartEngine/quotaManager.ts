@@ -57,7 +57,8 @@ export function getQuotaState(): QuotaState {
   const stored = readQuota();
   const bypass = isAdminBypass();
   const tierConfig = QUOTA_TIERS[stored.tier] || QUOTA_TIERS.free;
-  const limit = bypass ? 999 : tierConfig.monthly;
+  const bonus = stored.bonusCredits || 0;
+  const limit = bypass ? 999 : tierConfig.monthly + bonus;
   const remaining = Math.max(0, limit - stored.used);
 
   return {
