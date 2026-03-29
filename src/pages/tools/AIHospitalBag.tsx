@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import i18n from "@/i18n";
-import { Briefcase, Baby, User, Heart, Plus, Share2, RotateCcw, CheckCircle2, Circle, ChevronDown, ChevronUp, Star, ShieldCheck, Package } from "lucide-react";
+import { Briefcase, Baby, User, Heart, Plus, RotateCcw, CheckCircle2, Circle, ChevronDown, ChevronUp, Star, ShieldCheck, Package } from "lucide-react";
+import WhatsAppShareButton from "@/components/WhatsAppShareButton";
 import { AIResponseFrame } from "@/components/ai/AIResponseFrame";
 import { PrintableReport } from '@/components/PrintableReport';
 import { AIActionButton } from "@/components/ai/AIActionButton";
@@ -347,10 +348,6 @@ Include seasonal considerations and hospital-specific recommendations.`;
                   {t('toolsInternal.hospitalBag.itemsPacked', { packed: packedCount, total: items.length })}
                 </p>
                 <div className="flex items-center gap-1.5 mt-2">
-                  <Button onClick={handleShareWhatsApp} variant="ghost" size="sm" className="h-7 text-[10px] gap-1 text-green-600 hover:text-green-700 hover:bg-green-50 dark:hover:bg-green-950/30 px-2">
-                    <Share2 className="w-3 h-3" />
-                    WhatsApp
-                  </Button>
                   <Button variant="ghost" size="sm" onClick={resetList} className="h-7 text-[10px] gap-1 text-muted-foreground px-2">
                     <RotateCcw className="w-3 h-3" />
                     {t('toolsInternal.hospitalBag.resetList')}
@@ -492,6 +489,13 @@ Include seasonal considerations and hospital-specific recommendations.`;
             </div>
           );
         })}
+
+        {/* ═══════ WHATSAPP SHARE ═══════ */}
+        {packedCount > 0 && (
+          <div className="flex justify-center">
+            <WhatsAppShareButton onClick={handleShareWhatsApp} />
+          </div>
+        )}
 
         {/* ═══════ ADD CUSTOM ITEM ═══════ */}
         <div className="flex gap-2">

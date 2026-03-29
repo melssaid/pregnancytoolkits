@@ -3,8 +3,9 @@ import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Play, Square, Timer, TrendingUp, Activity, Clock, Zap, Heart,
-  AlertTriangle, BarChart3, Vibrate, ChevronDown, Share2, RotateCcw,
+  AlertTriangle, BarChart3, Vibrate, ChevronDown, RotateCcw,
 } from "lucide-react";
+import WhatsAppShareButton from "@/components/WhatsAppShareButton";
 import { ContextualWarningBanner, WhenToCallDoctorCard, EvidenceInfoBlock } from "@/components/safety";
 import { ToolFrame } from "@/components/ToolFrame";
 import { Card, CardContent } from "@/components/ui/card";
@@ -471,15 +472,12 @@ export default function ContractionTimer() {
 
         {/* ═══════ SHARE & CLEAR ═══════ */}
         {stats && stats.count >= 2 && (
-          <div className="flex gap-2">
-            <Button onClick={handleShareWhatsApp} variant="outline" size="sm" className="flex-1 h-9 text-[11px] gap-1.5 text-green-600 border-green-300 hover:bg-green-50 dark:hover:bg-green-950/30">
-              <Share2 className="w-3.5 h-3.5" />
-              WhatsApp
-            </Button>
-            <Button onClick={handleClear} variant="outline" size="sm" className="flex-1 h-9 text-[11px] gap-1.5 text-destructive border-destructive/30 hover:bg-destructive/10">
-              <RotateCcw className="w-3.5 h-3.5" />
+          <div className="flex items-center justify-center gap-3">
+            <WhatsAppShareButton onClick={handleShareWhatsApp} />
+            <button onClick={handleClear} className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-[11px] font-medium text-destructive bg-destructive/10 hover:bg-destructive/20 active:scale-95 transition-all">
+              <RotateCcw className="w-3 h-3" />
               {t("toolsInternal.contractionTimer.clear", "مسح الكل")}
-            </Button>
+            </button>
           </div>
         )}
 

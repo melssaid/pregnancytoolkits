@@ -6,7 +6,8 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
-import { FileText, Brain, ChevronDown, ChevronUp, Archive, Trash2, Clock, Loader2, AlertCircle, Share2, CheckCircle2, Heart, Shield, Baby, Sparkles } from 'lucide-react';
+import { FileText, Brain, ChevronDown, ChevronUp, Archive, Trash2, Clock, Loader2, AlertCircle, CheckCircle2, Heart, Shield, Baby, Sparkles } from 'lucide-react';
+import WhatsAppShareButton from "@/components/WhatsAppShareButton";
 import { useSmartInsight } from '@/hooks/useSmartInsight';
 import { AIActionButton } from '@/components/ai/AIActionButton';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
@@ -308,10 +309,7 @@ export default function AIBirthPlanGenerator() {
               <Button size="sm" variant="outline" onClick={savePlan} disabled={savedPlans.length >= MAX_SAVED_PLANS} className="text-xs">
                 {t('common.save')}
               </Button>
-              <Button size="sm" variant="outline" onClick={handleShareWhatsApp} className="text-xs text-green-600 border-green-300 hover:bg-green-50 dark:hover:bg-green-950/30">
-                <Share2 className="w-3 h-3 me-1" />
-                WhatsApp
-              </Button>
+              <WhatsAppShareButton onClick={handleShareWhatsApp} />
             </div>
             <PrintableReport title={t('toolsInternal.birthPlan.title')} isLoading={isLoading}>
               <AIResponseFrame
