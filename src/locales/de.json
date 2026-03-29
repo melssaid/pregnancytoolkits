@@ -359,7 +359,8 @@
     },
     "weightGain": {
       "title": "Schwangerschafts-Gewichtsanalyse",
-      "description": "Begleiten Sie Ihre Gewichtsentwicklung in der Schwangerschaft."
+      "description": "Begleiten Sie Ihre Gewichtsentwicklung in der Schwangerschaft.",
+      "subtitle": "Verfolge und analysiere deine Gewichtszunahme in der Schwangerschaft"
     },
     "postpartumMentalHealth": {
       "title": "Psychische Gesundheit in der Schwangerschaft",
@@ -1253,7 +1254,19 @@
     },
     "deleteAccount": {
       "title": "Alle Daten löschen",
-      "description": "Alle auf diesem Gerät gespeicherten Daten dauerhaft löschen"
+      "description": "Alle auf diesem Gerät gespeicherten Daten dauerhaft löschen",
+      "button": "Alle Daten löschen",
+      "confirmTitle": "Datenlöschung bestätigen",
+      "confirmDesc": "Alle auf diesem Gerät gespeicherten Daten werden dauerhaft gelöscht. Diese Aktion kann nicht rückgängig gemacht werden.",
+      "confirmWarning": "Diese Aktion ist dauerhaft und kann nicht rückgängig gemacht werden!",
+      "confirmWord": "LÖSCHEN",
+      "confirmButton": "Löschen bestätigen",
+      "confirmError": "Bestätigungsfehler",
+      "confirmErrorDesc": "Bitte geben Sie \"{{word}}\" zur Bestätigung ein",
+      "success": "Daten gelöscht ✅",
+      "successDesc": "Alle Ihre Daten wurden erfolgreich gelöscht",
+      "error": "Löschfehler",
+      "errorDesc": "Beim Löschen der Daten ist ein Fehler aufgetreten"
     },
     "aiReset": {
       "title": "KI-Versuche zurücksetzen",
@@ -2421,7 +2434,8 @@
       "lastPhotoReminderTitle": "Noch 1 Foto heute 📸",
       "lastPhotoReminderDesc": "Nutzen Sie es weise! Ihre 2 täglichen Uploads werden morgen erneuert 💕",
       "imageSizeLimitTitle": "Bild zu groß",
-      "imageSizeLimitDesc": "Bitte wählen Sie ein Bild unter 2 MB für optimale Leistung"
+      "imageSizeLimitDesc": "Bitte wählen Sie ein Bild unter 2 MB für optimale Leistung",
+      "analysisQuotaRemaining": "{{remaining}} Analysen verbleibend"
     },
     "backPainRelief": {
       "title": "Rückenkomfort-Ratgeber",
@@ -3138,7 +3152,10 @@
       "month": "Monat {{month}}",
       "addFirst": "Erste Messung hinzufügen",
       "aiAnalysis": "KI-Wachstumsanalyse",
-      "analyzing": "Analyse..."
+      "analyzing": "Analyse...",
+      "emptyTitle": "Noch keine Einträge",
+      "emptyDesc": "Füge Wachstumseinträge deines Babys hinzu, um Verlauf und Trends zu sehen.",
+      "history": "Wachstumsverlauf"
     },
     "babySleep": {
       "title": "Baby-Schlaf-Tracker",
@@ -3532,7 +3549,13 @@
       "showAll": "Alle anzeigen",
       "showLess": "Weniger",
       "totalDistribution": "Gesamte Gewichtsverteilung",
-      "trimester": "Trimester"
+      "trimester": "Trimester",
+      "added": "Gewichtseintrag hinzugefügt",
+      "bmiTitle": "BMI vor der Schwangerschaft",
+      "history": "Verlauf",
+      "invalidWeight": "Bitte gib ein gültiges Gewicht ein",
+      "noEntries": "Noch keine Gewichtseinträge. Füge oben deinen ersten Eintrag hinzu.",
+      "weightPlaceholder": "Gewicht in kg"
     },
     "bloodType": {
       "title": "Blutgruppen-Rechner",
@@ -3771,7 +3794,8 @@
         "3": "Kürzere Spaziergänge, häufigere Pausen"
       },
       "videosTitle": "Geh- und Übungsvideos",
-      "videosSubtitle": "Ausgewählte Videos für aktives Bleiben in der Schwangerschaft"
+      "videosSubtitle": "Ausgewählte Videos für aktives Bleiben in der Schwangerschaft",
+      "minutes": "Minuten"
     },
     "nutritionOptimizer": {
       "title": "Intelligenter Ernährungsplaner",
@@ -4224,26 +4248,29 @@
       "patterns": {
         "continuous": "Dauerhaftes Weinen",
         "intermittent": "An und aus",
-        "escalating": "Zunehmend",
-        "weak": "Schwach"
+        "highPitch": "Hochtonig",
+        "whimpering": "Wimmern",
+        "rhythmic": "Rhythmisch",
+        "sudden": "Plötzliches Schreien"
       },
       "durations": {
-        "brief": "Kurz (< 5 Min.)",
-        "moderate": "Mäßig (5-15 Min.)",
-        "prolonged": "Lang (> 15 Min.)"
+        "under1": "Unter 1 Min.",
+        "1to5": "1-5 Min.",
+        "5to15": "5-15 Min.",
+        "over15": "Über 15 Min."
       },
       "contexts": {
-        "feeding": "Beim/Nach dem Füttern",
-        "sleeping": "Vor dem Schlafen",
-        "diaper": "Windel wechseln",
-        "unknown": "Unbekannt"
+        "afterFeeding": "Nach dem Füttern",
+        "beforeSleep": "Vor dem Schlaf",
+        "afterWaking": "Nach dem Aufwachen",
+        "duringChange": "Beim Windelwechsel",
+        "noReason": "Kein erkennbarer Grund",
+        "afterBath": "Nach dem Baden"
       },
       "tips": {
-        "swaddle": "Pucken versuchen",
-        "shush": "Sanftes Shushing",
-        "swing": "Sanftes Wiegen",
-        "suck": "Schnuller anbieten",
-        "side": "Seitenlage"
+        "tip1": "Jedes Baby hat ein einzigartiges Weinmuster",
+        "tip2": "Babys weinen durchschnittlich 1-3 Stunden täglich — das ist normal",
+        "tip3": "Bei ungewöhnlichem oder anhaltendem Weinen den Kinderarzt konsultieren"
       }
     },
     "postpartumRecovery": {
@@ -4253,48 +4280,628 @@
       "selectBirthType": "Wie haben Sie entbunden?",
       "birthTypes": {
         "vaginal": "Vaginale Geburt",
-        "cesarean": "Kaiserschnitt",
-        "assisted": "Assistierte Geburt"
+        "cesarean": "Kaiserschnitt"
       },
       "changeBirthType": "Geburtsart ändern",
-      "phases": {},
-      "checklist": {},
+      "phases": {
+        "week1": {
+          "title": "Woche 1 — Ruhe & Heilung",
+          "description": "Fokus auf Ruhe, Wundpflege und Bindung mit Ihrem Baby"
+        },
+        "week2": {
+          "title": "Woche 2 — Sanfter Start",
+          "description": "Beginnen Sie mit sanfter Bewegung und etablieren Sie Routinen"
+        },
+        "week3_4": {
+          "title": "Wochen 3-4 — Kraft aufbauen",
+          "description": "Leichte Übungen und emotionale Wellness-Kontrolle"
+        },
+        "week5_6": {
+          "title": "Wochen 5-6 — Neue Normalität",
+          "description": "Rückkehr zur Aktivität und Langzeitplanung"
+        }
+      },
+      "checklist": {
+        "rest": {
+          "title": "Ruhe priorisieren",
+          "desc": "Schlafen Sie, wenn das Baby schläft, nehmen Sie Hilfe an"
+        },
+        "hydration": {
+          "title": "Ausreichend trinken",
+          "desc": "Trinken Sie 8-10 Gläser Wasser täglich"
+        },
+        "woundCare": {
+          "title": "Wundpflege",
+          "desc": "Befolgen Sie die Wundpflegeanweisungen Ihres Arztes"
+        },
+        "feedingSchedule": {
+          "title": "Fütterungsplan",
+          "desc": "Etablieren Sie einen regelmäßigen Fütterungsrhythmus"
+        },
+        "painManagement": {
+          "title": "Schmerzmanagement",
+          "desc": "Nehmen Sie verschriebene Medikamente wie angewiesen"
+        },
+        "gentleWalking": {
+          "title": "Sanftes Gehen",
+          "desc": "Kurze Spaziergänge im Haus"
+        },
+        "emotionalCheck": {
+          "title": "Emotionale Kontrolle",
+          "desc": "Beobachten Sie Ihre Stimmung und Gefühle"
+        },
+        "nutrition": {
+          "title": "Nahrhafte Mahlzeiten",
+          "desc": "Essen Sie eisen- und proteinreiche Mahlzeiten"
+        },
+        "sleepRoutine": {
+          "title": "Schlafroutine",
+          "desc": "Schaffen Sie eine erholsame Schlafumgebung"
+        },
+        "socialSupport": {
+          "title": "Soziale Unterstützung",
+          "desc": "Bleiben Sie mit Ihren Liebsten verbunden"
+        },
+        "lightExercise": {
+          "title": "Leichte Übung",
+          "desc": "Sanftes Dehnen und Gehen"
+        },
+        "posturalExercises": {
+          "title": "Haltungsübungen",
+          "desc": "Stärken Sie Ihre Körpermitte sanft"
+        },
+        "kegelExercises": {
+          "title": "Kegelübungen",
+          "desc": "Beginnen Sie mit Beckenbodenübungen"
+        },
+        "mentalHealthCheck": {
+          "title": "Psychische Gesundheitskontrolle",
+          "desc": "Untersuchung auf postpartale Depression"
+        },
+        "doctorVisit": {
+          "title": "Arztbesuch",
+          "desc": "Planen Sie Ihre Nachuntersuchung"
+        },
+        "returnToExercise": {
+          "title": "Rückkehr zum Sport",
+          "desc": "Aktivitätsniveau schrittweise steigern"
+        },
+        "intimacyReadiness": {
+          "title": "Bereitschaft für Intimität",
+          "desc": "Besprechen Sie es mit Ihrem Partner, wenn Sie bereit sind"
+        },
+        "fullCheckup": {
+          "title": "Vollständige Untersuchung",
+          "desc": "Vollständige postpartale Untersuchung"
+        },
+        "longTermPlan": {
+          "title": "Langzeitplan",
+          "desc": "Besprechen Sie Verhütung und Zukunftspläne"
+        },
+        "selfCare": {
+          "title": "Selbstpflege-Routine",
+          "desc": "Etablieren Sie fortlaufende Selbstpflege"
+        }
+      },
       "progress": "Fortschritt",
       "getAIAdvice": "KI-Erholungsberatung erhalten",
       "aiAdviceTitle": "Personalisierte Erholungsberatung"
     },
     "fertilityAcademy": {
-      "lessons": "Lektionen",
+      "lessons": {
+        "menstrualCycle": {
+          "title": "Understanding Your Menstrual Cycle",
+          "content": "Your menstrual cycle is divided into four main phases:\n\n1. Menstrual Phase (Days 1–5): The uterine lining sheds, marking the start of a new cycle.\n\n2. Follicular Phase (Days 1–13): Follicle-stimulating hormone (FSH) prompts the ovaries to develop follicles. Estrogen rises, thickening the uterine lining.\n\n3. Ovulation (Day 14 approx.): A surge in luteinizing hormone (LH) triggers the release of a mature egg. This is your most fertile moment.\n\n4. Luteal Phase (Days 15–28): The empty follicle becomes the corpus luteum, producing progesterone to maintain the lining. If fertilization doesn't occur, hormone levels drop and the cycle restarts.\n\nUnderstanding these phases helps you identify your fertile window and work with your body's natural rhythm."
+        },
+        "ovulationProcess": {
+          "title": "How Ovulation Works",
+          "content": "Ovulation is the release of a mature egg from one of your ovaries. Here's what happens:\n\n• In the days leading up to ovulation, rising estrogen levels cause the dominant follicle to grow.\n• A sharp LH surge triggers the follicle to rupture and release the egg into the fallopian tube.\n• The egg survives 12–24 hours after release. Sperm can survive up to 5 days in the reproductive tract.\n• This means your fertile window spans roughly 6 days — the 5 days before ovulation and the day of ovulation itself.\n\nSome women feel a twinge or mild cramp (mittelschmerz) during ovulation. Others notice changes in cervical mucus, which becomes clear and stretchy like raw egg whites."
+        },
+        "fertilizationBasics": {
+          "title": "Fertilization & Implantation",
+          "content": "After ovulation, fertilization can occur in the fallopian tube:\n\n• Of the millions of sperm released, only a few hundred reach the egg.\n• One sperm penetrates the egg's outer layer, triggering a chemical reaction that prevents other sperm from entering.\n• The fertilized egg (zygote) begins dividing as it travels toward the uterus over 3–4 days.\n• Around day 6–10 after ovulation, the blastocyst implants into the uterine lining.\n• Implantation may cause light spotting, known as implantation bleeding.\n• Once implanted, the body begins producing hCG — the hormone detected by pregnancy tests."
+        },
+        "hormonesRole": {
+          "title": "Key Fertility Hormones",
+          "content": "Several hormones orchestrate your fertility:\n\n• FSH (Follicle-Stimulating Hormone): Stimulates follicle growth in the ovaries. Tested on Day 3 of your cycle to assess ovarian reserve.\n\n• LH (Luteinizing Hormone): Triggers ovulation. Ovulation predictor kits detect the LH surge.\n\n• Estrogen (Estradiol): Promotes follicle development and thickens the uterine lining. Also affects cervical mucus quality.\n\n• Progesterone: Produced after ovulation, it maintains the uterine lining for potential implantation. Low progesterone can affect cycle regularity.\n\n• AMH (Anti-Müllerian Hormone): Reflects the number of remaining eggs (ovarian reserve). Useful for fertility planning.\n\n• Thyroid Hormones (TSH, T3, T4): Thyroid imbalances can disrupt ovulation and cycle regularity."
+        },
+        "ageAndFertility": {
+          "title": "Age & Fertility",
+          "content": "Age is one of the most significant factors affecting fertility:\n\n• Women are born with all the eggs they will ever have — about 1–2 million at birth.\n• By puberty, roughly 300,000–400,000 eggs remain. Only about 300–400 will ovulate during a lifetime.\n• Fertility peaks in the mid-20s. A gradual decline begins after age 30.\n• After 35, the decline accelerates. Egg quality and quantity both decrease.\n• By age 40, the chance of natural conception per cycle drops to about 5%.\n• Male fertility also declines with age, though more gradually.\n\nThis doesn't mean pregnancy after 35 is impossible — many women conceive naturally. But understanding timing helps with planning."
+        },
+        "lifestyleFactors": {
+          "title": "Lifestyle Factors That Affect Fertility",
+          "content": "Your daily habits significantly impact fertility:\n\n• Weight: Both underweight (BMI < 18.5) and overweight (BMI > 30) can disrupt ovulation. Even a 5–10% weight change can improve cycle regularity.\n\n• Smoking: Reduces egg quality, damages the fallopian tubes, and accelerates egg loss. Secondhand smoke is also harmful.\n\n• Alcohol: Heavy drinking is linked to irregular cycles and reduced fertility. Moderate to no alcohol is safest when trying to conceive.\n\n• Caffeine: More than 200–300mg daily (about 2 cups of coffee) may slightly reduce fertility.\n\n• Exercise: Moderate activity supports fertility. Excessive intense exercise can disrupt ovulation.\n\n• Sleep: Poor sleep disrupts reproductive hormones. Aim for 7–9 hours per night.\n\n• Environmental Toxins: Limit exposure to pesticides, heavy metals, and certain plastics (BPA)."
+        },
+        "commonMyths": {
+          "title": "Fertility Myths vs. Facts",
+          "content": "Let's separate fact from fiction:\n\nMyth: You can only get pregnant on ovulation day.\nFact: The fertile window spans about 6 days. Sperm can survive up to 5 days.\n\nMyth: Position during intercourse affects conception.\nFact: No scientific evidence supports this. Sperm reach the cervix within seconds.\n\nMyth: Birth control causes infertility.\nFact: Fertility typically returns within 1–3 months after stopping most contraceptives.\n\nMyth: Stress directly causes infertility.\nFact: While severe chronic stress can affect hormones, moderate stress alone rarely prevents conception.\n\nMyth: You need to have intercourse every day.\nFact: Every 1–2 days during the fertile window is sufficient. Daily intercourse doesn't reduce sperm quality.\n\nMyth: Herbal supplements guarantee fertility.\nFact: Some may help, but none are scientifically proven to guarantee conception. Always consult your doctor."
+        },
+        "whenToSeekHelp": {
+          "title": "When to Consult a Specialist",
+          "content": "Consider seeking professional fertility guidance if:\n\n• You're under 35 and have been trying for 12 months without success.\n• You're 35–39 and have been trying for 6 months.\n• You're 40 or older — consult early, as time is a factor.\n• You have irregular or absent periods.\n• You have a known condition: endometriosis, PCOS, thyroid disorder, or previous pelvic surgery.\n• You've experienced recurrent miscarriages (2 or more).\n• Your partner has known fertility concerns.\n\nA fertility specialist can run tests (hormone panels, ultrasound, semen analysis) and discuss options ranging from lifestyle changes to assisted reproduction."
+        },
+        "maleFertility": {
+          "title": "Male Fertility Essentials",
+          "content": "Male fertility is equally important in the conception journey:\n\n• Sperm production takes about 74 days. Lifestyle changes need time to show results.\n• Optimal sperm health requires: avoiding excessive heat (hot tubs, laptops on lap), maintaining a healthy weight, and managing stress.\n• Factors that can reduce sperm quality: smoking, excessive alcohol, certain medications, anabolic steroids, and recreational drugs.\n• A semen analysis is a simple, non-invasive test that evaluates sperm count, motility, and morphology.\n• Age affects male fertility too — sperm quality gradually declines after age 40.\n• Key nutrients for sperm health: zinc, selenium, vitamin C, vitamin E, folate, and omega-3 fatty acids."
+        },
+        "emotionalWellbeing": {
+          "title": "Emotional Wellbeing on the Journey",
+          "content": "Trying to conceive can be an emotional rollercoaster:\n\n• It's normal to feel hope, excitement, frustration, and sadness — sometimes all in one cycle.\n• About 1 in 6 couples experience difficulty conceiving. You are not alone.\n• Grief after a negative test is valid. Allow yourself to feel without judgment.\n• Communication with your partner is essential. Share your feelings openly.\n• Consider joining a support community — connecting with others on the same journey can be comforting.\n• Set boundaries around pregnancy announcements and baby showers if they feel triggering.\n• Professional counseling can provide coping strategies tailored to your situation.\n• Remember: your worth is not defined by your fertility. Be kind to yourself."
+        },
+        "trackingMethods": {
+          "title": "Fertility Tracking Methods",
+          "content": "Several methods can help you identify your fertile window:\n\n1. Calendar Method: Track cycle lengths over several months. Ovulation typically occurs 14 days before your next period.\n\n2. Basal Body Temperature (BBT): Take your temperature every morning before getting up. A slight rise (0.2–0.5°C) confirms ovulation has occurred.\n\n3. Cervical Mucus Observation: As ovulation approaches, mucus becomes clear, stretchy, and slippery (like raw egg white).\n\n4. Ovulation Predictor Kits (OPKs): Detect the LH surge in urine 12–36 hours before ovulation.\n\n5. Fertility Monitors: Advanced devices that track multiple hormones for a more complete picture.\n\n6. Cervical Position: The cervix becomes higher, softer, and more open around ovulation.\n\nCombining multiple methods increases accuracy."
+        },
+        "optimizingTiming": {
+          "title": "Optimizing Timing for Conception",
+          "content": "Timing is crucial for maximizing your chances:\n\n• The best days for conception are the 2–3 days before ovulation and ovulation day itself.\n• Having intercourse every 1–2 days during the fertile window provides the best results.\n• Sperm quality is not significantly reduced by daily ejaculation in most men.\n• After intercourse, lying down for 10–15 minutes may slightly improve sperm transport, though evidence is limited.\n• Lubricants: Some commercial lubricants can reduce sperm motility. Use fertility-friendly brands if needed.\n• Track your cycle for 2–3 months before actively trying, to understand your personal pattern.\n• Stay hydrated and maintain a balanced diet during the fertile window.\n• Both partners should avoid excessive alcohol during the fertile window."
+        },
+        "implantationWindow": {
+          "title": "The Implantation Window",
+          "content": "The implantation window is the brief period when the uterine lining is ready to receive the embryo:\n\n• Typically occurs between days 6–10 after ovulation.\n• During this time, the endometrium secretes special proteins that help the embryo attach.\n• Progesterone plays a central role in preparing the lining.\n• Factors affecting window quality: chronic inflammation, insufficient lining thickness, or immune disorders.\n• Rest and good nutrition during the luteal phase support the implantation process."
+        },
+        "cervicalHealth": {
+          "title": "Cervical Health & Fertility",
+          "content": "The cervix plays a fundamental role in fertility:\n\n• It produces mucus that changes throughout the cycle to facilitate or block sperm passage.\n• Fertile mucus nourishes sperm and extends their lifespan up to 5 days.\n• Chronic cervical infections may reduce mucus quality.\n• Previous cervical procedures (like cone biopsies) may affect mucus production.\n• Maintaining healthy vaginal pH supports the optimal cervical environment for fertility."
+        },
+        "thyroidFertility": {
+          "title": "Thyroid & Fertility",
+          "content": "Thyroid disorders are among the most treatable causes of fertility problems:\n\n• Hypothyroidism can cause irregular cycles, absent ovulation, or early miscarriage.\n• Hyperthyroidism is linked to irregular periods and difficulty conceiving.\n• Even subclinical hypothyroidism (TSH 2.5–4.0) may affect fertility.\n• Thyroid antibodies (Anti-TPO) are common and may impact implantation.\n• TSH and FT4 testing is recommended for all women planning pregnancy.\n• Levothyroxine treatment is safe and effective while trying to conceive."
+        },
+        "pcosManagement": {
+          "title": "Managing PCOS & Fertility",
+          "content": "Polycystic Ovary Syndrome (PCOS) affects 8–13% of women:\n\n• The most common cause of anovulation and ovulation-related infertility.\n• Key symptoms: irregular periods, acne, excess hair growth, insulin resistance.\n• Lifestyle changes are very effective: losing 5–10% of weight can restore ovulation.\n• Inositol has shown promising results in improving insulin sensitivity and egg quality.\n• A low-sugar, balanced diet supports hormonal regularity.\n• Medications like clomiphene or letrozole successfully stimulate ovulation in many cases."
+        },
+        "endometriosisAwareness": {
+          "title": "Endometriosis & Fertility",
+          "content": "Endometriosis affects 1 in 10 women:\n\n• Tissue similar to the uterine lining grows outside the uterus, causing inflammation and adhesions.\n• It can affect the tubes, ovaries, and egg quality.\n• Symptoms: severe period pain, pain during intercourse, and sometimes no symptoms.\n• Early diagnosis improves outcomes. Laparoscopy is the gold standard.\n• Many affected women conceive naturally or with assistance.\n• Consult a fertility specialist if you have a family history or suspicious symptoms."
+        },
+        "nutritionFertility": {
+          "title": "Optimal Nutrition for Fertility",
+          "content": "Diet directly affects egg and sperm quality:\n\n• The Mediterranean diet has shown the best results in fertility studies.\n• Healthy fats (omega-3, olive oil) support hormone production.\n• Plant protein may be better than animal protein for some women.\n• Avoid trans fats, which double the risk of ovulation-related infertility.\n• Organic foods reduce exposure to hormone-disrupting pesticides.\n• Plant-source iron + vitamin C significantly improves absorption."
+        },
+        "sleepHormones": {
+          "title": "Sleep & Fertility Hormones",
+          "content": "Sleep is not a luxury — it's a biological necessity for fertility:\n\n• Melatonin (sleep hormone) acts as an antioxidant protecting eggs.\n• Less than 6 hours of sleep raises cortisol, which suppresses GnRH and ovulation.\n• Shift work is associated with increased cycle and fertility problems.\n• The circadian rhythm regulates FSH and LH secretion.\n• Blue light from screens suppresses melatonin and disrupts rhythm.\n• Goal: 7–9 hours of sleep in a dark, cool room with a consistent routine."
+        },
+        "exerciseBalance": {
+          "title": "Balancing Exercise & Fertility",
+          "content": "Exercise is a double-edged sword for fertility:\n\n• Moderate activity (150 minutes/week) improves ovulation and fertility.\n• Continuous intense exercise can cause 'relative energy deficiency' stopping ovulation.\n• Walking, swimming, and yoga are among the best options.\n• Moderate strength training improves insulin sensitivity (helpful for PCOS).\n• Fertility yoga combines movement with stress reduction.\n• If your period disappears with intense exercise, reduce intensity immediately.\n• The balance between movement and rest is key."
+        },
+        "supplementsGuide": {
+          "title": "Smart Supplements Guide",
+          "content": "Supplements can support your fertility — but not all are equal:\n\n• Folic acid/methylfolate: Essential — start 3 months before trying.\n• CoQ10 (200–600mg): Supports egg energy, especially after 35.\n• Vitamin D (1000–2000 IU): Most women are deficient.\n• Omega-3 DHA (200–300mg): For hormone health and inflammation.\n• Inositol (4g myo + 100mg d-chiro): Especially helpful with PCOS.\n• Iron: Only if tests show deficiency — excess is harmful.\n• Always consult your doctor before starting any new supplement."
+        },
+        "environmentalToxins": {
+          "title": "Environmental Toxins & Fertility",
+          "content": "Daily exposure to environmental toxins can affect your fertility:\n\n• BPA in plastics mimics estrogen and disrupts hormonal balance.\n• Phthalates in cosmetics and fragrances disrupt the endocrine system.\n• Pesticides on fruits and vegetables are linked to lower egg quality.\n• Heavy metals (lead, mercury) affect both eggs and sperm.\n• Practical steps: glass containers instead of plastic, natural cleaning products, wash fruits well.\n• Filtering drinking water reduces pollutant exposure."
+        },
+        "geneticFactors": {
+          "title": "Genetic Factors & Fertility",
+          "content": "Genes play a bigger role than expected in fertility:\n\n• Carrier genetic screening reveals risk of passing genetic diseases to children.\n• MTHFR mutation affects folate metabolism — methylfolate may be better.\n• Turner syndrome and chromosomal abnormalities affect ovarian reserve.\n• Family history of early menopause may signal early reserve decline.\n• Karyotype testing is recommended in cases of recurrent miscarriage.\n• Genetic counseling is available and useful for those with specific family histories."
+        },
+        "immunologyFertility": {
+          "title": "Immunology & Fertility",
+          "content": "The immune system plays a delicate role in pregnancy:\n\n• The body must accept the embryo (half its genes from the father) without rejecting it.\n• Uterine NK cells help with implantation — but excessive activity may hinder it.\n• Antiphospholipid antibodies are linked to recurrent miscarriage.\n• Autoimmune diseases (lupus, Hashimoto's) may affect fertility.\n• Chronic pelvic inflammation can damage the tubes.\n• An anti-inflammatory lifestyle (nutrition, sleep, movement) supports balanced immunity."
+        },
+        "secondaryInfertility": {
+          "title": "Secondary Infertility",
+          "content": "Secondary infertility means difficulty conceiving after having a previous child:\n\n• Accounts for about 50% of infertility cases — but is less discussed.\n• Causes: advancing age, weight changes, complications from previous pregnancy.\n• Adhesions from cesarean section or infection may affect fertility.\n• Hormonal changes after first birth may not fully normalize.\n• Social expectations ('you have a child, be grateful') increase psychological burden.\n• Don't delay seeking help — the same time criteria apply."
+        },
+        "recurrentLoss": {
+          "title": "Understanding Recurrent Pregnancy Loss",
+          "content": "Recurrent pregnancy loss (two or more) requires comprehensive evaluation:\n\n• 15–20% of pregnancies end in miscarriage — most due to chromosomal abnormalities.\n• Treatable causes: clotting disorders, uterine anomalies, thyroid problems.\n• Uterine septum is the most common uterine anomaly and can be surgically corrected.\n• Antiphospholipid syndrome is treatable with aspirin and heparin.\n• Psychological support is essential — grief and anxiety after loss are natural and valid.\n• 60–70% of couples with unexplained recurrent loss succeed in the next pregnancy."
+        },
+        "fertilityPreservation": {
+          "title": "Fertility Preservation",
+          "content": "Fertility preservation is an available option that gives you flexibility in planning:\n\n• Egg freezing: Ideal age before 35. Excellent results with modern techniques.\n• Embryo freezing: Option for married couples. Higher success rates than eggs alone.\n• Reasons for freezing: delayed childbearing, chemotherapy, medical conditions.\n• The process requires hormonal stimulation for 10–14 days then egg retrieval.\n• Cost and storage are factors to consider.\n• Consult a fertility specialist to assess if it's suitable for your situation."
+        },
+        "assistedReproduction": {
+          "title": "Assisted Reproduction Techniques",
+          "content": "When natural conception doesn't succeed, there are effective options:\n\n• Ovulation stimulation: Medications that stimulate egg production — first-line treatment.\n• Intrauterine insemination (IUI): Processed sperm injected directly into the uterus.\n• In vitro fertilization (IVF): The most advanced technique. Success rates 30–50% per cycle.\n• Intracytoplasmic sperm injection (ICSI): A single sperm injected directly into the egg.\n• Preimplantation genetic testing (PGT): Screening embryos for chromosomal abnormalities.\n• Each option has specific indications — a fertility specialist guides you to the most suitable."
+        },
+        "epigeneticsFertility": {
+          "title": "Epigenetics & Generational Health",
+          "content": "Epigenetics discoveries have changed our understanding of fertility:\n\n• Your nutrition and lifestyle can influence gene expression in your future child.\n• Folate deficiency before pregnancy affects fetal gene programming.\n• Chronic stress can leave 'imprints' on DNA that transfer to the embryo.\n• Pollution and environmental toxins cause epigenetic changes that may affect generations.\n• Good news: negative epigenetic changes are reversible with a healthy lifestyle.\n• 3–6 months of improvements before pregnancy make a real difference in fetal health."
+        },
+        "mindBodyConnection": {
+          "title": "The Mind-Body Connection",
+          "content": "The relationship between mind and body is deeper than we imagine in fertility:\n\n• Chronic stress activates the HPA axis which suppresses reproductive hormones.\n• Relaxation techniques (meditation, yoga, deep breathing) measurably improve fertility outcomes.\n• Cognitive behavioral therapy (CBT) has shown positive results in reducing fertility anxiety.\n• Positive visualization and affirmations activate neural pathways that support hormonal balance.\n• Support groups reduce feelings of isolation and improve mental health.\n• Art, music, and creative writing are effective therapeutic tools during the fertility journey.\n• Seek professional help if anxiety or sadness begin to dominate your life."
+        }
+      },
       "lessonsCount": "{{count}}-Lernmodule"
     },
     "fertilitySigns": {
-      "signs": "Anzeichen",
+      "signs": {
+        "cervicalMucus": {
+          "title": "Cervical Mucus Changes",
+          "description": "As ovulation approaches, cervical mucus becomes more abundant, clear, and stretchy — resembling raw egg whites. This 'fertile-quality' mucus helps sperm travel more easily through the cervix. After ovulation, mucus typically becomes thicker, cloudier, or dries up.",
+          "tip": "Check mucus daily by wiping before urination. The most fertile-type mucus stretches between your fingers without breaking."
+        },
+        "basalTemp": {
+          "title": "Basal Body Temperature Shift",
+          "description": "After ovulation, progesterone causes your resting body temperature to rise by 0.2–0.5°C. This shift confirms that ovulation has already occurred. By tracking BBT over several cycles, you can identify your typical ovulation pattern.",
+          "tip": "Take your temperature every morning at the same time, before getting out of bed. Use a BBT-specific thermometer for accuracy."
+        },
+        "cervicalPosition": {
+          "title": "Cervical Position Changes",
+          "description": "During your fertile window, the cervix moves higher in the vaginal canal, becomes softer (like your lips vs. the tip of your nose), and opens slightly. After ovulation, it drops lower, firms up, and closes.",
+          "tip": "Check cervical position in the same position daily (e.g., standing with one foot elevated). It takes practice — be patient with yourself."
+        },
+        "ovulationPain": {
+          "title": "Ovulation Sensation (Mittelschmerz)",
+          "description": "Some women feel a mild twinge, cramp, or ache on one side of the lower abdomen during ovulation. This 'middle pain' (mittelschmerz) is caused by the follicle rupturing to release the egg. It typically lasts a few minutes to a few hours.",
+          "tip": "Note which side you feel the sensation — it may alternate sides each cycle as ovulation switches between ovaries."
+        },
+        "breastTenderness": {
+          "title": "Breast Tenderness",
+          "description": "Rising progesterone after ovulation can cause breast tenderness, fullness, or sensitivity. This is one of the most commonly noticed luteal phase symptoms. Some women also experience this in the days leading up to ovulation due to rising estrogen.",
+          "tip": "Track when tenderness begins and ends to correlate it with your ovulation pattern over time."
+        },
+        "libidoChanges": {
+          "title": "Changes in Desire",
+          "description": "Many women experience a natural increase in desire around ovulation. This is driven by the surge in estrogen and testosterone that precedes the LH peak. It's one of the body's ways of optimizing the chance of conception.",
+          "tip": "Pay attention to these natural shifts — they often align with your most fertile days."
+        },
+        "moodShifts": {
+          "title": "Mood & Energy Shifts",
+          "description": "Estrogen rising in the follicular phase often brings improved mood, energy, and confidence. After ovulation, progesterone dominance may cause a shift toward calmness or, for some, irritability and fatigue. These fluctuations are normal and hormone-driven.",
+          "tip": "Journaling your mood daily can reveal patterns that correlate with your cycle phases."
+        },
+        "bloating": {
+          "title": "Mild Bloating",
+          "description": "Hormonal changes around ovulation, particularly rising progesterone, can cause water retention and mild bloating. This is a common sign that your body is transitioning into the luteal phase.",
+          "tip": "Staying hydrated and reducing sodium intake can help manage ovulation-related bloating."
+        },
+        "lightSpotting": {
+          "title": "Ovulation Spotting",
+          "description": "A small amount of light pink or brown spotting around ovulation day is experienced by some women. It's caused by the slight drop in estrogen that occurs just before the LH surge, or by the follicle rupture itself. It's usually very light and brief.",
+          "tip": "Ovulation spotting is different from implantation bleeding (which occurs 6–12 days after ovulation). Track the timing carefully."
+        },
+        "heightenedSenses": {
+          "title": "Heightened Senses",
+          "description": "Some women report a more acute sense of smell during ovulation, possibly due to elevated estrogen levels. Research suggests this may be an evolutionary adaptation. Some also notice subtle changes in taste preferences.",
+          "tip": "If you notice scents seem stronger around mid-cycle, it may be a personal ovulation indicator worth tracking."
+        }
+      },
       "signsCount": "{{count}}-Zeichen, um es zu wissen"
     },
     "preconceptionCheckup": {
-      "ai": "KI-Analyse",
+      "ai": {
+        "title": "Preparation Insights",
+        "analyze": "Analyze My Preparation",
+        "readinessTitle": "Readiness Overview",
+        "priorityTitle": "Priority Recommendations",
+        "tipsTitle": "Helpful Tips",
+        "timelineTitle": "Suggested Timeline"
+      },
       "allComplete": "Tolle Vorbereitung! Besprechen Sie Ihre Ergebnisse mit Ihrem Arzt.",
-      "categories": "Kategorien",
-      "checks": "Untersuchungen",
+      "categories": {
+        "essential": "Essential Health Checks",
+        "screening": "Infection & Immunity Screening",
+        "specialized": "Specialized Assessments",
+        "medications": "Medications & Vaccinations"
+      },
+      "checks": {
+        "generalCheckup": {
+          "title": "General Health Checkup",
+          "description": "A comprehensive physical exam to assess your overall health, blood pressure, weight, and discuss your pregnancy plans."
+        },
+        "bloodWork": {
+          "title": "Complete Blood Count (CBC)",
+          "description": "Checks for anemia, infections, and overall blood health. Identifies iron deficiency that should be addressed before pregnancy."
+        },
+        "pap": {
+          "title": "Pap Smear / Cervical Screening",
+          "description": "Screens for cervical abnormalities. Best done before pregnancy to address any issues without the added complexity of pregnancy."
+        },
+        "thyroid": {
+          "title": "Thyroid Function Test (TSH)",
+          "description": "Thyroid disorders are common and can significantly affect fertility and pregnancy. Both hypothyroidism and hyperthyroidism should be managed before conceiving."
+        },
+        "rubella": {
+          "title": "Rubella (German Measles) Immunity",
+          "description": "Rubella during pregnancy can cause serious birth defects. If you're not immune, vaccination is recommended at least 1 month before trying to conceive."
+        },
+        "hepatitis": {
+          "title": "Hepatitis B & C Screening",
+          "description": "Hepatitis B can be transmitted to the baby during birth. Knowing your status allows for preventive measures. Hepatitis C requires monitoring during pregnancy."
+        },
+        "hiv": {
+          "title": "HIV & STI Screening",
+          "description": "Routine screening for HIV and sexually transmitted infections protects both your health and your future baby's health. Early detection enables effective treatment."
+        },
+        "dental": {
+          "title": "Dental Checkup",
+          "description": "Gum disease is linked to preterm birth and low birth weight. Hormonal changes during pregnancy can worsen existing dental issues. Complete any necessary dental work before conceiving."
+        },
+        "geneticScreening": {
+          "title": "Genetic Carrier Screening",
+          "description": "Tests whether you or your partner carry genes for conditions like cystic fibrosis, sickle cell disease, or thalassemia. Results help with informed family planning decisions."
+        },
+        "mentalHealth": {
+          "title": "Mental Health Assessment",
+          "description": "Discuss any history of depression, anxiety, or other mental health conditions with your healthcare provider. Pre-existing conditions can be managed proactively during pregnancy."
+        },
+        "medications": {
+          "title": "Medication Review",
+          "description": "Review all current medications, supplements, and herbal remedies with your doctor. Some medications are not safe during pregnancy and alternatives should be arranged in advance."
+        },
+        "vaccinations": {
+          "title": "Vaccination Review",
+          "description": "Ensure you're up to date on recommended vaccinations including MMR, varicella, flu, and Tdap. Some vaccines cannot be given during pregnancy, so complete them beforehand."
+        }
+      },
       "disclaimer": "Diese Checkliste ist eine pädagogische Referenz, die Ihnen bei der Organisation von Gesprächen mit Ihrem Gesundheitsdienstleister helfen soll. Es ersetzt keine professionelle medizinische Beratung, Diagnose oder Behandlung. Alle Vorsorgeuntersuchungen und Tests sollten mit einem qualifizierten medizinischen Fachpersonal besprochen und von diesem angeordnet werden.",
       "progressLabel": "Vorführungen verfolgt",
-      "tracked": "verfolgt"
+      "tracked": "verfolgt",
+      "related": {
+        "academy": "Fruchtbarkeitsakademie",
+        "academyDesc": "Umfassende Fruchtbarkeitsschulung",
+        "nutrition": "Ernährungsratgeber",
+        "nutritionDesc": "Vorurteilsvolle Ernährung und Nahrungsergänzungsmittel"
+      }
     },
     "preconceptionNutrition": {
-      "categories": "Kategorien",
+      "categories": {
+        "folateRich": {
+          "title": "Folate-Rich Foods",
+          "description": "Folate (vitamin B9) is critical for preventing neural tube defects and supporting healthy cell division. The recommended daily intake when trying to conceive is 400–800mcg. Start folate supplementation at least 1–3 months before conception.",
+          "foods": "Dark leafy greens (spinach, kale), lentils, chickpeas, asparagus, broccoli, avocado, fortified cereals, citrus fruits, beets, Brussels sprouts"
+        },
+        "ironSources": {
+          "title": "Iron-Rich Foods",
+          "description": "Iron supports healthy blood production and oxygen transport, which are essential for a developing pregnancy. Women of childbearing age need about 18mg daily. Iron deficiency is common and can affect ovulation and cycle regularity.",
+          "foods": "Red meat, poultry, fish, lentils, spinach, fortified cereals, pumpkin seeds, tofu, dark chocolate, quinoa, dried apricots"
+        },
+        "omega3": {
+          "title": "Omega-3 Fatty Acids",
+          "description": "Omega-3s support hormone production, reduce inflammation, and are essential for fetal brain and eye development. DHA and EPA are the most bioavailable forms. ALA from plant sources is also beneficial but converts less efficiently.",
+          "foods": "Salmon, sardines, mackerel, walnuts, chia seeds, flaxseeds, hemp seeds, algae-based DHA supplements, fortified eggs"
+        },
+        "antioxidants": {
+          "title": "Antioxidant-Rich Foods",
+          "description": "Antioxidants protect eggs and sperm from oxidative stress caused by free radicals. Vitamins C and E, selenium, and CoQ10 are particularly important. A colorful, varied diet provides a broad spectrum of antioxidants.",
+          "foods": "Berries (blueberries, strawberries, raspberries), tomatoes, bell peppers, nuts, seeds, green tea, dark leafy greens, sweet potatoes, carrots"
+        },
+        "zinc": {
+          "title": "Zinc Sources",
+          "description": "Zinc is essential for hormone balance, egg quality, and cell division. It also plays a crucial role in male fertility — supporting sperm production and testosterone levels. The recommended daily intake is 8mg for women.",
+          "foods": "Oysters, beef, pumpkin seeds, cashews, chickpeas, lentils, yogurt, cheese, whole grains, dark chocolate"
+        },
+        "vitaminD": {
+          "title": "Vitamin D Sources",
+          "description": "Vitamin D receptors are found in the ovaries and uterus, suggesting a direct role in fertility. Deficiency is associated with irregular cycles, PCOS, and reduced IVF success rates. Many people are deficient, especially in northern climates.",
+          "foods": "Sunlight exposure (15–20 min daily), fatty fish (salmon, tuna), egg yolks, fortified milk, mushrooms exposed to UV light, cod liver oil"
+        },
+        "calcium": {
+          "title": "Calcium Sources",
+          "description": "Calcium is vital for reproductive function, supporting the development of embryonic structures. Adequate calcium intake before pregnancy helps build reserves for the baby's skeletal development. Aim for 1000mg daily.",
+          "foods": "Dairy products (milk, yogurt, cheese), fortified plant milks, kale, broccoli, almonds, sardines with bones, tofu, figs"
+        },
+        "protein": {
+          "title": "Quality Protein",
+          "description": "Protein provides the building blocks for hormones and new cells. Research suggests that replacing some animal protein with plant protein may improve fertility outcomes. Aim for a balanced mix of both sources.",
+          "foods": "Eggs, lean poultry, fish, legumes (beans, lentils), nuts, seeds, Greek yogurt, tofu, tempeh, quinoa"
+        },
+        "hydration": {
+          "title": "Hydration",
+          "description": "Water is essential for cervical mucus production, nutrient transport, and hormone balance. Dehydration can reduce cervical mucus quality and affect blood flow to the reproductive organs. Aim for 8–10 glasses daily.",
+          "foods": "Water, herbal teas (raspberry leaf, ginger), coconut water, water-rich fruits (watermelon, cucumber, oranges), broths"
+        },
+        "avoidList": {
+          "title": "Foods to Minimize",
+          "description": "Certain foods and substances may negatively impact fertility. While occasional consumption is unlikely to cause harm, reducing these when actively trying to conceive can optimize your body's readiness.",
+          "foods": "Excessive caffeine (>200mg/day), alcohol, trans fats, highly processed foods, raw fish (sushi), high-mercury fish (swordfish, king mackerel), excessive sugar, artificial sweeteners"
+        }
+      },
       "categoriesCount": "{{count}}-Ernährungskategorien"
     },
     "prenatalVitamins": {
       "supplementsCount": "{{count}}-Ergänzungen zur Überprüfung",
-      "vitamins": "Vitamine"
+      "vitamins": {
+        "folicAcid": {
+          "title": "Folic Acid (Vitamin B9)",
+          "description": "The most important preconception supplement. Folic acid significantly reduces the risk of neural tube defects (spina bifida, anencephaly). Start taking it at least 1–3 months before trying to conceive for maximum benefit.",
+          "dosage": "Recommended: 400–800mcg daily. Some women (with history of NTDs, on certain medications) may need 4–5mg — consult your doctor."
+        },
+        "iron": {
+          "title": "Iron",
+          "description": "Iron requirements increase dramatically during pregnancy (from 18mg to 27mg daily). Building iron stores before conception helps prevent iron-deficiency anemia, which is associated with preterm birth and low birth weight.",
+          "dosage": "Recommended: 18mg daily pre-pregnancy. Take with vitamin C to improve absorption. Avoid taking with calcium or tea."
+        },
+        "vitaminD": {
+          "title": "Vitamin D",
+          "description": "Vitamin D supports immune function, calcium absorption, and reproductive health. Deficiency is linked to pregnancy complications including gestational diabetes and preeclampsia. Most people need supplementation, especially in winter months.",
+          "dosage": "Recommended: 600–2000 IU daily. Your doctor may test your levels and recommend a higher dose if deficient."
+        },
+        "omega3DHA": {
+          "title": "Omega-3 DHA",
+          "description": "DHA is crucial for fetal brain and retinal development. Starting supplementation before pregnancy ensures adequate stores from the earliest stages of embryonic development. EPA also supports maternal cardiovascular health.",
+          "dosage": "Recommended: 200–300mg DHA daily. Choose supplements tested for mercury and contaminants."
+        },
+        "calcium": {
+          "title": "Calcium",
+          "description": "If the mother's calcium intake is insufficient during pregnancy, the baby will draw calcium from her bones. Building strong calcium reserves before pregnancy protects maternal bone health.",
+          "dosage": "Recommended: 1000mg daily from food and supplements combined. Best absorbed in doses of 500mg or less at a time."
+        },
+        "iodine": {
+          "title": "Iodine",
+          "description": "Iodine is essential for thyroid function, which directly impacts fertility and fetal brain development. Deficiency is the leading preventable cause of intellectual disability worldwide.",
+          "dosage": "Recommended: 150mcg daily before pregnancy, 220mcg during pregnancy. Check that your prenatal vitamin includes iodine."
+        },
+        "zinc": {
+          "title": "Zinc",
+          "description": "Zinc supports egg quality, hormone balance, and immune function. It also plays a key role in DNA synthesis and cell division — critical processes in early pregnancy.",
+          "dosage": "Recommended: 8mg daily for women. Most prenatal vitamins contain adequate zinc."
+        },
+        "vitaminB12": {
+          "title": "Vitamin B12",
+          "description": "B12 works with folate to support DNA synthesis and nervous system development. Deficiency is more common in vegetarians and vegans. Low B12 levels are associated with recurrent miscarriage and neural tube defects.",
+          "dosage": "Recommended: 2.4mcg daily. Vegans should supplement as B12 is found primarily in animal products."
+        },
+        "vitaminC": {
+          "title": "Vitamin C",
+          "description": "Vitamin C is a powerful antioxidant that protects eggs from oxidative damage. It also enhances iron absorption and supports immune function. Progesterone levels may also benefit from adequate vitamin C intake.",
+          "dosage": "Recommended: 75–90mg daily. Easily obtained from citrus fruits, berries, and bell peppers."
+        },
+        "vitaminE": {
+          "title": "Vitamin E",
+          "description": "Vitamin E supports endometrial lining thickness and quality, which is important for implantation. It also protects cell membranes from oxidative stress and supports overall reproductive health.",
+          "dosage": "Recommended: 15mg (22 IU) daily. Found in nuts, seeds, and vegetable oils."
+        },
+        "coq10": {
+          "title": "CoQ10 (Coenzyme Q10)",
+          "description": "CoQ10 is an antioxidant that supports mitochondrial function in eggs. As egg quality naturally declines with age, CoQ10 supplementation may help maintain cellular energy production. Research is ongoing but promising, especially for women over 35.",
+          "dosage": "Common dosage: 100–600mg daily. Ubiquinol form is better absorbed than ubiquinone. Consult your doctor."
+        },
+        "probiotics": {
+          "title": "Probiotics",
+          "description": "A healthy vaginal and gut microbiome supports fertility. Lactobacillus strains help maintain optimal vaginal pH, which is important for sperm survival. Gut health also affects hormone metabolism and nutrient absorption.",
+          "dosage": "Choose a multi-strain probiotic with Lactobacillus strains. Consume fermented foods: yogurt, kefir, sauerkraut, kimchi."
+        }
+      }
     },
     "stressFertility": {
-      "topics": "Themen",
+      "topics": {
+        "stressHormones": {
+          "title": "How Stress Affects Fertility",
+          "content": "Chronic stress triggers the release of cortisol and adrenaline, which can disrupt the hypothalamic-pituitary-gonadal (HPG) axis — the hormonal pathway that controls ovulation. Elevated cortisol may suppress GnRH (gonadotropin-releasing hormone), leading to irregular or absent ovulation. While moderate daily stress is unlikely to prevent conception, prolonged high stress can delay time to pregnancy.",
+          "practice": "Identify your top 3 stress triggers this week. For each one, write down one small action you can take to reduce its impact."
+        },
+        "cortisol": {
+          "title": "Understanding Cortisol",
+          "content": "Cortisol is your body's primary stress hormone. In small bursts, it's helpful — providing energy and focus. But when cortisol remains chronically elevated, it can suppress reproductive hormones, disrupt sleep, increase inflammation, and affect mood. The goal isn't to eliminate stress entirely (impossible!) but to manage your stress response.",
+          "practice": "Practice the 4-7-8 breathing technique: Inhale for 4 seconds, hold for 7, exhale for 8. Repeat 4 times. This activates the parasympathetic nervous system."
+        },
+        "mindfulness": {
+          "title": "Mindfulness for Fertility",
+          "content": "Mindfulness is the practice of being fully present without judgment. Studies show that mindfulness-based stress reduction (MBSR) programs can reduce anxiety and depression in women undergoing fertility treatment, and may improve outcomes. Even 10 minutes of daily mindfulness practice can lower cortisol levels and improve emotional resilience.",
+          "practice": "Try a 5-minute body scan: Close your eyes, breathe deeply, and slowly move your attention from your toes to your head, noticing sensations without trying to change them."
+        },
+        "breathing": {
+          "title": "Breathing Techniques",
+          "content": "Controlled breathing directly activates the vagus nerve, triggering the relaxation response. This lowers heart rate, blood pressure, and cortisol. It's one of the fastest ways to shift from a stress state to a calm state. Different techniques serve different purposes — some energize, others calm.",
+          "practice": "Box Breathing: Inhale 4 counts → Hold 4 counts → Exhale 4 counts → Hold 4 counts. Repeat for 5 minutes. Ideal before bed or during anxious moments."
+        },
+        "journaling": {
+          "title": "Therapeutic Journaling",
+          "content": "Writing about your emotions has been scientifically shown to reduce stress, improve immune function, and provide clarity. For fertility journaling, the goal isn't to track symptoms obsessively, but to process emotions, celebrate small wins, and release fears.",
+          "practice": "Tonight, write down: 1) One thing I'm grateful for today, 2) One worry I want to release, 3) One kind thing I did for myself."
+        },
+        "sleep": {
+          "title": "Sleep & Fertility",
+          "content": "Sleep is when your body repairs, produces hormones, and processes emotions. Poor sleep disrupts melatonin (which protects egg quality), increases cortisol, and impairs FSH and LH regulation. Women who sleep fewer than 6 hours per night have been shown to have lower fertility rates.",
+          "practice": "Create a wind-down routine: No screens 30 min before bed, dim lights, use lavender essential oil, and keep your bedroom cool (18–20°C)."
+        },
+        "exercise": {
+          "title": "Movement & Stress Relief",
+          "content": "Regular moderate exercise is one of the most effective stress relievers. It releases endorphins, improves sleep, and helps regulate hormones. However, excessive intense exercise (marathon training, high-intensity daily workouts) can suppress ovulation. Balance is key.",
+          "practice": "This week, aim for 30 minutes of moderate movement 5 days: walking, yoga, swimming, or dancing. Notice how your mood shifts afterward."
+        },
+        "socialSupport": {
+          "title": "Building Your Support Network",
+          "content": "Social isolation amplifies stress. Sharing your fertility journey with trusted friends, family, or a support group can significantly reduce emotional burden. You don't have to share with everyone — even one supportive person makes a difference.",
+          "practice": "Identify one person you trust. Share one thing about your journey with them this week. Connection is healing."
+        },
+        "professionalHelp": {
+          "title": "When to Seek Professional Support",
+          "content": "If anxiety or sadness about fertility is affecting your daily life, sleep, relationships, or work, professional support can help. Therapists specializing in reproductive mental health understand the unique challenges of this journey. Cognitive Behavioral Therapy (CBT) is particularly effective for fertility-related anxiety.",
+          "practice": "If you're considering therapy, look for a therapist who specializes in reproductive psychology or perinatal mental health. Many offer virtual sessions."
+        },
+        "acceptance": {
+          "title": "Practicing Acceptance",
+          "content": "Acceptance doesn't mean giving up — it means acknowledging that some things are beyond your control while focusing on what you can influence. This shift from control to acceptance can significantly reduce stress and improve emotional wellbeing during the fertility journey.",
+          "practice": "Repeat this affirmation: 'I am doing everything I can. I trust my body and my journey. The outcome does not define my worth.'"
+        }
+      },
       "topicsCount": "{{count}}-Themen zum Erkunden"
     },
     "twwCompanion": {
-      "days": "Tage",
+      "days": {
+        "day1": {
+          "title": "Ovulation Day + 1",
+          "body": "If ovulation occurred yesterday, the egg is now traveling through the fallopian tube. If fertilization happens, it typically occurs within 12–24 hours of ovulation. Today, there's nothing you can do to influence the outcome — and that's okay.",
+          "tip": "Take a deep breath. The journey has begun. Focus on something you enjoy today."
+        },
+        "day2": {
+          "title": "Cellular Beginnings",
+          "body": "If fertilization occurred, the single-celled zygote begins dividing — first into 2 cells, then 4. This tiny cluster of cells is traveling through the fallopian tube toward the uterus. It's powered entirely by its own energy stores.",
+          "tip": "Stay hydrated and eat nourishing foods. Your body is doing incredible work at the cellular level."
+        },
+        "day3": {
+          "title": "The Morula Stage",
+          "body": "The dividing cells form a solid ball called a morula (about 16 cells). It continues its journey through the fallopian tube. Progesterone is rising, preparing the uterine lining for potential implantation.",
+          "tip": "Gentle activity is perfectly fine. There's no need to restrict your normal routine."
+        },
+        "day4": {
+          "title": "Entering the Uterus",
+          "body": "The morula typically enters the uterus around day 4. It begins forming a fluid-filled cavity, transitioning into a blastocyst. The uterine lining is becoming thick and receptive under progesterone's influence.",
+          "tip": "Practice mindfulness or light stretching. Managing anticipation is part of the journey."
+        },
+        "day5": {
+          "title": "Blastocyst Formation",
+          "body": "The blastocyst now has two distinct cell groups: the inner cell mass (which becomes the embryo) and the trophoblast (which becomes the placenta). It floats freely in the uterine cavity.",
+          "tip": "This is a good day to journal your thoughts and feelings. Self-expression is therapeutic."
+        },
+        "day6": {
+          "title": "Implantation May Begin",
+          "body": "The blastocyst begins searching for an ideal implantation site on the uterine wall. The trophoblast cells start burrowing into the endometrium. Some women experience light spotting (implantation bleeding) around this time.",
+          "tip": "Light spotting at this stage can be normal. Don't panic — and don't test yet. It's too early."
+        },
+        "day7": {
+          "title": "Implantation Window",
+          "body": "Days 6–10 are the typical implantation window. The blastocyst is embedding deeper into the uterine lining. Early signals are being exchanged between the embryo and your body.",
+          "tip": "Continue your normal activities. Rest when you need to. Trust the process."
+        },
+        "day8": {
+          "title": "hCG Begins",
+          "body": "If implantation is progressing, tiny amounts of hCG (human chorionic gonadotropin) begin to be produced. This hormone signals your body to maintain the corpus luteum, which keeps producing progesterone. Levels are still too low to detect on a test.",
+          "tip": "Resist the urge to test. hCG needs time to build. Patience is your greatest ally right now."
+        },
+        "day9": {
+          "title": "Rising Signals",
+          "body": "hCG levels are rising but may still be below the detection threshold of most home pregnancy tests. Implantation should be complete or nearly complete. Your body is starting to respond to the new hormonal signals.",
+          "tip": "Treat yourself to something calming — a warm bath, your favorite tea, or a walk in nature."
+        },
+        "day10": {
+          "title": "Almost There",
+          "body": "By now, if implantation occurred, hCG levels are doubling roughly every 48 hours. Some sensitive tests might detect very early pregnancy. However, a negative result today doesn't mean you're not pregnant — levels vary widely.",
+          "tip": "If you test today and it's negative, don't lose hope. Many successful pregnancies don't show positive until day 12–14."
+        },
+        "day11": {
+          "title": "Building Anticipation",
+          "body": "hCG continues to rise. Some women begin to notice very early symptoms: mild cramping, breast tenderness, or fatigue. These symptoms can also be caused by progesterone in a non-pregnant cycle, so they're not reliable indicators.",
+          "tip": "Symptom-spotting is natural but can increase anxiety. Try to stay present and engaged in your daily life."
+        },
+        "day12": {
+          "title": "Testing Becomes More Reliable",
+          "body": "Most home pregnancy tests become more reliable from today onward. If testing, use first morning urine for the highest concentration of hCG. A faint line is still a positive result.",
+          "tip": "Whatever the result today, remember: one cycle does not define your journey. Be gentle with yourself."
+        },
+        "day13": {
+          "title": "The Eve of Knowing",
+          "body": "Tomorrow is typically the day your period would be expected (in a 28-day cycle). If it doesn't arrive and a test shows a faint positive, congratulations may be in order. If your period comes, allow yourself to grieve and know that each cycle is a new opportunity.",
+          "tip": "Prepare emotionally for both outcomes. Both are valid. Both are part of the journey."
+        },
+        "day14": {
+          "title": "The Answer Day",
+          "body": "This is typically the day your period is expected. A missed period combined with a positive pregnancy test is a strong indicator of pregnancy. If your test is positive, contact your healthcare provider to schedule your first appointment (usually around 6–8 weeks).",
+          "tip": "Positive? Celebrate this moment. Negative? You are strong, resilient, and this journey continues. Both outcomes deserve compassion."
+        }
+      },
       "subtitle": "Ihr täglicher Leitfaden durch die zweiwöchige Wartezeit"
+    },
+    "fertileWindow": {
+      "lastPeriod": "Erster Tag Ihrer letzten Periode",
+      "cycleLength": "Durchschnittliche Zykluslänge (Tage)",
+      "calculate": "Finden Sie mein fruchtbares Fenster",
+      "yourWindow": "Ihr fruchtbares Fenster",
+      "windowStart": "Fenster öffnet sich",
+      "windowEnd": "Fenster schließt sich",
+      "estimatedOvulation": "Geschätzter Tag des Eisprungs",
+      "disclaimer": "Dies ist eine Schätzung, die auf durchschnittlichen Zyklusdaten basiert. Der tatsächliche Eisprung kann variieren. Wenden Sie sich für eine individuelle Beratung an Ihren Arzt."
     }
   },
   "welcome": {
@@ -5396,180 +6003,6 @@
       "bringPartner": "Bringen Sie wenn möglich Ihren Partner mit"
     }
   },
-  "toolsInternal.babyCryTranslator": {
-    "subtitle": "Verstehen Sie, was Ihr Baby Ihnen sagen möchte",
-    "babyAge": "Alter des Babys",
-    "weeks": "Wochen",
-    "cryPattern": "Weinmuster",
-    "cryDuration": "Wie lange?",
-    "whenCrying": "Wann weint das Baby?",
-    "analyzeButton": "Weinmuster analysieren",
-    "analysisResult": "Weinanalyse",
-    "newAnalysis": "Neue Analyse",
-    "reanalyze": "Erneut analysieren",
-    "recentLogs": "Letzte Analysen",
-    "tipsTitle": "Hilfreiche Tipps",
-    "patterns": {
-      "continuous": "Dauerhaftes Weinen",
-      "intermittent": "An und aus",
-      "highPitch": "Hochtonig",
-      "whimpering": "Wimmern",
-      "rhythmic": "Rhythmisch",
-      "sudden": "Plötzliches Schreien"
-    },
-    "durations": {
-      "under1": "Unter 1 Min.",
-      "1to5": "1-5 Min.",
-      "5to15": "5-15 Min.",
-      "over15": "Über 15 Min."
-    },
-    "contexts": {
-      "afterFeeding": "Nach dem Füttern",
-      "beforeSleep": "Vor dem Schlaf",
-      "afterWaking": "Nach dem Aufwachen",
-      "duringChange": "Beim Windelwechsel",
-      "noReason": "Kein erkennbarer Grund",
-      "afterBath": "Nach dem Baden"
-    },
-    "tips": {
-      "tip1": "Jedes Baby hat ein einzigartiges Weinmuster",
-      "tip2": "Babys weinen durchschnittlich 1-3 Stunden täglich — das ist normal",
-      "tip3": "Bei ungewöhnlichem oder anhaltendem Weinen den Kinderarzt konsultieren"
-    }
-  },
-  "toolsInternal.postpartumRecovery": {
-    "subtitle": "Ihre personalisierte Erholungsreise nach der Geburt",
-    "welcomeTitle": "Ihre Erholungsreise",
-    "welcomeDesc": "Ein geführter 6-Wochen-Erholungsplan für Ihre Geburtserfahrung",
-    "selectBirthType": "Wie haben Sie entbunden?",
-    "birthTypes": {
-      "vaginal": "Vaginale Geburt",
-      "cesarean": "Kaiserschnitt"
-    },
-    "progress": "Fortschritt",
-    "getAIAdvice": "KI-Erholungsberatung erhalten",
-    "aiAdviceTitle": "Personalisierte Erholungsberatung",
-    "changeBirthType": "Geburtsart ändern",
-    "phases": {
-      "week1": {
-        "title": "Woche 1 — Ruhe & Heilung",
-        "description": "Fokus auf Ruhe, Wundpflege und Bindung mit Ihrem Baby"
-      },
-      "week2": {
-        "title": "Woche 2 — Sanfter Start",
-        "description": "Beginnen Sie mit sanfter Bewegung und etablieren Sie Routinen"
-      },
-      "week3_4": {
-        "title": "Wochen 3-4 — Kraft aufbauen",
-        "description": "Leichte Übungen und emotionale Wellness-Kontrolle"
-      },
-      "week5_6": {
-        "title": "Wochen 5-6 — Neue Normalität",
-        "description": "Rückkehr zur Aktivität und Langzeitplanung"
-      }
-    },
-    "checklist": {
-      "rest": {
-        "title": "Ruhe priorisieren",
-        "desc": "Schlafen Sie, wenn das Baby schläft, nehmen Sie Hilfe an"
-      },
-      "hydration": {
-        "title": "Ausreichend trinken",
-        "desc": "Trinken Sie 8-10 Gläser Wasser täglich"
-      },
-      "woundCare": {
-        "title": "Wundpflege",
-        "desc": "Befolgen Sie die Wundpflegeanweisungen Ihres Arztes"
-      },
-      "feedingSchedule": {
-        "title": "Fütterungsplan",
-        "desc": "Etablieren Sie einen regelmäßigen Fütterungsrhythmus"
-      },
-      "painManagement": {
-        "title": "Schmerzmanagement",
-        "desc": "Nehmen Sie verschriebene Medikamente wie angewiesen"
-      },
-      "gentleWalking": {
-        "title": "Sanftes Gehen",
-        "desc": "Kurze Spaziergänge im Haus"
-      },
-      "emotionalCheck": {
-        "title": "Emotionale Kontrolle",
-        "desc": "Beobachten Sie Ihre Stimmung und Gefühle"
-      },
-      "nutrition": {
-        "title": "Nahrhafte Mahlzeiten",
-        "desc": "Essen Sie eisen- und proteinreiche Mahlzeiten"
-      },
-      "sleepRoutine": {
-        "title": "Schlafroutine",
-        "desc": "Schaffen Sie eine erholsame Schlafumgebung"
-      },
-      "socialSupport": {
-        "title": "Soziale Unterstützung",
-        "desc": "Bleiben Sie mit Ihren Liebsten verbunden"
-      },
-      "lightExercise": {
-        "title": "Leichte Übung",
-        "desc": "Sanftes Dehnen und Gehen"
-      },
-      "posturalExercises": {
-        "title": "Haltungsübungen",
-        "desc": "Stärken Sie Ihre Körpermitte sanft"
-      },
-      "kegelExercises": {
-        "title": "Kegelübungen",
-        "desc": "Beginnen Sie mit Beckenbodenübungen"
-      },
-      "mentalHealthCheck": {
-        "title": "Psychische Gesundheitskontrolle",
-        "desc": "Untersuchung auf postpartale Depression"
-      },
-      "doctorVisit": {
-        "title": "Arztbesuch",
-        "desc": "Planen Sie Ihre Nachuntersuchung"
-      },
-      "returnToExercise": {
-        "title": "Rückkehr zum Sport",
-        "desc": "Aktivitätsniveau schrittweise steigern"
-      },
-      "intimacyReadiness": {
-        "title": "Bereitschaft für Intimität",
-        "desc": "Besprechen Sie es mit Ihrem Partner, wenn Sie bereit sind"
-      },
-      "fullCheckup": {
-        "title": "Vollständige Untersuchung",
-        "desc": "Vollständige postpartale Untersuchung"
-      },
-      "longTermPlan": {
-        "title": "Langzeitplan",
-        "desc": "Besprechen Sie Verhütung und Zukunftspläne"
-      },
-      "selfCare": {
-        "title": "Selbstpflege-Routine",
-        "desc": "Etablieren Sie fortlaufende Selbstpflege"
-      }
-    }
-  },
-  "toolsInternal.recipeModifier": {
-    "title": "KI-Rezeptanpasser",
-    "subtitle": "Jedes Rezept schwangerschaftssicher machen",
-    "pasteRecipe": "Ihr Rezept einfügen",
-    "placeholder": "Fügen Sie hier Ihr Rezept mit allen Zutaten und Anweisungen ein...",
-    "analyzing": "Wird analysiert...",
-    "analyzeRecipe": "Rezept analysieren",
-    "exampleTitle": "Beispielzutaten, die wir prüfen:",
-    "ingredientsToModify": "Anzupassende Zutaten ({{count}})",
-    "recipeSafe": "Rezept sieht sicher aus!",
-    "noUnsafeFound": "Keine offensichtlich unsicheren Zutaten gefunden",
-    "safeFound": "Sichere Zutaten gefunden",
-    "modifiedRecipe": "Angepasstes Rezept",
-    "safetyTips": "Sicherheitstipps",
-    "analyzeAnother": "Ein weiteres Rezept analysieren",
-    "disclaimer": "⚠️ Dieses Tool bietet allgemeine Hinweise. Konsultieren Sie immer Ihren Arzt zu spezifischen Ernährungseinschränkungen während der Schwangerschaft.",
-    "selectPreference": "Bitte wählen Sie mindestens eine Präferenz"
-  },
-  "toolsInternal.walkingCoach.minutes": "Minuten",
   "socialProof": {
     "title": "Alles was du brauchst 💕",
     "subtitle": "Dein kompletter Schwangerschaftsbegleiter",
@@ -5986,22 +6419,6 @@
     "usedOf": "{{used}} von {{limit}} heute verwendet",
     "subscribePro": "Pro abonnieren"
   },
-  "settings.deleteAccount": {
-    "title": "Alle Daten löschen",
-    "description": "Alle auf diesem Gerät gespeicherten Daten dauerhaft löschen",
-    "button": "Alle Daten löschen",
-    "confirmTitle": "Datenlöschung bestätigen",
-    "confirmDesc": "Alle auf diesem Gerät gespeicherten Daten werden dauerhaft gelöscht. Diese Aktion kann nicht rückgängig gemacht werden.",
-    "confirmWarning": "Diese Aktion ist dauerhaft und kann nicht rückgängig gemacht werden!",
-    "confirmWord": "LÖSCHEN",
-    "confirmButton": "Löschen bestätigen",
-    "confirmError": "Bestätigungsfehler",
-    "confirmErrorDesc": "Bitte geben Sie \"{{word}}\" zur Bestätigung ein",
-    "success": "Daten gelöscht ✅",
-    "successDesc": "Alle Ihre Daten wurden erfolgreich gelöscht",
-    "error": "Löschfehler",
-    "errorDesc": "Beim Löschen der Daten ist ein Fehler aufgetreten"
-  },
   "insightTabs": {
     "dailyTip": "Tipp des Tages",
     "reassurance": "Beruhigung",
@@ -6058,522 +6475,6 @@
       "tip42": "Ein AMH-Test gibt Einblick in Ihre Eizellreserve. Dieser einfache Test hilft bei der besseren Planung mit Ihrer Ärztin.",
       "tip43": "15–20 Minuten tägliches Sonnenlicht unterstützen die natürliche Vitamin-D-Produktion und regulieren Ihren Biorhythmus.",
       "tip44": "Antioxidantienreiche Lebensmittel wie Beeren, Granatapfel und Kurkuma schützen Eizellen und Spermien. Bringen Sie täglich Farbe auf Ihren Teller."
-    }
-  },
-  "toolsInternal.fertileWindow": {
-    "lastPeriod": "Erster Tag Ihrer letzten Periode",
-    "cycleLength": "Durchschnittliche Zykluslänge (Tage)",
-    "calculate": "Finden Sie mein fruchtbares Fenster",
-    "yourWindow": "Ihr fruchtbares Fenster",
-    "windowStart": "Fenster öffnet sich",
-    "windowEnd": "Fenster schließt sich",
-    "estimatedOvulation": "Geschätzter Tag des Eisprungs",
-    "disclaimer": "Dies ist eine Schätzung, die auf durchschnittlichen Zyklusdaten basiert. Der tatsächliche Eisprung kann variieren. Wenden Sie sich für eine individuelle Beratung an Ihren Arzt."
-  },
-  "toolsInternal.fertilityAcademy": {
-    "lessonsCount": "{{count}}-Lernmodule",
-    "lessons": {
-      "menstrualCycle": {
-        "title": "Understanding Your Menstrual Cycle",
-        "content": "Your menstrual cycle is divided into four main phases:\n\n1. Menstrual Phase (Days 1–5): The uterine lining sheds, marking the start of a new cycle.\n\n2. Follicular Phase (Days 1–13): Follicle-stimulating hormone (FSH) prompts the ovaries to develop follicles. Estrogen rises, thickening the uterine lining.\n\n3. Ovulation (Day 14 approx.): A surge in luteinizing hormone (LH) triggers the release of a mature egg. This is your most fertile moment.\n\n4. Luteal Phase (Days 15–28): The empty follicle becomes the corpus luteum, producing progesterone to maintain the lining. If fertilization doesn't occur, hormone levels drop and the cycle restarts.\n\nUnderstanding these phases helps you identify your fertile window and work with your body's natural rhythm."
-      },
-      "ovulationProcess": {
-        "title": "How Ovulation Works",
-        "content": "Ovulation is the release of a mature egg from one of your ovaries. Here's what happens:\n\n• In the days leading up to ovulation, rising estrogen levels cause the dominant follicle to grow.\n• A sharp LH surge triggers the follicle to rupture and release the egg into the fallopian tube.\n• The egg survives 12–24 hours after release. Sperm can survive up to 5 days in the reproductive tract.\n• This means your fertile window spans roughly 6 days — the 5 days before ovulation and the day of ovulation itself.\n\nSome women feel a twinge or mild cramp (mittelschmerz) during ovulation. Others notice changes in cervical mucus, which becomes clear and stretchy like raw egg whites."
-      },
-      "fertilizationBasics": {
-        "title": "Fertilization & Implantation",
-        "content": "After ovulation, fertilization can occur in the fallopian tube:\n\n• Of the millions of sperm released, only a few hundred reach the egg.\n• One sperm penetrates the egg's outer layer, triggering a chemical reaction that prevents other sperm from entering.\n• The fertilized egg (zygote) begins dividing as it travels toward the uterus over 3–4 days.\n• Around day 6–10 after ovulation, the blastocyst implants into the uterine lining.\n• Implantation may cause light spotting, known as implantation bleeding.\n• Once implanted, the body begins producing hCG — the hormone detected by pregnancy tests."
-      },
-      "hormonesRole": {
-        "title": "Key Fertility Hormones",
-        "content": "Several hormones orchestrate your fertility:\n\n• FSH (Follicle-Stimulating Hormone): Stimulates follicle growth in the ovaries. Tested on Day 3 of your cycle to assess ovarian reserve.\n\n• LH (Luteinizing Hormone): Triggers ovulation. Ovulation predictor kits detect the LH surge.\n\n• Estrogen (Estradiol): Promotes follicle development and thickens the uterine lining. Also affects cervical mucus quality.\n\n• Progesterone: Produced after ovulation, it maintains the uterine lining for potential implantation. Low progesterone can affect cycle regularity.\n\n• AMH (Anti-Müllerian Hormone): Reflects the number of remaining eggs (ovarian reserve). Useful for fertility planning.\n\n• Thyroid Hormones (TSH, T3, T4): Thyroid imbalances can disrupt ovulation and cycle regularity."
-      },
-      "ageAndFertility": {
-        "title": "Age & Fertility",
-        "content": "Age is one of the most significant factors affecting fertility:\n\n• Women are born with all the eggs they will ever have — about 1–2 million at birth.\n• By puberty, roughly 300,000–400,000 eggs remain. Only about 300–400 will ovulate during a lifetime.\n• Fertility peaks in the mid-20s. A gradual decline begins after age 30.\n• After 35, the decline accelerates. Egg quality and quantity both decrease.\n• By age 40, the chance of natural conception per cycle drops to about 5%.\n• Male fertility also declines with age, though more gradually.\n\nThis doesn't mean pregnancy after 35 is impossible — many women conceive naturally. But understanding timing helps with planning."
-      },
-      "lifestyleFactors": {
-        "title": "Lifestyle Factors That Affect Fertility",
-        "content": "Your daily habits significantly impact fertility:\n\n• Weight: Both underweight (BMI < 18.5) and overweight (BMI > 30) can disrupt ovulation. Even a 5–10% weight change can improve cycle regularity.\n\n• Smoking: Reduces egg quality, damages the fallopian tubes, and accelerates egg loss. Secondhand smoke is also harmful.\n\n• Alcohol: Heavy drinking is linked to irregular cycles and reduced fertility. Moderate to no alcohol is safest when trying to conceive.\n\n• Caffeine: More than 200–300mg daily (about 2 cups of coffee) may slightly reduce fertility.\n\n• Exercise: Moderate activity supports fertility. Excessive intense exercise can disrupt ovulation.\n\n• Sleep: Poor sleep disrupts reproductive hormones. Aim for 7–9 hours per night.\n\n• Environmental Toxins: Limit exposure to pesticides, heavy metals, and certain plastics (BPA)."
-      },
-      "commonMyths": {
-        "title": "Fertility Myths vs. Facts",
-        "content": "Let's separate fact from fiction:\n\nMyth: You can only get pregnant on ovulation day.\nFact: The fertile window spans about 6 days. Sperm can survive up to 5 days.\n\nMyth: Position during intercourse affects conception.\nFact: No scientific evidence supports this. Sperm reach the cervix within seconds.\n\nMyth: Birth control causes infertility.\nFact: Fertility typically returns within 1–3 months after stopping most contraceptives.\n\nMyth: Stress directly causes infertility.\nFact: While severe chronic stress can affect hormones, moderate stress alone rarely prevents conception.\n\nMyth: You need to have intercourse every day.\nFact: Every 1–2 days during the fertile window is sufficient. Daily intercourse doesn't reduce sperm quality.\n\nMyth: Herbal supplements guarantee fertility.\nFact: Some may help, but none are scientifically proven to guarantee conception. Always consult your doctor."
-      },
-      "whenToSeekHelp": {
-        "title": "When to Consult a Specialist",
-        "content": "Consider seeking professional fertility guidance if:\n\n• You're under 35 and have been trying for 12 months without success.\n• You're 35–39 and have been trying for 6 months.\n• You're 40 or older — consult early, as time is a factor.\n• You have irregular or absent periods.\n• You have a known condition: endometriosis, PCOS, thyroid disorder, or previous pelvic surgery.\n• You've experienced recurrent miscarriages (2 or more).\n• Your partner has known fertility concerns.\n\nA fertility specialist can run tests (hormone panels, ultrasound, semen analysis) and discuss options ranging from lifestyle changes to assisted reproduction."
-      },
-      "maleFertility": {
-        "title": "Male Fertility Essentials",
-        "content": "Male fertility is equally important in the conception journey:\n\n• Sperm production takes about 74 days. Lifestyle changes need time to show results.\n• Optimal sperm health requires: avoiding excessive heat (hot tubs, laptops on lap), maintaining a healthy weight, and managing stress.\n• Factors that can reduce sperm quality: smoking, excessive alcohol, certain medications, anabolic steroids, and recreational drugs.\n• A semen analysis is a simple, non-invasive test that evaluates sperm count, motility, and morphology.\n• Age affects male fertility too — sperm quality gradually declines after age 40.\n• Key nutrients for sperm health: zinc, selenium, vitamin C, vitamin E, folate, and omega-3 fatty acids."
-      },
-      "emotionalWellbeing": {
-        "title": "Emotional Wellbeing on the Journey",
-        "content": "Trying to conceive can be an emotional rollercoaster:\n\n• It's normal to feel hope, excitement, frustration, and sadness — sometimes all in one cycle.\n• About 1 in 6 couples experience difficulty conceiving. You are not alone.\n• Grief after a negative test is valid. Allow yourself to feel without judgment.\n• Communication with your partner is essential. Share your feelings openly.\n• Consider joining a support community — connecting with others on the same journey can be comforting.\n• Set boundaries around pregnancy announcements and baby showers if they feel triggering.\n• Professional counseling can provide coping strategies tailored to your situation.\n• Remember: your worth is not defined by your fertility. Be kind to yourself."
-      },
-      "trackingMethods": {
-        "title": "Fertility Tracking Methods",
-        "content": "Several methods can help you identify your fertile window:\n\n1. Calendar Method: Track cycle lengths over several months. Ovulation typically occurs 14 days before your next period.\n\n2. Basal Body Temperature (BBT): Take your temperature every morning before getting up. A slight rise (0.2–0.5°C) confirms ovulation has occurred.\n\n3. Cervical Mucus Observation: As ovulation approaches, mucus becomes clear, stretchy, and slippery (like raw egg white).\n\n4. Ovulation Predictor Kits (OPKs): Detect the LH surge in urine 12–36 hours before ovulation.\n\n5. Fertility Monitors: Advanced devices that track multiple hormones for a more complete picture.\n\n6. Cervical Position: The cervix becomes higher, softer, and more open around ovulation.\n\nCombining multiple methods increases accuracy."
-      },
-      "optimizingTiming": {
-        "title": "Optimizing Timing for Conception",
-        "content": "Timing is crucial for maximizing your chances:\n\n• The best days for conception are the 2–3 days before ovulation and ovulation day itself.\n• Having intercourse every 1–2 days during the fertile window provides the best results.\n• Sperm quality is not significantly reduced by daily ejaculation in most men.\n• After intercourse, lying down for 10–15 minutes may slightly improve sperm transport, though evidence is limited.\n• Lubricants: Some commercial lubricants can reduce sperm motility. Use fertility-friendly brands if needed.\n• Track your cycle for 2–3 months before actively trying, to understand your personal pattern.\n• Stay hydrated and maintain a balanced diet during the fertile window.\n• Both partners should avoid excessive alcohol during the fertile window."
-      },
-      "implantationWindow": {
-        "title": "The Implantation Window",
-        "content": "The implantation window is the brief period when the uterine lining is ready to receive the embryo:\n\n• Typically occurs between days 6–10 after ovulation.\n• During this time, the endometrium secretes special proteins that help the embryo attach.\n• Progesterone plays a central role in preparing the lining.\n• Factors affecting window quality: chronic inflammation, insufficient lining thickness, or immune disorders.\n• Rest and good nutrition during the luteal phase support the implantation process."
-      },
-      "cervicalHealth": {
-        "title": "Cervical Health & Fertility",
-        "content": "The cervix plays a fundamental role in fertility:\n\n• It produces mucus that changes throughout the cycle to facilitate or block sperm passage.\n• Fertile mucus nourishes sperm and extends their lifespan up to 5 days.\n• Chronic cervical infections may reduce mucus quality.\n• Previous cervical procedures (like cone biopsies) may affect mucus production.\n• Maintaining healthy vaginal pH supports the optimal cervical environment for fertility."
-      },
-      "thyroidFertility": {
-        "title": "Thyroid & Fertility",
-        "content": "Thyroid disorders are among the most treatable causes of fertility problems:\n\n• Hypothyroidism can cause irregular cycles, absent ovulation, or early miscarriage.\n• Hyperthyroidism is linked to irregular periods and difficulty conceiving.\n• Even subclinical hypothyroidism (TSH 2.5–4.0) may affect fertility.\n• Thyroid antibodies (Anti-TPO) are common and may impact implantation.\n• TSH and FT4 testing is recommended for all women planning pregnancy.\n• Levothyroxine treatment is safe and effective while trying to conceive."
-      },
-      "pcosManagement": {
-        "title": "Managing PCOS & Fertility",
-        "content": "Polycystic Ovary Syndrome (PCOS) affects 8–13% of women:\n\n• The most common cause of anovulation and ovulation-related infertility.\n• Key symptoms: irregular periods, acne, excess hair growth, insulin resistance.\n• Lifestyle changes are very effective: losing 5–10% of weight can restore ovulation.\n• Inositol has shown promising results in improving insulin sensitivity and egg quality.\n• A low-sugar, balanced diet supports hormonal regularity.\n• Medications like clomiphene or letrozole successfully stimulate ovulation in many cases."
-      },
-      "endometriosisAwareness": {
-        "title": "Endometriosis & Fertility",
-        "content": "Endometriosis affects 1 in 10 women:\n\n• Tissue similar to the uterine lining grows outside the uterus, causing inflammation and adhesions.\n• It can affect the tubes, ovaries, and egg quality.\n• Symptoms: severe period pain, pain during intercourse, and sometimes no symptoms.\n• Early diagnosis improves outcomes. Laparoscopy is the gold standard.\n• Many affected women conceive naturally or with assistance.\n• Consult a fertility specialist if you have a family history or suspicious symptoms."
-      },
-      "nutritionFertility": {
-        "title": "Optimal Nutrition for Fertility",
-        "content": "Diet directly affects egg and sperm quality:\n\n• The Mediterranean diet has shown the best results in fertility studies.\n• Healthy fats (omega-3, olive oil) support hormone production.\n• Plant protein may be better than animal protein for some women.\n• Avoid trans fats, which double the risk of ovulation-related infertility.\n• Organic foods reduce exposure to hormone-disrupting pesticides.\n• Plant-source iron + vitamin C significantly improves absorption."
-      },
-      "sleepHormones": {
-        "title": "Sleep & Fertility Hormones",
-        "content": "Sleep is not a luxury — it's a biological necessity for fertility:\n\n• Melatonin (sleep hormone) acts as an antioxidant protecting eggs.\n• Less than 6 hours of sleep raises cortisol, which suppresses GnRH and ovulation.\n• Shift work is associated with increased cycle and fertility problems.\n• The circadian rhythm regulates FSH and LH secretion.\n• Blue light from screens suppresses melatonin and disrupts rhythm.\n• Goal: 7–9 hours of sleep in a dark, cool room with a consistent routine."
-      },
-      "exerciseBalance": {
-        "title": "Balancing Exercise & Fertility",
-        "content": "Exercise is a double-edged sword for fertility:\n\n• Moderate activity (150 minutes/week) improves ovulation and fertility.\n• Continuous intense exercise can cause 'relative energy deficiency' stopping ovulation.\n• Walking, swimming, and yoga are among the best options.\n• Moderate strength training improves insulin sensitivity (helpful for PCOS).\n• Fertility yoga combines movement with stress reduction.\n• If your period disappears with intense exercise, reduce intensity immediately.\n• The balance between movement and rest is key."
-      },
-      "supplementsGuide": {
-        "title": "Smart Supplements Guide",
-        "content": "Supplements can support your fertility — but not all are equal:\n\n• Folic acid/methylfolate: Essential — start 3 months before trying.\n• CoQ10 (200–600mg): Supports egg energy, especially after 35.\n• Vitamin D (1000–2000 IU): Most women are deficient.\n• Omega-3 DHA (200–300mg): For hormone health and inflammation.\n• Inositol (4g myo + 100mg d-chiro): Especially helpful with PCOS.\n• Iron: Only if tests show deficiency — excess is harmful.\n• Always consult your doctor before starting any new supplement."
-      },
-      "environmentalToxins": {
-        "title": "Environmental Toxins & Fertility",
-        "content": "Daily exposure to environmental toxins can affect your fertility:\n\n• BPA in plastics mimics estrogen and disrupts hormonal balance.\n• Phthalates in cosmetics and fragrances disrupt the endocrine system.\n• Pesticides on fruits and vegetables are linked to lower egg quality.\n• Heavy metals (lead, mercury) affect both eggs and sperm.\n• Practical steps: glass containers instead of plastic, natural cleaning products, wash fruits well.\n• Filtering drinking water reduces pollutant exposure."
-      },
-      "geneticFactors": {
-        "title": "Genetic Factors & Fertility",
-        "content": "Genes play a bigger role than expected in fertility:\n\n• Carrier genetic screening reveals risk of passing genetic diseases to children.\n• MTHFR mutation affects folate metabolism — methylfolate may be better.\n• Turner syndrome and chromosomal abnormalities affect ovarian reserve.\n• Family history of early menopause may signal early reserve decline.\n• Karyotype testing is recommended in cases of recurrent miscarriage.\n• Genetic counseling is available and useful for those with specific family histories."
-      },
-      "immunologyFertility": {
-        "title": "Immunology & Fertility",
-        "content": "The immune system plays a delicate role in pregnancy:\n\n• The body must accept the embryo (half its genes from the father) without rejecting it.\n• Uterine NK cells help with implantation — but excessive activity may hinder it.\n• Antiphospholipid antibodies are linked to recurrent miscarriage.\n• Autoimmune diseases (lupus, Hashimoto's) may affect fertility.\n• Chronic pelvic inflammation can damage the tubes.\n• An anti-inflammatory lifestyle (nutrition, sleep, movement) supports balanced immunity."
-      },
-      "secondaryInfertility": {
-        "title": "Secondary Infertility",
-        "content": "Secondary infertility means difficulty conceiving after having a previous child:\n\n• Accounts for about 50% of infertility cases — but is less discussed.\n• Causes: advancing age, weight changes, complications from previous pregnancy.\n• Adhesions from cesarean section or infection may affect fertility.\n• Hormonal changes after first birth may not fully normalize.\n• Social expectations ('you have a child, be grateful') increase psychological burden.\n• Don't delay seeking help — the same time criteria apply."
-      },
-      "recurrentLoss": {
-        "title": "Understanding Recurrent Pregnancy Loss",
-        "content": "Recurrent pregnancy loss (two or more) requires comprehensive evaluation:\n\n• 15–20% of pregnancies end in miscarriage — most due to chromosomal abnormalities.\n• Treatable causes: clotting disorders, uterine anomalies, thyroid problems.\n• Uterine septum is the most common uterine anomaly and can be surgically corrected.\n• Antiphospholipid syndrome is treatable with aspirin and heparin.\n• Psychological support is essential — grief and anxiety after loss are natural and valid.\n• 60–70% of couples with unexplained recurrent loss succeed in the next pregnancy."
-      },
-      "fertilityPreservation": {
-        "title": "Fertility Preservation",
-        "content": "Fertility preservation is an available option that gives you flexibility in planning:\n\n• Egg freezing: Ideal age before 35. Excellent results with modern techniques.\n• Embryo freezing: Option for married couples. Higher success rates than eggs alone.\n• Reasons for freezing: delayed childbearing, chemotherapy, medical conditions.\n• The process requires hormonal stimulation for 10–14 days then egg retrieval.\n• Cost and storage are factors to consider.\n• Consult a fertility specialist to assess if it's suitable for your situation."
-      },
-      "assistedReproduction": {
-        "title": "Assisted Reproduction Techniques",
-        "content": "When natural conception doesn't succeed, there are effective options:\n\n• Ovulation stimulation: Medications that stimulate egg production — first-line treatment.\n• Intrauterine insemination (IUI): Processed sperm injected directly into the uterus.\n• In vitro fertilization (IVF): The most advanced technique. Success rates 30–50% per cycle.\n• Intracytoplasmic sperm injection (ICSI): A single sperm injected directly into the egg.\n• Preimplantation genetic testing (PGT): Screening embryos for chromosomal abnormalities.\n• Each option has specific indications — a fertility specialist guides you to the most suitable."
-      },
-      "epigeneticsFertility": {
-        "title": "Epigenetics & Generational Health",
-        "content": "Epigenetics discoveries have changed our understanding of fertility:\n\n• Your nutrition and lifestyle can influence gene expression in your future child.\n• Folate deficiency before pregnancy affects fetal gene programming.\n• Chronic stress can leave 'imprints' on DNA that transfer to the embryo.\n• Pollution and environmental toxins cause epigenetic changes that may affect generations.\n• Good news: negative epigenetic changes are reversible with a healthy lifestyle.\n• 3–6 months of improvements before pregnancy make a real difference in fetal health."
-      },
-      "mindBodyConnection": {
-        "title": "The Mind-Body Connection",
-        "content": "The relationship between mind and body is deeper than we imagine in fertility:\n\n• Chronic stress activates the HPA axis which suppresses reproductive hormones.\n• Relaxation techniques (meditation, yoga, deep breathing) measurably improve fertility outcomes.\n• Cognitive behavioral therapy (CBT) has shown positive results in reducing fertility anxiety.\n• Positive visualization and affirmations activate neural pathways that support hormonal balance.\n• Support groups reduce feelings of isolation and improve mental health.\n• Art, music, and creative writing are effective therapeutic tools during the fertility journey.\n• Seek professional help if anxiety or sadness begin to dominate your life."
-      }
-    }
-  },
-  "toolsInternal.fertilitySigns": {
-    "signsCount": "{{count}}-Zeichen, um es zu wissen",
-    "signs": {
-      "cervicalMucus": {
-        "title": "Cervical Mucus Changes",
-        "description": "As ovulation approaches, cervical mucus becomes more abundant, clear, and stretchy — resembling raw egg whites. This 'fertile-quality' mucus helps sperm travel more easily through the cervix. After ovulation, mucus typically becomes thicker, cloudier, or dries up.",
-        "tip": "Check mucus daily by wiping before urination. The most fertile-type mucus stretches between your fingers without breaking."
-      },
-      "basalTemp": {
-        "title": "Basal Body Temperature Shift",
-        "description": "After ovulation, progesterone causes your resting body temperature to rise by 0.2–0.5°C. This shift confirms that ovulation has already occurred. By tracking BBT over several cycles, you can identify your typical ovulation pattern.",
-        "tip": "Take your temperature every morning at the same time, before getting out of bed. Use a BBT-specific thermometer for accuracy."
-      },
-      "cervicalPosition": {
-        "title": "Cervical Position Changes",
-        "description": "During your fertile window, the cervix moves higher in the vaginal canal, becomes softer (like your lips vs. the tip of your nose), and opens slightly. After ovulation, it drops lower, firms up, and closes.",
-        "tip": "Check cervical position in the same position daily (e.g., standing with one foot elevated). It takes practice — be patient with yourself."
-      },
-      "ovulationPain": {
-        "title": "Ovulation Sensation (Mittelschmerz)",
-        "description": "Some women feel a mild twinge, cramp, or ache on one side of the lower abdomen during ovulation. This 'middle pain' (mittelschmerz) is caused by the follicle rupturing to release the egg. It typically lasts a few minutes to a few hours.",
-        "tip": "Note which side you feel the sensation — it may alternate sides each cycle as ovulation switches between ovaries."
-      },
-      "breastTenderness": {
-        "title": "Breast Tenderness",
-        "description": "Rising progesterone after ovulation can cause breast tenderness, fullness, or sensitivity. This is one of the most commonly noticed luteal phase symptoms. Some women also experience this in the days leading up to ovulation due to rising estrogen.",
-        "tip": "Track when tenderness begins and ends to correlate it with your ovulation pattern over time."
-      },
-      "libidoChanges": {
-        "title": "Changes in Desire",
-        "description": "Many women experience a natural increase in desire around ovulation. This is driven by the surge in estrogen and testosterone that precedes the LH peak. It's one of the body's ways of optimizing the chance of conception.",
-        "tip": "Pay attention to these natural shifts — they often align with your most fertile days."
-      },
-      "moodShifts": {
-        "title": "Mood & Energy Shifts",
-        "description": "Estrogen rising in the follicular phase often brings improved mood, energy, and confidence. After ovulation, progesterone dominance may cause a shift toward calmness or, for some, irritability and fatigue. These fluctuations are normal and hormone-driven.",
-        "tip": "Journaling your mood daily can reveal patterns that correlate with your cycle phases."
-      },
-      "bloating": {
-        "title": "Mild Bloating",
-        "description": "Hormonal changes around ovulation, particularly rising progesterone, can cause water retention and mild bloating. This is a common sign that your body is transitioning into the luteal phase.",
-        "tip": "Staying hydrated and reducing sodium intake can help manage ovulation-related bloating."
-      },
-      "lightSpotting": {
-        "title": "Ovulation Spotting",
-        "description": "A small amount of light pink or brown spotting around ovulation day is experienced by some women. It's caused by the slight drop in estrogen that occurs just before the LH surge, or by the follicle rupture itself. It's usually very light and brief.",
-        "tip": "Ovulation spotting is different from implantation bleeding (which occurs 6–12 days after ovulation). Track the timing carefully."
-      },
-      "heightenedSenses": {
-        "title": "Heightened Senses",
-        "description": "Some women report a more acute sense of smell during ovulation, possibly due to elevated estrogen levels. Research suggests this may be an evolutionary adaptation. Some also notice subtle changes in taste preferences.",
-        "tip": "If you notice scents seem stronger around mid-cycle, it may be a personal ovulation indicator worth tracking."
-      }
-    }
-  },
-  "toolsInternal.preconceptionNutrition": {
-    "categoriesCount": "{{count}}-Ernährungskategorien",
-    "categories": {
-      "folateRich": {
-        "title": "Folate-Rich Foods",
-        "description": "Folate (vitamin B9) is critical for preventing neural tube defects and supporting healthy cell division. The recommended daily intake when trying to conceive is 400–800mcg. Start folate supplementation at least 1–3 months before conception.",
-        "foods": "Dark leafy greens (spinach, kale), lentils, chickpeas, asparagus, broccoli, avocado, fortified cereals, citrus fruits, beets, Brussels sprouts"
-      },
-      "ironSources": {
-        "title": "Iron-Rich Foods",
-        "description": "Iron supports healthy blood production and oxygen transport, which are essential for a developing pregnancy. Women of childbearing age need about 18mg daily. Iron deficiency is common and can affect ovulation and cycle regularity.",
-        "foods": "Red meat, poultry, fish, lentils, spinach, fortified cereals, pumpkin seeds, tofu, dark chocolate, quinoa, dried apricots"
-      },
-      "omega3": {
-        "title": "Omega-3 Fatty Acids",
-        "description": "Omega-3s support hormone production, reduce inflammation, and are essential for fetal brain and eye development. DHA and EPA are the most bioavailable forms. ALA from plant sources is also beneficial but converts less efficiently.",
-        "foods": "Salmon, sardines, mackerel, walnuts, chia seeds, flaxseeds, hemp seeds, algae-based DHA supplements, fortified eggs"
-      },
-      "antioxidants": {
-        "title": "Antioxidant-Rich Foods",
-        "description": "Antioxidants protect eggs and sperm from oxidative stress caused by free radicals. Vitamins C and E, selenium, and CoQ10 are particularly important. A colorful, varied diet provides a broad spectrum of antioxidants.",
-        "foods": "Berries (blueberries, strawberries, raspberries), tomatoes, bell peppers, nuts, seeds, green tea, dark leafy greens, sweet potatoes, carrots"
-      },
-      "zinc": {
-        "title": "Zinc Sources",
-        "description": "Zinc is essential for hormone balance, egg quality, and cell division. It also plays a crucial role in male fertility — supporting sperm production and testosterone levels. The recommended daily intake is 8mg for women.",
-        "foods": "Oysters, beef, pumpkin seeds, cashews, chickpeas, lentils, yogurt, cheese, whole grains, dark chocolate"
-      },
-      "vitaminD": {
-        "title": "Vitamin D Sources",
-        "description": "Vitamin D receptors are found in the ovaries and uterus, suggesting a direct role in fertility. Deficiency is associated with irregular cycles, PCOS, and reduced IVF success rates. Many people are deficient, especially in northern climates.",
-        "foods": "Sunlight exposure (15–20 min daily), fatty fish (salmon, tuna), egg yolks, fortified milk, mushrooms exposed to UV light, cod liver oil"
-      },
-      "calcium": {
-        "title": "Calcium Sources",
-        "description": "Calcium is vital for reproductive function, supporting the development of embryonic structures. Adequate calcium intake before pregnancy helps build reserves for the baby's skeletal development. Aim for 1000mg daily.",
-        "foods": "Dairy products (milk, yogurt, cheese), fortified plant milks, kale, broccoli, almonds, sardines with bones, tofu, figs"
-      },
-      "protein": {
-        "title": "Quality Protein",
-        "description": "Protein provides the building blocks for hormones and new cells. Research suggests that replacing some animal protein with plant protein may improve fertility outcomes. Aim for a balanced mix of both sources.",
-        "foods": "Eggs, lean poultry, fish, legumes (beans, lentils), nuts, seeds, Greek yogurt, tofu, tempeh, quinoa"
-      },
-      "hydration": {
-        "title": "Hydration",
-        "description": "Water is essential for cervical mucus production, nutrient transport, and hormone balance. Dehydration can reduce cervical mucus quality and affect blood flow to the reproductive organs. Aim for 8–10 glasses daily.",
-        "foods": "Water, herbal teas (raspberry leaf, ginger), coconut water, water-rich fruits (watermelon, cucumber, oranges), broths"
-      },
-      "avoidList": {
-        "title": "Foods to Minimize",
-        "description": "Certain foods and substances may negatively impact fertility. While occasional consumption is unlikely to cause harm, reducing these when actively trying to conceive can optimize your body's readiness.",
-        "foods": "Excessive caffeine (>200mg/day), alcohol, trans fats, highly processed foods, raw fish (sushi), high-mercury fish (swordfish, king mackerel), excessive sugar, artificial sweeteners"
-      }
-    }
-  },
-  "toolsInternal.prenatalVitamins": {
-    "supplementsCount": "{{count}}-Ergänzungen zur Überprüfung",
-    "vitamins": {
-      "folicAcid": {
-        "title": "Folic Acid (Vitamin B9)",
-        "description": "The most important preconception supplement. Folic acid significantly reduces the risk of neural tube defects (spina bifida, anencephaly). Start taking it at least 1–3 months before trying to conceive for maximum benefit.",
-        "dosage": "Recommended: 400–800mcg daily. Some women (with history of NTDs, on certain medications) may need 4–5mg — consult your doctor."
-      },
-      "iron": {
-        "title": "Iron",
-        "description": "Iron requirements increase dramatically during pregnancy (from 18mg to 27mg daily). Building iron stores before conception helps prevent iron-deficiency anemia, which is associated with preterm birth and low birth weight.",
-        "dosage": "Recommended: 18mg daily pre-pregnancy. Take with vitamin C to improve absorption. Avoid taking with calcium or tea."
-      },
-      "vitaminD": {
-        "title": "Vitamin D",
-        "description": "Vitamin D supports immune function, calcium absorption, and reproductive health. Deficiency is linked to pregnancy complications including gestational diabetes and preeclampsia. Most people need supplementation, especially in winter months.",
-        "dosage": "Recommended: 600–2000 IU daily. Your doctor may test your levels and recommend a higher dose if deficient."
-      },
-      "omega3DHA": {
-        "title": "Omega-3 DHA",
-        "description": "DHA is crucial for fetal brain and retinal development. Starting supplementation before pregnancy ensures adequate stores from the earliest stages of embryonic development. EPA also supports maternal cardiovascular health.",
-        "dosage": "Recommended: 200–300mg DHA daily. Choose supplements tested for mercury and contaminants."
-      },
-      "calcium": {
-        "title": "Calcium",
-        "description": "If the mother's calcium intake is insufficient during pregnancy, the baby will draw calcium from her bones. Building strong calcium reserves before pregnancy protects maternal bone health.",
-        "dosage": "Recommended: 1000mg daily from food and supplements combined. Best absorbed in doses of 500mg or less at a time."
-      },
-      "iodine": {
-        "title": "Iodine",
-        "description": "Iodine is essential for thyroid function, which directly impacts fertility and fetal brain development. Deficiency is the leading preventable cause of intellectual disability worldwide.",
-        "dosage": "Recommended: 150mcg daily before pregnancy, 220mcg during pregnancy. Check that your prenatal vitamin includes iodine."
-      },
-      "zinc": {
-        "title": "Zinc",
-        "description": "Zinc supports egg quality, hormone balance, and immune function. It also plays a key role in DNA synthesis and cell division — critical processes in early pregnancy.",
-        "dosage": "Recommended: 8mg daily for women. Most prenatal vitamins contain adequate zinc."
-      },
-      "vitaminB12": {
-        "title": "Vitamin B12",
-        "description": "B12 works with folate to support DNA synthesis and nervous system development. Deficiency is more common in vegetarians and vegans. Low B12 levels are associated with recurrent miscarriage and neural tube defects.",
-        "dosage": "Recommended: 2.4mcg daily. Vegans should supplement as B12 is found primarily in animal products."
-      },
-      "vitaminC": {
-        "title": "Vitamin C",
-        "description": "Vitamin C is a powerful antioxidant that protects eggs from oxidative damage. It also enhances iron absorption and supports immune function. Progesterone levels may also benefit from adequate vitamin C intake.",
-        "dosage": "Recommended: 75–90mg daily. Easily obtained from citrus fruits, berries, and bell peppers."
-      },
-      "vitaminE": {
-        "title": "Vitamin E",
-        "description": "Vitamin E supports endometrial lining thickness and quality, which is important for implantation. It also protects cell membranes from oxidative stress and supports overall reproductive health.",
-        "dosage": "Recommended: 15mg (22 IU) daily. Found in nuts, seeds, and vegetable oils."
-      },
-      "coq10": {
-        "title": "CoQ10 (Coenzyme Q10)",
-        "description": "CoQ10 is an antioxidant that supports mitochondrial function in eggs. As egg quality naturally declines with age, CoQ10 supplementation may help maintain cellular energy production. Research is ongoing but promising, especially for women over 35.",
-        "dosage": "Common dosage: 100–600mg daily. Ubiquinol form is better absorbed than ubiquinone. Consult your doctor."
-      },
-      "probiotics": {
-        "title": "Probiotics",
-        "description": "A healthy vaginal and gut microbiome supports fertility. Lactobacillus strains help maintain optimal vaginal pH, which is important for sperm survival. Gut health also affects hormone metabolism and nutrient absorption.",
-        "dosage": "Choose a multi-strain probiotic with Lactobacillus strains. Consume fermented foods: yogurt, kefir, sauerkraut, kimchi."
-      }
-    }
-  },
-  "toolsInternal.twwCompanion": {
-    "subtitle": "Ihr täglicher Leitfaden durch die zweiwöchige Wartezeit",
-    "days": {
-      "day1": {
-        "title": "Ovulation Day + 1",
-        "body": "If ovulation occurred yesterday, the egg is now traveling through the fallopian tube. If fertilization happens, it typically occurs within 12–24 hours of ovulation. Today, there's nothing you can do to influence the outcome — and that's okay.",
-        "tip": "Take a deep breath. The journey has begun. Focus on something you enjoy today."
-      },
-      "day2": {
-        "title": "Cellular Beginnings",
-        "body": "If fertilization occurred, the single-celled zygote begins dividing — first into 2 cells, then 4. This tiny cluster of cells is traveling through the fallopian tube toward the uterus. It's powered entirely by its own energy stores.",
-        "tip": "Stay hydrated and eat nourishing foods. Your body is doing incredible work at the cellular level."
-      },
-      "day3": {
-        "title": "The Morula Stage",
-        "body": "The dividing cells form a solid ball called a morula (about 16 cells). It continues its journey through the fallopian tube. Progesterone is rising, preparing the uterine lining for potential implantation.",
-        "tip": "Gentle activity is perfectly fine. There's no need to restrict your normal routine."
-      },
-      "day4": {
-        "title": "Entering the Uterus",
-        "body": "The morula typically enters the uterus around day 4. It begins forming a fluid-filled cavity, transitioning into a blastocyst. The uterine lining is becoming thick and receptive under progesterone's influence.",
-        "tip": "Practice mindfulness or light stretching. Managing anticipation is part of the journey."
-      },
-      "day5": {
-        "title": "Blastocyst Formation",
-        "body": "The blastocyst now has two distinct cell groups: the inner cell mass (which becomes the embryo) and the trophoblast (which becomes the placenta). It floats freely in the uterine cavity.",
-        "tip": "This is a good day to journal your thoughts and feelings. Self-expression is therapeutic."
-      },
-      "day6": {
-        "title": "Implantation May Begin",
-        "body": "The blastocyst begins searching for an ideal implantation site on the uterine wall. The trophoblast cells start burrowing into the endometrium. Some women experience light spotting (implantation bleeding) around this time.",
-        "tip": "Light spotting at this stage can be normal. Don't panic — and don't test yet. It's too early."
-      },
-      "day7": {
-        "title": "Implantation Window",
-        "body": "Days 6–10 are the typical implantation window. The blastocyst is embedding deeper into the uterine lining. Early signals are being exchanged between the embryo and your body.",
-        "tip": "Continue your normal activities. Rest when you need to. Trust the process."
-      },
-      "day8": {
-        "title": "hCG Begins",
-        "body": "If implantation is progressing, tiny amounts of hCG (human chorionic gonadotropin) begin to be produced. This hormone signals your body to maintain the corpus luteum, which keeps producing progesterone. Levels are still too low to detect on a test.",
-        "tip": "Resist the urge to test. hCG needs time to build. Patience is your greatest ally right now."
-      },
-      "day9": {
-        "title": "Rising Signals",
-        "body": "hCG levels are rising but may still be below the detection threshold of most home pregnancy tests. Implantation should be complete or nearly complete. Your body is starting to respond to the new hormonal signals.",
-        "tip": "Treat yourself to something calming — a warm bath, your favorite tea, or a walk in nature."
-      },
-      "day10": {
-        "title": "Almost There",
-        "body": "By now, if implantation occurred, hCG levels are doubling roughly every 48 hours. Some sensitive tests might detect very early pregnancy. However, a negative result today doesn't mean you're not pregnant — levels vary widely.",
-        "tip": "If you test today and it's negative, don't lose hope. Many successful pregnancies don't show positive until day 12–14."
-      },
-      "day11": {
-        "title": "Building Anticipation",
-        "body": "hCG continues to rise. Some women begin to notice very early symptoms: mild cramping, breast tenderness, or fatigue. These symptoms can also be caused by progesterone in a non-pregnant cycle, so they're not reliable indicators.",
-        "tip": "Symptom-spotting is natural but can increase anxiety. Try to stay present and engaged in your daily life."
-      },
-      "day12": {
-        "title": "Testing Becomes More Reliable",
-        "body": "Most home pregnancy tests become more reliable from today onward. If testing, use first morning urine for the highest concentration of hCG. A faint line is still a positive result.",
-        "tip": "Whatever the result today, remember: one cycle does not define your journey. Be gentle with yourself."
-      },
-      "day13": {
-        "title": "The Eve of Knowing",
-        "body": "Tomorrow is typically the day your period would be expected (in a 28-day cycle). If it doesn't arrive and a test shows a faint positive, congratulations may be in order. If your period comes, allow yourself to grieve and know that each cycle is a new opportunity.",
-        "tip": "Prepare emotionally for both outcomes. Both are valid. Both are part of the journey."
-      },
-      "day14": {
-        "title": "The Answer Day",
-        "body": "This is typically the day your period is expected. A missed period combined with a positive pregnancy test is a strong indicator of pregnancy. If your test is positive, contact your healthcare provider to schedule your first appointment (usually around 6–8 weeks).",
-        "tip": "Positive? Celebrate this moment. Negative? You are strong, resilient, and this journey continues. Both outcomes deserve compassion."
-      }
-    }
-  },
-  "toolsInternal.stressFertility": {
-    "topicsCount": "{{count}}-Themen zum Erkunden",
-    "topics": {
-      "stressHormones": {
-        "title": "How Stress Affects Fertility",
-        "content": "Chronic stress triggers the release of cortisol and adrenaline, which can disrupt the hypothalamic-pituitary-gonadal (HPG) axis — the hormonal pathway that controls ovulation. Elevated cortisol may suppress GnRH (gonadotropin-releasing hormone), leading to irregular or absent ovulation. While moderate daily stress is unlikely to prevent conception, prolonged high stress can delay time to pregnancy.",
-        "practice": "Identify your top 3 stress triggers this week. For each one, write down one small action you can take to reduce its impact."
-      },
-      "cortisol": {
-        "title": "Understanding Cortisol",
-        "content": "Cortisol is your body's primary stress hormone. In small bursts, it's helpful — providing energy and focus. But when cortisol remains chronically elevated, it can suppress reproductive hormones, disrupt sleep, increase inflammation, and affect mood. The goal isn't to eliminate stress entirely (impossible!) but to manage your stress response.",
-        "practice": "Practice the 4-7-8 breathing technique: Inhale for 4 seconds, hold for 7, exhale for 8. Repeat 4 times. This activates the parasympathetic nervous system."
-      },
-      "mindfulness": {
-        "title": "Mindfulness for Fertility",
-        "content": "Mindfulness is the practice of being fully present without judgment. Studies show that mindfulness-based stress reduction (MBSR) programs can reduce anxiety and depression in women undergoing fertility treatment, and may improve outcomes. Even 10 minutes of daily mindfulness practice can lower cortisol levels and improve emotional resilience.",
-        "practice": "Try a 5-minute body scan: Close your eyes, breathe deeply, and slowly move your attention from your toes to your head, noticing sensations without trying to change them."
-      },
-      "breathing": {
-        "title": "Breathing Techniques",
-        "content": "Controlled breathing directly activates the vagus nerve, triggering the relaxation response. This lowers heart rate, blood pressure, and cortisol. It's one of the fastest ways to shift from a stress state to a calm state. Different techniques serve different purposes — some energize, others calm.",
-        "practice": "Box Breathing: Inhale 4 counts → Hold 4 counts → Exhale 4 counts → Hold 4 counts. Repeat for 5 minutes. Ideal before bed or during anxious moments."
-      },
-      "journaling": {
-        "title": "Therapeutic Journaling",
-        "content": "Writing about your emotions has been scientifically shown to reduce stress, improve immune function, and provide clarity. For fertility journaling, the goal isn't to track symptoms obsessively, but to process emotions, celebrate small wins, and release fears.",
-        "practice": "Tonight, write down: 1) One thing I'm grateful for today, 2) One worry I want to release, 3) One kind thing I did for myself."
-      },
-      "sleep": {
-        "title": "Sleep & Fertility",
-        "content": "Sleep is when your body repairs, produces hormones, and processes emotions. Poor sleep disrupts melatonin (which protects egg quality), increases cortisol, and impairs FSH and LH regulation. Women who sleep fewer than 6 hours per night have been shown to have lower fertility rates.",
-        "practice": "Create a wind-down routine: No screens 30 min before bed, dim lights, use lavender essential oil, and keep your bedroom cool (18–20°C)."
-      },
-      "exercise": {
-        "title": "Movement & Stress Relief",
-        "content": "Regular moderate exercise is one of the most effective stress relievers. It releases endorphins, improves sleep, and helps regulate hormones. However, excessive intense exercise (marathon training, high-intensity daily workouts) can suppress ovulation. Balance is key.",
-        "practice": "This week, aim for 30 minutes of moderate movement 5 days: walking, yoga, swimming, or dancing. Notice how your mood shifts afterward."
-      },
-      "socialSupport": {
-        "title": "Building Your Support Network",
-        "content": "Social isolation amplifies stress. Sharing your fertility journey with trusted friends, family, or a support group can significantly reduce emotional burden. You don't have to share with everyone — even one supportive person makes a difference.",
-        "practice": "Identify one person you trust. Share one thing about your journey with them this week. Connection is healing."
-      },
-      "professionalHelp": {
-        "title": "When to Seek Professional Support",
-        "content": "If anxiety or sadness about fertility is affecting your daily life, sleep, relationships, or work, professional support can help. Therapists specializing in reproductive mental health understand the unique challenges of this journey. Cognitive Behavioral Therapy (CBT) is particularly effective for fertility-related anxiety.",
-        "practice": "If you're considering therapy, look for a therapist who specializes in reproductive psychology or perinatal mental health. Many offer virtual sessions."
-      },
-      "acceptance": {
-        "title": "Practicing Acceptance",
-        "content": "Acceptance doesn't mean giving up — it means acknowledging that some things are beyond your control while focusing on what you can influence. This shift from control to acceptance can significantly reduce stress and improve emotional wellbeing during the fertility journey.",
-        "practice": "Repeat this affirmation: 'I am doing everything I can. I trust my body and my journey. The outcome does not define my worth.'"
-      }
-    }
-  },
-  "toolsInternal.preconceptionCheckup": {
-    "progressLabel": "Vorführungen verfolgt",
-    "tracked": "verfolgt",
-    "allComplete": "Tolle Vorbereitung! Besprechen Sie Ihre Ergebnisse mit Ihrem Arzt.",
-    "categories": {
-      "essential": "Essential Health Checks",
-      "screening": "Infection & Immunity Screening",
-      "specialized": "Specialized Assessments",
-      "medications": "Medications & Vaccinations"
-    },
-    "ai": {
-      "title": "Preparation Insights",
-      "analyze": "Analyze My Preparation",
-      "readinessTitle": "Readiness Overview",
-      "priorityTitle": "Priority Recommendations",
-      "tipsTitle": "Helpful Tips",
-      "timelineTitle": "Suggested Timeline"
-    },
-    "related": {
-      "academy": "Fruchtbarkeitsakademie",
-      "academyDesc": "Umfassende Fruchtbarkeitsschulung",
-      "nutrition": "Ernährungsratgeber",
-      "nutritionDesc": "Vorurteilsvolle Ernährung und Nahrungsergänzungsmittel"
-    },
-    "disclaimer": "Diese Checkliste ist eine pädagogische Referenz, die Ihnen bei der Organisation von Gesprächen mit Ihrem Gesundheitsdienstleister helfen soll. Es ersetzt keine professionelle medizinische Beratung, Diagnose oder Behandlung. Alle Vorsorgeuntersuchungen und Tests sollten mit einem qualifizierten medizinischen Fachpersonal besprochen und von diesem angeordnet werden.",
-    "checks": {
-      "generalCheckup": {
-        "title": "General Health Checkup",
-        "description": "A comprehensive physical exam to assess your overall health, blood pressure, weight, and discuss your pregnancy plans."
-      },
-      "bloodWork": {
-        "title": "Complete Blood Count (CBC)",
-        "description": "Checks for anemia, infections, and overall blood health. Identifies iron deficiency that should be addressed before pregnancy."
-      },
-      "pap": {
-        "title": "Pap Smear / Cervical Screening",
-        "description": "Screens for cervical abnormalities. Best done before pregnancy to address any issues without the added complexity of pregnancy."
-      },
-      "thyroid": {
-        "title": "Thyroid Function Test (TSH)",
-        "description": "Thyroid disorders are common and can significantly affect fertility and pregnancy. Both hypothyroidism and hyperthyroidism should be managed before conceiving."
-      },
-      "rubella": {
-        "title": "Rubella (German Measles) Immunity",
-        "description": "Rubella during pregnancy can cause serious birth defects. If you're not immune, vaccination is recommended at least 1 month before trying to conceive."
-      },
-      "hepatitis": {
-        "title": "Hepatitis B & C Screening",
-        "description": "Hepatitis B can be transmitted to the baby during birth. Knowing your status allows for preventive measures. Hepatitis C requires monitoring during pregnancy."
-      },
-      "hiv": {
-        "title": "HIV & STI Screening",
-        "description": "Routine screening for HIV and sexually transmitted infections protects both your health and your future baby's health. Early detection enables effective treatment."
-      },
-      "dental": {
-        "title": "Dental Checkup",
-        "description": "Gum disease is linked to preterm birth and low birth weight. Hormonal changes during pregnancy can worsen existing dental issues. Complete any necessary dental work before conceiving."
-      },
-      "geneticScreening": {
-        "title": "Genetic Carrier Screening",
-        "description": "Tests whether you or your partner carry genes for conditions like cystic fibrosis, sickle cell disease, or thalassemia. Results help with informed family planning decisions."
-      },
-      "mentalHealth": {
-        "title": "Mental Health Assessment",
-        "description": "Discuss any history of depression, anxiety, or other mental health conditions with your healthcare provider. Pre-existing conditions can be managed proactively during pregnancy."
-      },
-      "medications": {
-        "title": "Medication Review",
-        "description": "Review all current medications, supplements, and herbal remedies with your doctor. Some medications are not safe during pregnancy and alternatives should be arranged in advance."
-      },
-      "vaccinations": {
-        "title": "Vaccination Review",
-        "description": "Ensure you're up to date on recommended vaccinations including MMR, varicella, flu, and Tdap. Some vaccines cannot be given during pregnancy, so complete them beforehand."
-      }
     }
   },
   "toolBenefits": {
@@ -8276,17 +8177,6 @@
     "postAnalysisHint": "Upgrade auf Premium für 40 monatliche Analysen und tiefere Einblicke",
     "unlockMore": "Mehr freischalten"
   },
-  "tools.weightGain.subtitle": "Verfolge und analysiere deine Gewichtszunahme in der Schwangerschaft",
-  "toolsInternal.babyGrowth.emptyTitle": "Noch keine Einträge",
-  "toolsInternal.babyGrowth.emptyDesc": "Füge Wachstumseinträge deines Babys hinzu, um Verlauf und Trends zu sehen.",
-  "toolsInternal.babyGrowth.history": "Wachstumsverlauf",
-  "toolsInternal.bumpPhotos.analysisQuotaRemaining": "{{remaining}} Analysen verbleibend",
-  "toolsInternal.weightGain.added": "Gewichtseintrag hinzugefügt",
-  "toolsInternal.weightGain.bmiTitle": "BMI vor der Schwangerschaft",
-  "toolsInternal.weightGain.history": "Verlauf",
-  "toolsInternal.weightGain.invalidWeight": "Bitte gib ein gültiges Gewicht ein",
-  "toolsInternal.weightGain.noEntries": "Noch keine Gewichtseinträge. Füge oben deinen ersten Eintrag hinzu.",
-  "toolsInternal.weightGain.weightPlaceholder": "Gewicht in kg",
   "smartAlerts": {
     "lowHydration": "Denken Sie daran, heute genug zu trinken",
     "lowMood": "Ihre Stimmung war in letzter Zeit niedrig. Sprechen Sie mit jemandem.",
