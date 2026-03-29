@@ -31,6 +31,9 @@ export {
   consumeQuota,
   syncFromServer,
   setTier,
+  canClaimBonus,
+  claimBonus,
+  isPromoActive,
 } from "./quotaManager";
 
 // THIS MUST NEVER BE EXPOSED IN PRODUCTION
