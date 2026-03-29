@@ -2194,8 +2194,17 @@
           "energyBoost": "Energy Boost",
           "fullBody": "Full Body",
           "relaxation": "Relaxation"
-        }
-      }
+        },
+        "subtitle": "AI-powered workout customization"
+      },
+      "tabs": {
+        "setup": "Setup",
+        "workout": "Workout",
+        "resources": "Resources"
+      },
+      "setupDesc": "Customize your workout preferences",
+      "goToWorkout": "Start Workout",
+      "changeSettings": "Change Settings"
     },
     "sleepOptimizer": {
       "title": "AI Sleep Tips",

@@ -2194,8 +2194,17 @@
           "energyBoost": "Energieschub",
           "fullBody": "Ganzkörper",
           "relaxation": "Entspannung"
-        }
-      }
+        },
+        "subtitle": "KI-gestützte Trainingsanpassung"
+      },
+      "tabs": {
+        "setup": "Einrichtung",
+        "workout": "Training",
+        "resources": "Ressourcen"
+      },
+      "setupDesc": "Passen Sie Ihre Trainingseinstellungen an",
+      "goToWorkout": "Training starten",
+      "changeSettings": "Einstellungen ändern"
     },
     "sleepOptimizer": {
       "title": "KI-Schlaftipps",

@@ -2194,8 +2194,17 @@
           "energyBoost": "Mais Energia",
           "fullBody": "Corpo Todo",
           "relaxation": "Relaxamento"
-        }
-      }
+        },
+        "subtitle": "Personalização com IA"
+      },
+      "tabs": {
+        "setup": "Configuração",
+        "workout": "Exercício",
+        "resources": "Recursos"
+      },
+      "setupDesc": "Personalize suas preferências de exercício",
+      "goToWorkout": "Iniciar exercício",
+      "changeSettings": "Alterar configurações"
     },
     "sleepOptimizer": {
       "title": "Dicas IA de Sono",

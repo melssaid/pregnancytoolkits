@@ -2194,8 +2194,17 @@
           "energyBoost": "Enerji Artırma",
           "fullBody": "Tüm Vücut",
           "relaxation": "Rahatlama"
-        }
-      }
+        },
+        "subtitle": "Yapay zeka destekli egzersiz özelleştirme"
+      },
+      "tabs": {
+        "setup": "Ayarlar",
+        "workout": "Egzersiz",
+        "resources": "Kaynaklar"
+      },
+      "setupDesc": "Egzersiz tercihlerinizi özelleştirin",
+      "goToWorkout": "Egzersize Başla",
+      "changeSettings": "Ayarları Değiştir"
     },
     "sleepOptimizer": {
       "title": "Yapay Zeka Uyku İpuçları",

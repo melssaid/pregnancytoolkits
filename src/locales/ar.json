@@ -2194,8 +2194,17 @@
           "energyBoost": "تعزيز الطاقة",
           "fullBody": "تمرين شامل",
           "relaxation": "استرخاء"
-        }
-      }
+        },
+        "subtitle": "تخصيص ذكي للتمارين"
+      },
+      "tabs": {
+        "setup": "الإعداد",
+        "workout": "التمرين",
+        "resources": "المصادر"
+      },
+      "setupDesc": "خصّصي تفضيلات التمرين",
+      "goToWorkout": "ابدأي التمرين",
+      "changeSettings": "تغيير الإعدادات"
     },
     "sleepOptimizer": {
       "title": "نصائح النوم الذكية",
