@@ -220,8 +220,7 @@ export const MarkdownRenderer = forwardRef<HTMLDivElement, MarkdownRendererProps
     };
 
     return {
-      mainContent: parseSection(mainText),
-      disclaimerContent: disclaimerText ? parseSection(disclaimerText) : null,
+      mainContent: parseSection(cleanedText),
     };
   }, [content]);
 
