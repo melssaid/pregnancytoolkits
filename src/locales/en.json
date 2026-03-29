@@ -6620,7 +6620,12 @@
     "startTrial": "Subscribe Now",
     "trialTitle": "Premium Access 🎁",
     "trialDesc": "Unlock all premium features",
-    "maybeLater": "Maybe later"
+    "maybeLater": "Maybe later",
+    "bonusTitle": "🎁 Get 5 Free Points!",
+    "bonusDesc": "Claim 5 bonus AI points for free — once per month, limited time offer!",
+    "bonusClaim": "Claim Now",
+    "bonusSuccess": "5 Points Added! ✅",
+    "bonusSuccessDesc": "Your free points have been added. Enjoy your AI tools!"
   },
   "dailyDashboard": {
     "pageTitle": "Daily Dashboard",

@@ -1,9 +1,12 @@
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { Lock, Sparkles, Brain, Shield, Heart, Crown, X, Clock, Gift } from "lucide-react";
+import { Sparkles, Brain, Shield, Heart, Crown, X, Gift, Zap, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useSubscriptionStatus } from "@/hooks/useSubscriptionStatus";
+import { canClaimBonus, claimBonus, isPromoActive } from "@/services/smartEngine";
+import { useAIUsage } from "@/contexts/AIUsageContext";
 
 interface PaywallSheetProps {
   open: boolean;
@@ -21,12 +24,27 @@ const benefits = [
 export function PaywallSheet({ open, onClose, toolName }: PaywallSheetProps) {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { tier, trialDaysLeft } = useSubscriptionStatus();
+  const { tier } = useSubscriptionStatus();
+  const { refresh } = useAIUsage();
   const showTrialOffer = tier === "free";
+
+  const [bonusAvailable, setBonusAvailable] = useState(() => isPromoActive() && canClaimBonus());
+  const [bonusClaimed, setBonusClaimed] = useState(false);
 
   const handleSubscribe = () => {
     onClose();
     navigate("/pricing-demo");
+  };
+
+  const handleClaimBonus = () => {
+    const result = claimBonus();
+    if (result.success) {
+      setBonusClaimed(true);
+      setBonusAvailable(false);
+      refresh();
+      // Auto-close after 2 seconds
+      setTimeout(() => onClose(), 2000);
+    }
   };
 
   return (
@@ -77,7 +95,6 @@ export function PaywallSheet({ open, onClose, toolName }: PaywallSheetProps) {
                     <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center shadow-lg shadow-primary/25">
                       <Crown className="w-8 h-8 text-primary-foreground" />
                     </div>
-                    {/* Glow ring */}
                     <motion.div
                       className="absolute -inset-2 rounded-3xl border-2 border-primary/20"
                       animate={{ scale: [1, 1.08, 1], opacity: [0.3, 0.6, 0.3] }}
@@ -102,8 +119,60 @@ export function PaywallSheet({ open, onClose, toolName }: PaywallSheetProps) {
                   </div>
                 </div>
 
+                {/* Bonus Points Promo — temporary until Google Play billing */}
+                {bonusAvailable && !bonusClaimed && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.12 }}
+                    className="relative rounded-2xl overflow-hidden border-2 border-emerald-400/40"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 via-teal-500/5 to-emerald-500/10" />
+                    <div className="relative px-4 py-3.5 flex items-center gap-3">
+                      <motion.div
+                        animate={{ rotate: [0, 10, -10, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 2 }}
+                        className="w-11 h-11 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center flex-shrink-0 shadow-md shadow-emerald-500/25"
+                      >
+                        <Zap className="w-5 h-5 text-white" />
+                      </motion.div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-bold text-foreground">
+                          {t('paywall.bonusTitle')}
+                        </p>
+                        <p className="text-[11px] text-muted-foreground leading-relaxed">
+                          {t('paywall.bonusDesc')}
+                        </p>
+                        <Button
+                          onClick={handleClaimBonus}
+                          size="sm"
+                          className="mt-2 h-8 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-xs font-bold hover:from-emerald-600 hover:to-teal-600 shadow-md"
+                        >
+                          <Gift className="w-3.5 h-3.5 me-1.5" />
+                          {t('paywall.bonusClaim')}
+                        </Button>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+
+                {/* Bonus Claimed Success */}
+                {bonusClaimed && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="rounded-2xl border-2 border-emerald-400/40 bg-emerald-500/10 px-4 py-4 flex items-center gap-3"
+                  >
+                    <CheckCircle2 className="w-8 h-8 text-emerald-500 flex-shrink-0" />
+                    <div>
+                      <p className="text-sm font-bold text-foreground">{t('paywall.bonusSuccess')}</p>
+                      <p className="text-[11px] text-muted-foreground">{t('paywall.bonusSuccessDesc')}</p>
+                    </div>
+                  </motion.div>
+                )}
+
                 {/* Free Trial Offer */}
-                {showTrialOffer && (
+                {showTrialOffer && !bonusClaimed && (
                   <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
@@ -128,49 +197,53 @@ export function PaywallSheet({ open, onClose, toolName }: PaywallSheetProps) {
                 )}
 
                 {/* Benefits */}
-                <div className="space-y-2.5">
-                  {benefits.map((benefit, i) => (
-                    <motion.div
-                      key={benefit.key}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.2 + i * 0.08 }}
-                      className="flex items-center gap-3 p-2.5 rounded-xl bg-muted/30"
-                    >
-                      <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                        <benefit.icon className="w-4 h-4 text-primary" />
-                      </div>
-                      <span className="text-sm font-medium text-foreground">
-                        {t(`paywall.benefits.${benefit.key}`)}
-                      </span>
-                    </motion.div>
-                  ))}
-                </div>
+                {!bonusClaimed && (
+                  <div className="space-y-2.5">
+                    {benefits.map((benefit, i) => (
+                      <motion.div
+                        key={benefit.key}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.2 + i * 0.08 }}
+                        className="flex items-center gap-3 p-2.5 rounded-xl bg-muted/30"
+                      >
+                        <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                          <benefit.icon className="w-4 h-4 text-primary" />
+                        </div>
+                        <span className="text-sm font-medium text-foreground">
+                          {t(`paywall.benefits.${benefit.key}`)}
+                        </span>
+                      </motion.div>
+                    ))}
+                  </div>
+                )}
 
                 {/* CTA */}
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 }}
-                  className="space-y-3"
-                >
-                  <Button
-                    onClick={handleSubscribe}
-                    className="w-full h-12 rounded-2xl bg-gradient-to-r from-primary to-primary/80 text-primary-foreground font-bold text-base shadow-lg shadow-primary/25 hover:shadow-primary/35 transition-shadow"
+                {!bonusClaimed && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5 }}
+                    className="space-y-3"
                   >
-                    <Sparkles className="w-4 h-4 me-2" />
-                    {showTrialOffer
-                      ? t('paywall.startTrial')
-                      : t('paywall.subscribeButton')
-                    }
-                  </Button>
-                  <button
-                    onClick={onClose}
-                    className="w-full text-xs text-muted-foreground hover:text-foreground transition-colors py-2"
-                  >
-                    {t('paywall.maybeLater')}
-                  </button>
-                </motion.div>
+                    <Button
+                      onClick={handleSubscribe}
+                      className="w-full h-12 rounded-2xl bg-gradient-to-r from-primary to-primary/80 text-primary-foreground font-bold text-base shadow-lg shadow-primary/25 hover:shadow-primary/35 transition-shadow"
+                    >
+                      <Sparkles className="w-4 h-4 me-2" />
+                      {showTrialOffer
+                        ? t('paywall.startTrial')
+                        : t('paywall.subscribeButton')
+                      }
+                    </Button>
+                    <button
+                      onClick={onClose}
+                      className="w-full text-xs text-muted-foreground hover:text-foreground transition-colors py-2"
+                    >
+                      {t('paywall.maybeLater')}
+                    </button>
+                  </motion.div>
+                )}
               </div>
             </div>
           </motion.div>
