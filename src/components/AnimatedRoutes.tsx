@@ -84,6 +84,7 @@ const VideoLibraryPage = lazy(() => import("@/pages/VideoLibraryPage"));
 const LandingEN = lazy(() => import("@/pages/LandingEN"));
 const AIUsageDashboard = lazy(() => import("@/pages/AIUsageDashboard"));
 const KeywordLibrary = lazy(() => import("@/pages/KeywordLibrary"));
+const ASOGenerator = lazy(() => import("@/pages/ASOGenerator"));
 const LanguageSelection = lazy(() => import("@/pages/LanguageSelection"));
 
 export function AnimatedRoutes() {
@@ -183,6 +184,7 @@ export function AnimatedRoutes() {
         {/* ADMIN */}
         <Route path="/admin/ai-usage" element={<PageTransition><AIUsageDashboard /></PageTransition>} />
         <Route path="/admin/keywords" element={<PageTransition><KeywordLibrary /></PageTransition>} />
+        <Route path="/admin/aso-generator" element={<PageTransition><ASOGenerator /></PageTransition>} />
 
         {/* LEGACY REDIRECTS — deleted tools */}
         <Route path="/tools/smart-walking-coach" element={<Navigate to="/tools/ai-fitness-coach" replace />} />
