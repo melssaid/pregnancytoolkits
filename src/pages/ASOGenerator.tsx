@@ -87,7 +87,9 @@ export default function ASOGenerator() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [copiedField, setCopiedField] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState("select");
-
+  const [selectedCountries, setSelectedCountries] = useState<Set<string>>(new Set());
+  const [localizedListings, setLocalizedListings] = useState<CountryListing[]>([]);
+  const [isGeneratingLocal, setIsGeneratingLocal] = useState(false);
   // Fetch data
   const { data: categories = [] } = useQuery({
     queryKey: ["seo-categories"],
