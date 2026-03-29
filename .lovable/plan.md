@@ -1,57 +1,64 @@
-# تحسين بطاقات قسم "أحلم بطفل" بنفس تصميم أكاديمية الخصوبة
 
-## الملفات المتأثرة
+# خطة إصلاح الترجمات الطبية المفقودة والخاطئة
 
-1. `src/pages/tools/NutritionSupplementsGuide.tsx`
-2. `src/pages/tools/TWWCompanion.tsx`
-3. `src/pages/tools/PreconceptionCheckup.tsx` (تحسينات طفيفة)
+## المشاكل المكتشفة
 
-## التصميم المرجعي
+### 1. نصوص إنجليزية خام في 6 ملفات لغة (AR, DE, TR, FR, ES, PT)
 
-سنستخدم نفس المكونات التي صُممت في `FertilityAcademy.tsx`:
+**قسم `preconceptionCheckup` — ~30 مفتاح لكل لغة:**
+- `ai.title/analyze/readinessTitle/priorityTitle/tipsTitle/timelineTitle` — 6 مفاتيح إنجليزية
+- `categories.essential/screening/specialized/medications` — 4 مفاتيح إنجليزية
+- `checks` — 12 فحص × (title + description) = **24 مفتاح إنجليزي** (generalCheckup, bloodWork, pap, thyroid, rubella, hepatitis, hiv, dental, geneticScreening, mentalHealth, medications, vaccinations)
 
-- **AccordionItem**: بطاقات `rounded-2xl` مع شريط جانبي ملون، `backdrop-blur-sm`، `shadow-md` عند الفتح
-- **NumberBadge**: دائرة متدرجة `w-7 h-7` مع رقم أبيض
-- **ContentBlock**: أيقونة + خلفية متدرجة + `text-[13px] leading-[1.9]`
-- **TipBlock**: أيقونة + حدود جانبية ملونة + `rounded-xl`
-- **SectionHeader**: أيقونة + عداد + خط فاصل
+**قسم `preconceptionNutrition.categories` — ~30 مفتاح لكل لغة:**
+- 10 فئات × (title + description + foods) = **30 مفتاح إنجليزي** (folateRich, ironSources, omega3, antioxidants, zinc, vitaminD, calcium, protein, hydration, avoidList)
 
----
+**قسم `prenatalVitamins.vitamins` — ~36 مفتاح لكل لغة:**
+- 12 فيتامين × (title + description + dosage) = **36 مفتاح إنجليزي**
 
-### 1. NutritionSupplementsGuide.tsx — إعادة تصميم كاملة
+**قسم `preeclampsia` في FR فقط — ~12 مفتاح:**
+- `highRiskFactors, moderateRiskFactors, firstPregnancy, previousPreeclampsia, chronicHypertension, kidneyDisease, obesity, age35Plus, multiplePregnancy, familyHistory, calculateRisk` — كلها إنجليزية
 
-**تبويب التغذية (Nutrition):**
+**قسم `gestationalDiabetes` في FR فقط — ~8 مفاتيح:**
+- `age35Plus, overweight, familyHistory, previousGDM, previousLargeBaby, pcos, calculateRisk, prevention, aiGuidance` — كلها إنجليزية
 
-- استبدال `Card` البسيطة بـ `AccordionItem` مع `NumberBadge` متدرج بلون أخضر `from-[hsl(160,45%,45%)] to-[hsl(140,40%,50%)]`
-- تحويل وصف الطعام إلى `ContentBlock` مع أيقونة `Apple`/`Salad`
-- تحويل قائمة الأطعمة إلى `TipBlock` بلون أخضر
-- إضافة `SectionHeader` فوق كل تبويب مع عداد البطاقات
+### 2. ترجمات ألمانية خاطئة (مجال مختلف)
+- `"Vorurteilsvolle Ernährung"` = "تغذية متحيزة" — يجب أن تكون `"Ernährung und Nahrungsergänzungsmittel vor der Empfängnis"` (تغذية ما قبل الحمل)
+- `"Vorführungen verfolgt"` = "عروض تقديمية مُتتبعة" — يجب أن تكون `"Untersuchungen verfolgt"` (فحوصات مُتتبعة)
 
-**تبويب المكملات (Supplements):**
+### 3. المجموع التقريبي: ~540 ترجمة طبية مفقودة + إصلاحات جودة
 
-- استبدال البطاقات بـ `AccordionItem` مع شارة `CheckCircle` بدل الرقم
-- تحويل الوصف إلى `ContentBlock` مع أيقونة `Pill`
-- تحويل الجرعة إلى `TipBlock` بلون برتقالي/ذهبي
-- الإبقاء على عداد التقدم `checked/total` مع تصميم أجمل
+## خطة التنفيذ
 
-### 2. TWWCompanion.tsx — ترقية البطاقات
+### الملفات المتأثرة: 6 ملفات لغة
+`ar.json`, `de.json`, `tr.json`, `fr.json`, `es.json`, `pt.json`
 
-- استبدال `Card` بنفس نمط `AccordionItem` مع `rounded-2xl`، شريط جانبي `border-l-3` بلون وردي/أحمر
-- الإبقاء على `NumberBadge` الموجود (بالفعل دائري) لكن إضافة التدرج اللوني `from-destructive to-destructive/70`
-- تحويل محتوى اليوم إلى `ContentBlock` مع أيقونة `Heart`
-- تحويل النصيحة إلى `TipBlock` بلون `destructive` مع أيقونة `Smile`
-- إضافة `SectionHeader` أعلى القائمة
+### التغييرات لكل ملف:
 
-### 3. PreconceptionCheckup.tsx — تحسينات طفيفة
+**1. ترجمة `preconceptionCheckup.ai` (6 مفاتيح × 6 لغات)**
+- عناوين AI مثل "رؤى التحضير"، "تحليل استعدادي"، إلخ.
 
-- تحويل بطاقات الفحوصات الداخلية من `rounded-xl` إلى `rounded-2xl`
-- إضافة `backdrop-blur-sm` للبطاقات المغلقة
-- تحسين ترويسات الفئات بإضافة خط فاصل مشابه لـ `SectionHeader`
+**2. ترجمة `preconceptionCheckup.categories` (4 مفاتيح × 6 لغات)**
+- أسماء الفئات الطبية: "الفحوصات الأساسية"، "فحوصات العدوى والمناعة"، إلخ.
 
-## التفاصيل التقنية
+**3. ترجمة `preconceptionCheckup.checks` (24 مفتاح × 6 لغات)**
+- أسماء الفحوصات الطبية مع أوصافها: "فحص الغدة الدرقية TSH"، "فحص التهاب الكبد"، إلخ.
+- يجب استخدام المصطلحات الطبية المعتمدة في كل لغة
 
-- إنشاء نفس المكونات المحلية (`AccordionItem`, `NumberBadge`, `ContentBlock`, `TipBlock`, `SectionHeader`) داخل كل ملف بنفس الأسلوب
-- لا تغيير في مفاتيح الترجمة
-- دعم RTL كامل مع تبديل `border-l` ↔ `border-r`
-- ألوان مخصصة لكل أداة تتناسب مع هويتها
-- الترجمات باللغات السبع لكل البطاقات والبنود الداخلية
+**4. ترجمة `preconceptionNutrition.categories` (30 مفتاح × 6 لغات)**
+- فئات التغذية: "أطعمة غنية بالفولات"، "مصادر الحديد"، "أوميغا-3"، إلخ.
+
+**5. ترجمة `prenatalVitamins.vitamins` (36 مفتاح × 6 لغات)**
+- أسماء المكملات والجرعات: "حمض الفوليك"، "الحديد"، "فيتامين د"، إلخ.
+
+**6. إصلاح `preeclampsia` + `gestationalDiabetes` في FR**
+- ترجمة ~20 مفتاح فرنسي متبقي
+
+**7. إصلاح ترجمات ألمانية خاطئة**
+- `Vorurteilsvolle` → مصطلح طبي صحيح
+- `Vorführungen` → `Untersuchungen`
+
+### ضوابط الجودة الطبية:
+- استخدام المصطلحات الطبية الرسمية المعتمدة (مثل: Gestationsdiabetes بالألمانية، diabète gestationnel بالفرنسية)
+- الحفاظ على الاختصارات الطبية العالمية (TSH, CBC, HIV, PCOS, BMI, IOM, WHO)
+- عدم ترجمة أسماء الأدوية أو الاختصارات المعروفة عالمياً
