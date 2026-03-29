@@ -32,7 +32,7 @@ interface AIInsightCardProps {
   printTitle?: string;
 }
 
-import { resolveWeight, type AIToolType, type SmartSection } from '@/services/smartEngine/types';
+import { type AIToolType, type SmartSection } from '@/services/smartEngine/types';
 /** Upgrade CTA shown when quota is exhausted — replaces dead buttons */
 const QuotaExhaustedCTA: React.FC<{ icon?: React.ReactNode; toolType?: AIToolType; section?: SmartSection }> = ({ icon, toolType, section }) => {
   const { t } = useTranslation();
