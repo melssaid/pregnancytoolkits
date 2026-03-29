@@ -57,16 +57,40 @@ interface CountryListing {
 }
 
 const COUNTRY_PRESETS = [
+  // الخليج والشرق الأوسط
   { code: "SA", flag: "🇸🇦", name: "السعودية", lang: "ar", hints: "التقويم الهجري، متابعة الحمل، تطبيق حمل سعودي، رعاية الأم" },
   { code: "EG", flag: "🇪🇬", name: "مصر", lang: "ar", hints: "متابعة الحمل مجاناً، بدون نت، تطبيق حمل مصري، أمومة" },
   { code: "AE", flag: "🇦🇪", name: "الإمارات", lang: "ar", hints: "رعاية صحة الأم، تطبيق حمل إماراتي، متابعة الجنين" },
+  { code: "KW", flag: "🇰🇼", name: "الكويت", lang: "ar", hints: "متابعة الحمل كويتي، حاسبة ولادة، رعاية الأم والطفل" },
+  { code: "JO", flag: "🇯🇴", name: "الأردن", lang: "ar", hints: "تطبيق حمل أردني، متابعة الحمل، صحة الأم" },
+  { code: "IQ", flag: "🇮🇶", name: "العراق", lang: "ar", hints: "متابعة حمل عراقي، حاسبة موعد الولادة، أمومة" },
+  { code: "MA", flag: "🇲🇦", name: "المغرب", lang: "ar", hints: "تتبع الحمل مغربي، حاسبة الولادة، صحة الأم والجنين" },
+  { code: "DZ", flag: "🇩🇿", name: "الجزائر", lang: "ar", hints: "متابعة الحمل جزائري، تطبيق أمومة، حاسبة ولادة" },
+  { code: "TN", flag: "🇹🇳", name: "تونس", lang: "ar", hints: "تطبيق حمل تونسي، متابعة الحمل، رعاية الأم" },
+  { code: "LY", flag: "🇱🇾", name: "ليبيا", lang: "ar", hints: "متابعة حمل ليبي، حاسبة ولادة، صحة الأم" },
+  { code: "SD", flag: "🇸🇩", name: "السودان", lang: "ar", hints: "تطبيق حمل سوداني، متابعة الحمل، أمومة" },
+  // جنوب آسيا
+  { code: "PK", flag: "🇵🇰", name: "باكستان", lang: "en", hints: "Pregnancy tracker Urdu, Hamal ki hifazat, Baby growth Pakistan" },
+  { code: "IN", flag: "🇮🇳", name: "الهند", lang: "en", hints: "Pregnancy tracker Hindi, Garbhavastha, Baby growth India, Free pregnancy app" },
+  { code: "BD", flag: "🇧🇩", name: "بنغلاديش", lang: "en", hints: "Pregnancy tracker Bangla, Gorbhobotha, Baby growth Bangladesh" },
+  // أوروبا
   { code: "DE", flag: "🇩🇪", name: "ألمانيا", lang: "de", hints: "Schwangerschaft Tracker, Geburtsterminrechner, Baby Entwicklung" },
   { code: "FR", flag: "🇫🇷", name: "فرنسا", lang: "fr", hints: "Suivi de grossesse, Calculateur de date, Bébé croissance" },
   { code: "ES", flag: "🇪🇸", name: "إسبانيا", lang: "es", hints: "Seguimiento de embarazo, Calculadora de fecha, Bebé crecimiento" },
+  { code: "IT", flag: "🇮🇹", name: "إيطاليا", lang: "it", hints: "Tracker gravidanza, Calcolatrice data parto, Crescita bambino" },
+  { code: "NL", flag: "🇳🇱", name: "هولندا", lang: "nl", hints: "Zwangerschap tracker, Uitgerekende datum, Baby groei" },
+  { code: "SE", flag: "🇸🇪", name: "السويد", lang: "sv", hints: "Graviditetsapp, Beräknad förlossning, Bebistillväxt" },
+  { code: "PL", flag: "🇵🇱", name: "بولندا", lang: "pl", hints: "Ciąża tracker, Kalkulator terminu porodu, Wzrost dziecka" },
+  // تركيا وأمريكا اللاتينية
   { code: "TR", flag: "🇹🇷", name: "تركيا", lang: "tr", hints: "Hamilelik takipçisi, Doğum tarihi hesaplama, Bebek büyüme" },
   { code: "BR", flag: "🇧🇷", name: "البرازيل", lang: "pt", hints: "Rastreador de gravidez, Calculadora de data, Bebê crescimento" },
+  { code: "MX", flag: "🇲🇽", name: "المكسيك", lang: "es", hints: "Seguimiento embarazo México, Calculadora parto, Bebé crecimiento" },
+  // إنجلوفون
   { code: "US", flag: "🇺🇸", name: "أمريكا", lang: "en", hints: "Pregnancy tracker, Due date calculator, Baby growth, TTC" },
   { code: "GB", flag: "🇬🇧", name: "بريطانيا", lang: "en", hints: "Pregnancy tracker NHS, Due date, Baby development tracker" },
+  { code: "NG", flag: "🇳🇬", name: "نيجيريا", lang: "en", hints: "Pregnancy tracker Nigeria, Baby growth, Free pregnancy app Africa" },
+  { code: "ID", flag: "🇮🇩", name: "إندونيسيا", lang: "id", hints: "Pelacak kehamilan, Kalkulator tanggal lahir, Pertumbuhan bayi" },
+  { code: "MY", flag: "🇲🇾", name: "ماليزيا", lang: "ms", hints: "Penjejak kehamilan, Kalkulator tarikh lahir, Pertumbuhan bayi" },
 ];
 
 // ═══════════════════════════════════════════
