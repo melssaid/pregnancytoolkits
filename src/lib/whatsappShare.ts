@@ -4,7 +4,7 @@
  * Plus Unicode symbols for visual appeal
  */
 
-const APP_SIGNATURE = `\n━━━━━━━━━━━━━━━━━━━━\n🤰 _Pregnancy Toolkits_\n💕 pregnancytoolkits.lovable.app`;
+const APP_SIGNATURE = `\n━━━━━━━━━━━━━━━━━━━━\n🤰 _Pregnancy Toolkits_`;
 
 /** Create a visual progress bar using Unicode blocks */
 function progressBar(percent: number, width = 10): string {
