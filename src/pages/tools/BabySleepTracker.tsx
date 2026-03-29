@@ -147,7 +147,7 @@ const BabySleepTracker = () => {
     if (sessions.length < 3) return null;
     const weeklyAvg = getLast7DaysAverage();
     const avgHours = weeklyAvg / 60;
-    let score = avgHours >= 12 && avgHours <= 17 ? 90 : avgHours >= 10 && avgHours <= 19 ? 70 : avgHours >= 8 ? 50 : 30;
+    const score = avgHours >= 12 && avgHours <= 17 ? 90 : avgHours >= 10 && avgHours <= 19 ? 70 : avgHours >= 8 ? 50 : 30;
     const days = eachDayOfInterval({ start: subDays(new Date(), 6), end: new Date() });
     let daysWithData = 0;
     days.forEach((day) => {
