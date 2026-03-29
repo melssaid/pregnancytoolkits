@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useSmartInsight } from '@/hooks/useSmartInsight';
 import { AIResponseFrame } from '@/components/ai/AIResponseFrame';
 import { AIErrorBanner } from '@/components/ai/AIErrorBanner';
+import { MiniUsageBar } from '@/components/ai/MiniUsageBar';
 import {
   organIconMap,
   AnimatedDevelopmentIcon,
