@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import {
   Search, Sparkles, Copy, Check, ChevronDown, RotateCcw,
   FileText, Type, AlignLeft, Hash, AlertTriangle, Loader2,
+  Globe, MapPin,
 } from "lucide-react";
 import { Layout } from "@/components/Layout";
 import { SEOHead } from "@/components/SEOHead";
