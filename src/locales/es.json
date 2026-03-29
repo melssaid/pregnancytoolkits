@@ -4569,72 +4569,72 @@
     },
     "preconceptionCheckup": {
       "ai": {
-        "title": "Preparation Insights",
-        "analyze": "Analyze My Preparation",
-        "readinessTitle": "Readiness Overview",
-        "priorityTitle": "Priority Recommendations",
-        "tipsTitle": "Helpful Tips",
-        "timelineTitle": "Suggested Timeline"
+        "title": "Perspectivas de preparación",
+        "analyze": "Analizar mi preparación",
+        "readinessTitle": "Resumen de preparación",
+        "priorityTitle": "Recomendaciones prioritarias",
+        "tipsTitle": "Consejos útiles",
+        "timelineTitle": "Cronograma sugerido"
       },
       "allComplete": "¡Gran preparación! Discuta sus resultados con su proveedor de atención médica.",
       "categories": {
-        "essential": "Essential Health Checks",
-        "screening": "Infection & Immunity Screening",
-        "specialized": "Specialized Assessments",
-        "medications": "Medications & Vaccinations"
+        "essential": "Controles de salud esenciales",
+        "screening": "Detección de infecciones e inmunidad",
+        "specialized": "Evaluaciones especializadas",
+        "medications": "Medicamentos y vacunas"
       },
       "checks": {
         "generalCheckup": {
-          "title": "General Health Checkup",
-          "description": "A comprehensive physical exam to assess your overall health, blood pressure, weight, and discuss your pregnancy plans."
+          "title": "Examen de salud general",
+          "description": "Un examen físico integral para evaluar su salud general, presión arterial, peso y discutir sus planes de embarazo."
         },
         "bloodWork": {
-          "title": "Complete Blood Count (CBC)",
-          "description": "Checks for anemia, infections, and overall blood health. Identifies iron deficiency that should be addressed before pregnancy."
+          "title": "Hemograma completo (CBC)",
+          "description": "Verifica anemia, infecciones y salud sanguínea general. Identifica deficiencia de hierro que debe tratarse antes del embarazo."
         },
         "pap": {
-          "title": "Pap Smear / Cervical Screening",
-          "description": "Screens for cervical abnormalities. Best done before pregnancy to address any issues without the added complexity of pregnancy."
+          "title": "Citología cervical (Papanicolaou)",
+          "description": "Detecta anomalías cervicales. Es mejor realizarla antes del embarazo para abordar cualquier problema sin la complejidad adicional del embarazo."
         },
         "thyroid": {
-          "title": "Thyroid Function Test (TSH)",
-          "description": "Thyroid disorders are common and can significantly affect fertility and pregnancy. Both hypothyroidism and hyperthyroidism should be managed before conceiving."
+          "title": "Prueba de función tiroidea (TSH)",
+          "description": "Los trastornos tiroideos son comunes y pueden afectar significativamente la fertilidad y el embarazo. Tanto el hipotiroidismo como el hipertiroidismo deben controlarse antes de concebir."
         },
         "rubella": {
-          "title": "Rubella (German Measles) Immunity",
-          "description": "Rubella during pregnancy can cause serious birth defects. If you're not immune, vaccination is recommended at least 1 month before trying to conceive."
+          "title": "Inmunidad contra la rubéola",
+          "description": "La rubéola durante el embarazo puede causar defectos congénitos graves. Si no está inmunizada, se recomienda la vacunación al menos 1 mes antes de intentar concebir."
         },
         "hepatitis": {
-          "title": "Hepatitis B & C Screening",
-          "description": "Hepatitis B can be transmitted to the baby during birth. Knowing your status allows for preventive measures. Hepatitis C requires monitoring during pregnancy."
+          "title": "Detección de hepatitis B y C",
+          "description": "La hepatitis B puede transmitirse al bebé durante el parto. Conocer su estado permite tomar medidas preventivas. La hepatitis C requiere seguimiento durante el embarazo."
         },
         "hiv": {
-          "title": "HIV & STI Screening",
-          "description": "Routine screening for HIV and sexually transmitted infections protects both your health and your future baby's health. Early detection enables effective treatment."
+          "title": "Detección de VIH e ITS",
+          "description": "La detección rutinaria de VIH e infecciones de transmisión sexual protege su salud y la de su futuro bebé. La detección temprana permite un tratamiento eficaz."
         },
         "dental": {
-          "title": "Dental Checkup",
-          "description": "Gum disease is linked to preterm birth and low birth weight. Hormonal changes during pregnancy can worsen existing dental issues. Complete any necessary dental work before conceiving."
+          "title": "Revisión dental",
+          "description": "Las enfermedades de las encías están relacionadas con el parto prematuro y el bajo peso al nacer. Los cambios hormonales durante el embarazo pueden empeorar los problemas dentales existentes."
         },
         "geneticScreening": {
-          "title": "Genetic Carrier Screening",
-          "description": "Tests whether you or your partner carry genes for conditions like cystic fibrosis, sickle cell disease, or thalassemia. Results help with informed family planning decisions."
+          "title": "Prueba de portador genético",
+          "description": "Determina si usted o su pareja son portadores de genes para condiciones como fibrosis quística, anemia falciforme o talasemia."
         },
         "mentalHealth": {
-          "title": "Mental Health Assessment",
-          "description": "Discuss any history of depression, anxiety, or other mental health conditions with your healthcare provider. Pre-existing conditions can be managed proactively during pregnancy."
+          "title": "Evaluación de salud mental",
+          "description": "Comente cualquier historial de depresión, ansiedad u otras condiciones de salud mental con su médico. Las condiciones preexistentes pueden manejarse proactivamente durante el embarazo."
         },
         "medications": {
-          "title": "Medication Review",
-          "description": "Review all current medications, supplements, and herbal remedies with your doctor. Some medications are not safe during pregnancy and alternatives should be arranged in advance."
+          "title": "Revisión de medicamentos",
+          "description": "Revise todos los medicamentos, suplementos y remedios herbales actuales con su médico. Algunos medicamentos no son seguros durante el embarazo y deben organizarse alternativas con anticipación."
         },
         "vaccinations": {
-          "title": "Vaccination Review",
-          "description": "Ensure you're up to date on recommended vaccinations including MMR, varicella, flu, and Tdap. Some vaccines cannot be given during pregnancy, so complete them beforehand."
+          "title": "Revisión de vacunas",
+          "description": "Asegúrese de estar al día con las vacunas recomendadas incluyendo triple viral, varicela, gripe y Tdap. Algunas vacunas no pueden administrarse durante el embarazo."
         }
       },
       "disclaimer": "Esta lista de verificación es una referencia educativa que le ayudará a organizar conversaciones con su proveedor de atención médica. No reemplaza el consejo, diagnóstico o tratamiento médico profesional. Todos los exámenes y pruebas deben ser discutidos y ordenados por un profesional de la salud calificado.",
-      "progressLabel": "Seguimiento de las proyecciones",
+      "progressLabel": "Exámenes registrados",
       "tracked": "rastreado",
       "related": {
         "academy": "Academia de fertilidad",
@@ -4646,54 +4646,54 @@
     "preconceptionNutrition": {
       "categories": {
         "folateRich": {
-          "title": "Folate-Rich Foods",
-          "description": "Folate (vitamin B9) is critical for preventing neural tube defects and supporting healthy cell division. The recommended daily intake when trying to conceive is 400–800mcg. Start folate supplementation at least 1–3 months before conception.",
-          "foods": "Dark leafy greens (spinach, kale), lentils, chickpeas, asparagus, broccoli, avocado, fortified cereals, citrus fruits, beets, Brussels sprouts"
+          "title": "Alimentos ricos en folato",
+          "description": "El folato (vitamina B9) es fundamental para prevenir defectos del tubo neural y apoyar la división celular saludable. La ingesta diaria recomendada al intentar concebir es de 400-800 µg. Comience la suplementación con folato al menos 1-3 meses antes de la concepción.",
+          "foods": "Vegetales de hojas verdes oscuras (espinaca, col rizada), lentejas, garbanzos, espárragos, brócoli, aguacate, cereales fortificados, cítricos, remolacha, coles de Bruselas"
         },
         "ironSources": {
-          "title": "Iron-Rich Foods",
-          "description": "Iron supports healthy blood production and oxygen transport, which are essential for a developing pregnancy. Women of childbearing age need about 18mg daily. Iron deficiency is common and can affect ovulation and cycle regularity.",
-          "foods": "Red meat, poultry, fish, lentils, spinach, fortified cereals, pumpkin seeds, tofu, dark chocolate, quinoa, dried apricots"
+          "title": "Alimentos ricos en hierro",
+          "description": "El hierro apoya la producción saludable de sangre y el transporte de oxígeno, esenciales para el embarazo. Las mujeres en edad fértil necesitan aproximadamente 18 mg diarios. La deficiencia de hierro es común y puede afectar la ovulación y la regularidad del ciclo.",
+          "foods": "Carne roja, aves, pescado, lentejas, espinaca, cereales fortificados, semillas de calabaza, tofu, chocolate oscuro, quinoa, albaricoques secos"
         },
         "omega3": {
-          "title": "Omega-3 Fatty Acids",
-          "description": "Omega-3s support hormone production, reduce inflammation, and are essential for fetal brain and eye development. DHA and EPA are the most bioavailable forms. ALA from plant sources is also beneficial but converts less efficiently.",
-          "foods": "Salmon, sardines, mackerel, walnuts, chia seeds, flaxseeds, hemp seeds, algae-based DHA supplements, fortified eggs"
+          "title": "Ácidos grasos omega-3",
+          "description": "Los omega-3 apoyan la producción hormonal, reducen la inflamación y son esenciales para el desarrollo cerebral y ocular del feto. DHA y EPA son las formas más biodisponibles.",
+          "foods": "Salmón, sardinas, caballa, nueces, semillas de chía, semillas de lino, semillas de cáñamo, suplementos de DHA de algas, huevos enriquecidos"
         },
         "antioxidants": {
-          "title": "Antioxidant-Rich Foods",
-          "description": "Antioxidants protect eggs and sperm from oxidative stress caused by free radicals. Vitamins C and E, selenium, and CoQ10 are particularly important. A colorful, varied diet provides a broad spectrum of antioxidants.",
-          "foods": "Berries (blueberries, strawberries, raspberries), tomatoes, bell peppers, nuts, seeds, green tea, dark leafy greens, sweet potatoes, carrots"
+          "title": "Alimentos ricos en antioxidantes",
+          "description": "Los antioxidantes protegen óvulos y espermatozoides del estrés oxidativo. Las vitaminas C y E, el selenio y el CoQ10 son particularmente importantes. Una dieta colorida y variada proporciona un amplio espectro de antioxidantes.",
+          "foods": "Bayas (arándanos, fresas, frambuesas), tomates, pimientos, nueces, semillas, té verde, vegetales de hojas verdes, batata, zanahorias"
         },
         "zinc": {
-          "title": "Zinc Sources",
-          "description": "Zinc is essential for hormone balance, egg quality, and cell division. It also plays a crucial role in male fertility — supporting sperm production and testosterone levels. The recommended daily intake is 8mg for women.",
-          "foods": "Oysters, beef, pumpkin seeds, cashews, chickpeas, lentils, yogurt, cheese, whole grains, dark chocolate"
+          "title": "Fuentes de zinc",
+          "description": "El zinc es esencial para el equilibrio hormonal, la calidad de los óvulos y la división celular. También juega un papel crucial en la fertilidad masculina. La ingesta diaria recomendada es de 8 mg para mujeres.",
+          "foods": "Ostras, carne de res, semillas de calabaza, anacardos, garbanzos, lentejas, yogur, queso, granos integrales, chocolate oscuro"
         },
         "vitaminD": {
-          "title": "Vitamin D Sources",
-          "description": "Vitamin D receptors are found in the ovaries and uterus, suggesting a direct role in fertility. Deficiency is associated with irregular cycles, PCOS, and reduced IVF success rates. Many people are deficient, especially in northern climates.",
-          "foods": "Sunlight exposure (15–20 min daily), fatty fish (salmon, tuna), egg yolks, fortified milk, mushrooms exposed to UV light, cod liver oil"
+          "title": "Fuentes de vitamina D",
+          "description": "Los receptores de vitamina D se encuentran en los ovarios y el útero, lo que sugiere un papel directo en la fertilidad. La deficiencia se asocia con ciclos irregulares, SOP y tasas reducidas de éxito de FIV.",
+          "foods": "Exposición solar (15-20 min/día), pescado graso (salmón, atún), yemas de huevo, leche fortificada, champiñones expuestos a UV, aceite de hígado de bacalao"
         },
         "calcium": {
-          "title": "Calcium Sources",
-          "description": "Calcium is vital for reproductive function, supporting the development of embryonic structures. Adequate calcium intake before pregnancy helps build reserves for the baby's skeletal development. Aim for 1000mg daily.",
-          "foods": "Dairy products (milk, yogurt, cheese), fortified plant milks, kale, broccoli, almonds, sardines with bones, tofu, figs"
+          "title": "Fuentes de calcio",
+          "description": "El calcio es vital para la función reproductiva y apoya el desarrollo de las estructuras embrionarias. La ingesta adecuada de calcio antes del embarazo ayuda a construir reservas para el desarrollo esquelético del bebé. Objetivo: 1000 mg/día.",
+          "foods": "Productos lácteos (leche, yogur, queso), leches vegetales fortificadas, col rizada, brócoli, almendras, sardinas con hueso, tofu, higos"
         },
         "protein": {
-          "title": "Quality Protein",
-          "description": "Protein provides the building blocks for hormones and new cells. Research suggests that replacing some animal protein with plant protein may improve fertility outcomes. Aim for a balanced mix of both sources.",
-          "foods": "Eggs, lean poultry, fish, legumes (beans, lentils), nuts, seeds, Greek yogurt, tofu, tempeh, quinoa"
+          "title": "Proteína de calidad",
+          "description": "La proteína proporciona los componentes básicos para hormonas y células nuevas. La investigación sugiere que reemplazar parte de la proteína animal con proteína vegetal puede mejorar los resultados de fertilidad.",
+          "foods": "Huevos, aves magras, pescado, legumbres (frijoles, lentejas), nueces, semillas, yogur griego, tofu, tempeh, quinoa"
         },
         "hydration": {
-          "title": "Hydration",
-          "description": "Water is essential for cervical mucus production, nutrient transport, and hormone balance. Dehydration can reduce cervical mucus quality and affect blood flow to the reproductive organs. Aim for 8–10 glasses daily.",
-          "foods": "Water, herbal teas (raspberry leaf, ginger), coconut water, water-rich fruits (watermelon, cucumber, oranges), broths"
+          "title": "Hidratación",
+          "description": "El agua es esencial para la producción de moco cervical, transporte de nutrientes y equilibrio hormonal. La deshidratación puede reducir la calidad del moco cervical. Objetivo: 8-10 vasos diarios.",
+          "foods": "Agua, infusiones (hoja de frambuesa, jengibre), agua de coco, frutas ricas en agua (sandía, pepino, naranjas), caldos"
         },
         "avoidList": {
-          "title": "Foods to Minimize",
-          "description": "Certain foods and substances may negatively impact fertility. While occasional consumption is unlikely to cause harm, reducing these when actively trying to conceive can optimize your body's readiness.",
-          "foods": "Excessive caffeine (>200mg/day), alcohol, trans fats, highly processed foods, raw fish (sushi), high-mercury fish (swordfish, king mackerel), excessive sugar, artificial sweeteners"
+          "title": "Alimentos a reducir",
+          "description": "Ciertos alimentos y sustancias pueden afectar negativamente la fertilidad. Aunque el consumo ocasional probablemente no cause daño, reducirlos al intentar concebir puede optimizar la preparación de su cuerpo.",
+          "foods": "Cafeína excesiva (>200 mg/día), alcohol, grasas trans, alimentos ultraprocesados, pescado crudo (sushi), pescados altos en mercurio, azúcar excesiva, edulcorantes artificiales"
         }
       },
       "categoriesCount": "{{count}} categorías nutricionales"
@@ -4702,64 +4702,64 @@
       "supplementsCount": "Suplementos {{count}} para revisar",
       "vitamins": {
         "folicAcid": {
-          "title": "Folic Acid (Vitamin B9)",
-          "description": "The most important preconception supplement. Folic acid significantly reduces the risk of neural tube defects (spina bifida, anencephaly). Start taking it at least 1–3 months before trying to conceive for maximum benefit.",
-          "dosage": "Recommended: 400–800mcg daily. Some women (with history of NTDs, on certain medications) may need 4–5mg — consult your doctor."
+          "title": "Ácido fólico (Vitamina B9)",
+          "description": "El suplemento más importante antes del embarazo. El ácido fólico reduce significativamente el riesgo de defectos del tubo neural (espina bífida, anencefalia). Comience al menos 1-3 meses antes de intentar concebir.",
+          "dosage": "Recomendado: 400-800 µg diarios. Algunas mujeres pueden necesitar 4-5 mg — consulte a su médico."
         },
         "iron": {
-          "title": "Iron",
-          "description": "Iron requirements increase dramatically during pregnancy (from 18mg to 27mg daily). Building iron stores before conception helps prevent iron-deficiency anemia, which is associated with preterm birth and low birth weight.",
-          "dosage": "Recommended: 18mg daily pre-pregnancy. Take with vitamin C to improve absorption. Avoid taking with calcium or tea."
+          "title": "Hierro",
+          "description": "Los requisitos de hierro aumentan drásticamente durante el embarazo (de 18 mg a 27 mg diarios). Acumular reservas de hierro antes de la concepción ayuda a prevenir la anemia por deficiencia de hierro.",
+          "dosage": "Recomendado: 18 mg diarios antes del embarazo. Tomar con vitamina C para mejorar la absorción. Evitar con calcio o té."
         },
         "vitaminD": {
-          "title": "Vitamin D",
-          "description": "Vitamin D supports immune function, calcium absorption, and reproductive health. Deficiency is linked to pregnancy complications including gestational diabetes and preeclampsia. Most people need supplementation, especially in winter months.",
-          "dosage": "Recommended: 600–2000 IU daily. Your doctor may test your levels and recommend a higher dose if deficient."
+          "title": "Vitamina D",
+          "description": "La vitamina D apoya la función inmune, la absorción de calcio y la salud reproductiva. Su deficiencia se vincula con complicaciones del embarazo incluyendo diabetes gestacional y preeclampsia.",
+          "dosage": "Recomendado: 600-2000 UI diarias. Su médico puede analizar sus niveles y recomendar una dosis mayor si hay deficiencia."
         },
         "omega3DHA": {
           "title": "Omega-3 DHA",
-          "description": "DHA is crucial for fetal brain and retinal development. Starting supplementation before pregnancy ensures adequate stores from the earliest stages of embryonic development. EPA also supports maternal cardiovascular health.",
-          "dosage": "Recommended: 200–300mg DHA daily. Choose supplements tested for mercury and contaminants."
+          "description": "El DHA es crucial para el desarrollo cerebral y retiniano del feto. Comenzar la suplementación antes del embarazo asegura reservas adecuadas desde las primeras etapas del desarrollo embrionario.",
+          "dosage": "Recomendado: 200-300 mg de DHA diarios. Elija suplementos analizados para mercurio y contaminantes."
         },
         "calcium": {
-          "title": "Calcium",
-          "description": "If the mother's calcium intake is insufficient during pregnancy, the baby will draw calcium from her bones. Building strong calcium reserves before pregnancy protects maternal bone health.",
-          "dosage": "Recommended: 1000mg daily from food and supplements combined. Best absorbed in doses of 500mg or less at a time."
+          "title": "Calcio",
+          "description": "Si la ingesta de calcio de la madre es insuficiente durante el embarazo, el bebé extraerá calcio de sus huesos. Crear reservas sólidas de calcio antes del embarazo protege la salud ósea materna.",
+          "dosage": "Recomendado: 1000 mg diarios de alimentos y suplementos combinados. Se absorbe mejor en dosis de 500 mg o menos."
         },
         "iodine": {
-          "title": "Iodine",
-          "description": "Iodine is essential for thyroid function, which directly impacts fertility and fetal brain development. Deficiency is the leading preventable cause of intellectual disability worldwide.",
-          "dosage": "Recommended: 150mcg daily before pregnancy, 220mcg during pregnancy. Check that your prenatal vitamin includes iodine."
+          "title": "Yodo",
+          "description": "El yodo es esencial para la función tiroidea, que afecta directamente la fertilidad y el desarrollo cerebral fetal. La deficiencia de yodo es la principal causa prevenible de discapacidad intelectual a nivel mundial.",
+          "dosage": "Recomendado: 150 µg diarios antes del embarazo, 220 µg durante el embarazo. Verifique que su vitamina prenatal incluya yodo."
         },
         "zinc": {
           "title": "Zinc",
-          "description": "Zinc supports egg quality, hormone balance, and immune function. It also plays a key role in DNA synthesis and cell division — critical processes in early pregnancy.",
-          "dosage": "Recommended: 8mg daily for women. Most prenatal vitamins contain adequate zinc."
+          "description": "El zinc apoya la calidad de los óvulos, el equilibrio hormonal y la función inmune. También juega un papel clave en la síntesis de ADN y la división celular.",
+          "dosage": "Recomendado: 8 mg diarios para mujeres. La mayoría de las vitaminas prenatales contienen zinc suficiente."
         },
         "vitaminB12": {
-          "title": "Vitamin B12",
-          "description": "B12 works with folate to support DNA synthesis and nervous system development. Deficiency is more common in vegetarians and vegans. Low B12 levels are associated with recurrent miscarriage and neural tube defects.",
-          "dosage": "Recommended: 2.4mcg daily. Vegans should supplement as B12 is found primarily in animal products."
+          "title": "Vitamina B12",
+          "description": "La B12 trabaja con el folato para apoyar la síntesis de ADN y el desarrollo del sistema nervioso. La deficiencia es más común en vegetarianos y veganos.",
+          "dosage": "Recomendado: 2,4 µg diarios. Los veganos deben suplementar ya que la B12 se encuentra principalmente en productos animales."
         },
         "vitaminC": {
-          "title": "Vitamin C",
-          "description": "Vitamin C is a powerful antioxidant that protects eggs from oxidative damage. It also enhances iron absorption and supports immune function. Progesterone levels may also benefit from adequate vitamin C intake.",
-          "dosage": "Recommended: 75–90mg daily. Easily obtained from citrus fruits, berries, and bell peppers."
+          "title": "Vitamina C",
+          "description": "La vitamina C es un poderoso antioxidante que protege los óvulos del daño oxidativo. También mejora la absorción de hierro y apoya la función inmune.",
+          "dosage": "Recomendado: 75-90 mg diarios. Fácilmente obtenida de cítricos, bayas y pimientos."
         },
         "vitaminE": {
-          "title": "Vitamin E",
-          "description": "Vitamin E supports endometrial lining thickness and quality, which is important for implantation. It also protects cell membranes from oxidative stress and supports overall reproductive health.",
-          "dosage": "Recommended: 15mg (22 IU) daily. Found in nuts, seeds, and vegetable oils."
+          "title": "Vitamina E",
+          "description": "La vitamina E apoya el grosor y calidad del revestimiento uterino, importante para la implantación. También protege las membranas celulares del estrés oxidativo.",
+          "dosage": "Recomendado: 15 mg (22 UI) diarios. Se encuentra en frutos secos, semillas y aceites vegetales."
         },
         "coq10": {
-          "title": "CoQ10 (Coenzyme Q10)",
-          "description": "CoQ10 is an antioxidant that supports mitochondrial function in eggs. As egg quality naturally declines with age, CoQ10 supplementation may help maintain cellular energy production. Research is ongoing but promising, especially for women over 35.",
-          "dosage": "Common dosage: 100–600mg daily. Ubiquinol form is better absorbed than ubiquinone. Consult your doctor."
+          "title": "CoQ10 (Coenzima Q10)",
+          "description": "El CoQ10 es un antioxidante que apoya la función mitocondrial en los óvulos. Con la disminución natural de la calidad ovocitaria con la edad, el CoQ10 puede ayudar a mantener la producción de energía celular. Prometedor para mujeres mayores de 35.",
+          "dosage": "Dosis común: 100-600 mg diarios. La forma ubiquinol se absorbe mejor. Consulte a su médico."
         },
         "probiotics": {
-          "title": "Probiotics",
-          "description": "A healthy vaginal and gut microbiome supports fertility. Lactobacillus strains help maintain optimal vaginal pH, which is important for sperm survival. Gut health also affects hormone metabolism and nutrient absorption.",
-          "dosage": "Choose a multi-strain probiotic with Lactobacillus strains. Consume fermented foods: yogurt, kefir, sauerkraut, kimchi."
+          "title": "Probióticos",
+          "description": "Un microbioma vaginal e intestinal saludable apoya la fertilidad. Las cepas de Lactobacillus ayudan a mantener un pH vaginal óptimo. La salud intestinal también afecta el metabolismo hormonal.",
+          "dosage": "Elija un probiótico multicepa con cepas de Lactobacillus. Consuma alimentos fermentados: yogur, kéfir, chucrut, kimchi."
         }
       }
     },

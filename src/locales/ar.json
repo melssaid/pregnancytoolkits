@@ -4569,68 +4569,68 @@
     },
     "preconceptionCheckup": {
       "ai": {
-        "title": "Preparation Insights",
-        "analyze": "Analyze My Preparation",
-        "readinessTitle": "Readiness Overview",
-        "priorityTitle": "Priority Recommendations",
-        "tipsTitle": "Helpful Tips",
-        "timelineTitle": "Suggested Timeline"
+        "title": "رؤى التحضير للحمل",
+        "analyze": "تحليل استعدادي",
+        "readinessTitle": "نظرة عامة على الاستعداد",
+        "priorityTitle": "توصيات ذات أولوية",
+        "tipsTitle": "نصائح مفيدة",
+        "timelineTitle": "جدول زمني مقترح"
       },
       "allComplete": "تحضير ممتاز! ناقشي نتائجك مع طبيبك المختص.",
       "categories": {
-        "essential": "Essential Health Checks",
-        "screening": "Infection & Immunity Screening",
-        "specialized": "Specialized Assessments",
-        "medications": "Medications & Vaccinations"
+        "essential": "الفحوصات الصحية الأساسية",
+        "screening": "فحوصات العدوى والمناعة",
+        "specialized": "تقييمات متخصصة",
+        "medications": "الأدوية والتطعيمات"
       },
       "checks": {
         "generalCheckup": {
-          "title": "General Health Checkup",
-          "description": "A comprehensive physical exam to assess your overall health, blood pressure, weight, and discuss your pregnancy plans."
+          "title": "الفحص الصحي العام",
+          "description": "فحص بدني شامل لتقييم صحتك العامة وضغط الدم والوزن ومناقشة خططك للحمل."
         },
         "bloodWork": {
-          "title": "Complete Blood Count (CBC)",
-          "description": "Checks for anemia, infections, and overall blood health. Identifies iron deficiency that should be addressed before pregnancy."
+          "title": "تحليل صورة الدم الكاملة (CBC)",
+          "description": "يكشف عن فقر الدم والعدوى وصحة الدم بشكل عام. يحدد نقص الحديد الذي يجب معالجته قبل الحمل."
         },
         "pap": {
-          "title": "Pap Smear / Cervical Screening",
-          "description": "Screens for cervical abnormalities. Best done before pregnancy to address any issues without the added complexity of pregnancy."
+          "title": "مسحة عنق الرحم",
+          "description": "فحص لاكتشاف أي تغيرات غير طبيعية في عنق الرحم. يُفضّل إجراؤه قبل الحمل لمعالجة أي مشكلات."
         },
         "thyroid": {
-          "title": "Thyroid Function Test (TSH)",
-          "description": "Thyroid disorders are common and can significantly affect fertility and pregnancy. Both hypothyroidism and hyperthyroidism should be managed before conceiving."
+          "title": "فحص وظائف الغدة الدرقية (TSH)",
+          "description": "اضطرابات الغدة الدرقية شائعة وقد تؤثر بشكل كبير على الخصوبة والحمل. يجب ضبط كل من قصور وفرط نشاط الغدة الدرقية قبل الحمل."
         },
         "rubella": {
-          "title": "Rubella (German Measles) Immunity",
-          "description": "Rubella during pregnancy can cause serious birth defects. If you're not immune, vaccination is recommended at least 1 month before trying to conceive."
+          "title": "مناعة الحصبة الألمانية",
+          "description": "الحصبة الألمانية أثناء الحمل قد تسبب عيوباً خلقية خطيرة. إذا لم تكن لديك مناعة، يُنصح بالتطعيم قبل شهر على الأقل من محاولة الحمل."
         },
         "hepatitis": {
-          "title": "Hepatitis B & C Screening",
-          "description": "Hepatitis B can be transmitted to the baby during birth. Knowing your status allows for preventive measures. Hepatitis C requires monitoring during pregnancy."
+          "title": "فحص التهاب الكبد B و C",
+          "description": "التهاب الكبد B يمكن أن ينتقل للطفل أثناء الولادة. معرفة حالتك تسمح باتخاذ تدابير وقائية. التهاب الكبد C يتطلب مراقبة أثناء الحمل."
         },
         "hiv": {
-          "title": "HIV & STI Screening",
-          "description": "Routine screening for HIV and sexually transmitted infections protects both your health and your future baby's health. Early detection enables effective treatment."
+          "title": "فحص HIV والأمراض المنقولة جنسياً",
+          "description": "الفحص الروتيني لـ HIV والأمراض المنقولة جنسياً يحمي صحتك وصحة طفلك المستقبلي. الاكتشاف المبكر يُمكّن من العلاج الفعّال."
         },
         "dental": {
-          "title": "Dental Checkup",
-          "description": "Gum disease is linked to preterm birth and low birth weight. Hormonal changes during pregnancy can worsen existing dental issues. Complete any necessary dental work before conceiving."
+          "title": "فحص الأسنان",
+          "description": "أمراض اللثة مرتبطة بالولادة المبكرة وانخفاض وزن المولود. التغيرات الهرمونية أثناء الحمل قد تفاقم مشاكل الأسنان الموجودة."
         },
         "geneticScreening": {
-          "title": "Genetic Carrier Screening",
-          "description": "Tests whether you or your partner carry genes for conditions like cystic fibrosis, sickle cell disease, or thalassemia. Results help with informed family planning decisions."
+          "title": "فحص الحامل الوراثي",
+          "description": "يختبر ما إذا كنت أنت أو شريكك حاملين لجينات أمراض مثل التليف الكيسي أو فقر الدم المنجلي أو الثلاسيميا."
         },
         "mentalHealth": {
-          "title": "Mental Health Assessment",
-          "description": "Discuss any history of depression, anxiety, or other mental health conditions with your healthcare provider. Pre-existing conditions can be managed proactively during pregnancy."
+          "title": "تقييم الصحة النفسية",
+          "description": "ناقشي أي تاريخ للاكتئاب أو القلق أو أي حالات نفسية أخرى مع طبيبك. يمكن إدارة الحالات الموجودة مسبقاً بشكل استباقي أثناء الحمل."
         },
         "medications": {
-          "title": "Medication Review",
-          "description": "Review all current medications, supplements, and herbal remedies with your doctor. Some medications are not safe during pregnancy and alternatives should be arranged in advance."
+          "title": "مراجعة الأدوية",
+          "description": "راجعي جميع الأدوية والمكملات والأعشاب الحالية مع طبيبك. بعض الأدوية غير آمنة أثناء الحمل ويجب ترتيب بدائل مسبقاً."
         },
         "vaccinations": {
-          "title": "Vaccination Review",
-          "description": "Ensure you're up to date on recommended vaccinations including MMR, varicella, flu, and Tdap. Some vaccines cannot be given during pregnancy, so complete them beforehand."
+          "title": "مراجعة التطعيمات",
+          "description": "تأكدي من حصولك على التطعيمات الموصى بها بما في ذلك MMR والجدري المائي والإنفلونزا و Tdap. بعض اللقاحات لا يمكن إعطاؤها أثناء الحمل."
         }
       },
       "disclaimer": "هذه القائمة مرجع تعليمي لمساعدتك في تنظيم مواعيدك الطبية قبل الحمل. لا تُغني عن الاستشارة الطبية.",
@@ -4646,54 +4646,54 @@
     "preconceptionNutrition": {
       "categories": {
         "folateRich": {
-          "title": "Folate-Rich Foods",
-          "description": "Folate (vitamin B9) is critical for preventing neural tube defects and supporting healthy cell division. The recommended daily intake when trying to conceive is 400–800mcg. Start folate supplementation at least 1–3 months before conception.",
-          "foods": "Dark leafy greens (spinach, kale), lentils, chickpeas, asparagus, broccoli, avocado, fortified cereals, citrus fruits, beets, Brussels sprouts"
+          "title": "أطعمة غنية بالفولات",
+          "description": "الفولات (فيتامين B9) ضروري لمنع عيوب الأنبوب العصبي ودعم انقسام الخلايا الصحي. الجرعة اليومية الموصى بها عند محاولة الحمل هي 400-800 ميكروغرام. ابدئي بتناول مكملات الفولات قبل 1-3 أشهر من الحمل.",
+          "foods": "الخضروات الورقية الداكنة (السبانخ، الكرنب)، العدس، الحمص، الهليون، البروكلي، الأفوكادو، الحبوب المدعمة، الحمضيات، البنجر"
         },
         "ironSources": {
-          "title": "Iron-Rich Foods",
-          "description": "Iron supports healthy blood production and oxygen transport, which are essential for a developing pregnancy. Women of childbearing age need about 18mg daily. Iron deficiency is common and can affect ovulation and cycle regularity.",
-          "foods": "Red meat, poultry, fish, lentils, spinach, fortified cereals, pumpkin seeds, tofu, dark chocolate, quinoa, dried apricots"
+          "title": "أطعمة غنية بالحديد",
+          "description": "الحديد يدعم إنتاج الدم الصحي ونقل الأكسجين، وهما ضروريان للحمل. تحتاج النساء في سن الإنجاب حوالي 18 ملغ يومياً. نقص الحديد شائع ويمكن أن يؤثر على الإباضة وانتظام الدورة.",
+          "foods": "اللحوم الحمراء، الدواجن، السمك، العدس، السبانخ، الحبوب المدعمة، بذور اليقطين، التوفو، الشوكولاتة الداكنة، الكينوا، المشمش المجفف"
         },
         "omega3": {
-          "title": "Omega-3 Fatty Acids",
-          "description": "Omega-3s support hormone production, reduce inflammation, and are essential for fetal brain and eye development. DHA and EPA are the most bioavailable forms. ALA from plant sources is also beneficial but converts less efficiently.",
-          "foods": "Salmon, sardines, mackerel, walnuts, chia seeds, flaxseeds, hemp seeds, algae-based DHA supplements, fortified eggs"
+          "title": "أحماض أوميغا-3 الدهنية",
+          "description": "أوميغا-3 تدعم إنتاج الهرمونات وتقلل الالتهاب وضرورية لنمو دماغ الجنين وعينيه. DHA وEPA هما الشكلان الأكثر توفراً حيوياً.",
+          "foods": "السلمون، السردين، الماكريل، الجوز، بذور الشيا، بذور الكتان، بذور القنب، مكملات DHA من الطحالب"
         },
         "antioxidants": {
-          "title": "Antioxidant-Rich Foods",
-          "description": "Antioxidants protect eggs and sperm from oxidative stress caused by free radicals. Vitamins C and E, selenium, and CoQ10 are particularly important. A colorful, varied diet provides a broad spectrum of antioxidants.",
-          "foods": "Berries (blueberries, strawberries, raspberries), tomatoes, bell peppers, nuts, seeds, green tea, dark leafy greens, sweet potatoes, carrots"
+          "title": "أطعمة غنية بمضادات الأكسدة",
+          "description": "مضادات الأكسدة تحمي البويضات والحيوانات المنوية من الإجهاد التأكسدي. فيتامينات C وE والسيلينيوم وCoQ10 مهمة بشكل خاص. النظام الغذائي المتنوع والملون يوفر طيفاً واسعاً من مضادات الأكسدة.",
+          "foods": "التوت (العنب البري، الفراولة، التوت)، الطماطم، الفلفل الحلو، المكسرات، البذور، الشاي الأخضر، الخضروات الورقية الداكنة، البطاطا الحلوة"
         },
         "zinc": {
-          "title": "Zinc Sources",
-          "description": "Zinc is essential for hormone balance, egg quality, and cell division. It also plays a crucial role in male fertility — supporting sperm production and testosterone levels. The recommended daily intake is 8mg for women.",
-          "foods": "Oysters, beef, pumpkin seeds, cashews, chickpeas, lentils, yogurt, cheese, whole grains, dark chocolate"
+          "title": "مصادر الزنك",
+          "description": "الزنك ضروري لتوازن الهرمونات وجودة البويضات وانقسام الخلايا. يلعب أيضاً دوراً حاسماً في خصوبة الرجل — دعم إنتاج الحيوانات المنوية ومستويات التستوستيرون. الجرعة اليومية الموصى بها 8 ملغ للنساء.",
+          "foods": "المحار، لحم البقر، بذور اليقطين، الكاجو، الحمص، العدس، الزبادي، الجبن، الحبوب الكاملة، الشوكولاتة الداكنة"
         },
         "vitaminD": {
-          "title": "Vitamin D Sources",
-          "description": "Vitamin D receptors are found in the ovaries and uterus, suggesting a direct role in fertility. Deficiency is associated with irregular cycles, PCOS, and reduced IVF success rates. Many people are deficient, especially in northern climates.",
-          "foods": "Sunlight exposure (15–20 min daily), fatty fish (salmon, tuna), egg yolks, fortified milk, mushrooms exposed to UV light, cod liver oil"
+          "title": "مصادر فيتامين د",
+          "description": "توجد مستقبلات فيتامين د في المبايض والرحم مما يشير إلى دور مباشر في الخصوبة. يرتبط النقص بعدم انتظام الدورة ومتلازمة تكيس المبايض وانخفاض معدلات نجاح التلقيح الصناعي.",
+          "foods": "التعرض لأشعة الشمس (15-20 دقيقة يومياً)، الأسماك الدهنية (السلمون، التونة)، صفار البيض، الحليب المدعم، الفطر المعرض للأشعة فوق البنفسجية"
         },
         "calcium": {
-          "title": "Calcium Sources",
-          "description": "Calcium is vital for reproductive function, supporting the development of embryonic structures. Adequate calcium intake before pregnancy helps build reserves for the baby's skeletal development. Aim for 1000mg daily.",
-          "foods": "Dairy products (milk, yogurt, cheese), fortified plant milks, kale, broccoli, almonds, sardines with bones, tofu, figs"
+          "title": "مصادر الكالسيوم",
+          "description": "الكالسيوم حيوي للوظيفة الإنجابية ويدعم تطور البنى الجنينية. تناول الكالسيوم الكافي قبل الحمل يساعد في بناء احتياطيات لتطوير الهيكل العظمي للطفل. استهدفي 1000 ملغ يومياً.",
+          "foods": "منتجات الألبان (الحليب، الزبادي، الجبن)، حليب النبات المدعم، الكرنب، البروكلي، اللوز، السردين، التوفو، التين"
         },
         "protein": {
-          "title": "Quality Protein",
-          "description": "Protein provides the building blocks for hormones and new cells. Research suggests that replacing some animal protein with plant protein may improve fertility outcomes. Aim for a balanced mix of both sources.",
-          "foods": "Eggs, lean poultry, fish, legumes (beans, lentils), nuts, seeds, Greek yogurt, tofu, tempeh, quinoa"
+          "title": "البروتين عالي الجودة",
+          "description": "البروتين يوفر اللبنات الأساسية للهرمونات والخلايا الجديدة. تشير الأبحاث إلى أن استبدال بعض البروتين الحيواني بالبروتين النباتي قد يحسن نتائج الخصوبة.",
+          "foods": "البيض، الدواجن، السمك، البقوليات (الفول، العدس)، المكسرات، البذور، الزبادي اليوناني، التوفو، التمبيه، الكينوا"
         },
         "hydration": {
-          "title": "Hydration",
-          "description": "Water is essential for cervical mucus production, nutrient transport, and hormone balance. Dehydration can reduce cervical mucus quality and affect blood flow to the reproductive organs. Aim for 8–10 glasses daily.",
-          "foods": "Water, herbal teas (raspberry leaf, ginger), coconut water, water-rich fruits (watermelon, cucumber, oranges), broths"
+          "title": "الترطيب",
+          "description": "الماء ضروري لإنتاج مخاط عنق الرحم ونقل المغذيات وتوازن الهرمونات. الجفاف يمكن أن يقلل من جودة مخاط عنق الرحم ويؤثر على تدفق الدم إلى الأعضاء التناسلية. استهدفي 8-10 أكواب يومياً.",
+          "foods": "الماء، شاي الأعشاب (أوراق التوت، الزنجبيل)، ماء جوز الهند، الفواكه الغنية بالماء (البطيخ، الخيار، البرتقال)، المرق"
         },
         "avoidList": {
-          "title": "Foods to Minimize",
-          "description": "Certain foods and substances may negatively impact fertility. While occasional consumption is unlikely to cause harm, reducing these when actively trying to conceive can optimize your body's readiness.",
-          "foods": "Excessive caffeine (>200mg/day), alcohol, trans fats, highly processed foods, raw fish (sushi), high-mercury fish (swordfish, king mackerel), excessive sugar, artificial sweeteners"
+          "title": "أطعمة يجب تقليلها",
+          "description": "بعض الأطعمة والمواد قد تؤثر سلباً على الخصوبة. رغم أن الاستهلاك العرضي من غير المحتمل أن يسبب ضرراً، فإن تقليلها أثناء محاولة الحمل يحسّن استعداد جسمك.",
+          "foods": "الكافيين الزائد (>200 ملغ/يوم)، الكحول، الدهون المتحولة، الأطعمة المصنعة، السمك النيء (السوشي)، الأسماك عالية الزئبق، السكر المفرط، المحليات الصناعية"
         }
       },
       "categoriesCount": "{{count}} فئة غذائية"
@@ -4702,64 +4702,64 @@
       "supplementsCount": "{{count}} مكمل للمراجعة",
       "vitamins": {
         "folicAcid": {
-          "title": "Folic Acid (Vitamin B9)",
-          "description": "The most important preconception supplement. Folic acid significantly reduces the risk of neural tube defects (spina bifida, anencephaly). Start taking it at least 1–3 months before trying to conceive for maximum benefit.",
-          "dosage": "Recommended: 400–800mcg daily. Some women (with history of NTDs, on certain medications) may need 4–5mg — consult your doctor."
+          "title": "حمض الفوليك (فيتامين B9)",
+          "description": "أهم مكمل قبل الحمل. حمض الفوليك يقلل بشكل كبير من خطر عيوب الأنبوب العصبي (السنسنة المشقوقة، انعدام الدماغ). ابدئي بتناوله قبل 1-3 أشهر على الأقل من محاولة الحمل.",
+          "dosage": "الجرعة الموصى بها: 400-800 ميكروغرام يومياً. بعض النساء قد يحتجن 4-5 ملغ — استشيري طبيبك."
         },
         "iron": {
-          "title": "Iron",
-          "description": "Iron requirements increase dramatically during pregnancy (from 18mg to 27mg daily). Building iron stores before conception helps prevent iron-deficiency anemia, which is associated with preterm birth and low birth weight.",
-          "dosage": "Recommended: 18mg daily pre-pregnancy. Take with vitamin C to improve absorption. Avoid taking with calcium or tea."
+          "title": "الحديد",
+          "description": "تزداد احتياجات الحديد بشكل كبير أثناء الحمل (من 18 ملغ إلى 27 ملغ يومياً). بناء مخزون الحديد قبل الحمل يساعد في الوقاية من فقر الدم بنقص الحديد المرتبط بالولادة المبكرة وانخفاض وزن المولود.",
+          "dosage": "الجرعة الموصى بها: 18 ملغ يومياً قبل الحمل. تناوليه مع فيتامين C لتحسين الامتصاص. تجنبي تناوله مع الكالسيوم أو الشاي."
         },
         "vitaminD": {
-          "title": "Vitamin D",
-          "description": "Vitamin D supports immune function, calcium absorption, and reproductive health. Deficiency is linked to pregnancy complications including gestational diabetes and preeclampsia. Most people need supplementation, especially in winter months.",
-          "dosage": "Recommended: 600–2000 IU daily. Your doctor may test your levels and recommend a higher dose if deficient."
+          "title": "فيتامين د",
+          "description": "فيتامين د يدعم المناعة وامتصاص الكالسيوم والصحة الإنجابية. يرتبط نقصه بمضاعفات الحمل بما في ذلك سكري الحمل وتسمم الحمل.",
+          "dosage": "الجرعة الموصى بها: 600-2000 وحدة دولية يومياً. قد يفحص طبيبك مستوياتك ويوصي بجرعة أعلى إذا كان هناك نقص."
         },
         "omega3DHA": {
-          "title": "Omega-3 DHA",
-          "description": "DHA is crucial for fetal brain and retinal development. Starting supplementation before pregnancy ensures adequate stores from the earliest stages of embryonic development. EPA also supports maternal cardiovascular health.",
-          "dosage": "Recommended: 200–300mg DHA daily. Choose supplements tested for mercury and contaminants."
+          "title": "أوميغا-3 DHA",
+          "description": "DHA ضروري لنمو دماغ الجنين وشبكيته. البدء بالمكملات قبل الحمل يضمن مخزوناً كافياً من أولى مراحل التطور الجنيني. EPA يدعم أيضاً صحة القلب والأوعية الدموية للأم.",
+          "dosage": "الجرعة الموصى بها: 200-300 ملغ DHA يومياً. اختاري مكملات مفحوصة للزئبق والملوثات."
         },
         "calcium": {
-          "title": "Calcium",
-          "description": "If the mother's calcium intake is insufficient during pregnancy, the baby will draw calcium from her bones. Building strong calcium reserves before pregnancy protects maternal bone health.",
-          "dosage": "Recommended: 1000mg daily from food and supplements combined. Best absorbed in doses of 500mg or less at a time."
+          "title": "الكالسيوم",
+          "description": "إذا كان تناول الأم للكالسيوم غير كافٍ أثناء الحمل، سيسحب الطفل الكالسيوم من عظامها. بناء مخزون قوي قبل الحمل يحمي صحة عظام الأم.",
+          "dosage": "الجرعة الموصى بها: 1000 ملغ يومياً من الطعام والمكملات معاً. يُمتص بشكل أفضل بجرعات 500 ملغ أو أقل."
         },
         "iodine": {
-          "title": "Iodine",
-          "description": "Iodine is essential for thyroid function, which directly impacts fertility and fetal brain development. Deficiency is the leading preventable cause of intellectual disability worldwide.",
-          "dosage": "Recommended: 150mcg daily before pregnancy, 220mcg during pregnancy. Check that your prenatal vitamin includes iodine."
+          "title": "اليود",
+          "description": "اليود ضروري لوظيفة الغدة الدرقية التي تؤثر مباشرة على الخصوبة ونمو دماغ الجنين. نقصه هو السبب الرئيسي القابل للوقاية للإعاقة الذهنية عالمياً.",
+          "dosage": "الجرعة الموصى بها: 150 ميكروغرام يومياً قبل الحمل، 220 ميكروغرام أثناء الحمل. تأكدي أن فيتامينات ما قبل الولادة تحتوي على اليود."
         },
         "zinc": {
-          "title": "Zinc",
-          "description": "Zinc supports egg quality, hormone balance, and immune function. It also plays a key role in DNA synthesis and cell division — critical processes in early pregnancy.",
-          "dosage": "Recommended: 8mg daily for women. Most prenatal vitamins contain adequate zinc."
+          "title": "الزنك",
+          "description": "الزنك يدعم جودة البويضات وتوازن الهرمونات والمناعة. يلعب أيضاً دوراً رئيسياً في تخليق الحمض النووي وانقسام الخلايا — عمليات حاسمة في بداية الحمل.",
+          "dosage": "الجرعة الموصى بها: 8 ملغ يومياً للنساء. معظم فيتامينات ما قبل الولادة تحتوي على زنك كافٍ."
         },
         "vitaminB12": {
-          "title": "Vitamin B12",
-          "description": "B12 works with folate to support DNA synthesis and nervous system development. Deficiency is more common in vegetarians and vegans. Low B12 levels are associated with recurrent miscarriage and neural tube defects.",
-          "dosage": "Recommended: 2.4mcg daily. Vegans should supplement as B12 is found primarily in animal products."
+          "title": "فيتامين B12",
+          "description": "B12 يعمل مع الفولات لدعم تخليق الحمض النووي ونمو الجهاز العصبي. النقص أكثر شيوعاً لدى النباتيين. انخفاض B12 يرتبط بالإجهاض المتكرر وعيوب الأنبوب العصبي.",
+          "dosage": "الجرعة الموصى بها: 2.4 ميكروغرام يومياً. يجب على النباتيين تناول المكملات لأن B12 يوجد بشكل أساسي في المنتجات الحيوانية."
         },
         "vitaminC": {
-          "title": "Vitamin C",
-          "description": "Vitamin C is a powerful antioxidant that protects eggs from oxidative damage. It also enhances iron absorption and supports immune function. Progesterone levels may also benefit from adequate vitamin C intake.",
-          "dosage": "Recommended: 75–90mg daily. Easily obtained from citrus fruits, berries, and bell peppers."
+          "title": "فيتامين C",
+          "description": "فيتامين C مضاد أكسدة قوي يحمي البويضات من الأضرار التأكسدية. يعزز أيضاً امتصاص الحديد ويدعم المناعة. مستويات البروجسترون قد تستفيد أيضاً من تناول كافٍ لفيتامين C.",
+          "dosage": "الجرعة الموصى بها: 75-90 ملغ يومياً. يمكن الحصول عليه بسهولة من الحمضيات والتوت والفلفل الحلو."
         },
         "vitaminE": {
-          "title": "Vitamin E",
-          "description": "Vitamin E supports endometrial lining thickness and quality, which is important for implantation. It also protects cell membranes from oxidative stress and supports overall reproductive health.",
-          "dosage": "Recommended: 15mg (22 IU) daily. Found in nuts, seeds, and vegetable oils."
+          "title": "فيتامين E",
+          "description": "فيتامين E يدعم سمك وجودة بطانة الرحم وهو مهم للانغراس. يحمي أيضاً أغشية الخلايا من الإجهاد التأكسدي ويدعم الصحة الإنجابية.",
+          "dosage": "الجرعة الموصى بها: 15 ملغ (22 وحدة دولية) يومياً. يوجد في المكسرات والبذور والزيوت النباتية."
         },
         "coq10": {
-          "title": "CoQ10 (Coenzyme Q10)",
-          "description": "CoQ10 is an antioxidant that supports mitochondrial function in eggs. As egg quality naturally declines with age, CoQ10 supplementation may help maintain cellular energy production. Research is ongoing but promising, especially for women over 35.",
-          "dosage": "Common dosage: 100–600mg daily. Ubiquinol form is better absorbed than ubiquinone. Consult your doctor."
+          "title": "CoQ10 (الإنزيم المساعد Q10)",
+          "description": "CoQ10 مضاد أكسدة يدعم وظيفة الميتوكوندريا في البويضات. مع تراجع جودة البويضات طبيعياً مع العمر، قد يساعد CoQ10 في الحفاظ على إنتاج الطاقة الخلوية. البحث واعد خاصة للنساء فوق 35.",
+          "dosage": "الجرعة الشائعة: 100-600 ملغ يومياً. شكل Ubiquinol يُمتص بشكل أفضل. استشيري طبيبك."
         },
         "probiotics": {
-          "title": "Probiotics",
-          "description": "A healthy vaginal and gut microbiome supports fertility. Lactobacillus strains help maintain optimal vaginal pH, which is important for sperm survival. Gut health also affects hormone metabolism and nutrient absorption.",
-          "dosage": "Choose a multi-strain probiotic with Lactobacillus strains. Consume fermented foods: yogurt, kefir, sauerkraut, kimchi."
+          "title": "البروبيوتيك",
+          "description": "الميكروبيوم المهبلي والمعوي الصحي يدعم الخصوبة. سلالات Lactobacillus تساعد في الحفاظ على pH مهبلي مثالي. صحة الأمعاء تؤثر أيضاً على استقلاب الهرمونات وامتصاص المغذيات.",
+          "dosage": "اختاري بروبيوتيك متعدد السلالات مع سلالات Lactobacillus. تناولي الأطعمة المخمرة: الزبادي، الكفير، المخللات."
         }
       }
     },
