@@ -1580,7 +1580,8 @@
       "planGenerated": "Plan generated",
       "planLoaded": "Plan loaded",
       "planSaved": "Plan saved",
-      "selectPreference": "Select preference"
+      "selectPreference": "Select preference",
+      "selected": "selected"
     },
     "dueDate": {
       "calculateTitle": "Calculate Your Due Date",
@@ -1737,7 +1738,8 @@
       "tapToStart": "Tap to start",
       "selectIntensity": "Contraction intensity",
       "fiveOneOneAlert": "5-1-1 Rule Met!",
-      "fiveOneOneDesc": "Contractions every 5 min, lasting 1 min, for 1 hour. Contact your doctor."
+      "fiveOneOneDesc": "Contractions every 5 min, lasting 1 min, for 1 hour. Contact your doctor.",
+      "shareContractions": "Share Data"
     },
     "symptomAnalyzer": {
       "title": "Pregnancy Wellness Diary",

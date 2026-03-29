@@ -3,12 +3,13 @@ import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Play, Square, Timer, TrendingUp, Activity, Clock, Zap, Heart,
-  AlertTriangle, BarChart3, Vibrate, ChevronDown,
+  AlertTriangle, BarChart3, Vibrate, ChevronDown, Share2, RotateCcw,
 } from "lucide-react";
 import { ContextualWarningBanner, WhenToCallDoctorCard, EvidenceInfoBlock } from "@/components/safety";
 import { ToolFrame } from "@/components/ToolFrame";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { ContractionChart } from "@/components/contraction/ContractionChart";
 import { ContractionHistory } from "@/components/contraction/ContractionHistory";
@@ -107,6 +108,9 @@ export default function ContractionTimer() {
     saveContractions([]);
   }, []);
 
+
+
+
   const handleDelete = useCallback((id: string) => {
     const updated = contractions.filter((c) => c.id !== id);
     setContractions(updated);
@@ -162,7 +166,24 @@ export default function ContractionTimer() {
   // 5-1-1 rule check
   const fiveOneOne = stats && stats.avgInterval > 0 && stats.avgInterval <= 300 && stats.avgDuration >= 60;
 
-  // Time since last contraction
+  const handleShareWhatsApp = useCallback(() => {
+    if (!stats || contractions.length === 0) return;
+    let text = `⏱️ *${t("toolsInternal.contractionTimer.title", "عداد الانقباضات")}*\n\n`;
+    text += `📊 ${t("toolsInternal.contractionTimer.total", "انقباض")}: ${stats.count}\n`;
+    text += `⏳ ${t("toolsInternal.contractionTimer.avgDuration", "متوسط المدة")}: ${formatDuration(stats.avgDuration)}\n`;
+    text += `🔄 ${t("toolsInternal.contractionTimer.avgInterval", "متوسط الفاصل")}: ${stats.avgInterval > 0 ? formatDuration(stats.avgInterval) : "--"}\n`;
+    text += `📈 ${t("toolsInternal.contractionTimer.regularity", "الانتظام")}: ${stats.regularity}%\n`;
+    if (phase !== "none") {
+      text += `\n🏥 ${t(`toolsInternal.contractionTimer.phase${phase.charAt(0).toUpperCase() + phase.slice(1)}`, phase)}\n`;
+    }
+    if (fiveOneOne) {
+      text += `\n⚠️ ${t("toolsInternal.contractionTimer.fiveOneOneAlert", "قاعدة 5-1-1 تحققت!")}\n`;
+    }
+    text += `\n📱 ${t("toolsInternal.contractionTimer.sessionTime", "مدة الجلسة")}: ${formatDuration(stats.sessionDuration)}`;
+    window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+  }, [stats, contractions, t, phase, fiveOneOne]);
+
+
   const [timeSinceLast, setTimeSinceLast] = useState(0);
   useEffect(() => {
     if (contractions.length === 0 || isActive) return;
@@ -445,6 +466,20 @@ export default function ContractionTimer() {
                 </span>
               </CardContent>
             </Card>
+          </div>
+        )}
+
+        {/* ═══════ SHARE & CLEAR ═══════ */}
+        {stats && stats.count >= 2 && (
+          <div className="flex gap-2">
+            <Button onClick={handleShareWhatsApp} variant="outline" size="sm" className="flex-1 h-9 text-[11px] gap-1.5 text-green-600 border-green-300 hover:bg-green-50 dark:hover:bg-green-950/30">
+              <Share2 className="w-3.5 h-3.5" />
+              WhatsApp
+            </Button>
+            <Button onClick={handleClear} variant="outline" size="sm" className="flex-1 h-9 text-[11px] gap-1.5 text-destructive border-destructive/30 hover:bg-destructive/10">
+              <RotateCcw className="w-3.5 h-3.5" />
+              {t("toolsInternal.contractionTimer.clear", "مسح الكل")}
+            </Button>
           </div>
         )}
 

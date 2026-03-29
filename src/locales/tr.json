@@ -1580,7 +1580,8 @@
       "planGenerated": "Plan oluşturuldu",
       "planLoaded": "Plan yüklendi",
       "planSaved": "Plan kaydedildi",
-      "selectPreference": "Tercih seçin"
+      "selectPreference": "Tercih seçin",
+      "selected": "seçildi"
     },
     "dueDate": {
       "calculateTitle": "Doğum Tarihinizi Hesaplayın",
@@ -1706,7 +1707,7 @@
       "ruleMetTitle": "5-1-1 Kuralı karşılandı!",
       "ruleMetDesc": "Kasılmalar 5 dakika veya daha kısa aralıklarla geliyor ve 1 dakikadan fazla sürüyor. Hastaneye gitme zamanı olabilir. Doktorunuzla hemen iletişime geçin.",
       "history": "Geçmiş",
-      "clearAll": "Tümünü Sil",
+      "clearAll": "Tümünü sil",
       "duration": "süre",
       "gap": "aralık",
       "chartTitle": "Kasılma Deseni",
@@ -1737,7 +1738,8 @@
       "tapToStart": "Başlamak için dokunun",
       "selectIntensity": "Kasılma şiddeti",
       "fiveOneOneAlert": "5-1-1 Kuralı karşılandı!",
-      "fiveOneOneDesc": "Her 5 dk kasılma, 1 dk süre, 1 saattir. Doktorunuza başvurun."
+      "fiveOneOneDesc": "Her 5 dk kasılma, 1 dk süre, 1 saattir. Doktorunuza başvurun.",
+      "shareContractions": "Verileri paylaş"
     },
     "symptomAnalyzer": {
       "title": "Hamilelik Sağlık Günlüğü",

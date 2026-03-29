@@ -1580,7 +1580,8 @@
       "planGenerated": "Plan généré",
       "planLoaded": "Plan chargé",
       "planSaved": "Plan enregistré",
-      "selectPreference": "Choisir préférence"
+      "selectPreference": "Choisir préférence",
+      "selected": "sélectionné"
     },
     "dueDate": {
       "calculateTitle": "Calculez votre date d'accouchement",
@@ -1737,7 +1738,8 @@
       "tapToStart": "Appuyez pour commencer",
       "selectIntensity": "Intensité de la contraction",
       "fiveOneOneAlert": "Règle 5-1-1 atteinte !",
-      "fiveOneOneDesc": "Contractions toutes les 5 min, durant 1 min, pendant 1 heure. Contactez votre médecin."
+      "fiveOneOneDesc": "Contractions toutes les 5 min, durant 1 min, pendant 1 heure. Contactez votre médecin.",
+      "shareContractions": "Partager les données"
     },
     "symptomAnalyzer": {
       "title": "Journal de bien-être grossesse",

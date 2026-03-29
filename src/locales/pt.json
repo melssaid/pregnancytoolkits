@@ -1580,7 +1580,8 @@
       "planGenerated": "Plano gerado",
       "planLoaded": "Plano carregado",
       "planSaved": "Plano salvo",
-      "selectPreference": "Selecionar preferência"
+      "selectPreference": "Selecionar preferência",
+      "selected": "selecionado"
     },
     "dueDate": {
       "calculateTitle": "Calcule sua Data Prevista",
@@ -1706,7 +1707,7 @@
       "ruleMetTitle": "Regra 5-1-1 atingida!",
       "ruleMetDesc": "As contrações estão com intervalos de 5 minutos ou menos e duram mais de 1 minuto. Pode ser hora de ir ao hospital. Entre em contato com seu médico imediatamente.",
       "history": "Histórico",
-      "clearAll": "Limpar Tudo",
+      "clearAll": "Limpar tudo",
       "duration": "duração",
       "gap": "intervalo",
       "chartTitle": "Padrão de Contrações",
@@ -1737,7 +1738,8 @@
       "tapToStart": "Toque para iniciar",
       "selectIntensity": "Intensidade da contração",
       "fiveOneOneAlert": "Regra 5-1-1 atingida!",
-      "fiveOneOneDesc": "Contrações a cada 5 min, com 1 min de duração, por 1 hora. Contacte o seu médico."
+      "fiveOneOneDesc": "Contrações a cada 5 min, com 1 min de duração, por 1 hora. Contacte o seu médico.",
+      "shareContractions": "Compartilhar dados"
     },
     "symptomAnalyzer": {
       "title": "Diário de bem-estar da gravidez",
