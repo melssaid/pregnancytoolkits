@@ -28,14 +28,7 @@
     "getInsights": "Get AI Insights",
     "personalizedRec": "Personalized recommendations",
     "regenerate": "Regenerar",
-    "title": "Análisis IA",
-    "subtitle": "Análisis personalizado de tu embarazo",
-    "generate": "Generar análisis",
-    "generating": "Analizando...",
-    "disclaimer": "Los resultados de IA son informativos y no sustituyen el consejo médico",
-    "weekLabel": "Semana {{week}}",
-    "error": "Error al generar. Por favor, inténtalo de nuevo.",
-    "empty": "No hay análisis disponibles"
+    "title": "Análisis IA"
   },
   "aiUsage": {
     "dailyRequests": "Solicitudes diarias de IA",
@@ -49,8 +42,7 @@
     "resetsDaily": "Se reinicia diariamente",
     "subscribePro": "Suscribirse a Pro",
     "upgradeHint": "Suscríbete a Pro para {{limit}} solicitudes diarias",
-    "usedOf": "{{used}} de {{limit}} usadas hoy",
-    "disclaimer": "Los resultados de IA no sustituyen el consejo médico"
+    "usedOf": "{{used}} de {{limit}} usadas hoy"
   },
   "app": {
     "allTools": "Todas las herramientas",
@@ -191,8 +183,7 @@
     "percentile": "Percentil",
     "title": "Crecimiento del bebé",
     "trackGrowth": "Seguir crecimiento",
-    "weight": "Peso (kg)",
-    "disclaimer": "Valores indicativos. Cada bebé crece a su propio ritmo."
+    "weight": "Peso (kg)"
   },
   "babySleepPage": {
     "duration": "Duración",
@@ -211,33 +202,33 @@
     },
     "exercises": {
       "catCow": {
-        "name": "Estiramiento Gato-Vaca",
         "desc": "Flexión y extensión alternada de la columna",
+        "name": "Estiramiento Gato-Vaca",
         "target": "Espalda baja y alta"
       },
       "childPose": {
-        "name": "Postura del Niño",
         "desc": "Estiramiento suave para toda la espalda",
+        "name": "Postura del Niño",
         "target": "Espalda completa"
       },
       "pelvicTilt": {
-        "name": "Inclinación pélvica",
         "desc": "Fortalecer el tronco y aliviar la presión lumbar",
+        "name": "Inclinación pélvica",
         "target": "Espalda baja y tronco"
       },
       "piriformis": {
-        "name": "Estiramiento del piriforme",
         "desc": "Aliviar el dolor ciático y la tensión de cadera",
+        "name": "Estiramiento del piriforme",
         "target": "Caderas y espalda baja"
       },
       "sideStretch": {
-        "name": "Estiramiento lateral",
         "desc": "Estirar los lados del torso",
+        "name": "Estiramiento lateral",
         "target": "Cuerpo lateral"
       },
       "wallPush": {
-        "name": "Flexiones en la pared",
         "desc": "Fortalecer la espalda alta y los hombros",
+        "name": "Flexiones en la pared",
         "target": "Espalda alta y brazos"
       }
     },
@@ -325,10 +316,8 @@
       "title": "Seguimiento del peso",
       "week": "Semana",
       "weight": "Peso",
-      "yourActualWeight": "Tu peso real",
-      "current": "Peso actual"
-    },
-    "noData": "No hay datos disponibles"
+      "yourActualWeight": "Tu peso real"
+    }
   },
   "common": {
     "add": "Añadir",
@@ -380,10 +369,7 @@
     "week": "Semana",
     "weeks": "Semanas",
     "yes": "Sí",
-    "yesterday": "Ayer",
-    "search": "Buscar",
-    "darkMode": "Modo oscuro",
-    "lightMode": "Modo claro"
+    "yesterday": "Ayer"
   },
   "compliance": {
     "disclaimerCompact": "Solo con fines informativos. Consulta a tu profesional de salud.",
@@ -402,8 +388,7 @@
     "info": "La concepción ocurre generalmente unas 2 semanas después del primer día de tu última menstruación, durante la ovulación.",
     "knowDueDate": "¿Conoces tu fecha de parto?",
     "lmpDate": "Primer día del último período",
-    "planningPregnancy": "¿Planeas un embarazo?",
-    "learnMore": "Más información"
+    "planningPregnancy": "¿Planeas un embarazo?"
   },
   "contractionPage": {
     "avgDuration": "Duración promedio",
@@ -419,8 +404,7 @@
     "rule511Desc": "Muchos médicos recomiendan contactarlos cuando las contracciones son cada 5 minutos, duran 1 minuto cada una, durante al menos 1 hora.",
     "sinceLastContraction": "{{minutes}} min desde la última",
     "subtitle": "Registra la duración y frecuencia de las contracciones",
-    "title": "Diario de contracciones",
-    "disclaimer": "Contacta a tu médico si las contracciones son regulares y frecuentes."
+    "title": "Diario de contracciones"
   },
   "cookieConsent": {
     "accept": "Aceptar",
@@ -499,9 +483,7 @@
     "weight": {
       "empty": "Registra tu peso actual",
       "title": "Tendencia de peso"
-    },
-    "greeting": "Hola",
-    "weekLabel": "Semana {{week}}"
+    }
   },
   "dailyInsights": {
     "actions": {
@@ -624,25 +606,7 @@
     },
     "title": "Consejos diarios de embarazo",
     "trimester": "Trimestre",
-    "yourFavorites": "Tus favoritos",
-    "tip1": "Bebe al menos 8 vasos de agua al día",
-    "tip2": "Haz un paseo al aire libre",
-    "tip3": "Come un puñado de frutos secos como merienda",
-    "tip4": "Practica 5 minutos de respiración profunda",
-    "tip5": "Toma tus vitaminas",
-    "tip6": "Descansa cuando estés cansada",
-    "tip7": "Come alimentos ricos en hierro",
-    "tip8": "Haz estiramientos suaves",
-    "tip9": "Escribe tus pensamientos en un diario",
-    "tip10": "Escucha música relajante",
-    "tip11": "Come alimentos ricos en calcio",
-    "tip12": "Evita estar de pie mucho tiempo",
-    "tip13": "Habla con tu bebé",
-    "tip14": "Haz ejercicios del suelo pélvico",
-    "tip15": "Duerme sobre el lado izquierdo",
-    "tip16": "Come alimentos ricos en fibra",
-    "tip17": "Evita la cafeína por la tarde",
-    "tip18": "Eleva los pies"
+    "yourFavorites": "Tus favoritos"
   },
   "dashboard": {
     "aiTools": "Herramientas con IA",
@@ -711,11 +675,7 @@
         "great": "Genial",
         "low": "Bajo",
         "normal": "Normal",
-        "okay": "Regular",
-        "happy": "Feliz",
-        "sad": "Triste",
-        "tired": "Cansada",
-        "energetic": "Enérgica"
+        "okay": "Regular"
       },
       "noSymptoms": "Ninguno",
       "saveAnalyze": "Guardar y revisar",
@@ -848,12 +808,6 @@
         "tips": "Consejos de salud para el embarazo",
         "yoga": "Ejercicios de yoga prenatal"
       }
-    },
-    "riskAlert": {
-      "title": "Alertas de salud",
-      "subtitle": "Puntos importantes para esta semana",
-      "noRisks": "Sin alertas – ¡todo bien!",
-      "disclaimer": "No reemplaza el consejo médico"
     }
   },
   "diaperPage": {
@@ -885,8 +839,7 @@
     "total": "Total",
     "weeklyTrend": "Tendencia semanal",
     "wet": "Mojado",
-    "yesterday": "Ayer",
-    "disclaimer": "Consulta a tu pediatra en caso de duda."
+    "yesterday": "Ayer"
   },
   "doctorQuestions": {
     "addQuestion": "Agregar pregunta",
@@ -958,28 +911,7 @@
     },
     "typeQuestion": "Escribe tu pregunta aquí...",
     "week": "Semana",
-    "yourQuestions": "Tus preguntas",
-    "title": "Preguntas para el médico",
-    "subtitle": "Preguntas importantes para tu próxima cita",
-    "generate": "Crear preguntas",
-    "generating": "Creando...",
-    "regenerate": "Nuevas preguntas",
-    "copy": "Copiar",
-    "copied": "¡Copiado!",
-    "weekLabel": "Para la semana {{week}}",
-    "forWeek": "Para la semana {{week}}",
-    "disclaimer": "Adapta las preguntas a tu situación personal",
-    "category": {
-      "general": "General",
-      "tests": "Exámenes",
-      "symptoms": "Síntomas",
-      "nutrition": "Nutrición",
-      "exercise": "Ejercicio",
-      "mental": "Salud mental",
-      "birth": "Parto"
-    },
-    "print": "Imprimir",
-    "save": "Guardar"
+    "yourQuestions": "Tus preguntas"
   },
   "dueDatePage": {
     "calculateBtn": "Calcular fecha",
@@ -997,8 +929,7 @@
     "timeline": "Tu línea de tiempo del embarazo",
     "title": "Cuenta regresiva del bebé",
     "trimester": "{{number}}º trimestre",
-    "weeksAndDays": "{{weeks}} semanas, {{days}} días",
-    "disclaimer": "Solo es una estimación. Consulta con tu médico para confirmación."
+    "weeksAndDays": "{{weeks}} semanas, {{days}} días"
   },
   "encryption": {
     "dataEncrypted": "Datos cifrados",
@@ -1232,14 +1163,7 @@
       "vitaminD": "Fuentes de vitamina D",
       "wholeGrains": "Cereales integrales"
     },
-    "yourList": "Tu lista",
-    "generate": "Crear lista",
-    "generating": "Creando...",
-    "weekLabel": "Para la semana {{week}}",
-    "regenerate": "Nueva lista",
-    "copy": "Copiar",
-    "copied": "¡Copiado!",
-    "disclaimer": "Consulta a tu médico para necesidades alimentarias especiales"
+    "yourList": "Tu lista"
   },
   "home": {
     "aiSubtitle": "Herramientas avanzadas de IA",
@@ -1253,9 +1177,7 @@
     "exercises": "Ejercicios",
     "meals": "Comidas",
     "positions": "Posiciones",
-    "shopping": "Compras",
-    "popular": "Popular",
-    "searchPlaceholder": "Buscar herramienta..."
+    "shopping": "Compras"
   },
   "insightTabs": {
     "dailyTip": "Consejo del día",
@@ -1290,10 +1212,7 @@
     "step3": "Relaja durante 5 segundos y deja que los músculos se suelten completamente.",
     "step4": "Repite 10-15 veces por serie, 3 series diarias para mejores resultados.",
     "streak": "Días seguidos",
-    "todayReps": "Repeticiones hoy",
-    "tip1": "Contrae los músculos del suelo pélvico durante 5 segundos",
-    "tip2": "Repite el ejercicio 10 veces",
-    "encouragement": "Los ejercicios regulares del suelo pélvico fortalecen la musculatura para el parto"
+    "todayReps": "Repeticiones hoy"
   },
   "kickAnalysis": {
     "analyzing": "Analizando patrones de movimiento...",
@@ -1325,8 +1244,7 @@
     "startCounting": "Empezar a contar",
     "subtitle": "Registra los movimientos de tu bebé durante el día",
     "timeElapsed": "Tiempo transcurrido",
-    "title": "Diario de movimientos del bebé",
-    "disclaimer": "Contacta a tu médico si notas una disminución de los movimientos."
+    "title": "Diario de movimientos del bebé"
   },
   "kickPattern": {
     "consistent": "Consistente",
@@ -1343,9 +1261,7 @@
     "needsAttention": "Necesita atención",
     "recordAtLeast": "Registra al menos 2 sesiones para ver el análisis de patrones",
     "slowingDown": "Desacelerando",
-    "stable": "Estable",
-    "title": "Patrón de movimientos",
-    "noData": "Aún no hay datos"
+    "stable": "Estable"
   },
   "laborLinks": {
     "birthPlanLink": "Generador de plan de parto",
@@ -1400,8 +1316,7 @@
       "6months": "After 6 months",
       "no": "Not returning / Stay-at-home",
       "year": "After 1 year"
-    },
-    "tip": "Infórmate temprano sobre la lactancia"
+    }
   },
   "layout": {
     "contactPage": {
@@ -1625,10 +1540,7 @@
       "launchBanner": "🎁 Oferta de lanzamiento — 10 días gratis",
       "premium": "Tus datos son tuyos",
       "scienceBacked": "Base Científica"
-    },
-    "home": "Inicio",
-    "tools": "Herramientas",
-    "dashboard": "Panel"
+    }
   },
   "legCrampPreventer": {
     "aiCoachTitle": "AI Cramp Prevention Coach",
@@ -1710,8 +1622,7 @@
       "night": "Night"
     },
     "title": "AI Leg Cramp Preventer",
-    "warning": "Calambres frecuentes o severos, especialmente con hinchazón, enrojecimiento o calor, deben ser reportados a tu médico.",
-    "tip": "Estira las pantorrillas antes de dormir"
+    "warning": "Calambres frecuentes o severos, especialmente con hinchazón, enrojecimiento o calor, deben ser reportados a tu médico."
   },
   "nauseaRelief": {
     "encouragingNote": "Recuerda: las náuseas matutinas suelen alcanzar su pico en las semanas 8-10 y mejoran significativamente hacia la semana 12-14.",
@@ -1766,9 +1677,7 @@
     "triggersTitle": "What triggers your nausea?",
     "videosSubtitle": "Techniques and tips to ease morning sickness",
     "videosTitle": "Nausea Comfort Videos",
-    "vomitingCheckbox": "I'm experiencing vomiting, not just nausea",
-    "waterReminder": "Bebe pequeños sorbos de agua",
-    "gingerTip": "Prueba el té o caramelos de jengibre"
+    "vomitingCheckbox": "I'm experiencing vomiting, not just nausea"
   },
   "nav": {
     "aiTools": "Herramientas IA",
@@ -1943,43 +1852,7 @@
     "weeklyTipReminders": "Consejos semanales",
     "weeklyTipTitle": "🤰 Actualización semana {{week}}",
     "welcome": "👋 ¡Bienvenida!",
-    "welcomeDesc": "Disfruta de 30+ herramientas inteligentes para seguir tu embarazo fácilmente y con seguridad.",
-    "empty": "Sin notificaciones",
-    "markAllRead": "Marcar todo como leído",
-    "clear": "Borrar todo",
-    "today": "Hoy",
-    "earlier": "Antes",
-    "settings": "Configuración",
-    "waterMsg": "¡Es hora de beber un vaso de agua!",
-    "vitamin": "Recordatorio de vitaminas",
-    "vitaminMsg": "¿Has tomado tus vitaminas hoy?",
-    "exerciseMsg": "¡Es hora de una caminata!",
-    "kick": "Movimientos del bebé",
-    "kickMsg": "¿Has contado las pataditas hoy?",
-    "appointment": "Recordatorio de cita",
-    "sleep": "Recordatorio de descanso",
-    "sleepMsg": "¡Es hora de descansar!",
-    "mood": "Diario de ánimo",
-    "moodMsg": "¿Cómo te sientes hoy?",
-    "weight": "Seguimiento del peso",
-    "weightMsg": "¿Te has pesado esta semana?",
-    "milestone": "Hito importante",
-    "milestoneMsg": "¡Tu bebé ha alcanzado un nuevo hito!",
-    "tip": "Consejo del día",
-    "tipMsg": "Nuevo consejo de embarazo disponible",
-    "photo": "Recordatorio de foto",
-    "photoMsg": "¡Documenta tu barriga esta semana!",
-    "kegelMsg": "¡Es hora de tus ejercicios pélvicos!",
-    "stretch": "Estiramientos",
-    "stretchMsg": "Haz una pausa de estiramiento",
-    "breathe": "Ejercicio de respiración",
-    "breatheMsg": "Tómate un momento para respirar profundamente",
-    "journal": "Diario",
-    "journalMsg": "Anota tus pensamientos",
-    "snack": "Recordatorio de merienda",
-    "snackMsg": "¡Es hora de una merienda saludable!",
-    "contraction": "Temporizador de contracciones",
-    "contractionMsg": "No olvides documentar tus contracciones"
+    "welcomeDesc": "Disfruta de 30+ herramientas inteligentes para seguir tu embarazo fácilmente y con seguridad."
   },
   "nutrition": {
     "addFoodFirst": "Agrega al menos un alimento",
@@ -2009,10 +1882,7 @@
     "tipsTitle": "Consejos de nutrición para el embarazo",
     "todaysMeals": "Comidas de hoy",
     "totalCalories": "Calorías totales hoy",
-    "weekInfo": "Semana {{week}} - Registra tus comidas y obtén consejos IA",
-    "supplementsGuide": {
-      "title": "Guía de suplementos alimenticios"
-    }
+    "weekInfo": "Semana {{week}} - Registra tus comidas y obtén consejos IA"
   },
   "nutritionLinks": {
     "cravingLink": "Alternativas a antojos",
@@ -2100,12 +1970,7 @@
     "title": "Planificador de Nutrición Inteligente",
     "trimester": "Trimestre",
     "vegan": "Vegano",
-    "vegetarian": "Vegetariano",
-    "calories": "Calorías",
-    "protein": "Proteínas",
-    "iron": "Hierro",
-    "calcium": "Calcio",
-    "fiber": "Fibra"
+    "vegetarian": "Vegetariano"
   },
   "onboarding": {
     "accept": "Entiendo y continuar",
@@ -2142,9 +2007,7 @@
       "pregnant": "Mi embarazo",
       "pregnantDesc": "Tu compañera integral durante el embarazo",
       "subtitle": "Personalizaremos todo para ti",
-      "title": "¿Dónde estás en tu camino?",
-      "ttcLabel": "Buscando bebé",
-      "postpartumLabel": "Posparto"
+      "title": "¿Dónde estás en tu camino?"
     },
     "step3": {
       "bloodType": "Grupo sanguíneo",
@@ -2200,6 +2063,13 @@
       "fullAccess": "Full access with no limits",
       "personalizedInsights": "Tips personalized to your week"
     },
+    "bonusAlreadyClaimed": "Ya reclamaste tus puntos gratis este mes. Nuevos puntos estarán disponibles el próximo mes.",
+    "bonusClaim": "Reclamar ahora",
+    "bonusDesc": "Reclama 5 puntos de IA adicionales gratis — una vez al mes, ¡oferta por tiempo limitado!",
+    "bonusSuccess": "¡5 puntos añadidos! ✅",
+    "bonusSuccessDesc": "Tus puntos gratuitos han sido añadidos. ¡Disfruta de tus herramientas de IA!",
+    "bonusTitle": "🎁 ¡Obtén 5 puntos gratis!",
+    "googlePlayNotice": "La facturación de Google Play aún no está conectada. Mientras tanto, ¡puedes obtener 5 puntos gratis como regalo temporal!",
     "maybeLater": "Quizás después",
     "startTrial": "Suscribirse ahora",
     "subscribeButton": "Suscribirse ahora",
@@ -2207,17 +2077,7 @@
     "title": "Desbloquear Premium",
     "toolLocked": "\"{{tool}}\" is available for subscribers only",
     "trialDesc": "Desbloquea todas las funciones premium",
-    "trialTitle": "Acceso Premium 🎁",
-    "feature1": "Análisis IA ilimitados",
-    "feature2": "Todas las herramientas Premium",
-    "cta": "Pasar a Premium",
-    "bonusTitle": "🎁 ¡Obtén 5 puntos gratis!",
-    "bonusDesc": "Reclama 5 puntos de IA adicionales gratis — una vez al mes, ¡oferta por tiempo limitado!",
-    "bonusClaim": "Reclamar ahora",
-    "bonusSuccess": "¡5 puntos añadidos! ✅",
-    "bonusSuccessDesc": "Tus puntos gratuitos han sido añadidos. ¡Disfruta de tus herramientas de IA!",
-    "googlePlayNotice": "La facturación de Google Play aún no está conectada. Mientras tanto, ¡puedes obtener 5 puntos gratis como regalo temporal!",
-    "bonusAlreadyClaimed": "Ya reclamaste tus puntos gratis este mes. Nuevos puntos estarán disponibles el próximo mes."
+    "trialTitle": "Acceso Premium 🎁"
   },
   "postpartumLinks": {
     "babySleepLink": "Seguimiento del sueño del bebé",
@@ -2245,8 +2105,7 @@
     "obesity": "Obesidad (IMC > 30)",
     "previousPreeclampsia": "Preeclampsia previa",
     "subtitle": "Verifica tus factores de riesgo",
-    "title": "Verificación de concienciación sobre preeclampsia",
-    "learnMore": "Más información"
+    "title": "Verificación de concienciación sobre preeclampsia"
   },
   "preeclampsiaRisk": {
     "aiCoachTitle": "Coach IA de prevención de preeclampsia",
@@ -2344,9 +2203,9 @@
     "badge": "Más usos diarios + herramientas IA exclusivas",
     "bestValue": "Mejor valor",
     "cta": "Comenzar acceso Premium",
+    "ctaSub": "{{price}}/{{period}}",
     "downloadApp": "Descargar desde Google Play",
     "downloadFromPlay": "Para suscribirte, descarga la aplicación desde Google Play Store",
-    "ctaSub": "{{price}}/{{period}}",
     "feature1": "22+ herramientas IA avanzadas",
     "feature2": "40 análisis inteligentes al mes",
     "feature3": "Informes de salud IA personalizados",
@@ -2397,8 +2256,7 @@
     },
     "symptoms": "Síntomas",
     "title": "Entrada rápida",
-    "trend": "Tendencia",
-    "mood": "Ánimo"
+    "trend": "Tendencia"
   },
   "quotaExhausted": {
     "postAnalysisHint": "Actualiza a Premium para 40 análisis mensuales e información más profunda",
@@ -2507,18 +2365,6 @@
           "3": "Severe abdominal pain with weight changes"
         }
       }
-    },
-    "callDoctor": {
-      "title": "Cuándo llamar al médico",
-      "subtitle": "Consulta inmediatamente ante estos síntomas",
-      "bleeding": "Sangrado vaginal",
-      "headache": "Dolor de cabeza severo persistente",
-      "vision": "Problemas de visión",
-      "swelling": "Hinchazón repentina de cara o manos",
-      "fever": "Fiebre superior a 38°C",
-      "movement": "Disminución significativa de movimientos del bebé",
-      "pain": "Dolor abdominal intenso",
-      "contractions": "Contracciones regulares antes de la semana 37"
     }
   },
   "searchDialog": {
@@ -2547,12 +2393,6 @@
   },
   "settings": {
     "aboutApp": "Acerca de la aplicación",
-    "trust": {
-      "title": "Tu privacidad, protegida",
-      "localData": "Tus datos de salud permanecen en tu dispositivo — nunca se suben a nuestros servidores",
-      "noAdSharing": "No se comparte información de salud con anunciantes ni terceros",
-      "noAIStorage": "Las conversaciones de IA se procesan en tiempo real y no se almacenan en nuestros servidores"
-    },
     "aiReset": {
       "button": "Restablecer intentos (Premium)",
       "status": "Usado: {{used}}/{{limit}} • Restante: {{remaining}}",
@@ -2589,8 +2429,7 @@
       "lastBackup": "Última copia:",
       "noData": "Sin datos",
       "noDataDesc": "No hay datos para exportar",
-      "title": "Copia de seguridad de datos",
-      "auto": "Copia automática"
+      "title": "Copia de seguridad de datos"
     },
     "clearData": {
       "allSettings": "Todas las configuraciones",
@@ -2707,6 +2546,12 @@
     "securityPrivacy": "Seguridad y privacidad",
     "subtitle": "Administra tus preferencias",
     "title": "Configuración",
+    "trust": {
+      "localData": "Tus datos de salud permanecen en tu dispositivo — nunca se suben a nuestros servidores",
+      "noAIStorage": "Las conversaciones de IA se procesan en tiempo real y no se almacenan en nuestros servidores",
+      "noAdSharing": "No se comparte información de salud con anunciantes ni terceros",
+      "title": "Tu privacidad, protegida"
+    },
     "version": "Versión"
   },
   "sleepOptimizer": {
@@ -2730,10 +2575,7 @@
     "title": "AI Sleep Tips",
     "usualBedtime": "Usual Bedtime",
     "videosSubtitle": "Expert tips for better sleep during pregnancy",
-    "videosTitle": "Pregnancy Sleep Videos",
-    "tip1": "Duerme sobre el lado izquierdo",
-    "tip2": "Usa una almohada de embarazo entre las rodillas",
-    "tip3": "Evita las pantallas antes de dormir"
+    "videosTitle": "Pregnancy Sleep Videos"
   },
   "smartPlan": {
     "activityLevel": "Nivel de actividad",
@@ -2811,67 +2653,54 @@
     "weeklyReport": "Informe Semanal",
     "weight": "Peso",
     "yourData": "Tus Datos",
-    "yourHealthData": "Tus datos personales",
-    "disclaimer": "No sustituye el consejo médico"
+    "yourHealthData": "Tus datos personales"
   },
   "smoothieAI": {
     "aiGenerate": "Generar con IA",
     "aiGeneratedRecipe": "Receta generada por IA",
     "allRecipes": "Todas las recetas para el trimestre {{trimester}}",
     "benefits": {
-      "fightsFatigue": "Combate la fatiga",
       "boostsIron": "Aumenta el hierro",
-      "promotesSleep": "Favorece el sueño",
-      "calmsNausea": "Calma las náuseas",
       "brainDev": "Desarrollo cerebral",
+      "calmsNausea": "Calma las náuseas",
+      "fightsFatigue": "Combate la fatiga",
+      "promotesSleep": "Favorece el sueño",
       "strengthensBones": "Fortalece los huesos"
     },
     "createCustom": "Crear un batido IA personalizado",
     "ingredients": {
       "1banana": "1 plátano",
-      "1cupSpinach": "1 taza de espinacas",
-      "halfCupGreekYogurt": "1/2 taza de yogur griego",
-      "1tbspAlmondButter": "1 cda de mantequilla de almendra",
       "1cupAlmondMilk": "1 taza de leche de almendra",
-      "1tbspHoney": "1 cda de miel",
-      "1cupStrawberries": "1 taza de fresas",
-      "halfCupBeets": "1/2 taza de remolacha",
-      "1orange": "1 naranja",
-      "halfCupPomegranate": "1/2 taza de granada",
-      "1tbspChiaSeeds": "1 cda de semillas de chía",
+      "1cupBlueberries": "1 taza de arándanos",
       "1cupCherries": "1 taza de cerezas",
-      "halfCupMilk": "1/2 taza de leche",
-      "quarterTspCinnamon": "1/4 cdta de canela",
-      "1tbspOats": "1 cda de avena",
-      "halfCucumber": "1/2 pepino",
+      "1cupCoconutWater": "1 taza de agua de coco",
+      "1cupFortifiedAlmondMilk": "1 taza de leche de almendra enriquecida",
+      "1cupGreekYogurt": "1 taza de yogur griego",
+      "1cupMilk": "1 taza de leche",
+      "1cupSpinach": "1 taza de espinacas",
+      "1cupStrawberries": "1 taza de fresas",
       "1greenApple": "1 manzana verde",
       "1inchGinger": "2,5 cm de jengibre",
-      "halfLemon": "1/2 limón",
-      "1cupCoconutWater": "1 taza de agua de coco",
-      "freshMint": "Menta fresca",
-      "1cupMango": "1 taza de mango",
-      "halfCupPineapple": "1/2 taza de piña",
-      "1tbspFlaxSeeds": "1 cda de semillas de lino",
-      "1cupBlueberries": "1 taza de arándanos",
-      "halfCupRaspberries": "1/2 taza de frambuesas",
-      "1tbspWalnuts": "1 cda de nueces",
-      "1cupPeaches": "1 taza de melocotones",
-      "halfCupCarrots": "1/2 taza de zanahorias",
-      "1tbspPumpkinSeeds": "1 cda de semillas de calabaza",
-      "1cupWatermelon": "1 taza de sandía",
-      "halfAvocado": "1/2 aguacate",
-      "1tbspCocoa": "1 cda de cacao",
-      "1tbspPeanutButter": "1 cda de mantequilla de cacahuete",
-      "1dateFruit": "1 dátil",
-      "quarterAvocado": "1/4 aguacate",
+      "1orange": "1 naranja",
+      "1tbspAlmondButter": "1 cda de mantequilla de almendra",
+      "1tbspChiaSeeds": "1 cda de semillas de chía",
       "1tbspFlaxseed": "1 cda de linaza",
-      "1cupMilk": "1 taza de leche",
+      "1tbspHoney": "1 cda de miel",
       "1tbspMapleSyrup": "1 cda de jarabe de arce",
-      "1cupGreekYogurt": "1 taza de yogur griego",
-      "2tbspAlmondButter": "2 cdas de mantequilla de almendra",
-      "1cupFortifiedAlmondMilk": "1 taza de leche de almendra enriquecida",
+      "1tbspOats": "1 cda de avena",
       "1tbspSesameSeeds": "1 cda de sésamo",
-      "honeyToTaste": "Miel al gusto"
+      "1tbspWalnuts": "1 cda de nueces",
+      "2tbspAlmondButter": "2 cdas de mantequilla de almendra",
+      "freshMint": "Menta fresca",
+      "halfCucumber": "1/2 pepino",
+      "halfCupBeets": "1/2 taza de remolacha",
+      "halfCupGreekYogurt": "1/2 taza de yogur griego",
+      "halfCupMilk": "1/2 taza de leche",
+      "halfCupPomegranate": "1/2 taza de granada",
+      "halfLemon": "1/2 limón",
+      "honeyToTaste": "Miel al gusto",
+      "quarterAvocado": "1/4 aguacate",
+      "quarterTspCinnamon": "1/4 cdta de canela"
     },
     "instructions": "Preparación",
     "instructionsText": {
@@ -2896,40 +2725,7 @@
     },
     "subtitle": "Batidos saludables para tu embarazo",
     "title": "Recetas de batidos",
-    "trimester": "Trimestre",
-    "generate": "Crear receta",
-    "generating": "Creando...",
-    "servings": "Porciones",
-    "prepTime": "Tiempo de preparación",
-    "category": "Categoría",
-    "energyBoost": "Boost de energía",
-    "ironRich": "Rico en hierro",
-    "calciumBoost": "Boost de calcio",
-    "fiberRich": "Rico en fibra",
-    "antiNausea": "Anti-náuseas",
-    "proteinPacked": "Rico en proteínas",
-    "vitaminC": "Vitamina C",
-    "omega3": "Omega 3",
-    "hydrating": "Hidratante",
-    "antioxidant": "Antioxidantes",
-    "folateRich": "Rico en folato",
-    "magnesium": "Magnesio",
-    "selectCategory": "Elegir categoría",
-    "customRequest": "Solicitud personalizada",
-    "placeholder": "ej: sin lácteos, extra proteínas...",
-    "regenerate": "Nueva receta",
-    "save": "Guardar",
-    "saved": "Guardado",
-    "favorites": "Favoritos",
-    "noFavorites": "Sin favoritos",
-    "removeFavorite": "Eliminar",
-    "nutritionInfo": "Información nutricional",
-    "perServing": "Por porción",
-    "disclaimer": "Consulta a tu médico en caso de intolerancias",
-    "trimesterNote": "Adaptado a tu {{trimester}}º trimestre",
-    "loading": "Cargando...",
-    "error": "Error al crear. Por favor, inténtalo de nuevo.",
-    "fresh": "Fresco"
+    "trimester": "Trimestre"
   },
   "snackPlanner": {
     "calories": "calories",
@@ -2964,11 +2760,7 @@
     },
     "subtitle": "Meriendas saludables para tu embarazo",
     "surpriseMe": "Surprise Me!",
-    "title": "Planificador de meriendas",
-    "generate": "Sugerir meriendas",
-    "generating": "Creando...",
-    "regenerate": "Nuevas sugerencias",
-    "disclaimer": "Consulta a tu médico en caso de alergias"
+    "title": "Planificador de meriendas"
   },
   "socialProof": {
     "exportDesc": "Comparte con tu médico",
@@ -2980,8 +2772,7 @@
     "tools": "30 Herramientas",
     "toolsDesc": "Para tu viaje",
     "trackDesc": "Patadas, contracciones y más",
-    "trackEverything": "Sigue todo",
-    "users": "Más de {{count}} usuarias confían en nosotras"
+    "trackEverything": "Sigue todo"
   },
   "stretchReminder": {
     "aiStretchCoach": "Guía de estiramiento IA",
@@ -3047,8 +2838,7 @@
     "title": "Recordatorio de Estiramiento Inteligente",
     "todaysProgress": "Progreso de hoy",
     "trimester": "Trimestre",
-    "yourTrimester": "Tu trimestre",
-    "tip": "Haz pausas de estiramiento regulares"
+    "yourTrimester": "Tu trimestre"
   },
   "subscription": {
     "premiumFeature": "Función Premium",
@@ -3085,8 +2875,7 @@
     "trialRemaining": "Premium activo",
     "unlimitedAI": "40 análisis de IA al mes",
     "unlockFullAccess": "Desbloquear acceso completo",
-    "yearly": "Anual",
-    "features": "Funciones Premium"
+    "yearly": "Anual"
   },
   "symptomAnalyzer": {
     "evidence": {
@@ -3141,8 +2930,7 @@
     "vitamin-tracker": "Rastrea tu ingesta diaria de vitaminas. Las dosis deben ser determinadas por tu médico.",
     "weekly-summary": "Sigue el desarrollo semanal de tu bebé. La información es educativa. Ante cambios preocupantes, consulta a tu médico.",
     "weight-gain": "Rastrea tu aumento de peso en el embarazo. Los resultados son pautas generales. Discute tus preocupaciones con tu médico.",
-    "wellness-diary": "Registra tus emociones diariamente. Ante tristeza persistente o ansiedad severa, habla con un profesional.",
-    "disclaimer": "No sustituye el consejo médico"
+    "wellness-diary": "Registra tus emociones diariamente. Ante tristeza persistente o ansiedad severa, habla con un profesional."
   },
   "tools": {
     "aiBackPainRelief": {
@@ -4099,11 +3887,7 @@
         "pizza": "Pizza",
         "popcorn": "Palomitas",
         "soda": "Refresco",
-        "tacos": "Tacos",
-        "chips": "Patatas fritas",
-        "cake": "Pastel",
-        "fries": "Patatas fritas",
-        "candy": "Caramelos"
+        "tacos": "Tacos"
       },
       "emotionalComfort": "Confort emocional",
       "emotionalComfortDesc": "ciertos alimentos brindan alivio psicológico",
@@ -4313,22 +4097,194 @@
       "weeksAndDays": "{{weeks}} semanas, {{days}} días"
     },
     "fertileWindow": {
-      "calculate": "Calcular mi ventana fértil",
+      "calculate": "Encuentra mi ventana fértil",
       "cycleLength": "Duración promedio del ciclo (días)",
-      "disclaimer": "Esta es una estimación basada en datos promedio del ciclo. La ovulación real puede variar. Consulta a tu médico para orientación personalizada.",
+      "disclaimer": "Esta es una estimación basada en datos de ciclo promedio. La ovulación real puede variar. Consulte a su proveedor de atención médica para obtener orientación personalizada.",
       "estimatedOvulation": "Día estimado de ovulación",
-      "lastPeriod": "Primer día de tu última menstruación",
-      "windowEnd": "Fin de la ventana",
-      "windowStart": "Inicio de la ventana",
+      "lastPeriod": "Primer día de su último período",
+      "windowEnd": "La ventana se cierra",
+      "windowStart": "Se abre la ventana",
       "yourWindow": "Tu ventana fértil"
     },
     "fertilityAcademy": {
-      "lessonsCount": "{{count}} módulos educativos",
-      "lessons": "Lecciones"
+      "lessons": {
+        "ageAndFertility": {
+          "content": "La edad es uno de los factores más importantes que afectan la fertilidad:\n\n• Las mujeres nacen con todos los óvulos que jamás tendrán: entre 1 y 2 millones al nacer.\n• En la pubertad, quedan aproximadamente entre 300.000 y 400.000 óvulos. Sólo entre 300 y 400 ovulan durante la vida.\n• La fertilidad alcanza su punto máximo a mediados de los 20 años. A partir de los 30 años comienza un declive gradual.\n• Después de los 35, el declive se acelera. Tanto la calidad como la cantidad de óvulos disminuyen.\n• A los 40 años, la probabilidad de concepción natural por ciclo se reduce a aproximadamente el 5%.\n• La fertilidad masculina también disminuye con la edad, aunque de forma más gradual.\n\nEsto no significa que el embarazo después de los 35 años sea imposible: muchas mujeres conciben de forma natural. Pero comprender el tiempo ayuda a la planificación.",
+          "title": "Edad y fertilidad"
+        },
+        "assistedReproduction": {
+          "content": "Cuando la concepción natural no se logra, existen opciones efectivas:\n\n• Estimulación de la ovulación: Medicamentos que estimulan la producción de óvulos: tratamiento de primera línea.\n• Inseminación intrauterina (IIU): esperma procesado que se inyecta directamente en el útero.\n• Fertilización in vitro (FIV): La técnica más avanzada. Tasas de éxito del 30 al 50 % por ciclo.\n• Inyección intracitoplasmática de espermatozoides (ICSI): un único espermatozoide se inyecta directamente en el óvulo.\n• Pruebas genéticas previas a la implantación (PGT): detección de anomalías cromosómicas en embriones.\n• Cada opción tiene indicaciones específicas: un especialista en fertilidad le orienta hacia la más adecuada.",
+          "title": "Técnicas de Reproducción Asistida"
+        },
+        "cervicalHealth": {
+          "content": "El cuello uterino juega un papel fundamental en la fertilidad:\n\n• Produce moco que cambia a lo largo del ciclo para facilitar o bloquear el paso de los espermatozoides.\n• El moco fértil nutre los espermatozoides y prolonga su vida útil hasta 5 días.\n• Las infecciones cervicales crónicas pueden reducir la calidad del moco.\n• Los procedimientos cervicales previos (como las biopsias de cono) pueden afectar la producción de moco.\n• Mantener un pH vaginal saludable favorece el entorno cervical óptimo para la fertilidad.",
+          "title": "Salud cervical y fertilidad"
+        },
+        "commonMyths": {
+          "content": "Separemos la realidad de la ficción:\n\nMito: Sólo puedes quedar embarazada el día de la ovulación.\nHecho: La ventana fértil dura aproximadamente 6 días. Los espermatozoides pueden sobrevivir hasta 5 días.\n\nMito: La posición durante las relaciones sexuales afecta la concepción.\nHecho: Ninguna evidencia científica respalda esto. Los espermatozoides llegan al cuello uterino en cuestión de segundos.\n\nMito: Los anticonceptivos causan infertilidad.\nHecho: La fertilidad generalmente regresa entre 1 y 3 meses después de suspender la mayoría de los anticonceptivos.\n\nMito: El estrés causa directamente la infertilidad.\nRealidad: Si bien el estrés crónico severo puede afectar las hormonas, el estrés moderado por sí solo rara vez previene la concepción.\n\nMito: Es necesario tener relaciones sexuales todos los días.\nHecho: Cada 1 o 2 días durante la ventana fértil es suficiente. Las relaciones sexuales diarias no reducen la calidad del esperma.\n\nMito: Los suplementos a base de hierbas garantizan la fertilidad.\nHecho: Algunos pueden ayudar, pero ninguno está científicamente probado que garantice la concepción. Consulte siempre a su médico.",
+          "title": "Mitos sobre la fertilidad frente a hechos"
+        },
+        "emotionalWellbeing": {
+          "content": "Intentar concebir puede ser una montaña rusa emocional:\n\n• Es normal sentir esperanza, entusiasmo, frustración y tristeza, a veces todo en un solo ciclo.\n• Aproximadamente 1 de cada 6 parejas experimenta dificultades para concebir. Usted no está solo.\n• El duelo después de una prueba negativa es válido. Permítete sentir sin juzgar.\n• La comunicación con tu pareja es fundamental. Comparte tus sentimientos abiertamente.\n• Considere unirse a una comunidad de apoyo; conectarse con otras personas en el mismo viaje puede ser reconfortante.\n• Establezca límites en torno a los anuncios de embarazo y baby showers si se sienten desencadenantes.\n• El asesoramiento profesional puede proporcionarle estrategias de afrontamiento adaptadas a su situación.\n• Recuerde: su valor no está definido por su fertilidad. Sé amable contigo mismo.",
+          "title": "Bienestar emocional en el viaje"
+        },
+        "endometriosisAwareness": {
+          "content": "La endometriosis afecta a 1 de cada 10 mujeres:\n\n• Un tejido similar al revestimiento uterino crece fuera del útero, lo que provoca inflamación y adherencias.\n• Puede afectar las trompas, los ovarios y la calidad de los óvulos.\n• Síntomas: dolor menstrual intenso, dolor durante las relaciones sexuales y, a veces, ningún síntoma.\n• El diagnóstico temprano mejora los resultados. La laparoscopia es el estándar de oro.\n• Muchas mujeres afectadas conciben de forma natural o con ayuda.\n• Consulte a un especialista en fertilidad si tiene antecedentes familiares o síntomas sospechosos.",
+          "title": "Endometriosis y fertilidad"
+        },
+        "environmentalToxins": {
+          "content": "La exposición diaria a toxinas ambientales puede afectar su fertilidad:\n\n• El BPA en los plásticos imita al estrógeno y altera el equilibrio hormonal.\n• Los ftalatos en los cosméticos y fragancias alteran el sistema endocrino.\n• Los pesticidas aplicados a frutas y verduras están relacionados con una menor calidad de los huevos.\n• Los metales pesados ​​(plomo, mercurio) afectan tanto a los óvulos como a los espermatozoides.\n• Medidas prácticas: envases de vidrio en lugar de plástico, productos de limpieza naturales, lavar bien las frutas.\n• Filtrar el agua potable reduce la exposición a contaminantes.",
+          "title": "Toxinas ambientales y fertilidad"
+        },
+        "epigeneticsFertility": {
+          "content": "Los descubrimientos de la epigenética han cambiado nuestra comprensión de la fertilidad:\n\n• Su nutrición y estilo de vida pueden influir en la expresión genética de su futuro hijo.\n• La deficiencia de folato antes del embarazo afecta la programación genética del feto.\n• El estrés crónico puede dejar \"huellas\" en el ADN que se transfieren al embrión.\n• La contaminación y las toxinas ambientales provocan cambios epigenéticos que pueden afectar a generaciones.\n• Buenas noticias: los cambios epigenéticos negativos son reversibles con un estilo de vida saludable.\n• De 3 a 6 meses de mejoras antes del embarazo marcan una diferencia real en la salud fetal.",
+          "title": "Epigenética y salud generacional"
+        },
+        "exerciseBalance": {
+          "content": "El ejercicio es un arma de doble filo para la fertilidad:\n\n• La actividad moderada (150 minutos/semana) mejora la ovulación y la fertilidad.\n• El ejercicio intenso y continuo puede causar una 'deficiencia relativa de energía' que detiene la ovulación.\n• Caminar, nadar y hacer yoga se encuentran entre las mejores opciones.\n• El entrenamiento de fuerza moderado mejora la sensibilidad a la insulina (útil para el síndrome de ovario poliquístico).\n• El yoga para la fertilidad combina el movimiento con la reducción del estrés.\n• Si su período desaparece con el ejercicio intenso, reduzca la intensidad inmediatamente.\n• El equilibrio entre movimiento y descanso es clave.",
+          "title": "Equilibrar el ejercicio y la fertilidad"
+        },
+        "fertilityPreservation": {
+          "content": "La preservación de la fertilidad es una opción disponible que le brinda flexibilidad en la planificación:\n\n• Congelación de óvulos: Edad ideal antes de los 35 años. Excelentes resultados con técnicas modernas.\n• Congelación de embriones: Opción para parejas casadas. Tasas de éxito más altas que los óvulos solos.\n• Razones de la congelación: retraso en la maternidad, quimioterapia, condiciones médicas.\n• El proceso requiere estimulación hormonal durante 10 a 14 días y luego la extracción de óvulos.\n• El costo y el almacenamiento son factores a considerar.\n• Consulta con un especialista en fertilidad para valorar si es adecuado para tu situación.",
+          "title": "Preservación de la fertilidad"
+        },
+        "fertilizationBasics": {
+          "content": "Después de la ovulación, la fertilización puede ocurrir en las trompas de Falopio:\n\n• De los millones de espermatozoides liberados, sólo unos pocos cientos llegan al óvulo.\n• Un espermatozoide penetra la capa externa del óvulo, lo que desencadena una reacción química que impide que otros espermatozoides entren.\n• El óvulo fertilizado (cigoto) comienza a dividirse a medida que viaja hacia el útero durante 3 a 4 días.\n• Alrededor del día 6 al 10 después de la ovulación, el blastocisto se implanta en el revestimiento del útero.\n• La implantación puede causar pequeñas manchas, conocidas como sangrado de implantación.\n• Una vez implantado, el cuerpo comienza a producir hCG, la hormona detectada por las pruebas de embarazo.",
+          "title": "Fertilización e implantación"
+        },
+        "geneticFactors": {
+          "content": "Los genes juegan un papel más importante de lo esperado en la fertilidad:\n\n• El examen genético de portadores revela el riesgo de transmitir enfermedades genéticas a los niños.\n• La mutación MTHFR afecta el metabolismo del folato; el metilfolato puede ser mejor.\n• El síndrome de Turner y las anomalías cromosómicas afectan la reserva ovárica.\n• Los antecedentes familiares de menopausia precoz pueden indicar una disminución temprana de la reserva.\n• Se recomienda la prueba de cariotipo en casos de aborto espontáneo recurrente.\n• El asesoramiento genético está disponible y es útil para quienes tienen antecedentes familiares específicos.",
+          "title": "Factores genéticos y fertilidad"
+        },
+        "hormonesRole": {
+          "content": "Varias hormonas orquestan tu fertilidad:\n\n• FSH (Hormona Folículo Estimulante): Estimula el crecimiento de los folículos en los ovarios. Probado el día 3 de tu ciclo para evaluar la reserva ovárica.\n\n• LH (hormona luteinizante): desencadena la ovulación. Los kits de predicción de la ovulación detectan el aumento de LH.\n\n• Estrógeno (estradiol): promueve el desarrollo del folículo y espesa el revestimiento del útero. También afecta la calidad del moco cervical.\n\n• Progesterona: Producida después de la ovulación, mantiene el revestimiento del útero para una posible implantación. La progesterona baja puede afectar la regularidad del ciclo.\n\n• AMH (Hormona Antimülleriana): Refleja el número de óvulos restantes (reserva ovárica). Útil para la planificación de la fertilidad.\n\n• Hormonas tiroideas (TSH, T3, T4): los desequilibrios tiroideos pueden alterar la ovulación y la regularidad del ciclo.",
+          "title": "Hormonas clave de fertilidad"
+        },
+        "immunologyFertility": {
+          "content": "El sistema inmunológico juega un papel delicado durante el embarazo:\n\n• El cuerpo debe aceptar el embrión (la mitad de sus genes del padre) sin rechazarlo.\n• Las células NK uterinas ayudan con la implantación, pero una actividad excesiva puede obstaculizarla.\n• Los anticuerpos antifosfolípidos están relacionados con abortos espontáneos recurrentes.\n• Las enfermedades autoinmunes (lupus, enfermedad de Hashimoto) pueden afectar la fertilidad.\n• La inflamación pélvica crónica puede dañar las trompas.\n• Un estilo de vida antiinflamatorio (nutrición, sueño, movimiento) apoya una inmunidad equilibrada.",
+          "title": "Inmunología y fertilidad"
+        },
+        "implantationWindow": {
+          "content": "La ventana de implantación es el breve período en el que el revestimiento del útero está listo para recibir el embrión:\n\n• Normalmente ocurre entre los días 6 y 10 después de la ovulación.\n• Durante este tiempo, el endometrio secreta proteínas especiales que ayudan al embrión a adherirse.\n• La progesterona juega un papel central en la preparación del revestimiento.\n• Factores que afectan la calidad de la ventana: inflamación crónica, espesor insuficiente del revestimiento o trastornos inmunológicos.\n• El descanso y una buena nutrición durante la fase lútea apoyan el proceso de implantación.",
+          "title": "La ventana de implantación"
+        },
+        "lifestyleFactors": {
+          "content": "Tus hábitos diarios impactan significativamente en la fertilidad:\n\n• Peso: Tanto el bajo peso (IMC < 18,5) como el sobrepeso (IMC > 30) pueden alterar la ovulación. Incluso un cambio de peso del 5 al 10 % puede mejorar la regularidad del ciclo.\n\n• Fumar: Reduce la calidad de los óvulos, daña las trompas de Falopio y acelera la pérdida de óvulos. El humo de segunda mano también es perjudicial.\n\n• Alcohol: El consumo excesivo de alcohol está relacionado con ciclos irregulares y fertilidad reducida. El consumo moderado o nulo de alcohol es lo más seguro cuando se intenta concebir.\n\n• Cafeína: más de 200 a 300 mg al día (aproximadamente 2 tazas de café) pueden reducir ligeramente la fertilidad.\n\n• Ejercicio: la actividad moderada favorece la fertilidad. El ejercicio excesivo e intenso puede alterar la ovulación.\n\n• Sueño: La falta de sueño altera las hormonas reproductivas. Trate de dormir entre 7 y 9 horas por noche.\n\n• Toxinas ambientales: limite la exposición a pesticidas, metales pesados ​​y ciertos plásticos (BPA).",
+          "title": "Factores del estilo de vida que afectan la fertilidad"
+        },
+        "maleFertility": {
+          "content": "La fertilidad masculina es igualmente importante en el proceso de concepción:\n\n• La producción de esperma tarda unos 74 días. Los cambios en el estilo de vida necesitan tiempo para mostrar resultados.\n• La salud óptima del esperma requiere: evitar el calor excesivo (jacuzzis, computadoras portátiles en el regazo), mantener un peso saludable y controlar el estrés.\n• Factores que pueden reducir la calidad del esperma: fumar, alcohol excesivo, ciertos medicamentos, esteroides anabólicos y drogas recreativas.\n• Un análisis de semen es una prueba sencilla y no invasiva que evalúa el recuento, la motilidad y la morfología de los espermatozoides.\n• La edad también afecta la fertilidad masculina: la calidad del esperma disminuye gradualmente después de los 40 años.\n• Nutrientes clave para la salud del esperma: zinc, selenio, vitamina C, vitamina E, folato y ácidos grasos omega-3.",
+          "title": "Conceptos básicos de fertilidad masculina"
+        },
+        "menstrualCycle": {
+          "content": "Su ciclo menstrual se divide en cuatro fases principales:\n\n1. Fase menstrual (días 1 a 5): el revestimiento del útero se desprende, lo que marca el inicio de un nuevo ciclo.\n\n2. Fase folicular (días 1 a 13): la hormona estimulante del folículo (FSH) hace que los ovarios desarrollen folículos. El estrógeno aumenta, engrosando el revestimiento del útero.\n\n3. Ovulación (día 14 aproximadamente): un aumento de la hormona luteinizante (LH) desencadena la liberación de un óvulo maduro. Este es tu momento más fértil.\n\n4. Fase lútea (días 15 a 28): el folículo vacío se convierte en el cuerpo lúteo y produce progesterona para mantener el revestimiento. Si no se produce la fertilización, los niveles hormonales bajan y el ciclo se reinicia.\n\nComprender estas fases te ayuda a identificar tu ventana fértil y a trabajar con el ritmo natural de tu cuerpo.",
+          "title": "Comprender su ciclo menstrual"
+        },
+        "mindBodyConnection": {
+          "content": "La relación entre mente y cuerpo es más profunda de lo que imaginamos en la fertilidad:\n\n• El estrés crónico activa el eje HPA que suprime las hormonas reproductivas.\n• Las técnicas de relajación (meditación, yoga, respiración profunda) mejoran considerablemente los resultados de fertilidad.\n• La terapia cognitivo-conductual (TCC) ha mostrado resultados positivos en la reducción de la ansiedad por la fertilidad.\n• La visualización positiva y las afirmaciones activan vías neuronales que apoyan el equilibrio hormonal.\n• Los grupos de apoyo reducen los sentimientos de aislamiento y mejoran la salud mental.\n• El arte, la música y la escritura creativa son herramientas terapéuticas eficaces durante el proceso de fertilidad.\n• Busque ayuda profesional si la ansiedad o la tristeza comienzan a dominar su vida.",
+          "title": "La conexión mente-cuerpo"
+        },
+        "nutritionFertility": {
+          "content": "La dieta afecta directamente la calidad de los óvulos y los espermatozoides:\n\n• La dieta mediterránea es la que mejores resultados ha mostrado en los estudios de fertilidad.\n• Las grasas saludables (omega-3, aceite de oliva) apoyan la producción de hormonas.\n• La proteína vegetal puede ser mejor que la proteína animal para algunas mujeres.\n• Evite las grasas trans, que duplican el riesgo de infertilidad relacionada con la ovulación.\n• Los alimentos orgánicos reducen la exposición a pesticidas que alteran las hormonas.\n• El hierro de origen vegetal + vitamina C mejora significativamente la absorción.",
+          "title": "Nutrición óptima para la fertilidad"
+        },
+        "optimizingTiming": {
+          "content": "El tiempo es crucial para maximizar sus posibilidades:\n\n• Los mejores días para la concepción son los 2 o 3 días antes de la ovulación y el día mismo de la ovulación.\n• Tener relaciones sexuales cada 1 o 2 días durante la ventana fértil proporciona los mejores resultados.\n• En la mayoría de los hombres, la calidad del esperma no se reduce significativamente con la eyaculación diaria.\n• Después del coito, acostarse durante 10 a 15 minutos puede mejorar ligeramente el transporte de espermatozoides, aunque la evidencia es limitada.\n• Lubricantes: Algunos lubricantes comerciales pueden reducir la motilidad de los espermatozoides. Utilice marcas favorables a la fertilidad si es necesario.\n• Realice un seguimiento de su ciclo durante 2 a 3 meses antes de intentarlo activamente, para comprender su patrón personal.\n• Manténgase hidratado y mantenga una dieta equilibrada durante la ventana fértil.\n• Ambos socios deben evitar el consumo excesivo de alcohol durante la ventana fértil.",
+          "title": "Optimización del momento de la concepción"
+        },
+        "ovulationProcess": {
+          "content": "La ovulación es la liberación de un óvulo maduro de uno de los ovarios. Esto es lo que sucede:\n\n• En los días previos a la ovulación, el aumento de los niveles de estrógeno hace que crezca el folículo dominante.\n• Un aumento brusco de LH hace que el folículo se rompa y libere el óvulo en la trompa de Falopio.\n• El óvulo sobrevive entre 12 y 24 horas después de su liberación. Los espermatozoides pueden sobrevivir hasta 5 días en el tracto reproductivo.\n• Esto significa que su ventana fértil abarca aproximadamente 6 días: los 5 días antes de la ovulación y el día de la ovulación en sí.\n\nAlgunas mujeres sienten una punzada o un calambre leve (mittelschmerz) durante la ovulación. Otros notan cambios en el moco cervical, que se vuelve claro y elástico como la clara de huevo cruda.",
+          "title": "Cómo funciona la ovulación"
+        },
+        "pcosManagement": {
+          "content": "El síndrome de ovario poliquístico (SOP) afecta entre el 8 y el 13 % de las mujeres:\n\n• La causa más común de anovulación e infertilidad relacionada con la ovulación.\n• Síntomas clave: períodos irregulares, acné, crecimiento excesivo de cabello, resistencia a la insulina.\n• Los cambios en el estilo de vida son muy eficaces: perder entre un 5% y un 10% del peso puede restablecer la ovulación.\n• El inositol ha mostrado resultados prometedores en la mejora de la sensibilidad a la insulina y la calidad de los óvulos.\n• Una dieta equilibrada y baja en azúcar favorece la regularidad hormonal.\n• Medicamentos como el clomifeno o el letrozol estimulan con éxito la ovulación en muchos casos.",
+          "title": "Manejo del síndrome de ovario poliquístico y la fertilidad"
+        },
+        "recurrentLoss": {
+          "content": "La pérdida recurrente de embarazos (dos o más) requiere una evaluación integral:\n\n• Entre el 15% y el 20% de los embarazos terminan en un aborto espontáneo, la mayoría debido a anomalías cromosómicas.\n• Causas tratables: trastornos de la coagulación, anomalías uterinas, problemas de tiroides.\n• El tabique uterino es la anomalía uterina más común y puede corregirse quirúrgicamente.\n• El síndrome antifosfolípido se puede tratar con aspirina y heparina.\n• El apoyo psicológico es esencial: el duelo y la ansiedad después de una pérdida son naturales y válidos.\n• Entre el 60% y el 70% de las parejas con pérdidas recurrentes inexplicables logran el siguiente embarazo.",
+          "title": "Comprender la pérdida recurrente del embarazo"
+        },
+        "secondaryInfertility": {
+          "content": "La infertilidad secundaria significa dificultad para concebir después de haber tenido un hijo anterior:\n\n• Representa aproximadamente el 50% de los casos de infertilidad, pero se analiza menos.\n• Causas: avance de la edad, cambios de peso, complicaciones de embarazos anteriores.\n• Las adherencias por cesárea o infección pueden afectar la fertilidad.\n• Es posible que los cambios hormonales después del primer parto no se normalicen por completo.\n• Las expectativas sociales (“tienes un hijo, sé agradecido”) aumentan la carga psicológica.\n• No demore en buscar ayuda: se aplican los mismos criterios.",
+          "title": "Infertilidad secundaria"
+        },
+        "sleepHormones": {
+          "content": "Dormir no es un lujo, es una necesidad biológica para la fertilidad:\n\n• La melatonina (hormona del sueño) actúa como antioxidante protegiendo los huevos.\n• Dormir menos de 6 horas aumenta el cortisol, que suprime la GnRH y la ovulación.\n• El trabajo por turnos se asocia con un aumento del ciclo y problemas de fertilidad.\n• El ritmo circadiano regula la secreción de FSH y LH.\n• La luz azul de las pantallas suprime la melatonina y altera el ritmo.\n• Meta: dormir entre 7 y 9 horas en una habitación oscura y fresca con una rutina constante.",
+          "title": "Hormonas del sueño y la fertilidad"
+        },
+        "supplementsGuide": {
+          "content": "Los suplementos pueden favorecer tu fertilidad, pero no todos son iguales:\n\n• Ácido fólico/metilfolato: Esencial: comience 3 meses antes de intentarlo.\n• CoQ10 (200–600 mg): apoya la energía del óvulo, especialmente después de los 35.\n• Vitamina D (1000–2000 UI): la mayoría de las mujeres tienen deficiencia.\n• Omega-3 DHA (200–300 mg): para la salud hormonal y la inflamación.\n• Inositol (4 g de myo + 100 mg de d-chiro): especialmente útil para el síndrome de ovario poliquístico.\n• Hierro: Sólo si las pruebas muestran una deficiencia; el exceso es perjudicial.\n• Siempre consulte a su médico antes de comenzar cualquier suplemento nuevo.",
+          "title": "Guía de suplementos inteligentes"
+        },
+        "thyroidFertility": {
+          "content": "Los trastornos de la tiroides se encuentran entre las causas más tratables de problemas de fertilidad:\n\n• El hipotiroidismo puede causar ciclos irregulares, ausencia de ovulación o aborto espontáneo prematuro.\n• El hipertiroidismo está relacionado con períodos irregulares y dificultad para concebir.\n• Incluso el hipotiroidismo subclínico (TSH 2,5–4,0) puede afectar la fertilidad.\n• Los anticuerpos tiroideos (Anti-TPO) son comunes y pueden afectar la implantación.\n• Se recomiendan las pruebas de TSH y FT4 a todas las mujeres que planean un embarazo.\n• El tratamiento con levotiroxina es seguro y eficaz mientras se intenta concebir.",
+          "title": "Tiroides y fertilidad"
+        },
+        "trackingMethods": {
+          "content": "Varios métodos pueden ayudarte a identificar tu ventana fértil:\n\n1. Método del calendario: realice un seguimiento de la duración del ciclo durante varios meses. La ovulación suele ocurrir 14 días antes de su próximo período.\n\n2. Temperatura corporal basal (TBC): Tómate la temperatura todas las mañanas antes de levantarte. Un ligero aumento (0,2 a 0,5 °C) confirma que se ha producido la ovulación.\n\n3. Observación del moco cervical: a medida que se acerca la ovulación, el moco se vuelve claro, elástico y resbaladizo (como la clara de huevo cruda).\n\n4. Kits de predicción de la ovulación (OPK): detectan el aumento de LH en la orina entre 12 y 36 horas antes de la ovulación.\n\n5. Monitores de fertilidad: dispositivos avanzados que rastrean múltiples hormonas para obtener una imagen más completa.\n\n6. Posición cervical: el cuello uterino se vuelve más alto, más suave y más abierto durante la ovulación.\n\nLa combinación de múltiples métodos aumenta la precisión.",
+          "title": "Métodos de seguimiento de la fertilidad"
+        },
+        "whenToSeekHelp": {
+          "content": "Considere buscar orientación profesional sobre fertilidad si:\n\n• Tienes menos de 35 años y llevas 12 meses intentándolo sin éxito.\n• Tiene entre 35 y 39 años y lo ha estado intentando durante 6 meses.\n• Tienes 40 años o más; consulta con anticipación, ya que el tiempo es un factor.\n• Tiene períodos irregulares o ausentes.\n• Tiene una afección conocida: endometriosis, síndrome de ovario poliquístico, trastorno de la tiroides o cirugía pélvica previa.\n• Ha experimentado abortos espontáneos recurrentes (2 o más).\n• Su pareja tiene problemas de fertilidad conocidos.\n\nUn especialista en fertilidad puede realizar pruebas (paneles hormonales, ecografías, análisis de semen) y analizar opciones que van desde cambios en el estilo de vida hasta reproducción asistida.",
+          "title": "Cuándo consultar a un especialista"
+        }
+      },
+      "lessonsCount": "Módulos de aprendizaje {{count}}"
     },
     "fertilitySigns": {
-      "signsCount": "{{count}} señales que debes conocer",
-      "signs": "Señales"
+      "signs": {
+        "basalTemp": {
+          "description": "Después de la ovulación, la progesterona hace que la temperatura corporal en reposo aumente entre 0,2 y 0,5 °C. Este cambio confirma que ya se ha producido la ovulación. Al realizar un seguimiento de la BBT durante varios ciclos, puede identificar su patrón de ovulación típico.",
+          "tip": "Tómate la temperatura todas las mañanas a la misma hora, antes de levantarte de la cama. Utilice un termómetro específico para BBT para mayor precisión.",
+          "title": "Cambio de temperatura corporal basal"
+        },
+        "bloating": {
+          "description": "Los cambios hormonales relacionados con la ovulación, en particular el aumento de la progesterona, pueden provocar retención de líquidos e hinchazón leve. Esta es una señal común de que su cuerpo está pasando a la fase lútea.",
+          "tip": "Mantenerse hidratado y reducir la ingesta de sodio puede ayudar a controlar la hinchazón relacionada con la ovulación.",
+          "title": "Hinchazón leve"
+        },
+        "breastTenderness": {
+          "description": "El aumento de progesterona después de la ovulación puede causar sensibilidad, plenitud o sensibilidad en los senos. Este es uno de los síntomas de la fase lútea más comúnmente observados. Algunas mujeres también experimentan esto en los días previos a la ovulación debido al aumento de estrógeno.",
+          "tip": "Realice un seguimiento de cuándo comienza y termina la sensibilidad para correlacionarlo con su patrón de ovulación a lo largo del tiempo.",
+          "title": "Sensibilidad en los senos"
+        },
+        "cervicalMucus": {
+          "description": "A medida que se acerca la ovulación, el moco cervical se vuelve más abundante, claro y elástico, parecido a la clara de huevo cruda. Este moco de \"calidad fértil\" ayuda a que los espermatozoides viajen más fácilmente a través del cuello uterino. Después de la ovulación, la mucosidad normalmente se vuelve más espesa, más turbia o se seca.",
+          "tip": "Controle la mucosidad diariamente limpiándose antes de orinar. El moco de tipo más fértil se extiende entre los dedos sin romperse.",
+          "title": "Cambios en el moco cervical"
+        },
+        "cervicalPosition": {
+          "description": "Durante la ventana fértil, el cuello uterino se mueve hacia arriba en el canal vaginal, se vuelve más suave (como los labios frente a la punta de la nariz) y se abre ligeramente. Después de la ovulación, desciende, se reafirma y se cierra.",
+          "tip": "Verifique la posición cervical en la misma posición diariamente (por ejemplo, de pie con un pie elevado). Se necesita práctica: tenga paciencia consigo mismo.",
+          "title": "Cambios de posición cervical"
+        },
+        "heightenedSenses": {
+          "description": "Algunas mujeres reportan un sentido del olfato más agudo durante la ovulación, posiblemente debido a niveles elevados de estrógeno. Las investigaciones sugieren que esto puede ser una adaptación evolutiva. Algunos también notan cambios sutiles en las preferencias gustativas.",
+          "tip": "Si notas que los olores parecen más fuertes hacia la mitad del ciclo, puede ser un indicador de ovulación personal que vale la pena seguir.",
+          "title": "Sentidos intensificados"
+        },
+        "libidoChanges": {
+          "description": "Muchas mujeres experimentan un aumento natural del deseo alrededor de la ovulación. Esto se debe al aumento de estrógeno y testosterona que precede al pico de LH. Es una de las formas que tiene el cuerpo de optimizar las posibilidades de concepción.",
+          "tip": "Preste atención a estos cambios naturales: a menudo se alinean con sus días más fértiles.",
+          "title": "Cambios en el deseo"
+        },
+        "lightSpotting": {
+          "description": "Algunas mujeres experimentan una pequeña cantidad de manchas de color rosa claro o marrón alrededor del día de la ovulación. Es causada por la ligera caída de estrógeno que ocurre justo antes del aumento de LH o por la ruptura del folículo en sí. Suele ser muy ligero y breve.",
+          "tip": "El manchado de ovulación es diferente del sangrado de implantación (que ocurre entre 6 y 12 días después de la ovulación). Siga cuidadosamente el tiempo.",
+          "title": "Manchado de ovulación"
+        },
+        "moodShifts": {
+          "description": "El aumento de estrógeno en la fase folicular a menudo mejora el estado de ánimo, la energía y la confianza. Después de la ovulación, el predominio de la progesterona puede provocar un cambio hacia la calma o, en algunas, irritabilidad y fatiga. Estas fluctuaciones son normales y están impulsadas por hormonas.",
+          "tip": "Llevar un diario de su estado de ánimo a diario puede revelar patrones que se correlacionan con las fases de su ciclo.",
+          "title": "Cambios de humor y energía"
+        },
+        "ovulationPain": {
+          "description": "Algunas mujeres sienten una leve punzada, calambre o dolor en un lado de la parte inferior del abdomen durante la ovulación. Este \"dolor medio\" (mittelschmerz) es causado por la ruptura del folículo para liberar el óvulo. Por lo general, dura desde unos minutos hasta unas pocas horas.",
+          "tip": "Tenga en cuenta de qué lado siente la sensación; puede alternar lados en cada ciclo a medida que la ovulación cambia entre ovarios.",
+          "title": "Sensación de ovulación (Mittelschmerz)"
+        }
+      },
+      "signsCount": "{{count}} señales para saber"
     },
     "fetalDevelopment": {
       "aiWeeklyInsights": "Perspectivas semanales de IA",
@@ -4392,25 +4348,7 @@
         "raspberry": "Frambuesa",
         "squash": "Calabaza",
         "sweetPea": "Guisante",
-        "watermelon": "Sandía",
-        "poppy": "Semilla de amapola",
-        "sesame": "Semilla de sésamo",
-        "lentil": "Lenteja",
-        "blueberry": "Arándano",
-        "cherry": "Cereza",
-        "olive": "Aceituna",
-        "fig": "Higo",
-        "plum": "Ciruela",
-        "peach": "Melocotón",
-        "apple": "Manzana",
-        "orange": "Naranja",
-        "pear": "Pera",
-        "turnip": "Nabo",
-        "mango": "Mango",
-        "pomegranate": "Granada",
-        "coconut": "Coco",
-        "cauliflower": "Coliflor",
-        "pineapple": "Piña"
+        "watermelon": "Sandía"
       },
       "subtitle": "El viaje de crecimiento de tu bebé semana a semana",
       "thisWeeksDevelopment": "Desarrollo de esta semana",
@@ -4542,14 +4480,7 @@
         "stepTouch": "Paso y Toque",
         "sumoSquat": "Sumo Squat",
         "wallPushups": "Flexiones de Pared",
-        "wallSit": "Wall Sit",
-        "squats": "Sentadillas",
-        "wallPushUps": "Flexiones de pared",
-        "sideStretches": "Estiramientos laterales",
-        "prenatalYoga": "Yoga prenatal",
-        "bridgeExercise": "Puente",
-        "legLifts": "Elevaciones de piernas",
-        "shoulderRolls": "Rotaciones de hombros"
+        "wallSit": "Wall Sit"
       },
       "fitnessVideos": "Videos de Fitness Prenatal",
       "fitnessVideosSubtitle": "Guías de entrenamiento seguro para cada trimestre",
@@ -5124,8 +5055,7 @@
         "gluten": "Gluten",
         "nuts": "Frutos secos",
         "seafood": "Mariscos",
-        "soy": "Soja",
-        "shellfish": "Mariscos"
+        "soy": "Soja"
       },
       "allergiesLabel": "Alergias e intolerancias",
       "cravings": {
@@ -5360,8 +5290,7 @@
         }
       },
       "videosSubtitle": "Recursos de apoyo y autocuidado",
-      "youreNotAlone": "No estás sola",
-      "emergencyNote": "En caso de crisis: llama al 024"
+      "youreNotAlone": "No estás sola"
     },
     "mobilityCoach": {
       "adjustGoal": "Ajustar Meta (minutos/semana)",
@@ -5534,50 +5463,42 @@
         "appointments": {
           "desc": "Participar en el cuidado prenatal",
           "icon": "🏥",
-          "label": "Citas Médicas",
-          "title": "Citas médicas"
+          "label": "Citas Médicas"
         },
         "bonding": {
           "desc": "Conectar antes del nacimiento",
           "icon": "👶",
-          "label": "Vínculo con el Bebé",
-          "title": "Vínculo con el bebé"
+          "label": "Vínculo con el Bebé"
         },
         "communication": {
           "desc": "Entender cambios de humor",
           "icon": "💬",
-          "label": "Comunicación",
-          "title": "Comunicación"
+          "label": "Comunicación"
         },
         "emotional": {
           "desc": "Cómo estar presente emocionalmente",
           "icon": "💝",
-          "label": "Apoyo Emocional",
-          "title": "Apoyo emocional"
+          "label": "Apoyo Emocional"
         },
         "intimacy": {
           "desc": "Mantener la cercanía",
           "icon": "❤️",
-          "label": "Intimidad y Conexión",
-          "title": "Intimidad"
+          "label": "Intimidad y Conexión"
         },
         "labor": {
           "desc": "Estar listo para el día D",
           "icon": "⏰",
-          "label": "Preparación para el Parto",
-          "title": "Preparación al parto"
+          "label": "Preparación para el Parto"
         },
         "physical": {
           "desc": "Masaje, ayuda con tareas",
           "icon": "🤲",
-          "label": "Comodidad Física",
-          "title": "Ayuda física"
+          "label": "Comodidad Física"
         },
         "postpartum": {
           "desc": "Después de que llegue el bebé",
           "icon": "🏠",
-          "label": "Planificación Posparto",
-          "title": "Posparto"
+          "label": "Planificación Posparto"
         }
       },
       "trimester": "Trimestre",
@@ -5610,119 +5531,119 @@
       "wife": "Esposa"
     },
     "postpartumRecovery": {
-      "subtitle": "Tu guía personalizada de recuperación posparto",
-      "welcomeTitle": "Tu viaje de recuperación",
-      "welcomeDesc": "Un plan de recuperación de 6 semanas adaptado a tu experiencia de parto",
-      "selectBirthType": "¿Cómo fue tu parto?",
+      "aiAdviceTitle": "Consejos de recuperación personalizados",
       "birthTypes": {
-        "vaginal": "Parto vaginal",
+        "assisted": "Parto asistido",
         "cesarean": "Cesárea",
-        "assisted": "Parto asistido"
+        "vaginal": "Parto vaginal"
       },
       "changeBirthType": "Cambiar tipo de parto",
-      "progress": "Progreso",
-      "getAIAdvice": "Obtener consejo IA de recuperación",
-      "aiAdviceTitle": "Consejos de recuperación personalizados",
-      "phases": {
-        "week1": {
-          "title": "Semana 1 — Descanso y sanación",
-          "description": "Concéntrate en el descanso, cuidado de la herida y vínculo con tu bebé"
-        },
-        "week2": {
-          "title": "Semana 2 — Inicio suave",
-          "description": "Comienza con movimiento suave y establece rutinas"
-        },
-        "week3_4": {
-          "title": "Semanas 3-4 — Fortalecimiento",
-          "description": "Ejercicios ligeros y revisión de salud emocional"
-        },
-        "week5_6": {
-          "title": "Semanas 5-6 — Nueva normalidad",
-          "description": "Regreso a la actividad y planificación a largo plazo"
-        }
-      },
       "checklist": {
-        "rest": {
-          "title": "Priorizar el descanso",
-          "desc": "Duerme cuando el bebé duerma, acepta ayuda de otros"
-        },
-        "hydration": {
-          "title": "Mantenerse hidratada",
-          "desc": "Bebe 8-10 vasos de agua al día"
-        },
-        "woundCare": {
-          "title": "Cuidado de la herida",
-          "desc": "Sigue las instrucciones de tu médica para el cuidado"
-        },
-        "feedingSchedule": {
-          "title": "Horario de lactancia",
-          "desc": "Establece una rutina de alimentación regular"
-        },
-        "painManagement": {
-          "title": "Manejo del dolor",
-          "desc": "Toma los medicamentos recetados según las indicaciones"
-        },
-        "gentleWalking": {
-          "title": "Caminata suave",
-          "desc": "Paseos cortos dentro de casa"
+        "doctorVisit": {
+          "desc": "Programa tu consulta posparto",
+          "title": "Visita médica"
         },
         "emotionalCheck": {
-          "title": "Revisión emocional",
-          "desc": "Monitorea tu estado de ánimo y sentimientos"
+          "desc": "Monitorea tu estado de ánimo y sentimientos",
+          "title": "Revisión emocional"
         },
-        "nutrition": {
-          "title": "Comidas nutritivas",
-          "desc": "Come comidas ricas en hierro y proteínas"
-        },
-        "sleepRoutine": {
-          "title": "Rutina de sueño",
-          "desc": "Crea un ambiente de sueño reparador"
-        },
-        "socialSupport": {
-          "title": "Apoyo social",
-          "desc": "Mantente en contacto con tus seres queridos"
-        },
-        "lightExercise": {
-          "title": "Ejercicio ligero",
-          "desc": "Estiramientos suaves y caminatas"
-        },
-        "posturalExercises": {
-          "title": "Ejercicios posturales",
-          "desc": "Fortalece suavemente tu zona abdominal"
-        },
-        "kegelExercises": {
-          "title": "Ejercicios de Kegel",
-          "desc": "Comienza ejercicios del suelo pélvico"
-        },
-        "mentalHealthCheck": {
-          "title": "Revisión de salud mental",
-          "desc": "Detección de depresión posparto"
-        },
-        "doctorVisit": {
-          "title": "Visita médica",
-          "desc": "Programa tu consulta posparto"
-        },
-        "returnToExercise": {
-          "title": "Regreso al ejercicio",
-          "desc": "Aumenta gradualmente el nivel de actividad"
-        },
-        "intimacyReadiness": {
-          "title": "Preparación para la intimidad",
-          "desc": "Habla con tu pareja cuando estés lista"
+        "feedingSchedule": {
+          "desc": "Establece una rutina de alimentación regular",
+          "title": "Horario de lactancia"
         },
         "fullCheckup": {
-          "title": "Revisión completa",
-          "desc": "Examen médico posparto completo"
+          "desc": "Examen médico posparto completo",
+          "title": "Revisión completa"
+        },
+        "gentleWalking": {
+          "desc": "Paseos cortos dentro de casa",
+          "title": "Caminata suave"
+        },
+        "hydration": {
+          "desc": "Bebe 8-10 vasos de agua al día",
+          "title": "Mantenerse hidratada"
+        },
+        "intimacyReadiness": {
+          "desc": "Habla con tu pareja cuando estés lista",
+          "title": "Preparación para la intimidad"
+        },
+        "kegelExercises": {
+          "desc": "Comienza ejercicios del suelo pélvico",
+          "title": "Ejercicios de Kegel"
+        },
+        "lightExercise": {
+          "desc": "Estiramientos suaves y caminatas",
+          "title": "Ejercicio ligero"
         },
         "longTermPlan": {
-          "title": "Plan a largo plazo",
-          "desc": "Discute anticoncepción y planes futuros"
+          "desc": "Discute anticoncepción y planes futuros",
+          "title": "Plan a largo plazo"
+        },
+        "mentalHealthCheck": {
+          "desc": "Detección de depresión posparto",
+          "title": "Revisión de salud mental"
+        },
+        "nutrition": {
+          "desc": "Come comidas ricas en hierro y proteínas",
+          "title": "Comidas nutritivas"
+        },
+        "painManagement": {
+          "desc": "Toma los medicamentos recetados según las indicaciones",
+          "title": "Manejo del dolor"
+        },
+        "posturalExercises": {
+          "desc": "Fortalece suavemente tu zona abdominal",
+          "title": "Ejercicios posturales"
+        },
+        "rest": {
+          "desc": "Duerme cuando el bebé duerma, acepta ayuda de otros",
+          "title": "Priorizar el descanso"
+        },
+        "returnToExercise": {
+          "desc": "Aumenta gradualmente el nivel de actividad",
+          "title": "Regreso al ejercicio"
         },
         "selfCare": {
-          "title": "Rutina de autocuidado",
-          "desc": "Establece prácticas de autocuidado sostenibles"
+          "desc": "Establece prácticas de autocuidado sostenibles",
+          "title": "Rutina de autocuidado"
+        },
+        "sleepRoutine": {
+          "desc": "Crea un ambiente de sueño reparador",
+          "title": "Rutina de sueño"
+        },
+        "socialSupport": {
+          "desc": "Mantente en contacto con tus seres queridos",
+          "title": "Apoyo social"
+        },
+        "woundCare": {
+          "desc": "Sigue las instrucciones de tu médica para el cuidado",
+          "title": "Cuidado de la herida"
         }
-      }
+      },
+      "getAIAdvice": "Obtener consejo IA de recuperación",
+      "phases": {
+        "week1": {
+          "description": "Concéntrate en el descanso, cuidado de la herida y vínculo con tu bebé",
+          "title": "Semana 1 — Descanso y sanación"
+        },
+        "week2": {
+          "description": "Comienza con movimiento suave y establece rutinas",
+          "title": "Semana 2 — Inicio suave"
+        },
+        "week3_4": {
+          "description": "Ejercicios ligeros y revisión de salud emocional",
+          "title": "Semanas 3-4 — Fortalecimiento"
+        },
+        "week5_6": {
+          "description": "Regreso a la actividad y planificación a largo plazo",
+          "title": "Semanas 5-6 — Nueva normalidad"
+        }
+      },
+      "progress": "Progreso",
+      "selectBirthType": "¿Cómo fue tu parto?",
+      "subtitle": "Tu guía personalizada de recuperación posparto",
+      "welcomeDesc": "Un plan de recuperación de 6 semanas adaptado a tu experiencia de parto",
+      "welcomeTitle": "Tu viaje de recuperación"
     },
     "postureCoach": {
       "aiPostureCoach": "Coach de Postura IA",
@@ -5735,23 +5656,135 @@
       "yourTrimester": "Su trimestre"
     },
     "preconceptionCheckup": {
-      "allComplete": "¡Excelente preparación! Discute tus resultados con tu médico.",
-      "disclaimer": "Esta lista es una referencia educativa para ayudarte a organizar tus citas médicas previas al embarazo. No sustituye la consulta médica.",
-      "progressLabel": "Exámenes registrados",
+      "ai": {
+        "analyze": "Analiza mi preparación",
+        "priorityTitle": "Recomendaciones prioritarias",
+        "readinessTitle": "Resumen de preparación",
+        "timelineTitle": "Cronograma sugerido",
+        "tipsTitle": "Consejos útiles",
+        "title": "Ideas de preparación"
+      },
+      "allComplete": "¡Gran preparación! Discuta sus resultados con su proveedor de atención médica.",
+      "categories": {
+        "essential": "Controles de salud esenciales",
+        "medications": "Medicamentos y vacunas",
+        "screening": "Detección de infecciones e inmunidad",
+        "specialized": "Evaluaciones especializadas"
+      },
+      "checks": {
+        "bloodWork": {
+          "description": "Comprueba si hay anemia, infecciones y la salud general de la sangre. Identifica la deficiencia de hierro que debe abordarse antes del embarazo.",
+          "title": "Conteo sanguíneo completo (CBC)"
+        },
+        "dental": {
+          "description": "La enfermedad de las encías está relacionada con el parto prematuro y el bajo peso al nacer. Los cambios hormonales durante el embarazo pueden empeorar los problemas dentales existentes. Complete cualquier trabajo dental necesario antes de concebir.",
+          "title": "Chequeo Dental"
+        },
+        "generalCheckup": {
+          "description": "Un examen físico completo para evaluar su salud general, presión arterial, peso y analizar sus planes de embarazo.",
+          "title": "Chequeo general de salud"
+        },
+        "geneticScreening": {
+          "description": "Prueba si usted o su pareja son portadores de genes para afecciones como la fibrosis quística, la anemia de células falciformes o la talasemia. Los resultados ayudan a tomar decisiones informadas sobre planificación familiar.",
+          "title": "Detección de portadores genéticos"
+        },
+        "hepatitis": {
+          "description": "La hepatitis B se puede transmitir al bebé durante el parto. Conocer su estado permite tomar medidas preventivas. La hepatitis C requiere seguimiento durante el embarazo.",
+          "title": "Detección de hepatitis B y C"
+        },
+        "hiv": {
+          "description": "Los exámenes de rutina para detectar el VIH y las infecciones de transmisión sexual protegen tanto su salud como la de su futuro bebé. La detección temprana permite un tratamiento eficaz.",
+          "title": "Detección de VIH e ITS"
+        },
+        "medications": {
+          "description": "Revise todos los medicamentos, suplementos y remedios herbales actuales con su médico. Algunos medicamentos no son seguros durante el embarazo y se deben buscar alternativas con anticipación.",
+          "title": "Revisión de medicamentos"
+        },
+        "mentalHealth": {
+          "description": "Hable sobre cualquier historial de depresión, ansiedad u otras afecciones de salud mental con su proveedor de atención médica. Las condiciones preexistentes se pueden controlar de forma proactiva durante el embarazo.",
+          "title": "Evaluación de salud mental"
+        },
+        "pap": {
+          "description": "Detección de anomalías cervicales. Es mejor hacerlo antes del embarazo para abordar cualquier problema sin la complejidad adicional del embarazo.",
+          "title": "Prueba de Papanicolaou / Detección cervical"
+        },
+        "rubella": {
+          "description": "La rubéola durante el embarazo puede causar defectos de nacimiento graves. Si no eres inmune, se recomienda vacunarte al menos 1 mes antes de intentar concebir.",
+          "title": "Inmunidad a la rubéola (sarampión alemán)"
+        },
+        "thyroid": {
+          "description": "Los trastornos de la tiroides son comunes y pueden afectar significativamente la fertilidad y el embarazo. Tanto el hipotiroidismo como el hipertiroidismo deben controlarse antes de concebir.",
+          "title": "Prueba de función tiroidea (TSH)"
+        },
+        "vaccinations": {
+          "description": "Asegúrese de estar al día con las vacunas recomendadas, incluidas MMR, varicela, gripe y Tdap. Algunas vacunas no se pueden administrar durante el embarazo, así que complételas de antemano.",
+          "title": "Revisión de vacunación"
+        }
+      },
+      "disclaimer": "Esta lista de verificación es una referencia educativa que le ayudará a organizar conversaciones con su proveedor de atención médica. No reemplaza el consejo, diagnóstico o tratamiento médico profesional. Todos los exámenes y pruebas deben ser discutidos y ordenados por un profesional de la salud calificado.",
+      "progressLabel": "Seguimiento de las proyecciones",
       "related": {
         "academy": "Academia de fertilidad",
-        "academyDesc": "Educación integral sobre fertilidad",
-        "nutrition": "Guía nutricional",
-        "nutritionDesc": "Nutrición y suplementos preconcepcionales"
+        "academyDesc": "Educación integral en fertilidad",
+        "nutrition": "Guía de nutrición",
+        "nutritionDesc": "Nutrición y suplementos previos a la concepción"
       },
-      "tracked": "registrado",
-      "ai": "Análisis IA",
-      "categories": "Categorías",
-      "checks": "Revisiones"
+      "tracked": "rastreado"
     },
     "preconceptionNutrition": {
-      "categoriesCount": "{{count}} categorías nutricionales",
-      "categories": "Categorías"
+      "categories": {
+        "antioxidants": {
+          "description": "Los antioxidantes protegen los óvulos y los espermatozoides del estrés oxidativo causado por los radicales libres. Son particularmente importantes las vitaminas C y E, el selenio y la CoQ10. Una dieta colorida y variada proporciona un amplio espectro de antioxidantes.",
+          "foods": "Bayas (arándanos, fresas, frambuesas), tomates, pimientos morrones, nueces, semillas, té verde, verduras de hojas verdes oscuras, batatas, zanahorias",
+          "title": "Alimentos ricos en antioxidantes"
+        },
+        "avoidList": {
+          "description": "Ciertos alimentos y sustancias pueden afectar negativamente a la fertilidad. Si bien es poco probable que el consumo ocasional cause daño, reducirlos cuando se intenta concebir activamente puede optimizar la preparación de su cuerpo.",
+          "foods": "Exceso de cafeína (>200 mg/día), alcohol, grasas trans, alimentos altamente procesados, pescado crudo (sushi), pescado con alto contenido de mercurio (pez espada, caballa), exceso de azúcar, edulcorantes artificiales.",
+          "title": "Alimentos para minimizar"
+        },
+        "calcium": {
+          "description": "El calcio es vital para la función reproductiva y apoya el desarrollo de estructuras embrionarias. La ingesta adecuada de calcio antes del embarazo ayuda a generar reservas para el desarrollo esquelético del bebé. Apunta a 1000 mg al día.",
+          "foods": "Lácteos (leche, yogur, queso), leches vegetales fortificadas, kale, brócoli, almendras, sardinas con hueso, tofu, higos.",
+          "title": "Fuentes de calcio"
+        },
+        "folateRich": {
+          "description": "El folato (vitamina B9) es fundamental para prevenir defectos del tubo neural y favorecer una división celular saludable. La ingesta diaria recomendada al intentar concebir es de 400 a 800 mcg. Inicie la suplementación con folato al menos 1 a 3 meses antes de la concepción.",
+          "foods": "Verduras de hojas verdes oscuras (espinacas, col rizada), lentejas, garbanzos, espárragos, brócoli, aguacate, cereales fortificados, frutas cítricas, remolacha, coles de Bruselas.",
+          "title": "Alimentos ricos en folato"
+        },
+        "hydration": {
+          "description": "El agua es esencial para la producción de moco cervical, el transporte de nutrientes y el equilibrio hormonal. La deshidratación puede reducir la calidad del moco cervical y afectar el flujo sanguíneo a los órganos reproductivos. Trate de tomar de 8 a 10 vasos al día.",
+          "foods": "Agua, infusiones (hojas de frambuesa, jengibre), agua de coco, frutas ricas en agua (sandía, pepino, naranja), caldos",
+          "title": "Hidratación"
+        },
+        "ironSources": {
+          "description": "El hierro favorece la producción saludable de sangre y el transporte de oxígeno, que son esenciales para el desarrollo del embarazo. Las mujeres en edad fértil necesitan alrededor de 18 mg al día. La deficiencia de hierro es común y puede afectar la ovulación y la regularidad del ciclo.",
+          "foods": "Carnes rojas, aves, pescado, lentejas, espinacas, cereales fortificados, semillas de calabaza, tofu, chocolate amargo, quinua, orejones",
+          "title": "Alimentos ricos en hierro"
+        },
+        "omega3": {
+          "description": "Los omega-3 favorecen la producción de hormonas, reducen la inflamación y son esenciales para el desarrollo del cerebro y los ojos del feto. DHA y EPA son las formas más biodisponibles. El ALA de origen vegetal también es beneficioso pero se convierte de manera menos eficiente.",
+          "foods": "Salmón, sardinas, caballa, nueces, semillas de chía, semillas de lino, semillas de cáñamo, suplementos de DHA a base de algas, huevos fortificados",
+          "title": "Ácidos grasos omega-3"
+        },
+        "protein": {
+          "description": "La proteína proporciona los componentes básicos de las hormonas y las células nuevas. Las investigaciones sugieren que reemplazar parte de la proteína animal con proteína vegetal puede mejorar los resultados de fertilidad. Apunta a una mezcla equilibrada de ambas fuentes.",
+          "foods": "Huevos, aves magras, pescado, legumbres (frijoles, lentejas), nueces, semillas, yogur griego, tofu, tempeh, quinua",
+          "title": "Proteína de calidad"
+        },
+        "vitaminD": {
+          "description": "Los receptores de vitamina D se encuentran en los ovarios y el útero, lo que sugiere un papel directo en la fertilidad. La deficiencia se asocia con ciclos irregulares, síndrome de ovario poliquístico y tasas reducidas de éxito de la FIV. Mucha gente tiene deficiencia, especialmente en los climas del norte.",
+          "foods": "Exposición a la luz solar (15 a 20 minutos diarios), pescado graso (salmón, atún), yemas de huevo, leche fortificada, champiñones expuestos a la luz ultravioleta, aceite de hígado de bacalao.",
+          "title": "Fuentes de vitamina D"
+        },
+        "zinc": {
+          "description": "El zinc es esencial para el equilibrio hormonal, la calidad de los óvulos y la división celular. También juega un papel crucial en la fertilidad masculina: apoya la producción de esperma y los niveles de testosterona. La ingesta diaria recomendada es de 8 mg para las mujeres.",
+          "foods": "Ostras, carne de res, semillas de calabaza, anacardos, garbanzos, lentejas, yogur, queso, cereales integrales, chocolate amargo",
+          "title": "Fuentes de zinc"
+        }
+      },
+      "categoriesCount": "{{count}} categorías nutricionales"
     },
     "preeclampsia": {
       "age35Plus": "Edad 35+",
@@ -5771,8 +5804,69 @@
       "warningSigns": "Señales de Advertencia a Observar"
     },
     "prenatalVitamins": {
-      "supplementsCount": "{{count}} suplementos para revisar",
-      "vitamins": "Vitaminas"
+      "supplementsCount": "Suplementos {{count}} para revisar",
+      "vitamins": {
+        "calcium": {
+          "description": "Si la ingesta de calcio de la madre es insuficiente durante el embarazo, el bebé extraerá calcio de sus huesos. La creación de fuertes reservas de calcio antes del embarazo protege la salud ósea de la madre.",
+          "dosage": "Recomendado: 1000 mg diarios provenientes de alimentos y suplementos combinados. Se absorbe mejor en dosis de 500 mg o menos a la vez.",
+          "title": "Calcio"
+        },
+        "coq10": {
+          "description": "CoQ10 es un antioxidante que apoya la función mitocondrial en los huevos. Como la calidad del óvulo disminuye naturalmente con la edad, la suplementación con CoQ10 puede ayudar a mantener la producción de energía celular. Las investigaciones están en curso pero son prometedoras, especialmente para las mujeres mayores de 35 años.",
+          "dosage": "Dosis común: 100 a 600 mg al día. La forma de ubiquinol se absorbe mejor que la ubiquinona. Consulte a su médico.",
+          "title": "CoQ10 (Coenzima Q10)"
+        },
+        "folicAcid": {
+          "description": "El suplemento preconcepcional más importante. El ácido fólico reduce significativamente el riesgo de defectos del tubo neural (espina bífida, anencefalia). Empiece a tomarlo al menos entre 1 y 3 meses antes de intentar concebir para obtener el máximo beneficio.",
+          "dosage": "Recomendado: 400 a 800 mcg al día. Algunas mujeres (con antecedentes de defectos del tubo neural, que toman ciertos medicamentos) pueden necesitar de 4 a 5 mg; consulte a su médico.",
+          "title": "Ácido fólico (vitamina B9)"
+        },
+        "iodine": {
+          "description": "El yodo es esencial para la función tiroidea, lo que afecta directamente la fertilidad y el desarrollo del cerebro fetal. La deficiencia es la principal causa evitable de discapacidad intelectual en todo el mundo.",
+          "dosage": "Recomendado: 150 mcg al día antes del embarazo, 220 mcg durante el embarazo. Comprueba que tu vitamina prenatal incluya yodo.",
+          "title": "Yodo"
+        },
+        "iron": {
+          "description": "Los requerimientos de hierro aumentan dramáticamente durante el embarazo (de 18 mg a 27 mg diarios). La acumulación de reservas de hierro antes de la concepción ayuda a prevenir la anemia por deficiencia de hierro, que se asocia con partos prematuros y bajo peso al nacer.",
+          "dosage": "Recomendado: 18 mg diarios antes del embarazo. Tomar con vitamina C para mejorar la absorción. Evite tomar con calcio o té.",
+          "title": "Hierro"
+        },
+        "omega3DHA": {
+          "description": "El DHA es crucial para el desarrollo del cerebro y la retina del feto. Iniciar la suplementación antes del embarazo garantiza reservas adecuadas desde las primeras etapas del desarrollo embrionario. La EPA también apoya la salud cardiovascular materna.",
+          "dosage": "Recomendado: 200 a 300 mg de DHA al día. Elija suplementos probados para detectar mercurio y contaminantes.",
+          "title": "Omega-3 DHA"
+        },
+        "probiotics": {
+          "description": "Un microbioma vaginal e intestinal sano favorece la fertilidad. Las cepas de Lactobacillus ayudan a mantener el pH vaginal óptimo, que es importante para la supervivencia de los espermatozoides. La salud intestinal también afecta el metabolismo hormonal y la absorción de nutrientes.",
+          "dosage": "Elija un probiótico de múltiples cepas con cepas de Lactobacillus. Consumir alimentos fermentados: yogur, kéfir, chucrut, kimchi.",
+          "title": "Probióticos"
+        },
+        "vitaminB12": {
+          "description": "La B12 trabaja con el folato para apoyar la síntesis de ADN y el desarrollo del sistema nervioso. La deficiencia es más común en vegetarianos y veganos. Los niveles bajos de B12 se asocian con abortos espontáneos recurrentes y defectos del tubo neural.",
+          "dosage": "Recomendado: 2,4 mcg al día. Los veganos deben tomar suplementos ya que la B12 se encuentra principalmente en productos animales.",
+          "title": "Vitamina B12"
+        },
+        "vitaminC": {
+          "description": "La vitamina C es un poderoso antioxidante que protege los huevos del daño oxidativo. También mejora la absorción de hierro y apoya la función inmune. Los niveles de progesterona también pueden mejorar con una ingesta adecuada de vitamina C.",
+          "dosage": "Recomendado: 75 a 90 mg al día. Se obtiene fácilmente de cítricos, bayas y pimientos morrones.",
+          "title": "vitamina c"
+        },
+        "vitaminD": {
+          "description": "La vitamina D apoya la función inmune, la absorción de calcio y la salud reproductiva. La deficiencia está relacionada con complicaciones del embarazo, como diabetes gestacional y preeclampsia. La mayoría de las personas necesitan suplementos, especialmente en los meses de invierno.",
+          "dosage": "Recomendado: 600 a 2000 UI al día. Su médico puede evaluar sus niveles y recomendar una dosis más alta si es deficiente.",
+          "title": "vitamina d"
+        },
+        "vitaminE": {
+          "description": "La vitamina E favorece el grosor y la calidad del revestimiento endometrial, lo cual es importante para la implantación. También protege las membranas celulares del estrés oxidativo y favorece la salud reproductiva en general.",
+          "dosage": "Recomendado: 15 mg (22 UI) al día. Se encuentra en nueces, semillas y aceites vegetales.",
+          "title": "vitamina e"
+        },
+        "zinc": {
+          "description": "El zinc favorece la calidad del óvulo, el equilibrio hormonal y la función inmune. También desempeña un papel clave en la síntesis de ADN y la división celular, procesos críticos al principio del embarazo.",
+          "dosage": "Recomendado: 8 mg al día para mujeres. La mayoría de las vitaminas prenatales contienen zinc adecuado.",
+          "title": "Zinc"
+        }
+      }
     },
     "recipeModifier": {
       "analyzeAnother": "Analizar otra receta",
@@ -5801,43 +5895,35 @@
       "concerns": {
         "acne": {
           "icon": "🔴",
-          "label": "Acné del Embarazo",
-          "title": "Acné"
+          "label": "Acné del Embarazo"
         },
         "dryness": {
           "icon": "🏜️",
-          "label": "Piel Seca",
-          "title": "Piel seca"
+          "label": "Piel Seca"
         },
         "glow": {
           "icon": "💫",
-          "label": "¡Quiero ese brillo del embarazo!",
-          "title": "Brillo de embarazo"
+          "label": "¡Quiero ese brillo del embarazo!"
         },
         "itching": {
           "icon": "🤚",
-          "label": "Picazón (PUPPP)",
-          "title": "Picazón"
+          "label": "Picazón (PUPPP)"
         },
         "melasma": {
           "icon": "🟤",
-          "label": "Melasma/Manchas Oscuras",
-          "title": "Melasma"
+          "label": "Melasma/Manchas Oscuras"
         },
         "oiliness": {
           "icon": "✨",
-          "label": "Piel Grasa/Brillante",
-          "title": "Piel grasa"
+          "label": "Piel Grasa/Brillante"
         },
         "sensitivity": {
           "icon": "❗",
-          "label": "Sensibilidad",
-          "title": "Piel sensible"
+          "label": "Sensibilidad"
         },
         "stretchMarks": {
           "icon": "〰️",
-          "label": "Estrías",
-          "title": "Estrías"
+          "label": "Estrías"
         }
       },
       "creatingRoutine": "Creando rutina...",
@@ -5862,38 +5948,32 @@
         "chemicalSunscreens": {
           "icon": "⚠️",
           "name": "Protectores Solares Químicos",
-          "risk": "medium",
-          "title": "Protectores solares químicos"
+          "risk": "medium"
         },
         "essentialOils": {
           "icon": "⚠️",
           "name": "Aceites Esenciales (algunos)",
-          "risk": "medium",
-          "title": "Aceites esenciales"
+          "risk": "medium"
         },
         "formaldehyde": {
           "icon": "🚫",
           "name": "Formaldehído",
-          "risk": "high",
-          "title": "Formaldehído"
+          "risk": "high"
         },
         "hydroquinone": {
           "icon": "🚫",
           "name": "Hidroquinona",
-          "risk": "high",
-          "title": "Hidroquinona"
+          "risk": "high"
         },
         "retinol": {
           "icon": "🚫",
           "name": "Retinol/Retinoides",
-          "risk": "high",
-          "title": "Retinol"
+          "risk": "high"
         },
         "salicylic": {
           "icon": "⚠️",
           "name": "Ácido Salicílico (alto %)",
-          "risk": "medium",
-          "title": "Ácido salicílico"
+          "risk": "medium"
         }
       },
       "videos": {
@@ -5960,12 +6040,7 @@
         "comfort": "Comfort",
         "energy": "Energía",
         "protein": "Proteínas",
-        "quick": "Rápido",
-        "nuts": "Frutos secos",
-        "fruits": "Frutas",
-        "dairy": "Lácteos",
-        "grains": "Cereales",
-        "vegetables": "Verduras"
+        "quick": "Rápido"
       },
       "feelingHungry": "¿Tienes hambre?",
       "howToMake": "Cómo preparar",
@@ -6059,8 +6134,59 @@
       "title": "Planificador de Snacks Inteligente"
     },
     "stressFertility": {
-      "topicsCount": "{{count}} temas para explorar",
-      "topics": "Temas"
+      "topics": {
+        "acceptance": {
+          "content": "Aceptar no significa darse por vencido; significa reconocer que algunas cosas están fuera de tu control mientras te concentras en aquello en lo que puedes influir. Este cambio del control a la aceptación puede reducir significativamente el estrés y mejorar el bienestar emocional durante el proceso de fertilidad.",
+          "practice": "Repite esta afirmación: 'Estoy haciendo todo lo que puedo. Confío en mi cuerpo y en mi viaje. El resultado no define mi valor\".",
+          "title": "Practicando la aceptación"
+        },
+        "breathing": {
+          "content": "La respiración controlada activa directamente el nervio vago, desencadenando la respuesta de relajación. Esto reduce la frecuencia cardíaca, la presión arterial y el cortisol. Es una de las formas más rápidas de pasar de un estado de estrés a un estado de calma. Las diferentes técnicas sirven para diferentes propósitos: algunas dan energía, otras calman.",
+          "practice": "Respiración de caja: Inhale 4 conteos → Mantenga 4 conteos → Exhale 4 conteos → Mantenga 4 conteos. Repita durante 5 minutos. Ideal antes de acostarse o durante momentos de ansiedad.",
+          "title": "Técnicas de respiración"
+        },
+        "cortisol": {
+          "content": "El cortisol es la principal hormona del estrés de su cuerpo. En pequeñas ráfagas, es útil: proporciona energía y concentración. Pero cuando el cortisol permanece crónicamente elevado, puede suprimir las hormonas reproductivas, alterar el sueño, aumentar la inflamación y afectar el estado de ánimo. El objetivo no es eliminar el estrés por completo (¡imposible!), sino controlar su respuesta al estrés.",
+          "practice": "Practica la técnica de respiración 4-7-8: inhala durante 4 segundos, mantén la respiración durante 7, exhala durante 8. Repita 4 veces. Esto activa el sistema nervioso parasimpático.",
+          "title": "Entendiendo el cortisol"
+        },
+        "exercise": {
+          "content": "El ejercicio moderado regular es uno de los analgésicos más eficaces. Libera endorfinas, mejora el sueño y ayuda a regular las hormonas. Sin embargo, el ejercicio excesivo e intenso (entrenamiento de maratón, entrenamiento diario de alta intensidad) puede suprimir la ovulación. El equilibrio es clave.",
+          "practice": "Esta semana, intenta realizar 30 minutos de movimiento moderado durante 5 días: caminar, hacer yoga, nadar o bailar. Observe cómo cambia su estado de ánimo después.",
+          "title": "Alivio del movimiento y el estrés"
+        },
+        "journaling": {
+          "content": "Se ha demostrado científicamente que escribir sobre tus emociones reduce el estrés, mejora la función inmunológica y proporciona claridad. Para llevar un diario de fertilidad, el objetivo no es realizar un seguimiento de los síntomas de forma obsesiva, sino procesar las emociones, celebrar las pequeñas victorias y liberar los miedos.",
+          "practice": "Esta noche, escribe: 1) Una cosa por la que estoy agradecido hoy, 2) Una preocupación que quiero liberar, 3) Una cosa amable que hice por mí mismo.",
+          "title": "Diario terapéutico"
+        },
+        "mindfulness": {
+          "content": "La atención plena es la práctica de estar completamente presente sin juzgar. Los estudios muestran que los programas de reducción del estrés basados ​​en la atención plena (MBSR) pueden reducir la ansiedad y la depresión en mujeres que se someten a tratamientos de fertilidad y pueden mejorar los resultados. Incluso 10 minutos de práctica diaria de atención plena pueden reducir los niveles de cortisol y mejorar la resiliencia emocional.",
+          "practice": "Pruebe un escaneo corporal de 5 minutos: cierre los ojos, respire profundamente y mueva lentamente su atención desde los dedos de los pies hasta la cabeza, notando sensaciones sin intentar cambiarlas.",
+          "title": "Atención plena para la fertilidad"
+        },
+        "professionalHelp": {
+          "content": "Si la ansiedad o la tristeza por la fertilidad están afectando su vida diaria, su sueño, sus relaciones o su trabajo, el apoyo profesional puede ser útil. Los terapeutas especializados en salud mental reproductiva comprenden los desafíos únicos de este viaje. La terapia cognitivo-conductual (TCC) es particularmente eficaz para la ansiedad relacionada con la fertilidad.",
+          "practice": "Si está considerando recibir terapia, busque un terapeuta que se especialice en psicología reproductiva o salud mental perinatal. Muchos ofrecen sesiones virtuales.",
+          "title": "Cuándo buscar apoyo profesional"
+        },
+        "sleep": {
+          "content": "Dormir es cuando tu cuerpo se repara, produce hormonas y procesa emociones. La falta de sueño altera la melatonina (que protege la calidad de los óvulos), aumenta el cortisol y altera la regulación de FSH y LH. Se ha demostrado que las mujeres que duermen menos de 6 horas por noche tienen tasas de fertilidad más bajas.",
+          "practice": "Cree una rutina de relajación: no use pantallas 30 minutos antes de acostarse, atenúe las luces, use aceite esencial de lavanda y mantenga su dormitorio fresco (entre 18 y 20 °C).",
+          "title": "Sueño y fertilidad"
+        },
+        "socialSupport": {
+          "content": "El aislamiento social amplifica el estrés. Compartir su viaje de fertilidad con amigos, familiares o un grupo de apoyo de confianza puede reducir significativamente la carga emocional. No es necesario que comparta con todos; incluso una sola persona que lo apoye marca la diferencia.",
+          "practice": "Identifique a una persona en quien confíe. Comparte algo sobre tu viaje con ellos esta semana. La conexión es curativa.",
+          "title": "Construyendo su red de apoyo"
+        },
+        "stressHormones": {
+          "content": "El estrés crónico desencadena la liberación de cortisol y adrenalina, lo que puede alterar el eje hipotalámico-pituitario-gonadal (HPG), la vía hormonal que controla la ovulación. El cortisol elevado puede suprimir la GnRH (hormona liberadora de gonadotropina), lo que provoca una ovulación irregular o ausente. Si bien es poco probable que el estrés diario moderado impida la concepción, un estrés intenso y prolongado puede retrasar el embarazo.",
+          "practice": "Identifique sus 3 principales desencadenantes del estrés esta semana. Para cada uno, escribe una pequeña acción que puedas realizar para reducir su impacto.",
+          "title": "Cómo el estrés afecta la fertilidad"
+        }
+      },
+      "topicsCount": "Temas {{count}} para explorar"
     },
     "stressRelief": {
       "affirmations": {
@@ -6095,8 +6221,7 @@
             "Notice 3 things you can HEAR",
             "Notice 2 things you can SMELL",
             "Notice 1 thing you can TASTE"
-          ],
-          "description": "Cuenta 5 cosas que ves, 4 que tocas, 3 que oyes, 2 que hueles, 1 que saboreas"
+          ]
         },
         "progressiveRelaxation": {
           "desc": "Release tension from head to toe",
@@ -6232,8 +6357,79 @@
       "week": "Semana {{week}}"
     },
     "twwCompanion": {
-      "subtitle": "Tu guía diaria durante las dos semanas de espera",
-      "days": "Días"
+      "days": {
+        "day1": {
+          "body": "Si la ovulación ocurrió ayer, el óvulo ahora viaja a través de las trompas de Falopio. Si se produce la fertilización, normalmente ocurre dentro de las 12 a 24 horas posteriores a la ovulación. Hoy en día, no hay nada que puedas hacer para influir en el resultado, y eso está bien.",
+          "tip": "Respira hondo. El viaje ha comenzado. Concéntrate en algo que disfrutes hoy.",
+          "title": "Día de ovulación + 1"
+        },
+        "day10": {
+          "body": "A estas alturas, si se produjo la implantación, los niveles de hCG se duplican aproximadamente cada 48 horas. Algunas pruebas sensibles pueden detectar un embarazo muy temprano. Sin embargo, un resultado negativo hoy no significa que no esté embarazada: los niveles varían ampliamente.",
+          "tip": "Si te haces la prueba hoy y sale negativo, no pierdas la esperanza. Muchos embarazos exitosos no dan resultados positivos hasta el día 12 al 14.",
+          "title": "Casi llegamos"
+        },
+        "day11": {
+          "body": "La hCG continúa aumentando. Algunas mujeres comienzan a notar síntomas muy tempranos: calambres leves, sensibilidad en los senos o fatiga. Estos síntomas también pueden ser causados ​​por la progesterona en un ciclo sin embarazo, por lo que no son indicadores confiables.",
+          "tip": "Detectar los síntomas es natural pero puede aumentar la ansiedad. Trate de mantenerse presente y comprometido con su vida diaria.",
+          "title": "Anticipación del edificio"
+        },
+        "day12": {
+          "body": "La mayoría de las pruebas de embarazo caseras se vuelven más fiables a partir de hoy. Si realiza la prueba, utilice la primera orina de la mañana para obtener la concentración más alta de hCG. Una línea tenue sigue siendo un resultado positivo.",
+          "tip": "Cualquiera que sea el resultado de hoy, recuerda: un ciclo no define tu viaje. Sea amable consigo mismo.",
+          "title": "Las pruebas se vuelven más confiables"
+        },
+        "day13": {
+          "body": "Por lo general, mañana es el día en que se espera su período (en un ciclo de 28 días). Si no llega y una prueba muestra un leve positivo, es posible que sea necesario felicitarlo. Si llega tu período, permítete llorar y saber que cada ciclo es una nueva oportunidad.",
+          "tip": "Prepárese emocionalmente para ambos resultados. Ambos son válidos. Ambos son parte del viaje.",
+          "title": "La víspera del conocimiento"
+        },
+        "day14": {
+          "body": "Este suele ser el día en que se espera su período. La falta de un período combinado con una prueba de embarazo positiva es un fuerte indicador de embarazo. Si su prueba es positiva, comuníquese con su proveedor de atención médica para programar su primera cita (generalmente entre 6 y 8 semanas).",
+          "tip": "¿Positivo? Celebra este momento. ¿Negativo? Eres fuerte, resistente y este viaje continúa. Ambos resultados merecen compasión.",
+          "title": "El día de la respuesta"
+        },
+        "day2": {
+          "body": "Si se produjo la fertilización, el cigoto unicelular comienza a dividirse, primero en 2 células y luego en 4. Este pequeño grupo de células viaja a través de las trompas de Falopio hacia el útero. Está alimentado enteramente por sus propias reservas de energía.",
+          "tip": "Manténgase hidratado y coma alimentos nutritivos. Tu cuerpo está haciendo un trabajo increíble a nivel celular.",
+          "title": "Comienzos celulares"
+        },
+        "day3": {
+          "body": "Las células en división forman una bola sólida llamada mórula (alrededor de 16 células). Continúa su recorrido por las trompas de Falopio. La progesterona está aumentando, preparando el revestimiento del útero para una posible implantación.",
+          "tip": "La actividad suave está perfectamente bien. No es necesario restringir su rutina normal.",
+          "title": "La etapa de Mórula"
+        },
+        "day4": {
+          "body": "La mórula generalmente ingresa al útero alrededor del día 4. Comienza a formar una cavidad llena de líquido y se convierte en un blastocisto. El revestimiento del útero se vuelve grueso y receptivo bajo la influencia de la progesterona.",
+          "tip": "Practica la atención plena o estiramientos ligeros. Gestionar la anticipación es parte del viaje.",
+          "title": "Entrando al útero"
+        },
+        "day5": {
+          "body": "El blastocisto ahora tiene dos grupos celulares distintos: la masa celular interna (que se convierte en el embrión) y el trofoblasto (que se convierte en la placenta). Flota libremente en la cavidad uterina.",
+          "tip": "Este es un buen día para registrar sus pensamientos y sentimientos. La autoexpresión es terapéutica.",
+          "title": "Formación de blastocistos"
+        },
+        "day6": {
+          "body": "El blastocisto comienza a buscar un sitio ideal para implantarse en la pared del útero. Las células del trofoblasto comienzan a excavar en el endometrio. Algunas mujeres experimentan un ligero manchado (sangrado de implantación) en esta época.",
+          "tip": "Las ligeras manchas en esta etapa pueden ser normales. No entre en pánico y no realice pruebas todavía. Es demasiado pronto.",
+          "title": "La implantación puede comenzar"
+        },
+        "day7": {
+          "body": "Los días 6 a 10 son la ventana de implantación típica. El blastocisto se está incrustando más profundamente en el revestimiento del útero. Se están intercambiando señales tempranas entre el embrión y su cuerpo.",
+          "tip": "Continúe con sus actividades normales. Descansa cuando lo necesites. Confía en el proceso.",
+          "title": "Ventana de implantación"
+        },
+        "day8": {
+          "body": "Si la implantación avanza, comienzan a producirse pequeñas cantidades de hCG (gonadotropina coriónica humana). Esta hormona le indica a su cuerpo que mantenga el cuerpo lúteo, que sigue produciendo progesterona. Los niveles todavía son demasiado bajos para detectarlos en una prueba.",
+          "tip": "Resista la tentación de realizar la prueba. La hCG necesita tiempo para desarrollarse. La paciencia es tu mayor aliado en estos momentos.",
+          "title": "Comienza la hCG"
+        },
+        "day9": {
+          "body": "Los niveles de hCG están aumentando, pero es posible que aún estén por debajo del umbral de detección de la mayoría de las pruebas de embarazo caseras. La implantación debe estar completa o casi completa. Tu cuerpo está empezando a responder a las nuevas señales hormonales.",
+          "tip": "Regálate algo relajante: un baño caliente, tu té favorito o un paseo por la naturaleza.",
+          "title": "Señales ascendentes"
+        }
+      },
+      "subtitle": "Su guía diaria durante la espera de dos semanas"
     },
     "vitaminTracker": {
       "aiAnalysisTitle": "Información de Suplementos IA",
@@ -6514,8 +6710,7 @@
       "subtitle": "Planes de ejercicio seguros para cada trimestre",
       "title": "Planificador de Ejercicios",
       "trimester": "Trimestre",
-      "workoutComplete": "Workout Complete! 🎉",
-      "start": "Empezar"
+      "workoutComplete": "Workout Complete! 🎉"
     }
   },
   "videoLibrary": {
@@ -6577,11 +6772,7 @@
       "vitaminD": "Vitamina D"
     },
     "vitaminsCount": "{{taken}} de {{total}} vitaminas tomadas hoy",
-    "weeklyStats": "Estadísticas semanales",
-    "taken": "Tomado",
-    "missed": "Olvidado",
-    "streak": "{{count}} días seguidos",
-    "reminder": "Establecer recordatorio"
+    "weeklyStats": "Estadísticas semanales"
   },
   "weeklyJourney": {
     "aiDescription": "Obtén un análisis completo y personalizado de tu semana actual con IA",
@@ -7967,10 +8158,7 @@
     "feature2": "Seguimiento personalizado semana a semana",
     "getStarted": "Comenzar ahora",
     "subtitle": "Tu compañera personalizada de embarazo",
-    "title": "Welcome to Pregnancy Toolkits",
-    "cta": "Empezar",
-    "feature3": "Consejos de nutrición y bienestar",
-    "feature4": "Comunidad de apoyo solidaria"
+    "title": "Welcome to Pregnancy Toolkits"
   },
   "wellnessStats": {
     "avgMood": "Ánimo prom.",
@@ -7978,521 +8166,5 @@
     "mostCommon": "Más común",
     "symptoms": "Síntomas",
     "title": "Resumen de bienestar"
-  },
-  "toolsInternal.fertilityAcademy": {
-    "lessonsCount": "Módulos de aprendizaje {{count}}",
-    "lessons": {
-      "menstrualCycle": {
-        "title": "Comprender su ciclo menstrual",
-        "content": "Su ciclo menstrual se divide en cuatro fases principales:\n\n1. Fase menstrual (días 1 a 5): el revestimiento del útero se desprende, lo que marca el inicio de un nuevo ciclo.\n\n2. Fase folicular (días 1 a 13): la hormona estimulante del folículo (FSH) hace que los ovarios desarrollen folículos. El estrógeno aumenta, engrosando el revestimiento del útero.\n\n3. Ovulación (día 14 aproximadamente): un aumento de la hormona luteinizante (LH) desencadena la liberación de un óvulo maduro. Este es tu momento más fértil.\n\n4. Fase lútea (días 15 a 28): el folículo vacío se convierte en el cuerpo lúteo y produce progesterona para mantener el revestimiento. Si no se produce la fertilización, los niveles hormonales bajan y el ciclo se reinicia.\n\nComprender estas fases te ayuda a identificar tu ventana fértil y a trabajar con el ritmo natural de tu cuerpo."
-      },
-      "ovulationProcess": {
-        "title": "Cómo funciona la ovulación",
-        "content": "La ovulación es la liberación de un óvulo maduro de uno de los ovarios. Esto es lo que sucede:\n\n• En los días previos a la ovulación, el aumento de los niveles de estrógeno hace que crezca el folículo dominante.\n• Un aumento brusco de LH hace que el folículo se rompa y libere el óvulo en la trompa de Falopio.\n• El óvulo sobrevive entre 12 y 24 horas después de su liberación. Los espermatozoides pueden sobrevivir hasta 5 días en el tracto reproductivo.\n• Esto significa que su ventana fértil abarca aproximadamente 6 días: los 5 días antes de la ovulación y el día de la ovulación en sí.\n\nAlgunas mujeres sienten una punzada o un calambre leve (mittelschmerz) durante la ovulación. Otros notan cambios en el moco cervical, que se vuelve claro y elástico como la clara de huevo cruda."
-      },
-      "fertilizationBasics": {
-        "title": "Fertilización e implantación",
-        "content": "Después de la ovulación, la fertilización puede ocurrir en las trompas de Falopio:\n\n• De los millones de espermatozoides liberados, sólo unos pocos cientos llegan al óvulo.\n• Un espermatozoide penetra la capa externa del óvulo, lo que desencadena una reacción química que impide que otros espermatozoides entren.\n• El óvulo fertilizado (cigoto) comienza a dividirse a medida que viaja hacia el útero durante 3 a 4 días.\n• Alrededor del día 6 al 10 después de la ovulación, el blastocisto se implanta en el revestimiento del útero.\n• La implantación puede causar pequeñas manchas, conocidas como sangrado de implantación.\n• Una vez implantado, el cuerpo comienza a producir hCG, la hormona detectada por las pruebas de embarazo."
-      },
-      "hormonesRole": {
-        "title": "Hormonas clave de fertilidad",
-        "content": "Varias hormonas orquestan tu fertilidad:\n\n• FSH (Hormona Folículo Estimulante): Estimula el crecimiento de los folículos en los ovarios. Probado el día 3 de tu ciclo para evaluar la reserva ovárica.\n\n• LH (hormona luteinizante): desencadena la ovulación. Los kits de predicción de la ovulación detectan el aumento de LH.\n\n• Estrógeno (estradiol): promueve el desarrollo del folículo y espesa el revestimiento del útero. También afecta la calidad del moco cervical.\n\n• Progesterona: Producida después de la ovulación, mantiene el revestimiento del útero para una posible implantación. La progesterona baja puede afectar la regularidad del ciclo.\n\n• AMH (Hormona Antimülleriana): Refleja el número de óvulos restantes (reserva ovárica). Útil para la planificación de la fertilidad.\n\n• Hormonas tiroideas (TSH, T3, T4): los desequilibrios tiroideos pueden alterar la ovulación y la regularidad del ciclo."
-      },
-      "ageAndFertility": {
-        "title": "Edad y fertilidad",
-        "content": "La edad es uno de los factores más importantes que afectan la fertilidad:\n\n• Las mujeres nacen con todos los óvulos que jamás tendrán: entre 1 y 2 millones al nacer.\n• En la pubertad, quedan aproximadamente entre 300.000 y 400.000 óvulos. Sólo entre 300 y 400 ovulan durante la vida.\n• La fertilidad alcanza su punto máximo a mediados de los 20 años. A partir de los 30 años comienza un declive gradual.\n• Después de los 35, el declive se acelera. Tanto la calidad como la cantidad de óvulos disminuyen.\n• A los 40 años, la probabilidad de concepción natural por ciclo se reduce a aproximadamente el 5%.\n• La fertilidad masculina también disminuye con la edad, aunque de forma más gradual.\n\nEsto no significa que el embarazo después de los 35 años sea imposible: muchas mujeres conciben de forma natural. Pero comprender el tiempo ayuda a la planificación."
-      },
-      "lifestyleFactors": {
-        "title": "Factores del estilo de vida que afectan la fertilidad",
-        "content": "Tus hábitos diarios impactan significativamente en la fertilidad:\n\n• Peso: Tanto el bajo peso (IMC < 18,5) como el sobrepeso (IMC > 30) pueden alterar la ovulación. Incluso un cambio de peso del 5 al 10 % puede mejorar la regularidad del ciclo.\n\n• Fumar: Reduce la calidad de los óvulos, daña las trompas de Falopio y acelera la pérdida de óvulos. El humo de segunda mano también es perjudicial.\n\n• Alcohol: El consumo excesivo de alcohol está relacionado con ciclos irregulares y fertilidad reducida. El consumo moderado o nulo de alcohol es lo más seguro cuando se intenta concebir.\n\n• Cafeína: más de 200 a 300 mg al día (aproximadamente 2 tazas de café) pueden reducir ligeramente la fertilidad.\n\n• Ejercicio: la actividad moderada favorece la fertilidad. El ejercicio excesivo e intenso puede alterar la ovulación.\n\n• Sueño: La falta de sueño altera las hormonas reproductivas. Trate de dormir entre 7 y 9 horas por noche.\n\n• Toxinas ambientales: limite la exposición a pesticidas, metales pesados ​​y ciertos plásticos (BPA)."
-      },
-      "commonMyths": {
-        "title": "Mitos sobre la fertilidad frente a hechos",
-        "content": "Separemos la realidad de la ficción:\n\nMito: Sólo puedes quedar embarazada el día de la ovulación.\nHecho: La ventana fértil dura aproximadamente 6 días. Los espermatozoides pueden sobrevivir hasta 5 días.\n\nMito: La posición durante las relaciones sexuales afecta la concepción.\nHecho: Ninguna evidencia científica respalda esto. Los espermatozoides llegan al cuello uterino en cuestión de segundos.\n\nMito: Los anticonceptivos causan infertilidad.\nHecho: La fertilidad generalmente regresa entre 1 y 3 meses después de suspender la mayoría de los anticonceptivos.\n\nMito: El estrés causa directamente la infertilidad.\nRealidad: Si bien el estrés crónico severo puede afectar las hormonas, el estrés moderado por sí solo rara vez previene la concepción.\n\nMito: Es necesario tener relaciones sexuales todos los días.\nHecho: Cada 1 o 2 días durante la ventana fértil es suficiente. Las relaciones sexuales diarias no reducen la calidad del esperma.\n\nMito: Los suplementos a base de hierbas garantizan la fertilidad.\nHecho: Algunos pueden ayudar, pero ninguno está científicamente probado que garantice la concepción. Consulte siempre a su médico."
-      },
-      "whenToSeekHelp": {
-        "title": "Cuándo consultar a un especialista",
-        "content": "Considere buscar orientación profesional sobre fertilidad si:\n\n• Tienes menos de 35 años y llevas 12 meses intentándolo sin éxito.\n• Tiene entre 35 y 39 años y lo ha estado intentando durante 6 meses.\n• Tienes 40 años o más; consulta con anticipación, ya que el tiempo es un factor.\n• Tiene períodos irregulares o ausentes.\n• Tiene una afección conocida: endometriosis, síndrome de ovario poliquístico, trastorno de la tiroides o cirugía pélvica previa.\n• Ha experimentado abortos espontáneos recurrentes (2 o más).\n• Su pareja tiene problemas de fertilidad conocidos.\n\nUn especialista en fertilidad puede realizar pruebas (paneles hormonales, ecografías, análisis de semen) y analizar opciones que van desde cambios en el estilo de vida hasta reproducción asistida."
-      },
-      "maleFertility": {
-        "title": "Conceptos básicos de fertilidad masculina",
-        "content": "La fertilidad masculina es igualmente importante en el proceso de concepción:\n\n• La producción de esperma tarda unos 74 días. Los cambios en el estilo de vida necesitan tiempo para mostrar resultados.\n• La salud óptima del esperma requiere: evitar el calor excesivo (jacuzzis, computadoras portátiles en el regazo), mantener un peso saludable y controlar el estrés.\n• Factores que pueden reducir la calidad del esperma: fumar, alcohol excesivo, ciertos medicamentos, esteroides anabólicos y drogas recreativas.\n• Un análisis de semen es una prueba sencilla y no invasiva que evalúa el recuento, la motilidad y la morfología de los espermatozoides.\n• La edad también afecta la fertilidad masculina: la calidad del esperma disminuye gradualmente después de los 40 años.\n• Nutrientes clave para la salud del esperma: zinc, selenio, vitamina C, vitamina E, folato y ácidos grasos omega-3."
-      },
-      "emotionalWellbeing": {
-        "title": "Bienestar emocional en el viaje",
-        "content": "Intentar concebir puede ser una montaña rusa emocional:\n\n• Es normal sentir esperanza, entusiasmo, frustración y tristeza, a veces todo en un solo ciclo.\n• Aproximadamente 1 de cada 6 parejas experimenta dificultades para concebir. Usted no está solo.\n• El duelo después de una prueba negativa es válido. Permítete sentir sin juzgar.\n• La comunicación con tu pareja es fundamental. Comparte tus sentimientos abiertamente.\n• Considere unirse a una comunidad de apoyo; conectarse con otras personas en el mismo viaje puede ser reconfortante.\n• Establezca límites en torno a los anuncios de embarazo y baby showers si se sienten desencadenantes.\n• El asesoramiento profesional puede proporcionarle estrategias de afrontamiento adaptadas a su situación.\n• Recuerde: su valor no está definido por su fertilidad. Sé amable contigo mismo."
-      },
-      "trackingMethods": {
-        "title": "Métodos de seguimiento de la fertilidad",
-        "content": "Varios métodos pueden ayudarte a identificar tu ventana fértil:\n\n1. Método del calendario: realice un seguimiento de la duración del ciclo durante varios meses. La ovulación suele ocurrir 14 días antes de su próximo período.\n\n2. Temperatura corporal basal (TBC): Tómate la temperatura todas las mañanas antes de levantarte. Un ligero aumento (0,2 a 0,5 °C) confirma que se ha producido la ovulación.\n\n3. Observación del moco cervical: a medida que se acerca la ovulación, el moco se vuelve claro, elástico y resbaladizo (como la clara de huevo cruda).\n\n4. Kits de predicción de la ovulación (OPK): detectan el aumento de LH en la orina entre 12 y 36 horas antes de la ovulación.\n\n5. Monitores de fertilidad: dispositivos avanzados que rastrean múltiples hormonas para obtener una imagen más completa.\n\n6. Posición cervical: el cuello uterino se vuelve más alto, más suave y más abierto durante la ovulación.\n\nLa combinación de múltiples métodos aumenta la precisión."
-      },
-      "optimizingTiming": {
-        "title": "Optimización del momento de la concepción",
-        "content": "El tiempo es crucial para maximizar sus posibilidades:\n\n• Los mejores días para la concepción son los 2 o 3 días antes de la ovulación y el día mismo de la ovulación.\n• Tener relaciones sexuales cada 1 o 2 días durante la ventana fértil proporciona los mejores resultados.\n• En la mayoría de los hombres, la calidad del esperma no se reduce significativamente con la eyaculación diaria.\n• Después del coito, acostarse durante 10 a 15 minutos puede mejorar ligeramente el transporte de espermatozoides, aunque la evidencia es limitada.\n• Lubricantes: Algunos lubricantes comerciales pueden reducir la motilidad de los espermatozoides. Utilice marcas favorables a la fertilidad si es necesario.\n• Realice un seguimiento de su ciclo durante 2 a 3 meses antes de intentarlo activamente, para comprender su patrón personal.\n• Manténgase hidratado y mantenga una dieta equilibrada durante la ventana fértil.\n• Ambos socios deben evitar el consumo excesivo de alcohol durante la ventana fértil."
-      },
-      "implantationWindow": {
-        "title": "La ventana de implantación",
-        "content": "La ventana de implantación es el breve período en el que el revestimiento del útero está listo para recibir el embrión:\n\n• Normalmente ocurre entre los días 6 y 10 después de la ovulación.\n• Durante este tiempo, el endometrio secreta proteínas especiales que ayudan al embrión a adherirse.\n• La progesterona juega un papel central en la preparación del revestimiento.\n• Factores que afectan la calidad de la ventana: inflamación crónica, espesor insuficiente del revestimiento o trastornos inmunológicos.\n• El descanso y una buena nutrición durante la fase lútea apoyan el proceso de implantación."
-      },
-      "cervicalHealth": {
-        "title": "Salud cervical y fertilidad",
-        "content": "El cuello uterino juega un papel fundamental en la fertilidad:\n\n• Produce moco que cambia a lo largo del ciclo para facilitar o bloquear el paso de los espermatozoides.\n• El moco fértil nutre los espermatozoides y prolonga su vida útil hasta 5 días.\n• Las infecciones cervicales crónicas pueden reducir la calidad del moco.\n• Los procedimientos cervicales previos (como las biopsias de cono) pueden afectar la producción de moco.\n• Mantener un pH vaginal saludable favorece el entorno cervical óptimo para la fertilidad."
-      },
-      "thyroidFertility": {
-        "title": "Tiroides y fertilidad",
-        "content": "Los trastornos de la tiroides se encuentran entre las causas más tratables de problemas de fertilidad:\n\n• El hipotiroidismo puede causar ciclos irregulares, ausencia de ovulación o aborto espontáneo prematuro.\n• El hipertiroidismo está relacionado con períodos irregulares y dificultad para concebir.\n• Incluso el hipotiroidismo subclínico (TSH 2,5–4,0) puede afectar la fertilidad.\n• Los anticuerpos tiroideos (Anti-TPO) son comunes y pueden afectar la implantación.\n• Se recomiendan las pruebas de TSH y FT4 a todas las mujeres que planean un embarazo.\n• El tratamiento con levotiroxina es seguro y eficaz mientras se intenta concebir."
-      },
-      "pcosManagement": {
-        "title": "Manejo del síndrome de ovario poliquístico y la fertilidad",
-        "content": "El síndrome de ovario poliquístico (SOP) afecta entre el 8 y el 13 % de las mujeres:\n\n• La causa más común de anovulación e infertilidad relacionada con la ovulación.\n• Síntomas clave: períodos irregulares, acné, crecimiento excesivo de cabello, resistencia a la insulina.\n• Los cambios en el estilo de vida son muy eficaces: perder entre un 5% y un 10% del peso puede restablecer la ovulación.\n• El inositol ha mostrado resultados prometedores en la mejora de la sensibilidad a la insulina y la calidad de los óvulos.\n• Una dieta equilibrada y baja en azúcar favorece la regularidad hormonal.\n• Medicamentos como el clomifeno o el letrozol estimulan con éxito la ovulación en muchos casos."
-      },
-      "endometriosisAwareness": {
-        "title": "Endometriosis y fertilidad",
-        "content": "La endometriosis afecta a 1 de cada 10 mujeres:\n\n• Un tejido similar al revestimiento uterino crece fuera del útero, lo que provoca inflamación y adherencias.\n• Puede afectar las trompas, los ovarios y la calidad de los óvulos.\n• Síntomas: dolor menstrual intenso, dolor durante las relaciones sexuales y, a veces, ningún síntoma.\n• El diagnóstico temprano mejora los resultados. La laparoscopia es el estándar de oro.\n• Muchas mujeres afectadas conciben de forma natural o con ayuda.\n• Consulte a un especialista en fertilidad si tiene antecedentes familiares o síntomas sospechosos."
-      },
-      "nutritionFertility": {
-        "title": "Nutrición óptima para la fertilidad",
-        "content": "La dieta afecta directamente la calidad de los óvulos y los espermatozoides:\n\n• La dieta mediterránea es la que mejores resultados ha mostrado en los estudios de fertilidad.\n• Las grasas saludables (omega-3, aceite de oliva) apoyan la producción de hormonas.\n• La proteína vegetal puede ser mejor que la proteína animal para algunas mujeres.\n• Evite las grasas trans, que duplican el riesgo de infertilidad relacionada con la ovulación.\n• Los alimentos orgánicos reducen la exposición a pesticidas que alteran las hormonas.\n• El hierro de origen vegetal + vitamina C mejora significativamente la absorción."
-      },
-      "sleepHormones": {
-        "title": "Hormonas del sueño y la fertilidad",
-        "content": "Dormir no es un lujo, es una necesidad biológica para la fertilidad:\n\n• La melatonina (hormona del sueño) actúa como antioxidante protegiendo los huevos.\n• Dormir menos de 6 horas aumenta el cortisol, que suprime la GnRH y la ovulación.\n• El trabajo por turnos se asocia con un aumento del ciclo y problemas de fertilidad.\n• El ritmo circadiano regula la secreción de FSH y LH.\n• La luz azul de las pantallas suprime la melatonina y altera el ritmo.\n• Meta: dormir entre 7 y 9 horas en una habitación oscura y fresca con una rutina constante."
-      },
-      "exerciseBalance": {
-        "title": "Equilibrar el ejercicio y la fertilidad",
-        "content": "El ejercicio es un arma de doble filo para la fertilidad:\n\n• La actividad moderada (150 minutos/semana) mejora la ovulación y la fertilidad.\n• El ejercicio intenso y continuo puede causar una 'deficiencia relativa de energía' que detiene la ovulación.\n• Caminar, nadar y hacer yoga se encuentran entre las mejores opciones.\n• El entrenamiento de fuerza moderado mejora la sensibilidad a la insulina (útil para el síndrome de ovario poliquístico).\n• El yoga para la fertilidad combina el movimiento con la reducción del estrés.\n• Si su período desaparece con el ejercicio intenso, reduzca la intensidad inmediatamente.\n• El equilibrio entre movimiento y descanso es clave."
-      },
-      "supplementsGuide": {
-        "title": "Guía de suplementos inteligentes",
-        "content": "Los suplementos pueden favorecer tu fertilidad, pero no todos son iguales:\n\n• Ácido fólico/metilfolato: Esencial: comience 3 meses antes de intentarlo.\n• CoQ10 (200–600 mg): apoya la energía del óvulo, especialmente después de los 35.\n• Vitamina D (1000–2000 UI): la mayoría de las mujeres tienen deficiencia.\n• Omega-3 DHA (200–300 mg): para la salud hormonal y la inflamación.\n• Inositol (4 g de myo + 100 mg de d-chiro): especialmente útil para el síndrome de ovario poliquístico.\n• Hierro: Sólo si las pruebas muestran una deficiencia; el exceso es perjudicial.\n• Siempre consulte a su médico antes de comenzar cualquier suplemento nuevo."
-      },
-      "environmentalToxins": {
-        "title": "Toxinas ambientales y fertilidad",
-        "content": "La exposición diaria a toxinas ambientales puede afectar su fertilidad:\n\n• El BPA en los plásticos imita al estrógeno y altera el equilibrio hormonal.\n• Los ftalatos en los cosméticos y fragancias alteran el sistema endocrino.\n• Los pesticidas aplicados a frutas y verduras están relacionados con una menor calidad de los huevos.\n• Los metales pesados ​​(plomo, mercurio) afectan tanto a los óvulos como a los espermatozoides.\n• Medidas prácticas: envases de vidrio en lugar de plástico, productos de limpieza naturales, lavar bien las frutas.\n• Filtrar el agua potable reduce la exposición a contaminantes."
-      },
-      "geneticFactors": {
-        "title": "Factores genéticos y fertilidad",
-        "content": "Los genes juegan un papel más importante de lo esperado en la fertilidad:\n\n• El examen genético de portadores revela el riesgo de transmitir enfermedades genéticas a los niños.\n• La mutación MTHFR afecta el metabolismo del folato; el metilfolato puede ser mejor.\n• El síndrome de Turner y las anomalías cromosómicas afectan la reserva ovárica.\n• Los antecedentes familiares de menopausia precoz pueden indicar una disminución temprana de la reserva.\n• Se recomienda la prueba de cariotipo en casos de aborto espontáneo recurrente.\n• El asesoramiento genético está disponible y es útil para quienes tienen antecedentes familiares específicos."
-      },
-      "immunologyFertility": {
-        "title": "Inmunología y fertilidad",
-        "content": "El sistema inmunológico juega un papel delicado durante el embarazo:\n\n• El cuerpo debe aceptar el embrión (la mitad de sus genes del padre) sin rechazarlo.\n• Las células NK uterinas ayudan con la implantación, pero una actividad excesiva puede obstaculizarla.\n• Los anticuerpos antifosfolípidos están relacionados con abortos espontáneos recurrentes.\n• Las enfermedades autoinmunes (lupus, enfermedad de Hashimoto) pueden afectar la fertilidad.\n• La inflamación pélvica crónica puede dañar las trompas.\n• Un estilo de vida antiinflamatorio (nutrición, sueño, movimiento) apoya una inmunidad equilibrada."
-      },
-      "secondaryInfertility": {
-        "title": "Infertilidad secundaria",
-        "content": "La infertilidad secundaria significa dificultad para concebir después de haber tenido un hijo anterior:\n\n• Representa aproximadamente el 50% de los casos de infertilidad, pero se analiza menos.\n• Causas: avance de la edad, cambios de peso, complicaciones de embarazos anteriores.\n• Las adherencias por cesárea o infección pueden afectar la fertilidad.\n• Es posible que los cambios hormonales después del primer parto no se normalicen por completo.\n• Las expectativas sociales (“tienes un hijo, sé agradecido”) aumentan la carga psicológica.\n• No demore en buscar ayuda: se aplican los mismos criterios."
-      },
-      "recurrentLoss": {
-        "title": "Comprender la pérdida recurrente del embarazo",
-        "content": "La pérdida recurrente de embarazos (dos o más) requiere una evaluación integral:\n\n• Entre el 15% y el 20% de los embarazos terminan en un aborto espontáneo, la mayoría debido a anomalías cromosómicas.\n• Causas tratables: trastornos de la coagulación, anomalías uterinas, problemas de tiroides.\n• El tabique uterino es la anomalía uterina más común y puede corregirse quirúrgicamente.\n• El síndrome antifosfolípido se puede tratar con aspirina y heparina.\n• El apoyo psicológico es esencial: el duelo y la ansiedad después de una pérdida son naturales y válidos.\n• Entre el 60% y el 70% de las parejas con pérdidas recurrentes inexplicables logran el siguiente embarazo."
-      },
-      "fertilityPreservation": {
-        "title": "Preservación de la fertilidad",
-        "content": "La preservación de la fertilidad es una opción disponible que le brinda flexibilidad en la planificación:\n\n• Congelación de óvulos: Edad ideal antes de los 35 años. Excelentes resultados con técnicas modernas.\n• Congelación de embriones: Opción para parejas casadas. Tasas de éxito más altas que los óvulos solos.\n• Razones de la congelación: retraso en la maternidad, quimioterapia, condiciones médicas.\n• El proceso requiere estimulación hormonal durante 10 a 14 días y luego la extracción de óvulos.\n• El costo y el almacenamiento son factores a considerar.\n• Consulta con un especialista en fertilidad para valorar si es adecuado para tu situación."
-      },
-      "assistedReproduction": {
-        "title": "Técnicas de Reproducción Asistida",
-        "content": "Cuando la concepción natural no se logra, existen opciones efectivas:\n\n• Estimulación de la ovulación: Medicamentos que estimulan la producción de óvulos: tratamiento de primera línea.\n• Inseminación intrauterina (IIU): esperma procesado que se inyecta directamente en el útero.\n• Fertilización in vitro (FIV): La técnica más avanzada. Tasas de éxito del 30 al 50 % por ciclo.\n• Inyección intracitoplasmática de espermatozoides (ICSI): un único espermatozoide se inyecta directamente en el óvulo.\n• Pruebas genéticas previas a la implantación (PGT): detección de anomalías cromosómicas en embriones.\n• Cada opción tiene indicaciones específicas: un especialista en fertilidad le orienta hacia la más adecuada."
-      },
-      "epigeneticsFertility": {
-        "title": "Epigenética y salud generacional",
-        "content": "Los descubrimientos de la epigenética han cambiado nuestra comprensión de la fertilidad:\n\n• Su nutrición y estilo de vida pueden influir en la expresión genética de su futuro hijo.\n• La deficiencia de folato antes del embarazo afecta la programación genética del feto.\n• El estrés crónico puede dejar \"huellas\" en el ADN que se transfieren al embrión.\n• La contaminación y las toxinas ambientales provocan cambios epigenéticos que pueden afectar a generaciones.\n• Buenas noticias: los cambios epigenéticos negativos son reversibles con un estilo de vida saludable.\n• De 3 a 6 meses de mejoras antes del embarazo marcan una diferencia real en la salud fetal."
-      },
-      "mindBodyConnection": {
-        "title": "La conexión mente-cuerpo",
-        "content": "La relación entre mente y cuerpo es más profunda de lo que imaginamos en la fertilidad:\n\n• El estrés crónico activa el eje HPA que suprime las hormonas reproductivas.\n• Las técnicas de relajación (meditación, yoga, respiración profunda) mejoran considerablemente los resultados de fertilidad.\n• La terapia cognitivo-conductual (TCC) ha mostrado resultados positivos en la reducción de la ansiedad por la fertilidad.\n• La visualización positiva y las afirmaciones activan vías neuronales que apoyan el equilibrio hormonal.\n• Los grupos de apoyo reducen los sentimientos de aislamiento y mejoran la salud mental.\n• El arte, la música y la escritura creativa son herramientas terapéuticas eficaces durante el proceso de fertilidad.\n• Busque ayuda profesional si la ansiedad o la tristeza comienzan a dominar su vida."
-      }
-    }
-  },
-  "toolsInternal.twwCompanion": {
-    "subtitle": "Su guía diaria durante la espera de dos semanas",
-    "days": {
-      "day1": {
-        "title": "Día de ovulación + 1",
-        "body": "Si la ovulación ocurrió ayer, el óvulo ahora viaja a través de las trompas de Falopio. Si se produce la fertilización, normalmente ocurre dentro de las 12 a 24 horas posteriores a la ovulación. Hoy en día, no hay nada que puedas hacer para influir en el resultado, y eso está bien.",
-        "tip": "Respira hondo. El viaje ha comenzado. Concéntrate en algo que disfrutes hoy."
-      },
-      "day2": {
-        "title": "Comienzos celulares",
-        "body": "Si se produjo la fertilización, el cigoto unicelular comienza a dividirse, primero en 2 células y luego en 4. Este pequeño grupo de células viaja a través de las trompas de Falopio hacia el útero. Está alimentado enteramente por sus propias reservas de energía.",
-        "tip": "Manténgase hidratado y coma alimentos nutritivos. Tu cuerpo está haciendo un trabajo increíble a nivel celular."
-      },
-      "day3": {
-        "title": "La etapa de Mórula",
-        "body": "Las células en división forman una bola sólida llamada mórula (alrededor de 16 células). Continúa su recorrido por las trompas de Falopio. La progesterona está aumentando, preparando el revestimiento del útero para una posible implantación.",
-        "tip": "La actividad suave está perfectamente bien. No es necesario restringir su rutina normal."
-      },
-      "day4": {
-        "title": "Entrando al útero",
-        "body": "La mórula generalmente ingresa al útero alrededor del día 4. Comienza a formar una cavidad llena de líquido y se convierte en un blastocisto. El revestimiento del útero se vuelve grueso y receptivo bajo la influencia de la progesterona.",
-        "tip": "Practica la atención plena o estiramientos ligeros. Gestionar la anticipación es parte del viaje."
-      },
-      "day5": {
-        "title": "Formación de blastocistos",
-        "body": "El blastocisto ahora tiene dos grupos celulares distintos: la masa celular interna (que se convierte en el embrión) y el trofoblasto (que se convierte en la placenta). Flota libremente en la cavidad uterina.",
-        "tip": "Este es un buen día para registrar sus pensamientos y sentimientos. La autoexpresión es terapéutica."
-      },
-      "day6": {
-        "title": "La implantación puede comenzar",
-        "body": "El blastocisto comienza a buscar un sitio ideal para implantarse en la pared del útero. Las células del trofoblasto comienzan a excavar en el endometrio. Algunas mujeres experimentan un ligero manchado (sangrado de implantación) en esta época.",
-        "tip": "Las ligeras manchas en esta etapa pueden ser normales. No entre en pánico y no realice pruebas todavía. Es demasiado pronto."
-      },
-      "day7": {
-        "title": "Ventana de implantación",
-        "body": "Los días 6 a 10 son la ventana de implantación típica. El blastocisto se está incrustando más profundamente en el revestimiento del útero. Se están intercambiando señales tempranas entre el embrión y su cuerpo.",
-        "tip": "Continúe con sus actividades normales. Descansa cuando lo necesites. Confía en el proceso."
-      },
-      "day8": {
-        "title": "Comienza la hCG",
-        "body": "Si la implantación avanza, comienzan a producirse pequeñas cantidades de hCG (gonadotropina coriónica humana). Esta hormona le indica a su cuerpo que mantenga el cuerpo lúteo, que sigue produciendo progesterona. Los niveles todavía son demasiado bajos para detectarlos en una prueba.",
-        "tip": "Resista la tentación de realizar la prueba. La hCG necesita tiempo para desarrollarse. La paciencia es tu mayor aliado en estos momentos."
-      },
-      "day9": {
-        "title": "Señales ascendentes",
-        "body": "Los niveles de hCG están aumentando, pero es posible que aún estén por debajo del umbral de detección de la mayoría de las pruebas de embarazo caseras. La implantación debe estar completa o casi completa. Tu cuerpo está empezando a responder a las nuevas señales hormonales.",
-        "tip": "Regálate algo relajante: un baño caliente, tu té favorito o un paseo por la naturaleza."
-      },
-      "day10": {
-        "title": "Casi llegamos",
-        "body": "A estas alturas, si se produjo la implantación, los niveles de hCG se duplican aproximadamente cada 48 horas. Algunas pruebas sensibles pueden detectar un embarazo muy temprano. Sin embargo, un resultado negativo hoy no significa que no esté embarazada: los niveles varían ampliamente.",
-        "tip": "Si te haces la prueba hoy y sale negativo, no pierdas la esperanza. Muchos embarazos exitosos no dan resultados positivos hasta el día 12 al 14."
-      },
-      "day11": {
-        "title": "Anticipación del edificio",
-        "body": "La hCG continúa aumentando. Algunas mujeres comienzan a notar síntomas muy tempranos: calambres leves, sensibilidad en los senos o fatiga. Estos síntomas también pueden ser causados ​​por la progesterona en un ciclo sin embarazo, por lo que no son indicadores confiables.",
-        "tip": "Detectar los síntomas es natural pero puede aumentar la ansiedad. Trate de mantenerse presente y comprometido con su vida diaria."
-      },
-      "day12": {
-        "title": "Las pruebas se vuelven más confiables",
-        "body": "La mayoría de las pruebas de embarazo caseras se vuelven más fiables a partir de hoy. Si realiza la prueba, utilice la primera orina de la mañana para obtener la concentración más alta de hCG. Una línea tenue sigue siendo un resultado positivo.",
-        "tip": "Cualquiera que sea el resultado de hoy, recuerda: un ciclo no define tu viaje. Sea amable consigo mismo."
-      },
-      "day13": {
-        "title": "La víspera del conocimiento",
-        "body": "Por lo general, mañana es el día en que se espera su período (en un ciclo de 28 días). Si no llega y una prueba muestra un leve positivo, es posible que sea necesario felicitarlo. Si llega tu período, permítete llorar y saber que cada ciclo es una nueva oportunidad.",
-        "tip": "Prepárese emocionalmente para ambos resultados. Ambos son válidos. Ambos son parte del viaje."
-      },
-      "day14": {
-        "title": "El día de la respuesta",
-        "body": "Este suele ser el día en que se espera su período. La falta de un período combinado con una prueba de embarazo positiva es un fuerte indicador de embarazo. Si su prueba es positiva, comuníquese con su proveedor de atención médica para programar su primera cita (generalmente entre 6 y 8 semanas).",
-        "tip": "¿Positivo? Celebra este momento. ¿Negativo? Eres fuerte, resistente y este viaje continúa. Ambos resultados merecen compasión."
-      }
-    }
-  },
-  "toolsInternal.preconceptionCheckup": {
-    "progressLabel": "Seguimiento de las proyecciones",
-    "tracked": "rastreado",
-    "allComplete": "¡Gran preparación! Discuta sus resultados con su proveedor de atención médica.",
-    "categories": {
-      "essential": "Controles de salud esenciales",
-      "screening": "Detección de infecciones e inmunidad",
-      "specialized": "Evaluaciones especializadas",
-      "medications": "Medicamentos y vacunas"
-    },
-    "ai": {
-      "title": "Ideas de preparación",
-      "analyze": "Analiza mi preparación",
-      "readinessTitle": "Resumen de preparación",
-      "priorityTitle": "Recomendaciones prioritarias",
-      "tipsTitle": "Consejos útiles",
-      "timelineTitle": "Cronograma sugerido"
-    },
-    "related": {
-      "academy": "Academia de fertilidad",
-      "academyDesc": "Educación integral en fertilidad",
-      "nutrition": "Guía de nutrición",
-      "nutritionDesc": "Nutrición y suplementos previos a la concepción"
-    },
-    "disclaimer": "Esta lista de verificación es una referencia educativa que le ayudará a organizar conversaciones con su proveedor de atención médica. No reemplaza el consejo, diagnóstico o tratamiento médico profesional. Todos los exámenes y pruebas deben ser discutidos y ordenados por un profesional de la salud calificado.",
-    "checks": {
-      "generalCheckup": {
-        "title": "Chequeo general de salud",
-        "description": "Un examen físico completo para evaluar su salud general, presión arterial, peso y analizar sus planes de embarazo."
-      },
-      "bloodWork": {
-        "title": "Conteo sanguíneo completo (CBC)",
-        "description": "Comprueba si hay anemia, infecciones y la salud general de la sangre. Identifica la deficiencia de hierro que debe abordarse antes del embarazo."
-      },
-      "pap": {
-        "title": "Prueba de Papanicolaou / Detección cervical",
-        "description": "Detección de anomalías cervicales. Es mejor hacerlo antes del embarazo para abordar cualquier problema sin la complejidad adicional del embarazo."
-      },
-      "thyroid": {
-        "title": "Prueba de función tiroidea (TSH)",
-        "description": "Los trastornos de la tiroides son comunes y pueden afectar significativamente la fertilidad y el embarazo. Tanto el hipotiroidismo como el hipertiroidismo deben controlarse antes de concebir."
-      },
-      "rubella": {
-        "title": "Inmunidad a la rubéola (sarampión alemán)",
-        "description": "La rubéola durante el embarazo puede causar defectos de nacimiento graves. Si no eres inmune, se recomienda vacunarte al menos 1 mes antes de intentar concebir."
-      },
-      "hepatitis": {
-        "title": "Detección de hepatitis B y C",
-        "description": "La hepatitis B se puede transmitir al bebé durante el parto. Conocer su estado permite tomar medidas preventivas. La hepatitis C requiere seguimiento durante el embarazo."
-      },
-      "hiv": {
-        "title": "Detección de VIH e ITS",
-        "description": "Los exámenes de rutina para detectar el VIH y las infecciones de transmisión sexual protegen tanto su salud como la de su futuro bebé. La detección temprana permite un tratamiento eficaz."
-      },
-      "dental": {
-        "title": "Chequeo Dental",
-        "description": "La enfermedad de las encías está relacionada con el parto prematuro y el bajo peso al nacer. Los cambios hormonales durante el embarazo pueden empeorar los problemas dentales existentes. Complete cualquier trabajo dental necesario antes de concebir."
-      },
-      "geneticScreening": {
-        "title": "Detección de portadores genéticos",
-        "description": "Prueba si usted o su pareja son portadores de genes para afecciones como la fibrosis quística, la anemia de células falciformes o la talasemia. Los resultados ayudan a tomar decisiones informadas sobre planificación familiar."
-      },
-      "mentalHealth": {
-        "title": "Evaluación de salud mental",
-        "description": "Hable sobre cualquier historial de depresión, ansiedad u otras afecciones de salud mental con su proveedor de atención médica. Las condiciones preexistentes se pueden controlar de forma proactiva durante el embarazo."
-      },
-      "medications": {
-        "title": "Revisión de medicamentos",
-        "description": "Revise todos los medicamentos, suplementos y remedios herbales actuales con su médico. Algunos medicamentos no son seguros durante el embarazo y se deben buscar alternativas con anticipación."
-      },
-      "vaccinations": {
-        "title": "Revisión de vacunación",
-        "description": "Asegúrese de estar al día con las vacunas recomendadas, incluidas MMR, varicela, gripe y Tdap. Algunas vacunas no se pueden administrar durante el embarazo, así que complételas de antemano."
-      }
-    }
-  },
-  "toolsInternal.fertilitySigns": {
-    "signsCount": "{{count}} señales para saber",
-    "signs": {
-      "cervicalMucus": {
-        "title": "Cambios en el moco cervical",
-        "description": "A medida que se acerca la ovulación, el moco cervical se vuelve más abundante, claro y elástico, parecido a la clara de huevo cruda. Este moco de \"calidad fértil\" ayuda a que los espermatozoides viajen más fácilmente a través del cuello uterino. Después de la ovulación, la mucosidad normalmente se vuelve más espesa, más turbia o se seca.",
-        "tip": "Controle la mucosidad diariamente limpiándose antes de orinar. El moco de tipo más fértil se extiende entre los dedos sin romperse."
-      },
-      "basalTemp": {
-        "title": "Cambio de temperatura corporal basal",
-        "description": "Después de la ovulación, la progesterona hace que la temperatura corporal en reposo aumente entre 0,2 y 0,5 °C. Este cambio confirma que ya se ha producido la ovulación. Al realizar un seguimiento de la BBT durante varios ciclos, puede identificar su patrón de ovulación típico.",
-        "tip": "Tómate la temperatura todas las mañanas a la misma hora, antes de levantarte de la cama. Utilice un termómetro específico para BBT para mayor precisión."
-      },
-      "cervicalPosition": {
-        "title": "Cambios de posición cervical",
-        "description": "Durante la ventana fértil, el cuello uterino se mueve hacia arriba en el canal vaginal, se vuelve más suave (como los labios frente a la punta de la nariz) y se abre ligeramente. Después de la ovulación, desciende, se reafirma y se cierra.",
-        "tip": "Verifique la posición cervical en la misma posición diariamente (por ejemplo, de pie con un pie elevado). Se necesita práctica: tenga paciencia consigo mismo."
-      },
-      "ovulationPain": {
-        "title": "Sensación de ovulación (Mittelschmerz)",
-        "description": "Algunas mujeres sienten una leve punzada, calambre o dolor en un lado de la parte inferior del abdomen durante la ovulación. Este \"dolor medio\" (mittelschmerz) es causado por la ruptura del folículo para liberar el óvulo. Por lo general, dura desde unos minutos hasta unas pocas horas.",
-        "tip": "Tenga en cuenta de qué lado siente la sensación; puede alternar lados en cada ciclo a medida que la ovulación cambia entre ovarios."
-      },
-      "breastTenderness": {
-        "title": "Sensibilidad en los senos",
-        "description": "El aumento de progesterona después de la ovulación puede causar sensibilidad, plenitud o sensibilidad en los senos. Este es uno de los síntomas de la fase lútea más comúnmente observados. Algunas mujeres también experimentan esto en los días previos a la ovulación debido al aumento de estrógeno.",
-        "tip": "Realice un seguimiento de cuándo comienza y termina la sensibilidad para correlacionarlo con su patrón de ovulación a lo largo del tiempo."
-      },
-      "libidoChanges": {
-        "title": "Cambios en el deseo",
-        "description": "Muchas mujeres experimentan un aumento natural del deseo alrededor de la ovulación. Esto se debe al aumento de estrógeno y testosterona que precede al pico de LH. Es una de las formas que tiene el cuerpo de optimizar las posibilidades de concepción.",
-        "tip": "Preste atención a estos cambios naturales: a menudo se alinean con sus días más fértiles."
-      },
-      "moodShifts": {
-        "title": "Cambios de humor y energía",
-        "description": "El aumento de estrógeno en la fase folicular a menudo mejora el estado de ánimo, la energía y la confianza. Después de la ovulación, el predominio de la progesterona puede provocar un cambio hacia la calma o, en algunas, irritabilidad y fatiga. Estas fluctuaciones son normales y están impulsadas por hormonas.",
-        "tip": "Llevar un diario de su estado de ánimo a diario puede revelar patrones que se correlacionan con las fases de su ciclo."
-      },
-      "bloating": {
-        "title": "Hinchazón leve",
-        "description": "Los cambios hormonales relacionados con la ovulación, en particular el aumento de la progesterona, pueden provocar retención de líquidos e hinchazón leve. Esta es una señal común de que su cuerpo está pasando a la fase lútea.",
-        "tip": "Mantenerse hidratado y reducir la ingesta de sodio puede ayudar a controlar la hinchazón relacionada con la ovulación."
-      },
-      "lightSpotting": {
-        "title": "Manchado de ovulación",
-        "description": "Algunas mujeres experimentan una pequeña cantidad de manchas de color rosa claro o marrón alrededor del día de la ovulación. Es causada por la ligera caída de estrógeno que ocurre justo antes del aumento de LH o por la ruptura del folículo en sí. Suele ser muy ligero y breve.",
-        "tip": "El manchado de ovulación es diferente del sangrado de implantación (que ocurre entre 6 y 12 días después de la ovulación). Siga cuidadosamente el tiempo."
-      },
-      "heightenedSenses": {
-        "title": "Sentidos intensificados",
-        "description": "Algunas mujeres reportan un sentido del olfato más agudo durante la ovulación, posiblemente debido a niveles elevados de estrógeno. Las investigaciones sugieren que esto puede ser una adaptación evolutiva. Algunos también notan cambios sutiles en las preferencias gustativas.",
-        "tip": "Si notas que los olores parecen más fuertes hacia la mitad del ciclo, puede ser un indicador de ovulación personal que vale la pena seguir."
-      }
-    }
-  },
-  "toolsInternal.stressFertility": {
-    "topicsCount": "Temas {{count}} para explorar",
-    "topics": {
-      "stressHormones": {
-        "title": "Cómo el estrés afecta la fertilidad",
-        "content": "El estrés crónico desencadena la liberación de cortisol y adrenalina, lo que puede alterar el eje hipotalámico-pituitario-gonadal (HPG), la vía hormonal que controla la ovulación. El cortisol elevado puede suprimir la GnRH (hormona liberadora de gonadotropina), lo que provoca una ovulación irregular o ausente. Si bien es poco probable que el estrés diario moderado impida la concepción, un estrés intenso y prolongado puede retrasar el embarazo.",
-        "practice": "Identifique sus 3 principales desencadenantes del estrés esta semana. Para cada uno, escribe una pequeña acción que puedas realizar para reducir su impacto."
-      },
-      "cortisol": {
-        "title": "Entendiendo el cortisol",
-        "content": "El cortisol es la principal hormona del estrés de su cuerpo. En pequeñas ráfagas, es útil: proporciona energía y concentración. Pero cuando el cortisol permanece crónicamente elevado, puede suprimir las hormonas reproductivas, alterar el sueño, aumentar la inflamación y afectar el estado de ánimo. El objetivo no es eliminar el estrés por completo (¡imposible!), sino controlar su respuesta al estrés.",
-        "practice": "Practica la técnica de respiración 4-7-8: inhala durante 4 segundos, mantén la respiración durante 7, exhala durante 8. Repita 4 veces. Esto activa el sistema nervioso parasimpático."
-      },
-      "mindfulness": {
-        "title": "Atención plena para la fertilidad",
-        "content": "La atención plena es la práctica de estar completamente presente sin juzgar. Los estudios muestran que los programas de reducción del estrés basados ​​en la atención plena (MBSR) pueden reducir la ansiedad y la depresión en mujeres que se someten a tratamientos de fertilidad y pueden mejorar los resultados. Incluso 10 minutos de práctica diaria de atención plena pueden reducir los niveles de cortisol y mejorar la resiliencia emocional.",
-        "practice": "Pruebe un escaneo corporal de 5 minutos: cierre los ojos, respire profundamente y mueva lentamente su atención desde los dedos de los pies hasta la cabeza, notando sensaciones sin intentar cambiarlas."
-      },
-      "breathing": {
-        "title": "Técnicas de respiración",
-        "content": "La respiración controlada activa directamente el nervio vago, desencadenando la respuesta de relajación. Esto reduce la frecuencia cardíaca, la presión arterial y el cortisol. Es una de las formas más rápidas de pasar de un estado de estrés a un estado de calma. Las diferentes técnicas sirven para diferentes propósitos: algunas dan energía, otras calman.",
-        "practice": "Respiración de caja: Inhale 4 conteos → Mantenga 4 conteos → Exhale 4 conteos → Mantenga 4 conteos. Repita durante 5 minutos. Ideal antes de acostarse o durante momentos de ansiedad."
-      },
-      "journaling": {
-        "title": "Diario terapéutico",
-        "content": "Se ha demostrado científicamente que escribir sobre tus emociones reduce el estrés, mejora la función inmunológica y proporciona claridad. Para llevar un diario de fertilidad, el objetivo no es realizar un seguimiento de los síntomas de forma obsesiva, sino procesar las emociones, celebrar las pequeñas victorias y liberar los miedos.",
-        "practice": "Esta noche, escribe: 1) Una cosa por la que estoy agradecido hoy, 2) Una preocupación que quiero liberar, 3) Una cosa amable que hice por mí mismo."
-      },
-      "sleep": {
-        "title": "Sueño y fertilidad",
-        "content": "Dormir es cuando tu cuerpo se repara, produce hormonas y procesa emociones. La falta de sueño altera la melatonina (que protege la calidad de los óvulos), aumenta el cortisol y altera la regulación de FSH y LH. Se ha demostrado que las mujeres que duermen menos de 6 horas por noche tienen tasas de fertilidad más bajas.",
-        "practice": "Cree una rutina de relajación: no use pantallas 30 minutos antes de acostarse, atenúe las luces, use aceite esencial de lavanda y mantenga su dormitorio fresco (entre 18 y 20 °C)."
-      },
-      "exercise": {
-        "title": "Alivio del movimiento y el estrés",
-        "content": "El ejercicio moderado regular es uno de los analgésicos más eficaces. Libera endorfinas, mejora el sueño y ayuda a regular las hormonas. Sin embargo, el ejercicio excesivo e intenso (entrenamiento de maratón, entrenamiento diario de alta intensidad) puede suprimir la ovulación. El equilibrio es clave.",
-        "practice": "Esta semana, intenta realizar 30 minutos de movimiento moderado durante 5 días: caminar, hacer yoga, nadar o bailar. Observe cómo cambia su estado de ánimo después."
-      },
-      "socialSupport": {
-        "title": "Construyendo su red de apoyo",
-        "content": "El aislamiento social amplifica el estrés. Compartir su viaje de fertilidad con amigos, familiares o un grupo de apoyo de confianza puede reducir significativamente la carga emocional. No es necesario que comparta con todos; incluso una sola persona que lo apoye marca la diferencia.",
-        "practice": "Identifique a una persona en quien confíe. Comparte algo sobre tu viaje con ellos esta semana. La conexión es curativa."
-      },
-      "professionalHelp": {
-        "title": "Cuándo buscar apoyo profesional",
-        "content": "Si la ansiedad o la tristeza por la fertilidad están afectando su vida diaria, su sueño, sus relaciones o su trabajo, el apoyo profesional puede ser útil. Los terapeutas especializados en salud mental reproductiva comprenden los desafíos únicos de este viaje. La terapia cognitivo-conductual (TCC) es particularmente eficaz para la ansiedad relacionada con la fertilidad.",
-        "practice": "Si está considerando recibir terapia, busque un terapeuta que se especialice en psicología reproductiva o salud mental perinatal. Muchos ofrecen sesiones virtuales."
-      },
-      "acceptance": {
-        "title": "Practicando la aceptación",
-        "content": "Aceptar no significa darse por vencido; significa reconocer que algunas cosas están fuera de tu control mientras te concentras en aquello en lo que puedes influir. Este cambio del control a la aceptación puede reducir significativamente el estrés y mejorar el bienestar emocional durante el proceso de fertilidad.",
-        "practice": "Repite esta afirmación: 'Estoy haciendo todo lo que puedo. Confío en mi cuerpo y en mi viaje. El resultado no define mi valor\"."
-      }
-    }
-  },
-  "toolsInternal.preconceptionNutrition": {
-    "categoriesCount": "{{count}} categorías nutricionales",
-    "categories": {
-      "folateRich": {
-        "title": "Alimentos ricos en folato",
-        "description": "El folato (vitamina B9) es fundamental para prevenir defectos del tubo neural y favorecer una división celular saludable. La ingesta diaria recomendada al intentar concebir es de 400 a 800 mcg. Inicie la suplementación con folato al menos 1 a 3 meses antes de la concepción.",
-        "foods": "Verduras de hojas verdes oscuras (espinacas, col rizada), lentejas, garbanzos, espárragos, brócoli, aguacate, cereales fortificados, frutas cítricas, remolacha, coles de Bruselas."
-      },
-      "ironSources": {
-        "title": "Alimentos ricos en hierro",
-        "description": "El hierro favorece la producción saludable de sangre y el transporte de oxígeno, que son esenciales para el desarrollo del embarazo. Las mujeres en edad fértil necesitan alrededor de 18 mg al día. La deficiencia de hierro es común y puede afectar la ovulación y la regularidad del ciclo.",
-        "foods": "Carnes rojas, aves, pescado, lentejas, espinacas, cereales fortificados, semillas de calabaza, tofu, chocolate amargo, quinua, orejones"
-      },
-      "omega3": {
-        "title": "Ácidos grasos omega-3",
-        "description": "Los omega-3 favorecen la producción de hormonas, reducen la inflamación y son esenciales para el desarrollo del cerebro y los ojos del feto. DHA y EPA son las formas más biodisponibles. El ALA de origen vegetal también es beneficioso pero se convierte de manera menos eficiente.",
-        "foods": "Salmón, sardinas, caballa, nueces, semillas de chía, semillas de lino, semillas de cáñamo, suplementos de DHA a base de algas, huevos fortificados"
-      },
-      "antioxidants": {
-        "title": "Alimentos ricos en antioxidantes",
-        "description": "Los antioxidantes protegen los óvulos y los espermatozoides del estrés oxidativo causado por los radicales libres. Son particularmente importantes las vitaminas C y E, el selenio y la CoQ10. Una dieta colorida y variada proporciona un amplio espectro de antioxidantes.",
-        "foods": "Bayas (arándanos, fresas, frambuesas), tomates, pimientos morrones, nueces, semillas, té verde, verduras de hojas verdes oscuras, batatas, zanahorias"
-      },
-      "zinc": {
-        "title": "Fuentes de zinc",
-        "description": "El zinc es esencial para el equilibrio hormonal, la calidad de los óvulos y la división celular. También juega un papel crucial en la fertilidad masculina: apoya la producción de esperma y los niveles de testosterona. La ingesta diaria recomendada es de 8 mg para las mujeres.",
-        "foods": "Ostras, carne de res, semillas de calabaza, anacardos, garbanzos, lentejas, yogur, queso, cereales integrales, chocolate amargo"
-      },
-      "vitaminD": {
-        "title": "Fuentes de vitamina D",
-        "description": "Los receptores de vitamina D se encuentran en los ovarios y el útero, lo que sugiere un papel directo en la fertilidad. La deficiencia se asocia con ciclos irregulares, síndrome de ovario poliquístico y tasas reducidas de éxito de la FIV. Mucha gente tiene deficiencia, especialmente en los climas del norte.",
-        "foods": "Exposición a la luz solar (15 a 20 minutos diarios), pescado graso (salmón, atún), yemas de huevo, leche fortificada, champiñones expuestos a la luz ultravioleta, aceite de hígado de bacalao."
-      },
-      "calcium": {
-        "title": "Fuentes de calcio",
-        "description": "El calcio es vital para la función reproductiva y apoya el desarrollo de estructuras embrionarias. La ingesta adecuada de calcio antes del embarazo ayuda a generar reservas para el desarrollo esquelético del bebé. Apunta a 1000 mg al día.",
-        "foods": "Lácteos (leche, yogur, queso), leches vegetales fortificadas, kale, brócoli, almendras, sardinas con hueso, tofu, higos."
-      },
-      "protein": {
-        "title": "Proteína de calidad",
-        "description": "La proteína proporciona los componentes básicos de las hormonas y las células nuevas. Las investigaciones sugieren que reemplazar parte de la proteína animal con proteína vegetal puede mejorar los resultados de fertilidad. Apunta a una mezcla equilibrada de ambas fuentes.",
-        "foods": "Huevos, aves magras, pescado, legumbres (frijoles, lentejas), nueces, semillas, yogur griego, tofu, tempeh, quinua"
-      },
-      "hydration": {
-        "title": "Hidratación",
-        "description": "El agua es esencial para la producción de moco cervical, el transporte de nutrientes y el equilibrio hormonal. La deshidratación puede reducir la calidad del moco cervical y afectar el flujo sanguíneo a los órganos reproductivos. Trate de tomar de 8 a 10 vasos al día.",
-        "foods": "Agua, infusiones (hojas de frambuesa, jengibre), agua de coco, frutas ricas en agua (sandía, pepino, naranja), caldos"
-      },
-      "avoidList": {
-        "title": "Alimentos para minimizar",
-        "description": "Ciertos alimentos y sustancias pueden afectar negativamente a la fertilidad. Si bien es poco probable que el consumo ocasional cause daño, reducirlos cuando se intenta concebir activamente puede optimizar la preparación de su cuerpo.",
-        "foods": "Exceso de cafeína (>200 mg/día), alcohol, grasas trans, alimentos altamente procesados, pescado crudo (sushi), pescado con alto contenido de mercurio (pez espada, caballa), exceso de azúcar, edulcorantes artificiales."
-      }
-    }
-  },
-  "toolsInternal.prenatalVitamins": {
-    "supplementsCount": "Suplementos {{count}} para revisar",
-    "vitamins": {
-      "folicAcid": {
-        "title": "Ácido fólico (vitamina B9)",
-        "description": "El suplemento preconcepcional más importante. El ácido fólico reduce significativamente el riesgo de defectos del tubo neural (espina bífida, anencefalia). Empiece a tomarlo al menos entre 1 y 3 meses antes de intentar concebir para obtener el máximo beneficio.",
-        "dosage": "Recomendado: 400 a 800 mcg al día. Algunas mujeres (con antecedentes de defectos del tubo neural, que toman ciertos medicamentos) pueden necesitar de 4 a 5 mg; consulte a su médico."
-      },
-      "iron": {
-        "title": "Hierro",
-        "description": "Los requerimientos de hierro aumentan dramáticamente durante el embarazo (de 18 mg a 27 mg diarios). La acumulación de reservas de hierro antes de la concepción ayuda a prevenir la anemia por deficiencia de hierro, que se asocia con partos prematuros y bajo peso al nacer.",
-        "dosage": "Recomendado: 18 mg diarios antes del embarazo. Tomar con vitamina C para mejorar la absorción. Evite tomar con calcio o té."
-      },
-      "vitaminD": {
-        "title": "vitamina d",
-        "description": "La vitamina D apoya la función inmune, la absorción de calcio y la salud reproductiva. La deficiencia está relacionada con complicaciones del embarazo, como diabetes gestacional y preeclampsia. La mayoría de las personas necesitan suplementos, especialmente en los meses de invierno.",
-        "dosage": "Recomendado: 600 a 2000 UI al día. Su médico puede evaluar sus niveles y recomendar una dosis más alta si es deficiente."
-      },
-      "omega3DHA": {
-        "title": "Omega-3 DHA",
-        "description": "El DHA es crucial para el desarrollo del cerebro y la retina del feto. Iniciar la suplementación antes del embarazo garantiza reservas adecuadas desde las primeras etapas del desarrollo embrionario. La EPA también apoya la salud cardiovascular materna.",
-        "dosage": "Recomendado: 200 a 300 mg de DHA al día. Elija suplementos probados para detectar mercurio y contaminantes."
-      },
-      "calcium": {
-        "title": "Calcio",
-        "description": "Si la ingesta de calcio de la madre es insuficiente durante el embarazo, el bebé extraerá calcio de sus huesos. La creación de fuertes reservas de calcio antes del embarazo protege la salud ósea de la madre.",
-        "dosage": "Recomendado: 1000 mg diarios provenientes de alimentos y suplementos combinados. Se absorbe mejor en dosis de 500 mg o menos a la vez."
-      },
-      "iodine": {
-        "title": "Yodo",
-        "description": "El yodo es esencial para la función tiroidea, lo que afecta directamente la fertilidad y el desarrollo del cerebro fetal. La deficiencia es la principal causa evitable de discapacidad intelectual en todo el mundo.",
-        "dosage": "Recomendado: 150 mcg al día antes del embarazo, 220 mcg durante el embarazo. Comprueba que tu vitamina prenatal incluya yodo."
-      },
-      "zinc": {
-        "title": "Zinc",
-        "description": "El zinc favorece la calidad del óvulo, el equilibrio hormonal y la función inmune. También desempeña un papel clave en la síntesis de ADN y la división celular, procesos críticos al principio del embarazo.",
-        "dosage": "Recomendado: 8 mg al día para mujeres. La mayoría de las vitaminas prenatales contienen zinc adecuado."
-      },
-      "vitaminB12": {
-        "title": "Vitamina B12",
-        "description": "La B12 trabaja con el folato para apoyar la síntesis de ADN y el desarrollo del sistema nervioso. La deficiencia es más común en vegetarianos y veganos. Los niveles bajos de B12 se asocian con abortos espontáneos recurrentes y defectos del tubo neural.",
-        "dosage": "Recomendado: 2,4 mcg al día. Los veganos deben tomar suplementos ya que la B12 se encuentra principalmente en productos animales."
-      },
-      "vitaminC": {
-        "title": "vitamina c",
-        "description": "La vitamina C es un poderoso antioxidante que protege los huevos del daño oxidativo. También mejora la absorción de hierro y apoya la función inmune. Los niveles de progesterona también pueden mejorar con una ingesta adecuada de vitamina C.",
-        "dosage": "Recomendado: 75 a 90 mg al día. Se obtiene fácilmente de cítricos, bayas y pimientos morrones."
-      },
-      "vitaminE": {
-        "title": "vitamina e",
-        "description": "La vitamina E favorece el grosor y la calidad del revestimiento endometrial, lo cual es importante para la implantación. También protege las membranas celulares del estrés oxidativo y favorece la salud reproductiva en general.",
-        "dosage": "Recomendado: 15 mg (22 UI) al día. Se encuentra en nueces, semillas y aceites vegetales."
-      },
-      "coq10": {
-        "title": "CoQ10 (Coenzima Q10)",
-        "description": "CoQ10 es un antioxidante que apoya la función mitocondrial en los huevos. Como la calidad del óvulo disminuye naturalmente con la edad, la suplementación con CoQ10 puede ayudar a mantener la producción de energía celular. Las investigaciones están en curso pero son prometedoras, especialmente para las mujeres mayores de 35 años.",
-        "dosage": "Dosis común: 100 a 600 mg al día. La forma de ubiquinol se absorbe mejor que la ubiquinona. Consulte a su médico."
-      },
-      "probiotics": {
-        "title": "Probióticos",
-        "description": "Un microbioma vaginal e intestinal sano favorece la fertilidad. Las cepas de Lactobacillus ayudan a mantener el pH vaginal óptimo, que es importante para la supervivencia de los espermatozoides. La salud intestinal también afecta el metabolismo hormonal y la absorción de nutrientes.",
-        "dosage": "Elija un probiótico de múltiples cepas con cepas de Lactobacillus. Consumir alimentos fermentados: yogur, kéfir, chucrut, kimchi."
-      }
-    }
-  },
-  "toolsInternal.fertileWindow": {
-    "lastPeriod": "Primer día de su último período",
-    "cycleLength": "Duración promedio del ciclo (días)",
-    "calculate": "Encuentra mi ventana fértil",
-    "yourWindow": "Tu ventana fértil",
-    "windowStart": "Se abre la ventana",
-    "windowEnd": "La ventana se cierra",
-    "estimatedOvulation": "Día estimado de ovulación",
-    "disclaimer": "Esta es una estimación basada en datos de ciclo promedio. La ovulación real puede variar. Consulte a su proveedor de atención médica para obtener orientación personalizada."
   }
 }
