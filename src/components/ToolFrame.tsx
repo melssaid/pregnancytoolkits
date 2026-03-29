@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Lightbulb } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -7,6 +8,7 @@ import { RelatedTools } from "./RelatedTools";
 import { ToolIcon, hasToolIcon } from "./ToolIcon";
 import { BottomNavigation } from "./BottomNavigation";
 import { LanguageDropdown } from "./LanguageDropdown";
+import { trackToolUsage } from "@/hooks/useInAppReview";
 
 import { FertilityDailyTip } from "./FertilityDailyTip";
 
@@ -84,6 +86,11 @@ export function ToolFrame({
   
   // Check if we have a custom icon for this tool
   const hasCustomIcon = toolId && hasToolIcon(toolId);
+
+  // Track tool usage for smart review prompts
+  useEffect(() => {
+    if (toolId) trackToolUsage(toolId);
+  }, [toolId]);
 
   return (
     <div className={`min-h-screen bg-gradient-to-br ${styles.gradient} overflow-x-hidden overflow-y-auto`}>

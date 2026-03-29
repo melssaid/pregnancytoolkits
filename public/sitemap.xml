@@ -823,5 +823,81 @@
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- SEO LANDING PAGES (per tool) -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+
+  <url>
+    <loc>https://pregnancytoolkits.lovable.app/tool/due-date-calculator</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://pregnancytoolkits.lovable.app/tool/kick-counter</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://pregnancytoolkits.lovable.app/tool/cycle-tracker</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://pregnancytoolkits.lovable.app/tool/contraction-timer</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://pregnancytoolkits.lovable.app/tool/pregnancy-assistant</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://pregnancytoolkits.lovable.app/tool/fetal-growth</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://pregnancytoolkits.lovable.app/tool/weight-gain</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pregnancytoolkits.lovable.app/tool/ai-birth-plan</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pregnancytoolkits.lovable.app/tool/ai-meal-suggestion</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pregnancytoolkits.lovable.app/tool/ai-fitness-coach</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pregnancytoolkits.lovable.app/tool/ai-hospital-bag</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pregnancytoolkits.lovable.app/tool/baby-growth</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
 
 </urlset>
