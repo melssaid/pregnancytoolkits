@@ -1,0 +1,407 @@
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { Button } from "@/components/ui/button";
+import { Check, X, Sparkles, Brain, Shield, Zap, Heart, Crown, Download, Gift, CheckCircle2 } from "lucide-react";
+import { motion } from "framer-motion";
+import { toast } from "sonner";
+import { requestPurchase, isDigitalGoodsAvailable, type PlanType } from "@/lib/googlePlayBilling";
+import { useNavigate, Link } from "react-router-dom";
+import pricingLogo from "@/assets/pricing-logo.webp";
+import { canClaimBonus, claimBonus, isPromoActive } from "@/services/smartEngine";
+import { useAIUsage } from "@/contexts/AIUsageContext";
+
+const features = [
+  { icon: Brain, key: "feature1" },
+  { icon: Zap, key: "feature2" },
+  { icon: Heart, key: "feature3" },
+  { icon: Shield, key: "feature4" },
+  { icon: Sparkles, key: "feature5" },
+];
+
+const GOOGLE_PLAY_URL = "https://play.google.com/store/apps/details?id=com.pregnancytoolkits.app";
+
+export default function PricingDemo() {
+  const { t, i18n } = useTranslation();
+  const { isRTL } = useLanguage();
+  const navigate = useNavigate();
+  const [selected, setSelected] = useState<PlanType>("yearly");
+  const isAr = i18n.language === "ar";
+  const canPurchase = isDigitalGoodsAvailable();
+  const { refresh } = useAIUsage();
+  const [bonusAvailable, setBonusAvailable] = useState(() => isPromoActive() && canClaimBonus());
+  const [bonusClaimed, setBonusClaimed] = useState(false);
+
+  const handleClaimBonus = () => {
+    const result = claimBonus();
+    if (result.success) {
+      setBonusClaimed(true);
+      setBonusAvailable(false);
+      refresh();
+      toast.success(t('paywall.bonusSuccess'));
+    }
+  };
+
+  const handleSubscribe = async () => {
+    if (!canPurchase) {
+      window.open(GOOGLE_PLAY_URL, "_blank");
+      return;
+    }
+    const sent = await requestPurchase(
+      selected,
+      () => {
+        toast.success(t("pricing.subscriptionSuccess") || "Subscription activated!");
+        navigate("/");
+      },
+      (msg) => toast.error(msg),
+    );
+    if (!sent) {
+      toast.info(t("pricing.trialNote"));
+    }
+  };
+
+  const price = selected === "yearly" ? "$19.99" : "$2.99";
+  const period = selected === "yearly" ? t("pricing.yr") : t("pricing.mo");
+
+  return (
+    <div
+      className="min-h-[100dvh] bg-background flex flex-col relative overflow-hidden"
+      dir={isRTL ? "rtl" : "ltr"}
+    >
+      {/* Background */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 inset-x-0 h-[45vh] bg-gradient-to-b from-primary/[0.04] to-transparent" />
+        <div className="absolute -top-20 -end-20 w-60 h-60 rounded-full bg-primary/[0.06] blur-[80px]" />
+        <div className="absolute bottom-0 -start-20 w-40 h-40 rounded-full bg-primary/[0.04] blur-[60px]" />
+      </div>
+
+      {/* Close */}
+      <div className="sticky top-0 z-30 px-4 py-3 flex justify-end">
+        <motion.button
+          onClick={() => navigate("/")}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          className="w-9 h-9 rounded-full bg-card/80 backdrop-blur-md border border-border/40 shadow-sm flex items-center justify-center hover:bg-muted transition-colors"
+        >
+          <X className="w-4 h-4 text-muted-foreground" />
+        </motion.button>
+      </div>
+
+      <div className="flex-1 px-5 pb-6 max-w-md mx-auto w-full flex flex-col justify-between relative z-10">
+        <div>
+          {/* Hero — Logo + Title */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+            className="text-center mb-4"
+          >
+            <motion.div
+              className="relative w-28 h-28 mx-auto mb-3 flex items-center justify-center"
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.1, type: "spring", stiffness: 200 }}
+            >
+              {/* Ripple rings */}
+              {[0, 1, 2].map((i) => (
+                <motion.div
+                  key={i}
+                  className="absolute inset-0 rounded-full border border-primary/20"
+                  initial={{ scale: 0.5, opacity: 0.6 }}
+                  animate={{ scale: [0.5, 1.5], opacity: [0.5, 0] }}
+                  transition={{ duration: 2.5, delay: i * 0.7, repeat: Infinity, ease: "easeOut" }}
+                />
+              ))}
+              {/* Breathing aura */}
+              <motion.div
+                className="absolute w-20 h-20 rounded-full bg-primary/10 blur-xl"
+                animate={{ scale: [1, 1.4, 1], opacity: [0.3, 0.6, 0.3] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              />
+              {/* Orbiting hearts */}
+              {/* Logo */}
+              <div className="relative z-0 rounded-full overflow-hidden shadow-xl shadow-primary/20 ring-[3px] ring-primary/15 bg-white" style={{ width: 88, height: 88 }}>
+                <img src={pricingLogo} alt="Pregnancy Toolkits" className="w-full h-full object-cover" loading="eager" width={88} height={88} />
+              </div>
+              {/* Blooming flowers */}
+              {[
+                { angle: 0, radius: 52, size: 17, emoji: '🌸', dur: 7, delay: 0 },
+                { angle: 72, radius: 48, size: 14, emoji: '🌸', dur: 9, delay: 0.6 },
+                { angle: 144, radius: 54, size: 16, emoji: '🌸', dur: 8, delay: 1.2 },
+                { angle: 216, radius: 50, size: 13, emoji: '🌸', dur: 10, delay: 0.3 },
+                { angle: 288, radius: 53, size: 15, emoji: '🌸', dur: 8.5, delay: 0.9 },
+              ].map((f, i) => (
+                <motion.span
+                  key={`flower-${i}`}
+                  className="absolute z-10 pointer-events-none select-none"
+                  style={{
+                    left: '50%',
+                    top: '50%',
+                    marginLeft: -f.size / 2,
+                    marginTop: -f.size / 2,
+                    fontSize: f.size,
+                  }}
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{
+                    x: [
+                      Math.cos((f.angle * Math.PI) / 180) * f.radius,
+                      Math.cos(((f.angle + 90) * Math.PI) / 180) * (f.radius * 0.85),
+                      Math.cos(((f.angle + 180) * Math.PI) / 180) * f.radius,
+                      Math.cos(((f.angle + 270) * Math.PI) / 180) * (f.radius * 0.85),
+                      Math.cos(((f.angle + 360) * Math.PI) / 180) * f.radius,
+                    ],
+                    y: [
+                      Math.sin((f.angle * Math.PI) / 180) * f.radius,
+                      Math.sin(((f.angle + 90) * Math.PI) / 180) * (f.radius * 0.85),
+                      Math.sin(((f.angle + 180) * Math.PI) / 180) * f.radius,
+                      Math.sin(((f.angle + 270) * Math.PI) / 180) * (f.radius * 0.85),
+                      Math.sin(((f.angle + 360) * Math.PI) / 180) * f.radius,
+                    ],
+                    scale: [0, 1.2, 1, 1.15, 0],
+                    opacity: [0, 1, 0.85, 1, 0],
+                    rotate: [0, 15, -10, 8, 0],
+                  }}
+                  transition={{
+                    duration: f.dur,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: f.delay,
+                  }}
+                >
+                  {f.emoji}
+                </motion.span>
+              ))}
+            </motion.div>
+
+            <h1
+              className="text-lg font-extrabold text-foreground tracking-tight mb-1 leading-tight"
+              style={{ fontFamily: isAr ? "'Almarai', 'Tajawal', sans-serif" : "'Montserrat', sans-serif" }}
+            >
+              {t("pricing.title")}
+            </h1>
+            <p
+              className="text-[11px] text-muted-foreground leading-relaxed max-w-[220px] mx-auto"
+              style={{ fontFamily: isAr ? "'Tajawal', sans-serif" : "'Montserrat', sans-serif" }}
+            >
+              {t("pricing.subtitle")}
+            </p>
+          </motion.div>
+
+          {/* Features chips */}
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.35, delay: 0.12 }}
+            className="flex flex-wrap justify-center gap-1.5 mb-4"
+          >
+            {features.map(({ icon: Icon, key }, idx) => (
+              <motion.div
+                key={key}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.2, delay: 0.12 + idx * 0.04 }}
+                className="flex items-center gap-1 px-2 py-1 rounded-full bg-primary/[0.06] border border-primary/10"
+              >
+                <Icon className="w-2.5 h-2.5 text-primary" strokeWidth={2} />
+                <span className="text-[9px] font-semibold text-foreground leading-none whitespace-nowrap">
+                  {t(`pricing.${key}`)}
+                </span>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Google Play Not Connected Notice + Bonus */}
+          {isPromoActive() && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2 }}
+              className="relative rounded-2xl overflow-hidden border-2 border-amber-400/40 mb-4"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-amber-500/10 via-orange-500/5 to-amber-500/10" />
+              <div className="relative px-4 py-3.5 space-y-3">
+                {/* Google Play notice */}
+                <div className="flex items-start gap-2.5">
+                  <div className="w-9 h-9 rounded-lg bg-amber-500/15 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <Download className="w-4.5 h-4.5 text-amber-600" />
+                  </div>
+                  <p className="text-[11px] text-muted-foreground leading-relaxed">
+                    {t('paywall.googlePlayNotice')}
+                  </p>
+                </div>
+
+                {/* Bonus claim or already claimed */}
+                {bonusAvailable && !bonusClaimed && (
+                  <div className="flex items-center gap-3 pt-2 border-t border-amber-400/20">
+                    <motion.div
+                      animate={{ rotate: [0, 10, -10, 0] }}
+                      transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 2 }}
+                      className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center flex-shrink-0 shadow-md shadow-emerald-500/25"
+                    >
+                      <Zap className="w-5 h-5 text-white" />
+                    </motion.div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-bold text-foreground">{t('paywall.bonusTitle')}</p>
+                      <p className="text-[10px] text-muted-foreground">{t('paywall.bonusDesc')}</p>
+                      <Button
+                        onClick={handleClaimBonus}
+                        size="sm"
+                        className="mt-2 h-8 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-xs font-bold hover:from-emerald-600 hover:to-teal-600 shadow-md"
+                      >
+                        <Gift className="w-3.5 h-3.5 me-1.5" />
+                        {t('paywall.bonusClaim')}
+                      </Button>
+                    </div>
+                  </div>
+                )}
+
+                {bonusClaimed && (
+                  <div className="flex items-center gap-3 pt-2 border-t border-emerald-400/20">
+                    <CheckCircle2 className="w-7 h-7 text-emerald-500 flex-shrink-0" />
+                    <div>
+                      <p className="text-sm font-bold text-foreground">{t('paywall.bonusSuccess')}</p>
+                      <p className="text-[10px] text-muted-foreground">{t('paywall.bonusSuccessDesc')}</p>
+                    </div>
+                  </div>
+                )}
+
+                {!bonusAvailable && !bonusClaimed && (
+                  <div className="flex items-center gap-3 pt-2 border-t border-amber-400/20">
+                    <CheckCircle2 className="w-6 h-6 text-amber-500 flex-shrink-0" />
+                    <p className="text-[11px] text-muted-foreground">{t('paywall.bonusAlreadyClaimed')}</p>
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          )}
+
+
+          <motion.div
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.35, delay: 0.18 }}
+            className="grid grid-cols-2 gap-2.5"
+          >
+            {/* Yearly */}
+            <button
+              onClick={() => setSelected("yearly")}
+              className={`relative flex flex-col items-center text-center px-2 py-3.5 rounded-2xl border-2 transition-all duration-300 overflow-hidden ${
+                selected === "yearly"
+                  ? "border-primary bg-primary/[0.04] shadow-[0_0_20px_-6px_hsl(var(--primary)/0.2)]"
+                  : "border-border/30 bg-card/60 hover:border-border/50"
+              }`}
+            >
+              {/* Best value badge */}
+              <div className="absolute -top-px -end-px">
+                <div className="px-2 py-0.5 rounded-es-lg rounded-se-[12px] bg-gradient-to-r from-primary to-primary/80">
+                  <span className="text-[8px] font-bold text-primary-foreground">{t("pricing.bestValue")}</span>
+                </div>
+              </div>
+
+              {/* Radio */}
+              <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mb-2 transition-colors ${
+                selected === "yearly" ? "border-primary bg-primary" : "border-muted-foreground/25"
+              }`}>
+                {selected === "yearly" && <Check className="w-2.5 h-2.5 text-primary-foreground" strokeWidth={3} />}
+              </div>
+
+              <span className="text-[11px] font-bold text-foreground mb-1">{t("pricing.yearly")}</span>
+
+              <span className="text-[22px] font-extrabold text-foreground tabular-nums leading-none" style={{ fontFamily: "'Cairo', sans-serif" }}>
+                $19.99
+              </span>
+              <span className="text-[10px] text-muted-foreground mt-0.5">/{t("pricing.yr")}</span>
+
+              <div className="mt-2 flex flex-col items-center gap-1">
+                <span className="text-[9px] text-muted-foreground">$1.67/{t("pricing.mo")}</span>
+                <span className="text-[8px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+                  {t("pricing.save")}
+                </span>
+              </div>
+            </button>
+
+            {/* Monthly */}
+            <button
+              onClick={() => setSelected("monthly")}
+              className={`relative flex flex-col items-center text-center px-2 py-3.5 rounded-2xl border-2 transition-all duration-300 ${
+                selected === "monthly"
+                  ? "border-primary bg-primary/[0.04] shadow-[0_0_20px_-6px_hsl(var(--primary)/0.2)]"
+                  : "border-border/30 bg-card/60 hover:border-border/50"
+              }`}
+            >
+              <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mb-2 transition-colors ${
+                selected === "monthly" ? "border-primary bg-primary" : "border-muted-foreground/25"
+              }`}>
+                {selected === "monthly" && <Check className="w-2.5 h-2.5 text-primary-foreground" strokeWidth={3} />}
+              </div>
+
+              <span className="text-[11px] font-bold text-foreground mb-1">{t("pricing.monthly")}</span>
+
+              <span className="text-[22px] font-extrabold text-foreground tabular-nums leading-none" style={{ fontFamily: "'Cairo', sans-serif" }}>
+                $2.99
+              </span>
+              <span className="text-[10px] text-muted-foreground mt-0.5">/{t("pricing.mo")}</span>
+            </button>
+          </motion.div>
+        </div>
+
+        {/* Bottom CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, delay: 0.28 }}
+          className="mt-5 space-y-2"
+        >
+          {!canPurchase && (
+            <div className="flex items-center gap-2 p-3 rounded-xl bg-muted/60 border border-border mb-2">
+              <Download className="w-5 h-5 text-primary shrink-0" />
+              <p className="text-[11px] text-muted-foreground leading-snug"
+                style={{ fontFamily: isAr ? "'Tajawal', sans-serif" : undefined }}>
+                {t("pricing.downloadFromPlay")}
+              </p>
+            </div>
+          )}
+          <Button
+            onClick={handleSubscribe}
+            size="lg"
+            className="w-full h-[46px] text-[13px] font-bold rounded-2xl shadow-lg shadow-primary/20 whitespace-normal leading-snug"
+            style={{ fontFamily: isAr ? "'Almarai', sans-serif" : "'Montserrat', sans-serif" }}
+          >
+            {canPurchase ? t("pricing.cta") : t("pricing.downloadApp")}
+          </Button>
+
+          <p
+            className="text-center text-[10px] text-muted-foreground leading-snug"
+            style={{ fontFamily: isAr ? "'Tajawal', sans-serif" : "'Montserrat', sans-serif" }}
+          >
+            {t("pricing.ctaSub", { price, period })}
+          </p>
+
+          <p className="text-center text-[9px] text-muted-foreground/50 leading-relaxed">
+            {t("pricing.autoRenew")}
+          </p>
+
+          <div className="flex items-center justify-center gap-2 flex-wrap pt-0.5">
+            <button
+              onClick={() => toast.info(t("pricing.restore"))}
+              className="text-[10px] text-primary/70 hover:text-primary transition-colors"
+            >
+              {t("pricing.restore")}
+            </button>
+            <span className="text-muted-foreground/20">·</span>
+            <span className="text-[9px] text-muted-foreground/50 text-center">
+              {t("pricing.termsPrefix")}{" "}
+              <Link to="/terms" className="underline hover:text-foreground transition-colors">
+                {t("layout.footer.terms")}
+              </Link>{" "}
+              {t("pricing.and")}{" "}
+              <Link to="/privacy" className="underline hover:text-foreground transition-colors">
+                {t("layout.footer.privacy")}
+              </Link>
+            </span>
+          </div>
+        </motion.div>
+      </div>
+    </div>
+  );
+}
