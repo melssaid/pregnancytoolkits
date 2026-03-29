@@ -2383,6 +2383,42 @@
           "icon": "❤️",
           "desc": "Manter a proximidade"
         }
+      },
+      "heroTitle": "Seja o melhor apoio dela",
+      "heroDesc": "Orientacoes praticas para apoiar sua parceira em cada fase da gravidez",
+      "dailyChecklist": "Lista de apoio diario",
+      "dailyChecklistDesc": "Pequenas acoes que fazem uma grande diferenca",
+      "checkAsk": "Pergunte 'Como voce esta se sentindo?' e ouca de verdade",
+      "checkMassage": "Ofereca uma massagem suave nas costas ou nos pes",
+      "checkTask": "Assuma uma tarefa domestica sem que pecam",
+      "checkRead": "Leiam ou conversem com a barriga juntos",
+      "checkWater": "Leve agua e lanches saudaveis para ela",
+      "checkListen": "Ouca sem tentar resolver tudo",
+      "checkCompliment": "Faca um elogio sincero sobre a forca dela",
+      "allDone": "Incrivel! Voce completou todas as acoes do dia!",
+      "proTips": "Dicas profissionais para o parceiro",
+      "tips": {
+        "doSay": {
+          "title": "Coisas para dizer",
+          "item1": "Voce esta fazendo um trabalho incrivel cuidando do nosso bebe",
+          "item2": "Como posso te ajudar a ficar mais confortavel?",
+          "item3": "Tenho muito orgulho da sua forca",
+          "item4": "Deixe comigo - voce descanse"
+        },
+        "dontSay": {
+          "title": "Coisas para evitar",
+          "item1": "Nao a compare com outras gravidas",
+          "item2": "Nao minimize os sintomas dela dizendo 'sao os hormonios'",
+          "item3": "Nao tome decisoes sobre o bebe sem ela",
+          "item4": "Nao comente negativamente as mudancas no corpo dela"
+        },
+        "gestureIdeas": {
+          "title": "Ideias de gestos especiais",
+          "item1": "Escreva uma carta de amor sobre a familia que esta crescendo",
+          "item2": "Prepare uma noite de relaxamento com velas e musica",
+          "item3": "Crie um album de fotos da jornada da gravidez",
+          "item4": "Planejem juntos uma escapada babymoon tranquila"
+        }
       }
     },
     "bumpPhotos": {

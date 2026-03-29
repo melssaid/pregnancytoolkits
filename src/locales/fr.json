@@ -2383,6 +2383,42 @@
           "icon": "❤️",
           "desc": "Maintenir la proximité"
         }
+      },
+      "heroTitle": "Sois son meilleur soutien",
+      "heroDesc": "Conseils pratiques pour accompagner ta partenaire a chaque etape de la grossesse",
+      "dailyChecklist": "Liste de soutien quotidien",
+      "dailyChecklistDesc": "De petits gestes qui font une grande difference",
+      "checkAsk": "Demande 'Comment te sens-tu ?' et ecoute vraiment",
+      "checkMassage": "Propose un massage doux du dos ou des pieds",
+      "checkTask": "Prends en charge une tache menagere sans qu'on te le demande",
+      "checkRead": "Lisez ou parlez ensemble au ventre",
+      "checkWater": "Apporte-lui de l'eau et des collations saines",
+      "checkListen": "Ecoute sans essayer de tout resoudre",
+      "checkCompliment": "Fais-lui un compliment sincere sur sa force",
+      "allDone": "Bravo ! Tu as accompli toutes les actions du jour !",
+      "proTips": "Conseils pro pour le partenaire",
+      "tips": {
+        "doSay": {
+          "title": "Choses a dire",
+          "item1": "Tu fais un travail incroyable pour notre bebe",
+          "item2": "Comment puis-je t'aider a etre plus a l'aise ?",
+          "item3": "Je suis tellement fier de ta force",
+          "item4": "Laisse-moi m'en occuper - repose-toi"
+        },
+        "dontSay": {
+          "title": "Choses a eviter",
+          "item1": "Ne la compare pas a d'autres femmes enceintes",
+          "item2": "Ne minimise pas ses symptomes en disant 'c'est les hormones'",
+          "item3": "Ne prends pas de decisions sur le bebe sans elle",
+          "item4": "Ne commente pas negativement les changements de son corps"
+        },
+        "gestureIdeas": {
+          "title": "Idees de gestes speciaux",
+          "item1": "Ecris-lui une lettre d'amour sur votre famille qui grandit",
+          "item2": "Prepare une soiree relaxation avec bougies et musique",
+          "item3": "Cree un album photo du parcours de grossesse",
+          "item4": "Planifiez ensemble une escapade babymoon"
+        }
       }
     },
     "bumpPhotos": {

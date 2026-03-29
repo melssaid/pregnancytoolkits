@@ -2383,6 +2383,42 @@
           "icon": "❤️",
           "desc": "Mantener la cercanía"
         }
+      },
+      "heroTitle": "Se su mejor apoyo",
+      "heroDesc": "Guia practica para apoyar a tu pareja en cada etapa del embarazo",
+      "dailyChecklist": "Lista de apoyo diario",
+      "dailyChecklistDesc": "Pequenas acciones que marcan una gran diferencia",
+      "checkAsk": "Pregunta 'Como te sientes hoy?' y escucha de verdad",
+      "checkMassage": "Ofrece un masaje suave de espalda o pies",
+      "checkTask": "Encargate de una tarea del hogar sin que te lo pidan",
+      "checkRead": "Lean o hablen juntos al vientre",
+      "checkWater": "Llevale agua y bocadillos saludables",
+      "checkListen": "Escucha sin intentar arreglarlo todo",
+      "checkCompliment": "Hazle un cumplido sincero sobre su fortaleza",
+      "allDone": "Increible! Completaste todas las acciones del dia!",
+      "proTips": "Consejos profesionales para la pareja",
+      "tips": {
+        "doSay": {
+          "title": "Cosas que decir",
+          "item1": "Estas haciendo un trabajo increible cuidando a nuestro bebe",
+          "item2": "Como puedo ayudarte a estar mas comoda?",
+          "item3": "Estoy muy orgulloso de lo fuerte que eres",
+          "item4": "Dejame encargarme - tu descansa"
+        },
+        "dontSay": {
+          "title": "Cosas que evitar",
+          "item1": "No la compares con otras embarazadas",
+          "item2": "No minimices sus sintomas diciendo 'son las hormonas'",
+          "item3": "No tomes decisiones sobre el bebe sin ella",
+          "item4": "No comentes negativamente los cambios de su cuerpo"
+        },
+        "gestureIdeas": {
+          "title": "Ideas de gestos especiales",
+          "item1": "Escribele una carta de amor sobre su familia que crece",
+          "item2": "Prepara una noche de relajacion con velas y musica",
+          "item3": "Crea un album de fotos del viaje del embarazo",
+          "item4": "Planeen juntos una escapada babymoon tranquila"
+        }
       }
     },
     "bumpPhotos": {

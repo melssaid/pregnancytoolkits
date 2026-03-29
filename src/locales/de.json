@@ -2383,6 +2383,42 @@
           "icon": "❤️",
           "desc": "Nähe aufrechterhalten"
         }
+      },
+      "heroTitle": "Sei ihre beste Stuetze",
+      "heroDesc": "Praktische Anleitungen zur Unterstuetzung deiner Partnerin in jeder Phase der Schwangerschaft",
+      "dailyChecklist": "Taegliche Unterstuetzungs-Checkliste",
+      "dailyChecklistDesc": "Kleine Gesten, die einen grossen Unterschied machen",
+      "checkAsk": "Frage 'Wie fuehlst du dich heute?' und hoere aufmerksam zu",
+      "checkMassage": "Biete eine sanfte Ruecken- oder Fussmassage an",
+      "checkTask": "Uebernimm eine Haushaltsaufgabe, ohne gefragt zu werden",
+      "checkRead": "Lest oder sprecht gemeinsam mit dem Babybauch",
+      "checkWater": "Bringe ihr Wasser und gesunde Snacks",
+      "checkListen": "Hoere zu, ohne alles loesen zu wollen",
+      "checkCompliment": "Mache ihr ein aufrichtiges Kompliment ueber ihre Staerke",
+      "allDone": "Fantastisch! Du hast alle taeglichen Aufgaben erledigt!",
+      "proTips": "Profi-Tipps fuer Partner",
+      "tips": {
+        "doSay": {
+          "title": "Hilfreiche Saetze",
+          "item1": "Du machst das unglaublich gut mit unserem Baby",
+          "item2": "Wie kann ich dir helfen, dich wohler zu fuehlen?",
+          "item3": "Ich bin so stolz auf deine Staerke",
+          "item4": "Lass mich das uebernehmen - ruh dich aus"
+        },
+        "dontSay": {
+          "title": "Was man vermeiden sollte",
+          "item1": "Vergleiche sie nicht mit anderen Schwangeren",
+          "item2": "Tue ihre Symptome nicht als 'nur Hormone' ab",
+          "item3": "Triff keine Entscheidungen ueber das Baby ohne sie",
+          "item4": "Kommentiere ihre koerperlichen Veraenderungen nicht negativ"
+        },
+        "gestureIdeas": {
+          "title": "Besondere Gesten-Ideen",
+          "item1": "Schreibe ihr einen Liebesbrief ueber eure wachsende Familie",
+          "item2": "Bereite einen Entspannungsabend mit Kerzen und Musik vor",
+          "item3": "Erstelle ein Fotoalbum der Schwangerschaftsreise",
+          "item4": "Plant gemeinsam einen ruhigen Babymoon-Ausflug"
+        }
       }
     },
     "bumpPhotos": {
