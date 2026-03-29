@@ -2215,7 +2215,9 @@
     "bonusDesc": "Resgate 5 pontos de IA bônus de graça — uma vez por mês, oferta por tempo limitado!",
     "bonusClaim": "Resgatar agora",
     "bonusSuccess": "5 pontos adicionados! ✅",
-    "bonusSuccessDesc": "Seus pontos gratuitos foram adicionados. Aproveite suas ferramentas de IA!"
+    "bonusSuccessDesc": "Seus pontos gratuitos foram adicionados. Aproveite suas ferramentas de IA!",
+    "googlePlayNotice": "O faturamento do Google Play ainda não está conectado. Enquanto isso, você pode resgatar 5 pontos grátis como presente temporário!",
+    "bonusAlreadyClaimed": "Você já resgatou seus pontos grátis este mês. Novos pontos estarão disponíveis no próximo mês."
   },
   "postpartumLinks": {
     "babySleepLink": "Rastreador de Sono do Bebê",

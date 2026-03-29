@@ -2215,7 +2215,9 @@
     "bonusDesc": "Réclamez 5 points IA bonus gratuitement — une fois par mois, offre limitée !",
     "bonusClaim": "Réclamer maintenant",
     "bonusSuccess": "5 points ajoutés ! ✅",
-    "bonusSuccessDesc": "Vos points gratuits ont été ajoutés. Profitez de vos outils IA !"
+    "bonusSuccessDesc": "Vos points gratuits ont été ajoutés. Profitez de vos outils IA !",
+    "googlePlayNotice": "La facturation Google Play n'est pas encore connectée. En attendant, vous pouvez obtenir 5 points gratuits en cadeau temporaire !",
+    "bonusAlreadyClaimed": "Vous avez déjà réclamé vos points gratuits ce mois-ci. De nouveaux points seront disponibles le mois prochain."
   },
   "postpartumLinks": {
     "babySleepLink": "Suivi du sommeil bébé",
