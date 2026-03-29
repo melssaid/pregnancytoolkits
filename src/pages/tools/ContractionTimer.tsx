@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Play, Square, Timer, TrendingUp, Activity, Clock, Zap, Heart,
-  AlertTriangle, BarChart3, Vibrate, ChevronDown,
+  AlertTriangle, BarChart3, Vibrate, ChevronDown, Share2, RotateCcw,
 } from "lucide-react";
 import { ContextualWarningBanner, WhenToCallDoctorCard, EvidenceInfoBlock } from "@/components/safety";
 import { ToolFrame } from "@/components/ToolFrame";
