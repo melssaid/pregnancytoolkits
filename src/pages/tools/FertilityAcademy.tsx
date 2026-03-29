@@ -1,7 +1,7 @@
 import { useState, memo, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronDown, Heart, Smile, BookOpen, Eye, Brain, Calendar } from "lucide-react";
+import { ChevronDown, Heart, Smile, BookOpen, Eye, Brain, Calendar, Lightbulb, Sparkles } from "lucide-react";
 import { ToolFrame } from "@/components/ToolFrame";
 
 
@@ -37,37 +37,34 @@ interface AccordionItemProps {
   onToggle: () => void;
   index: number;
   isRTL: boolean;
-  // Header
   badge?: React.ReactNode;
   title: string;
-  // Content
   children: React.ReactNode;
-  // Theming
   accentColor?: "primary" | "destructive";
+  gradient?: string;
 }
 
 const AccordionItem = memo(function AccordionItem({
-  isOpen, onToggle, index, isRTL, badge, title, children, accentColor = "primary"
+  isOpen, onToggle, index, isRTL, badge, title, children, accentColor = "primary", gradient
 }: AccordionItemProps) {
   const accent = accentColor === "destructive";
-  const openBorder = accent ? "border-destructive/30" : "border-primary/30";
-  const openBg = accent ? "bg-destructive/[0.03]" : "bg-primary/[0.03]";
-  const hoverBorder = accent ? "hover:border-destructive/15" : "hover:border-primary/15";
+  const borderSide = isRTL ? "border-r-[3px]" : "border-l-[3px]";
+  const openBorderColor = accent ? "border-r-destructive/50 border-l-destructive/50" : "border-r-primary/50 border-l-primary/50";
+  const openBg = accent ? "bg-destructive/[0.04]" : "bg-primary/[0.04]";
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.025, duration: 0.25, ease: "easeOut" }}
+      transition={{ delay: index * 0.02, duration: 0.25, ease: "easeOut" }}
     >
       <div
-        className={`rounded-xl border transition-all duration-300 overflow-hidden ${
+        className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
           isOpen
-            ? `${openBorder} ${openBg} shadow-sm`
-            : `border-border/40 ${hoverBorder} bg-card/40`
+            ? `${borderSide} ${openBorderColor} ${openBg} shadow-md border-border/20`
+            : "border-border/30 hover:border-border/50 bg-card/60 backdrop-blur-sm hover:shadow-sm"
         }`}
       >
-        {/* Header */}
         <button
           type="button"
           onClick={onToggle}
@@ -76,7 +73,7 @@ const AccordionItem = memo(function AccordionItem({
           <div className="flex items-center gap-2.5 min-w-0">
             {badge}
             <span className={`text-[13px] font-semibold leading-snug text-start ${
-              isOpen ? "text-foreground" : "text-foreground/80 group-hover:text-foreground"
+              isOpen ? "text-foreground" : "text-foreground/75 group-hover:text-foreground"
             } transition-colors`}>
               {title}
             </span>
@@ -98,7 +95,6 @@ const AccordionItem = memo(function AccordionItem({
           </motion.div>
         </button>
 
-        {/* Content */}
         <AnimatePresence initial={false}>
           {isOpen && (
             <motion.div
@@ -119,39 +115,70 @@ const AccordionItem = memo(function AccordionItem({
   );
 });
 
-// ── Number Badge (formal) ────────────────────────────────────────────
-function NumberBadge({ index, accent = "primary" }: { index: number; accent?: "primary" | "destructive" }) {
-  const color = accent === "destructive" ? "text-destructive/60" : "text-muted-foreground";
+// ── Number Badge — circular gradient ─────────────────────────────────
+function NumberBadge({ index, gradient }: { index: number; gradient?: string }) {
   return (
-    <span className={`text-[11px] font-medium tabular-nums ${color} shrink-0 w-5 text-center`}>
+    <span
+      className={`w-7 h-7 rounded-full flex items-center justify-center text-[10px] font-bold text-white shrink-0 shadow-sm bg-gradient-to-br ${gradient || "from-primary to-primary/70"}`}
+    >
       {index + 1}
     </span>
   );
 }
 
-// ── Content Block ────────────────────────────────────────────────────
-function ContentBlock({ text, isRTL }: { text: string; isRTL: boolean }) {
+// ── Content Block — with icon and better styling ─────────────────────
+function ContentBlock({ text, isRTL, icon: Icon = BookOpen }: { text: string; isRTL: boolean; icon?: any }) {
   return (
-    <div className="rounded-lg border border-border/30 bg-background/60 backdrop-blur-sm p-3">
-      <p className="whitespace-pre-line text-xs leading-[1.8] text-foreground/75" style={{ textAlign: isRTL ? "right" : "left" }}>
-        {text}
-      </p>
+    <div className="rounded-xl border border-border/20 bg-gradient-to-br from-background/80 to-muted/30 backdrop-blur-sm p-3.5">
+      <div className="flex items-start gap-2">
+        <div className="w-5 h-5 rounded-md bg-primary/8 flex items-center justify-center shrink-0 mt-0.5">
+          <Icon className="w-3 h-3 text-primary/50" />
+        </div>
+        <p className="whitespace-pre-line text-[13px] leading-[1.9] text-foreground/75 flex-1" style={{ textAlign: isRTL ? "right" : "left" }}>
+          {text}
+        </p>
+      </div>
     </div>
   );
 }
 
 function TipBlock({ text, accent = "primary", icon: Icon }: { text: string; accent?: "primary" | "destructive"; icon?: any }) {
-  const bg = accent === "destructive" ? "bg-destructive/[0.06]" : "bg-primary/[0.06]";
-  const textColor = accent === "destructive" ? "text-destructive" : "text-primary";
+  const TipIcon = Icon || Lightbulb;
+  const isDestructive = accent === "destructive";
+  const borderSide = "ltr:border-l-2 rtl:border-r-2";
+  const borderColor = isDestructive ? "border-l-destructive/40 border-r-destructive/40" : "border-l-primary/40 border-r-primary/40";
+  const bg = isDestructive ? "bg-destructive/[0.05]" : "bg-primary/[0.05]";
+  const textColor = isDestructive ? "text-destructive" : "text-primary";
+
   return (
-    <div className={`mt-2 p-2.5 rounded-lg ${bg} text-xs ${textColor} font-medium flex items-start gap-1.5`}>
-      {Icon && <Icon className="w-3.5 h-3.5 shrink-0 mt-0.5" />}
-      <span>{text}</span>
+    <div className={`mt-2.5 p-3 rounded-xl ${bg} ${borderSide} ${borderColor} flex items-start gap-2`}>
+      <div className={`w-5 h-5 rounded-full ${isDestructive ? "bg-destructive/10" : "bg-primary/10"} flex items-center justify-center shrink-0 mt-0.5`}>
+        <TipIcon className={`w-3 h-3 ${textColor}`} />
+      </div>
+      <span className={`text-xs ${textColor} font-medium leading-relaxed flex-1`}>{text}</span>
     </div>
   );
 }
 
-// ── Tab config with unique theming ───────────────────────────────────
+// ── Section Header with count ────────────────────────────────────────
+function SectionHeader({ icon: Icon, count, label, gradient }: { icon: any; count: number; label: string; gradient: string }) {
+  return (
+    <div className="flex items-center gap-2 mb-3">
+      <div className={`w-6 h-6 rounded-lg bg-gradient-to-br ${gradient} flex items-center justify-center shadow-sm`}>
+        <Icon className="w-3.5 h-3.5 text-white" />
+      </div>
+      <span className="text-[11px] text-muted-foreground/70 font-semibold">
+        {label}
+      </span>
+      <div className="flex-1 h-px bg-border/30" />
+      <span className={`text-[10px] font-bold bg-gradient-to-r ${gradient} bg-clip-text text-transparent`}>
+        {count}
+      </span>
+    </div>
+  );
+}
+
+// ── Tab config ───────────────────────────────────────────────────────
 const TAB_CONFIG = [
   { key: "lessons", icon: BookOpen, gradient: "from-[hsl(340,55%,55%)] to-[hsl(350,50%,60%)]", lightBg: "bg-[hsl(340,30%,96%)]", darkBg: "dark:bg-[hsl(340,20%,12%)]", ring: "ring-[hsl(340,40%,70%)]" },
   { key: "signs", icon: Eye, gradient: "from-[hsl(280,45%,55%)] to-[hsl(300,40%,58%)]", lightBg: "bg-[hsl(280,25%,96%)]", darkBg: "dark:bg-[hsl(280,15%,12%)]", ring: "ring-[hsl(280,35%,70%)]" },
@@ -180,20 +207,22 @@ export default function FertilityAcademy() {
     <ToolFrame title={t("tools.fertilityAcademy.title")} subtitle={t("tools.fertilityAcademy.description")} mood="calm" toolId="fertility-academy">
       <div className="space-y-4" dir={dir} style={{ textAlign: isRTL ? "right" : "left" }}>
 
-        {/* ── Tab Navigation — text-only with accent underline ── */}
-        <div className="flex gap-1 overflow-x-auto pb-0.5 scrollbar-none -mx-1 px-1">
+        {/* ── Tab Navigation with icons ── */}
+        <div className="flex gap-1.5 overflow-x-auto pb-0.5 scrollbar-none -mx-1 px-1">
           {TAB_CONFIG.map(tab => {
             const isActive = activeTab === tab.key;
+            const TabIcon = tab.icon;
             return (
               <button
                 key={tab.key}
                 onClick={() => setActiveTab(tab.key)}
-                className={`relative px-3.5 py-2 rounded-xl text-[12px] font-bold whitespace-nowrap transition-all duration-300 flex-shrink-0 ${
+                className={`relative px-3.5 py-2.5 rounded-2xl text-[11px] font-bold whitespace-nowrap transition-all duration-300 flex-shrink-0 flex items-center gap-1.5 ${
                   isActive
-                    ? `bg-gradient-to-br ${tab.gradient} text-white shadow-md shadow-black/8`
+                    ? `bg-gradient-to-br ${tab.gradient} text-white shadow-lg shadow-black/10`
                     : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
                 }`}
               >
+                {isActive && <TabIcon className="w-3.5 h-3.5" />}
                 {t(`tools.fertilityAcademy.${tab.key}Tab`)}
               </button>
             );
@@ -212,9 +241,12 @@ export default function FertilityAcademy() {
             {/* LESSONS */}
             {activeTab === "lessons" && (
               <>
-                <p className="text-[11px] text-muted-foreground/70 mb-3 font-medium">
-                  {t("toolsInternal.fertilityAcademy.lessonsCount", { count: LESSON_KEYS.length })}
-                </p>
+                <SectionHeader
+                  icon={BookOpen}
+                  count={LESSON_KEYS.length}
+                  label={t("toolsInternal.fertilityAcademy.lessonsCount", { count: LESSON_KEYS.length })}
+                  gradient={activeConfig.gradient}
+                />
                 <div className="space-y-2">
                   {LESSON_KEYS.map((key, i) => (
                     <AccordionItem
@@ -223,10 +255,11 @@ export default function FertilityAcademy() {
                       onToggle={() => toggleLesson(key)}
                       index={i}
                       isRTL={isRTL}
-                      badge={<NumberBadge index={i} />}
+                      badge={<NumberBadge index={i} gradient={activeConfig.gradient} />}
                       title={t(`toolsInternal.fertilityAcademy.lessons.${key}.title`)}
+                      gradient={activeConfig.gradient}
                     >
-                      <ContentBlock text={t(`toolsInternal.fertilityAcademy.lessons.${key}.content`)} isRTL={isRTL} />
+                      <ContentBlock text={t(`toolsInternal.fertilityAcademy.lessons.${key}.content`)} isRTL={isRTL} icon={Sparkles} />
                     </AccordionItem>
                   ))}
                 </div>
@@ -236,9 +269,12 @@ export default function FertilityAcademy() {
             {/* SIGNS */}
             {activeTab === "signs" && (
               <>
-                <p className="text-[11px] text-muted-foreground/70 mb-3 font-medium">
-                  {t('toolsInternal.fertilitySigns.signsCount', { count: SIGN_KEYS.length })}
-                </p>
+                <SectionHeader
+                  icon={Eye}
+                  count={SIGN_KEYS.length}
+                  label={t('toolsInternal.fertilitySigns.signsCount', { count: SIGN_KEYS.length })}
+                  gradient={activeConfig.gradient}
+                />
                 <div className="space-y-2">
                   {SIGN_KEYS.map((key, i) => (
                     <AccordionItem
@@ -247,10 +283,11 @@ export default function FertilityAcademy() {
                       onToggle={() => toggleSign(key)}
                       index={i}
                       isRTL={isRTL}
-                      badge={<NumberBadge index={i} />}
+                      badge={<NumberBadge index={i} gradient={activeConfig.gradient} />}
                       title={t(`toolsInternal.fertilitySigns.signs.${key}.title`)}
+                      gradient={activeConfig.gradient}
                     >
-                      <ContentBlock text={t(`toolsInternal.fertilitySigns.signs.${key}.description`)} isRTL={isRTL} />
+                      <ContentBlock text={t(`toolsInternal.fertilitySigns.signs.${key}.description`)} isRTL={isRTL} icon={Eye} />
                       <TipBlock text={t(`toolsInternal.fertilitySigns.signs.${key}.tip`)} />
                     </AccordionItem>
                   ))}
@@ -261,9 +298,12 @@ export default function FertilityAcademy() {
             {/* STRESS */}
             {activeTab === "stress" && (
               <>
-                <p className="text-[11px] text-muted-foreground/70 mb-3 font-medium">
-                  {t('toolsInternal.stressFertility.topicsCount', { count: TOPIC_KEYS.length })}
-                </p>
+                <SectionHeader
+                  icon={Brain}
+                  count={TOPIC_KEYS.length}
+                  label={t('toolsInternal.stressFertility.topicsCount', { count: TOPIC_KEYS.length })}
+                  gradient={activeConfig.gradient}
+                />
                 <div className="space-y-2">
                   {TOPIC_KEYS.map((key, i) => (
                     <AccordionItem
@@ -272,10 +312,11 @@ export default function FertilityAcademy() {
                       onToggle={() => toggleTopic(key)}
                       index={i}
                       isRTL={isRTL}
-                      badge={<NumberBadge index={i} />}
+                      badge={<NumberBadge index={i} gradient={activeConfig.gradient} />}
                       title={t(`toolsInternal.stressFertility.topics.${key}.title`)}
+                      gradient={activeConfig.gradient}
                     >
-                      <ContentBlock text={t(`toolsInternal.stressFertility.topics.${key}.content`)} isRTL={isRTL} />
+                      <ContentBlock text={t(`toolsInternal.stressFertility.topics.${key}.content`)} isRTL={isRTL} icon={Brain} />
                       <TipBlock text={t(`toolsInternal.stressFertility.topics.${key}.practice`)} />
                     </AccordionItem>
                   ))}
@@ -286,10 +327,12 @@ export default function FertilityAcademy() {
             {/* TWW */}
             {activeTab === "tww" && (
               <>
-                <div className="flex items-center gap-2 mb-3">
-                  <Heart className="w-4 h-4 shrink-0 text-destructive" />
-                  <span className="text-sm font-bold text-foreground">{t('toolsInternal.twwCompanion.subtitle')}</span>
-                </div>
+                <SectionHeader
+                  icon={Heart}
+                  count={DAY_KEYS.length}
+                  label={t('toolsInternal.twwCompanion.subtitle')}
+                  gradient={activeConfig.gradient}
+                />
                 <div className="space-y-2">
                   {DAY_KEYS.map((key, i) => (
                     <AccordionItem
@@ -298,11 +341,12 @@ export default function FertilityAcademy() {
                       onToggle={() => toggleDay(key)}
                       index={i}
                       isRTL={isRTL}
-                      badge={<NumberBadge index={i} accent="destructive" />}
+                      badge={<NumberBadge index={i} gradient={activeConfig.gradient} />}
                       title={t(`toolsInternal.twwCompanion.days.${key}.title`)}
                       accentColor="destructive"
+                      gradient={activeConfig.gradient}
                     >
-                      <ContentBlock text={t(`toolsInternal.twwCompanion.days.${key}.body`)} isRTL={isRTL} />
+                      <ContentBlock text={t(`toolsInternal.twwCompanion.days.${key}.body`)} isRTL={isRTL} icon={Calendar} />
                       <TipBlock text={t(`toolsInternal.twwCompanion.days.${key}.tip`)} accent="destructive" icon={Smile} />
                     </AccordionItem>
                   ))}
@@ -311,8 +355,6 @@ export default function FertilityAcademy() {
             )}
           </motion.div>
         </AnimatePresence>
-
-
       </div>
     </ToolFrame>
   );
