@@ -11,7 +11,7 @@
   "navigationDividerColor": "#d4608a",
   "navigationDividerColorDark": "#d4608a",
   "backgroundColor": "#faf6f2",
-  "enableNotifications": false,
+  "enableNotifications": true,
   "startUrl": "/",
   "iconUrl": "https://pregnancytoolkits.lovable.app/icons/icon-512x512.png",
   "maskableIconUrl": "https://pregnancytoolkits.lovable.app/icons/icon-512x512.png",
