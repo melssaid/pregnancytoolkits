@@ -21,6 +21,7 @@ interface StoredQuota {
   monthKey: string;
   used: number;
   tier: "free" | "premium";
+  bonusCredits?: number;
 }
 
 // ── Storage helpers ──
