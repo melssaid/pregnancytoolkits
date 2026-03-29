@@ -1,43 +1,57 @@
+# تحسين بطاقات قسم "أحلم بطفل" بنفس تصميم أكاديمية الخصوبة
 
+## الملفات المتأثرة
 
-# خطة تحسين البطاقات الداخلية في أكاديمية الخصوبة
+1. `src/pages/tools/NutritionSupplementsGuide.tsx`
+2. `src/pages/tools/TWWCompanion.tsx`
+3. `src/pages/tools/PreconceptionCheckup.tsx` (تحسينات طفيفة)
 
-## المشكلة الحالية
-البطاقات الداخلية (AccordionItem، ContentBlock، TipBlock، NumberBadge) تستخدم تصميماً بسيطاً جداً: حدود رفيعة، أرقام نصية عادية، ومحتوى بتنسيق أساسي بدون تمييز بصري واضح.
+## التصميم المرجعي
 
-## التغييرات المطلوبة — ملف واحد: `FertilityAcademy.tsx`
+سنستخدم نفس المكونات التي صُممت في `FertilityAcademy.tsx`:
 
-### 1. NumberBadge — من رقم نصي إلى شارة دائرية أنيقة
-- تحويل الرقم من نص عادي إلى دائرة ملونة `w-7 h-7 rounded-full` مع تدرج لوني خفيف يتبع لون التبويب النشط
-- خط أبيض داخل الدائرة بحجم `text-[10px] font-bold`
+- **AccordionItem**: بطاقات `rounded-2xl` مع شريط جانبي ملون، `backdrop-blur-sm`، `shadow-md` عند الفتح
+- **NumberBadge**: دائرة متدرجة `w-7 h-7` مع رقم أبيض
+- **ContentBlock**: أيقونة + خلفية متدرجة + `text-[13px] leading-[1.9]`
+- **TipBlock**: أيقونة + حدود جانبية ملونة + `rounded-xl`
+- **SectionHeader**: أيقونة + عداد + خط فاصل
 
-### 2. AccordionItem — بطاقة أكثر عمقاً واحترافية
-- إضافة `rounded-2xl` بدل `rounded-xl` لمنحنيات أكثر نعومة (تتماشى مع فلسفة التصميم المنحني)
-- تحسين حالة الفتح: إضافة شريط لوني جانبي رفيع `border-l-3` (أو `border-r-3` في RTL) بلون التبويب
-- ظل أوضح عند الفتح `shadow-md` مع خلفية أغمق قليلاً
-- حالة الإغلاق: خلفية `bg-card/60` مع `backdrop-blur-sm` لعمق بصري
+---
 
-### 3. ContentBlock — محتوى بتصميم بطاقة داخلية فاخرة
-- إضافة أيقونة صغيرة (BookOpen/Lightbulb) أعلى يسار المحتوى
-- تحسين الخلفية إلى تدرج خفيف جداً بدل لون واحد
-- `rounded-xl` مع `p-3.5` لتباعد أفضل
-- خط بحجم `text-[13px] leading-[1.9]` لقراءة أسهل
+### 1. NutritionSupplementsGuide.tsx — إعادة تصميم كاملة
 
-### 4. TipBlock — نصيحة بتصميم مميز
-- إضافة أيقونة `Lightbulb` افتراضية إذا لم تُحدد أيقونة
-- حدود يسرى ملونة `border-l-2` بلون التبويب
-- `rounded-xl` مع padding أفضل `p-3`
+**تبويب التغذية (Nutrition):**
 
-### 5. عداد البطاقات — شريط تقدم صغير
-- استبدال النص العادي "29 درساً" بشريط صغير يظهر عدد البطاقات بتصميم أنيق مع أيقونة
+- استبدال `Card` البسيطة بـ `AccordionItem` مع `NumberBadge` متدرج بلون أخضر `from-[hsl(160,45%,45%)] to-[hsl(140,40%,50%)]`
+- تحويل وصف الطعام إلى `ContentBlock` مع أيقونة `Apple`/`Salad`
+- تحويل قائمة الأطعمة إلى `TipBlock` بلون أخضر
+- إضافة `SectionHeader` فوق كل تبويب مع عداد البطاقات
 
-### 6. تحسين التبويبات
-- إضافة أيقونة كل تبويب بجانب النص (BookOpen، Eye، Brain، Calendar) بحجم `w-3.5 h-3.5`
-- الأيقونة تظهر فقط في التبويب النشط لتوفير المساحة
+**تبويب المكملات (Supplements):**
+
+- استبدال البطاقات بـ `AccordionItem` مع شارة `CheckCircle` بدل الرقم
+- تحويل الوصف إلى `ContentBlock` مع أيقونة `Pill`
+- تحويل الجرعة إلى `TipBlock` بلون برتقالي/ذهبي
+- الإبقاء على عداد التقدم `checked/total` مع تصميم أجمل
+
+### 2. TWWCompanion.tsx — ترقية البطاقات
+
+- استبدال `Card` بنفس نمط `AccordionItem` مع `rounded-2xl`، شريط جانبي `border-l-3` بلون وردي/أحمر
+- الإبقاء على `NumberBadge` الموجود (بالفعل دائري) لكن إضافة التدرج اللوني `from-destructive to-destructive/70`
+- تحويل محتوى اليوم إلى `ContentBlock` مع أيقونة `Heart`
+- تحويل النصيحة إلى `TipBlock` بلون `destructive` مع أيقونة `Smile`
+- إضافة `SectionHeader` أعلى القائمة
+
+### 3. PreconceptionCheckup.tsx — تحسينات طفيفة
+
+- تحويل بطاقات الفحوصات الداخلية من `rounded-xl` إلى `rounded-2xl`
+- إضافة `backdrop-blur-sm` للبطاقات المغلقة
+- تحسين ترويسات الفئات بإضافة خط فاصل مشابه لـ `SectionHeader`
 
 ## التفاصيل التقنية
-- جميع التغييرات في ملف واحد: `src/pages/tools/FertilityAcademy.tsx`
-- لا تغيير في مفاتيح الترجمة
-- استخدام الألوان المتدرجة الموجودة في `TAB_CONFIG`
-- دعم RTL محفوظ مع تبديل `border-l` ↔ `border-r`
 
+- إنشاء نفس المكونات المحلية (`AccordionItem`, `NumberBadge`, `ContentBlock`, `TipBlock`, `SectionHeader`) داخل كل ملف بنفس الأسلوب
+- لا تغيير في مفاتيح الترجمة
+- دعم RTL كامل مع تبديل `border-l` ↔ `border-r`
+- ألوان مخصصة لكل أداة تتناسب مع هويتها
+- الترجمات باللغات السبع لكل البطاقات والبنود الداخلية
