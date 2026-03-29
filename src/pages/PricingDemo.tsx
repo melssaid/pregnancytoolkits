@@ -19,7 +19,7 @@ const features = [
   { icon: Sparkles, key: "feature5" },
 ];
 
-const GOOGLE_PLAY_URL = "https://play.google.com/store/apps/details?id=com.pregnancytoolkits.app";
+const GOOGLE_PLAY_URL = "https://play.google.com/store/apps/details?id=app.pregnancytoolkits.android";
 
 export default function PricingDemo() {
   const { t, i18n } = useTranslation();
