@@ -8193,5 +8193,13 @@
     "growth": "Büyüme",
     "dueDate": "Tarih",
     "symptoms": "Belirtiler"
+  },
+  "progressIndicator": {
+    "week": "Hafta {{week}}",
+    "ofJourney": "Yolculuğun %{{percent}}",
+    "start": "Başlangıç",
+    "birth": "Doğum",
+    "daysUntilBaby": "gün sonra bebeğinle buluşacaksın 💕",
+    "keyMilestones": "Önemli Aşamalar:"
   }
 }
