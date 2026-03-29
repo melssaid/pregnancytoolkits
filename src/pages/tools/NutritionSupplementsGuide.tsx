@@ -7,6 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { VideoLibrary } from "@/components/VideoLibrary";
 import { nutritionSupplementsVideosByLang } from "@/data/videoData";
 import WhatsAppShareButton from "@/components/WhatsAppShareButton";
+import { formatChecklistShare, openWhatsApp } from "@/lib/whatsappShare";
 
 const CATEGORY_KEYS = [
   "folateRich", "ironSources", "omega3", "antioxidants",
@@ -201,10 +202,15 @@ export default function NutritionSupplementsGuide() {
         {/* WhatsApp Share */}
         <div className="flex justify-end">
           <WhatsAppShareButton onClick={() => {
-            const done = checkedVitamins.map(k => `✔️ ${t(`toolsInternal.prenatalVitamins.vitamins.${k}.title`)}`);
-            const pending = VITAMIN_KEYS.filter(k => !checkedVitamins.includes(k)).map(k => `◻️ ${t(`toolsInternal.prenatalVitamins.vitamins.${k}.title`)}`);
-            const text = `💊 *${t('tools.nutritionSupplements.supplementsTab')}*\n📊 ${checkedVitamins.length}/${VITAMIN_KEYS.length}\n\n${done.join('\n')}${pending.length ? '\n\n' + pending.join('\n') : ''}`;
-            window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+            const items = VITAMIN_KEYS.map(k => ({
+              name: t(`toolsInternal.prenatalVitamins.vitamins.${k}.title`),
+              done: checkedVitamins.includes(k),
+            }));
+            const text = formatChecklistShare(
+              { title: t('tools.nutritionSupplements.supplementsTab'), emoji: '💊' },
+              items
+            );
+            openWhatsApp(text);
           }} />
         </div>
       </div>

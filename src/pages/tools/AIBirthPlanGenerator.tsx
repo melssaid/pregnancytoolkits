@@ -8,6 +8,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
 import { FileText, Brain, ChevronDown, ChevronUp, Archive, Trash2, Clock, Loader2, AlertCircle, CheckCircle2, Heart, Shield, Baby, Sparkles } from 'lucide-react';
 import WhatsAppShareButton from "@/components/WhatsAppShareButton";
+import { formatAIPlanShare, openWhatsApp } from "@/lib/whatsappShare";
 import { useSmartInsight } from '@/hooks/useSmartInsight';
 import { AIActionButton } from '@/components/ai/AIActionButton';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
@@ -173,8 +174,11 @@ export default function AIBirthPlanGenerator() {
 
   const handleShareWhatsApp = () => {
     if (!generatedPlan) return;
-    const text = `📋 *${t('toolsInternal.birthPlan.title')}*\n\n${generatedPlan.slice(0, 1500)}${generatedPlan.length > 1500 ? '...' : ''}`;
-    window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+    const text = formatAIPlanShare(
+      { title: t('toolsInternal.birthPlan.title'), emoji: '📋' },
+      generatedPlan
+    );
+    openWhatsApp(text);
   };
 
   return (

@@ -6,6 +6,7 @@ import {
   AlertTriangle, BarChart3, Vibrate, ChevronDown, RotateCcw,
 } from "lucide-react";
 import WhatsAppShareButton from "@/components/WhatsAppShareButton";
+import { formatStatsShare, openWhatsApp } from "@/lib/whatsappShare";
 import { ContextualWarningBanner, WhenToCallDoctorCard, EvidenceInfoBlock } from "@/components/safety";
 import { ToolFrame } from "@/components/ToolFrame";
 import { Card, CardContent } from "@/components/ui/card";
@@ -169,19 +170,25 @@ export default function ContractionTimer() {
 
   const handleShareWhatsApp = useCallback(() => {
     if (!stats || contractions.length === 0) return;
-    let text = `⏱️ *${t("toolsInternal.contractionTimer.title", "عداد الانقباضات")}*\n\n`;
-    text += `📊 ${t("toolsInternal.contractionTimer.total", "انقباض")}: ${stats.count}\n`;
-    text += `⏳ ${t("toolsInternal.contractionTimer.avgDuration", "متوسط المدة")}: ${formatDuration(stats.avgDuration)}\n`;
-    text += `🔄 ${t("toolsInternal.contractionTimer.avgInterval", "متوسط الفاصل")}: ${stats.avgInterval > 0 ? formatDuration(stats.avgInterval) : "--"}\n`;
-    text += `📈 ${t("toolsInternal.contractionTimer.regularity", "الانتظام")}: ${stats.regularity}%\n`;
+    const statItems = [
+      { emoji: '📊', label: t("toolsInternal.contractionTimer.total", "انقباض"), value: String(stats.count) },
+      { emoji: '⏳', label: t("toolsInternal.contractionTimer.avgDuration", "متوسط المدة"), value: formatDuration(stats.avgDuration) },
+      { emoji: '🔄', label: t("toolsInternal.contractionTimer.avgInterval", "متوسط الفاصل"), value: stats.avgInterval > 0 ? formatDuration(stats.avgInterval) : "--" },
+      { emoji: '📈', label: t("toolsInternal.contractionTimer.regularity", "الانتظام"), value: `${stats.regularity}%` },
+      { emoji: '📱', label: t("toolsInternal.contractionTimer.sessionTime", "مدة الجلسة"), value: formatDuration(stats.sessionDuration) },
+    ];
+    const alerts: { emoji: string; text: string }[] = [];
     if (phase !== "none") {
-      text += `\n🏥 ${t(`toolsInternal.contractionTimer.phase${phase.charAt(0).toUpperCase() + phase.slice(1)}`, phase)}\n`;
+      alerts.push({ emoji: '🏥', text: t(`toolsInternal.contractionTimer.phase${phase.charAt(0).toUpperCase() + phase.slice(1)}`, phase) });
     }
     if (fiveOneOne) {
-      text += `\n⚠️ ${t("toolsInternal.contractionTimer.fiveOneOneAlert", "قاعدة 5-1-1 تحققت!")}\n`;
+      alerts.push({ emoji: '⚠️', text: t("toolsInternal.contractionTimer.fiveOneOneAlert", "قاعدة 5-1-1 تحققت!") });
     }
-    text += `\n📱 ${t("toolsInternal.contractionTimer.sessionTime", "مدة الجلسة")}: ${formatDuration(stats.sessionDuration)}`;
-    window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+    const text = formatStatsShare(
+      { title: t("toolsInternal.contractionTimer.title", "عداد الانقباضات"), emoji: '⏱️' },
+      statItems, alerts
+    );
+    openWhatsApp(text);
   }, [stats, contractions, t, phase, fiveOneOne]);
 
 
