@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import {
   Search, Sparkles, Copy, Check, ChevronDown, RotateCcw,
   FileText, Type, AlignLeft, Hash, AlertTriangle, Loader2,
+  Globe, MapPin,
 } from "lucide-react";
 import { Layout } from "@/components/Layout";
 import { SEOHead } from "@/components/SEOHead";
@@ -45,6 +46,29 @@ interface ASODraft {
   supportKeywords: string[];
 }
 
+interface CountryListing {
+  country: string;
+  flag: string;
+  language: string;
+  title: string;
+  shortDesc: string;
+  longDesc: string;
+  localTips: string[];
+}
+
+const COUNTRY_PRESETS = [
+  { code: "SA", flag: "🇸🇦", name: "السعودية", lang: "ar", hints: "التقويم الهجري، متابعة الحمل، تطبيق حمل سعودي، رعاية الأم" },
+  { code: "EG", flag: "🇪🇬", name: "مصر", lang: "ar", hints: "متابعة الحمل مجاناً، بدون نت، تطبيق حمل مصري، أمومة" },
+  { code: "AE", flag: "🇦🇪", name: "الإمارات", lang: "ar", hints: "رعاية صحة الأم، تطبيق حمل إماراتي، متابعة الجنين" },
+  { code: "DE", flag: "🇩🇪", name: "ألمانيا", lang: "de", hints: "Schwangerschaft Tracker, Geburtsterminrechner, Baby Entwicklung" },
+  { code: "FR", flag: "🇫🇷", name: "فرنسا", lang: "fr", hints: "Suivi de grossesse, Calculateur de date, Bébé croissance" },
+  { code: "ES", flag: "🇪🇸", name: "إسبانيا", lang: "es", hints: "Seguimiento de embarazo, Calculadora de fecha, Bebé crecimiento" },
+  { code: "TR", flag: "🇹🇷", name: "تركيا", lang: "tr", hints: "Hamilelik takipçisi, Doğum tarihi hesaplama, Bebek büyüme" },
+  { code: "BR", flag: "🇧🇷", name: "البرازيل", lang: "pt", hints: "Rastreador de gravidez, Calculadora de data, Bebê crescimento" },
+  { code: "US", flag: "🇺🇸", name: "أمريكا", lang: "en", hints: "Pregnancy tracker, Due date calculator, Baby growth, TTC" },
+  { code: "GB", flag: "🇬🇧", name: "بريطانيا", lang: "en", hints: "Pregnancy tracker NHS, Due date, Baby development tracker" },
+];
+
 // ═══════════════════════════════════════════
 // Limits per Google Play policies
 // ═══════════════════════════════════════════
@@ -63,7 +87,9 @@ export default function ASOGenerator() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [copiedField, setCopiedField] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState("select");
-
+  const [selectedCountries, setSelectedCountries] = useState<Set<string>>(new Set());
+  const [localizedListings, setLocalizedListings] = useState<CountryListing[]>([]);
+  const [isGeneratingLocal, setIsGeneratingLocal] = useState(false);
   // Fetch data
   const { data: categories = [] } = useQuery({
     queryKey: ["seo-categories"],
@@ -198,26 +224,84 @@ ${kwListEn ? `الكلمات الإنجليزية: ${kwListEn}` : ""}
     setIsGenerating(false);
   }, [selectedKwObjects, categories, generate]);
 
-  // Parse AI content into drafts
+  // Parse AI content into drafts or localized listings
   useMemo(() => {
     if (!aiContent) return;
     try {
-      // Extract JSON from content (may have markdown wrapping)
       let jsonStr = aiContent;
       const jsonMatch = aiContent.match(/\[[\s\S]*\]/);
       if (jsonMatch) jsonStr = jsonMatch[0];
-      const parsed = JSON.parse(jsonStr) as ASODraft[];
+      const parsed = JSON.parse(jsonStr);
       if (Array.isArray(parsed) && parsed.length > 0) {
-        setDrafts(parsed);
-        setActiveTab("results");
+        // Detect if it's localized (has "country" field) or ASO drafts (has "shortDesc")
+        if (parsed[0].country) {
+          setLocalizedListings(parsed as CountryListing[]);
+        } else if (parsed[0].shortDesc !== undefined) {
+          setDrafts(parsed as ASODraft[]);
+          setActiveTab("results");
+        }
       }
     } catch {
-      // Still streaming or invalid JSON — wait
+      // Still streaming or invalid JSON
     }
   }, [aiContent]);
 
   // ═══════════════════════════════════════════
-  // Validation helpers
+  // ═══════════════════════════════════════════
+  // Generate Localized Store Listings
+  // ═══════════════════════════════════════════
+  const generateLocalizedListings = useCallback(async () => {
+    if (selectedCountries.size === 0) {
+      toast.error("اختر دول أولاً");
+      return;
+    }
+
+    setIsGeneratingLocal(true);
+    setLocalizedListings([]);
+
+    const countries = COUNTRY_PRESETS.filter((c) => selectedCountries.has(c.code));
+    const countriesDesc = countries.map((c) => `${c.flag} ${c.name} (${c.lang}) — كلمات محلية: ${c.hints}`).join("\n");
+
+    const prompt = `أنت خبير ASO متخصص في Custom Store Listings على Google Play.
+
+المطلوب: أنشئ نسخة محلية مخصصة من نصوص المتجر لتطبيق "Pregnancy Toolkits" (تطبيق حمل وخصوبة مع 35+ أداة ذكية) لكل دولة من الدول التالية:
+
+${countriesDesc}
+
+لكل دولة أنشئ:
+1. title: عنوان بلغة الدولة (أقل من 30 حرف)
+2. shortDesc: وصف قصير بلغة الدولة (أقل من 80 حرف)
+3. longDesc: وصف طويل بلغة الدولة (500-800 حرف) يتضمن الكلمات المحلية
+4. localTips: 3 نصائح ASO خاصة بهذا السوق
+
+القواعد:
+- استخدم المصطلحات الشائعة في كل بلد (مثلاً "حامل" في مصر vs "حمل" في السعودية)
+- لا تترجم حرفياً، بل اكتب بأسلوب طبيعي لأهل البلد
+- أضف "تعليمي فقط" بلغة كل بلد
+- للدول العربية: راعِ الفروقات اللهجوية في الكلمات المفتاحية
+
+أجب بتنسيق JSON فقط (بدون markdown):
+[
+  {
+    "country": "اسم الدولة",
+    "flag": "🏳️",
+    "language": "ar/en/de/...",
+    "title": "...",
+    "shortDesc": "...",
+    "longDesc": "...",
+    "localTips": ["نصيحة 1", "نصيحة 2", "نصيحة 3"]
+  }
+]`;
+
+    try {
+      await generate({ prompt, context: { language: "ar" } });
+    } catch {
+      toast.error("فشل التوليد");
+    }
+    setIsGeneratingLocal(false);
+  }, [selectedCountries, generate]);
+
+  // ═══════════════════════════════════════════
   // ═══════════════════════════════════════════
   const validateField = (text: string, limit: number) => {
     const len = text.length;
@@ -264,6 +348,13 @@ ${kwListEn ? `الكلمات الإنجليزية: ${kwListEn}` : ""}
               النتائج
               {drafts.length > 0 && (
                 <Badge variant="secondary" className="text-[9px] px-1 py-0 mr-1">{drafts.length}</Badge>
+              )}
+            </TabsTrigger>
+            <TabsTrigger value="localized" className="flex-1 text-xs gap-1">
+              <Globe className="w-3 h-3" />
+              نسخ محلية
+              {localizedListings.length > 0 && (
+                <Badge variant="secondary" className="text-[9px] px-1 py-0 mr-1">{localizedListings.length}</Badge>
               )}
             </TabsTrigger>
           </TabsList>
@@ -423,6 +514,187 @@ ${kwListEn ? `الكلمات الإنجليزية: ${kwListEn}` : ""}
                 </Button>
               </div>
             )}
+          </TabsContent>
+
+          {/* ═══ TAB 3: Localized Store Listings ═══ */}
+          <TabsContent value="localized" className="space-y-4">
+            {/* Country selection */}
+            <div className="space-y-2">
+              <p className="text-xs font-medium text-foreground">اختر الأسواق المستهدفة:</p>
+              <div className="grid grid-cols-2 gap-2">
+                {COUNTRY_PRESETS.map((country) => {
+                  const isSelected = selectedCountries.has(country.code);
+                  return (
+                    <button
+                      key={country.code}
+                      onClick={() => {
+                        setSelectedCountries((prev) => {
+                          const next = new Set(prev);
+                          if (next.has(country.code)) next.delete(country.code);
+                          else next.add(country.code);
+                          return next;
+                        });
+                      }}
+                      className={cn(
+                        "flex items-center gap-2 px-3 py-2.5 rounded-xl border text-xs font-medium transition-all",
+                        isSelected
+                          ? "bg-primary/10 text-primary border-primary/30 shadow-sm"
+                          : "bg-card text-foreground border-border/50 hover:border-primary/30"
+                      )}
+                    >
+                      <span className="text-base">{country.flag}</span>
+                      <div className="text-right flex-1">
+                        <div>{country.name}</div>
+                        <div className="text-[9px] text-muted-foreground">{country.lang.toUpperCase()}</div>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Select/deselect all */}
+              <div className="flex gap-2">
+                <button
+                  onClick={() => setSelectedCountries(new Set(COUNTRY_PRESETS.map((c) => c.code)))}
+                  className="text-[10px] text-primary underline"
+                >
+                  تحديد الكل
+                </button>
+                {selectedCountries.size > 0 && (
+                  <button onClick={() => setSelectedCountries(new Set())} className="text-[10px] text-muted-foreground underline">
+                    إلغاء التحديد
+                  </button>
+                )}
+              </div>
+            </div>
+
+            {/* Generate button */}
+            <Button
+              onClick={generateLocalizedListings}
+              disabled={selectedCountries.size === 0 || isGeneratingLocal || aiLoading}
+              className="w-full h-12 rounded-xl text-sm font-bold gap-2 bg-gradient-to-r from-primary to-primary/80 shadow-lg"
+            >
+              {isGeneratingLocal || aiLoading ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  جارٍ التوليد...
+                </>
+              ) : (
+                <>
+                  <Globe className="w-4 h-4" />
+                  ولّد نسخ لـ {selectedCountries.size} سوق
+                </>
+              )}
+            </Button>
+            <p className="text-[9px] text-center text-muted-foreground/60">
+              يستهلك 1 نقطة ذكاء اصطناعي
+            </p>
+
+            {/* Loading state */}
+            {aiLoading && localizedListings.length === 0 && activeTab === "localized" && (
+              <div className="text-center py-10">
+                <Loader2 className="w-8 h-8 mx-auto text-primary animate-spin mb-3" />
+                <p className="text-sm text-foreground font-medium">جارٍ توليد النسخ المحلية...</p>
+                <p className="text-[10px] text-muted-foreground mt-1">يتم إنشاء نسخ لـ {selectedCountries.size} سوق</p>
+              </div>
+            )}
+
+            {/* Localized results */}
+            <AnimatePresence>
+              {localizedListings.map((listing, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: idx * 0.08 }}
+                  className="rounded-xl border border-border/50 bg-card overflow-hidden"
+                >
+                  {/* Country header */}
+                  <div className="px-3 py-2 bg-gradient-to-l from-primary/5 to-transparent border-b border-border/30 flex items-center gap-2">
+                    <span className="text-base">{listing.flag}</span>
+                    <span className="text-xs font-bold text-foreground">{listing.country}</span>
+                    <Badge variant="outline" className="text-[9px] px-1.5 py-0 mr-auto">
+                      {listing.language?.toUpperCase()}
+                    </Badge>
+                  </div>
+
+                  <div className="p-3 space-y-3">
+                    {/* Title */}
+                    <FieldBlock
+                      label="العنوان"
+                      icon={<Type className="w-3 h-3" />}
+                      value={listing.title}
+                      validation={validateField(listing.title, TITLE_LIMIT)}
+                      fieldKey={`local-title-${idx}`}
+                      copiedField={copiedField}
+                      onCopy={copyToClipboard}
+                    />
+
+                    {/* Short desc */}
+                    <FieldBlock
+                      label="الوصف القصير"
+                      icon={<AlignLeft className="w-3 h-3" />}
+                      value={listing.shortDesc}
+                      validation={validateField(listing.shortDesc, SHORT_DESC_LIMIT)}
+                      fieldKey={`local-short-${idx}`}
+                      copiedField={copiedField}
+                      onCopy={copyToClipboard}
+                    />
+
+                    {/* Long desc */}
+                    <div>
+                      <div className="flex items-center justify-between mb-1">
+                        <div className="flex items-center gap-1 text-[10px] font-medium text-muted-foreground">
+                          <FileText className="w-3 h-3" />
+                          الوصف الطويل
+                        </div>
+                        <button
+                          onClick={() => copyToClipboard(listing.longDesc, `local-long-${idx}`)}
+                          className="text-muted-foreground hover:text-foreground transition-colors"
+                        >
+                          {copiedField === `local-long-${idx}` ? <Check className="w-3 h-3 text-emerald-500" /> : <Copy className="w-3 h-3" />}
+                        </button>
+                      </div>
+                      <div className="p-2 rounded-lg bg-muted/30 border border-border/30 text-[11px] leading-relaxed text-foreground max-h-32 overflow-y-auto">
+                        {listing.longDesc}
+                      </div>
+                    </div>
+
+                    {/* Local tips */}
+                    {listing.localTips && listing.localTips.length > 0 && (
+                      <div>
+                        <div className="text-[10px] font-medium text-muted-foreground mb-1 flex items-center gap-1">
+                          <MapPin className="w-3 h-3" />
+                          نصائح ASO لهذا السوق
+                        </div>
+                        <div className="space-y-1">
+                          {listing.localTips.map((tip, i) => (
+                            <div key={i} className="flex items-start gap-1.5 text-[10px] text-foreground/80">
+                              <span className="text-primary mt-0.5">•</span>
+                              <span>{tip}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Copy all button */}
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="w-full text-[10px] gap-1"
+                      onClick={() => {
+                        const all = `Title: ${listing.title}\nShort: ${listing.shortDesc}\n\n${listing.longDesc}`;
+                        copyToClipboard(all, `local-all-${idx}`);
+                      }}
+                    >
+                      {copiedField === `local-all-${idx}` ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
+                      نسخ الكل
+                    </Button>
+                  </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
           </TabsContent>
         </Tabs>
       </div>
