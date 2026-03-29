@@ -63,14 +63,16 @@
     "moreVideos": "+{{count}} video daha mevcut",
     "viewAll": "Tümünü gör ({{count}})",
     "disclaimer": "Bu videolar yalnızca eğitim amaçlıdır ve profesyonel tıbbi tavsiyenin yerini almaz.",
-    "openOnYouTube": "YouTube'da aç"
+    "openOnYouTube": "YouTube'da aç",
+    "title": "Video kütüphanesi"
   },
   "searchDialog": {
     "popularTools": "Popüler Araçlar",
     "tryDifferent": "Farklı bir arama terimi deneyin",
     "navigate": "Gezin",
     "open": "Aç",
-    "toolsCount": "{{count}} araç"
+    "toolsCount": "{{count}} araç",
+    "quickAccess": "Hızlı erişim"
   },
   "app": {
     "name": "Hamilelik Araçları",
@@ -143,7 +145,8 @@
     "trialBadge": "{{count}} Gün",
     "restore": "Satın almayı geri yükle",
     "termsPrefix": "Devam ederek kabul etmiş olursunuz",
-    "and": "ve"
+    "and": "ve",
+    "subscriptionSuccess": "Abonelik başarıyla etkinleştirildi!"
   },
   "onboarding": {
     "title": "Yolculuğunuza hoş geldiniz",
@@ -516,7 +519,8 @@
         "normal": "Normal",
         "anxious": "Endişeli",
         "tired": "Yorgun"
-      }
+      },
+      "bmi": "VKİ"
     },
     "recentResults": {
       "title": "Son Sonuçlarım",
@@ -911,7 +915,8 @@
     "dailyExportRemaining": "{{count}} exports remaining today",
     "dailyExportLimitReached": "Daily export limit reached. Try again tomorrow.",
     "back": "Geri",
-    "next": "İleri"
+    "next": "İleri",
+    "analyzing": "Analiz ediliyor..."
   },
   "subscription": {
     "subscribeNow": "Premium Al - ₺24.99/ay",
@@ -1134,7 +1139,9 @@
       "desc": "Uygulama arayüz dilini seçin",
       "resetToAuto": "Tarayıcı dilini kullan",
       "manualNote": "Manuel olarak bir dil seçtiniz.",
-      "autoDetectNote": "Tarayıcı diliniz otomatik olarak kullanılıyor."
+      "autoDetectNote": "Tarayıcı diliniz otomatik olarak kullanılıyor.",
+      "active": "Aktif",
+      "pageSubtitle": "Tercih ettiğiniz dili seçin"
     },
     "dataPrivacy": "Veri Gizliliği",
     "privacyPoint1": "Tüm sağlık verileriniz yalnızca cihazınızda yerel olarak saklanır",
@@ -1205,7 +1212,8 @@
         "appointments": "Randevular ve hatırlatıcılar",
         "healthRecords": "Sağlık kayıtları",
         "birthPlans": "Doğum planları"
-      }
+      },
+      "pdfTitle": "Veri yedekleme raporu"
     },
     "clearData": {
       "title": "Tüm Verileri Sil",
@@ -5834,7 +5842,8 @@
     "contractionTimerDesc": "Hastaneye ne zaman gideceğinizi bilmek için kasılma zamanlamasını ölçün",
     "privacy": "Gizlilik ve Güvenlik",
     "privacyDesc": "Verileriniz şifreli ve korumalıdır",
-    "searchKeywords": "Arama Anahtar Kelimeleri"
+    "searchKeywords": "Arama Anahtar Kelimeleri",
+    "defaultDescription": "Yapay zeka destekli araçlarla eksiksiz hamilelik arkadaşınız"
   },
   "videoLibraryPage": {
     "title": "Video Kütüphanesi",
@@ -5918,7 +5927,11 @@
     "systolic": "Sistolik",
     "diastolic": "Diastolik",
     "conditions": "Sağlık Durumları",
-    "aiPlan": "Yapay Zeka Planı"
+    "aiPlan": "Yapay Zeka Planı",
+    "aiPlanHintEnhanced": "Yapay zeka destekli kişiselleştirilmiş hamilelik planı alın",
+    "painLevelHint": "Mevcut ağrı seviyenizi değerlendirin",
+    "poweredByResearch": "Tıbbi araştırmalara dayalı",
+    "researchEnhanced": "Araştırma destekli içgörüler"
   },
   "kegel": {
     "dailyGoal": "Günlük Hedef",
@@ -8260,7 +8273,8 @@
   "quotaExhausted": {
     "upgradeHint": "Premium ile daha fazla kişiselleştirilmiş analiz açın",
     "upgradeCTA": "Premium ile devam et",
-    "postAnalysisHint": "Aylık 40 analiz ve daha derin bilgiler için Premium'a yükseltin"
+    "postAnalysisHint": "Aylık 40 analiz ve daha derin bilgiler için Premium'a yükseltin",
+    "unlockMore": "Daha fazlasını aç"
   },
   "tools.weightGain.subtitle": "Hamilelikte kilo artışını takip edin ve analiz edin",
   "toolsInternal.babyGrowth.emptyTitle": "Henüz kayıt yok",
@@ -8272,5 +8286,14 @@
   "toolsInternal.weightGain.history": "Geçmiş",
   "toolsInternal.weightGain.invalidWeight": "Lütfen geçerli bir kilo girin",
   "toolsInternal.weightGain.noEntries": "Henüz kilo kaydı yok. İlk kaydı yukarıdan ekleyin.",
-  "toolsInternal.weightGain.weightPlaceholder": "Kilo (kg)"
+  "toolsInternal.weightGain.weightPlaceholder": "Kilo (kg)",
+  "smartAlerts": {
+    "lowHydration": "Bugün bol su içmeyi unutmayın",
+    "lowMood": "Son zamanlarda ruh haliniz düşük. Biriyle konuşmayı düşünün.",
+    "noKicksToday": "Bugün tekme kaydedilmedi. Bebek hareketlerini takip etmeyi unutmayın.",
+    "noVitaminToday": "Bugün vitaminlerinizi almayı unutmayın!",
+    "preeclampsiaSigns": "Preeklampsi belirtilerini izleyin: baş ağrısı, görme değişiklikleri, şişlik.",
+    "rapidWeightGain": "Hızlı kilo artışı tespit edildi. Doktorunuza danışmayı düşünün.",
+    "weightLoss": "Hamilelik sırasında kilo kaybı tespit edildi. Lütfen doktorunuza danışın."
+  }
 }

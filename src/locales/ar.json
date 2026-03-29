@@ -63,14 +63,16 @@
     "moreVideos": "+{{count}} فيديوهات أخرى متاحة",
     "viewAll": "عرض الكل ({{count}})",
     "disclaimer": "هذه الفيديوهات للأغراض التعليمية فقط ولا تحل محل الاستشارة الطبية المتخصصة.",
-    "openOnYouTube": "فتح على يوتيوب"
+    "openOnYouTube": "فتح على يوتيوب",
+    "title": "مكتبة الفيديو"
   },
   "searchDialog": {
     "popularTools": "الأدوات الشائعة",
     "tryDifferent": "جرّب مصطلح بحث مختلف",
     "navigate": "تنقل",
     "open": "فتح",
-    "toolsCount": "{{count}} أداة"
+    "toolsCount": "{{count}} أداة",
+    "quickAccess": "وصول سريع"
   },
   "app": {
     "name": "أدوات الحمل الذكية",
@@ -143,7 +145,8 @@
     "trialBadge": "{{count}} أيام",
     "restore": "استعادة الشراء",
     "termsPrefix": "بالمتابعة، أنتِ توافقين على",
-    "and": "و"
+    "and": "و",
+    "subscriptionSuccess": "تم تفعيل الاشتراك بنجاح!"
   },
   "onboarding": {
     "title": "مرحباً بكِ في رحلتك",
@@ -516,7 +519,8 @@
         "normal": "عادي",
         "anxious": "قلقة",
         "tired": "متعبة"
-      }
+      },
+      "bmi": "مؤشر كتلة الجسم"
     },
     "recentResults": {
       "title": "نتائجي الأخيرة",
@@ -911,7 +915,8 @@
     "dailyExportRemaining": "{{count}} تقارير متبقية اليوم",
     "dailyExportLimitReached": "تم الوصول للحد اليومي. حاول مرة أخرى غداً.",
     "back": "رجوع",
-    "next": "التالي"
+    "next": "التالي",
+    "analyzing": "جاري التحليل..."
   },
   "subscription": {
     "subscribeNow": "احصلي على بريميوم - $0.79/شهر",
@@ -1134,7 +1139,9 @@
       "desc": "اختيار لغة واجهة التطبيق",
       "resetToAuto": "استخدام لغة المتصفح",
       "manualNote": "لقد اخترت لغة يدوياً.",
-      "autoDetectNote": "يتم استخدام لغة المتصفح تلقائياً."
+      "autoDetectNote": "يتم استخدام لغة المتصفح تلقائياً.",
+      "active": "نشط",
+      "pageSubtitle": "اختر لغتك المفضلة"
     },
     "dataPrivacy": "خصوصية البيانات",
     "privacyPoint1": "جميع بياناتك الصحية تُخزن محلياً على جهازك فقط",
@@ -1205,7 +1212,8 @@
         "appointments": "المواعيد والتذكيرات",
         "healthRecords": "سجلات الصحة",
         "birthPlans": "خطط الولادة"
-      }
+      },
+      "pdfTitle": "تقرير النسخ الاحتياطي"
     },
     "clearData": {
       "title": "حذف جميع البيانات",
@@ -5834,7 +5842,8 @@
     "contractionTimerDesc": "قياس دقيق لوقت ومدة الانقباضات لمعرفة الوقت المناسب للذهاب للمستشفى",
     "privacy": "خصوصية وأمان",
     "privacyDesc": "بياناتك مشفرة ومحمية - خصوصيتك أولويتنا القصوى",
-    "searchKeywords": "كلمات مفتاحية للبحث"
+    "searchKeywords": "كلمات مفتاحية للبحث",
+    "defaultDescription": "رفيقك الشامل للحمل مع أدوات مدعومة بالذكاء الاصطناعي"
   },
   "videoLibraryPage": {
     "title": "مكتبة الفيديو",
@@ -5918,7 +5927,11 @@
     "systolic": "الانقباضي",
     "diastolic": "الانبساطي",
     "conditions": "الحالات الصحية",
-    "aiPlan": "الخطة الذكية"
+    "aiPlan": "الخطة الذكية",
+    "aiPlanHintEnhanced": "احصلي على خطة حمل مخصصة مدعومة بالذكاء الاصطناعي",
+    "painLevelHint": "قيّمي مستوى الألم الحالي",
+    "poweredByResearch": "مدعوم بالأبحاث الطبية",
+    "researchEnhanced": "رؤى معززة بالأبحاث"
   },
   "kegel": {
     "dailyGoal": "الهدف اليومي",
@@ -8260,7 +8273,8 @@
   "quotaExhausted": {
     "upgradeHint": "افتحي المزيد من التحليلات المخصصة مع Premium",
     "upgradeCTA": "تابعي مع Premium",
-    "postAnalysisHint": "ترقّي للاشتراك المميز للحصول على 40 تحليل شهرياً ورؤى أعمق"
+    "postAnalysisHint": "ترقّي للاشتراك المميز للحصول على 40 تحليل شهرياً ورؤى أعمق",
+    "unlockMore": "افتح المزيد"
   },
   "tools.weightGain.subtitle": "تابعي وحلّلي زيادة الوزن خلال الحمل",
   "toolsInternal.babyGrowth.emptyTitle": "لا توجد سجلات بعد",
@@ -8272,5 +8286,14 @@
   "toolsInternal.weightGain.history": "السجل",
   "toolsInternal.weightGain.invalidWeight": "يرجى إدخال وزن صحيح",
   "toolsInternal.weightGain.noEntries": "لا توجد سجلات وزن بعد. أضيفي أول سجل بالأعلى.",
-  "toolsInternal.weightGain.weightPlaceholder": "الوزن بالكيلوغرام"
+  "toolsInternal.weightGain.weightPlaceholder": "الوزن بالكيلوغرام",
+  "smartAlerts": {
+    "lowHydration": "تذكري شرب الماء اليوم",
+    "lowMood": "مزاجك كان منخفضاً مؤخراً. فكري في التحدث مع شخص ما.",
+    "noKicksToday": "لم يتم تسجيل ركلات اليوم. تذكري تتبع حركة الجنين.",
+    "noVitaminToday": "لا تنسي فيتاميناتك اليوم!",
+    "preeclampsiaSigns": "راقبي علامات تسمم الحمل: صداع، تغيرات في الرؤية، تورم.",
+    "rapidWeightGain": "زيادة سريعة في الوزن. فكري في استشارة طبيبتك.",
+    "weightLoss": "تم اكتشاف فقدان وزن أثناء الحمل. يرجى استشارة طبيبتك."
+  }
 }

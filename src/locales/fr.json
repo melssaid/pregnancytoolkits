@@ -63,14 +63,16 @@
     "moreVideos": "+{{count}} vidéos supplémentaires disponibles",
     "viewAll": "Voir tout ({{count}})",
     "disclaimer": "Ces vidéos sont à titre éducatif uniquement et ne remplacent pas un avis médical professionnel.",
-    "openOnYouTube": "Ouvrir sur YouTube"
+    "openOnYouTube": "Ouvrir sur YouTube",
+    "title": "Vidéothèque"
   },
   "searchDialog": {
     "popularTools": "Outils populaires",
     "tryDifferent": "Essayez un autre terme de recherche",
     "navigate": "Naviguer",
     "open": "Ouvrir",
-    "toolsCount": "{{count}} outils"
+    "toolsCount": "{{count}} outils",
+    "quickAccess": "Accès rapide"
   },
   "app": {
     "name": "Outils de Grossesse",
@@ -143,7 +145,8 @@
     "trialBadge": "{{count}} Jours",
     "restore": "Restaurer l'achat",
     "termsPrefix": "En continuant, vous acceptez nos",
-    "and": "et"
+    "and": "et",
+    "subscriptionSuccess": "Abonnement activé avec succès !"
   },
   "onboarding": {
     "title": "Bienvenue dans votre parcours",
@@ -516,7 +519,8 @@
         "normal": "Normal",
         "anxious": "Anxieux",
         "tired": "Fatigué"
-      }
+      },
+      "bmi": "IMC"
     },
     "recentResults": {
       "title": "Mes derniers résultats",
@@ -911,7 +915,8 @@
     "dailyExportRemaining": "{{count}} exportations restantes aujourd'hui",
     "dailyExportLimitReached": "Limite quotidienne atteinte. Réessayez demain.",
     "back": "Retour",
-    "next": "Suivant"
+    "next": "Suivant",
+    "analyzing": "Analyse en cours..."
   },
   "subscription": {
     "subscribeNow": "Premium - 0,79€/mois",
@@ -1134,7 +1139,9 @@
       "desc": "Choisir la langue de l'application",
       "resetToAuto": "Utiliser la langue du navigateur",
       "manualNote": "Vous avez sélectionné manuellement une langue.",
-      "autoDetectNote": "Utilisation automatique de la langue de votre navigateur."
+      "autoDetectNote": "Utilisation automatique de la langue de votre navigateur.",
+      "active": "Actif",
+      "pageSubtitle": "Choisissez votre langue préférée"
     },
     "dataPrivacy": "Confidentialité des données",
     "privacyPoint1": "Toutes vos données de santé sont stockées localement sur votre appareil uniquement",
@@ -1205,7 +1212,8 @@
         "appointments": "Rendez-vous et rappels",
         "healthRecords": "Dossiers de santé",
         "birthPlans": "Plans de naissance"
-      }
+      },
+      "pdfTitle": "Rapport de sauvegarde"
     },
     "clearData": {
       "title": "Supprimer toutes les données",
@@ -5834,7 +5842,8 @@
     "contractionTimerDesc": "Mesure précise du timing des contractions",
     "privacy": "Confidentialité et sécurité",
     "privacyDesc": "Vos données sont chiffrées et protégées",
-    "searchKeywords": "Mots-clés de recherche"
+    "searchKeywords": "Mots-clés de recherche",
+    "defaultDescription": "Votre compagnon de grossesse complet avec des outils IA"
   },
   "videoLibraryPage": {
     "title": "Vidéothèque",
@@ -5918,7 +5927,11 @@
     "systolic": "Systolique",
     "diastolic": "Diastolique",
     "conditions": "Conditions de santé",
-    "aiPlan": "Plan IA"
+    "aiPlan": "Plan IA",
+    "aiPlanHintEnhanced": "Obtenez un plan de grossesse personnalisé par IA",
+    "painLevelHint": "Évaluez votre niveau de douleur actuel",
+    "poweredByResearch": "Basé sur la recherche médicale",
+    "researchEnhanced": "Analyses enrichies par la recherche"
   },
   "kegel": {
     "dailyGoal": "Objectif quotidien",
@@ -8260,7 +8273,8 @@
   "quotaExhausted": {
     "upgradeHint": "Débloquez plus d'analyses personnalisées avec Premium",
     "upgradeCTA": "Continuer avec Premium",
-    "postAnalysisHint": "Passez au Premium pour 40 analyses mensuelles et des insights approfondis"
+    "postAnalysisHint": "Passez au Premium pour 40 analyses mensuelles et des insights approfondis",
+    "unlockMore": "Débloquer plus"
   },
   "tools.weightGain.subtitle": "Suivez et analysez votre prise de poids pendant la grossesse",
   "toolsInternal.babyGrowth.emptyTitle": "Aucun enregistrement pour le moment",
@@ -8272,5 +8286,14 @@
   "toolsInternal.weightGain.history": "Historique",
   "toolsInternal.weightGain.invalidWeight": "Veuillez saisir un poids valide",
   "toolsInternal.weightGain.noEntries": "Aucune entrée de poids pour le moment. Ajoutez la première ci-dessus.",
-  "toolsInternal.weightGain.weightPlaceholder": "Poids en kg"
+  "toolsInternal.weightGain.weightPlaceholder": "Poids en kg",
+  "smartAlerts": {
+    "lowHydration": "Pensez à bien vous hydrater aujourd'hui",
+    "lowMood": "Votre humeur a été basse récemment. Pensez à en parler.",
+    "noKicksToday": "Aucun coup enregistré aujourd'hui. Pensez à suivre les mouvements.",
+    "noVitaminToday": "N'oubliez pas vos vitamines aujourd'hui !",
+    "preeclampsiaSigns": "Surveillez les signes de prééclampsie : maux de tête, troubles visuels, gonflements.",
+    "rapidWeightGain": "Prise de poids rapide détectée. Consultez votre médecin.",
+    "weightLoss": "Perte de poids détectée pendant la grossesse. Consultez votre médecin."
+  }
 }

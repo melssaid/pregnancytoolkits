@@ -63,14 +63,16 @@
     "moreVideos": "+{{count}} videos más disponibles",
     "viewAll": "Ver todo ({{count}})",
     "disclaimer": "Estos videos son solo con fines educativos y no reemplazan el consejo médico profesional.",
-    "openOnYouTube": "Abrir en YouTube"
+    "openOnYouTube": "Abrir en YouTube",
+    "title": "Biblioteca de videos"
   },
   "searchDialog": {
     "popularTools": "Herramientas populares",
     "tryDifferent": "Prueba con otro término de búsqueda",
     "navigate": "Navegar",
     "open": "Abrir",
-    "toolsCount": "{{count}} herramientas"
+    "toolsCount": "{{count}} herramientas",
+    "quickAccess": "Acceso rápido"
   },
   "app": {
     "name": "Herramientas de Embarazo",
@@ -143,7 +145,8 @@
     "trialBadge": "{{count}} Días",
     "restore": "Restaurar compra",
     "termsPrefix": "Al continuar, aceptas nuestros",
-    "and": "y"
+    "and": "y",
+    "subscriptionSuccess": "¡Suscripción activada con éxito!"
   },
   "onboarding": {
     "title": "Bienvenida a tu viaje",
@@ -516,7 +519,8 @@
         "normal": "Normal",
         "anxious": "Ansiosa",
         "tired": "Cansada"
-      }
+      },
+      "bmi": "IMC"
     },
     "recentResults": {
       "title": "Mis resultados recientes",
@@ -911,7 +915,8 @@
     "dailyExportRemaining": "{{count}} exports remaining today",
     "dailyExportLimitReached": "Daily export limit reached. Try again tomorrow.",
     "back": "Atrás",
-    "next": "Siguiente"
+    "next": "Siguiente",
+    "analyzing": "Analizando..."
   },
   "subscription": {
     "subscribeNow": "Premium - 0,79€/mes",
@@ -1134,7 +1139,9 @@
       "desc": "Elegir el idioma de la aplicación",
       "resetToAuto": "Usar idioma del navegador",
       "manualNote": "Has seleccionado un idioma manualmente.",
-      "autoDetectNote": "Se usa automáticamente el idioma de tu navegador."
+      "autoDetectNote": "Se usa automáticamente el idioma de tu navegador.",
+      "active": "Activo",
+      "pageSubtitle": "Elige tu idioma preferido"
     },
     "dataPrivacy": "Privacidad de datos",
     "privacyPoint1": "Todos tus datos de salud se almacenan localmente solo en tu dispositivo",
@@ -1205,7 +1212,8 @@
         "appointments": "Citas y recordatorios",
         "healthRecords": "Registros de salud",
         "birthPlans": "Planes de parto"
-      }
+      },
+      "pdfTitle": "Informe de copia de seguridad"
     },
     "clearData": {
       "title": "Eliminar todos los datos",
@@ -5834,7 +5842,8 @@
     "contractionTimerDesc": "Mide con precisión el tiempo de las contracciones",
     "privacy": "Privacidad y seguridad",
     "privacyDesc": "Tus datos están cifrados y protegidos",
-    "searchKeywords": "Palabras clave de búsqueda"
+    "searchKeywords": "Palabras clave de búsqueda",
+    "defaultDescription": "Tu compañero completo de embarazo con herramientas de IA"
   },
   "videoLibraryPage": {
     "title": "Videoteca",
@@ -5918,7 +5927,11 @@
     "systolic": "Sistólica",
     "diastolic": "Diastólica",
     "conditions": "Condiciones de salud",
-    "aiPlan": "Plan IA"
+    "aiPlan": "Plan IA",
+    "aiPlanHintEnhanced": "Obtén un plan de embarazo personalizado con IA",
+    "painLevelHint": "Califica tu nivel de dolor actual",
+    "poweredByResearch": "Basado en investigación médica",
+    "researchEnhanced": "Información respaldada por investigación"
   },
   "kegel": {
     "dailyGoal": "Objetivo diario",
@@ -8260,7 +8273,8 @@
   "quotaExhausted": {
     "upgradeHint": "Desbloquea más análisis personalizados con Premium",
     "upgradeCTA": "Continuar con Premium",
-    "postAnalysisHint": "Actualiza a Premium para 40 análisis mensuales e información más profunda"
+    "postAnalysisHint": "Actualiza a Premium para 40 análisis mensuales e información más profunda",
+    "unlockMore": "Desbloquear más"
   },
   "tools.weightGain.subtitle": "Registra y analiza tu aumento de peso durante el embarazo",
   "toolsInternal.babyGrowth.emptyTitle": "Aún no hay registros",
@@ -8272,5 +8286,14 @@
   "toolsInternal.weightGain.history": "Historial",
   "toolsInternal.weightGain.invalidWeight": "Introduce un peso válido",
   "toolsInternal.weightGain.noEntries": "Aún no hay registros de peso. Añade el primero arriba.",
-  "toolsInternal.weightGain.weightPlaceholder": "Peso en kg"
+  "toolsInternal.weightGain.weightPlaceholder": "Peso en kg",
+  "smartAlerts": {
+    "lowHydration": "Recuerda mantenerte hidratada hoy",
+    "lowMood": "Tu estado de ánimo ha estado bajo. Considera hablar con alguien.",
+    "noKicksToday": "Sin patadas registradas hoy. Recuerda monitorear los movimientos.",
+    "noVitaminToday": "¡No olvides tus vitaminas hoy!",
+    "preeclampsiaSigns": "Vigila signos de preeclampsia: dolores de cabeza, cambios en la visión, hinchazón.",
+    "rapidWeightGain": "Aumento rápido de peso detectado. Considera consultar a tu médico.",
+    "weightLoss": "Pérdida de peso detectada durante el embarazo. Consulta a tu médico."
+  }
 }
