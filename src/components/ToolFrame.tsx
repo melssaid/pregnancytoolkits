@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Lightbulb } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -7,6 +8,7 @@ import { RelatedTools } from "./RelatedTools";
 import { ToolIcon, hasToolIcon } from "./ToolIcon";
 import { BottomNavigation } from "./BottomNavigation";
 import { LanguageDropdown } from "./LanguageDropdown";
+import { trackToolUsage } from "@/hooks/useInAppReview";
 
 import { FertilityDailyTip } from "./FertilityDailyTip";
 
