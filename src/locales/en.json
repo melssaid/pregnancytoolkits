@@ -3218,7 +3218,8 @@
       "qualityFair": "Fair",
       "qualityNeedsAttention": "Needs Attention",
       "startedAt": "Started at",
-      "analyzing": "Analyzing..."
+      "analyzing": "Analyzing...",
+      "weeklyChart": "7-Day Sleep"
     },
     "diaperTracker": {
       "title": "Diaper Tracker",
@@ -4309,19 +4310,23 @@
       "phases": {
         "week1": {
           "title": "Week 1 — Rest & Heal",
-          "description": "Focus on rest, wound care, and bonding with your baby"
+          "description": "Focus on rest, wound care, and bonding with your baby",
+          "short": "Week 1"
         },
         "week2": {
           "title": "Week 2 — Gentle Start",
-          "description": "Begin gentle movement and establish routines"
+          "description": "Begin gentle movement and establish routines",
+          "short": "Week 2"
         },
         "week3_4": {
           "title": "Weeks 3-4 — Building Strength",
-          "description": "Light exercises and emotional wellness check"
+          "description": "Light exercises and emotional wellness check",
+          "short": "Week 3-4"
         },
         "week5_6": {
           "title": "Weeks 5-6 — New Normal",
-          "description": "Return to activity and long-term planning"
+          "description": "Return to activity and long-term planning",
+          "short": "Week 5-6"
         }
       },
       "checklist": {
@@ -4408,7 +4413,8 @@
       },
       "progress": "Progress",
       "getAIAdvice": "Get AI Recovery Advice",
-      "aiAdviceTitle": "Personalized Recovery Advice"
+      "aiAdviceTitle": "Personalized Recovery Advice",
+      "overallProgress": "Overall Recovery"
     },
     "fertilityAcademy": {
       "lessons": {
@@ -8063,6 +8069,15 @@
       "activeLabor": "Your contraction pattern suggests active labor may be approaching. Consider contacting your hospital.",
       "highBP": "Elevated blood pressure detected. Please consult your healthcare provider promptly.",
       "lowBP": "Low blood pressure detected. Rest and stay hydrated. Consult your doctor if symptoms persist."
+    },
+    "whenToCallDoctor": {
+      "postpartum": {
+        "title": "When to Seek Help",
+        "item1": "Heavy bleeding soaking more than one pad per hour",
+        "item2": "Fever above 38°C (100.4°F) persisting for more than a day",
+        "item3": "Signs of wound infection (redness, swelling, discharge)",
+        "item4": "Persistent feelings of sadness, anxiety, or thoughts of self-harm"
+      }
     }
   },
   "gdm": {
