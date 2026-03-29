@@ -362,6 +362,13 @@ ${countriesDesc}
                 <Badge variant="secondary" className="text-[9px] px-1 py-0 mr-1">{drafts.length}</Badge>
               )}
             </TabsTrigger>
+            <TabsTrigger value="localized" className="flex-1 text-xs gap-1">
+              <Globe className="w-3 h-3" />
+              نسخ محلية
+              {localizedListings.length > 0 && (
+                <Badge variant="secondary" className="text-[9px] px-1 py-0 mr-1">{localizedListings.length}</Badge>
+              )}
+            </TabsTrigger>
           </TabsList>
 
           {/* ═══ TAB 1: Keyword Selection ═══ */}
