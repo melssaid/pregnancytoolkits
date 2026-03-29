@@ -1721,8 +1721,8 @@
       "lastOne": "Son kasılma",
       "time": "Saat",
       "intensity": "Şiddet",
-      "intensityStrong": "Çok güçlü",
-      "intensityModerate": "Güçlü",
+      "intensityStrong": "Şiddetli",
+      "intensityModerate": "Orta",
       "intensityMild": "Orta",
       "intensityLight": "Hafif",
       "phaseEarly": "Erken Evre",
@@ -1732,7 +1732,12 @@
       "phaseTransition": "Geçiş Evresi",
       "phaseTransitionDesc": "Kasılmalar çok güçlü ve çok yakın. Hemen hastaneye gidin!",
       "aiAnalysisTitle": "Yapay Zeka Kasılma Analizi",
-      "aiAnalysisButton": "Kasılmaları Yapay Zeka ile Analiz Et"
+      "aiAnalysisButton": "Kasılmaları Yapay Zeka ile Analiz Et",
+      "timeSinceLast": "Son kasılmadan bu yana",
+      "tapToStart": "Başlamak için dokunun",
+      "selectIntensity": "Kasılma şiddeti",
+      "fiveOneOneAlert": "5-1-1 Kuralı karşılandı!",
+      "fiveOneOneDesc": "Her 5 dk kasılma, 1 dk süre, 1 saattir. Doktorunuza başvurun."
     },
     "symptomAnalyzer": {
       "title": "Hamilelik Sağlık Günlüğü",

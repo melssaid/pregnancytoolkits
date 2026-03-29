@@ -1721,8 +1721,8 @@
       "lastOne": "Last contraction",
       "time": "Time",
       "intensity": "Intensity",
-      "intensityStrong": "Very Strong",
-      "intensityModerate": "Strong",
+      "intensityStrong": "Strong",
+      "intensityModerate": "Moderate",
       "intensityMild": "Moderate",
       "intensityLight": "Light",
       "phaseEarly": "Early Phase",
@@ -1732,7 +1732,12 @@
       "phaseTransition": "Transition Phase",
       "phaseTransitionDesc": "Contractions are very strong and close together. Head to the hospital immediately!",
       "aiAnalysisTitle": "AI Contraction Analysis",
-      "aiAnalysisButton": "Analyze Contractions with AI"
+      "aiAnalysisButton": "Analyze Contractions with AI",
+      "timeSinceLast": "Since last contraction",
+      "tapToStart": "Tap to start",
+      "selectIntensity": "Contraction intensity",
+      "fiveOneOneAlert": "5-1-1 Rule Met!",
+      "fiveOneOneDesc": "Contractions every 5 min, lasting 1 min, for 1 hour. Contact your doctor."
     },
     "symptomAnalyzer": {
       "title": "Pregnancy Wellness Diary",
