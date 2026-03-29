@@ -2,47 +2,37 @@ import { useState, useEffect, useMemo, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  CheckCircle2, Circle, ChevronDown, ChevronUp, Info,
-  Heart, Droplets, Shield, Brain, Stethoscope, Pill, Syringe,
-  Sparkles, Calendar, ShieldCheck
+  CheckCircle2, Circle, ChevronDown, ChevronUp,
+  Heart, Shield, Stethoscope, Pill,
+  Sparkles, ShieldCheck
 } from "lucide-react";
 import { ToolFrame } from "@/components/ToolFrame";
 import { Card, CardContent } from "@/components/ui/card";
 import { AIInsightCard } from "@/components/ai/AIInsightCard";
 
-
-// ── Category definitions with themed icons ─────────────────────────────
 const CATEGORIES = [
   {
     key: "essential",
     icon: Heart,
-    colorClass: "text-[hsl(340,60%,55%)]",
-    bgClass: "bg-[hsl(340,60%,55%,0.1)]",
-    borderClass: "border-[hsl(340,60%,55%,0.2)]",
+    color: "hsl(340,60%,55%)",
     checks: ["generalCheckup", "bloodWork", "thyroid"],
   },
   {
     key: "screening",
     icon: Shield,
-    colorClass: "text-[hsl(280,45%,55%)]",
-    bgClass: "bg-[hsl(280,45%,55%,0.1)]",
-    borderClass: "border-[hsl(280,45%,55%,0.2)]",
+    color: "hsl(280,45%,55%)",
     checks: ["pap", "rubella", "hepatitis", "hiv"],
   },
   {
     key: "specialized",
     icon: Stethoscope,
-    colorClass: "text-[hsl(200,50%,50%)]",
-    bgClass: "bg-[hsl(200,50%,50%,0.1)]",
-    borderClass: "border-[hsl(200,50%,50%,0.2)]",
+    color: "hsl(200,50%,50%)",
     checks: ["dental", "geneticScreening", "mentalHealth"],
   },
   {
     key: "medications",
     icon: Pill,
-    colorClass: "text-[hsl(160,40%,45%)]",
-    bgClass: "bg-[hsl(160,40%,45%,0.1)]",
-    borderClass: "border-[hsl(160,40%,45%,0.2)]",
+    color: "hsl(160,40%,45%)",
     checks: ["medications", "vaccinations"],
   },
 ];
@@ -55,7 +45,6 @@ export default function PreconceptionCheckup() {
   const isRTL = i18n.language === "ar";
   const dir = isRTL ? "rtl" : "ltr";
 
-  // Persistent state
   const [completed, setCompleted] = useState<string[]>(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
@@ -64,7 +53,7 @@ export default function PreconceptionCheckup() {
   });
 
   const [expandedCats, setExpandedCats] = useState<string[]>(
-    () => CATEGORIES.map(c => c.key) // all expanded by default
+    () => CATEGORIES.map(c => c.key)
   );
 
   useEffect(() => {
@@ -88,7 +77,6 @@ export default function PreconceptionCheckup() {
   const progress = Math.round((completedCount / totalChecks) * 100);
   const allDone = completedCount === totalChecks;
 
-  // AI prompt based on completion status
   const aiPrompt = useMemo(() => {
     const completedNames = completed.map(k =>
       t(`toolsInternal.preconceptionCheckup.checks.${k}.title`)
@@ -129,7 +117,7 @@ Important: Frame all advice as general educational information, not medical dire
       <div className="space-y-4 pb-16" dir={dir} style={{ textAlign: isRTL ? "right" : "left" }}>
 
         {/* ── Progress Header ──────────────────────────────────────── */}
-        <Card className="overflow-hidden border-primary/20">
+        <Card className="overflow-hidden border-primary/20 rounded-2xl">
           <CardContent className="p-4">
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
@@ -150,7 +138,6 @@ Important: Frame all advice as general educational information, not medical dire
               </div>
             </div>
 
-            {/* Progress bar */}
             <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
               <motion.div
                 className="h-full rounded-full"
@@ -161,7 +148,6 @@ Important: Frame all advice as general educational information, not medical dire
               />
             </div>
 
-            {/* Completion celebration */}
             <AnimatePresence>
               {allDone && (
                 <motion.div
@@ -195,14 +181,14 @@ Important: Frame all advice as general educational information, not medical dire
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: catIdx * 0.08 }}
             >
-              <Card className={`overflow-hidden border ${catDone ? 'border-accent/30 bg-accent/3' : cat.borderClass}`}>
-                {/* Category header */}
+              <div className={`rounded-2xl border backdrop-blur-sm transition-all ${catDone ? 'border-accent/30 bg-accent/[0.03]' : 'border-border/50'}`}>
+                {/* Section Header */}
                 <button
                   onClick={() => toggleCategory(cat.key)}
-                  className="w-full p-3.5 flex items-center gap-3 hover:bg-muted/30 transition-colors"
+                  className="w-full p-3.5 flex items-center gap-3 hover:bg-muted/30 transition-colors rounded-t-2xl"
                 >
-                  <div className={`w-8 h-8 rounded-xl ${cat.bgClass} flex items-center justify-center shrink-0`}>
-                    <CatIcon className={`w-4 h-4 ${cat.colorClass}`} />
+                  <div className="w-8 h-8 rounded-xl flex items-center justify-center shrink-0" style={{ background: `${cat.color}15` }}>
+                    <CatIcon className="w-4 h-4" style={{ color: cat.color }} />
                   </div>
                   <div className="flex-1 min-w-0 text-start">
                     <p className="text-sm font-bold text-foreground leading-snug">
@@ -212,7 +198,6 @@ Important: Frame all advice as general educational information, not medical dire
                       {catCompleted}/{catTotal} {t('toolsInternal.preconceptionCheckup.tracked', 'tracked')}
                     </p>
                   </div>
-                  {/* Mini progress dots */}
                   <div className="flex items-center gap-1 me-1">
                     {cat.checks.map(ck => (
                       <div
@@ -223,14 +208,14 @@ Important: Frame all advice as general educational information, not medical dire
                       />
                     ))}
                   </div>
-                  {isExpanded ? (
-                    <ChevronUp className="w-4 h-4 text-muted-foreground/50 shrink-0" />
-                  ) : (
+                  <motion.span animate={{ rotate: isExpanded ? 180 : 0 }} transition={{ duration: 0.2 }}>
                     <ChevronDown className="w-4 h-4 text-muted-foreground/50 shrink-0" />
-                  )}
+                  </motion.span>
                 </button>
 
-                {/* Expandable checks */}
+                {/* Separator */}
+                {isExpanded && <div className="mx-3 h-px bg-border/40" />}
+
                 <AnimatePresence initial={false}>
                   {isExpanded && (
                     <motion.div
@@ -240,7 +225,7 @@ Important: Frame all advice as general educational information, not medical dire
                       transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
                       className="overflow-hidden"
                     >
-                      <div className="px-3 pb-3 space-y-1.5">
+                      <div className="px-3 pb-3 pt-2 space-y-1.5">
                         {cat.checks.map((key, i) => {
                           const isDone = completed.includes(key);
                           return (
@@ -252,10 +237,10 @@ Important: Frame all advice as general educational information, not medical dire
                             >
                               <button
                                 onClick={() => toggle(key)}
-                                className={`w-full flex items-start gap-3 p-3 rounded-xl border transition-all text-start ${
+                                className={`w-full flex items-start gap-3 p-3 rounded-2xl border transition-all text-start backdrop-blur-sm ${
                                   isDone
                                     ? 'bg-accent/5 border-accent/20'
-                                    : 'bg-card border-border/50 hover:border-primary/20 hover:bg-primary/3'
+                                    : 'bg-card/80 border-border/40 hover:border-primary/20 hover:bg-primary/[0.03]'
                                 }`}
                               >
                                 {isDone ? (
@@ -281,7 +266,7 @@ Important: Frame all advice as general educational information, not medical dire
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </Card>
+              </div>
             </motion.div>
           );
         })}
@@ -296,11 +281,11 @@ Important: Frame all advice as general educational information, not medical dire
           />
         )}
 
-        {/* ── Professional Compliance Notice ──────────────────────── */}
-        <div className="flex items-start gap-2.5 rounded-xl bg-muted/40 border border-border/30 p-3.5">
+        {/* ── Compliance Notice ──────────────────────────────────── */}
+        <div className="flex items-start gap-2.5 rounded-2xl bg-muted/40 border border-border/30 p-3.5 backdrop-blur-sm">
           <ShieldCheck className="h-4 w-4 text-muted-foreground/50 mt-0.5 shrink-0" />
           <p className="text-[10px] text-muted-foreground/60 leading-relaxed">
-            {t('toolsInternal.preconceptionCheckup.disclaimer', 
+            {t('toolsInternal.preconceptionCheckup.disclaimer',
               'This checklist is an educational reference to help you organize conversations with your healthcare provider. It does not replace professional medical advice, diagnosis, or treatment. All screenings and tests should be discussed with and ordered by a qualified healthcare professional.'
             )}
           </p>
