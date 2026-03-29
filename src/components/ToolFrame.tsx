@@ -87,6 +87,11 @@ export function ToolFrame({
   // Check if we have a custom icon for this tool
   const hasCustomIcon = toolId && hasToolIcon(toolId);
 
+  // Track tool usage for smart review prompts
+  useEffect(() => {
+    if (toolId) trackToolUsage(toolId);
+  }, [toolId]);
+
   return (
     <div className={`min-h-screen bg-gradient-to-br ${styles.gradient} overflow-x-hidden overflow-y-auto`}>
       <SEOHead title={title} description={subtitle} />
