@@ -1721,8 +1721,8 @@
       "lastOne": "Letzte Wehe",
       "time": "Zeit",
       "intensity": "Intensität",
-      "intensityStrong": "Sehr stark",
-      "intensityModerate": "Stark",
+      "intensityStrong": "Stark",
+      "intensityModerate": "Mittel",
       "intensityMild": "Mittel",
       "intensityLight": "Leicht",
       "phaseEarly": "Frühphase",
@@ -1732,7 +1732,12 @@
       "phaseTransition": "Übergangsphase",
       "phaseTransitionDesc": "Wehen sind sehr stark und nah beieinander. Fahren Sie sofort ins Krankenhaus!",
       "aiAnalysisTitle": "KI-Wehenanalyse",
-      "aiAnalysisButton": "Wehen mit KI analysieren"
+      "aiAnalysisButton": "Wehen mit KI analysieren",
+      "timeSinceLast": "Seit letzter Wehe",
+      "tapToStart": "Tippen zum Starten",
+      "selectIntensity": "Wehenintensität",
+      "fiveOneOneAlert": "5-1-1-Regel erfüllt!",
+      "fiveOneOneDesc": "Wehen alle 5 Min., 1 Min. Dauer, seit 1 Stunde. Kontaktieren Sie Ihren Arzt."
     },
     "symptomAnalyzer": {
       "title": "Schwangerschafts-Wohlbefinden-Tagebuch",

@@ -1721,8 +1721,8 @@
       "lastOne": "Dernière contraction",
       "time": "Heure",
       "intensity": "Intensité",
-      "intensityStrong": "Très forte",
-      "intensityModerate": "Forte",
+      "intensityStrong": "Forte",
+      "intensityModerate": "Modérée",
       "intensityMild": "Modérée",
       "intensityLight": "Légère",
       "phaseEarly": "Phase précoce",
@@ -1732,7 +1732,12 @@
       "phaseTransition": "Phase de transition",
       "phaseTransitionDesc": "Les contractions sont très fortes et rapprochées. Allez à l'hôpital immédiatement !",
       "aiAnalysisTitle": "Analyse IA des contractions",
-      "aiAnalysisButton": "Analyser les contractions avec l'IA"
+      "aiAnalysisButton": "Analyser les contractions avec l'IA",
+      "timeSinceLast": "Depuis la dernière contraction",
+      "tapToStart": "Appuyez pour commencer",
+      "selectIntensity": "Intensité de la contraction",
+      "fiveOneOneAlert": "Règle 5-1-1 atteinte !",
+      "fiveOneOneDesc": "Contractions toutes les 5 min, durant 1 min, pendant 1 heure. Contactez votre médecin."
     },
     "symptomAnalyzer": {
       "title": "Journal de bien-être grossesse",

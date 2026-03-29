@@ -1721,8 +1721,8 @@
       "lastOne": "Última contracción",
       "time": "Hora",
       "intensity": "Intensidad",
-      "intensityStrong": "Muy fuerte",
-      "intensityModerate": "Fuerte",
+      "intensityStrong": "Fuerte",
+      "intensityModerate": "Moderada",
       "intensityMild": "Moderada",
       "intensityLight": "Leve",
       "phaseEarly": "Fase temprana",
@@ -1732,7 +1732,12 @@
       "phaseTransition": "Fase de transición",
       "phaseTransitionDesc": "Las contracciones son muy fuertes y cercanas. ¡Ve al hospital inmediatamente!",
       "aiAnalysisTitle": "Análisis IA de contracciones",
-      "aiAnalysisButton": "Analizar contracciones con IA"
+      "aiAnalysisButton": "Analizar contracciones con IA",
+      "timeSinceLast": "Desde la última contracción",
+      "tapToStart": "Toque para iniciar",
+      "selectIntensity": "Intensidad de la contracción",
+      "fiveOneOneAlert": "¡Regla 5-1-1 cumplida!",
+      "fiveOneOneDesc": "Contracciones cada 5 min, de 1 min de duración, durante 1 hora. Contacte a su médico."
     },
     "symptomAnalyzer": {
       "title": "Diario de bienestar del embarazo",
