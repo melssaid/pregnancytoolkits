@@ -8616,6 +8616,10 @@
       "medications": {
         "title": "İlaç Gözden Geçirme",
         "description": "Mevcut ilaçlarınızı doktorunuzla gözden geçirin. Bazıları gebelikte güvenli olmayabilir."
+      },
+      "vaccinations": {
+        "title": "Aşı Kontrolü",
+        "description": "Kızamıkçık, su çiçeği ve hepatit B bağışıklığınızı kontrol ettirin. Gebelik sırasında bazı aşılar yapılamaz."
       }
     }
   }
