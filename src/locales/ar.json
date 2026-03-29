@@ -1717,7 +1717,7 @@
     "aiGeneral": "نتائج الأدوات الذكية للمعلومات العامة فقط.",
     "allCaughtUp": "تم مشاهدة الكل!",
     "appointment2hTitle": "⏰ موعد بعد ساعتين!",
-    "appointmentMsg": "{{title}} الساعة {{time}}",
+    "appointmentMsg": "{{title}} في {{time}}",
     "appointmentMsgDoctor": "{{title}} مع {{doctor}} الساعة {{time}}",
     "appointmentMsgDoctorLocation": "{{title}} مع {{doctor}} الساعة {{time}} - {{location}}",
     "appointmentMsgLocation": "{{title}} الساعة {{time}} - {{location}}",
