@@ -31,7 +31,7 @@ export type AIToolType =
   | "nausea-relief" | "skincare-advice" | "birth-plan" | "mental-health"
   | "pregnancy-plan" | "baby-growth-analysis"
   | "weight-analysis" | "contraction-analysis"
-  | "craving-alternatives";
+  | "craving-alternatives" | "grocery-list";
 
 // ── Section → AI Tool Type mapping ──
 export const SECTION_TOOL_MAP: Record<SmartSection, AIToolType> = {
@@ -63,7 +63,7 @@ export type InsightWeight = 0 | 0.5 | 1 | 2;
  */
 export const TOOL_WEIGHT_REGISTRY: Record<AIToolType, InsightWeight> = {
   "symptom-analysis": 1,
-  "meal-suggestion": 1,
+  "meal-suggestion": 0.5,        // quick single meal suggestion
   "pregnancy-assistant": 1,
   "weekly-summary": 1,
   "posture-coach": 1,
@@ -79,16 +79,16 @@ export const TOOL_WEIGHT_REGISTRY: Record<AIToolType, InsightWeight> = {
   "sleep-analysis": 0.5,      // sub-action of Pregnancy Comfort
   "sleep-meditation": 0.5,    // sub-action of Pregnancy Comfort
   "sleep-routine": 0.5,       // sub-action of Pregnancy Comfort
-  "vitamin-advice": 1,
+  "vitamin-advice": 0.5,        // quick vitamin tips
   "bump-photos": 2,           // ultrasound image analysis — higher cost
-  "baby-cry-analysis": 1,
+  "baby-cry-analysis": 0.5,     // quick cry classification
   "postpartum-recovery": 1,
   "hospital-bag": 1,
   "birth-position": 1,
   "partner-guide": 1,
   "lactation-prep": 1,
   "nausea-relief": 0.5,         // lightweight relief tips
-  "skincare-advice": 1,
+  "skincare-advice": 0.5,       // quick skincare routine
   "birth-plan": 1,
   "mental-health": 1,
   "pregnancy-plan": 1,
@@ -96,6 +96,7 @@ export const TOOL_WEIGHT_REGISTRY: Record<AIToolType, InsightWeight> = {
   "weight-analysis": 1,
   "contraction-analysis": 1,
   "craving-alternatives": 0.5,  // lightweight craving swap suggestions
+  "grocery-list": 0.5,          // quick grocery nutrition tips
 };
 
 /**
