@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import i18n from "@/i18n";
-import { Briefcase, Baby, User, Heart, Plus, Share2, RotateCcw, CheckCircle2, Circle, ChevronDown, ChevronUp, Star, ShieldCheck, Package } from "lucide-react";
+import { Briefcase, Baby, User, Heart, Plus, RotateCcw, CheckCircle2, Circle, ChevronDown, ChevronUp, Star, ShieldCheck, Package } from "lucide-react";
+import WhatsAppShareButton from "@/components/WhatsAppShareButton";
 import { AIResponseFrame } from "@/components/ai/AIResponseFrame";
 import { PrintableReport } from '@/components/PrintableReport';
 import { AIActionButton } from "@/components/ai/AIActionButton";
