@@ -84,7 +84,7 @@ export const TOOL_WEIGHT_REGISTRY: Record<AIToolType, InsightWeight> = {
   "baby-cry-analysis": 0.5,     // quick cry classification
   "postpartum-recovery": 1,
   "hospital-bag": 1,
-  "birth-position": 1,
+  "birth-position": 0.5,         // lightweight position suggestions
   "partner-guide": 0.5,          // lightweight partner support tips
   "lactation-prep": 1,
   "nausea-relief": 0.5,         // lightweight relief tips
