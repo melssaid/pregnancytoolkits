@@ -33,8 +33,8 @@ const AISleepOptimizer = () => {
 
   // Three separate smart insight hooks for three tabs
   const analysisAI = useSmartInsight({ section: 'sleep', toolType: 'sleep-analysis' });
-  const meditationAI = useSmartInsight({ section: 'sleep', toolType: 'sleep-analysis' });
-  const routineAI = useSmartInsight({ section: 'sleep', toolType: 'sleep-analysis' });
+  const meditationAI = useSmartInsight({ section: 'sleep', toolType: 'sleep-meditation' });
+  const routineAI = useSmartInsight({ section: 'sleep', toolType: 'sleep-routine' });
 
   const isLoading = analysisAI.isLoading || meditationAI.isLoading || routineAI.isLoading;
 
