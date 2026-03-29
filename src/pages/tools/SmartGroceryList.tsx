@@ -136,7 +136,8 @@ const isGroceryItemArray = (data: unknown): data is GroceryItem[] => {
 };
 
 export default function SmartGroceryList() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.language === 'ar';
   const [showDisclaimer, setShowDisclaimer] = useState(true);
   const [items, setItems] = useState<GroceryItem[]>([]);
   const [newItem, setNewItem] = useState('');
