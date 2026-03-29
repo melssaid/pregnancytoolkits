@@ -4107,183 +4107,11 @@
       "yourWindow": "Verimli Penceren"
     },
     "fertilityAcademy": {
-      "lessons": {
-        "ageAndFertility": {
-          "content": "Yaş, doğurganlığı önemli ölçüde etkiler:\n\n• 20'li yaşlar: En yüksek doğurganlık. Yumurta kalitesi ve miktarı optimaldir.\n• 30'lu yaşların başı: Doğurganlık yavaşça azalmaya başlar.\n• 35 yaşından sonra: Düşüş hızlanır. Yumurta kalitesi ve miktarı önemli ölçüde azalır.\n• 40'lı yaşlar: Doğal gebelik şansı önemli ölçüde düşer.\n\nErkek doğurganlığı da yaşla azalır, ancak daha yavaş. Sperm kalitesi ve miktarı 40'lı yaşlardan sonra düşmeye başlar.\n\nYaş sadece bir faktördür — sağlıklı yaşam tarzı ve tıbbi destek sonuçları iyileştirebilir.",
-          "title": "Yaş ve Doğurganlık"
-        },
-        "assistedReproduction": {
-          "content": "Doğal yolla gebelik elde edilemediğinde yardımcı üreme seçenekleri:\n\n• IUI (İntrauterin İnseminasyon): Hazırlanmış spermin doğrudan rahime yerleştirilmesi.\n• IVF (Tüp Bebek): Yumurta ve spermin laboratuvarda birleştirilmesi ve embriyonun rahime transfer edilmesi.\n• ICSI: Tek bir spermin doğrudan yumurtaya enjekte edilmesi.\n• Yumurta/Sperm Bağışı: Kendi gametleri uygun olmadığında.\n• Taşıyıcı annelik: Rahimde sorun olduğunda.\n\nHer seçeneğin başarı oranları yaş ve duruma göre değişir. Doktorunuz size en uygun yöntemi önerecektir.",
-          "title": "Yardımcı Üreme Teknikleri"
-        },
-        "cervicalHealth": {
-          "content": "Serviks doğurganlıkta önemli bir rol oynar:\n\n• Servikal mukus spermin uterusa ulaşmasına yardımcı olur.\n• Verimli dönemde mukus berrak, kaygan ve esnek hale gelir.\n• Enfeksiyonlar servikal mukus kalitesini olumsuz etkileyebilir.\n• Servikal pozisyon döngü boyunca değişir — verimli dönemde yumuşak, açık ve yüksektir.\n\nServikal sağlığı korumak için:\n• Düzenli Pap smear yaptırın\n• Enfeksiyonları tedavi ettirin\n• Vajinal duş yapmayın\n• pH dengesini bozacak ürünlerden kaçının.",
-          "title": "Servikal Sağlık"
-        },
-        "commonMyths": {
-          "content": "Yaygın yanlış inanışları düzeltelim:\n\n• Mit: Stres yapmazsanız hemen hamile kalırsınız.\nGerçek: Stres bir faktördür ama tek neden değildir.\n\n• Mit: Her gün ilişki şansı artırır.\nGerçek: Gün aşırı ilişki sperm kalitesini optimize edebilir.\n\n• Mit: Doğum kontrol hapları doğurganlığı kalıcı olarak azaltır.\nGerçek: Bıraktıktan sonra doğurganlık genellikle birkaç ay içinde geri döner.\n\n• Mit: Sadece kadınlar doğurganlık sorunu yaşar.\nGerçek: Vakaların yaklaşık %40'ı erkek faktörüyle ilgilidir.\n\n• Mit: 35 yaşından sonra hamile kalmak imkansızdır.\nGerçek: Zor olabilir ama imkansız değildir.",
-          "title": "Doğurganlık Mitleri"
-        },
-        "emotionalWellbeing": {
-          "content": "Doğurganlık yolculuğu duygusal olarak zorlayıcı olabilir:\n\n• Her ay umut ve hayal kırıklığı döngüsü yorucu olabilir.\n• Çiftler arası iletişim çok önemlidir.\n• Suçluluk veya utanç duyguları normaldir ama ele alınmalıdır.\n\nBaşa çıkma stratejileri:\n• Duygularınızı ifade edin — günlük tutma yardımcı olabilir.\n• Destek gruplarına katılın.\n• Profesyonel danışmanlık almaktan çekinmeyin.\n• Kendinize nazik olun ve süreçten mola verin.\n• Partnerinizle açık iletişim kurun.",
-          "title": "Duygusal İyi Oluş"
-        },
-        "endometriosisAwareness": {
-          "content": "Endometriozis, rahim iç tabakasına benzer dokunun rahim dışında büyümesidir:\n\n• Kadınların yaklaşık %10'unu etkiler.\n• Şiddetli adet ağrıları, kronik pelvik ağrı ve ağrılı ilişki belirtileri arasındadır.\n• Doğurganlığı etkileyebilir — fallop tüplerini tıkayabilir veya yumurta kalitesini düşürebilir.\n\nTedavi seçenekleri:\n• Ağrı yönetimi\n• Hormonal tedaviler\n• Cerrahi müdahale (laparoskopi)\n• Yardımcı üreme teknikleri\n\nErken tanı ve tedavi doğurganlık sonuçlarını iyileştirebilir.",
-          "title": "Endometriozis Farkındalığı"
-        },
-        "environmentalToxins": {
-          "content": "Çevresel faktörler doğurganlığı olumsuz etkileyebilir:\n\n• BPA: Plastik kaplar ve konserve kutuları içinde bulunur. Endokrin bozucu etkisi vardır.\n• Pestisitler: Organik gıdaları tercih edin.\n• Ağır metaller: Kurşun ve cıva maruziyetinden kaçının.\n• Ftalatlar: Kozmetik ve temizlik ürünlerinde bulunur.\n\nKorunma yolları:\n• Cam veya paslanmaz çelik kaplar kullanın.\n• Doğal temizlik ürünleri tercih edin.\n• Meyve ve sebzeleri iyice yıkayın.\n• Ev ortamınızı havalandırın.\n• İş yerinde kimyasal maruziyeti minimize edin.",
-          "title": "Çevresel Toksinler"
-        },
-        "epigeneticsFertility": {
-          "content": "Epigenetik, gen ifadesini DNA dizisini değiştirmeden etkileyen mekanizmalardır:\n\n• Beslenme, stres ve çevre gen ifadesini etkileyebilir.\n• Bu değişiklikler potansiyel olarak gelecek nesillere aktarılabilir.\n• Folat açısından zengin beslenme DNA metilasyonunu destekler.\n\nEpigenetik için önemli faktörler:\n• Sağlıklı beslenme\n• Stres yönetimi\n• Toksinlerden kaçınma\n• Düzenli egzersiz\n• Yeterli uyku\n\nGebelik öncesi yaşam tarzı, bebeğin gen ifadesini etkileyebilir.",
-          "title": "Epigenetik ve Doğurganlık"
-        },
-        "exerciseBalance": {
-          "content": "Doğru egzersiz miktarı doğurganlığı destekler:\n\n• Orta düzeyde egzersiz: Haftada 150 dakika yürüyüş, yüzme veya yoga.\n• Kan dolaşımını artırır ve üreme organlarına oksijen taşınmasını destekler.\n• Stresi azaltır ve uyku kalitesini artırır.\n\nDikkat edilmesi gerekenler:\n• Aşırı yoğun egzersiz yumurtlamayı baskılayabilir.\n• Çok düşük vücut yağ oranı adet düzensizliklerine yol açabilir.\n• Maraton antrenmanı veya aşırı kilo kaldırma döngüyü etkileyebilir.\n\nDenge anahtardır — dinleme ve iyileşme günleri de önemlidir.",
-          "title": "Egzersiz Dengesi"
-        },
-        "fertilityPreservation": {
-          "content": "Gelecekte çocuk sahibi olmak isteyenler için seçenekler:\n\n• Yumurta Dondurma: En iyi sonuçlar 35 yaşından önce elde edilir.\n• Embriyo Dondurma: Partnerinizle döllenmiş yumurtaların saklanması.\n• Over Dokusu Dondurma: Kanser tedavisi öncesi yapılabilir.\n• Sperm Dondurma: Erkekler için doğurganlık koruma.\n\nKimler düşünmeli:\n• Kanser tedavisi görecek hastalar\n• Gebeliğini ertelemek isteyen kadınlar\n• Tıbbi nedenlerle doğurganlığı risk altında olanlar\n\nBir doğurganlık uzmanıyla erken konuşmak önemlidir.",
-          "title": "Doğurganlık Koruma"
-        },
-        "fertilizationBasics": {
-          "content": "Yumurtlamadan sonra döllenme fallop tüpünde gerçekleşebilir:\n\n• Milyonlarca spermden yalnızca birkaç yüz tanesi yumurtaya ulaşır.\n• Bir sperm yumurtanın dış tabakasına girer ve diğer spermlerin girmesini engelleyen kimyasal reaksiyon tetiklenir.\n• Döllenmiş yumurta (zigot) 3-4 gün boyunca rahime doğru ilerlerken bölünmeye başlar.\n• Yumurtlamadan yaklaşık 6-10 gün sonra blastosist rahim iç tabakasına yerleşir.\n• İmplantasyon hafif bir lekelenmeye neden olabilir.\n• Yerleştikten sonra vücut hCG üretmeye başlar — gebelik testlerinin tespit ettiği hormon.",
-          "title": "Döllenme ve İmplantasyon"
-        },
-        "geneticFactors": {
-          "content": "Genetik doğurganlığı etkileyebilir:\n\n• Erken menopoz aile öyküsü risk faktörüdür.\n• Bazı genetik durumlar (Turner sendromu, Klinefelter sendromu) doğurganlığı etkiler.\n• Tekrarlayan düşüklerde kromozom analizi önemlidir.\n• Taşıyıcılık testleri bazı genetik hastalıkları önceden tespit edebilir.\n\nGenetik danışmanlık şu durumlarda önerilir:\n• Ailede bilinen genetik hastalıklar\n• Tekrarlayan gebelik kayıpları\n• İleri yaş gebeliği\n• Akraba evliliği",
-          "title": "Genetik Faktörler"
-        },
-        "hormonesRole": {
-          "content": "Doğurganlığınızı birçok hormon yönetir:\n\n• FSH: Yumurtalıklarda folikül gelişimini uyarır.\n• LH: Yumurtlamayı tetikleyen artıştan sorumludur.\n• Östrojen: Rahim iç tabakasını hazırlar ve servikal mukusu ince yapar.\n• Progesteron: İmplantasyon için rahim iç tabakasını korur.\n• GnRH: Hipotalamustan salınır, FSH ve LH üretimini kontrol eder.\n• Prolaktin: Yüksek seviyeler yumurtlamayı baskılayabilir.\n• Tiroid hormonları: Dengesizlikler düzensiz döngülere yol açabilir.\n\nBu hormonlar arasındaki denge, düzenli yumurtlama ve doğurganlık için çok önemlidir.",
-          "title": "Temel Doğurganlık Hormonları"
-        },
-        "immunologyFertility": {
-          "content": "Bağışıklık sistemi gebelikte önemli bir rol oynar:\n\n• Antifosfolipid sendromu kan pıhtılaşma bozukluklarına ve tekrarlayan düşüklere yol açabilir.\n• NK (doğal öldürücü) hücreleri implantasyonu etkileyebilir.\n• Otoimmün hastalıklar (lupus, tiroidit) doğurganlığı etkileyebilir.\n\nTedavi seçenekleri:\n• Kan sulandırıcı ilaçlar\n• İmmünomodülatör tedaviler\n• Yakın takip ve izleme\n\nBu alanda uzmanlaşmış bir doktora başvurmak önemlidir.",
-          "title": "İmmünoloji ve Doğurganlık"
-        },
-        "implantationWindow": {
-          "content": "İmplantasyon, döllenmiş yumurtanın rahim duvarına yerleşmesidir:\n\n• Yumurtlamadan 6-10 gün sonra gerçekleşir.\n• Rahim iç tabakası progesteron etkisiyle hazır hale gelir.\n• İmplantasyon penceresi yalnızca 2-4 gün sürer.\n• Hafif kramplar ve lekelenme olabilir.\n• Başarılı implantasyondan sonra hCG üretimi başlar.\n\nİmplantasyonu desteklemek için:\n• Stresden kaçının\n• Ağır egzersiz yapmayın\n• Yeterli progesteron seviyesi önemlidir\n• Sağlıklı beslenmeye devam edin.",
-          "title": "İmplantasyon Penceresi"
-        },
-        "lifestyleFactors": {
-          "content": "Yaşam tarzı seçimleriniz doğurganlığınızı doğrudan etkiler:\n\n• Beslenme: Dengeli, antioksidan açısından zengin bir diyet yumurta ve sperm kalitesini destekler.\n• Egzersiz: Orta düzeyde fiziksel aktivite faydalıdır. Aşırı egzersiz yumurtlamayı bozabilir.\n• Stres: Kronik stres hormonal dengeyi bozabilir ve yumurtlamayı geciktirebilir.\n• Uyku: 7-9 saat kaliteli uyku hormonal düzenleme için önemlidir.\n• Toksinler: Sigara, alkol ve çevresel toksinlerden kaçının.\n• Kilo: Hem düşük hem yüksek kilo doğurganlığı olumsuz etkiler.\n• Kafein: Günlük 200 mg'ın altında tutun.",
-          "title": "Yaşam Tarzı Faktörleri"
-        },
-        "maleFertility": {
-          "content": "Erkek doğurganlığı gebelikte eşit derecede önemlidir:\n\n• Sperm üretimi yaklaşık 72 gün sürer.\n• Sağlıklı sperm sayısı ml başına 15 milyon veya üzeridir.\n• Hareketlilik: Spermin en az %40'ı hareketli olmalıdır.\n• Morfoloji: Normal şekilli sperm yüzdesi önemlidir.\n\nErkek doğurganlığını etkileyen faktörler:\n• Sıcaklık: Aşırı ısı sperm üretimini azaltır.\n• Yaşam tarzı: Sigara, alkol, stres olumsuz etkiler.\n• Beslenme: Çinko, folik asit ve antioksidanlar önemlidir.\n• Tıbbi durumlar: Varikosel, enfeksiyonlar, hormonal dengesizlikler.",
-          "title": "Erkek Doğurganlığı"
-        },
-        "menstrualCycle": {
-          "content": "Adet döngünüz dört ana aşamaya ayrılır:\n\n1. Adet Aşaması (1-5. günler): Rahim iç tabakası dökülür ve yeni bir döngü başlar.\n\n2. Foliküler Aşama (1-13. günler): FSH hormonu yumurtalıkları folikül geliştirmeye yönlendirir. Östrojen yükselir ve rahim iç tabakası kalınlaşır.\n\n3. Yumurtlama (yaklaşık 14. gün): LH hormonundaki artış olgun bir yumurtanın serbest bırakılmasını tetikler. Bu en verimli anınızdır.\n\n4. Luteal Aşama (15-28. günler): Boş folikül korpus luteuma dönüşür ve iç tabakayı korumak için progesteron üretir. Döllenme olmazsa hormon seviyeleri düşer ve döngü yeniden başlar.\n\nBu aşamaları anlamak, verimli pencerenizi belirlemenize yardımcı olur.",
-          "title": "Adet Döngünüzü Anlamak"
-        },
-        "mindBodyConnection": {
-          "content": "Zihin ve beden doğurganlık yolculuğunda birbirine bağlıdır:\n\n• Kronik stres kortizol üretir, bu da üreme hormonlarını baskılayabilir.\n• Kaygı ve depresyon cinsel isteği ve ilişki sıklığını azaltabilir.\n\nZihin-beden teknikleri:\n• Mindfulness meditasyonu\n• Yoga ve tai chi\n• Progresif kas gevşetme\n• Görselleştirme teknikleri\n• Nefes egzersizleri\n• Akupunktur\n\nAraştırmalar, bu tekniklerin stres hormonlarını azalttığını ve doğurganlık tedavi sonuçlarını iyileştirebildiğini göstermektedir.",
-          "title": "Zihin-Beden Bağlantısı"
-        },
-        "nutritionFertility": {
-          "content": "Beslenme doğurganlığı doğrudan etkiler:\n\n• Folik asit: Günlük 400-800 mcg, nöral tüp defektlerini önler.\n• Demir: Yumurtlama fonksiyonunu destekler.\n• Omega-3: Yumurta kalitesini artırır.\n• Antioksidanlar: Serbest radikallere karşı koruma sağlar.\n• Çinko: Hem erkek hem kadın doğurganlığı için önemli.\n\nKaçınılması gerekenler:\n• Trans yağlar\n• Aşırı şeker ve işlenmiş gıdalar\n• Alkol\n• Aşırı kafein (günde 200 mg'dan fazla)",
-          "title": "Doğurganlık Beslenmesi"
-        },
-        "optimizingTiming": {
-          "content": "Gebelik şansını artırmak için zamanlama:\n\n• En verimli günler: Yumurtlamadan 1-2 gün öncesidir.\n• Yumurtlamadan 5 gün öncesinden yumurtlama gününe kadar ilişki şansı artırır.\n• Gün aşırı ilişki sperm kalitesini optimize eder.\n• Pozisyon önemli değildir — sperm saniyeler içinde servikse ulaşır.\n• İlişki sonrası yatık kalmanın kanıtlanmış faydası yoktur.\n\nStres yapmadan doğal bir şekilde zamanlama en iyi sonuçları verir.",
-          "title": "Zamanlama Optimizasyonu"
-        },
-        "ovulationProcess": {
-          "content": "Yumurtlama, yumurtalıklardan birinden olgun bir yumurtanın serbest bırakılmasıdır:\n\n• Yumurtlamadan önceki günlerde artan östrojen seviyeleri dominant folikülün büyümesine neden olur.\n• Ani LH artışı folikülün patlamasını ve yumurtanın fallop tüpüne bırakılmasını tetikler.\n• Yumurta serbest bırakıldıktan sonra 12-24 saat yaşar. Sperm üreme sisteminde 5 güne kadar yaşayabilir.\n• Bu, verimli pencerenizin yaklaşık 6 gün sürdüğü anlamına gelir — yumurtlamadan önceki 5 gün ve yumurtlama günü.\n\nBazı kadınlar yumurtlama sırasında hafif bir sızı veya kramp (mittelschmerz) hisseder.",
-          "title": "Yumurtlama Nasıl Çalışır"
-        },
-        "pcosManagement": {
-          "content": "Polikistik Over Sendromu (PKOS) en yaygın doğurganlık sorunlarından biridir:\n\n• Belirtiler: Düzensiz adetler, aşırı kıllanma, akne, kilo alma.\n• Yumurtlama düzensiz veya hiç olmayabilir.\n• İnsülin direnci sık görülür.\n\nYönetim stratejileri:\n• Kilo yönetimi: %5-10 kilo kaybı bile yumurtlamayı iyileştirebilir.\n• Beslenme: Düşük glisemik indeksli gıdalar tercih edin.\n• Egzersiz: Düzenli fiziksel aktivite insülin duyarlılığını artırır.\n• İlaç tedavisi: Doktorunuz gerekirse yumurtlama indüksiyonu önerebilir.\n• Stres yönetimi: Yoga, meditasyon faydalıdır.",
-          "title": "PKOS Yönetimi"
-        },
-        "recurrentLoss": {
-          "content": "İki veya daha fazla ardışık gebelik kaybı olarak tanımlanır:\n\n• Tüm gebeliklerin yaklaşık %15-20'si düşükle sonuçlanır.\n• Tekrarlayan kayıplar kapsamlı değerlendirme gerektirir.\n\nOlası nedenler:\n• Kromozomal anomaliler\n• Uterus yapısal sorunları\n• Pıhtılaşma bozuklukları\n• Hormonal dengesizlikler\n• İmmünolojik faktörler\n\nAraştırmalar:\n• Genetik testler\n• Ultrason ve HSG\n• Kan testleri\n• Endometrial biyopsi\n\nBirçok neden tedavi edilebilir ve başarılı gebelik oranları yüksektir.",
-          "title": "Tekrarlayan Gebelik Kaybı"
-        },
-        "secondaryInfertility": {
-          "content": "Daha önce çocuk sahibi olmuş çiftlerin yeni bir gebelik elde edememesidir:\n\n• İlk çocuktan sonra yaş ilerlemiş olabilir.\n• Yeni sağlık sorunları gelişmiş olabilir.\n• Yaşam tarzı değişiklikleri etkili olabilir.\n\nNedenleri:\n• Yaş kaynaklı yumurta kalitesi düşüşü\n• Hormonal değişiklikler\n• Yeni gelişen tıbbi durumlar\n• Kilo değişimleri\n\nDuygusal olarak da zorlayıcı olabilir çünkü çevreden 'zaten bir çocuğunuz var' baskısı olabilir. Yardım istemekten çekinmeyin.",
-          "title": "İkincil Kısırlık"
-        },
-        "sleepHormones": {
-          "content": "Uyku hormonal denge için kritik öneme sahiptir:\n\n• Melatonin antioksidan özelliklere sahiptir ve yumurta kalitesini korur.\n• Uyku eksikliği kortizol seviyelerini artırır ve yumurtlamayı bozabilir.\n• Düzensiz uyku düzeni leptin ve ghrelin hormonlarını etkileyerek kilo yönetimini zorlaştırır.\n\nİyi uyku hijyeni için:\n• Her gün aynı saatte yatın ve kalkın.\n• Yatak odanızı karanlık ve serin tutun.\n• Yatmadan önce ekran kullanımını azaltın.\n• Kafein alımını öğleden sonra kesin.\n• 7-9 saat uyku hedefleyin.",
-          "title": "Uyku ve Hormonlar"
-        },
-        "supplementsGuide": {
-          "content": "Doğurganlığı destekleyen takviyeler:\n\n• Folik Asit (400-800 mcg): Nöral tüp defektlerini önler.\n• CoQ10 (200-600 mg): Yumurta kalitesini destekler.\n• D Vitamini (1000-2000 IU): Hormonal denge için önemli.\n• Omega-3 (250-500 mg DHA): Anti-inflamatuar etki.\n• Demir: Adet kanamalarından kaynaklanan eksikliği önler.\n• Çinko: Hücre bölünmesi ve hormonal denge.\n• B12 Vitamini: Enerji ve sinir fonksiyonu.\n\nÖnemli: Herhangi bir takviye başlamadan önce doktorunuza danışın.",
-          "title": "Takviye Rehberi"
-        },
-        "thyroidFertility": {
-          "content": "Tiroid bezi doğurganlığı doğrudan etkiler:\n\n• Hipotiroidizm: Düzensiz adetler, yumurtlama bozuklukları ve düşük riskini artırır.\n• Hipertiroidizm: Adet düzensizlikleri ve gebelik komplikasyonlarına yol açabilir.\n• TSH seviyesi gebelik öncesi 0.5-2.5 mIU/L arasında olmalıdır.\n\nBelirtiler:\n• Yorgunluk, kilo değişimleri, saç dökülmesi\n• Düzensiz adetler\n• Konsantrasyon güçlüğü\n\nTedavi genellikle ilaçla mümkündür ve doğurganlığı önemli ölçüde iyileştirebilir.",
-          "title": "Tiroid ve Doğurganlık"
-        },
-        "trackingMethods": {
-          "content": "Verimli pencerenizi belirlemenin birçok yöntemi vardır:\n\n• Bazal Vücut Sıcaklığı (BVS): Her sabah aynı saatte ölçün. Yumurtlamadan sonra hafif bir artış gösterir.\n• Servikal Mukus: Yumurtlamaya yaklaştıkça berrak ve esnek hale gelir.\n• Yumurtlama Testleri: İdrardaki LH artışını tespit eder.\n• Takvim Yöntemi: Döngü uzunluğuna göre verimli günleri tahmin eder.\n• Doğurganlık Monitörleri: Birden fazla hormonu izleyen elektronik cihazlar.\n\nBirden fazla yöntemi birleştirmek en doğru sonuçları verir.",
-          "title": "Doğurganlık Takip Yöntemleri"
-        },
-        "whenToSeekHelp": {
-          "content": "Profesyonel yardım almanız gereken durumlar:\n\n• 35 yaş altı: 12 ay düzenli korunmasız ilişkiye rağmen gebelik oluşmadıysa.\n• 35 yaş üstü: 6 ay sonra.\n• 40 yaş üstü: Hemen değerlendirme önerilir.\n\nDerhal başvurmanız gereken durumlar:\n• Düzensiz veya ağrılı adetler\n• Bilinen endometriozis veya PKOS\n• Geçmiş düşükler\n• Bilinen erkek faktör sorunları\n• Cinsel yolla bulaşan enfeksiyon öyküsü\n\nDoğurganlık uzmanı, kapsamlı bir değerlendirme yaparak size özel tedavi planı oluşturabilir.",
-          "title": "Ne Zaman Yardım Aramalısınız"
-        }
-      },
+      "lessons": "Dersler",
       "lessonsCount": "{{count}} öğrenme modülü"
     },
     "fertilitySigns": {
-      "signs": {
-        "basalTemp": {
-          "description": "Yumurtlamadan sonra progesteron yükselmesiyle vücut sıcaklığı yaklaşık 0.2-0.5°C artar. Bu artış yumurtlamanın gerçekleştiğini doğrular.",
-          "tip": "Her sabah yataktan kalkmadan önce aynı saatte ölçün.",
-          "title": "Bazal Vücut Sıcaklığı"
-        },
-        "bloating": {
-          "description": "Hormonal değişiklikler su tutulmasına ve sindirim yavaşlamasına neden olabilir. Bu özellikle yumurtlama çevresinde ve luteal fazda yaygındır.",
-          "tip": "Bol su için ve tuzlu gıdaları azaltın.",
-          "title": "Şişkinlik"
-        },
-        "breastTenderness": {
-          "description": "Yumurtlamadan sonra progesteron artışıyla göğüslerde hassasiyet, şişkinlik veya ağrı olabilir. Bu luteal fazın normal bir belirtisidir.",
-          "tip": "Destekleyici bir sütyen giyin ve kafein alımını azaltın.",
-          "title": "Göğüs Hassasiyeti"
-        },
-        "cervicalMucus": {
-          "description": "Yumurtlamaya yaklaştıkça servikal mukus berrak, kaygan ve esnek hale gelir — çiğ yumurta akı gibi. Bu en verimli mukus tipidir ve spermin rahime ulaşmasını kolaylaştırır.",
-          "tip": "Tuvalet kağıdıyla kontrol edin veya parmaklarınızla esnekliğini test edin.",
-          "title": "Servikal Mukus"
-        },
-        "cervicalPosition": {
-          "description": "Verimli dönemde serviks yumuşak, açık ve yüksek konumdadır (SHOW: Soft, High, Open, Wet). Verimli olmayan dönemde sert, düşük ve kapalıdır.",
-          "tip": "Temiz parmaklarla nazikçe kontrol edin, her gün aynı pozisyonda.",
-          "title": "Servikal Pozisyon"
-        },
-        "heightenedSenses": {
-          "description": "Yumurtlama döneminde bazı kadınlar koku, tat ve görme duyularında artış fark eder. Bu östrojen yükselmesiyle ilişkilidir.",
-          "tip": "Belirli kokulara karşı artan hassasiyeti yumurtlama ipucu olarak kullanabilirsiniz.",
-          "title": "Keskinleşen Duyular"
-        },
-        "libidoChanges": {
-          "description": "Birçok kadın yumurtlama döneminde cinsel istekte artış fark eder. Bu, vücudun en verimli dönemde üreme şansını artırmaya yönelik doğal bir tepkisidir.",
-          "tip": "Bu doğal artışı takip ederek verimli pencerenizi belirleyebilirsiniz.",
-          "title": "Libido Değişiklikleri"
-        },
-        "lightSpotting": {
-          "description": "Bazı kadınlar yumurtlama sırasında hafif pembe veya kahverengi lekelenme yaşar. Bu, folikülün patlaması sırasında az miktarda kan sızmasından kaynaklanır.",
-          "tip": "Yumurtlama lekesi genellikle 1-2 gün sürer ve çok hafiftir.",
-          "title": "Hafif Lekelenme"
-        },
-        "moodShifts": {
-          "description": "Östrojen yumurtlama öncesi yükselir ve enerji, sosyallik ve olumlu ruh hali sağlar. Yumurtlamadan sonra progesteron baskınlığı sakinlik veya hassasiyet getirebilir.",
-          "tip": "Ruh halinizi günlük olarak takip ederek döngü kalıplarınızı öğrenin.",
-          "title": "Ruh Hali Değişimleri"
-        },
-        "ovulationPain": {
-          "description": "Mittelschmerz olarak bilinen bu ağrı, alt karında tek taraflı bir sızı veya kramptır. Folikülün patlamasıyla ilişkilidir ve birkaç dakika ile birkaç saat sürebilir.",
-          "tip": "Hangi tarafta hissettiğinizi not edin — hangi yumurtalığın yumurtladığını gösterir.",
-          "title": "Yumurtlama Ağrısı"
-        }
-      },
+      "signs": "Belirtiler",
       "signsCount": "{{count}} belirti"
     },
     "fetalDevelopment": {
@@ -5656,71 +5484,10 @@
       "yourTrimester": "Trimesteriniz"
     },
     "preconceptionCheckup": {
-      "ai": {
-        "analyze": "Hazırlığımı Analiz Et",
-        "priorityTitle": "Öncelikli Adımlar",
-        "readinessTitle": "Hazırlık Değerlendirmesi",
-        "timelineTitle": "Önerilen Zaman Çizelgesi",
-        "tipsTitle": "Kişisel İpuçları",
-        "title": "Yapay Zeka Analizi"
-      },
+      "ai": "Yapay Zeka Analizi",
       "allComplete": "Tüm kontroller tamamlandı!",
-      "categories": {
-        "essential": "Temel",
-        "medications": "İlaçlar",
-        "screening": "Tarama",
-        "specialized": "Uzman"
-      },
-      "checks": {
-        "bloodWork": {
-          "description": "Tam kan sayımı, kan grubu, Rh faktörü, demir ve vitamin düzeyleri kontrolü.",
-          "title": "Kan Testleri"
-        },
-        "dental": {
-          "description": "Diş eti hastalığı erken doğum riskiyle ilişkilidir. Tedavileri gebelik öncesi tamamlayın.",
-          "title": "Diş Kontrolü"
-        },
-        "generalCheckup": {
-          "description": "Gebelik öncesi kapsamlı fizik muayene ve sağlık geçmişi değerlendirmesi.",
-          "title": "Genel Sağlık Kontrolü"
-        },
-        "geneticScreening": {
-          "description": "Aile öyküsüne göre taşıyıcılık testleri. Genetik danışmanlık düşünün.",
-          "title": "Genetik Tarama"
-        },
-        "hepatitis": {
-          "description": "Hepatit B yüzey antijeni testi. Bebeğe bulaşmayı önlemek için önemlidir.",
-          "title": "Hepatit B Taraması"
-        },
-        "hiv": {
-          "description": "HIV taraması önerilir. Erken tespit ve tedavi ile bebeğe bulaşma önlenebilir.",
-          "title": "HIV Testi"
-        },
-        "medications": {
-          "description": "Mevcut ilaçlarınızı doktorunuzla gözden geçirin. Bazıları gebelikte güvenli olmayabilir.",
-          "title": "İlaç Gözden Geçirme"
-        },
-        "mentalHealth": {
-          "description": "Kaygı veya depresyon taraması. Gebelik öncesi destek almak önemlidir.",
-          "title": "Zihinsel Sağlık Değerlendirmesi"
-        },
-        "pap": {
-          "description": "Servikal kanser taraması. Son 3 yılda yapılmadıysa yaptırın.",
-          "title": "Pap Smear"
-        },
-        "rubella": {
-          "description": "Kızamıkçık antikor testi. Bağışıklık yoksa aşılama gerekir, gebelikten 1 ay önce.",
-          "title": "Kızamıkçık Bağışıklığı"
-        },
-        "thyroid": {
-          "description": "TSH ve tiroid hormon seviyeleri. Tiroid bozuklukları doğurganlığı etkiler.",
-          "title": "Tiroid Testi"
-        },
-        "vaccinations": {
-          "description": "Kızamıkçık, su çiçeği ve hepatit B bağışıklığınızı kontrol ettirin. Gebelik sırasında bazı aşılar yapılamaz.",
-          "title": "Aşı Kontrolü"
-        }
-      },
+      "categories": "Kategoriler",
+      "checks": "Kontroller",
       "disclaimer": "Bu kontrol listesi bilgi amaçlıdır. Kişisel tıbbi tavsiyelerin yerine geçmez.",
       "progressLabel": "İlerleme",
       "related": {
@@ -5732,58 +5499,7 @@
       "tracked": "takip ediliyor"
     },
     "preconceptionNutrition": {
-      "categories": {
-        "antioxidants": {
-          "description": "Antioksidanlar serbest radikal hasarından korur ve yumurta ile sperm kalitesini destekler.",
-          "foods": "Yaban mersini, çilek, koyu çikolata, pekan cevizi, enginar, kırmızı fasulye",
-          "title": "Antioksidanlar"
-        },
-        "avoidList": {
-          "description": "Bazı gıda ve maddeler doğurganlığı olumsuz etkileyebilir ve gebelik öncesi dönemde sınırlandırılmalıdır.",
-          "foods": "Alkol, aşırı kafein (>200mg/gün), trans yağlar, işlenmiş gıdalar, yüksek cıvalı balıklar",
-          "title": "Kaçınılacaklar"
-        },
-        "calcium": {
-          "description": "Kalsiyum kemik sağlığı, kas fonksiyonu ve sinir iletimi için gereklidir. Gebelikte ihtiyaç artar.",
-          "foods": "Süt, yoğurt, peynir, brokoli, badem, sardalya, tofu",
-          "title": "Kalsiyum"
-        },
-        "folateRich": {
-          "description": "Folat nöral tüp gelişimi ve DNA sentezi için gereklidir. Gebelik öncesi ve erken gebelikte kritik öneme sahiptir.",
-          "foods": "Koyu yeşil yapraklılar, mercimek, nohut, kuşkonmaz, avokado, brokoli, Brüksel lahanası",
-          "title": "Folat Açısından Zengin"
-        },
-        "hydration": {
-          "description": "Yeterli su alımı servikal mukus üretimi, kan dolaşımı ve toksin atılımı için kritiktir.",
-          "foods": "Su (günde 8-10 bardak), bitkisel çaylar, salatalık, karpuz, domates",
-          "title": "Hidrasyon"
-        },
-        "ironSources": {
-          "description": "Demir oksijen taşınması ve enerji üretimi için gereklidir. Adet kanayan kadınlarda eksiklik riski yüksektir.",
-          "foods": "Kırmızı et, ıspanak, mercimek, kuru kayısı, kabak çekirdeği, koyu çikolata",
-          "title": "Demir Kaynakları"
-        },
-        "omega3": {
-          "description": "Omega-3'ler hormonal denge, yumurta kalitesi ve anti-inflamatuar etki için önemlidir.",
-          "foods": "Somon, sardalya, uskumru, ceviz, keten tohumu, chia tohumu",
-          "title": "Omega-3 Yağ Asitleri"
-        },
-        "protein": {
-          "description": "Protein hücre onarımı, hormon üretimi ve bağışıklık fonksiyonu için temeldir. Hem bitkisel hem hayvansal kaynaklar önemlidir.",
-          "foods": "Yumurta, tavuk, balık, mercimek, nohut, kinoa, Yunan yoğurdu",
-          "title": "Protein"
-        },
-        "vitaminD": {
-          "description": "D vitamini kalsiyum emilimi, bağışıklık fonksiyonu ve hormonal düzenleme için önemlidir. Eksikliği doğurganlığı olumsuz etkiler.",
-          "foods": "Güneş ışığı, yağlı balıklar, yumurta sarısı, zenginleştirilmiş süt, mantar",
-          "title": "D Vitamini"
-        },
-        "zinc": {
-          "description": "Çinko hücre bölünmesi, hormonal denge ve bağışıklık fonksiyonu için gereklidir. Hem erkek hem kadın doğurganlığında rol oynar.",
-          "foods": "İstiridye, kırmızı et, kabak çekirdeği, nohut, fındık, yulaf",
-          "title": "Çinko"
-        }
-      },
+      "categories": "Kategoriler",
       "categoriesCount": "{{count}} kategori"
     },
     "preeclampsia": {
@@ -5805,68 +5521,7 @@
     },
     "prenatalVitamins": {
       "supplementsCount": "{{count}} takviye",
-      "vitamins": {
-        "calcium": {
-          "description": "Bebeğin kemik ve diş gelişimi için gereklidir. Annenin kemik sağlığını da korur.",
-          "dosage": "Günlük 1000 mg",
-          "title": "Kalsiyum"
-        },
-        "coq10": {
-          "description": "Hücresel enerji üretimini destekler ve güçlü antioksidan etkiye sahiptir. Yumurta kalitesini iyileştirebilir.",
-          "dosage": "Günlük 200-600 mg",
-          "title": "CoQ10"
-        },
-        "folicAcid": {
-          "description": "Nöral tüp defektlerini önlemede en önemli vitamin. Gebelik planlamaya başladığınızda almaya başlayın.",
-          "dosage": "Günlük 400-800 mcg",
-          "title": "Folik Asit"
-        },
-        "iodine": {
-          "description": "Tiroid fonksiyonu ve bebeğin beyin gelişimi için kritik bir mineraldir.",
-          "dosage": "Günlük 220 mcg",
-          "title": "İyot"
-        },
-        "iron": {
-          "description": "Artan kan hacmi ve bebeğin gelişimi için gereklidir. Eksikliği yorgunluk ve anemi yapabilir.",
-          "dosage": "Günlük 27 mg",
-          "title": "Demir"
-        },
-        "omega3DHA": {
-          "description": "Bebeğin beyin ve göz gelişimi için temeldir. Anti-inflamatuar etkileri vardır.",
-          "dosage": "Günlük 200-300 mg DHA",
-          "title": "Omega-3 DHA"
-        },
-        "probiotics": {
-          "description": "Bağırsak sağlığını ve bağışıklık sistemini destekler. Besin emilimini artırır.",
-          "dosage": "Günlük 1-10 milyar CFU",
-          "title": "Probiyotikler"
-        },
-        "vitaminB12": {
-          "description": "Sinir fonksiyonu, kırmızı kan hücresi üretimi ve DNA sentezi için gereklidir.",
-          "dosage": "Günlük 2.6 mcg",
-          "title": "B12 Vitamini"
-        },
-        "vitaminC": {
-          "description": "Demir emilimini artırır, bağışıklığı güçlendirir ve kollajen üretimini destekler.",
-          "dosage": "Günlük 85 mg",
-          "title": "C Vitamini"
-        },
-        "vitaminD": {
-          "description": "Kalsiyum emilimi, bağışıklık fonksiyonu ve kemik gelişimi için kritiktir.",
-          "dosage": "Günlük 600-2000 IU",
-          "title": "D Vitamini"
-        },
-        "vitaminE": {
-          "description": "Antioksidan olarak hücre zarlarını korur. Yumurta kalitesini destekleyebilir.",
-          "dosage": "Günlük 15 mg",
-          "title": "E Vitamini"
-        },
-        "zinc": {
-          "description": "Hücre bölünmesi, bağışıklık fonksiyonu ve DNA sentezi için önemlidir.",
-          "dosage": "Günlük 11 mg",
-          "title": "Çinko"
-        }
-      }
+      "vitamins": "Vitaminler"
     },
     "recipeModifier": {
       "analyzeAnother": "Başka bir tarif analiz et",
@@ -6134,58 +5789,7 @@
       "title": "Akıllı Atıştırmalık Planlayıcısı"
     },
     "stressFertility": {
-      "topics": {
-        "acceptance": {
-          "content": "Kontrol edemediğiniz şeyleri kabul etmek paradoks olarak stresi azaltır. Bu 'pes etmek' değil, belirsizlikle barış içinde yaşamayı öğrenmektir.",
-          "practice": "Her gün kendinize söyleyin: 'Elimden gelenin en iyisini yapıyorum ve bu yeterli.'",
-          "title": "Kabul ve Esneklik"
-        },
-        "breathing": {
-          "content": "Diyafram nefesi vagus sinirini uyarır ve 'dinlenme ve sindirim' yanıtını aktive eder. Bu, kortizol düşürür ve kan basıncını normalize eder.",
-          "practice": "4-7-8 tekniği: 4 saniye nefes alın, 7 saniye tutun, 8 saniye verin. Günde 2 kez tekrarlayın.",
-          "title": "Nefes Teknikleri"
-        },
-        "cortisol": {
-          "content": "Kortizol 'stres hormonu' olarak bilinir. Kronik yüksek seviyeler progesteron üretimini azaltır çünkü vücut progesteron öncülerini kortizol üretmek için kullanır. Bu, luteal faz yetmezliğine yol açabilir.",
-          "practice": "Sabah güneş ışığına çıkın ve akşam mavi ışığı azaltın. Bu doğal kortizol ritmini düzenler.",
-          "title": "Kortizol Düzenleme"
-        },
-        "exercise": {
-          "content": "Orta düzeyde egzersiz endorfin salınımını artırır ve kortizolü düşürür. Ancak aşırı yoğun egzersiz tam tersine stres yanıtını artırabilir.",
-          "practice": "Haftada 4-5 gün 30 dakika yürüyüş, yoga veya yüzme yapın.",
-          "title": "Stres Azaltıcı Egzersiz"
-        },
-        "journaling": {
-          "content": "Duyguları yazıya dökmek stres hormonlarını azaltır ve duygusal işlemeyi destekler. Doğurganlık yolculuğundaki belirsizlik ve kaygıyla başa çıkmada etkili bir araçtır.",
-          "practice": "Her akşam 3 şükran cümlesi ve 1 endişe yazın. Endişeyi yazıp bırakmak rahatlatıcıdır.",
-          "title": "Günlük Tutma"
-        },
-        "mindfulness": {
-          "content": "Araştırmalar, farkındalık meditasyonunun doğurganlık hastalarında kaygıyı %30'a kadar azaltabildiğini göstermektedir. Düzenli uygulama parasempatik sinir sistemini aktive eder.",
-          "practice": "Günde 10 dakika rehberli meditasyon uygulamasıyla başlayın. Nefese odaklanın.",
-          "title": "Farkındalık Meditasyonu"
-        },
-        "professionalHelp": {
-          "content": "Doğurganlık odaklı terapistler veya danışmanlar, bu süreçte ortaya çıkan kaygı, depresyon ve ilişki zorluklarıyla başa çıkmanıza yardımcı olabilir.",
-          "practice": "Duygusal yük ağır hissediyorsa bir doğurganlık danışmanı ile görüşme randevusu alın.",
-          "title": "Profesyonel Destek"
-        },
-        "sleep": {
-          "content": "Yetersiz uyku leptin, ghrelin ve insülin direncini etkiler. Bunların hepsi yumurtlama döngüsünü doğrudan etkiler. 7-9 saat kaliteli uyku hormonal denge için kritiktir.",
-          "practice": "Yatmadan 1 saat önce tüm ekranları kapatın ve karanlık, serin bir odada uyuyun.",
-          "title": "Uyku Kalitesi"
-        },
-        "socialSupport": {
-          "content": "Doğurganlık yolculuğunu paylaşmak yalnızlık hissini azaltır. Destek grupları, güvenilir arkadaşlar veya çevrimiçi topluluklar duygusal yükü hafifletir.",
-          "practice": "Bu hafta güvendiğiniz birine duygularınızı açın veya bir destek grubuna katılın.",
-          "title": "Sosyal Destek"
-        },
-        "stressHormones": {
-          "content": "Kronik stres hipotalamus-hipofiz-gonad eksenini bozar. Yüksek kortizol GnRH salınımını baskılar, bu da FSH ve LH üretimini azaltarak yumurtlamayı geciktirebilir veya engelleyebilir.",
-          "practice": "Günde 5 dakika derin nefes egzersizi yapın — 4 saniye nefes alın, 4 saniye tutun, 6 saniye verin.",
-          "title": "Stres ve Üreme Hormonları"
-        }
-      },
+      "topics": "Konular",
       "topicsCount": "{{count}} konu"
     },
     "stressRelief": {
@@ -6357,78 +5961,7 @@
       "week": "Hafta {{week}}"
     },
     "twwCompanion": {
-      "days": {
-        "day1": {
-          "body": "Yumurtlama gerçekleşti! Döllenmiş yumurta fallop tüpünden rahime doğru yolculuğuna başlıyor. Bugün sakin olmaya odaklanın.",
-          "tip": "Bugün normal rutininize devam edin. Stres yapmayın, vücudunuz bildiğini yapıyor.",
-          "title": "1. Gün — Yolculuk Başlıyor"
-        },
-        "day10": {
-          "body": "Bazı kadınlar göğüs hassasiyeti, yorgunluk veya hafif bulantı hissedebilir. Ancak bunlar PMS belirtileriyle çok benzerdir.",
-          "tip": "Belirtileri aşırı yorumlamaktan kaçının — her iki durum da aynı hislere neden olabilir.",
-          "title": "10. Gün — Erken Belirtiler Olabilir"
-        },
-        "day11": {
-          "body": "Hassas kan testleri hCG'yi tespit edebilir, ancak idrar testleri için henüz erken olabilir.",
-          "tip": "Bir arkadaşla vakit geçirin veya sevdiğiniz bir aktivite yapın — dikkatinizi dağıtın.",
-          "title": "11. Gün — Sabır Zamanı"
-        },
-        "day12": {
-          "body": "Erken gebelik testleri bazı kadınlarda pozitif sonuç verebilir. Ancak negatif sonuç henüz kesin değildir.",
-          "tip": "Adet beklenen günü beklemek en güvenilir sonucu verir.",
-          "title": "12. Gün — Test Yaklaşıyor"
-        },
-        "day13": {
-          "body": "hCG seviyeleri test tarafından tespit edilebilir seviyeye ulaşmış olabilir. Yarın veya adet beklenen günde test yapabilirsiniz.",
-          "tip": "Sonuç ne olursa olsun, kendinize nazik olun.",
-          "title": "13. Gün — Neredeyse Bekleme Bitti"
-        },
-        "day14": {
-          "body": "Adet beklenen gün geldi! Sabah ilk idrarla test yapın — hCG konsantrasyonu en yüksek bu zamandadır.",
-          "tip": "Pozitif mi? Tebrikler! Negatif mi? Bir döngü daha deneyebilirsiniz. Her iki durumda da kendinizi takdir edin.",
-          "title": "14. Gün — Test Günü"
-        },
-        "day2": {
-          "body": "Eğer döllenme olduysa, zigot hızla bölünmeye devam ediyor. 2 hücreden 4 hücreye geçiyor.",
-          "tip": "Bol su için ve sağlıklı beslenmeye devam edin.",
-          "title": "2. Gün — Hücre Bölünmesi"
-        },
-        "day3": {
-          "body": "Embriyo şimdi bir morula — 16 hücreli bir top. Hâlâ fallop tüpünde ilerliyor.",
-          "tip": "Hafif bir yürüyüş yapın. Dolaşımınızı destekleyin.",
-          "title": "3. Gün — Morula Aşaması"
-        },
-        "day4": {
-          "body": "Morula blastosiste dönüşmeye başlıyor. İç hücre kütlesi (bebek olacak kısım) ve dış tabaka (plasenta olacak) ayrışıyor.",
-          "tip": "Omega-3 açısından zengin gıdalar tüketin — balık, ceviz, keten tohumu.",
-          "title": "4. Gün — Blastosist Oluşumu"
-        },
-        "day5": {
-          "body": "Blastosist rahme ulaşıyor ve birkaç gün serbest yüzüyor, implantasyon için doğru zamanı bekliyor.",
-          "tip": "Sıcak (sıcak değil) banyo faydalı olabilir. Rahatlamaya odaklanın.",
-          "title": "5. Gün — Rahime Ulaşım"
-        },
-        "day6": {
-          "body": "Blastosist rahim duvarına yapışmaya başlayabilir. Bu süreç 'implantasyon' olarak adlandırılır ve birkaç gün sürebilir.",
-          "tip": "Hafif kramplar veya lekelenme normal olabilir. Panik yapmayın.",
-          "title": "6. Gün — İmplantasyon Başlayabilir"
-        },
-        "day7": {
-          "body": "İmplantasyonun en yaygın gerçekleştiği gün. Blastosist endometriuma gömülüyor.",
-          "tip": "Ağır egzersiz ve stresten kaçının. Vücudunuza alan tanıyın.",
-          "title": "7. Gün — İmplantasyon Penceresi"
-        },
-        "day8": {
-          "body": "Başarılı implantasyondan sonra vücut hCG üretmeye başlar. Ancak seviyeler henüz testle tespit edilemeyecek kadar düşüktür.",
-          "tip": "Sabırlı olun — erken test yapmak yanıltıcı olabilir.",
-          "title": "8. Gün — hCG Üretimi Başlıyor"
-        },
-        "day9": {
-          "body": "hCG seviyeleri her 48-72 saatte ikiye katlanır. Vücut hamileliği desteklemeye hazırlanıyor.",
-          "tip": "Kendinize iyi bakın. İyi uyuyun ve stresten uzak durun.",
-          "title": "9. Gün — hCG Yükseliyor"
-        }
-      },
+      "days": "Günler",
       "subtitle": "Günlük ipuçlarıyla iki haftalık bekleme arkadaşınız"
     },
     "vitaminTracker": {

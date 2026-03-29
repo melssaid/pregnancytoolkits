@@ -4107,183 +4107,11 @@
       "yourWindow": "Tu ventana fértil"
     },
     "fertilityAcademy": {
-      "lessons": {
-        "ageAndFertility": {
-          "content": "La edad es uno de los factores más importantes que afectan la fertilidad:\n\n• Las mujeres nacen con todos los óvulos que jamás tendrán: entre 1 y 2 millones al nacer.\n• En la pubertad, quedan aproximadamente entre 300.000 y 400.000 óvulos. Sólo entre 300 y 400 ovulan durante la vida.\n• La fertilidad alcanza su punto máximo a mediados de los 20 años. A partir de los 30 años comienza un declive gradual.\n• Después de los 35, el declive se acelera. Tanto la calidad como la cantidad de óvulos disminuyen.\n• A los 40 años, la probabilidad de concepción natural por ciclo se reduce a aproximadamente el 5%.\n• La fertilidad masculina también disminuye con la edad, aunque de forma más gradual.\n\nEsto no significa que el embarazo después de los 35 años sea imposible: muchas mujeres conciben de forma natural. Pero comprender el tiempo ayuda a la planificación.",
-          "title": "Edad y fertilidad"
-        },
-        "assistedReproduction": {
-          "content": "Cuando la concepción natural no se logra, existen opciones efectivas:\n\n• Estimulación de la ovulación: Medicamentos que estimulan la producción de óvulos: tratamiento de primera línea.\n• Inseminación intrauterina (IIU): esperma procesado que se inyecta directamente en el útero.\n• Fertilización in vitro (FIV): La técnica más avanzada. Tasas de éxito del 30 al 50 % por ciclo.\n• Inyección intracitoplasmática de espermatozoides (ICSI): un único espermatozoide se inyecta directamente en el óvulo.\n• Pruebas genéticas previas a la implantación (PGT): detección de anomalías cromosómicas en embriones.\n• Cada opción tiene indicaciones específicas: un especialista en fertilidad le orienta hacia la más adecuada.",
-          "title": "Técnicas de Reproducción Asistida"
-        },
-        "cervicalHealth": {
-          "content": "El cuello uterino juega un papel fundamental en la fertilidad:\n\n• Produce moco que cambia a lo largo del ciclo para facilitar o bloquear el paso de los espermatozoides.\n• El moco fértil nutre los espermatozoides y prolonga su vida útil hasta 5 días.\n• Las infecciones cervicales crónicas pueden reducir la calidad del moco.\n• Los procedimientos cervicales previos (como las biopsias de cono) pueden afectar la producción de moco.\n• Mantener un pH vaginal saludable favorece el entorno cervical óptimo para la fertilidad.",
-          "title": "Salud cervical y fertilidad"
-        },
-        "commonMyths": {
-          "content": "Separemos la realidad de la ficción:\n\nMito: Sólo puedes quedar embarazada el día de la ovulación.\nHecho: La ventana fértil dura aproximadamente 6 días. Los espermatozoides pueden sobrevivir hasta 5 días.\n\nMito: La posición durante las relaciones sexuales afecta la concepción.\nHecho: Ninguna evidencia científica respalda esto. Los espermatozoides llegan al cuello uterino en cuestión de segundos.\n\nMito: Los anticonceptivos causan infertilidad.\nHecho: La fertilidad generalmente regresa entre 1 y 3 meses después de suspender la mayoría de los anticonceptivos.\n\nMito: El estrés causa directamente la infertilidad.\nRealidad: Si bien el estrés crónico severo puede afectar las hormonas, el estrés moderado por sí solo rara vez previene la concepción.\n\nMito: Es necesario tener relaciones sexuales todos los días.\nHecho: Cada 1 o 2 días durante la ventana fértil es suficiente. Las relaciones sexuales diarias no reducen la calidad del esperma.\n\nMito: Los suplementos a base de hierbas garantizan la fertilidad.\nHecho: Algunos pueden ayudar, pero ninguno está científicamente probado que garantice la concepción. Consulte siempre a su médico.",
-          "title": "Mitos sobre la fertilidad frente a hechos"
-        },
-        "emotionalWellbeing": {
-          "content": "Intentar concebir puede ser una montaña rusa emocional:\n\n• Es normal sentir esperanza, entusiasmo, frustración y tristeza, a veces todo en un solo ciclo.\n• Aproximadamente 1 de cada 6 parejas experimenta dificultades para concebir. Usted no está solo.\n• El duelo después de una prueba negativa es válido. Permítete sentir sin juzgar.\n• La comunicación con tu pareja es fundamental. Comparte tus sentimientos abiertamente.\n• Considere unirse a una comunidad de apoyo; conectarse con otras personas en el mismo viaje puede ser reconfortante.\n• Establezca límites en torno a los anuncios de embarazo y baby showers si se sienten desencadenantes.\n• El asesoramiento profesional puede proporcionarle estrategias de afrontamiento adaptadas a su situación.\n• Recuerde: su valor no está definido por su fertilidad. Sé amable contigo mismo.",
-          "title": "Bienestar emocional en el viaje"
-        },
-        "endometriosisAwareness": {
-          "content": "La endometriosis afecta a 1 de cada 10 mujeres:\n\n• Un tejido similar al revestimiento uterino crece fuera del útero, lo que provoca inflamación y adherencias.\n• Puede afectar las trompas, los ovarios y la calidad de los óvulos.\n• Síntomas: dolor menstrual intenso, dolor durante las relaciones sexuales y, a veces, ningún síntoma.\n• El diagnóstico temprano mejora los resultados. La laparoscopia es el estándar de oro.\n• Muchas mujeres afectadas conciben de forma natural o con ayuda.\n• Consulte a un especialista en fertilidad si tiene antecedentes familiares o síntomas sospechosos.",
-          "title": "Endometriosis y fertilidad"
-        },
-        "environmentalToxins": {
-          "content": "La exposición diaria a toxinas ambientales puede afectar su fertilidad:\n\n• El BPA en los plásticos imita al estrógeno y altera el equilibrio hormonal.\n• Los ftalatos en los cosméticos y fragancias alteran el sistema endocrino.\n• Los pesticidas aplicados a frutas y verduras están relacionados con una menor calidad de los huevos.\n• Los metales pesados ​​(plomo, mercurio) afectan tanto a los óvulos como a los espermatozoides.\n• Medidas prácticas: envases de vidrio en lugar de plástico, productos de limpieza naturales, lavar bien las frutas.\n• Filtrar el agua potable reduce la exposición a contaminantes.",
-          "title": "Toxinas ambientales y fertilidad"
-        },
-        "epigeneticsFertility": {
-          "content": "Los descubrimientos de la epigenética han cambiado nuestra comprensión de la fertilidad:\n\n• Su nutrición y estilo de vida pueden influir en la expresión genética de su futuro hijo.\n• La deficiencia de folato antes del embarazo afecta la programación genética del feto.\n• El estrés crónico puede dejar \"huellas\" en el ADN que se transfieren al embrión.\n• La contaminación y las toxinas ambientales provocan cambios epigenéticos que pueden afectar a generaciones.\n• Buenas noticias: los cambios epigenéticos negativos son reversibles con un estilo de vida saludable.\n• De 3 a 6 meses de mejoras antes del embarazo marcan una diferencia real en la salud fetal.",
-          "title": "Epigenética y salud generacional"
-        },
-        "exerciseBalance": {
-          "content": "El ejercicio es un arma de doble filo para la fertilidad:\n\n• La actividad moderada (150 minutos/semana) mejora la ovulación y la fertilidad.\n• El ejercicio intenso y continuo puede causar una 'deficiencia relativa de energía' que detiene la ovulación.\n• Caminar, nadar y hacer yoga se encuentran entre las mejores opciones.\n• El entrenamiento de fuerza moderado mejora la sensibilidad a la insulina (útil para el síndrome de ovario poliquístico).\n• El yoga para la fertilidad combina el movimiento con la reducción del estrés.\n• Si su período desaparece con el ejercicio intenso, reduzca la intensidad inmediatamente.\n• El equilibrio entre movimiento y descanso es clave.",
-          "title": "Equilibrar el ejercicio y la fertilidad"
-        },
-        "fertilityPreservation": {
-          "content": "La preservación de la fertilidad es una opción disponible que le brinda flexibilidad en la planificación:\n\n• Congelación de óvulos: Edad ideal antes de los 35 años. Excelentes resultados con técnicas modernas.\n• Congelación de embriones: Opción para parejas casadas. Tasas de éxito más altas que los óvulos solos.\n• Razones de la congelación: retraso en la maternidad, quimioterapia, condiciones médicas.\n• El proceso requiere estimulación hormonal durante 10 a 14 días y luego la extracción de óvulos.\n• El costo y el almacenamiento son factores a considerar.\n• Consulta con un especialista en fertilidad para valorar si es adecuado para tu situación.",
-          "title": "Preservación de la fertilidad"
-        },
-        "fertilizationBasics": {
-          "content": "Después de la ovulación, la fertilización puede ocurrir en las trompas de Falopio:\n\n• De los millones de espermatozoides liberados, sólo unos pocos cientos llegan al óvulo.\n• Un espermatozoide penetra la capa externa del óvulo, lo que desencadena una reacción química que impide que otros espermatozoides entren.\n• El óvulo fertilizado (cigoto) comienza a dividirse a medida que viaja hacia el útero durante 3 a 4 días.\n• Alrededor del día 6 al 10 después de la ovulación, el blastocisto se implanta en el revestimiento del útero.\n• La implantación puede causar pequeñas manchas, conocidas como sangrado de implantación.\n• Una vez implantado, el cuerpo comienza a producir hCG, la hormona detectada por las pruebas de embarazo.",
-          "title": "Fertilización e implantación"
-        },
-        "geneticFactors": {
-          "content": "Los genes juegan un papel más importante de lo esperado en la fertilidad:\n\n• El examen genético de portadores revela el riesgo de transmitir enfermedades genéticas a los niños.\n• La mutación MTHFR afecta el metabolismo del folato; el metilfolato puede ser mejor.\n• El síndrome de Turner y las anomalías cromosómicas afectan la reserva ovárica.\n• Los antecedentes familiares de menopausia precoz pueden indicar una disminución temprana de la reserva.\n• Se recomienda la prueba de cariotipo en casos de aborto espontáneo recurrente.\n• El asesoramiento genético está disponible y es útil para quienes tienen antecedentes familiares específicos.",
-          "title": "Factores genéticos y fertilidad"
-        },
-        "hormonesRole": {
-          "content": "Varias hormonas orquestan tu fertilidad:\n\n• FSH (Hormona Folículo Estimulante): Estimula el crecimiento de los folículos en los ovarios. Probado el día 3 de tu ciclo para evaluar la reserva ovárica.\n\n• LH (hormona luteinizante): desencadena la ovulación. Los kits de predicción de la ovulación detectan el aumento de LH.\n\n• Estrógeno (estradiol): promueve el desarrollo del folículo y espesa el revestimiento del útero. También afecta la calidad del moco cervical.\n\n• Progesterona: Producida después de la ovulación, mantiene el revestimiento del útero para una posible implantación. La progesterona baja puede afectar la regularidad del ciclo.\n\n• AMH (Hormona Antimülleriana): Refleja el número de óvulos restantes (reserva ovárica). Útil para la planificación de la fertilidad.\n\n• Hormonas tiroideas (TSH, T3, T4): los desequilibrios tiroideos pueden alterar la ovulación y la regularidad del ciclo.",
-          "title": "Hormonas clave de fertilidad"
-        },
-        "immunologyFertility": {
-          "content": "El sistema inmunológico juega un papel delicado durante el embarazo:\n\n• El cuerpo debe aceptar el embrión (la mitad de sus genes del padre) sin rechazarlo.\n• Las células NK uterinas ayudan con la implantación, pero una actividad excesiva puede obstaculizarla.\n• Los anticuerpos antifosfolípidos están relacionados con abortos espontáneos recurrentes.\n• Las enfermedades autoinmunes (lupus, enfermedad de Hashimoto) pueden afectar la fertilidad.\n• La inflamación pélvica crónica puede dañar las trompas.\n• Un estilo de vida antiinflamatorio (nutrición, sueño, movimiento) apoya una inmunidad equilibrada.",
-          "title": "Inmunología y fertilidad"
-        },
-        "implantationWindow": {
-          "content": "La ventana de implantación es el breve período en el que el revestimiento del útero está listo para recibir el embrión:\n\n• Normalmente ocurre entre los días 6 y 10 después de la ovulación.\n• Durante este tiempo, el endometrio secreta proteínas especiales que ayudan al embrión a adherirse.\n• La progesterona juega un papel central en la preparación del revestimiento.\n• Factores que afectan la calidad de la ventana: inflamación crónica, espesor insuficiente del revestimiento o trastornos inmunológicos.\n• El descanso y una buena nutrición durante la fase lútea apoyan el proceso de implantación.",
-          "title": "La ventana de implantación"
-        },
-        "lifestyleFactors": {
-          "content": "Tus hábitos diarios impactan significativamente en la fertilidad:\n\n• Peso: Tanto el bajo peso (IMC < 18,5) como el sobrepeso (IMC > 30) pueden alterar la ovulación. Incluso un cambio de peso del 5 al 10 % puede mejorar la regularidad del ciclo.\n\n• Fumar: Reduce la calidad de los óvulos, daña las trompas de Falopio y acelera la pérdida de óvulos. El humo de segunda mano también es perjudicial.\n\n• Alcohol: El consumo excesivo de alcohol está relacionado con ciclos irregulares y fertilidad reducida. El consumo moderado o nulo de alcohol es lo más seguro cuando se intenta concebir.\n\n• Cafeína: más de 200 a 300 mg al día (aproximadamente 2 tazas de café) pueden reducir ligeramente la fertilidad.\n\n• Ejercicio: la actividad moderada favorece la fertilidad. El ejercicio excesivo e intenso puede alterar la ovulación.\n\n• Sueño: La falta de sueño altera las hormonas reproductivas. Trate de dormir entre 7 y 9 horas por noche.\n\n• Toxinas ambientales: limite la exposición a pesticidas, metales pesados ​​y ciertos plásticos (BPA).",
-          "title": "Factores del estilo de vida que afectan la fertilidad"
-        },
-        "maleFertility": {
-          "content": "La fertilidad masculina es igualmente importante en el proceso de concepción:\n\n• La producción de esperma tarda unos 74 días. Los cambios en el estilo de vida necesitan tiempo para mostrar resultados.\n• La salud óptima del esperma requiere: evitar el calor excesivo (jacuzzis, computadoras portátiles en el regazo), mantener un peso saludable y controlar el estrés.\n• Factores que pueden reducir la calidad del esperma: fumar, alcohol excesivo, ciertos medicamentos, esteroides anabólicos y drogas recreativas.\n• Un análisis de semen es una prueba sencilla y no invasiva que evalúa el recuento, la motilidad y la morfología de los espermatozoides.\n• La edad también afecta la fertilidad masculina: la calidad del esperma disminuye gradualmente después de los 40 años.\n• Nutrientes clave para la salud del esperma: zinc, selenio, vitamina C, vitamina E, folato y ácidos grasos omega-3.",
-          "title": "Conceptos básicos de fertilidad masculina"
-        },
-        "menstrualCycle": {
-          "content": "Su ciclo menstrual se divide en cuatro fases principales:\n\n1. Fase menstrual (días 1 a 5): el revestimiento del útero se desprende, lo que marca el inicio de un nuevo ciclo.\n\n2. Fase folicular (días 1 a 13): la hormona estimulante del folículo (FSH) hace que los ovarios desarrollen folículos. El estrógeno aumenta, engrosando el revestimiento del útero.\n\n3. Ovulación (día 14 aproximadamente): un aumento de la hormona luteinizante (LH) desencadena la liberación de un óvulo maduro. Este es tu momento más fértil.\n\n4. Fase lútea (días 15 a 28): el folículo vacío se convierte en el cuerpo lúteo y produce progesterona para mantener el revestimiento. Si no se produce la fertilización, los niveles hormonales bajan y el ciclo se reinicia.\n\nComprender estas fases te ayuda a identificar tu ventana fértil y a trabajar con el ritmo natural de tu cuerpo.",
-          "title": "Comprender su ciclo menstrual"
-        },
-        "mindBodyConnection": {
-          "content": "La relación entre mente y cuerpo es más profunda de lo que imaginamos en la fertilidad:\n\n• El estrés crónico activa el eje HPA que suprime las hormonas reproductivas.\n• Las técnicas de relajación (meditación, yoga, respiración profunda) mejoran considerablemente los resultados de fertilidad.\n• La terapia cognitivo-conductual (TCC) ha mostrado resultados positivos en la reducción de la ansiedad por la fertilidad.\n• La visualización positiva y las afirmaciones activan vías neuronales que apoyan el equilibrio hormonal.\n• Los grupos de apoyo reducen los sentimientos de aislamiento y mejoran la salud mental.\n• El arte, la música y la escritura creativa son herramientas terapéuticas eficaces durante el proceso de fertilidad.\n• Busque ayuda profesional si la ansiedad o la tristeza comienzan a dominar su vida.",
-          "title": "La conexión mente-cuerpo"
-        },
-        "nutritionFertility": {
-          "content": "La dieta afecta directamente la calidad de los óvulos y los espermatozoides:\n\n• La dieta mediterránea es la que mejores resultados ha mostrado en los estudios de fertilidad.\n• Las grasas saludables (omega-3, aceite de oliva) apoyan la producción de hormonas.\n• La proteína vegetal puede ser mejor que la proteína animal para algunas mujeres.\n• Evite las grasas trans, que duplican el riesgo de infertilidad relacionada con la ovulación.\n• Los alimentos orgánicos reducen la exposición a pesticidas que alteran las hormonas.\n• El hierro de origen vegetal + vitamina C mejora significativamente la absorción.",
-          "title": "Nutrición óptima para la fertilidad"
-        },
-        "optimizingTiming": {
-          "content": "El tiempo es crucial para maximizar sus posibilidades:\n\n• Los mejores días para la concepción son los 2 o 3 días antes de la ovulación y el día mismo de la ovulación.\n• Tener relaciones sexuales cada 1 o 2 días durante la ventana fértil proporciona los mejores resultados.\n• En la mayoría de los hombres, la calidad del esperma no se reduce significativamente con la eyaculación diaria.\n• Después del coito, acostarse durante 10 a 15 minutos puede mejorar ligeramente el transporte de espermatozoides, aunque la evidencia es limitada.\n• Lubricantes: Algunos lubricantes comerciales pueden reducir la motilidad de los espermatozoides. Utilice marcas favorables a la fertilidad si es necesario.\n• Realice un seguimiento de su ciclo durante 2 a 3 meses antes de intentarlo activamente, para comprender su patrón personal.\n• Manténgase hidratado y mantenga una dieta equilibrada durante la ventana fértil.\n• Ambos socios deben evitar el consumo excesivo de alcohol durante la ventana fértil.",
-          "title": "Optimización del momento de la concepción"
-        },
-        "ovulationProcess": {
-          "content": "La ovulación es la liberación de un óvulo maduro de uno de los ovarios. Esto es lo que sucede:\n\n• En los días previos a la ovulación, el aumento de los niveles de estrógeno hace que crezca el folículo dominante.\n• Un aumento brusco de LH hace que el folículo se rompa y libere el óvulo en la trompa de Falopio.\n• El óvulo sobrevive entre 12 y 24 horas después de su liberación. Los espermatozoides pueden sobrevivir hasta 5 días en el tracto reproductivo.\n• Esto significa que su ventana fértil abarca aproximadamente 6 días: los 5 días antes de la ovulación y el día de la ovulación en sí.\n\nAlgunas mujeres sienten una punzada o un calambre leve (mittelschmerz) durante la ovulación. Otros notan cambios en el moco cervical, que se vuelve claro y elástico como la clara de huevo cruda.",
-          "title": "Cómo funciona la ovulación"
-        },
-        "pcosManagement": {
-          "content": "El síndrome de ovario poliquístico (SOP) afecta entre el 8 y el 13 % de las mujeres:\n\n• La causa más común de anovulación e infertilidad relacionada con la ovulación.\n• Síntomas clave: períodos irregulares, acné, crecimiento excesivo de cabello, resistencia a la insulina.\n• Los cambios en el estilo de vida son muy eficaces: perder entre un 5% y un 10% del peso puede restablecer la ovulación.\n• El inositol ha mostrado resultados prometedores en la mejora de la sensibilidad a la insulina y la calidad de los óvulos.\n• Una dieta equilibrada y baja en azúcar favorece la regularidad hormonal.\n• Medicamentos como el clomifeno o el letrozol estimulan con éxito la ovulación en muchos casos.",
-          "title": "Manejo del síndrome de ovario poliquístico y la fertilidad"
-        },
-        "recurrentLoss": {
-          "content": "La pérdida recurrente de embarazos (dos o más) requiere una evaluación integral:\n\n• Entre el 15% y el 20% de los embarazos terminan en un aborto espontáneo, la mayoría debido a anomalías cromosómicas.\n• Causas tratables: trastornos de la coagulación, anomalías uterinas, problemas de tiroides.\n• El tabique uterino es la anomalía uterina más común y puede corregirse quirúrgicamente.\n• El síndrome antifosfolípido se puede tratar con aspirina y heparina.\n• El apoyo psicológico es esencial: el duelo y la ansiedad después de una pérdida son naturales y válidos.\n• Entre el 60% y el 70% de las parejas con pérdidas recurrentes inexplicables logran el siguiente embarazo.",
-          "title": "Comprender la pérdida recurrente del embarazo"
-        },
-        "secondaryInfertility": {
-          "content": "La infertilidad secundaria significa dificultad para concebir después de haber tenido un hijo anterior:\n\n• Representa aproximadamente el 50% de los casos de infertilidad, pero se analiza menos.\n• Causas: avance de la edad, cambios de peso, complicaciones de embarazos anteriores.\n• Las adherencias por cesárea o infección pueden afectar la fertilidad.\n• Es posible que los cambios hormonales después del primer parto no se normalicen por completo.\n• Las expectativas sociales (“tienes un hijo, sé agradecido”) aumentan la carga psicológica.\n• No demore en buscar ayuda: se aplican los mismos criterios.",
-          "title": "Infertilidad secundaria"
-        },
-        "sleepHormones": {
-          "content": "Dormir no es un lujo, es una necesidad biológica para la fertilidad:\n\n• La melatonina (hormona del sueño) actúa como antioxidante protegiendo los huevos.\n• Dormir menos de 6 horas aumenta el cortisol, que suprime la GnRH y la ovulación.\n• El trabajo por turnos se asocia con un aumento del ciclo y problemas de fertilidad.\n• El ritmo circadiano regula la secreción de FSH y LH.\n• La luz azul de las pantallas suprime la melatonina y altera el ritmo.\n• Meta: dormir entre 7 y 9 horas en una habitación oscura y fresca con una rutina constante.",
-          "title": "Hormonas del sueño y la fertilidad"
-        },
-        "supplementsGuide": {
-          "content": "Los suplementos pueden favorecer tu fertilidad, pero no todos son iguales:\n\n• Ácido fólico/metilfolato: Esencial: comience 3 meses antes de intentarlo.\n• CoQ10 (200–600 mg): apoya la energía del óvulo, especialmente después de los 35.\n• Vitamina D (1000–2000 UI): la mayoría de las mujeres tienen deficiencia.\n• Omega-3 DHA (200–300 mg): para la salud hormonal y la inflamación.\n• Inositol (4 g de myo + 100 mg de d-chiro): especialmente útil para el síndrome de ovario poliquístico.\n• Hierro: Sólo si las pruebas muestran una deficiencia; el exceso es perjudicial.\n• Siempre consulte a su médico antes de comenzar cualquier suplemento nuevo.",
-          "title": "Guía de suplementos inteligentes"
-        },
-        "thyroidFertility": {
-          "content": "Los trastornos de la tiroides se encuentran entre las causas más tratables de problemas de fertilidad:\n\n• El hipotiroidismo puede causar ciclos irregulares, ausencia de ovulación o aborto espontáneo prematuro.\n• El hipertiroidismo está relacionado con períodos irregulares y dificultad para concebir.\n• Incluso el hipotiroidismo subclínico (TSH 2,5–4,0) puede afectar la fertilidad.\n• Los anticuerpos tiroideos (Anti-TPO) son comunes y pueden afectar la implantación.\n• Se recomiendan las pruebas de TSH y FT4 a todas las mujeres que planean un embarazo.\n• El tratamiento con levotiroxina es seguro y eficaz mientras se intenta concebir.",
-          "title": "Tiroides y fertilidad"
-        },
-        "trackingMethods": {
-          "content": "Varios métodos pueden ayudarte a identificar tu ventana fértil:\n\n1. Método del calendario: realice un seguimiento de la duración del ciclo durante varios meses. La ovulación suele ocurrir 14 días antes de su próximo período.\n\n2. Temperatura corporal basal (TBC): Tómate la temperatura todas las mañanas antes de levantarte. Un ligero aumento (0,2 a 0,5 °C) confirma que se ha producido la ovulación.\n\n3. Observación del moco cervical: a medida que se acerca la ovulación, el moco se vuelve claro, elástico y resbaladizo (como la clara de huevo cruda).\n\n4. Kits de predicción de la ovulación (OPK): detectan el aumento de LH en la orina entre 12 y 36 horas antes de la ovulación.\n\n5. Monitores de fertilidad: dispositivos avanzados que rastrean múltiples hormonas para obtener una imagen más completa.\n\n6. Posición cervical: el cuello uterino se vuelve más alto, más suave y más abierto durante la ovulación.\n\nLa combinación de múltiples métodos aumenta la precisión.",
-          "title": "Métodos de seguimiento de la fertilidad"
-        },
-        "whenToSeekHelp": {
-          "content": "Considere buscar orientación profesional sobre fertilidad si:\n\n• Tienes menos de 35 años y llevas 12 meses intentándolo sin éxito.\n• Tiene entre 35 y 39 años y lo ha estado intentando durante 6 meses.\n• Tienes 40 años o más; consulta con anticipación, ya que el tiempo es un factor.\n• Tiene períodos irregulares o ausentes.\n• Tiene una afección conocida: endometriosis, síndrome de ovario poliquístico, trastorno de la tiroides o cirugía pélvica previa.\n• Ha experimentado abortos espontáneos recurrentes (2 o más).\n• Su pareja tiene problemas de fertilidad conocidos.\n\nUn especialista en fertilidad puede realizar pruebas (paneles hormonales, ecografías, análisis de semen) y analizar opciones que van desde cambios en el estilo de vida hasta reproducción asistida.",
-          "title": "Cuándo consultar a un especialista"
-        }
-      },
+      "lessons": "Lecciones",
       "lessonsCount": "Módulos de aprendizaje {{count}}"
     },
     "fertilitySigns": {
-      "signs": {
-        "basalTemp": {
-          "description": "Después de la ovulación, la progesterona hace que la temperatura corporal en reposo aumente entre 0,2 y 0,5 °C. Este cambio confirma que ya se ha producido la ovulación. Al realizar un seguimiento de la BBT durante varios ciclos, puede identificar su patrón de ovulación típico.",
-          "tip": "Tómate la temperatura todas las mañanas a la misma hora, antes de levantarte de la cama. Utilice un termómetro específico para BBT para mayor precisión.",
-          "title": "Cambio de temperatura corporal basal"
-        },
-        "bloating": {
-          "description": "Los cambios hormonales relacionados con la ovulación, en particular el aumento de la progesterona, pueden provocar retención de líquidos e hinchazón leve. Esta es una señal común de que su cuerpo está pasando a la fase lútea.",
-          "tip": "Mantenerse hidratado y reducir la ingesta de sodio puede ayudar a controlar la hinchazón relacionada con la ovulación.",
-          "title": "Hinchazón leve"
-        },
-        "breastTenderness": {
-          "description": "El aumento de progesterona después de la ovulación puede causar sensibilidad, plenitud o sensibilidad en los senos. Este es uno de los síntomas de la fase lútea más comúnmente observados. Algunas mujeres también experimentan esto en los días previos a la ovulación debido al aumento de estrógeno.",
-          "tip": "Realice un seguimiento de cuándo comienza y termina la sensibilidad para correlacionarlo con su patrón de ovulación a lo largo del tiempo.",
-          "title": "Sensibilidad en los senos"
-        },
-        "cervicalMucus": {
-          "description": "A medida que se acerca la ovulación, el moco cervical se vuelve más abundante, claro y elástico, parecido a la clara de huevo cruda. Este moco de \"calidad fértil\" ayuda a que los espermatozoides viajen más fácilmente a través del cuello uterino. Después de la ovulación, la mucosidad normalmente se vuelve más espesa, más turbia o se seca.",
-          "tip": "Controle la mucosidad diariamente limpiándose antes de orinar. El moco de tipo más fértil se extiende entre los dedos sin romperse.",
-          "title": "Cambios en el moco cervical"
-        },
-        "cervicalPosition": {
-          "description": "Durante la ventana fértil, el cuello uterino se mueve hacia arriba en el canal vaginal, se vuelve más suave (como los labios frente a la punta de la nariz) y se abre ligeramente. Después de la ovulación, desciende, se reafirma y se cierra.",
-          "tip": "Verifique la posición cervical en la misma posición diariamente (por ejemplo, de pie con un pie elevado). Se necesita práctica: tenga paciencia consigo mismo.",
-          "title": "Cambios de posición cervical"
-        },
-        "heightenedSenses": {
-          "description": "Algunas mujeres reportan un sentido del olfato más agudo durante la ovulación, posiblemente debido a niveles elevados de estrógeno. Las investigaciones sugieren que esto puede ser una adaptación evolutiva. Algunos también notan cambios sutiles en las preferencias gustativas.",
-          "tip": "Si notas que los olores parecen más fuertes hacia la mitad del ciclo, puede ser un indicador de ovulación personal que vale la pena seguir.",
-          "title": "Sentidos intensificados"
-        },
-        "libidoChanges": {
-          "description": "Muchas mujeres experimentan un aumento natural del deseo alrededor de la ovulación. Esto se debe al aumento de estrógeno y testosterona que precede al pico de LH. Es una de las formas que tiene el cuerpo de optimizar las posibilidades de concepción.",
-          "tip": "Preste atención a estos cambios naturales: a menudo se alinean con sus días más fértiles.",
-          "title": "Cambios en el deseo"
-        },
-        "lightSpotting": {
-          "description": "Algunas mujeres experimentan una pequeña cantidad de manchas de color rosa claro o marrón alrededor del día de la ovulación. Es causada por la ligera caída de estrógeno que ocurre justo antes del aumento de LH o por la ruptura del folículo en sí. Suele ser muy ligero y breve.",
-          "tip": "El manchado de ovulación es diferente del sangrado de implantación (que ocurre entre 6 y 12 días después de la ovulación). Siga cuidadosamente el tiempo.",
-          "title": "Manchado de ovulación"
-        },
-        "moodShifts": {
-          "description": "El aumento de estrógeno en la fase folicular a menudo mejora el estado de ánimo, la energía y la confianza. Después de la ovulación, el predominio de la progesterona puede provocar un cambio hacia la calma o, en algunas, irritabilidad y fatiga. Estas fluctuaciones son normales y están impulsadas por hormonas.",
-          "tip": "Llevar un diario de su estado de ánimo a diario puede revelar patrones que se correlacionan con las fases de su ciclo.",
-          "title": "Cambios de humor y energía"
-        },
-        "ovulationPain": {
-          "description": "Algunas mujeres sienten una leve punzada, calambre o dolor en un lado de la parte inferior del abdomen durante la ovulación. Este \"dolor medio\" (mittelschmerz) es causado por la ruptura del folículo para liberar el óvulo. Por lo general, dura desde unos minutos hasta unas pocas horas.",
-          "tip": "Tenga en cuenta de qué lado siente la sensación; puede alternar lados en cada ciclo a medida que la ovulación cambia entre ovarios.",
-          "title": "Sensación de ovulación (Mittelschmerz)"
-        }
-      },
+      "signs": "Señales",
       "signsCount": "{{count}} señales para saber"
     },
     "fetalDevelopment": {
@@ -5656,71 +5484,10 @@
       "yourTrimester": "Su trimestre"
     },
     "preconceptionCheckup": {
-      "ai": {
-        "analyze": "Analiza mi preparación",
-        "priorityTitle": "Recomendaciones prioritarias",
-        "readinessTitle": "Resumen de preparación",
-        "timelineTitle": "Cronograma sugerido",
-        "tipsTitle": "Consejos útiles",
-        "title": "Ideas de preparación"
-      },
+      "ai": "Análisis IA",
       "allComplete": "¡Gran preparación! Discuta sus resultados con su proveedor de atención médica.",
-      "categories": {
-        "essential": "Controles de salud esenciales",
-        "medications": "Medicamentos y vacunas",
-        "screening": "Detección de infecciones e inmunidad",
-        "specialized": "Evaluaciones especializadas"
-      },
-      "checks": {
-        "bloodWork": {
-          "description": "Comprueba si hay anemia, infecciones y la salud general de la sangre. Identifica la deficiencia de hierro que debe abordarse antes del embarazo.",
-          "title": "Conteo sanguíneo completo (CBC)"
-        },
-        "dental": {
-          "description": "La enfermedad de las encías está relacionada con el parto prematuro y el bajo peso al nacer. Los cambios hormonales durante el embarazo pueden empeorar los problemas dentales existentes. Complete cualquier trabajo dental necesario antes de concebir.",
-          "title": "Chequeo Dental"
-        },
-        "generalCheckup": {
-          "description": "Un examen físico completo para evaluar su salud general, presión arterial, peso y analizar sus planes de embarazo.",
-          "title": "Chequeo general de salud"
-        },
-        "geneticScreening": {
-          "description": "Prueba si usted o su pareja son portadores de genes para afecciones como la fibrosis quística, la anemia de células falciformes o la talasemia. Los resultados ayudan a tomar decisiones informadas sobre planificación familiar.",
-          "title": "Detección de portadores genéticos"
-        },
-        "hepatitis": {
-          "description": "La hepatitis B se puede transmitir al bebé durante el parto. Conocer su estado permite tomar medidas preventivas. La hepatitis C requiere seguimiento durante el embarazo.",
-          "title": "Detección de hepatitis B y C"
-        },
-        "hiv": {
-          "description": "Los exámenes de rutina para detectar el VIH y las infecciones de transmisión sexual protegen tanto su salud como la de su futuro bebé. La detección temprana permite un tratamiento eficaz.",
-          "title": "Detección de VIH e ITS"
-        },
-        "medications": {
-          "description": "Revise todos los medicamentos, suplementos y remedios herbales actuales con su médico. Algunos medicamentos no son seguros durante el embarazo y se deben buscar alternativas con anticipación.",
-          "title": "Revisión de medicamentos"
-        },
-        "mentalHealth": {
-          "description": "Hable sobre cualquier historial de depresión, ansiedad u otras afecciones de salud mental con su proveedor de atención médica. Las condiciones preexistentes se pueden controlar de forma proactiva durante el embarazo.",
-          "title": "Evaluación de salud mental"
-        },
-        "pap": {
-          "description": "Detección de anomalías cervicales. Es mejor hacerlo antes del embarazo para abordar cualquier problema sin la complejidad adicional del embarazo.",
-          "title": "Prueba de Papanicolaou / Detección cervical"
-        },
-        "rubella": {
-          "description": "La rubéola durante el embarazo puede causar defectos de nacimiento graves. Si no eres inmune, se recomienda vacunarte al menos 1 mes antes de intentar concebir.",
-          "title": "Inmunidad a la rubéola (sarampión alemán)"
-        },
-        "thyroid": {
-          "description": "Los trastornos de la tiroides son comunes y pueden afectar significativamente la fertilidad y el embarazo. Tanto el hipotiroidismo como el hipertiroidismo deben controlarse antes de concebir.",
-          "title": "Prueba de función tiroidea (TSH)"
-        },
-        "vaccinations": {
-          "description": "Asegúrese de estar al día con las vacunas recomendadas, incluidas MMR, varicela, gripe y Tdap. Algunas vacunas no se pueden administrar durante el embarazo, así que complételas de antemano.",
-          "title": "Revisión de vacunación"
-        }
-      },
+      "categories": "Categorías",
+      "checks": "Exámenes",
       "disclaimer": "Esta lista de verificación es una referencia educativa que le ayudará a organizar conversaciones con su proveedor de atención médica. No reemplaza el consejo, diagnóstico o tratamiento médico profesional. Todos los exámenes y pruebas deben ser discutidos y ordenados por un profesional de la salud calificado.",
       "progressLabel": "Seguimiento de las proyecciones",
       "related": {
@@ -5732,58 +5499,7 @@
       "tracked": "rastreado"
     },
     "preconceptionNutrition": {
-      "categories": {
-        "antioxidants": {
-          "description": "Los antioxidantes protegen los óvulos y los espermatozoides del estrés oxidativo causado por los radicales libres. Son particularmente importantes las vitaminas C y E, el selenio y la CoQ10. Una dieta colorida y variada proporciona un amplio espectro de antioxidantes.",
-          "foods": "Bayas (arándanos, fresas, frambuesas), tomates, pimientos morrones, nueces, semillas, té verde, verduras de hojas verdes oscuras, batatas, zanahorias",
-          "title": "Alimentos ricos en antioxidantes"
-        },
-        "avoidList": {
-          "description": "Ciertos alimentos y sustancias pueden afectar negativamente a la fertilidad. Si bien es poco probable que el consumo ocasional cause daño, reducirlos cuando se intenta concebir activamente puede optimizar la preparación de su cuerpo.",
-          "foods": "Exceso de cafeína (>200 mg/día), alcohol, grasas trans, alimentos altamente procesados, pescado crudo (sushi), pescado con alto contenido de mercurio (pez espada, caballa), exceso de azúcar, edulcorantes artificiales.",
-          "title": "Alimentos para minimizar"
-        },
-        "calcium": {
-          "description": "El calcio es vital para la función reproductiva y apoya el desarrollo de estructuras embrionarias. La ingesta adecuada de calcio antes del embarazo ayuda a generar reservas para el desarrollo esquelético del bebé. Apunta a 1000 mg al día.",
-          "foods": "Lácteos (leche, yogur, queso), leches vegetales fortificadas, kale, brócoli, almendras, sardinas con hueso, tofu, higos.",
-          "title": "Fuentes de calcio"
-        },
-        "folateRich": {
-          "description": "El folato (vitamina B9) es fundamental para prevenir defectos del tubo neural y favorecer una división celular saludable. La ingesta diaria recomendada al intentar concebir es de 400 a 800 mcg. Inicie la suplementación con folato al menos 1 a 3 meses antes de la concepción.",
-          "foods": "Verduras de hojas verdes oscuras (espinacas, col rizada), lentejas, garbanzos, espárragos, brócoli, aguacate, cereales fortificados, frutas cítricas, remolacha, coles de Bruselas.",
-          "title": "Alimentos ricos en folato"
-        },
-        "hydration": {
-          "description": "El agua es esencial para la producción de moco cervical, el transporte de nutrientes y el equilibrio hormonal. La deshidratación puede reducir la calidad del moco cervical y afectar el flujo sanguíneo a los órganos reproductivos. Trate de tomar de 8 a 10 vasos al día.",
-          "foods": "Agua, infusiones (hojas de frambuesa, jengibre), agua de coco, frutas ricas en agua (sandía, pepino, naranja), caldos",
-          "title": "Hidratación"
-        },
-        "ironSources": {
-          "description": "El hierro favorece la producción saludable de sangre y el transporte de oxígeno, que son esenciales para el desarrollo del embarazo. Las mujeres en edad fértil necesitan alrededor de 18 mg al día. La deficiencia de hierro es común y puede afectar la ovulación y la regularidad del ciclo.",
-          "foods": "Carnes rojas, aves, pescado, lentejas, espinacas, cereales fortificados, semillas de calabaza, tofu, chocolate amargo, quinua, orejones",
-          "title": "Alimentos ricos en hierro"
-        },
-        "omega3": {
-          "description": "Los omega-3 favorecen la producción de hormonas, reducen la inflamación y son esenciales para el desarrollo del cerebro y los ojos del feto. DHA y EPA son las formas más biodisponibles. El ALA de origen vegetal también es beneficioso pero se convierte de manera menos eficiente.",
-          "foods": "Salmón, sardinas, caballa, nueces, semillas de chía, semillas de lino, semillas de cáñamo, suplementos de DHA a base de algas, huevos fortificados",
-          "title": "Ácidos grasos omega-3"
-        },
-        "protein": {
-          "description": "La proteína proporciona los componentes básicos de las hormonas y las células nuevas. Las investigaciones sugieren que reemplazar parte de la proteína animal con proteína vegetal puede mejorar los resultados de fertilidad. Apunta a una mezcla equilibrada de ambas fuentes.",
-          "foods": "Huevos, aves magras, pescado, legumbres (frijoles, lentejas), nueces, semillas, yogur griego, tofu, tempeh, quinua",
-          "title": "Proteína de calidad"
-        },
-        "vitaminD": {
-          "description": "Los receptores de vitamina D se encuentran en los ovarios y el útero, lo que sugiere un papel directo en la fertilidad. La deficiencia se asocia con ciclos irregulares, síndrome de ovario poliquístico y tasas reducidas de éxito de la FIV. Mucha gente tiene deficiencia, especialmente en los climas del norte.",
-          "foods": "Exposición a la luz solar (15 a 20 minutos diarios), pescado graso (salmón, atún), yemas de huevo, leche fortificada, champiñones expuestos a la luz ultravioleta, aceite de hígado de bacalao.",
-          "title": "Fuentes de vitamina D"
-        },
-        "zinc": {
-          "description": "El zinc es esencial para el equilibrio hormonal, la calidad de los óvulos y la división celular. También juega un papel crucial en la fertilidad masculina: apoya la producción de esperma y los niveles de testosterona. La ingesta diaria recomendada es de 8 mg para las mujeres.",
-          "foods": "Ostras, carne de res, semillas de calabaza, anacardos, garbanzos, lentejas, yogur, queso, cereales integrales, chocolate amargo",
-          "title": "Fuentes de zinc"
-        }
-      },
+      "categories": "Categorías",
       "categoriesCount": "{{count}} categorías nutricionales"
     },
     "preeclampsia": {
@@ -5805,68 +5521,7 @@
     },
     "prenatalVitamins": {
       "supplementsCount": "Suplementos {{count}} para revisar",
-      "vitamins": {
-        "calcium": {
-          "description": "Si la ingesta de calcio de la madre es insuficiente durante el embarazo, el bebé extraerá calcio de sus huesos. La creación de fuertes reservas de calcio antes del embarazo protege la salud ósea de la madre.",
-          "dosage": "Recomendado: 1000 mg diarios provenientes de alimentos y suplementos combinados. Se absorbe mejor en dosis de 500 mg o menos a la vez.",
-          "title": "Calcio"
-        },
-        "coq10": {
-          "description": "CoQ10 es un antioxidante que apoya la función mitocondrial en los huevos. Como la calidad del óvulo disminuye naturalmente con la edad, la suplementación con CoQ10 puede ayudar a mantener la producción de energía celular. Las investigaciones están en curso pero son prometedoras, especialmente para las mujeres mayores de 35 años.",
-          "dosage": "Dosis común: 100 a 600 mg al día. La forma de ubiquinol se absorbe mejor que la ubiquinona. Consulte a su médico.",
-          "title": "CoQ10 (Coenzima Q10)"
-        },
-        "folicAcid": {
-          "description": "El suplemento preconcepcional más importante. El ácido fólico reduce significativamente el riesgo de defectos del tubo neural (espina bífida, anencefalia). Empiece a tomarlo al menos entre 1 y 3 meses antes de intentar concebir para obtener el máximo beneficio.",
-          "dosage": "Recomendado: 400 a 800 mcg al día. Algunas mujeres (con antecedentes de defectos del tubo neural, que toman ciertos medicamentos) pueden necesitar de 4 a 5 mg; consulte a su médico.",
-          "title": "Ácido fólico (vitamina B9)"
-        },
-        "iodine": {
-          "description": "El yodo es esencial para la función tiroidea, lo que afecta directamente la fertilidad y el desarrollo del cerebro fetal. La deficiencia es la principal causa evitable de discapacidad intelectual en todo el mundo.",
-          "dosage": "Recomendado: 150 mcg al día antes del embarazo, 220 mcg durante el embarazo. Comprueba que tu vitamina prenatal incluya yodo.",
-          "title": "Yodo"
-        },
-        "iron": {
-          "description": "Los requerimientos de hierro aumentan dramáticamente durante el embarazo (de 18 mg a 27 mg diarios). La acumulación de reservas de hierro antes de la concepción ayuda a prevenir la anemia por deficiencia de hierro, que se asocia con partos prematuros y bajo peso al nacer.",
-          "dosage": "Recomendado: 18 mg diarios antes del embarazo. Tomar con vitamina C para mejorar la absorción. Evite tomar con calcio o té.",
-          "title": "Hierro"
-        },
-        "omega3DHA": {
-          "description": "El DHA es crucial para el desarrollo del cerebro y la retina del feto. Iniciar la suplementación antes del embarazo garantiza reservas adecuadas desde las primeras etapas del desarrollo embrionario. La EPA también apoya la salud cardiovascular materna.",
-          "dosage": "Recomendado: 200 a 300 mg de DHA al día. Elija suplementos probados para detectar mercurio y contaminantes.",
-          "title": "Omega-3 DHA"
-        },
-        "probiotics": {
-          "description": "Un microbioma vaginal e intestinal sano favorece la fertilidad. Las cepas de Lactobacillus ayudan a mantener el pH vaginal óptimo, que es importante para la supervivencia de los espermatozoides. La salud intestinal también afecta el metabolismo hormonal y la absorción de nutrientes.",
-          "dosage": "Elija un probiótico de múltiples cepas con cepas de Lactobacillus. Consumir alimentos fermentados: yogur, kéfir, chucrut, kimchi.",
-          "title": "Probióticos"
-        },
-        "vitaminB12": {
-          "description": "La B12 trabaja con el folato para apoyar la síntesis de ADN y el desarrollo del sistema nervioso. La deficiencia es más común en vegetarianos y veganos. Los niveles bajos de B12 se asocian con abortos espontáneos recurrentes y defectos del tubo neural.",
-          "dosage": "Recomendado: 2,4 mcg al día. Los veganos deben tomar suplementos ya que la B12 se encuentra principalmente en productos animales.",
-          "title": "Vitamina B12"
-        },
-        "vitaminC": {
-          "description": "La vitamina C es un poderoso antioxidante que protege los huevos del daño oxidativo. También mejora la absorción de hierro y apoya la función inmune. Los niveles de progesterona también pueden mejorar con una ingesta adecuada de vitamina C.",
-          "dosage": "Recomendado: 75 a 90 mg al día. Se obtiene fácilmente de cítricos, bayas y pimientos morrones.",
-          "title": "vitamina c"
-        },
-        "vitaminD": {
-          "description": "La vitamina D apoya la función inmune, la absorción de calcio y la salud reproductiva. La deficiencia está relacionada con complicaciones del embarazo, como diabetes gestacional y preeclampsia. La mayoría de las personas necesitan suplementos, especialmente en los meses de invierno.",
-          "dosage": "Recomendado: 600 a 2000 UI al día. Su médico puede evaluar sus niveles y recomendar una dosis más alta si es deficiente.",
-          "title": "vitamina d"
-        },
-        "vitaminE": {
-          "description": "La vitamina E favorece el grosor y la calidad del revestimiento endometrial, lo cual es importante para la implantación. También protege las membranas celulares del estrés oxidativo y favorece la salud reproductiva en general.",
-          "dosage": "Recomendado: 15 mg (22 UI) al día. Se encuentra en nueces, semillas y aceites vegetales.",
-          "title": "vitamina e"
-        },
-        "zinc": {
-          "description": "El zinc favorece la calidad del óvulo, el equilibrio hormonal y la función inmune. También desempeña un papel clave en la síntesis de ADN y la división celular, procesos críticos al principio del embarazo.",
-          "dosage": "Recomendado: 8 mg al día para mujeres. La mayoría de las vitaminas prenatales contienen zinc adecuado.",
-          "title": "Zinc"
-        }
-      }
+      "vitamins": "Vitaminas"
     },
     "recipeModifier": {
       "analyzeAnother": "Analizar otra receta",
@@ -6134,58 +5789,7 @@
       "title": "Planificador de Snacks Inteligente"
     },
     "stressFertility": {
-      "topics": {
-        "acceptance": {
-          "content": "Aceptar no significa darse por vencido; significa reconocer que algunas cosas están fuera de tu control mientras te concentras en aquello en lo que puedes influir. Este cambio del control a la aceptación puede reducir significativamente el estrés y mejorar el bienestar emocional durante el proceso de fertilidad.",
-          "practice": "Repite esta afirmación: 'Estoy haciendo todo lo que puedo. Confío en mi cuerpo y en mi viaje. El resultado no define mi valor\".",
-          "title": "Practicando la aceptación"
-        },
-        "breathing": {
-          "content": "La respiración controlada activa directamente el nervio vago, desencadenando la respuesta de relajación. Esto reduce la frecuencia cardíaca, la presión arterial y el cortisol. Es una de las formas más rápidas de pasar de un estado de estrés a un estado de calma. Las diferentes técnicas sirven para diferentes propósitos: algunas dan energía, otras calman.",
-          "practice": "Respiración de caja: Inhale 4 conteos → Mantenga 4 conteos → Exhale 4 conteos → Mantenga 4 conteos. Repita durante 5 minutos. Ideal antes de acostarse o durante momentos de ansiedad.",
-          "title": "Técnicas de respiración"
-        },
-        "cortisol": {
-          "content": "El cortisol es la principal hormona del estrés de su cuerpo. En pequeñas ráfagas, es útil: proporciona energía y concentración. Pero cuando el cortisol permanece crónicamente elevado, puede suprimir las hormonas reproductivas, alterar el sueño, aumentar la inflamación y afectar el estado de ánimo. El objetivo no es eliminar el estrés por completo (¡imposible!), sino controlar su respuesta al estrés.",
-          "practice": "Practica la técnica de respiración 4-7-8: inhala durante 4 segundos, mantén la respiración durante 7, exhala durante 8. Repita 4 veces. Esto activa el sistema nervioso parasimpático.",
-          "title": "Entendiendo el cortisol"
-        },
-        "exercise": {
-          "content": "El ejercicio moderado regular es uno de los analgésicos más eficaces. Libera endorfinas, mejora el sueño y ayuda a regular las hormonas. Sin embargo, el ejercicio excesivo e intenso (entrenamiento de maratón, entrenamiento diario de alta intensidad) puede suprimir la ovulación. El equilibrio es clave.",
-          "practice": "Esta semana, intenta realizar 30 minutos de movimiento moderado durante 5 días: caminar, hacer yoga, nadar o bailar. Observe cómo cambia su estado de ánimo después.",
-          "title": "Alivio del movimiento y el estrés"
-        },
-        "journaling": {
-          "content": "Se ha demostrado científicamente que escribir sobre tus emociones reduce el estrés, mejora la función inmunológica y proporciona claridad. Para llevar un diario de fertilidad, el objetivo no es realizar un seguimiento de los síntomas de forma obsesiva, sino procesar las emociones, celebrar las pequeñas victorias y liberar los miedos.",
-          "practice": "Esta noche, escribe: 1) Una cosa por la que estoy agradecido hoy, 2) Una preocupación que quiero liberar, 3) Una cosa amable que hice por mí mismo.",
-          "title": "Diario terapéutico"
-        },
-        "mindfulness": {
-          "content": "La atención plena es la práctica de estar completamente presente sin juzgar. Los estudios muestran que los programas de reducción del estrés basados ​​en la atención plena (MBSR) pueden reducir la ansiedad y la depresión en mujeres que se someten a tratamientos de fertilidad y pueden mejorar los resultados. Incluso 10 minutos de práctica diaria de atención plena pueden reducir los niveles de cortisol y mejorar la resiliencia emocional.",
-          "practice": "Pruebe un escaneo corporal de 5 minutos: cierre los ojos, respire profundamente y mueva lentamente su atención desde los dedos de los pies hasta la cabeza, notando sensaciones sin intentar cambiarlas.",
-          "title": "Atención plena para la fertilidad"
-        },
-        "professionalHelp": {
-          "content": "Si la ansiedad o la tristeza por la fertilidad están afectando su vida diaria, su sueño, sus relaciones o su trabajo, el apoyo profesional puede ser útil. Los terapeutas especializados en salud mental reproductiva comprenden los desafíos únicos de este viaje. La terapia cognitivo-conductual (TCC) es particularmente eficaz para la ansiedad relacionada con la fertilidad.",
-          "practice": "Si está considerando recibir terapia, busque un terapeuta que se especialice en psicología reproductiva o salud mental perinatal. Muchos ofrecen sesiones virtuales.",
-          "title": "Cuándo buscar apoyo profesional"
-        },
-        "sleep": {
-          "content": "Dormir es cuando tu cuerpo se repara, produce hormonas y procesa emociones. La falta de sueño altera la melatonina (que protege la calidad de los óvulos), aumenta el cortisol y altera la regulación de FSH y LH. Se ha demostrado que las mujeres que duermen menos de 6 horas por noche tienen tasas de fertilidad más bajas.",
-          "practice": "Cree una rutina de relajación: no use pantallas 30 minutos antes de acostarse, atenúe las luces, use aceite esencial de lavanda y mantenga su dormitorio fresco (entre 18 y 20 °C).",
-          "title": "Sueño y fertilidad"
-        },
-        "socialSupport": {
-          "content": "El aislamiento social amplifica el estrés. Compartir su viaje de fertilidad con amigos, familiares o un grupo de apoyo de confianza puede reducir significativamente la carga emocional. No es necesario que comparta con todos; incluso una sola persona que lo apoye marca la diferencia.",
-          "practice": "Identifique a una persona en quien confíe. Comparte algo sobre tu viaje con ellos esta semana. La conexión es curativa.",
-          "title": "Construyendo su red de apoyo"
-        },
-        "stressHormones": {
-          "content": "El estrés crónico desencadena la liberación de cortisol y adrenalina, lo que puede alterar el eje hipotalámico-pituitario-gonadal (HPG), la vía hormonal que controla la ovulación. El cortisol elevado puede suprimir la GnRH (hormona liberadora de gonadotropina), lo que provoca una ovulación irregular o ausente. Si bien es poco probable que el estrés diario moderado impida la concepción, un estrés intenso y prolongado puede retrasar el embarazo.",
-          "practice": "Identifique sus 3 principales desencadenantes del estrés esta semana. Para cada uno, escribe una pequeña acción que puedas realizar para reducir su impacto.",
-          "title": "Cómo el estrés afecta la fertilidad"
-        }
-      },
+      "topics": "Temas",
       "topicsCount": "Temas {{count}} para explorar"
     },
     "stressRelief": {
@@ -6357,78 +5961,7 @@
       "week": "Semana {{week}}"
     },
     "twwCompanion": {
-      "days": {
-        "day1": {
-          "body": "Si la ovulación ocurrió ayer, el óvulo ahora viaja a través de las trompas de Falopio. Si se produce la fertilización, normalmente ocurre dentro de las 12 a 24 horas posteriores a la ovulación. Hoy en día, no hay nada que puedas hacer para influir en el resultado, y eso está bien.",
-          "tip": "Respira hondo. El viaje ha comenzado. Concéntrate en algo que disfrutes hoy.",
-          "title": "Día de ovulación + 1"
-        },
-        "day10": {
-          "body": "A estas alturas, si se produjo la implantación, los niveles de hCG se duplican aproximadamente cada 48 horas. Algunas pruebas sensibles pueden detectar un embarazo muy temprano. Sin embargo, un resultado negativo hoy no significa que no esté embarazada: los niveles varían ampliamente.",
-          "tip": "Si te haces la prueba hoy y sale negativo, no pierdas la esperanza. Muchos embarazos exitosos no dan resultados positivos hasta el día 12 al 14.",
-          "title": "Casi llegamos"
-        },
-        "day11": {
-          "body": "La hCG continúa aumentando. Algunas mujeres comienzan a notar síntomas muy tempranos: calambres leves, sensibilidad en los senos o fatiga. Estos síntomas también pueden ser causados ​​por la progesterona en un ciclo sin embarazo, por lo que no son indicadores confiables.",
-          "tip": "Detectar los síntomas es natural pero puede aumentar la ansiedad. Trate de mantenerse presente y comprometido con su vida diaria.",
-          "title": "Anticipación del edificio"
-        },
-        "day12": {
-          "body": "La mayoría de las pruebas de embarazo caseras se vuelven más fiables a partir de hoy. Si realiza la prueba, utilice la primera orina de la mañana para obtener la concentración más alta de hCG. Una línea tenue sigue siendo un resultado positivo.",
-          "tip": "Cualquiera que sea el resultado de hoy, recuerda: un ciclo no define tu viaje. Sea amable consigo mismo.",
-          "title": "Las pruebas se vuelven más confiables"
-        },
-        "day13": {
-          "body": "Por lo general, mañana es el día en que se espera su período (en un ciclo de 28 días). Si no llega y una prueba muestra un leve positivo, es posible que sea necesario felicitarlo. Si llega tu período, permítete llorar y saber que cada ciclo es una nueva oportunidad.",
-          "tip": "Prepárese emocionalmente para ambos resultados. Ambos son válidos. Ambos son parte del viaje.",
-          "title": "La víspera del conocimiento"
-        },
-        "day14": {
-          "body": "Este suele ser el día en que se espera su período. La falta de un período combinado con una prueba de embarazo positiva es un fuerte indicador de embarazo. Si su prueba es positiva, comuníquese con su proveedor de atención médica para programar su primera cita (generalmente entre 6 y 8 semanas).",
-          "tip": "¿Positivo? Celebra este momento. ¿Negativo? Eres fuerte, resistente y este viaje continúa. Ambos resultados merecen compasión.",
-          "title": "El día de la respuesta"
-        },
-        "day2": {
-          "body": "Si se produjo la fertilización, el cigoto unicelular comienza a dividirse, primero en 2 células y luego en 4. Este pequeño grupo de células viaja a través de las trompas de Falopio hacia el útero. Está alimentado enteramente por sus propias reservas de energía.",
-          "tip": "Manténgase hidratado y coma alimentos nutritivos. Tu cuerpo está haciendo un trabajo increíble a nivel celular.",
-          "title": "Comienzos celulares"
-        },
-        "day3": {
-          "body": "Las células en división forman una bola sólida llamada mórula (alrededor de 16 células). Continúa su recorrido por las trompas de Falopio. La progesterona está aumentando, preparando el revestimiento del útero para una posible implantación.",
-          "tip": "La actividad suave está perfectamente bien. No es necesario restringir su rutina normal.",
-          "title": "La etapa de Mórula"
-        },
-        "day4": {
-          "body": "La mórula generalmente ingresa al útero alrededor del día 4. Comienza a formar una cavidad llena de líquido y se convierte en un blastocisto. El revestimiento del útero se vuelve grueso y receptivo bajo la influencia de la progesterona.",
-          "tip": "Practica la atención plena o estiramientos ligeros. Gestionar la anticipación es parte del viaje.",
-          "title": "Entrando al útero"
-        },
-        "day5": {
-          "body": "El blastocisto ahora tiene dos grupos celulares distintos: la masa celular interna (que se convierte en el embrión) y el trofoblasto (que se convierte en la placenta). Flota libremente en la cavidad uterina.",
-          "tip": "Este es un buen día para registrar sus pensamientos y sentimientos. La autoexpresión es terapéutica.",
-          "title": "Formación de blastocistos"
-        },
-        "day6": {
-          "body": "El blastocisto comienza a buscar un sitio ideal para implantarse en la pared del útero. Las células del trofoblasto comienzan a excavar en el endometrio. Algunas mujeres experimentan un ligero manchado (sangrado de implantación) en esta época.",
-          "tip": "Las ligeras manchas en esta etapa pueden ser normales. No entre en pánico y no realice pruebas todavía. Es demasiado pronto.",
-          "title": "La implantación puede comenzar"
-        },
-        "day7": {
-          "body": "Los días 6 a 10 son la ventana de implantación típica. El blastocisto se está incrustando más profundamente en el revestimiento del útero. Se están intercambiando señales tempranas entre el embrión y su cuerpo.",
-          "tip": "Continúe con sus actividades normales. Descansa cuando lo necesites. Confía en el proceso.",
-          "title": "Ventana de implantación"
-        },
-        "day8": {
-          "body": "Si la implantación avanza, comienzan a producirse pequeñas cantidades de hCG (gonadotropina coriónica humana). Esta hormona le indica a su cuerpo que mantenga el cuerpo lúteo, que sigue produciendo progesterona. Los niveles todavía son demasiado bajos para detectarlos en una prueba.",
-          "tip": "Resista la tentación de realizar la prueba. La hCG necesita tiempo para desarrollarse. La paciencia es tu mayor aliado en estos momentos.",
-          "title": "Comienza la hCG"
-        },
-        "day9": {
-          "body": "Los niveles de hCG están aumentando, pero es posible que aún estén por debajo del umbral de detección de la mayoría de las pruebas de embarazo caseras. La implantación debe estar completa o casi completa. Tu cuerpo está empezando a responder a las nuevas señales hormonales.",
-          "tip": "Regálate algo relajante: un baño caliente, tu té favorito o un paseo por la naturaleza.",
-          "title": "Señales ascendentes"
-        }
-      },
+      "days": "Días",
       "subtitle": "Su guía diaria durante la espera de dos semanas"
     },
     "vitaminTracker": {
