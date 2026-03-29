@@ -5966,7 +5966,9 @@
       "firstMonth": "İlk ay"
     },
     "budgetEstimate": "Tahmini Bütçe",
-    "remaining": "kalan"
+    "remaining": "kalan",
+    "shareReady": "Hazır",
+    "shareStillNeeded": "Hâlâ gerekli"
   },
   "doctorQuestions": {
     "startNewVisit": "Yeni Ziyaret Başlat",

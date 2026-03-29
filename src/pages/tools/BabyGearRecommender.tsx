@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
-import { Package, Check, Star, Baby, ShoppingBag, Home, Car, Heart, Utensils, Moon, Shirt, Thermometer, RotateCcw, ChevronDown, ChevronUp, DollarSign, CheckCircle2, Circle, AlertCircle } from 'lucide-react';
+import { Package, Check, Star, Baby, ShoppingBag, Home, Car, Heart, Utensils, Moon, Shirt, Thermometer, RotateCcw, ChevronDown, ChevronUp, DollarSign, CheckCircle2, Circle, AlertCircle, Share2 } from 'lucide-react';
 import { getUserId } from '@/hooks/useSupabase';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -112,6 +112,28 @@ export default function BabyGearRecommender() {
     saveCheckedItems([]);
   };
 
+  const handleShareWhatsApp = () => {
+    const checked = gearList.filter(i => checkedItems.includes(i.id));
+    const unchecked = gearList.filter(i => !checkedItems.includes(i.id));
+    
+    let text = `🛍️ *${t('babyGear.title')}*\n`;
+    text += `📊 ${totalChecked}/${gearList.length}\n\n`;
+    
+    if (checked.length > 0) {
+      text += `✅ *${t('babyGear.shareReady')}:*\n`;
+      checked.forEach(item => { text += `  ✔️ ${t(item.nameKey)}\n`; });
+      text += `\n`;
+    }
+    if (unchecked.length > 0) {
+      text += `⬜ *${t('babyGear.shareStillNeeded')}:*\n`;
+      unchecked.forEach(item => { text += `  ◻️ ${t(item.nameKey)}\n`; });
+      text += `\n`;
+    }
+    text += `💰 ~$${budgetEstimate.remaining} ${t('babyGear.remaining')}`;
+    
+    window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+  };
+
   // Group by category
   const categories = ['essential', 'recommended', 'nice-to-have'] as const;
 
@@ -171,10 +193,16 @@ export default function BabyGearRecommender() {
                 <ShoppingBag className="w-4 h-4 text-primary" />
                 {t('babyGear.essentialsProgress')}
               </h3>
-              <Button variant="ghost" size="sm" onClick={resetAll} className="h-7 text-[10px] gap-1 text-muted-foreground">
-                <RotateCcw className="w-3 h-3" />
-                {t('babyGear.reset')}
-              </Button>
+              <div className="flex items-center gap-1.5">
+                <Button onClick={handleShareWhatsApp} variant="ghost" size="sm" className="h-7 text-[10px] gap-1 text-green-600 hover:text-green-700 hover:bg-green-50 dark:hover:bg-green-950/30">
+                  <Share2 className="w-3 h-3" />
+                  WhatsApp
+                </Button>
+                <Button variant="ghost" size="sm" onClick={resetAll} className="h-7 text-[10px] gap-1 text-muted-foreground">
+                  <RotateCcw className="w-3 h-3" />
+                  {t('babyGear.reset')}
+                </Button>
+              </div>
             </div>
 
             {/* Visual category progress */}
