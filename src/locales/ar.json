@@ -1860,7 +1860,30 @@
       },
       "analyzing": "جارٍ التحليل...",
       "dosages": "الجرعات",
-      "importance": "الأهمية"
+      "importance": "الأهمية",
+      "allDone": "🎉 تم تناول جميع الفيتامينات!",
+      "allDoneDesc": "أحسنتِ! أكملتِ روتين الفيتامينات اليومي.",
+      "completedMessage": "تم الانتهاء لهذا اليوم! 🎉",
+      "remainingMessage": "متبقي {{count}} فيتامينات",
+      "streakDays": "يوم متتالي",
+      "currentStreak": "السلسلة الحالية",
+      "bestStreak": "أفضل سلسلة",
+      "weeklyOverview": "نظرة أسبوعية",
+      "less": "أقل",
+      "more": "أكثر",
+      "timing": {
+        "morning": "صباحاً",
+        "evening": "مساءً",
+        "afternoon": "بعد الظهر",
+        "withMeal": "مع الوجبة"
+      },
+      "days_sun": "أحد",
+      "days_mon": "إثن",
+      "days_tue": "ثلا",
+      "days_wed": "أرب",
+      "days_thu": "خمي",
+      "days_fri": "جمع",
+      "days_sat": "سبت"
     },
     "common": {
       "week": "الأسبوع",
@@ -5929,7 +5952,9 @@
       "firstWeeks": "الأسابيع الأولى",
       "afterBirth": "بعد الولادة",
       "firstMonth": "الشهر الأول"
-    }
+    },
+    "budgetEstimate": "الميزانية التقديرية",
+    "remaining": "متبقي"
   },
   "doctorQuestions": {
     "startNewVisit": "بدء زيارة جديدة",

@@ -1860,7 +1860,30 @@
       },
       "analyzing": "Analisando...",
       "dosages": "Dosagens",
-      "importance": "Importância"
+      "importance": "Importância",
+      "allDone": "🎉 Todas as vitaminas tomadas!",
+      "allDoneDesc": "Parabéns! Você completou sua rotina diária de vitaminas.",
+      "completedMessage": "Tudo pronto por hoje! 🎉",
+      "remainingMessage": "{{count}} vitaminas restantes",
+      "streakDays": "dias seguidos",
+      "currentStreak": "Sequência atual",
+      "bestStreak": "Melhor sequência",
+      "weeklyOverview": "Visão de 7 dias",
+      "less": "Menos",
+      "more": "Mais",
+      "timing": {
+        "morning": "Manhã",
+        "evening": "Noite",
+        "afternoon": "Tarde",
+        "withMeal": "Com refeição"
+      },
+      "days_sun": "Dom",
+      "days_mon": "Seg",
+      "days_tue": "Ter",
+      "days_wed": "Qua",
+      "days_thu": "Qui",
+      "days_fri": "Sex",
+      "days_sat": "Sáb"
     },
     "common": {
       "week": "Semana",
@@ -5929,7 +5952,9 @@
       "firstWeeks": "Primeiras semanas",
       "afterBirth": "Após o parto",
       "firstMonth": "Primeiro mês"
-    }
+    },
+    "budgetEstimate": "Orçamento estimado",
+    "remaining": "restante"
   },
   "doctorQuestions": {
     "startNewVisit": "Iniciar nova consulta",
