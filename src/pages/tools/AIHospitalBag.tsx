@@ -16,7 +16,7 @@ import { useSmartInsight } from "@/hooks/useSmartInsight";
 import { useSettings } from "@/hooks/useSettings";
 import { safeParseLocalStorage, safeSaveToLocalStorage } from "@/lib/safeStorage";
 import { VideoLibrary } from "@/components/VideoLibrary";
-import { generateHospitalBagShareText } from "@/lib/pdfExport";
+import { formatChecklistShare, openWhatsApp } from "@/lib/whatsappShare";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
 import { hospitalBagVideosByLang } from "@/data/videoData";
@@ -252,15 +252,21 @@ const AIHospitalBag = () => {
 
   const handleShareWhatsApp = () => {
     const shareItems = items.map(item => ({
-      id: item.id, name: getItemDisplayName(item), category: item.category, packed: item.packed, priority: item.priority,
+      name: getItemDisplayName(item),
+      done: item.packed,
+      category: item.category,
     }));
-    const shareText = generateHospitalBagShareText(shareItems, {
-      title: t('toolsInternal.hospitalBag.title'), mom: t('toolsInternal.hospitalBag.mom'),
-      baby: t('toolsInternal.hospitalBag.baby'), partner: t('toolsInternal.hospitalBag.partner'),
-      documents: t('toolsInternal.hospitalBag.documents'), packed: t('toolsInternal.hospitalBag.packed'),
-      notPacked: t('toolsInternal.hospitalBag.notPacked'), progress: t('toolsInternal.hospitalBag.progress'),
-    });
-    window.open(`https://wa.me/?text=${encodeURIComponent(shareText)}`, '_blank');
+    const cats = [
+      { key: 'documents', emoji: '📄', label: t('toolsInternal.hospitalBag.documents') },
+      { key: 'mom', emoji: '👩', label: t('toolsInternal.hospitalBag.mom') },
+      { key: 'baby', emoji: '👶', label: t('toolsInternal.hospitalBag.baby') },
+      { key: 'partner', emoji: '👨', label: t('toolsInternal.hospitalBag.partner') },
+    ];
+    const text = formatChecklistShare(
+      { title: t('toolsInternal.hospitalBag.title'), emoji: '🧳' },
+      shareItems, undefined, cats
+    );
+    openWhatsApp(text);
   };
 
   const getPersonalizedList = async () => {

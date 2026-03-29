@@ -9,6 +9,7 @@ import { Progress } from '@/components/ui/progress';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Package, Check, Star, Baby, ShoppingBag, Home, Car, Heart, Utensils, Moon, Shirt, Thermometer, RotateCcw, ChevronDown, ChevronUp, DollarSign, CheckCircle2, Circle, AlertCircle } from 'lucide-react';
 import WhatsAppShareButton from "@/components/WhatsAppShareButton";
+import { formatChecklistShare, openWhatsApp } from "@/lib/whatsappShare";
 import { getUserId } from '@/hooks/useSupabase';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -114,25 +115,16 @@ export default function BabyGearRecommender() {
   };
 
   const handleShareWhatsApp = () => {
-    const checked = gearList.filter(i => checkedItems.includes(i.id));
-    const unchecked = gearList.filter(i => !checkedItems.includes(i.id));
-    
-    let text = `🛍️ *${t('babyGear.title')}*\n`;
-    text += `📊 ${totalChecked}/${gearList.length}\n\n`;
-    
-    if (checked.length > 0) {
-      text += `✅ *${t('babyGear.shareReady')}:*\n`;
-      checked.forEach(item => { text += `  ✔️ ${t(item.nameKey)}\n`; });
-      text += `\n`;
-    }
-    if (unchecked.length > 0) {
-      text += `⬜ *${t('babyGear.shareStillNeeded')}:*\n`;
-      unchecked.forEach(item => { text += `  ◻️ ${t(item.nameKey)}\n`; });
-      text += `\n`;
-    }
-    text += `💰 ~$${budgetEstimate.remaining} ${t('babyGear.remaining')}`;
-    
-    window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+    const shareItems = gearList.map(i => ({
+      name: t(i.nameKey),
+      done: checkedItems.includes(i.id),
+    }));
+    const text = formatChecklistShare(
+      { title: t('babyGear.title'), emoji: '🛍️' },
+      shareItems,
+      [{ emoji: '💰', label: t('babyGear.remaining'), value: `~$${budgetEstimate.remaining}` }]
+    );
+    openWhatsApp(text);
   };
 
   // Group by category

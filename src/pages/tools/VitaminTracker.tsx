@@ -5,6 +5,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { ToolFrame } from '@/components/ToolFrame';
 import { AIInsightCard } from '@/components/ai/AIInsightCard';
 import WhatsAppShareButton from '@/components/WhatsAppShareButton';
+import { formatChecklistShare, openWhatsApp } from '@/lib/whatsappShare';
 import { useToast } from '@/hooks/use-toast';
 import { useUserProfile } from '@/hooks/useUserProfile';
 import { loadFromLocalStorage, saveToLocalStorage } from '@/services/localStorageServices';
@@ -430,10 +431,16 @@ const VitaminTracker: React.FC = () => {
         {/* WhatsApp Share */}
         <div className="flex justify-end">
           <WhatsAppShareButton onClick={() => {
-            const taken = VITAMINS.filter(v => todayLog[v]).map(v => `✔️ ${t(`toolsInternal.vitaminTracker.vitamins.${v}`)}`);
-            const missed = VITAMINS.filter(v => !todayLog[v]).map(v => `◻️ ${t(`toolsInternal.vitaminTracker.vitamins.${v}`)}`);
-            const text = `💊 *${t('toolsInternal.vitaminTracker.title')}*\n📊 ${takenCount}/${totalVitamins} | 🔥 ${streak} ${t('toolsInternal.vitaminTracker.streak')}\n\n${taken.join('\n')}${missed.length ? '\n\n' + missed.join('\n') : ''}`;
-            window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+            const items = VITAMINS.map(v => ({ name: t(`toolsInternal.vitaminTracker.vitamins.${v}`), done: !!todayLog[v] }));
+            const text = formatChecklistShare(
+              { title: t('toolsInternal.vitaminTracker.title'), emoji: '💊' },
+              items,
+              [
+                { emoji: '🔥', label: t('toolsInternal.vitaminTracker.streak'), value: String(streak) },
+                { emoji: '📅', label: t('toolsInternal.vitaminTracker.weeklyAdherence'), value: String(weeklyCount) },
+              ]
+            );
+            openWhatsApp(text);
           }} />
         </div>
 
