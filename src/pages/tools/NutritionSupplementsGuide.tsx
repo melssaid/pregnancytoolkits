@@ -197,6 +197,18 @@ export default function NutritionSupplementsGuide() {
             })}
           </TabsContent>
         </Tabs>
+
+        {/* WhatsApp Share */}
+        {checkedVitamins.length > 0 && (
+          <div className="flex justify-center">
+            <WhatsAppShareButton onClick={() => {
+              const done = checkedVitamins.map(k => `✔️ ${t(`toolsInternal.prenatalVitamins.vitamins.${k}.title`)}`);
+              const pending = VITAMIN_KEYS.filter(k => !checkedVitamins.includes(k)).map(k => `◻️ ${t(`toolsInternal.prenatalVitamins.vitamins.${k}.title`)}`);
+              const text = `💊 *${t('tools.nutritionSupplements.supplementsTab')}*\n📊 ${checkedVitamins.length}/${VITAMIN_KEYS.length}\n\n${done.join('\n')}${pending.length ? '\n\n' + pending.join('\n') : ''}`;
+              window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+            }} />
+          </div>
+        )}
       </div>
 
       {/* Promotional Video */}
