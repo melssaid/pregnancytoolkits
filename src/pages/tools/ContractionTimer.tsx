@@ -9,6 +9,7 @@ import { ContextualWarningBanner, WhenToCallDoctorCard, EvidenceInfoBlock } from
 import { ToolFrame } from "@/components/ToolFrame";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { ContractionChart } from "@/components/contraction/ContractionChart";
 import { ContractionHistory } from "@/components/contraction/ContractionHistory";
