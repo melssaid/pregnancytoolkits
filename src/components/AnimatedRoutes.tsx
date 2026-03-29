@@ -184,6 +184,7 @@ export function AnimatedRoutes() {
         {/* ADMIN */}
         <Route path="/admin/ai-usage" element={<PageTransition><AIUsageDashboard /></PageTransition>} />
         <Route path="/admin/keywords" element={<PageTransition><KeywordLibrary /></PageTransition>} />
+        <Route path="/admin/aso-generator" element={<PageTransition><ASOGenerator /></PageTransition>} />
 
         {/* LEGACY REDIRECTS — deleted tools */}
         <Route path="/tools/smart-walking-coach" element={<Navigate to="/tools/ai-fitness-coach" replace />} />
