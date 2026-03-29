@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import i18n from "@/i18n";
-import { Briefcase, Baby, User, Heart, Plus, Share2, RotateCcw } from "lucide-react";
+import { Briefcase, Baby, User, Heart, Plus, Share2, RotateCcw, CheckCircle2, Circle, ChevronDown, ChevronUp, Star, ShieldCheck, Package } from "lucide-react";
 import { AIResponseFrame } from "@/components/ai/AIResponseFrame";
 import { PrintableReport } from '@/components/PrintableReport';
 import { AIActionButton } from "@/components/ai/AIActionButton";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
+import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
 import { ToolFrame } from "@/components/ToolFrame";
 import MedicalDisclaimer from "@/components/compliance/MedicalDisclaimer";
 import { useSmartInsight } from "@/hooks/useSmartInsight";
@@ -16,7 +16,7 @@ import { useSettings } from "@/hooks/useSettings";
 import { safeParseLocalStorage, safeSaveToLocalStorage } from "@/lib/safeStorage";
 import { VideoLibrary } from "@/components/VideoLibrary";
 import { generateHospitalBagShareText } from "@/lib/pdfExport";
-
+import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
 import { hospitalBagVideosByLang } from "@/data/videoData";
 
@@ -63,6 +63,19 @@ const defaultItems: BagItem[] = [
   { id: "32", nameKey: "toolsInternal.hospitalBag.items.snacksMom", category: "mom", packed: false, priority: "recommended" },
   { id: "33", nameKey: "toolsInternal.hospitalBag.items.diaperCream", category: "baby", packed: false, priority: "recommended" },
 ];
+
+const CATEGORY_CONFIG = {
+  mom: { icon: User, gradient: "from-pink-500 to-rose-400", color: "text-pink-600 dark:text-pink-400", bg: "bg-pink-500/10 border-pink-500/20" },
+  baby: { icon: Baby, gradient: "from-blue-500 to-cyan-400", color: "text-blue-600 dark:text-blue-400", bg: "bg-blue-500/10 border-blue-500/20" },
+  partner: { icon: Heart, gradient: "from-purple-500 to-violet-400", color: "text-purple-600 dark:text-purple-400", bg: "bg-purple-500/10 border-purple-500/20" },
+  documents: { icon: Briefcase, gradient: "from-amber-500 to-orange-400", color: "text-amber-600 dark:text-amber-400", bg: "bg-amber-500/10 border-amber-500/20" },
+};
+
+const PRIORITY_CONFIG = {
+  essential: { icon: ShieldCheck, label: "toolsInternal.hospitalBag.essential", gradient: "from-red-500 to-rose-500", textColor: "text-destructive" },
+  recommended: { icon: Star, label: "toolsInternal.hospitalBag.recommended", gradient: "from-amber-500 to-orange-400", textColor: "text-amber-600 dark:text-amber-400" },
+  optional: { icon: Package, label: "toolsInternal.hospitalBag.optional", gradient: "from-muted-foreground to-muted-foreground", textColor: "text-muted-foreground" },
+};
 
 const AIHospitalBag = () => {
   const { t } = useTranslation();
@@ -198,10 +211,10 @@ const AIHospitalBag = () => {
   });
   const [newItem, setNewItem] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<"all" | "mom" | "baby" | "partner" | "documents">("all");
+  const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
 
   useEffect(() => {
     safeSaveToLocalStorage("hospital-bag-items", items);
-     
   }, []);
 
   const togglePacked = (itemId: string) => {
@@ -284,17 +297,20 @@ Include seasonal considerations and hospital-specific recommendations.`;
   const progress = Math.round((packedCount / items.length) * 100);
   const filteredItems = selectedCategory === "all" ? items : items.filter(i => i.category === selectedCategory);
 
-  const categoryIcons = {
-    mom: <User className="w-4 h-4" />,
-    baby: <Baby className="w-4 h-4" />,
-    partner: <Heart className="w-4 h-4" />,
-    documents: <Briefcase className="w-4 h-4" />,
+  // Group items by category for display
+  const categories = (["mom", "baby", "partner", "documents"] as const);
+  const getCatItems = (cat: string) => {
+    const catItems = filteredItems.filter(i => i.category === cat);
+    // Sort: essential first, then recommended, then optional
+    return catItems.sort((a, b) => {
+      const order = { essential: 0, recommended: 1, optional: 2 };
+      return order[a.priority] - order[b.priority];
+    });
   };
-  const categoryLabels: Record<string, string> = {
-    all: t('toolsInternal.hospitalBag.all'), mom: t('toolsInternal.hospitalBag.mom'),
-    baby: t('toolsInternal.hospitalBag.baby'), partner: t('toolsInternal.hospitalBag.partner'),
-    documents: t('toolsInternal.hospitalBag.documents'),
-  };
+
+  // SVG Progress Ring
+  const RING_R = 28;
+  const RING_C = 2 * Math.PI * RING_R;
 
   if (!disclaimerAccepted) {
     return <MedicalDisclaimer onAccept={() => setDisclaimerAccepted(true)} toolName={t('toolsInternal.hospitalBag.title')} />;
@@ -303,90 +319,188 @@ Include seasonal considerations and hospital-specific recommendations.`;
   return (
     <ToolFrame title={t('toolsInternal.hospitalBag.title')} subtitle={t('toolsInternal.hospitalBag.subtitle')} customIcon="checklist" mood="empowering" toolId="ai-hospital-bag">
       <div className="space-y-4">
-        {/* Progress Card */}
-        <Card className="p-3 bg-gradient-to-br from-teal-500/10 to-cyan-500/10 border-teal-200">
-          <div className="flex items-center justify-between mb-2">
-            <span className="font-medium text-sm">{t('toolsInternal.hospitalBag.progress')}</span>
-            <span className="text-sm font-bold text-primary">{progress}%</span>
-          </div>
-          <div className="w-full bg-muted rounded-full h-3">
-            <div className="bg-gradient-to-r from-teal-500 to-cyan-500 h-3 rounded-full transition-all" style={{ width: `${progress}%` }} />
-          </div>
-          <p className="text-xs text-muted-foreground mt-2">
-            {t('toolsInternal.hospitalBag.itemsPacked', { packed: packedCount, total: items.length })}
-          </p>
+        {/* ═══════ HERO PROGRESS ═══════ */}
+        <Card className="overflow-hidden">
+          <div className="h-1.5 bg-gradient-to-r from-teal-500 via-cyan-400 to-blue-500" />
+          <CardContent className="pt-4 pb-4">
+            <div className="flex items-center gap-4">
+              {/* Progress Ring */}
+              <div className="relative w-[72px] h-[72px] shrink-0">
+                <svg className="w-[72px] h-[72px] -rotate-90" viewBox="0 0 64 64">
+                  <circle cx="32" cy="32" r={RING_R} fill="none" stroke="hsl(var(--muted))" strokeWidth="5" />
+                  <motion.circle
+                    cx="32" cy="32" r={RING_R} fill="none"
+                    stroke="hsl(var(--primary))"
+                    strokeWidth="5" strokeLinecap="round"
+                    strokeDasharray={RING_C}
+                    animate={{ strokeDashoffset: RING_C * (1 - progress / 100) }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                  />
+                </svg>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-lg font-extrabold text-foreground tabular-nums">{progress}%</span>
+                </div>
+              </div>
+              <div className="flex-1 min-w-0">
+                <h3 className="text-sm font-bold text-foreground mb-1">{t('toolsInternal.hospitalBag.progress')}</h3>
+                <p className="text-[11px] text-muted-foreground">
+                  {t('toolsInternal.hospitalBag.itemsPacked', { packed: packedCount, total: items.length })}
+                </p>
+                <div className="flex items-center gap-1.5 mt-2">
+                  <Button onClick={handleShareWhatsApp} variant="ghost" size="sm" className="h-7 text-[10px] gap-1 text-green-600 hover:text-green-700 hover:bg-green-50 dark:hover:bg-green-950/30 px-2">
+                    <Share2 className="w-3 h-3" />
+                    WhatsApp
+                  </Button>
+                  <Button variant="ghost" size="sm" onClick={resetList} className="h-7 text-[10px] gap-1 text-muted-foreground px-2">
+                    <RotateCcw className="w-3 h-3" />
+                    {t('toolsInternal.hospitalBag.resetList')}
+                  </Button>
+                </div>
+              </div>
+            </div>
+
+            {/* Category mini-cards */}
+            <div className="grid grid-cols-4 gap-1.5 mt-3">
+              {categories.map(cat => {
+                const config = CATEGORY_CONFIG[cat];
+                const CatIcon = config.icon;
+                const catItems = items.filter(i => i.category === cat);
+                const catPacked = catItems.filter(i => i.packed).length;
+                const catPct = catItems.length > 0 ? Math.round((catPacked / catItems.length) * 100) : 0;
+                return (
+                  <div key={cat} className={`p-2 rounded-xl border ${config.bg} text-center`}>
+                    <div className={`w-6 h-6 rounded-lg bg-gradient-to-br ${config.gradient} flex items-center justify-center mx-auto mb-1 shadow-sm`}>
+                      <CatIcon className="w-3 h-3 text-white" />
+                    </div>
+                    <p className="text-[11px] font-extrabold text-foreground tabular-nums">{catPacked}/{catItems.length}</p>
+                    <p className="text-[8px] text-muted-foreground leading-tight">{t(`toolsInternal.hospitalBag.${cat}`)}</p>
+                    <div className="mt-1 h-1 rounded-full bg-background/50 overflow-hidden">
+                      <motion.div
+                        className={`h-full rounded-full bg-gradient-to-r ${config.gradient}`}
+                        initial={{ width: 0 }}
+                        animate={{ width: `${catPct}%` }}
+                        transition={{ duration: 0.6 }}
+                      />
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </CardContent>
         </Card>
 
-        {/* Quick Stats */}
-        <div className="grid grid-cols-4 gap-2">
-          {[
-            { icon: User, label: t('toolsInternal.hospitalBag.mom'), count: items.filter(i => i.category === 'mom').length, color: 'from-pink-500/20 to-rose-500/20' },
-            { icon: Baby, label: t('toolsInternal.hospitalBag.baby'), count: items.filter(i => i.category === 'baby').length, color: 'from-blue-500/20 to-cyan-500/20' },
-            { icon: Heart, label: t('toolsInternal.hospitalBag.partner'), count: items.filter(i => i.category === 'partner').length, color: 'from-purple-500/20 to-violet-500/20' },
-            { icon: Briefcase, label: t('toolsInternal.hospitalBag.documents'), count: items.filter(i => i.category === 'documents').length, color: 'from-amber-500/20 to-orange-500/20' },
-          ].map(({ icon: Icon, label, count, color }) => (
-            <Card key={label} className={`p-2 bg-gradient-to-br ${color} border-border/30 text-center overflow-hidden`}>
-              <Icon className="w-3.5 h-3.5 mx-auto mb-0.5 text-muted-foreground" />
-              <p className="text-sm font-bold">{count}</p>
-              <p className="text-[9px] text-muted-foreground leading-tight line-clamp-1" style={{ overflowWrap: 'anywhere' }}>{label}</p>
-            </Card>
-          ))}
+        {/* ═══════ CATEGORY FILTER ═══════ */}
+        <div className="flex gap-1.5 overflow-x-auto pb-1 scrollbar-hide">
+          {(["all", ...categories] as const).map((cat) => {
+            const isActive = selectedCategory === cat;
+            const CatIcon = cat === "all" ? Package : CATEGORY_CONFIG[cat].icon;
+            return (
+              <button
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                className={`flex items-center gap-1 whitespace-nowrap text-[10px] font-semibold px-2.5 py-1.5 rounded-xl border transition-all ${
+                  isActive
+                    ? 'bg-primary text-primary-foreground border-primary shadow-sm'
+                    : 'bg-card border-border/30 text-muted-foreground hover:border-border/60'
+                }`}
+              >
+                <CatIcon className="w-3 h-3" />
+                {cat === "all" ? t('toolsInternal.hospitalBag.all') : t(`toolsInternal.hospitalBag.${cat}`)}
+              </button>
+            );
+          })}
         </div>
 
-        {/* Category Tabs */}
-        <div className="flex gap-1.5 overflow-x-auto pb-2 scrollbar-none">
-          {((["all", "mom", "baby", "partner", "documents"]) as const).map((cat) => (
-            <Button key={cat} variant={selectedCategory === cat ? "default" : "outline"} size="sm" onClick={() => setSelectedCategory(cat)} className="whitespace-nowrap text-xs h-8 px-2.5 shrink-0">
-              {cat !== "all" && categoryIcons[cat]}
-              <span className="ms-1">{categoryLabels[cat]}</span>
-            </Button>
-          ))}
-        </div>
+        {/* ═══════ ITEMS LIST — Grouped by Category ═══════ */}
+        {(selectedCategory === "all" ? categories : [selectedCategory]).map(cat => {
+          const catItems = getCatItems(cat);
+          if (catItems.length === 0) return null;
+          const config = CATEGORY_CONFIG[cat];
+          const CatIcon = config.icon;
+          const catPacked = catItems.filter(i => i.packed).length;
 
-        {/* Items List */}
-        <div className="space-y-1.5 max-h-[300px] overflow-y-auto">
-          {filteredItems.map((item) => (
-            <div key={item.id} onClick={() => togglePacked(item.id)}
-              className={`p-2.5 rounded-lg border cursor-pointer transition-all flex items-center gap-2.5 ${item.packed ? "bg-primary/10 border-primary/30" : "bg-card hover:bg-muted"}`}>
-              <Checkbox checked={item.packed} className="shrink-0" />
-              <span className={`text-sm leading-snug break-words min-w-0 ${item.packed ? "line-through text-muted-foreground" : ""}`}>
-                {(() => {
-                  const key = item.nameKey || "";
-                  if (!key) return "";
-                  if (key.startsWith("toolsInternal.")) return t(key);
-                  if (key.startsWith("hospitalBag.")) return t(`toolsInternal.${key}`);
-                  return key;
-                })()}
-              </span>
-              {item.priority === "essential" && (
-                <span className="ms-auto text-[10px] bg-destructive/10 text-destructive px-1.5 py-0.5 rounded shrink-0 leading-none">
-                  {t('toolsInternal.hospitalBag.essential')}
-                </span>
-              )}
+          return (
+            <div key={cat} className="space-y-1.5">
+              <button
+                onClick={() => setExpandedCategory(expandedCategory === cat ? null : cat)}
+                className="w-full flex items-center justify-between px-1 py-1"
+              >
+                <div className="flex items-center gap-2">
+                  <div className={`w-1 h-4 rounded-full bg-gradient-to-b ${config.gradient}`} />
+                  <CatIcon className={`w-3.5 h-3.5 ${config.color}`} />
+                  <h3 className={`text-xs font-bold ${config.color}`}>{t(`toolsInternal.hospitalBag.${cat}`)}</h3>
+                  <span className="text-[10px] text-muted-foreground tabular-nums">({catPacked}/{catItems.length})</span>
+                </div>
+                {expandedCategory === cat ? <ChevronUp className="w-3.5 h-3.5 text-muted-foreground" /> : <ChevronDown className="w-3.5 h-3.5 text-muted-foreground" />}
+              </button>
+
+              <AnimatePresence>
+                {(expandedCategory === cat || expandedCategory === null) && (
+                  <motion.div
+                    initial={expandedCategory !== null ? { opacity: 0, height: 0 } : false}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    className="space-y-1 overflow-hidden"
+                  >
+                    {catItems.map((item, idx) => {
+                      const isPacked = item.packed;
+                      const priorityConf = PRIORITY_CONFIG[item.priority];
+
+                      return (
+                        <motion.div
+                          key={item.id}
+                          initial={{ opacity: 0, x: -6 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: idx * 0.02 }}
+                        >
+                          <Card className={`transition-all duration-200 ${isPacked ? 'bg-muted/30 border-primary/15' : ''}`}>
+                            <CardContent className="p-2.5">
+                              <div className="flex items-center gap-2.5">
+                                <button onClick={() => togglePacked(item.id)} className="shrink-0">
+                                  {isPacked ? (
+                                    <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }}>
+                                      <CheckCircle2 className="w-5 h-5 text-primary" />
+                                    </motion.div>
+                                  ) : (
+                                    <Circle className="w-5 h-5 text-muted-foreground/30 hover:text-primary/50 transition-colors" />
+                                  )}
+                                </button>
+                                <span className={`text-[12px] font-semibold leading-snug flex-1 min-w-0 ${isPacked ? 'line-through text-muted-foreground' : 'text-foreground'}`}>
+                                  {getItemDisplayName(item)}
+                                </span>
+                                {item.priority === "essential" && (
+                                  <Badge variant="outline" className={`text-[8px] px-1.5 py-0 h-4 shrink-0 border-destructive/30 ${priorityConf.textColor} bg-destructive/5`}>
+                                    <ShieldCheck className="w-2.5 h-2.5 me-0.5" />
+                                    {t(priorityConf.label)}
+                                  </Badge>
+                                )}
+                                {item.priority === "recommended" && (
+                                  <Badge variant="outline" className="text-[8px] px-1.5 py-0 h-4 shrink-0 border-amber-500/30 text-amber-600 dark:text-amber-400 bg-amber-500/5">
+                                    <Star className="w-2.5 h-2.5 me-0.5" />
+                                    {t(priorityConf.label)}
+                                  </Badge>
+                                )}
+                              </div>
+                            </CardContent>
+                          </Card>
+                        </motion.div>
+                      );
+                    })}
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
-          ))}
-        </div>
+          );
+        })}
 
-        {/* Add Custom Item */}
+        {/* ═══════ ADD CUSTOM ITEM ═══════ */}
         <div className="flex gap-2">
-          <Input value={newItem} onChange={(e) => setNewItem(e.target.value)} placeholder={t('toolsInternal.hospitalBag.addCustomItem')} onKeyPress={(e) => e.key === "Enter" && addItem()} />
-          <Button onClick={addItem} size="icon"><Plus className="w-4 h-4" /></Button>
+          <Input value={newItem} onChange={(e) => setNewItem(e.target.value)} placeholder={t('toolsInternal.hospitalBag.addCustomItem')} onKeyPress={(e) => e.key === "Enter" && addItem()} className="text-sm" />
+          <Button onClick={addItem} size="icon" className="shrink-0"><Plus className="w-4 h-4" /></Button>
         </div>
 
-        {/* AI Button */}
+        {/* ═══════ AI BUTTON ═══════ */}
         <AIActionButton onClick={getPersonalizedList} isLoading={isLoading} label={t('toolsInternal.hospitalBag.getAIList')} loadingLabel={t('toolsInternal.hospitalBag.generating')} icon={Briefcase} toolType="hospital-bag" section="pregnancy-plan" />
-
-        {/* Secondary Actions */}
-        <div className="grid grid-cols-2 gap-2">
-          <Button onClick={handleShareWhatsApp} variant="outline" className="border-green-300 hover:bg-green-50 dark:hover:bg-green-950/30 text-green-700 dark:text-green-400 text-[12px] sm:text-[13px] h-9 px-2">
-            <Share2 className="w-3.5 h-3.5 me-1.5 shrink-0" />
-            <span>{t('toolsInternal.hospitalBag.shareWhatsApp')}</span>
-          </Button>
-          <Button onClick={resetList} variant="outline" className="border-destructive/50 hover:bg-destructive/10 text-destructive text-[12px] sm:text-[13px] h-9 px-2">
-            <RotateCcw className="w-3.5 h-3.5 me-1.5 shrink-0" />
-            <span>{t('toolsInternal.hospitalBag.resetList')}</span>
-          </Button>
-        </div>
 
         {content && (
           <PrintableReport title={t('toolsInternal.hospitalBag.title')} isLoading={isLoading}>
