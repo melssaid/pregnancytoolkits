@@ -428,16 +428,14 @@ const VitaminTracker: React.FC = () => {
         </Card>
 
         {/* WhatsApp Share */}
-        {takenCount > 0 && (
-          <div className="flex justify-center">
-            <WhatsAppShareButton onClick={() => {
-              const taken = VITAMINS.filter(v => todayLog[v]).map(v => `✔️ ${t(`toolsInternal.vitaminTracker.vitamins.${v}`)}`);
-              const missed = VITAMINS.filter(v => !todayLog[v]).map(v => `◻️ ${t(`toolsInternal.vitaminTracker.vitamins.${v}`)}`);
-              const text = `💊 *${t('toolsInternal.vitaminTracker.title')}*\n📊 ${takenCount}/${totalVitamins} | 🔥 ${streak} ${t('toolsInternal.vitaminTracker.streak')}\n\n${taken.join('\n')}${missed.length ? '\n\n' + missed.join('\n') : ''}`;
-              window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
-            }} />
-          </div>
-        )}
+        <div className="flex justify-end">
+          <WhatsAppShareButton onClick={() => {
+            const taken = VITAMINS.filter(v => todayLog[v]).map(v => `✔️ ${t(`toolsInternal.vitaminTracker.vitamins.${v}`)}`);
+            const missed = VITAMINS.filter(v => !todayLog[v]).map(v => `◻️ ${t(`toolsInternal.vitaminTracker.vitamins.${v}`)}`);
+            const text = `💊 *${t('toolsInternal.vitaminTracker.title')}*\n📊 ${takenCount}/${totalVitamins} | 🔥 ${streak} ${t('toolsInternal.vitaminTracker.streak')}\n\n${taken.join('\n')}${missed.length ? '\n\n' + missed.join('\n') : ''}`;
+            window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+          }} />
+        </div>
 
         {/* AI Analysis */}
         <AIInsightCard

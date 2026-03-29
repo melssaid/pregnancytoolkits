@@ -273,16 +273,14 @@ Important: Frame all advice as general educational information, not medical dire
         })}
 
         {/* ── WhatsApp Share ─────────────────────────────────────── */}
-        {completedCount > 0 && (
-          <div className="flex justify-center">
-            <WhatsAppShareButton onClick={() => {
-              const done = CATEGORIES.flatMap(c => c.checks.filter(ch => completed.includes(ch)).map(ch => `✔️ ${t(`toolsInternal.preconceptionCheckup.checks.${ch}.title`)}`));
-              const pending = CATEGORIES.flatMap(c => c.checks.filter(ch => !completed.includes(ch)).map(ch => `◻️ ${t(`toolsInternal.preconceptionCheckup.checks.${ch}.title`)}`));
-              const text = `🩺 *${t('toolsInternal.preconceptionCheckup.title')}*\n📊 ${completedCount}/${totalChecks} (${progress}%)\n\n${done.join('\n')}${pending.length ? '\n\n' + pending.join('\n') : ''}`;
-              window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
-            }} />
-          </div>
-        )}
+        <div className="flex justify-end">
+          <WhatsAppShareButton onClick={() => {
+            const done = CATEGORIES.flatMap(c => c.checks.filter(ch => completed.includes(ch)).map(ch => `✔️ ${t(`toolsInternal.preconceptionCheckup.checks.${ch}.title`)}`));
+            const pending = CATEGORIES.flatMap(c => c.checks.filter(ch => !completed.includes(ch)).map(ch => `◻️ ${t(`toolsInternal.preconceptionCheckup.checks.${ch}.title`)}`));
+            const text = `🩺 *${t('toolsInternal.preconceptionCheckup.title')}*\n📊 ${completedCount}/${totalChecks} (${progress}%)\n\n${done.join('\n')}${pending.length ? '\n\n' + pending.join('\n') : ''}`;
+            window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+          }} />
+        </div>
 
         {/* ── AI Analysis ─────────────────────────────────────────── */}
         {completedCount > 0 && (

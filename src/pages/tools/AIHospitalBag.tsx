@@ -490,12 +490,10 @@ Include seasonal considerations and hospital-specific recommendations.`;
           );
         })}
 
-        {/* ═══════ WHATSAPP SHARE ═══════ */}
-        {packedCount > 0 && (
-          <div className="flex justify-center">
-            <WhatsAppShareButton onClick={handleShareWhatsApp} />
-          </div>
-        )}
+        {/* ═══════ WHATSAPP SHARE (floating) ═══════ */}
+        <div className="flex justify-end">
+          <WhatsAppShareButton onClick={handleShareWhatsApp} />
+        </div>
 
         {/* ═══════ ADD CUSTOM ITEM ═══════ */}
         <div className="flex gap-2">
