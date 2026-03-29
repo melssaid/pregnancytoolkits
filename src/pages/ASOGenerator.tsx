@@ -243,6 +243,76 @@ ${kwListEn ? `الكلمات الإنجليزية: ${kwListEn}` : ""}
   }, [aiContent]);
 
   // ═══════════════════════════════════════════
+  // ═══════════════════════════════════════════
+  // Generate Localized Store Listings
+  // ═══════════════════════════════════════════
+  const generateLocalizedListings = useCallback(async () => {
+    if (selectedCountries.size === 0) {
+      toast.error("اختر دول أولاً");
+      return;
+    }
+
+    setIsGeneratingLocal(true);
+    setLocalizedListings([]);
+
+    const countries = COUNTRY_PRESETS.filter((c) => selectedCountries.has(c.code));
+    const countriesDesc = countries.map((c) => `${c.flag} ${c.name} (${c.lang}) — كلمات محلية: ${c.hints}`).join("\n");
+
+    const prompt = `أنت خبير ASO متخصص في Custom Store Listings على Google Play.
+
+المطلوب: أنشئ نسخة محلية مخصصة من نصوص المتجر لتطبيق "Pregnancy Toolkits" (تطبيق حمل وخصوبة مع 35+ أداة ذكية) لكل دولة من الدول التالية:
+
+${countriesDesc}
+
+لكل دولة أنشئ:
+1. title: عنوان بلغة الدولة (أقل من 30 حرف)
+2. shortDesc: وصف قصير بلغة الدولة (أقل من 80 حرف)
+3. longDesc: وصف طويل بلغة الدولة (500-800 حرف) يتضمن الكلمات المحلية
+4. localTips: 3 نصائح ASO خاصة بهذا السوق
+
+القواعد:
+- استخدم المصطلحات الشائعة في كل بلد (مثلاً "حامل" في مصر vs "حمل" في السعودية)
+- لا تترجم حرفياً، بل اكتب بأسلوب طبيعي لأهل البلد
+- أضف "تعليمي فقط" بلغة كل بلد
+- للدول العربية: راعِ الفروقات اللهجوية في الكلمات المفتاحية
+
+أجب بتنسيق JSON فقط (بدون markdown):
+[
+  {
+    "country": "اسم الدولة",
+    "flag": "🏳️",
+    "language": "ar/en/de/...",
+    "title": "...",
+    "shortDesc": "...",
+    "longDesc": "...",
+    "localTips": ["نصيحة 1", "نصيحة 2", "نصيحة 3"]
+  }
+]`;
+
+    try {
+      await generate({ prompt, context: { language: "ar" } });
+    } catch {
+      toast.error("فشل التوليد");
+    }
+    setIsGeneratingLocal(false);
+  }, [selectedCountries, generate]);
+
+  // Parse localized listings from AI content
+  useMemo(() => {
+    if (!aiContent || activeTab !== "localized") return;
+    try {
+      let jsonStr = aiContent;
+      const jsonMatch = aiContent.match(/\[[\s\S]*\]/);
+      if (jsonMatch) jsonStr = jsonMatch[0];
+      const parsed = JSON.parse(jsonStr) as CountryListing[];
+      if (Array.isArray(parsed) && parsed.length > 0 && parsed[0].country) {
+        setLocalizedListings(parsed);
+      }
+    } catch {
+      // Still streaming
+    }
+  }, [aiContent, activeTab]);
+
   // Validation helpers
   // ═══════════════════════════════════════════
   const validateField = (text: string, limit: number) => {
