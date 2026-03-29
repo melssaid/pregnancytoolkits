@@ -21,6 +21,7 @@ interface StoredQuota {
   monthKey: string;
   used: number;
   tier: "free" | "premium";
+  bonusCredits?: number;
 }
 
 // ── Storage helpers ──
@@ -56,7 +57,8 @@ export function getQuotaState(): QuotaState {
   const stored = readQuota();
   const bypass = isAdminBypass();
   const tierConfig = QUOTA_TIERS[stored.tier] || QUOTA_TIERS.free;
-  const limit = bypass ? 999 : tierConfig.monthly;
+  const bonus = stored.bonusCredits || 0;
+  const limit = bypass ? 999 : tierConfig.monthly + bonus;
   const remaining = Math.max(0, limit - stored.used);
 
   return {
@@ -185,8 +187,8 @@ export function claimBonus(): { success: boolean; newState: QuotaState } {
     return { success: false, newState: getQuotaState() };
   }
   const stored = readQuota();
-  // Grant bonus by reducing used (minimum 0)
-  stored.used = Math.max(0, stored.used - BONUS_AMOUNT);
+  // Grant bonus by adding to effective limit (works even when used=0)
+  stored.bonusCredits = (stored.bonusCredits || 0) + BONUS_AMOUNT;
   stored.monthKey = getCurrentMonthKey();
   writeQuota(stored);
   // Mark as claimed
