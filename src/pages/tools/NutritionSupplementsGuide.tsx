@@ -6,6 +6,7 @@ import { ToolFrame } from "@/components/ToolFrame";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { VideoLibrary } from "@/components/VideoLibrary";
 import { nutritionSupplementsVideosByLang } from "@/data/videoData";
+import WhatsAppShareButton from "@/components/WhatsAppShareButton";
 
 const CATEGORY_KEYS = [
   "folateRich", "ironSources", "omega3", "antioxidants",
