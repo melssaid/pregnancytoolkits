@@ -371,6 +371,7 @@ const toolSEO: Record<string, { h1: string; desc: string; longDesc: string; keyw
       { q: "How many diapers should my newborn have per day?", a: "In the first few days, expect 1-2 wet diapers per day. By day 5+, healthy newborns typically have 6+ wet diapers and 3-4 dirty diapers per day. This is a key sign that your baby is feeding well." },
     ],
   },
+};
 
 // Fallback for tools without specific SEO data
 function getToolSEO(toolId: string, toolTitle: string) {
