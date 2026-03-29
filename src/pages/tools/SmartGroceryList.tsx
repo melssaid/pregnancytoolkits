@@ -275,7 +275,7 @@ export default function SmartGroceryList() {
       toolId="grocery-list"
     >
       <ToolHubNav tabs={NUTRITION_HUB_TABS} />
-      <div className="space-y-4">
+      <div className="space-y-4" dir={isRTL ? 'rtl' : 'ltr'} style={{ textAlign: isRTL ? 'right' : 'left' }}>
         {/* Header */}
         <div className="rounded-xl bg-gradient-to-br from-primary/8 via-primary/4 to-transparent border border-primary/15 p-3">
           <div className="flex items-center gap-3">
