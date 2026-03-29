@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Loader2, ChevronDown, ChevronUp, RefreshCw, Brain, Zap, Crown } from 'lucide-react';
+import { Loader2, ChevronDown, ChevronUp, RefreshCw, Brain, Crown } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useSmartInsight } from '@/hooks/useSmartInsight';
@@ -10,6 +10,7 @@ import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { AIErrorBanner } from '@/components/ai/AIErrorBanner';
 import { useNavigate } from 'react-router-dom';
 import { PrintableReport } from '@/components/PrintableReport';
+import { MiniUsageBar } from '@/components/ai/MiniUsageBar';
 
 
 interface AIInsightCardProps {
