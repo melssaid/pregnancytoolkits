@@ -1417,7 +1417,7 @@
         "hospitalID": "Carte d'hôpital et d'assurance",
         "birthPlanCopies": "Copies du plan de naissance",
         "nightgown": "Chemise de nuit/robe de chambre confortable",
-        "supportiveBras": "Soutiens-gorge d'allaitement confortables (2-3)",
+        "supportiveBras": "Vêtements de soutien confortables d'allaitement confortables (2-3)",
         "toiletries": "Trousse de toilette",
         "slippersSocks": "Chaussons et chaussettes",
         "goingHomeOutfitMom": "Tenue de retour (Maman)",
@@ -2782,7 +2782,7 @@
       "feedingGoals": {
         "exclusive": "Allaitement exclusif",
         "combo": "Combinaison (sein + biberon)",
-        "pumping": "Tire-lait exclusif",
+        "pumping": "Dispositif de recueil du lait exclusif",
         "unsure": "Encore indécise"
       },
       "concerns": {
@@ -2796,14 +2796,14 @@
         "multiples": "Jumeaux/multiples"
       },
       "supplies": {
-        "nursingBras": "Soutiens-gorge d'allaitement (3-4)",
+        "nursingBras": "Vêtements de soutien confortables d'allaitement (3-4)",
         "nursingPads": "Coussinets d'allaitement",
         "nippleCream": "Crème pour mamelons (lanoline)",
-        "breastPump": "Tire-lait",
+        "breastPump": "Dispositif de recueil du lait",
         "storageBags": "Sachets de conservation",
         "nursingPillow": "Coussin d'allaitement",
         "nursingCover": "Cape d'allaitement",
-        "haakaa": "Tire-lait manuel/Haakaa"
+        "haakaa": "Dispositif de recueil du lait manuel/Haakaa"
       },
       "workOptions": {
         "no": "Pas de retour / Femme au foyer",
@@ -5909,7 +5909,7 @@
       "onesies": "Bodies (0-3 mois)",
       "stroller": "Poussette",
       "monitor": "Moniteur bébé",
-      "breastPump": "Tire-lait",
+      "breastPump": "Dispositif de recueil du lait",
       "swing": "Balancelle bébé",
       "diaperBag": "Sac à langer",
       "bathtub": "Baignoire bébé",
@@ -6499,7 +6499,7 @@
       "tip25": "L'hydratation affecte directement la qualité de la glaire cervicale. Visez 8–10 verres d'eau par jour. Les femmes bien hydratées produisent plus de glaire fertile.",
       "tip26": "Les probiotiques soutiennent un microbiome vaginal sain, important pour la survie des spermatozoïdes et l'implantation. Incluez des aliments fermentés ou un probiotique à base de Lactobacillus.",
       "tip27": "L'âge affecte la qualité des ovules plus que leur quantité. Vous ne pouvez pas arrêter le temps, mais vous pouvez protéger la qualité par les antioxydants et un mode de vie sain.",
-      "tip28": "La santé des spermatozoïdes de votre partenaire s'améliore aussi avec le mode de vie — alimentation équilibrée, moins d'alcool, pas de tabac et sous-vêtements amples font une différence mesurable en 3 mois.",
+      "tip28": "La santé des spermatozoïdes de votre partenaire s'améliore aussi avec le mode de vie — alimentation équilibrée, moins d'alcool, pas de tabac et vêtements confortables amples font une différence mesurable en 3 mois.",
       "tip29": "La patience fait partie du processus. Même avec un timing et une santé parfaits, chaque cycle a environ 20–25% de chances de conception. La plupart des couples conçoivent en 6–12 mois.",
       "tip30": "Vous n'êtes pas seule. Un couple sur six rencontre des difficultés. Chercher de l'aide est un signe de force.",
       "tip31": "Le sélénium protège les ovules des dommages oxydatifs et soutient la thyroïde. Les noix du Brésil sont la source la plus riche — 1–2 par jour suffisent.",
