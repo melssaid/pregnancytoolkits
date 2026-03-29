@@ -86,6 +86,7 @@ const AIUsageDashboard = lazy(() => import("@/pages/AIUsageDashboard"));
 const KeywordLibrary = lazy(() => import("@/pages/KeywordLibrary"));
 const ASOGenerator = lazy(() => import("@/pages/ASOGenerator"));
 const LanguageSelection = lazy(() => import("@/pages/LanguageSelection"));
+const ToolLanding = lazy(() => import("@/pages/ToolLanding"));
 
 export function AnimatedRoutes() {
   return (
@@ -94,6 +95,8 @@ export function AnimatedRoutes() {
         {/* Main Pages */}
         <Route path="/" element={<PageTransition><Index /></PageTransition>} />
         <Route path="/en" element={<PageTransition><LandingEN /></PageTransition>} />
+        {/* SEO Landing Pages per tool */}
+        <Route path="/tool/:toolSlug" element={<PageTransition><ToolLanding /></PageTransition>} />
         <Route path="/dashboard" element={<PageTransition><SmartDashboard /></PageTransition>} />
         <Route path="/daily-insights" element={<PageTransition><DailyInsights /></PageTransition>} />
         <Route path="/settings" element={<PageTransition><Settings /></PageTransition>} />
