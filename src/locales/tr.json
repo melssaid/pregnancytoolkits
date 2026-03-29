@@ -1860,7 +1860,30 @@
       },
       "analyzing": "Analiz ediliyor...",
       "dosages": "Dozajlar",
-      "importance": "Önem"
+      "importance": "Önem",
+      "allDone": "🎉 Tüm vitaminler alındı!",
+      "allDoneDesc": "Harika! Günlük vitamin rutininizi tamamladınız.",
+      "completedMessage": "Bugün için her şey tamam! 🎉",
+      "remainingMessage": "{{count}} vitamin kaldı",
+      "streakDays": "gün seri",
+      "currentStreak": "Mevcut Seri",
+      "bestStreak": "En İyi Seri",
+      "weeklyOverview": "7 Günlük Genel Bakış",
+      "less": "Az",
+      "more": "Çok",
+      "timing": {
+        "morning": "Sabah",
+        "evening": "Akşam",
+        "afternoon": "Öğleden sonra",
+        "withMeal": "Yemekle"
+      },
+      "days_sun": "Paz",
+      "days_mon": "Pzt",
+      "days_tue": "Sal",
+      "days_wed": "Çar",
+      "days_thu": "Per",
+      "days_fri": "Cum",
+      "days_sat": "Cmt"
     },
     "common": {
       "week": "Hafta",
@@ -5929,7 +5952,9 @@
       "firstWeeks": "İlk birkaç hafta",
       "afterBirth": "Doğumdan sonra",
       "firstMonth": "İlk ay"
-    }
+    },
+    "budgetEstimate": "Tahmini Bütçe",
+    "remaining": "kalan"
   },
   "doctorQuestions": {
     "startNewVisit": "Yeni Ziyaret Başlat",
