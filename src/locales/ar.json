@@ -4390,124 +4390,124 @@
     "fertilityAcademy": {
       "lessons": {
         "menstrualCycle": {
-          "title": "Understanding Your Menstrual Cycle",
-          "content": "Your menstrual cycle is divided into four main phases:\n\n1. Menstrual Phase (Days 1–5): The uterine lining sheds, marking the start of a new cycle.\n\n2. Follicular Phase (Days 1–13): Follicle-stimulating hormone (FSH) prompts the ovaries to develop follicles. Estrogen rises, thickening the uterine lining.\n\n3. Ovulation (Day 14 approx.): A surge in luteinizing hormone (LH) triggers the release of a mature egg. This is your most fertile moment.\n\n4. Luteal Phase (Days 15–28): The empty follicle becomes the corpus luteum, producing progesterone to maintain the lining. If fertilization doesn't occur, hormone levels drop and the cycle restarts.\n\nUnderstanding these phases helps you identify your fertile window and work with your body's natural rhythm."
+          "title": "فهم الدورة الشهرية",
+          "content": "تنقسم الدورة الشهرية إلى أربع مراحل رئيسية: الحيض، المرحلة الجريبية، الإباضة، والمرحلة الأصفرية. تستمر الدورة المتوسطة 28 يوماً لكنها قد تتراوح بين 21 و35 يوماً. خلال مرحلة الحيض يتخلص الرحم من بطانته. ثم ترتفع مستويات هرمون الإستروجين خلال المرحلة الجريبية مما يحفز نمو الجريبات. عند الإباضة يُطلق المبيض بويضة ناضجة. وأخيراً تُنتج المرحلة الأصفرية البروجسترون لتهيئة الرحم لاستقبال الحمل المحتمل."
         },
         "ovulationProcess": {
-          "title": "How Ovulation Works",
-          "content": "Ovulation is the release of a mature egg from one of your ovaries. Here's what happens:\n\n• In the days leading up to ovulation, rising estrogen levels cause the dominant follicle to grow.\n• A sharp LH surge triggers the follicle to rupture and release the egg into the fallopian tube.\n• The egg survives 12–24 hours after release. Sperm can survive up to 5 days in the reproductive tract.\n• This means your fertile window spans roughly 6 days — the 5 days before ovulation and the day of ovulation itself.\n\nSome women feel a twinge or mild cramp (mittelschmerz) during ovulation. Others notice changes in cervical mucus, which becomes clear and stretchy like raw egg whites."
+          "title": "كيف تحدث الإباضة",
+          "content": "الإباضة هي إطلاق بويضة ناضجة من المبيض، وتحدث عادةً في منتصف الدورة. يُحفّز ارتفاع الهرمون اللوتيني (LH) تحرر البويضة من الجريب. تعيش البويضة 12-24 ساعة بعد الإطلاق، مما يجعل التوقيت حاسماً. يمكن أن تعيش الحيوانات المنوية في الجهاز التناسلي حتى 5 أيام، لذا فإن فترة الخصوبة تمتد لعدة أيام قبل الإباضة ويوم الإباضة نفسه."
         },
         "fertilizationBasics": {
-          "title": "Fertilization & Implantation",
-          "content": "After ovulation, fertilization can occur in the fallopian tube:\n\n• Of the millions of sperm released, only a few hundred reach the egg.\n• One sperm penetrates the egg's outer layer, triggering a chemical reaction that prevents other sperm from entering.\n• The fertilized egg (zygote) begins dividing as it travels toward the uterus over 3–4 days.\n• Around day 6–10 after ovulation, the blastocyst implants into the uterine lining.\n• Implantation may cause light spotting, known as implantation bleeding.\n• Once implanted, the body begins producing hCG — the hormone detected by pregnancy tests."
+          "title": "الإخصاب والانغراس",
+          "content": "يحدث الإخصاب عندما يلتقي حيوان منوي بالبويضة في قناة فالوب. من بين ملايين الحيوانات المنوية، يصل واحد فقط لاختراق البويضة. بعد الإخصاب تبدأ البويضة المخصبة بالانقسام وتتحرك نحو الرحم خلال 3-5 أيام. يحدث الانغراس عندما تلتصق الكيسة الأريمية ببطانة الرحم، عادةً بين اليوم 6 و12 بعد الإباضة."
         },
         "hormonesRole": {
-          "title": "Key Fertility Hormones",
-          "content": "Several hormones orchestrate your fertility:\n\n• FSH (Follicle-Stimulating Hormone): Stimulates follicle growth in the ovaries. Tested on Day 3 of your cycle to assess ovarian reserve.\n\n• LH (Luteinizing Hormone): Triggers ovulation. Ovulation predictor kits detect the LH surge.\n\n• Estrogen (Estradiol): Promotes follicle development and thickens the uterine lining. Also affects cervical mucus quality.\n\n• Progesterone: Produced after ovulation, it maintains the uterine lining for potential implantation. Low progesterone can affect cycle regularity.\n\n• AMH (Anti-Müllerian Hormone): Reflects the number of remaining eggs (ovarian reserve). Useful for fertility planning.\n\n• Thyroid Hormones (TSH, T3, T4): Thyroid imbalances can disrupt ovulation and cycle regularity."
+          "title": "هرمونات الخصوبة الرئيسية",
+          "content": "تلعب عدة هرمونات أدواراً حيوية في الخصوبة. هرمون FSH يحفز نمو الجريبات في المبيض. الإستروجين يُعدّ بطانة الرحم ويحفز إنتاج مخاط عنق الرحم الخصب. ارتفاع LH يُحفّز الإباضة. البروجسترون يدعم المرحلة الأصفرية ويحافظ على بطانة الرحم. أي خلل في هذه الهرمونات قد يؤثر على الخصوبة."
         },
         "ageAndFertility": {
-          "title": "Age & Fertility",
-          "content": "Age is one of the most significant factors affecting fertility:\n\n• Women are born with all the eggs they will ever have — about 1–2 million at birth.\n• By puberty, roughly 300,000–400,000 eggs remain. Only about 300–400 will ovulate during a lifetime.\n• Fertility peaks in the mid-20s. A gradual decline begins after age 30.\n• After 35, the decline accelerates. Egg quality and quantity both decrease.\n• By age 40, the chance of natural conception per cycle drops to about 5%.\n• Male fertility also declines with age, though more gradually.\n\nThis doesn't mean pregnancy after 35 is impossible — many women conceive naturally. But understanding timing helps with planning."
+          "title": "العمر والخصوبة",
+          "content": "تبلغ خصوبة المرأة ذروتها في العشرينيات وتبدأ بالانخفاض تدريجياً بعد سن 30. ينخفض الخصوبة بشكل أكبر بعد سن 35 وبشكل ملحوظ بعد 40. تقل جودة وعدد البويضات مع التقدم في العمر. لكن كل امرأة فريدة والعديد من النساء يحملن بنجاح في الثلاثينيات والأربعينيات. الرجال أيضاً يتأثرون بالعمر حيث تنخفض جودة الحيوانات المنوية تدريجياً."
         },
         "lifestyleFactors": {
-          "title": "Lifestyle Factors That Affect Fertility",
-          "content": "Your daily habits significantly impact fertility:\n\n• Weight: Both underweight (BMI < 18.5) and overweight (BMI > 30) can disrupt ovulation. Even a 5–10% weight change can improve cycle regularity.\n\n• Smoking: Reduces egg quality, damages the fallopian tubes, and accelerates egg loss. Secondhand smoke is also harmful.\n\n• Alcohol: Heavy drinking is linked to irregular cycles and reduced fertility. Moderate to no alcohol is safest when trying to conceive.\n\n• Caffeine: More than 200–300mg daily (about 2 cups of coffee) may slightly reduce fertility.\n\n• Exercise: Moderate activity supports fertility. Excessive intense exercise can disrupt ovulation.\n\n• Sleep: Poor sleep disrupts reproductive hormones. Aim for 7–9 hours per night.\n\n• Environmental Toxins: Limit exposure to pesticides, heavy metals, and certain plastics (BPA)."
+          "title": "عوامل نمط الحياة المؤثرة",
+          "content": "يؤثر نمط الحياة بشكل كبير على الخصوبة. التدخين يقلل الخصوبة عند الجنسين. الكحول المفرط يؤثر سلباً على جودة البويضات والحيوانات المنوية. الوزن الزائد أو النقص الشديد يعطل التوازن الهرموني. الإجهاد المزمن يرفع الكورتيزول ويؤثر على الإباضة. التغذية السليمة والنشاط البدني المعتدل والنوم الكافي كلها تدعم الخصوبة."
         },
         "commonMyths": {
-          "title": "Fertility Myths vs. Facts",
-          "content": "Let's separate fact from fiction:\n\nMyth: You can only get pregnant on ovulation day.\nFact: The fertile window spans about 6 days. Sperm can survive up to 5 days.\n\nMyth: Position during intercourse affects conception.\nFact: No scientific evidence supports this. Sperm reach the cervix within seconds.\n\nMyth: Birth control causes infertility.\nFact: Fertility typically returns within 1–3 months after stopping most contraceptives.\n\nMyth: Stress directly causes infertility.\nFact: While severe chronic stress can affect hormones, moderate stress alone rarely prevents conception.\n\nMyth: You need to have intercourse every day.\nFact: Every 1–2 days during the fertile window is sufficient. Daily intercourse doesn't reduce sperm quality.\n\nMyth: Herbal supplements guarantee fertility.\nFact: Some may help, but none are scientifically proven to guarantee conception. Always consult your doctor."
+          "title": "خرافات وحقائق عن الخصوبة",
+          "content": "خرافة: يمكنك الحمل في أي يوم. حقيقة: فترة الخصوبة محدودة بـ 6 أيام تقريباً. خرافة: وضعيات معينة تزيد فرص الحمل. حقيقة: لا يوجد دليل علمي على ذلك. خرافة: حبوب منع الحمل تسبب العقم. حقيقة: الخصوبة تعود بعد التوقف. خرافة: العقم مشكلة نسائية فقط. حقيقة: ثلث الحالات تعود لعوامل ذكورية."
         },
         "whenToSeekHelp": {
-          "title": "When to Consult a Specialist",
-          "content": "Consider seeking professional fertility guidance if:\n\n• You're under 35 and have been trying for 12 months without success.\n• You're 35–39 and have been trying for 6 months.\n• You're 40 or older — consult early, as time is a factor.\n• You have irregular or absent periods.\n• You have a known condition: endometriosis, PCOS, thyroid disorder, or previous pelvic surgery.\n• You've experienced recurrent miscarriages (2 or more).\n• Your partner has known fertility concerns.\n\nA fertility specialist can run tests (hormone panels, ultrasound, semen analysis) and discuss options ranging from lifestyle changes to assisted reproduction."
+          "title": "متى تستشيرين متخصصاً",
+          "content": "يُنصح بمراجعة متخصص إذا كنتِ تحت 35 عاماً ولم يحدث حمل بعد سنة من المحاولة، أو فوق 35 عاماً بعد 6 أشهر. استشيري فوراً إذا كانت الدورة غير منتظمة أو مؤلمة جداً، أو حدث إجهاض متكرر، أو هناك تاريخ لمشاكل في الحوض أو عمليات سابقة. طبيب الخصوبة يمكنه إجراء فحوصات شاملة ووضع خطة علاجية مناسبة."
         },
         "maleFertility": {
-          "title": "Male Fertility Essentials",
-          "content": "Male fertility is equally important in the conception journey:\n\n• Sperm production takes about 74 days. Lifestyle changes need time to show results.\n• Optimal sperm health requires: avoiding excessive heat (hot tubs, laptops on lap), maintaining a healthy weight, and managing stress.\n• Factors that can reduce sperm quality: smoking, excessive alcohol, certain medications, anabolic steroids, and recreational drugs.\n• A semen analysis is a simple, non-invasive test that evaluates sperm count, motility, and morphology.\n• Age affects male fertility too — sperm quality gradually declines after age 40.\n• Key nutrients for sperm health: zinc, selenium, vitamin C, vitamin E, folate, and omega-3 fatty acids."
+          "title": "أساسيات خصوبة الرجل",
+          "content": "تمثل عوامل الخصوبة الذكورية ثلث حالات صعوبة الحمل. يتم تقييم صحة الحيوانات المنوية من خلال العدد والحركة والشكل. العوامل المؤثرة تشمل: الحرارة المرتفعة، التدخين، الكحول، بعض الأدوية، والإجهاد. تحسين الخصوبة يشمل تناول مضادات الأكسدة والزنك وحمض الفوليك، وتجنب الحرارة المفرطة، والحفاظ على وزن صحي."
         },
         "emotionalWellbeing": {
-          "title": "Emotional Wellbeing on the Journey",
-          "content": "Trying to conceive can be an emotional rollercoaster:\n\n• It's normal to feel hope, excitement, frustration, and sadness — sometimes all in one cycle.\n• About 1 in 6 couples experience difficulty conceiving. You are not alone.\n• Grief after a negative test is valid. Allow yourself to feel without judgment.\n• Communication with your partner is essential. Share your feelings openly.\n• Consider joining a support community — connecting with others on the same journey can be comforting.\n• Set boundaries around pregnancy announcements and baby showers if they feel triggering.\n• Professional counseling can provide coping strategies tailored to your situation.\n• Remember: your worth is not defined by your fertility. Be kind to yourself."
+          "title": "الصحة النفسية في رحلة الخصوبة",
+          "content": "رحلة الخصوبة قد تكون مرهقة عاطفياً. من الطبيعي الشعور بالإحباط والقلق والحزن. اعتني بنفسك من خلال التحدث عن مشاعرك مع شريكك أو صديقة مقربة. مارسي تقنيات الاسترخاء مثل التأمل والتنفس العميق. لا تترددي في طلب الدعم النفسي المتخصص. تذكري أن هذه المشاعر طبيعية ولا تعني ضعفاً."
         },
         "trackingMethods": {
-          "title": "Fertility Tracking Methods",
-          "content": "Several methods can help you identify your fertile window:\n\n1. Calendar Method: Track cycle lengths over several months. Ovulation typically occurs 14 days before your next period.\n\n2. Basal Body Temperature (BBT): Take your temperature every morning before getting up. A slight rise (0.2–0.5°C) confirms ovulation has occurred.\n\n3. Cervical Mucus Observation: As ovulation approaches, mucus becomes clear, stretchy, and slippery (like raw egg white).\n\n4. Ovulation Predictor Kits (OPKs): Detect the LH surge in urine 12–36 hours before ovulation.\n\n5. Fertility Monitors: Advanced devices that track multiple hormones for a more complete picture.\n\n6. Cervical Position: The cervix becomes higher, softer, and more open around ovulation.\n\nCombining multiple methods increases accuracy."
+          "title": "طرق تتبع الخصوبة",
+          "content": "هناك عدة طرق لتتبع الخصوبة: قياس درجة حرارة الجسم الأساسية صباحاً قبل النهوض، مراقبة مخاط عنق الرحم الذي يصبح شفافاً ومطاطاً قرب الإباضة، استخدام شرائط اختبار الإباضة التي تكشف ارتفاع LH، وتتبع التغيرات في وضعية عنق الرحم. الجمع بين عدة طرق يعطي صورة أدق عن نافذة الخصوبة."
         },
         "optimizingTiming": {
-          "title": "Optimizing Timing for Conception",
-          "content": "Timing is crucial for maximizing your chances:\n\n• The best days for conception are the 2–3 days before ovulation and ovulation day itself.\n• Having intercourse every 1–2 days during the fertile window provides the best results.\n• Sperm quality is not significantly reduced by daily ejaculation in most men.\n• After intercourse, lying down for 10–15 minutes may slightly improve sperm transport, though evidence is limited.\n• Lubricants: Some commercial lubricants can reduce sperm motility. Use fertility-friendly brands if needed.\n• Track your cycle for 2–3 months before actively trying, to understand your personal pattern.\n• Stay hydrated and maintain a balanced diet during the fertile window.\n• Both partners should avoid excessive alcohol during the fertile window."
+          "title": "تحسين توقيت الحمل",
+          "content": "أفضل توقيت للحمل هو الأيام الخمسة قبل الإباضة ويوم الإباضة نفسه. يُنصح بالعلاقة كل يوم أو يومين خلال فترة الخصوبة. لا داعي للقلق من التوقيت الدقيق لأن الحيوانات المنوية تعيش عدة أيام. تجنبي استخدام المزلقات التي قد تضر بالحيوانات المنوية. الاسترخاء وعدم التوتر حول التوقيت يساعد أيضاً."
         },
         "implantationWindow": {
-          "title": "The Implantation Window",
-          "content": "The implantation window is the brief period when the uterine lining is ready to receive the embryo:\n\n• Typically occurs between days 6–10 after ovulation.\n• During this time, the endometrium secretes special proteins that help the embryo attach.\n• Progesterone plays a central role in preparing the lining.\n• Factors affecting window quality: chronic inflammation, insufficient lining thickness, or immune disorders.\n• Rest and good nutrition during the luteal phase support the implantation process."
+          "title": "نافذة الانغراس",
+          "content": "نافذة الانغراس هي الفترة التي تكون فيها بطانة الرحم مهيأة لاستقبال الجنين، عادةً بين اليوم 6 و10 بعد الإباضة. خلال هذه الفترة تتغير بطانة الرحم لتصبح أكثر تقبلاً. قد تشعرين بتقلصات خفيفة أو نزول بقع دم خفيفة عند الانغراس. البروجسترون يلعب دوراً أساسياً في تحضير البطانة لهذه العملية."
         },
         "cervicalHealth": {
-          "title": "Cervical Health & Fertility",
-          "content": "The cervix plays a fundamental role in fertility:\n\n• It produces mucus that changes throughout the cycle to facilitate or block sperm passage.\n• Fertile mucus nourishes sperm and extends their lifespan up to 5 days.\n• Chronic cervical infections may reduce mucus quality.\n• Previous cervical procedures (like cone biopsies) may affect mucus production.\n• Maintaining healthy vaginal pH supports the optimal cervical environment for fertility."
+          "title": "صحة عنق الرحم والخصوبة",
+          "content": "عنق الرحم يلعب دوراً محورياً في الخصوبة. ينتج مخاطاً يتغير خلال الدورة: جاف بعد الحيض، كريمي ثم يصبح شفافاً ومطاطاً قرب الإباضة مما يسهل مرور الحيوانات المنوية. الالتهابات والعمليات السابقة قد تؤثر على إنتاج المخاط. الحفاظ على صحة عنق الرحم مهم من خلال الفحوصات الدورية والعناية بالنظافة."
         },
         "thyroidFertility": {
-          "title": "Thyroid & Fertility",
-          "content": "Thyroid disorders are among the most treatable causes of fertility problems:\n\n• Hypothyroidism can cause irregular cycles, absent ovulation, or early miscarriage.\n• Hyperthyroidism is linked to irregular periods and difficulty conceiving.\n• Even subclinical hypothyroidism (TSH 2.5–4.0) may affect fertility.\n• Thyroid antibodies (Anti-TPO) are common and may impact implantation.\n• TSH and FT4 testing is recommended for all women planning pregnancy.\n• Levothyroxine treatment is safe and effective while trying to conceive."
+          "title": "الغدة الدرقية والخصوبة",
+          "content": "اضطرابات الغدة الدرقية شائعة وتؤثر بشكل مباشر على الخصوبة. فرط نشاط الغدة وقصورها يمكن أن يعطلا الإباضة ويؤثرا على انتظام الدورة. الأجسام المضادة للغدة الدرقية قد تؤثر على الانغراس. يُنصح بفحص وظائف الغدة الدرقية عند التخطيط للحمل. العلاج بالأدوية يمكنه تنظيم المستويات واستعادة الخصوبة."
         },
         "pcosManagement": {
-          "title": "Managing PCOS & Fertility",
-          "content": "Polycystic Ovary Syndrome (PCOS) affects 8–13% of women:\n\n• The most common cause of anovulation and ovulation-related infertility.\n• Key symptoms: irregular periods, acne, excess hair growth, insulin resistance.\n• Lifestyle changes are very effective: losing 5–10% of weight can restore ovulation.\n• Inositol has shown promising results in improving insulin sensitivity and egg quality.\n• A low-sugar, balanced diet supports hormonal regularity.\n• Medications like clomiphene or letrozole successfully stimulate ovulation in many cases."
+          "title": "إدارة تكيس المبايض والخصوبة",
+          "content": "متلازمة تكيس المبايض (PCOS) هي أحد أكثر أسباب اضطراب الإباضة شيوعاً. تشمل الأعراض عدم انتظام الدورة، ارتفاع الأندروجينات، وأكياس صغيرة على المبايض. إدارة الوزن والتغذية السليمة وممارسة الرياضة تساعد في تحسين الأعراض. الأدوية مثل الميتفورمين وعلاجات تحفيز الإباضة متاحة بإشراف الطبيب."
         },
         "endometriosisAwareness": {
-          "title": "Endometriosis & Fertility",
-          "content": "Endometriosis affects 1 in 10 women:\n\n• Tissue similar to the uterine lining grows outside the uterus, causing inflammation and adhesions.\n• It can affect the tubes, ovaries, and egg quality.\n• Symptoms: severe period pain, pain during intercourse, and sometimes no symptoms.\n• Early diagnosis improves outcomes. Laparoscopy is the gold standard.\n• Many affected women conceive naturally or with assistance.\n• Consult a fertility specialist if you have a family history or suspicious symptoms."
+          "title": "بطانة الرحم المهاجرة والخصوبة",
+          "content": "بطانة الرحم المهاجرة تحدث عندما ينمو نسيج مشابه لبطانة الرحم خارجه. تسبب ألماً وقد تؤثر على الخصوبة من خلال الالتصاقات وتلف قناتي فالوب والتأثير على جودة البويضات. التشخيص المبكر مهم. تتراوح خيارات العلاج بين الأدوية والجراحة بالمنظار وتقنيات الإخصاب المساعد حسب شدة الحالة."
         },
         "nutritionFertility": {
-          "title": "Optimal Nutrition for Fertility",
-          "content": "Diet directly affects egg and sperm quality:\n\n• The Mediterranean diet has shown the best results in fertility studies.\n• Healthy fats (omega-3, olive oil) support hormone production.\n• Plant protein may be better than animal protein for some women.\n• Avoid trans fats, which double the risk of ovulation-related infertility.\n• Organic foods reduce exposure to hormone-disrupting pesticides.\n• Plant-source iron + vitamin C significantly improves absorption."
+          "title": "التغذية المثلى للخصوبة",
+          "content": "التغذية السليمة تدعم الخصوبة بشكل كبير. ركزي على: حمض الفوليك (400-800 ميكروغرام يومياً)، الحديد من مصادر نباتية وحيوانية، أوميغا 3 من الأسماك والمكسرات، مضادات الأكسدة من الفواكه والخضروات الملونة، والبروتين الكافي. قللي من السكريات المكررة والأطعمة المصنعة والكافيين المفرط."
         },
         "sleepHormones": {
-          "title": "Sleep & Fertility Hormones",
-          "content": "Sleep is not a luxury — it's a biological necessity for fertility:\n\n• Melatonin (sleep hormone) acts as an antioxidant protecting eggs.\n• Less than 6 hours of sleep raises cortisol, which suppresses GnRH and ovulation.\n• Shift work is associated with increased cycle and fertility problems.\n• The circadian rhythm regulates FSH and LH secretion.\n• Blue light from screens suppresses melatonin and disrupts rhythm.\n• Goal: 7–9 hours of sleep in a dark, cool room with a consistent routine."
+          "title": "النوم وهرمونات الخصوبة",
+          "content": "النوم الجيد ضروري لتوازن الهرمونات التناسلية. قلة النوم ترفع الكورتيزول وتخفض هرمون الميلاتونين الذي يحمي البويضات. اهدفي لـ 7-9 ساعات نوم يومياً. حافظي على موعد نوم ثابت وتجنبي الشاشات قبل النوم. اجعلي غرفة النوم مظلمة وباردة. النوم العميق يدعم إفراز هرمون النمو الضروري للخصوبة."
         },
         "exerciseBalance": {
-          "title": "Balancing Exercise & Fertility",
-          "content": "Exercise is a double-edged sword for fertility:\n\n• Moderate activity (150 minutes/week) improves ovulation and fertility.\n• Continuous intense exercise can cause 'relative energy deficiency' stopping ovulation.\n• Walking, swimming, and yoga are among the best options.\n• Moderate strength training improves insulin sensitivity (helpful for PCOS).\n• Fertility yoga combines movement with stress reduction.\n• If your period disappears with intense exercise, reduce intensity immediately.\n• The balance between movement and rest is key."
+          "title": "التوازن بين الرياضة والخصوبة",
+          "content": "النشاط البدني المعتدل يدعم الخصوبة من خلال تحسين الدورة الدموية وتقليل التوتر وتنظيم الهرمونات. لكن الإفراط في التمارين الشديدة قد يعطل الإباضة ويقلل البروجسترون. التمارين المثالية تشمل: المشي السريع، اليوغا، السباحة، وتمارين القوة المعتدلة. استمعي لجسمك واستريحي عند الحاجة."
         },
         "supplementsGuide": {
-          "title": "Smart Supplements Guide",
-          "content": "Supplements can support your fertility — but not all are equal:\n\n• Folic acid/methylfolate: Essential — start 3 months before trying.\n• CoQ10 (200–600mg): Supports egg energy, especially after 35.\n• Vitamin D (1000–2000 IU): Most women are deficient.\n• Omega-3 DHA (200–300mg): For hormone health and inflammation.\n• Inositol (4g myo + 100mg d-chiro): Especially helpful with PCOS.\n• Iron: Only if tests show deficiency — excess is harmful.\n• Always consult your doctor before starting any new supplement."
+          "title": "دليل المكملات الذكية",
+          "content": "المكملات المفيدة للخصوبة تشمل: حمض الفوليك الميثيلي، فيتامين D3، CoQ10 لجودة البويضات، أوميغا 3، الزنك، فيتامين E، وإينوزيتول لمتلازمة تكيس المبايض. الرجال يستفيدون من الزنك والسيلينيوم وCoQ10. استشيري طبيبك قبل بدء أي مكمل وتأكدي من عدم التعارض مع أدوية أخرى."
         },
         "environmentalToxins": {
-          "title": "Environmental Toxins & Fertility",
-          "content": "Daily exposure to environmental toxins can affect your fertility:\n\n• BPA in plastics mimics estrogen and disrupts hormonal balance.\n• Phthalates in cosmetics and fragrances disrupt the endocrine system.\n• Pesticides on fruits and vegetables are linked to lower egg quality.\n• Heavy metals (lead, mercury) affect both eggs and sperm.\n• Practical steps: glass containers instead of plastic, natural cleaning products, wash fruits well.\n• Filtering drinking water reduces pollutant exposure."
+          "title": "السموم البيئية والخصوبة",
+          "content": "التعرض للسموم البيئية قد يؤثر على الخصوبة. تشمل المخاطر: المبيدات الحشرية، البلاستيك (BPA)، المعادن الثقيلة، والمواد الكيميائية في منتجات التنظيف والعناية الشخصية. قللي التعرض من خلال: اختيار الأطعمة العضوية، استخدام أوعية زجاجية، تجنب العطور الصناعية، وتهوية المنزل جيداً."
         },
         "geneticFactors": {
-          "title": "Genetic Factors & Fertility",
-          "content": "Genes play a bigger role than expected in fertility:\n\n• Carrier genetic screening reveals risk of passing genetic diseases to children.\n• MTHFR mutation affects folate metabolism — methylfolate may be better.\n• Turner syndrome and chromosomal abnormalities affect ovarian reserve.\n• Family history of early menopause may signal early reserve decline.\n• Karyotype testing is recommended in cases of recurrent miscarriage.\n• Genetic counseling is available and useful for those with specific family histories."
+          "title": "العوامل الوراثية والخصوبة",
+          "content": "تلعب الجينات دوراً في الخصوبة. بعض الحالات الوراثية مثل متلازمة تيرنر أو التليف الكيسي تؤثر على القدرة الإنجابية. الاستشارة الوراثية قبل الحمل مفيدة إذا كان هناك تاريخ عائلي لأمراض وراثية أو إجهاض متكرر. الفحوصات الجينية تساعد في تحديد المخاطر والتخطيط المناسب."
         },
         "immunologyFertility": {
-          "title": "Immunology & Fertility",
-          "content": "The immune system plays a delicate role in pregnancy:\n\n• The body must accept the embryo (half its genes from the father) without rejecting it.\n• Uterine NK cells help with implantation — but excessive activity may hinder it.\n• Antiphospholipid antibodies are linked to recurrent miscarriage.\n• Autoimmune diseases (lupus, Hashimoto's) may affect fertility.\n• Chronic pelvic inflammation can damage the tubes.\n• An anti-inflammatory lifestyle (nutrition, sleep, movement) supports balanced immunity."
+          "title": "المناعة والخصوبة",
+          "content": "الجهاز المناعي يلعب دوراً مهماً في الحمل. أحياناً ينتج الجسم أجساماً مضادة تهاجم الحيوانات المنوية أو الجنين. الأمراض المناعية الذاتية مثل الذئبة ومتلازمة أضداد الفوسفوليبيد قد تسبب مشاكل في الانغراس أو الإجهاض. الفحوصات المناعية والعلاجات المتخصصة متاحة لمن يعانين من هذه المشاكل."
         },
         "secondaryInfertility": {
-          "title": "Secondary Infertility",
-          "content": "Secondary infertility means difficulty conceiving after having a previous child:\n\n• Accounts for about 50% of infertility cases — but is less discussed.\n• Causes: advancing age, weight changes, complications from previous pregnancy.\n• Adhesions from cesarean section or infection may affect fertility.\n• Hormonal changes after first birth may not fully normalize.\n• Social expectations ('you have a child, be grateful') increase psychological burden.\n• Don't delay seeking help — the same time criteria apply."
+          "title": "العقم الثانوي",
+          "content": "العقم الثانوي يحدث عندما تواجه المرأة صعوبة في الحمل بعد حمل سابق ناجح. قد يكون السبب تغيرات العمر، مشاكل صحية جديدة، أو عوامل غير مُحددة. هذه التجربة محبطة عاطفياً لأن المحيطين قد لا يتفهمون المشكلة. طلب المساعدة الطبية مهم ولا يختلف عن العقم الأولي في خيارات العلاج."
         },
         "recurrentLoss": {
-          "title": "Understanding Recurrent Pregnancy Loss",
-          "content": "Recurrent pregnancy loss (two or more) requires comprehensive evaluation:\n\n• 15–20% of pregnancies end in miscarriage — most due to chromosomal abnormalities.\n• Treatable causes: clotting disorders, uterine anomalies, thyroid problems.\n• Uterine septum is the most common uterine anomaly and can be surgically corrected.\n• Antiphospholipid syndrome is treatable with aspirin and heparin.\n• Psychological support is essential — grief and anxiety after loss are natural and valid.\n• 60–70% of couples with unexplained recurrent loss succeed in the next pregnancy."
+          "title": "فهم الإجهاض المتكرر",
+          "content": "الإجهاض المتكرر يُعرّف بحدوث خسارتين أو أكثر متتاليتين. الأسباب تشمل: تشوهات كروموسومية، مشاكل في بنية الرحم، اضطرابات هرمونية، مشاكل مناعية، واضطرابات تخثر الدم. الفحوصات الشاملة مهمة لتحديد السبب. العلاجات المتاحة تحقق نجاحاً جيداً في كثير من الحالات. الدعم النفسي ضروري خلال هذه التجربة."
         },
         "fertilityPreservation": {
-          "title": "Fertility Preservation",
-          "content": "Fertility preservation is an available option that gives you flexibility in planning:\n\n• Egg freezing: Ideal age before 35. Excellent results with modern techniques.\n• Embryo freezing: Option for married couples. Higher success rates than eggs alone.\n• Reasons for freezing: delayed childbearing, chemotherapy, medical conditions.\n• The process requires hormonal stimulation for 10–14 days then egg retrieval.\n• Cost and storage are factors to consider.\n• Consult a fertility specialist to assess if it's suitable for your situation."
+          "title": "الحفاظ على الخصوبة",
+          "content": "تجميد البويضات أو الأجنة يتيح حفظ الخصوبة للمستقبل. يُنصح به قبل العلاج الكيميائي أو الإشعاعي، أو لأسباب شخصية مثل تأخير الإنجاب. أفضل النتائج تكون عند تجميد البويضات قبل سن 35. العملية تتضمن تحفيز المبايض وسحب البويضات تحت التخدير. معدلات النجاح تتحسن باستمرار مع تطور التقنيات."
         },
         "assistedReproduction": {
-          "title": "Assisted Reproduction Techniques",
-          "content": "When natural conception doesn't succeed, there are effective options:\n\n• Ovulation stimulation: Medications that stimulate egg production — first-line treatment.\n• Intrauterine insemination (IUI): Processed sperm injected directly into the uterus.\n• In vitro fertilization (IVF): The most advanced technique. Success rates 30–50% per cycle.\n• Intracytoplasmic sperm injection (ICSI): A single sperm injected directly into the egg.\n• Preimplantation genetic testing (PGT): Screening embryos for chromosomal abnormalities.\n• Each option has specific indications — a fertility specialist guides you to the most suitable."
+          "title": "تقنيات الإخصاب المساعد",
+          "content": "تشمل تقنيات الإخصاب المساعد: التلقيح داخل الرحم (IUI)، الإخصاب في المختبر (IVF)، والحقن المجهري (ICSI). يبدأ العلاج عادةً بالخيارات الأبسط ثم يتدرج. كل تقنية لها معدلات نجاح ومتطلبات مختلفة. اختيار التقنية يعتمد على التشخيص والعمر والتاريخ الطبي. الدعم النفسي مهم خلال هذه الرحلة."
         },
         "epigeneticsFertility": {
-          "title": "Epigenetics & Generational Health",
-          "content": "Epigenetics discoveries have changed our understanding of fertility:\n\n• Your nutrition and lifestyle can influence gene expression in your future child.\n• Folate deficiency before pregnancy affects fetal gene programming.\n• Chronic stress can leave 'imprints' on DNA that transfer to the embryo.\n• Pollution and environmental toxins cause epigenetic changes that may affect generations.\n• Good news: negative epigenetic changes are reversible with a healthy lifestyle.\n• 3–6 months of improvements before pregnancy make a real difference in fetal health."
+          "title": "علم التخلق والصحة عبر الأجيال",
+          "content": "علم التخلق يدرس كيف تؤثر البيئة ونمط الحياة على التعبير الجيني دون تغيير الحمض النووي. نظامك الغذائي ومستوى توترك وتعرضك للسموم قد تؤثر على صحة أطفالك وأحفادك. هذا يعني أن العناية بصحتك قبل الحمل ليست فقط لصالحك بل للأجيال القادمة. التغذية السليمة وتقليل التوتر لهما تأثير إيجابي طويل المدى."
         },
         "mindBodyConnection": {
-          "title": "The Mind-Body Connection",
-          "content": "The relationship between mind and body is deeper than we imagine in fertility:\n\n• Chronic stress activates the HPA axis which suppresses reproductive hormones.\n• Relaxation techniques (meditation, yoga, deep breathing) measurably improve fertility outcomes.\n• Cognitive behavioral therapy (CBT) has shown positive results in reducing fertility anxiety.\n• Positive visualization and affirmations activate neural pathways that support hormonal balance.\n• Support groups reduce feelings of isolation and improve mental health.\n• Art, music, and creative writing are effective therapeutic tools during the fertility journey.\n• Seek professional help if anxiety or sadness begin to dominate your life."
+          "title": "العلاقة بين العقل والجسم",
+          "content": "العقل والجسم مرتبطان بعمق في رحلة الخصوبة. التوتر والقلق يؤثران على الهرمونات والإباضة. تقنيات مثل التأمل واليقظة والتصور الإيجابي والعلاج بالفن يمكن أن تحسن الحالة النفسية وتدعم الخصوبة. إيجاد التوازن بين السعي للحمل والاستمتاع بالحياة اليومية أمر ضروري لصحتك الشاملة."
         }
       },
       "lessonsCount": "{{count}} وحدة تعليمية"
@@ -4515,54 +4515,54 @@
     "fertilitySigns": {
       "signs": {
         "cervicalMucus": {
-          "title": "Cervical Mucus Changes",
-          "description": "As ovulation approaches, cervical mucus becomes more abundant, clear, and stretchy — resembling raw egg whites. This 'fertile-quality' mucus helps sperm travel more easily through the cervix. After ovulation, mucus typically becomes thicker, cloudier, or dries up.",
-          "tip": "Check mucus daily by wiping before urination. The most fertile-type mucus stretches between your fingers without breaking."
+          "title": "تغيرات مخاط عنق الرحم",
+          "description": "مع اقتراب الإباضة، يصبح مخاط عنق الرحم أكثر شفافية ومطاطية وزلقاً، مشابهاً لبياض البيض. هذا النوع من المخاط يسهّل حركة الحيوانات المنوية ويوفر بيئة مثالية لبقائها. بعد الإباضة يصبح المخاط سميكاً ولزجاً. تتبع هذه التغيرات يومياً يعطيك مؤشراً موثوقاً عن توقيت الإباضة.",
+          "tip": "افحصي المخاط قبل التبول عن طريق مسح المنطقة بورق التواليت ولاحظي اللون والقوام والمطاطية."
         },
         "basalTemp": {
-          "title": "Basal Body Temperature Shift",
-          "description": "After ovulation, progesterone causes your resting body temperature to rise by 0.2–0.5°C. This shift confirms that ovulation has already occurred. By tracking BBT over several cycles, you can identify your typical ovulation pattern.",
-          "tip": "Take your temperature every morning at the same time, before getting out of bed. Use a BBT-specific thermometer for accuracy."
+          "title": "ارتفاع درجة حرارة الجسم الأساسية",
+          "description": "بعد الإباضة ترتفع درجة حرارة الجسم الأساسية بمقدار 0.2-0.5 درجة مئوية بسبب ارتفاع البروجسترون. قيسي الحرارة كل صباح قبل النهوض من السرير باستخدام ميزان حرارة دقيق. الارتفاع المستمر لثلاثة أيام يؤكد حدوث الإباضة. هذه الطريقة تؤكد الإباضة بأثر رجعي وليس التنبؤ بها.",
+          "tip": "استخدمي ميزان حرارة أساسي بدقة 0.01 درجة وقيسي في نفس الوقت يومياً قبل أي نشاط."
         },
         "cervicalPosition": {
-          "title": "Cervical Position Changes",
-          "description": "During your fertile window, the cervix moves higher in the vaginal canal, becomes softer (like your lips vs. the tip of your nose), and opens slightly. After ovulation, it drops lower, firms up, and closes.",
-          "tip": "Check cervical position in the same position daily (e.g., standing with one foot elevated). It takes practice — be patient with yourself."
+          "title": "تغيرات وضعية عنق الرحم",
+          "description": "يتغير عنق الرحم خلال الدورة. قرب الإباضة يصبح عنق الرحم أعلى وأطرى وأكثر انفتاحاً ورطوبة. بعد الإباضة ينخفض ويصبح أكثر صلابة وانغلاقاً. تعلّم فحص عنق الرحم يحتاج ممارسة لكنه يعطي معلومات قيمة عن توقيت الخصوبة.",
+          "tip": "افحصي عنق الرحم في نفس الوقت يومياً وبنفس الوضعية للحصول على نتائج متسقة."
         },
         "ovulationPain": {
-          "title": "Ovulation Sensation (Mittelschmerz)",
-          "description": "Some women feel a mild twinge, cramp, or ache on one side of the lower abdomen during ovulation. This 'middle pain' (mittelschmerz) is caused by the follicle rupturing to release the egg. It typically lasts a few minutes to a few hours.",
-          "tip": "Note which side you feel the sensation — it may alternate sides each cycle as ovulation switches between ovaries."
+          "title": "ألم الإباضة (ميتلشمرتز)",
+          "description": "بعض النساء يشعرن بألم أو وخز في أحد جانبي أسفل البطن أثناء الإباضة. يُعرف هذا بألم الإباضة أو ميتلشمرتز. قد يستمر من دقائق إلى ساعات ويتناوب بين الجانبين شهرياً. رغم أنه ليس مؤشراً موثوقاً بمفرده، إلا أنه يمكن أن يكون علامة مساعدة مع طرق التتبع الأخرى.",
+          "tip": "سجّلي أي إحساس في منطقة الحوض في تقويمك الشهري لمساعدتك في تحديد نمط الإباضة."
         },
         "breastTenderness": {
-          "title": "Breast Tenderness",
-          "description": "Rising progesterone after ovulation can cause breast tenderness, fullness, or sensitivity. This is one of the most commonly noticed luteal phase symptoms. Some women also experience this in the days leading up to ovulation due to rising estrogen.",
-          "tip": "Track when tenderness begins and ends to correlate it with your ovulation pattern over time."
+          "title": "حساسية الثدي",
+          "description": "قد تلاحظين حساسية أو تورماً خفيفاً في الثدي حول فترة الإباضة أو بعدها بسبب ارتفاع البروجسترون. هذه التغيرات طبيعية وتعكس التقلبات الهرمونية في جسمك. تختلف الحدة من شهر لآخر ومن امرأة لأخرى.",
+          "tip": "ارتداء حمالة صدر داعمة ومريحة يساعد في تخفيف الانزعاج خلال هذه الفترة."
         },
         "libidoChanges": {
-          "title": "Changes in Desire",
-          "description": "Many women experience a natural increase in desire around ovulation. This is driven by the surge in estrogen and testosterone that precedes the LH peak. It's one of the body's ways of optimizing the chance of conception.",
-          "tip": "Pay attention to these natural shifts — they often align with your most fertile days."
+          "title": "تغيرات الرغبة",
+          "description": "تلاحظ العديد من النساء زيادة طبيعية في الرغبة حول فترة الإباضة بسبب ارتفاع الإستروجين والتستوستيرون. هذه استجابة بيولوجية طبيعية تتزامن مع فترة الخصوبة القصوى. الانتباه لهذه التغيرات يمكن أن يكون مؤشراً إضافياً مفيداً عند تتبع الخصوبة.",
+          "tip": "لاحظي التغيرات في رغبتك خلال الشهر واربطيها بعلامات الخصوبة الأخرى."
         },
         "moodShifts": {
-          "title": "Mood & Energy Shifts",
-          "description": "Estrogen rising in the follicular phase often brings improved mood, energy, and confidence. After ovulation, progesterone dominance may cause a shift toward calmness or, for some, irritability and fatigue. These fluctuations are normal and hormone-driven.",
-          "tip": "Journaling your mood daily can reveal patterns that correlate with your cycle phases."
+          "title": "تقلبات المزاج والطاقة",
+          "description": "التقلبات الهرمونية خلال الدورة تؤثر على المزاج ومستوى الطاقة. كثير من النساء يشعرن بتحسن المزاج وزيادة الطاقة والثقة حول فترة الإباضة. بينما قد ينخفض المزاج في المرحلة الأصفرية. فهم هذه الأنماط يساعدك على التعامل معها بوعي وتخطيط يومك بشكل أفضل.",
+          "tip": "سجّلي مزاجك ومستوى طاقتك يومياً لاكتشاف الأنماط المرتبطة بدورتك."
         },
         "bloating": {
-          "title": "Mild Bloating",
-          "description": "Hormonal changes around ovulation, particularly rising progesterone, can cause water retention and mild bloating. This is a common sign that your body is transitioning into the luteal phase.",
-          "tip": "Staying hydrated and reducing sodium intake can help manage ovulation-related bloating."
+          "title": "الانتفاخ الخفيف",
+          "description": "قد تشعرين بانتفاخ خفيف حول فترة الإباضة بسبب احتباس الماء الناتج عن التغيرات الهرمونية. هذا أمر طبيعي ومؤقت. قد يترافق مع شعور بالثقل في منطقة الحوض. يزول عادةً خلال يوم أو يومين بعد الإباضة.",
+          "tip": "اشربي كمية كافية من الماء وقللي الملح للتخفيف من الانتفاخ الهرموني."
         },
         "lightSpotting": {
-          "title": "Ovulation Spotting",
-          "description": "A small amount of light pink or brown spotting around ovulation day is experienced by some women. It's caused by the slight drop in estrogen that occurs just before the LH surge, or by the follicle rupture itself. It's usually very light and brief.",
-          "tip": "Ovulation spotting is different from implantation bleeding (which occurs 6–12 days after ovulation). Track the timing carefully."
+          "title": "نزيف الإباضة الخفيف",
+          "description": "بعض النساء يلاحظن نقاط دم خفيفة أو إفرازات وردية حول فترة الإباضة. يحدث هذا بسبب الانخفاض السريع في الإستروجين عند تحرر البويضة. هذا أمر طبيعي تماماً ويعتبر علامة جيدة على حدوث الإباضة. عادةً يستمر يوماً واحداً أو أقل.",
+          "tip": "إذا كان النزيف غزيراً أو مستمراً لأكثر من يومين، استشيري طبيبتك."
         },
         "heightenedSenses": {
-          "title": "Heightened Senses",
-          "description": "Some women report a more acute sense of smell during ovulation, possibly due to elevated estrogen levels. Research suggests this may be an evolutionary adaptation. Some also notice subtle changes in taste preferences.",
-          "tip": "If you notice scents seem stronger around mid-cycle, it may be a personal ovulation indicator worth tracking."
+          "title": "حدة الحواس",
+          "description": "قد تلاحظين زيادة في حدة حاسة الشم أو التذوق حول فترة الإباضة بسبب ارتفاع الإستروجين. بعض النساء يصبحن أكثر حساسية للروائح أو يلاحظن نكهات أقوى في الطعام. هذه التغيرات الحسية هي علامة على الذروة الهرمونية المرتبطة بالإباضة.",
+          "tip": "انتبهي لأي تغير في حواسك خلال منتصف الدورة فقد يكون مؤشراً على اقتراب الإباضة."
         }
       },
       "signsCount": "{{count}} علامة يجب معرفتها"
@@ -4766,54 +4766,54 @@
     "stressFertility": {
       "topics": {
         "stressHormones": {
-          "title": "How Stress Affects Fertility",
-          "content": "Chronic stress triggers the release of cortisol and adrenaline, which can disrupt the hypothalamic-pituitary-gonadal (HPG) axis — the hormonal pathway that controls ovulation. Elevated cortisol may suppress GnRH (gonadotropin-releasing hormone), leading to irregular or absent ovulation. While moderate daily stress is unlikely to prevent conception, prolonged high stress can delay time to pregnancy.",
-          "practice": "Identify your top 3 stress triggers this week. For each one, write down one small action you can take to reduce its impact."
+          "title": "كيف يؤثر التوتر على الخصوبة",
+          "content": "التوتر المزمن يُطلق هرمون الكورتيزول والأدرينالين اللذين يتداخلان مع هرمونات الخصوبة. الكورتيزول المرتفع يمكن أن يثبط GnRH مما يؤثر على إفراز FSH وLH ويعطل الإباضة. كما يمكن أن يؤثر على جودة بطانة الرحم والقدرة على الانغراس.",
+          "practice": "خصصي 10 دقائق يومياً لتمرين استرخاء عميق مع التنفس البطيء والموسيقى الهادئة."
         },
         "cortisol": {
-          "title": "Understanding Cortisol",
-          "content": "Cortisol is your body's primary stress hormone. In small bursts, it's helpful — providing energy and focus. But when cortisol remains chronically elevated, it can suppress reproductive hormones, disrupt sleep, increase inflammation, and affect mood. The goal isn't to eliminate stress entirely (impossible!) but to manage your stress response.",
-          "practice": "Practice the 4-7-8 breathing technique: Inhale for 4 seconds, hold for 7, exhale for 8. Repeat 4 times. This activates the parasympathetic nervous system."
+          "title": "فهم الكورتيزول",
+          "content": "الكورتيزول هو هرمون التوتر الرئيسي. مستوياته الطبيعية تتبع نمطاً يومياً: مرتفع صباحاً ومنخفض مساءً. التوتر المزمن يخل بهذا النمط مما يؤثر على النوم والهرمونات التناسلية والمناعة. الحفاظ على مستويات كورتيزول طبيعية مهم لدعم الخصوبة الطبيعية.",
+          "practice": "تعرضي لضوء الشمس الصباحي وتجنبي الكافيين بعد الظهر للمساعدة في تنظيم إيقاع الكورتيزول."
         },
         "mindfulness": {
-          "title": "Mindfulness for Fertility",
-          "content": "Mindfulness is the practice of being fully present without judgment. Studies show that mindfulness-based stress reduction (MBSR) programs can reduce anxiety and depression in women undergoing fertility treatment, and may improve outcomes. Even 10 minutes of daily mindfulness practice can lower cortisol levels and improve emotional resilience.",
-          "practice": "Try a 5-minute body scan: Close your eyes, breathe deeply, and slowly move your attention from your toes to your head, noticing sensations without trying to change them."
+          "title": "اليقظة الذهنية والخصوبة",
+          "content": "أظهرت الأبحاث أن ممارسة اليقظة الذهنية تقلل التوتر وتحسن نتائج الخصوبة. التأمل اليقظ يعني التركيز على اللحظة الحالية دون حكم. حتى 10 دقائق يومياً يمكن أن تخفض الكورتيزول وتحسن المزاج. تطبيقات التأمل الموجه تساعد المبتدئات في البدء.",
+          "practice": "جربي تأمل المسح الجسدي: أغمضي عينيك وركزي على كل جزء من جسمك من الرأس للقدمين لمدة 5 دقائق."
         },
         "breathing": {
-          "title": "Breathing Techniques",
-          "content": "Controlled breathing directly activates the vagus nerve, triggering the relaxation response. This lowers heart rate, blood pressure, and cortisol. It's one of the fastest ways to shift from a stress state to a calm state. Different techniques serve different purposes — some energize, others calm.",
-          "practice": "Box Breathing: Inhale 4 counts → Hold 4 counts → Exhale 4 counts → Hold 4 counts. Repeat for 5 minutes. Ideal before bed or during anxious moments."
+          "title": "تقنيات التنفس",
+          "content": "التنفس العميق ينشط الجهاز العصبي السمبثاوي ويقلل استجابة التوتر. تقنية التنفس 4-7-8 فعالة: شهيق لـ 4 ثوانٍ، حبس لـ 7 ثوانٍ، زفير لـ 8 ثوانٍ. التنفس البطني أيضاً مفيد حيث تتنفسين بعمق من البطن وليس الصدر. هذه التقنيات يمكن ممارستها في أي وقت ومكان.",
+          "practice": "مارسي تمرين التنفس 4-7-8 ثلاث مرات يومياً: قبل الإفطار وبعد الغداء وقبل النوم."
         },
         "journaling": {
-          "title": "Therapeutic Journaling",
-          "content": "Writing about your emotions has been scientifically shown to reduce stress, improve immune function, and provide clarity. For fertility journaling, the goal isn't to track symptoms obsessively, but to process emotions, celebrate small wins, and release fears.",
-          "practice": "Tonight, write down: 1) One thing I'm grateful for today, 2) One worry I want to release, 3) One kind thing I did for myself."
+          "title": "الكتابة العلاجية",
+          "content": "الكتابة التعبيرية تساعد في معالجة المشاعر وتقليل التوتر. اكتبي عن مشاعرك ومخاوفك وآمالك المتعلقة برحلة الخصوبة. لا تقلقي حول القواعد أو الأسلوب، فالهدف هو التعبير الحر. الأبحاث تُظهر أن الكتابة المنتظمة تحسن المزاج وتقلل القلق وقد تدعم الصحة الجسدية.",
+          "practice": "خصصي 15 دقيقة قبل النوم للكتابة الحرة عن يومك ومشاعرك دون تعديل أو حكم."
         },
         "sleep": {
-          "title": "Sleep & Fertility",
-          "content": "Sleep is when your body repairs, produces hormones, and processes emotions. Poor sleep disrupts melatonin (which protects egg quality), increases cortisol, and impairs FSH and LH regulation. Women who sleep fewer than 6 hours per night have been shown to have lower fertility rates.",
-          "practice": "Create a wind-down routine: No screens 30 min before bed, dim lights, use lavender essential oil, and keep your bedroom cool (18–20°C)."
+          "title": "النوم والخصوبة",
+          "content": "النوم الجيد ضروري لتوازن الهرمونات وإدارة التوتر. قلة النوم ترفع الكورتيزول وتعطل إيقاع الساعة البيولوجية. اهدفي لـ 7-9 ساعات نوم في غرفة مظلمة وهادئة وباردة. تجنبي الشاشات قبل النوم بساعة. نظام نوم ثابت يدعم إنتاج الميلاتونين الذي يحمي جودة البويضات.",
+          "practice": "أنشئي روتين مسائي مريح: استحمام دافئ، قراءة خفيفة، ثم نوم في نفس الموعد يومياً."
         },
         "exercise": {
-          "title": "Movement & Stress Relief",
-          "content": "Regular moderate exercise is one of the most effective stress relievers. It releases endorphins, improves sleep, and helps regulate hormones. However, excessive intense exercise (marathon training, high-intensity daily workouts) can suppress ovulation. Balance is key.",
-          "practice": "This week, aim for 30 minutes of moderate movement 5 days: walking, yoga, swimming, or dancing. Notice how your mood shifts afterward."
+          "title": "الحركة وتخفيف التوتر",
+          "content": "النشاط البدني المعتدل هو أحد أفضل مضادات التوتر الطبيعية. الرياضة تُفرز الإندورفين وتحسن المزاج وتقلل القلق. المشي في الطبيعة واليوغا والسباحة مفيدة بشكل خاص. تجنبي الإفراط في التمارين الشديدة التي قد تزيد التوتر الجسدي. 30 دقيقة من النشاط المعتدل معظم أيام الأسبوع كافية.",
+          "practice": "مارسي المشي في الهواء الطلق لمدة 20-30 دقيقة يومياً، ويفضل في الصباح للاستفادة من ضوء الشمس."
         },
         "socialSupport": {
-          "title": "Building Your Support Network",
-          "content": "Social isolation amplifies stress. Sharing your fertility journey with trusted friends, family, or a support group can significantly reduce emotional burden. You don't have to share with everyone — even one supportive person makes a difference.",
-          "practice": "Identify one person you trust. Share one thing about your journey with them this week. Connection is healing."
+          "title": "بناء شبكة الدعم",
+          "content": "رحلة الخصوبة أسهل مع نظام دعم قوي. شاركي مشاعرك مع شريكك بانتظام. تحدثي مع صديقة موثوقة أو انضمي لمجموعة دعم. المجتمعات الإلكترونية توفر مساحة آمنة لمشاركة التجارب. لا تخجلي من طلب المساعدة أو رفض المناسبات التي تسبب لك ضغطاً عاطفياً.",
+          "practice": "خصصي وقتاً أسبوعياً للتحدث مع شريكك عن مشاعركما واحتياجاتكما في هذه الرحلة."
         },
         "professionalHelp": {
-          "title": "When to Seek Professional Support",
-          "content": "If anxiety or sadness about fertility is affecting your daily life, sleep, relationships, or work, professional support can help. Therapists specializing in reproductive mental health understand the unique challenges of this journey. Cognitive Behavioral Therapy (CBT) is particularly effective for fertility-related anxiety.",
-          "practice": "If you're considering therapy, look for a therapist who specializes in reproductive psychology or perinatal mental health. Many offer virtual sessions."
+          "title": "متى تطلبين الدعم المتخصص",
+          "content": "لا تترددي في طلب المساعدة النفسية المتخصصة إذا شعرت بقلق مستمر أو اكتئاب أو إذا أثرت رحلة الخصوبة على علاقاتك أو عملك. المعالج النفسي المتخصص في مشاكل الخصوبة يفهم تحدياتك الفريدة. العلاج المعرفي السلوكي وتقنيات EMDR أثبتت فعاليتها في التعامل مع التوتر المرتبط بالخصوبة.",
+          "practice": "ابحثي عن معالج نفسي متخصص في صحة المرأة والخصوبة واحجزي جلسة استكشافية."
         },
         "acceptance": {
-          "title": "Practicing Acceptance",
-          "content": "Acceptance doesn't mean giving up — it means acknowledging that some things are beyond your control while focusing on what you can influence. This shift from control to acceptance can significantly reduce stress and improve emotional wellbeing during the fertility journey.",
-          "practice": "Repeat this affirmation: 'I am doing everything I can. I trust my body and my journey. The outcome does not define my worth.'"
+          "title": "ممارسة التقبل",
+          "content": "التقبل لا يعني الاستسلام بل يعني التصالح مع عدم اليقين. رحلة الخصوبة مليئة بالأمور الخارجة عن سيطرتنا. ركزي على ما يمكنك التحكم فيه: صحتك ونمط حياتك وعلاقاتك. عيشي يومك بيومه وامنحي نفسك الإذن بالحزن والأمل في آن واحد. كل مشاعرك صحيحة ومشروعة.",
+          "practice": "ابدئي يومك بتأمل التقبل: أعترف بمشاعري وأتقبلها، وأركز على ما يمكنني فعله اليوم."
         }
       },
       "topicsCount": "{{count}} موضوع لاستكشافه"
@@ -4821,74 +4821,74 @@
     "twwCompanion": {
       "days": {
         "day1": {
-          "title": "Ovulation Day + 1",
-          "body": "If ovulation occurred yesterday, the egg is now traveling through the fallopian tube. If fertilization happens, it typically occurs within 12–24 hours of ovulation. Today, there's nothing you can do to influence the outcome — and that's okay.",
-          "tip": "Take a deep breath. The journey has begun. Focus on something you enjoy today."
+          "title": "يوم الإباضة + 1",
+          "body": "إذا حدثت الإباضة أمس، فإن البويضة تسافر الآن عبر قناة فالوب. قد يحدث الإخصاب خلال 12-24 ساعة بعد الإباضة. الحيوانات المنوية التي وصلت مسبقاً تنتظر في قناة فالوب.",
+          "tip": "حافظي على هدوئك واستمري في روتينك الصحي المعتاد."
         },
         "day2": {
-          "title": "Cellular Beginnings",
-          "body": "If fertilization occurred, the single-celled zygote begins dividing — first into 2 cells, then 4. This tiny cluster of cells is traveling through the fallopian tube toward the uterus. It's powered entirely by its own energy stores.",
-          "tip": "Stay hydrated and eat nourishing foods. Your body is doing incredible work at the cellular level."
+          "title": "البدايات الخلوية",
+          "body": "إذا تم الإخصاب، تبدأ البويضة المخصبة أول انقساماتها لتصبح خليتين ثم أربع. هذه العملية تحدث وأنتِ تمارسين حياتك الطبيعية دون أي أعراض محسوسة.",
+          "tip": "تناولي طعاماً صحياً غنياً بحمض الفوليك واشربي كمية كافية من الماء."
         },
         "day3": {
-          "title": "The Morula Stage",
-          "body": "The dividing cells form a solid ball called a morula (about 16 cells). It continues its journey through the fallopian tube. Progesterone is rising, preparing the uterine lining for potential implantation.",
-          "tip": "Gentle activity is perfectly fine. There's no need to restrict your normal routine."
+          "title": "مرحلة التوتية",
+          "body": "الجنين في طور التوتية الآن - كرة من 16 خلية أو أكثر. لا يزال يتحرك ببطء عبر قناة فالوب نحو الرحم. الانقسام الخلوي مستمر بوتيرة مذهلة.",
+          "tip": "مارسي نشاطاً مريحاً مثل المشي الخفيف أو القراءة."
         },
         "day4": {
-          "title": "Entering the Uterus",
-          "body": "The morula typically enters the uterus around day 4. It begins forming a fluid-filled cavity, transitioning into a blastocyst. The uterine lining is becoming thick and receptive under progesterone's influence.",
-          "tip": "Practice mindfulness or light stretching. Managing anticipation is part of the journey."
+          "title": "الوصول إلى الرحم",
+          "body": "يصل الجنين المتطور إلى تجويف الرحم. يستمر في الانقسام والتطور بينما يبدأ بالتحول من توتية إلى كيسة أريمية. بطانة الرحم تستمر في التحضر بفعل البروجسترون.",
+          "tip": "استمري في تناول المكملات خاصة حمض الفوليك وفيتامين D."
         },
         "day5": {
-          "title": "Blastocyst Formation",
-          "body": "The blastocyst now has two distinct cell groups: the inner cell mass (which becomes the embryo) and the trophoblast (which becomes the placenta). It floats freely in the uterine cavity.",
-          "tip": "This is a good day to journal your thoughts and feelings. Self-expression is therapeutic."
+          "title": "تكوّن الكيسة الأريمية",
+          "body": "تتشكل الكيسة الأريمية مع تمايز الخلايا: الطبقة الخارجية ستشكل المشيمة والداخلية ستصبح الجنين. هذه مرحلة حاسمة في التطور المبكر.",
+          "tip": "تجنبي التوتر المفرط واستمتعي بأنشطة تجلب لك السعادة."
         },
         "day6": {
-          "title": "Implantation May Begin",
-          "body": "The blastocyst begins searching for an ideal implantation site on the uterine wall. The trophoblast cells start burrowing into the endometrium. Some women experience light spotting (implantation bleeding) around this time.",
-          "tip": "Light spotting at this stage can be normal. Don't panic — and don't test yet. It's too early."
+          "title": "قد يبدأ الانغراس",
+          "body": "الكيسة الأريمية قد تبدأ بالتلامس مع بطانة الرحم. بعض النساء يبدأن بملاحظة أعراض خفيفة جداً مثل وخز خفيف. الانغراس المبكر ممكن ولكنه أكثر شيوعاً في الأيام التالية.",
+          "tip": "لا تقلقي إذا لم تشعري بأي شيء - معظم النساء لا يشعرن بالانغراس."
         },
         "day7": {
-          "title": "Implantation Window",
-          "body": "Days 6–10 are the typical implantation window. The blastocyst is embedding deeper into the uterine lining. Early signals are being exchanged between the embryo and your body.",
-          "tip": "Continue your normal activities. Rest when you need to. Trust the process."
+          "title": "نافذة الانغراس",
+          "body": "هذا هو الوقت الأكثر شيوعاً لبدء الانغراس. الكيسة الأريمية تخترق بطانة الرحم وتبدأ بتكوين روابط مع الأوعية الدموية. قد تلاحظين نقاط دم خفيفة (نزيف الانغراس) أو تقلصات خفيفة.",
+          "tip": "نزيف الانغراس الخفيف طبيعي ولا يدعو للقلق - يكون عادةً وردياً أو بنياً فاتحاً."
         },
         "day8": {
-          "title": "hCG Begins",
-          "body": "If implantation is progressing, tiny amounts of hCG (human chorionic gonadotropin) begin to be produced. This hormone signals your body to maintain the corpus luteum, which keeps producing progesterone. Levels are still too low to detect on a test.",
-          "tip": "Resist the urge to test. hCG needs time to build. Patience is your greatest ally right now."
+          "title": "بداية إفراز hCG",
+          "body": "بعد الانغراس الناجح، تبدأ الخلايا المحيطة بالجنين بإفراز هرمون hCG. هذا الهرمون هو ما تكشفه اختبارات الحمل. مستوياته لا تزال منخفضة جداً في هذه المرحلة.",
+          "tip": "من المبكر جداً إجراء اختبار حمل - انتظري بضعة أيام للحصول على نتيجة دقيقة."
         },
         "day9": {
-          "title": "Rising Signals",
-          "body": "hCG levels are rising but may still be below the detection threshold of most home pregnancy tests. Implantation should be complete or nearly complete. Your body is starting to respond to the new hormonal signals.",
-          "tip": "Treat yourself to something calming — a warm bath, your favorite tea, or a walk in nature."
+          "title": "إشارات متصاعدة",
+          "body": "مستويات hCG تتضاعف كل 48-72 ساعة. بعض النساء قد يبدأن بالشعور بأعراض مبكرة جداً مثل التعب أو حساسية الثدي. لكن هذه الأعراض قد تكون أيضاً من تأثير البروجسترون الطبيعي.",
+          "tip": "لا تفسري كل عرض على أنه حمل - البروجسترون يسبب أعراضاً مشابهة في كل دورة."
         },
         "day10": {
-          "title": "Almost There",
-          "body": "By now, if implantation occurred, hCG levels are doubling roughly every 48 hours. Some sensitive tests might detect very early pregnancy. However, a negative result today doesn't mean you're not pregnant — levels vary widely.",
-          "tip": "If you test today and it's negative, don't lose hope. Many successful pregnancies don't show positive until day 12–14."
+          "title": "اقتراب الموعد",
+          "body": "إذا حدث الانغراس، فإن hCG يستمر بالارتفاع. بعض اختبارات الحمل الحساسة جداً قد تكتشفه الآن، لكن النتيجة السلبية لا تعني عدم الحمل بالضرورة. الصبر مهم.",
+          "tip": "إذا أجريتِ اختباراً وكانت النتيجة سلبية، لا تيأسي وأعيدي الاختبار بعد يومين."
         },
         "day11": {
-          "title": "Building Anticipation",
-          "body": "hCG continues to rise. Some women begin to notice very early symptoms: mild cramping, breast tenderness, or fatigue. These symptoms can also be caused by progesterone in a non-pregnant cycle, so they're not reliable indicators.",
-          "tip": "Symptom-spotting is natural but can increase anxiety. Try to stay present and engaged in your daily life."
+          "title": "بناء الترقب",
+          "body": "مستويات hCG تستمر بالارتفاع إذا حدث حمل. قد تبدئين بملاحظة تغيرات طفيفة في جسمك. الانتظار صعب ولكن كل يوم يقربك من الإجابة.",
+          "tip": "اشغلي نفسك بأنشطة ممتعة وتجنبي البحث المفرط عن الأعراض على الإنترنت."
         },
         "day12": {
-          "title": "Testing Becomes More Reliable",
-          "body": "Most home pregnancy tests become more reliable from today onward. If testing, use first morning urine for the highest concentration of hCG. A faint line is still a positive result.",
-          "tip": "Whatever the result today, remember: one cycle does not define your journey. Be gentle with yourself."
+          "title": "الاختبار يصبح أكثر موثوقية",
+          "body": "بحلول هذا اليوم، إذا حدث حمل وانغراس، فإن مستويات hCG عادةً تكون كافية لاكتشافها بمعظم اختبارات الحمل المنزلية. نتيجة إيجابية الآن موثوقة جداً.",
+          "tip": "استخدمي عينة بول الصباح الأولى للحصول على أدق نتيجة ممكنة."
         },
         "day13": {
-          "title": "The Eve of Knowing",
-          "body": "Tomorrow is typically the day your period would be expected (in a 28-day cycle). If it doesn't arrive and a test shows a faint positive, congratulations may be in order. If your period comes, allow yourself to grieve and know that each cycle is a new opportunity.",
-          "tip": "Prepare emotionally for both outcomes. Both are valid. Both are part of the journey."
+          "title": "عشية المعرفة",
+          "body": "غداً هو يوم الإجابة المنتظرة. سواء كانت النتيجة إيجابية أو سلبية، تذكري أن كل دورة هي فرصة جديدة وأن جسمك يعمل بأفضل ما يمكن.",
+          "tip": "خططي لشيء لطيف تفعلينه غداً بعد الاختبار بغض النظر عن النتيجة."
         },
         "day14": {
-          "title": "The Answer Day",
-          "body": "This is typically the day your period is expected. A missed period combined with a positive pregnancy test is a strong indicator of pregnancy. If your test is positive, contact your healthcare provider to schedule your first appointment (usually around 6–8 weeks).",
-          "tip": "Positive? Celebrate this moment. Negative? You are strong, resilient, and this journey continues. Both outcomes deserve compassion."
+          "title": "يوم الإجابة",
+          "body": "اليوم يمكنك إجراء اختبار حمل منزلي بثقة. إذا كانت النتيجة إيجابية - مبارك! احجزي موعداً مع طبيبتك. إذا كانت سلبية - كوني لطيفة مع نفسك وتذكري أن كل محاولة تقربك من هدفك.",
+          "tip": "مهما كانت النتيجة، أنتِ قوية وشجاعة. احتفي بصبرك ورحلتك."
         }
       },
       "subtitle": "دليلك اليومي خلال أسبوعي الانتظار"
