@@ -116,7 +116,7 @@ describe('TOOL_WEIGHT_REGISTRY', () => {
   it('all standard tools have weight 1', () => {
     const standardTools = [
       'symptom-analysis', 'pregnancy-assistant',
-      'kick-analysis', 'sleep-analysis', 'mental-health', 'weight-analysis',
+      'kick-analysis', 'mental-health', 'weight-analysis',
       'hospital-bag', 'birth-plan', 'contraction-analysis',
     ] as const;
     for (const tool of standardTools) {
@@ -126,8 +126,10 @@ describe('TOOL_WEIGHT_REGISTRY', () => {
 
   it('light tools have weight 0.5', () => {
     const lightTools = [
-      'meal-suggestion', 'grocery-list', 'vitamin-tracker',
-      'baby-cry', 'skincare', 'partner-guide', 'birth-position',
+      'meal-suggestion', 'vitamin-advice', 'baby-cry-analysis',
+      'skincare-advice', 'partner-guide', 'birth-position',
+      'grocery-list', 'craving-alternatives', 'nausea-relief',
+      'sleep-analysis', 'sleep-meditation', 'sleep-routine',
     ] as const;
     for (const tool of lightTools) {
       expect(TOOL_WEIGHT_REGISTRY[tool]).toBe(0.5);
@@ -138,7 +140,7 @@ describe('TOOL_WEIGHT_REGISTRY', () => {
     const keys = Object.keys(TOOL_WEIGHT_REGISTRY);
     expect(keys.length).toBeGreaterThanOrEqual(30);
     for (const key of keys) {
-      expect([0.5, 1, 2]).toContain(TOOL_WEIGHT_REGISTRY[key as keyof typeof TOOL_WEIGHT_REGISTRY]);
+      expect([0, 0.5, 1, 2]).toContain(TOOL_WEIGHT_REGISTRY[key as keyof typeof TOOL_WEIGHT_REGISTRY]);
     }
   });
 });
