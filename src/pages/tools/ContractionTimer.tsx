@@ -165,7 +165,24 @@ export default function ContractionTimer() {
   // 5-1-1 rule check
   const fiveOneOne = stats && stats.avgInterval > 0 && stats.avgInterval <= 300 && stats.avgDuration >= 60;
 
-  // Time since last contraction
+  const handleShareWhatsApp = useCallback(() => {
+    if (!stats || contractions.length === 0) return;
+    let text = `⏱️ *${t("toolsInternal.contractionTimer.title", "عداد الانقباضات")}*\n\n`;
+    text += `📊 ${t("toolsInternal.contractionTimer.total", "انقباض")}: ${stats.count}\n`;
+    text += `⏳ ${t("toolsInternal.contractionTimer.avgDuration", "متوسط المدة")}: ${formatDuration(stats.avgDuration)}\n`;
+    text += `🔄 ${t("toolsInternal.contractionTimer.avgInterval", "متوسط الفاصل")}: ${stats.avgInterval > 0 ? formatDuration(stats.avgInterval) : "--"}\n`;
+    text += `📈 ${t("toolsInternal.contractionTimer.regularity", "الانتظام")}: ${stats.regularity}%\n`;
+    if (phase !== "none") {
+      text += `\n🏥 ${t(`toolsInternal.contractionTimer.phase${phase.charAt(0).toUpperCase() + phase.slice(1)}`, phase)}\n`;
+    }
+    if (fiveOneOne) {
+      text += `\n⚠️ ${t("toolsInternal.contractionTimer.fiveOneOneAlert", "قاعدة 5-1-1 تحققت!")}\n`;
+    }
+    text += `\n📱 ${t("toolsInternal.contractionTimer.sessionTime", "مدة الجلسة")}: ${formatDuration(stats.sessionDuration)}`;
+    window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+  }, [stats, contractions, t, phase, fiveOneOne]);
+
+
   const [timeSinceLast, setTimeSinceLast] = useState(0);
   useEffect(() => {
     if (contractions.length === 0 || isActive) return;
