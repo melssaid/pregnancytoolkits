@@ -59,28 +59,52 @@ export const MarkdownRenderer = forwardRef<HTMLDivElement, MarkdownRendererProps
     });
   };
 
-  const { mainContent, disclaimerContent } = useMemo(() => {
-    if (!content) return { mainContent: null, disclaimerContent: null };
+  const DISCLAIMER_KEYWORDS = [
+    'استشار', 'طبيب', 'معلومات عامة', 'إخلاء', 'تنويه',
+    'consult', 'doctor', 'healthcare', 'disclaimer', 'medical advice',
+    'informational', 'not a substitute', 'professional',
+    'Arzt', 'Haftungsausschluss', 'medizinisch',
+    'consulter', 'médecin', 'professionnel',
+    'consulta', 'profesional', 'médico',
+    'doktor', 'bilgilendirme', 'hekim', 'tıbbi',
+  ];
 
-    // Split content at the last horizontal rule to extract disclaimer
-    const lastHrIndex = content.lastIndexOf('\n---');
-    let mainText = content;
-    let disclaimerText: string | null = null;
+  const isDisclaimerText = (text: string): boolean => {
+    const lower = text.toLowerCase();
+    return DISCLAIMER_KEYWORDS.some(p => lower.includes(p.toLowerCase()));
+  };
 
+  const stripTrailingDisclaimers = (text: string): string => {
+    // 1. Strip content after last --- if it's a disclaimer
+    const lastHrIndex = text.lastIndexOf('\n---');
     if (lastHrIndex > 0) {
-      const afterHr = content.slice(lastHrIndex + 4).trim();
-      const disclaimerPatterns = [
-        'استشار', 'طبيب', 'معلومات عامة', 'consult', 'doctor', 'healthcare',
-        'disclaimer', 'medical', 'Arzt', 'consulter', 'médecin', 'consulta',
-        'doktor', 'Haftungsausschluss', 'professionnel', 'profesional',
-        'informational', 'bilgilendirme', 'hekim'
-      ];
-      const isDisclaimer = disclaimerPatterns.some(p => afterHr.toLowerCase().includes(p.toLowerCase()));
-      if (isDisclaimer && afterHr.length < 500) {
-        mainText = content.slice(0, lastHrIndex).trim();
-        disclaimerText = afterHr;
+      const afterHr = text.slice(lastHrIndex + 4).trim();
+      if (isDisclaimerText(afterHr) && afterHr.length < 500) {
+        text = text.slice(0, lastHrIndex).trim();
       }
     }
+
+    // 2. Strip trailing paragraphs that look like disclaimers (⚠️ or keyword match)
+    const lines = text.split('\n');
+    while (lines.length > 3) {
+      const lastLine = lines[lines.length - 1].trim();
+      if (!lastLine) { lines.pop(); continue; }
+      // Check if last non-empty line is a disclaimer-like paragraph
+      const isDisclaimer = (
+        (lastLine.startsWith('⚠️') && isDisclaimerText(lastLine)) ||
+        (lastLine.length < 300 && !lastLine.startsWith('#') && !lastLine.startsWith('-') && !lastLine.startsWith('*') && !lastLine.match(/^\d+[.)]/) && isDisclaimerText(lastLine))
+      );
+      if (isDisclaimer) { lines.pop(); continue; }
+      break;
+    }
+
+    return lines.join('\n').trim();
+  };
+
+  const { mainContent } = useMemo(() => {
+    if (!content) return { mainContent: null };
+
+    const cleanedText = stripTrailingDisclaimers(content);
 
     const parseSection = (text: string) => {
       const lines = text.split('\n');
@@ -196,8 +220,7 @@ export const MarkdownRenderer = forwardRef<HTMLDivElement, MarkdownRendererProps
     };
 
     return {
-      mainContent: parseSection(mainText),
-      disclaimerContent: disclaimerText ? parseSection(disclaimerText) : null,
+      mainContent: parseSection(cleanedText),
     };
   }, [content]);
 

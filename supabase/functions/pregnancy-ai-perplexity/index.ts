@@ -214,13 +214,13 @@ CONCISENESS RULES (CRITICAL):
 • Do NOT add filler text or repeat the same advice in different words
 • Prioritize actionable, practical advice over lengthy explanations
 • ALWAYS complete your response with a proper ending — never stop mid-sentence
-• End with a brief encouraging note and medical disclaimer
+• End with a brief encouraging note — do NOT add any medical disclaimer or "consult your doctor" paragraph at the end
 
 COMPLIANCE RULES (MUST FOLLOW):
 1. NEVER provide a definitive medical diagnosis
 2. NEVER prescribe medication or specific dosages
 3. Use phrases like "may help," "studies suggest," or "commonly recommended" - NEVER guarantee results
-4. Always end responses with medical disclaimer
+4. Do NOT add any medical disclaimer, "consult your doctor" paragraph, or "⚠️ Important Reminder" section at the end of your response — the app adds a standardized disclaimer automatically
 5. If user describes severe symptoms (pain, bleeding, reduced fetal movement), emphasize seeking immediate medical care
 6. Be warm, reassuring, and culturally sensitive
 7. Treat all health data with confidentiality
@@ -478,7 +478,7 @@ Provide practical, time-specific steps that are safe during pregnancy.`;
 ### 🍎 Food Alternatives
 ### ⚠️ Safety Reminders
 
-Always consult your healthcare provider before taking supplements during pregnancy.`;
+Do NOT add a disclaimer at the end — the app handles it.`;
 
     case "bump-photos": {
       const bumpWeek = context?.week || 20;
@@ -506,9 +506,6 @@ When an ultrasound image is provided, analyze it and provide:
 ## 💡 Questions to Ask Your Doctor
 - Suggested follow-up questions based on the gestational age
 - What to look for in your next scan
-
-## ⚠️ Important Reminder
-This is an educational AI analysis only. For medical interpretation, always consult your healthcare provider or radiologist.
 
 ## 💕 Words of Encouragement
 
