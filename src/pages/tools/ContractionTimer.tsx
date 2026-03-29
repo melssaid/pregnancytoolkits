@@ -471,15 +471,15 @@ export default function ContractionTimer() {
         )}
 
         {/* ═══════ SHARE & CLEAR ═══════ */}
-        {stats && stats.count >= 2 && (
-          <div className="flex items-center justify-center gap-3">
-            <WhatsAppShareButton onClick={handleShareWhatsApp} />
+        <div className="flex items-center justify-center gap-3">
+          <WhatsAppShareButton onClick={handleShareWhatsApp} />
+          {stats && stats.count >= 2 && (
             <button onClick={handleClear} className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-[11px] font-medium text-destructive bg-destructive/10 hover:bg-destructive/20 active:scale-95 transition-all">
               <RotateCcw className="w-3 h-3" />
               {t("toolsInternal.contractionTimer.clear", "مسح الكل")}
             </button>
-          </div>
-        )}
+          )}
+        </div>
 
         {/* ═══════ CHART & HISTORY TABS ═══════ */}
         {contractions.length >= 2 && (

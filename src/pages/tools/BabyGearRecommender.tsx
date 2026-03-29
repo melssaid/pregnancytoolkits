@@ -383,11 +383,9 @@ export default function BabyGearRecommender() {
         })}
 
         {/* ═══════ WHATSAPP SHARE ═══════ */}
-        {checkedItems.length > 0 && (
-          <div className="flex justify-center">
-            <WhatsAppShareButton onClick={handleShareWhatsApp} />
-          </div>
-        )}
+        <div className="flex justify-end">
+          <WhatsAppShareButton onClick={handleShareWhatsApp} />
+        </div>
 
         {filteredByType.length === 0 && (
           <div className="text-center py-8 text-muted-foreground">
