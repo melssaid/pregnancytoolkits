@@ -10,6 +10,7 @@ import { VideoLibrary } from '@/components/VideoLibrary';
 import { useSmartInsight } from '@/hooks/useSmartInsight';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { AIResponseFrame } from '@/components/ai/AIResponseFrame';
+import { AIActionButton } from '@/components/ai/AIActionButton';
 import { mentalHealthVideosByLang } from '@/data/videoData';
 import { PrintableReport } from '@/components/PrintableReport';
 import { useAIUsage } from '@/contexts/AIUsageContext';
@@ -191,24 +192,15 @@ ${answersSummary}
               </div>
               
               {!showAICoping ? (
-                isLimitReached ? (
-                  <Button
-                    onClick={() => navigate('/pricing-demo')}
-                    className="w-full bg-gradient-to-r from-primary to-primary/80 gap-2"
-                  >
-                    <Crown className="w-4 h-4" />
-                    {t('quotaExhausted.upgradeCTA', 'Upgrade to Premium')}
-                  </Button>
-                ) : (
-                  <Button
-                    onClick={getAICopingPlan}
-                    disabled={aiLoading}
-                    className="w-full bg-gradient-to-r from-violet-500 to-purple-500 hover:from-violet-600 hover:to-purple-600 gap-2"
-                  >
-                    {aiLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Brain className="w-4 h-4" />}
-                    {t('toolsInternal.mentalHealthCoach.generateMyPlan')}
-                  </Button>
-                )
+                <AIActionButton
+                  onClick={getAICopingPlan}
+                  isLoading={aiLoading}
+                  label={t('toolsInternal.mentalHealthCoach.generateMyPlan')}
+                  loadingLabel={t('toolsInternal.mentalHealthCoach.generating', 'Generating...')}
+                  icon={Brain}
+                  toolType="mental-health"
+                  section="mental-wellbeing"
+                />
               ) : (
                 <div className="max-h-[500px] overflow-y-auto">
                   {aiCopingPlan ? (
