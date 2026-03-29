@@ -32,7 +32,7 @@ const TOPICS = [
   { key: "intimacy", icon: Star, gradient: "from-pink-500 to-fuchsia-400", bg: "bg-pink-500/10 border-pink-500/20" },
 ] as const;
 
-const PARTNER_TYPES = ["husband", "partner", "boyfriend", "wife"] as const;
+const PARTNER_TYPES = ["husband"] as const;
 const TRIMESTERS = ["first", "second", "third"] as const;
 
 // ── Daily Checklist Keys ─────────────────────────────────────────
