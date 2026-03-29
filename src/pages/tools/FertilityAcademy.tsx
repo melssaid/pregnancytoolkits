@@ -134,7 +134,7 @@ function ContentBlock({ text, isRTL, icon: Icon = BookOpen }: { text: string; is
         <div className="w-5 h-5 rounded-md bg-primary/8 flex items-center justify-center shrink-0 mt-0.5">
           <Icon className="w-3 h-3 text-primary/50" />
         </div>
-        <p className="whitespace-pre-line text-[13px] leading-[1.9] text-foreground/75 flex-1" style={{ textAlign: isRTL ? "right" : "left" }}>
+        <p className="whitespace-pre-line text-[13px] font-semibold leading-[1.9] text-foreground flex-1" style={{ textAlign: isRTL ? "right" : "left" }}>
           {text}
         </p>
       </div>
@@ -155,7 +155,7 @@ function TipBlock({ text, accent = "primary", icon: Icon }: { text: string; acce
       <div className={`w-5 h-5 rounded-full ${isDestructive ? "bg-destructive/10" : "bg-primary/10"} flex items-center justify-center shrink-0 mt-0.5`}>
         <TipIcon className={`w-3 h-3 ${textColor}`} />
       </div>
-      <span className={`text-xs ${textColor} font-medium leading-relaxed flex-1`}>{text}</span>
+      <span className={`text-xs ${textColor} font-bold leading-relaxed flex-1`}>{text}</span>
     </div>
   );
 }
