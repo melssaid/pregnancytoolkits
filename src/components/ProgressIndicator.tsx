@@ -21,6 +21,7 @@ export function ProgressIndicator({
   totalWeeks = 40,
   showMilestones = true 
 }: ProgressIndicatorProps) {
+  const { t } = useTranslation();
   const progress = Math.min((currentWeek / totalWeeks) * 100, 100);
   const daysRemaining = Math.max((totalWeeks - currentWeek) * 7, 0);
 
@@ -29,8 +30,8 @@ export function ProgressIndicator({
       {/* Main Progress Bar */}
       <div className="relative">
         <div className="flex justify-between text-sm text-muted-foreground mb-2">
-          <span>Week {currentWeek}</span>
-          <span>{Math.round(progress)}% of journey</span>
+          <span>{t("progressIndicator.week", "Week {{week}}", { week: currentWeek })}</span>
+          <span>{t("progressIndicator.ofJourney", "{{percent}}% of journey", { percent: Math.round(progress) })}</span>
         </div>
         
         <div className="h-4 bg-secondary/50 rounded-full overflow-hidden relative">
@@ -62,8 +63,8 @@ export function ProgressIndicator({
         </div>
 
         <div className="flex justify-between text-xs text-muted-foreground mt-1">
-          <span>Start</span>
-          <span>Birth</span>
+          <span>{t("progressIndicator.start", "Start")}</span>
+          <span>{t("progressIndicator.birth", "Birth")}</span>
         </div>
       </div>
 
@@ -74,13 +75,13 @@ export function ProgressIndicator({
         className="text-center py-3 px-4 bg-gradient-to-r from-primary/5 to-pink-50 rounded-xl"
       >
         <p className="text-base font-bold text-primary">{daysRemaining}</p>
-        <p className="text-sm text-muted-foreground">days until you meet your baby 💕</p>
+        <p className="text-sm text-muted-foreground">{t("progressIndicator.daysUntilBaby", "days until you meet your baby 💕")}</p>
       </motion.div>
 
       {/* Milestones */}
       {showMilestones && (
         <div className="space-y-2">
-          <p className="text-sm font-medium text-muted-foreground">Key Milestones:</p>
+          <p className="text-sm font-medium text-muted-foreground">{t("progressIndicator.keyMilestones", "Key Milestones:")}</p>
           <div className="grid grid-cols-5 gap-1">
             {milestones.map((milestone, index) => {
               const isPassed = currentWeek >= milestone.week;
