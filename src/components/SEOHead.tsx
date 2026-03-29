@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 const BASE_URL = "https://pregnancytoolkits.lovable.app";
 const LANGUAGES = ["en", "ar", "de", "fr", "es", "tr", "pt"];
 const OG_IMAGE = "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/85e4dfd6-dc2e-4528-9fc7-b1c9204d04e1/id-preview-a0068a0d--085eb60b-bb8f-450a-b987-0330fceff17c.lovable.app-1772319900231.png";
+const ANDROID_PACKAGE = "app.pregnancytoolkits.android";
 
 interface SEOHeadProps {
   titleKey?: string;
@@ -138,6 +139,13 @@ export function SEOHead({
       <meta name="twitter:description" content={seoDesc} />
       <meta name="twitter:image" content={OG_IMAGE} />
       <meta name="twitter:image:alt" content={seoTitle} />
+
+      {/* Android App Links - Deep Links for Google Search */}
+      <meta property="al:android:package" content={ANDROID_PACKAGE} />
+      <meta property="al:android:url" content={`android-app://${ANDROID_PACKAGE}/https/${BASE_URL.replace("https://", "")}${path}`} />
+      <meta property="al:android:app_name" content="Pregnancy Toolkits" />
+      <meta property="al:web:url" content={canonical} />
+      <link rel="alternate" href={`android-app://${ANDROID_PACKAGE}/https/${BASE_URL.replace("https://", "")}${path}`} />
 
       {/* BreadcrumbList Schema */}
       {breadcrumbSchema && (
