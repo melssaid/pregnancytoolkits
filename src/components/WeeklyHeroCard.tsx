@@ -4,73 +4,54 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Baby, ChevronDown, ChevronUp, Sparkles, Heart } from "lucide-react";
 import { Link } from "react-router-dom";
 
-// Fetal size comparisons by week (fruit/object)
-const fetalSizeData: Record<number, { sizeEn: string; sizeAr: string; lengthCm: string; weightG: string; emoji: string }> = {
-  4: { sizeEn: "Poppy seed", sizeAr: "حبة خشخاش", lengthCm: "0.1", weightG: "<1", emoji: "🌱" },
-  5: { sizeEn: "Sesame seed", sizeAr: "حبة سمسم", lengthCm: "0.2", weightG: "<1", emoji: "🌱" },
-  6: { sizeEn: "Lentil", sizeAr: "حبة عدس", lengthCm: "0.6", weightG: "<1", emoji: "🫘" },
-  7: { sizeEn: "Blueberry", sizeAr: "حبة توت", lengthCm: "1.3", weightG: "1", emoji: "🫐" },
-  8: { sizeEn: "Raspberry", sizeAr: "حبة توت أحمر", lengthCm: "1.6", weightG: "1", emoji: "🍇" },
-  9: { sizeEn: "Cherry", sizeAr: "حبة كرز", lengthCm: "2.3", weightG: "2", emoji: "🍒" },
-  10: { sizeEn: "Strawberry", sizeAr: "حبة فراولة", lengthCm: "3.1", weightG: "4", emoji: "🍓" },
-  11: { sizeEn: "Fig", sizeAr: "حبة تين", lengthCm: "4.1", weightG: "7", emoji: "🫒" },
-  12: { sizeEn: "Lime", sizeAr: "حبة ليمون", lengthCm: "5.4", weightG: "14", emoji: "🍋" },
-  13: { sizeEn: "Peach", sizeAr: "حبة خوخ", lengthCm: "7.4", weightG: "23", emoji: "🍑" },
-  14: { sizeEn: "Lemon", sizeAr: "ليمونة", lengthCm: "8.7", weightG: "43", emoji: "🍋" },
-  15: { sizeEn: "Apple", sizeAr: "تفاحة", lengthCm: "10.1", weightG: "70", emoji: "🍎" },
-  16: { sizeEn: "Avocado", sizeAr: "حبة أفوكادو", lengthCm: "11.6", weightG: "100", emoji: "🥑" },
-  17: { sizeEn: "Pear", sizeAr: "حبة إجاص", lengthCm: "13", weightG: "140", emoji: "🍐" },
-  18: { sizeEn: "Bell pepper", sizeAr: "حبة فلفل", lengthCm: "14.2", weightG: "190", emoji: "🫑" },
-  19: { sizeEn: "Mango", sizeAr: "حبة مانجو", lengthCm: "15.3", weightG: "240", emoji: "🥭" },
-  20: { sizeEn: "Banana", sizeAr: "موزة", lengthCm: "16.4", weightG: "300", emoji: "🍌" },
-  21: { sizeEn: "Carrot", sizeAr: "جزرة", lengthCm: "26.7", weightG: "360", emoji: "🥕" },
-  22: { sizeEn: "Papaya", sizeAr: "حبة بابايا", lengthCm: "27.8", weightG: "430", emoji: "🥭" },
-  23: { sizeEn: "Grapefruit", sizeAr: "جريب فروت", lengthCm: "28.9", weightG: "500", emoji: "🍊" },
-  24: { sizeEn: "Corn", sizeAr: "كوز ذرة", lengthCm: "30", weightG: "600", emoji: "🌽" },
-  25: { sizeEn: "Cauliflower", sizeAr: "قرنبيط", lengthCm: "34.6", weightG: "660", emoji: "🥦" },
-  26: { sizeEn: "Lettuce", sizeAr: "خس", lengthCm: "35.6", weightG: "760", emoji: "🥬" },
-  27: { sizeEn: "Cabbage", sizeAr: "ملفوف", lengthCm: "36.6", weightG: "875", emoji: "🥬" },
-  28: { sizeEn: "Eggplant", sizeAr: "باذنجان", lengthCm: "37.6", weightG: "1000", emoji: "🍆" },
-  29: { sizeEn: "Butternut squash", sizeAr: "قرع", lengthCm: "38.6", weightG: "1150", emoji: "🎃" },
-  30: { sizeEn: "Coconut", sizeAr: "جوز هند", lengthCm: "39.9", weightG: "1320", emoji: "🥥" },
-  31: { sizeEn: "Pineapple", sizeAr: "أناناس", lengthCm: "41.1", weightG: "1500", emoji: "🍍" },
-  32: { sizeEn: "Squash", sizeAr: "كوسة كبيرة", lengthCm: "42.4", weightG: "1700", emoji: "🎃" },
-  33: { sizeEn: "Celery", sizeAr: "كرفس", lengthCm: "43.7", weightG: "1920", emoji: "🥒" },
-  34: { sizeEn: "Cantaloupe", sizeAr: "شمام", lengthCm: "45", weightG: "2150", emoji: "🍈" },
-  35: { sizeEn: "Honeydew melon", sizeAr: "شمام أخضر", lengthCm: "46.2", weightG: "2380", emoji: "🍈" },
-  36: { sizeEn: "Romaine lettuce", sizeAr: "خس روماني", lengthCm: "47.4", weightG: "2620", emoji: "🥬" },
-  37: { sizeEn: "Swiss chard", sizeAr: "سلق", lengthCm: "48.6", weightG: "2860", emoji: "🥬" },
-  38: { sizeEn: "Leek", sizeAr: "كراث", lengthCm: "49.8", weightG: "3080", emoji: "🧅" },
-  39: { sizeEn: "Watermelon", sizeAr: "بطيخة صغيرة", lengthCm: "50.7", weightG: "3290", emoji: "🍉" },
-  40: { sizeEn: "Pumpkin", sizeAr: "يقطينة", lengthCm: "51.2", weightG: "3460", emoji: "🎃" },
-  41: { sizeEn: "Watermelon", sizeAr: "بطيخة", lengthCm: "51.5", weightG: "3600", emoji: "🍉" },
-  42: { sizeEn: "Jackfruit", sizeAr: "جاك فروت", lengthCm: "51.7", weightG: "3700", emoji: "🍈" },
+// Fetal size comparisons by week — keys reference i18n: weeklyHero.fetalSize.<week>
+const fetalSizeData: Record<number, { sizeKey: string; lengthCm: string; weightG: string; emoji: string }> = {
+  4: { sizeKey: "4", lengthCm: "0.1", weightG: "<1", emoji: "🌱" },
+  5: { sizeKey: "5", lengthCm: "0.2", weightG: "<1", emoji: "🌱" },
+  6: { sizeKey: "6", lengthCm: "0.6", weightG: "<1", emoji: "🫘" },
+  7: { sizeKey: "7", lengthCm: "1.3", weightG: "1", emoji: "🫐" },
+  8: { sizeKey: "8", lengthCm: "1.6", weightG: "1", emoji: "🍇" },
+  9: { sizeKey: "9", lengthCm: "2.3", weightG: "2", emoji: "🍒" },
+  10: { sizeKey: "10", lengthCm: "3.1", weightG: "4", emoji: "🍓" },
+  11: { sizeKey: "11", lengthCm: "4.1", weightG: "7", emoji: "🫒" },
+  12: { sizeKey: "12", lengthCm: "5.4", weightG: "14", emoji: "🍋" },
+  13: { sizeKey: "13", lengthCm: "7.4", weightG: "23", emoji: "🍑" },
+  14: { sizeKey: "14", lengthCm: "8.7", weightG: "43", emoji: "🍋" },
+  15: { sizeKey: "15", lengthCm: "10.1", weightG: "70", emoji: "🍎" },
+  16: { sizeKey: "16", lengthCm: "11.6", weightG: "100", emoji: "🥑" },
+  17: { sizeKey: "17", lengthCm: "13", weightG: "140", emoji: "🍐" },
+  18: { sizeKey: "18", lengthCm: "14.2", weightG: "190", emoji: "🫑" },
+  19: { sizeKey: "19", lengthCm: "15.3", weightG: "240", emoji: "🥭" },
+  20: { sizeKey: "20", lengthCm: "16.4", weightG: "300", emoji: "🍌" },
+  21: { sizeKey: "21", lengthCm: "26.7", weightG: "360", emoji: "🥕" },
+  22: { sizeKey: "22", lengthCm: "27.8", weightG: "430", emoji: "🥭" },
+  23: { sizeKey: "23", lengthCm: "28.9", weightG: "500", emoji: "🍊" },
+  24: { sizeKey: "24", lengthCm: "30", weightG: "600", emoji: "🌽" },
+  25: { sizeKey: "25", lengthCm: "34.6", weightG: "660", emoji: "🥦" },
+  26: { sizeKey: "26", lengthCm: "35.6", weightG: "760", emoji: "🥬" },
+  27: { sizeKey: "27", lengthCm: "36.6", weightG: "875", emoji: "🥬" },
+  28: { sizeKey: "28", lengthCm: "37.6", weightG: "1000", emoji: "🍆" },
+  29: { sizeKey: "29", lengthCm: "38.6", weightG: "1150", emoji: "🎃" },
+  30: { sizeKey: "30", lengthCm: "39.9", weightG: "1320", emoji: "🥥" },
+  31: { sizeKey: "31", lengthCm: "41.1", weightG: "1500", emoji: "🍍" },
+  32: { sizeKey: "32", lengthCm: "42.4", weightG: "1700", emoji: "🎃" },
+  33: { sizeKey: "33", lengthCm: "43.7", weightG: "1920", emoji: "🥒" },
+  34: { sizeKey: "34", lengthCm: "45", weightG: "2150", emoji: "🍈" },
+  35: { sizeKey: "35", lengthCm: "46.2", weightG: "2380", emoji: "🍈" },
+  36: { sizeKey: "36", lengthCm: "47.4", weightG: "2620", emoji: "🥬" },
+  37: { sizeKey: "37", lengthCm: "48.6", weightG: "2860", emoji: "🥬" },
+  38: { sizeKey: "38", lengthCm: "49.8", weightG: "3080", emoji: "🧅" },
+  39: { sizeKey: "39", lengthCm: "50.7", weightG: "3290", emoji: "🍉" },
+  40: { sizeKey: "40", lengthCm: "51.2", weightG: "3460", emoji: "🎃" },
+  41: { sizeKey: "41", lengthCm: "51.5", weightG: "3600", emoji: "🍉" },
+  42: { sizeKey: "42", lengthCm: "51.7", weightG: "3700", emoji: "🍈" },
 };
 
-// Daily tips by trimester
-const dailyTipsEn = [
-  "Stay hydrated — aim for 8-10 glasses of water today 💧",
-  "Take your prenatal vitamins with a meal for better absorption 💊",
-  "A short 15-minute walk can boost your mood and energy 🚶‍♀️",
-  "Practice deep breathing for 5 minutes to reduce stress 🧘",
-  "Eat a handful of almonds for a healthy omega-3 boost 🥜",
-  "Rest when your body tells you to — it's building a life! 💤",
-  "Kegel exercises strengthen your pelvic floor — try 3 sets today 💪",
-];
-
-const dailyTipsAr = [
-  "حافظي على ترطيب جسمك — اشربي 8-10 أكواب ماء اليوم 💧",
-  "تناولي الفيتامينات مع وجبة لامتصاص أفضل 💊",
-  "مشي 15 دقيقة يحسّن مزاجك وطاقتك 🚶‍♀️",
-  "مارسي التنفس العميق 5 دقائق لتقليل التوتر 🧘",
-  "تناولي حفنة لوز لتعزيز أوميغا-3 🥜",
-  "استريحي عندما يطلب جسمك ذلك — إنه يبني حياة! 💤",
-  "تمارين كيجل تقوّي عضلات الحوض — جرّبي 3 مجموعات اليوم 💪",
-];
+const DAILY_TIP_COUNT = 7;
 
 const WeeklyHeroCard = memo(function WeeklyHeroCard() {
   const { t, i18n } = useTranslation();
-  const isAr = i18n.language === "ar";
+  const isRTL = i18n.language === "ar";
 
   const [week, setWeek] = useState(() => {
     try {
@@ -88,10 +69,10 @@ const WeeklyHeroCard = memo(function WeeklyHeroCard() {
   const fetalInfo = useMemo(() => fetalSizeData[week] || null, [week]);
   
   const dailyTip = useMemo(() => {
-    const tips = isAr ? dailyTipsAr : dailyTipsEn;
     const dayOfYear = Math.floor((Date.now() - new Date(new Date().getFullYear(), 0, 0).getTime()) / 86400000);
-    return tips[dayOfYear % tips.length];
-  }, [isAr]);
+    const index = dayOfYear % DAILY_TIP_COUNT;
+    return t(`weeklyHero.dailyTips.${index}`);
+  }, [t]);
 
   const trimester = week <= 13 ? 1 : week <= 26 ? 2 : 3;
   const progress = Math.min(100, Math.round((week / 40) * 100));
@@ -122,17 +103,17 @@ const WeeklyHeroCard = memo(function WeeklyHeroCard() {
           </div>
           <div className="flex-1">
             <p className="text-sm font-bold text-foreground">
-              {isAr ? "في أي أسبوع أنتِ؟" : "What week are you in?"}
+              {t("weeklyHero.whatWeek")}
             </p>
             <p className="text-xs text-muted-foreground">
-              {isAr ? "اختاري أسبوع حملك لتجربة مخصصة" : "Set your pregnancy week for a personalized experience"}
+              {t("weeklyHero.setWeekDesc")}
             </p>
           </div>
           <button
             onClick={() => setShowSelector(true)}
             className="px-3 py-1.5 rounded-lg bg-primary text-primary-foreground text-xs font-bold"
           >
-            {isAr ? "تحديد" : "Set"}
+            {t("weeklyHero.set")}
           </button>
         </div>
 
@@ -180,7 +161,7 @@ const WeeklyHeroCard = memo(function WeeklyHeroCard() {
           <div>
             <button onClick={() => setShowSelector(!showSelector)} className="flex items-center gap-1.5 group">
               <span className="text-[11px] opacity-80 font-medium">
-                {isAr ? "الأسبوع" : "Week"}
+                {t("weeklyHero.weekLabel")}
               </span>
               <span className="text-3xl font-extrabold tabular-nums leading-none font-cairo">
                 {week}
@@ -188,7 +169,7 @@ const WeeklyHeroCard = memo(function WeeklyHeroCard() {
               <ChevronDown className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100 transition-opacity" />
             </button>
             <p className="text-[10px] opacity-70 mt-0.5">
-              {isAr ? `الثلث ${trimester === 1 ? "الأول" : trimester === 2 ? "الثاني" : "الثالث"}` : `Trimester ${trimester}`}
+              {t(`weeklyHero.trimester${trimester}`)}
             </p>
           </div>
 
@@ -201,7 +182,7 @@ const WeeklyHeroCard = memo(function WeeklyHeroCard() {
             >
               <span className="text-4xl block">{fetalInfo.emoji}</span>
               <span className="text-[10px] opacity-80 block mt-0.5 font-medium">
-                {isAr ? fetalInfo.sizeAr : fetalInfo.sizeEn}
+                {t(`weeklyHero.fetalSize.${fetalInfo.sizeKey}`)}
               </span>
             </motion.div>
           )}
@@ -238,7 +219,7 @@ const WeeklyHeroCard = memo(function WeeklyHeroCard() {
         {/* Progress bar */}
         <div className="mb-3">
           <div className="flex items-center justify-between mb-1">
-            <span className="text-[10px] opacity-70">{isAr ? "التقدم" : "Progress"}</span>
+            <span className="text-[10px] opacity-70">{t("weeklyHero.progress")}</span>
             <span className="text-[10px] font-bold tabular-nums">{progress}%</span>
           </div>
           <div className="h-1.5 rounded-full bg-white/20 overflow-hidden">
@@ -255,16 +236,16 @@ const WeeklyHeroCard = memo(function WeeklyHeroCard() {
         {fetalInfo && (
           <div className="flex gap-2 mb-3">
             <div className="flex-1 bg-white/10 rounded-xl px-3 py-2 backdrop-blur-sm text-center">
-              <span className="text-[10px] opacity-70 block">{isAr ? "الطول" : "Length"}</span>
+              <span className="text-[10px] opacity-70 block">{t("weeklyHero.length")}</span>
               <span className="text-sm font-bold tabular-nums">{fetalInfo.lengthCm} cm</span>
             </div>
             <div className="flex-1 bg-white/10 rounded-xl px-3 py-2 backdrop-blur-sm text-center">
-              <span className="text-[10px] opacity-70 block">{isAr ? "الوزن" : "Weight"}</span>
+              <span className="text-[10px] opacity-70 block">{t("weeklyHero.weight")}</span>
               <span className="text-sm font-bold tabular-nums">{fetalInfo.weightG} g</span>
             </div>
             <Link to="/tools/fetal-growth" className="flex-1 bg-white/15 hover:bg-white/25 rounded-xl px-3 py-2 backdrop-blur-sm text-center transition-colors">
               <Baby className="w-4 h-4 mx-auto opacity-80" />
-              <span className="text-[9px] opacity-70 block mt-0.5">{isAr ? "التفاصيل" : "Details"}</span>
+              <span className="text-[9px] opacity-70 block mt-0.5">{t("weeklyHero.details")}</span>
             </Link>
           </div>
         )}
@@ -274,7 +255,7 @@ const WeeklyHeroCard = memo(function WeeklyHeroCard() {
           <div className="flex items-center gap-1.5 mb-1">
             <Sparkles className="w-3 h-3 opacity-80" />
             <span className="text-[10px] font-bold opacity-90">
-              {isAr ? "نصيحة اليوم" : "Today's Tip"}
+              {t("weeklyHero.todaysTip")}
             </span>
           </div>
           <p className="text-[11px] opacity-85 leading-relaxed">{dailyTip}</p>
