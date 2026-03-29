@@ -2210,7 +2210,12 @@
     "trialTitle": "Premium Erişim 🎁",
     "feature1": "Sınırsız yapay zeka analizleri",
     "feature2": "Tüm Premium araçlar",
-    "cta": "Premium'a geç"
+    "cta": "Premium'a geç",
+    "bonusTitle": "🎁 5 Ücretsiz Puan Kazanın!",
+    "bonusDesc": "5 bonus yapay zeka puanı ücretsiz talep edin — ayda bir kez, sınırlı süreli teklif!",
+    "bonusClaim": "Şimdi talep et",
+    "bonusSuccess": "5 puan eklendi! ✅",
+    "bonusSuccessDesc": "Ücretsiz puanlarınız eklendi. Yapay zeka araçlarınızın keyfini çıkarın!"
   },
   "postpartumLinks": {
     "babySleepLink": "Bebek Uyku Takibi",

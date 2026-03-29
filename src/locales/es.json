@@ -2210,7 +2210,12 @@
     "trialTitle": "Acceso Premium 🎁",
     "feature1": "Análisis IA ilimitados",
     "feature2": "Todas las herramientas Premium",
-    "cta": "Pasar a Premium"
+    "cta": "Pasar a Premium",
+    "bonusTitle": "🎁 ¡Obtén 5 puntos gratis!",
+    "bonusDesc": "Reclama 5 puntos de IA adicionales gratis — una vez al mes, ¡oferta por tiempo limitado!",
+    "bonusClaim": "Reclamar ahora",
+    "bonusSuccess": "¡5 puntos añadidos! ✅",
+    "bonusSuccessDesc": "Tus puntos gratuitos han sido añadidos. ¡Disfruta de tus herramientas de IA!"
   },
   "postpartumLinks": {
     "babySleepLink": "Seguimiento del sueño del bebé",

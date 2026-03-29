@@ -2185,7 +2185,12 @@
     "trialTitle": "Premium-Zugang 🎁",
     "feature1": "Unbegrenzte KI-Analysen",
     "feature2": "Alle Premium-Tools",
-    "cta": "Jetzt upgraden"
+    "cta": "Jetzt upgraden",
+    "bonusTitle": "🎁 Holen Sie sich 5 kostenlose Punkte!",
+    "bonusDesc": "Fordern Sie 5 Bonus-KI-Punkte kostenlos an — einmal pro Monat, zeitlich begrenztes Angebot!",
+    "bonusClaim": "Jetzt einlösen",
+    "bonusSuccess": "5 Punkte hinzugefügt! ✅",
+    "bonusSuccessDesc": "Ihre kostenlosen Punkte wurden hinzugefügt. Genießen Sie Ihre KI-Tools!"
   },
   "postpartumLinks": {
     "babySleepLink": "Baby-Schlaf-Tracker",
