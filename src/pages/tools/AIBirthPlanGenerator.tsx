@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { ToolFrame } from '@/components/ToolFrame';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { FileText, Brain, ChevronDown, ChevronUp, Archive, Trash2, Clock, Loader2, AlertCircle } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { FileText, Brain, ChevronDown, ChevronUp, Archive, Trash2, Clock, Loader2, AlertCircle, Share2, CheckCircle2, Heart, Shield, Baby, Sparkles } from 'lucide-react';
 import { useSmartInsight } from '@/hooks/useSmartInsight';
 import { AIActionButton } from '@/components/ai/AIActionButton';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
@@ -14,9 +15,7 @@ import { safeParseLocalStorage, safeSaveToLocalStorage } from '@/lib/safeStorage
 import { toast } from 'sonner';
 import { format } from 'date-fns';
 import { PrintableReport } from '@/components/PrintableReport';
-
 import { Progress } from '@/components/ui/progress';
-
 import { ToolHubNav, BIRTH_HUB_TABS } from '@/components/ToolHubNav';
 
 const MAX_SAVED_PLANS = 9;
@@ -34,6 +33,20 @@ interface SavedPlan {
   notes: string;
   generatedPlan: string;
 }
+
+const CATEGORY_ICONS = [Heart, Shield, Baby, Sparkles];
+const CATEGORY_GRADIENTS = [
+  "from-pink-500 to-rose-400",
+  "from-blue-500 to-indigo-400",
+  "from-purple-500 to-violet-400",
+  "from-amber-500 to-orange-400",
+];
+const CATEGORY_COLORS = [
+  "text-pink-600 dark:text-pink-400",
+  "text-blue-600 dark:text-blue-400",
+  "text-purple-600 dark:text-purple-400",
+  "text-amber-600 dark:text-amber-400",
+];
 
 const birthPlanCategories: { titleKey: string; preferences: BirthPlanPreference[] }[] = [
   {
@@ -83,6 +96,10 @@ export default function AIBirthPlanGenerator() {
     toolType: 'birth-plan',
   });
   const isInitialized = useRef(false);
+
+  const totalPrefs = birthPlanCategories.reduce((sum, c) => sum + c.preferences.length, 0);
+  const filledPrefs = Object.keys(preferences).filter(k => preferences[k]).length;
+  const completionPct = Math.round((filledPrefs / totalPrefs) * 100);
 
   useEffect(() => {
     const saved = safeParseLocalStorage<SavedPlan[]>('birthPlans', [], (data): data is SavedPlan[] => Array.isArray(data));
@@ -153,48 +170,126 @@ export default function AIBirthPlanGenerator() {
     toast.success(t('toolsInternal.birthPlan.planLoaded'));
   }, [t]);
 
+  const handleShareWhatsApp = () => {
+    if (!generatedPlan) return;
+    const text = `📋 *${t('toolsInternal.birthPlan.title')}*\n\n${generatedPlan.slice(0, 1500)}${generatedPlan.length > 1500 ? '...' : ''}`;
+    window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+  };
+
   return (
     <ToolFrame title={t('toolsInternal.birthPlan.title')} subtitle={t('toolsInternal.birthPlan.subtitle')} icon={FileText} mood="nurturing" toolId="ai-birth-plan">
       <ToolHubNav tabs={BIRTH_HUB_TABS} />
       <div className="space-y-4">
-        {birthPlanCategories.map((category) => (
-          <Card key={category.titleKey}>
-            <CardContent className="p-0">
-              <button onClick={() => toggleSection(category.titleKey)} className="w-full p-3 flex items-center justify-between text-left">
-                <h3 className="font-semibold text-sm">{t(category.titleKey)}</h3>
-                {expandedSections.has(category.titleKey) ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
-              </button>
-              {expandedSections.has(category.titleKey) && (
-                <div className="px-3 pb-3 space-y-3">
-                  {category.preferences.map((pref) => (
-                    <div key={pref.id}>
-                      <label className="text-xs font-medium text-muted-foreground mb-2 block">{t(pref.labelKey)}</label>
-                      <div className="flex flex-wrap gap-2">
-                        {pref.optionKeys.map((optionKey) => {
-                          const optionValue = t(optionKey);
-                          return (
-                            <button key={optionKey} onClick={() => handlePreferenceChange(pref.id, optionValue)}
-                              className={`px-3 py-1.5 text-xs rounded-full transition-all ${preferences[pref.id] === optionValue ? 'bg-primary text-primary-foreground' : 'bg-muted hover:bg-muted/80 text-muted-foreground'}`}>
-                              {optionValue}
-                            </button>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </CardContent>
-          </Card>
-        ))}
-
-        <Card>
-          <CardContent className="p-3">
-            <label className="text-xs font-medium mb-2 block">{t('toolsInternal.birthPlan.additionalNotes')}</label>
-            <Textarea placeholder={t('toolsInternal.birthPlan.notesPlaceholder')} value={additionalNotes} onChange={(e) => setAdditionalNotes(e.target.value)} rows={3} />
+        {/* ═══════ PROGRESS HERO ═══════ */}
+        <Card className="overflow-hidden">
+          <div className="h-1.5 bg-gradient-to-r from-pink-500 via-purple-400 to-blue-500" />
+          <CardContent className="pt-4 pb-3">
+            <div className="flex items-center justify-between mb-2">
+              <h3 className="text-sm font-bold text-foreground flex items-center gap-1.5">
+                <FileText className="w-4 h-4 text-primary" />
+                {t('toolsInternal.birthPlan.title')}
+              </h3>
+              <Badge variant="outline" className="text-[10px] tabular-nums">
+                {filledPrefs}/{totalPrefs}
+              </Badge>
+            </div>
+            <div className="h-2 rounded-full bg-muted overflow-hidden">
+              <motion.div
+                className="h-full rounded-full bg-gradient-to-r from-primary to-pink-500"
+                animate={{ width: `${completionPct}%` }}
+                transition={{ duration: 0.5 }}
+              />
+            </div>
+            <p className="text-[10px] text-muted-foreground mt-1.5">
+              {t('toolsInternal.birthPlan.preferencesSet', { count: filledPrefs })}
+            </p>
           </CardContent>
         </Card>
 
+        {/* ═══════ CATEGORY SECTIONS ═══════ */}
+        {birthPlanCategories.map((category, catIdx) => {
+          const isExpanded = expandedSections.has(category.titleKey);
+          const CatIcon = CATEGORY_ICONS[catIdx];
+          const gradient = CATEGORY_GRADIENTS[catIdx];
+          const color = CATEGORY_COLORS[catIdx];
+          const catFilled = category.preferences.filter(p => preferences[p.id]).length;
+
+          return (
+            <Card key={category.titleKey} className="overflow-hidden">
+              <div className={`h-1 bg-gradient-to-r ${gradient}`} />
+              <CardContent className="p-0">
+                <button onClick={() => toggleSection(category.titleKey)} className="w-full p-3 flex items-center justify-between text-start">
+                  <div className="flex items-center gap-2.5">
+                    <div className={`w-8 h-8 rounded-xl bg-gradient-to-br ${gradient} flex items-center justify-center shadow-sm`}>
+                      <CatIcon className="w-4 h-4 text-white" />
+                    </div>
+                    <div>
+                      <h3 className={`text-[13px] font-bold ${color}`}>{t(category.titleKey)}</h3>
+                      <p className="text-[10px] text-muted-foreground tabular-nums">
+                        {catFilled}/{category.preferences.length} {t('toolsInternal.birthPlan.selected', 'selected')}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    {catFilled === category.preferences.length && (
+                      <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+                    )}
+                    {isExpanded ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
+                  </div>
+                </button>
+                <AnimatePresence>
+                  {isExpanded && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-3 pb-3 space-y-4">
+                        {category.preferences.map((pref) => (
+                          <div key={pref.id}>
+                            <label className="text-xs font-semibold text-foreground mb-2 block">{t(pref.labelKey)}</label>
+                            <div className="flex flex-wrap gap-1.5">
+                              {pref.optionKeys.map((optionKey) => {
+                                const optionValue = t(optionKey);
+                                const isSelected = preferences[pref.id] === optionValue;
+                                return (
+                                  <button
+                                    key={optionKey}
+                                    onClick={() => handlePreferenceChange(pref.id, optionValue)}
+                                    className={`px-3 py-1.5 text-[11px] font-semibold rounded-xl border transition-all ${
+                                      isSelected
+                                        ? `bg-gradient-to-br ${gradient} text-white border-transparent shadow-sm`
+                                        : 'bg-card border-border/40 text-muted-foreground hover:border-border/80 hover:bg-muted/30'
+                                    }`}
+                                  >
+                                    {isSelected && <CheckCircle2 className="w-3 h-3 inline me-1" />}
+                                    {optionValue}
+                                  </button>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </CardContent>
+            </Card>
+          );
+        })}
+
+        {/* ═══════ ADDITIONAL NOTES ═══════ */}
+        <Card className="overflow-hidden">
+          <CardContent className="p-3">
+            <label className="text-xs font-semibold text-foreground mb-2 block">{t('toolsInternal.birthPlan.additionalNotes')}</label>
+            <Textarea placeholder={t('toolsInternal.birthPlan.notesPlaceholder')} value={additionalNotes} onChange={(e) => setAdditionalNotes(e.target.value)} rows={3} className="text-sm" />
+          </CardContent>
+        </Card>
+
+        {/* ═══════ GENERATE BUTTON ═══════ */}
         <AIActionButton
           onClick={generatePlan}
           isLoading={isLoading}
@@ -206,11 +301,16 @@ export default function AIBirthPlanGenerator() {
 
         {error && <Card className="border-destructive/30 bg-destructive/5"><CardContent className="p-3 text-destructive text-xs">{error}</CardContent></Card>}
 
+        {/* ═══════ GENERATED PLAN ═══════ */}
         {generatedPlan && (
           <div className="space-y-2">
-            <div className="flex items-center justify-between">
-              <Button size="sm" variant="outline" onClick={savePlan} disabled={savedPlans.length >= MAX_SAVED_PLANS}>
+            <div className="flex items-center gap-2">
+              <Button size="sm" variant="outline" onClick={savePlan} disabled={savedPlans.length >= MAX_SAVED_PLANS} className="text-xs">
                 {t('common.save')}
+              </Button>
+              <Button size="sm" variant="outline" onClick={handleShareWhatsApp} className="text-xs text-green-600 border-green-300 hover:bg-green-50 dark:hover:bg-green-950/30">
+                <Share2 className="w-3 h-3 me-1" />
+                WhatsApp
               </Button>
             </div>
             <PrintableReport title={t('toolsInternal.birthPlan.title')} isLoading={isLoading}>
@@ -224,44 +324,68 @@ export default function AIBirthPlanGenerator() {
           </div>
         )}
 
-        <Card>
+        {/* ═══════ SAVED PLANS ARCHIVE ═══════ */}
+        <Card className="overflow-hidden">
           <CardContent className="p-3">
             <button onClick={() => setShowArchive(!showArchive)} className="w-full flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <Archive className="w-4 h-4 text-muted-foreground" />
-                <h3 className="font-semibold text-sm">{t('toolsInternal.birthPlan.savedPlans', { count: savedPlans.length, max: MAX_SAVED_PLANS })}</h3>
+                <div className="w-7 h-7 rounded-lg bg-muted flex items-center justify-center">
+                  <Archive className="w-3.5 h-3.5 text-muted-foreground" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-xs text-foreground">{t('toolsInternal.birthPlan.savedPlans', { count: savedPlans.length, max: MAX_SAVED_PLANS })}</h3>
+                </div>
               </div>
               {showArchive ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
             </button>
-            <div className="mt-3">
-              <Progress value={(savedPlans.length / MAX_SAVED_PLANS) * 100} className="h-2" />
+            <div className="mt-2">
+              <div className="h-1.5 rounded-full bg-muted overflow-hidden">
+                <motion.div
+                  className="h-full rounded-full bg-gradient-to-r from-primary to-muted-foreground"
+                  animate={{ width: `${(savedPlans.length / MAX_SAVED_PLANS) * 100}%` }}
+                  transition={{ duration: 0.5 }}
+                />
+              </div>
               {savedPlans.length >= MAX_SAVED_PLANS && (
                 <p className="text-xs text-destructive mt-1 flex items-center gap-1"><AlertCircle className="w-3 h-3" />{t('toolsInternal.birthPlan.storageFull')}</p>
               )}
             </div>
-            {showArchive && (
-              <div className="mt-4 space-y-2">
-                {savedPlans.length === 0 ? (
-                  <p className="text-sm text-muted-foreground text-center py-4">{t('toolsInternal.birthPlan.noSavedPlans')}</p>
-                ) : (
-                  savedPlans.map((plan) => (
-                    <div key={plan.id} className="flex items-center justify-between p-3 bg-muted/50 rounded-lg">
-                      <div className="flex items-center gap-3">
-                        <Clock className="w-4 h-4 text-muted-foreground" />
-                        <div>
-                          <p className="text-sm font-medium">{t('toolsInternal.birthPlan.planTitle')} - {format(new Date(plan.date), 'MMM d, yyyy')}</p>
-                          <p className="text-xs text-muted-foreground">{t('toolsInternal.birthPlan.preferencesSet', { count: Object.keys(plan.preferences).length })}</p>
-                        </div>
-                      </div>
-                      <div className="flex gap-1">
-                        <Button size="sm" variant="ghost" onClick={() => loadPlan(plan)}>{t('toolsInternal.birthPlan.load')}</Button>
-                        <Button size="sm" variant="ghost" onClick={() => deletePlan(plan.id)}><Trash2 className="w-4 h-4 text-destructive" /></Button>
-                      </div>
-                    </div>
-                  ))
-                )}
-              </div>
-            )}
+            <AnimatePresence>
+              {showArchive && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  className="overflow-hidden"
+                >
+                  <div className="mt-3 space-y-2">
+                    {savedPlans.length === 0 ? (
+                      <p className="text-sm text-muted-foreground text-center py-4">{t('toolsInternal.birthPlan.noSavedPlans')}</p>
+                    ) : (
+                      savedPlans.map((plan) => (
+                        <Card key={plan.id} className="bg-muted/30">
+                          <CardContent className="p-3 flex items-center justify-between">
+                            <div className="flex items-center gap-2.5">
+                              <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center">
+                                <Clock className="w-3.5 h-3.5 text-primary" />
+                              </div>
+                              <div>
+                                <p className="text-xs font-bold text-foreground">{t('toolsInternal.birthPlan.planTitle')} - {format(new Date(plan.date), 'MMM d, yyyy')}</p>
+                                <p className="text-[10px] text-muted-foreground">{t('toolsInternal.birthPlan.preferencesSet', { count: Object.keys(plan.preferences).length })}</p>
+                              </div>
+                            </div>
+                            <div className="flex gap-1">
+                              <Button size="sm" variant="ghost" onClick={() => loadPlan(plan)} className="text-xs h-7">{t('toolsInternal.birthPlan.load')}</Button>
+                              <Button size="sm" variant="ghost" onClick={() => deletePlan(plan.id)} className="h-7"><Trash2 className="w-3.5 h-3.5 text-destructive" /></Button>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      ))
+                    )}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </CardContent>
         </Card>
       </div>
