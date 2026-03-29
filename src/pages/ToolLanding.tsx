@@ -80,7 +80,297 @@ const toolSEO: Record<string, { h1: string; desc: string; longDesc: string; keyw
       { q: "How much weight should I gain during pregnancy?", a: "Weight gain depends on your pre-pregnancy BMI. For normal weight (BMI 18.5-24.9), ACOG recommends 25-35 pounds. Underweight women may need more, while overweight women may need less." },
     ],
   },
-};
+  // ═══════════════════════════════════════════════════════════
+  // SMART ASSISTANT
+  // ═══════════════════════════════════════════════════════════
+  "smart-pregnancy-plan": {
+    h1: "AI Smart Pregnancy Plan — Personalized Week-by-Week Guide",
+    desc: "Get a personalized pregnancy plan tailored to your health profile, trimester, and goals. AI-powered recommendations updated every week.",
+    longDesc: "Our Smart Pregnancy Plan analyzes your health data — including BMI, blood pressure, gestational diabetes risk, and lifestyle factors — to create a personalized week-by-week pregnancy guide. The AI continuously adapts recommendations as your pregnancy progresses, covering nutrition, exercise, checkups, and mental wellness.",
+    keywords: "pregnancy plan, personalized pregnancy guide, pregnancy health plan, AI pregnancy planner, week by week pregnancy plan",
+    faqs: [
+      { q: "How is the plan personalized?", a: "The plan considers your pre-pregnancy BMI, medical history, current trimester, dietary preferences, and fitness level to generate tailored recommendations that update as your pregnancy progresses." },
+      { q: "Does the plan replace prenatal care?", a: "No. The Smart Pregnancy Plan is an educational companion that complements your prenatal care. Always follow your healthcare provider's advice for medical decisions." },
+    ],
+  },
+  "weekly-summary": {
+    h1: "Weekly Pregnancy Summary — Your Baby This Week",
+    desc: "Get a comprehensive weekly summary of your baby's development, body changes, nutrition tips, and what to expect. AI-powered insights for every week.",
+    longDesc: "Our Weekly Pregnancy Summary delivers a complete overview of your pregnancy progress each week. Learn about your baby's development milestones, understand the changes happening in your body, get trimester-specific nutrition advice, and prepare for upcoming checkups — all powered by AI and personalized to your journey.",
+    keywords: "weekly pregnancy summary, pregnancy week by week, baby development this week, pregnancy progress, weekly pregnancy update",
+    faqs: [
+      { q: "When does the weekly summary update?", a: "The summary updates automatically each week based on your due date. You can also manually browse any week from 4 to 42 to see what to expect." },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════
+  // FERTILITY & PLANNING
+  // ═══════════════════════════════════════════════════════════
+  "fertility-academy": {
+    h1: "Fertility Academy — Complete Guide to Getting Pregnant",
+    desc: "Learn everything about fertility, ovulation, and conception. Expert-reviewed educational content covering hormones, tests, and lifestyle tips for TTC.",
+    longDesc: "The Fertility Academy is your comprehensive educational resource for understanding fertility. Explore topics including ovulation science, hormone testing (AMH, FSH, LH), lifestyle factors affecting fertility, when to see a specialist, and evidence-based tips for improving your chances of conception. All content is reviewed for accuracy.",
+    keywords: "fertility guide, how to get pregnant, fertility education, TTC tips, ovulation guide, fertility hormones, conception tips",
+    faqs: [
+      { q: "How long does it typically take to conceive?", a: "For healthy couples under 35, about 80% conceive within 6 months and 90% within 12 months of trying. If you've been trying for over a year (or 6 months if over 35), consult a fertility specialist." },
+      { q: "What fertility tests should I consider?", a: "Common initial tests include AMH (ovarian reserve), FSH, LH, thyroid panel, and semen analysis for the male partner. Your doctor will recommend specific tests based on your situation." },
+    ],
+  },
+  "nutrition-supplements": {
+    h1: "Pregnancy Nutrition & Supplements Guide — What to Take & Avoid",
+    desc: "Complete guide to prenatal vitamins, supplements, and nutrition during pregnancy. Know what's safe, what's essential, and what to avoid.",
+    longDesc: "Navigate pregnancy nutrition with confidence using our comprehensive supplements guide. Learn about essential prenatal vitamins (folic acid, iron, DHA), safe dosages, food sources of key nutrients, and which supplements to avoid. Our guide is organized by trimester to give you the right information at the right time.",
+    keywords: "prenatal vitamins, pregnancy supplements, folic acid pregnancy, iron pregnancy, pregnancy nutrition guide, DHA pregnancy",
+    faqs: [
+      { q: "When should I start taking prenatal vitamins?", a: "Ideally, start taking folic acid at least 1-3 months before conception. If you're already pregnant, start prenatal vitamins as soon as possible. Folic acid is crucial in the first 12 weeks for neural tube development." },
+      { q: "Can I take too many vitamins during pregnancy?", a: "Yes. Excessive intake of certain vitamins (especially Vitamin A) can be harmful. Stick to recommended dosages and avoid taking multiple supplements that overlap. Always consult your healthcare provider." },
+    ],
+  },
+  "preconception-checkup": {
+    h1: "Preconception Checkup Guide — Prepare for a Healthy Pregnancy",
+    desc: "Complete preconception health checklist and guide. Know which tests, vaccines, and lifestyle changes to make before getting pregnant.",
+    longDesc: "Preparing for pregnancy starts before conception. Our Preconception Checkup Guide walks you through essential health screenings, recommended vaccines, medications to review, lifestyle adjustments, and genetic testing options. Get a personalized checklist to ensure you're in the best health before trying to conceive.",
+    keywords: "preconception checkup, pre-pregnancy health, preconception checklist, getting ready for pregnancy, pre-pregnancy tests",
+    faqs: [
+      { q: "How far in advance should I prepare for pregnancy?", a: "Ideally, start preconception planning 3-6 months before trying to conceive. This gives you time to optimize nutrition, update vaccines, review medications, and address any health concerns." },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════
+  // PREGNANCY TRACKING
+  // ═══════════════════════════════════════════════════════════
+  "ai-birth-plan": {
+    h1: "AI Birth Plan Generator — Create Your Personalized Birth Plan",
+    desc: "Generate a detailed, customizable birth plan with AI. Cover labor preferences, pain management, delivery options, and postpartum wishes.",
+    longDesc: "Creating a birth plan helps you communicate your preferences to your healthcare team. Our AI Birth Plan Generator asks about your preferences for labor environment, pain management, delivery positions, emergency scenarios, and postpartum care, then creates a professional, printable birth plan you can share with your provider.",
+    keywords: "birth plan generator, birth plan template, labor preferences, delivery plan, birth plan checklist, birth plan PDF",
+    faqs: [
+      { q: "Do I need a birth plan?", a: "While birth plans aren't mandatory, they help you think through your preferences and communicate them to your care team. Remember that birth is unpredictable — a birth plan is a guide, not a guarantee." },
+      { q: "When should I create my birth plan?", a: "Most experts recommend creating your birth plan during the third trimester (around weeks 28-32). This gives you time to discuss it with your healthcare provider and make any adjustments." },
+    ],
+  },
+  "ai-bump-photos": {
+    h1: "Bump Photo Tracker — Document Your Pregnancy Journey",
+    desc: "Capture and organize weekly bump photos with AI analysis. Track your belly growth and create a beautiful pregnancy timeline.",
+    longDesc: "Document your pregnancy journey week by week with our Bump Photo Tracker. Take consistent bump photos, add captions and milestones, and watch your belly grow over time. Our AI analyzes growth patterns and helps you create a beautiful photo timeline you can share with family and friends.",
+    keywords: "bump photo tracker, pregnancy belly photos, pregnancy photo journal, bump progression, pregnancy timeline photos",
+    faqs: [
+      { q: "How often should I take bump photos?", a: "For the best timeline, take a photo once a week in the same position, lighting, and outfit. Most moms start between weeks 12-16 when the bump first becomes visible." },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════
+  // NUTRITION & DIET
+  // ═══════════════════════════════════════════════════════════
+  "ai-meal-suggestion": {
+    h1: "AI Pregnancy Meal Planner — Safe & Nutritious Meals",
+    desc: "Get personalized meal suggestions safe for pregnancy. AI-powered recommendations based on your trimester, dietary needs, and cravings.",
+    longDesc: "Eating well during pregnancy doesn't have to be complicated. Our AI Meal Planner generates personalized meal suggestions based on your current trimester, dietary restrictions, nutritional needs, and even your cravings. Every suggestion is checked against pregnancy food safety guidelines to ensure it's safe for you and your baby.",
+    keywords: "pregnancy meal plan, safe foods pregnancy, pregnancy diet, pregnancy nutrition, pregnancy meal ideas, pregnancy food guide",
+    faqs: [
+      { q: "What foods should I avoid during pregnancy?", a: "Key foods to avoid include raw or undercooked meat and fish, unpasteurized dairy, high-mercury fish (swordfish, king mackerel), raw eggs, and excessive caffeine. Our app flags these automatically in meal suggestions." },
+      { q: "How many extra calories do I need?", a: "Generally, no extra calories in the first trimester, about 340 extra in the second trimester, and 450 extra in the third trimester. However, individual needs vary — consult your healthcare provider." },
+    ],
+  },
+  "ai-craving-alternatives": {
+    h1: "Pregnancy Craving Alternatives — Healthy Swaps for Cravings",
+    desc: "Find healthy alternatives to your pregnancy cravings. AI suggests nutritious swaps that satisfy cravings while keeping you and baby healthy.",
+    longDesc: "Pregnancy cravings are real, and sometimes they lead us toward less healthy choices. Our AI Craving Alternatives tool helps you find nutritious substitutes that satisfy the same craving — whether it's something sweet, salty, crunchy, or creamy — while providing essential nutrients for your pregnancy.",
+    keywords: "pregnancy cravings, healthy pregnancy snacks, pregnancy food alternatives, craving substitutes, pregnancy nutrition swaps",
+    faqs: [
+      { q: "Why do I get cravings during pregnancy?", a: "Pregnancy cravings are thought to be caused by hormonal changes, nutritional needs, and heightened senses. While the exact cause isn't fully understood, they're very common and usually harmless." },
+    ],
+  },
+  "smart-grocery-list": {
+    h1: "Smart Pregnancy Grocery List — AI-Powered Shopping",
+    desc: "Generate a pregnancy-safe grocery list tailored to your trimester and dietary needs. AI ensures every item is safe and nutritious.",
+    longDesc: "Shopping for pregnancy-safe foods is easy with our Smart Grocery List. Enter your trimester, dietary preferences, and nutritional goals, and our AI generates a complete shopping list organized by store section. Every item is checked for pregnancy safety, and the list highlights nutrient-dense foods important for each stage of pregnancy.",
+    keywords: "pregnancy grocery list, pregnancy shopping list, pregnancy safe foods list, prenatal nutrition shopping, pregnancy meal prep",
+    faqs: [
+      { q: "Does the list account for food allergies?", a: "Yes. You can specify allergies, intolerances, and dietary restrictions (vegetarian, vegan, gluten-free, etc.) and the AI will generate a list that avoids those items while ensuring adequate nutrition." },
+    ],
+  },
+  "vitamin-tracker": {
+    h1: "Pregnancy Vitamin Tracker — Never Miss a Supplement",
+    desc: "Track your daily prenatal vitamins and supplements with reminders. Monitor iron, folic acid, DHA, and more throughout your pregnancy.",
+    longDesc: "Staying consistent with prenatal vitamins is crucial for your baby's development. Our Vitamin Tracker helps you log daily supplement intake, set reminders, and monitor your adherence over time. Track individual nutrients like folic acid, iron, calcium, DHA, and vitamin D with dosage tracking and refill reminders.",
+    keywords: "prenatal vitamin tracker, pregnancy supplement tracker, vitamin reminder, prenatal vitamin schedule, supplement log pregnancy",
+    faqs: [
+      { q: "Which vitamins are most important during pregnancy?", a: "The most critical prenatal supplements include folic acid (400-800mcg), iron (27mg), calcium (1000mg), DHA/omega-3 (200-300mg), and vitamin D (600 IU). Your healthcare provider may recommend additional supplements based on your needs." },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════
+  // WELLNESS & FITNESS
+  // ═══════════════════════════════════════════════════════════
+  "wellness-diary": {
+    h1: "Pregnancy Wellness Diary — Track Mood, Symptoms & Energy",
+    desc: "Log daily symptoms, mood, energy levels, and wellness during pregnancy. Identify patterns and share insights with your healthcare provider.",
+    longDesc: "Your pregnancy wellness matters. Our Wellness Diary lets you track daily symptoms, mood changes, energy levels, sleep quality, and hydration. Over time, the app identifies patterns and trends, helping you understand your body's rhythms and giving you valuable data to share with your healthcare provider.",
+    keywords: "pregnancy diary, pregnancy symptom tracker, mood tracker pregnancy, pregnancy journal, pregnancy wellness log",
+    faqs: [
+      { q: "What symptoms should I track?", a: "Track anything that feels notable: nausea, headaches, back pain, fatigue, mood changes, sleep quality, appetite, and any new symptoms. Consistent tracking helps identify patterns and gives your provider useful information." },
+    ],
+  },
+  "ai-fitness-coach": {
+    h1: "AI Pregnancy Fitness Coach — Safe Exercises by Trimester",
+    desc: "Get personalized pregnancy-safe workout routines based on your trimester and fitness level. AI-guided exercises with proper modifications.",
+    longDesc: "Staying active during pregnancy benefits both you and your baby. Our AI Fitness Coach creates personalized exercise routines based on your trimester, fitness level, and any medical considerations. Each workout includes proper modifications, breathing techniques, and safety guidelines. From prenatal yoga to strength training, find the right workout for every stage.",
+    keywords: "pregnancy exercises, safe pregnancy workout, prenatal fitness, pregnancy yoga, pregnancy exercise app, trimester workouts",
+    faqs: [
+      { q: "Is it safe to exercise during pregnancy?", a: "For most healthy pregnancies, moderate exercise is not only safe but recommended. The ACOG suggests 150 minutes of moderate activity per week. However, always get clearance from your healthcare provider before starting any exercise program." },
+      { q: "Which exercises should I avoid?", a: "Avoid contact sports, activities with fall risk, exercises lying flat on your back after the first trimester, hot yoga, and high-altitude activities. Our AI automatically excludes unsafe exercises based on your trimester." },
+    ],
+  },
+  "pregnancy-comfort": {
+    h1: "Pregnancy Comfort Guide — Relief for Common Discomforts",
+    desc: "Find relief from common pregnancy discomforts including back pain, swelling, insomnia, and heartburn. AI-powered comfort tips and techniques.",
+    longDesc: "Pregnancy brings amazing changes, but also common discomforts. Our Pregnancy Comfort Guide provides evidence-based relief strategies for back pain, leg cramps, heartburn, swelling, insomnia, and more. Get personalized tips based on your trimester and specific symptoms, including safe sleeping positions, stretching routines, and natural remedies.",
+    keywords: "pregnancy comfort, pregnancy back pain relief, pregnancy insomnia, pregnancy heartburn, pregnancy leg cramps, pregnancy sleep positions",
+    faqs: [
+      { q: "How can I sleep better during pregnancy?", a: "Try sleeping on your left side with a pillow between your knees. Elevate your upper body to reduce heartburn. Avoid screens before bed, and establish a relaxing bedtime routine. Our app provides personalized sleep tips for each trimester." },
+    ],
+  },
+  "ai-pregnancy-skincare": {
+    h1: "Pregnancy Skincare Guide — Safe Products & Routines",
+    desc: "Discover pregnancy-safe skincare routines and products. AI analyzes ingredients and creates personalized routines for stretch marks, acne, and more.",
+    longDesc: "Your skin changes significantly during pregnancy. Our AI Skincare Guide helps you navigate pregnancy-safe ingredients, avoid harmful chemicals, and build effective routines for common concerns like stretch marks, melasma, acne, and dryness. Get personalized product recommendations and ingredient safety checks.",
+    keywords: "pregnancy skincare, safe skincare pregnancy, pregnancy stretch marks, pregnancy acne, pregnancy safe ingredients, pregnancy beauty routine",
+    faqs: [
+      { q: "Which skincare ingredients should I avoid?", a: "Avoid retinoids (vitamin A derivatives), high-dose salicylic acid, hydroquinone, formaldehyde, and chemical sunscreens with oxybenzone. Our app checks product ingredients against the safety database automatically." },
+    ],
+  },
+  "ai-back-pain-relief": {
+    h1: "Pregnancy Back Pain Relief — Exercises & Tips",
+    desc: "Get personalized back pain relief exercises and stretches for pregnancy. AI-guided routines safe for every trimester.",
+    longDesc: "Back pain affects up to 70% of pregnant women. Our AI Back Pain Relief tool provides targeted stretching routines, strengthening exercises, posture tips, and ergonomic advice specific to your trimester and pain location. Each exercise comes with clear instructions, safety modifications, and visual guides.",
+    keywords: "pregnancy back pain, back pain exercises pregnancy, prenatal stretches, pregnancy posture, lower back pain pregnant, sciatica pregnancy",
+    faqs: [
+      { q: "Is back pain normal during pregnancy?", a: "Yes, back pain is very common during pregnancy due to hormonal changes, weight gain, and shifting center of gravity. However, severe or sudden pain should be evaluated by your healthcare provider." },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════
+  // PREPARATION & BIRTH
+  // ═══════════════════════════════════════════════════════════
+  "maternal-health-awareness": {
+    h1: "Maternal Health Awareness — Know the Warning Signs",
+    desc: "Learn about important pregnancy warning signs and complications. Evidence-based information on preeclampsia, gestational diabetes, and more.",
+    longDesc: "Knowledge is power during pregnancy. Our Maternal Health Awareness tool educates you about potential complications including preeclampsia, gestational diabetes, placenta previa, and preterm labor. Learn the warning signs, understand risk factors, and know when to seek immediate medical attention. This educational resource is designed to empower, not alarm.",
+    keywords: "pregnancy warning signs, preeclampsia symptoms, gestational diabetes, pregnancy complications, maternal health, pregnancy emergency signs",
+    faqs: [
+      { q: "What are the warning signs I should never ignore?", a: "Seek immediate medical attention for: severe headache with vision changes, vaginal bleeding, severe abdominal pain, sudden swelling of face/hands, difficulty breathing, or decreased fetal movement. When in doubt, always call your provider." },
+    ],
+  },
+  "ai-hospital-bag": {
+    h1: "Hospital Bag Checklist — AI-Powered Packing List",
+    desc: "Generate a personalized hospital bag checklist for labor and delivery. Covers mom, baby, and partner essentials based on your birth plan.",
+    longDesc: "Don't forget anything for the big day. Our AI Hospital Bag Checklist generates a personalized packing list based on your birth plan, hospital or birthing center requirements, season, and personal preferences. Covering essentials for mom, baby, and birth partner, the list includes often-forgotten items and lets you check off items as you pack.",
+    keywords: "hospital bag checklist, labor bag packing list, what to pack hospital delivery, birth bag essentials, hospital bag for delivery",
+    faqs: [
+      { q: "When should I pack my hospital bag?", a: "Pack your hospital bag by week 35-36 of pregnancy. Keep it by the door or in your car so you're ready anytime. Our checklist lets you start early and add items over time." },
+      { q: "What are the most forgotten hospital bag items?", a: "Commonly forgotten items include phone charger (long cable), lip balm, going-home outfit for baby, snacks for your partner, nursing pillow, and copies of your birth plan." },
+    ],
+  },
+  "baby-gear-recommender": {
+    h1: "Baby Gear Recommender — Essential Products for Your Newborn",
+    desc: "Get AI-powered recommendations for essential baby gear. Budget-friendly picks for car seats, strollers, cribs, and everything your newborn needs.",
+    longDesc: "Preparing for baby doesn't have to break the bank. Our AI Baby Gear Recommender helps you identify the essential items you actually need, suggests budget-friendly options, and prioritizes safety-certified products. Get recommendations for car seats, cribs, strollers, feeding supplies, and more — organized by priority and budget.",
+    keywords: "baby gear recommendations, newborn essentials, baby registry checklist, what to buy for newborn, baby shopping list, best baby products",
+    faqs: [
+      { q: "What baby gear do I actually need?", a: "Must-haves include a car seat, safe sleep space (crib/bassinet), diapers, feeding supplies, and basic clothing. Many popular items (wipe warmers, shoe organizers) are nice-to-haves, not essentials. Our tool separates needs from wants." },
+    ],
+  },
+  "smart-appointment-reminder": {
+    h1: "Pregnancy Appointment Reminder — Never Miss a Checkup",
+    desc: "Track prenatal appointments, ultrasounds, and lab tests with smart reminders. AI schedules recommended checkups based on your pregnancy timeline.",
+    longDesc: "Stay on top of your prenatal care with our Smart Appointment Reminder. The AI automatically suggests recommended checkups, ultrasounds, glucose tests, and lab work based on standard prenatal care guidelines and your pregnancy timeline. Set reminders, add notes from visits, and track questions to ask your provider.",
+    keywords: "prenatal appointment tracker, pregnancy checkup schedule, ultrasound schedule pregnancy, pregnancy appointment reminder, prenatal care timeline",
+    faqs: [
+      { q: "How often should I see my doctor during pregnancy?", a: "Standard prenatal visit schedule: monthly until week 28, every 2 weeks from weeks 28-36, then weekly until delivery. High-risk pregnancies may require more frequent visits." },
+    ],
+  },
+  "ai-partner-guide": {
+    h1: "Partner's Pregnancy Guide — How to Support Your Pregnant Partner",
+    desc: "AI-powered guide for partners during pregnancy. Learn how to support your partner through each trimester with practical tips and emotional guidance.",
+    longDesc: "Pregnancy is a team journey. Our AI Partner Guide helps partners understand what's happening each trimester, provides practical support tips, addresses common concerns, and offers guidance on being present during labor and delivery. Learn about physical changes, emotional needs, and how to prepare together for parenthood.",
+    keywords: "pregnancy partner guide, dad pregnancy guide, partner support pregnancy, husband pregnancy tips, pregnancy guide for dads, expecting father guide",
+    faqs: [
+      { q: "How can I support my partner during pregnancy?", a: "Key ways to support: attend prenatal appointments together, help with household tasks, learn about pregnancy changes, be emotionally available, help prepare for the baby, and educate yourself about labor and delivery." },
+    ],
+  },
+  "ai-birth-position": {
+    h1: "Birth Position Guide — Find Your Best Labor Positions",
+    desc: "Explore evidence-based labor and delivery positions with AI guidance. Find comfortable positions for each stage of labor.",
+    longDesc: "Movement and positioning during labor can help manage pain and facilitate delivery. Our AI Birth Position Guide presents evidence-based labor positions for each stage — early labor, active labor, pushing, and resting. Each position includes benefits, how-to instructions, and when it's most effective. Personalized to your birth plan and comfort level.",
+    keywords: "labor positions, birth positions, best position for labor, delivery positions, active labor positions, pushing positions birth",
+    faqs: [
+      { q: "Does position really affect labor?", a: "Yes. Upright and forward-leaning positions can help use gravity to your advantage, potentially shortening labor and reducing pain. Different positions work better at different stages — our guide helps you find what works for you." },
+    ],
+  },
+  // ═══════════════════════════════════════════════════════════
+  // POSTPARTUM & BABY
+  // ═══════════════════════════════════════════════════════════
+  "postpartum-mental-health": {
+    h1: "Postpartum Mental Health Coach — PPD Screening & Support",
+    desc: "Monitor your emotional wellbeing after birth with mood tracking, PPD screening tools, and AI-guided coping strategies. Not a diagnostic tool.",
+    longDesc: "The postpartum period brings significant emotional changes. Our Mental Health Coach helps you monitor mood patterns, screen for signs of postpartum depression using validated questionnaires (Edinburgh Scale), and access evidence-based coping strategies. Connect with support resources and track your emotional recovery journey. This is an educational tool, not a diagnostic or treatment service.",
+    keywords: "postpartum depression, PPD screening, postpartum mental health, baby blues, postpartum anxiety, postpartum mood tracker, postnatal depression",
+    faqs: [
+      { q: "What's the difference between baby blues and postpartum depression?", a: "Baby blues affect up to 80% of new mothers and typically resolve within 2 weeks. PPD is more severe, lasting longer than 2 weeks, and may include intense sadness, anxiety, difficulty bonding, or thoughts of self-harm. If symptoms persist, please reach out to your healthcare provider." },
+      { q: "When should I seek help?", a: "Seek professional help if mood symptoms last longer than 2 weeks after birth, interfere with daily functioning or baby care, include thoughts of harming yourself or your baby, or if you feel persistently hopeless or disconnected." },
+    ],
+  },
+  "ai-lactation-prep": {
+    h1: "Breastfeeding Preparation Guide — Lactation Tips & Techniques",
+    desc: "Prepare for breastfeeding with our AI-powered lactation guide. Learn proper latch, positions, supply building, and troubleshooting common issues.",
+    longDesc: "Breastfeeding success often depends on preparation. Our AI Lactation Prep Guide covers everything from prenatal breast care to establishing a strong milk supply. Learn proper latch techniques, explore feeding positions, understand supply and demand, troubleshoot common challenges like engorgement and nipple pain, and get a pumping and back-to-work plan.",
+    keywords: "breastfeeding guide, lactation preparation, breastfeeding positions, proper latch breastfeeding, milk supply tips, breastfeeding help, pumping guide",
+    faqs: [
+      { q: "How can I prepare for breastfeeding before birth?", a: "Take a breastfeeding class, buy nursing supplies (bras, pads, nipple cream), learn about proper latch and positions, and plan for the first hour of skin-to-skin contact after birth. Our guide covers all prenatal preparation steps." },
+      { q: "What if I can't breastfeed?", a: "Fed is best. Many factors can affect breastfeeding. Our guide includes information about combination feeding, pumping exclusively, and formula feeding. There is no one 'right' way to feed your baby." },
+    ],
+  },
+  "postpartum-recovery": {
+    h1: "Postpartum Recovery Guide — Heal & Recover After Birth",
+    desc: "Comprehensive postpartum recovery guide covering physical healing, pelvic floor exercises, C-section care, and return to activity timeline.",
+    longDesc: "Recovery after birth is a journey that deserves attention and care. Our Postpartum Recovery Guide covers physical healing timelines for both vaginal and cesarean births, pelvic floor rehabilitation exercises, wound care, managing postpartum bleeding, when to resume activities, and warning signs to watch for. Personalized to your birth experience.",
+    keywords: "postpartum recovery, after birth healing, pelvic floor exercises postpartum, C-section recovery, postpartum bleeding, postpartum body recovery",
+    faqs: [
+      { q: "How long does postpartum recovery take?", a: "Physical recovery varies: vaginal birth recovery is typically 6-8 weeks, while C-section recovery is usually 8-12 weeks. Full pelvic floor recovery may take 6-12 months. Everyone heals at their own pace." },
+    ],
+  },
+  "baby-cry-translator": {
+    h1: "Baby Cry Translator — Understand Why Your Baby Is Crying",
+    desc: "AI-powered baby cry analysis to help identify if your baby is hungry, tired, uncomfortable, or needs a diaper change. Educational guide for new parents.",
+    longDesc: "New to parenthood and wondering why your baby is crying? Our Baby Cry Translator uses AI to help you identify common cry patterns associated with hunger, tiredness, discomfort, overstimulation, and other needs. Combined with educational content about infant communication, it helps new parents build confidence in understanding their baby's cues.",
+    keywords: "baby cry translator, why is my baby crying, baby cry analyzer, newborn crying, baby cues, infant cry meaning, baby cry app",
+    faqs: [
+      { q: "Can an app really translate baby cries?", a: "While no app can perfectly 'translate' baby cries, research shows that different needs produce distinct cry patterns. Our tool combines AI pattern recognition with educational content about common baby cues to help you respond effectively." },
+    ],
+  },
+  "baby-sleep-tracker": {
+    h1: "Baby Sleep Tracker — Monitor Newborn Sleep Patterns",
+    desc: "Track your baby's sleep schedule, naps, and nighttime sleep. Get insights on sleep patterns and age-appropriate sleep guidelines.",
+    longDesc: "Understanding your baby's sleep patterns is key to healthy development and parental sanity. Our Baby Sleep Tracker lets you log naps, nighttime sleep, wake windows, and feeding times. The app provides age-appropriate sleep guidelines, identifies patterns, and offers tips for establishing healthy sleep routines from the newborn stage onward.",
+    keywords: "baby sleep tracker, newborn sleep schedule, baby nap tracker, infant sleep patterns, baby sleep log, baby sleep guidelines",
+    faqs: [
+      { q: "How much should my newborn sleep?", a: "Newborns (0-3 months) typically sleep 14-17 hours per day in short bursts. By 4-6 months, many babies consolidate to 12-15 hours with longer nighttime stretches. Every baby is different — our tracker helps you understand your baby's unique patterns." },
+    ],
+  },
+  "baby-growth": {
+    h1: "Baby Growth Tracker — Monitor Weight, Height & Milestones",
+    desc: "Track your baby's growth with WHO-standard growth charts. Monitor weight, height, and head circumference percentiles from birth to 2 years.",
+    longDesc: "Keep track of your baby's physical development with our Growth Tracker, based on WHO growth standards. Log weight, length/height, and head circumference measurements, and see how your baby compares to standard percentiles. Track developmental milestones, get growth alerts, and generate reports to share with your pediatrician.",
+    keywords: "baby growth tracker, baby weight chart, baby height percentile, WHO growth chart baby, baby milestone tracker, infant growth chart",
+    faqs: [
+      { q: "What growth percentile is normal?", a: "Any percentile from 3rd to 97th is considered normal. What matters most is that your baby follows a consistent growth curve over time. Sudden changes in percentile may warrant discussion with your pediatrician." },
+    ],
+  },
+  "diaper-tracker": {
+    h1: "Diaper Tracker — Monitor Baby's Diaper Changes",
+    desc: "Track wet and dirty diapers to ensure your newborn is feeding well and staying hydrated. Set daily goals and get pattern insights.",
+    longDesc: "In the first weeks of life, diaper output is one of the best indicators that your baby is getting enough nutrition. Our Diaper Tracker helps you log wet and dirty diapers, set age-appropriate daily goals, track color and consistency, and identify any patterns that might indicate feeding issues or dehydration. Simple, fast logging with helpful insights.",
+    keywords: "diaper tracker, baby diaper log, newborn diaper count, wet diaper tracker, baby poop tracker, diaper change app",
+    faqs: [
+      { q: "How many diapers should my newborn have per day?", a: "In the first few days, expect 1-2 wet diapers per day. By day 5+, healthy newborns typically have 6+ wet diapers and 3-4 dirty diapers per day. This is a key sign that your baby is feeding well." },
+    ],
+  },
 
 // Fallback for tools without specific SEO data
 function getToolSEO(toolId: string, toolTitle: string) {
