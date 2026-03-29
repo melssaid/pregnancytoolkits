@@ -28,6 +28,19 @@ export default function PricingDemo() {
   const [selected, setSelected] = useState<PlanType>("yearly");
   const isAr = i18n.language === "ar";
   const canPurchase = isDigitalGoodsAvailable();
+  const { refresh } = useAIUsage();
+  const [bonusAvailable, setBonusAvailable] = useState(() => isPromoActive() && canClaimBonus());
+  const [bonusClaimed, setBonusClaimed] = useState(false);
+
+  const handleClaimBonus = () => {
+    const result = claimBonus();
+    if (result.success) {
+      setBonusClaimed(true);
+      setBonusAvailable(false);
+      refresh();
+      toast.success(t('paywall.bonusSuccess'));
+    }
+  };
 
   const handleSubscribe = async () => {
     if (!canPurchase) {
