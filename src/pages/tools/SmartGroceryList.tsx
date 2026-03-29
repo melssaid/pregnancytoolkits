@@ -595,6 +595,8 @@ Items: ${items.map(i => i.nameKey ? t(i.nameKey) : i.name).join(', ')}
 Current nutrition coverage: Protein: ${nutrition.protein}%, Iron: ${nutrition.iron}%, Folate: ${nutrition.folate}%, Calcium: ${nutrition.calcium}%, Omega-3: ${nutrition.omega3}%
 Provide: 1. Overall nutrition score 2. Missing nutrients and foods to add 3. Week ${currentWeek} recommendations 4. Meal combination suggestions`}
               buttonText="Analyze"
+              section="nutrition"
+              toolType="grocery-list"
               context={{ week: currentWeek, trimester: currentWeek <= 12 ? 1 : currentWeek <= 27 ? 2 : 3 }}
             />
           </TabsContent>
@@ -656,6 +658,8 @@ Provide: 1. Overall nutrition score 2. Missing nutrients and foods to add 3. Wee
 Items: ${items.map(i => i.nameKey ? t(i.nameKey) : i.name).join(', ')}
 Provide a structured 7-day meal plan with breakfast, lunch, dinner, and snacks.`}
               buttonText="Generate Plan"
+              section="nutrition"
+              toolType="grocery-list"
               context={{ week: currentWeek, trimester: currentWeek <= 12 ? 1 : currentWeek <= 27 ? 2 : 3 }}
             />
 
