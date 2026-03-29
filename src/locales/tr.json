@@ -8261,5 +8261,17 @@
     "upgradeHint": "Premium ile daha fazla kişiselleştirilmiş analiz açın",
     "upgradeCTA": "Premium ile devam et",
     "postAnalysisHint": "Aylık 40 analiz ve daha derin bilgiler için Premium'a yükseltin"
+  },
+  "tools.weightGain.subtitle": "Hamilelikte kilo artışını takip edin ve analiz edin",
+  "toolsInternal.babyGrowth.emptyTitle": "Henüz kayıt yok",
+  "toolsInternal.babyGrowth.emptyDesc": "Geçmişi ve eğilimleri görmek için bebeğinizin büyüme kayıtlarını eklemeye başlayın.",
+  "toolsInternal.babyGrowth.history": "Büyüme geçmişi",
+  "toolsInternal.bumpPhotos.analysisQuotaRemaining": "{{remaining}} analiz hakkı kaldı",
+  "toolsInternal.weightGain.added": "Kilo kaydı eklendi",
+  "toolsInternal.weightGain.bmiTitle": "Hamilelik öncesi BMI",
+  "toolsInternal.weightGain.history": "Geçmiş",
+  "toolsInternal.weightGain.invalidWeight": "Lütfen geçerli bir kilo girin",
+  "toolsInternal.weightGain.noEntries": "Henüz kilo kaydı yok. İlk kaydı yukarıdan ekleyin.",
+  "toolsInternal.weightGain.weightPlaceholder": "Kilo (kg)"
   }
 }
