@@ -398,6 +398,9 @@ Focus on safety first, with modifications for common pregnancy discomforts.`
               })}
             </div>
 
+            {/* Usage Bar */}
+            <MiniUsageBar toolType="pregnancy-assistant" section="pregnancy-plan" className="mt-3" />
+
             {/* AI Error */}
             {aiError && !aiInsight && (
               <div className="mt-4">
