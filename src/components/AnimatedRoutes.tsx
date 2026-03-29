@@ -98,8 +98,9 @@ export function AnimatedRoutes() {
         <Route path="/language-styles" element={<Navigate to="/settings" replace />} />
         <Route path="/pricing-demo" element={<Navigate to="/" replace />} />
         <Route path="/icon-preview" element={<Navigate to="/" replace />} />
-        
-        
+        <Route path="/privacy" element={<PageTransition><PrivacyPolicy /></PageTransition>} />
+        <Route path="/terms" element={<PageTransition><TermsOfService /></PageTransition>} />
+        <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
         
         {/* AI-POWERED CORE TOOLS */}
         <Route path="/tools/pregnancy-assistant" element={<PageTransition variant="tool"><PregnancyAssistant /></PageTransition>} />
