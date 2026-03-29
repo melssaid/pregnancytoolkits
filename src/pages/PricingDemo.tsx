@@ -2,12 +2,14 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
-import { Check, X, Sparkles, Brain, Shield, Zap, Heart, Crown, Download } from "lucide-react";
+import { Check, X, Sparkles, Brain, Shield, Zap, Heart, Crown, Download, Gift, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { requestPurchase, isDigitalGoodsAvailable, type PlanType } from "@/lib/googlePlayBilling";
 import { useNavigate, Link } from "react-router-dom";
 import pricingLogo from "@/assets/pricing-logo.webp";
+import { canClaimBonus, claimBonus, isPromoActive } from "@/services/smartEngine";
+import { useAIUsage } from "@/contexts/AIUsageContext";
 
 const features = [
   { icon: Brain, key: "feature1" },
