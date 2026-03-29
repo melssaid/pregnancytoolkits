@@ -1580,7 +1580,8 @@
       "planGenerated": "Plan erstellt",
       "planLoaded": "Plan geladen",
       "planSaved": "Plan gespeichert",
-      "selectPreference": "Präferenz wählen"
+      "selectPreference": "Präferenz wählen",
+      "selected": "ausgewählt"
     },
     "dueDate": {
       "calculateTitle": "Berechnen Sie Ihren Geburtstermin",
@@ -1737,7 +1738,8 @@
       "tapToStart": "Tippen zum Starten",
       "selectIntensity": "Wehenintensität",
       "fiveOneOneAlert": "5-1-1-Regel erfüllt!",
-      "fiveOneOneDesc": "Wehen alle 5 Min., 1 Min. Dauer, seit 1 Stunde. Kontaktieren Sie Ihren Arzt."
+      "fiveOneOneDesc": "Wehen alle 5 Min., 1 Min. Dauer, seit 1 Stunde. Kontaktieren Sie Ihren Arzt.",
+      "shareContractions": "Daten teilen"
     },
     "symptomAnalyzer": {
       "title": "Schwangerschafts-Wohlbefinden-Tagebuch",

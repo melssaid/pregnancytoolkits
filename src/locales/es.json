@@ -1580,7 +1580,8 @@
       "planGenerated": "Plan generado",
       "planLoaded": "Plan cargado",
       "planSaved": "Plan guardado",
-      "selectPreference": "Seleccionar preferencia"
+      "selectPreference": "Seleccionar preferencia",
+      "selected": "seleccionado"
     },
     "dueDate": {
       "calculateTitle": "Calcula tu Fecha de Parto",
@@ -1737,7 +1738,8 @@
       "tapToStart": "Toque para iniciar",
       "selectIntensity": "Intensidad de la contracción",
       "fiveOneOneAlert": "¡Regla 5-1-1 cumplida!",
-      "fiveOneOneDesc": "Contracciones cada 5 min, de 1 min de duración, durante 1 hora. Contacte a su médico."
+      "fiveOneOneDesc": "Contracciones cada 5 min, de 1 min de duración, durante 1 hora. Contacte a su médico.",
+      "shareContractions": "Compartir datos"
     },
     "symptomAnalyzer": {
       "title": "Diario de bienestar del embarazo",

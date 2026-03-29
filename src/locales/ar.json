@@ -1580,7 +1580,8 @@
       "planGenerated": "تم إنشاء الخطة",
       "planLoaded": "تم تحميل الخطة",
       "planSaved": "تم حفظ الخطة",
-      "selectPreference": "اختر تفضيلك"
+      "selectPreference": "اختر تفضيلك",
+      "selected": "تم اختياره"
     },
     "dueDate": {
       "calculateTitle": "احسبي موعد ولادتك",
@@ -1737,7 +1738,8 @@
       "tapToStart": "اضغطي للبدء",
       "selectIntensity": "شدة الانقباض",
       "fiveOneOneAlert": "قاعدة 5-1-1 تحققت!",
-      "fiveOneOneDesc": "الانقباضات كل 5 دقائق، مدة دقيقة، لمدة ساعة. اتصلي بطبيبك."
+      "fiveOneOneDesc": "الانقباضات كل 5 دقائق، مدة دقيقة، لمدة ساعة. اتصلي بطبيبك.",
+      "shareContractions": "مشاركة البيانات"
     },
     "symptomAnalyzer": {
       "title": "يوميات عافية الحامل",
