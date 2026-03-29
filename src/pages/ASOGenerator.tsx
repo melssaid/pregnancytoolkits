@@ -224,21 +224,25 @@ ${kwListEn ? `الكلمات الإنجليزية: ${kwListEn}` : ""}
     setIsGenerating(false);
   }, [selectedKwObjects, categories, generate]);
 
-  // Parse AI content into drafts
+  // Parse AI content into drafts or localized listings
   useMemo(() => {
     if (!aiContent) return;
     try {
-      // Extract JSON from content (may have markdown wrapping)
       let jsonStr = aiContent;
       const jsonMatch = aiContent.match(/\[[\s\S]*\]/);
       if (jsonMatch) jsonStr = jsonMatch[0];
-      const parsed = JSON.parse(jsonStr) as ASODraft[];
+      const parsed = JSON.parse(jsonStr);
       if (Array.isArray(parsed) && parsed.length > 0) {
-        setDrafts(parsed);
-        setActiveTab("results");
+        // Detect if it's localized (has "country" field) or ASO drafts (has "shortDesc")
+        if (parsed[0].country) {
+          setLocalizedListings(parsed as CountryListing[]);
+        } else if (parsed[0].shortDesc !== undefined) {
+          setDrafts(parsed as ASODraft[]);
+          setActiveTab("results");
+        }
       }
     } catch {
-      // Still streaming or invalid JSON — wait
+      // Still streaming or invalid JSON
     }
   }, [aiContent]);
 
