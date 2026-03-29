@@ -129,7 +129,7 @@
     "mo": "mês",
     "yr": "ano",
     "save": "Economize 44%",
-    "feature1": "22+ ferramentas IA avançadas",
+    "feature1": "35 ferramentas IA avançadas",
     "feature2": "40 análises inteligentes por mês",
     "feature3": "Relatórios de saúde IA personalizados",
     "feature4": "Processamento prioritário de solicitações",
@@ -6611,7 +6611,7 @@
     "toolLocked": "\"{{tool}}\" is available for subscribers only",
     "subtitle": "Acesso ilimitado a todas as funcionalidades",
     "benefits": {
-      "allAITools": "22+ AI-powered tools",
+      "allAITools": "35 AI-powered tools",
       "dailyAnalyses": "40 smart analyses per month",
       "personalizedInsights": "Tips personalized to your week",
       "fullAccess": "Full access with no limits"
