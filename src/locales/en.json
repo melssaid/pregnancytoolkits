@@ -63,14 +63,16 @@
     "moreVideos": "+{{count}} more videos available",
     "viewAll": "View all ({{count}})",
     "disclaimer": "These videos are for educational purposes only and do not replace professional medical advice.",
-    "openOnYouTube": "Open on YouTube"
+    "openOnYouTube": "Open on YouTube",
+    "title": "Video Library"
   },
   "searchDialog": {
     "popularTools": "Popular Tools",
     "tryDifferent": "Try a different search term",
     "navigate": "Navigate",
     "open": "Open",
-    "toolsCount": "{{count}} tools"
+    "toolsCount": "{{count}} tools",
+    "quickAccess": "Quick Access"
   },
   "app": {
     "name": "Pregnancy Toolkits",
@@ -143,7 +145,8 @@
     "trialBadge": "{{count}} Days",
     "restore": "Restore Purchase",
     "termsPrefix": "By continuing, you agree to our",
-    "and": "and"
+    "and": "and",
+    "subscriptionSuccess": "Subscription activated successfully!"
   },
   "onboarding": {
     "title": "Welcome to Your Journey",
@@ -516,7 +519,8 @@
         "normal": "Normal",
         "anxious": "Anxious",
         "tired": "Tired"
-      }
+      },
+      "bmi": "BMI"
     },
     "recentResults": {
       "title": "My Recent Results",
@@ -911,7 +915,8 @@
     "dailyExportRemaining": "{{count}} exports remaining today",
     "dailyExportLimitReached": "Daily export limit reached. Try again tomorrow.",
     "back": "Back",
-    "next": "Next"
+    "next": "Next",
+    "analyzing": "Analyzing..."
   },
   "subscription": {
     "subscribeNow": "Get Premium - $0.79/mo",
@@ -1134,7 +1139,9 @@
       "desc": "Choose app interface language",
       "resetToAuto": "Use browser language",
       "manualNote": "You have manually selected a language.",
-      "autoDetectNote": "Using your browser language automatically."
+      "autoDetectNote": "Using your browser language automatically.",
+      "active": "Active",
+      "pageSubtitle": "Choose your preferred language"
     },
     "dataPrivacy": "Data Privacy",
     "privacyPoint1": "All your health data is stored locally on your device only",
@@ -1205,7 +1212,8 @@
         "appointments": "Appointments and reminders",
         "healthRecords": "Health records",
         "birthPlans": "Birth plans"
-      }
+      },
+      "pdfTitle": "Data Backup Report"
     },
     "clearData": {
       "title": "Delete All Data",
@@ -5834,7 +5842,8 @@
     "contractionTimerDesc": "Log contraction patterns and share your journal with your healthcare provider",
     "privacy": "Privacy & Security",
     "privacyDesc": "Your data is encrypted and protected - your privacy is our top priority",
-    "searchKeywords": "Search Keywords"
+    "searchKeywords": "Search Keywords",
+    "defaultDescription": "Your complete pregnancy companion with AI-powered tools"
   },
   "videoLibraryPage": {
     "title": "Video Library",
@@ -5918,7 +5927,11 @@
     "systolic": "Systolic",
     "diastolic": "Diastolic",
     "conditions": "Health Conditions",
-    "aiPlan": "AI Plan"
+    "aiPlan": "AI Plan",
+    "aiPlanHintEnhanced": "Get a personalized pregnancy plan powered by AI",
+    "painLevelHint": "Rate your current pain level",
+    "poweredByResearch": "Powered by medical research",
+    "researchEnhanced": "Research-enhanced insights"
   },
   "kegel": {
     "dailyGoal": "Daily Goal",
@@ -8260,7 +8273,8 @@
   "quotaExhausted": {
     "upgradeHint": "Unlock more personalized insights with Premium",
     "upgradeCTA": "Continue with Premium",
-    "postAnalysisHint": "Upgrade to Premium for 40 monthly analyses and deeper insights"
+    "postAnalysisHint": "Upgrade to Premium for 40 monthly analyses and deeper insights",
+    "unlockMore": "Unlock more"
   },
   "tools.weightGain.subtitle": "Track and analyze your pregnancy weight gain",
   "toolsInternal.babyGrowth.emptyTitle": "No records yet",
@@ -8272,5 +8286,14 @@
   "toolsInternal.weightGain.history": "History",
   "toolsInternal.weightGain.invalidWeight": "Please enter a valid weight",
   "toolsInternal.weightGain.noEntries": "No weight entries yet. Add your first one above.",
-  "toolsInternal.weightGain.weightPlaceholder": "Weight in kg"
+  "toolsInternal.weightGain.weightPlaceholder": "Weight in kg",
+  "smartAlerts": {
+    "lowHydration": "Remember to stay hydrated today",
+    "lowMood": "Your mood has been low recently. Consider talking to someone.",
+    "noKicksToday": "No kicks logged today. Remember to track fetal movement.",
+    "noVitaminToday": "Don't forget your vitamins today!",
+    "preeclampsiaSigns": "Monitor for signs of preeclampsia: headaches, vision changes, swelling.",
+    "rapidWeightGain": "Rapid weight gain detected. Consider discussing with your doctor.",
+    "weightLoss": "Weight loss detected during pregnancy. Please consult your doctor."
+  }
 }
