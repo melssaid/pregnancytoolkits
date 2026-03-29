@@ -46,6 +46,29 @@ interface ASODraft {
   supportKeywords: string[];
 }
 
+interface CountryListing {
+  country: string;
+  flag: string;
+  language: string;
+  title: string;
+  shortDesc: string;
+  longDesc: string;
+  localTips: string[];
+}
+
+const COUNTRY_PRESETS = [
+  { code: "SA", flag: "🇸🇦", name: "السعودية", lang: "ar", hints: "التقويم الهجري، متابعة الحمل، تطبيق حمل سعودي، رعاية الأم" },
+  { code: "EG", flag: "🇪🇬", name: "مصر", lang: "ar", hints: "متابعة الحمل مجاناً، بدون نت، تطبيق حمل مصري، أمومة" },
+  { code: "AE", flag: "🇦🇪", name: "الإمارات", lang: "ar", hints: "رعاية صحة الأم، تطبيق حمل إماراتي، متابعة الجنين" },
+  { code: "DE", flag: "🇩🇪", name: "ألمانيا", lang: "de", hints: "Schwangerschaft Tracker, Geburtsterminrechner, Baby Entwicklung" },
+  { code: "FR", flag: "🇫🇷", name: "فرنسا", lang: "fr", hints: "Suivi de grossesse, Calculateur de date, Bébé croissance" },
+  { code: "ES", flag: "🇪🇸", name: "إسبانيا", lang: "es", hints: "Seguimiento de embarazo, Calculadora de fecha, Bebé crecimiento" },
+  { code: "TR", flag: "🇹🇷", name: "تركيا", lang: "tr", hints: "Hamilelik takipçisi, Doğum tarihi hesaplama, Bebek büyüme" },
+  { code: "BR", flag: "🇧🇷", name: "البرازيل", lang: "pt", hints: "Rastreador de gravidez, Calculadora de data, Bebê crescimento" },
+  { code: "US", flag: "🇺🇸", name: "أمريكا", lang: "en", hints: "Pregnancy tracker, Due date calculator, Baby growth, TTC" },
+  { code: "GB", flag: "🇬🇧", name: "بريطانيا", lang: "en", hints: "Pregnancy tracker NHS, Due date, Baby development tracker" },
+];
+
 // ═══════════════════════════════════════════
 // Limits per Google Play policies
 // ═══════════════════════════════════════════
