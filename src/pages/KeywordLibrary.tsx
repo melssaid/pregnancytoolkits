@@ -64,7 +64,8 @@ export default function KeywordLibrary() {
         .order("sort_order");
       return (data || []) as SeoCategory[];
     },
-    staleTime: 1000 * 60 * 30,
+    staleTime: 1000 * 60 * 60 * 24, // 24 hours — data rarely changes
+    gcTime: 1000 * 60 * 60 * 24,
   });
 
   // Fetch keywords
@@ -76,7 +77,8 @@ export default function KeywordLibrary() {
         .select("*");
       return (data || []) as SeoKeyword[];
     },
-    staleTime: 1000 * 60 * 30,
+    staleTime: 1000 * 60 * 60 * 24, // 24 hours
+    gcTime: 1000 * 60 * 60 * 24,
   });
 
   // Filter keywords
