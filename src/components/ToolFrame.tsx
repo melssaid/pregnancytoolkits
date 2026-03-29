@@ -250,6 +250,8 @@ export function ToolFrame({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.25, ease: "easeOut" }}
               className="overflow-hidden [&_*]:min-w-0"
+              dir={dir}
+              style={{ textAlign: isRTL ? "right" : "left" }}
             >
               {children}
             </motion.div>
@@ -264,7 +266,7 @@ export function ToolFrame({
               <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-primary/50 via-primary/25 to-accent/35" />
               
               {/* Content */}
-              <div className="relative p-4 sm:p-5 pt-5 overflow-hidden [&_*]:min-w-0">
+              <div className="relative p-4 sm:p-5 pt-5 overflow-hidden [&_*]:min-w-0" dir={dir} style={{ textAlign: isRTL ? "right" : "left" }}>
                 {children}
               </div>
             </motion.div>
