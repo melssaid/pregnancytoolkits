@@ -8185,5 +8185,13 @@
     "preeclampsiaSigns": "Monitor for signs of preeclampsia: headaches, vision changes, swelling.",
     "rapidWeightGain": "Rapid weight gain detected. Consider discussing with your doctor.",
     "weightLoss": "Weight loss detected during pregnancy. Please consult your doctor."
+  },
+  "quickActions": {
+    "assistant": "Assistant",
+    "kicks": "Kicks",
+    "weight": "Weight",
+    "growth": "Growth",
+    "dueDate": "Due Date",
+    "symptoms": "Symptoms"
   }
 }

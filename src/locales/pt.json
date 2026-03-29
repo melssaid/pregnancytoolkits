@@ -8185,5 +8185,13 @@
     "preeclampsiaSigns": "Monitore sinais de pré-eclâmpsia: dores de cabeça, alterações visuais, inchaço.",
     "rapidWeightGain": "Ganho de peso rápido detectado. Considere conversar com seu médico.",
     "weightLoss": "Perda de peso detectada durante a gravidez. Consulte seu médico."
+  },
+  "quickActions": {
+    "assistant": "Assistente",
+    "kicks": "Chutes",
+    "weight": "Peso",
+    "growth": "Crescimento",
+    "dueDate": "Data",
+    "symptoms": "Sintomas"
   }
 }

@@ -8185,5 +8185,13 @@
     "preeclampsiaSigns": "Achten Sie auf Präeklampsie-Anzeichen: Kopfschmerzen, Sehstörungen, Schwellungen.",
     "rapidWeightGain": "Schnelle Gewichtszunahme festgestellt. Sprechen Sie mit Ihrem Arzt.",
     "weightLoss": "Gewichtsverlust in der Schwangerschaft festgestellt. Bitte konsultieren Sie Ihren Arzt."
+  },
+  "quickActions": {
+    "assistant": "Assistent",
+    "kicks": "Tritte",
+    "weight": "Gewicht",
+    "growth": "Wachstum",
+    "dueDate": "Termin",
+    "symptoms": "Symptome"
   }
 }
