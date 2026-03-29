@@ -154,9 +154,19 @@ const WelcomeCard = memo(function WelcomeCard() {
           </h2>
           {week > 0 && (
             <p className="text-[11px] text-primary/80 font-semibold mt-0.5">
-              {lang === "ar"
-                ? `الثلث ${trimester === 1 ? "الأول" : trimester === 2 ? "الثاني" : "الثالث"} · ${Math.round(progress)}%`
-                : `Trimester ${trimester} · ${Math.round(progress)}%`}
+              {(() => {
+                const trimLabels: Record<string, [string, string, string]> = {
+                  ar: ["الثلث الأول", "الثلث الثاني", "الثلث الثالث"],
+                  de: ["1. Trimester", "2. Trimester", "3. Trimester"],
+                  tr: ["1. Trimester", "2. Trimester", "3. Trimester"],
+                  fr: ["1er trimestre", "2e trimestre", "3e trimestre"],
+                  es: ["1er trimestre", "2do trimestre", "3er trimestre"],
+                  pt: ["1º trimestre", "2º trimestre", "3º trimestre"],
+                };
+                const labels = trimLabels[lang];
+                const label = labels ? labels[trimester - 1] : `Trimester ${trimester}`;
+                return `${label} · ${Math.round(progress)}%`;
+              })()}
             </p>
           )}
           <p className="text-[11px] text-muted-foreground mt-1 leading-relaxed">{dailyTip}</p>
