@@ -8185,5 +8185,13 @@
     "preeclampsiaSigns": "Vigila signos de preeclampsia: dolores de cabeza, cambios en la visión, hinchazón.",
     "rapidWeightGain": "Aumento rápido de peso detectado. Considera consultar a tu médico.",
     "weightLoss": "Pérdida de peso detectada durante el embarazo. Consulta a tu médico."
+  },
+  "quickActions": {
+    "assistant": "Asistente",
+    "kicks": "Patadas",
+    "weight": "Peso",
+    "growth": "Crecimiento",
+    "dueDate": "Fecha",
+    "symptoms": "Síntomas"
   }
 }

@@ -8185,5 +8185,13 @@
     "preeclampsiaSigns": "Surveillez les signes de prééclampsie : maux de tête, troubles visuels, gonflements.",
     "rapidWeightGain": "Prise de poids rapide détectée. Consultez votre médecin.",
     "weightLoss": "Perte de poids détectée pendant la grossesse. Consultez votre médecin."
+  },
+  "quickActions": {
+    "assistant": "Assistant",
+    "kicks": "Coups",
+    "weight": "Poids",
+    "growth": "Croissance",
+    "dueDate": "Terme",
+    "symptoms": "Symptômes"
   }
 }

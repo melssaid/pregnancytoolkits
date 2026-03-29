@@ -8185,5 +8185,13 @@
     "preeclampsiaSigns": "Preeklampsi belirtilerini izleyin: baş ağrısı, görme değişiklikleri, şişlik.",
     "rapidWeightGain": "Hızlı kilo artışı tespit edildi. Doktorunuza danışmayı düşünün.",
     "weightLoss": "Hamilelik sırasında kilo kaybı tespit edildi. Lütfen doktorunuza danışın."
+  },
+  "quickActions": {
+    "assistant": "Asistan",
+    "kicks": "Tekmeler",
+    "weight": "Kilo",
+    "growth": "Büyüme",
+    "dueDate": "Tarih",
+    "symptoms": "Belirtiler"
   }
 }
