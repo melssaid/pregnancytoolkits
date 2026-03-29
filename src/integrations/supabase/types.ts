@@ -86,6 +86,80 @@ export type Database = {
         }
         Relationships: []
       }
+      seo_categories: {
+        Row: {
+          created_at: string
+          description_ar: string | null
+          icon: string | null
+          id: string
+          name_ar: string
+          name_en: string | null
+          sort_order: number
+        }
+        Insert: {
+          created_at?: string
+          description_ar?: string | null
+          icon?: string | null
+          id?: string
+          name_ar: string
+          name_en?: string | null
+          sort_order?: number
+        }
+        Update: {
+          created_at?: string
+          description_ar?: string | null
+          icon?: string | null
+          id?: string
+          name_ar?: string
+          name_en?: string | null
+          sort_order?: number
+        }
+        Relationships: []
+      }
+      seo_keywords: {
+        Row: {
+          category_id: string
+          competition_tier: string
+          created_at: string
+          id: string
+          intent: string
+          keyword_ar: string
+          keyword_en: string | null
+          notes: string | null
+          volume_tier: string
+        }
+        Insert: {
+          category_id: string
+          competition_tier?: string
+          created_at?: string
+          id?: string
+          intent?: string
+          keyword_ar: string
+          keyword_en?: string | null
+          notes?: string | null
+          volume_tier?: string
+        }
+        Update: {
+          category_id?: string
+          competition_tier?: string
+          created_at?: string
+          id?: string
+          intent?: string
+          keyword_ar?: string
+          keyword_en?: string | null
+          notes?: string | null
+          volume_tier?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "seo_keywords_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "seo_categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       subscriptions: {
         Row: {
           created_at: string
