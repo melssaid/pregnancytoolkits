@@ -5966,7 +5966,9 @@
       "firstMonth": "الشهر الأول"
     },
     "budgetEstimate": "الميزانية التقديرية",
-    "remaining": "متبقي"
+    "remaining": "متبقي",
+    "shareReady": "جاهز",
+    "shareStillNeeded": "لم يُجهّز بعد"
   },
   "doctorQuestions": {
     "startNewVisit": "بدء زيارة جديدة",

@@ -5966,7 +5966,9 @@
       "firstMonth": "Erster Monat"
     },
     "budgetEstimate": "Geschätztes Budget",
-    "remaining": "verbleibend"
+    "remaining": "verbleibend",
+    "shareReady": "Bereit",
+    "shareStillNeeded": "Noch benötigt"
   },
   "doctorQuestions": {
     "startNewVisit": "Neuen Besuch starten",
