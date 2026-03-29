@@ -4390,124 +4390,124 @@
     "fertilityAcademy": {
       "lessons": {
         "menstrualCycle": {
-          "title": "Understanding Your Menstrual Cycle",
-          "content": "Your menstrual cycle is divided into four main phases:\n\n1. Menstrual Phase (Days 1–5): The uterine lining sheds, marking the start of a new cycle.\n\n2. Follicular Phase (Days 1–13): Follicle-stimulating hormone (FSH) prompts the ovaries to develop follicles. Estrogen rises, thickening the uterine lining.\n\n3. Ovulation (Day 14 approx.): A surge in luteinizing hormone (LH) triggers the release of a mature egg. This is your most fertile moment.\n\n4. Luteal Phase (Days 15–28): The empty follicle becomes the corpus luteum, producing progesterone to maintain the lining. If fertilization doesn't occur, hormone levels drop and the cycle restarts.\n\nUnderstanding these phases helps you identify your fertile window and work with your body's natural rhythm."
+          "title": "Entender o ciclo menstrual",
+          "content": "O ciclo menstrual divide-se em quatro fases principais: menstruação, fase folicular, ovulação e fase lútea. Um ciclo médio dura 28 dias mas pode variar entre 21 e 35 dias. Durante a menstruação, o útero elimina o seu revestimento. Na fase folicular, o estrogénio estimula o crescimento folicular. Na ovulação, um óvulo maduro é libertado. A fase lútea produz progesterona para preparar o útero para uma possível gravidez."
         },
         "ovulationProcess": {
-          "title": "How Ovulation Works",
-          "content": "Ovulation is the release of a mature egg from one of your ovaries. Here's what happens:\n\n• In the days leading up to ovulation, rising estrogen levels cause the dominant follicle to grow.\n• A sharp LH surge triggers the follicle to rupture and release the egg into the fallopian tube.\n• The egg survives 12–24 hours after release. Sperm can survive up to 5 days in the reproductive tract.\n• This means your fertile window spans roughly 6 days — the 5 days before ovulation and the day of ovulation itself.\n\nSome women feel a twinge or mild cramp (mittelschmerz) during ovulation. Others notice changes in cervical mucus, which becomes clear and stretchy like raw egg whites."
+          "title": "Como funciona a ovulação",
+          "content": "A ovulação é a libertação de um óvulo maduro do ovário, geralmente no meio do ciclo. Um aumento de LH desencadeia a libertação. O óvulo sobrevive 12-24 horas, tornando o momento crucial. Os espermatozoides podem sobreviver até 5 dias, pelo que a janela fértil abrange vários dias antes da ovulação."
         },
         "fertilizationBasics": {
-          "title": "Fertilization & Implantation",
-          "content": "After ovulation, fertilization can occur in the fallopian tube:\n\n• Of the millions of sperm released, only a few hundred reach the egg.\n• One sperm penetrates the egg's outer layer, triggering a chemical reaction that prevents other sperm from entering.\n• The fertilized egg (zygote) begins dividing as it travels toward the uterus over 3–4 days.\n• Around day 6–10 after ovulation, the blastocyst implants into the uterine lining.\n• Implantation may cause light spotting, known as implantation bleeding.\n• Once implanted, the body begins producing hCG — the hormone detected by pregnancy tests."
+          "title": "Fecundação e implantação",
+          "content": "A fecundação ocorre quando um espermatozoide encontra o óvulo na trompa de Falópio. De milhões, apenas um penetra o óvulo. O óvulo fecundado começa a dividir-se e chega ao útero em 3-5 dias. A implantação ocorre quando o blastocisto se fixa no revestimento uterino, geralmente 6-12 dias após a ovulação."
         },
         "hormonesRole": {
-          "title": "Key Fertility Hormones",
-          "content": "Several hormones orchestrate your fertility:\n\n• FSH (Follicle-Stimulating Hormone): Stimulates follicle growth in the ovaries. Tested on Day 3 of your cycle to assess ovarian reserve.\n\n• LH (Luteinizing Hormone): Triggers ovulation. Ovulation predictor kits detect the LH surge.\n\n• Estrogen (Estradiol): Promotes follicle development and thickens the uterine lining. Also affects cervical mucus quality.\n\n• Progesterone: Produced after ovulation, it maintains the uterine lining for potential implantation. Low progesterone can affect cycle regularity.\n\n• AMH (Anti-Müllerian Hormone): Reflects the number of remaining eggs (ovarian reserve). Useful for fertility planning.\n\n• Thyroid Hormones (TSH, T3, T4): Thyroid imbalances can disrupt ovulation and cycle regularity."
+          "title": "Hormonas-chave da fertilidade",
+          "content": "Várias hormonas desempenham papéis vitais. A FSH estimula o crescimento folicular. O estrogénio prepara o revestimento uterino e promove o muco cervical fértil. O aumento de LH desencadeia a ovulação. A progesterona sustenta a fase lútea. Qualquer desequilíbrio pode afetar a fertilidade."
         },
         "ageAndFertility": {
-          "title": "Age & Fertility",
-          "content": "Age is one of the most significant factors affecting fertility:\n\n• Women are born with all the eggs they will ever have — about 1–2 million at birth.\n• By puberty, roughly 300,000–400,000 eggs remain. Only about 300–400 will ovulate during a lifetime.\n• Fertility peaks in the mid-20s. A gradual decline begins after age 30.\n• After 35, the decline accelerates. Egg quality and quantity both decrease.\n• By age 40, the chance of natural conception per cycle drops to about 5%.\n• Male fertility also declines with age, though more gradually.\n\nThis doesn't mean pregnancy after 35 is impossible — many women conceive naturally. But understanding timing helps with planning."
+          "title": "Idade e fertilidade",
+          "content": "A fertilidade feminina atinge o pico nos vinte anos e diminui gradualmente após os 30. O declínio acentua-se após os 35 e significativamente após os 40. A qualidade e quantidade de óvulos diminuem com a idade. Cada mulher é única e muitas concebem com sucesso nos trinta e quarenta. A qualidade do esperma masculino também diminui gradualmente."
         },
         "lifestyleFactors": {
-          "title": "Lifestyle Factors That Affect Fertility",
-          "content": "Your daily habits significantly impact fertility:\n\n• Weight: Both underweight (BMI < 18.5) and overweight (BMI > 30) can disrupt ovulation. Even a 5–10% weight change can improve cycle regularity.\n\n• Smoking: Reduces egg quality, damages the fallopian tubes, and accelerates egg loss. Secondhand smoke is also harmful.\n\n• Alcohol: Heavy drinking is linked to irregular cycles and reduced fertility. Moderate to no alcohol is safest when trying to conceive.\n\n• Caffeine: More than 200–300mg daily (about 2 cups of coffee) may slightly reduce fertility.\n\n• Exercise: Moderate activity supports fertility. Excessive intense exercise can disrupt ovulation.\n\n• Sleep: Poor sleep disrupts reproductive hormones. Aim for 7–9 hours per night.\n\n• Environmental Toxins: Limit exposure to pesticides, heavy metals, and certain plastics (BPA)."
+          "title": "Fatores do estilo de vida",
+          "content": "O estilo de vida influencia consideravelmente a fertilidade. O tabaco reduz a fertilidade em ambos os sexos. O álcool excessivo afeta a qualidade dos óvulos e espermatozoides. O excesso ou défice de peso perturba o equilíbrio hormonal. O stress crónico eleva o cortisol. Uma alimentação saudável, exercício moderado e sono suficiente apoiam a fertilidade."
         },
         "commonMyths": {
-          "title": "Fertility Myths vs. Facts",
-          "content": "Let's separate fact from fiction:\n\nMyth: You can only get pregnant on ovulation day.\nFact: The fertile window spans about 6 days. Sperm can survive up to 5 days.\n\nMyth: Position during intercourse affects conception.\nFact: No scientific evidence supports this. Sperm reach the cervix within seconds.\n\nMyth: Birth control causes infertility.\nFact: Fertility typically returns within 1–3 months after stopping most contraceptives.\n\nMyth: Stress directly causes infertility.\nFact: While severe chronic stress can affect hormones, moderate stress alone rarely prevents conception.\n\nMyth: You need to have intercourse every day.\nFact: Every 1–2 days during the fertile window is sufficient. Daily intercourse doesn't reduce sperm quality.\n\nMyth: Herbal supplements guarantee fertility.\nFact: Some may help, but none are scientifically proven to guarantee conception. Always consult your doctor."
+          "title": "Mitos vs realidades da fertilidade",
+          "content": "Mito: Pode engravidar em qualquer dia. Realidade: A janela fértil é de aproximadamente 6 dias. Mito: Certas posições aumentam as hipóteses. Realidade: Não há evidência científica. Mito: A pílula causa infertilidade. Realidade: A fertilidade regressa ao parar. Mito: A infertilidade é só problema feminino. Realidade: Um terço dos casos são de fatores masculinos."
         },
         "whenToSeekHelp": {
-          "title": "When to Consult a Specialist",
-          "content": "Consider seeking professional fertility guidance if:\n\n• You're under 35 and have been trying for 12 months without success.\n• You're 35–39 and have been trying for 6 months.\n• You're 40 or older — consult early, as time is a factor.\n• You have irregular or absent periods.\n• You have a known condition: endometriosis, PCOS, thyroid disorder, or previous pelvic surgery.\n• You've experienced recurrent miscarriages (2 or more).\n• Your partner has known fertility concerns.\n\nA fertility specialist can run tests (hormone panels, ultrasound, semen analysis) and discuss options ranging from lifestyle changes to assisted reproduction."
+          "title": "Quando consultar um especialista",
+          "content": "Consulte se tem menos de 35 anos e não concebeu após um ano, ou mais de 35 anos após 6 meses. Consulte imediatamente se os ciclos são irregulares ou muito dolorosos, se houve abortos recorrentes ou problemas pélvicos. Um especialista pode realizar exames completos e criar um plano de tratamento adequado."
         },
         "maleFertility": {
-          "title": "Male Fertility Essentials",
-          "content": "Male fertility is equally important in the conception journey:\n\n• Sperm production takes about 74 days. Lifestyle changes need time to show results.\n• Optimal sperm health requires: avoiding excessive heat (hot tubs, laptops on lap), maintaining a healthy weight, and managing stress.\n• Factors that can reduce sperm quality: smoking, excessive alcohol, certain medications, anabolic steroids, and recreational drugs.\n• A semen analysis is a simple, non-invasive test that evaluates sperm count, motility, and morphology.\n• Age affects male fertility too — sperm quality gradually declines after age 40.\n• Key nutrients for sperm health: zinc, selenium, vitamin C, vitamin E, folate, and omega-3 fatty acids."
+          "title": "Fertilidade masculina",
+          "content": "Os fatores masculinos representam um terço dos problemas de fertilidade. A saúde dos espermatozoides é avaliada pela contagem, mobilidade e forma. Os fatores incluem: calor excessivo, tabaco, álcool, certos medicamentos e stress. As melhorias incluem antioxidantes, zinco, ácido fólico e manutenção de peso saudável."
         },
         "emotionalWellbeing": {
-          "title": "Emotional Wellbeing on the Journey",
-          "content": "Trying to conceive can be an emotional rollercoaster:\n\n• It's normal to feel hope, excitement, frustration, and sadness — sometimes all in one cycle.\n• About 1 in 6 couples experience difficulty conceiving. You are not alone.\n• Grief after a negative test is valid. Allow yourself to feel without judgment.\n• Communication with your partner is essential. Share your feelings openly.\n• Consider joining a support community — connecting with others on the same journey can be comforting.\n• Set boundaries around pregnancy announcements and baby showers if they feel triggering.\n• Professional counseling can provide coping strategies tailored to your situation.\n• Remember: your worth is not defined by your fertility. Be kind to yourself."
+          "title": "Bem-estar emocional",
+          "content": "O percurso da fertilidade pode ser emocionalmente desgastante. É normal sentir frustração, ansiedade e tristeza. Fale com o seu parceiro ou uma amiga de confiança. Pratique técnicas de relaxamento como meditação e respiração profunda. Não hesite em procurar apoio psicológico profissional. Estas emoções são naturais."
         },
         "trackingMethods": {
-          "title": "Fertility Tracking Methods",
-          "content": "Several methods can help you identify your fertile window:\n\n1. Calendar Method: Track cycle lengths over several months. Ovulation typically occurs 14 days before your next period.\n\n2. Basal Body Temperature (BBT): Take your temperature every morning before getting up. A slight rise (0.2–0.5°C) confirms ovulation has occurred.\n\n3. Cervical Mucus Observation: As ovulation approaches, mucus becomes clear, stretchy, and slippery (like raw egg white).\n\n4. Ovulation Predictor Kits (OPKs): Detect the LH surge in urine 12–36 hours before ovulation.\n\n5. Fertility Monitors: Advanced devices that track multiple hormones for a more complete picture.\n\n6. Cervical Position: The cervix becomes higher, softer, and more open around ovulation.\n\nCombining multiple methods increases accuracy."
+          "title": "Métodos de rastreamento da fertilidade",
+          "content": "Existem vários métodos: medição da temperatura basal de manhã antes de levantar, observação do muco cervical que se torna transparente e elástico perto da ovulação, testes de ovulação que detetam o aumento de LH, e rastreamento da posição cervical. Combinar vários métodos dá uma imagem mais precisa da janela fértil."
         },
         "optimizingTiming": {
-          "title": "Optimizing Timing for Conception",
-          "content": "Timing is crucial for maximizing your chances:\n\n• The best days for conception are the 2–3 days before ovulation and ovulation day itself.\n• Having intercourse every 1–2 days during the fertile window provides the best results.\n• Sperm quality is not significantly reduced by daily ejaculation in most men.\n• After intercourse, lying down for 10–15 minutes may slightly improve sperm transport, though evidence is limited.\n• Lubricants: Some commercial lubricants can reduce sperm motility. Use fertility-friendly brands if needed.\n• Track your cycle for 2–3 months before actively trying, to understand your personal pattern.\n• Stay hydrated and maintain a balanced diet during the fertile window.\n• Both partners should avoid excessive alcohol during the fertile window."
+          "title": "Otimizar o momento",
+          "content": "O melhor momento para conceber são os cinco dias antes da ovulação e o próprio dia. Relações a cada dia ou dois dias durante a janela fértil são recomendadas. Os espermatozoides sobrevivem vários dias. Evite lubrificantes que possam prejudicar os espermatozoides. O relaxamento também ajuda."
         },
         "implantationWindow": {
-          "title": "The Implantation Window",
-          "content": "The implantation window is the brief period when the uterine lining is ready to receive the embryo:\n\n• Typically occurs between days 6–10 after ovulation.\n• During this time, the endometrium secretes special proteins that help the embryo attach.\n• Progesterone plays a central role in preparing the lining.\n• Factors affecting window quality: chronic inflammation, insufficient lining thickness, or immune disorders.\n• Rest and good nutrition during the luteal phase support the implantation process."
+          "title": "A janela de implantação",
+          "content": "A janela de implantação é o período em que o revestimento uterino está pronto para receber o embrião, geralmente entre o dia 6 e 10 após a ovulação. O revestimento torna-se mais recetivo. Podem ocorrer cólicas leves ou manchas. A progesterona desempenha um papel essencial nesta preparação."
         },
         "cervicalHealth": {
-          "title": "Cervical Health & Fertility",
-          "content": "The cervix plays a fundamental role in fertility:\n\n• It produces mucus that changes throughout the cycle to facilitate or block sperm passage.\n• Fertile mucus nourishes sperm and extends their lifespan up to 5 days.\n• Chronic cervical infections may reduce mucus quality.\n• Previous cervical procedures (like cone biopsies) may affect mucus production.\n• Maintaining healthy vaginal pH supports the optimal cervical environment for fertility."
+          "title": "Saúde cervical e fertilidade",
+          "content": "O colo do útero desempenha um papel central. Produz muco que muda durante o ciclo: seco após a menstruação, cremoso e depois transparente e elástico perto da ovulação, facilitando a passagem dos espermatozoides. Infeções e intervenções anteriores podem afetar a produção de muco."
         },
         "thyroidFertility": {
-          "title": "Thyroid & Fertility",
-          "content": "Thyroid disorders are among the most treatable causes of fertility problems:\n\n• Hypothyroidism can cause irregular cycles, absent ovulation, or early miscarriage.\n• Hyperthyroidism is linked to irregular periods and difficulty conceiving.\n• Even subclinical hypothyroidism (TSH 2.5–4.0) may affect fertility.\n• Thyroid antibodies (Anti-TPO) are common and may impact implantation.\n• TSH and FT4 testing is recommended for all women planning pregnancy.\n• Levothyroxine treatment is safe and effective while trying to conceive."
+          "title": "Tireoide e fertilidade",
+          "content": "Os distúrbios da tireoide são frequentes e afetam diretamente a fertilidade. Tanto o hipertiroidismo como o hipotiroidismo podem alterar a ovulação e o ciclo. Os anticorpos tiroideus podem afetar a implantação. Recomenda-se um exame tiroideo ao planear uma gravidez. O tratamento medicamentoso pode regular os níveis."
         },
         "pcosManagement": {
-          "title": "Managing PCOS & Fertility",
-          "content": "Polycystic Ovary Syndrome (PCOS) affects 8–13% of women:\n\n• The most common cause of anovulation and ovulation-related infertility.\n• Key symptoms: irregular periods, acne, excess hair growth, insulin resistance.\n• Lifestyle changes are very effective: losing 5–10% of weight can restore ovulation.\n• Inositol has shown promising results in improving insulin sensitivity and egg quality.\n• A low-sugar, balanced diet supports hormonal regularity.\n• Medications like clomiphene or letrozole successfully stimulate ovulation in many cases."
+          "title": "Gestão do SOP e fertilidade",
+          "content": "A síndrome dos ovários poliquísticos (SOP) é uma das causas mais frequentes de distúrbios de ovulação. Os sintomas incluem ciclos irregulares, androgénios elevados e pequenos quistos ováricos. O controlo do peso, alimentação saudável e exercício melhoram os sintomas. Medicamentos como a metformina estão disponíveis sob supervisão médica."
         },
         "endometriosisAwareness": {
-          "title": "Endometriosis & Fertility",
-          "content": "Endometriosis affects 1 in 10 women:\n\n• Tissue similar to the uterine lining grows outside the uterus, causing inflammation and adhesions.\n• It can affect the tubes, ovaries, and egg quality.\n• Symptoms: severe period pain, pain during intercourse, and sometimes no symptoms.\n• Early diagnosis improves outcomes. Laparoscopy is the gold standard.\n• Many affected women conceive naturally or with assistance.\n• Consult a fertility specialist if you have a family history or suspicious symptoms."
+          "title": "Endometriose e fertilidade",
+          "content": "A endometriose ocorre quando tecido semelhante ao revestimento uterino cresce fora do útero. Causa dor e pode afetar a fertilidade através de aderências, danos nas trompas e impacto na qualidade dos óvulos. O diagnóstico precoce é importante. As opções vão de medicamentos à laparoscopia e reprodução assistida."
         },
         "nutritionFertility": {
-          "title": "Optimal Nutrition for Fertility",
-          "content": "Diet directly affects egg and sperm quality:\n\n• The Mediterranean diet has shown the best results in fertility studies.\n• Healthy fats (omega-3, olive oil) support hormone production.\n• Plant protein may be better than animal protein for some women.\n• Avoid trans fats, which double the risk of ovulation-related infertility.\n• Organic foods reduce exposure to hormone-disrupting pesticides.\n• Plant-source iron + vitamin C significantly improves absorption."
+          "title": "Nutrição ótima para a fertilidade",
+          "content": "Uma alimentação saudável apoia significativamente a fertilidade. Foque-se em: ácido fólico (400-800 µg/dia), ferro, ómega-3 de peixes e frutos secos, antioxidantes de frutas e legumes coloridos, e proteína suficiente. Reduza açúcares refinados, alimentos processados e cafeína excessiva."
         },
         "sleepHormones": {
-          "title": "Sleep & Fertility Hormones",
-          "content": "Sleep is not a luxury — it's a biological necessity for fertility:\n\n• Melatonin (sleep hormone) acts as an antioxidant protecting eggs.\n• Less than 6 hours of sleep raises cortisol, which suppresses GnRH and ovulation.\n• Shift work is associated with increased cycle and fertility problems.\n• The circadian rhythm regulates FSH and LH secretion.\n• Blue light from screens suppresses melatonin and disrupts rhythm.\n• Goal: 7–9 hours of sleep in a dark, cool room with a consistent routine."
+          "title": "Sono e hormonas da fertilidade",
+          "content": "Um bom sono é essencial para o equilíbrio hormonal. A falta de sono aumenta o cortisol e reduz a melatonina que protege os óvulos. Aponte para 7-9 horas por noite. Mantenha horários regulares e evite ecrãs antes de dormir. Um quarto escuro e fresco apoia a produção de melatonina."
         },
         "exerciseBalance": {
-          "title": "Balancing Exercise & Fertility",
-          "content": "Exercise is a double-edged sword for fertility:\n\n• Moderate activity (150 minutes/week) improves ovulation and fertility.\n• Continuous intense exercise can cause 'relative energy deficiency' stopping ovulation.\n• Walking, swimming, and yoga are among the best options.\n• Moderate strength training improves insulin sensitivity (helpful for PCOS).\n• Fertility yoga combines movement with stress reduction.\n• If your period disappears with intense exercise, reduce intensity immediately.\n• The balance between movement and rest is key."
+          "title": "Equilíbrio entre exercício e fertilidade",
+          "content": "A atividade física moderada apoia a fertilidade melhorando a circulação, reduzindo o stress e regulando as hormonas. O exercício excessivo pode perturbar a ovulação. Atividades ideais: caminhada rápida, yoga, natação e treino de força moderado. Ouça o seu corpo e descanse quando necessário."
         },
         "supplementsGuide": {
-          "title": "Smart Supplements Guide",
-          "content": "Supplements can support your fertility — but not all are equal:\n\n• Folic acid/methylfolate: Essential — start 3 months before trying.\n• CoQ10 (200–600mg): Supports egg energy, especially after 35.\n• Vitamin D (1000–2000 IU): Most women are deficient.\n• Omega-3 DHA (200–300mg): For hormone health and inflammation.\n• Inositol (4g myo + 100mg d-chiro): Especially helpful with PCOS.\n• Iron: Only if tests show deficiency — excess is harmful.\n• Always consult your doctor before starting any new supplement."
+          "title": "Guia de suplementos",
+          "content": "Suplementos úteis: folato metilado, vitamina D3, CoQ10 para qualidade dos óvulos, ómega-3, zinco, vitamina E e inositol para SOP. Os homens beneficiam de zinco, selénio e CoQ10. Consulte o seu médico antes de começar e verifique interações medicamentosas."
         },
         "environmentalToxins": {
-          "title": "Environmental Toxins & Fertility",
-          "content": "Daily exposure to environmental toxins can affect your fertility:\n\n• BPA in plastics mimics estrogen and disrupts hormonal balance.\n• Phthalates in cosmetics and fragrances disrupt the endocrine system.\n• Pesticides on fruits and vegetables are linked to lower egg quality.\n• Heavy metals (lead, mercury) affect both eggs and sperm.\n• Practical steps: glass containers instead of plastic, natural cleaning products, wash fruits well.\n• Filtering drinking water reduces pollutant exposure."
+          "title": "Toxinas ambientais e fertilidade",
+          "content": "A exposição a toxinas pode afetar a fertilidade. Os riscos incluem: pesticidas, plásticos (BPA), metais pesados e químicos em produtos de limpeza e cuidados pessoais. Reduza a exposição: escolha alimentos biológicos, use recipientes de vidro, evite fragrâncias sintéticas e ventile bem a casa."
         },
         "geneticFactors": {
-          "title": "Genetic Factors & Fertility",
-          "content": "Genes play a bigger role than expected in fertility:\n\n• Carrier genetic screening reveals risk of passing genetic diseases to children.\n• MTHFR mutation affects folate metabolism — methylfolate may be better.\n• Turner syndrome and chromosomal abnormalities affect ovarian reserve.\n• Family history of early menopause may signal early reserve decline.\n• Karyotype testing is recommended in cases of recurrent miscarriage.\n• Genetic counseling is available and useful for those with specific family histories."
+          "title": "Fatores genéticos e fertilidade",
+          "content": "Os genes desempenham um papel na fertilidade. Condições como a síndrome de Turner ou fibrose quística podem afetar a capacidade reprodutiva. O aconselhamento genético pré-gravidez é útil se há histórico familiar ou abortos recorrentes. Os testes genéticos ajudam na avaliação de riscos."
         },
         "immunologyFertility": {
-          "title": "Immunology & Fertility",
-          "content": "The immune system plays a delicate role in pregnancy:\n\n• The body must accept the embryo (half its genes from the father) without rejecting it.\n• Uterine NK cells help with implantation — but excessive activity may hinder it.\n• Antiphospholipid antibodies are linked to recurrent miscarriage.\n• Autoimmune diseases (lupus, Hashimoto's) may affect fertility.\n• Chronic pelvic inflammation can damage the tubes.\n• An anti-inflammatory lifestyle (nutrition, sleep, movement) supports balanced immunity."
+          "title": "Imunologia e fertilidade",
+          "content": "O sistema imunitário desempenha um papel importante na gravidez. Por vezes o corpo produz anticorpos contra os espermatozoides ou o embrião. Doenças autoimunes como o lúpus podem causar problemas de implantação ou abortos. Existem testes imunológicos e tratamentos especializados."
         },
         "secondaryInfertility": {
-          "title": "Secondary Infertility",
-          "content": "Secondary infertility means difficulty conceiving after having a previous child:\n\n• Accounts for about 50% of infertility cases — but is less discussed.\n• Causes: advancing age, weight changes, complications from previous pregnancy.\n• Adhesions from cesarean section or infection may affect fertility.\n• Hormonal changes after first birth may not fully normalize.\n• Social expectations ('you have a child, be grateful') increase psychological burden.\n• Don't delay seeking help — the same time criteria apply."
+          "title": "Infertilidade secundária",
+          "content": "A infertilidade secundária ocorre quando uma mulher tem dificuldade em conceber após uma gravidez bem-sucedida anterior. As causas podem ser mudanças de idade, novos problemas de saúde ou fatores desconhecidos. Esta experiência é emocionalmente frustrante. A ajuda médica é importante e as opções de tratamento são as mesmas da infertilidade primária."
         },
         "recurrentLoss": {
-          "title": "Understanding Recurrent Pregnancy Loss",
-          "content": "Recurrent pregnancy loss (two or more) requires comprehensive evaluation:\n\n• 15–20% of pregnancies end in miscarriage — most due to chromosomal abnormalities.\n• Treatable causes: clotting disorders, uterine anomalies, thyroid problems.\n• Uterine septum is the most common uterine anomaly and can be surgically corrected.\n• Antiphospholipid syndrome is treatable with aspirin and heparin.\n• Psychological support is essential — grief and anxiety after loss are natural and valid.\n• 60–70% of couples with unexplained recurrent loss succeed in the next pregnancy."
+          "title": "Entender as perdas recorrentes",
+          "content": "As perdas recorrentes são definidas como duas ou mais perdas consecutivas. As causas incluem: anomalias cromossómicas, malformações uterinas, distúrbios hormonais, problemas imunológicos e distúrbios de coagulação. Exames completos são importantes. Os tratamentos disponíveis obtêm bons resultados em muitos casos."
         },
         "fertilityPreservation": {
-          "title": "Fertility Preservation",
-          "content": "Fertility preservation is an available option that gives you flexibility in planning:\n\n• Egg freezing: Ideal age before 35. Excellent results with modern techniques.\n• Embryo freezing: Option for married couples. Higher success rates than eggs alone.\n• Reasons for freezing: delayed childbearing, chemotherapy, medical conditions.\n• The process requires hormonal stimulation for 10–14 days then egg retrieval.\n• Cost and storage are factors to consider.\n• Consult a fertility specialist to assess if it's suitable for your situation."
+          "title": "Preservação da fertilidade",
+          "content": "A congelação de óvulos ou embriões permite preservar a fertilidade para o futuro. Recomendada antes de quimioterapia ou radioterapia, ou por razões pessoais. Os melhores resultados são obtidos antes dos 35 anos. O processo inclui estimulação ovárica e recolha sob anestesia. As taxas de sucesso melhoram constantemente."
         },
         "assistedReproduction": {
-          "title": "Assisted Reproduction Techniques",
-          "content": "When natural conception doesn't succeed, there are effective options:\n\n• Ovulation stimulation: Medications that stimulate egg production — first-line treatment.\n• Intrauterine insemination (IUI): Processed sperm injected directly into the uterus.\n• In vitro fertilization (IVF): The most advanced technique. Success rates 30–50% per cycle.\n• Intracytoplasmic sperm injection (ICSI): A single sperm injected directly into the egg.\n• Preimplantation genetic testing (PGT): Screening embryos for chromosomal abnormalities.\n• Each option has specific indications — a fertility specialist guides you to the most suitable."
+          "title": "Técnicas de reprodução assistida",
+          "content": "A reprodução assistida inclui: inseminação intrauterina (IIU), fertilização in vitro (FIV) e injeção intracitoplasmática (ICSI). O tratamento geralmente começa com opções mais simples. Cada técnica tem diferentes taxas de sucesso e requisitos. A escolha depende do diagnóstico, idade e histórico médico."
         },
         "epigeneticsFertility": {
-          "title": "Epigenetics & Generational Health",
-          "content": "Epigenetics discoveries have changed our understanding of fertility:\n\n• Your nutrition and lifestyle can influence gene expression in your future child.\n• Folate deficiency before pregnancy affects fetal gene programming.\n• Chronic stress can leave 'imprints' on DNA that transfer to the embryo.\n• Pollution and environmental toxins cause epigenetic changes that may affect generations.\n• Good news: negative epigenetic changes are reversible with a healthy lifestyle.\n• 3–6 months of improvements before pregnancy make a real difference in fetal health."
+          "title": "Epigenética e saúde transgeracional",
+          "content": "A epigenética estuda como o ambiente e o estilo de vida influenciam a expressão genética sem alterar o ADN. A sua alimentação, nível de stress e exposição a toxinas podem afetar a saúde dos seus filhos e netos. Cuidar da saúde antes da gravidez beneficia também as gerações futuras."
         },
         "mindBodyConnection": {
-          "title": "The Mind-Body Connection",
-          "content": "The relationship between mind and body is deeper than we imagine in fertility:\n\n• Chronic stress activates the HPA axis which suppresses reproductive hormones.\n• Relaxation techniques (meditation, yoga, deep breathing) measurably improve fertility outcomes.\n• Cognitive behavioral therapy (CBT) has shown positive results in reducing fertility anxiety.\n• Positive visualization and affirmations activate neural pathways that support hormonal balance.\n• Support groups reduce feelings of isolation and improve mental health.\n• Art, music, and creative writing are effective therapeutic tools during the fertility journey.\n• Seek professional help if anxiety or sadness begin to dominate your life."
+          "title": "A conexão mente-corpo",
+          "content": "A mente e o corpo estão profundamente conectados no percurso da fertilidade. O stress e a ansiedade afetam as hormonas e a ovulação. Técnicas como meditação, mindfulness, visualização positiva e arteterapia podem melhorar o bem-estar mental e apoiar a fertilidade. O equilíbrio entre o desejo de ser mãe e o prazer de viver é essencial."
         }
       },
       "lessonsCount": "Módulos de aprendizagem {{count}}"
@@ -4515,54 +4515,54 @@
     "fertilitySigns": {
       "signs": {
         "cervicalMucus": {
-          "title": "Cervical Mucus Changes",
-          "description": "As ovulation approaches, cervical mucus becomes more abundant, clear, and stretchy — resembling raw egg whites. This 'fertile-quality' mucus helps sperm travel more easily through the cervix. After ovulation, mucus typically becomes thicker, cloudier, or dries up.",
-          "tip": "Check mucus daily by wiping before urination. The most fertile-type mucus stretches between your fingers without breaking."
+          "title": "Alterações do muco cervical",
+          "description": "Ao aproximar-se a ovulação, o muco cervical torna-se mais transparente, elástico e escorregadio, semelhante à clara de ovo crua. Este tipo facilita o movimento dos espermatozoides. Após a ovulação torna-se espesso e pegajoso. O acompanhamento diário dá um indicador fiável do momento da ovulação.",
+          "tip": "Verifique o muco antes de urinar limpando com papel higiénico e observe a cor, consistência e elasticidade."
         },
         "basalTemp": {
-          "title": "Basal Body Temperature Shift",
-          "description": "After ovulation, progesterone causes your resting body temperature to rise by 0.2–0.5°C. This shift confirms that ovulation has already occurred. By tracking BBT over several cycles, you can identify your typical ovulation pattern.",
-          "tip": "Take your temperature every morning at the same time, before getting out of bed. Use a BBT-specific thermometer for accuracy."
+          "title": "Aumento da temperatura basal",
+          "description": "Após a ovulação, a temperatura basal sobe 0,2-0,5°C devido ao aumento da progesterona. Meça todas as manhãs antes de se levantar com um termómetro preciso. Um aumento mantido por três dias confirma a ovulação. Este método confirma a ovulação retrospetivamente.",
+          "tip": "Use um termómetro basal com precisão de 0,01°C e meça à mesma hora todos os dias antes de qualquer atividade."
         },
         "cervicalPosition": {
-          "title": "Cervical Position Changes",
-          "description": "During your fertile window, the cervix moves higher in the vaginal canal, becomes softer (like your lips vs. the tip of your nose), and opens slightly. After ovulation, it drops lower, firms up, and closes.",
-          "tip": "Check cervical position in the same position daily (e.g., standing with one foot elevated). It takes practice — be patient with yourself."
+          "title": "Alterações da posição cervical",
+          "description": "O colo do útero muda durante o ciclo. Perto da ovulação torna-se mais alto, macio, aberto e húmido. Depois desce e torna-se mais firme e fechado. O autoexame requer prática mas dá informações valiosas sobre o momento fértil.",
+          "tip": "Examine o colo à mesma hora e na mesma posição todos os dias para resultados consistentes."
         },
         "ovulationPain": {
-          "title": "Ovulation Sensation (Mittelschmerz)",
-          "description": "Some women feel a mild twinge, cramp, or ache on one side of the lower abdomen during ovulation. This 'middle pain' (mittelschmerz) is caused by the follicle rupturing to release the egg. It typically lasts a few minutes to a few hours.",
-          "tip": "Note which side you feel the sensation — it may alternate sides each cycle as ovulation switches between ovaries."
+          "title": "Dor de ovulação (Mittelschmerz)",
+          "description": "Algumas mulheres sentem uma dor ou pontada num lado do baixo ventre durante a ovulação. Pode durar de minutos a horas e alternar de lado mensalmente. Não é um indicador fiável isoladamente, mas é útil com outros métodos de rastreamento.",
+          "tip": "Anote qualquer sensação pélvica no seu calendário mensal para identificar o seu padrão de ovulação."
         },
         "breastTenderness": {
-          "title": "Breast Tenderness",
-          "description": "Rising progesterone after ovulation can cause breast tenderness, fullness, or sensitivity. This is one of the most commonly noticed luteal phase symptoms. Some women also experience this in the days leading up to ovulation due to rising estrogen.",
-          "tip": "Track when tenderness begins and ends to correlate it with your ovulation pattern over time."
+          "title": "Sensibilidade mamária",
+          "description": "Pode notar sensibilidade ou ligeiro inchaço nos seios à volta da ovulação ou depois, devido ao aumento da progesterona. Estas alterações são normais e refletem as flutuações hormonais. A intensidade varia de mês para mês.",
+          "tip": "Um soutien confortável e de suporte ajuda a aliviar o desconforto durante este período."
         },
         "libidoChanges": {
-          "title": "Changes in Desire",
-          "description": "Many women experience a natural increase in desire around ovulation. This is driven by the surge in estrogen and testosterone that precedes the LH peak. It's one of the body's ways of optimizing the chance of conception.",
-          "tip": "Pay attention to these natural shifts — they often align with your most fertile days."
+          "title": "Alterações no desejo",
+          "description": "Muitas mulheres notam um aumento natural do desejo à volta da ovulação pelo aumento de estrogénio e testosterona. É uma resposta biológica natural que coincide com a máxima fertilidade. Notar estas alterações pode ser um indicador adicional útil.",
+          "tip": "Observe as alterações no seu desejo ao longo do mês e relacione-as com outros sinais de fertilidade."
         },
         "moodShifts": {
-          "title": "Mood & Energy Shifts",
-          "description": "Estrogen rising in the follicular phase often brings improved mood, energy, and confidence. After ovulation, progesterone dominance may cause a shift toward calmness or, for some, irritability and fatigue. These fluctuations are normal and hormone-driven.",
-          "tip": "Journaling your mood daily can reveal patterns that correlate with your cycle phases."
+          "title": "Mudanças de humor e energia",
+          "description": "As flutuações hormonais afetam o humor e o nível de energia. Muitas mulheres sentem-se de melhor humor e mais enérgicas à volta da ovulação. O humor pode baixar na fase lútea. Compreender estes padrões ajuda a geri-los conscientemente.",
+          "tip": "Registe o seu humor e nível de energia diariamente para descobrir padrões relacionados com o seu ciclo."
         },
         "bloating": {
-          "title": "Mild Bloating",
-          "description": "Hormonal changes around ovulation, particularly rising progesterone, can cause water retention and mild bloating. This is a common sign that your body is transitioning into the luteal phase.",
-          "tip": "Staying hydrated and reducing sodium intake can help manage ovulation-related bloating."
+          "title": "Inchaço leve",
+          "description": "Pode sentir um ligeiro inchaço à volta da ovulação por retenção de líquidos devida às alterações hormonais. É normal e temporário. Pode acompanhar-se de sensação de peso pélvico e desaparece em um ou dois dias.",
+          "tip": "Beba água suficiente e reduza o sal para aliviar o inchaço hormonal."
         },
         "lightSpotting": {
-          "title": "Ovulation Spotting",
-          "description": "A small amount of light pink or brown spotting around ovulation day is experienced by some women. It's caused by the slight drop in estrogen that occurs just before the LH surge, or by the follicle rupture itself. It's usually very light and brief.",
-          "tip": "Ovulation spotting is different from implantation bleeding (which occurs 6–12 days after ovulation). Track the timing carefully."
+          "title": "Spotting de ovulação",
+          "description": "Algumas mulheres notam manchas leves de sangue ou corrimento rosado à volta da ovulação, pela queda rápida de estrogénio ao libertar-se o óvulo. É perfeitamente normal e um bom sinal de ovulação. Geralmente dura um dia ou menos.",
+          "tip": "Se o sangramento for abundante ou durar mais de dois dias, consulte a sua médica."
         },
         "heightenedSenses": {
-          "title": "Heightened Senses",
-          "description": "Some women report a more acute sense of smell during ovulation, possibly due to elevated estrogen levels. Research suggests this may be an evolutionary adaptation. Some also notice subtle changes in taste preferences.",
-          "tip": "If you notice scents seem stronger around mid-cycle, it may be a personal ovulation indicator worth tracking."
+          "title": "Sentidos aguçados",
+          "description": "Pode notar maior sensibilidade olfativa ou gustativa à volta da ovulação pelo aumento de estrogénio. Algumas mulheres tornam-se mais sensíveis a cheiros ou notam sabores mais intensos. Estas alterações sensoriais são sinal do pico hormonal.",
+          "tip": "Preste atenção a alterações nos seus sentidos a meio do ciclo, podem indicar a aproximação da ovulação."
         }
       },
       "signsCount": "{{count}} sinaliza para saber"
@@ -4766,54 +4766,54 @@
     "stressFertility": {
       "topics": {
         "stressHormones": {
-          "title": "How Stress Affects Fertility",
-          "content": "Chronic stress triggers the release of cortisol and adrenaline, which can disrupt the hypothalamic-pituitary-gonadal (HPG) axis — the hormonal pathway that controls ovulation. Elevated cortisol may suppress GnRH (gonadotropin-releasing hormone), leading to irregular or absent ovulation. While moderate daily stress is unlikely to prevent conception, prolonged high stress can delay time to pregnancy.",
-          "practice": "Identify your top 3 stress triggers this week. For each one, write down one small action you can take to reduce its impact."
+          "title": "Como o stress afeta a fertilidade",
+          "content": "O stress crónico liberta cortisol e adrenalina que interferem com as hormonas da fertilidade. O cortisol elevado pode suprimir a GnRH, afetando FSH e LH e perturbando a ovulação. Pode também afetar a qualidade do revestimento uterino e a capacidade de implantação.",
+          "practice": "Dedique 10 minutos diários a um exercício de relaxamento profundo com respiração lenta e música tranquila."
         },
         "cortisol": {
-          "title": "Understanding Cortisol",
-          "content": "Cortisol is your body's primary stress hormone. In small bursts, it's helpful — providing energy and focus. But when cortisol remains chronically elevated, it can suppress reproductive hormones, disrupt sleep, increase inflammation, and affect mood. The goal isn't to eliminate stress entirely (impossible!) but to manage your stress response.",
-          "practice": "Practice the 4-7-8 breathing technique: Inhale for 4 seconds, hold for 7, exhale for 8. Repeat 4 times. This activates the parasympathetic nervous system."
+          "title": "Compreender o cortisol",
+          "content": "O cortisol é a principal hormona do stress. Os seus níveis normais seguem um padrão diário: alto de manhã, baixo à noite. O stress crónico perturba este padrão afetando o sono, as hormonas reprodutivas e a imunidade. Manter níveis normais é importante para a fertilidade natural.",
+          "practice": "Exponha-se à luz solar matinal e evite cafeína à tarde para regular o ritmo do cortisol."
         },
         "mindfulness": {
-          "title": "Mindfulness for Fertility",
-          "content": "Mindfulness is the practice of being fully present without judgment. Studies show that mindfulness-based stress reduction (MBSR) programs can reduce anxiety and depression in women undergoing fertility treatment, and may improve outcomes. Even 10 minutes of daily mindfulness practice can lower cortisol levels and improve emotional resilience.",
-          "practice": "Try a 5-minute body scan: Close your eyes, breathe deeply, and slowly move your attention from your toes to your head, noticing sensations without trying to change them."
+          "title": "Mindfulness e fertilidade",
+          "content": "A investigação mostra que a prática de mindfulness reduz o stress e melhora os resultados de fertilidade. A meditação consciente significa focar-se no momento presente sem julgar. Mesmo 10 minutos diários podem reduzir o cortisol. Apps de meditação guiada ajudam principiantes.",
+          "practice": "Experimente um body scan: feche os olhos e foque-se em cada parte do corpo da cabeça aos pés durante 5 minutos."
         },
         "breathing": {
-          "title": "Breathing Techniques",
-          "content": "Controlled breathing directly activates the vagus nerve, triggering the relaxation response. This lowers heart rate, blood pressure, and cortisol. It's one of the fastest ways to shift from a stress state to a calm state. Different techniques serve different purposes — some energize, others calm.",
-          "practice": "Box Breathing: Inhale 4 counts → Hold 4 counts → Exhale 4 counts → Hold 4 counts. Repeat for 5 minutes. Ideal before bed or during anxious moments."
+          "title": "Técnicas de respiração",
+          "content": "A respiração profunda ativa o sistema nervoso parassimpático e reduz a resposta ao stress. A técnica 4-7-8 é eficaz: inspire 4 segundos, segure 7 segundos, expire 8 segundos. A respiração abdominal também é benéfica. Estas técnicas podem ser praticadas a qualquer momento e lugar.",
+          "practice": "Pratique a respiração 4-7-8 três vezes ao dia: antes do pequeno-almoço, após o almoço e antes de dormir."
         },
         "journaling": {
-          "title": "Therapeutic Journaling",
-          "content": "Writing about your emotions has been scientifically shown to reduce stress, improve immune function, and provide clarity. For fertility journaling, the goal isn't to track symptoms obsessively, but to process emotions, celebrate small wins, and release fears.",
-          "practice": "Tonight, write down: 1) One thing I'm grateful for today, 2) One worry I want to release, 3) One kind thing I did for myself."
+          "title": "Escrita terapêutica",
+          "content": "A escrita expressiva ajuda a processar emoções e reduzir o stress. Escreva sobre os seus sentimentos, medos e esperanças no seu percurso de fertilidade. Não se preocupe com regras ou estilo. A investigação mostra que escrever regularmente melhora o humor e reduz a ansiedade.",
+          "practice": "Dedique 15 minutos antes de dormir à escrita livre sobre o seu dia e as suas emoções."
         },
         "sleep": {
-          "title": "Sleep & Fertility",
-          "content": "Sleep is when your body repairs, produces hormones, and processes emotions. Poor sleep disrupts melatonin (which protects egg quality), increases cortisol, and impairs FSH and LH regulation. Women who sleep fewer than 6 hours per night have been shown to have lower fertility rates.",
-          "practice": "Create a wind-down routine: No screens 30 min before bed, dim lights, use lavender essential oil, and keep your bedroom cool (18–20°C)."
+          "title": "Sono e fertilidade",
+          "content": "Um bom sono é essencial para o equilíbrio hormonal e gestão do stress. A falta de sono aumenta o cortisol e perturba o ritmo circadiano. Aponte para 7-9 horas num quarto escuro, calmo e fresco. Evite ecrãs uma hora antes de dormir. Horários regulares apoiam a produção de melatonina.",
+          "practice": "Crie uma rotina noturna: banho quente, leitura leve e dormir à mesma hora."
         },
         "exercise": {
-          "title": "Movement & Stress Relief",
-          "content": "Regular moderate exercise is one of the most effective stress relievers. It releases endorphins, improves sleep, and helps regulate hormones. However, excessive intense exercise (marathon training, high-intensity daily workouts) can suppress ovulation. Balance is key.",
-          "practice": "This week, aim for 30 minutes of moderate movement 5 days: walking, yoga, swimming, or dancing. Notice how your mood shifts afterward."
+          "title": "Movimento e alívio do stress",
+          "content": "A atividade física moderada é um dos melhores antistress naturais. O exercício liberta endorfinas, melhora o humor e reduz a ansiedade. Passeios na natureza, yoga e natação são especialmente benéficos. Evite exercício excessivo. 30 minutos de atividade moderada na maioria dos dias é suficiente.",
+          "practice": "Caminhe 20-30 minutos ao ar livre todos os dias, preferencialmente de manhã para beneficiar da luz solar."
         },
         "socialSupport": {
-          "title": "Building Your Support Network",
-          "content": "Social isolation amplifies stress. Sharing your fertility journey with trusted friends, family, or a support group can significantly reduce emotional burden. You don't have to share with everyone — even one supportive person makes a difference.",
-          "practice": "Identify one person you trust. Share one thing about your journey with them this week. Connection is healing."
+          "title": "Construir a rede de apoio",
+          "content": "O percurso da fertilidade é mais fácil com um sistema de apoio forte. Partilhe regularmente as suas emoções com o seu parceiro. Fale com uma amiga de confiança ou junte-se a um grupo de apoio. As comunidades online oferecem espaços seguros para partilhar experiências. Não hesite em pedir ajuda.",
+          "practice": "Planeie um tempo semanal para falar com o seu parceiro sobre as suas emoções e necessidades."
         },
         "professionalHelp": {
-          "title": "When to Seek Professional Support",
-          "content": "If anxiety or sadness about fertility is affecting your daily life, sleep, relationships, or work, professional support can help. Therapists specializing in reproductive mental health understand the unique challenges of this journey. Cognitive Behavioral Therapy (CBT) is particularly effective for fertility-related anxiety.",
-          "practice": "If you're considering therapy, look for a therapist who specializes in reproductive psychology or perinatal mental health. Many offer virtual sessions."
+          "title": "Quando procurar apoio profissional",
+          "content": "Não hesite em procurar ajuda psicológica se sentir ansiedade ou depressão persistente. Um terapeuta especializado em fertilidade compreende os seus desafios únicos. A terapia cognitivo-comportamental e EMDR mostraram-se eficazes no stress relacionado com a fertilidade.",
+          "practice": "Procure um terapeuta especializado em saúde feminina e fertilidade e marque uma sessão exploratória."
         },
         "acceptance": {
-          "title": "Practicing Acceptance",
-          "content": "Acceptance doesn't mean giving up — it means acknowledging that some things are beyond your control while focusing on what you can influence. This shift from control to acceptance can significantly reduce stress and improve emotional wellbeing during the fertility journey.",
-          "practice": "Repeat this affirmation: 'I am doing everything I can. I trust my body and my journey. The outcome does not define my worth.'"
+          "title": "Praticar a aceitação",
+          "content": "A aceitação não significa desistir mas fazer as pazes com a incerteza. O percurso da fertilidade está cheio de coisas fora do nosso controlo. Foque-se no que pode controlar: a sua saúde, o seu estilo de vida, as suas relações. Viva um dia de cada vez e permita-se sentir tristeza e esperança simultaneamente.",
+          "practice": "Comece o dia com uma meditação de aceitação: reconheço as minhas emoções e foco-me no que posso fazer hoje."
         }
       },
       "topicsCount": "Tópicos {{count}} para explorar"
@@ -4821,74 +4821,74 @@
     "twwCompanion": {
       "days": {
         "day1": {
-          "title": "Ovulation Day + 1",
-          "body": "If ovulation occurred yesterday, the egg is now traveling through the fallopian tube. If fertilization happens, it typically occurs within 12–24 hours of ovulation. Today, there's nothing you can do to influence the outcome — and that's okay.",
-          "tip": "Take a deep breath. The journey has begun. Focus on something you enjoy today."
+          "title": "Dia de ovulação + 1",
+          "body": "Se a ovulação ocorreu ontem, o óvulo viaja agora pela trompa de Falópio. A fecundação pode ocorrer nas 12-24 horas seguintes. Os espermatozoides que chegaram antes esperam na trompa.",
+          "tip": "Mantenha a calma e continue a sua rotina saudável habitual."
         },
         "day2": {
-          "title": "Cellular Beginnings",
-          "body": "If fertilization occurred, the single-celled zygote begins dividing — first into 2 cells, then 4. This tiny cluster of cells is traveling through the fallopian tube toward the uterus. It's powered entirely by its own energy stores.",
-          "tip": "Stay hydrated and eat nourishing foods. Your body is doing incredible work at the cellular level."
+          "title": "Inícios celulares",
+          "body": "Se houve fecundação, começam as primeiras divisões celulares: duas e depois quatro células. Este processo ocorre enquanto segue a sua vida normal, sem sintomas percetíveis.",
+          "tip": "Coma alimentos saudáveis ricos em ácido fólico e beba água suficiente."
         },
         "day3": {
-          "title": "The Morula Stage",
-          "body": "The dividing cells form a solid ball called a morula (about 16 cells). It continues its journey through the fallopian tube. Progesterone is rising, preparing the uterine lining for potential implantation.",
-          "tip": "Gentle activity is perfectly fine. There's no need to restrict your normal routine."
+          "title": "Fase da mórula",
+          "body": "O embrião é agora uma mórula – uma esfera de 16 ou mais células. Move-se lentamente pela trompa em direção ao útero. A divisão celular continua a um ritmo notável.",
+          "tip": "Faça uma atividade relaxante como uma caminhada leve ou leitura."
         },
         "day4": {
-          "title": "Entering the Uterus",
-          "body": "The morula typically enters the uterus around day 4. It begins forming a fluid-filled cavity, transitioning into a blastocyst. The uterine lining is becoming thick and receptive under progesterone's influence.",
-          "tip": "Practice mindfulness or light stretching. Managing anticipation is part of the journey."
+          "title": "Chegada ao útero",
+          "body": "O embrião em desenvolvimento chega à cavidade uterina. Continua a dividir-se e começa a transformação de mórula em blastocisto. O revestimento uterino continua a preparar-se sob o efeito da progesterona.",
+          "tip": "Continue a tomar os seus suplementos, especialmente ácido fólico e vitamina D."
         },
         "day5": {
-          "title": "Blastocyst Formation",
-          "body": "The blastocyst now has two distinct cell groups: the inner cell mass (which becomes the embryo) and the trophoblast (which becomes the placenta). It floats freely in the uterine cavity.",
-          "tip": "This is a good day to journal your thoughts and feelings. Self-expression is therapeutic."
+          "title": "Formação do blastocisto",
+          "body": "O blastocisto forma-se com células diferenciadas: a camada externa formará a placenta, a interna tornar-se-á o embrião. Esta é uma etapa crucial do desenvolvimento precoce.",
+          "tip": "Evite stress excessivo e desfrute de atividades que a façam feliz."
         },
         "day6": {
-          "title": "Implantation May Begin",
-          "body": "The blastocyst begins searching for an ideal implantation site on the uterine wall. The trophoblast cells start burrowing into the endometrium. Some women experience light spotting (implantation bleeding) around this time.",
-          "tip": "Light spotting at this stage can be normal. Don't panic — and don't test yet. It's too early."
+          "title": "A implantação pode começar",
+          "body": "O blastocisto pode começar a contactar com o revestimento uterino. Algumas mulheres sentem sensações muito leves. A implantação precoce é possível mas mais comum nos dias seguintes.",
+          "tip": "Não se preocupe se não sentir nada – a maioria das mulheres não sente a implantação."
         },
         "day7": {
-          "title": "Implantation Window",
-          "body": "Days 6–10 are the typical implantation window. The blastocyst is embedding deeper into the uterine lining. Early signals are being exchanged between the embryo and your body.",
-          "tip": "Continue your normal activities. Rest when you need to. Trust the process."
+          "title": "Janela de implantação",
+          "body": "É o momento mais comum para o início da implantação. O blastocisto penetra o revestimento uterino e forma conexões com os vasos sanguíneos. Podem aparecer manchas leves ou cólicas.",
+          "tip": "Um leve sangramento de implantação é normal – geralmente é rosado ou castanho claro."
         },
         "day8": {
-          "title": "hCG Begins",
-          "body": "If implantation is progressing, tiny amounts of hCG (human chorionic gonadotropin) begin to be produced. This hormone signals your body to maintain the corpus luteum, which keeps producing progesterone. Levels are still too low to detect on a test.",
-          "tip": "Resist the urge to test. hCG needs time to build. Patience is your greatest ally right now."
+          "title": "Início da hCG",
+          "body": "Após uma implantação bem-sucedida, as células que rodeiam o embrião começam a produzir hCG. Esta hormona é a que os testes de gravidez detetam. Os seus níveis são ainda muito baixos.",
+          "tip": "É demasiado cedo para um teste – espere alguns dias para um resultado fiável."
         },
         "day9": {
-          "title": "Rising Signals",
-          "body": "hCG levels are rising but may still be below the detection threshold of most home pregnancy tests. Implantation should be complete or nearly complete. Your body is starting to respond to the new hormonal signals.",
-          "tip": "Treat yourself to something calming — a warm bath, your favorite tea, or a walk in nature."
+          "title": "Sinais crescentes",
+          "body": "Os níveis de hCG duplicam a cada 48-72 horas. Algumas mulheres podem notar sintomas muito precoces como fadiga ou sensibilidade mamária. Mas estes também podem ser da progesterona natural.",
+          "tip": "Não interprete cada sintoma como gravidez – a progesterona causa sintomas semelhantes em cada ciclo."
         },
         "day10": {
-          "title": "Almost There",
-          "body": "By now, if implantation occurred, hCG levels are doubling roughly every 48 hours. Some sensitive tests might detect very early pregnancy. However, a negative result today doesn't mean you're not pregnant — levels vary widely.",
-          "tip": "If you test today and it's negative, don't lose hope. Many successful pregnancies don't show positive until day 12–14."
+          "title": "Quase lá",
+          "body": "Se houve implantação, a hCG continua a subir. Testes muito sensíveis podem detetá-la agora, mas um resultado negativo não significa necessariamente ausência de gravidez. A paciência é importante.",
+          "tip": "Se o teste for negativo, não desespere – repita em dois dias."
         },
         "day11": {
-          "title": "Building Anticipation",
-          "body": "hCG continues to rise. Some women begin to notice very early symptoms: mild cramping, breast tenderness, or fatigue. These symptoms can also be caused by progesterone in a non-pregnant cycle, so they're not reliable indicators.",
-          "tip": "Symptom-spotting is natural but can increase anxiety. Try to stay present and engaged in your daily life."
+          "title": "Construindo a expectativa",
+          "body": "Os níveis de hCG continuam a subir se houver gravidez. Talvez note mudanças leves no seu corpo. A espera é difícil mas cada dia aproxima-a da resposta.",
+          "tip": "Ocupe-se com atividades agradáveis e evite pesquisar sintomas obsessivamente na internet."
         },
         "day12": {
-          "title": "Testing Becomes More Reliable",
-          "body": "Most home pregnancy tests become more reliable from today onward. If testing, use first morning urine for the highest concentration of hCG. A faint line is still a positive result.",
-          "tip": "Whatever the result today, remember: one cycle does not define your journey. Be gentle with yourself."
+          "title": "O teste torna-se mais fiável",
+          "body": "Se houver gravidez com implantação, os níveis de hCG são geralmente suficientes para a maioria dos testes caseiros. Um resultado positivo agora é muito fiável.",
+          "tip": "Use a primeira urina da manhã para o resultado mais preciso."
         },
         "day13": {
-          "title": "The Eve of Knowing",
-          "body": "Tomorrow is typically the day your period would be expected (in a 28-day cycle). If it doesn't arrive and a test shows a faint positive, congratulations may be in order. If your period comes, allow yourself to grieve and know that each cycle is a new opportunity.",
-          "tip": "Prepare emotionally for both outcomes. Both are valid. Both are part of the journey."
+          "title": "A véspera de saber",
+          "body": "Amanhã é o dia da resposta esperada. Seja positivo ou negativo, lembre-se de que cada ciclo é uma nova oportunidade e o seu corpo faz o melhor que pode.",
+          "tip": "Planeie algo agradável para amanhã após o teste, independentemente do resultado."
         },
         "day14": {
-          "title": "The Answer Day",
-          "body": "This is typically the day your period is expected. A missed period combined with a positive pregnancy test is a strong indicator of pregnancy. If your test is positive, contact your healthcare provider to schedule your first appointment (usually around 6–8 weeks).",
-          "tip": "Positive? Celebrate this moment. Negative? You are strong, resilient, and this journey continues. Both outcomes deserve compassion."
+          "title": "O dia da resposta",
+          "body": "Hoje pode fazer um teste de gravidez com confiança. Se positivo – parabéns! Marque consulta com a sua médica. Se negativo – seja gentil consigo mesma e lembre-se de que cada tentativa a aproxima do seu objetivo.",
+          "tip": "Seja qual for o resultado, é forte e corajosa. Celebre a sua paciência e o seu percurso."
         }
       },
       "subtitle": "Seu guia diário durante a espera de duas semanas"
