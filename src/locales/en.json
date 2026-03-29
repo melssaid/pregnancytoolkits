@@ -8261,5 +8261,17 @@
     "upgradeHint": "Unlock more personalized insights with Premium",
     "upgradeCTA": "Continue with Premium",
     "postAnalysisHint": "Upgrade to Premium for 40 monthly analyses and deeper insights"
+  },
+  "tools.weightGain.subtitle": "Track and analyze your pregnancy weight gain",
+  "toolsInternal.babyGrowth.emptyTitle": "No records yet",
+  "toolsInternal.babyGrowth.emptyDesc": "Start adding your baby's growth entries to see history and trends.",
+  "toolsInternal.babyGrowth.history": "Growth History",
+  "toolsInternal.bumpPhotos.analysisQuotaRemaining": "{{remaining}} analyses remaining",
+  "toolsInternal.weightGain.added": "Weight entry added",
+  "toolsInternal.weightGain.bmiTitle": "Pre-Pregnancy BMI",
+  "toolsInternal.weightGain.history": "History",
+  "toolsInternal.weightGain.invalidWeight": "Please enter a valid weight",
+  "toolsInternal.weightGain.noEntries": "No weight entries yet. Add your first one above.",
+  "toolsInternal.weightGain.weightPlaceholder": "Weight in kg"
   }
 }
