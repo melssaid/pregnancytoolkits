@@ -3772,7 +3772,8 @@
         "tip3": "Restez physiquement active avec des exercices approuvés par votre médecin",
         "tip4": "Assistez à tous les rendez-vous prénataux pour un suivi régulier",
         "tip5": "Limitez les aliments sucrés et les glucides raffinés"
-      }
+      },
+      "reset": "Réinitialiser"
     },
     "healthMonitor": {
       "title": "Système de surveillance de la santé",
@@ -4994,11 +4995,11 @@
       }
     },
     "warningSigns": {
-      "headaches": "Maux de tête sévères qui ne disparaissent pas",
-      "vision": "Changements de vision (flou, taches)",
-      "abdominalPain": "Douleur abdominale haute (surtout côté droit)",
-      "swelling": "Gonflement soudain (visage, mains, pieds)",
-      "weightGain": "Prise de poids soudaine (plus de 2,5 kg en une semaine)"
+      "headaches": "Maux de tête sévères ou persistants ne répondant pas au traitement",
+      "vision": "Troubles visuels : vision floue, sensibilité à la lumière ou points lumineux",
+      "abdominalPain": "Douleur abdominale haute, surtout sous les côtes du côté droit",
+      "swelling": "Gonflement soudain du visage, des mains ou des pieds",
+      "weightGain": "Prise de poids rapide (plus de 2 kg en une semaine)"
     },
     "evidence": {
       "title": "Qu'est-ce que la prééclampsie ?",

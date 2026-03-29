@@ -3772,7 +3772,8 @@
         "tip3": "Doktor onaylı egzersizlerle fiziksel olarak aktif kalın",
         "tip4": "Düzenli izleme için tüm doğum öncesi randevularınıza katılın",
         "tip5": "Şekerli yiyecekleri ve rafine karbonhidratları sınırlayın"
-      }
+      },
+      "reset": "Sıfırla"
     },
     "healthMonitor": {
       "title": "Sağlık İzleme Sistemi",
@@ -4994,11 +4995,11 @@
       }
     },
     "warningSigns": {
-      "headaches": "Geçmeyen şiddetli baş ağrıları",
-      "vision": "Görme değişiklikleri (bulanıklık, leke görme)",
-      "abdominalPain": "Üst karın ağrısı (özellikle sağ taraf)",
-      "swelling": "Ani şişlik (yüz, eller, ayaklar)",
-      "weightGain": "Ani kilo artışı (bir haftada 2,5 kg'dan fazla)"
+      "headaches": "Tedaviye yanıt vermeyen şiddetli veya sürekli baş ağrıları",
+      "vision": "Görme değişiklikleri: bulanık görme, ışık hassasiyeti veya benekler görme",
+      "abdominalPain": "Üst karın ağrısı, özellikle sağ tarafta kaburgaların altında",
+      "swelling": "Yüz, el veya ayaklarda ani şişlik",
+      "weightGain": "Hızlı kilo alımı (haftada 2 kg'dan fazla)"
     },
     "evidence": {
       "title": "Preeklampsi Nedir?",

@@ -3772,7 +3772,8 @@
         "tip3": "Mantente físicamente activa con ejercicios aprobados por tu médico",
         "tip4": "Asiste a todas las citas prenatales para un monitoreo regular",
         "tip5": "Limita los alimentos azucarados y los carbohidratos refinados"
-      }
+      },
+      "reset": "Restablecer"
     },
     "healthMonitor": {
       "title": "Sistema de Monitoreo de Salud",
@@ -4950,7 +4951,7 @@
     "riskFactorsDesc": "Marca todos los factores que apliquen para conocer tu perfil",
     "calculateRisk": "Revisar mis factores",
     "yourRiskFactors": "Tus factores:",
-    "warningSignsTitle": "Señales de advertencia a vigilar",
+    "warningSignsTitle": "Señales de alerta a vigilar",
     "warningNote": "Si experimentas cualquiera de estos síntomas, contacta inmediatamente a tu médico.",
     "disclaimer": "Esta herramienta identifica factores de riesgo pero no puede predecir preeclampsia. No reemplaza la evaluación profesional.",
     "aiCoachTitle": "Coach IA de prevención de preeclampsia",
@@ -4994,11 +4995,11 @@
       }
     },
     "warningSigns": {
-      "headaches": "Dolores de cabeza severos que no desaparecen",
-      "vision": "Cambios en la visión (visión borrosa, ver manchas)",
-      "abdominalPain": "Dolor abdominal superior (especialmente lado derecho)",
-      "swelling": "Hinchazón repentina (cara, manos, pies)",
-      "weightGain": "Aumento de peso repentino (más de 2,5 kg en una semana)"
+      "headaches": "Dolores de cabeza severos o persistentes que no responden al tratamiento",
+      "vision": "Cambios visuales: visión borrosa, sensibilidad a la luz o ver puntos",
+      "abdominalPain": "Dolor abdominal alto, especialmente bajo las costillas del lado derecho",
+      "swelling": "Hinchazón repentina de cara, manos o pies",
+      "weightGain": "Aumento de peso rápido (más de 2 kg en una semana)"
     },
     "evidence": {
       "title": "¿Qué es la preeclampsia?",

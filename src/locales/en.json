@@ -3772,7 +3772,8 @@
         "tip3": "Stay physically active with doctor-approved exercises",
         "tip4": "Attend all prenatal appointments for regular monitoring",
         "tip5": "Limit sugary foods and refined carbohydrates"
-      }
+      },
+      "reset": "Reset"
     },
     "healthMonitor": {
       "title": "Wellness Tracking",
@@ -4994,11 +4995,11 @@
       }
     },
     "warningSigns": {
-      "headaches": "Severe headaches that don't go away",
-      "vision": "Vision changes (blurriness, seeing spots)",
-      "abdominalPain": "Upper abdominal pain (especially right side)",
-      "swelling": "Sudden swelling (face, hands, feet)",
-      "weightGain": "Sudden weight gain (more than 5 lbs in a week)"
+      "headaches": "Severe or persistent headaches that don't respond to treatment",
+      "vision": "Visual changes: blurred vision, light sensitivity, or seeing spots",
+      "abdominalPain": "Upper abdominal pain, especially under the ribs on the right side",
+      "swelling": "Sudden swelling of face, hands, or feet",
+      "weightGain": "Rapid weight gain (more than 2 kg in a week)"
     },
     "evidence": {
       "title": "What is Preeclampsia?",
