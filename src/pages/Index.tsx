@@ -355,7 +355,7 @@ const FooterCard = memo(function FooterCard() {
 
 // ── Main page ───────────────────────────────────────────────────────────
 const Index = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { tier, isUnlocked, isLoading: subLoading } = useSubscriptionStatus();
 
   return (
