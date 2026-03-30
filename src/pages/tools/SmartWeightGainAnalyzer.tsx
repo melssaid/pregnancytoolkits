@@ -1,9 +1,10 @@
 import React, { useMemo, useState, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Gauge, Plus, Trash2, TrendingUp, ChevronLeft, ChevronRight, Check } from 'lucide-react';
+import { Gauge, Plus, Trash2, TrendingUp, Check } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Slider } from '@/components/ui/slider';
 import { ToolFrame } from '@/components/ToolFrame';
 import { useUserProfile } from '@/hooks/useUserProfile';
 import { useToast } from '@/hooks/use-toast';
@@ -266,53 +267,36 @@ Provide personalized advice with: 1) Assessment 2) Nutritional tips 3) Exercise 
             </h3>
           </div>
           <CardContent className="p-4 pt-3 space-y-4">
-            {/* Week Selector */}
+            {/* Week Selector — Slider */}
             <div>
-              <label className="text-xs font-bold text-muted-foreground mb-2.5 block">
-                {t('toolsInternal.weightGain.pregnancyWeek', 'Pregnancy Week')}
-              </label>
+              <div className="flex items-center justify-between mb-3">
+                <label className="text-xs font-bold text-muted-foreground">
+                  {t('toolsInternal.weightGain.pregnancyWeek', 'Pregnancy Week')}
+                </label>
+                <span className="text-xs font-medium text-muted-foreground">
+                  {selectedWeek <= 13
+                    ? t('toolsInternal.weightGain.trimester1', 'First Trimester')
+                    : selectedWeek <= 26
+                    ? t('toolsInternal.weightGain.trimester2', 'Second Trimester')
+                    : t('toolsInternal.weightGain.trimester3', 'Third Trimester')}
+                </span>
+              </div>
               <div className="flex items-center gap-3">
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="h-9 w-9 rounded-full flex-shrink-0"
-                  onClick={() => setSelectedWeek(w => Math.max(4, w - 1))}
-                  disabled={selectedWeek <= 4}
-                >
-                  <ChevronRight className="w-4 h-4 rtl:hidden" />
-                  <ChevronLeft className="w-4 h-4 hidden rtl:block" />
-                </Button>
-                <div className="flex-1 relative">
-                  <div className="flex items-center justify-center gap-1.5">
-                    <span className="text-4xl font-black text-primary tabular-nums leading-none">{selectedWeek}</span>
-                    <span className="text-sm text-muted-foreground font-semibold">/ 42</span>
+                <span className="text-3xl font-black text-primary tabular-nums leading-none min-w-[2.5rem] text-center">{selectedWeek}</span>
+                <div className="flex-1">
+                  <Slider
+                    value={[selectedWeek]}
+                    onValueChange={([v]) => setSelectedWeek(v)}
+                    min={4}
+                    max={42}
+                    step={1}
+                    className="w-full"
+                  />
+                  <div className="flex justify-between mt-1">
+                    <span className="text-[10px] text-muted-foreground">4</span>
+                    <span className="text-[10px] text-muted-foreground">42</span>
                   </div>
-                  {/* Week progress bar */}
-                  <div className="h-2 bg-muted rounded-full mt-2 overflow-hidden">
-                    <div
-                      className="h-full bg-gradient-to-r from-primary to-primary/60 rounded-full transition-all duration-300 rtl:bg-gradient-to-l"
-                      style={{ width: `${((selectedWeek - 4) / 38) * 100}%` }}
-                    />
-                  </div>
-                  {/* Trimester label */}
-                  <p className="text-xs text-center text-muted-foreground mt-1.5 font-medium">
-                    {selectedWeek <= 13
-                      ? t('toolsInternal.weightGain.trimester1', 'First Trimester')
-                      : selectedWeek <= 26
-                      ? t('toolsInternal.weightGain.trimester2', 'Second Trimester')
-                      : t('toolsInternal.weightGain.trimester3', 'Third Trimester')}
-                  </p>
                 </div>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="h-9 w-9 rounded-full flex-shrink-0"
-                  onClick={() => setSelectedWeek(w => Math.min(42, w + 1))}
-                  disabled={selectedWeek >= 42}
-                >
-                  <ChevronLeft className="w-4 h-4 rtl:hidden" />
-                  <ChevronRight className="w-4 h-4 hidden rtl:block" />
-                </Button>
               </div>
             </div>
 
