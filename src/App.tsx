@@ -92,7 +92,16 @@ const App = () => {
   }, []);
 
   if (showVideoSplash) {
-    return <VideoSplash onComplete={() => setShowVideoSplash(false)} />;
+    return <VideoSplash onComplete={() => {
+      setShowVideoSplash(false);
+      if (shouldShowPostSplashLangPicker()) {
+        setShowLangPicker(true);
+      }
+    }} />;
+  }
+
+  if (showLangPicker) {
+    return <PostSplashLanguagePicker onComplete={() => setShowLangPicker(false)} />;
   }
 
   return (
