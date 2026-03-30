@@ -11,18 +11,30 @@ import { LanguageProvider } from "@/contexts/LanguageContext";
 updateDocumentDirection(i18n.language);
 
 // ── Splash dismiss logic ──────────────────────────────────
+declare global {
+  interface Window {
+    __htmlSplashVideoActive?: boolean;
+    __htmlSplashVideoEnded?: boolean;
+  }
+}
+
 let splashDismissed = false;
 const dismissSplash = () => {
   if (splashDismissed) return;
+
+  // Do not dismiss while HTML video splash is still playing
+  if (window.__htmlSplashVideoActive && !window.__htmlSplashVideoEnded) return;
+
   splashDismissed = true;
   const splash = document.getElementById("splash-overlay");
   if (!splash) return;
   splash.style.opacity = "0";
   splash.style.visibility = "hidden";
-  setTimeout(() => splash.remove(), 400);
+  setTimeout(() => splash.remove(), 500);
 };
 window.addEventListener("app:first-render", dismissSplash, { once: true });
-setTimeout(dismissSplash, 5000); // safety fallback
+window.addEventListener("html-splash-ended", dismissSplash, { once: true });
+setTimeout(dismissSplash, 8000); // safety fallback
 
 const clearDevelopmentCaches = () => {
   if (!import.meta.env.DEV) return;

@@ -12,7 +12,6 @@ import { useEffect, useState, lazy, Suspense } from "react";
 import { initializeAuth } from "@/lib/auth";
 import { toast } from "sonner";
 import { prefetchCriticalRoutes } from "@/lib/routePrefetch";
-import { VideoSplash, shouldShowVideoSplash } from "@/components/VideoSplash";
 
 // Lazy-load OnboardingDisclaimer — heavy imports (Calendar, date-fns) only needed on first visit
 const OnboardingDisclaimer = lazy(() => import("@/components/OnboardingDisclaimer").then(m => ({ default: m.OnboardingDisclaimer })));
@@ -39,7 +38,6 @@ const recoverFromChunkError = async () => {
 
 const App = () => {
   const [successSheet, setSuccessSheet] = useState<{ open: boolean; plan: 'monthly' | 'yearly' | null }>({ open: false, plan: null });
-  const [showVideoSplash, setShowVideoSplash] = useState(shouldShowVideoSplash);
 
   // Initialize anonymous auth & prefetch critical routes
   useEffect(() => {
@@ -88,10 +86,6 @@ const App = () => {
       window.removeEventListener("unhandledrejection", handleRejection);
     };
   }, []);
-
-  if (showVideoSplash) {
-    return <VideoSplash onComplete={() => setShowVideoSplash(false)} />;
-  }
 
   return (
     <HelmetProvider>
