@@ -204,13 +204,17 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <!-- Splash overlay (outside #root so React doesn't displace it) -->
-    <div id="splash-overlay" style="position:fixed;inset:0;z-index:9999;display:none;transition:opacity 0.5s ease;will-change:opacity;">
-      <video id="splash-video" autoplay muted playsinline preload="auto" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;display:none;"></video>
+    <div id="splash-overlay" style="position:fixed;inset:0;z-index:9999;display:none;transition:opacity 0.5s ease;will-change:opacity;background:#000;">
+      <video id="splash-video" autoplay muted playsinline webkit-playsinline preload="auto"
+        style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;opacity:0;transition:opacity 0.3s ease;"
+      ></video>
       <style>
         #splash-video::-webkit-media-controls{display:none!important}
         #splash-video::-webkit-media-controls-enclosure{display:none!important}
         #splash-video::-webkit-media-controls-panel{display:none!important}
         #splash-video::-webkit-media-controls-start-playback-button{display:none!important}
+        #splash-video::-webkit-media-controls-overlay-play-button{display:none!important}
+        video::-webkit-media-controls-start-playback-button{display:none!important;-webkit-appearance:none}
       </style>
     </div>
     <script>
@@ -219,12 +223,7 @@
         var vid=document.getElementById('splash-video');
         if(!overlay||!vid){return;}
 
-        // Always start with video splash immediately (no pink loader)
         overlay.style.display='block';
-        overlay.style.background='#000';
-        vid.style.display='block';
-        vid.src='/splash-video.mp4';
-
         window.__htmlSplashVideoActive=true;
 
         var done=false;
@@ -239,14 +238,26 @@
           },500);
         }
 
-        vid.addEventListener('ended', endSplash, { once:true });
-        vid.addEventListener('error', endSplash, { once:true });
+        // Only show video once it can actually play
+        vid.addEventListener('canplay', function(){
+          vid.style.opacity='1';
+        }, {once:true});
 
-        var playPromise = vid.play();
-        if(playPromise && playPromise.catch){
-          playPromise.catch(function(){});
+        vid.addEventListener('ended', endSplash, {once:true});
+        vid.addEventListener('error', endSplash, {once:true});
+
+        vid.src='/splash-video.mp4';
+        var playPromise=vid.play();
+        if(playPromise && playPromise.then){
+          playPromise.then(function(){
+            // Autoplay succeeded - video is playing
+          }).catch(function(){
+            // Autoplay blocked (TWA/WebView) - skip splash immediately
+            endSplash();
+          });
         }
 
+        // Safety timeout
         setTimeout(endSplash, 6500);
       })();
     </script>
