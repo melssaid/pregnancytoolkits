@@ -266,10 +266,6 @@ Provide personalized advice with: 1) Assessment 2) Nutritional tips 3) Exercise 
             )}
           </CardContent>
         </Card>
-              </p>
-            )}
-          </CardContent>
-        </Card>
 
         {/* Unified Week + Weight Entry Card */}
         <Card className="overflow-hidden border-primary/20">
