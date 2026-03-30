@@ -1,70 +1,49 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useEffect, useRef, useCallback } from 'react';
 
 const SPLASH_SEEN_KEY = 'pt_video_splash_seen';
-const logoImage = '/splash-logo-v2.webp';
+
+declare global {
+  interface Window {
+    __htmlSplashVideoActive?: boolean;
+    __htmlSplashVideoEnded?: boolean;
+  }
+}
 
 export const VideoSplash: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [fading, setFading] = useState(false);
-  const endedRef = useRef(false);
+  const completedRef = useRef(false);
 
-  const handleEnd = useCallback(() => {
-    if (endedRef.current) return;
-    endedRef.current = true;
-    setFading(true);
+  const finish = useCallback(() => {
+    if (completedRef.current) return;
+    completedRef.current = true;
     localStorage.setItem(SPLASH_SEEN_KEY, 'true');
-    setTimeout(onComplete, 600);
+    onComplete();
   }, [onComplete]);
 
-  // Safety timeout
   useEffect(() => {
-    const timer = setTimeout(handleEnd, 6000);
-    return () => clearTimeout(timer);
-  }, [handleEnd]);
-
-  // Autoplay video
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const tryPlay = () => {
-      video.play().catch(handleEnd);
-    };
-
-    if (video.readyState >= 3) {
-      tryPlay();
-    } else {
-      video.addEventListener('canplay', tryPlay, { once: true });
+    // HTML already started the video — just wait for it to end
+    if (window.__htmlSplashVideoActive) {
+      if (window.__htmlSplashVideoEnded) {
+        finish();
+        return;
+      }
+      // Poll until HTML splash ends
+      const interval = setInterval(() => {
+        if (window.__htmlSplashVideoEnded) {
+          clearInterval(interval);
+          finish();
+        }
+      }, 100);
+      // Safety
+      const timer = setTimeout(finish, 7000);
+      return () => { clearInterval(interval); clearTimeout(timer); };
     }
 
-    return () => {
-      video.removeEventListener('canplay', tryPlay);
-    };
-  }, [handleEnd]);
+    // Fallback: shouldn't happen but just in case
+    finish();
+  }, [finish]);
 
-  return (
-    <motion.div
-      className="fixed inset-0 z-[500] overflow-hidden"
-      style={{ background: '#000' }}
-      animate={{ opacity: fading ? 0 : 1 }}
-      transition={{ duration: 0.5, ease: 'easeInOut' }}
-    >
-      {/* Video — always visible, no loader */}
-      <video
-        ref={videoRef}
-        src="/splash-video.mp4"
-        autoPlay
-        muted
-        playsInline
-        preload="auto"
-        onEnded={handleEnd}
-        onError={handleEnd}
-        className="absolute inset-0 w-full h-full object-cover"
-        style={{ pointerEvents: 'none' }}
-      />
-    </motion.div>
-  );
+  // No React UI needed — HTML handles the video display
+  return null;
 };
 
 export const shouldShowVideoSplash = (): boolean => {
