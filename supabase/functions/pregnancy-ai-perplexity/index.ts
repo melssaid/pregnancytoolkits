@@ -116,7 +116,7 @@ async function getMonthlyUsageCount(clientId: string, userId: string | null): Pr
           .then(({ count, error }) => {
             if (error) console.error("[AI] user usage check error:", error.message);
             return count || 0;
-          })
+          }))
       );
     }
     
