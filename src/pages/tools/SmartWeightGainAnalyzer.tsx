@@ -1,6 +1,6 @@
 import React, { useMemo, useState, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Gauge, Plus, Trash2, TrendingUp, Calendar, ChevronLeft, ChevronRight, Check } from 'lucide-react';
+import { Gauge, Plus, Trash2, TrendingUp, ChevronLeft, ChevronRight, Check } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -257,59 +257,61 @@ Provide personalized advice with: 1) Assessment 2) Nutritional tips 3) Exercise 
 
         {/* Unified Week + Weight Entry Card */}
         <Card className="overflow-hidden border-primary/20">
-          <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-transparent p-4 pb-3">
-            <h3 className="text-sm font-bold text-foreground flex items-center gap-2">
-              <div className="w-7 h-7 rounded-full bg-primary/15 flex items-center justify-center">
-                <Calendar className="w-3.5 h-3.5 text-primary" />
+          <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-transparent p-4 pb-3 rtl:bg-gradient-to-l">
+            <h3 className="text-base font-bold text-foreground flex items-center gap-2.5">
+              <div className="w-8 h-8 rounded-full bg-primary/15 flex items-center justify-center">
+                <Gauge className="w-4 h-4 text-primary" />
               </div>
-              {t('toolsInternal.weightGain.addEntry', 'Add Weight')}
+              {t('toolsInternal.weightGain.addWeightEntry', 'Log Your Weight')}
             </h3>
           </div>
           <CardContent className="p-4 pt-3 space-y-4">
             {/* Week Selector */}
             <div>
-              <label className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wide mb-2 block">
-                {t('toolsInternal.weightGain.selectWeek', 'Pregnancy Week')}
+              <label className="text-xs font-bold text-muted-foreground mb-2.5 block">
+                {t('toolsInternal.weightGain.pregnancyWeek', 'Pregnancy Week')}
               </label>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-3">
                 <Button
                   variant="outline"
                   size="icon"
-                  className="h-8 w-8 rounded-full flex-shrink-0"
+                  className="h-9 w-9 rounded-full flex-shrink-0"
                   onClick={() => setSelectedWeek(w => Math.max(4, w - 1))}
                   disabled={selectedWeek <= 4}
                 >
-                  <ChevronLeft className="w-4 h-4" />
+                  <ChevronRight className="w-4 h-4 rtl:hidden" />
+                  <ChevronLeft className="w-4 h-4 hidden rtl:block" />
                 </Button>
                 <div className="flex-1 relative">
-                  <div className="flex items-center justify-center gap-1">
-                    <span className="text-3xl font-black text-primary tabular-nums">{selectedWeek}</span>
-                    <span className="text-xs text-muted-foreground font-medium">/ 42</span>
+                  <div className="flex items-center justify-center gap-1.5">
+                    <span className="text-4xl font-black text-primary tabular-nums leading-none">{selectedWeek}</span>
+                    <span className="text-sm text-muted-foreground font-semibold">/ 42</span>
                   </div>
                   {/* Week progress bar */}
-                  <div className="h-1.5 bg-muted rounded-full mt-1.5 overflow-hidden">
+                  <div className="h-2 bg-muted rounded-full mt-2 overflow-hidden">
                     <div
-                      className="h-full bg-gradient-to-r from-primary to-primary/60 rounded-full transition-all duration-300"
+                      className="h-full bg-gradient-to-r from-primary to-primary/60 rounded-full transition-all duration-300 rtl:bg-gradient-to-l"
                       style={{ width: `${((selectedWeek - 4) / 38) * 100}%` }}
                     />
                   </div>
                   {/* Trimester label */}
-                  <p className="text-[10px] text-center text-muted-foreground mt-1">
+                  <p className="text-xs text-center text-muted-foreground mt-1.5 font-medium">
                     {selectedWeek <= 13
-                      ? t('smartPlan.trimester1', 'First Trimester')
+                      ? t('toolsInternal.weightGain.trimester1', 'First Trimester')
                       : selectedWeek <= 26
-                      ? t('smartPlan.trimester2', 'Second Trimester')
-                      : t('smartPlan.trimester3', 'Third Trimester')}
+                      ? t('toolsInternal.weightGain.trimester2', 'Second Trimester')
+                      : t('toolsInternal.weightGain.trimester3', 'Third Trimester')}
                   </p>
                 </div>
                 <Button
                   variant="outline"
                   size="icon"
-                  className="h-8 w-8 rounded-full flex-shrink-0"
+                  className="h-9 w-9 rounded-full flex-shrink-0"
                   onClick={() => setSelectedWeek(w => Math.min(42, w + 1))}
                   disabled={selectedWeek >= 42}
                 >
-                  <ChevronRight className="w-4 h-4" />
+                  <ChevronLeft className="w-4 h-4 rtl:hidden" />
+                  <ChevronRight className="w-4 h-4 hidden rtl:block" />
                 </Button>
               </div>
             </div>
@@ -319,8 +321,8 @@ Provide personalized advice with: 1) Assessment 2) Nutritional tips 3) Exercise 
 
             {/* Weight Input */}
             <div>
-              <label className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wide mb-2 block">
-                {t('toolsInternal.weightGain.weightLabel', 'Your Weight')} (kg)
+              <label className="text-xs font-bold text-muted-foreground mb-2.5 block">
+                {t('toolsInternal.weightGain.currentWeightKg', 'Current Weight (kg)')}
               </label>
               <div className="flex gap-2">
                 <Input
@@ -332,18 +334,18 @@ Provide personalized advice with: 1) Assessment 2) Nutritional tips 3) Exercise 
                   value={newWeight}
                   onChange={(e) => setNewWeight(e.target.value)}
                   onKeyDown={(e) => e.key === 'Enter' && addEntry()}
-                  className="text-lg font-semibold h-11"
+                  className="text-base font-bold h-12"
                 />
-                <Button onClick={addEntry} className="h-11 px-5 gap-1.5">
+                <Button onClick={addEntry} className="h-12 px-5 gap-2 text-sm font-bold">
                   {weekHasEntry ? <Check className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
                   {weekHasEntry
-                    ? t('toolsInternal.weightGain.update', 'Update')
-                    : t('common.add', 'Add')}
+                    ? t('toolsInternal.weightGain.updateEntry', 'Update')
+                    : t('toolsInternal.weightGain.addEntryFull', 'Log Weight')}
                 </Button>
               </div>
               {weekHasEntry && (
-                <p className="text-[10px] text-primary/70 mt-1.5 font-medium">
-                  {t('toolsInternal.weightGain.weekHasEntry', 'This week already has an entry — it will be updated')}
+                <p className="text-xs text-primary/80 mt-2 font-semibold">
+                  {t('toolsInternal.weightGain.weekAlreadyLogged', 'This week already has an entry — it will be updated')}
                 </p>
               )}
             </div>
