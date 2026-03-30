@@ -31,9 +31,10 @@ export const VideoSplash: React.FC<{ onComplete: () => void }> = ({ onComplete }
     if (!video) return;
 
     const tryPlay = () => {
-      setVideoReady(true);
       video.play().catch(handleEnd);
     };
+
+    const markReady = () => setVideoReady(true);
 
     if (video.readyState >= 3) {
       tryPlay();
@@ -41,7 +42,12 @@ export const VideoSplash: React.FC<{ onComplete: () => void }> = ({ onComplete }
       video.addEventListener('canplay', tryPlay, { once: true });
     }
 
-    return () => video.removeEventListener('canplay', tryPlay);
+    video.addEventListener('playing', markReady, { once: true });
+
+    return () => {
+      video.removeEventListener('canplay', tryPlay);
+      video.removeEventListener('playing', markReady);
+    };
   }, [handleEnd]);
 
   return (
@@ -86,6 +92,7 @@ export const VideoSplash: React.FC<{ onComplete: () => void }> = ({ onComplete }
       <motion.video
         ref={videoRef}
         src="/splash-video.mp4"
+        autoPlay
         muted
         playsInline
         preload="auto"
