@@ -19,11 +19,12 @@ declare global {
 }
 
 let splashDismissed = false;
+let appFirstRenderReady = false;
+let htmlSplashEnded = false;
+
 const dismissSplash = () => {
   if (splashDismissed) return;
-
-  // Do not dismiss while HTML video splash is still playing
-  if (window.__htmlSplashVideoActive && !window.__htmlSplashVideoEnded) return;
+  if (!appFirstRenderReady || !htmlSplashEnded) return;
 
   splashDismissed = true;
   const splash = document.getElementById("splash-overlay");
@@ -32,9 +33,20 @@ const dismissSplash = () => {
   splash.style.visibility = "hidden";
   setTimeout(() => splash.remove(), 500);
 };
-window.addEventListener("app:first-render", dismissSplash, { once: true });
-window.addEventListener("html-splash-ended", dismissSplash, { once: true });
-setTimeout(dismissSplash, 8000); // safety fallback
+
+window.addEventListener("app:first-render", () => {
+  appFirstRenderReady = true;
+  dismissSplash();
+}, { once: true });
+window.addEventListener("html-splash-ended", () => {
+  htmlSplashEnded = true;
+  dismissSplash();
+}, { once: true });
+setTimeout(() => {
+  appFirstRenderReady = true;
+  htmlSplashEnded = true;
+  dismissSplash();
+}, 8000);
 
 const clearDevelopmentCaches = () => {
   if (!import.meta.env.DEV) return;
