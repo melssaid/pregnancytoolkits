@@ -1,4 +1,4 @@
-import { useMemo, memo, useState, useCallback } from "react";
+import { useMemo, memo, useState, useCallback, useEffect } from "react";
 import { useAIUsage } from "@/contexts/AIUsageContext";
 import { useSubscriptionStatus } from "@/hooks/useSubscriptionStatus";
 import { ChevronRight, ChevronLeft, ChevronDown, Lock, LockOpen, ShieldCheck, Clock, Sparkles, Brain, Gift, Crown } from "lucide-react";
@@ -248,7 +248,10 @@ const FooterCard = memo(function FooterCard() {
   const { i18n } = useTranslation();
   const navigate = useNavigate();
   const lang = i18n.language?.split('-')[0] || 'en';
-  const { remaining, limit, isLimitReached, tier } = useAIUsage();
+  const { remaining, limit, isLimitReached, tier, refresh } = useAIUsage();
+
+  // Refresh quota state when returning from pricing page
+  useEffect(() => { refresh(); }, [refresh]);
   const isAr = lang === 'ar';
   const isFree = tier === 'free';
   const usagePercent = limit > 0 ? (remaining / limit) * 100 : 0;
