@@ -248,7 +248,10 @@ const FooterCard = memo(function FooterCard() {
   const { i18n } = useTranslation();
   const navigate = useNavigate();
   const lang = i18n.language?.split('-')[0] || 'en';
-  const { remaining, limit, isLimitReached, tier } = useAIUsage();
+  const { remaining, limit, isLimitReached, tier, refresh } = useAIUsage();
+
+  // Refresh quota state when returning from pricing page
+  useEffect(() => { refresh(); }, [refresh]);
   const isAr = lang === 'ar';
   const isFree = tier === 'free';
   const usagePercent = limit > 0 ? (remaining / limit) * 100 : 0;
