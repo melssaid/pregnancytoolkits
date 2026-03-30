@@ -1,0 +1,45 @@
+name: Cleanup Old Artifacts
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # يعمل يومياً (يمكنك تعديل الجدول حسب الحاجة)
+
+  workflow_dispatch: # للسماح بتشغيله يدوياً عند الحاجة
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: List Artifacts
+      id: list-artifacts
+      run: |
+        echo "Fetching artifacts..."
+        artifacts=$(gh api repos/${{ github.repository }}/actions/artifacts --paginate | jq -c '.artifacts')
+        echo "${artifacts}" > artifacts.json
+        echo "::set-output name=artifacts::${artifacts}"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Delete Old Artifacts
+      if: steps.list-artifacts.outputs.artifacts != ""
+      run: |
+        artifacts=$(cat artifacts.json)
+        keep=4 # عدد الإصدارات التي سيتم الاحتفاظ بها
+        counter=0
+        for row in $(echo "$artifacts" | jq -r '.[] | @base64'); do
+          decoded_row=$(echo "$row" | base64 --decode)
+          artifact_id=$(echo "$decoded_row" | jq -r '.id')
+          name=$(echo "$decoded_row" | jq -r '.name')
+
+          if [ "$counter" -ge "$keep" ]; then
+            echo "Deleting artifact: $name with ID: $artifact_id"
+            gh api -X DELETE /repos/${{ github.repository }}/actions/artifacts/$artifact_id
+          fi
+          counter=$((counter + 1))
+        done
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
