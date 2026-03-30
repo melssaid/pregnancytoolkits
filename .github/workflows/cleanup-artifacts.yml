@@ -1,40 +1,20 @@
-name: Cleanup Old Artifacts
+name: Cleanup Artifacts
 
 on:
   schedule:
-    - cron: "0 0 * * *" # يعمل يومياً (يمكنك تعديل الجدول حسب الحاجة)
-
-  workflow_dispatch: # للسماح بتشغيله يدوياً عند الحاجة
+    - cron: "0 0 * * *"                   # يعمل يومياً عند منتصف الليل
+  workflow_dispatch:                       # تشغيل يدوي عند الحاجة
 
 jobs:
   cleanup:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: List Artifacts
-      id: list-artifacts
-      run: |
-        echo "Fetching artifacts..."
-        artifacts=$(gh api repos/${{ github.repository }}/actions/artifacts --paginate | jq -c '.artifacts')
-        echo "${artifacts}" > artifacts.json
-        echo "::set-output name=artifacts::${artifacts}"
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-concurrency: - name: Delete Old Artifacts
-  if: steps.list-artifacts.outputs.artifacts != ""
-  run: |
-    set -x
-    artifacts=$(cat artifacts.json)
-    keep=4
-    counter=0
-    for row in $(echo "$artifacts" | jq -r '.[] | @base64'); do
-      decoded_row=$(echo "$row" | base64 --decode)
-      artifact_id=$(echo "$decoded_row" | jq -r '.id')
-      name=$(echo "$decoded_row" | jq -r '.name')
+      - name:*
+      name=$(echo "$decoded_row" | jq -r '.name')
       created_at=$(echo "$decoded_row" | jq -r '.created_at')
       echo "Artifact #$counter: $name ($artifact_id) created at $created_at"
       if [ "$counter" -ge "$keep" ]; then
