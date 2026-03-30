@@ -6624,7 +6624,10 @@
     "bonusTitle": "🎁 Holen Sie sich 5 kostenlose Punkte!",
     "bonusDesc": "Fordern Sie 5 Bonus-KI-Punkte kostenlos an — einmal pro Monat, zeitlich begrenztes Angebot!",
     "bonusClaim": "Jetzt einlösen",
-    "bonusSuccess": "5 Punkte hinzugefügt! ✅",
+"bonusSuccess": "5 Punkte hinzugefügt! ✅",
+    "bonusPoints": "Bonuspunkte",
+    "newBalance": "Neues Guthaben",
+    "bonusDetailedSuccess": "🎉 +{{bonus}} Bonuspunkte! Neues Guthaben: {{remaining}}/{{total}}",
     "bonusSuccessDesc": "Ihre kostenlosen Punkte wurden hinzugefügt. Genießen Sie Ihre KI-Tools!",
     "googlePlayNotice": "Die Google Play-Abrechnung ist noch nicht verbunden. In der Zwischenzeit können Sie 5 kostenlose Punkte als vorübergehendes Geschenk erhalten!",
     "bonusAlreadyClaimed": "Sie haben Ihre kostenlosen Punkte diesen Monat bereits eingelöst. Neue Punkte sind nächsten Monat verfügbar."
