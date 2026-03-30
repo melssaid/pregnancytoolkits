@@ -80,7 +80,7 @@ async function getDailyUsageCount(clientId: string, userId: string | null): Prom
           .then(({ count, error }) => {
             if (error) console.error("[Enhanced] IP usage check error:", error.message);
             return count || 0;
-          })
+          }))
       );
     }
     
