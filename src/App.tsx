@@ -13,6 +13,7 @@ import { initializeAuth } from "@/lib/auth";
 import { toast } from "sonner";
 import { prefetchCriticalRoutes } from "@/lib/routePrefetch";
 import { VideoSplash, shouldShowVideoSplash } from "@/components/VideoSplash";
+import { PostSplashLanguagePicker, shouldShowPostSplashLangPicker } from "@/components/PostSplashLanguagePicker";
 
 // Lazy-load OnboardingDisclaimer — heavy imports (Calendar, date-fns) only needed on first visit
 const OnboardingDisclaimer = lazy(() => import("@/components/OnboardingDisclaimer").then(m => ({ default: m.OnboardingDisclaimer })));
