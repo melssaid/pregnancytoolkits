@@ -71,7 +71,7 @@ async function getDailyUsageCount(clientId: string, userId: string | null): Prom
     
     if (clientId && clientId !== "unknown") {
       queries.push(
-        adminClient
+        Promise.resolve(adminClient
           .from("ai_usage_logs")
           .select("*", { count: "exact", head: true })
           .eq("client_id", clientId)
@@ -80,13 +80,13 @@ async function getDailyUsageCount(clientId: string, userId: string | null): Prom
           .then(({ count, error }) => {
             if (error) console.error("[Enhanced] IP usage check error:", error.message);
             return count || 0;
-          })
+          }))
       );
     }
     
     if (userId) {
       queries.push(
-        adminClient
+        Promise.resolve(adminClient
           .from("ai_usage_logs")
           .select("*", { count: "exact", head: true })
           .eq("user_id", userId)
@@ -95,7 +95,7 @@ async function getDailyUsageCount(clientId: string, userId: string | null): Prom
           .then(({ count, error }) => {
             if (error) console.error("[Enhanced] user usage check error:", error.message);
             return count || 0;
-          })
+          }))
       );
     }
     

@@ -91,7 +91,7 @@ async function getMonthlyUsageCount(clientId: string, userId: string | null): Pr
     // Always query by IP (client_id)
     if (clientId && clientId !== "unknown") {
       queries.push(
-        adminClient
+        Promise.resolve(adminClient
           .from("ai_usage_logs")
           .select("*", { count: "exact", head: true })
           .eq("client_id", clientId)
@@ -100,14 +100,14 @@ async function getMonthlyUsageCount(clientId: string, userId: string | null): Pr
           .then(({ count, error }) => {
             if (error) console.error("[AI] IP usage check error:", error.message);
             return count || 0;
-          })
+          }))
       );
     }
     
     // Also query by user_id if available
     if (userId) {
       queries.push(
-        adminClient
+        Promise.resolve(adminClient
           .from("ai_usage_logs")
           .select("*", { count: "exact", head: true })
           .eq("user_id", userId)
@@ -116,7 +116,7 @@ async function getMonthlyUsageCount(clientId: string, userId: string | null): Pr
           .then(({ count, error }) => {
             if (error) console.error("[AI] user usage check error:", error.message);
             return count || 0;
-          })
+          }))
       );
     }
     
