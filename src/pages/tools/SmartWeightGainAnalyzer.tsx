@@ -251,8 +251,20 @@ Provide personalized advice with: 1) Assessment 2) Nutritional tips 3) Exercise 
         {/* BMI Scale */}
         <Card>
           <CardContent className="p-4">
-            <h3 className="text-[12px] font-bold mb-3">{t('toolsInternal.weightGain.bmiTitle', 'Pre-Pregnancy BMI')}</h3>
-            <BMIScaleBar bmi={bmi} t={t} />
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="text-[12px] font-bold">{t('toolsInternal.weightGain.bmiTitle', 'Pre-Pregnancy BMI')}</h3>
+              {analysis && (
+                <span className="text-[11px] font-semibold text-muted-foreground">
+                  {t('toolsInternal.weightGain.currentBmi', 'Current')}: {currentBmi.toFixed(1)}
+                </span>
+              )}
+            </div>
+            <BMIScaleBar bmi={analysis ? currentBmi : bmi} t={t} />
+            {analysis && Math.abs(currentBmi - bmi) > 0.1 && (
+              <p className="text-[10px] text-muted-foreground mt-2 text-center">
+                {t('toolsInternal.weightGain.bmiPrePregnancy', 'Pre-pregnancy BMI')}: {bmi.toFixed(1)}
+              </p>
+            )}
           </CardContent>
         </Card>
 
