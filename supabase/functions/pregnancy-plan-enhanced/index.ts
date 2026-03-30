@@ -86,7 +86,7 @@ async function getDailyUsageCount(clientId: string, userId: string | null): Prom
     
     if (userId) {
       queries.push(
-        adminClient
+        Promise.resolve(adminClient
           .from("ai_usage_logs")
           .select("*", { count: "exact", head: true })
           .eq("user_id", userId)
