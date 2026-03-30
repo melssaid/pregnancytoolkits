@@ -107,7 +107,7 @@ async function getMonthlyUsageCount(clientId: string, userId: string | null): Pr
     // Also query by user_id if available
     if (userId) {
       queries.push(
-        adminClient
+        Promise.resolve(adminClient
           .from("ai_usage_logs")
           .select("*", { count: "exact", head: true })
           .eq("user_id", userId)
