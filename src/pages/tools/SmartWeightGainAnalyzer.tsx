@@ -183,6 +183,12 @@ const SmartWeightGainAnalyzer: React.FC = () => {
     };
   }, [entries, prePregnancyWeight, currentWeek, bmiCategory]);
 
+  // ── Current BMI (based on latest weight) ──
+  const currentBmi = useMemo(() => {
+    if (analysis) return analysis.latestWeight / (heightM * heightM);
+    return bmi;
+  }, [analysis, heightM, bmi]);
+
   // ── Chart data (weeks 4-42) ──
   const chartData = useMemo(() => {
     const data: { week: number; min: number; max: number; actual: number | null }[] = [];
