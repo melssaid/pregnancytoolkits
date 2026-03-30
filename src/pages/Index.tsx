@@ -1,4 +1,4 @@
-import { useMemo, memo, useState, useCallback } from "react";
+import { useMemo, memo, useState, useCallback, useEffect } from "react";
 import { useAIUsage } from "@/contexts/AIUsageContext";
 import { useSubscriptionStatus } from "@/hooks/useSubscriptionStatus";
 import { ChevronRight, ChevronLeft, ChevronDown, Lock, LockOpen, ShieldCheck, Clock, Sparkles, Brain, Gift, Crown } from "lucide-react";
