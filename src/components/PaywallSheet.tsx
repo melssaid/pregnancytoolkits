@@ -42,8 +42,16 @@ export function PaywallSheet({ open, onClose, toolName }: PaywallSheetProps) {
       setBonusClaimed(true);
       setBonusAvailable(false);
       refresh();
-      // Auto-close after 2 seconds
-      setTimeout(() => onClose(), 2000);
+      const s = result.newState;
+      toast.success(
+        t('paywall.bonusDetailedSuccess', {
+          bonus: 5,
+          total: s.limit,
+          remaining: s.remaining,
+          defaultValue: `🎉 +5 ${t('paywall.bonusPoints', { defaultValue: 'bonus points' })}! ${t('paywall.newBalance', { defaultValue: 'New balance' })}: ${s.remaining}/${s.limit}`
+        })
+      );
+      setTimeout(() => onClose(), 3000);
     }
   };
 

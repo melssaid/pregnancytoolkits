@@ -38,7 +38,15 @@ export default function PricingDemo() {
       setBonusClaimed(true);
       setBonusAvailable(false);
       refresh();
-      toast.success(t('paywall.bonusSuccess'));
+      const s = result.newState;
+      toast.success(
+        t('paywall.bonusDetailedSuccess', {
+          bonus: 5,
+          total: s.limit,
+          remaining: s.remaining,
+          defaultValue: `🎉 +5 ${t('paywall.bonusPoints', { defaultValue: 'bonus points' })}! ${t('paywall.newBalance', { defaultValue: 'New balance' })}: ${s.remaining}/${s.limit}`
+        })
+      );
     }
   };
 
