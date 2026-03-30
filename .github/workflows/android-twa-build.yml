@@ -14,10 +14,6 @@ on:
         description: "Android version name (e.g. 1.0.1)"
         required: false
         default: "1.0.0"
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
 
 jobs:
   web-build:
