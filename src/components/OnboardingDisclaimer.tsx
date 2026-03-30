@@ -192,8 +192,8 @@ export function OnboardingDisclaimer() {
                 />
               )}
             </AnimatePresence>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       )}
     </AnimatePresence>
   );
