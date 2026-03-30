@@ -15,6 +15,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { SEOHead } from "@/components/SEOHead";
 import WelcomeCard from "@/components/home/WelcomeCard";
 import QuickActions from "@/components/home/QuickActions";
+import BonusPromoBanner from "@/components/home/BonusPromoBanner";
 
 
 // ── Category styling lookup — brand-cohesive rose palette ────────────────
