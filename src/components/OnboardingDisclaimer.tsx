@@ -106,10 +106,18 @@ export function OnboardingDisclaimer() {
   return (
     <AnimatePresence>
       {show && (
-        <div className="fixed inset-0 z-[300] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
-          <div
+        <motion.div
+          className="fixed inset-0 z-[300] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+        >
+          <motion.div
             className="w-full max-w-[360px] max-h-[88vh] rounded-2xl bg-card border border-border/40 shadow-xl overflow-y-auto"
             dir={isRtl ? 'rtl' : 'ltr'}
+            initial={{ opacity: 0, scale: 0.92, y: 30 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           >
             {/* Progress bar */}
             <div className="h-0.5 w-full bg-muted">
