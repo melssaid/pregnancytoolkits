@@ -101,18 +101,26 @@ const SmartWeightGainAnalyzer: React.FC = () => {
   const { toast } = useToast();
   const [entries, setEntries] = useState<WeightEntry[]>([]);
   const [newWeight, setNewWeight] = useState('');
+  const [selectedWeek, setSelectedWeek] = useState<number>(profile.pregnancyWeek || 20);
 
   useEffect(() => {
     setEntries(loadEntries());
   }, []);
 
-  const currentWeek = profile.pregnancyWeek || 20;
+  useEffect(() => {
+    if (profile.pregnancyWeek) setSelectedWeek(profile.pregnancyWeek);
+  }, [profile.pregnancyWeek]);
+
+  const currentWeek = selectedWeek;
   const heightCm = profile.height || 165;
   const prePregnancyWeight = profile.prePregnancyWeight || 60;
   const heightM = heightCm / 100;
   const bmi = prePregnancyWeight / (heightM * heightM);
   const bmiCategory = getBMICategory(bmi);
   const trimester = getCurrentTrimester(currentWeek);
+
+  // Check if selected week already has an entry
+  const weekHasEntry = entries.some(e => e.week === selectedWeek);
 
   // ── Add / Delete entries ──
   const addEntry = useCallback(() => {
@@ -125,14 +133,16 @@ const SmartWeightGainAnalyzer: React.FC = () => {
       id: `${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
       date: new Date().toISOString(),
       weight,
-      week: currentWeek,
+      week: selectedWeek,
     };
-    const updated = [...entries, entry];
+    // Replace existing entry for same week or add new
+    const filtered = entries.filter(e => e.week !== selectedWeek);
+    const updated = [...filtered, entry];
     setEntries(updated);
     saveEntries(updated);
     setNewWeight('');
     toast({ title: t('toolsInternal.weightGain.added') });
-  }, [newWeight, entries, currentWeek, toast, t]);
+  }, [newWeight, entries, selectedWeek, toast, t]);
 
   const deleteEntry = useCallback((id: string) => {
     const updated = entries.filter(e => e.id !== id);
