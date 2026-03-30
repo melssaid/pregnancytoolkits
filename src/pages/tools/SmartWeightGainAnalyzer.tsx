@@ -349,10 +349,6 @@ Provide personalized advice with: 1) Assessment 2) Nutritional tips 3) Exercise 
             </div>
           </CardContent>
         </Card>
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
 
         {/* Weight Gain Chart */}
         {entries.length >= 1 && (
