@@ -23,6 +23,9 @@ export function WeeklySummaryHero({ currentWeek, latestWeight, previousWeight, t
   const StatusIcon = delta === null ? Minus : delta > 0 ? TrendingUp : delta < 0 ? TrendingDown : Minus;
   const statusColor = status === 'normal' ? 'text-emerald-400' : status === 'above' ? 'text-red-400' : 'text-amber-400';
 
+  // Format numbers: show integer if whole, one decimal otherwise
+  const fmt = (n: number) => Number.isInteger(n) ? n.toString() : n.toFixed(1);
+
   return (
     <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
       <Card className="overflow-hidden border-0 shadow-xl">
@@ -48,12 +51,12 @@ export function WeeklySummaryHero({ currentWeek, latestWeight, previousWeight, t
               )}
             </div>
 
-            {/* Two main stats — big and clear */}
+            {/* Two main stats — big and clear, NO decimals */}
             <div className="flex items-end justify-around mb-4">
               <div className="text-center">
                 <p className="text-[9px] uppercase tracking-wider opacity-60 mb-1">{t('toolsInternal.weightGain.totalWeightGainLabel')}</p>
                 <motion.p className="text-3xl font-black leading-none" key={totalGain} initial={{ scale: 0.8 }} animate={{ scale: 1 }}>
-                  {totalGain >= 0 ? '+' : ''}{totalGain.toFixed(1)}
+                  {totalGain >= 0 ? '+' : ''}{fmt(totalGain)}
                 </motion.p>
                 <p className="text-[9px] opacity-50 mt-0.5">kg</p>
               </div>
@@ -62,19 +65,19 @@ export function WeeklySummaryHero({ currentWeek, latestWeight, previousWeight, t
 
               <div className="text-center">
                 <p className="text-[9px] uppercase tracking-wider opacity-60 mb-1">{t('toolsInternal.weightGain.currentWeight')}</p>
-                <p className="text-3xl font-black leading-none">{latestWeight?.toFixed(1) ?? '—'}</p>
+                <p className="text-3xl font-black leading-none">{latestWeight ? fmt(latestWeight) : '—'}</p>
                 <p className="text-[9px] opacity-50 mt-0.5">kg</p>
               </div>
             </div>
 
-            {/* Progress bar */}
+            {/* Progress bar — clean numbers */}
             <div className="space-y-1.5">
               <div className="flex items-center justify-between text-[9px]">
                 <span className="flex items-center gap-1 opacity-70">
                   <Target className="w-3 h-3" />
                   {progress}%
                 </span>
-                <span className="opacity-50">{targetMin}–{targetMax} kg</span>
+                <span className="opacity-50">{Math.round(targetMin)}–{Math.round(targetMax)} kg</span>
               </div>
               <div className="h-2 rounded-full bg-primary-foreground/15 overflow-hidden">
                 <motion.div

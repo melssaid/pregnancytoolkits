@@ -240,34 +240,7 @@ Provide personalized advice with: 1) Assessment 2) Nutritional tips 3) Exercise 
       icon={Gauge}
     >
       <div className="space-y-4">
-        {/* Hero Summary */}
-        {analysis && (
-          <WeeklySummaryHero
-            currentWeek={currentWeek}
-            latestWeight={analysis.latestWeight}
-            previousWeight={analysis.previousWeight}
-            totalGain={analysis.totalGain}
-            targetMin={analysis.targetMin}
-            targetMax={analysis.targetMax}
-            status={analysis.status}
-            t={t}
-          />
-        )}
-
-        {/* BMI Scale */}
-        <Card>
-          <CardContent className="p-4">
-            <h3 className="text-xs font-bold text-muted-foreground mb-3">{t('toolsInternal.weightGain.bmiTitle', 'Body Mass Index')}</h3>
-            <BMIScaleBar bmi={analysis ? currentBmi : bmi} t={t} />
-            {analysis && Math.abs(currentBmi - bmi) > 0.5 && (
-              <p className="text-[10px] text-muted-foreground mt-2 text-center">
-                {t('toolsInternal.weightGain.bmiPrePregnancy', 'Pre-pregnancy BMI')}: {bmi.toFixed(1)}
-              </p>
-            )}
-          </CardContent>
-        </Card>
-
-        {/* Unified Week + Weight Entry Card */}
+        {/* ① تسجيل الوزن — الإجراء الأساسي أولاً */}
         <Card className="overflow-hidden border-primary/20">
           <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-transparent p-4 pb-3 rtl:bg-gradient-to-l">
             <h3 className="text-base font-bold text-foreground flex items-center gap-2.5">
@@ -276,9 +249,11 @@ Provide personalized advice with: 1) Assessment 2) Nutritional tips 3) Exercise 
               </div>
               {t('toolsInternal.weightGain.addWeightEntry', 'Log Your Weight')}
             </h3>
+            <p className="text-[11px] text-muted-foreground mt-1 ms-10">
+              {t('toolsInternal.weightGain.addWeightDesc', 'Select your week and log your current weight')}
+            </p>
           </div>
           <CardContent className="p-4 pt-3 space-y-4">
-            {/* Week Selector — Slider */}
             <div>
               <div className="flex items-center justify-between mb-3">
                 <label className="text-xs font-bold text-muted-foreground">
@@ -310,11 +285,7 @@ Provide personalized advice with: 1) Assessment 2) Nutritional tips 3) Exercise 
                 </div>
               </div>
             </div>
-
-            {/* Divider */}
             <div className="border-t border-border/40" />
-
-            {/* Weight Input */}
             <div>
               <label className="text-xs font-bold text-muted-foreground mb-2.5 block">
                 {t('toolsInternal.weightGain.currentWeightKg', 'Current Weight (kg)')}
@@ -347,12 +318,42 @@ Provide personalized advice with: 1) Assessment 2) Nutritional tips 3) Exercise 
           </CardContent>
         </Card>
 
-        {/* Weight Gain Chart */}
+        {/* ② ملخص الأسبوع — يظهر بعد أول إدخال */}
+        {analysis && (
+          <WeeklySummaryHero
+            currentWeek={currentWeek}
+            latestWeight={analysis.latestWeight}
+            previousWeight={analysis.previousWeight}
+            totalGain={analysis.totalGain}
+            targetMin={analysis.targetMin}
+            targetMax={analysis.targetMax}
+            status={analysis.status}
+            t={t}
+          />
+        )}
+
+        {/* ③ مؤشر كتلة الجسم */}
+        <Card>
+          <CardContent className="p-4">
+            <h3 className="text-xs font-bold text-muted-foreground mb-1">{t('toolsInternal.weightGain.bmiTitle', 'Body Mass Index')}</h3>
+            <p className="text-[10px] text-muted-foreground/70 mb-3">
+              {t('toolsInternal.weightGain.bmiDesc', 'Your BMI helps determine healthy weight gain targets')}
+            </p>
+            <BMIScaleBar bmi={analysis ? currentBmi : bmi} t={t} />
+            {analysis && Math.abs(currentBmi - bmi) > 0.5 && (
+              <p className="text-[10px] text-muted-foreground mt-2 text-center">
+                {t('toolsInternal.weightGain.bmiPrePregnancy', 'Pre-pregnancy BMI')}: {bmi.toFixed(1)}
+              </p>
+            )}
+          </CardContent>
+        </Card>
+
+        {/* ④ الرسم البياني */}
         {entries.length >= 1 && (
           <WeightGainChart chartData={chartData} t={t} />
         )}
 
-        {/* Weekly Rate Gauge */}
+        {/* ⑤ معدل الأسبوعي */}
         {analysis?.weeklyRate !== null && analysis?.weeklyRate !== undefined && (
           <WeeklyRateGauge
             rate={analysis.weeklyRate}
@@ -362,7 +363,7 @@ Provide personalized advice with: 1) Assessment 2) Nutritional tips 3) Exercise 
           />
         )}
 
-        {/* Weekly Goal Card */}
+        {/* ⑥ هدف الأسبوع القادم */}
         {analysis && (
           <WeeklyGoalCard
             currentWeek={currentWeek}
@@ -373,7 +374,7 @@ Provide personalized advice with: 1) Assessment 2) Nutritional tips 3) Exercise 
           />
         )}
 
-        {/* Trimester Comparison */}
+        {/* ⑦ مقارنة الثلاثات */}
         {entries.length >= 1 && (
           <TrimesterComparison
             entries={entries}
@@ -383,13 +384,13 @@ Provide personalized advice with: 1) Assessment 2) Nutritional tips 3) Exercise 
           />
         )}
 
-        {/* Weight Distribution */}
+        {/* ⑧ توزيع الوزن */}
         <WeightDistributionCard t={t} />
 
-        {/* Medical Tip */}
+        {/* ⑨ نصيحة طبية */}
         <MedicalTipCard trimester={trimester} t={t} />
 
-        {/* AI Analysis */}
+        {/* ⑩ تحليل ذكي */}
         {analysis && (
           <AIInsightCard
             title={t('toolsInternal.weightGain.aiAnalysis', 'AI Weight Analysis')}
@@ -400,7 +401,7 @@ Provide personalized advice with: 1) Assessment 2) Nutritional tips 3) Exercise 
           />
         )}
 
-        {/* History */}
+        {/* ⑪ سجل القراءات */}
         <Card>
           <CardHeader className="pb-3">
             <CardTitle className="text-base flex items-center gap-2">
@@ -416,14 +417,14 @@ Provide personalized advice with: 1) Assessment 2) Nutritional tips 3) Exercise 
               </p>
             ) : (
               <div className="space-y-2 max-h-64 overflow-y-auto">
-                {[...entries].reverse().map(entry => (
+                {[...entries].sort((a, b) => b.week - a.week).map(entry => (
                   <div key={entry.id} className="flex items-center justify-between py-2 px-3 bg-muted/30 rounded-lg">
                     <div>
-                      <span className="font-medium text-foreground">{entry.weight} kg</span>
+                      <span className="font-semibold text-foreground">{entry.weight} kg</span>
                       <span className="text-xs text-muted-foreground ms-2">
                         {t('toolsInternal.weightGain.week', 'Week')} {entry.week}
                       </span>
-                      <div className="text-xs text-muted-foreground">
+                      <div className="text-[10px] text-muted-foreground">
                         {new Date(entry.date).toLocaleDateString()}
                       </div>
                     </div>
