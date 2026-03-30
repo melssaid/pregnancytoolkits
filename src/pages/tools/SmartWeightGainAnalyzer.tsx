@@ -1,6 +1,6 @@
 import React, { useMemo, useState, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Gauge, Plus, Trash2, TrendingUp } from 'lucide-react';
+import { Gauge, Plus, Trash2, TrendingUp, Calendar, ChevronLeft, ChevronRight, Check } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -101,18 +101,26 @@ const SmartWeightGainAnalyzer: React.FC = () => {
   const { toast } = useToast();
   const [entries, setEntries] = useState<WeightEntry[]>([]);
   const [newWeight, setNewWeight] = useState('');
+  const [selectedWeek, setSelectedWeek] = useState<number>(profile.pregnancyWeek || 20);
 
   useEffect(() => {
     setEntries(loadEntries());
   }, []);
 
-  const currentWeek = profile.pregnancyWeek || 20;
+  useEffect(() => {
+    if (profile.pregnancyWeek) setSelectedWeek(profile.pregnancyWeek);
+  }, [profile.pregnancyWeek]);
+
+  const currentWeek = selectedWeek;
   const heightCm = profile.height || 165;
   const prePregnancyWeight = profile.prePregnancyWeight || 60;
   const heightM = heightCm / 100;
   const bmi = prePregnancyWeight / (heightM * heightM);
   const bmiCategory = getBMICategory(bmi);
   const trimester = getCurrentTrimester(currentWeek);
+
+  // Check if selected week already has an entry
+  const weekHasEntry = entries.some(e => e.week === selectedWeek);
 
   // ── Add / Delete entries ──
   const addEntry = useCallback(() => {
@@ -125,14 +133,16 @@ const SmartWeightGainAnalyzer: React.FC = () => {
       id: `${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
       date: new Date().toISOString(),
       weight,
-      week: currentWeek,
+      week: selectedWeek,
     };
-    const updated = [...entries, entry];
+    // Replace existing entry for same week or add new
+    const filtered = entries.filter(e => e.week !== selectedWeek);
+    const updated = [...filtered, entry];
     setEntries(updated);
     saveEntries(updated);
     setNewWeight('');
     toast({ title: t('toolsInternal.weightGain.added') });
-  }, [newWeight, entries, currentWeek, toast, t]);
+  }, [newWeight, entries, selectedWeek, toast, t]);
 
   const deleteEntry = useCallback((id: string) => {
     const updated = entries.filter(e => e.id !== id);
@@ -245,30 +255,97 @@ Provide personalized advice with: 1) Assessment 2) Nutritional tips 3) Exercise 
           </CardContent>
         </Card>
 
-        {/* Add Weight Entry */}
-        <Card>
-          <CardHeader className="pb-3">
-            <CardTitle className="text-base flex items-center gap-2">
-              <Plus className="w-4 h-4 text-primary" />
+        {/* Unified Week + Weight Entry Card */}
+        <Card className="overflow-hidden border-primary/20">
+          <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-transparent p-4 pb-3">
+            <h3 className="text-sm font-bold text-foreground flex items-center gap-2">
+              <div className="w-7 h-7 rounded-full bg-primary/15 flex items-center justify-center">
+                <Calendar className="w-3.5 h-3.5 text-primary" />
+              </div>
               {t('toolsInternal.weightGain.addEntry', 'Add Weight')}
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex gap-2">
-              <Input
-                type="number"
-                step="0.1"
-                min="30"
-                max="300"
-                placeholder={t('toolsInternal.weightGain.weightPlaceholder', 'Weight in kg')}
-                value={newWeight}
-                onChange={(e) => setNewWeight(e.target.value)}
-                onKeyDown={(e) => e.key === 'Enter' && addEntry()}
-              />
-              <Button onClick={addEntry} size="sm">
-                <Plus className="w-4 h-4 me-1" />
-                {t('common.add', 'Add')}
-              </Button>
+            </h3>
+          </div>
+          <CardContent className="p-4 pt-3 space-y-4">
+            {/* Week Selector */}
+            <div>
+              <label className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wide mb-2 block">
+                {t('toolsInternal.weightGain.selectWeek', 'Pregnancy Week')}
+              </label>
+              <div className="flex items-center gap-2">
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="h-8 w-8 rounded-full flex-shrink-0"
+                  onClick={() => setSelectedWeek(w => Math.max(4, w - 1))}
+                  disabled={selectedWeek <= 4}
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                </Button>
+                <div className="flex-1 relative">
+                  <div className="flex items-center justify-center gap-1">
+                    <span className="text-3xl font-black text-primary tabular-nums">{selectedWeek}</span>
+                    <span className="text-xs text-muted-foreground font-medium">/ 42</span>
+                  </div>
+                  {/* Week progress bar */}
+                  <div className="h-1.5 bg-muted rounded-full mt-1.5 overflow-hidden">
+                    <div
+                      className="h-full bg-gradient-to-r from-primary to-primary/60 rounded-full transition-all duration-300"
+                      style={{ width: `${((selectedWeek - 4) / 38) * 100}%` }}
+                    />
+                  </div>
+                  {/* Trimester label */}
+                  <p className="text-[10px] text-center text-muted-foreground mt-1">
+                    {selectedWeek <= 13
+                      ? t('smartPlan.trimester1', 'First Trimester')
+                      : selectedWeek <= 26
+                      ? t('smartPlan.trimester2', 'Second Trimester')
+                      : t('smartPlan.trimester3', 'Third Trimester')}
+                  </p>
+                </div>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="h-8 w-8 rounded-full flex-shrink-0"
+                  onClick={() => setSelectedWeek(w => Math.min(42, w + 1))}
+                  disabled={selectedWeek >= 42}
+                >
+                  <ChevronRight className="w-4 h-4" />
+                </Button>
+              </div>
+            </div>
+
+            {/* Divider */}
+            <div className="border-t border-border/40" />
+
+            {/* Weight Input */}
+            <div>
+              <label className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wide mb-2 block">
+                {t('toolsInternal.weightGain.weightLabel', 'Your Weight')} (kg)
+              </label>
+              <div className="flex gap-2">
+                <Input
+                  type="number"
+                  step="0.1"
+                  min="30"
+                  max="300"
+                  placeholder={t('toolsInternal.weightGain.weightPlaceholder', 'Weight in kg')}
+                  value={newWeight}
+                  onChange={(e) => setNewWeight(e.target.value)}
+                  onKeyDown={(e) => e.key === 'Enter' && addEntry()}
+                  className="text-lg font-semibold h-11"
+                />
+                <Button onClick={addEntry} className="h-11 px-5 gap-1.5">
+                  {weekHasEntry ? <Check className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+                  {weekHasEntry
+                    ? t('toolsInternal.weightGain.update', 'Update')
+                    : t('common.add', 'Add')}
+                </Button>
+              </div>
+              {weekHasEntry && (
+                <p className="text-[10px] text-primary/70 mt-1.5 font-medium">
+                  {t('toolsInternal.weightGain.weekHasEntry', 'This week already has an entry — it will be updated')}
+                </p>
+              )}
             </div>
           </CardContent>
         </Card>
