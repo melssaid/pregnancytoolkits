@@ -15,6 +15,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { SEOHead } from "@/components/SEOHead";
 import WelcomeCard from "@/components/home/WelcomeCard";
 import QuickActions from "@/components/home/QuickActions";
+import BonusPromoBanner from "@/components/home/BonusPromoBanner";
 
 
 // ── Category styling lookup — brand-cohesive rose palette ────────────────
@@ -354,7 +355,7 @@ const FooterCard = memo(function FooterCard() {
 
 // ── Main page ───────────────────────────────────────────────────────────
 const Index = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { tier, isUnlocked, isLoading: subLoading } = useSubscriptionStatus();
 
   return (
@@ -369,6 +370,7 @@ const Index = () => {
             <JourneyCard key={config.key} config={config} index={index} isSubscriptionActive={subLoading || isUnlocked} tier={subLoading ? undefined : tier} />
           ))}
           
+          <BonusPromoBanner lang={i18n.language?.split('-')[0] || 'en'} />
           <FooterCard />
         </div>
       </section>
