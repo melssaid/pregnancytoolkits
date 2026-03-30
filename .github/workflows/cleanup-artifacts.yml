@@ -2,26 +2,19 @@ name: Cleanup Artifacts
 
 on:
   schedule:
-    - cron: "0 0 * * *"                   # يعمل يومياً عند منتصف الليل
-  workflow_dispatch:                       # تشغيل يدوي عند الحاجة
+    - cron: "0 0 * * *"
+  workflow_dispatch:
 
 jobs:
   cleanup:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name:*
-      name=$(echo "$decoded_row" | jq -r '.name')
-      created_at=$(echo "$decoded_row" | jq -r '.created_at')
-      echo "Artifact #$counter: $name ($artifact_id) created at $created_at"
-      if [ "$counter" -ge "$keep" ]; then
-        echo "Deleting artifact: $name with ID: $artifact_id"
-        gh api -X DELETE /repos/${{ github.repository }}/actions/artifacts/$artifact_id
-      fi
-      counter=$((counter + 1))
-    done
-  env:
-    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Delete old artifacts (keep latest 4)
+        run: |
+          artifacts=$(gh api repos/${{ github.repository }}/actions/artifacts --paginate -q '.artifacts | sort_by(.created_at) | reverse | .[4:] | .[].id')
+          for id in $artifacts; do
+            echo "Deleting artifact $id"
+            gh api -X DELETE /repos/${{ github.repository }}/actions/artifacts/$id || true
+          done
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
