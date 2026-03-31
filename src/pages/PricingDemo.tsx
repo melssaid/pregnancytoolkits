@@ -33,7 +33,11 @@ export default function PricingDemo() {
     console.log('[PricingDemo] Diagnostics result:', diag);
 
     if (!canPurchase) {
-      window.open("https://play.google.com/store/apps/details?id=app.pregnancytoolkits.android", "_blank");
+      toast.error(
+        isAr 
+          ? "خدمة الدفع غير متوفرة حالياً. تأكد من تحديث التطبيق وخدمات Google Play، ثم أعد فتح التطبيق." 
+          : "Payment service unavailable. Please update the app and Google Play services, then reopen."
+      );
       return;
     }
 
