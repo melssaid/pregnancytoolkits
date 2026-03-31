@@ -370,7 +370,7 @@ const Index = () => {
             <JourneyCard key={config.key} config={config} index={index} isSubscriptionActive={subLoading || isUnlocked} tier={subLoading ? undefined : tier} />
           ))}
           
-          <BonusPromoBanner lang={i18n.language?.split('-')[0] || 'en'} />
+          
           <FooterCard />
         </div>
       </section>
