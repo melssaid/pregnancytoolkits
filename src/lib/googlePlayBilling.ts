@@ -41,7 +41,10 @@ declare global {
   }
 }
 
-const PLAY_BILLING_METHOD = 'https://play.google.com/billing';
+const PLAY_BILLING_METHODS = [
+  'https://play.google.com/billing',
+  'https://play.google.com/billing/v1',
+];
 
 /**
  * Check if Digital Goods API is available (TWA environment).
@@ -58,7 +61,7 @@ export function isNativeApp(): boolean {
 }
 
 /**
- * Try to connect to Digital Goods service with detailed logging.
+ * Try to connect to Digital Goods service, cycling through known method URLs.
  */
 async function getService(): Promise<{ service: DigitalGoodsService; method: string } | null> {
   if (!isDigitalGoodsAvailable()) {
@@ -66,22 +69,37 @@ async function getService(): Promise<{ service: DigitalGoodsService; method: str
     return null;
   }
 
-  try {
-    console.log('[Billing] Attempting connection via:', PLAY_BILLING_METHOD);
-    const service = await window.getDigitalGoodsService!(PLAY_BILLING_METHOD);
-    if (service) {
-      console.log('[Billing] ✅ Connected successfully');
-      return { service, method: PLAY_BILLING_METHOD };
+  for (const method of PLAY_BILLING_METHODS) {
+    try {
+      console.log('[Billing] Attempting connection via:', method);
+      const service = await window.getDigitalGoodsService!(method);
+      if (service) {
+        console.log('[Billing] ✅ Connected via', method);
+        return { service, method };
+      }
+    } catch (err: any) {
+      console.warn('[Billing] ❌ Failed with', method, ':', err?.name, err?.message);
     }
-  } catch (err: any) {
-    console.error('[Billing] ❌ Connection failed:', err?.name, err?.message);
-    // Log extra diagnostic info
-    console.log('[Billing] Diagnostics:', {
-      userAgent: navigator.userAgent,
-      isTWA: document.referrer?.includes('android-app://'),
-      standalone: (window.matchMedia?.('(display-mode: standalone)')?.matches),
-    });
   }
+
+  // Fallback: try canMakePayment to verify PaymentRequest works
+  try {
+    const testReq = new PaymentRequest(
+      [{ supportedMethods: PLAY_BILLING_METHODS[0], data: { sku: 'test' } }],
+      { total: { label: 'Test', amount: { currency: 'USD', value: '0' } } },
+    );
+    const canPay = await testReq.canMakePayment();
+    console.log('[Billing] canMakePayment:', canPay);
+  } catch (e) {
+    console.warn('[Billing] canMakePayment check failed:', e);
+  }
+
+  // Log diagnostic info on failure
+  console.error('[Billing] All billing methods failed. Diagnostics:', {
+    userAgent: navigator.userAgent,
+    isTWA: document.referrer?.includes('android-app://'),
+    standalone: window.matchMedia?.('(display-mode: standalone)')?.matches,
+  });
 
   return null;
 }
@@ -119,7 +137,7 @@ export async function runBillingDiagnostics(): Promise<{
 
     const details = await svc.service.getDetails([PRODUCT_IDS.monthly, PRODUCT_IDS.yearly]);
     result.productsFound = details?.map(d => d.itemId) || [];
-
+    result.connectedMethod = svc.method;
     // Also check existing purchases
     try {
       const purchases = await svc.service.listPurchases();
