@@ -27,11 +27,21 @@ export default function PricingDemo() {
 
   const handleSubscribe = async () => {
     console.log('[PricingDemo] canPurchase:', canPurchase, 'getDigitalGoodsService:', typeof window.getDigitalGoodsService);
+    
+    // Run diagnostics first
+    const diag = await runBillingDiagnostics();
+    console.log('[PricingDemo] Diagnostics result:', diag);
+
     if (!canPurchase) {
-      // In non-TWA environment, open Play Store listing
       window.open("https://play.google.com/store/apps/details?id=app.pregnancytoolkits.android", "_blank");
       return;
     }
+
+    if (!diag.serviceConnected) {
+      toast.error(diag.error || 'لا يمكن الاتصال بخدمة الدفع');
+      return;
+    }
+
     const sent = await requestPurchase(
       selected,
       () => {
@@ -43,6 +53,7 @@ export default function PricingDemo() {
     if (!sent) {
       toast.info(t("pricing.purchaseCancelled") || "Purchase was cancelled");
     }
+  };
   };
 
   const price = selected === "yearly" ? "$19.99" : "$2.99";
