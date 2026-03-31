@@ -128,68 +128,7 @@ export function PaywallSheet({ open, onClose, toolName }: PaywallSheetProps) {
                   </div>
                 </div>
 
-                {/* Google Play Not Connected Notice + Bonus */}
-                {isPromoActive() && (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.12 }}
-                    className="relative rounded-2xl overflow-hidden border-2 border-amber-400/40"
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-r from-amber-500/10 via-orange-500/5 to-amber-500/10" />
-                    <div className="relative px-4 py-3.5 space-y-3">
-                      <div className="flex items-start gap-2.5">
-                        <div className="w-9 h-9 rounded-lg bg-amber-500/15 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <Gift className="w-4 h-4 text-amber-600" />
-                        </div>
-                        <p className="text-[11px] text-muted-foreground leading-relaxed">
-                          {t('paywall.googlePlayNotice')}
-                        </p>
-                      </div>
 
-                      {bonusAvailable && !bonusClaimed && (
-                        <div className="flex items-center gap-3 pt-2 border-t border-amber-400/20">
-                          <motion.div
-                            animate={{ rotate: [0, 10, -10, 0] }}
-                            transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 2 }}
-                            className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center flex-shrink-0 shadow-md shadow-emerald-500/25"
-                          >
-                            <Zap className="w-5 h-5 text-white" />
-                          </motion.div>
-                          <div className="flex-1 min-w-0">
-                            <p className="text-sm font-bold text-foreground">{t('paywall.bonusTitle')}</p>
-                            <p className="text-[10px] text-muted-foreground">{t('paywall.bonusDesc')}</p>
-                            <Button
-                              onClick={handleClaimBonus}
-                              size="sm"
-                              className="mt-2 h-8 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-xs font-bold hover:from-emerald-600 hover:to-teal-600 shadow-md"
-                            >
-                              <Gift className="w-3.5 h-3.5 me-1.5" />
-                              {t('paywall.bonusClaim')}
-                            </Button>
-                          </div>
-                        </div>
-                      )}
-
-                      {bonusClaimed && (
-                        <div className="flex items-center gap-3 pt-2 border-t border-emerald-400/20">
-                          <CheckCircle2 className="w-7 h-7 text-emerald-500 flex-shrink-0" />
-                          <div>
-                            <p className="text-sm font-bold text-foreground">{t('paywall.bonusSuccess')}</p>
-                            <p className="text-[10px] text-muted-foreground">{t('paywall.bonusSuccessDesc')}</p>
-                          </div>
-                        </div>
-                      )}
-
-                      {!bonusAvailable && !bonusClaimed && (
-                        <div className="flex items-center gap-3 pt-2 border-t border-amber-400/20">
-                          <CheckCircle2 className="w-6 h-6 text-amber-500 flex-shrink-0" />
-                          <p className="text-[11px] text-muted-foreground">{t('paywall.bonusAlreadyClaimed')}</p>
-                        </div>
-                      )}
-                    </div>
-                  </motion.div>
-                )}
 
                 {/* Free Trial Offer */}
                 {showTrialOffer && !bonusClaimed && (
