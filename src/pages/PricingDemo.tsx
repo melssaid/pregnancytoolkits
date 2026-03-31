@@ -21,7 +21,7 @@ export default function PricingDemo() {
   const { t, i18n } = useTranslation();
   const { isRTL } = useLanguage();
   const navigate = useNavigate();
-  const [selected, setSelected] = useState<PlanType>("monthly");
+  const [selected, setSelected] = useState<PlanType>("yearly");
   const isAr = i18n.language === "ar";
   const canPurchase = isDigitalGoodsAvailable();
 
