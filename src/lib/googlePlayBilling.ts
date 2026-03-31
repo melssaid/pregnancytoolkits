@@ -119,42 +119,135 @@ export async function runBillingDiagnostics(): Promise<{
   productsFound: string[];
   connectedMethod?: string;
   existingPurchases?: string[];
+  canMakePayment?: boolean;
+  isTWA: boolean;
+  isStandalone: boolean;
+  displayMode: string;
+  referrer: string;
+  userAgent: string;
+  chromeVersion?: string;
+  androidVersion?: string;
+  playStoreInstall: boolean;
+  windowControlsOverlay: boolean;
+  serviceWorkerActive: boolean;
+  authStatus?: string;
+  productDetails?: Array<{ id: string; title: string; price: string; type: string }>;
   error?: string;
+  errors: string[];
 }> {
+  const errors: string[] = [];
+
+  // ── Environment checks ──
+  const ua = navigator.userAgent;
+  const chromeMatch = ua.match(/Chrome\/(\d+)/);
+  const chromeVersion = chromeMatch ? chromeMatch[1] : undefined;
+  const androidMatch = ua.match(/Android\s+([\d.]+)/);
+  const androidVersion = androidMatch ? androidMatch[1] : undefined;
+  const isTWA = document.referrer?.includes('android-app://') || false;
+  const isStandalone = window.matchMedia?.('(display-mode: standalone)')?.matches || false;
+  const displayMode = ['standalone', 'fullscreen', 'minimal-ui', 'browser']
+    .find(m => window.matchMedia?.(`(display-mode: ${m})`)?.matches) || 'unknown';
+  const playStoreInstall = isTWA || (isStandalone && ua.includes('Android'));
+  const windowControlsOverlay = 'windowControlsOverlay' in navigator;
+  const serviceWorkerActive = !!(navigator.serviceWorker?.controller);
+
   const result: any = {
     apiAvailable: isDigitalGoodsAvailable(),
     serviceConnected: false,
     productsFound: [],
+    isTWA,
+    isStandalone,
+    displayMode,
+    referrer: document.referrer || '(empty)',
+    userAgent: ua,
+    chromeVersion,
+    androidVersion,
+    playStoreInstall,
+    windowControlsOverlay,
+    serviceWorkerActive,
+    errors,
   };
 
+  // ── Auth check ──
+  try {
+    const { data: { user } } = await supabase.auth.getUser();
+    result.authStatus = user ? `authenticated (${user.id.slice(0, 8)}…)` : 'not authenticated';
+  } catch {
+    result.authStatus = 'auth check failed';
+  }
+
+  // ── API availability ──
   if (!result.apiAvailable) {
-    result.error = 'Digital Goods API not found — not running in TWA';
+    errors.push('Digital Goods API not found — not running in TWA');
+    
+    // Check canMakePayment as fallback signal
+    try {
+      const testReq = new PaymentRequest(
+        [{ supportedMethods: PLAY_BILLING_METHODS[0], data: { sku: 'test' } }],
+        { total: { label: 'Test', amount: { currency: 'USD', value: '0' } } },
+      );
+      result.canMakePayment = await testReq.canMakePayment();
+    } catch {
+      result.canMakePayment = false;
+    }
+
+    if (!isTWA) errors.push('Not launched as TWA (referrer missing android-app://)');
+    if (chromeVersion && parseInt(chromeVersion) < 101) errors.push(`Chrome ${chromeVersion} too old — need 101+`);
+    
     console.log('[Billing Diagnostics]', result);
     return result;
   }
 
+  // ── Service connection ──
   try {
     const svc = await getService();
     if (!svc) {
-      result.error = 'Could not connect to billing service';
+      errors.push('Could not connect to billing service via any method');
       console.log('[Billing Diagnostics]', result);
       return result;
     }
     result.serviceConnected = true;
     result.connectedMethod = svc.method;
 
-    const details = await svc.service.getDetails([PRODUCT_IDS.monthly, PRODUCT_IDS.yearly]);
-    result.productsFound = details?.map(d => d.itemId) || [];
-    
-    // Also check existing purchases
+    // ── Product details ──
+    try {
+      const details = await svc.service.getDetails([PRODUCT_IDS.monthly, PRODUCT_IDS.yearly]);
+      result.productsFound = details?.map(d => d.itemId) || [];
+      result.productDetails = details?.map(d => ({
+        id: d.itemId,
+        title: d.title,
+        price: `${d.price.value} ${d.price.currency}`,
+        type: d.type,
+      })) || [];
+      if (!details?.length) {
+        errors.push('getDetails returned empty — products may not be published/approved in Play Console');
+      }
+    } catch (e: any) {
+      errors.push(`getDetails failed: ${e?.name}: ${e?.message}`);
+    }
+
+    // ── Existing purchases ──
     try {
       const purchases = await svc.service.listPurchases();
       result.existingPurchases = purchases?.map(p => p.itemId) || [];
-    } catch (e) {
-      console.warn('[Billing] listPurchases failed:', e);
+    } catch (e: any) {
+      errors.push(`listPurchases failed: ${e?.name}: ${e?.message}`);
+    }
+
+    // ── canMakePayment ──
+    try {
+      const testReq = new PaymentRequest(
+        [{ supportedMethods: svc.method, data: { sku: PRODUCT_IDS.monthly } }],
+        { total: { label: 'Test', amount: { currency: 'USD', value: '0' } } },
+      );
+      result.canMakePayment = await testReq.canMakePayment();
+      if (!result.canMakePayment) errors.push('canMakePayment returned false');
+    } catch (e: any) {
+      result.canMakePayment = false;
+      errors.push(`canMakePayment error: ${e?.name}: ${e?.message}`);
     }
   } catch (err: any) {
-    result.error = `${err?.name}: ${err?.message}`;
+    errors.push(`Service error: ${err?.name}: ${err?.message}`);
   }
 
   console.log('[Billing Diagnostics]', JSON.stringify(result, null, 2));

@@ -387,8 +387,16 @@ function BillingDiagnosticsPanel({ isAr }: { isAr: boolean }) {
     { label: isAr ? "طريقة الاتصال" : "Method", value: diag.connectedMethod || "—", ok: diag.serviceConnected },
     { label: isAr ? "المنتجات" : "Products Found", value: diag.productsFound?.length ? diag.productsFound.join(", ") : "❌", ok: diag.productsFound?.length > 0 },
     { label: isAr ? "مشتريات حالية" : "Existing Purchases", value: diag.existingPurchases?.length ? diag.existingPurchases.join(", ") : (isAr ? "لا يوجد" : "None"), ok: null },
-    { label: "TWA", value: document.referrer?.includes('android-app://') ? "✅" : "❌", ok: document.referrer?.includes('android-app://') },
-    { label: "Standalone", value: window.matchMedia?.('(display-mode: standalone)')?.matches ? "✅" : "❌", ok: window.matchMedia?.('(display-mode: standalone)')?.matches },
+    { label: "canMakePayment", value: diag.canMakePayment === true ? "✅" : diag.canMakePayment === false ? "❌" : "—", ok: diag.canMakePayment },
+    { label: "TWA", value: diag.isTWA ? "✅" : "❌", ok: diag.isTWA },
+    { label: "Standalone", value: diag.isStandalone ? "✅" : "❌", ok: diag.isStandalone },
+    { label: isAr ? "وضع العرض" : "Display Mode", value: diag.displayMode || "—", ok: null },
+    { label: "Chrome", value: diag.chromeVersion || "—", ok: diag.chromeVersion ? parseInt(diag.chromeVersion) >= 101 : null },
+    { label: "Android", value: diag.androidVersion || "—", ok: diag.androidVersion ? true : null },
+    { label: isAr ? "مصدر التشغيل" : "Referrer", value: diag.referrer?.slice(0, 30) || "—", ok: diag.isTWA },
+    { label: isAr ? "المصادقة" : "Auth", value: diag.authStatus || "—", ok: diag.authStatus?.startsWith('authenticated') },
+    { label: "Service Worker", value: diag.serviceWorkerActive ? "✅" : "❌", ok: diag.serviceWorkerActive },
+    { label: isAr ? "تثبيت Play" : "Play Install", value: diag.playStoreInstall ? "✅" : "❌", ok: diag.playStoreInstall },
   ] : [];
 
   return (
