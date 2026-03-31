@@ -58,14 +58,94 @@ export function isNativeApp(): boolean {
 }
 
 /**
+ * Try to connect to Digital Goods service with detailed logging.
+ */
+async function getService(): Promise<{ service: DigitalGoodsService; method: string } | null> {
+  if (!isDigitalGoodsAvailable()) {
+    console.warn('[Billing] Digital Goods API not available on this device');
+    return null;
+  }
+
+  try {
+    console.log('[Billing] Attempting connection via:', PLAY_BILLING_METHOD);
+    const service = await window.getDigitalGoodsService!(PLAY_BILLING_METHOD);
+    if (service) {
+      console.log('[Billing] ✅ Connected successfully');
+      return { service, method: PLAY_BILLING_METHOD };
+    }
+  } catch (err: any) {
+    console.error('[Billing] ❌ Connection failed:', err?.name, err?.message);
+    // Log extra diagnostic info
+    console.log('[Billing] Diagnostics:', {
+      userAgent: navigator.userAgent,
+      isTWA: document.referrer?.includes('android-app://'),
+      standalone: (window.matchMedia?.('(display-mode: standalone)')?.matches),
+    });
+  }
+
+  return null;
+}
+
+/**
+ * Run a full diagnostic check and log results.
+ * Call this from the pricing page for debugging.
+ */
+export async function runBillingDiagnostics(): Promise<{
+  apiAvailable: boolean;
+  serviceConnected: boolean;
+  productsFound: string[];
+  error?: string;
+}> {
+  const result: any = {
+    apiAvailable: isDigitalGoodsAvailable(),
+    serviceConnected: false,
+    productsFound: [],
+  };
+
+  if (!result.apiAvailable) {
+    result.error = 'Digital Goods API not found — not running in TWA';
+    console.log('[Billing Diagnostics]', result);
+    return result;
+  }
+
+  try {
+    const svc = await getService();
+    if (!svc) {
+      result.error = 'Could not connect to billing service';
+      console.log('[Billing Diagnostics]', result);
+      return result;
+    }
+    result.serviceConnected = true;
+
+    const details = await svc.service.getDetails([PRODUCT_IDS.monthly, PRODUCT_IDS.yearly]);
+    result.productsFound = details?.map(d => d.itemId) || [];
+
+    // Also check existing purchases
+    try {
+      const purchases = await svc.service.listPurchases();
+      (result as any).existingPurchases = purchases?.map(p => p.itemId) || [];
+    } catch (e) {
+      console.warn('[Billing] listPurchases failed:', e);
+    }
+  } catch (err: any) {
+    result.error = `${err?.name}: ${err?.message}`;
+  }
+
+  console.log('[Billing Diagnostics]', JSON.stringify(result, null, 2));
+  return result;
+}
+
+/**
  * Get product details from Google Play.
  */
 export async function getProductDetails(): Promise<DigitalGoodsItemDetails[] | null> {
-  if (!isDigitalGoodsAvailable()) return null;
+  const svc = await getService();
+  if (!svc) return null;
 
   try {
-    const service = await window.getDigitalGoodsService!(PLAY_BILLING_METHOD);
-    return await service.getDetails([PRODUCT_IDS.monthly, PRODUCT_IDS.yearly]);
+    const details = await svc.service.getDetails([PRODUCT_IDS.monthly, PRODUCT_IDS.yearly]);
+    console.log('[Billing] Products:', details?.map(d => `${d.itemId} = ${d.price.value} ${d.price.currency}`));
+    return details;
   } catch (err) {
     console.warn('[Billing] getDetails failed:', err);
     return null;
@@ -89,17 +169,23 @@ export async function requestPurchase(
   }
 
   try {
-    const service = await window.getDigitalGoodsService!(PLAY_BILLING_METHOD);
-    const details = await service.getDetails([productId]);
+    const svc = await getService();
+    if (!svc) {
+      onError?.('لا يمكن الاتصال بخدمة الدفع — أعد تشغيل التطبيق');
+      return false;
+    }
+
+    const details = await svc.service.getDetails([productId]);
+    console.log('[Billing] Product details for', productId, ':', details);
 
     if (!details?.length) {
-      onError?.('Product not found');
+      onError?.('المنتج غير متوفر حالياً — حاول مرة أخرى لاحقاً');
       return false;
     }
 
     const item = details[0];
     const request = new PaymentRequest(
-      [{ supportedMethods: PLAY_BILLING_METHOD, data: { sku: item.itemId } }],
+      [{ supportedMethods: svc.method, data: { sku: item.itemId } }],
       { total: { label: item.title, amount: { currency: item.price.currency, value: item.price.value } } },
     );
 
@@ -113,7 +199,7 @@ export async function requestPurchase(
     }
 
     // Acknowledge purchase
-    await service.acknowledge(purchaseToken, 'repeatable');
+    await svc.service.acknowledge(purchaseToken, 'repeatable');
     await response.complete('success');
 
     // Activate on server
@@ -131,7 +217,7 @@ export async function requestPurchase(
       console.error('[Billing] Cross-origin frame blocked:', err);
       onError?.('يجب فتح التطبيق من Google Play وليس من المتصفح');
     } else {
-      console.error('[Billing] Purchase error:', err);
+      console.error('[Billing] Purchase error:', err?.name, err?.message);
       onError?.(err?.message || 'Purchase failed');
     }
     return false;
