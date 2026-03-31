@@ -7,24 +7,36 @@ import { PageSkeleton } from "./PageSkeleton";
  * Returns null while splash video is active (initial load),
  * then shows PageSkeleton for internal navigation transitions.
  */
+/**
+ * During initial load (splash video active): returns null (splash overlay covers everything).
+ * After splash ends OR on internal navigation: shows PageSkeleton (logo + dots).
+ */
 function SmartFallback() {
-  const [splashDone, setSplashDone] = useState(() => {
-    // If splash overlay is already gone, show skeleton immediately
-    return !document.getElementById("splash-overlay");
+  const [phase, setPhase] = useState<'splash' | 'ready'>(() => {
+    // If splash overlay exists, we're in initial load — show nothing
+    if (document.getElementById("splash-overlay")) return 'splash';
+    // No splash = internal navigation — show skeleton
+    return 'ready';
   });
 
   useEffect(() => {
-    if (splashDone) return;
-    const handler = () => setSplashDone(true);
+    if (phase === 'ready') return;
+    
+    const handler = () => setPhase('ready');
     window.addEventListener("html-splash-ended", handler, { once: true });
-    // Safety: if splash was removed before listener attached
+    
+    // Safety: if splash was already removed
     if (!document.getElementById("splash-overlay")) {
-      setSplashDone(true);
+      setPhase('ready');
     }
+    
     return () => window.removeEventListener("html-splash-ended", handler);
-  }, [splashDone]);
+  }, [phase]);
 
-  if (!splashDone) return null;
+  // During splash phase: render nothing — the HTML splash overlay is visible
+  if (phase === 'splash') return null;
+  
+  // After splash / internal navigation: show the branded skeleton
   return <PageSkeleton />;
 }
 
