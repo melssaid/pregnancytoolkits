@@ -115,7 +115,7 @@ const ToolLanding = lazy(() => import("@/pages/ToolLanding"));
 
 export function AnimatedRoutes() {
   return (
-    <Suspense fallback={<PageSkeleton />}>
+    <Suspense fallback={<SmartFallback />}>
       <Routes>
         {/* Main Pages */}
         <Route path="/" element={<PageTransition><Index /></PageTransition>} />
