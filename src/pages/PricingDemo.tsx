@@ -25,6 +25,26 @@ export default function PricingDemo() {
   const isAr = i18n.language === "ar";
   const canPurchase = isDigitalGoodsAvailable();
 
+  const normalizeBillingError = (message?: string) => {
+    if (!message) {
+      return isAr ? "تعذر إكمال عملية الشراء حالياً. حاول مرة أخرى." : "Unable to complete the purchase right now. Please try again.";
+    }
+
+    if (message.includes("clientAppUnavailable")) {
+      return isAr
+        ? "خدمة Google Play على الجهاز غير جاهزة حالياً. امسح كاش Google Play Store وGoogle Play Services ثم افتح التطبيق المثبت من Google Play مرة أخرى."
+        : "Google Play services are not ready on this device. Clear Google Play Store and Google Play Services cache, then reopen the installed app from Google Play.";
+    }
+
+    if (message.includes("Digital Goods API") || message.includes("Payment service unavailable")) {
+      return isAr
+        ? "خدمة الدفع غير متاحة حالياً داخل التطبيق. تأكد أنك فتحت النسخة المثبتة من Google Play وأن خدمات Google Play محدثة."
+        : "Billing is currently unavailable inside the app. Make sure you opened the installed Google Play version and that Google Play services are up to date.";
+    }
+
+    return message;
+  };
+
   const handleSubscribe = async () => {
     console.log('[PricingDemo] canPurchase:', canPurchase, 'getDigitalGoodsService:', typeof window.getDigitalGoodsService);
     
@@ -42,9 +62,11 @@ export default function PricingDemo() {
     }
 
     if (!diag.serviceConnected) {
-      toast.error(diag.error || 'لا يمكن الاتصال بخدمة الدفع');
+      toast.error(normalizeBillingError(diag.error || 'لا يمكن الاتصال بخدمة الدفع'));
       return;
     }
+
+    let purchaseErrorShown = false;
 
     const sent = await requestPurchase(
       selected,
@@ -52,9 +74,13 @@ export default function PricingDemo() {
         toast.success(t("pricing.subscriptionSuccess") || "Subscription activated!");
         navigate("/");
       },
-      (msg) => toast.error(msg),
+      (msg) => {
+        purchaseErrorShown = true;
+        toast.error(normalizeBillingError(msg));
+      },
     );
-    if (!sent) {
+
+    if (!sent && !purchaseErrorShown) {
       toast.info(t("pricing.purchaseCancelled") || "Purchase was cancelled");
     }
   };
