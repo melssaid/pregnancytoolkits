@@ -4,7 +4,10 @@
     "target": {
       "namespace": "android_app",
       "package_name": "app.pregnancytoolkits.android",
-      "sha256_cert_fingerprints": ["C7:32:88:FB:25:45:F6:BD:B4:91:94:76:83:18:2B:A8:91:4A:62:71:2D:DC:5D:9A:4D:D0:95:F7:A7:A4:BC:BC"]
+      "sha256_cert_fingerprints": [
+        "C7:32:88:FB:25:45:F6:BD:B4:91:94:76:83:18:2B:A8:91:4A:62:71:2D:DC:5D:9A:4D:D0:95:F7:A7:A4:BC:BC",
+        "FD:69:F7:F3:AB:27:B8:DF:DC:E4:F5:51:93:C1:0C:1C:63:1E:6F:04:D5:B4:0B:2F:14:04:23:6D:89:A8:D9:E9"
+      ]
     }
   }
 ]
