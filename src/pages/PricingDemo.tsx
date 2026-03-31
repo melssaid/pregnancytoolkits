@@ -42,25 +42,6 @@ export default function PricingDemo() {
       toast.info(t("pricing.trialNote"));
     }
   };
-  };
-
-  const handleSubscribe = async () => {
-    if (!canPurchase) {
-      window.open(GOOGLE_PLAY_URL, "_blank");
-      return;
-    }
-    const sent = await requestPurchase(
-      selected,
-      () => {
-        toast.success(t("pricing.subscriptionSuccess") || "Subscription activated!");
-        navigate("/");
-      },
-      (msg) => toast.error(msg),
-    );
-    if (!sent) {
-      toast.info(t("pricing.trialNote"));
-    }
-  };
 
   const price = selected === "yearly" ? "$19.99" : "$2.99";
   const period = selected === "yearly" ? t("pricing.yr") : t("pricing.mo");
