@@ -187,6 +187,24 @@ jobs:
           echo "Updated minSdkVersion to 23"
           grep -n 'minSdkVersion' app/build.gradle
 
+      - name: Verify Play Billing DelegationService
+        run: |
+          echo "=== Checking AndroidManifest.xml for DelegationService ==="
+          if grep -r "DelegationService\|DigitalGoods\|playbilling\|billing" app/src/main/AndroidManifest.xml 2>/dev/null; then
+            echo "✅ Billing delegation found in manifest"
+          else
+            echo "❌ WARNING: No billing delegation in manifest!"
+            echo "--- Full manifest ---"
+            cat app/src/main/AndroidManifest.xml
+          fi
+          echo ""
+          echo "=== Checking build.gradle for billing dependencies ==="
+          grep -i "billing\|browserhelper\|alphaDependencies" app/build.gradle || echo "No billing deps found"
+          echo ""
+          echo "=== Checking generated source files ==="
+          find app/src -name "*.java" -o -name "*.kt" | head -20
+          grep -rl "DelegationService\|DigitalGoods" app/src/ 2>/dev/null || echo "No DelegationService source files found"
+
       - name: Build Android TWA (AAB + APK)
         run: |
           printf 'n\n' | bubblewrap build --skipPwaValidation
