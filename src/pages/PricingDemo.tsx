@@ -45,8 +45,8 @@ export default function PricingDemo() {
     }
   };
 
-  const price = selected === "yearly" ? "$19.99" : "$2.99";
-  const period = selected === "yearly" ? t("pricing.yr") : t("pricing.mo");
+  const price = "$2.99";
+  const period = t("pricing.mo");
 
   return (
     <div
