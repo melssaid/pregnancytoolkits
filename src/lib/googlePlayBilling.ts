@@ -10,7 +10,6 @@
  */
 
 import { supabase } from '@/integrations/supabase/client';
-import { ensureAuthenticated } from '@/lib/auth';
 
 export const PRODUCT_IDS = {
   monthly: "premium_monthly",
@@ -60,10 +59,16 @@ export function isNativeApp(): boolean {
   return isDigitalGoodsAvailable();
 }
 
+// ─── Cached Service Connection ───
+let cachedService: { service: DigitalGoodsService; method: string } | null = null;
+
 /**
  * Try to connect to Digital Goods service, cycling through known method URLs.
+ * Caches the result to avoid duplicate connections.
  */
 async function getService(): Promise<{ service: DigitalGoodsService; method: string } | null> {
+  if (cachedService) return cachedService;
+
   if (!isDigitalGoodsAvailable()) {
     console.warn('[Billing] Digital Goods API not available on this device');
     return null;
@@ -75,7 +80,8 @@ async function getService(): Promise<{ service: DigitalGoodsService; method: str
       const service = await window.getDigitalGoodsService!(method);
       if (service) {
         console.log('[Billing] ✅ Connected via', method);
-        return { service, method };
+        cachedService = { service, method };
+        return cachedService;
       }
     } catch (err: any) {
       console.warn('[Billing] ❌ Failed with', method, ':', err?.name, err?.message);
@@ -106,12 +112,13 @@ async function getService(): Promise<{ service: DigitalGoodsService; method: str
 
 /**
  * Run a full diagnostic check and log results.
- * Call this from the pricing page for debugging.
  */
 export async function runBillingDiagnostics(): Promise<{
   apiAvailable: boolean;
   serviceConnected: boolean;
   productsFound: string[];
+  connectedMethod?: string;
+  existingPurchases?: string[];
   error?: string;
 }> {
   const result: any = {
@@ -134,14 +141,15 @@ export async function runBillingDiagnostics(): Promise<{
       return result;
     }
     result.serviceConnected = true;
+    result.connectedMethod = svc.method;
 
     const details = await svc.service.getDetails([PRODUCT_IDS.monthly, PRODUCT_IDS.yearly]);
     result.productsFound = details?.map(d => d.itemId) || [];
-    result.connectedMethod = svc.method;
+    
     // Also check existing purchases
     try {
       const purchases = await svc.service.listPurchases();
-      (result as any).existingPurchases = purchases?.map(p => p.itemId) || [];
+      result.existingPurchases = purchases?.map(p => p.itemId) || [];
     } catch (e) {
       console.warn('[Billing] listPurchases failed:', e);
     }
@@ -208,26 +216,44 @@ export async function requestPurchase(
     );
 
     const response = await request.show();
-    const { purchaseToken } = response.details as any;
+    const responseDetails = response.details as any;
+    const purchaseToken = responseDetails?.purchaseToken || responseDetails?.token;
+    const orderId = responseDetails?.orderId || responseDetails?.order_id;
+
+    console.log('[Billing] Purchase response:', {
+      hasPurchaseToken: !!purchaseToken,
+      hasOrderId: !!orderId,
+      detailKeys: responseDetails ? Object.keys(responseDetails) : [],
+    });
 
     if (!purchaseToken) {
+      console.error('[Billing] No purchaseToken in response. Full details:', JSON.stringify(responseDetails));
       await response.complete('fail');
       onError?.('No purchase token received');
       return false;
     }
 
-    // Acknowledge purchase
-    await svc.service.acknowledge(purchaseToken, 'repeatable');
-    await response.complete('success');
+    // Acknowledge purchase — 'onetime' for subscriptions (not 'repeatable' which is for consumables)
+    try {
+      await svc.service.acknowledge(purchaseToken, 'onetime');
+      console.log('[Billing] ✅ Purchase acknowledged');
+    } catch (ackErr: any) {
+      console.warn('[Billing] Acknowledge failed (non-fatal):', ackErr?.message);
+      // Continue — some implementations auto-acknowledge
+    }
 
-    // Activate on server
-    const activated = await activateOnServer(purchaseToken, productId);
+    // Activate on server BEFORE completing the PaymentRequest
+    const activated = await activateOnServer(purchaseToken, productId, orderId);
+    
+    // Complete the payment response after server activation
+    await response.complete(activated ? 'success' : 'fail');
+
     if (activated) {
       onSuccess?.(productId);
     } else {
       onError?.('Failed to activate subscription');
     }
-    return true;
+    return activated;
   } catch (err: any) {
     if (err?.name === 'AbortError') {
       console.log('[Billing] User cancelled');
@@ -235,7 +261,7 @@ export async function requestPurchase(
       console.error('[Billing] Cross-origin frame blocked:', err);
       onError?.('يجب فتح التطبيق من Google Play وليس من المتصفح');
     } else {
-      console.error('[Billing] Purchase error:', err?.name, err?.message);
+      console.error('[Billing] Purchase error:', err?.name, err?.message, err);
       onError?.(err?.message || 'Purchase failed');
     }
     return false;
@@ -247,15 +273,33 @@ export async function requestPurchase(
 async function activateOnServer(
   purchaseToken: string,
   productId: string,
+  orderId?: string,
 ): Promise<boolean> {
   try {
-    const user = await ensureAuthenticated();
-    if (!user) return false;
+    // Ensure user is authenticated — get existing session or sign in
+    const { data: { user } } = await supabase.auth.getUser();
+    let currentUser = user;
+
+    if (!currentUser) {
+      // Try to sign in anonymously without triggering redirects
+      const { data, error } = await supabase.auth.signInAnonymously();
+      if (error) {
+        console.error('[Billing] Auth failed:', error.message);
+        // Still try to activate without auth as fallback
+      } else {
+        currentUser = data.user;
+      }
+    }
+
+    if (!currentUser) {
+      console.error('[Billing] No authenticated user — cannot activate');
+      return false;
+    }
 
     const { data: existing } = await supabase
       .from('subscriptions')
       .select('id')
-      .eq('user_id', user.id)
+      .eq('user_id', currentUser.id)
       .order('created_at', { ascending: false })
       .limit(1)
       .maybeSingle();
@@ -265,6 +309,7 @@ async function activateOnServer(
         subscriptionId: existing?.id || undefined,
         purchaseToken,
         productId,
+        orderId: orderId || undefined,
       },
     });
 
