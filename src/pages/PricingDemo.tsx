@@ -320,7 +320,90 @@ export default function PricingDemo() {
             </span>
           </div>
         </motion.div>
+
+        {/* Billing Diagnostics Panel */}
+        <BillingDiagnosticsPanel isAr={isAr} />
       </div>
     </div>
+  );
+}
+
+function BillingDiagnosticsPanel({ isAr }: { isAr: boolean }) {
+  const [visible, setVisible] = useState(false);
+  const [diag, setDiag] = useState<any>(null);
+  const [loading, setLoading] = useState(false);
+
+  const runDiag = async () => {
+    setLoading(true);
+    try {
+      const result = await runBillingDiagnostics();
+      setDiag(result);
+    } catch (e: any) {
+      setDiag({ error: e?.message || 'Unknown error' });
+    }
+    setLoading(false);
+  };
+
+  if (!visible) {
+    return (
+      <button
+        onClick={() => { setVisible(true); runDiag(); }}
+        className="mt-4 mx-auto block text-[10px] text-muted-foreground/40 underline"
+      >
+        {isAr ? "تشخيص حالة الدفع" : "Payment Diagnostics"}
+      </button>
+    );
+  }
+
+  const items = diag ? [
+    { label: isAr ? "Digital Goods API" : "Digital Goods API", value: diag.apiAvailable ? "✅" : "❌", ok: diag.apiAvailable },
+    { label: isAr ? "اتصال الخدمة" : "Service Connected", value: diag.serviceConnected ? "✅" : "❌", ok: diag.serviceConnected },
+    { label: isAr ? "المنتجات" : "Products Found", value: diag.productsFound?.length ? diag.productsFound.join(", ") : "❌", ok: diag.productsFound?.length > 0 },
+    { label: isAr ? "مشتريات حالية" : "Existing Purchases", value: diag.existingPurchases?.length ? diag.existingPurchases.join(", ") : (isAr ? "لا يوجد" : "None"), ok: null },
+    { label: "TWA", value: document.referrer?.includes('android-app://') ? "✅" : "❌", ok: document.referrer?.includes('android-app://') },
+    { label: "Standalone", value: window.matchMedia?.('(display-mode: standalone)')?.matches ? "✅" : "❌", ok: window.matchMedia?.('(display-mode: standalone)')?.matches },
+  ] : [];
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="mt-4 p-3 rounded-xl bg-card/80 border border-border/40 text-[10px]"
+    >
+      <div className="flex items-center justify-between mb-2">
+        <span className="font-bold text-foreground text-[11px]">
+          {isAr ? "🔧 تشخيص الدفع" : "🔧 Billing Diagnostics"}
+        </span>
+        <button onClick={() => setVisible(false)} className="text-muted-foreground">
+          <X className="w-3.5 h-3.5" />
+        </button>
+      </div>
+
+      {loading ? (
+        <p className="text-muted-foreground text-center py-2">{isAr ? "جاري الفحص..." : "Checking..."}</p>
+      ) : diag ? (
+        <div className="space-y-1.5">
+          {items.map((item, i) => (
+            <div key={i} className="flex items-center justify-between gap-2">
+              <span className="text-muted-foreground">{item.label}</span>
+              <span className={`font-mono font-bold ${item.ok === true ? 'text-emerald-500' : item.ok === false ? 'text-destructive' : 'text-muted-foreground'}`}>
+                {item.value}
+              </span>
+            </div>
+          ))}
+          {diag.error && (
+            <div className="mt-2 p-2 rounded-lg bg-destructive/10 text-destructive text-[9px] break-all">
+              {diag.error}
+            </div>
+          )}
+          <button
+            onClick={runDiag}
+            className="mt-2 w-full py-1.5 rounded-lg bg-primary/10 text-primary text-[10px] font-bold"
+          >
+            {isAr ? "إعادة الفحص" : "Re-check"}
+          </button>
+        </div>
+      ) : null}
+    </motion.div>
   );
 }
