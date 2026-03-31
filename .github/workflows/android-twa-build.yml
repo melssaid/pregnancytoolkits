@@ -181,6 +181,12 @@ jobs:
           test -f gradlew || { echo "ERROR: gradlew not generated"; exit 1; }
           echo "TWA project generated successfully"
 
+      - name: Fix minSdkVersion for alphaDependencies
+        run: |
+          sed -i 's/minSdkVersion 21/minSdkVersion 23/g' app/build.gradle
+          echo "Updated minSdkVersion to 23"
+          grep -n 'minSdkVersion' app/build.gradle
+
       - name: Build Android TWA (AAB + APK)
         run: |
           printf 'n\n' | bubblewrap build --skipPwaValidation
