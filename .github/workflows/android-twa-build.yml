@@ -185,26 +185,91 @@ jobs:
         run: |
           node scripts/patch-twa-project.mjs "${{ github.workspace }}"
 
-      - name: Verify Play Billing DelegationService
+      - name: Deep verification of TWA native binding
         run: |
-          echo "=== Checking AndroidManifest.xml for DelegationService ==="
-          if grep -r "DelegationService\|DigitalGoods\|playbilling\|billing" app/src/main/AndroidManifest.xml 2>/dev/null; then
-            echo "✅ Billing delegation found in manifest"
+          echo "╔══════════════════════════════════════════════════╗"
+          echo "║     TWA NATIVE BINDING — DEEP VERIFICATION      ║"
+          echo "╚══════════════════════════════════════════════════╝"
+          FAIL=0
+
+          echo ""
+          echo "━━━ 1. Full AndroidManifest.xml ━━━"
+          cat app/src/main/AndroidManifest.xml
+          echo ""
+
+          echo "━━━ 2. DelegationService in manifest ━━━"
+          if grep -q "DelegationService" app/src/main/AndroidManifest.xml; then
+            echo "✅ DelegationService declared"
+            grep "DelegationService" app/src/main/AndroidManifest.xml
           else
-            echo "❌ WARNING: No billing delegation in manifest!"
-            echo "--- Full manifest ---"
-            cat app/src/main/AndroidManifest.xml
+            echo "❌ FAIL: DelegationService NOT in manifest"
+            FAIL=1
           fi
           echo ""
-          echo "=== Checking build.gradle for billing dependencies ==="
-          grep -i "billing\|browserhelper\|alphaDependencies" app/build.gradle || echo "No billing deps found"
+
+          echo "━━━ 3. TRUSTED_WEB_ACTIVITY_SERVICE intent ━━━"
+          if grep -q "TRUSTED_WEB_ACTIVITY_SERVICE" app/src/main/AndroidManifest.xml; then
+            echo "✅ TWA service intent-filter present"
+          else
+            echo "❌ FAIL: TRUSTED_WEB_ACTIVITY_SERVICE intent missing"
+            FAIL=1
+          fi
           echo ""
-          echo "=== Checking generated DelegationService source ==="
-          grep -R "class DelegationService\|DigitalGoodsRequestHandler" app/src/main/java 2>/dev/null || echo "No DelegationService source found"
+
+          echo "━━━ 4. Host & applicationId from resources ━━━"
+          echo "-- strings.xml --"
+          cat app/src/main/res/values/strings.xml 2>/dev/null || echo "(no strings.xml)"
           echo ""
-          echo "=== Checking generated source files ==="
-          find app/src -name "*.java" -o -name "*.kt" | head -20
-          grep -rl "DelegationService\|DigitalGoods" app/src/ 2>/dev/null || echo "No DelegationService source files found"
+          echo "-- hostName from resources --"
+          grep -r "hostName\|host_name\|pregnancytoolkits" app/src/main/res/ 2>/dev/null || echo "(no hostName found in resources)"
+          echo ""
+          echo "-- applicationId from build.gradle --"
+          grep -i "applicationId\|namespace" app/build.gradle || echo "(not found)"
+          echo ""
+
+          echo "━━━ 5. SDK versions ━━━"
+          grep -E "compileSdk|minSdk|targetSdk" app/build.gradle
+          echo ""
+
+          echo "━━━ 6. Billing dependencies ━━━"
+          grep -i "androidbrowserhelper\|billing" app/build.gradle || echo "❌ No billing deps"
+          echo ""
+
+          echo "━━━ 7. DelegationService source file ━━━"
+          DS_FILES=$(find app/src -name "DelegationService.*" 2>/dev/null)
+          if [ -n "$DS_FILES" ]; then
+            echo "✅ Found: $DS_FILES"
+            for f in $DS_FILES; do echo "-- $f --"; cat "$f"; echo ""; done
+          else
+            echo "❌ FAIL: No DelegationService source file generated"
+            FAIL=1
+          fi
+          echo ""
+
+          echo "━━━ 8. All Java/Kotlin source files ━━━"
+          find app/src -name "*.java" -o -name "*.kt" | sort
+          echo ""
+
+          echo "━━━ 9. DigitalGoods references across project ━━━"
+          grep -rl "DigitalGoods\|playbilling\|digital_goods" app/src/ 2>/dev/null || echo "(none)"
+          echo ""
+
+          echo "━━━ 10. Asset links verification ━━━"
+          if [ -f "app/src/main/res/values/strings.xml" ]; then
+            HOST=$(grep -oP '(?<=<string name="hostName">)[^<]+' app/src/main/res/values/strings.xml 2>/dev/null)
+            echo "Host from strings.xml: ${HOST:-(not found)}"
+          fi
+          echo "Asset links in public:"
+          cat public/.well-known/assetlinks.json 2>/dev/null || echo "(not found)"
+          echo ""
+
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          if [ $FAIL -eq 0 ]; then
+            echo "✅ ALL CHECKS PASSED — native binding looks correct"
+          else
+            echo "❌ SOME CHECKS FAILED — review output above"
+            exit 1
+          fi
 
       - name: Build Android TWA (AAB + APK)
         run: |
