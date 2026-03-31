@@ -426,7 +426,25 @@ function BillingDiagnosticsPanel({ isAr }: { isAr: boolean }) {
               </span>
             </div>
           ))}
-          {diag.error && (
+          {diag.productDetails?.length > 0 && (
+            <div className="mt-2 p-2 rounded-lg bg-primary/5 text-[9px]">
+              <span className="font-bold text-foreground">{isAr ? "تفاصيل المنتجات:" : "Product Details:"}</span>
+              {diag.productDetails.map((p: any, idx: number) => (
+                <div key={idx} className="text-muted-foreground mt-0.5">
+                  {p.id}: {p.price} ({p.type})
+                </div>
+              ))}
+            </div>
+          )}
+          {diag.errors?.length > 0 && (
+            <div className="mt-2 p-2 rounded-lg bg-destructive/10 text-destructive text-[9px] space-y-1">
+              <span className="font-bold">{isAr ? "⚠️ مشاكل مكتشفة:" : "⚠️ Issues Found:"}</span>
+              {diag.errors.map((err: string, idx: number) => (
+                <div key={idx} className="break-all">• {err}</div>
+              ))}
+            </div>
+          )}
+          {diag.error && !diag.errors?.length && (
             <div className="mt-2 p-2 rounded-lg bg-destructive/10 text-destructive text-[9px] break-all">
               {diag.error}
             </div>
