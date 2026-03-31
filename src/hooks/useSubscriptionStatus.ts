@@ -128,9 +128,18 @@ export function useSubscriptionStatus(): SubscriptionStatus {
         setTier("trial");
         setSubscriptionType("trial");
       } else if (sub.status === "active" && sub.subscription_type !== "trial") {
-        setTier("premium");
-        setSubscriptionType(sub.subscription_type);
-        setTrialDaysLeft(0);
+        // Verify subscription hasn't expired
+        const subEnd = sub.subscription_end ? new Date(sub.subscription_end) : null;
+        if (subEnd && subEnd < now) {
+          // Subscription period ended despite status still "active"
+          setTier("free");
+          setSubscriptionType(null);
+          setTrialDaysLeft(0);
+        } else {
+          setTier("premium");
+          setSubscriptionType(sub.subscription_type);
+          setTrialDaysLeft(0);
+        }
       } else {
         // Trial expired, no paid subscription
         setTier("free");
