@@ -458,7 +458,17 @@ function BillingDiagnosticsPanel({ isAr }: { isAr: boolean }) {
             </button>
             <button
               onClick={() => {
-                const text = items.map(i => `${i.label}: ${i.value}`).join("\n") + (diag.error ? `\nError: ${diag.error}` : "");
+                const lines = items.map(i => `${i.label}: ${i.value}`);
+                if (diag.productDetails?.length) {
+                  lines.push("--- Products ---");
+                  diag.productDetails.forEach((p: any) => lines.push(`  ${p.id}: ${p.price} (${p.type})`));
+                }
+                if (diag.errors?.length) {
+                  lines.push("--- Issues ---");
+                  diag.errors.forEach((e: string) => lines.push(`  • ${e}`));
+                }
+                lines.push(`UserAgent: ${diag.userAgent?.slice(0, 80)}`);
+                const text = lines.join("\n");
                 navigator.clipboard.writeText(text).then(() => toast.success(isAr ? "تم النسخ" : "Copied!"));
               }}
               className="flex-1 py-1.5 rounded-lg bg-muted text-foreground text-[10px] font-bold"
