@@ -156,7 +156,7 @@ export function PaywallSheet({ open, onClose, toolName }: PaywallSheetProps) {
                 )}
 
                 {/* Benefits */}
-                {!bonusClaimed && (
+                {(
                   <div className="space-y-2.5">
                     {benefits.map((benefit, i) => (
                       <motion.div
