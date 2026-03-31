@@ -7,24 +7,46 @@ import { PageSkeleton } from "./PageSkeleton";
  * Returns null while splash video is active (initial load),
  * then shows PageSkeleton for internal navigation transitions.
  */
+/**
+ * During initial app load: returns null (the HTML splash overlay covers everything).
+ * On subsequent lazy-load navigations: shows PageSkeleton (logo + dots).
+ * 
+ * Key insight: We never show PageSkeleton during the initial load sequence.
+ * The splash video handles the "loading" state until the app is ready.
+ * PageSkeleton is ONLY for internal route transitions after the app has loaded.
+ */
+let initialLoadComplete = false;
+
 function SmartFallback() {
-  const [splashDone, setSplashDone] = useState(() => {
-    // If splash overlay is already gone, show skeleton immediately
-    return !document.getElementById("splash-overlay");
+  const [showSkeleton, setShowSkeleton] = useState(() => {
+    // If initial load is already complete, this is an internal navigation → show skeleton
+    return initialLoadComplete;
   });
 
   useEffect(() => {
-    if (splashDone) return;
-    const handler = () => setSplashDone(true);
-    window.addEventListener("html-splash-ended", handler, { once: true });
-    // Safety: if splash was removed before listener attached
+    if (showSkeleton) return;
+    
+    // Mark initial load as complete once splash ends + app renders
+    const onSplashEnd = () => {
+      // Don't show skeleton now — the app content will render directly
+      // But mark that future Suspense fallbacks should show the skeleton
+      initialLoadComplete = true;
+    };
+    
+    window.addEventListener("html-splash-ended", onSplashEnd, { once: true });
+    
+    // If splash is already gone, mark complete
     if (!document.getElementById("splash-overlay")) {
-      setSplashDone(true);
+      initialLoadComplete = true;
+      // Still don't show skeleton for this render — Index is eagerly loaded
     }
-    return () => window.removeEventListener("html-splash-ended", handler);
-  }, [splashDone]);
+    
+    return () => window.removeEventListener("html-splash-ended", onSplashEnd);
+  }, [showSkeleton]);
 
-  if (!splashDone) return null;
+  // During initial load: return null (splash overlay is visible)
+  // During internal navigation: show branded skeleton
+  if (!showSkeleton) return null;
   return <PageSkeleton />;
 }
 
