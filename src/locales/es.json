@@ -146,7 +146,8 @@
     "restore": "Restaurar compra",
     "termsPrefix": "Al continuar, aceptas nuestros",
     "and": "y",
-    "subscriptionSuccess": "¡Suscripción activada con éxito!"
+    "subscriptionSuccess": "¡Suscripción activada con éxito!",
+    "purchaseCancelled": "Se canceló la compra"
   },
   "onboarding": {
     "title": "Bienvenida a tu viaje",

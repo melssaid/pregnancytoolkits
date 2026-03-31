@@ -146,7 +146,8 @@
     "restore": "Restaurer l'achat",
     "termsPrefix": "En continuant, vous acceptez nos",
     "and": "et",
-    "subscriptionSuccess": "Abonnement activé avec succès !"
+    "subscriptionSuccess": "Abonnement activé avec succès !",
+    "purchaseCancelled": "L'achat a été annulé"
   },
   "onboarding": {
     "title": "Bienvenue dans votre parcours",

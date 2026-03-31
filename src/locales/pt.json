@@ -146,7 +146,8 @@
     "restore": "Restaurar compra",
     "termsPrefix": "Ao continuar, você concorda com nossos",
     "and": "e",
-    "subscriptionSuccess": "Assinatura ativada com sucesso!"
+    "subscriptionSuccess": "Assinatura ativada com sucesso!",
+    "purchaseCancelled": "A compra foi cancelada"
   },
   "onboarding": {
     "title": "Bem-vinda à sua jornada",
