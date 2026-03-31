@@ -65,7 +65,7 @@ export async function getProductDetails(): Promise<DigitalGoodsItemDetails[] | n
 
   try {
     const service = await window.getDigitalGoodsService!(PLAY_BILLING_METHOD);
-    return await service.getDetails([PRODUCT_IDS.monthly]);
+    return await service.getDetails([PRODUCT_IDS.monthly, PRODUCT_IDS.yearly]);
   } catch (err) {
     console.warn('[Billing] getDetails failed:', err);
     return null;
