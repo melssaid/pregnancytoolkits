@@ -21,7 +21,7 @@ export default function PricingDemo() {
   const { t, i18n } = useTranslation();
   const { isRTL } = useLanguage();
   const navigate = useNavigate();
-  const [selected, setSelected] = useState<PlanType>("yearly");
+  const [selected, setSelected] = useState<PlanType>("monthly");
   const isAr = i18n.language === "ar";
   const canPurchase = isDigitalGoodsAvailable();
 
@@ -45,8 +45,8 @@ export default function PricingDemo() {
     }
   };
 
-  const price = selected === "yearly" ? "$19.99" : "$2.99";
-  const period = selected === "yearly" ? t("pricing.yr") : t("pricing.mo");
+  const price = "$2.99";
+  const period = t("pricing.mo");
 
   return (
     <div
@@ -201,68 +201,23 @@ export default function PricingDemo() {
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35, delay: 0.18 }}
-            className="grid grid-cols-2 gap-2.5"
+            className="flex justify-center"
           >
-            {/* Yearly */}
-            <button
-              onClick={() => setSelected("yearly")}
-              className={`relative flex flex-col items-center text-center px-2 py-3.5 rounded-2xl border-2 transition-all duration-300 overflow-hidden ${
-                selected === "yearly"
-                  ? "border-primary bg-primary/[0.04] shadow-[0_0_20px_-6px_hsl(var(--primary)/0.2)]"
-                  : "border-border/30 bg-card/60 hover:border-border/50"
-              }`}
+            {/* Monthly — single plan */}
+            <div
+              className="relative flex flex-col items-center text-center px-6 py-5 rounded-2xl border-2 border-primary bg-primary/[0.04] shadow-[0_0_20px_-6px_hsl(var(--primary)/0.2)] w-full max-w-[240px]"
             >
-              {/* Best value badge */}
-              <div className="absolute -top-px -end-px">
-                <div className="px-2 py-0.5 rounded-es-lg rounded-se-[12px] bg-gradient-to-r from-primary to-primary/80">
-                  <span className="text-[8px] font-bold text-primary-foreground">{t("pricing.bestValue")}</span>
-                </div>
-              </div>
-
-              {/* Radio */}
-              <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mb-2 transition-colors ${
-                selected === "yearly" ? "border-primary bg-primary" : "border-muted-foreground/25"
-              }`}>
-                {selected === "yearly" && <Check className="w-2.5 h-2.5 text-primary-foreground" strokeWidth={3} />}
-              </div>
-
-              <span className="text-[11px] font-bold text-foreground mb-1">{t("pricing.yearly")}</span>
-
-              <span className="text-[22px] font-extrabold text-foreground tabular-nums leading-none" style={{ fontFamily: "'Cairo', sans-serif" }}>
-                $19.99
-              </span>
-              <span className="text-[10px] text-muted-foreground mt-0.5">/{t("pricing.yr")}</span>
-
-              <div className="mt-2 flex flex-col items-center gap-1">
-                <span className="text-[9px] text-muted-foreground">$1.67/{t("pricing.mo")}</span>
-                <span className="text-[8px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
-                  {t("pricing.save")}
-                </span>
-              </div>
-            </button>
-
-            {/* Monthly */}
-            <button
-              onClick={() => setSelected("monthly")}
-              className={`relative flex flex-col items-center text-center px-2 py-3.5 rounded-2xl border-2 transition-all duration-300 ${
-                selected === "monthly"
-                  ? "border-primary bg-primary/[0.04] shadow-[0_0_20px_-6px_hsl(var(--primary)/0.2)]"
-                  : "border-border/30 bg-card/60 hover:border-border/50"
-              }`}
-            >
-              <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mb-2 transition-colors ${
-                selected === "monthly" ? "border-primary bg-primary" : "border-muted-foreground/25"
-              }`}>
-                {selected === "monthly" && <Check className="w-2.5 h-2.5 text-primary-foreground" strokeWidth={3} />}
+              <div className="w-5 h-5 rounded-full border-2 border-primary bg-primary flex items-center justify-center mb-2">
+                <Check className="w-2.5 h-2.5 text-primary-foreground" strokeWidth={3} />
               </div>
 
               <span className="text-[11px] font-bold text-foreground mb-1">{t("pricing.monthly")}</span>
 
-              <span className="text-[22px] font-extrabold text-foreground tabular-nums leading-none" style={{ fontFamily: "'Cairo', sans-serif" }}>
+              <span className="text-[28px] font-extrabold text-foreground tabular-nums leading-none" style={{ fontFamily: "'Cairo', sans-serif" }}>
                 $2.99
               </span>
               <span className="text-[10px] text-muted-foreground mt-0.5">/{t("pricing.mo")}</span>
-            </button>
+            </div>
           </motion.div>
         </div>
 

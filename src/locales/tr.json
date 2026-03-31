@@ -146,7 +146,8 @@
     "restore": "Satın almayı geri yükle",
     "termsPrefix": "Devam ederek kabul etmiş olursunuz",
     "and": "ve",
-    "subscriptionSuccess": "Abonelik başarıyla etkinleştirildi!"
+    "subscriptionSuccess": "Abonelik başarıyla etkinleştirildi!",
+    "purchaseCancelled": "Satın alma iptal edildi"
   },
   "onboarding": {
     "title": "Yolculuğunuza hoş geldiniz",

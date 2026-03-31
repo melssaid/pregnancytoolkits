@@ -146,7 +146,8 @@
     "restore": "Kauf wiederherstellen",
     "termsPrefix": "Mit der Fortsetzung akzeptieren Sie unsere",
     "and": "und",
-    "subscriptionSuccess": "Abonnement erfolgreich aktiviert!"
+    "subscriptionSuccess": "Abonnement erfolgreich aktiviert!",
+    "purchaseCancelled": "Der Kauf wurde abgebrochen"
   },
   "onboarding": {
     "title": "Willkommen auf Ihrer Reise",

@@ -146,7 +146,8 @@
     "restore": "Restore Purchase",
     "termsPrefix": "By continuing, you agree to our",
     "and": "and",
-    "subscriptionSuccess": "Subscription activated successfully!"
+    "subscriptionSuccess": "Subscription activated successfully!",
+    "purchaseCancelled": "Purchase was cancelled"
   },
   "onboarding": {
     "title": "Welcome to Your Journey",

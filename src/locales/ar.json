@@ -146,7 +146,8 @@
     "restore": "استعادة الشراء",
     "termsPrefix": "بالمتابعة، أنتِ توافقين على",
     "and": "و",
-    "subscriptionSuccess": "تم تفعيل الاشتراك بنجاح!"
+    "subscriptionSuccess": "تم تفعيل الاشتراك بنجاح!",
+    "purchaseCancelled": "تم إلغاء عملية الشراء"
   },
   "onboarding": {
     "title": "مرحباً بكِ في رحلتك",
