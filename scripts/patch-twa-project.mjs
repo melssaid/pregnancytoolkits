@@ -27,7 +27,7 @@ function replaceSdkValue(content, patterns, replacementValue) {
   let nextContent = content;
 
   for (const pattern of patterns) {
-    nextContent = nextContent.replace(pattern, (_, prefix) => `${prefix}${replacementValue}`);
+    nextContent = nextContent.replace(pattern, `$1${replacementValue}`);
   }
 
   return nextContent;
@@ -87,9 +87,9 @@ const packageDir = packageName.split('.').join(path.sep);
 const delegationServicePath = path.join(appDir, 'src', 'main', 'java', packageDir, 'DelegationService.java');
 
 let nextBuildGradle = buildGradle;
-nextBuildGradle = replaceSdkValue(nextBuildGradle, [/((?:compileSdkVersion|compileSdk)\s+)/g], '34');
-nextBuildGradle = replaceSdkValue(nextBuildGradle, [/((?:targetSdkVersion|targetSdk)\s+)/g], '34');
-nextBuildGradle = replaceSdkValue(nextBuildGradle, [/((?:minSdkVersion|minSdk)\s+)/g], '23');
+nextBuildGradle = replaceSdkValue(nextBuildGradle, [/((?:compileSdkVersion|compileSdk)\s+)\d+/g], '34');
+nextBuildGradle = replaceSdkValue(nextBuildGradle, [/((?:targetSdkVersion|targetSdk)\s+)\d+/g], '34');
+nextBuildGradle = replaceSdkValue(nextBuildGradle, [/((?:minSdkVersion|minSdk)\s+)\d+/g], '23');
 
 if (!/com\.google\.androidbrowserhelper:androidbrowserhelper/.test(nextBuildGradle)) {
   nextBuildGradle = ensureDependency(nextBuildGradle, 'implementation "com.google.androidbrowserhelper:androidbrowserhelper:2.4.0"');
