@@ -54,7 +54,6 @@ export default function PricingDemo() {
       toast.info(t("pricing.purchaseCancelled") || "Purchase was cancelled");
     }
   };
-  };
 
   const price = selected === "yearly" ? "$19.99" : "$2.99";
   const period = selected === "yearly" ? t("pricing.yr") : t("pricing.mo");
