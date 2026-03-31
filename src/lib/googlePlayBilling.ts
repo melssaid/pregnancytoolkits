@@ -201,11 +201,65 @@ export async function requestPurchase(
       return false;
     }
 
-    const details = await svc.service.getDetails([productId]);
-    console.log('[Billing] Product details for', productId, ':', details);
+    // Try fetching product details - first both, then individually
+    let details = await svc.service.getDetails([productId]);
+    console.log('[Billing] getDetails([' + productId + ']):', JSON.stringify(details));
 
+    // If empty, try with all product IDs
     if (!details?.length) {
-      onError?.('المنتج غير متوفر حالياً — حاول مرة أخرى لاحقاً');
+      console.log('[Billing] Retrying with all product IDs...');
+      details = await svc.service.getDetails([PRODUCT_IDS.monthly, PRODUCT_IDS.yearly]);
+      console.log('[Billing] getDetails(all):', JSON.stringify(details));
+      // Filter to the one we want
+      if (details?.length) {
+        details = details.filter(d => d.itemId === productId);
+      }
+    }
+
+    // If still empty, try listing existing purchases (product might already be owned)
+    if (!details?.length) {
+      console.log('[Billing] No products found. Checking listPurchases...');
+      try {
+        const purchases = await svc.service.listPurchases();
+        console.log('[Billing] Existing purchases:', JSON.stringify(purchases));
+        if (purchases?.some(p => p.itemId === productId)) {
+          onError?.('لديك اشتراك نشط بالفعل في هذه الخطة');
+          return false;
+        }
+      } catch (e) {
+        console.warn('[Billing] listPurchases failed:', e);
+      }
+
+      // Try PaymentRequest directly without getDetails as last resort
+      console.log('[Billing] Attempting direct PaymentRequest without getDetails...');
+      try {
+        const directRequest = new PaymentRequest(
+          [{ supportedMethods: svc.method, data: { sku: productId } }],
+          { total: { label: 'Premium Subscription', amount: { currency: 'USD', value: plan === 'monthly' ? '2.99' : '19.99' } } },
+        );
+        const canPay = await directRequest.canMakePayment();
+        console.log('[Billing] Direct canMakePayment:', canPay);
+        if (canPay) {
+          const response = await directRequest.show();
+          const responseDetails = response.details as any;
+          const purchaseToken = responseDetails?.purchaseToken || responseDetails?.token;
+          const orderId = responseDetails?.orderId || responseDetails?.order_id;
+          console.log('[Billing] Direct purchase response:', { hasPurchaseToken: !!purchaseToken, hasOrderId: !!orderId });
+          if (purchaseToken) {
+            try { await svc.service.acknowledge(purchaseToken, 'onetime'); } catch {}
+            const activated = await activateOnServer(purchaseToken, productId, orderId);
+            await response.complete(activated ? 'success' : 'fail');
+            if (activated) onSuccess?.(productId);
+            else onError?.('Failed to activate subscription');
+            return activated;
+          }
+          await response.complete('fail');
+        }
+      } catch (directErr: any) {
+        console.warn('[Billing] Direct PaymentRequest failed:', directErr?.name, directErr?.message);
+      }
+
+      onError?.('المنتج غير متوفر حالياً — تأكد من تثبيت التطبيق من Google Play وأن الاشتراكات مفعّلة في المتجر');
       return false;
     }
 
