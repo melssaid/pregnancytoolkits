@@ -294,13 +294,6 @@ export default function PricingDemo() {
           </p>
 
           <div className="flex items-center justify-center gap-2 flex-wrap pt-0.5">
-            <button
-              onClick={() => toast.info(t("pricing.restore"))}
-              className="text-[10px] text-primary/70 hover:text-primary transition-colors"
-            >
-              {t("pricing.restore")}
-            </button>
-            <span className="text-muted-foreground/20">·</span>
             <span className="text-[9px] text-muted-foreground/50 text-center">
               {t("pricing.termsPrefix")}{" "}
               <Link to="/terms" className="underline hover:text-foreground transition-colors">
