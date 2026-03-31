@@ -1,7 +1,32 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { PageTransition } from "./PageTransition";
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useState, useEffect } from "react";
 import { PageSkeleton } from "./PageSkeleton";
+
+/**
+ * Returns null while splash video is active (initial load),
+ * then shows PageSkeleton for internal navigation transitions.
+ */
+function SmartFallback() {
+  const [splashDone, setSplashDone] = useState(() => {
+    // If splash overlay is already gone, show skeleton immediately
+    return !document.getElementById("splash-overlay");
+  });
+
+  useEffect(() => {
+    if (splashDone) return;
+    const handler = () => setSplashDone(true);
+    window.addEventListener("html-splash-ended", handler, { once: true });
+    // Safety: if splash was removed before listener attached
+    if (!document.getElementById("splash-overlay")) {
+      setSplashDone(true);
+    }
+    return () => window.removeEventListener("html-splash-ended", handler);
+  }, [splashDone]);
+
+  if (!splashDone) return null;
+  return <PageSkeleton />;
+}
 
 // EAGER LOADED - Main page for instant display
 import Index from "@/pages/Index";
