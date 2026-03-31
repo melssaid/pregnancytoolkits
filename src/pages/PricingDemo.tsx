@@ -382,8 +382,9 @@ function BillingDiagnosticsPanel({ isAr }: { isAr: boolean }) {
   }
 
   const items = diag ? [
-    { label: isAr ? "Digital Goods API" : "Digital Goods API", value: diag.apiAvailable ? "✅" : "❌", ok: diag.apiAvailable },
+    { label: "Digital Goods API", value: diag.apiAvailable ? "✅" : "❌", ok: diag.apiAvailable },
     { label: isAr ? "اتصال الخدمة" : "Service Connected", value: diag.serviceConnected ? "✅" : "❌", ok: diag.serviceConnected },
+    { label: isAr ? "طريقة الاتصال" : "Method", value: diag.connectedMethod || "—", ok: diag.serviceConnected },
     { label: isAr ? "المنتجات" : "Products Found", value: diag.productsFound?.length ? diag.productsFound.join(", ") : "❌", ok: diag.productsFound?.length > 0 },
     { label: isAr ? "مشتريات حالية" : "Existing Purchases", value: diag.existingPurchases?.length ? diag.existingPurchases.join(", ") : (isAr ? "لا يوجد" : "None"), ok: null },
     { label: "TWA", value: document.referrer?.includes('android-app://') ? "✅" : "❌", ok: document.referrer?.includes('android-app://') },
