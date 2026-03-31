@@ -6,7 +6,7 @@
  * 
  * Product IDs (Google Play Console):
  * - premium_monthly: $2.99/month
- * - premium_yearly: $19.99/year
+ * - yearly_premium: $19.99/year
  */
 
 import { supabase } from '@/integrations/supabase/client';
@@ -14,7 +14,7 @@ import { ensureAuthenticated } from '@/lib/auth';
 
 export const PRODUCT_IDS = {
   monthly: "premium_monthly",
-  yearly: "premium_yearly",
+  yearly: "yearly_premium",
 } as const;
 
 export type PlanType = keyof typeof PRODUCT_IDS;
