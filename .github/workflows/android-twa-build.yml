@@ -181,11 +181,9 @@ jobs:
           test -f gradlew || { echo "ERROR: gradlew not generated"; exit 1; }
           echo "TWA project generated successfully"
 
-      - name: Fix minSdkVersion for alphaDependencies
+      - name: Harden generated TWA project for Play Billing
         run: |
-          sed -i 's/minSdkVersion 21/minSdkVersion 23/g' app/build.gradle
-          echo "Updated minSdkVersion to 23"
-          grep -n 'minSdkVersion' app/build.gradle
+          node scripts/patch-twa-project.mjs "${{ github.workspace }}"
 
       - name: Verify Play Billing DelegationService
         run: |
@@ -200,6 +198,9 @@ jobs:
           echo ""
           echo "=== Checking build.gradle for billing dependencies ==="
           grep -i "billing\|browserhelper\|alphaDependencies" app/build.gradle || echo "No billing deps found"
+          echo ""
+          echo "=== Checking generated DelegationService source ==="
+          grep -R "class DelegationService\|DigitalGoodsRequestHandler" app/src/main/java 2>/dev/null || echo "No DelegationService source found"
           echo ""
           echo "=== Checking generated source files ==="
           find app/src -name "*.java" -o -name "*.kt" | head -20
