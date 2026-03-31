@@ -127,6 +127,9 @@ export async function requestPurchase(
   } catch (err: any) {
     if (err?.name === 'AbortError') {
       console.log('[Billing] User cancelled');
+    } else if (err?.name === 'NotAllowedError') {
+      console.error('[Billing] Cross-origin frame blocked:', err);
+      onError?.('يجب فتح التطبيق من Google Play وليس من المتصفح');
     } else {
       console.error('[Billing] Purchase error:', err);
       onError?.(err?.message || 'Purchase failed');
