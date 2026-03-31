@@ -387,8 +387,16 @@ function BillingDiagnosticsPanel({ isAr }: { isAr: boolean }) {
     { label: isAr ? "طريقة الاتصال" : "Method", value: diag.connectedMethod || "—", ok: diag.serviceConnected },
     { label: isAr ? "المنتجات" : "Products Found", value: diag.productsFound?.length ? diag.productsFound.join(", ") : "❌", ok: diag.productsFound?.length > 0 },
     { label: isAr ? "مشتريات حالية" : "Existing Purchases", value: diag.existingPurchases?.length ? diag.existingPurchases.join(", ") : (isAr ? "لا يوجد" : "None"), ok: null },
-    { label: "TWA", value: document.referrer?.includes('android-app://') ? "✅" : "❌", ok: document.referrer?.includes('android-app://') },
-    { label: "Standalone", value: window.matchMedia?.('(display-mode: standalone)')?.matches ? "✅" : "❌", ok: window.matchMedia?.('(display-mode: standalone)')?.matches },
+    { label: "canMakePayment", value: diag.canMakePayment === true ? "✅" : diag.canMakePayment === false ? "❌" : "—", ok: diag.canMakePayment },
+    { label: "TWA", value: diag.isTWA ? "✅" : "❌", ok: diag.isTWA },
+    { label: "Standalone", value: diag.isStandalone ? "✅" : "❌", ok: diag.isStandalone },
+    { label: isAr ? "وضع العرض" : "Display Mode", value: diag.displayMode || "—", ok: null },
+    { label: "Chrome", value: diag.chromeVersion || "—", ok: diag.chromeVersion ? parseInt(diag.chromeVersion) >= 101 : null },
+    { label: "Android", value: diag.androidVersion || "—", ok: diag.androidVersion ? true : null },
+    { label: isAr ? "مصدر التشغيل" : "Referrer", value: diag.referrer?.slice(0, 30) || "—", ok: diag.isTWA },
+    { label: isAr ? "المصادقة" : "Auth", value: diag.authStatus || "—", ok: diag.authStatus?.startsWith('authenticated') },
+    { label: "Service Worker", value: diag.serviceWorkerActive ? "✅" : "❌", ok: diag.serviceWorkerActive },
+    { label: isAr ? "تثبيت Play" : "Play Install", value: diag.playStoreInstall ? "✅" : "❌", ok: diag.playStoreInstall },
   ] : [];
 
   return (
@@ -418,7 +426,25 @@ function BillingDiagnosticsPanel({ isAr }: { isAr: boolean }) {
               </span>
             </div>
           ))}
-          {diag.error && (
+          {diag.productDetails?.length > 0 && (
+            <div className="mt-2 p-2 rounded-lg bg-primary/5 text-[9px]">
+              <span className="font-bold text-foreground">{isAr ? "تفاصيل المنتجات:" : "Product Details:"}</span>
+              {diag.productDetails.map((p: any, idx: number) => (
+                <div key={idx} className="text-muted-foreground mt-0.5">
+                  {p.id}: {p.price} ({p.type})
+                </div>
+              ))}
+            </div>
+          )}
+          {diag.errors?.length > 0 && (
+            <div className="mt-2 p-2 rounded-lg bg-destructive/10 text-destructive text-[9px] space-y-1">
+              <span className="font-bold">{isAr ? "⚠️ مشاكل مكتشفة:" : "⚠️ Issues Found:"}</span>
+              {diag.errors.map((err: string, idx: number) => (
+                <div key={idx} className="break-all">• {err}</div>
+              ))}
+            </div>
+          )}
+          {diag.error && !diag.errors?.length && (
             <div className="mt-2 p-2 rounded-lg bg-destructive/10 text-destructive text-[9px] break-all">
               {diag.error}
             </div>
@@ -432,7 +458,17 @@ function BillingDiagnosticsPanel({ isAr }: { isAr: boolean }) {
             </button>
             <button
               onClick={() => {
-                const text = items.map(i => `${i.label}: ${i.value}`).join("\n") + (diag.error ? `\nError: ${diag.error}` : "");
+                const lines = items.map(i => `${i.label}: ${i.value}`);
+                if (diag.productDetails?.length) {
+                  lines.push("--- Products ---");
+                  diag.productDetails.forEach((p: any) => lines.push(`  ${p.id}: ${p.price} (${p.type})`));
+                }
+                if (diag.errors?.length) {
+                  lines.push("--- Issues ---");
+                  diag.errors.forEach((e: string) => lines.push(`  • ${e}`));
+                }
+                lines.push(`UserAgent: ${diag.userAgent?.slice(0, 80)}`);
+                const text = lines.join("\n");
                 navigator.clipboard.writeText(text).then(() => toast.success(isAr ? "تم النسخ" : "Copied!"));
               }}
               className="flex-1 py-1.5 rounded-lg bg-muted text-foreground text-[10px] font-bold"
