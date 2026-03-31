@@ -47,17 +47,22 @@ Deno.serve(async (req) => {
   }
 
   try {
-    // Verify webhook secret
+    // Verify webhook secret (MANDATORY)
     const webhookSecret = Deno.env.get("GOOGLE_PLAY_WEBHOOK_SECRET");
-    if (webhookSecret) {
-      const providedSecret = req.headers.get("x-webhook-secret");
-      if (providedSecret !== webhookSecret) {
-        console.error("Invalid webhook secret");
-        return new Response(JSON.stringify({ error: "Unauthorized" }), {
-          status: 401,
-          headers: { ...corsHeaders, "Content-Type": "application/json" },
-        });
-      }
+    if (!webhookSecret) {
+      console.error("GOOGLE_PLAY_WEBHOOK_SECRET is not configured");
+      return new Response(JSON.stringify({ error: "Server misconfiguration" }), {
+        status: 500,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    const providedSecret = req.headers.get("x-webhook-secret");
+    if (providedSecret !== webhookSecret) {
+      console.error("Invalid webhook secret");
+      return new Response(JSON.stringify({ error: "Unauthorized" }), {
+        status: 401,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
     }
 
     const body = await req.json();
