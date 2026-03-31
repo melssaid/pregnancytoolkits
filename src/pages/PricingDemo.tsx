@@ -2,14 +2,12 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
-import { Check, X, Sparkles, Brain, Shield, Zap, Heart, Crown, Download, Gift, CheckCircle2 } from "lucide-react";
+import { Check, X, Sparkles, Brain, Shield, Zap, Heart, Crown } from "lucide-react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { requestPurchase, isDigitalGoodsAvailable, type PlanType } from "@/lib/googlePlayBilling";
 import { useNavigate, Link } from "react-router-dom";
 import pricingLogo from "@/assets/pricing-logo.webp";
-import { canClaimBonus, claimBonus, isPromoActive } from "@/services/smartEngine";
-import { useAIUsage } from "@/contexts/AIUsageContext";
 
 const features = [
   { icon: Brain, key: "feature1" },
@@ -19,8 +17,6 @@ const features = [
   { icon: Sparkles, key: "feature5" },
 ];
 
-const GOOGLE_PLAY_URL = "https://play.google.com/store/apps/details?id=app.pregnancytoolkits.android";
-
 export default function PricingDemo() {
   const { t, i18n } = useTranslation();
   const { isRTL } = useLanguage();
@@ -28,26 +24,24 @@ export default function PricingDemo() {
   const [selected, setSelected] = useState<PlanType>("yearly");
   const isAr = i18n.language === "ar";
   const canPurchase = isDigitalGoodsAvailable();
-  const { refresh } = useAIUsage();
-  const [bonusAvailable, setBonusAvailable] = useState(() => isPromoActive() && canClaimBonus());
-  const [bonusClaimed, setBonusClaimed] = useState(false);
 
-  const handleClaimBonus = () => {
-    const result = claimBonus();
-    if (result.success) {
-      setBonusClaimed(true);
-      setBonusAvailable(false);
-      refresh();
-      const s = result.newState;
-      toast.success(
-        t('paywall.bonusDetailedSuccess', {
-          bonus: 5,
-          total: s.limit,
-          remaining: s.remaining,
-          defaultValue: `🎉 +5 ${t('paywall.bonusPoints', { defaultValue: 'bonus points' })}! ${t('paywall.newBalance', { defaultValue: 'New balance' })}: ${s.remaining}/${s.limit}`
-        })
-      );
+  const handleSubscribe = async () => {
+    if (!canPurchase) {
+      toast.info(t("pricing.trialNote"));
+      return;
     }
+    const sent = await requestPurchase(
+      selected,
+      () => {
+        toast.success(t("pricing.subscriptionSuccess") || "Subscription activated!");
+        navigate("/");
+      },
+      (msg) => toast.error(msg),
+    );
+    if (!sent) {
+      toast.info(t("pricing.trialNote"));
+    }
+  };
   };
 
   const handleSubscribe = async () => {

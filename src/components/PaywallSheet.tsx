@@ -3,11 +3,9 @@ import { toast } from "sonner";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { Sparkles, Brain, Shield, Heart, Crown, X, Gift, Zap, CheckCircle2 } from "lucide-react";
+import { Sparkles, Brain, Shield, Heart, Crown, X, Gift } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useSubscriptionStatus } from "@/hooks/useSubscriptionStatus";
-import { canClaimBonus, claimBonus, isPromoActive } from "@/services/smartEngine";
-import { useAIUsage } from "@/contexts/AIUsageContext";
 
 interface PaywallSheetProps {
   open: boolean;
@@ -26,34 +24,11 @@ export function PaywallSheet({ open, onClose, toolName }: PaywallSheetProps) {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { tier } = useSubscriptionStatus();
-  const { refresh } = useAIUsage();
   const showTrialOffer = tier === "free";
-
-  const [bonusAvailable, setBonusAvailable] = useState(() => isPromoActive() && canClaimBonus());
-  const [bonusClaimed, setBonusClaimed] = useState(false);
 
   const handleSubscribe = () => {
     onClose();
     navigate("/pricing-demo");
-  };
-
-  const handleClaimBonus = () => {
-    const result = claimBonus();
-    if (result.success) {
-      setBonusClaimed(true);
-      setBonusAvailable(false);
-      refresh();
-      const s = result.newState;
-      toast.success(
-        t('paywall.bonusDetailedSuccess', {
-          bonus: 5,
-          total: s.limit,
-          remaining: s.remaining,
-          defaultValue: `🎉 +5 ${t('paywall.bonusPoints', { defaultValue: 'bonus points' })}! ${t('paywall.newBalance', { defaultValue: 'New balance' })}: ${s.remaining}/${s.limit}`
-        })
-      );
-      setTimeout(() => onClose(), 3000);
-    }
   };
 
   return (
