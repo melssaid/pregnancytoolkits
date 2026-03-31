@@ -137,7 +137,7 @@ export async function runBillingDiagnostics(): Promise<{
 
     const details = await svc.service.getDetails([PRODUCT_IDS.monthly, PRODUCT_IDS.yearly]);
     result.productsFound = details?.map(d => d.itemId) || [];
-
+    result.connectedMethod = svc.method;
     // Also check existing purchases
     try {
       const purchases = await svc.service.listPurchases();
