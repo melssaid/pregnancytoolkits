@@ -131,7 +131,7 @@ export function PaywallSheet({ open, onClose, toolName }: PaywallSheetProps) {
 
 
                 {/* Free Trial Offer */}
-                {showTrialOffer && !bonusClaimed && (
+                {showTrialOffer && (
                   <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
