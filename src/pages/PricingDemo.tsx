@@ -26,8 +26,10 @@ export default function PricingDemo() {
   const canPurchase = isDigitalGoodsAvailable();
 
   const handleSubscribe = async () => {
+    console.log('[PricingDemo] canPurchase:', canPurchase, 'getDigitalGoodsService:', typeof window.getDigitalGoodsService);
     if (!canPurchase) {
-      toast.info(t("pricing.trialNote"));
+      // In non-TWA environment, open Play Store listing
+      window.open("https://play.google.com/store/apps/details?id=app.pregnancytoolkits.android", "_blank");
       return;
     }
     const sent = await requestPurchase(
@@ -39,7 +41,7 @@ export default function PricingDemo() {
       (msg) => toast.error(msg),
     );
     if (!sent) {
-      toast.info(t("pricing.trialNote"));
+      toast.info(t("pricing.purchaseCancelled") || "Purchase was cancelled");
     }
   };
 
