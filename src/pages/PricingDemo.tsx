@@ -588,10 +588,17 @@ function BillingDiagnosticsPanel({ isAr }: { isAr: boolean }) {
                 lines.push(`${isAr ? "إصدار التطبيق" : "App Version"}: ${diag.appVersionName || '—'}`);
                 lines.push(`${isAr ? "مصدر التثبيت" : "Install Source"}: ${diag.installSource || '—'}`);
                 lines.push(`${isAr ? "كتالوج المنتجات" : "Catalog Status"}: ${diag.catalogReady ? '✅' : '❌'}`);
+                lines.push(`${isAr ? "نوع الخطة" : "Base Plan Type"}: ${diag.basePlanType || '—'}`);
+                lines.push(`${isAr ? "الشبكة" : "Network"}: ${diag.networkReachable ? '✅' : '❌'}`);
+                lines.push(`${isAr ? "زمن الاتصال" : "Connect Latency"}: ${diag.connectionLatencyMs ?? '—'}ms`);
                 lines.push(`${isAr ? "نسبة الجاهزية" : "Readiness"}: ${diag.readinessScore}%`);
+                if (diag.timings) {
+                  lines.push("--- Timings ---");
+                  Object.entries(diag.timings).forEach(([k, v]) => lines.push(`  ${k}: ${v}ms`));
+                }
                 if (diag.productDetails?.length) {
                   lines.push("--- Products ---");
-                  diag.productDetails.forEach((p: any) => lines.push(`  ${p.id}: ${p.price} (${p.type})`));
+                  diag.productDetails.forEach((p: any) => lines.push(`  ${p.id}: ${p.price} (${p.type}${p.subscriptionPeriod ? ', ' + p.subscriptionPeriod : ''})`));
                 }
                 if (diag.errors?.length) {
                   lines.push("--- Issues ---");
