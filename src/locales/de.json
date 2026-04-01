@@ -6354,7 +6354,14 @@
     "diaperReminders": "Windel-Erinnerung",
     "diaperHint": "Warnung nach 5 Stunden ohne Wechsel",
     "diaperReminderTitle": "🧷 Zeit zum Windelwechseln",
-    "diaperReminderMsg": "Es sind 5 Stunden seit dem letzten Windelwechsel vergangen. Schauen Sie nach Ihrem Baby!"
+    "diaperReminderMsg": "Es sind 5 Stunden seit dem letzten Windelwechsel vergangen. Schauen Sie nach Ihrem Baby!",
+    "promptTitle": "Bleib auf Kurs mit smarten Benachrichtigungen",
+    "promptDesc": "Erhalte rechtzeitige Erinnerungen für Vitamine, Termine, Wasserzufuhr und Meilensteine — auch wenn die App geschlossen ist.",
+    "promptBenefit1": "Vitamin-Erinnerungen",
+    "promptBenefit2": "Termin-Benachrichtigungen",
+    "promptBenefit3": "Meilenstein-Updates",
+    "promptEnable": "Smarte Benachrichtigungen aktivieren",
+    "promptEnabling": "Wird aktiviert..."
   },
   "seo": {
     "title": "Beste Schwangerschafts-Tracking-App",

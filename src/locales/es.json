@@ -6354,7 +6354,14 @@
     "diaperReminders": "Recordatorio de pañales",
     "diaperHint": "Alerta después de 5 horas sin cambio",
     "diaperReminderTitle": "🧷 Hora de cambiar el pañal",
-    "diaperReminderMsg": "Han pasado 5 horas desde el último cambio de pañal. ¡Revisa a tu bebé!"
+    "diaperReminderMsg": "Han pasado 5 horas desde el último cambio de pañal. ¡Revisa a tu bebé!",
+    "promptTitle": "Mantente al día con alertas inteligentes",
+    "promptDesc": "Recibe recordatorios de vitaminas, citas, hidratación y logros — incluso con la app cerrada.",
+    "promptBenefit1": "Recordatorios de vitaminas",
+    "promptBenefit2": "Alertas de citas",
+    "promptBenefit3": "Actualizaciones de logros",
+    "promptEnable": "Activar alertas inteligentes",
+    "promptEnabling": "Activando..."
   },
   "seo": {
     "title": "Mejor app de seguimiento de embarazo",
