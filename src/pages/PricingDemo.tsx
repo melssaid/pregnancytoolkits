@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
@@ -359,17 +359,46 @@ function BillingDiagnosticsPanel({ isAr }: { isAr: boolean }) {
   const [visible, setVisible] = useState(false);
   const [diag, setDiag] = useState<any>(null);
   const [loading, setLoading] = useState(false);
+  const [autoRefresh, setAutoRefresh] = useState(false);
+  const [lastCheck, setLastCheck] = useState<string | null>(null);
+  const [lastDbReport, setLastDbReport] = useState<any>(null);
 
   const runDiag = async () => {
     setLoading(true);
     try {
       const result = await runBillingDiagnostics();
       setDiag(result);
+      setLastCheck(new Date().toLocaleTimeString());
     } catch (e: any) {
       setDiag({ error: e?.message || 'Unknown error' });
+      setLastCheck(new Date().toLocaleTimeString());
     }
     setLoading(false);
   };
+
+  // Auto-refresh every 30 seconds
+  useEffect(() => {
+    if (!autoRefresh || !visible) return;
+    const interval = setInterval(() => { runDiag(); }, 30000);
+    return () => clearInterval(interval);
+  }, [autoRefresh, visible]);
+
+  // Fetch last saved report from database
+  useEffect(() => {
+    if (!visible) return;
+    const fetchLastReport = async () => {
+      try {
+        const { data } = await supabase
+          .from('billing_diagnostics')
+          .select('*')
+          .order('created_at', { ascending: false })
+          .limit(1)
+          .maybeSingle();
+        if (data) setLastDbReport(data);
+      } catch {}
+    };
+    fetchLastReport();
+  }, [visible, diag]);
 
   if (!visible) {
     return (
@@ -421,8 +450,26 @@ function BillingDiagnosticsPanel({ isAr }: { isAr: boolean }) {
         <span className="font-bold text-foreground text-[11px]">
           {isAr ? "🔧 تشخيص الدفع" : "🔧 Billing Diagnostics"}
         </span>
-        <button onClick={() => setVisible(false)} className="text-muted-foreground">
-          <X className="w-3.5 h-3.5" />
+        <div className="flex items-center gap-2">
+          {lastCheck && (
+            <span className="text-[8px] text-muted-foreground/60">{lastCheck}</span>
+          )}
+          <button onClick={() => setVisible(false)} className="text-muted-foreground">
+            <X className="w-3.5 h-3.5" />
+          </button>
+        </div>
+      </div>
+
+      {/* Auto-refresh toggle */}
+      <div className="flex items-center justify-between mb-2 px-1">
+        <span className="text-[9px] text-muted-foreground">
+          {isAr ? "تحديث تلقائي كل 30 ثانية" : "Auto-refresh every 30s"}
+        </span>
+        <button
+          onClick={() => setAutoRefresh(!autoRefresh)}
+          className={`px-2 py-0.5 rounded-full text-[9px] font-bold transition-colors ${autoRefresh ? 'bg-emerald-500/20 text-emerald-600' : 'bg-muted text-muted-foreground'}`}
+        >
+          {autoRefresh ? (isAr ? "🟢 مفعّل" : "🟢 ON") : (isAr ? "⚪ معطّل" : "⚪ OFF")}
         </button>
       </div>
 
@@ -562,6 +609,25 @@ function BillingDiagnosticsPanel({ isAr }: { isAr: boolean }) {
               {isAr ? "📤 إرسال للمتابعة" : "📤 Send Report"}
             </button>
           </div>
+
+          {/* Last saved DB report */}
+          {lastDbReport && (
+            <div className="mt-3 p-2 rounded-lg bg-muted/30 border border-border/30 text-[9px]">
+              <span className="font-bold text-muted-foreground block mb-1">
+                {isAr ? "📋 آخر تقرير محفوظ:" : "📋 Last Saved Report:"}
+              </span>
+              <div className="space-y-0.5 text-muted-foreground">
+                <div>{isAr ? "التاريخ" : "Date"}: {new Date(lastDbReport.created_at).toLocaleString()}</div>
+                <div>{isAr ? "الجاهزية" : "Readiness"}: {lastDbReport.readiness_score}% — {lastDbReport.readiness_summary}</div>
+                <div>{isAr ? "الكتالوج" : "Catalog"}: {lastDbReport.catalog_ready ? '✅' : '❌'}</div>
+                {lastDbReport.errors?.length > 0 && (
+                  <div className="text-destructive">
+                    {lastDbReport.errors.map((e: string, i: number) => <div key={i}>• {e}</div>)}
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
         </div>
       ) : null}
     </motion.div>
