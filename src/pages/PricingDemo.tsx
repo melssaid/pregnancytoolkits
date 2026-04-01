@@ -558,12 +558,29 @@ function BillingDiagnosticsPanel({ isAr }: { isAr: boolean }) {
               {diag.error}
             </div>
           )}
+          {/* Timings section */}
+          {diag.timings && Object.keys(diag.timings).length > 0 && (
+            <div className="mt-2 p-2 rounded-lg bg-muted/30 text-[9px]">
+              <span className="font-bold text-muted-foreground">{isAr ? "⏱ أزمنة التشخيص:" : "⏱ Timings:"}</span>
+              <div className="flex flex-wrap gap-x-3 gap-y-0.5 mt-1 text-muted-foreground">
+                {Object.entries(diag.timings).map(([k, v]) => (
+                  <span key={k}>{k}: <strong>{v as number}ms</strong></span>
+                ))}
+              </div>
+            </div>
+          )}
           <div className="flex gap-2 mt-2">
             <button
               onClick={() => runDiag()}
               className="flex-1 py-1.5 rounded-lg bg-primary/10 text-primary text-[10px] font-bold"
             >
               {isAr ? "إعادة الفحص" : "Re-check"}
+            </button>
+            <button
+              onClick={() => runDiag(true)}
+              className="flex-1 py-1.5 rounded-lg bg-amber-500/15 text-amber-600 dark:text-amber-400 text-[10px] font-bold"
+            >
+              {isAr ? "🔄 Force Refresh" : "🔄 Force Refresh"}
             </button>
             <button
               onClick={() => {
