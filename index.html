@@ -206,7 +206,7 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <!-- Splash overlay (outside #root so React doesn't displace it) -->
-    <div id="splash-overlay" style="position:fixed;inset:0;z-index:9999;display:none;transition:opacity 0.4s ease;will-change:opacity;background:url('/splash-video-poster.jpg') center center / cover no-repeat #faf6f2;">
+    <div id="splash-overlay" style="position:fixed;inset:0;z-index:9999;transition:opacity 0.4s ease;will-change:opacity;background:url('/splash-video-poster.jpg') center center / cover no-repeat #faf6f2;">
       <video id="splash-video" poster="/splash-video-poster.jpg" autoplay muted playsinline webkit-playsinline preload="auto"
         style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;opacity:1;"
       ></video>
@@ -232,7 +232,7 @@
           return;
         }
 
-        overlay.style.display='block';
+        
         window.__htmlSplashVideoActive=true;
         window.__htmlSplashVideoEnded=false;
 
