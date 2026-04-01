@@ -221,9 +221,16 @@
     </div>
     <script>
       (function(){
+        var SPLASH_KEY='pt_video_splash_seen';
         var overlay=document.getElementById('splash-overlay');
         var vid=document.getElementById('splash-video');
         if(!overlay||!vid){return;}
+
+        // Only show video on FIRST app open
+        if(localStorage.getItem(SPLASH_KEY)){
+          overlay.parentNode.removeChild(overlay);
+          return;
+        }
 
         overlay.style.display='block';
         window.__htmlSplashVideoActive=true;
@@ -233,6 +240,11 @@
         function endSplash(){
           if(done)return;
           done=true;
+          localStorage.setItem(SPLASH_KEY,'true');
+          overlay.style.opacity='0';
+          setTimeout(function(){
+            if(overlay.parentNode) overlay.parentNode.removeChild(overlay);
+          },400);
           window.__htmlSplashVideoActive=false;
           window.__htmlSplashVideoEnded=true;
           window.dispatchEvent(new CustomEvent('html-splash-ended'));
