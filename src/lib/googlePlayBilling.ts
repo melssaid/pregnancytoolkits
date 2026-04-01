@@ -85,6 +85,14 @@ export function isNativeApp(): boolean {
 let cachedService: { service: DigitalGoodsService; method: string } | null = null;
 
 /**
+ * Clear cached billing service — forces a fresh connection on next call.
+ */
+export function clearBillingCache(): void {
+  cachedService = null;
+  console.log('[Billing] Cache cleared — next call will reconnect');
+}
+
+/**
  * Try to connect to Digital Goods service, cycling through known method URLs.
  * Caches the result to avoid duplicate connections.
  */
