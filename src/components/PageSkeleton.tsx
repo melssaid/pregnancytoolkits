@@ -4,36 +4,36 @@ import { forwardRef } from "react";
 const LoadingScreen = forwardRef<HTMLDivElement>((_, ref) => (
   <motion.div
     ref={ref}
-    className="min-h-screen flex flex-col items-center justify-center"
-    style={{ background: "hsl(var(--background))" }}
+    className="min-h-screen flex flex-col items-center justify-center gap-6"
+    style={{ background: "hsl(var(--primary) / 0.08)" }}
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
     exit={{ opacity: 0 }}
     transition={{ duration: 0.15 }}
   >
-    <div className="relative flex items-center justify-center">
-      {/* Ripple rings */}
+    <motion.img
+      src="/splash-logo-v2.webp"
+      alt="Loading"
+      className="w-20 h-20 object-contain"
+      animate={{ scale: [1, 1.06, 1] }}
+      transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+    />
+    {/* Three bouncing dots */}
+    <div className="flex items-center gap-2">
       {[0, 1, 2].map((i) => (
         <motion.div
           key={i}
-          className="absolute rounded-full border-2"
-          style={{ borderColor: "hsl(var(--primary) / 0.25)", width: 80, height: 80 }}
-          animate={{ scale: [1, 2.2], opacity: [0.6, 0] }}
+          className="w-2.5 h-2.5 rounded-full"
+          style={{ background: "hsl(var(--primary))" }}
+          animate={{ y: [0, -8, 0], opacity: [0.4, 1, 0.4] }}
           transition={{
-            duration: 1.8,
+            duration: 0.8,
             repeat: Infinity,
-            delay: i * 0.6,
-            ease: "easeOut",
+            delay: i * 0.15,
+            ease: "easeInOut",
           }}
         />
       ))}
-      <motion.img
-        src="/splash-logo-v2.webp"
-        alt="Loading"
-        className="w-16 h-16 object-contain relative z-10"
-        animate={{ scale: [1, 1.06, 1] }}
-        transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-      />
     </div>
   </motion.div>
 ));
