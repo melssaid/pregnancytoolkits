@@ -143,7 +143,7 @@ async function getService(): Promise<{ service: DigitalGoodsService; method: str
 /**
  * Run a full diagnostic check and log results.
  */
-export async function runBillingDiagnostics(): Promise<{
+export async function runBillingDiagnostics(forceRefresh = false): Promise<{
   apiAvailable: boolean;
   serviceConnected: boolean;
   productsFound: string[];
@@ -161,7 +161,7 @@ export async function runBillingDiagnostics(): Promise<{
   windowControlsOverlay: boolean;
   serviceWorkerActive: boolean;
   authStatus?: string;
-  productDetails?: Array<{ id: string; title: string; price: string; type: string }>;
+  productDetails?: Array<{ id: string; title: string; price: string; type: string; subscriptionPeriod?: string }>;
   error?: string;
   errors: string[];
   appVersionName?: string;
@@ -170,8 +170,31 @@ export async function runBillingDiagnostics(): Promise<{
   catalogReady: boolean;
   readinessScore: number;
   readinessSummary: string;
+  timings: Record<string, number>;
+  basePlanType?: string;
+  connectionLatencyMs?: number;
+  networkReachable?: boolean;
 }> {
   const errors: string[] = [];
+  const timings: Record<string, number> = {};
+  const t0 = performance.now();
+
+  // ── Improvement 1: Clear cache on force refresh ──
+  if (forceRefresh) {
+    clearBillingCache();
+  }
+
+  // ── Improvement 4: Network reachability check ──
+  let networkReachable = true;
+  try {
+    const netStart = performance.now();
+    const netRes = await fetch('https://play.google.com/billing', { method: 'HEAD', mode: 'no-cors' }).catch(() => null);
+    timings.networkCheckMs = Math.round(performance.now() - netStart);
+    networkReachable = !!netRes;
+  } catch {
+    networkReachable = false;
+    errors.push('Network reachability check to play.google.com failed');
+  }
 
   // ── Environment checks ──
   const ua = navigator.userAgent;
@@ -205,6 +228,8 @@ export async function runBillingDiagnostics(): Promise<{
     catalogReady: false,
     readinessScore: 0,
     readinessSummary: '',
+    timings,
+    networkReachable,
   };
 
   // ── App version & install source ──
@@ -213,7 +238,6 @@ export async function runBillingDiagnostics(): Promise<{
     result.appVersionName = manifest?.version || (document.querySelector('meta[name="app-version"]') as HTMLMetaElement)?.content || 'unknown';
   } catch { result.appVersionName = 'unknown'; }
 
-  // Install source detection
   if (isTWA) {
     result.installSource = 'Google Play (TWA)';
   } else if (isStandalone) {
@@ -234,7 +258,6 @@ export async function runBillingDiagnostics(): Promise<{
   if (!result.apiAvailable) {
     errors.push('Digital Goods API not found — not running in TWA');
     
-    // Check canMakePayment as fallback signal
     try {
       const testReq = new PaymentRequest(
         [{ supportedMethods: PLAY_BILLING_METHODS[0], data: { sku: 'test' } }],
@@ -248,45 +271,88 @@ export async function runBillingDiagnostics(): Promise<{
     if (!isTWA) errors.push('Not launched as TWA (referrer missing android-app://)');
     if (chromeVersion && parseInt(chromeVersion) < 101) errors.push(`Chrome ${chromeVersion} too old — need 101+`);
     
+    timings.totalMs = Math.round(performance.now() - t0);
     console.log('[Billing Diagnostics]', result);
     return result;
   }
 
-  // ── Service connection ──
+  // ── Service connection with timing ──
   try {
+    const connStart = performance.now();
     const svc = await getService();
+    result.connectionLatencyMs = Math.round(performance.now() - connStart);
+    timings.serviceConnectMs = result.connectionLatencyMs;
+
     if (!svc) {
       errors.push('Could not connect to billing service via any method');
+      timings.totalMs = Math.round(performance.now() - t0);
       console.log('[Billing Diagnostics]', result);
       return result;
     }
     result.serviceConnected = true;
     result.connectedMethod = svc.method;
 
-    // ── Product details ──
+    // ── Improvement 3: Product details with progressive retry ──
+    const getDetailsWithRetry = async (): Promise<DigitalGoodsItemDetails[]> => {
+      const delays = [0, 2000, 4000];
+      for (let i = 0; i < delays.length; i++) {
+        if (i > 0) {
+          console.log(`[Billing] getDetails retry ${i}/${delays.length - 1} after ${delays[i]}ms...`);
+          await new Promise(r => setTimeout(r, delays[i]));
+        }
+        try {
+          const details = await retryOnClientAppUnavailable(
+            () => svc.service.getDetails([PRODUCT_IDS.monthly, PRODUCT_IDS.yearly]),
+          );
+          if (details?.length) return details;
+        } catch (e: any) {
+          if (i === delays.length - 1) throw e;
+        }
+      }
+      return [];
+    };
+
     try {
-      const details = await retryOnClientAppUnavailable(
-        () => svc.service.getDetails([PRODUCT_IDS.monthly, PRODUCT_IDS.yearly]),
-      );
+      const detailsStart = performance.now();
+      const details = await getDetailsWithRetry();
+      timings.getDetailsMs = Math.round(performance.now() - detailsStart);
+
       result.productsFound = details?.map(d => d.itemId) || [];
       result.productDetails = details?.map(d => ({
         id: d.itemId,
         title: d.title,
         price: `${d.price.value} ${d.price.currency}`,
         type: d.type,
+        subscriptionPeriod: (d as any).subscriptionPeriod || undefined,
       })) || [];
+
+      // ── Improvement 2: Detect base plan type ──
+      if (details?.length) {
+        const types = details.map(d => d.type);
+        if (types.some(t => t === 'subscription')) {
+          result.basePlanType = 'auto-renewing ✅';
+        } else if (types.some(t => t === 'prepaid')) {
+          result.basePlanType = 'prepaid ⚠️ (may cause issues)';
+          errors.push('Detected prepaid base plan — Digital Goods API works best with auto-renewing plans');
+        } else {
+          result.basePlanType = types.join(', ');
+        }
+      }
+
       if (!details?.length) {
-        errors.push('getDetails returned empty — products may not be published/approved in Play Console');
+        errors.push('getDetails returned empty after retries — products may not be published/approved or base plans not active');
       }
     } catch (e: any) {
       errors.push(`getDetails failed: ${e?.name}: ${e?.message}`);
     }
 
-    // ── Existing purchases ──
+    // ── Improvement 5: Existing purchases ──
     try {
+      const purchasesStart = performance.now();
       const purchases = await retryOnClientAppUnavailable(
         () => svc.service.listPurchases(),
       );
+      timings.listPurchasesMs = Math.round(performance.now() - purchasesStart);
       result.existingPurchases = purchases?.map(p => p.itemId) || [];
     } catch (e: any) {
       errors.push(`listPurchases failed: ${e?.name}: ${e?.message}`);
@@ -308,6 +374,7 @@ export async function runBillingDiagnostics(): Promise<{
     errors.push(`Service error: ${err?.name}: ${err?.message}`);
   }
 
+  timings.totalMs = Math.round(performance.now() - t0);
   console.log('[Billing Diagnostics]', JSON.stringify(result, null, 2));
 
   // ── Calculate readiness score ──
