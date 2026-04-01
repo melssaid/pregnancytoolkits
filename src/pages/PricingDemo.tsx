@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import { requestPurchase, isDigitalGoodsAvailable, runBillingDiagnostics, type PlanType } from "@/lib/googlePlayBilling";
 import { useNavigate, Link } from "react-router-dom";
 import pricingLogo from "@/assets/pricing-logo.webp";
+import { supabase } from "@/integrations/supabase/client";
 
 const features = [
   { icon: Brain, key: "feature1" },
@@ -496,6 +497,10 @@ function BillingDiagnosticsPanel({ isAr }: { isAr: boolean }) {
             <button
               onClick={() => {
                 const lines = items.map(i => `${i.label}: ${i.value}`);
+                lines.push(`${isAr ? "إصدار التطبيق" : "App Version"}: ${diag.appVersionName || '—'}`);
+                lines.push(`${isAr ? "مصدر التثبيت" : "Install Source"}: ${diag.installSource || '—'}`);
+                lines.push(`${isAr ? "كتالوج المنتجات" : "Catalog Status"}: ${diag.catalogReady ? '✅' : '❌'}`);
+                lines.push(`${isAr ? "نسبة الجاهزية" : "Readiness"}: ${diag.readinessScore}%`);
                 if (diag.productDetails?.length) {
                   lines.push("--- Products ---");
                   diag.productDetails.forEach((p: any) => lines.push(`  ${p.id}: ${p.price} (${p.type})`));
@@ -511,6 +516,50 @@ function BillingDiagnosticsPanel({ isAr }: { isAr: boolean }) {
               className="flex-1 py-1.5 rounded-lg bg-muted text-foreground text-[10px] font-bold"
             >
               {isAr ? "نسخ النتائج" : "Copy Results"}
+            </button>
+            <button
+              onClick={async () => {
+                try {
+                  const { data: { user } } = await supabase.auth.getUser();
+                  const { error } = await supabase.from('billing_diagnostics').insert({
+                    user_id: user?.id || null,
+                    device_info: {
+                      userAgent: diag.userAgent?.slice(0, 200),
+                      chromeVersion: diag.chromeVersion,
+                      androidVersion: diag.androidVersion,
+                      displayMode: diag.displayMode,
+                      referrer: diag.referrer,
+                      installSource: diag.installSource,
+                      appVersionName: diag.appVersionName,
+                    },
+                    diagnostics_result: {
+                      apiAvailable: diag.apiAvailable,
+                      serviceConnected: diag.serviceConnected,
+                      connectedMethod: diag.connectedMethod,
+                      productsFound: diag.productsFound,
+                      existingPurchases: diag.existingPurchases,
+                      canMakePayment: diag.canMakePayment,
+                      isTWA: diag.isTWA,
+                      isStandalone: diag.isStandalone,
+                      playStoreInstall: diag.playStoreInstall,
+                      authStatus: diag.authStatus,
+                      productDetails: diag.productDetails,
+                    },
+                    readiness_score: diag.readinessScore || 0,
+                    readiness_summary: diag.readinessSummary || 'NOT_READY',
+                    catalog_ready: diag.catalogReady || false,
+                    errors: diag.errors || [],
+                  } as any);
+                  if (error) throw error;
+                  toast.success(isAr ? "✅ تم إرسال التقرير" : "✅ Report sent");
+                } catch (e: any) {
+                  console.error('[Diagnostics] Send failed:', e);
+                  toast.error(isAr ? "فشل إرسال التقرير" : "Failed to send report");
+                }
+              }}
+              className="flex-1 py-1.5 rounded-lg bg-primary/20 text-primary text-[10px] font-bold"
+            >
+              {isAr ? "📤 إرسال للمتابعة" : "📤 Send Report"}
             </button>
           </div>
         </div>
