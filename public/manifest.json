@@ -1,6 +1,7 @@
 {
   "name": "Pregnancy Toolkits",
   "short_name": "Pregnancy Toolkits",
+  "version": "1.0.15",
   "description": "Your personal pregnancy journal & lifestyle companion with 42+ wellness tools, daily tips, trackers & educational content. Not a medical device. For informational and educational purposes only.",
   "start_url": "/",
   "display": "standalone",
