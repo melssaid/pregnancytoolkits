@@ -363,10 +363,10 @@ function BillingDiagnosticsPanel({ isAr }: { isAr: boolean }) {
   const [lastCheck, setLastCheck] = useState<string | null>(null);
   const [lastDbReport, setLastDbReport] = useState<any>(null);
 
-  const runDiag = async () => {
+  const runDiag = async (forceRefresh = false) => {
     setLoading(true);
     try {
-      const result = await runBillingDiagnostics();
+      const result = await runBillingDiagnostics(forceRefresh);
       setDiag(result);
       setLastCheck(new Date().toLocaleTimeString());
     } catch (e: any) {
