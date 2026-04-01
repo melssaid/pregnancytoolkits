@@ -185,6 +185,33 @@ self.addEventListener('message', (event) => {
   }
 });
 
+// ── Periodic Background Sync ──
+// Re-schedules daily reminders even if the app was closed
+self.addEventListener('periodicsync', (event) => {
+  if (event.tag === 'daily-notifications') {
+    event.waitUntil(
+      self.clients.matchAll({ type: 'window' }).then((clients) => {
+        // If a client is open, let the app handle scheduling
+        if (clients.length > 0) return;
+        // Otherwise, show a gentle morning check-in (9 AM check)
+        const hour = new Date().getHours();
+        if (hour >= 8 && hour <= 10) {
+          return self.registration.showNotification('💊 Daily Reminder', {
+            body: 'Don\'t forget your vitamins and stay hydrated today!',
+            icon: '/favicon.png',
+            badge: '/favicon.png',
+            tag: 'periodic-daily-' + new Date().toDateString(),
+            data: { url: '/' },
+            vibrate: [100, 50, 100],
+            requireInteraction: false,
+            silent: false,
+          });
+        }
+      })
+    );
+  }
+});
+
 self.addEventListener('notificationclick', (event) => {
   event.notification.close();
   const url = event.notification.data?.url || '/';
