@@ -50,6 +50,42 @@ export type Database = {
         }
         Relationships: []
       }
+      billing_diagnostics: {
+        Row: {
+          catalog_ready: boolean
+          created_at: string
+          device_info: Json
+          diagnostics_result: Json
+          errors: string[]
+          id: string
+          readiness_score: number
+          readiness_summary: string
+          user_id: string | null
+        }
+        Insert: {
+          catalog_ready?: boolean
+          created_at?: string
+          device_info?: Json
+          diagnostics_result?: Json
+          errors?: string[]
+          id?: string
+          readiness_score?: number
+          readiness_summary?: string
+          user_id?: string | null
+        }
+        Update: {
+          catalog_ready?: boolean
+          created_at?: string
+          device_info?: Json
+          diagnostics_result?: Json
+          errors?: string[]
+          id?: string
+          readiness_score?: number
+          readiness_summary?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       bump_photos: {
         Row: {
           ai_analysis: string | null
