@@ -256,11 +256,15 @@ jobs:
 
           echo "━━━ 10. Asset links verification ━━━"
           if [ -f "app/src/main/res/values/strings.xml" ]; then
-            HOST=$(grep -oP '(?<=<string name="hostName">)[^<]+' app/src/main/res/values/strings.xml 2>/dev/null)
-            echo "Host from strings.xml: ${HOST:-(not found)}"
+            HOST=$(grep -oP '(?<=<string name="hostName">)[^<]+' app/src/main/res/values/strings.xml 2>/dev/null || true)
+            echo "Host from strings.xml: ${HOST:-(not found as separate string)}"
+            echo "-- site URL from assetStatements --"
+            grep -oP '(?<="site": ")[^"]+' app/src/main/res/values/strings.xml 2>/dev/null || echo "(not found)"
           fi
-          echo "Asset links in public:"
-          cat public/.well-known/assetlinks.json 2>/dev/null || echo "(not found)"
+          echo "-- PaymentActivity in manifest --"
+          grep -A5 "PaymentActivity" app/src/main/AndroidManifest.xml 2>/dev/null || echo "(not found)"
+          echo "-- PaymentService in manifest --"
+          grep -A5 "PaymentService" app/src/main/AndroidManifest.xml 2>/dev/null || echo "(not found)"
           echo ""
 
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
