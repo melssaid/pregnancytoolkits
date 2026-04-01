@@ -6354,7 +6354,14 @@
     "diaperReminders": "Diaper Reminder",
     "diaperHint": "Alert after 5 hours without a change",
     "diaperReminderTitle": "🧷 Time for a Diaper Change",
-    "diaperReminderMsg": "It's been 5 hours since the last diaper change. Check on your baby!"
+    "diaperReminderMsg": "It's been 5 hours since the last diaper change. Check on your baby!",
+    "promptTitle": "Stay on Track with Smart Alerts",
+    "promptDesc": "Get timely reminders for vitamins, appointments, water intake, and baby milestones — even when the app is closed.",
+    "promptBenefit1": "Vitamin reminders",
+    "promptBenefit2": "Appointment alerts",
+    "promptBenefit3": "Milestone updates",
+    "promptEnable": "Enable Smart Notifications",
+    "promptEnabling": "Enabling..."
   },
   "seo": {
     "title": "Best Pregnancy Tracking App",
