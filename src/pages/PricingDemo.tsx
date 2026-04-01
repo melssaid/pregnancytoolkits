@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Check, X, Sparkles, Brain, Shield, Zap, Heart, Crown } from "lucide-react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
-import { requestPurchase, isDigitalGoodsAvailable, runBillingDiagnostics, type PlanType } from "@/lib/googlePlayBilling";
+import { requestPurchase, isDigitalGoodsAvailable, runBillingDiagnostics, clearBillingCache, type PlanType } from "@/lib/googlePlayBilling";
 import { useNavigate, Link } from "react-router-dom";
 import pricingLogo from "@/assets/pricing-logo.webp";
 import { supabase } from "@/integrations/supabase/client";
@@ -363,10 +363,10 @@ function BillingDiagnosticsPanel({ isAr }: { isAr: boolean }) {
   const [lastCheck, setLastCheck] = useState<string | null>(null);
   const [lastDbReport, setLastDbReport] = useState<any>(null);
 
-  const runDiag = async () => {
+  const runDiag = async (forceRefresh = false) => {
     setLoading(true);
     try {
-      const result = await runBillingDiagnostics();
+      const result = await runBillingDiagnostics(forceRefresh);
       setDiag(result);
       setLastCheck(new Date().toLocaleTimeString());
     } catch (e: any) {
@@ -402,12 +402,20 @@ function BillingDiagnosticsPanel({ isAr }: { isAr: boolean }) {
 
   if (!visible) {
     return (
-      <button
-        onClick={() => { setVisible(true); runDiag(); }}
-        className="mt-4 mx-auto block text-[10px] text-muted-foreground/40 underline"
-      >
-        {isAr ? "تشخيص حالة الدفع" : "Payment Diagnostics"}
-      </button>
+      <div className="flex flex-col items-center gap-1 mt-4">
+        <button
+          onClick={() => { setVisible(true); runDiag(); }}
+          className="text-[10px] text-muted-foreground/40 underline"
+        >
+          {isAr ? "تشخيص حالة الدفع" : "Payment Diagnostics"}
+        </button>
+        <button
+          onClick={() => { setVisible(true); runDiag(true); }}
+          className="text-[9px] text-primary/50 underline"
+        >
+          {isAr ? "🔄 تشخيص بدون كاش (Force Refresh)" : "🔄 Force Refresh Diagnostics"}
+        </button>
+      </div>
     );
   }
 
@@ -502,6 +510,22 @@ function BillingDiagnosticsPanel({ isAr }: { isAr: boolean }) {
             <span className="text-muted-foreground">{isAr ? "كتالوج المنتجات" : "Catalog Status"}</span>
             <span className={`font-mono font-bold ${diag.catalogReady ? 'text-emerald-500' : 'text-destructive'}`}>{diag.catalogReady ? '✅' : (isAr ? '❌ لم ينتشر بعد' : '❌ Not propagated')}</span>
           </div>
+          {diag.basePlanType && (
+            <div className="flex items-center justify-between gap-2">
+              <span className="text-muted-foreground">{isAr ? "نوع الخطة الأساسية" : "Base Plan Type"}</span>
+              <span className={`font-mono font-bold ${diag.basePlanType?.includes('auto') ? 'text-emerald-500' : 'text-amber-500'}`}>{diag.basePlanType}</span>
+            </div>
+          )}
+          <div className="flex items-center justify-between gap-2">
+            <span className="text-muted-foreground">{isAr ? "الشبكة" : "Network"}</span>
+            <span className={`font-mono font-bold ${diag.networkReachable ? 'text-emerald-500' : 'text-destructive'}`}>{diag.networkReachable ? '✅' : '❌'}</span>
+          </div>
+          {diag.connectionLatencyMs != null && (
+            <div className="flex items-center justify-between gap-2">
+              <span className="text-muted-foreground">{isAr ? "زمن الاتصال" : "Connect Latency"}</span>
+              <span className="font-mono font-bold text-muted-foreground">{diag.connectionLatencyMs}ms</span>
+            </div>
+          )}
 
           {items.map((item, i) => (
             <div key={i} className="flex items-center justify-between gap-2">
@@ -534,12 +558,29 @@ function BillingDiagnosticsPanel({ isAr }: { isAr: boolean }) {
               {diag.error}
             </div>
           )}
+          {/* Timings section */}
+          {diag.timings && Object.keys(diag.timings).length > 0 && (
+            <div className="mt-2 p-2 rounded-lg bg-muted/30 text-[9px]">
+              <span className="font-bold text-muted-foreground">{isAr ? "⏱ أزمنة التشخيص:" : "⏱ Timings:"}</span>
+              <div className="flex flex-wrap gap-x-3 gap-y-0.5 mt-1 text-muted-foreground">
+                {Object.entries(diag.timings).map(([k, v]) => (
+                  <span key={k}>{k}: <strong>{v as number}ms</strong></span>
+                ))}
+              </div>
+            </div>
+          )}
           <div className="flex gap-2 mt-2">
             <button
-              onClick={runDiag}
+              onClick={() => runDiag()}
               className="flex-1 py-1.5 rounded-lg bg-primary/10 text-primary text-[10px] font-bold"
             >
               {isAr ? "إعادة الفحص" : "Re-check"}
+            </button>
+            <button
+              onClick={() => runDiag(true)}
+              className="flex-1 py-1.5 rounded-lg bg-amber-500/15 text-amber-600 dark:text-amber-400 text-[10px] font-bold"
+            >
+              {isAr ? "🔄 Force Refresh" : "🔄 Force Refresh"}
             </button>
             <button
               onClick={() => {
@@ -547,10 +588,17 @@ function BillingDiagnosticsPanel({ isAr }: { isAr: boolean }) {
                 lines.push(`${isAr ? "إصدار التطبيق" : "App Version"}: ${diag.appVersionName || '—'}`);
                 lines.push(`${isAr ? "مصدر التثبيت" : "Install Source"}: ${diag.installSource || '—'}`);
                 lines.push(`${isAr ? "كتالوج المنتجات" : "Catalog Status"}: ${diag.catalogReady ? '✅' : '❌'}`);
+                lines.push(`${isAr ? "نوع الخطة" : "Base Plan Type"}: ${diag.basePlanType || '—'}`);
+                lines.push(`${isAr ? "الشبكة" : "Network"}: ${diag.networkReachable ? '✅' : '❌'}`);
+                lines.push(`${isAr ? "زمن الاتصال" : "Connect Latency"}: ${diag.connectionLatencyMs ?? '—'}ms`);
                 lines.push(`${isAr ? "نسبة الجاهزية" : "Readiness"}: ${diag.readinessScore}%`);
+                if (diag.timings) {
+                  lines.push("--- Timings ---");
+                  Object.entries(diag.timings).forEach(([k, v]) => lines.push(`  ${k}: ${v}ms`));
+                }
                 if (diag.productDetails?.length) {
                   lines.push("--- Products ---");
-                  diag.productDetails.forEach((p: any) => lines.push(`  ${p.id}: ${p.price} (${p.type})`));
+                  diag.productDetails.forEach((p: any) => lines.push(`  ${p.id}: ${p.price} (${p.type}${p.subscriptionPeriod ? ', ' + p.subscriptionPeriod : ''})`));
                 }
                 if (diag.errors?.length) {
                   lines.push("--- Issues ---");
