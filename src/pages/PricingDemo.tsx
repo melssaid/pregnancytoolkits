@@ -510,6 +510,22 @@ function BillingDiagnosticsPanel({ isAr }: { isAr: boolean }) {
             <span className="text-muted-foreground">{isAr ? "كتالوج المنتجات" : "Catalog Status"}</span>
             <span className={`font-mono font-bold ${diag.catalogReady ? 'text-emerald-500' : 'text-destructive'}`}>{diag.catalogReady ? '✅' : (isAr ? '❌ لم ينتشر بعد' : '❌ Not propagated')}</span>
           </div>
+          {diag.basePlanType && (
+            <div className="flex items-center justify-between gap-2">
+              <span className="text-muted-foreground">{isAr ? "نوع الخطة الأساسية" : "Base Plan Type"}</span>
+              <span className={`font-mono font-bold ${diag.basePlanType?.includes('auto') ? 'text-emerald-500' : 'text-amber-500'}`}>{diag.basePlanType}</span>
+            </div>
+          )}
+          <div className="flex items-center justify-between gap-2">
+            <span className="text-muted-foreground">{isAr ? "الشبكة" : "Network"}</span>
+            <span className={`font-mono font-bold ${diag.networkReachable ? 'text-emerald-500' : 'text-destructive'}`}>{diag.networkReachable ? '✅' : '❌'}</span>
+          </div>
+          {diag.connectionLatencyMs != null && (
+            <div className="flex items-center justify-between gap-2">
+              <span className="text-muted-foreground">{isAr ? "زمن الاتصال" : "Connect Latency"}</span>
+              <span className="font-mono font-bold text-muted-foreground">{diag.connectionLatencyMs}ms</span>
+            </div>
+          )}
 
           {items.map((item, i) => (
             <div key={i} className="flex items-center justify-between gap-2">
