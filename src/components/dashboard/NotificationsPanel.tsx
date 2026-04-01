@@ -335,6 +335,9 @@ export function NotificationsPanel() {
         )}
       </AnimatePresence>
 
+      {/* Push Permission Prompt — shown when not enabled */}
+      {!pushEnabled && <PushPermissionPrompt />}
+
       {/* Notifications List */}
       {notifications.length === 0 ? (
         <div className="text-center py-8">
