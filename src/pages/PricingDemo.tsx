@@ -536,7 +536,7 @@ function BillingDiagnosticsPanel({ isAr }: { isAr: boolean }) {
           )}
           <div className="flex gap-2 mt-2">
             <button
-              onClick={runDiag}
+              onClick={() => runDiag()}
               className="flex-1 py-1.5 rounded-lg bg-primary/10 text-primary text-[10px] font-bold"
             >
               {isAr ? "إعادة الفحص" : "Re-check"}
