@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
@@ -377,14 +377,14 @@ function BillingDiagnosticsPanel({ isAr }: { isAr: boolean }) {
   };
 
   // Auto-refresh every 30 seconds
-  React.useEffect(() => {
+  useEffect(() => {
     if (!autoRefresh || !visible) return;
     const interval = setInterval(() => { runDiag(); }, 30000);
     return () => clearInterval(interval);
   }, [autoRefresh, visible]);
 
   // Fetch last saved report from database
-  React.useEffect(() => {
+  useEffect(() => {
     if (!visible) return;
     const fetchLastReport = async () => {
       try {
