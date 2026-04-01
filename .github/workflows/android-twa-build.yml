@@ -92,7 +92,7 @@ jobs:
       - name: Install Android SDK packages
         run: |
           yes | "$SDKMANAGER" --licenses >/dev/null 2>&1 || true
-          "$SDKMANAGER" --install "platform-tools" "platforms;android-35" "build-tools;35.0.0"
+          "$SDKMANAGER" --install "platform-tools" "platforms;android-36" "platforms;android-35" "build-tools;35.0.0"
 
       - name: Normalize Android SDK layout for Bubblewrap
         run: |
