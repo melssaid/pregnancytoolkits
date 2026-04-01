@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Check, X, Sparkles, Brain, Shield, Zap, Heart, Crown } from "lucide-react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
-import { requestPurchase, isDigitalGoodsAvailable, runBillingDiagnostics, type PlanType } from "@/lib/googlePlayBilling";
+import { requestPurchase, isDigitalGoodsAvailable, runBillingDiagnostics, clearBillingCache, type PlanType } from "@/lib/googlePlayBilling";
 import { useNavigate, Link } from "react-router-dom";
 import pricingLogo from "@/assets/pricing-logo.webp";
 import { supabase } from "@/integrations/supabase/client";
