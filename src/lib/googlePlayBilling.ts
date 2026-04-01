@@ -370,13 +370,17 @@ export async function requestPurchase(
     }
 
     // Try fetching product details - first both, then individually
-    let details = await svc.service.getDetails([productId]);
+    let details = await retryOnClientAppUnavailable(
+      () => svc.service.getDetails([productId]),
+    );
     console.log('[Billing] getDetails([' + productId + ']):', JSON.stringify(details));
 
     // If empty, try with all product IDs
     if (!details?.length) {
       console.log('[Billing] Retrying with all product IDs...');
-      details = await svc.service.getDetails([PRODUCT_IDS.monthly, PRODUCT_IDS.yearly]);
+      details = await retryOnClientAppUnavailable(
+        () => svc.service.getDetails([PRODUCT_IDS.monthly, PRODUCT_IDS.yearly]),
+      );
       console.log('[Billing] getDetails(all):', JSON.stringify(details));
       // Filter to the one we want
       if (details?.length) {
