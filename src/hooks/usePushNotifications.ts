@@ -58,6 +58,7 @@ export function usePushNotifications() {
     if (currentPermission === 'granted') {
       setState((prev) => ({ ...prev, permission: 'granted', enabled: true }));
       safeSaveToLocalStorage(PUSH_ENABLED_KEY, true);
+      registerPeriodicSync();
       return true;
     }
 
@@ -67,6 +68,8 @@ export function usePushNotifications() {
 
     setState((prev) => ({ ...prev, permission: result, enabled }));
     safeSaveToLocalStorage(PUSH_ENABLED_KEY, enabled);
+
+    if (enabled) registerPeriodicSync();
 
     return enabled;
   }, []);
