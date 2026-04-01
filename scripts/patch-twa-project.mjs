@@ -99,7 +99,17 @@ if (!/com\.google\.androidbrowserhelper:billing/.test(nextBuildGradle)) {
   nextBuildGradle = ensureDependency(nextBuildGradle, 'implementation "com.google.androidbrowserhelper:billing:1.0.0-alpha09"');
 }
 
-const nextManifest = normalizeDelegationService(manifest, packageName);
+// Ensure BILLING permission is present
+let nextManifest = manifest;
+const billingPermission = '<uses-permission android:name="com.android.vending.BILLING" />';
+if (!nextManifest.includes('com.android.vending.BILLING')) {
+  nextManifest = nextManifest.replace(
+    /<manifest\b[^>]*>/,
+    `$&\n    ${billingPermission}`
+  );
+  console.log('[patch-twa-project] Added BILLING permission');
+}
+nextManifest = normalizeDelegationService(nextManifest, packageName);
 const delegationServiceSource = buildDelegationServiceSource(packageName);
 
 const changedFiles = [];
