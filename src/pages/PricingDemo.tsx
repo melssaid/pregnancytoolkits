@@ -399,6 +399,17 @@ function BillingDiagnosticsPanel({ isAr }: { isAr: boolean }) {
     { label: isAr ? "تثبيت Play" : "Play Install", value: diag.playStoreInstall ? "✅" : "❌", ok: diag.playStoreInstall },
   ] : [];
 
+  const readinessColor = diag?.readinessSummary === 'READY' ? 'text-emerald-500' :
+    diag?.readinessSummary === 'ALMOST_READY' ? 'text-amber-500' :
+    diag?.readinessSummary === 'PARTIAL' ? 'text-orange-500' : 'text-destructive';
+
+  const readinessLabel = diag ? {
+    'READY': isAr ? '✅ جاهز للشراء' : '✅ Ready to Purchase',
+    'ALMOST_READY': isAr ? '⏳ شبه جاهز — انتظر انتشار الكتالوج' : '⏳ Almost Ready — Catalog Propagating',
+    'PARTIAL': isAr ? '⚠️ جزئي — تحقق من الإعدادات' : '⚠️ Partial — Check Settings',
+    'NOT_READY': isAr ? '❌ غير جاهز' : '❌ Not Ready',
+  }[diag.readinessSummary] || '—' : '—';
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
@@ -418,6 +429,32 @@ function BillingDiagnosticsPanel({ isAr }: { isAr: boolean }) {
         <p className="text-muted-foreground text-center py-2">{isAr ? "جاري الفحص..." : "Checking..."}</p>
       ) : diag ? (
         <div className="space-y-1.5">
+          {/* Readiness Status Hero */}
+          <div className={`flex flex-col items-center gap-1 py-2 px-3 rounded-lg bg-muted/50 mb-2`}>
+            <span className={`font-bold text-sm ${readinessColor}`}>{readinessLabel}</span>
+            <div className="w-full bg-muted rounded-full h-2 mt-1">
+              <div
+                className={`h-2 rounded-full transition-all duration-500 ${diag.readinessScore === 100 ? 'bg-emerald-500' : diag.readinessScore >= 75 ? 'bg-amber-500' : diag.readinessScore >= 40 ? 'bg-orange-500' : 'bg-destructive'}`}
+                style={{ width: `${diag.readinessScore}%` }}
+              />
+            </div>
+            <span className="text-[9px] text-muted-foreground">{diag.readinessScore}% {isAr ? 'جاهزية' : 'readiness'}</span>
+          </div>
+
+          {/* App Info Section */}
+          <div className="flex items-center justify-between gap-2">
+            <span className="text-muted-foreground">{isAr ? "إصدار التطبيق" : "App Version"}</span>
+            <span className="font-mono font-bold text-muted-foreground">{diag.appVersionName || '—'}</span>
+          </div>
+          <div className="flex items-center justify-between gap-2">
+            <span className="text-muted-foreground">{isAr ? "مصدر التثبيت" : "Install Source"}</span>
+            <span className={`font-mono font-bold ${diag.installSource?.includes('Play') ? 'text-emerald-500' : 'text-muted-foreground'}`}>{diag.installSource || '—'}</span>
+          </div>
+          <div className="flex items-center justify-between gap-2">
+            <span className="text-muted-foreground">{isAr ? "كتالوج المنتجات" : "Catalog Status"}</span>
+            <span className={`font-mono font-bold ${diag.catalogReady ? 'text-emerald-500' : 'text-destructive'}`}>{diag.catalogReady ? '✅' : (isAr ? '❌ لم ينتشر بعد' : '❌ Not propagated')}</span>
+          </div>
+
           {items.map((item, i) => (
             <div key={i} className="flex items-center justify-between gap-2">
               <span className="text-muted-foreground">{item.label}</span>
