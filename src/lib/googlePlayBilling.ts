@@ -40,6 +40,28 @@ declare global {
   }
 }
 
+// ─── Retry Helper ───
+
+async function retryOnClientAppUnavailable<T>(
+  fn: () => Promise<T>,
+  maxRetries = 2,
+  delayMs = 3000,
+): Promise<T> {
+  let lastError: any;
+  for (let attempt = 0; attempt <= maxRetries; attempt++) {
+    try {
+      return await fn();
+    } catch (e: any) {
+      lastError = e;
+      const isRetryable = e?.message?.includes('clientAppUnavailable') || e?.name === 'OperationError';
+      if (!isRetryable || attempt === maxRetries) throw e;
+      console.log(`[Billing] clientAppUnavailable — retry ${attempt + 1}/${maxRetries} in ${delayMs}ms...`);
+      await new Promise(r => setTimeout(r, delayMs));
+    }
+  }
+  throw lastError;
+}
+
 const PLAY_BILLING_METHODS = [
   'https://play.google.com/billing',
   'https://play.google.com/billing/v1',
@@ -235,7 +257,9 @@ export async function runBillingDiagnostics(): Promise<{
 
     // ── Product details ──
     try {
-      const details = await svc.service.getDetails([PRODUCT_IDS.monthly, PRODUCT_IDS.yearly]);
+      const details = await retryOnClientAppUnavailable(
+        () => svc.service.getDetails([PRODUCT_IDS.monthly, PRODUCT_IDS.yearly]),
+      );
       result.productsFound = details?.map(d => d.itemId) || [];
       result.productDetails = details?.map(d => ({
         id: d.itemId,
@@ -252,7 +276,9 @@ export async function runBillingDiagnostics(): Promise<{
 
     // ── Existing purchases ──
     try {
-      const purchases = await svc.service.listPurchases();
+      const purchases = await retryOnClientAppUnavailable(
+        () => svc.service.listPurchases(),
+      );
       result.existingPurchases = purchases?.map(p => p.itemId) || [];
     } catch (e: any) {
       errors.push(`listPurchases failed: ${e?.name}: ${e?.message}`);
