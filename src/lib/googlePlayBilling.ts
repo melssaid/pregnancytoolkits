@@ -134,6 +134,12 @@ export async function runBillingDiagnostics(): Promise<{
   productDetails?: Array<{ id: string; title: string; price: string; type: string }>;
   error?: string;
   errors: string[];
+  appVersionName?: string;
+  appVersionCode?: string;
+  installSource?: string;
+  catalogReady: boolean;
+  readinessScore: number;
+  readinessSummary: string;
 }> {
   const errors: string[] = [];
 
@@ -166,7 +172,25 @@ export async function runBillingDiagnostics(): Promise<{
     windowControlsOverlay,
     serviceWorkerActive,
     errors,
+    catalogReady: false,
+    readinessScore: 0,
+    readinessSummary: '',
   };
+
+  // ── App version & install source ──
+  try {
+    const manifest = await fetch('/manifest.json').then(r => r.json()).catch(() => null);
+    result.appVersionName = manifest?.version || (document.querySelector('meta[name="app-version"]') as HTMLMetaElement)?.content || 'unknown';
+  } catch { result.appVersionName = 'unknown'; }
+
+  // Install source detection
+  if (isTWA) {
+    result.installSource = 'Google Play (TWA)';
+  } else if (isStandalone) {
+    result.installSource = 'Installed PWA';
+  } else {
+    result.installSource = 'Browser';
+  }
 
   // ── Auth check ──
   try {
@@ -251,6 +275,31 @@ export async function runBillingDiagnostics(): Promise<{
   }
 
   console.log('[Billing Diagnostics]', JSON.stringify(result, null, 2));
+
+  // ── Calculate readiness score ──
+  let score = 0;
+  const checks = [
+    { pass: result.apiAvailable, weight: 20 },
+    { pass: result.serviceConnected, weight: 20 },
+    { pass: result.isTWA, weight: 15 },
+    { pass: result.playStoreInstall, weight: 10 },
+    { pass: result.canMakePayment === true, weight: 10 },
+    { pass: result.productsFound?.length > 0, weight: 25 },
+  ];
+  for (const c of checks) { if (c.pass) score += c.weight; }
+  result.readinessScore = score;
+  result.catalogReady = result.productsFound?.length > 0;
+
+  if (score === 100) {
+    result.readinessSummary = 'READY';
+  } else if (score >= 75) {
+    result.readinessSummary = 'ALMOST_READY';
+  } else if (score >= 40) {
+    result.readinessSummary = 'PARTIAL';
+  } else {
+    result.readinessSummary = 'NOT_READY';
+  }
+
   return result;
 }
 
