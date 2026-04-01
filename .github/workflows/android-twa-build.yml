@@ -92,7 +92,7 @@ jobs:
       - name: Install Android SDK packages
         run: |
           yes | "$SDKMANAGER" --licenses >/dev/null 2>&1 || true
-          "$SDKMANAGER" --install "platform-tools" "platforms;android-35" "build-tools;35.0.0"
+          "$SDKMANAGER" --install "platform-tools" "platforms;android-36" "platforms;android-35" "build-tools;35.0.0"
 
       - name: Normalize Android SDK layout for Bubblewrap
         run: |
@@ -109,7 +109,7 @@ jobs:
           test -d "$ANDROID_HOME/build-tools" || { echo "build-tools missing"; exit 1; }
           test -d "$ANDROID_HOME/platform-tools" || { echo "platform-tools missing"; exit 1; }
           test -d "$ANDROID_HOME/platforms" || { echo "platforms missing"; exit 1; }
-          test -d "$ANDROID_HOME/platforms/android-35" || { echo "platform android-35 missing"; exit 1; }
+          test -d "$ANDROID_HOME/platforms/android-36" || { echo "platform android-36 missing"; exit 1; }
           test -d "$ANDROID_HOME/build-tools/35.0.0" || { echo "build-tools 35.0.0 missing"; exit 1; }
           echo "Installed Android platforms:"
           ls -1 "$ANDROID_HOME/platforms"

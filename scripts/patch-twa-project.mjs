@@ -87,7 +87,7 @@ const packageDir = packageName.split('.').join(path.sep);
 const delegationServicePath = path.join(appDir, 'src', 'main', 'java', packageDir, 'DelegationService.java');
 
 let nextBuildGradle = buildGradle;
-nextBuildGradle = replaceSdkValue(nextBuildGradle, [/((?:compileSdkVersion|compileSdk)\s+)\d+/g], '35');
+nextBuildGradle = replaceSdkValue(nextBuildGradle, [/((?:compileSdkVersion|compileSdk)\s+)\d+/g], '36');
 nextBuildGradle = replaceSdkValue(nextBuildGradle, [/((?:targetSdkVersion|targetSdk)\s+)\d+/g], '35');
 nextBuildGradle = replaceSdkValue(nextBuildGradle, [/((?:minSdkVersion|minSdk)\s+)\d+/g], '23');
 
