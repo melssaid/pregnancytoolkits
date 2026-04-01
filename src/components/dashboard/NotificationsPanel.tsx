@@ -10,6 +10,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { useNotifications, Notification } from '@/hooks/useNotifications';
 import { usePushNotifications } from '@/hooks/usePushNotifications';
+import { PushPermissionPrompt } from '@/components/notifications/PushPermissionPrompt';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
