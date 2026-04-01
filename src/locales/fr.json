@@ -6354,7 +6354,14 @@
     "diaperReminders": "Rappel couches",
     "diaperHint": "Alerte après 5 heures sans changement",
     "diaperReminderTitle": "🧷 C'est l'heure du change",
-    "diaperReminderMsg": "5 heures se sont écoulées depuis le dernier change. Vérifiez votre bébé !"
+    "diaperReminderMsg": "5 heures se sont écoulées depuis le dernier change. Vérifiez votre bébé !",
+    "promptTitle": "Restez organisée avec les alertes intelligentes",
+    "promptDesc": "Recevez des rappels pour vos vitamines, rendez-vous, hydratation et jalons — même quand l'app est fermée.",
+    "promptBenefit1": "Rappels vitamines",
+    "promptBenefit2": "Alertes rendez-vous",
+    "promptBenefit3": "Mises à jour jalons",
+    "promptEnable": "Activer les alertes intelligentes",
+    "promptEnabling": "Activation..."
   },
   "seo": {
     "title": "Meilleure application de suivi de grossesse",

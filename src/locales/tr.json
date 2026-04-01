@@ -6354,7 +6354,14 @@
     "diaperReminders": "Bez Hatırlatıcı",
     "diaperHint": "5 saat değişiklik yapılmazsa uyarı",
     "diaperReminderTitle": "🧷 Bez Değiştirme Zamanı",
-    "diaperReminderMsg": "Son bez değişikliğinin üzerinden 5 saat geçti. Bebeğinizi kontrol edin!"
+    "diaperReminderMsg": "Son bez değişikliğinin üzerinden 5 saat geçti. Bebeğinizi kontrol edin!",
+    "promptTitle": "Akıllı bildirimlerle takipte kalın",
+    "promptDesc": "Vitamin, randevu, su içme ve kilometre taşları için zamanında hatırlatmalar alın — uygulama kapalıyken bile.",
+    "promptBenefit1": "Vitamin hatırlatıcıları",
+    "promptBenefit2": "Randevu uyarıları",
+    "promptBenefit3": "Kilometre taşı güncellemeleri",
+    "promptEnable": "Akıllı bildirimleri etkinleştir",
+    "promptEnabling": "Etkinleştiriliyor..."
   },
   "seo": {
     "title": "En İyi Hamilelik Takip Uygulaması",

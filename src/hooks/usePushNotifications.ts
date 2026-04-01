@@ -8,6 +8,20 @@ import {
 } from '@/lib/pushNotifications';
 import { safeParseLocalStorage, safeSaveToLocalStorage } from '@/lib/safeStorage';
 
+/** Register periodic background sync for daily notifications */
+async function registerPeriodicSync() {
+  try {
+    const reg = await navigator.serviceWorker.ready;
+    if ('periodicSync' in reg) {
+      await (reg as any).periodicSync.register('daily-notifications', {
+        minInterval: 12 * 60 * 60 * 1000, // 12 hours
+      });
+    }
+  } catch {
+    // Periodic sync not supported or permission denied — silent fallback
+  }
+}
+
 interface PushState {
   supported: boolean;
   permission: NotificationPermission | 'unsupported';
@@ -58,6 +72,7 @@ export function usePushNotifications() {
     if (currentPermission === 'granted') {
       setState((prev) => ({ ...prev, permission: 'granted', enabled: true }));
       safeSaveToLocalStorage(PUSH_ENABLED_KEY, true);
+      registerPeriodicSync();
       return true;
     }
 
@@ -67,6 +82,8 @@ export function usePushNotifications() {
 
     setState((prev) => ({ ...prev, permission: result, enabled }));
     safeSaveToLocalStorage(PUSH_ENABLED_KEY, enabled);
+
+    if (enabled) registerPeriodicSync();
 
     return enabled;
   }, []);

@@ -6354,7 +6354,14 @@
     "diaperReminders": "Lembrete de fraldas",
     "diaperHint": "Alerta após 5 horas sem troca",
     "diaperReminderTitle": "🧷 Hora de trocar a fralda",
-    "diaperReminderMsg": "Já se passaram 5 horas desde a última troca de fralda. Verifique seu bebê!"
+    "diaperReminderMsg": "Já se passaram 5 horas desde a última troca de fralda. Verifique seu bebê!",
+    "promptTitle": "Fique no caminho certo com alertas inteligentes",
+    "promptDesc": "Receba lembretes de vitaminas, consultas, hidratação e marcos — mesmo com o app fechado.",
+    "promptBenefit1": "Lembretes de vitaminas",
+    "promptBenefit2": "Alertas de consultas",
+    "promptBenefit3": "Atualizações de marcos",
+    "promptEnable": "Ativar alertas inteligentes",
+    "promptEnabling": "Ativando..."
   },
   "seo": {
     "title": "Melhor app de acompanhamento de gravidez",
