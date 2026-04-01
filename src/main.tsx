@@ -46,7 +46,7 @@ setTimeout(() => {
   appFirstRenderReady = true;
   htmlSplashEnded = true;
   dismissSplash();
-}, 8000);
+}, 5000);
 
 const clearDevelopmentCaches = () => {
   if (!import.meta.env.DEV) return;
