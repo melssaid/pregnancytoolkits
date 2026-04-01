@@ -431,7 +431,7 @@ function BillingDiagnosticsPanel({ isAr }: { isAr: boolean }) {
     { label: isAr ? "وضع العرض" : "Display Mode", value: diag.displayMode || "—", ok: null },
     { label: "Chrome", value: diag.chromeVersion || "—", ok: diag.chromeVersion ? parseInt(diag.chromeVersion) >= 101 : null },
     { label: "Android", value: diag.androidVersion || "—", ok: diag.androidVersion ? true : null },
-    { label: isAr ? "مصدر التشغيل" : "Referrer", value: diag.referrer?.slice(0, 30) || "—", ok: diag.isTWA },
+    { label: isAr ? "مصدر التشغيل" : "Referrer", value: diag.referrer || "—", ok: diag.isTWA },
     { label: isAr ? "المصادقة" : "Auth", value: diag.authStatus || "—", ok: diag.authStatus?.startsWith('authenticated') },
     { label: "Service Worker", value: diag.serviceWorkerActive ? "✅" : "❌", ok: diag.serviceWorkerActive },
     { label: isAr ? "تثبيت Play" : "Play Install", value: diag.playStoreInstall ? "✅" : "❌", ok: diag.playStoreInstall },
