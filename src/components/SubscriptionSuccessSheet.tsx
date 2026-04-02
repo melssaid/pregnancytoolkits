@@ -79,7 +79,7 @@ const i18nLabels: Record<string, {
     yearly: 'Premium anual',
     monthlyPrice: '$2.99/mes',
     yearlyPrice: '$19.99/año',
-    perks: ['40 análisis IA por mes', 'Todas las 22+ herramientas IA', 'Información de salud personalizada', 'Soporte prioritario'],
+    perks: ['60 análisis IA por mes', 'Todas las 42+ herramientas IA', 'Información de salud personalizada', 'Soporte prioritario'],
     cta: 'Empezar a explorar',
     enjoy: 'Gracias por elegir Pregnancy Toolkits Premium ✨',
   },
