@@ -279,8 +279,15 @@ export default function PricingDemo() {
 
               <div className="mt-2 flex flex-col items-center gap-1">
                 <span className="text-[9px] text-muted-foreground">$1.67/{t("pricing.mo")}</span>
-                <span className="text-[8px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+                <motion.span 
+                  className="text-[8px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
+                  animate={{ scale: [1, 1.08, 1] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                >
                   {t("pricing.save")}
+                </motion.span>
+                <span className="text-[7px] text-muted-foreground/70 text-center leading-tight mt-0.5">
+                  {t("pricing.savingsBanner", "Save $15.89/year vs monthly")}
                 </span>
               </div>
             </button>
