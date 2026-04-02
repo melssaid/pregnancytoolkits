@@ -5,6 +5,7 @@ import { useUserProfile } from "@/hooks/useUserProfile";
 import { useTrackingStats } from "@/hooks/useTrackingStats";
 import { Layout } from "@/components/Layout";
 import { safeParseLocalStorage } from "@/lib/safeStorage";
+import { useSmartConversionPrompt } from "@/hooks/useSmartConversionPrompt";
 
 // Dashboard components
 import { DailyHeroCard } from "@/components/dashboard/DailyHeroCard";
