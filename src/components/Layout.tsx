@@ -7,6 +7,7 @@ import { BackButton } from "./BackButton";
 import { BottomNavigation } from "./BottomNavigation";
 import { EncryptionIndicator } from "./EncryptionIndicator";
 import { LanguageDropdown } from "./LanguageDropdown";
+import { TrialExpiryBanner } from "./TrialExpiryBanner";
 import { useEffect } from "react";
 
 interface LayoutProps {
