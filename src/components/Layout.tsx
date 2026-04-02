@@ -26,6 +26,8 @@ export function Layout({ children, showBack = false }: LayoutProps) {
 
   return (
     <div className="min-h-screen bg-background flex flex-col overflow-x-hidden">
+      {/* Trial Expiry Banner */}
+      <TrialExpiryBanner />
       {/* Trust Bar - Above header */}
       <motion.div 
         className="relative overflow-hidden bg-gradient-to-r from-primary/95 via-primary to-primary/95 text-primary-foreground"

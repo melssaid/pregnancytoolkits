@@ -39,6 +39,9 @@ const SmartDashboard = () => {
         {/* 1. Hero — Pregnancy Week */}
         <DailyHeroCard week={profile.pregnancyWeek} dueDate={profile.dueDate} />
 
+        {/* Usage Stats Nudge for free users */}
+        <UsageStatsNudge />
+
         {/* 2. Risk Alerts (conditional) */}
         <RiskAlertCard
           bloodPressure={bloodPressure}
