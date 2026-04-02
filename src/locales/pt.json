@@ -1152,7 +1152,7 @@
     "trust": {
       "title": "Sua privacidade, protegida",
       "localData": "Seus dados de saúde ficam no seu dispositivo — nunca são enviados aos nossos servidores",
-      "noAdSharing": "Nenhuma informação de saúde é compartilhada com anunciantes ou terceiros",
+      "noAdSharing": "Nenhuma informação de saúde é compartilhada com terceiros",
       "noAIStorage": "Conversas de IA são processadas em tempo real e não armazenadas nos nossos servidores"
     },
     "aboutApp": "Sobre o aplicativo",

@@ -1152,7 +1152,7 @@
     "trust": {
       "title": "Gizliliğiniz Korunuyor",
       "localData": "Sağlık verileriniz cihazınızda kalır — sunucularımıza yüklenmez",
-      "noAdSharing": "Sağlık bilgileri reklamcılar veya üçüncü taraflarla paylaşılmaz",
+      "noAdSharing": "Sağlık bilgileri üçüncü taraflarla paylaşılmaz",
       "noAIStorage": "Yapay zekâ konuşmaları anlık olarak işlenir ve sunucularımızda saklanmaz"
     },
     "aboutApp": "Uygulama Hakkında",

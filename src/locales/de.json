@@ -1151,7 +1151,7 @@
     "trust": {
       "title": "Ihre Privatsphäre, geschützt",
       "localData": "Ihre Gesundheitsdaten bleiben auf Ihrem Gerät — sie werden nie auf unsere Server hochgeladen",
-      "noAdSharing": "Keine Gesundheitsinformationen werden an Werbetreibende oder Dritte weitergegeben",
+      "noAdSharing": "Keine Gesundheitsinformationen werden an Dritte weitergegeben",
       "noAIStorage": "KI-Gespräche werden in Echtzeit verarbeitet und nicht auf unseren Servern gespeichert"
     },
     "aboutApp": "Über die App",
