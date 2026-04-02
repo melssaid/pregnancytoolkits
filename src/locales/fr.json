@@ -711,16 +711,6 @@
           "desc": "Nous traitons vos informations pour fournir, améliorer et administrer nos services, communiquer avec vous, pour la sécurité et la prévention de la fraude.",
           "legalBasis": "Nous ne traitons vos informations que lorsque nous avons une raison juridique valable."
         },
-        "advertising": {
-          "title": "Publicité (Google AdSense)",
-          "desc": "Cette application affiche des publicités via Google AdSense pour permettre l'accès gratuit à tous les outils. Google peut collecter et utiliser certaines données pour diffuser des annonces pertinentes.",
-          "googleCollects": "Les publicités sont diffusées par Google AdSense — Google gère l'ensemble du traitement des données publicitaires",
-          "adId": "Google peut collecter l'identifiant publicitaire de votre appareil (GAID/IDFA) pour personnaliser les annonces",
-          "noPersonalSent": "Nous n'envoyons AUCUNE de vos données de santé personnelles à Google ou à un annonceur",
-          "optOut": "Vous pouvez désactiver la personnalisation des annonces dans les paramètres de votre appareil (Paramètres → Google → Annonces)",
-          "consentBased": "La personnalisation des annonces suit les préférences de consentement de votre appareil",
-          "policyLink": "Pour plus de détails sur la façon dont Google utilise vos données, consultez :"
-        },
         "sharing": {
           "title": "Partage d'informations",
           "desc": "Nous pouvons partager des informations dans des situations spécifiques avec des tiers spécifiques :",

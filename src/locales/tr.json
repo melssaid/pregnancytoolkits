@@ -711,16 +711,6 @@
           "desc": "Bilgilerinizi hizmetlerimizi sağlamak, iyileştirmek ve yönetmek, sizinle iletişim kurmak, güvenlik ve dolandırıcılık önleme amacıyla işliyoruz.",
           "legalBasis": "Bilgilerinizi yalnızca geçerli bir yasal nedenimiz olduğunda işliyoruz."
         },
-        "advertising": {
-          "title": "Reklamlar (Google AdSense)",
-          "desc": "Bu uygulama, tüm araçlara ücretsiz erişimi desteklemek için Google AdSense aracılığıyla reklamlar görüntüler. Google, ilgili reklamlar sunmak için belirli verileri toplayabilir ve kullanabilir.",
-          "googleCollects": "Reklamlar Google AdSense tarafından sunulur — tüm reklam verisi işleme Google tarafından yönetilir",
-          "adId": "Google, reklamları kişiselleştirmek için cihazınızın reklam kimliğini (GAID/IDFA) toplayabilir",
-          "noPersonalSent": "Kişisel sağlık verilerinizin HİÇBİRİNİ Google'a veya herhangi bir reklam verene göndermiyoruz",
-          "optOut": "Kişiselleştirilmiş reklamları cihaz ayarlarınızdan devre dışı bırakabilirsiniz (Ayarlar → Google → Reklamlar)",
-          "consentBased": "Reklam kişiselleştirmesi cihazınızın onay tercihlerini takip eder",
-          "policyLink": "Google'ın verilerinizi nasıl kullandığı hakkında daha fazla bilgi için:"
-        },
         "sharing": {
           "title": "Bilgi Paylaşımı",
           "desc": "Belirli durumlarda ve belirli üçüncü taraflarla bilgi paylaşabiliriz:",
