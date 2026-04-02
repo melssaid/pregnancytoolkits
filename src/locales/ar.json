@@ -147,7 +147,32 @@
     "termsPrefix": "بالمتابعة، أنتِ توافقين على",
     "and": "و",
     "subscriptionSuccess": "تم تفعيل الاشتراك بنجاح!",
-    "purchaseCancelled": "تم إلغاء عملية الشراء"
+    "purchaseCancelled": "تم إلغاء عملية الشراء",
+    "savePercent": "وفّري 44%",
+    "savingsBanner": "وفّري $15.89 سنوياً مقارنة بالاشتراك الشهري"
+  },
+  "trialBanner": {
+    "expiringSoon": "تجربتك تنتهي قريباً!",
+    "remaining": "متبقي",
+    "subscribe": "اشتركي الآن"
+  },
+  "trialExpired": {
+    "title": "انتهت فترة التجربة",
+    "subtitle": "لقد جربتِ قوة الذكاء الاصطناعي",
+    "usedAnalyses": "استخدمتِ {{count}} تحليل ذكي",
+    "duringTrial": "خلال فترة التجربة",
+    "premiumBenefit": "60 تحليل شهرياً",
+    "premiumDesc": "افتحي جميع الأدوات الذكية 42+",
+    "cta": "عرض الخطط المميزة",
+    "dismiss": "ربما لاحقاً"
+  },
+  "usageNudge": {
+    "title": "{{used}}/{{limit}} تحليل مُستخدم",
+    "upgrade": "اشتركي للحصول على 60 تحليل شهرياً ←"
+  },
+  "smartPrompt": {
+    "nearLimit": "استخدمتِ {{used}} من {{limit}} تحليل! اشتركي الآن للحصول على 60 تحليل شهرياً.",
+    "upgradeNow": "ترقية الآن"
   },
   "onboarding": {
     "title": "مرحباً بكِ في رحلتك",
