@@ -55,7 +55,7 @@ const i18nLabels: Record<string, {
     yearly: 'Jährliches Premium',
     monthlyPrice: '2,99 $/Monat',
     yearlyPrice: '19,99 $/Jahr',
-    perks: ['40 KI-Analysen pro Monat', 'Alle 22+ KI-Tools freigeschaltet', 'Personalisierte Gesundheitseinblicke', 'Prioritäts-Support'],
+    perks: ['60 KI-Analysen pro Monat', 'Alle 42+ KI-Tools freigeschaltet', 'Personalisierte Gesundheitseinblicke', 'Prioritäts-Support'],
     cta: 'Jetzt entdecken',
     enjoy: 'Danke, dass du Pregnancy Toolkits Premium gewählt hast ✨',
   },
