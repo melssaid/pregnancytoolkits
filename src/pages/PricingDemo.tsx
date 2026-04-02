@@ -75,7 +75,8 @@ export default function PricingDemo() {
       selected,
       () => {
         refreshAIUsage();
-        toast.success(t("pricing.subscriptionSuccess") || "Subscription activated!");
+        // Dispatch custom event so App.tsx can show SubscriptionSuccessSheet
+        window.dispatchEvent(new CustomEvent('subscription-activated', { detail: { plan: selected } }));
         navigate("/");
       },
       (msg) => {

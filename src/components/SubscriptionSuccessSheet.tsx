@@ -103,7 +103,7 @@ const i18nLabels: Record<string, {
     yearly: 'Yıllık Premium',
     monthlyPrice: '$2.99/ay',
     yearlyPrice: '$19.99/yıl',
-    perks: ['Ayda 40 AI analizi', 'Tüm 22+ AI araçları açık', 'Kişiselleştirilmiş sağlık önerileri', 'Öncelikli destek'],
+    perks: ['Ayda 60 AI analizi', 'Tüm 42+ AI araçları açık', 'Kişiselleştirilmiş sağlık önerileri', 'Öncelikli destek'],
     cta: 'Keşfetmeye Başla',
     enjoy: 'Pregnancy Toolkits Premium\'u seçtiğiniz için teşekkürler ✨',
   },

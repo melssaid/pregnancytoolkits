@@ -272,6 +272,50 @@ const FooterCard = memo(function FooterCard() {
 
   const showExhausted = isLimitReached && isFree;
 
+  // Premium member card
+  if (isPremium) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+        className="mt-3"
+      >
+        <div className="w-full text-start rounded-xl overflow-hidden bg-gradient-to-br from-amber-500/[0.08] via-card to-primary/[0.04] border border-amber-500/20 shadow-sm">
+          <div className="h-[2px] bg-gradient-to-r from-amber-500/30 via-amber-500 to-amber-500/30" />
+          <div className="px-3 py-3 flex items-center gap-2.5">
+            <div className="relative flex-shrink-0">
+              <div className="relative w-9 h-9 rounded-lg bg-gradient-to-br from-amber-500/20 to-amber-500/10 flex items-center justify-center border border-amber-500/25">
+                <Crown className="w-4 h-4 text-amber-500" strokeWidth={1.8} />
+              </div>
+            </div>
+            <div className="flex-1 min-w-0">
+              <h4 className="text-[12px] font-bold text-foreground leading-tight" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+                {l.premiumTitle}
+              </h4>
+              <p className="text-[10px] text-muted-foreground mt-0.5 leading-snug">
+                {l.premiumDesc}
+              </p>
+            </div>
+            <span className="text-[13px] font-extrabold text-primary tabular-nums" style={{ fontFamily: "'Cairo', sans-serif" }}>
+              {remaining}<span className="text-[9px] opacity-40 font-normal">/{limit}</span>
+            </span>
+          </div>
+          <div className="px-3 pb-2.5">
+            <div className="h-[4px] rounded-full bg-muted/50 overflow-hidden">
+              <motion.div
+                className="h-full rounded-full bg-gradient-to-r from-amber-500 to-primary"
+                initial={{ width: 0 }}
+                animate={{ width: `${usagePercent}%` }}
+                transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              />
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    );
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 12 }}
