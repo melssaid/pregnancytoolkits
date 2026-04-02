@@ -119,34 +119,6 @@ const SectionContent = ({ sectionKey }: { sectionKey: string }) => {
         </div>
       );
 
-    case "advertising":
-      return (
-        <div className="space-y-4">
-          <p className="text-muted-foreground leading-relaxed text-sm">{s("desc")}</p>
-          <div className="grid gap-2 mt-3">
-            {["googleCollects", "adId", "noPersonalSent", "optOut", "consentBased"].map((key) => (
-              <div key={key} className="flex items-start gap-2 text-sm">
-                <CheckCircle2 className="w-4 h-4 text-yellow-600 mt-0.5 shrink-0" />
-                <span className="text-muted-foreground">{s(key)}</span>
-              </div>
-            ))}
-          </div>
-          <div className="mt-3 p-3 bg-yellow-500/5 rounded-lg border border-yellow-500/20">
-            <p className="text-xs text-muted-foreground">
-              {s("policyLink")}{" "}
-              <a 
-                href="https://policies.google.com/privacy" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-primary underline hover:no-underline"
-              >
-                Google Privacy Policy
-              </a>
-            </p>
-          </div>
-        </div>
-      );
-
     case "sharing":
       return (
         <div className="space-y-3">
