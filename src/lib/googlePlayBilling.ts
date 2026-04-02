@@ -605,6 +605,14 @@ async function activateOnServer(
       .limit(1)
       .maybeSingle();
 
+    console.log('[Billing] Invoking activate-subscription with:', {
+      subscriptionId: existing?.id || undefined,
+      productId,
+      hasPurchaseToken: !!purchaseToken,
+      hasOrderId: !!orderId,
+      userId: currentUser.id,
+    });
+
     const res = await supabase.functions.invoke('activate-subscription', {
       body: {
         subscriptionId: existing?.id || undefined,
@@ -612,6 +620,12 @@ async function activateOnServer(
         productId,
         orderId: orderId || undefined,
       },
+    });
+
+    console.log('[Billing] activate-subscription response:', {
+      error: res.error?.message || null,
+      data: res.data,
+      status: (res as any)?.status,
     });
 
     if (res.error) {
