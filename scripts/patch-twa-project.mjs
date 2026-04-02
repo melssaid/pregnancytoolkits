@@ -110,6 +110,25 @@ if (!nextManifest.includes('com.android.vending.BILLING')) {
   console.log('[patch-twa-project] Added BILLING permission');
 }
 
+// Remove AD_ID permission (injected by androidbrowserhelper SDK)
+// Ensure xmlns:tools namespace exists
+if (!nextManifest.includes('xmlns:tools=')) {
+  nextManifest = nextManifest.replace(
+    /<manifest\b([^>]*)>/,
+    '<manifest$1\n    xmlns:tools="http://schemas.android.com/tools">'
+  );
+  console.log('[patch-twa-project] Added xmlns:tools namespace');
+}
+
+const adIdRemoval = '    <uses-permission android:name="com.google.android.gms.permission.AD_ID" tools:node="remove" />';
+if (!nextManifest.includes('com.google.android.gms.permission.AD_ID')) {
+  nextManifest = nextManifest.replace(
+    /<manifest\b[^>]*>/,
+    `$&\n${adIdRemoval}`
+  );
+  console.log('[patch-twa-project] Added AD_ID permission removal directive');
+}
+
 nextManifest = normalizeDelegationService(nextManifest, packageName);
 const delegationServiceSource = buildDelegationServiceSource(packageName);
 
