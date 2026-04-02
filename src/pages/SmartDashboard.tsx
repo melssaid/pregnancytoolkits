@@ -5,6 +5,7 @@ import { useUserProfile } from "@/hooks/useUserProfile";
 import { useTrackingStats } from "@/hooks/useTrackingStats";
 import { Layout } from "@/components/Layout";
 import { safeParseLocalStorage } from "@/lib/safeStorage";
+import { useSmartConversionPrompt } from "@/hooks/useSmartConversionPrompt";
 
 // Dashboard components
 import { DailyHeroCard } from "@/components/dashboard/DailyHeroCard";
@@ -18,6 +19,7 @@ import { FetalMovementCard } from "@/components/dashboard/FetalMovementCard";
 import { WeightTrendCard } from "@/components/dashboard/WeightTrendCard";
 import { AppointmentsCard } from "@/components/dashboard/AppointmentsCard";
 import { RecentAIResults } from "@/components/dashboard/RecentAIResults";
+import { UsageStatsNudge } from "@/components/dashboard/UsageStatsNudge";
 
 const SmartDashboard = () => {
   const { t } = useTranslation();
@@ -25,6 +27,7 @@ const SmartDashboard = () => {
   const { stats } = useTrackingStats();
 
   const healthCheckin = safeParseLocalStorage<any>("dashboard_health_checkin_v1", null);
+  useSmartConversionPrompt();
   const bloodPressure = healthCheckin?.bloodPressure || "";
 
   return (
@@ -37,6 +40,9 @@ const SmartDashboard = () => {
       <main className="container py-4 space-y-3.5 pb-24">
         {/* 1. Hero — Pregnancy Week */}
         <DailyHeroCard week={profile.pregnancyWeek} dueDate={profile.dueDate} />
+
+        {/* Usage Stats Nudge for free users */}
+        <UsageStatsNudge />
 
         {/* 2. Risk Alerts (conditional) */}
         <RiskAlertCard

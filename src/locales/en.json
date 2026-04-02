@@ -130,7 +130,7 @@
     "yr": "yr",
     "save": "Save 44%",
     "feature1": "35 advanced AI-powered tools",
-    "feature2": "40 smart analyses per month",
+    "feature2": "60 smart analyses per month",
     "feature3": "Personalized AI health reports",
     "feature4": "Priority request processing",
     "feature5": "7 languages with advanced analysis",
@@ -147,7 +147,32 @@
     "termsPrefix": "By continuing, you agree to our",
     "and": "and",
     "subscriptionSuccess": "Subscription activated successfully!",
-    "purchaseCancelled": "Purchase was cancelled"
+    "purchaseCancelled": "Purchase was cancelled",
+    "savePercent": "Save 44%",
+    "savingsBanner": "Save $15.89/year vs monthly"
+  },
+  "trialBanner": {
+    "expiringSoon": "Trial ending soon!",
+    "remaining": "remaining",
+    "subscribe": "Subscribe Now"
+  },
+  "trialExpired": {
+    "title": "Your trial has ended",
+    "subtitle": "You've experienced the power of AI",
+    "usedAnalyses": "You used {{count}} AI analyses",
+    "duringTrial": "during your trial period",
+    "premiumBenefit": "60 analyses/month",
+    "premiumDesc": "Unlock all 42+ AI tools",
+    "cta": "View Premium Plans",
+    "dismiss": "Maybe later"
+  },
+  "usageNudge": {
+    "title": "{{used}}/{{limit}} analyses used",
+    "upgrade": "Upgrade for 60/month →"
+  },
+  "smartPrompt": {
+    "nearLimit": "You've used {{used}} of {{limit}} analyses! Subscribe for 60/month.",
+    "upgradeNow": "Upgrade Now"
   },
   "onboarding": {
     "title": "Welcome to Your Journey",
