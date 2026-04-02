@@ -18,6 +18,7 @@ import { FetalMovementCard } from "@/components/dashboard/FetalMovementCard";
 import { WeightTrendCard } from "@/components/dashboard/WeightTrendCard";
 import { AppointmentsCard } from "@/components/dashboard/AppointmentsCard";
 import { RecentAIResults } from "@/components/dashboard/RecentAIResults";
+import { UsageStatsNudge } from "@/components/dashboard/UsageStatsNudge";
 
 const SmartDashboard = () => {
   const { t } = useTranslation();
