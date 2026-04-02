@@ -3,8 +3,8 @@
  * Tracks monthly AI usage with weighted costs.
  * Local-first with server sync capability.
  * 
- * FREE: 5 attempts/month | PREMIUM: 40 attempts/month
- * Weights: standard=1, ultrasound image=2
+ * FREE: 5 attempts/month | PREMIUM: 60 attempts/month
+ * Weights: standard=1, ultrasound image=2, lightweight=0.5
  */
 
 import { QUOTA_TIERS, type InsightWeight, type QuotaState } from "./types";
