@@ -42,7 +42,7 @@ const sectionConfigs: SectionConfig[] = [
   { id: "data-safety", icon: Shield, titleKey: "dataSafety", color: "text-emerald-600", bgColor: "bg-emerald-500/10", borderColor: "border-emerald-500/20", important: true },
   { id: "local-storage", icon: Smartphone, titleKey: "localStorage", color: "text-green-600", bgColor: "bg-green-500/10", borderColor: "border-green-500/20", important: true },
   { id: "processing", icon: Scale, titleKey: "processing", color: "text-blue-600", bgColor: "bg-blue-500/10", borderColor: "border-blue-500/20" },
-  { id: "advertising", icon: Megaphone, titleKey: "advertising", color: "text-yellow-600", bgColor: "bg-yellow-500/10", borderColor: "border-yellow-500/20", important: true },
+  { id: "sharing", icon: Users, titleKey: "sharing", color: "text-amber-600", bgColor: "bg-amber-500/10", borderColor: "border-amber-500/20" },
   { id: "sharing", icon: Users, titleKey: "sharing", color: "text-amber-600", bgColor: "bg-amber-500/10", borderColor: "border-amber-500/20" },
   { id: "ai-products", icon: Sparkles, titleKey: "aiProducts", color: "text-purple-600", bgColor: "bg-purple-500/10", borderColor: "border-purple-500/20" },
   { id: "notifications", icon: Bell, titleKey: "notifications", color: "text-teal-600", bgColor: "bg-teal-500/10", borderColor: "border-teal-500/20" },
