@@ -63,7 +63,7 @@ Deno.serve(async (req) => {
     }
 
     // Validate productId
-    if (!["premium_monthly", "yearly_premium"].includes(productId)) {
+    if (!["premium_monthly", "premium_yearly"].includes(productId)) {
       return new Response(JSON.stringify({ error: "Invalid productId" }), {
         status: 400,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
