@@ -711,16 +711,6 @@
           "desc": "Wir verarbeiten Ihre Informationen, um unsere Dienste bereitzustellen, zu verbessern und zu verwalten, mit Ihnen zu kommunizieren, für Sicherheit und Betrugsprävention sowie zur Einhaltung von Gesetzen.",
           "legalBasis": "Wir verarbeiten Ihre Informationen nur, wenn wir einen gültigen rechtlichen Grund dafür haben."
         },
-        "advertising": {
-          "title": "Werbung (Google AdSense)",
-          "desc": "Diese Anwendung zeigt Werbung über Google AdSense an, um den kostenlosen Zugang zu allen Tools zu ermöglichen. Google kann bestimmte Daten erheben und verwenden, um relevante Anzeigen zu schalten.",
-          "googleCollects": "Anzeigen werden von Google AdSense bereitgestellt — Google übernimmt die gesamte Verarbeitung der Werbedaten",
-          "adId": "Google kann die Werbe-ID Ihres Geräts (GAID/IDFA) erfassen, um Anzeigen zu personalisieren",
-          "noPersonalSent": "Wir senden KEINE Ihrer persönlichen Gesundheitsdaten an Google oder einen Werbetreibenden",
-          "optOut": "Sie können personalisierte Werbung in Ihren Geräteeinstellungen deaktivieren (Einstellungen → Google → Anzeigen)",
-          "consentBased": "Die Anzeigenpersonalisierung richtet sich nach den Einwilligungseinstellungen Ihres Geräts",
-          "policyLink": "Weitere Informationen zur Datennutzung durch Google finden Sie unter:"
-        },
         "sharing": {
           "title": "Informationsweitergabe",
           "desc": "Wir können Informationen in bestimmten Situationen und an bestimmte Dritte weitergeben:",
@@ -1152,7 +1142,7 @@
     "trust": {
       "title": "Ihre Privatsphäre, geschützt",
       "localData": "Ihre Gesundheitsdaten bleiben auf Ihrem Gerät — sie werden nie auf unsere Server hochgeladen",
-      "noAdSharing": "Keine Gesundheitsinformationen werden an Werbetreibende oder Dritte weitergegeben",
+      "noAdSharing": "Keine Gesundheitsinformationen werden an Dritte weitergegeben",
       "noAIStorage": "KI-Gespräche werden in Echtzeit verarbeitet und nicht auf unseren Servern gespeichert"
     },
     "aboutApp": "Über die App",

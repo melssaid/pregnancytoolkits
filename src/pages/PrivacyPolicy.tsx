@@ -21,7 +21,7 @@ import {
   XCircle,
   Smartphone,
   Bell,
-  Megaphone,
+  
   LucideIcon
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -42,7 +42,7 @@ const sectionConfigs: SectionConfig[] = [
   { id: "data-safety", icon: Shield, titleKey: "dataSafety", color: "text-emerald-600", bgColor: "bg-emerald-500/10", borderColor: "border-emerald-500/20", important: true },
   { id: "local-storage", icon: Smartphone, titleKey: "localStorage", color: "text-green-600", bgColor: "bg-green-500/10", borderColor: "border-green-500/20", important: true },
   { id: "processing", icon: Scale, titleKey: "processing", color: "text-blue-600", bgColor: "bg-blue-500/10", borderColor: "border-blue-500/20" },
-  { id: "advertising", icon: Megaphone, titleKey: "advertising", color: "text-yellow-600", bgColor: "bg-yellow-500/10", borderColor: "border-yellow-500/20", important: true },
+  { id: "sharing", icon: Users, titleKey: "sharing", color: "text-amber-600", bgColor: "bg-amber-500/10", borderColor: "border-amber-500/20" },
   { id: "sharing", icon: Users, titleKey: "sharing", color: "text-amber-600", bgColor: "bg-amber-500/10", borderColor: "border-amber-500/20" },
   { id: "ai-products", icon: Sparkles, titleKey: "aiProducts", color: "text-purple-600", bgColor: "bg-purple-500/10", borderColor: "border-purple-500/20" },
   { id: "notifications", icon: Bell, titleKey: "notifications", color: "text-teal-600", bgColor: "bg-teal-500/10", borderColor: "border-teal-500/20" },
@@ -116,34 +116,6 @@ const SectionContent = ({ sectionKey }: { sectionKey: string }) => {
         <div className="space-y-3">
           <p className="text-muted-foreground leading-relaxed text-sm">{s("desc")}</p>
           <p className="text-sm text-muted-foreground">{s("legalBasis")}</p>
-        </div>
-      );
-
-    case "advertising":
-      return (
-        <div className="space-y-4">
-          <p className="text-muted-foreground leading-relaxed text-sm">{s("desc")}</p>
-          <div className="grid gap-2 mt-3">
-            {["googleCollects", "adId", "noPersonalSent", "optOut", "consentBased"].map((key) => (
-              <div key={key} className="flex items-start gap-2 text-sm">
-                <CheckCircle2 className="w-4 h-4 text-yellow-600 mt-0.5 shrink-0" />
-                <span className="text-muted-foreground">{s(key)}</span>
-              </div>
-            ))}
-          </div>
-          <div className="mt-3 p-3 bg-yellow-500/5 rounded-lg border border-yellow-500/20">
-            <p className="text-xs text-muted-foreground">
-              {s("policyLink")}{" "}
-              <a 
-                href="https://policies.google.com/privacy" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-primary underline hover:no-underline"
-              >
-                Google Privacy Policy
-              </a>
-            </p>
-          </div>
         </div>
       );
 

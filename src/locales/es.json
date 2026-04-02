@@ -711,16 +711,6 @@
           "desc": "Procesamos tu información para proporcionar, mejorar y administrar nuestros servicios, comunicarnos contigo, para seguridad y prevención de fraude.",
           "legalBasis": "Solo procesamos tu información cuando tenemos una razón legal válida para hacerlo."
         },
-        "advertising": {
-          "title": "Publicidad (Google AdSense)",
-          "desc": "Esta aplicación muestra anuncios a través de Google AdSense para permitir el acceso gratuito a todas las herramientas. Google puede recopilar y utilizar ciertos datos para mostrar anuncios relevantes.",
-          "googleCollects": "Los anuncios son proporcionados por Google AdSense — Google gestiona todo el procesamiento de datos publicitarios",
-          "adId": "Google puede recopilar el identificador publicitario de tu dispositivo (GAID/IDFA) para personalizar los anuncios",
-          "noPersonalSent": "NO enviamos ninguno de tus datos de salud personales a Google ni a ningún anunciante",
-          "optOut": "Puedes desactivar los anuncios personalizados en la configuración de tu dispositivo (Ajustes → Google → Anuncios)",
-          "consentBased": "La personalización de anuncios sigue las preferencias de consentimiento de tu dispositivo",
-          "policyLink": "Para más detalles sobre cómo Google usa tus datos, consulta:"
-        },
         "sharing": {
           "title": "Compartir información",
           "desc": "Podemos compartir información en situaciones específicas con terceros específicos:",
@@ -1152,7 +1142,7 @@
     "trust": {
       "title": "Tu privacidad, protegida",
       "localData": "Tus datos de salud permanecen en tu dispositivo — nunca se suben a nuestros servidores",
-      "noAdSharing": "No se comparte información de salud con anunciantes ni terceros",
+      "noAdSharing": "No se comparte información de salud con terceros",
       "noAIStorage": "Las conversaciones de IA se procesan en tiempo real y no se almacenan en nuestros servidores"
     },
     "aboutApp": "Acerca de la aplicación",
