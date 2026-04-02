@@ -13,7 +13,7 @@ import { supabase } from '@/integrations/supabase/client';
 
 export const PRODUCT_IDS = {
   monthly: "premium_monthly",
-  yearly: "yearly_premium",
+  yearly: "premium_yearly",
 } as const;
 
 export type PlanType = keyof typeof PRODUCT_IDS;
