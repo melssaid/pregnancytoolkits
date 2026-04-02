@@ -257,14 +257,16 @@ const FooterCard = memo(function FooterCard() {
   const isFree = tier === 'free';
   const usagePercent = limit > 0 ? (remaining / limit) * 100 : 0;
 
-  const labels: Record<string, { title: string; desc: string; exhaustedTitle: string; exhaustedDesc: string; cta: string }> = {
-    en: { title: 'Premium Access', desc: '40 monthly analyses · All tools unlocked', exhaustedTitle: 'Insights Used Up', exhaustedDesc: 'Unlock more personalized insights with Premium', cta: 'View Plans' },
-    ar: { title: 'الوصول المميز', desc: '40 تحليل شهرياً · جميع الأدوات مفتوحة', exhaustedTitle: 'نفدت التحليلات', exhaustedDesc: 'افتحي المزيد من التحليلات المخصصة مع Premium', cta: 'عرض الخطط' },
-    de: { title: 'Premium-Zugang', desc: '40 monatliche Analysen · Alle Tools freigeschaltet', exhaustedTitle: 'Analysen aufgebraucht', exhaustedDesc: 'Schalten Sie mehr personalisierte Einblicke frei', cta: 'Pläne ansehen' },
-    fr: { title: 'Accès Premium', desc: '40 analyses mensuelles · Tous les outils débloqués', exhaustedTitle: 'Analyses épuisées', exhaustedDesc: 'Débloquez plus d\'analyses personnalisées avec Premium', cta: 'Voir les plans' },
-    es: { title: 'Acceso Premium', desc: '40 análisis mensuales · Todas las herramientas', exhaustedTitle: 'Análisis agotados', exhaustedDesc: 'Desbloquea más análisis personalizados con Premium', cta: 'Ver planes' },
-    pt: { title: 'Acesso Premium', desc: '40 análises mensais · Todas as ferramentas', exhaustedTitle: 'Análises esgotadas', exhaustedDesc: 'Desbloqueie mais análises personalizadas com Premium', cta: 'Ver planos' },
-    tr: { title: 'Premium Erişim', desc: '40 aylık analiz · Tüm araçlar açık', exhaustedTitle: 'Analizler tükendi', exhaustedDesc: 'Premium ile daha fazla kişiselleştirilmiş analiz açın', cta: 'Planları gör' },
+  const isPremium = tier === 'premium';
+
+  const labels: Record<string, { title: string; desc: string; exhaustedTitle: string; exhaustedDesc: string; cta: string; premiumTitle: string; premiumDesc: string }> = {
+    en: { title: 'Premium Access', desc: '60 monthly analyses · All tools unlocked', exhaustedTitle: 'Insights Used Up', exhaustedDesc: 'Unlock more personalized insights with Premium', cta: 'View Plans', premiumTitle: 'Premium Member ✨', premiumDesc: 'You have 60 monthly AI analyses' },
+    ar: { title: 'الوصول المميز', desc: '60 تحليل شهرياً · جميع الأدوات مفتوحة', exhaustedTitle: 'نفدت التحليلات', exhaustedDesc: 'افتحي المزيد من التحليلات المخصصة مع Premium', cta: 'عرض الخطط', premiumTitle: 'عضوة مميزة ✨', premiumDesc: 'لديكِ 60 تحليل ذكاء اصطناعي شهرياً' },
+    de: { title: 'Premium-Zugang', desc: '60 monatliche Analysen · Alle Tools freigeschaltet', exhaustedTitle: 'Analysen aufgebraucht', exhaustedDesc: 'Schalten Sie mehr personalisierte Einblicke frei', cta: 'Pläne ansehen', premiumTitle: 'Premium-Mitglied ✨', premiumDesc: 'Sie haben 60 monatliche KI-Analysen' },
+    fr: { title: 'Accès Premium', desc: '60 analyses mensuelles · Tous les outils débloqués', exhaustedTitle: 'Analyses épuisées', exhaustedDesc: 'Débloquez plus d\'analyses personnalisées avec Premium', cta: 'Voir les plans', premiumTitle: 'Membre Premium ✨', premiumDesc: 'Vous avez 60 analyses IA mensuelles' },
+    es: { title: 'Acceso Premium', desc: '60 análisis mensuales · Todas las herramientas', exhaustedTitle: 'Análisis agotados', exhaustedDesc: 'Desbloquea más análisis personalizados con Premium', cta: 'Ver planes', premiumTitle: 'Miembro Premium ✨', premiumDesc: 'Tienes 60 análisis IA mensuales' },
+    pt: { title: 'Acesso Premium', desc: '60 análises mensais · Todas as ferramentas', exhaustedTitle: 'Análises esgotadas', exhaustedDesc: 'Desbloqueie mais análises personalizadas com Premium', cta: 'Ver planos', premiumTitle: 'Membro Premium ✨', premiumDesc: 'Você tem 60 análises IA mensais' },
+    tr: { title: 'Premium Erişim', desc: '60 aylık analiz · Tüm araçlar açık', exhaustedTitle: 'Analizler tükendi', exhaustedDesc: 'Premium ile daha fazla kişiselleştirilmiş analiz açın', cta: 'Planları gör', premiumTitle: 'Premium Üye ✨', premiumDesc: 'Aylık 60 AI analiziniz var' },
   };
   const l = labels[lang] || labels.en;
 
