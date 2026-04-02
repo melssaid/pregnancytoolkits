@@ -9,6 +9,7 @@ import { requestPurchase, isDigitalGoodsAvailable, runBillingDiagnostics, clearB
 import { useNavigate, Link } from "react-router-dom";
 import pricingLogo from "@/assets/pricing-logo.webp";
 import { supabase } from "@/integrations/supabase/client";
+import { useAIUsage } from "@/contexts/AIUsageContext";
 
 const features = [
   { icon: Brain, key: "feature1" },
@@ -25,6 +26,7 @@ export default function PricingDemo() {
   const [selected, setSelected] = useState<PlanType>("yearly");
   const isAr = i18n.language === "ar";
   const canPurchase = isDigitalGoodsAvailable();
+  const { refresh: refreshAIUsage } = useAIUsage();
 
   const normalizeBillingError = (message?: string) => {
     if (!message) {
@@ -72,6 +74,7 @@ export default function PricingDemo() {
     const sent = await requestPurchase(
       selected,
       () => {
+        refreshAIUsage();
         toast.success(t("pricing.subscriptionSuccess") || "Subscription activated!");
         navigate("/");
       },
