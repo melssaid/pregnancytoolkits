@@ -126,7 +126,7 @@ export interface QuotaTier {
 
 export const QUOTA_TIERS: Record<string, QuotaTier> = {
   free: { monthly: 5, label: "Free" },
-  premium: { monthly: 40, label: "Premium" },
+  premium: { monthly: 60, label: "Premium" },
 };
 
 // ── Quota state ──
