@@ -711,16 +711,6 @@
           "desc": "We process your information to provide, improve, and administer our Services, communicate with you, for security and fraud prevention, and to comply with law.",
           "legalBasis": "We process your information only when we have a valid legal reason to do so under applicable law."
         },
-        "advertising": {
-          "title": "Advertising (Google AdSense)",
-          "desc": "This application displays advertisements through Google AdSense to support free access to all tools. Google may collect and use certain data to serve relevant ads.",
-          "googleCollects": "Ads are served by Google AdSense — Google handles all ad data processing",
-          "adId": "Google may collect your Advertising ID (GAID/IDFA) to personalize ads",
-          "noPersonalSent": "We do NOT send any of your personal health data to Google or any advertiser",
-          "optOut": "You can opt out of personalized ads in your device settings (Settings → Google → Ads)",
-          "consentBased": "Ad personalization follows your device consent preferences",
-          "policyLink": "For more details on how Google uses your data, see:"
-        },
         "sharing": {
           "title": "Information Sharing",
           "desc": "We may share information in specific situations and with specific third parties:",
