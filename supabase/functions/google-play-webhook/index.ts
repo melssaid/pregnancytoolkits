@@ -118,7 +118,7 @@ Deno.serve(async (req) => {
     }
 
     // Determine subscription type from product ID
-    const subType = subscriptionId === "yearly_premium" ? "yearly" : "monthly";
+    const subType = subscriptionId === "premium_yearly" ? "yearly" : "monthly";
     const now = new Date().toISOString();
 
     // Calculate subscription end based on type
