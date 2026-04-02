@@ -27,6 +27,7 @@ const SmartDashboard = () => {
   const { stats } = useTrackingStats();
 
   const healthCheckin = safeParseLocalStorage<any>("dashboard_health_checkin_v1", null);
+  useSmartConversionPrompt();
   const bloodPressure = healthCheckin?.bloodPressure || "";
 
   return (
