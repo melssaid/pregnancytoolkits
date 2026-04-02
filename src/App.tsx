@@ -45,6 +45,17 @@ const App = () => {
     prefetchCriticalRoutes();
   }, []);
 
+  // Listen for subscription-activated event from PricingDemo
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent).detail;
+      const plan = detail?.plan === 'yearly' ? 'yearly' : 'monthly';
+      setSuccessSheet({ open: true, plan });
+    };
+    window.addEventListener('subscription-activated', handler);
+    return () => window.removeEventListener('subscription-activated', handler);
+  }, []);
+
 
   // Handle dynamic import failures (e.g., after app updates)
   useEffect(() => {

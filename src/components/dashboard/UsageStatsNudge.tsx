@@ -36,7 +36,7 @@ export function UsageStatsNudge() {
                   {t("usageNudge.title", "{{used}}/{{limit}} analyses used", { used, limit })}
                 </p>
                 <p className="text-[10px] text-muted-foreground mt-0.5">
-                  {t("usageNudge.upgrade", "Upgrade for 60/month →")}
+                  {t("usageNudge.upgrade", "Upgrade for 60 analyses/month →")}
                 </p>
               </div>
             </div>

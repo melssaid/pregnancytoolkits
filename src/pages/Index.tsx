@@ -257,18 +257,64 @@ const FooterCard = memo(function FooterCard() {
   const isFree = tier === 'free';
   const usagePercent = limit > 0 ? (remaining / limit) * 100 : 0;
 
-  const labels: Record<string, { title: string; desc: string; exhaustedTitle: string; exhaustedDesc: string; cta: string }> = {
-    en: { title: 'Premium Access', desc: '40 monthly analyses · All tools unlocked', exhaustedTitle: 'Insights Used Up', exhaustedDesc: 'Unlock more personalized insights with Premium', cta: 'View Plans' },
-    ar: { title: 'الوصول المميز', desc: '40 تحليل شهرياً · جميع الأدوات مفتوحة', exhaustedTitle: 'نفدت التحليلات', exhaustedDesc: 'افتحي المزيد من التحليلات المخصصة مع Premium', cta: 'عرض الخطط' },
-    de: { title: 'Premium-Zugang', desc: '40 monatliche Analysen · Alle Tools freigeschaltet', exhaustedTitle: 'Analysen aufgebraucht', exhaustedDesc: 'Schalten Sie mehr personalisierte Einblicke frei', cta: 'Pläne ansehen' },
-    fr: { title: 'Accès Premium', desc: '40 analyses mensuelles · Tous les outils débloqués', exhaustedTitle: 'Analyses épuisées', exhaustedDesc: 'Débloquez plus d\'analyses personnalisées avec Premium', cta: 'Voir les plans' },
-    es: { title: 'Acceso Premium', desc: '40 análisis mensuales · Todas las herramientas', exhaustedTitle: 'Análisis agotados', exhaustedDesc: 'Desbloquea más análisis personalizados con Premium', cta: 'Ver planes' },
-    pt: { title: 'Acesso Premium', desc: '40 análises mensais · Todas as ferramentas', exhaustedTitle: 'Análises esgotadas', exhaustedDesc: 'Desbloqueie mais análises personalizadas com Premium', cta: 'Ver planos' },
-    tr: { title: 'Premium Erişim', desc: '40 aylık analiz · Tüm araçlar açık', exhaustedTitle: 'Analizler tükendi', exhaustedDesc: 'Premium ile daha fazla kişiselleştirilmiş analiz açın', cta: 'Planları gör' },
+  const isPremium = tier === 'premium';
+
+  const labels: Record<string, { title: string; desc: string; exhaustedTitle: string; exhaustedDesc: string; cta: string; premiumTitle: string; premiumDesc: string }> = {
+    en: { title: 'Premium Access', desc: '60 monthly analyses · All tools unlocked', exhaustedTitle: 'Insights Used Up', exhaustedDesc: 'Unlock more personalized insights with Premium', cta: 'View Plans', premiumTitle: 'Premium Member ✨', premiumDesc: 'You have 60 monthly AI analyses' },
+    ar: { title: 'الوصول المميز', desc: '60 تحليل شهرياً · جميع الأدوات مفتوحة', exhaustedTitle: 'نفدت التحليلات', exhaustedDesc: 'افتحي المزيد من التحليلات المخصصة مع Premium', cta: 'عرض الخطط', premiumTitle: 'عضوة مميزة ✨', premiumDesc: 'لديكِ 60 تحليل ذكاء اصطناعي شهرياً' },
+    de: { title: 'Premium-Zugang', desc: '60 monatliche Analysen · Alle Tools freigeschaltet', exhaustedTitle: 'Analysen aufgebraucht', exhaustedDesc: 'Schalten Sie mehr personalisierte Einblicke frei', cta: 'Pläne ansehen', premiumTitle: 'Premium-Mitglied ✨', premiumDesc: 'Sie haben 60 monatliche KI-Analysen' },
+    fr: { title: 'Accès Premium', desc: '60 analyses mensuelles · Tous les outils débloqués', exhaustedTitle: 'Analyses épuisées', exhaustedDesc: 'Débloquez plus d\'analyses personnalisées avec Premium', cta: 'Voir les plans', premiumTitle: 'Membre Premium ✨', premiumDesc: 'Vous avez 60 analyses IA mensuelles' },
+    es: { title: 'Acceso Premium', desc: '60 análisis mensuales · Todas las herramientas', exhaustedTitle: 'Análisis agotados', exhaustedDesc: 'Desbloquea más análisis personalizados con Premium', cta: 'Ver planes', premiumTitle: 'Miembro Premium ✨', premiumDesc: 'Tienes 60 análisis IA mensuales' },
+    pt: { title: 'Acesso Premium', desc: '60 análises mensais · Todas as ferramentas', exhaustedTitle: 'Análises esgotadas', exhaustedDesc: 'Desbloqueie mais análises personalizadas com Premium', cta: 'Ver planos', premiumTitle: 'Membro Premium ✨', premiumDesc: 'Você tem 60 análises IA mensais' },
+    tr: { title: 'Premium Erişim', desc: '60 aylık analiz · Tüm araçlar açık', exhaustedTitle: 'Analizler tükendi', exhaustedDesc: 'Premium ile daha fazla kişiselleştirilmiş analiz açın', cta: 'Planları gör', premiumTitle: 'Premium Üye ✨', premiumDesc: 'Aylık 60 AI analiziniz var' },
   };
   const l = labels[lang] || labels.en;
 
   const showExhausted = isLimitReached && isFree;
+
+  // Premium member card
+  if (isPremium) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+        className="mt-3"
+      >
+        <div className="w-full text-start rounded-xl overflow-hidden bg-gradient-to-br from-amber-500/[0.08] via-card to-primary/[0.04] border border-amber-500/20 shadow-sm">
+          <div className="h-[2px] bg-gradient-to-r from-amber-500/30 via-amber-500 to-amber-500/30" />
+          <div className="px-3 py-3 flex items-center gap-2.5">
+            <div className="relative flex-shrink-0">
+              <div className="relative w-9 h-9 rounded-lg bg-gradient-to-br from-amber-500/20 to-amber-500/10 flex items-center justify-center border border-amber-500/25">
+                <Crown className="w-4 h-4 text-amber-500" strokeWidth={1.8} />
+              </div>
+            </div>
+            <div className="flex-1 min-w-0">
+              <h4 className="text-[12px] font-bold text-foreground leading-tight" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+                {l.premiumTitle}
+              </h4>
+              <p className="text-[10px] text-muted-foreground mt-0.5 leading-snug">
+                {l.premiumDesc}
+              </p>
+            </div>
+            <span className="text-[13px] font-extrabold text-primary tabular-nums" style={{ fontFamily: "'Cairo', sans-serif" }}>
+              {remaining}<span className="text-[9px] opacity-40 font-normal">/{limit}</span>
+            </span>
+          </div>
+          <div className="px-3 pb-2.5">
+            <div className="h-[4px] rounded-full bg-muted/50 overflow-hidden">
+              <motion.div
+                className="h-full rounded-full bg-gradient-to-r from-amber-500 to-primary"
+                initial={{ width: 0 }}
+                animate={{ width: `${usagePercent}%` }}
+                transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              />
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    );
+  }
 
   return (
     <motion.div
