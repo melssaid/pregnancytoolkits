@@ -85,8 +85,8 @@
     "allTools": "All Tools",
     "toolsAvailable": "{{count}} tools available",
     "noToolsFound": "No tools found matching your search.",
-    "medicalDisclaimer": "These tools are for informational purposes only. Always consult your healthcare provider.",
-    "footer": "For informational purposes only. Always consult your healthcare provider.",
+    "medicalDisclaimer": "These tools are for informational purposes only. Always consult your care provider.",
+    "footer": "For informational purposes only. Always consult your care provider.",
     "back": "Back",
     "allToolsBtn": "All Tools"
   },
@@ -94,8 +94,8 @@
     "resultDisclaimer": "AI-generated • Consult your doctor"
   },
   "compliance": {
-    "disclaimerCompact": "For informational purposes only. Consult your healthcare provider.",
-    "disclaimerFull": "This tool provides general guidance. Always consult your healthcare provider for medical advice."
+    "disclaimerCompact": "For informational purposes only. Consult your care provider.",
+    "disclaimerFull": "This tool provides general guidance. Always consult your care provider for medical advice."
   },
   "categories": {
     "all": "All",
@@ -376,12 +376,12 @@
       "description": "Find out when your little one will arrive."
     },
     "fetalGrowth": {
-      "title": "Fetal Growth Tracking",
-      "description": "Interactive fetal growth chart with weekly size comparisons."
+      "title": "Baby Growth Tracking",
+      "description": "Interactive baby growth chart with weekly size comparisons."
     },
     "kickCounter": {
-      "title": "Fetal Kick Tracking",
-      "description": "Smart kick counter with daily fetal activity analysis."
+      "title": "Baby Kick Tracking",
+      "description": "Smart kick counter with daily baby activity analysis."
     },
     "weightGain": {
       "title": "Pregnancy Weight Analysis",
@@ -462,7 +462,7 @@
     },
     "preconceptionCheckup": {
       "title": "Preconception Checkup Guide",
-      "description": "Essential tests and screenings before pregnancy."
+      "description": "Preparation checklist and wellness overview before pregnancy."
     }
   },
   "dashboard": {
@@ -499,7 +499,7 @@
       "birthPlanDesc": "Delivery preferences",
       "hospitalBag": "Hospital Bag",
       "hospitalBagDesc": "Packing checklist",
-      "fetalGrowth": "Fetal Growth",
+      "fetalGrowth": "Baby Growth",
       "fetalGrowthDesc": "Baby development",
       "babyGrowth": "Baby Growth",
       "babyGrowthDesc": "Postnatal tracking",
@@ -680,7 +680,7 @@
       "terms": "Terms",
       "contact": "Contact",
       "disclaimerTitle": "Important Notice",
-      "disclaimerText": "This app is for educational and informational purposes only. It is not a substitute for professional health guidance. Always consult a qualified healthcare provider for any health concerns."
+      "disclaimerText": "This app is for educational and informational purposes only. It is not a substitute for professional health guidance. Always consult a qualified care provider for any health concerns."
     },
     "share": {
       "title": "Pregnancy Toolkits",
@@ -835,16 +835,16 @@
           "warning": "⚠️ Very Important: Please Read Carefully",
           "content": "Pregnancy Toolkits is a lifestyle and educational companion only. It is NOT a medical device, diagnostic tool, or healthcare service. This application:",
           "noAdvice": "Does NOT provide professional health guidance, diagnosis, or treatments",
-          "noReplace": "Does NOT replace consultation with a doctor or healthcare provider",
+          "noReplace": "Does NOT replace consultation with a doctor or care provider",
           "noEmergency": "Should NOT be used for emergency health decisions",
-          "consultDoctor": "Always consult your doctor or qualified healthcare provider regarding any medical or health questions."
+          "consultDoctor": "Always consult your doctor or qualified care provider regarding any medical or health questions."
         },
         "usage": {
           "title": "Use of Application",
           "content": "You agree to the following when using our application:",
           "personal": "Use the app for personal, non-commercial purposes only",
           "notSubstitute": "Not rely on app results as a substitute for professional care",
-          "seekCare": "Contact your healthcare provider promptly in urgent situations",
+          "seekCare": "Contact your care provider promptly in urgent situations",
           "noMisuse": "Not misuse, reverse engineer, or attempt to extract the source code of the app"
         },
         "intellectualProperty": {
@@ -857,7 +857,7 @@
         },
         "accuracy": {
           "title": "Accuracy of Information",
-          "content": "While we strive to provide accurate and up-to-date information, we do not guarantee the accuracy or completeness of any information in the app. All calculations, estimates, AI-generated insights, and growth charts are approximate and for educational reference only. They may differ from actual clinical measurements. Always verify important information with your healthcare provider."
+          "content": "While we strive to provide accurate and up-to-date information, we do not guarantee the accuracy or completeness of any information in the app. All calculations, estimates, AI-generated insights, and growth charts are approximate and for educational reference only. They may differ from actual clinical measurements. Always verify important information with your care provider."
         },
         "appStore": {
           "title": "App Store Terms",
@@ -957,7 +957,7 @@
     "conception": "Conception",
     "secondTrimester": "2nd Trimester",
     "thirdTrimester": "3rd Trimester",
-    "info": "Only about 5% of babies are born on their exact due date. Most are born within 2 weeks before or after. Your healthcare provider may adjust your due date based on ultrasound measurements."
+    "info": "Only about 5% of babies are born on their exact due date. Most are born within 2 weeks before or after. Your care provider may adjust your due date based on ultrasound measurements."
   },
   "kickCounterPage": {
     "title": "Baby Movement Diary",
@@ -969,7 +969,7 @@
     "goal": "Aim: 10 movements in a 2-hour window",
     "moreToGo": "{{count}} more movements to note",
     "recentSessions": "Recent Entries",
-    "info": "Starting at 28 weeks, note fetal movements daily. Share your journal with your healthcare provider if you notice changes in your baby's usual pattern.",
+    "info": "Starting at 28 weeks, note baby movements daily. Share your journal with your care provider if you notice changes in your baby's usual pattern.",
     "exportPDF": "Share your journal with your consultant"
   },
   "contractionPage": {
@@ -983,7 +983,7 @@
     "sinceLastContraction": "{{minutes}} min since last",
     "duration": "duration",
     "callProvider": "Consider Contacting Your Provider",
-    "callProviderDesc": "Contractions are 5 minutes apart and lasting 45+ seconds. You may want to share this log with your healthcare provider.",
+    "callProviderDesc": "Contractions are 5 minutes apart and lasting 45+ seconds. You may want to share this log with your care provider.",
     "rule511": "5-1-1 Guideline",
     "rule511Desc": "Many providers suggest contacting them when contractions are 5 minutes apart, lasting 1 minute each, for at least 1 hour.",
     "exportPDF": "Share your journal with your consultant"
@@ -1006,7 +1006,7 @@
     "lowRiskResult": "Few Factors Present",
     "moderateRiskResult": "Some Factors Present",
     "highRiskResult": "Many Factors Present",
-    "disclaimer": "This is a preliminary assessment only. Always consult your healthcare provider."
+    "disclaimer": "This is a preliminary assessment only. Always consult your care provider."
   },
   "fitnessPage": {
     "title": "AI Fitness Guide",
@@ -1019,7 +1019,7 @@
     "generatePlan": "Generate Workout Plan",
     "safeExercises": "Safe Exercises",
     "avoidExercises": "Exercises to Avoid",
-    "disclaimer": "Consult your healthcare provider before starting any exercise program."
+    "disclaimer": "Consult your care provider before starting any exercise program."
   },
   "forbiddenFoodsPage": {
     "title": "Foods to Avoid",
@@ -1030,7 +1030,7 @@
     "forbiddenTitle": "Foods to Avoid",
     "cautionTitle": "Use With Caution",
     "safeTitle": "Safe Alternatives",
-    "disclaimer": "This is a general guide. Always consult your healthcare provider about dietary restrictions specific to your pregnancy."
+    "disclaimer": "This is a general guide. Always consult your care provider about dietary restrictions specific to your pregnancy."
   },
   "babySleepPage": {
     "title": "Baby Sleep Tracker",
@@ -1326,7 +1326,7 @@
     },
     "kick": {
       "noData": "Record at least 2 sessions to view the chart",
-      "title": "Fetal Activity - Last 7 Sessions",
+      "title": "Baby Activity - Last 7 Sessions",
       "kicks": "kicks",
       "duration": "Duration",
       "min": "min",
@@ -1368,7 +1368,7 @@
       "differentWeek": "Change Week",
       "refresh": "Refresh",
       "trackTip": "Track your week to get personalized information about your baby's growth and your body changes",
-      "fetalDevLink": "Fetal Development",
+      "fetalDevLink": "Baby Development",
       "fetalDevLinkDesc": "See your baby's size and development this week",
       "kickCounterLink": "Kick Counter",
       "kickCounterLinkDesc": "Track and journal your baby's movements",
@@ -1632,10 +1632,10 @@
       "copiedDesc": "Due date info copied to clipboard.",
       "share": "Share",
       "save": "Save",
-      "info": "Only about 5% of babies are born on their exact due date. Most are born within 2 weeks before or after. Your healthcare provider may adjust your due date based on ultrasound measurements.",
+      "info": "Only about 5% of babies are born on their exact due date. Most are born within 2 weeks before or after. Your care provider may adjust your due date based on ultrasound measurements.",
       "cycleTrackerLink": "Cycle Tracker",
       "cycleTrackerLinkDesc": "Track your menstrual cycle and get accurate predictions",
-      "fetalDevLink": "Fetal Development Tracker",
+      "fetalDevLink": "Baby Development Tracker",
       "fetalDevLinkDesc": "Track your baby's growth week by week",
       "weeklySummaryLink": "Weekly Pregnancy Insights",
       "weeklySummaryLinkDesc": "Get AI-powered weekly pregnancy updates",
@@ -1692,8 +1692,8 @@
       "warningFewer": "Fewer than 10 movements in 2 hours",
       "warningDecrease": "Sudden decrease in movement pattern",
       "warningNoMovements": "No movements for an extended period",
-      "educationalNote": "Count fetal movements daily starting from week 28. Aim for 10 movements in 2 hours during your baby's active time.",
-      "fetalDevLink": "Fetal Development",
+      "educationalNote": "Count baby movements daily starting from week 28. Aim for 10 movements in 2 hours during your baby's active time.",
+      "fetalDevLink": "Baby Development",
       "fetalDevLinkDesc": "Track your baby's growth and development week by week",
       "weeklySummaryLink": "Weekly Summary",
       "weeklySummaryLinkDesc": "Get AI-powered weekly pregnancy insights",
@@ -1760,7 +1760,7 @@
     "symptomAnalyzer": {
       "title": "Pregnancy Wellness Diary",
       "subtitle": "Log and reflect on your daily wellness",
-      "disclaimer": "This tool is for journaling and educational purposes only. Always consult your healthcare provider for medical advice.",
+      "disclaimer": "This tool is for journaling and educational purposes only. Always consult your care provider for medical advice.",
       "selectSymptoms": "What are you experiencing?",
       "analyze": "Log Entry",
       "analyzing": "Saving...",
@@ -1768,7 +1768,7 @@
       "analyzeCountPlural": "Log {{count}} Feelings",
       "results": "Your Wellness Notes",
       "week": "Week {{week}}",
-      "discussWithProvider": "Share your journal with your healthcare provider at your next visit",
+      "discussWithProvider": "Share your journal with your care provider at your next visit",
       "remember": "Every pregnancy is unique. This diary helps you reflect on your journey and share notes with your consultant.",
       "symptoms": {
         "nausea": "Nausea",
@@ -1987,7 +1987,7 @@
       "generating": "Generating workout plan...",
       "safeExercises": "Safe Exercises",
       "avoidExercises": "Exercises to Avoid",
-      "disclaimer": "Consult your healthcare provider before starting any exercise program.",
+      "disclaimer": "Consult your care provider before starting any exercise program.",
       "start": "Start",
       "resume": "Resume",
       "pause": "Pause",
@@ -2257,7 +2257,7 @@
       "triggersLabel": "What triggers your nausea?",
       "vomitingLabel": "I'm experiencing vomiting, not just nausea",
       "severeWarningTitle": "Severe Nausea Warning",
-      "severeWarningDesc": "If you can't keep any food/water down for 24 hours, see blood in vomit, or feel dizzy/faint, contact your healthcare provider immediately.",
+      "severeWarningDesc": "If you can't keep any food/water down for 24 hours, see blood in vomit, or feel dizzy/faint, contact your care provider immediately.",
       "getReliefPlan": "Get AI Relief Plan",
       "creatingPlan": "Creating Plan...",
       "encouragingNote": "Remember: Morning sickness usually peaks around weeks 8-10 and improves significantly by week 12-14. You've got this!",
@@ -2541,7 +2541,7 @@
       "getAIAdvice": "Get AI Pain Relief Advice",
       "aiCoach": "AI Pain Relief Coach",
       "safetyNotice": "Important Safety Notice",
-      "safetyText": "Stop immediately if you experience sharp pain, dizziness, or contractions. Always consult your healthcare provider before starting any exercise program during pregnancy.",
+      "safetyText": "Stop immediately if you experience sharp pain, dizziness, or contractions. Always consult your care provider before starting any exercise program during pregnancy.",
       "exerciseList": "Back Pain Exercises",
       "steps": "Steps",
       "stop": "Stop",
@@ -2915,13 +2915,13 @@
       "activePhase": "Active Phase",
       "activePhaseDesc": "Consider sharing this log with your provider",
       "transition": "Intensive Phase",
-      "transitionDesc": "Contact your healthcare provider with this journal",
+      "transitionDesc": "Contact your care provider with this journal",
       "intensivePhase": "Intensive Phase",
-      "intensivePhaseDesc": "Contact your healthcare provider with this journal",
+      "intensivePhaseDesc": "Contact your care provider with this journal",
       "providerAlert": "Consider Contacting Your Provider",
-      "providerAlertDesc": "Based on the 5-1-1 guideline, your logged contractions are now 5 minutes apart and lasting 1 minute or more. You may want to share this journal with your healthcare provider.",
+      "providerAlertDesc": "Based on the 5-1-1 guideline, your logged contractions are now 5 minutes apart and lasting 1 minute or more. You may want to share this journal with your care provider.",
       "rule511": "The 5-1-1 Guideline",
-      "rule511Desc": "Many healthcare providers suggest contacting them when contractions are 5 minutes apart, lasting 1 minute each, and continue for 1 hour. Share your log for guidance.",
+      "rule511Desc": "Many care providers suggest contacting them when contractions are 5 minutes apart, lasting 1 minute each, and continue for 1 hour. Share your log for guidance.",
       "callProvider": "Call Provider",
       "understand": "I Understand",
       "inProgress": "Contraction in progress...",
@@ -2938,7 +2938,7 @@
         "strong": "Strong",
         "very-strong": "Very Strong"
       },
-      "disclaimer": "This tool is for informational purposes only. Always follow your healthcare provider's guidance.",
+      "disclaimer": "This tool is for informational purposes only. Always follow your care provider's guidance.",
       "aiAnalysisDesc": "Get personalized breathing techniques, comfort measures, and encouragement based on your journal entries.",
       "analyzing": "Analyzing your journal...",
       "breathingGuide": "Quick Breathing Guide",
@@ -3003,7 +3003,7 @@
         "visualization": "Visualization",
         "grounding": "Grounding"
       },
-      "disclaimer": "These exercises are for general relaxation. If you experience severe anxiety or depression, please consult your healthcare provider.",
+      "disclaimer": "These exercises are for general relaxation. If you experience severe anxiety or depression, please consult your care provider.",
       "affirmations": {
         "1": "I am capable of handling whatever comes my way",
         "2": "My body knows how to grow this baby perfectly",
@@ -3111,7 +3111,7 @@
       "getAIAdvice": "Get AI Posture Advice",
       "aiPostureCoach": "AI Posture Coach",
       "postureExercises": "Posture Exercises",
-      "warning": "Stop any exercise if you feel pain, dizziness, or discomfort. Consult your healthcare provider before starting any exercise routine."
+      "warning": "Stop any exercise if you feel pain, dizziness, or discomfort. Consult your care provider before starting any exercise routine."
     },
     "massageGuide": {
       "title": "Pregnancy Massage Guide",
@@ -3131,7 +3131,7 @@
       "title": "Mental Wellness Guide",
       "subtitle": "EPDS questionnaire and mental wellness support",
       "takeScreening": "Take EPDS Questionnaire",
-      "screeningDesc": "Edinburgh Postnatal Depression Scale",
+      "screeningDesc": "Wellness Self-Check",
       "yourScore": "Your Score",
       "lowRisk": "Low Risk",
       "moderateRisk": "Moderate Risk",
@@ -3140,7 +3140,7 @@
       "copingStrategies": "Coping Strategies",
       "selfCare": "Self-Care Tips",
       "professionalHelp": "When to Seek Professional Help",
-      "crisis": "If you're in crisis, call your healthcare provider or emergency services immediately."
+      "crisis": "If you're in crisis, call your care provider or emergency services immediately."
     },
     "weeklyInsights": {
       "title": "Weekly Insights",
@@ -3291,7 +3291,7 @@
     },
     "diaperTracker": {
       "title": "Diaper Tracker",
-      "subtitle": "Log changes, monitor health",
+      "subtitle": "Log changes, track wellness",
       "logChange": "Log Change",
       "wet": "Wet",
       "dirty": "Dirty",
@@ -3508,7 +3508,7 @@
       "title": "Weight Gain Guide",
       "subtitle": "Monitor healthy pregnancy weight",
       "heroTitle": "Track Your Weight with Confidence",
-      "heroDesc": "A smart medical tool built on IOM/WHO guidelines to monitor healthy weight gain during pregnancy",
+      "heroDesc": "A smart wellness tool built on general guidelines to track healthy weight gain during pregnancy",
       "iomBadge": "Based on IOM & WHO Guidelines",
       "profileSetup": "Your Profile",
       "profileSetupDesc": "Enter your basic info to calculate your healthy range",
@@ -3565,7 +3565,7 @@
         "first": "In the first trimester, normal gain is minimal (1-4 lbs). Focus on balanced nutrition.",
         "second": "In the second trimester, expect about 1 lb per week. Eat protein and iron-rich foods.",
         "third": "In the third trimester, gain may increase. Maintain moderate physical activity.",
-        "general": "Healthy gain varies based on pre-pregnancy weight. Always consult your healthcare provider."
+        "general": "Healthy gain varies based on pre-pregnancy weight. Always consult your care provider."
       },
       "weightDistribution": "Weight Distribution During Pregnancy",
       "distribution": {
@@ -3592,7 +3592,7 @@
       "statusMessages": {
         "below": {
           "message": "Below target",
-          "recommendation": "Consider consulting your healthcare provider about nutrition to ensure you and your baby get adequate nutrients."
+          "recommendation": "Consider consulting your care provider about nutrition to ensure you and your baby get adequate nutrients."
         },
         "above": {
           "message": "Above target",
@@ -3608,7 +3608,7 @@
       "yourWeight": "Your Weight",
       "weekAxis": "Week",
       "weightGainKg": "Weight Gain (kg)",
-      "fetalDevLink": "Fetal Development",
+      "fetalDevLink": "Baby Development",
       "fetalDevLinkDesc": "Track your baby's growth week by week",
       "kickCounterLink": "Kick Counter",
       "kickCounterLinkDesc": "Track your baby's movements",
@@ -3677,7 +3677,7 @@
       "rhIncompatibility": "Rh Incompatibility",
       "rhWarning": "When the mother is Rh-negative and father is Rh-positive, the baby may be Rh-positive. Your doctor may recommend RhoGAM injections during pregnancy to prevent complications.",
       "learnAboutBloodTypes": "Learn About Blood Types",
-      "disclaimer": "This calculator shows possible blood types based on genetics. The actual blood type will be confirmed through testing after birth. Always consult your healthcare provider for medical advice."
+      "disclaimer": "This calculator shows possible blood types based on genetics. The actual blood type will be confirmed through testing after birth. Always consult your care provider for medical advice."
     },
     "bmi": {
       "title": "Pregnancy BMI Calculator",
@@ -3696,7 +3696,7 @@
       "firstTrimesterNote": "First trimester: 1-4 pounds total",
       "aiGuideTitle": "AI Weight Management Guide",
       "getPersonalizedPlan": "Get Personalized Plan",
-      "disclaimer": "These recommendations are based on Institute of Medicine guidelines. Your healthcare provider may give personalized advice based on your specific health situation and pregnancy.",
+      "disclaimer": "These recommendations are based on Institute of Medicine guidelines. Your care provider may give personalized advice based on your specific health situation and pregnancy.",
       "categories": {
         "underweight": "Underweight",
         "normalweight": "Normal weight",
@@ -3810,7 +3810,7 @@
     "gdm": {
       "title": "Gestational Diabetes Awareness (General Info)",
       "subtitle": "This tool provides simple information about gestational diabetes: common factors, related lifestyle patterns, and useful questions to discuss with your doctor. It does not measure blood sugar, provide a diagnosis, or replace prenatal care with your healthcare team.",
-      "disclaimer": "This is an educational awareness tool only. It does not provide a professional evaluation for gestational diabetes. Always consult your healthcare provider for proper testing.",
+      "disclaimer": "This is an educational awareness tool only. It does not provide a professional evaluation for gestational diabetes. Always consult your care provider for proper testing.",
       "checkRiskFactors": "Check Your Risk Factors",
       "riskFactorsSelected": "Risk Factors Selected",
       "aiCoachTitle": "AI Diabetes Prevention Coach",
@@ -3889,7 +3889,7 @@
         "tip4": "Walk during cooler parts of the day",
         "tip5": "Take breaks when needed"
       },
-      "warningMessage": "Stop walking if you experience dizziness, shortness of breath, chest pain, contractions, or any unusual symptoms. Always consult your healthcare provider.",
+      "warningMessage": "Stop walking if you experience dizziness, shortness of breath, chest pain, contractions, or any unusual symptoms. Always consult your care provider.",
       "trimesterNotes": {
         "1": "Start slowly, listen to your body",
         "2": "Best time for active walking",
@@ -3914,7 +3914,7 @@
       "lunch": "Lunch",
       "snack": "Snack",
       "dinner": "Dinner",
-      "infoNote": "These are general recommendations. Always consult with your healthcare provider for personalized nutrition advice during pregnancy."
+      "infoNote": "These are general recommendations. Always consult with your care provider for personalized nutrition advice during pregnancy."
     },
     "snackPlanner": {
       "title": "Smart Snack Planner",
@@ -4041,7 +4041,7 @@
       "modifiedRecipe": "Modified Recipe",
       "safetyTips": "Safety Tips",
       "analyzeAnother": "Analyze Another Recipe",
-      "disclaimer": "⚠️ This tool provides general guidance. Always consult your healthcare provider about specific dietary restrictions during your pregnancy.",
+      "disclaimer": "⚠️ This tool provides general guidance. Always consult your care provider about specific dietary restrictions during your pregnancy.",
       "selectPreference": "Please select at least one preference"
     },
     "workoutPlanner": {
@@ -4050,7 +4050,7 @@
       "selectTrimester": "Select Your Trimester",
       "trimester": "Trimester",
       "beforeYouStart": "Before You Start",
-      "safetyNotice": "Always get clearance from your healthcare provider before starting any exercise program during pregnancy.",
+      "safetyNotice": "Always get clearance from your care provider before starting any exercise program during pregnancy.",
       "availableWorkouts": "Available Workouts",
       "startWorkout": "Start Workout",
       "endWorkout": "End",
@@ -4069,7 +4069,7 @@
     },
     "mentalHealthCoach": {
       "title": "Postpartum Mental Wellness Guide",
-      "subtitle": "Edinburgh Postnatal Depression Scale questionnaire",
+      "subtitle": "Wellness Self-Check questionnaire",
       "youreNotAlone": "You're Not Alone",
       "emergencyMessage": "Based on your responses, it's important to talk to someone who can help. Postpartum depression is common and treatable.",
       "postpartumSupport": "Postpartum Support Intl.",
@@ -4089,7 +4089,7 @@
       "psiNumber": "1-800-944-4773",
       "crisisLinelineName": "988 Suicide & Crisis Lifeline",
       "crisisLinelineDesc": "Call or text 988",
-      "screeningDisclaimer": "⚠️ This is a wellness questionnaire based on the Edinburgh Postnatal Depression Scale (EPDS). It does not provide a professional evaluation. Always consult with a healthcare professional for proper assessment.",
+      "screeningDisclaimer": "⚠️ This is a wellness questionnaire based on the Wellness Self-Check (EPDS). It does not provide a professional evaluation. Always consult with a healthcare professional for proper assessment.",
       "mentalWellnessVideos": "Mental Wellness Videos",
       "videosSubtitle": "Support and self-care resources",
       "videos": {
@@ -4126,11 +4126,11 @@
         },
         "moderate": {
           "title": "Moderate",
-          "message": "Consider speaking with your healthcare provider about how you're feeling."
+          "message": "Consider speaking with your care provider about how you're feeling."
         },
         "high": {
           "title": "Seek Support",
-          "message": "Please reach out to your healthcare provider or a mental health professional."
+          "message": "Please reach out to your care provider or a mental health professional."
         }
       },
       "epds": {
@@ -4610,7 +4610,7 @@
         },
         "epigeneticsFertility": {
           "title": "Epigenetics & Generational Health",
-          "content": "Epigenetics discoveries have changed our understanding of fertility:\n\n• Your nutrition and lifestyle can influence gene expression in your future child.\n• Folate deficiency before pregnancy affects fetal gene programming.\n• Chronic stress can leave 'imprints' on DNA that transfer to the embryo.\n• Pollution and environmental toxins cause epigenetic changes that may affect generations.\n• Good news: negative epigenetic changes are reversible with a healthy lifestyle.\n• 3–6 months of improvements before pregnancy make a real difference in fetal health."
+          "content": "Epigenetics discoveries have changed our understanding of fertility:\n\n• Your nutrition and lifestyle can influence gene expression in your future child.\n• Folate deficiency before pregnancy affects baby's gene programming.\n• Chronic stress can leave 'imprints' on DNA that transfer to the embryo.\n• Pollution and environmental toxins cause epigenetic changes that may affect generations.\n• Good news: negative epigenetic changes are reversible with a healthy lifestyle.\n• 3–6 months of improvements before pregnancy make a real difference in baby's health."
         },
         "mindBodyConnection": {
           "title": "The Mind-Body Connection",
@@ -4683,7 +4683,7 @@
         "tipsTitle": "Helpful Tips",
         "timelineTitle": "Suggested Timeline"
       },
-      "allComplete": "Great preparation! Discuss your results with your healthcare provider.",
+      "allComplete": "Great preparation! Discuss your results with your care provider.",
       "categories": {
         "essential": "Essential Health Checks",
         "screening": "Infection & Immunity Screening",
@@ -4729,7 +4729,7 @@
         },
         "mentalHealth": {
           "title": "Mental Health Assessment",
-          "description": "Discuss any history of depression, anxiety, or other mental health conditions with your healthcare provider. Pre-existing conditions can be managed proactively during pregnancy."
+          "description": "Discuss any history of depression, anxiety, or other mental health conditions with your care provider. Pre-existing conditions can be managed proactively during pregnancy."
         },
         "medications": {
           "title": "Medication Review",
@@ -4740,7 +4740,7 @@
           "description": "Ensure you're up to date on recommended vaccinations including MMR, varicella, flu, and Tdap. Some vaccines cannot be given during pregnancy, so complete them beforehand."
         }
       },
-      "disclaimer": "This checklist is an educational reference to help you organize conversations with your healthcare provider. It does not replace professional medical advice, diagnosis, or treatment. All screenings and tests should be discussed with and ordered by a qualified healthcare professional.",
+      "disclaimer": "This checklist is an educational reference to help you organize conversations with your care provider. It does not replace professional medical advice, diagnosis, or treatment. All screenings and tests should be discussed with and ordered by a qualified healthcare professional.",
       "progressLabel": "Screenings tracked",
       "tracked": "tracked",
       "related": {
@@ -4764,7 +4764,7 @@
         },
         "omega3": {
           "title": "Omega-3 Fatty Acids",
-          "description": "Omega-3s support hormone production, reduce inflammation, and are essential for fetal brain and eye development. DHA and EPA are the most bioavailable forms. ALA from plant sources is also beneficial but converts less efficiently.",
+          "description": "Omega-3s support hormone production, reduce inflammation, and are essential for baby's brain and eye development. DHA and EPA are the most bioavailable forms. ALA from plant sources is also beneficial but converts less efficiently.",
           "foods": "Salmon, sardines, mackerel, walnuts, chia seeds, flaxseeds, hemp seeds, algae-based DHA supplements, fortified eggs"
         },
         "antioxidants": {
@@ -4825,7 +4825,7 @@
         },
         "omega3DHA": {
           "title": "Omega-3 DHA",
-          "description": "DHA is crucial for fetal brain and retinal development. Starting supplementation before pregnancy ensures adequate stores from the earliest stages of embryonic development. EPA also supports maternal cardiovascular health.",
+          "description": "DHA is crucial for baby's brain and retinal development. Starting supplementation before pregnancy ensures adequate stores from the earliest stages of embryonic development. EPA also supports maternal cardiovascular health.",
           "dosage": "Recommended: 200–300mg DHA daily. Choose supplements tested for mercury and contaminants."
         },
         "calcium": {
@@ -4835,7 +4835,7 @@
         },
         "iodine": {
           "title": "Iodine",
-          "description": "Iodine is essential for thyroid function, which directly impacts fertility and fetal brain development. Deficiency is the leading preventable cause of intellectual disability worldwide.",
+          "description": "Iodine is essential for thyroid function, which directly impacts fertility and baby's brain development. Deficiency is the leading preventable cause of intellectual disability worldwide.",
           "dosage": "Recommended: 150mcg daily before pregnancy, 220mcg during pregnancy. Check that your prenatal vitamin includes iodine."
         },
         "zinc": {
@@ -4994,7 +4994,7 @@
         },
         "day14": {
           "title": "The Answer Day",
-          "body": "This is typically the day your period is expected. A missed period combined with a positive pregnancy test is a strong indicator of pregnancy. If your test is positive, contact your healthcare provider to schedule your first appointment (usually around 6–8 weeks).",
+          "body": "This is typically the day your period is expected. A missed period combined with a positive pregnancy test is a strong indicator of pregnancy. If your test is positive, contact your care provider to schedule your first appointment (usually around 6–8 weeks).",
           "tip": "Positive? Celebrate this moment. Negative? You are strong, resilient, and this journey continues. Both outcomes deserve compassion."
         }
       },
@@ -5008,7 +5008,7 @@
       "windowStart": "Window opens",
       "windowEnd": "Window closes",
       "estimatedOvulation": "Estimated ovulation day",
-      "disclaimer": "This is an estimate based on average cycle data. Actual ovulation may vary. Consult your healthcare provider for personalized guidance."
+      "disclaimer": "This is an estimate based on average cycle data. Actual ovulation may vary. Consult your care provider for personalized guidance."
     }
   },
   "welcome": {
@@ -5017,7 +5017,7 @@
     "feature1": "30+ AI-powered pregnancy tools",
     "feature2": "Personalized health tracking",
     "disclaimerTitle": "Important Notice",
-    "disclaimerText": "This app provides general wellness information only and is not a substitute for professional health guidance. Always consult your healthcare provider for any health concerns.",
+    "disclaimerText": "This app provides general wellness information only and is not a substitute for professional health guidance. Always consult your care provider for any health concerns.",
     "getStarted": "Get Started",
     "agreement": "By continuing, you agree to our Terms of Service"
   },
@@ -5029,7 +5029,7 @@
     "calculateRisk": "Review My Factors",
     "yourRiskFactors": "Your Factors:",
     "warningSignsTitle": "Warning Signs to Watch For",
-    "warningNote": "If you experience any of these symptoms, contact your healthcare provider immediately.",
+    "warningNote": "If you experience any of these symptoms, contact your care provider immediately.",
     "disclaimer": "This tool identifies risk factors but cannot predict preeclampsia. It does not replace professional evaluation. Regular prenatal care with blood pressure monitoring is essential for all pregnancies.",
     "aiCoachTitle": "AI Preeclampsia Prevention Coach",
     "getPreventionPlan": "Get Prevention Plan",
@@ -5058,12 +5058,12 @@
       "high": {
         "title": "Higher Risk",
         "description": "You have one or more significant risk factors for preeclampsia. Your provider may recommend low-dose aspirin starting at 12 weeks.",
-        "recommendation": "Discuss aspirin prophylaxis with your healthcare provider"
+        "recommendation": "Discuss aspirin prophylaxis with your care provider"
       },
       "moderate": {
         "title": "Moderate Risk",
         "description": "You have some risk factors. Enhanced monitoring and lifestyle modifications may be recommended.",
-        "recommendation": "Consider discussing risk with your healthcare provider"
+        "recommendation": "Consider discussing risk with your care provider"
       },
       "low": {
         "title": "Lower Risk",
@@ -5177,7 +5177,7 @@
     "vomitingCheckbox": "I'm experiencing vomiting, not just nausea",
     "triggersTitle": "What triggers your nausea?",
     "severeWarningTitle": "Severe Nausea Warning",
-    "severeWarningDesc": "If you can't keep any food/water down for 24 hours, see blood in vomit, or feel dizzy/faint, contact your healthcare provider immediately.",
+    "severeWarningDesc": "If you can't keep any food/water down for 24 hours, see blood in vomit, or feel dizzy/faint, contact your care provider immediately.",
     "getReliefPlan": "Get AI Relief Plan",
     "encouragingNote": "Remember: Morning sickness usually peaks around weeks 8-10 and improves significantly by week 12-14. You've got this!",
     "videosTitle": "Nausea Comfort Videos",
@@ -5236,7 +5236,7 @@
     "logCramp": "Log this cramp:",
     "checklistTitle": "Daily Prevention Checklist",
     "recentCramps": "Recent Cramps",
-    "warning": "Frequent or severe leg cramps, especially with swelling, redness, or warmth, should be reported to your healthcare provider immediately.",
+    "warning": "Frequent or severe leg cramps, especially with swelling, redness, or warmth, should be reported to your care provider immediately.",
     "locations": {
       "leftCalf": "Left Calf",
       "rightCalf": "Right Calf",
@@ -5474,7 +5474,7 @@
     "aiCoachTitle": "AI Pain Relief Coach",
     "exercisesTitle": "Back Pain Exercises",
     "safetyNotice": "Important Safety Notice",
-    "safetyWarning": "Stop immediately if you experience sharp pain, dizziness, or contractions. Always consult your healthcare provider before starting any exercise program during pregnancy.",
+    "safetyWarning": "Stop immediately if you experience sharp pain, dizziness, or contractions. Always consult your care provider before starting any exercise program during pregnancy.",
     "steps": "Steps:",
     "painLocations": {
       "lowerBack": "Lower Back",
@@ -5583,7 +5583,7 @@
     "lunch": "Lunch",
     "snack": "Snack",
     "dinner": "Dinner",
-    "infoNote": "Nutritional needs vary. Consult your healthcare provider for personalized advice.",
+    "infoNote": "Nutritional needs vary. Consult your care provider for personalized advice.",
     "nutrients": {
       "folicAcid": "Folic Acid",
       "vitaminB6": "Vitamin B6",
@@ -6219,7 +6219,7 @@
     "goodLabel": "Good",
     "moderateLabel": "Moderate",
     "extendedDuration": "Extended counting duration detected",
-    "extendedDurationDesc": "Your average time to 10 kicks is {{avg}} minutes. Consider discussing with your healthcare provider if this is new.",
+    "extendedDurationDesc": "Your average time to 10 kicks is {{avg}} minutes. Consider discussing with your care provider if this is new.",
     "recordAtLeast": "Record at least 2 sessions to see pattern analysis"
   },
   "progressRing": {
@@ -6279,9 +6279,9 @@
     "disclaimerTitle": "Important Notice",
     "disclaimerBody": "This app is for educational and informational purposes only. It does not provide professional health guidance or treatment recommendations.",
     "pleaseNote": "Please note:",
-    "consultDoctor": "Always consult your healthcare provider before making any health decisions.",
+    "consultDoctor": "Always consult your care provider before making any health decisions.",
     "aiGeneral": "AI tool results are for general wellness information only.",
-    "emergency": "In urgent situations, contact your healthcare provider or call emergency services.",
+    "emergency": "In urgent situations, contact your care provider or call emergency services.",
     "dataLocal": "Your data is stored locally on your device only.",
     "understood": "I Understand",
     "backupEnabled": "Backup Reminders Enabled",
@@ -6387,10 +6387,10 @@
     "kickCounterDesc": "Journal your baby's movements and activity patterns for peace of mind",
     "aiAssistant": "Smart Pregnancy Guide",
     "aiAssistantDesc": "Get instant answers to your questions from an AI specialized in pregnancy",
-    "maternalHealth": "Maternal & Fetal Health",
+    "maternalHealth": "Mom & Baby Wellness",
     "maternalHealthDesc": "Personalized daily tips for nutrition, exercise, and caring for you and your baby",
     "contractionTimer": "Contraction Logger",
-    "contractionTimerDesc": "Log contraction patterns and share your journal with your healthcare provider",
+    "contractionTimerDesc": "Log contraction patterns and share your journal with your care provider",
     "privacy": "Privacy & Security",
     "privacyDesc": "Your data is encrypted and protected - your privacy is our top priority",
     "searchKeywords": "Search Keywords",
@@ -6433,7 +6433,7 @@
     "weeklyReport": "Weekly Report",
     "reportDesc": "Print your weekly summary for your doctor",
     "readyToPrint": "Ready to Print",
-    "printNote": "Print your weekly plan to share with your healthcare provider",
+    "printNote": "Print your weekly plan to share with your care provider",
     "printBtn": "Print Report",
     "printSuccess": "Print dialog opened",
     "vitals": "Vitals",
@@ -6597,14 +6597,14 @@
   },
   "toolBenefits": {
     "heading": "What do I benefit from this tool?",
-    "pregnancy-assistant": "Use this tool to ask any pregnancy question and get an instant answer. Read results as general wellness guidance. If you experience unusual symptoms or concerns, stop and consult your healthcare provider immediately.",
-    "weekly-summary": "Track your baby's weekly development and understand changes in your body. Results are general educational information. If you notice any concerning changes, see your healthcare provider.",
+    "pregnancy-assistant": "Use this tool to ask any pregnancy question and get an instant answer. Read results as general wellness guidance. If you experience unusual symptoms or concerns, stop and consult your care provider immediately.",
+    "weekly-summary": "Track your baby's weekly development and understand changes in your body. Results are general educational information. If you notice any concerning changes, see your care provider.",
     "smart-pregnancy-plan": "Plan your pregnancy journey with a personalized schedule for appointments and checkups. Consider the plan as an organizational guide. Any health concerns should be discussed with your doctor.",
     "cycle-tracker": "Track your menstrual cycle to know expected fertility windows. Results are estimates, not diagnoses. If your cycle is irregular for an extended period, consult your doctor.",
     "due-date-calculator": "Calculate your expected due date based on your last period. This is an estimate and may differ from a medical assessment. Follow up with your doctor for an accurate date.",
-    "fetal-growth": "Monitor your baby's growth and compare with general averages. Measurements are educational references. Any growth concerns require medical examination.",
-    "kick-counter": "Record your baby's daily movements to track activity. Overall patterns matter more than individual numbers. If you notice a significant decrease in movement, contact your healthcare provider immediately.",
-    "weight-gain": "Track your pregnancy weight gain and compare with normal ranges. Results are general guidelines. Discuss any concerns with your healthcare provider.",
+    "fetal-growth": "Monitor your baby's growth and compare with general averages. Measurements are educational references only.",
+    "kick-counter": "Record your baby's daily movements to track activity. Overall patterns matter more than individual numbers. If you notice a significant decrease in movement, contact your care provider immediately.",
+    "weight-gain": "Track your pregnancy weight gain and compare with normal ranges. Results are general guidelines. Discuss any concerns with your care provider.",
     "ai-bump-photos": "Document your pregnancy journey with weekly photos and a timeline. This is a personal documentation tool. Any concerning physical observations warrant a medical consultation.",
     "ai-meal-suggestion": "Get personalized meal suggestions for your pregnancy stage. Dietary advice is general and educational. If you have allergies or special conditions, consult your doctor.",
     "ai-craving-alternatives": "Discover healthy alternatives to your pregnancy cravings. Alternatives are general suggestions. Any unusual or persistent cravings should be discussed with your doctor.",
@@ -6612,7 +6612,7 @@
     "vitamin-tracker": "Track your daily vitamin and supplement intake. The tool is for reminders and organization only. Vitamin dosages should be determined by your doctor.",
     "wellness-diary": "Record your daily feelings and emotional state to track your wellness. Read patterns as personal observations. If you experience persistent sadness or severe anxiety, speak with a professional.",
     "ai-fitness-coach": "Get safe exercises tailored to your pregnancy stage. Exercises are general guidance. Stop immediately if you feel any pain or discomfort and consult your doctor.",
-    "ai-back-pain-relief": "Discover exercises and stretches for pregnancy back pain relief. Advice is general and educational. If pain is severe or persistent, see your healthcare provider.",
+    "ai-back-pain-relief": "Discover exercises and stretches for pregnancy back pain relief. Advice is general and educational. If pain is severe or persistent, see your care provider.",
     "ai-sleep-optimizer": "Get personalized tips to improve your sleep during pregnancy. Tips are general guidance. If you suffer from chronic insomnia or breathing issues during sleep, consult your doctor.",
     "ai-nausea-relief": "Discover natural ways to relieve pregnancy nausea. Advice is general and educational. If nausea is severe and prevents eating or drinking, see your doctor immediately.",
     "ai-pregnancy-skincare": "Get a safe skincare routine during pregnancy. Suggested products are general guidance. If skin reactions or unusual changes appear, consult a dermatologist.",
@@ -6625,18 +6625,18 @@
     "ai-hospital-bag": "Prepare your hospital bag with a comprehensive, organized checklist. The list is a general guide that can be customized. Check with your hospital for any specific requirements.",
     "baby-gear-recommender": "Discover essential baby items with smart recommendations. Recommendations are general guidance. Choose what fits your budget and specific needs.",
     "smart-appointment-reminder": "Organize your pregnancy follow-up appointments with smart reminders. The tool is for organization only. Your actual appointment schedule is determined by your doctor.",
-    "ai-partner-guide": "Help your partner understand the pregnancy journey and support you better. Tips are general guidance. Any health concerns require consulting a healthcare provider.",
+    "ai-partner-guide": "Help your partner understand the pregnancy journey and support you better. Tips are general guidance. Any health concerns require consulting a care provider.",
     "ai-lactation-prep": "Prepare for breastfeeding with comprehensive tips and information. Advice is general and educational. If you face breastfeeding difficulties, consult a lactation specialist.",
     "postpartum-recovery": "Track your postpartum recovery with personalized guidance. Advice is general and educational. Any unusual postpartum symptoms require immediate medical attention.",
     "baby-cry-translator": "Understand your baby's needs through cry pattern analysis. Results are intelligent guesses, not diagnoses. If crying persists abnormally, consult your pediatrician.",
     "baby-sleep-tracker": "Track your baby's sleep to understand patterns and improve them. Data is for personal observation only. Any concerns about your baby's sleep should be discussed with your pediatrician.",
     "baby-growth": "Monitor your baby's growth and compare with WHO standards. Measurements are general references. Regular medical check-ups are essential for growth assessment.",
     "diaper-tracker": "Record diaper changes to monitor your baby's digestive health. Data is for personal observation. Any concerning changes in stool or urine warrant consulting your pediatrician.",
-    "fertile-window": "Estimate your most fertile days based on cycle data. Results are approximate and for planning purposes only. Consult your healthcare provider for personalized fertility guidance.",
+    "fertile-window": "Estimate your most fertile days based on cycle data. Results are approximate and for planning purposes only. Consult your care provider for personalized fertility guidance.",
     "fertility-academy": "A comprehensive fertility education hub with lessons, body signs, and stress management techniques. Content is for general awareness. Your doctor can provide advice specific to your situation.",
     "nutrition-supplements": "A complete guide to preconception nutrition and prenatal supplements. Dietary information and supplement details are general guidance. Consult your doctor or nutritionist for a plan tailored to your needs.",
     "tww-companion": "Daily encouragement and information during the two-week wait. Content is for emotional support and education. A pregnancy test is the only way to confirm pregnancy.",
-    "preconception-checkup": "A checklist of common tests recommended before trying to conceive. This is a general guide. Your healthcare provider will determine which tests you need."
+    "preconception-checkup": "A checklist of common tests recommended before trying to conceive. This is a general guide. Your care provider will determine which tests you need."
   },
   "paywall": {
     "title": "Premium Feature ✨",
@@ -6677,7 +6677,7 @@
     "priorities": {
       "title": "Today's Priorities",
       "vitamins": "Take vitamins",
-      "kicks": "Track fetal movements",
+      "kicks": "Track baby movements",
       "water": "Drink water",
       "appointment": "Upcoming appointments"
     },
@@ -6702,7 +6702,7 @@
       "noData": "Log your symptoms and mood today"
     },
     "fetalMovement": {
-      "title": "Fetal Movement",
+      "title": "Baby Movement",
       "goal": "goal",
       "empty": "Start tracking your baby's movements today"
     },
@@ -6750,7 +6750,7 @@
       "daysRemaining": "{{days}} days remaining"
     },
     "sections": {
-      "fetalDev": "Fetal Development",
+      "fetalDev": "Baby Development",
       "bodyChanges": "Your Body Changes",
       "nutrition": "Nutrition Focus",
       "mentalWellness": "Mental Wellness",
@@ -6822,7 +6822,7 @@
         },
         "checklist": {
           "0": "Confirm pregnancy with your doctor",
-          "1": "Review medications with your healthcare provider",
+          "1": "Review medications with your care provider",
           "2": "Eat small, frequent meals to ease nausea",
           "3": "Stay hydrated despite morning sickness",
           "4": "Avoid heavy lifting and strenuous exercise"
@@ -7166,7 +7166,7 @@
           "3": "Circulatory system develops"
         },
         "bodyChanges": {
-          "0": "You may feel first fetal movements",
+          "0": "You may feel first baby movements",
           "1": "Belly is clearly visible",
           "2": "Back pain may begin"
         },
@@ -7179,7 +7179,7 @@
         "mentalAffirmation": "Baby's first movements are their message to you",
         "mentalTip": "Document your pregnancy moments — they'll be precious memories",
         "doctorQ": {
-          "0": "Are fetal movements normal?",
+          "0": "Are baby movements normal?",
           "1": "When should I have the anomaly scan?",
           "2": "Is vaginal discharge normal?"
         },
@@ -7278,7 +7278,7 @@
         "mentalAffirmation": "Almost halfway! Be proud of yourself",
         "mentalTip": "Don't push yourself — ask for help when you need it",
         "doctorQ": {
-          "0": "Are fetal movements sufficient?",
+          "0": "Are baby movements sufficient?",
           "1": "What causes pelvic pain?",
           "2": "Do I need a belly support band?"
         },
@@ -7317,7 +7317,7 @@
         },
         "checklist": {
           "0": "You're halfway there — celebrate!",
-          "1": "Start counting fetal movements daily",
+          "1": "Start counting baby movements daily",
           "2": "Eat calcium-rich foods for developing bones",
           "3": "Apply stretch mark prevention cream",
           "4": "Register for a childbirth education class"
@@ -7608,7 +7608,7 @@
         "mentalAffirmation": "Every day makes your baby stronger and more complete",
         "mentalTip": "Set aside daily time for meditation and quiet",
         "doctorQ": {
-          "0": "Are daily fetal movements sufficient?",
+          "0": "Are daily baby movements sufficient?",
           "1": "What are early labor signs?",
           "2": "How do I ease back pain?"
         },
@@ -7979,7 +7979,7 @@
           "0": "Your due date is here — be patient!",
           "1": "Walk and stay active if comfortable",
           "2": "Eat balanced meals to maintain energy",
-          "3": "Monitor fetal movements carefully",
+          "3": "Monitor baby movements carefully",
           "4": "Contact your doctor if contractions start"
         }
       },
@@ -8043,7 +8043,7 @@
         },
         "checklist": {
           "0": "Follow your doctor's guidance on next steps",
-          "1": "Monitor fetal movements very closely",
+          "1": "Monitor baby movements very closely",
           "2": "Attend your scheduled checkup",
           "3": "Stay hydrated and rest well",
           "4": "Trust your medical team — you're almost there!"
@@ -8155,9 +8155,9 @@
       }
     },
     "banners": {
-      "lowKicks": "Fewer than 10 kicks recorded. If this continues, please contact your healthcare provider.",
+      "lowKicks": "Fewer than 10 kicks recorded. If this continues, please contact your care provider.",
       "activeLabor": "Your contraction pattern suggests active labor may be approaching. Consider contacting your hospital.",
-      "highBP": "Elevated blood pressure detected. Please consult your healthcare provider promptly.",
+      "highBP": "Elevated blood pressure detected. Please consult your care provider promptly.",
       "lowBP": "Low blood pressure detected. Rest and stay hydrated. Consult your doctor if symptoms persist."
     },
     "whenToCallDoctor": {
@@ -8299,7 +8299,7 @@
     "trendStable": "Today's movement pattern looks similar to your recent logs.",
     "trendSlower": "Movement appears slightly slower than your recent usual pattern. This is often normal — activity can vary day to day.",
     "trendFaster": "Baby seems more active recently! Movement times are shorter than usual.",
-    "warningLong": "If this change continues or worries you, consider contacting your healthcare provider."
+    "warningLong": "If this change continues or worries you, consider contacting your care provider."
   },
   "quotaExhausted": {
     "upgradeHint": "Unlock more personalized insights with Premium",

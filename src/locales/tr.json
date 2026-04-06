@@ -350,13 +350,13 @@
       "title": "Bebek Varış Geri Sayımı",
       "description": "Küçüğünüzün ne zaman geleceğini öğrenin."
     },
-    "fetalGrowth": {
-      "title": "Fetal Büyüme Takibi",
-      "description": "Haftalık boyut karşılaştırmalarıyla interaktif fetal büyüme grafiği."
+    "bebekGrowth": {
+      "title": "Bebek Büyümesi Takibi",
+      "description": "Haftalık boyut karşılaştırmalarıyla interaktif bebek büyüme grafiği."
     },
     "kickCounter": {
-      "title": "Fetal Tekme Takibi",
-      "description": "Günlük fetal aktivite analizi ile akıllı tekme sayacı."
+      "title": "Bebek Tekme Takibi",
+      "description": "Günlük bebek aktivite analizi ile akıllı tekme sayacı."
     },
     "weightGain": {
       "title": "Hamilelik Kilo Analizi",
@@ -474,8 +474,8 @@
       "birthPlanDesc": "Doğum tercihleri",
       "hospitalBag": "Hastane Çantası",
       "hospitalBagDesc": "Paketleme listesi",
-      "fetalGrowth": "Fetal Büyüme",
-      "fetalGrowthDesc": "Bebek gelişimi",
+      "bebekGrowth": "Bebek Büyümesi",
+      "bebekGrowthDesc": "Bebek gelişimi",
       "babyGrowth": "Bebek Büyümesi",
       "babyGrowthDesc": "Doğum sonrası takip",
       "bumpPhotos": "Hamilelik Fotoğrafları",
@@ -944,7 +944,7 @@
     "goal": "Hedef: 2 saat veya daha kısa sürede 10 tekme",
     "moreToGo": "Hedefe {{count}} tekme daha",
     "recentSessions": "Son Oturumlar",
-    "info": "28. haftadan itibaren günlük fetal hareketleri sayın. Azalan hareket fark ederseniz veya 2 saatte 10 tekmeye ulaşamazsanız sağlık uzmanınıza başvurun.",
+    "info": "28. haftadan itibaren günlük bebek hareketleri sayın. Azalan hareket fark ederseniz veya 2 saatte 10 tekmeye ulaşamazsanız sağlık uzmanınıza başvurun.",
     "exportPDF": "Share your journal with your consultant"
   },
   "contractionPage": {
@@ -1343,8 +1343,8 @@
       "differentWeek": "Haftayı Değiştir",
       "refresh": "Yenile",
       "trackTip": "Bebeğinizin büyümesi ve vücudunuzdaki değişiklikler hakkında kişiselleştirilmiş bilgi almak için haftanızı takip edin",
-      "fetalDevLink": "Fetal Development",
-      "fetalDevLinkDesc": "See your baby's size and development this week",
+      "bebekDevLink": "Bebek Development",
+      "bebekDevLinkDesc": "See your baby's size and development this week",
       "kickCounterLink": "Kick Counter",
       "kickCounterLinkDesc": "Track and journal your baby's movements",
       "approximatelyRemaining": "Yaklaşık {{days}} gün kaldı",
@@ -1610,8 +1610,8 @@
       "info": "Bebeklerin sadece yaklaşık %5'i tam doğum tarihinde doğar. Çoğu 2 hafta önce veya sonra doğar. Sağlık uzmanınız ultrason ölçümlerine göre tarihi ayarlayabilir.",
       "cycleTrackerLink": "Adet Döngüsü Takibi",
       "cycleTrackerLinkDesc": "Adet döngünüzü takip edin ve doğru tahminler alın",
-      "fetalDevLink": "Fetüs Gelişimi",
-      "fetalDevLinkDesc": "Bebeğinizin hafta hafta büyümesini takip edin",
+      "bebekDevLink": "Fetüs Gelişimi",
+      "bebekDevLinkDesc": "Bebeğinizin hafta hafta büyümesini takip edin",
       "weeklySummaryLink": "Haftalık Özet",
       "weeklySummaryLinkDesc": "Haftalık AI destekli hamilelik güncellemeleri alın",
       "aiGuideTitle": "AI Hamilelik Rehberi",
@@ -1668,8 +1668,8 @@
       "warningDecrease": "Bebeğin alışılagelmiş aktivitesinde belirgin azalma",
       "warningNoMovements": "Birkaç saattir hareket hissedilmemesi",
       "educationalNote": "Bebekler 21:00-01:00 arası en aktiftir. Tutarlı takip için her gün aynı saatte sayın.",
-      "fetalDevLink": "Fetüs Gelişimi",
-      "fetalDevLinkDesc": "Bebeğinizin büyümesini ve gelişimini takip edin",
+      "bebekDevLink": "Fetüs Gelişimi",
+      "bebekDevLinkDesc": "Bebeğinizin büyümesini ve gelişimini takip edin",
       "weeklySummaryLink": "Haftalık Özet",
       "weeklySummaryLinkDesc": "Haftalık AI destekli içgörüler alın",
       "weightGainLink": "Weight Gain Guide",
@@ -3583,8 +3583,8 @@
       "yourWeight": "Kilonuz",
       "weekAxis": "Hafta",
       "weightGainKg": "Kilo Artışı (kg)",
-      "fetalDevLink": "Fetal gelişim",
-      "fetalDevLinkDesc": "Hafta hafta bebek büyümesi",
+      "bebekDevLink": "Bebek gelişim",
+      "bebekDevLinkDesc": "Hafta hafta bebek büyümesi",
       "kickCounterLink": "Tekme sayacı",
       "kickCounterLinkDesc": "Bebek hareketlerini takip edin",
       "mealSuggestionLink": "Yemek önerileri",
@@ -3679,7 +3679,7 @@
         "obese": "Obez"
       }
     },
-    "fetalDevelopment": {
+    "bebekDevelopment": {
       "title": "Bebek Gelişim Zaman Çizelgesi",
       "subtitle": "Bebeğinizin büyüme yolculuğu hafta hafta",
       "pregnancyProgress": "Hamilelik İlerlemesi",
@@ -6577,7 +6577,7 @@
     "smart-pregnancy-plan": "Kişiselleştirilmiş bir takvimle hamileliğinizi planlayın. Plan organizasyon rehberidir. Sağlık endişelerini doktorunuzla tartışın.",
     "cycle-tracker": "Döngünüzü takip ederek doğurganlık pencerelerini belirleyin. Sonuçlar tahminlerdir. Uzun süreli düzensizlikte doktorunuza danışın.",
     "due-date-calculator": "Tahmini doğum tarihinizi hesaplayın. Bu bir tahmindir. Kesin tarih için doktorunuzla görüşün.",
-    "fetal-growth": "Bebeğinizin büyümesini takip edin. Ölçümler eğitim amaçlı referanslardır. Büyüme endişeleri tıbbi muayene gerektirir.",
+    "bebek-growth": "Bebeğinizin büyümesini takip edin. Ölçümler eğitim amaçlı referanslardır. Büyüme endişeleri tıbbi muayene gerektirir.",
     "kick-counter": "Bebeğinizin günlük hareketlerini kaydedin. Belirgin azalma durumunda hemen doktorunuza ulaşın.",
     "weight-gain": "Hamilelik kilo alımınızı takip edin. Sonuçlar genel yönergelerdir. Endişelerinizi doktorunuzla tartışın.",
     "ai-bump-photos": "Hamileliğinizi haftalık fotoğraflarla belgeleyin. Endişe verici fiziksel gözlemlerde doktorunuza danışın.",
@@ -6676,7 +6676,7 @@
       "noSymptoms": "Kayıtlı belirti yok",
       "noData": "Bugünkü belirtilerinizi ve ruh halinizi kaydedin"
     },
-    "fetalMovement": {
+    "bebekMovement": {
       "title": "Bebek hareketleri",
       "goal": "hedef",
       "empty": "Bugün bebek hareketlerini kaydetmeye başla"
@@ -6725,7 +6725,7 @@
       "daysRemaining": "{{days}} gün kaldı"
     },
     "sections": {
-      "fetalDev": "Fetal Gelişim",
+      "bebekDev": "Bebek Gelişim",
       "bodyChanges": "Vücudunuzdaki Değişiklikler",
       "nutrition": "Beslenme Odağı",
       "mentalWellness": "Ruhsal Sağlık",
@@ -6738,7 +6738,7 @@
     "generateAI": "Tam YZ Analizi",
     "weeks": {
       "w4": {
-        "fetalDev": {
+        "bebekDev": {
           "0": "Three primary germ layers are forming",
           "1": "The primitive heart begins to develop",
           "2": "The neural tube is taking shape",
@@ -6771,7 +6771,7 @@
         }
       },
       "w5": {
-        "fetalDev": {
+        "bebekDev": {
           "0": "The heart starts beating",
           "1": "Arm and leg buds appear",
           "2": "The neural tube develops further",
@@ -6804,7 +6804,7 @@
         }
       },
       "w6": {
-        "fetalDev": {
+        "bebekDev": {
           "0": "Nose, mouth, and ears take shape",
           "1": "Intestines begin forming",
           "2": "Brain grows rapidly",
@@ -6837,7 +6837,7 @@
         }
       },
       "w7": {
-        "fetalDev": {
+        "bebekDev": {
           "0": "Facial features become distinct",
           "1": "Hands and feet are growing",
           "2": "The liver develops quickly",
@@ -6870,7 +6870,7 @@
         }
       },
       "w8": {
-        "fetalDev": {
+        "bebekDev": {
           "0": "Limbs move for the first time",
           "1": "Fingers are clearly visible",
           "2": "The embryonic tail disappears",
@@ -6903,7 +6903,7 @@
         }
       },
       "w9": {
-        "fetalDev": {
+        "bebekDev": {
           "0": "Major joints form",
           "1": "Tooth buds form under gums",
           "2": "Muscles are growing",
@@ -6936,7 +6936,7 @@
         }
       },
       "w10": {
-        "fetalDev": {
+        "bebekDev": {
           "0": "Fingers and toes are complete",
           "1": "Urine production begins",
           "2": "Bones gradually harden",
@@ -6969,7 +6969,7 @@
         }
       },
       "w11": {
-        "fetalDev": {
+        "bebekDev": {
           "0": "Can open and close fists",
           "1": "Tooth buds are forming",
           "2": "Fine hair (lanugo) grows",
@@ -7002,7 +7002,7 @@
         }
       },
       "w12": {
-        "fetalDev": {
+        "bebekDev": {
           "0": "Nails are developing",
           "1": "Kidneys produce urine",
           "2": "Active movement inside the womb",
@@ -7035,7 +7035,7 @@
         }
       },
       "w13": {
-        "fetalDev": {
+        "bebekDev": {
           "0": "Unique fingerprints form",
           "1": "Liver produces bile",
           "2": "Can suck and swallow",
@@ -7051,7 +7051,7 @@
           "1": "Calcium",
           "2": "Vitamin D"
         },
-        "nutritionTip": "Increase protein intake to support rapid fetal growth",
+        "nutritionTip": "Increase protein intake to support rapid bebek growth",
         "mentalAffirmation": "You and your baby are an amazing team",
         "mentalTip": "Plan something fun — beautiful memories create happiness",
         "doctorQ": {
@@ -7068,7 +7068,7 @@
         }
       },
       "w14": {
-        "fetalDev": {
+        "bebekDev": {
           "0": "Can yawn and stretch",
           "1": "Eyebrows and lashes grow",
           "2": "Central nervous system develops",
@@ -7101,7 +7101,7 @@
         }
       },
       "w15": {
-        "fetalDev": {
+        "bebekDev": {
           "0": "Hearing sense develops",
           "1": "Moves freely in amniotic fluid",
           "2": "Bones grow and harden",
@@ -7134,14 +7134,14 @@
         }
       },
       "w16": {
-        "fetalDev": {
+        "bebekDev": {
           "0": "Facial muscles form",
           "1": "Can make facial expressions",
           "2": "Nails are fully grown",
           "3": "Circulatory system develops"
         },
         "bodyChanges": {
-          "0": "You may feel first fetal movements",
+          "0": "You may feel first bebek movements",
           "1": "Belly is clearly visible",
           "2": "Back pain may begin"
         },
@@ -7154,7 +7154,7 @@
         "mentalAffirmation": "Baby's first movements are their message to you",
         "mentalTip": "Document your pregnancy moments — they'll be precious memories",
         "doctorQ": {
-          "0": "Are fetal movements normal?",
+          "0": "Are bebek movements normal?",
           "1": "When should I have the anomaly scan?",
           "2": "Is vaginal discharge normal?"
         },
@@ -7167,7 +7167,7 @@
         }
       },
       "w17": {
-        "fetalDev": {
+        "bebekDev": {
           "0": "Fat begins accumulating under skin",
           "1": "Touch sense develops",
           "2": "Can hear your voice",
@@ -7188,7 +7188,7 @@
         "mentalTip": "Set aside daily relaxation time — even just 10 minutes",
         "doctorQ": {
           "0": "What are the detailed scan results?",
-          "1": "Is fetal growth on track?",
+          "1": "Is bebek growth on track?",
           "2": "How do I handle dizziness?"
         },
         "checklist": {
@@ -7200,14 +7200,14 @@
         }
       },
       "w18": {
-        "fetalDev": {
+        "bebekDev": {
           "0": "You may feel first movements",
           "1": "Retina develops further",
           "2": "Sensory nerves form",
           "3": "Yawns and sleeps regularly"
         },
         "bodyChanges": {
-          "0": "Fetal movements are clearer now",
+          "0": "Bebek movements are clearer now",
           "1": "Stretch marks may appear",
           "2": "Blood pressure may change"
         },
@@ -7233,7 +7233,7 @@
         }
       },
       "w19": {
-        "fetalDev": {
+        "bebekDev": {
           "0": "Protective waxy coating forms",
           "1": "All five senses develop",
           "2": "Hair grows on the head",
@@ -7253,7 +7253,7 @@
         "mentalAffirmation": "Almost halfway! Be proud of yourself",
         "mentalTip": "Don't push yourself — ask for help when you need it",
         "doctorQ": {
-          "0": "Are fetal movements sufficient?",
+          "0": "Are bebek movements sufficient?",
           "1": "What causes pelvic pain?",
           "2": "Do I need a belly support band?"
         },
@@ -7266,7 +7266,7 @@
         }
       },
       "w20": {
-        "fetalDev": {
+        "bebekDev": {
           "0": "Halfway there! Baby growing fast",
           "1": "Can swallow and produce meconium",
           "2": "Taste buds develop",
@@ -7287,19 +7287,19 @@
         "mentalTip": "Celebrate being halfway with something special",
         "doctorQ": {
           "0": "What are the morphology scan results?",
-          "1": "Are all fetal organs complete?",
+          "1": "Are all bebek organs complete?",
           "2": "How do I manage breathlessness?"
         },
         "checklist": {
           "0": "Yarı yoldasınız — kutlayın!",
-          "1": "Günlük fetal hareketleri saymaya başlayın",
+          "1": "Günlük bebek hareketleri saymaya başlayın",
           "2": "Kemikler için kalsiyum açısından zengin yiyecekler yiyin",
           "3": "Çatlak önleme kremi sürün",
           "4": "Doğuma hazırlık kursuna kaydolun"
         }
       },
       "w21": {
-        "fetalDev": {
+        "bebekDev": {
           "0": "Absorbs nutrients from amniotic fluid",
           "1": "Eyebrows are visible",
           "2": "Immune system develops",
@@ -7332,7 +7332,7 @@
         }
       },
       "w22": {
-        "fetalDev": {
+        "bebekDev": {
           "0": "Inner ear is fully formed",
           "1": "Can hear external sounds",
           "2": "Lungs are growing",
@@ -7365,7 +7365,7 @@
         }
       },
       "w23": {
-        "fetalDev": {
+        "bebekDev": {
           "0": "Can distinguish your voice",
           "1": "Lungs develop rapidly",
           "2": "Brain grows intensively",
@@ -7398,7 +7398,7 @@
         }
       },
       "w24": {
-        "fetalDev": {
+        "bebekDev": {
           "0": "Footprints are forming",
           "1": "Gaining weight steadily",
           "2": "Lungs maturing gradually",
@@ -7431,7 +7431,7 @@
         }
       },
       "w25": {
-        "fetalDev": {
+        "bebekDev": {
           "0": "Can open eyes",
           "1": "Responds to light and sound",
           "2": "Airways are developing",
@@ -7464,7 +7464,7 @@
         }
       },
       "w26": {
-        "fetalDev": {
+        "bebekDev": {
           "0": "Eyelashes fully grown",
           "1": "Actively practices breathing",
           "2": "Can grasp the umbilical cord",
@@ -7497,7 +7497,7 @@
         }
       },
       "w27": {
-        "fetalDev": {
+        "bebekDev": {
           "0": "Sense of smell develops",
           "1": "Regular sleep-wake cycles",
           "2": "Bones hardening further",
@@ -7513,7 +7513,7 @@
           "1": "Omega-3",
           "2": "Vitamin C"
         },
-        "nutritionTip": "Include protein in every meal for rapid fetal growth",
+        "nutritionTip": "Include protein in every meal for rapid bebek growth",
         "mentalAffirmation": "Second trimester ends — the final stretch begins",
         "mentalTip": "Celebrate the end of the second trimester — amazing journey",
         "doctorQ": {
@@ -7530,7 +7530,7 @@
         }
       },
       "w28": {
-        "fetalDev": {
+        "bebekDev": {
           "0": "Eyes open and close regularly",
           "1": "Brain developing rapidly",
           "2": "Lungs practicing breathing",
@@ -7563,7 +7563,7 @@
         }
       },
       "w29": {
-        "fetalDev": {
+        "bebekDev": {
           "0": "Gaining weight quickly",
           "1": "Lungs maturing further",
           "2": "Immune system strengthening",
@@ -7583,12 +7583,12 @@
         "mentalAffirmation": "Every day makes your baby stronger and more complete",
         "mentalTip": "Set aside daily time for meditation and quiet",
         "doctorQ": {
-          "0": "Are daily fetal movements sufficient?",
+          "0": "Are daily bebek movements sufficient?",
           "1": "What are early labor signs?",
           "2": "How do I ease back pain?"
         },
         "checklist": {
-          "0": "Günlük fetal tekme sayımı yapın (2 saatte 10)",
+          "0": "Günlük bebek tekme sayımı yapın (2 saatte 10)",
           "1": "Yağsız protein ve sağlıklı yağlar yiyin",
           "2": "Bol su için — şişlik normaldir ama takip edin",
           "3": "Doğuma hazırlık kurslarına katılın",
@@ -7596,7 +7596,7 @@
         }
       },
       "w30": {
-        "fetalDev": {
+        "bebekDev": {
           "0": "Practices breathing regularly",
           "1": "Bones complete but soft",
           "2": "Can track light sources",
@@ -7629,7 +7629,7 @@
         }
       },
       "w31": {
-        "fetalDev": {
+        "bebekDev": {
           "0": "Gradually assumes birth position",
           "1": "Brain processes information",
           "2": "All five senses functional",
@@ -7662,7 +7662,7 @@
         }
       },
       "w32": {
-        "fetalDev": {
+        "bebekDev": {
           "0": "Nails reach fingertips",
           "1": "Skin becomes smoother and thicker",
           "2": "Breathes fluid to strengthen lungs",
@@ -7695,7 +7695,7 @@
         }
       },
       "w33": {
-        "fetalDev": {
+        "bebekDev": {
           "0": "Bones harden except skull",
           "1": "Dreams during sleep",
           "2": "Immunity strengthens from mother",
@@ -7728,7 +7728,7 @@
         }
       },
       "w34": {
-        "fetalDev": {
+        "bebekDev": {
           "0": "Lungs nearly complete",
           "1": "Can recognize voices",
           "2": "Nails fully grown",
@@ -7761,7 +7761,7 @@
         }
       },
       "w35": {
-        "fetalDev": {
+        "bebekDev": {
           "0": "Kidneys fully functional",
           "1": "Practices sucking and swallowing",
           "2": "Brain growing very rapidly",
@@ -7794,7 +7794,7 @@
         }
       },
       "w36": {
-        "fetalDev": {
+        "bebekDev": {
           "0": "Lungs nearly ready",
           "1": "Assumes final birth position",
           "2": "Digestive system complete",
@@ -7827,7 +7827,7 @@
         }
       },
       "w37": {
-        "fetalDev": {
+        "bebekDev": {
           "0": "Considered full term",
           "1": "Lungs are fully mature",
           "2": "Can grip firmly",
@@ -7860,7 +7860,7 @@
         }
       },
       "w38": {
-        "fetalDev": {
+        "bebekDev": {
           "0": "All organs functioning efficiently",
           "1": "Shedding lanugo",
           "2": "Gaining final fat layers",
@@ -7893,7 +7893,7 @@
         }
       },
       "w39": {
-        "fetalDev": {
+        "bebekDev": {
           "0": "Fully developed",
           "1": "Ready for birth anytime",
           "2": "Lungs producing surfactant",
@@ -7926,7 +7926,7 @@
         }
       },
       "w40": {
-        "fetalDev": {
+        "bebekDev": {
           "0": "Due date! All systems optimal",
           "1": "Completely ready to meet the world",
           "2": "Skull flexible for delivery",
@@ -7959,7 +7959,7 @@
         }
       },
       "w41": {
-        "fetalDev": {
+        "bebekDev": {
           "0": "Continues gaining weight",
           "1": "Placenta working at full capacity",
           "2": "Doctor may suggest induction",
@@ -7992,7 +7992,7 @@
         }
       },
       "w42": {
-        "fetalDev": {
+        "bebekDev": {
           "0": "Past due — follow up with doctor",
           "1": "Labor may be induced",
           "2": "Continue counting kicks",
@@ -8018,7 +8018,7 @@
         },
         "checklist": {
           "0": "Doktorunuzun yönlendirmelerini takip edin",
-          "1": "Fetal hareketleri çok yakından izleyin",
+          "1": "Bebek hareketleri çok yakından izleyin",
           "2": "Planlanan kontrol randevunuza gidin",
           "3": "Bol su için ve iyi dinlenin",
           "4": "Tıbbi ekibinize güvenin — neredeyse oradasınız!"
@@ -8104,7 +8104,7 @@
           "0": "Extreme thirst or unusually frequent urination",
           "1": "Blurred vision or persistent headaches",
           "2": "Severe nausea preventing eating or drinking",
-          "3": "Reduced fetal movement"
+          "3": "Reduced bebek movement"
         }
       },
       "weightGain": {
@@ -8320,7 +8320,7 @@
     "weight": "Ağırlık",
     "details": "Detaylar",
     "todaysTip": "Günün İpucu",
-    "fetalSize": {
+    "bebekSize": {
       "4": "Haşhaş tohumu",
       "5": "Susam tohumu",
       "6": "Mercimek",

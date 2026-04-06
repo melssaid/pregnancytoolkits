@@ -351,11 +351,11 @@
       "description": "Finden Sie heraus, wann Ihr Kleines ankommt."
     },
     "fetalGrowth": {
-      "title": "Fetales Wachstum verfolgen",
+      "title": "Baby-Wachstum verfolgen",
       "description": "Interaktives Wachstumsdiagramm mit wöchentlichen Größenvergleichen."
     },
     "kickCounter": {
-      "title": "Fetale Tritte verfolgen",
+      "title": "Baby- Tritte verfolgen",
       "description": "Intelligenter Trittzähler mit täglicher Aktivitätsanalyse."
     },
     "weightGain": {
@@ -474,7 +474,7 @@
       "birthPlanDesc": "Entbindungspräferenzen",
       "hospitalBag": "Krankenhaustasche",
       "hospitalBagDesc": "Packliste",
-      "fetalGrowth": "Fetales Wachstum",
+      "fetalGrowth": "Baby-Wachstum",
       "fetalGrowthDesc": "Babyentwicklung",
       "babyGrowth": "Babywachstum",
       "babyGrowthDesc": "Postnatales Tracking",
@@ -944,7 +944,7 @@
     "goal": "Ziel: 10 Tritte in 2 Stunden oder weniger",
     "moreToGo": "Noch {{count}} Tritte bis zum Ziel",
     "recentSessions": "Letzte Sitzungen",
-    "info": "Ab der 28. Woche, zählen Sie täglich die fetalen Bewegungen. Kontaktieren Sie Ihren Arzt, wenn Sie verminderte Bewegungen bemerken oder 10 Tritte nicht in 2 Stunden erreichen.",
+    "info": "Ab der 28. Woche, zählen Sie täglich die Baby-n Bewegungen. Kontaktieren Sie Ihren Arzt, wenn Sie verminderte Bewegungen bemerken oder 10 Tritte nicht in 2 Stunden erreichen.",
     "exportPDF": "Teilen Sie Ihr Tagebuch mit Ihrer Ärztin"
   },
   "contractionPage": {
@@ -1343,7 +1343,7 @@
       "differentWeek": "Woche ändern",
       "refresh": "Aktualisieren",
       "trackTip": "Verfolgen Sie Ihre Woche, um personalisierte Informationen über das Wachstum Ihres Babys und Ihre Körperveränderungen zu erhalten",
-      "fetalDevLink": "Fetale Entwicklung",
+      "fetalDevLink": "Baby- Entwicklung",
       "fetalDevLinkDesc": "3D-Ansicht der Entwicklung Ihres Babys",
       "kickCounterLink": "Bewegungstagebuch",
       "kickCounterLinkDesc": "Zeichnen Sie die Bewegungen Ihres Babys auf",
@@ -1610,7 +1610,7 @@
       "info": "Nur etwa 5% der Babys werden am genauen Termin geboren. Die meisten kommen innerhalb von 2 Wochen davor oder danach.",
       "cycleTrackerLink": "Zyklusverfolgung",
       "cycleTrackerLinkDesc": "Verfolgen Sie Ihren Menstruationszyklus und erhalten Sie genaue Vorhersagen",
-      "fetalDevLink": "Fetale Entwicklung",
+      "fetalDevLink": "Baby- Entwicklung",
       "fetalDevLinkDesc": "Verfolgen Sie das Wachstum Ihres Babys Woche für Woche",
       "weeklySummaryLink": "Wöchentliche Zusammenfassung",
       "weeklySummaryLinkDesc": "Erhalten Sie wöchentliche KI-Updates",
@@ -1668,7 +1668,7 @@
       "warningDecrease": "Deutlicher Rückgang der üblichen Aktivität",
       "warningNoMovements": "Keine Bewegungen seit mehreren Stunden",
       "educationalNote": "Babys sind zwischen 21 und 1 Uhr am aktivsten. Zählen Sie täglich zur gleichen Zeit.",
-      "fetalDevLink": "Fetale Entwicklung",
+      "fetalDevLink": "Baby- Entwicklung",
       "fetalDevLinkDesc": "Verfolgen Sie das Wachstum und die Entwicklung Ihres Babys",
       "weeklySummaryLink": "Wöchentliche Zusammenfassung",
       "weeklySummaryLinkDesc": "Erhalten Sie wöchentliche KI-Einblicke",
@@ -3583,7 +3583,7 @@
       "yourWeight": "Dein Gewicht",
       "weekAxis": "Woche",
       "weightGainKg": "Gewichtszunahme (kg)",
-      "fetalDevLink": "Fetalentwicklung",
+      "fetalDevLink": "Baby-ntwicklung",
       "fetalDevLinkDesc": "Babywachstum Woche für Woche",
       "kickCounterLink": "Tritt-Zähler",
       "kickCounterLinkDesc": "Babybewegungen verfolgen",
@@ -6362,7 +6362,7 @@
     "kickCounterDesc": "Babybewegungen aufzeichnen und Aktivitätsmuster überwachen",
     "aiAssistant": "Intelligenter Schwangerschafts-Ratgeber",
     "aiAssistantDesc": "Sofortige Antworten von einem auf Schwangerschaft spezialisierten KI-Ratgeber",
-    "maternalHealth": "Mutter- und Fetalgesundheit",
+    "maternalHealth": "Mutter- und Babygesundheit",
     "maternalHealthDesc": "Tägliche personalisierte Tipps für Ernährung, Bewegung und Pflege",
     "contractionTimer": "Wehentimer",
     "contractionTimerDesc": "Genaue Messung der Wehenzeiten für den richtigen Zeitpunkt",
@@ -6725,7 +6725,7 @@
       "daysRemaining": "{{days}} Tage verbleibend"
     },
     "sections": {
-      "fetalDev": "Fetale Entwicklung",
+      "fetalDev": "Baby- Entwicklung",
       "bodyChanges": "Ihre Körperveränderungen",
       "nutrition": "Ernährungsfokus",
       "mentalWellness": "Mentale Gesundheit",
