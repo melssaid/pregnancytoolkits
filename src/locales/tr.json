@@ -287,7 +287,7 @@
       "description": "Doğumunuz için optimal pozisyonlar."
     },
     "aiSkincare": {
-      "title": "Hamilelik Cilt Analizi",
+      "title": "Cilt Bakımı İpuçları",
       "description": "Hamilelikte güvenli cilt bakım rutini."
     },
     "aiNauseaRelief": {
@@ -359,24 +359,24 @@
       "description": "Günlük bebek aktivite analizi ile akıllı tekme sayacı."
     },
     "weightGain": {
-      "title": "Hamilelik Kilo Analizi",
+      "title": "Kilo Sağlığı Rehberi",
       "description": "Hamilelik sürecinde kilo değişimlerinizi takip edin.",
       "subtitle": "Hamilelikte kilo artışını takip edin ve analiz edin"
     },
     "postpartumMentalHealth": {
-      "title": "Hamilelik Ruh Sağlığı",
+      "title": "Ruh Hali ve Sağlık Günlüğü",
       "description": "EPDS anketi ve ruhsal iyilik desteği."
     },
     "gestationalDiabetes": {
-      "title": "Gebelik diyabeti",
+      "title": "Kan Şekeri Farkındalığı",
       "description": "Gestasyonel diyabet ve yaygın faktörler hakkında basit bilgiler."
     },
     "preeclampsiaRisk": {
-      "title": "Preeklampsi",
+      "title": "Tansiyon Farkındalığı",
       "description": "Preeklampsiyle ilgili yaygın faktörleri öğrenin."
     },
     "maternalHealth": {
-      "title": "Anne sağlığı farkındalığı",
+      "title": "Anne Sağlığı Rehberi",
       "description": "Gebelik diyabeti ve preeklampsi hakkında eğitici bilgiler."
     },
     "pregnancyComfort": {

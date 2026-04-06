@@ -287,7 +287,7 @@
       "description": "Posiciones óptimas para tu trabajo de parto."
     },
     "aiSkincare": {
-      "title": "Análisis de piel del embarazo",
+      "title": "Consejos de Cuidado de Piel",
       "description": "Rutina de cuidado segura para el embarazo."
     },
     "aiNauseaRelief": {
@@ -359,24 +359,24 @@
       "description": "Contador inteligente de patadas con análisis diario de actividad del bebé."
     },
     "weightGain": {
-      "title": "Análisis de peso del embarazo",
+      "title": "Guía de Bienestar del Peso",
       "description": "Registra los cambios de peso durante el embarazo.",
       "subtitle": "Registra y analiza tu aumento de peso durante el embarazo"
     },
     "postpartumMentalHealth": {
-      "title": "Salud mental del embarazo",
+      "title": "Diario de Ánimo y Bienestar",
       "description": "Cuestionario EPDS y apoyo de bienestar mental."
     },
     "gestationalDiabetes": {
-      "title": "Diabetes gestacional",
+      "title": "Conciencia de Azúcar en Sangre",
       "description": "Información sencilla sobre la diabetes gestacional y los factores comunes."
     },
     "preeclampsiaRisk": {
-      "title": "Preeclampsia",
+      "title": "Conciencia de Presión Arterial",
       "description": "Conoce los factores comunes de la preeclampsia."
     },
     "maternalHealth": {
-      "title": "Salud materna",
+      "title": "Guía de Bienestar Mamá",
       "description": "Información educativa sobre diabetes gestacional y preeclampsia."
     },
     "pregnancyComfort": {
