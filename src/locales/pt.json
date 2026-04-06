@@ -6791,7 +6791,7 @@
         "mentalTip": "Talk to your partner about your feelings — sharing eases anxiety",
         "doctorQ": {
           "0": "How do I manage severe nausea?",
-          "1": "When is my first ultrasound?",
+          "1": "When is my first scan?",
           "2": "Are my current medications safe?"
         },
         "checklist": {
@@ -6955,7 +6955,7 @@
         "mentalAffirmation": "One-third done! You're amazing",
         "mentalTip": "Share your joy with loved ones — social support is important",
         "doctorQ": {
-          "0": "What does the latest ultrasound show?",
+          "0": "What did the latest checkup show?",
           "1": "Is the baby developing normally?",
           "2": "When can I know the gender?"
         },
@@ -7617,7 +7617,7 @@
         "doctorQ": {
           "0": "Is the baby in the right position?",
           "1": "What are pain relief options for labor?",
-          "2": "Do I need another ultrasound?"
+          "2": "Do I need another checkup?"
         },
         "checklist": {
           "0": "Continue com as consultas quinzenais",
