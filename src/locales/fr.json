@@ -85,17 +85,17 @@
     "allTools": "Tous les outils",
     "toolsAvailable": "{{count}} outils disponibles",
     "noToolsFound": "Aucun outil correspondant trouvé.",
-    "medicalDisclaimer": "Ces outils sont à titre informatif uniquement. Consultez toujours votre médecin.",
+    "medicalDisclaimer": "✦ Compagnon bien-être éducatif · Pas un dispositif médical · Consultez votre soignant",
     "footer": "À titre informatif uniquement. Consultez toujours votre médecin.",
     "back": "Retour",
     "allToolsBtn": "Tous les outils"
   },
   "ai": {
-    "resultDisclaimer": "Généré par IA • Consultez votre médecin"
+    "resultDisclaimer": "✦ Contenu éducatif · Pas un avis médical · Consultez votre soignant"
   },
   "compliance": {
-    "disclaimerCompact": "À titre informatif uniquement. Consultez votre professionnel de santé.",
-    "disclaimerFull": "Cet outil fournit des conseils généraux. Consultez toujours votre professionnel de santé pour un avis médical."
+    "disclaimerCompact": "✦ À des fins éducatives uniquement · Consultez votre soignant",
+    "disclaimerFull": "✦ Cet outil fournit des conseils éducatifs uniquement. Il ne remplace pas les soins professionnels."
   },
   "categories": {
     "all": "Tout",
