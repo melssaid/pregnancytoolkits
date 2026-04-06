@@ -308,8 +308,8 @@
       "description": "Support tips for expecting fathers and partners."
     },
     "aiBirthPosition": {
-      "title": "AI Birth Positions",
-      "description": "Optimal positions for your labor."
+      "title": "Comfort Positions Guide",
+      "description": "Discover comfortable positions for labor and birth."
     },
     "aiSkincare": {
       "title": "Pregnancy Skin Analysis",
@@ -324,8 +324,8 @@
       "description": "Plan baby expenses smartly."
     },
     "aiBumpPhotos": {
-      "title": "Ultrasound Gallery",
-      "description": "Save & explore your ultrasound photos with educational insights."
+      "title": "My Bump Gallery",
+      "description": "Save and view your bump photos with optional AI educational notes."
     },
     "aiFitnessCoach": {
       "title": "Fitness & Flexibility Coach",
@@ -336,8 +336,8 @@
       "description": "Personalized exercises for pregnancy back comfort."
     },
     "vitaminTracker": {
-      "title": "Smart Vitamin Tracker",
-      "description": "Vitamin & supplement schedule with daily compliance analytics."
+      "title": "My Daily Nutrition",
+      "description": "Track your daily vitamins and supplements with smart reminders."
     },
     "forbiddenFoods": {
       "title": "Foods to Avoid",
@@ -441,8 +441,8 @@
       "description": "Pinpoint your most fertile days each cycle."
     },
     "fertilityAcademy": {
-      "title": "Fertility Academy",
-      "description": "Comprehensive fertility education: lessons, body signs, and stress management.",
+      "title": "My Fertility Journey",
+      "description": "Comprehensive fertility education: lessons, body signs, and lifestyle tips.",
       "lessonsTab": "Lessons",
       "signsTab": "Body Signs",
       "stressTab": "Stress & Calm",
@@ -503,7 +503,7 @@
       "fetalGrowthDesc": "Baby development",
       "babyGrowth": "Baby Growth",
       "babyGrowthDesc": "Postnatal tracking",
-      "bumpPhotos": "Ultrasound",
+      "bumpPhotos": "Bump Photos",
       "bumpPhotosDesc": "Educational insights",
       "babySleep": "Baby Sleep",
       "babySleepDesc": "Sleep patterns",
@@ -752,7 +752,7 @@
             "Smart Appointment Planner",
             "Fitness & Flexibility Coach",
             "Contraction Logger",
-            "Ultrasound Gallery"
+            "My Bump Gallery"
           ],
           "dataNote": "When using AI features, only your specific query text is sent anonymously to our secure backend. Your stored health data remains entirely on your device and is never transmitted.",
           "noTraining": "Your queries are NOT used to train AI models"
@@ -765,9 +765,9 @@
           "canDisable": "Can be enabled/disabled in settings"
         },
         "photos": {
-          "title": "Ultrasound Gallery & Media",
-          "desc": "The Ultrasound Gallery allows you to save and view your ultrasound photos with optional AI-powered educational observations. This feature does NOT perform medical diagnoses or clinical image analysis — it provides general educational information only.",
-          "localDefault": "Ultrasound photos are stored locally on your device by default using compressed Base64",
+          "title": "Bump Gallery & Media",
+          "desc": "The Bump Gallery allows you to save and view your bump photos with optional AI-powered educational observations. This feature does NOT perform medical diagnoses or clinical image analysis — it provides general educational information only.",
+          "localDefault": "Bump photos are stored locally on your device by default using compressed Base64",
           "localOnly": "All photos are stored exclusively on your device and never uploaded to any server",
           "noPublic": "Photos are never publicly accessible or shared with third parties",
           "noDiagnosis": "AI observations are educational only — not a substitute for professional medical interpretation"
@@ -2447,12 +2447,12 @@
       }
     },
     "bumpPhotos": {
-      "title": "Ultrasound Gallery",
+      "title": "My Bump Gallery",
       "subtitle": "Save & explore your ultrasound photos with educational insights",
       "currentWeek": "Current Week",
       "takePhoto": "Take Photo",
       "uploadPhoto": "Upload Photo",
-      "photoTimeline": "Ultrasound Gallery",
+      "photoTimeline": "My Bump Gallery",
       "noPhotos": "No ultrasound photos yet",
       "noPhotosDesc": "Upload your ultrasound images for educational insights",
       "compareWeeks": "Compare Weeks",
@@ -2463,7 +2463,7 @@
       "caption": "Note",
       "addCaption": "Add a note...",
       "saveCaption": "Save Note",
-      "photoSaved": "Ultrasound Saved!",
+      "photoSaved": "Photo Saved!",
       "photoDeleted": "Photo Deleted",
       "storageInfo": "Photos stored locally on your device",
       "localStorageTitle": "Local Storage",
@@ -2475,7 +2475,7 @@
       "selectWeek": "Select Week",
       "captionPlaceholder": "Add a note about this scan... (optional)",
       "compressing": "Compressing & Saving...",
-      "takeOrUpload": "Take or Upload Ultrasound Photo",
+      "takeOrUpload": "Take or Upload Bump Photo",
       "uploadFromGallery": "Upload from Gallery",
       "uploadHint": "📸 You can take a photo of the ultrasound during your doctor's visit, or ask for a copy and upload it later from your gallery.",
       "localStorageWarning": "⚠️ Photos are stored on your device only. If you clear app data or uninstall the app, all photos will be permanently deleted. We recommend keeping a backup.",
@@ -2492,12 +2492,12 @@
       "week": "Week",
       "localLabel": "Local",
       "startDocumenting": "Start uploading your ultrasound photos from week {{week}}!",
-      "aiAnalysisWeek": "Ultrasound Analysis - Week {{week}}",
+      "aiAnalysisWeek": "Photo Notes - Week {{week}}",
       "analyzing": "Analyzing...",
       "refresh": "Re-analyze",
       "clickRefresh": "Click \"Re-analyze\" for AI ultrasound reading",
-      "journeyTimeline": "Ultrasound History",
-      "photoTipsTitle": "Tips for Better Ultrasound Photos",
+      "journeyTimeline": "Photo History",
+      "photoTipsTitle": "Tips for Better Bump Photos",
       "photoTip1": "Photograph the ultrasound screen directly without flash for better clarity",
       "photoTip2": "Make sure the week and date info is visible in the image",
       "photoTip3": "Take the photo straight without tilting",
@@ -2776,7 +2776,7 @@
       "optimalNutrition": "Nutrient-Dense Options"
     },
     "birthPosition": {
-      "title": "AI Birth Positions",
+      "title": "Comfort Positions Guide",
       "subtitle": "Optimal positions for your labor",
       "commonPositions": "Common Birth Positions",
       "laborStage": "Labor Stage",
@@ -3159,7 +3159,7 @@
       "addAppointment": "Add Appointment",
       "appointmentType": "Appointment Type",
       "checkup": "Regular Checkup",
-      "ultrasound": "Ultrasound",
+      "ultrasound": "Bump Photos",
       "bloodTest": "Blood Test",
       "glucoseTest": "Glucose Test",
       "other": "Other",
@@ -3655,8 +3655,7 @@
       "bmiPrePregnancy": "Pre-pregnancy BMI",
       "history": "History",
       "invalidWeight": "Please enter a valid weight",
-      "noEntries": "No weight entries yet. Add your first one above.",
-      "weightPlaceholder": "Weight in kg"
+      "noEntries": "No weight entries yet. Add your first one above."
     },
     "bloodType": {
       "title": "Blood Type Calculator",
@@ -4744,7 +4743,7 @@
       "progressLabel": "Screenings tracked",
       "tracked": "tracked",
       "related": {
-        "academy": "Fertility Academy",
+        "academy": "My Fertility Journey",
         "academyDesc": "Comprehensive fertility education",
         "nutrition": "Nutrition Guide",
         "nutritionDesc": "Preconception nutrition & supplements"
@@ -6656,7 +6655,7 @@
     "bonusTitle": "🎁 Get 5 Free Points!",
     "bonusDesc": "Claim 5 bonus AI points for free — once per month, limited time offer!",
     "bonusClaim": "Claim Now",
-"bonusSuccess": "5 Points Added! ✅",
+    "bonusSuccess": "5 Points Added! ✅",
     "bonusPoints": "bonus points",
     "newBalance": "New balance",
     "bonusDetailedSuccess": "🎉 +{{bonus}} bonus points! New balance: {{remaining}}/{{total}}",
