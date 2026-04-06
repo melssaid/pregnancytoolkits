@@ -287,7 +287,7 @@
       "description": "Positions optimales pour votre travail."
     },
     "aiSkincare": {
-      "title": "Analyse de la peau enceinte",
+      "title": "Conseils Soins de Peau",
       "description": "Routine de soins sûre pour la grossesse."
     },
     "aiNauseaRelief": {
@@ -359,24 +359,24 @@
       "description": "Compteur intelligent avec analyse quotidienne de l'activité du bébée."
     },
     "weightGain": {
-      "title": "Analyse du poids de grossesse",
+      "title": "Guide Bien-être du Poids",
       "description": "Suivez l'évolution de votre poids pendant la grossesse.",
       "subtitle": "Suivez et analysez votre prise de poids pendant la grossesse"
     },
     "postpartumMentalHealth": {
-      "title": "Santé mentale de la grossesse",
+      "title": "Journal Humeur & Bien-être",
       "description": "Questionnaire EPDS et soutien bien-être mental."
     },
     "gestationalDiabetes": {
-      "title": "Diabète gestationnel",
+      "title": "Sensibilisation Glycémie",
       "description": "Informations simples sur le diabète gestationnel et les facteurs courants."
     },
     "preeclampsiaRisk": {
-      "title": "Prééclampsie",
+      "title": "Sensibilisation Tension",
       "description": "Découvrez les facteurs courants de la prééclampsie."
     },
     "maternalHealth": {
-      "title": "Sensibilisation santé maternelle",
+      "title": "Guide Bien-être Maman",
       "description": "Informations éducatives sur le diabète gestationnel et la prééclampsie."
     },
     "pregnancyComfort": {

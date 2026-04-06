@@ -312,8 +312,8 @@
       "description": "Discover comfortable positions for labor and birth."
     },
     "aiSkincare": {
-      "title": "Pregnancy Skin Analysis",
-      "description": "Pregnancy-safe skincare routine."
+      "title": "Pregnancy Skincare Tips",
+      "description": "Get personalized skincare tips safe for pregnancy."
     },
     "aiNauseaRelief": {
       "title": "AI Nausea Comfort Tips",
@@ -384,25 +384,25 @@
       "description": "Smart kick counter with daily baby activity analysis."
     },
     "weightGain": {
-      "title": "Pregnancy Weight Analysis",
-      "description": "Track healthy pregnancy weight changes.",
+      "title": "Weight Wellness Guide",
+      "description": "Track your pregnancy weight with smart wellness insights.",
       "subtitle": "Track and analyze your pregnancy weight gain"
     },
     "postpartumMentalHealth": {
-      "title": "Pregnancy Mental Health",
-      "description": "EPDS questionnaire and mental wellness support."
+      "title": "Mood & Wellness Journal",
+      "description": "Track your emotional wellbeing and get supportive tips."
     },
     "gestationalDiabetes": {
-      "title": "Gestational Diabetes",
-      "description": "Simple information about gestational diabetes and common factors."
+      "title": "Blood Sugar Awareness",
+      "description": "Learn about managing blood sugar levels during pregnancy."
     },
     "preeclampsiaRisk": {
-      "title": "Preeclampsia",
-      "description": "Learn about common preeclampsia factors."
+      "title": "Blood Pressure Awareness",
+      "description": "Educational guide about blood pressure during pregnancy."
     },
     "maternalHealth": {
-      "title": "Maternal Health Awareness",
-      "description": "Educational information about gestational diabetes and preeclampsia."
+      "title": "Mom Wellness Guide",
+      "description": "Comprehensive wellness overview for expectant mothers."
     },
     "pregnancyComfort": {
       "title": "Comfortable Pregnancy",

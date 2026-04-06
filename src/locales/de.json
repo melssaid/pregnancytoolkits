@@ -287,7 +287,7 @@
       "description": "Optimale Positionen für Ihre Wehen."
     },
     "aiSkincare": {
-      "title": "Schwangerschafts-Hautanalyse",
+      "title": "Hautpflege-Tipps",
       "description": "Schwangerschaftssichere Hautpflegeroutine."
     },
     "aiNauseaRelief": {
@@ -359,24 +359,24 @@
       "description": "Intelligenter Trittzähler mit täglicher Aktivitätsanalyse."
     },
     "weightGain": {
-      "title": "Schwangerschafts-Gewichtsanalyse",
+      "title": "Gewichts-Wellness-Guide",
       "description": "Begleiten Sie Ihre Gewichtsentwicklung in der Schwangerschaft.",
       "subtitle": "Verfolge und analysiere deine Gewichtszunahme in der Schwangerschaft"
     },
     "postpartumMentalHealth": {
-      "title": "Psychische Gesundheit in der Schwangerschaft",
+      "title": "Stimmungs- & Wellness-Tagebuch",
       "description": "EPDS-Fragebogen und Unterstützung für seelisches Wohlbefinden."
     },
     "gestationalDiabetes": {
-      "title": "Schwangerschaftsdiabetes",
+      "title": "Blutzucker-Bewusstsein",
       "description": "Einfache Informationen über Gestationsdiabetes und häufige Faktoren."
     },
     "preeclampsiaRisk": {
-      "title": "Präeklampsie",
+      "title": "Blutdruck-Bewusstsein",
       "description": "Erfahren Sie mehr über häufige Präeklampsie-Faktoren."
     },
     "maternalHealth": {
-      "title": "Gesundheitsbewusstsein für Schwangere",
+      "title": "Mama-Wellness-Guide",
       "description": "Aufklärung über Schwangerschaftsdiabetes und Präeklampsie."
     },
     "pregnancyComfort": {
