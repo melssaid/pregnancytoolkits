@@ -1,5 +1,5 @@
 import { forwardRef, useState, memo, useMemo } from "react";
-import { Home, LayoutDashboard, Sparkles, Menu, Search, Bell, Settings, X } from "lucide-react";
+import { Home, LayoutDashboard, Sparkles, Menu, Search, Bell, Settings, X, Crown } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence, PanInfo } from "framer-motion";
@@ -7,6 +7,7 @@ import { SearchDialog } from "./SearchDialog";
 import { NotificationsPanel } from "./dashboard/NotificationsPanel";
 import { useNotifications } from "@/hooks/useNotifications";
 import { toolsData } from "@/lib/tools-data";
+import { useAIUsage } from "@/contexts/AIUsageContext";
 
 const NAV_ITEMS = [
   { id: "home", icon: Home, labelKey: "nav.home", href: "/" },
