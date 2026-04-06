@@ -43,7 +43,7 @@ export function SEOHead({
   const pageTitle = titleOverride || (titleKey ? t(titleKey) : null);
   const fullTitle = pageTitle
     ? `${pageTitle} | ${brandName}`
-    : `${brandName} – Free Pregnancy Tracker & AI Companion | 42+ Tools`;
+    : `${brandName} – Free Pregnancy Tracker & AI Companion | 36+ Tools`;
 
   // Build description
   const pageDesc = descOverride
