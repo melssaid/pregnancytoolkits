@@ -375,7 +375,7 @@
       "title": "Baby Arrival Countdown",
       "description": "Find out when your little one will arrive."
     },
-    "fetalGrowth": {
+    "babyGrowth": {
       "title": "Baby Growth Tracking",
       "description": "Interactive baby growth chart with weekly size comparisons."
     },
@@ -499,8 +499,8 @@
       "birthPlanDesc": "Delivery preferences",
       "hospitalBag": "Hospital Bag",
       "hospitalBagDesc": "Packing checklist",
-      "fetalGrowth": "Baby Growth",
-      "fetalGrowthDesc": "Baby development",
+      "babyGrowth": "Baby Growth",
+      "babyGrowthDesc": "Baby development",
       "babyGrowth": "Baby Growth",
       "babyGrowthDesc": "Postnatal tracking",
       "bumpPhotos": "Bump Photos",
@@ -1053,7 +1053,7 @@
     "todayStats": "Today's Stats",
     "total": "Total",
     "recentChanges": "Recent Changes",
-    "info": "Tracking diaper changes helps monitor your baby's hydration and health. Newborns typically need 6-8 wet diapers daily.",
+    "info": "Tracking diaper changes helps follow your baby's hydration and health. Newborns typically need 6-8 wet diapers daily.",
     "analyzeWithAI": "Review Diaper Patterns with AI",
     "aiPatternAnalysis": "AI Pattern Insights",
     "analyzingPatterns": "Reviewing patterns...",
@@ -1368,8 +1368,8 @@
       "differentWeek": "Change Week",
       "refresh": "Refresh",
       "trackTip": "Track your week to get personalized information about your baby's growth and your body changes",
-      "fetalDevLink": "Baby Development",
-      "fetalDevLinkDesc": "See your baby's size and development this week",
+      "babyDevLink": "Baby Development",
+      "babyDevLinkDesc": "See your baby's size and development this week",
       "kickCounterLink": "Kick Counter",
       "kickCounterLinkDesc": "Track and journal your baby's movements",
       "approximatelyRemaining": "Approximately {{days}} days remaining",
@@ -1635,8 +1635,8 @@
       "info": "Only about 5% of babies are born on their exact due date. Most are born within 2 weeks before or after. Your care provider may adjust your due date based on early scan measurements.",
       "cycleTrackerLink": "My Cycle Journal",
       "cycleTrackerLinkDesc": "Track your menstrual cycle and get accurate predictions",
-      "fetalDevLink": "Baby Development Guide",
-      "fetalDevLinkDesc": "Log your baby's growth week by week",
+      "babyDevLink": "Baby Development Guide",
+      "babyDevLinkDesc": "Log your baby's growth week by week",
       "weeklySummaryLink": "Weekly Pregnancy Insights",
       "weeklySummaryLinkDesc": "Get AI-powered weekly pregnancy updates",
       "aiGuideTitle": "AI Pregnancy Guide",
@@ -1693,12 +1693,12 @@
       "warningDecrease": "Sudden decrease in movement pattern",
       "warningNoMovements": "No movements for an extended period",
       "educationalNote": "Count baby movements daily starting from week 28. Aim for 10 movements in 2 hours during your baby's active time.",
-      "fetalDevLink": "Baby Development",
-      "fetalDevLinkDesc": "Log your baby's growth and development week by week",
+      "babyDevLink": "Baby Development",
+      "babyDevLinkDesc": "Log your baby's growth and development week by week",
       "weeklySummaryLink": "Weekly Summary",
       "weeklySummaryLinkDesc": "Get AI-powered weekly pregnancy insights",
       "weightGainLink": "Weight Gain Guide",
-      "weightGainLinkDesc": "Monitor your healthy weight gain",
+      "weightGainLinkDesc": "Follow your healthy weight journey",
       "exportPDF": "Share your journal with your consultant",
       "startHint": "Start a new session then tap the circle for each baby movement",
       "lastKick": "Last movement",
@@ -1743,7 +1743,7 @@
       "intensityMild": "Moderate",
       "intensityLight": "Light",
       "phaseEarly": "Early Phase",
-      "phaseEarlyDesc": "Contractions are light and spread apart. Stay comfortable at home and monitor progress.",
+      "phaseEarlyDesc": "Contractions are light and spread apart. Stay comfortable at home and follow progress.",
       "phaseActive": "Active Phase",
       "phaseActiveDesc": "Contractions are regular and stronger. Get ready to go to the hospital.",
       "phaseTransition": "Transition Phase",
@@ -3130,7 +3130,7 @@
     "mentalHealth": {
       "title": "Mental Wellness Guide",
       "subtitle": "EPDS questionnaire and mental wellness support",
-      "takeScreening": "Take EPDS Questionnaire",
+      "takeQuestionnaire": "Take EPDS Questionnaire",
       "screeningDesc": "Wellness Self-Check",
       "yourScore": "Your Score",
       "lowRisk": "Low Risk",
@@ -3506,7 +3506,7 @@
     },
     "weightGain": {
       "title": "Weight Gain Guide",
-      "subtitle": "Monitor healthy pregnancy weight",
+      "subtitle": "Follow healthy pregnancy weight",
       "heroTitle": "Track Your Weight with Confidence",
       "heroDesc": "A smart wellness tool built on general guidelines to track healthy weight gain during pregnancy",
       "iomBadge": "Based on IOM & WHO Guidelines",
@@ -3608,8 +3608,8 @@
       "yourWeight": "Your Weight",
       "weekAxis": "Week",
       "weightGainKg": "Weight Gain (kg)",
-      "fetalDevLink": "Baby Development",
-      "fetalDevLinkDesc": "Log your baby's growth week by week",
+      "babyDevLink": "Baby Development",
+      "babyDevLinkDesc": "Log your baby's growth week by week",
       "kickCounterLink": "Kick Counter",
       "kickCounterLinkDesc": "Log your baby's movements",
       "mealSuggestionLink": "Meal Suggestions",
@@ -3703,7 +3703,7 @@
         "obese": "Obese"
       }
     },
-    "fetalDevelopment": {
+    "babyDevelopment": {
       "title": "Baby Development Timeline",
       "subtitle": "Week by week journey of your baby's growth",
       "pregnancyProgress": "Pregnancy Progress",
@@ -3804,7 +3804,7 @@
       "dueDateLink": "Due Date Calculator",
       "dueDateLinkDesc": "Calculate your expected delivery date",
       "weightGainLink": "Weight Gain Guide",
-      "weightGainLinkDesc": "Monitor your healthy weight gain"
+      "weightGainLinkDesc": "Follow your healthy weight journey"
     },
     "gdm": {
       "title": "Gestational Diabetes Awareness (General Info)",
@@ -3819,15 +3819,15 @@
       "riskLevels": {
         "high": {
           "title": "Higher Risk",
-          "description": "Your risk factors suggest elevated likelihood. Early screening may be recommended."
+          "description": "Your risk factors suggest elevated likelihood. Early wellness checks may be helpful."
         },
         "moderate": {
           "title": "Moderate Risk",
-          "description": "You have some risk factors. Standard screening at 24-28 weeks is recommended."
+          "description": "You have some risk factors. Standard wellness checks at 24-28 weeks are recommended."
         },
         "low": {
           "title": "Lower Risk",
-          "description": "You have few risk factors, but routine screening at 24-28 weeks is still recommended."
+          "description": "You have few risk factors, but routine wellness checks at 24-28 weeks are still recommended."
         }
       },
       "riskFactors": {
@@ -3846,7 +3846,7 @@
         "tip1": "Maintain a healthy weight before and during pregnancy",
         "tip2": "Eat a balanced diet rich in fiber and whole grains",
         "tip3": "Stay physically active with doctor-approved exercises",
-        "tip4": "Attend all prenatal appointments for regular monitoring",
+        "tip4": "Attend all prenatal appointments for regular follow-up",
         "tip5": "Limit sugary foods and refined carbohydrates"
       },
       "reset": "Reset"
@@ -4433,7 +4433,7 @@
         },
         "emotionalCheck": {
           "title": "Emotional Check-in",
-          "desc": "Monitor your mood and feelings"
+          "desc": "Follow your mood and feelings"
         },
         "nutrition": {
           "title": "Nutritious Meals",
@@ -4561,7 +4561,7 @@
         },
         "endometriosisAwareness": {
           "title": "Endometriosis & Fertility",
-          "content": "Endometriosis affects 1 in 10 women:\n\n• Tissue similar to the uterine lining grows outside the uterus, causing inflammation and adhesions.\n• It can affect the tubes, ovaries, and egg quality.\n• Symptoms: severe period pain, pain during intercourse, and sometimes no symptoms.\n• Early diagnosis improves outcomes. Laparoscopy is the gold standard.\n• Many affected women conceive naturally or with assistance.\n• Consult a fertility specialist if you have a family history or suspicious symptoms."
+          "content": "Endometriosis affects 1 in 10 women:\n\n• Tissue similar to the uterine lining grows outside the uterus, causing inflammation and adhesions.\n• It can affect the tubes, ovaries, and egg quality.\n• Symptoms: severe period pain, pain during intercourse, and sometimes no symptoms.\n• Early detection improves outcomes. Laparoscopy is the gold standard.\n• Many affected women conceive naturally or with assistance.\n• Consult a fertility specialist if you have a family history or suspicious symptoms."
         },
         "nutritionFertility": {
           "title": "Optimal Nutrition for Fertility",
@@ -4585,7 +4585,7 @@
         },
         "geneticFactors": {
           "title": "Genetic Factors & Fertility",
-          "content": "Genes play a bigger role than expected in fertility:\n\n• Carrier genetic screening reveals risk of passing genetic diseases to children.\n• MTHFR mutation affects folate metabolism — methylfolate may be better.\n• Turner syndrome and chromosomal abnormalities affect ovarian reserve.\n• Family history of early menopause may signal early reserve decline.\n• Karyotype testing is recommended in cases of recurrent miscarriage.\n• Genetic counseling is available and useful for those with specific family histories."
+          "content": "Genes play a bigger role than expected in fertility:\n\n• Carrier genetic overview reveals risk of passing genetic diseases to children.\n• MTHFR mutation affects folate metabolism — methylfolate may be better.\n• Turner syndrome and chromosomal abnormalities affect ovarian reserve.\n• Family history of early menopause may signal early reserve decline.\n• Karyotype testing is recommended in cases of recurrent miscarriage.\n• Genetic counseling is available and useful for those with specific family histories."
         },
         "immunologyFertility": {
           "title": "Immunology & Fertility",
@@ -4605,7 +4605,7 @@
         },
         "assistedReproduction": {
           "title": "Assisted Reproduction Techniques",
-          "content": "When natural conception doesn't succeed, there are effective options:\n\n• Ovulation stimulation: Medications that stimulate egg production — first-line treatment.\n• Intrauterine insemination (IUI): Processed sperm injected directly into the uterus.\n• In vitro fertilization (IVF): The most advanced technique. Success rates 30–50% per cycle.\n• Intracytoplasmic sperm injection (ICSI): A single sperm injected directly into the egg.\n• Preimplantation genetic testing (PGT): Screening embryos for chromosomal abnormalities.\n• Each option has specific indications — a fertility specialist guides you to the most suitable."
+          "content": "When natural conception doesn't succeed, there are effective options:\n\n• Ovulation stimulation: Medications that stimulate egg production — first-line treatment.\n• Intrauterine insemination (IUI): Processed sperm injected directly into the uterus.\n• In vitro fertilization (IVF): The most advanced technique. Success rates 30–50% per cycle.\n• Intracytoplasmic sperm injection (ICSI): A single sperm injected directly into the egg.\n• Preimplantation genetic testing (PGT): Checking embryos for chromosomal concerns.\n• Each option has specific indications — a fertility specialist guides you to the most suitable."
         },
         "epigeneticsFertility": {
           "title": "Epigenetics & Generational Health",
@@ -4685,7 +4685,7 @@
       "allComplete": "Great preparation! Discuss your results with your care provider.",
       "categories": {
         "essential": "Essential Health Checks",
-        "screening": "Infection & Immunity Screening",
+        "wellness-check": "Infection & Immunity Overview",
         "specialized": "Specialized Assessments",
         "medications": "Medications & Vaccinations"
       },
@@ -4699,7 +4699,7 @@
           "description": "Checks for anemia, infections, and overall blood health. Identifies iron deficiency that should be addressed before pregnancy."
         },
         "pap": {
-          "title": "Pap Smear / Cervical Screening",
+          "title": "Pap Smear / Cervical Check",
           "description": "Screens for cervical abnormalities. Best done before pregnancy to address any issues without the added complexity of pregnancy."
         },
         "thyroid": {
@@ -4711,19 +4711,19 @@
           "description": "Rubella during pregnancy can cause serious birth defects. If you're not immune, vaccination is recommended at least 1 month before trying to conceive."
         },
         "hepatitis": {
-          "title": "Hepatitis B & C Screening",
-          "description": "Hepatitis B can be transmitted to the baby during birth. Knowing your status allows for preventive measures. Hepatitis C requires monitoring during pregnancy."
+          "title": "Hepatitis B & C Check",
+          "description": "Hepatitis B can be transmitted to the baby during birth. Knowing your status allows for preventive measures. Hepatitis C requires follow-up during pregnancy."
         },
         "hiv": {
-          "title": "HIV & STI Screening",
-          "description": "Routine screening for HIV and sexually transmitted infections protects both your health and your future baby's health. Early detection enables effective treatment."
+          "title": "HIV & STI Check",
+          "description": "Routine checks for HIV and sexually transmitted infections protects both your health and your future baby's health. Early detection enables effective treatment."
         },
         "dental": {
           "title": "Dental Checkup",
           "description": "Gum disease is linked to preterm birth and low birth weight. Hormonal changes during pregnancy can worsen existing dental issues. Complete any necessary dental work before conceiving."
         },
-        "geneticScreening": {
-          "title": "Genetic Carrier Screening",
+        "geneticOverview": {
+          "title": "Genetic Carrier Check",
           "description": "Tests whether you or your partner carry genes for conditions like cystic fibrosis, sickle cell disease, or thalassemia. Results help with informed family planning decisions."
         },
         "mentalHealth": {
@@ -4740,7 +4740,7 @@
         }
       },
       "disclaimer": "This checklist is an educational reference to help you organize conversations with your care provider. It does not replace professional medical advice, diagnosis, or treatment. All screenings and tests should be discussed with and ordered by a qualified healthcare professional.",
-      "progressLabel": "Screenings tracked",
+      "progressLabel": "Checks completed",
       "tracked": "tracked",
       "related": {
         "academy": "My Fertility Journey",
@@ -5061,7 +5061,7 @@
       },
       "moderate": {
         "title": "Moderate Risk",
-        "description": "You have some risk factors. Enhanced monitoring and lifestyle modifications may be recommended.",
+        "description": "You have some risk factors. Enhanced follow-up and lifestyle modifications may be recommended.",
         "recommendation": "Consider discussing risk with your care provider"
       },
       "low": {
@@ -5079,7 +5079,7 @@
     },
     "evidence": {
       "title": "What is Preeclampsia?",
-      "content": "Preeclampsia affects 3-8% of pregnancies worldwide, characterized by high blood pressure and protein in urine after week 20. Early detection and regular monitoring reduce risks by up to 60%.",
+      "content": "Preeclampsia affects 3-8% of pregnancies worldwide, characterized by high blood pressure and protein in urine after week 20. Early detection and regular follow-up reduce risks by up to 60%.",
       "source": "Source: WHO — Recommendations for Prevention and Treatment of Pre-eclampsia, 2023"
     },
     "evidence2": {
@@ -5977,7 +5977,7 @@
       "bottles": "Baby Bottles",
       "onesies": "Onesies (0-3 months)",
       "stroller": "Stroller",
-      "monitor": "Baby Monitor",
+      "monitor": "Baby Cam",
       "breastPump": "Milk Expression Device",
       "swing": "Baby Swing",
       "diaperBag": "Diaper Bag",
@@ -6003,7 +6003,7 @@
       "diaperBag": "For outings with baby",
       "bathtub": "Makes bathing easier and safer",
       "swaddles": "Helps newborns feel secure",
-      "thermometer": "Essential for monitoring baby's temperature",
+      "thermometer": "Essential for following baby's temperature",
       "burpCloths": "Protects clothing during and after feeding",
       "changingPad": "Comfortable surface for diaper changes",
       "nightLight": "Soft light for nighttime feeding and changes",
@@ -6580,7 +6580,7 @@
       "tip30": "You are not alone in this journey. One in six couples experiences difficulty conceiving at some point. Seeking help is a sign of strength, not failure. Every step you take brings you closer.",
       "tip31": "Selenium is a trace mineral that protects eggs from oxidative damage and supports thyroid function. Brazil nuts are the richest source — just 1–2 per day provides your daily requirement.",
       "tip32": "The luteal phase (after ovulation) should ideally be 12–14 days. A short luteal phase may indicate low progesterone, which can prevent implantation.",
-      "tip33": "Endometriosis affects 1 in 10 women and is a leading cause of infertility. Symptoms include painful periods and heavy bleeding. Early diagnosis significantly improves outcomes.",
+      "tip33": "Endometriosis affects 1 in 10 women and is a leading cause of infertility. Symptoms include painful periods and heavy bleeding. Early detection significantly improves outcomes.",
       "tip34": "Vitamin B6 supports progesterone production, crucial for maintaining pregnancy. Foods rich in B6 include chickpeas, bananas, potatoes, and poultry.",
       "tip35": "Pelvic floor health impacts fertility and pregnancy. Gentle pelvic floor exercises improve blood flow to reproductive organs.",
       "tip36": "PCOS is the most common cause of anovulation. If you have irregular periods, excess hair growth, or acne, ask your doctor about testing.",
@@ -6601,7 +6601,7 @@
     "smart-pregnancy-plan": "Plan your pregnancy journey with a personalized schedule for appointments and checkups. Consider the plan as an organizational guide. Any health concerns should be discussed with your doctor.",
     "cycle-tracker": "Track your menstrual cycle to know expected fertility windows. Results are estimates, not diagnoses. If your cycle is irregular for an extended period, consult your doctor.",
     "due-date-calculator": "Calculate your expected due date based on your last period. This is an estimate and may differ from a medical assessment. Follow up with your doctor for an accurate date.",
-    "fetal-growth": "Monitor your baby's growth and compare with general averages. Measurements are educational references only.",
+    "baby-growth": "Follow your baby's growth and compare with general averages. Measurements are educational references only.",
     "kick-counter": "Record your baby's daily movements to track activity. Overall patterns matter more than individual numbers. If you notice a significant decrease in movement, contact your care provider immediately.",
     "weight-gain": "Track your pregnancy weight gain and compare with normal ranges. Results are general guidelines. Discuss any concerns with your care provider.",
     "ai-bump-photos": "Document your pregnancy journey with weekly photos and a timeline. This is a personal documentation tool. Any concerning physical observations warrant a medical consultation.",
@@ -6615,8 +6615,8 @@
     "ai-sleep-optimizer": "Get personalized tips to improve your sleep during pregnancy. Tips are general guidance. If you suffer from chronic insomnia or breathing issues during sleep, consult your doctor.",
     "ai-nausea-relief": "Discover natural ways to relieve pregnancy nausea. Advice is general and educational. If nausea is severe and prevents eating or drinking, see your doctor immediately.",
     "ai-pregnancy-skincare": "Get a safe skincare routine during pregnancy. Suggested products are general guidance. If skin reactions or unusual changes appear, consult a dermatologist.",
-    "postpartum-mental-health": "Monitor your postpartum mental health with self-assessment tools. Results are for awareness only, not diagnosis. If you experience depression or persistent anxiety symptoms, speak with a professional immediately.",
-    "gestational-diabetes": "Review your potential gestational diabetes factors. Results are for awareness only, not diagnosis. Medical tests are essential for accurate diagnosis.",
+    "postpartum-mental-health": "Follow your postpartum mood with self-assessment tools. Results are for awareness only, not a clinical conclusion. If you experience depression or persistent anxiety symptoms, speak with a professional immediately.",
+    "gestational-diabetes": "Review your potential gestational diabetes factors. Results are for awareness only, not a clinical conclusion. Medical tests are essential for proper evaluation.",
     "preeclampsia-risk": "Review factors associated with preeclampsia. Results are for awareness only. Any symptoms like severe headache or sudden swelling require immediate medical attention.",
     "ai-labor-progress": "Track labor signs and progress. Information is general and educational. When actual labor begins, contact your medical team immediately.",
     "ai-birth-plan": "Create a personalized birth plan expressing your preferences. The plan is a personal document to discuss with your medical team. Final decisions are made by the medical team based on your condition.",
@@ -6629,7 +6629,7 @@
     "postpartum-recovery": "Track your postpartum recovery with personalized guidance. Advice is general and educational. Any unusual postpartum symptoms require immediate medical attention.",
     "baby-cry-translator": "Understand your baby's needs through cry pattern analysis. Results are intelligent guesses, not diagnoses. If crying persists abnormally, consult your pediatrician.",
     "baby-sleep-tracker": "Log your baby's sleep to understand patterns and improve them. Data is for personal observation only. Any concerns about your baby's sleep should be discussed with your pediatrician.",
-    "baby-growth": "Monitor your baby's growth and compare with WHO standards. Measurements are general references. Regular medical check-ups are essential for growth assessment.",
+    "baby-growth": "Follow your baby's growth and compare with WHO standards. Measurements are general references. Regular medical check-ups are essential for growth assessment.",
     "diaper-tracker": "Record diaper changes to follow your baby's digestive health. Data is for personal observation. Any concerning changes in stool or urine warrant consulting your pediatrician.",
     "fertile-window": "Estimate your most fertile days based on cycle data. Results are approximate and for planning purposes only. Consult your care provider for personalized fertility guidance.",
     "fertility-academy": "A comprehensive fertility education hub with lessons, body signs, and stress management techniques. Content is for general awareness. Your doctor can provide advice specific to your situation.",
@@ -6700,7 +6700,7 @@
       "noSymptoms": "No symptoms logged",
       "noData": "Log your symptoms and mood today"
     },
-    "fetalMovement": {
+    "babyMovement": {
       "title": "Baby Movement",
       "goal": "goal",
       "empty": "Start tracking your baby's movements today"
@@ -6722,7 +6722,7 @@
       "title": "Health Alert",
       "highBP": "High blood pressure — consult your doctor",
       "lowBP": "Low blood pressure — stay hydrated and rest",
-      "lowKicks": "Fewer movements than usual — monitor and consult"
+      "lowKicks": "Fewer movements than usual — note and consult"
     },
     "aiInsight": {
       "title": "Smart Assistant",
@@ -6749,7 +6749,7 @@
       "daysRemaining": "{{days}} days remaining"
     },
     "sections": {
-      "fetalDev": "Baby Development",
+      "babyDev": "Baby Development",
       "bodyChanges": "Your Body Changes",
       "nutrition": "Nutrition Focus",
       "mentalWellness": "Mental Wellness",
@@ -6762,7 +6762,7 @@
     "generateAI": "Get Full AI Analysis",
     "weeks": {
       "w4": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Three primary germ layers are forming",
           "1": "The primitive heart begins to develop",
           "2": "The neural tube is taking shape",
@@ -6795,7 +6795,7 @@
         }
       },
       "w5": {
-        "fetalDev": {
+        "babyDev": {
           "0": "The heart starts beating",
           "1": "Arm and leg buds appear",
           "2": "The neural tube develops further",
@@ -6828,7 +6828,7 @@
         }
       },
       "w6": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Nose, mouth, and ears take shape",
           "1": "Intestines begin forming",
           "2": "Brain grows rapidly",
@@ -6854,14 +6854,14 @@
         },
         "checklist": {
           "0": "Attend your first prenatal appointment",
-          "1": "Get blood tests and initial screenings",
+          "1": "Get blood tests and initial checks",
           "2": "Start managing morning sickness naturally",
           "3": "Eat ginger or crackers for nausea relief",
           "4": "Rest when you feel tired — your body is working hard"
         }
       },
       "w7": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Facial features become distinct",
           "1": "Hands and feet are growing",
           "2": "The liver develops quickly",
@@ -6890,11 +6890,11 @@
           "1": "Avoid soft cheeses and deli meats",
           "2": "Begin pelvic floor exercises (Kegels)",
           "3": "Wear comfortable, supportive clothing",
-          "4": "Discuss genetic screening options with your doctor"
+          "4": "Discuss genetic check options with your doctor"
         }
       },
       "w8": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Limbs move for the first time",
           "1": "Fingers are clearly visible",
           "2": "The embryonic tail disappears",
@@ -6927,7 +6927,7 @@
         }
       },
       "w9": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Major joints form",
           "1": "Tooth buds form under gums",
           "2": "Muscles are growing",
@@ -6960,7 +6960,7 @@
         }
       },
       "w10": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Fingers and toes are complete",
           "1": "Urine production begins",
           "2": "Bones gradually harden",
@@ -6985,7 +6985,7 @@
           "2": "When can I know the gender?"
         },
         "checklist": {
-          "0": "Consider NIPT or first-trimester screening",
+          "0": "Consider NIPT or first-trimester check",
           "1": "Drink plenty of water (10 cups/day)",
           "2": "Eat calcium-rich foods for baby's bones",
           "3": "Continue gentle exercise routine",
@@ -6993,7 +6993,7 @@
         }
       },
       "w11": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Can open and close fists",
           "1": "Tooth buds are forming",
           "2": "Fine hair (lanugo) grows",
@@ -7018,7 +7018,7 @@
           "2": "Do I need additional tests?"
         },
         "checklist": {
-          "0": "Review screening test results",
+          "0": "Review check results",
           "1": "Increase protein intake for baby's growth",
           "2": "Practice relaxation and deep breathing",
           "3": "Keep dental appointments — pregnancy affects gums",
@@ -7026,7 +7026,7 @@
         }
       },
       "w12": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Nails are developing",
           "1": "Kidneys produce urine",
           "2": "Active movement inside the womb",
@@ -7059,7 +7059,7 @@
         }
       },
       "w13": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Unique fingerprints form",
           "1": "Liver produces bile",
           "2": "Can suck and swallow",
@@ -7075,7 +7075,7 @@
           "1": "Calcium",
           "2": "Vitamin D"
         },
-        "nutritionTip": "Increase protein intake to support rapid fetal growth",
+        "nutritionTip": "Increase protein intake to support rapid baby growth",
         "mentalAffirmation": "You and your baby are an amazing team",
         "mentalTip": "Plan something fun — beautiful memories create happiness",
         "doctorQ": {
@@ -7092,7 +7092,7 @@
         }
       },
       "w14": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Can yawn and stretch",
           "1": "Eyebrows and lashes grow",
           "2": "Central nervous system develops",
@@ -7120,12 +7120,12 @@
           "0": "Schedule mid-pregnancy scan (18-20 weeks)",
           "1": "Start doing prenatal yoga or swimming",
           "2": "Eat vitamin C-rich fruits daily",
-          "3": "Monitor weight gain — aim for steady increase",
+          "3": "Follow weight changes — aim for steady increase",
           "4": "Begin creating a baby registry"
         }
       },
       "w15": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Hearing sense develops",
           "1": "Moves freely in amniotic fluid",
           "2": "Bones grow and harden",
@@ -7158,7 +7158,7 @@
         }
       },
       "w16": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Facial muscles form",
           "1": "Can make facial expressions",
           "2": "Nails are fully grown",
@@ -7191,7 +7191,7 @@
         }
       },
       "w17": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Fat begins accumulating under skin",
           "1": "Touch sense develops",
           "2": "Can hear your voice",
@@ -7212,7 +7212,7 @@
         "mentalTip": "Set aside daily relaxation time — even just 10 minutes",
         "doctorQ": {
           "0": "What are the detailed scan results?",
-          "1": "Is fetal growth on track?",
+          "1": "Is baby growth on track?",
           "2": "How do I handle dizziness?"
         },
         "checklist": {
@@ -7224,14 +7224,14 @@
         }
       },
       "w18": {
-        "fetalDev": {
+        "babyDev": {
           "0": "You may feel first movements",
           "1": "Retina develops further",
           "2": "Sensory nerves form",
           "3": "Yawns and sleeps regularly"
         },
         "bodyChanges": {
-          "0": "Fetal movements are clearer now",
+          "0": "Baby movements are clearer now",
           "1": "Stretch marks may appear",
           "2": "Blood pressure may change"
         },
@@ -7257,7 +7257,7 @@
         }
       },
       "w19": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Protective waxy coating forms",
           "1": "All five senses develop",
           "2": "Hair grows on the head",
@@ -7290,7 +7290,7 @@
         }
       },
       "w20": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Halfway there! Baby growing fast",
           "1": "Can swallow and produce meconium",
           "2": "Taste buds develop",
@@ -7311,7 +7311,7 @@
         "mentalTip": "Celebrate being halfway with something special",
         "doctorQ": {
           "0": "What are the morphology scan results?",
-          "1": "Are all fetal organs complete?",
+          "1": "Are all baby organs complete?",
           "2": "How do I manage breathlessness?"
         },
         "checklist": {
@@ -7323,7 +7323,7 @@
         }
       },
       "w21": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Absorbs nutrients from amniotic fluid",
           "1": "Eyebrows are visible",
           "2": "Immune system develops",
@@ -7348,7 +7348,7 @@
           "2": "Do I need a glucose test?"
         },
         "checklist": {
-          "0": "Continue tracking fetal movement patterns",
+          "0": "Continue tracking baby movement patterns",
           "1": "Increase iron intake — risk of anemia rises",
           "2": "Do prenatal stretches for back pain relief",
           "3": "Stay active with 20-minute daily walks",
@@ -7356,7 +7356,7 @@
         }
       },
       "w22": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Inner ear is fully formed",
           "1": "Can hear external sounds",
           "2": "Lungs are growing",
@@ -7381,7 +7381,7 @@
           "2": "How do I prevent preeclampsia?"
         },
         "checklist": {
-          "0": "Schedule glucose screening test (24-28 weeks)",
+          "0": "Schedule glucose check (24-28 weeks)",
           "1": "Eat fiber-rich foods to prevent hemorrhoids",
           "2": "Practice breathing exercises for labor",
           "3": "Buy a pregnancy support pillow for sleep",
@@ -7389,7 +7389,7 @@
         }
       },
       "w23": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Can distinguish your voice",
           "1": "Lungs develop rapidly",
           "2": "Brain grows intensively",
@@ -7414,7 +7414,7 @@
           "2": "Do I need extra iron supplements?"
         },
         "checklist": {
-          "0": "Monitor blood pressure at each visit",
+          "0": "Check blood pressure at each visit",
           "1": "Eat vitamin D-rich foods or get sunshine",
           "2": "Begin perineal massage to prepare for birth",
           "3": "Set up baby's sleeping area",
@@ -7422,7 +7422,7 @@
         }
       },
       "w24": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Footprints are forming",
           "1": "Gaining weight steadily",
           "2": "Lungs maturing gradually",
@@ -7447,7 +7447,7 @@
           "2": "How do I manage skin itching?"
         },
         "checklist": {
-          "0": "Take the gestational diabetes screening test",
+          "0": "Take the glucose wellness check test",
           "1": "Eat complex carbs for sustained energy",
           "2": "Do gentle squats to prepare for labor",
           "3": "Register for breastfeeding classes",
@@ -7455,7 +7455,7 @@
         }
       },
       "w25": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Can open eyes",
           "1": "Responds to light and sound",
           "2": "Airways are developing",
@@ -7488,7 +7488,7 @@
         }
       },
       "w26": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Eyelashes fully grown",
           "1": "Actively practices breathing",
           "2": "Can grasp the umbilical cord",
@@ -7521,7 +7521,7 @@
         }
       },
       "w27": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Sense of smell develops",
           "1": "Regular sleep-wake cycles",
           "2": "Bones hardening further",
@@ -7537,7 +7537,7 @@
           "1": "Omega-3",
           "2": "Vitamin C"
         },
-        "nutritionTip": "Include protein in every meal for rapid fetal growth",
+        "nutritionTip": "Include protein in every meal for rapid baby growth",
         "mentalAffirmation": "Second trimester ends — the final stretch begins",
         "mentalTip": "Celebrate the end of the second trimester — amazing journey",
         "doctorQ": {
@@ -7554,7 +7554,7 @@
         }
       },
       "w28": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Eyes open and close regularly",
           "1": "Brain developing rapidly",
           "2": "Lungs practicing breathing",
@@ -7587,7 +7587,7 @@
         }
       },
       "w29": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Gaining weight quickly",
           "1": "Lungs maturing further",
           "2": "Immune system strengthening",
@@ -7612,7 +7612,7 @@
           "2": "How do I ease back pain?"
         },
         "checklist": {
-          "0": "Monitor fetal kick counts daily (10 in 2 hours)",
+          "0": "Monitor baby kick counts daily (10 in 2 hours)",
           "1": "Eat lean proteins and healthy fats",
           "2": "Stay hydrated — swelling is normal but watch it",
           "3": "Attend childbirth preparation classes",
@@ -7620,7 +7620,7 @@
         }
       },
       "w30": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Practices breathing regularly",
           "1": "Bones complete but soft",
           "2": "Can track light sources",
@@ -7653,7 +7653,7 @@
         }
       },
       "w31": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Gradually assumes birth position",
           "1": "Brain processes information",
           "2": "All five senses functional",
@@ -7686,7 +7686,7 @@
         }
       },
       "w32": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Nails reach fingertips",
           "1": "Skin becomes smoother and thicker",
           "2": "Breathes fluid to strengthen lungs",
@@ -7719,7 +7719,7 @@
         }
       },
       "w33": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Bones harden except skull",
           "1": "Dreams during sleep",
           "2": "Immunity strengthens from mother",
@@ -7752,7 +7752,7 @@
         }
       },
       "w34": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Lungs nearly complete",
           "1": "Can recognize voices",
           "2": "Nails fully grown",
@@ -7785,7 +7785,7 @@
         }
       },
       "w35": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Kidneys fully functional",
           "1": "Practices sucking and swallowing",
           "2": "Brain growing very rapidly",
@@ -7818,7 +7818,7 @@
         }
       },
       "w36": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Lungs nearly ready",
           "1": "Assumes final birth position",
           "2": "Digestive system complete",
@@ -7851,7 +7851,7 @@
         }
       },
       "w37": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Considered full term",
           "1": "Lungs are fully mature",
           "2": "Can grip firmly",
@@ -7884,7 +7884,7 @@
         }
       },
       "w38": {
-        "fetalDev": {
+        "babyDev": {
           "0": "All organs functioning efficiently",
           "1": "Shedding lanugo",
           "2": "Gaining final fat layers",
@@ -7917,7 +7917,7 @@
         }
       },
       "w39": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Fully developed",
           "1": "Ready for birth anytime",
           "2": "Lungs producing surfactant",
@@ -7950,7 +7950,7 @@
         }
       },
       "w40": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Due date! All systems optimal",
           "1": "Completely ready to meet the world",
           "2": "Skull flexible for delivery",
@@ -7983,7 +7983,7 @@
         }
       },
       "w41": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Continues gaining weight",
           "1": "Placenta working at full capacity",
           "2": "Doctor may suggest induction",
@@ -8016,7 +8016,7 @@
         }
       },
       "w42": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Past due — follow up with doctor",
           "1": "Labor may be induced",
           "2": "Continue counting kicks",
@@ -8120,7 +8120,7 @@
           "Severe or persistent headache",
           "Difficulty breathing or chest pain",
           "Signs of infection: fever, chills, burning urination",
-          "Reduced or absent fetal movement after week 28"
+          "Reduced or absent baby movement after week 28"
         ]
       },
       "gestationalDiabetes": {
@@ -8128,7 +8128,7 @@
           "0": "Extreme thirst or unusually frequent urination",
           "1": "Blurred vision or persistent headaches",
           "2": "Severe nausea preventing eating or drinking",
-          "3": "Reduced fetal movement"
+          "3": "Reduced baby movement"
         }
       },
       "weightGain": {
@@ -8171,7 +8171,7 @@
   },
   "gdm": {
     "evidence": {
-      "title": "Gestational Diabetes Screening",
+      "title": "Glucose Wellness Check",
       "content": "Glucose tolerance testing is usually performed between weeks 24-28 of pregnancy. Gestational diabetes affects 6-9% of pregnancies worldwide, and can be managed with diet and exercise in 80-90% of cases without insulin.",
       "source": "Source: American Diabetes Association — Standards of Care in Diabetes, 2024"
     },
@@ -8309,7 +8309,7 @@
   "smartAlerts": {
     "lowHydration": "Remember to stay hydrated today",
     "lowMood": "Your mood has been low recently. Consider talking to someone.",
-    "noKicksToday": "No kicks logged today. Remember to track fetal movement.",
+    "noKicksToday": "No kicks logged today. Remember to track baby movement.",
     "noVitaminToday": "Don't forget your vitamins today!",
     "preeclampsiaSigns": "Monitor for signs of preeclampsia: headaches, vision changes, swelling.",
     "rapidWeightGain": "Rapid weight gain detected. Consider discussing with your doctor.",
@@ -8344,7 +8344,7 @@
     "weight": "Weight",
     "details": "Details",
     "todaysTip": "Today's Tip",
-    "fetalSize": {
+    "babySize": {
       "4": "Poppy seed",
       "5": "Sesame seed",
       "6": "Lentil",

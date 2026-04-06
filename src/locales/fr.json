@@ -350,7 +350,7 @@
       "title": "Compte à rebours bébé",
       "description": "Découvrez quand votre bébé arrivera."
     },
-    "fetalGrowth": {
+    "babyGrowth": {
       "title": "Suivi de la croissance du bébée",
       "description": "Graphique interactif de croissance du bébée avec comparaisons hebdomadaires."
     },
@@ -474,8 +474,8 @@
       "birthPlanDesc": "Préférences d'accouchement",
       "hospitalBag": "Sac d'hôpital",
       "hospitalBagDesc": "Liste de préparation",
-      "fetalGrowth": "Croissance du bébé",
-      "fetalGrowthDesc": "Développement du bébé",
+      "babyGrowth": "Croissance du bébé",
+      "babyGrowthDesc": "Développement du bébé",
       "babyGrowth": "Croissance du bébé",
       "babyGrowthDesc": "Suivi postnatal",
       "bumpPhotos": "Photos du ventre",
@@ -1343,8 +1343,8 @@
       "differentWeek": "Changer la semaine",
       "refresh": "Actualiser",
       "trackTip": "Suivez votre semaine pour obtenir des informations personnalisées sur la croissance de votre bébé et les changements de votre corps",
-      "fetalDevLink": "Bébé Development",
-      "fetalDevLinkDesc": "See your baby's size and development this week",
+      "babyDevLink": "Bébé Development",
+      "babyDevLinkDesc": "See your baby's size and development this week",
       "kickCounterLink": "Kick Counter",
       "kickCounterLinkDesc": "Track and journal your baby's movements",
       "approximatelyRemaining": "Environ {{days}} jours restants",
@@ -1610,8 +1610,8 @@
       "info": "Seulement environ 5% des bébés naissent à la date prévue. La plupart naissent dans les 2 semaines avant ou après.",
       "cycleTrackerLink": "Suivi du cycle menstruel",
       "cycleTrackerLinkDesc": "Suivez votre cycle menstruel et obtenez des prédictions précises",
-      "fetalDevLink": "Développement du bébé",
-      "fetalDevLinkDesc": "Suivez la croissance de votre bébé semaine par semaine",
+      "babyDevLink": "Développement du bébé",
+      "babyDevLinkDesc": "Suivez la croissance de votre bébé semaine par semaine",
       "weeklySummaryLink": "Résumé hebdomadaire",
       "weeklySummaryLinkDesc": "Obtenez des mises à jour hebdomadaires intelligentes",
       "aiGuideTitle": "Guide IA Grossesse",
@@ -1668,8 +1668,8 @@
       "warningDecrease": "Diminution significative de l'activité habituelle",
       "warningNoMovements": "Aucun mouvement ressenti depuis plusieurs heures",
       "educationalNote": "Les bébés sont plus actifs entre 21h et 1h. Comptez à la même heure chaque jour.",
-      "fetalDevLink": "Développement du bébé",
-      "fetalDevLinkDesc": "Suivez la croissance et le développement de votre bébé",
+      "babyDevLink": "Développement du bébé",
+      "babyDevLinkDesc": "Suivez la croissance et le développement de votre bébé",
       "weeklySummaryLink": "Résumé hebdomadaire",
       "weeklySummaryLinkDesc": "Obtenez des informations hebdomadaires intelligentes",
       "weightGainLink": "Weight Gain Guide",
@@ -3583,8 +3583,8 @@
       "yourWeight": "Votre poids",
       "weekAxis": "Semaine",
       "weightGainKg": "Prise de poids (kg)",
-      "fetalDevLink": "Développement du bébé",
-      "fetalDevLinkDesc": "Croissance du bébé semaine par semaine",
+      "babyDevLink": "Développement du bébé",
+      "babyDevLinkDesc": "Croissance du bébé semaine par semaine",
       "kickCounterLink": "Compteur de coups",
       "kickCounterLinkDesc": "Suivre les mouvements du bébé",
       "mealSuggestionLink": "Suggestions de repas",
@@ -3678,7 +3678,7 @@
         "obese": "Obèse"
       }
     },
-    "fetalDevelopment": {
+    "babyDevelopment": {
       "title": "Chronologie du développement du bébé",
       "subtitle": "Le parcours de croissance de votre bébé semaine par semaine",
       "pregnancyProgress": "Progression de la grossesse",
@@ -4660,7 +4660,7 @@
       "allComplete": "Super préparation ! Discutez de vos résultats avec votre professionnel de la santé.",
       "categories": {
         "essential": "Examens de santé essentiels",
-        "screening": "Dépistage des infections et de l'immunité",
+        "wellness-check": "Dépistage des infections et de l'immunité",
         "specialized": "Évaluations spécialisées",
         "medications": "Médicaments et vaccinations"
       },
@@ -4697,7 +4697,7 @@
           "title": "Bilan dentaire",
           "description": "Les maladies des gencives sont liées à l'accouchement prématuré et au faible poids de naissance. Les changements hormonaux pendant la grossesse peuvent aggraver les problèmes dentaires existants."
         },
-        "geneticScreening": {
+        "geneticOverview": {
           "title": "Dépistage génétique des porteurs",
           "description": "Teste si vous ou votre partenaire êtes porteurs de gènes pour des maladies comme la mucoviscidose, la drépanocytose ou la thalassémie."
         },
@@ -6576,7 +6576,7 @@
     "smart-pregnancy-plan": "Planifiez votre grossesse avec un calendrier personnalisé. Le plan est un guide organisationnel. Les préoccupations de santé doivent être discutées avec votre médecin.",
     "cycle-tracker": "Suivez votre cycle pour connaître vos fenêtres de fertilité. Les résultats sont des estimations. En cas d'irrégularité prolongée, consultez votre médecin.",
     "due-date-calculator": "Calculez votre date d'accouchement prévue. C'est une estimation. Confirmez avec votre médecin pour une date précise.",
-    "fetal-growth": "Suivez la croissance de votre bébé. Les mesures sont des références éducatives. Toute préoccupation de croissance nécessite un examen médical.",
+    "baby-growth": "Suivez la croissance de votre bébé. Les mesures sont des références éducatives. Toute préoccupation de croissance nécessite un examen médical.",
     "kick-counter": "Enregistrez les mouvements quotidiens de votre bébé. En cas de diminution significative, contactez votre médecin immédiatement.",
     "weight-gain": "Suivez votre prise de poids pendant la grossesse. Les résultats sont des indications générales. Discutez de vos préoccupations avec votre médecin.",
     "ai-bump-photos": "Documentez votre grossesse avec des photos hebdomadaires. En cas d'observations physiques préoccupantes, consultez votre médecin.",
@@ -6675,7 +6675,7 @@
       "noSymptoms": "Aucun symptôme enregistré",
       "noData": "Enregistrez vos symptômes et votre humeur aujourd'hui"
     },
-    "fetalMovement": {
+    "babyMovement": {
       "title": "Mouvements fœtaux",
       "goal": "objectif",
       "empty": "Commencez à suivre les mouvements aujourd'hui"
@@ -6724,7 +6724,7 @@
       "daysRemaining": "{{days}} jours restants"
     },
     "sections": {
-      "fetalDev": "Développement du bébé",
+      "babyDev": "Développement du bébé",
       "bodyChanges": "Changements corporels",
       "nutrition": "Focus nutrition",
       "mentalWellness": "Bien-être mental",
@@ -6737,7 +6737,7 @@
     "generateAI": "Analyse IA complète",
     "weeks": {
       "w4": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Trois couches germinales primaires se forment",
           "1": "Le cœur primitif commence à se développer",
           "2": "Le tube neural prend forme",
@@ -6770,7 +6770,7 @@
         }
       },
       "w5": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Le cœur commence à battre",
           "1": "Les bourgeons des bras et des jambes apparaissent",
           "2": "Le tube neural continue de se développer",
@@ -6803,7 +6803,7 @@
         }
       },
       "w6": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Les traits du visage commencent à se former",
           "1": "Le cerveau se développe rapidement",
           "2": "De minuscules doigts et orteils se forment",
@@ -6836,7 +6836,7 @@
         }
       },
       "w7": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Les bras et les jambes s'allongent",
           "1": "Le système digestif se forme",
           "2": "Le cerveau produit environ 100 cellules nerveuses par minute",
@@ -6869,7 +6869,7 @@
         }
       },
       "w8": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Doigts et orteils mieux définis",
           "1": "Les yeux développent du pigment",
           "2": "Tous les organes essentiels sont en place",
@@ -6902,7 +6902,7 @@
         }
       },
       "w9": {
-        "fetalDev": {
+        "babyDev": {
           "0": "La période embryonnaire se termine – c'est maintenant un fœtus",
           "1": "Les muscles commencent à se développer",
           "2": "Les organes génitaux externes commencent à se former",
@@ -6935,7 +6935,7 @@
         }
       },
       "w10": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Les organes vitaux sont complètement formés",
           "1": "Les ongles commencent à pousser",
           "2": "Le bébé peut avaler et donner des coups de pied",
@@ -6968,7 +6968,7 @@
         }
       },
       "w11": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Le bébé peut ouvrir et fermer les mains",
           "1": "Les bourgeons dentaires apparaissent",
           "2": "Le diaphragme se forme",
@@ -7001,7 +7001,7 @@
         }
       },
       "w12": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Les réflexes se développent – le bébé peut sucer ses doigts",
           "1": "Les reins commencent à produire de l'urine",
           "2": "Le système nerveux mûrit",
@@ -7034,7 +7034,7 @@
         }
       },
       "w13": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Le bébé a des empreintes digitales uniques",
           "1": "Les cordes vocales se développent",
           "2": "Le système digestif s'exerce",
@@ -7067,7 +7067,7 @@
         }
       },
       "w14": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Le bébé peut faire des grimaces",
           "1": "Le lanugo couvre le corps",
           "2": "Le foie produit de la bile",
@@ -7100,7 +7100,7 @@
         }
       },
       "w15": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Le bébé peut percevoir la lumière",
           "1": "Les os deviennent plus durs",
           "2": "Le bébé avale du liquide amniotique",
@@ -7133,7 +7133,7 @@
         }
       },
       "w16": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Les ongles sont complètement formés",
           "1": "Le système nerveux fonctionne",
           "2": "Le bébé peut réagir aux sons",
@@ -7166,7 +7166,7 @@
         }
       },
       "w17": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Le bébé développe des couches de graisse",
           "1": "L'audition s'améliore",
           "2": "Le cordon ombilical se renforce",
@@ -7199,7 +7199,7 @@
         }
       },
       "w18": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Le bébé bâille, avale et a le hoquet",
           "1": "La rétine devient sensible à la lumière",
           "2": "Les organes génitaux sont reconnaissables",
@@ -7232,7 +7232,7 @@
         }
       },
       "w19": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Le vernix caseosa recouvre la peau",
           "1": "Le cerveau forme des zones spécialisées",
           "2": "Les sens s'aiguisent",
@@ -7265,7 +7265,7 @@
         }
       },
       "w20": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Mi-parcours ! Le bébé mesure environ 25 cm",
           "1": "La peau s'épaissit avec plusieurs couches",
           "2": "Des cycles veille-sommeil se développent",
@@ -7298,7 +7298,7 @@
         }
       },
       "w21": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Les sourcils et les cils poussent",
           "1": "Le bébé réagit au toucher",
           "2": "Les poumons continuent de mûrir",
@@ -7331,7 +7331,7 @@
         }
       },
       "w22": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Les paupières sont entièrement formées",
           "1": "L'oreille interne mûrit – l'équilibre se développe",
           "2": "Le lanugo devient plus dense",
@@ -7364,7 +7364,7 @@
         }
       },
       "w23": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Le bébé pèse environ 500g",
           "1": "La peau est encore fine et translucide",
           "2": "La maturation pulmonaire progresse",
@@ -7397,7 +7397,7 @@
         }
       },
       "w24": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Le bébé a des chances de survie en cas de naissance prématurée",
           "1": "Les poumons produisent du surfactant",
           "2": "L'organe de l'équilibre fonctionne",
@@ -7430,7 +7430,7 @@
         }
       },
       "w25": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Les narines s'ouvrent",
           "1": "Le système nerveux mûrit rapidement",
           "2": "Le bébé peut réagir aux bruits forts",
@@ -7463,7 +7463,7 @@
         }
       },
       "w26": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Les yeux s'ouvrent pour la première fois",
           "1": "Le bébé peut cligner des yeux",
           "2": "Les ondes cérébrales montrent des réactions aux sons",
@@ -7496,7 +7496,7 @@
         }
       },
       "w27": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Le cerveau devient très actif",
           "1": "Le bébé peut rêver (sommeil paradoxal)",
           "2": "Les poumons s'exercent à respirer",
@@ -7529,7 +7529,7 @@
         }
       },
       "w28": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Le bébé pèse environ 1 kg",
           "1": "Les paupières s'ouvrent et se ferment",
           "2": "Le bébé peut tousser et avaler",
@@ -7562,7 +7562,7 @@
         }
       },
       "w29": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Le bébé prend du poids rapidement",
           "1": "Les os sont entièrement développés mais encore souples",
           "2": "Le bébé stocke calcium, fer et phosphore",
@@ -7595,7 +7595,7 @@
         }
       },
       "w30": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Le bébé s'exerce à respirer avec ses poumons",
           "1": "Les yeux peuvent faire la mise au point",
           "2": "Le bébé a des cycles veille-sommeil",
@@ -7628,7 +7628,7 @@
         }
       },
       "w31": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Le bébé traite les informations des cinq sens",
           "1": "L'iris réagit à la lumière",
           "2": "Les poumons continuent de mûrir",
@@ -7661,7 +7661,7 @@
         }
       },
       "w32": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Le bébé a presque atteint sa position de naissance",
           "1": "Les ongles ont atteint le bout des doigts",
           "2": "La peau devient plus lisse grâce à la graisse",
@@ -7694,7 +7694,7 @@
         }
       },
       "w33": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Le bébé pèse environ 2 kg",
           "1": "Les os du crâne restent flexibles pour l'accouchement",
           "2": "Le système immunitaire se renforce",
@@ -7727,7 +7727,7 @@
         }
       },
       "w34": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Les poumons sont presque entièrement matures",
           "1": "Le système nerveux central mûrit",
           "2": "Le bébé a moins de place pour les grands mouvements",
@@ -7760,7 +7760,7 @@
         }
       },
       "w35": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Le bébé prend environ 250g par semaine",
           "1": "Les reins sont pleinement fonctionnels",
           "2": "Le bébé descend dans le bassin",
@@ -7793,7 +7793,7 @@
         }
       },
       "w36": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Le bébé est presque prêt pour la naissance",
           "1": "Le foie et les reins fonctionnent",
           "2": "Le système immunitaire est suffisamment fort",
@@ -7826,7 +7826,7 @@
         }
       },
       "w37": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Le bébé est considéré comme presque à terme",
           "1": "Les poumons produisent suffisamment de surfactant",
           "2": "Le bébé s'exerce à téter et avaler",
@@ -7859,7 +7859,7 @@
         }
       },
       "w38": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Le bébé pèse environ 3 kg",
           "1": "Tous les organes sont pleinement fonctionnels",
           "2": "Le bébé perd le vernix",
@@ -7892,7 +7892,7 @@
         }
       },
       "w39": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Le bébé est prêt pour la naissance",
           "1": "Les cellules mammaires sont prêtes pour l'allaitement",
           "2": "Le cerveau grandit encore rapidement",
@@ -7925,7 +7925,7 @@
         }
       },
       "w40": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Jour J ! Le bébé est à terme",
           "1": "Le bébé pèse en moyenne 3,3-3,5 kg",
           "2": "Tous les systèmes sont prêts pour la vie extérieure",
@@ -7958,7 +7958,7 @@
         }
       },
       "w41": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Le bébé continue de grandir après le terme",
           "1": "Le placenta est surveillé",
           "2": "Le bébé est toujours en bonne santé et actif",
@@ -7991,7 +7991,7 @@
         }
       },
       "w42": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Le bébé est étroitement surveillé",
           "1": "La plupart des bébés arrivent avant",
           "2": "Le bébé est entièrement développé",
@@ -8319,7 +8319,7 @@
     "weight": "Poids",
     "details": "Détails",
     "todaysTip": "Conseil du jour",
-    "fetalSize": {
+    "babySize": {
       "4": "Graine de pavot",
       "5": "Graine de sésame",
       "6": "Lentille",

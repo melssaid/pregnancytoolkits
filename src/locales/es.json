@@ -4660,7 +4660,7 @@
       "allComplete": "¡Gran preparación! Discuta sus resultados con su proveedor de atención médica.",
       "categories": {
         "essential": "Controles de salud esenciales",
-        "screening": "Detección de infecciones e inmunidad",
+        "wellness-check": "Detección de infecciones e inmunidad",
         "specialized": "Evaluaciones especializadas",
         "medications": "Medicamentos y vacunas"
       },
@@ -4697,7 +4697,7 @@
           "title": "Revisión dental",
           "description": "Las enfermedades de las encías están relacionadas con el parto prematuro y el bajo peso al nacer. Los cambios hormonales durante el embarazo pueden empeorar los problemas dentales existentes."
         },
-        "geneticScreening": {
+        "geneticOverview": {
           "title": "Prueba de portador genético",
           "description": "Determina si usted o su pareja son portadores de genes para condiciones como fibrosis quística, anemia falciforme o talasemia."
         },

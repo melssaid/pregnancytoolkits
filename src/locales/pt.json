@@ -4660,7 +4660,7 @@
       "allComplete": "Ótima preparação! Discuta seus resultados com seu médico.",
       "categories": {
         "essential": "Exames de saúde essenciais",
-        "screening": "Rastreio de infeções e imunidade",
+        "wellness-check": "Rastreio de infeções e imunidade",
         "specialized": "Avaliações especializadas",
         "medications": "Medicamentos e vacinações"
       },
@@ -4697,7 +4697,7 @@
           "title": "Consulta dentária",
           "description": "As doenças gengivais estão associadas ao parto prematuro e ao baixo peso ao nascer. As alterações hormonais durante a gravidez podem agravar problemas dentários existentes."
         },
-        "geneticScreening": {
+        "geneticOverview": {
           "title": "Rastreio de portador genético",
           "description": "Testa se você ou o seu parceiro são portadores de genes para condições como fibrose cística, doença falciforme ou talassemia."
         },

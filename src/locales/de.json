@@ -350,7 +350,7 @@
       "title": "Baby-Ankunfts-Countdown",
       "description": "Finden Sie heraus, wann Ihr Kleines ankommt."
     },
-    "fetalGrowth": {
+    "babyGrowth": {
       "title": "Baby-Wachstum verfolgen",
       "description": "Interaktives Wachstumsdiagramm mit wöchentlichen Größenvergleichen."
     },
@@ -474,8 +474,8 @@
       "birthPlanDesc": "Entbindungspräferenzen",
       "hospitalBag": "Krankenhaustasche",
       "hospitalBagDesc": "Packliste",
-      "fetalGrowth": "Baby-Wachstum",
-      "fetalGrowthDesc": "Babyentwicklung",
+      "babyGrowth": "Baby-Wachstum",
+      "babyGrowthDesc": "Babyentwicklung",
       "babyGrowth": "Babywachstum",
       "babyGrowthDesc": "Postnatales Tracking",
       "bumpPhotos": "Babybauch-Fotos",
@@ -1343,8 +1343,8 @@
       "differentWeek": "Woche ändern",
       "refresh": "Aktualisieren",
       "trackTip": "Verfolgen Sie Ihre Woche, um personalisierte Informationen über das Wachstum Ihres Babys und Ihre Körperveränderungen zu erhalten",
-      "fetalDevLink": "Baby- Entwicklung",
-      "fetalDevLinkDesc": "3D-Ansicht der Entwicklung Ihres Babys",
+      "babyDevLink": "Baby- Entwicklung",
+      "babyDevLinkDesc": "3D-Ansicht der Entwicklung Ihres Babys",
       "kickCounterLink": "Bewegungstagebuch",
       "kickCounterLinkDesc": "Zeichnen Sie die Bewegungen Ihres Babys auf",
       "approximatelyRemaining": "Ungefähr {{days}} Tage verbleibend",
@@ -1610,8 +1610,8 @@
       "info": "Nur etwa 5% der Babys werden am genauen Termin geboren. Die meisten kommen innerhalb von 2 Wochen davor oder danach.",
       "cycleTrackerLink": "Zyklusverfolgung",
       "cycleTrackerLinkDesc": "Verfolgen Sie Ihren Menstruationszyklus und erhalten Sie genaue Vorhersagen",
-      "fetalDevLink": "Baby- Entwicklung",
-      "fetalDevLinkDesc": "Verfolgen Sie das Wachstum Ihres Babys Woche für Woche",
+      "babyDevLink": "Baby- Entwicklung",
+      "babyDevLinkDesc": "Verfolgen Sie das Wachstum Ihres Babys Woche für Woche",
       "weeklySummaryLink": "Wöchentliche Zusammenfassung",
       "weeklySummaryLinkDesc": "Erhalten Sie wöchentliche KI-Updates",
       "aiGuideTitle": "KI-Schwangerschaftsführer",
@@ -1668,8 +1668,8 @@
       "warningDecrease": "Deutlicher Rückgang der üblichen Aktivität",
       "warningNoMovements": "Keine Bewegungen seit mehreren Stunden",
       "educationalNote": "Babys sind zwischen 21 und 1 Uhr am aktivsten. Zählen Sie täglich zur gleichen Zeit.",
-      "fetalDevLink": "Baby- Entwicklung",
-      "fetalDevLinkDesc": "Verfolgen Sie das Wachstum und die Entwicklung Ihres Babys",
+      "babyDevLink": "Baby- Entwicklung",
+      "babyDevLinkDesc": "Verfolgen Sie das Wachstum und die Entwicklung Ihres Babys",
       "weeklySummaryLink": "Wöchentliche Zusammenfassung",
       "weeklySummaryLinkDesc": "Erhalten Sie wöchentliche KI-Einblicke",
       "weightGainLink": "Gewichtszunahme-Analyse",
@@ -3583,8 +3583,8 @@
       "yourWeight": "Dein Gewicht",
       "weekAxis": "Woche",
       "weightGainKg": "Gewichtszunahme (kg)",
-      "fetalDevLink": "Baby-ntwicklung",
-      "fetalDevLinkDesc": "Babywachstum Woche für Woche",
+      "babyDevLink": "Baby-ntwicklung",
+      "babyDevLinkDesc": "Babywachstum Woche für Woche",
       "kickCounterLink": "Tritt-Zähler",
       "kickCounterLinkDesc": "Babybewegungen verfolgen",
       "mealSuggestionLink": "Mahlzeitenvorschläge",
@@ -3678,7 +3678,7 @@
         "obese": "Adipös"
       }
     },
-    "fetalDevelopment": {
+    "babyDevelopment": {
       "title": "Baby-Entwicklungszeitachse",
       "subtitle": "Woche für Woche das Wachstum Ihres Babys verfolgen",
       "pregnancyProgress": "Schwangerschaftsfortschritt",
@@ -4660,7 +4660,7 @@
       "allComplete": "Tolle Vorbereitung! Besprechen Sie Ihre Ergebnisse mit Ihrem Arzt.",
       "categories": {
         "essential": "Grundlegende Gesundheitschecks",
-        "screening": "Infektions- & Immunitätsscreening",
+        "wellness-check": "Infektions- & Immunitätsscreening",
         "specialized": "Spezialuntersuchungen",
         "medications": "Medikamente & Impfungen"
       },
@@ -4697,7 +4697,7 @@
           "title": "Zahnärztliche Untersuchung",
           "description": "Zahnfleischerkrankungen stehen mit Frühgeburt und niedrigem Geburtsgewicht in Verbindung. Hormonelle Veränderungen in der Schwangerschaft können bestehende Zahnprobleme verschlimmern."
         },
-        "geneticScreening": {
+        "geneticOverview": {
           "title": "Genetisches Träger-Screening",
           "description": "Testet, ob Sie oder Ihr Partner Gene für Erkrankungen wie Mukoviszidose, Sichelzellanämie oder Thalassämie tragen."
         },
@@ -6576,7 +6576,7 @@
     "smart-pregnancy-plan": "Planen Sie Ihre Schwangerschaft mit einem personalisierten Zeitplan. Der Plan dient als Organisationshilfe. Gesundheitliche Bedenken besprechen Sie mit Ihrem Arzt.",
     "cycle-tracker": "Verfolgen Sie Ihren Zyklus zur Bestimmung der Fruchtbarkeitsfenster. Ergebnisse sind Schätzungen. Bei anhaltender Unregelmäßigkeit konsultieren Sie Ihren Arzt.",
     "due-date-calculator": "Berechnen Sie Ihren voraussichtlichen Geburtstermin. Dies ist eine Schätzung. Lassen Sie den genauen Termin von Ihrem Arzt bestimmen.",
-    "fetal-growth": "Verfolgen Sie das Wachstum Ihres Babys anhand allgemeiner Durchschnittswerte. Bei Wachstumsbedenken ist eine ärztliche Untersuchung erforderlich.",
+    "baby-growth": "Verfolgen Sie das Wachstum Ihres Babys anhand allgemeiner Durchschnittswerte. Bei Wachstumsbedenken ist eine ärztliche Untersuchung erforderlich.",
     "kick-counter": "Erfassen Sie die täglichen Bewegungen Ihres Babys. Bei deutlich verminderter Aktivität kontaktieren Sie sofort Ihren Arzt.",
     "weight-gain": "Verfolgen Sie Ihre Gewichtszunahme während der Schwangerschaft. Ergebnisse sind allgemeine Richtwerte. Besprechen Sie Bedenken mit Ihrem Arzt.",
     "ai-bump-photos": "Dokumentieren Sie Ihre Schwangerschaft mit wöchentlichen Fotos. Bei auffälligen körperlichen Veränderungen konsultieren Sie Ihren Arzt.",
@@ -6675,7 +6675,7 @@
       "noSymptoms": "Keine Symptome aufgezeichnet",
       "noData": "Erfassen Sie Ihre Symptome und Stimmung heute"
     },
-    "fetalMovement": {
+    "babyMovement": {
       "title": "Kindsbewegungen",
       "goal": "Ziel",
       "empty": "Beginnen Sie heute mit der Aufzeichnung"
@@ -6724,7 +6724,7 @@
       "daysRemaining": "{{days}} Tage verbleibend"
     },
     "sections": {
-      "fetalDev": "Baby- Entwicklung",
+      "babyDev": "Baby- Entwicklung",
       "bodyChanges": "Ihre Körperveränderungen",
       "nutrition": "Ernährungsfokus",
       "mentalWellness": "Mentale Gesundheit",
@@ -6737,7 +6737,7 @@
     "generateAI": "Vollständige KI-Analyse",
     "weeks": {
       "w4": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Drei Keimblätter bilden sich",
           "1": "Das primitive Herz beginnt sich zu entwickeln",
           "2": "Das Neuralrohr nimmt Form an",
@@ -6770,7 +6770,7 @@
         }
       },
       "w5": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Das Herz beginnt zu schlagen",
           "1": "Arm- und Beinknospen erscheinen",
           "2": "Das Neuralrohr entwickelt sich weiter",
@@ -6803,7 +6803,7 @@
         }
       },
       "w6": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Gesichtszüge beginnen sich zu formen",
           "1": "Das Gehirn entwickelt sich schnell",
           "2": "Winzige Finger und Zehen bilden sich",
@@ -6836,7 +6836,7 @@
         }
       },
       "w7": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Arme und Beine werden länger",
           "1": "Das Verdauungssystem bildet sich",
           "2": "Das Gehirn produziert etwa 100 Nervenzellen pro Minute",
@@ -6869,7 +6869,7 @@
         }
       },
       "w8": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Finger und Zehen sind definierter",
           "1": "Die Augen entwickeln Pigment",
           "2": "Alle wesentlichen Organe sind angelegt",
@@ -6902,7 +6902,7 @@
         }
       },
       "w9": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Die Embryonalperiode endet – es ist jetzt ein Fötus",
           "1": "Muskeln beginnen sich zu entwickeln",
           "2": "Die äußeren Genitalien beginnen sich zu formen",
@@ -6935,7 +6935,7 @@
         }
       },
       "w10": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Lebenswichtige Organe sind vollständig gebildet",
           "1": "Fingernägel beginnen zu wachsen",
           "2": "Das Baby kann schlucken und treten",
@@ -6968,7 +6968,7 @@
         }
       },
       "w11": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Das Baby kann die Hände öffnen und schließen",
           "1": "Zahnknospen erscheinen unter dem Zahnfleisch",
           "2": "Das Zwerchfell bildet sich",
@@ -7001,7 +7001,7 @@
         }
       },
       "w12": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Reflexe entwickeln sich – das Baby kann an den Fingern saugen",
           "1": "Die Nieren beginnen Urin zu produzieren",
           "2": "Das Nervensystem reift",
@@ -7034,7 +7034,7 @@
         }
       },
       "w13": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Das Baby hat einzigartige Fingerabdrücke",
           "1": "Die Stimmbänder entwickeln sich",
           "2": "Das Verdauungssystem übt die Verdauung",
@@ -7067,7 +7067,7 @@
         }
       },
       "w14": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Das Baby kann Grimassen schneiden",
           "1": "Lanugo-Haar bedeckt den Körper",
           "2": "Die Leber produziert Galle",
@@ -7100,7 +7100,7 @@
         }
       },
       "w15": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Das Baby kann Licht wahrnehmen",
           "1": "Knochen werden härter",
           "2": "Das Baby schluckt Fruchtwasser",
@@ -7133,7 +7133,7 @@
         }
       },
       "w16": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Fingernägel sind komplett geformt",
           "1": "Das Nervensystem funktioniert",
           "2": "Das Baby kann auf Geräusche reagieren",
@@ -7166,7 +7166,7 @@
         }
       },
       "w17": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Das Baby entwickelt Fettschichten",
           "1": "Der Hörsinn wird besser",
           "2": "Die Nabelschnur wird stärker",
@@ -7199,7 +7199,7 @@
         }
       },
       "w18": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Das Baby gähnt, schluckt und hat Schluckauf",
           "1": "Die Netzhaut wird lichtempfindlich",
           "2": "Die Geschlechtsorgane sind erkennbar",
@@ -7232,7 +7232,7 @@
         }
       },
       "w19": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Die Käseschmiere (Vernix) bedeckt die Haut",
           "1": "Das Gehirn bildet spezialisierte Bereiche",
           "2": "Die Sinne schärfen sich",
@@ -7265,7 +7265,7 @@
         }
       },
       "w20": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Halbzeit! Das Baby ist etwa 25 cm lang",
           "1": "Die Haut wird dicker mit mehreren Schichten",
           "2": "Schlaf- und Wachzyklen entwickeln sich",
@@ -7298,7 +7298,7 @@
         }
       },
       "w21": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Die Augenbrauen und Wimpern wachsen",
           "1": "Das Baby reagiert auf Berührung",
           "2": "Die Lungen reifen weiter",
@@ -7331,7 +7331,7 @@
         }
       },
       "w22": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Die Augenlider sind vollständig geformt",
           "1": "Das Innenohr reift – Gleichgewichtssinn entwickelt sich",
           "2": "Die Lanugo-Behaarung wird dichter",
@@ -7364,7 +7364,7 @@
         }
       },
       "w23": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Das Baby wiegt etwa 500g",
           "1": "Die Haut ist noch dünn und durchscheinend",
           "2": "Lungenreifung schreitet fort",
@@ -7397,7 +7397,7 @@
         }
       },
       "w24": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Das Baby hat Überlebenschancen bei Frühgeburt",
           "1": "Die Lungen produzieren Surfactant",
           "2": "Das Gleichgewichtsorgan funktioniert",
@@ -7430,7 +7430,7 @@
         }
       },
       "w25": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Die Nasenlöcher öffnen sich",
           "1": "Das Nervensystem reift schnell",
           "2": "Das Baby kann auf laute Geräusche reagieren",
@@ -7463,7 +7463,7 @@
         }
       },
       "w26": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Die Augen öffnen sich zum ersten Mal",
           "1": "Das Baby kann blinzeln",
           "2": "Die Gehirnwellen zeigen Reaktionen auf Geräusche",
@@ -7496,7 +7496,7 @@
         }
       },
       "w27": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Das Gehirn wird sehr aktiv",
           "1": "Das Baby kann träumen (REM-Schlaf)",
           "2": "Die Lungen üben das Atmen",
@@ -7529,7 +7529,7 @@
         }
       },
       "w28": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Das Baby wiegt etwa 1 kg",
           "1": "Die Augenlider öffnen und schließen sich",
           "2": "Das Baby kann husten und schlucken",
@@ -7562,7 +7562,7 @@
         }
       },
       "w29": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Das Baby nimmt schnell an Gewicht zu",
           "1": "Die Knochen sind vollständig entwickelt aber noch weich",
           "2": "Das Baby speichert Kalzium, Eisen und Phosphor",
@@ -7595,7 +7595,7 @@
         }
       },
       "w30": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Das Baby übt das Atmen mit der Lunge",
           "1": "Die Augen können fokussieren",
           "2": "Das Baby hat Schlaf-Wach-Zyklen",
@@ -7628,7 +7628,7 @@
         }
       },
       "w31": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Das Baby verarbeitet Informationen aller fünf Sinne",
           "1": "Die Iris reagiert auf Licht",
           "2": "Die Lungen reifen weiter",
@@ -7661,7 +7661,7 @@
         }
       },
       "w32": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Das Baby hat seine endgültige Geburtsposition fast erreicht",
           "1": "Fingernägel haben die Fingerspitzen erreicht",
           "2": "Die Haut wird glatter durch Fetteinlagerung",
@@ -7694,7 +7694,7 @@
         }
       },
       "w33": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Das Baby wiegt etwa 2 kg",
           "1": "Die Schädelknochen bleiben flexibel für die Geburt",
           "2": "Das Immunsystem wird stärker",
@@ -7727,7 +7727,7 @@
         }
       },
       "w34": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Die Lungen sind fast vollständig ausgereift",
           "1": "Das zentrale Nervensystem reift",
           "2": "Das Baby hat weniger Platz für große Bewegungen",
@@ -7760,7 +7760,7 @@
         }
       },
       "w35": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Das Baby nimmt pro Woche etwa 250g zu",
           "1": "Die Nieren sind voll funktionsfähig",
           "2": "Das Baby rutscht tiefer ins Becken",
@@ -7793,7 +7793,7 @@
         }
       },
       "w36": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Das Baby ist fast bereit für die Geburt",
           "1": "Die Leber und Nieren funktionieren",
           "2": "Das Immunsystem ist stark genug",
@@ -7826,7 +7826,7 @@
         }
       },
       "w37": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Das Baby gilt als frühreif – fast am Termin",
           "1": "Die Lungen produzieren ausreichend Surfactant",
           "2": "Das Baby übt Saugen und Schlucken",
@@ -7859,7 +7859,7 @@
         }
       },
       "w38": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Das Baby wiegt etwa 3 kg",
           "1": "Alle Organe sind voll funktionsfähig",
           "2": "Das Baby verliert die Käseschmiere",
@@ -7892,7 +7892,7 @@
         }
       },
       "w39": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Das Baby ist bereit für die Geburt",
           "1": "Brustzellen sind bereit für das Stillen",
           "2": "Das Gehirn wächst noch schnell",
@@ -7925,7 +7925,7 @@
         }
       },
       "w40": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Entbindungstermin! Das Baby ist voll ausgereift",
           "1": "Das Baby wiegt durchschnittlich 3,3-3,5 kg",
           "2": "Alle Systeme sind bereit für das Leben außerhalb",
@@ -7958,7 +7958,7 @@
         }
       },
       "w41": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Das Baby wächst weiter, auch nach dem Termin",
           "1": "Die Plazenta wird überwacht",
           "2": "Das Baby ist weiterhin gesund und aktiv",
@@ -7991,7 +7991,7 @@
         }
       },
       "w42": {
-        "fetalDev": {
+        "babyDev": {
           "0": "Das Baby wird engmaschig überwacht",
           "1": "Die meisten Babys kommen bis jetzt",
           "2": "Das Baby ist vollständig entwickelt",
@@ -8103,7 +8103,7 @@
           "0": "Extreme thirst or unusually frequent urination",
           "1": "Blurred vision or persistent headaches",
           "2": "Severe nausea preventing eating or drinking",
-          "3": "Reduced fetal movement"
+          "3": "Reduced baby movement"
         }
       },
       "weightGain": {
@@ -8319,7 +8319,7 @@
     "weight": "Gewicht",
     "details": "Details",
     "todaysTip": "Tipp des Tages",
-    "fetalSize": {
+    "babySize": {
       "4": "Mohnsamen",
       "5": "Sesamsamen",
       "6": "Linse",

@@ -4660,7 +4660,7 @@
       "allComplete": "Tüm kontroller tamamlandı!",
       "categories": {
         "essential": "Temel Sağlık Kontrolleri",
-        "screening": "Enfeksiyon ve Bağışıklık Taraması",
+        "wellness-check": "Enfeksiyon ve Bağışıklık Taraması",
         "specialized": "Uzman Değerlendirmeleri",
         "medications": "İlaçlar ve Aşılar"
       },
@@ -4697,7 +4697,7 @@
           "title": "Diş Kontrolü",
           "description": "Diş eti hastalığı erken doğum ve düşük doğum ağırlığı ile ilişkilidir. Hamilelik sırasındaki hormonal değişiklikler mevcut diş sorunlarını kötüleştirebilir."
         },
-        "geneticScreening": {
+        "geneticOverview": {
           "title": "Genetik Taşıyıcı Taraması",
           "description": "Siz veya partnerinizin kistik fibroz, orak hücre hastalığı veya talasemi gibi durumlar için gen taşıyıp taşımadığınızı test eder."
         },

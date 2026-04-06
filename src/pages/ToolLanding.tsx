@@ -24,10 +24,10 @@ const toolSEO: Record<string, { h1: string; desc: string; longDesc: string; keyw
     ],
   },
   "kick-counter": {
-    h1: "Baby Kick Counter — Track Fetal Movements Free",
-    desc: "Monitor your baby's kick patterns with our free kick counter. Track fetal movements, get daily counts, and receive alerts if patterns change.",
-    longDesc: "Tracking your baby's movements is one of the most important things you can do during pregnancy. Our kick counter helps you monitor fetal activity patterns, record daily kick counts, and identify any changes that may need medical attention. Most healthcare providers recommend counting kicks starting at week 28.",
-    keywords: "baby kick counter, fetal movement tracker, kick count, baby movement monitor, pregnancy kick tracker",
+    h1: "Baby Kick Counter — Track Baby Movements Free",
+    desc: "Follow your baby's kick patterns with our free kick counter. Track baby movements, get daily counts, and receive alerts if patterns change.",
+    longDesc: "Tracking your baby's movements is one of the most important things you can do during pregnancy. Our kick counter helps you follow baby activity patterns, record daily kick counts, and identify any changes that may need medical attention. Most healthcare providers recommend counting kicks starting at week 28.",
+    keywords: "baby kick counter, baby movement log, kick count, baby movement log, pregnancy kick tracker",
     faqs: [
       { q: "When should I start counting baby kicks?", a: "Most healthcare providers recommend starting kick counts around week 28 of pregnancy. Aim for 10 movements within 2 hours, ideally at the same time each day." },
       { q: "What if my baby's kicks decrease?", a: "If you notice a significant decrease in movement, contact your healthcare provider immediately. Our app can help you track patterns to share with your doctor." },
@@ -63,10 +63,10 @@ const toolSEO: Record<string, { h1: string; desc: string; longDesc: string; keyw
     ],
   },
   "fetal-growth": {
-    h1: "Fetal Development Tracker — Week by Week Baby Growth",
+    h1: "Baby Development Guide — Week by Week Baby Growth",
     desc: "Follow your baby's week-by-week development with 3D visualizations, size comparisons, and developmental milestones.",
-    longDesc: "Track your baby's growth from conception to birth with our detailed fetal development tracker. Each week includes accurate size comparisons, developmental milestones, and what to expect. Visualize your baby's growth with our 3D models and learn about the amazing changes happening inside you.",
-    keywords: "fetal development, baby growth tracker, pregnancy week by week, baby size by week, fetal growth chart",
+    longDesc: "Track your baby's growth from conception to birth with our detailed baby development guide. Each week includes accurate size comparisons, developmental milestones, and what to expect. Visualize your baby's growth with our 3D models and learn about the amazing changes happening inside you.",
+    keywords: "baby development, baby growth tracker, pregnancy week by week, baby size by week, baby growth chart",
     faqs: [
       { q: "How big is my baby this week?", a: "Our tracker shows your baby's size compared to common fruits and objects each week. By week 20, your baby is about the size of a banana; by week 40, about the size of a watermelon." },
     ],
@@ -128,7 +128,7 @@ const toolSEO: Record<string, { h1: string; desc: string; longDesc: string; keyw
   "preconception-checkup": {
     h1: "Preconception Checkup Guide — Prepare for a Healthy Pregnancy",
     desc: "Complete preconception health checklist and guide. Know which tests, vaccines, and lifestyle changes to make before getting pregnant.",
-    longDesc: "Preparing for pregnancy starts before conception. Our Preconception Checkup Guide walks you through essential health screenings, recommended vaccines, medications to review, lifestyle adjustments, and genetic testing options. Get a personalized checklist to ensure you're in the best health before trying to conceive.",
+    longDesc: "Preparing for pregnancy starts before conception. Our Preconception Checkup Guide walks you through essential wellness checks, recommended vaccines, medications to review, lifestyle adjustments, and optional wellness checks. Get a personalized checklist to ensure you're in the best health before trying to conceive.",
     keywords: "preconception checkup, pre-pregnancy health, preconception checklist, getting ready for pregnancy, pre-pregnancy tests",
     faqs: [
       { q: "How far in advance should I prepare for pregnancy?", a: "Ideally, start preconception planning 3-6 months before trying to conceive. This gives you time to optimize nutrition, update vaccines, review medications, and address any health concerns." },
@@ -307,10 +307,10 @@ const toolSEO: Record<string, { h1: string; desc: string; longDesc: string; keyw
   // POSTPARTUM & BABY
   // ═══════════════════════════════════════════════════════════
   "postpartum-mental-health": {
-    h1: "Postpartum Mental Health Coach — PPD Screening & Support",
-    desc: "Monitor your emotional wellbeing after birth with mood tracking, PPD screening tools, and AI-guided coping strategies. Not a diagnostic tool.",
+    h1: "Postpartum Mood & Wellness Coach — Self-Check & Support",
+    desc: "Follow your emotional wellbeing after birth with mood tracking, mood self-check tools, and AI-guided coping strategies. Not a clinical tool.",
     longDesc: "The postpartum period brings significant emotional changes. Our Mental Health Coach helps you monitor mood patterns, screen for signs of postpartum depression using validated questionnaires (Edinburgh Scale), and access evidence-based coping strategies. Connect with support resources and track your emotional recovery journey. This is an educational tool, not a diagnostic or treatment service.",
-    keywords: "postpartum depression, PPD screening, postpartum mental health, baby blues, postpartum anxiety, postpartum mood tracker, postnatal depression",
+    keywords: "postpartum depression, mood self-check, postpartum mood wellness, baby blues, postpartum anxiety, postpartum mood journal, postnatal mood changes",
     faqs: [
       { q: "What's the difference between baby blues and postpartum depression?", a: "Baby blues affect up to 80% of new mothers and typically resolve within 2 weeks. PPD is more severe, lasting longer than 2 weeks, and may include intense sadness, anxiety, difficulty bonding, or thoughts of self-harm. If symptoms persist, please reach out to your healthcare provider." },
       { q: "When should I seek help?", a: "Seek professional help if mood symptoms last longer than 2 weeks after birth, interfere with daily functioning or baby care, include thoughts of harming yourself or your baby, or if you feel persistently hopeless or disconnected." },
@@ -339,7 +339,7 @@ const toolSEO: Record<string, { h1: string; desc: string; longDesc: string; keyw
     h1: "Baby Cry Translator — Understand Why Your Baby Is Crying",
     desc: "AI-powered baby cry analysis to help identify if your baby is hungry, tired, uncomfortable, or needs a diaper change. Educational guide for new parents.",
     longDesc: "New to parenthood and wondering why your baby is crying? Our Baby Cry Translator uses AI to help you identify common cry patterns associated with hunger, tiredness, discomfort, overstimulation, and other needs. Combined with educational content about infant communication, it helps new parents build confidence in understanding their baby's cues.",
-    keywords: "baby cry translator, why is my baby crying, baby cry analyzer, newborn crying, baby cues, infant cry meaning, baby cry app",
+    keywords: "baby cry translator, why is my baby crying, baby cry guide, newborn crying, baby cues, infant cry meaning, baby cry app",
     faqs: [
       { q: "Can an app really translate baby cries?", a: "While no app can perfectly 'translate' baby cries, research shows that different needs produce distinct cry patterns. Our tool combines AI pattern recognition with educational content about common baby cues to help you respond effectively." },
     ],
