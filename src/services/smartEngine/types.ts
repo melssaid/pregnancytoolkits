@@ -17,7 +17,7 @@ export type SmartSection =
   | "postpartum"
   | "lab-checks"
   | "safety"
-  | "bump-photos-legacy"
+  | "bump-photos"
   | "kick-analysis";
 
 // ── AI Tool Types (maps to edge function types) ──
@@ -47,7 +47,7 @@ export const SECTION_TOOL_MAP: Record<SmartSection, AIToolType> = {
   "postpartum": "postpartum-recovery",
   "lab-checks": "pregnancy-assistant",
   "safety": "symptom-analysis",
-  "bump-photos-legacy": "bump-photos",
+  "bump-photos": "bump-photos",
   "kick-analysis": "kick-analysis",
 };
 
