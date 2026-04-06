@@ -129,7 +129,7 @@
     "mo": "mo",
     "yr": "yr",
     "save": "Save 44%",
-    "feature1": "35 advanced AI-powered tools",
+    "feature1": "36+ smart wellness tools",
     "feature2": "60 smart analyses per month",
     "feature3": "Personalized AI health reports",
     "feature4": "Priority request processing",
@@ -162,7 +162,7 @@
     "usedAnalyses": "You used {{count}} AI analyses",
     "duringTrial": "during your trial period",
     "premiumBenefit": "60 analyses/month",
-    "premiumDesc": "Unlock all 42+ AI tools",
+    "premiumDesc": "Unlock all 36+ AI tools",
     "cta": "View Premium Plans",
     "dismiss": "Maybe later"
   },
@@ -938,7 +938,7 @@
   "subscription": {
     "subscribeNow": "Get Premium - $0.79/mo",
     "premiumFeature": "Premium Feature",
-    "unlockAccess": "Unlock all 30 tools",
+    "unlockAccess": "Unlock all 36+ tools",
     "subscribeToAccess": "Subscribe to unlock"
   },
   "dueDatePage": {
@@ -5013,7 +5013,7 @@
   "welcome": {
     "title": "Welcome to Pregnancy Toolkits",
     "subtitle": "Your complete pregnancy companion",
-    "feature1": "30+ AI-powered pregnancy tools",
+    "feature1": "36+ smart pregnancy tools",
     "feature2": "Personalized health tracking",
     "disclaimerTitle": "Important Notice",
     "disclaimerText": "This app provides general wellness information only and is not a substitute for professional health guidance. Always consult your care provider for any health concerns.",
@@ -6116,7 +6116,7 @@
   "socialProof": {
     "title": "Everything You Need 💕",
     "subtitle": "Your complete pregnancy companion",
-    "tools": "30 Tools",
+    "tools": "36+ Tools",
     "toolsDesc": "For your journey",
     "trackEverything": "Track Everything",
     "trackDesc": "Kick counts, contractions & more",
@@ -6272,7 +6272,7 @@
     "pushGuideReload": "Reload page after enabling",
     "pushEnabledSuccess": "Push notifications enabled! You'll be notified even when the app is in the background.",
     "welcome": "👋 Welcome!",
-    "welcomeDesc": "Enjoy 30+ smart tools to track your pregnancy easily and safely.",
+    "welcomeDesc": "Enjoy 36+ smart tools to track your pregnancy easily and safely.",
     "disclaimer": "📋 Important Notice",
     "disclaimerDesc": "This app is for informational purposes only and is not a substitute for professional health guidance.",
     "disclaimerTitle": "Important Notice",
@@ -6379,7 +6379,7 @@
   },
   "seo": {
     "title": "Best Pregnancy Tracking App",
-    "description": "Complete pregnancy app with 30+ AI-powered tools for every stage of motherhood - from planning to postpartum. 100% free and available in 7 languages.",
+    "description": "Complete pregnancy app with 36+ smart tools for every stage of motherhood - from planning to postpartum. 100% free and available in 7 languages.",
     "babyGrowth": "Baby Growth Tracking",
     "babyGrowthDesc": "Track your baby's weekly development with fruit size comparisons and milestones",
     "kickCounter": "Baby Movement Diary",
@@ -6642,7 +6642,7 @@
     "toolLocked": "\"{{tool}}\" is available for subscribers only",
     "subtitle": "Subscribe to unlock all smart tools",
     "benefits": {
-      "allAITools": "35 AI-powered tools",
+      "allAITools": "36+ smart wellness tools",
       "dailyAnalyses": "40 smart analyses per month",
       "personalizedInsights": "Tips personalized to your week",
       "fullAccess": "Full access with no limits"

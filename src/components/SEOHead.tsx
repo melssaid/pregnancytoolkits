@@ -43,12 +43,12 @@ export function SEOHead({
   const pageTitle = titleOverride || (titleKey ? t(titleKey) : null);
   const fullTitle = pageTitle
     ? `${pageTitle} | ${brandName}`
-    : `${brandName} – Free Pregnancy Tracker & AI Companion | 42+ Tools`;
+    : `${brandName} – Free Pregnancy Tracker & AI Companion | 36+ Tools`;
 
   // Build description
   const pageDesc = descOverride
     || (descriptionKey ? t(descriptionKey) : null)
-    || t("seo.defaultDescription", "Free pregnancy tracker app with 42+ AI-powered tools: due date calculator, kick counter, contraction timer, baby growth tracker, safe foods guide & more. Not a medical device.");
+    || t("seo.defaultDescription", "Free pregnancy tracker app with 36+ smart tools: due date calculator, kick counter, contraction timer, baby growth tracker, safe foods guide & more. Not a medical device.");
 
   // Truncate for SEO best practices
   const seoTitle = fullTitle.length > 60 ? fullTitle.slice(0, 57) + "..." : fullTitle;
