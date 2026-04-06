@@ -174,20 +174,20 @@ export const getTotalToolsCount = () => toolsData.length;
 const toolRelationships: Record<string, string[]> = {
   // AI Core
   "pregnancy-assistant": ["wellness-diary", "weekly-summary", "ai-meal-suggestion"],
-  "weekly-summary": ["pregnancy-assistant", "fetal-growth", "weight-gain"],
+  "weekly-summary": ["pregnancy-assistant", "baby-growth", "weight-gain"],
   "ai-meal-suggestion": ["vitamin-tracker", "ai-craving-alternatives", "smart-grocery-list"],
   "ai-craving-alternatives": ["ai-meal-suggestion", "smart-grocery-list", "vitamin-tracker"],
   "smart-grocery-list": ["ai-meal-suggestion", "ai-craving-alternatives", "vitamin-tracker"],
 
   // Fertility
   "cycle-tracker": ["due-date-calculator", "pregnancy-assistant", "weekly-summary"],
-  "due-date-calculator": ["cycle-tracker", "weekly-summary", "fetal-growth"],
+  "due-date-calculator": ["cycle-tracker", "weekly-summary", "baby-growth"],
 
   // Pregnancy Tracking
-  "fetal-growth": ["weekly-summary", "kick-counter", "baby-growth"],
-  "kick-counter": ["fetal-growth", "wellness-diary", "ai-birth-plan"],
+  /* HIDDEN_FOR_COMPLIANCE */ // "fetal-growth": ["weekly-summary", "kick-counter", "baby-growth"],
+  "kick-counter": ["baby-growth", "wellness-diary", "ai-birth-plan"],
   "weight-gain": ["ai-meal-suggestion", "ai-fitness-coach", "weekly-summary"],
-  "ai-bump-photos": ["weekly-summary", "fetal-growth", "baby-growth"],
+  "ai-bump-photos": ["weekly-summary", "baby-growth", "kick-counter"],
   "smart-pregnancy-plan": ["weekly-summary", "smart-appointment-reminder", "ai-meal-suggestion"],
 
   // Labor & Birth
@@ -204,8 +204,7 @@ const toolRelationships: Record<string, string[]> = {
   "postpartum-mental-health": ["pregnancy-comfort", "pregnancy-assistant", "wellness-diary"],
   "ai-pregnancy-skincare": ["ai-meal-suggestion", "vitamin-tracker", "weekly-summary"],
 
-  // Health Awareness
-  "maternal-health-awareness": ["ai-meal-suggestion", "ai-fitness-coach", "wellness-diary"],
+  /* HIDDEN_FOR_COMPLIANCE */ // "maternal-health-awareness": ["ai-meal-suggestion", "ai-fitness-coach", "wellness-diary"],
 
   // Preparation
   "ai-hospital-bag": ["ai-birth-plan", "ai-partner-guide", "baby-gear-recommender"],
