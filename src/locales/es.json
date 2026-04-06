@@ -283,7 +283,7 @@
       "description": "Consejos de apoyo para futuros padres y parejas."
     },
     "aiBirthPosition": {
-      "title": "Posiciones de parto IA",
+      "title": "Guía de Posiciones de Confort",
       "description": "Posiciones óptimas para tu trabajo de parto."
     },
     "aiSkincare": {
@@ -299,7 +299,7 @@
       "description": "Planifica los gastos del bebé inteligentemente."
     },
     "aiBumpPhotos": {
-      "title": "Galería de ecografía",
+      "title": "Mi Galería de Pancita",
       "description": "Guarda y explora tus fotos de ecografía con observaciones educativas."
     },
     "aiFitnessCoach": {
@@ -311,7 +311,7 @@
       "description": "Ejercicios personalizados para el confort de la espalda en el embarazo."
     },
     "vitaminTracker": {
-      "title": "Rastreador inteligente de vitaminas",
+      "title": "Mi Nutrición Diaria",
       "description": "Calendario de vitaminas y suplementos con análisis de cumplimiento diario."
     },
     "forbiddenFoods": {
@@ -416,7 +416,7 @@
       "description": "Identifica tus días más fértiles."
     },
     "fertilityAcademy": {
-      "title": "Academia de fertilidad",
+      "title": "Mi Viaje de Fertilidad",
       "description": "Educación integral sobre fertilidad: lecciones, señales corporales y manejo del estrés.",
       "lessonsTab": "Lecciones",
       "signsTab": "Señales corporales",
@@ -3630,8 +3630,7 @@
       "bmiPrePregnancy": "IMC antes del embarazo",
       "history": "Historial",
       "invalidWeight": "Introduce un peso válido",
-      "noEntries": "Aún no hay registros de peso. Añade el primero arriba.",
-      "weightPlaceholder": "Peso en kg"
+      "noEntries": "Aún no hay registros de peso. Añade el primero arriba."
     },
     "bloodType": {
       "title": "Calculadora de Tipo de Sangre",
@@ -6631,7 +6630,7 @@
     "bonusTitle": "🎁 ¡Obtén 5 puntos gratis!",
     "bonusDesc": "Reclama 5 puntos de IA adicionales gratis — una vez al mes, ¡oferta por tiempo limitado!",
     "bonusClaim": "Reclamar ahora",
-"bonusSuccess": "¡5 puntos añadidos! ✅",
+    "bonusSuccess": "¡5 puntos añadidos! ✅",
     "bonusPoints": "puntos extra",
     "newBalance": "Nuevo saldo",
     "bonusDetailedSuccess": "🎉 +{{bonus}} puntos extra! Nuevo saldo: {{remaining}}/{{total}}",

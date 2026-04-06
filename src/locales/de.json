@@ -283,7 +283,7 @@
       "description": "Unterstützungstipps für werdende Väter und Partner."
     },
     "aiBirthPosition": {
-      "title": "KI-Geburtspositionen",
+      "title": "Komfort-Positionen-Guide",
       "description": "Optimale Positionen für Ihre Wehen."
     },
     "aiSkincare": {
@@ -299,7 +299,7 @@
       "description": "Planen Sie Babyausgaben intelligent."
     },
     "aiBumpPhotos": {
-      "title": "Ultraschall-Galerie",
+      "title": "Meine Bauch-Galerie",
       "description": "Speichern und erkunden Sie Ihre Ultraschallbilder mit Lerneinblicken."
     },
     "aiFitnessCoach": {
@@ -311,7 +311,7 @@
       "description": "Personalisierte Übungen für Rückenkomfort in der Schwangerschaft."
     },
     "vitaminTracker": {
-      "title": "Intelligenter Vitamin-Tracker",
+      "title": "Meine tägliche Ernährung",
       "description": "Vitamin- und Nahrungsergänzungsplan mit täglicher Einnahmeanalyse."
     },
     "forbiddenFoods": {
@@ -416,7 +416,7 @@
       "description": "Bestimmen Sie Ihre fruchtbarsten Tage."
     },
     "fertilityAcademy": {
-      "title": "Fruchtbarkeitsakademie",
+      "title": "Meine Fruchtbarkeitsreise",
       "description": "Umfassende Fruchtbarkeitsbildung: Lektionen, Körperzeichen und Stressbewältigung.",
       "lessonsTab": "Lektionen",
       "signsTab": "Körperzeichen",
@@ -3630,8 +3630,7 @@
       "bmiPrePregnancy": "BMI vor der Schwangerschaft",
       "history": "Verlauf",
       "invalidWeight": "Bitte gib ein gültiges Gewicht ein",
-      "noEntries": "Noch keine Gewichtseinträge. Füge oben deinen ersten Eintrag hinzu.",
-      "weightPlaceholder": "Gewicht in kg"
+      "noEntries": "Noch keine Gewichtseinträge. Füge oben deinen ersten Eintrag hinzu."
     },
     "bloodType": {
       "title": "Blutgruppen-Rechner",
@@ -6631,7 +6630,7 @@
     "bonusTitle": "🎁 Holen Sie sich 5 kostenlose Punkte!",
     "bonusDesc": "Fordern Sie 5 Bonus-KI-Punkte kostenlos an — einmal pro Monat, zeitlich begrenztes Angebot!",
     "bonusClaim": "Jetzt einlösen",
-"bonusSuccess": "5 Punkte hinzugefügt! ✅",
+    "bonusSuccess": "5 Punkte hinzugefügt! ✅",
     "bonusPoints": "Bonuspunkte",
     "newBalance": "Neues Guthaben",
     "bonusDetailedSuccess": "🎉 +{{bonus}} Bonuspunkte! Neues Guthaben: {{remaining}}/{{total}}",

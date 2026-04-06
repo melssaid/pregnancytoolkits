@@ -283,7 +283,7 @@
       "description": "Conseils de soutien pour les futurs pères et partenaires."
     },
     "aiBirthPosition": {
-      "title": "Positions d'accouchement IA",
+      "title": "Guide des Positions de Confort",
       "description": "Positions optimales pour votre travail."
     },
     "aiSkincare": {
@@ -299,7 +299,7 @@
       "description": "Planifiez les dépenses bébé intelligemment."
     },
     "aiBumpPhotos": {
-      "title": "Galerie échographie",
+      "title": "Ma Galerie de Ventre",
       "description": "Sauvegardez et explorez vos photos d'échographie avec des observations éducatives."
     },
     "aiFitnessCoach": {
@@ -311,7 +311,7 @@
       "description": "Exercices personnalisés pour le confort du dos pendant la grossesse."
     },
     "vitaminTracker": {
-      "title": "Suivi intelligent des vitamines",
+      "title": "Ma Nutrition Quotidienne",
       "description": "Calendrier des vitamines et suppléments avec analyse de l'observance quotidienne."
     },
     "forbiddenFoods": {
@@ -416,7 +416,7 @@
       "description": "Identifiez vos jours les plus fertiles."
     },
     "fertilityAcademy": {
-      "title": "Académie de fertilité",
+      "title": "Mon Parcours de Fertilité",
       "description": "Éducation complète sur la fertilité : leçons, signes corporels et gestion du stress.",
       "lessonsTab": "Leçons",
       "signsTab": "Signes corporels",
@@ -3630,8 +3630,7 @@
       "bmiPrePregnancy": "IMC avant la grossesse",
       "history": "Historique",
       "invalidWeight": "Veuillez saisir un poids valide",
-      "noEntries": "Aucune entrée de poids pour le moment. Ajoutez la première ci-dessus.",
-      "weightPlaceholder": "Poids en kg"
+      "noEntries": "Aucune entrée de poids pour le moment. Ajoutez la première ci-dessus."
     },
     "bloodType": {
       "title": "Calculateur de groupe sanguin",
@@ -6631,7 +6630,7 @@
     "bonusTitle": "🎁 Obtenez 5 points gratuits !",
     "bonusDesc": "Réclamez 5 points IA bonus gratuitement — une fois par mois, offre limitée !",
     "bonusClaim": "Réclamer maintenant",
-"bonusSuccess": "5 points ajoutés ! ✅",
+    "bonusSuccess": "5 points ajoutés ! ✅",
     "bonusPoints": "points bonus",
     "newBalance": "Nouveau solde",
     "bonusDetailedSuccess": "🎉 +{{bonus}} points bonus ! Nouveau solde : {{remaining}}/{{total}}",

@@ -308,8 +308,8 @@
       "description": "Support tips for expecting fathers and partners."
     },
     "aiBirthPosition": {
-      "title": "AI Birth Positions",
-      "description": "Optimal positions for your labor."
+      "title": "Comfort Positions Guide",
+      "description": "Discover comfortable positions for labor and birth."
     },
     "aiSkincare": {
       "title": "Pregnancy Skin Analysis",
@@ -324,8 +324,8 @@
       "description": "Plan baby expenses smartly."
     },
     "aiBumpPhotos": {
-      "title": "Ultrasound Gallery",
-      "description": "Save & explore your ultrasound photos with educational insights."
+      "title": "My Bump Gallery",
+      "description": "Save and view your bump photos with optional AI educational notes."
     },
     "aiFitnessCoach": {
       "title": "Fitness & Flexibility Coach",
@@ -336,8 +336,8 @@
       "description": "Personalized exercises for pregnancy back comfort."
     },
     "vitaminTracker": {
-      "title": "Smart Vitamin Tracker",
-      "description": "Vitamin & supplement schedule with daily compliance analytics."
+      "title": "My Daily Nutrition",
+      "description": "Track your daily vitamins and supplements with smart reminders."
     },
     "forbiddenFoods": {
       "title": "Foods to Avoid",
@@ -441,8 +441,8 @@
       "description": "Pinpoint your most fertile days each cycle."
     },
     "fertilityAcademy": {
-      "title": "Fertility Academy",
-      "description": "Comprehensive fertility education: lessons, body signs, and stress management.",
+      "title": "My Fertility Journey",
+      "description": "Comprehensive fertility education: lessons, body signs, and lifestyle tips.",
       "lessonsTab": "Lessons",
       "signsTab": "Body Signs",
       "stressTab": "Stress & Calm",
@@ -3655,8 +3655,7 @@
       "bmiPrePregnancy": "Pre-pregnancy BMI",
       "history": "History",
       "invalidWeight": "Please enter a valid weight",
-      "noEntries": "No weight entries yet. Add your first one above.",
-      "weightPlaceholder": "Weight in kg"
+      "noEntries": "No weight entries yet. Add your first one above."
     },
     "bloodType": {
       "title": "Blood Type Calculator",
@@ -6656,7 +6655,7 @@
     "bonusTitle": "🎁 Get 5 Free Points!",
     "bonusDesc": "Claim 5 bonus AI points for free — once per month, limited time offer!",
     "bonusClaim": "Claim Now",
-"bonusSuccess": "5 Points Added! ✅",
+    "bonusSuccess": "5 Points Added! ✅",
     "bonusPoints": "bonus points",
     "newBalance": "New balance",
     "bonusDetailedSuccess": "🎉 +{{bonus}} bonus points! New balance: {{remaining}}/{{total}}",

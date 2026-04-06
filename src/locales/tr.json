@@ -283,7 +283,7 @@
       "description": "Baba adayları ve eşler için destek ipuçları."
     },
     "aiBirthPosition": {
-      "title": "AI Doğum Pozisyonları",
+      "title": "Konfor Pozisyonları Rehberi",
       "description": "Doğumunuz için optimal pozisyonlar."
     },
     "aiSkincare": {
@@ -299,7 +299,7 @@
       "description": "Bebek masraflarını akıllıca planlayın."
     },
     "aiBumpPhotos": {
-      "title": "Ultrason Galerisi",
+      "title": "Karnım Galerisi",
       "description": "Ultrason fotoğraflarınızı kaydedin ve eğitici bilgiler edinin."
     },
     "aiFitnessCoach": {
@@ -311,7 +311,7 @@
       "description": "Hamilelikte sırt konforu için kişiselleştirilmiş egzersizler."
     },
     "vitaminTracker": {
-      "title": "Akıllı Vitamin Takibi",
+      "title": "Günlük Beslenmem",
       "description": "Vitamin ve takviye programı ile günlük uyum analizi."
     },
     "forbiddenFoods": {
@@ -416,7 +416,7 @@
       "description": "En verimli günlerinizi belirleyin."
     },
     "fertilityAcademy": {
-      "title": "Doğurganlık Akademisi",
+      "title": "Doğurganlık Yolculuğum",
       "description": "Kapsamlı doğurganlık eğitimi: dersler, vücut işaretleri ve stres yönetimi.",
       "lessonsTab": "Dersler",
       "signsTab": "Vücut İşaretleri",
@@ -3519,7 +3519,7 @@
       "entryAdded": "Ağırlık başarıyla kaydedildi",
       "updateEntry": "Güncelle",
       "weekAlreadyLogged": "Bu hafta zaten bir kayıt var — güncellenecek",
-      "weightPlaceholder": "Ağırlık (kg)",
+      "weightPlaceholder": "Kilo (kg)",
       "lastRecorded": "Son kayıt",
       "weightGainTrend": "Kilo Artış Trendi",
       "chartNote": "Gölgeli alan önerilen kilo artış aralığını gösterir",
@@ -3630,8 +3630,7 @@
       "bmiPrePregnancy": "Hamilelik öncesi BMI",
       "history": "Geçmiş",
       "invalidWeight": "Lütfen geçerli bir kilo girin",
-      "noEntries": "Henüz kilo kaydı yok. İlk kaydı yukarıdan ekleyin.",
-      "weightPlaceholder": "Kilo (kg)"
+      "noEntries": "Henüz kilo kaydı yok. İlk kaydı yukarıdan ekleyin."
     },
     "bloodType": {
       "title": "Kan Grubu Hesaplayıcı",
@@ -6631,7 +6630,7 @@
     "bonusTitle": "🎁 5 Ücretsiz Puan Kazanın!",
     "bonusDesc": "5 bonus yapay zeka puanı ücretsiz talep edin — ayda bir kez, sınırlı süreli teklif!",
     "bonusClaim": "Şimdi talep et",
-"bonusSuccess": "5 puan eklendi! ✅",
+    "bonusSuccess": "5 puan eklendi! ✅",
     "bonusPoints": "bonus puan",
     "newBalance": "Yeni bakiye",
     "bonusDetailedSuccess": "🎉 +{{bonus}} bonus puan! Yeni bakiye: {{remaining}}/{{total}}",
