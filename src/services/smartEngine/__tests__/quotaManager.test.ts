@@ -47,17 +47,17 @@ describe('quotaManager', () => {
     expect(canAfford(2)).toBe(false);
   });
 
-  it('premium tier has 40 limit', () => {
+  it('premium tier has 60 limit', () => {
     setTier('premium');
     const state = getQuotaState();
     expect(state.tier).toBe('premium');
-    expect(state.limit).toBe(40);
-    expect(state.remaining).toBe(40);
+    expect(state.limit).toBe(60);
+    expect(state.remaining).toBe(60);
   });
 
-  it('exhausts premium quota at 40', () => {
+  it('exhausts premium quota at 60', () => {
     setTier('premium');
-    for (let i = 0; i < 40; i++) consumeQuota(1);
+    for (let i = 0; i < 60; i++) consumeQuota(1);
     const state = getQuotaState();
     expect(state.isExhausted).toBe(true);
     expect(state.remaining).toBe(0);
