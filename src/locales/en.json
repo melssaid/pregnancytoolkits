@@ -6615,8 +6615,8 @@
     "ai-sleep-optimizer": "Get personalized tips to improve your sleep during pregnancy. Tips are general guidance. If you suffer from chronic insomnia or breathing issues during sleep, consult your doctor.",
     "ai-nausea-relief": "Discover natural ways to relieve pregnancy nausea. Advice is general and educational. If nausea is severe and prevents eating or drinking, see your doctor immediately.",
     "ai-pregnancy-skincare": "Get a safe skincare routine during pregnancy. Suggested products are general guidance. If skin reactions or unusual changes appear, consult a dermatologist.",
-    "postpartum-mental-health": "Monitor your postpartum mental health with self-assessment tools. Results are for awareness only, not diagnosis. If you experience depression or persistent anxiety symptoms, speak with a professional immediately.",
-    "gestational-diabetes": "Review your potential gestational diabetes factors. Results are for awareness only, not diagnosis. Medical tests are essential for accurate diagnosis.",
+    "postpartum-mental-health": "Follow your postpartum mood with self-assessment tools. Results are for awareness only, not a clinical conclusion. If you experience depression or persistent anxiety symptoms, speak with a professional immediately.",
+    "gestational-diabetes": "Review your potential gestational diabetes factors. Results are for awareness only, not a clinical conclusion. Medical tests are essential for proper evaluation.",
     "preeclampsia-risk": "Review factors associated with preeclampsia. Results are for awareness only. Any symptoms like severe headache or sudden swelling require immediate medical attention.",
     "ai-labor-progress": "Track labor signs and progress. Information is general and educational. When actual labor begins, contact your medical team immediately.",
     "ai-birth-plan": "Create a personalized birth plan expressing your preferences. The plan is a personal document to discuss with your medical team. Final decisions are made by the medical team based on your condition.",
@@ -8171,7 +8171,7 @@
   },
   "gdm": {
     "evidence": {
-      "title": "Gestational Diabetes Screening",
+      "title": "Glucose Wellness Check",
       "content": "Glucose tolerance testing is usually performed between weeks 24-28 of pregnancy. Gestational diabetes affects 6-9% of pregnancies worldwide, and can be managed with diet and exercise in 80-90% of cases without insulin.",
       "source": "Source: American Diabetes Association — Standards of Care in Diabetes, 2024"
     },
