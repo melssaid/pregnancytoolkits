@@ -272,11 +272,30 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
         {/* Bottom Navigation */}
         <nav ref={ref} className="fixed bottom-0 left-0 right-0 z-50 md:hidden safe-area-bottom">
           <div className="relative">
-            {/* Top accent line — silver frost */}
-            <div className="absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r from-transparent via-[hsl(220,15%,65%)] to-transparent z-10" />
+            {/* Top accent line — gold for premium, silver for free */}
+            <div className={`absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r from-transparent ${
+              isPremium 
+                ? 'via-[hsl(40,75%,55%)]' 
+                : 'via-[hsl(220,15%,65%)]'
+            } to-transparent z-10`} />
+
+            {/* Premium crown badge — centered above nav */}
+            {isPremium && (
+              <motion.div
+                className="absolute -top-3 left-1/2 -translate-x-1/2 z-20 w-7 h-7 rounded-full bg-gradient-to-br from-[hsl(45,80%,60%)] to-[hsl(35,70%,45%)] flex items-center justify-center shadow-lg ring-2 ring-card"
+                animate={{ scale: [1, 1.15, 1], boxShadow: ['0 0 8px hsl(40,75%,55%,0.3)', '0 0 16px hsl(40,75%,55%,0.6)', '0 0 8px hsl(40,75%,55%,0.3)'] }}
+                transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <Crown className="w-3.5 h-3.5 text-white" strokeWidth={2.5} fill="currentColor" />
+              </motion.div>
+            )}
             
-            {/* Silver frost gradient background — bottom to top */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[hsl(220,15%,90%)] via-card/95 to-card/95 backdrop-blur-xl shadow-[0_-6px_30px_-5px_hsl(220,15%,50%,0.2)]" />
+            {/* Background */}
+            <div className={`absolute inset-0 ${
+              isPremium
+                ? 'bg-gradient-to-t from-[hsl(40,30%,88%)] via-card/95 to-card/95'
+                : 'bg-gradient-to-t from-[hsl(220,15%,90%)] via-card/95 to-card/95'
+            } backdrop-blur-xl shadow-[0_-6px_30px_-5px_hsl(220,15%,50%,0.2)]`} />
             
             <div className="relative flex items-center justify-evenly px-2 py-2">
               {NAV_ITEMS.map((item, idx) => {
