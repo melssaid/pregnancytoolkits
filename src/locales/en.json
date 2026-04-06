@@ -1698,7 +1698,7 @@
       "weeklySummaryLink": "Weekly Summary",
       "weeklySummaryLinkDesc": "Get AI-powered weekly pregnancy insights",
       "weightGainLink": "Weight Gain Guide",
-      "weightGainLinkDesc": "Monitor your healthy weight gain",
+      "weightGainLinkDesc": "Follow your healthy weight journey",
       "exportPDF": "Share your journal with your consultant",
       "startHint": "Start a new session then tap the circle for each baby movement",
       "lastKick": "Last movement",
@@ -3130,7 +3130,7 @@
     "mentalHealth": {
       "title": "Mental Wellness Guide",
       "subtitle": "EPDS questionnaire and mental wellness support",
-      "takeScreening": "Take EPDS Questionnaire",
+      "takeQuestionnaire": "Take EPDS Questionnaire",
       "screeningDesc": "Wellness Self-Check",
       "yourScore": "Your Score",
       "lowRisk": "Low Risk",
@@ -3506,7 +3506,7 @@
     },
     "weightGain": {
       "title": "Weight Gain Guide",
-      "subtitle": "Monitor healthy pregnancy weight",
+      "subtitle": "Follow healthy pregnancy weight",
       "heroTitle": "Track Your Weight with Confidence",
       "heroDesc": "A smart wellness tool built on general guidelines to track healthy weight gain during pregnancy",
       "iomBadge": "Based on IOM & WHO Guidelines",
@@ -3804,7 +3804,7 @@
       "dueDateLink": "Due Date Calculator",
       "dueDateLinkDesc": "Calculate your expected delivery date",
       "weightGainLink": "Weight Gain Guide",
-      "weightGainLinkDesc": "Monitor your healthy weight gain"
+      "weightGainLinkDesc": "Follow your healthy weight journey"
     },
     "gdm": {
       "title": "Gestational Diabetes Awareness (General Info)",
@@ -3819,15 +3819,15 @@
       "riskLevels": {
         "high": {
           "title": "Higher Risk",
-          "description": "Your risk factors suggest elevated likelihood. Early screening may be recommended."
+          "description": "Your risk factors suggest elevated likelihood. Early wellness checks may be helpful."
         },
         "moderate": {
           "title": "Moderate Risk",
-          "description": "You have some risk factors. Standard screening at 24-28 weeks is recommended."
+          "description": "You have some risk factors. Standard wellness checks at 24-28 weeks are recommended."
         },
         "low": {
           "title": "Lower Risk",
-          "description": "You have few risk factors, but routine screening at 24-28 weeks is still recommended."
+          "description": "You have few risk factors, but routine wellness checks at 24-28 weeks are still recommended."
         }
       },
       "riskFactors": {
@@ -4433,7 +4433,7 @@
         },
         "emotionalCheck": {
           "title": "Emotional Check-in",
-          "desc": "Monitor your mood and feelings"
+          "desc": "Follow your mood and feelings"
         },
         "nutrition": {
           "title": "Nutritious Meals",
@@ -4605,7 +4605,7 @@
         },
         "assistedReproduction": {
           "title": "Assisted Reproduction Techniques",
-          "content": "When natural conception doesn't succeed, there are effective options:\n\n• Ovulation stimulation: Medications that stimulate egg production — first-line treatment.\n• Intrauterine insemination (IUI): Processed sperm injected directly into the uterus.\n• In vitro fertilization (IVF): The most advanced technique. Success rates 30–50% per cycle.\n• Intracytoplasmic sperm injection (ICSI): A single sperm injected directly into the egg.\n• Preimplantation genetic testing (PGT): Screening embryos for chromosomal abnormalities.\n• Each option has specific indications — a fertility specialist guides you to the most suitable."
+          "content": "When natural conception doesn't succeed, there are effective options:\n\n• Ovulation stimulation: Medications that stimulate egg production — first-line treatment.\n• Intrauterine insemination (IUI): Processed sperm injected directly into the uterus.\n• In vitro fertilization (IVF): The most advanced technique. Success rates 30–50% per cycle.\n• Intracytoplasmic sperm injection (ICSI): A single sperm injected directly into the egg.\n• Preimplantation genetic testing (PGT): Checking embryos for chromosomal concerns.\n• Each option has specific indications — a fertility specialist guides you to the most suitable."
         },
         "epigeneticsFertility": {
           "title": "Epigenetics & Generational Health",
@@ -4699,7 +4699,7 @@
           "description": "Checks for anemia, infections, and overall blood health. Identifies iron deficiency that should be addressed before pregnancy."
         },
         "pap": {
-          "title": "Pap Smear / Cervical Screening",
+          "title": "Pap Smear / Cervical Check",
           "description": "Screens for cervical abnormalities. Best done before pregnancy to address any issues without the added complexity of pregnancy."
         },
         "thyroid": {
@@ -4711,11 +4711,11 @@
           "description": "Rubella during pregnancy can cause serious birth defects. If you're not immune, vaccination is recommended at least 1 month before trying to conceive."
         },
         "hepatitis": {
-          "title": "Hepatitis B & C Screening",
+          "title": "Hepatitis B & C Check",
           "description": "Hepatitis B can be transmitted to the baby during birth. Knowing your status allows for preventive measures. Hepatitis C requires follow-up during pregnancy."
         },
         "hiv": {
-          "title": "HIV & STI Screening",
+          "title": "HIV & STI Check",
           "description": "Routine checks for HIV and sexually transmitted infections protects both your health and your future baby's health. Early detection enables effective treatment."
         },
         "dental": {
@@ -4723,7 +4723,7 @@
           "description": "Gum disease is linked to preterm birth and low birth weight. Hormonal changes during pregnancy can worsen existing dental issues. Complete any necessary dental work before conceiving."
         },
         "geneticOverview": {
-          "title": "Genetic Carrier Screening",
+          "title": "Genetic Carrier Check",
           "description": "Tests whether you or your partner carry genes for conditions like cystic fibrosis, sickle cell disease, or thalassemia. Results help with informed family planning decisions."
         },
         "mentalHealth": {
@@ -4740,7 +4740,7 @@
         }
       },
       "disclaimer": "This checklist is an educational reference to help you organize conversations with your care provider. It does not replace professional medical advice, diagnosis, or treatment. All screenings and tests should be discussed with and ordered by a qualified healthcare professional.",
-      "progressLabel": "Screenings tracked",
+      "progressLabel": "Checks completed",
       "tracked": "tracked",
       "related": {
         "academy": "My Fertility Journey",
@@ -6580,7 +6580,7 @@
       "tip30": "You are not alone in this journey. One in six couples experiences difficulty conceiving at some point. Seeking help is a sign of strength, not failure. Every step you take brings you closer.",
       "tip31": "Selenium is a trace mineral that protects eggs from oxidative damage and supports thyroid function. Brazil nuts are the richest source — just 1–2 per day provides your daily requirement.",
       "tip32": "The luteal phase (after ovulation) should ideally be 12–14 days. A short luteal phase may indicate low progesterone, which can prevent implantation.",
-      "tip33": "Endometriosis affects 1 in 10 women and is a leading cause of infertility. Symptoms include painful periods and heavy bleeding. Early diagnosis significantly improves outcomes.",
+      "tip33": "Endometriosis affects 1 in 10 women and is a leading cause of infertility. Symptoms include painful periods and heavy bleeding. Early detection significantly improves outcomes.",
       "tip34": "Vitamin B6 supports progesterone production, crucial for maintaining pregnancy. Foods rich in B6 include chickpeas, bananas, potatoes, and poultry.",
       "tip35": "Pelvic floor health impacts fertility and pregnancy. Gentle pelvic floor exercises improve blood flow to reproductive organs.",
       "tip36": "PCOS is the most common cause of anovulation. If you have irregular periods, excess hair growth, or acne, ask your doctor about testing.",
@@ -6854,7 +6854,7 @@
         },
         "checklist": {
           "0": "Attend your first prenatal appointment",
-          "1": "Get blood tests and initial screenings",
+          "1": "Get blood tests and initial checks",
           "2": "Start managing morning sickness naturally",
           "3": "Eat ginger or crackers for nausea relief",
           "4": "Rest when you feel tired — your body is working hard"
@@ -6890,7 +6890,7 @@
           "1": "Avoid soft cheeses and deli meats",
           "2": "Begin pelvic floor exercises (Kegels)",
           "3": "Wear comfortable, supportive clothing",
-          "4": "Discuss genetic screening options with your doctor"
+          "4": "Discuss genetic check options with your doctor"
         }
       },
       "w8": {
@@ -6985,7 +6985,7 @@
           "2": "When can I know the gender?"
         },
         "checklist": {
-          "0": "Consider NIPT or first-trimester screening",
+          "0": "Consider NIPT or first-trimester check",
           "1": "Drink plenty of water (10 cups/day)",
           "2": "Eat calcium-rich foods for baby's bones",
           "3": "Continue gentle exercise routine",
@@ -7018,7 +7018,7 @@
           "2": "Do I need additional tests?"
         },
         "checklist": {
-          "0": "Review screening test results",
+          "0": "Review check results",
           "1": "Increase protein intake for baby's growth",
           "2": "Practice relaxation and deep breathing",
           "3": "Keep dental appointments — pregnancy affects gums",
@@ -7120,7 +7120,7 @@
           "0": "Schedule mid-pregnancy scan (18-20 weeks)",
           "1": "Start doing prenatal yoga or swimming",
           "2": "Eat vitamin C-rich fruits daily",
-          "3": "Monitor weight gain — aim for steady increase",
+          "3": "Follow weight changes — aim for steady increase",
           "4": "Begin creating a baby registry"
         }
       },
@@ -7381,7 +7381,7 @@
           "2": "How do I prevent preeclampsia?"
         },
         "checklist": {
-          "0": "Schedule glucose screening test (24-28 weeks)",
+          "0": "Schedule glucose check (24-28 weeks)",
           "1": "Eat fiber-rich foods to prevent hemorrhoids",
           "2": "Practice breathing exercises for labor",
           "3": "Buy a pregnancy support pillow for sleep",
@@ -7414,7 +7414,7 @@
           "2": "Do I need extra iron supplements?"
         },
         "checklist": {
-          "0": "Monitor blood pressure at each visit",
+          "0": "Check blood pressure at each visit",
           "1": "Eat vitamin D-rich foods or get sunshine",
           "2": "Begin perineal massage to prepare for birth",
           "3": "Set up baby's sleeping area",
@@ -7447,7 +7447,7 @@
           "2": "How do I manage skin itching?"
         },
         "checklist": {
-          "0": "Take the gestational diabetes screening test",
+          "0": "Take the glucose wellness check test",
           "1": "Eat complex carbs for sustained energy",
           "2": "Do gentle squats to prepare for labor",
           "3": "Register for breastfeeding classes",
