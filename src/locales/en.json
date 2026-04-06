@@ -35,7 +35,7 @@
     "mealSuggestionLinkDesc": "Get personalized meal suggestions for your trimester",
     "groceryListLink": "Smart Grocery List",
     "groceryListLinkDesc": "Build a pregnancy-optimized shopping list",
-    "vitaminTrackerLink": "Vitamin Tracker",
+    "vitaminTrackerLink": "My Daily Nutrition",
     "vitaminTrackerLinkDesc": "Track your daily supplement intake",
     "cravingLink": "Craving Alternatives",
     "cravingLinkDesc": "Find healthy swaps for your cravings"
@@ -53,7 +53,7 @@
     "lactationLinkDesc": "Prepare for breastfeeding with AI guidance",
     "recoveryLink": "Postpartum Recovery",
     "recoveryLinkDesc": "6-week recovery plan after birth",
-    "babySleepLink": "Baby Sleep Tracker",
+    "babySleepLink": "Baby Sleep Log",
     "babySleepLinkDesc": "Track and optimize your baby's sleep"
   },
   "videoLibrary": {
@@ -368,7 +368,7 @@
       "description": "Log and journal your contraction patterns."
     },
     "cycleTracker": {
-      "title": "Cycle Tracker",
+      "title": "My Cycle Journal",
       "description": "Smart cycle analysis with precise fertility window predictions."
     },
     "dueDateCalculator": {
@@ -417,7 +417,7 @@
       "description": "Breastfeeding preparation guide."
     },
     "babySleepTracker": {
-      "title": "Baby Sleep Tracker",
+      "title": "Baby Sleep Log",
       "description": "Sleep pattern analysis with daily and weekly statistics."
     },
     "babyGrowth": {
@@ -425,7 +425,7 @@
       "description": "Track growth with WHO charts."
     },
     "diaperTracker": {
-      "title": "Smart Diaper Tracker",
+      "title": "Smart Diaper Log",
       "description": "Smart daily diaper log with statistics and alerts."
     },
     "babyCryTranslator": {
@@ -489,9 +489,9 @@
     "trackingTools": {
       "kickCounter": "Movement Diary",
       "kickCounterDesc": "Journal baby movements",
-      "weightTracker": "Weight Tracker",
-      "weightTrackerDesc": "Monitor weight gain",
-      "vitaminTracker": "Vitamin Tracker",
+      "weightTracker": "Weight Wellness",
+      "weightTrackerDesc": "Follow your weight journey",
+      "vitaminTracker": "My Daily Nutrition",
       "vitaminTrackerDesc": "Daily supplements",
       "appointments": "Appointments",
       "appointmentsDesc": "Medical visits",
@@ -507,7 +507,7 @@
       "bumpPhotosDesc": "Educational insights",
       "babySleep": "Baby Sleep",
       "babySleepDesc": "Sleep patterns",
-      "diaperTracker": "Diaper Tracker",
+      "diaperTracker": "Diaper Log",
       "diaperTrackerDesc": "Daily changes",
       "babyCry": "Cry Guide",
       "babyCryDesc": "Understand cry patterns",
@@ -1033,7 +1033,7 @@
     "disclaimer": "This is a general guide. Always consult your care provider about dietary restrictions specific to your pregnancy."
   },
   "babySleepPage": {
-    "title": "Baby Sleep Tracker",
+    "title": "Baby Sleep Log",
     "logSleep": "Log Sleep",
     "startTime": "Start Time",
     "endTime": "End Time",
@@ -1042,8 +1042,8 @@
     "sleepLog": "Sleep Log"
   },
   "diaperPage": {
-    "title": "Diaper Tracker",
-    "subtitle": "Track your baby's diaper changes",
+    "title": "Diaper Log",
+    "subtitle": "Log your baby's diaper changes",
     "logChange": "Log Change",
     "quickAdd": "Quick Add",
     "wet": "Wet",
@@ -1633,10 +1633,10 @@
       "share": "Share",
       "save": "Save",
       "info": "Only about 5% of babies are born on their exact due date. Most are born within 2 weeks before or after. Your care provider may adjust your due date based on early scan measurements.",
-      "cycleTrackerLink": "Cycle Tracker",
+      "cycleTrackerLink": "My Cycle Journal",
       "cycleTrackerLinkDesc": "Track your menstrual cycle and get accurate predictions",
-      "fetalDevLink": "Baby Development Tracker",
-      "fetalDevLinkDesc": "Track your baby's growth week by week",
+      "fetalDevLink": "Baby Development Guide",
+      "fetalDevLinkDesc": "Log your baby's growth week by week",
       "weeklySummaryLink": "Weekly Pregnancy Insights",
       "weeklySummaryLinkDesc": "Get AI-powered weekly pregnancy updates",
       "aiGuideTitle": "AI Pregnancy Guide",
@@ -1694,7 +1694,7 @@
       "warningNoMovements": "No movements for an extended period",
       "educationalNote": "Count baby movements daily starting from week 28. Aim for 10 movements in 2 hours during your baby's active time.",
       "fetalDevLink": "Baby Development",
-      "fetalDevLinkDesc": "Track your baby's growth and development week by week",
+      "fetalDevLinkDesc": "Log your baby's growth and development week by week",
       "weeklySummaryLink": "Weekly Summary",
       "weeklySummaryLinkDesc": "Get AI-powered weekly pregnancy insights",
       "weightGainLink": "Weight Gain Guide",
@@ -1852,7 +1852,7 @@
       "chartNoSymptoms": "No symptoms logged in the last 14 days"
     },
     "vitaminTracker": {
-      "title": "Vitamin Tracker",
+      "title": "My Daily Nutrition",
       "subtitle": "Track your daily prenatal vitamins",
       "pregnancyWeek": "Pregnancy Week",
       "todaysProgress": "Today's Progress",
@@ -3196,7 +3196,7 @@
     },
     "babyGrowth": {
       "title": "Baby Growth",
-      "subtitle": "Track your baby's growth milestones",
+      "subtitle": "Log your baby's growth milestones",
       "babyAge": "Baby's Age",
       "months": "months",
       "gender": "Gender",
@@ -3249,7 +3249,7 @@
       "history": "Growth History"
     },
     "babySleep": {
-      "title": "Baby Sleep Tracker",
+      "title": "Baby Sleep Log",
       "subtitle": "AI-powered sleep pattern analysis for your baby",
       "startSleep": "Start Sleep",
       "endSleep": "End Sleep Session",
@@ -3290,7 +3290,7 @@
       "weeklyChart": "7-Day Sleep"
     },
     "diaperTracker": {
-      "title": "Diaper Tracker",
+      "title": "Diaper Log",
       "subtitle": "Log changes, track wellness",
       "logChange": "Log Change",
       "wet": "Wet",
@@ -3376,7 +3376,7 @@
       "aiRecommendations": "Get AI Recommendations"
     },
     "cycleTracker": {
-      "title": "Cycle & Ovulation Tracker",
+      "title": "My Cycle & Ovulation Journal",
       "subtitle": "Track your cycle and find your fertile days",
       "lastPeriod": "Last Period Start",
       "cycleLength": "Average Cycle Length",
@@ -3609,9 +3609,9 @@
       "weekAxis": "Week",
       "weightGainKg": "Weight Gain (kg)",
       "fetalDevLink": "Baby Development",
-      "fetalDevLinkDesc": "Track your baby's growth week by week",
+      "fetalDevLinkDesc": "Log your baby's growth week by week",
       "kickCounterLink": "Kick Counter",
-      "kickCounterLinkDesc": "Track your baby's movements",
+      "kickCounterLinkDesc": "Log your baby's movements",
       "mealSuggestionLink": "Meal Suggestions",
       "mealSuggestionLinkDesc": "Get healthy meal ideas",
       "aiAnalysisTitle": "AI Weight Analysis",
@@ -3800,7 +3800,7 @@
         "week40": "Due date!"
       },
       "kickCounterLink": "Kick Counter",
-      "kickCounterLinkDesc": "Track your baby's movements and activity patterns",
+      "kickCounterLinkDesc": "Log your baby's movements and activity patterns",
       "dueDateLink": "Due Date Calculator",
       "dueDateLinkDesc": "Calculate your expected delivery date",
       "weightGainLink": "Weight Gain Guide",
@@ -6381,7 +6381,7 @@
     "title": "Best Pregnancy Tracking App",
     "description": "Complete pregnancy app with 36+ smart tools for every stage of motherhood - from planning to postpartum. 100% free and available in 7 languages.",
     "babyGrowth": "Baby Growth Tracking",
-    "babyGrowthDesc": "Track your baby's weekly development with fruit size comparisons and milestones",
+    "babyGrowthDesc": "Log your baby's weekly development with fruit size comparisons and milestones",
     "kickCounter": "Baby Movement Diary",
     "kickCounterDesc": "Journal your baby's movements and activity patterns for peace of mind",
     "aiAssistant": "Smart Pregnancy Guide",
@@ -6597,7 +6597,7 @@
   "toolBenefits": {
     "heading": "What do I benefit from this tool?",
     "pregnancy-assistant": "Use this tool to ask any pregnancy question and get an instant answer. Read results as general wellness guidance. If you experience unusual symptoms or concerns, stop and consult your care provider immediately.",
-    "weekly-summary": "Track your baby's weekly development and understand changes in your body. Results are general educational information. If you notice any concerning changes, see your care provider.",
+    "weekly-summary": "Log your baby's weekly development and understand changes in your body. Results are general educational information. If you notice any concerning changes, see your care provider.",
     "smart-pregnancy-plan": "Plan your pregnancy journey with a personalized schedule for appointments and checkups. Consider the plan as an organizational guide. Any health concerns should be discussed with your doctor.",
     "cycle-tracker": "Track your menstrual cycle to know expected fertility windows. Results are estimates, not diagnoses. If your cycle is irregular for an extended period, consult your doctor.",
     "due-date-calculator": "Calculate your expected due date based on your last period. This is an estimate and may differ from a medical assessment. Follow up with your doctor for an accurate date.",
@@ -6628,9 +6628,9 @@
     "ai-lactation-prep": "Prepare for breastfeeding with comprehensive tips and information. Advice is general and educational. If you face breastfeeding difficulties, consult a lactation specialist.",
     "postpartum-recovery": "Track your postpartum recovery with personalized guidance. Advice is general and educational. Any unusual postpartum symptoms require immediate medical attention.",
     "baby-cry-translator": "Understand your baby's needs through cry pattern analysis. Results are intelligent guesses, not diagnoses. If crying persists abnormally, consult your pediatrician.",
-    "baby-sleep-tracker": "Track your baby's sleep to understand patterns and improve them. Data is for personal observation only. Any concerns about your baby's sleep should be discussed with your pediatrician.",
+    "baby-sleep-tracker": "Log your baby's sleep to understand patterns and improve them. Data is for personal observation only. Any concerns about your baby's sleep should be discussed with your pediatrician.",
     "baby-growth": "Monitor your baby's growth and compare with WHO standards. Measurements are general references. Regular medical check-ups are essential for growth assessment.",
-    "diaper-tracker": "Record diaper changes to monitor your baby's digestive health. Data is for personal observation. Any concerning changes in stool or urine warrant consulting your pediatrician.",
+    "diaper-tracker": "Record diaper changes to follow your baby's digestive health. Data is for personal observation. Any concerning changes in stool or urine warrant consulting your pediatrician.",
     "fertile-window": "Estimate your most fertile days based on cycle data. Results are approximate and for planning purposes only. Consult your care provider for personalized fertility guidance.",
     "fertility-academy": "A comprehensive fertility education hub with lessons, body signs, and stress management techniques. Content is for general awareness. Your doctor can provide advice specific to your situation.",
     "nutrition-supplements": "A complete guide to preconception nutrition and prenatal supplements. Dietary information and supplement details are general guidance. Consult your doctor or nutritionist for a plan tailored to your needs.",

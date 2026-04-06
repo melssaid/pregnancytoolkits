@@ -368,7 +368,7 @@
       "description": "سجّلي أنماط الانقباضات في يومياتك"
     },
     "cycleTracker": {
-      "title": "متتبع الدورة",
+      "title": "يوميات دورتي",
       "description": "تحليل ذكي للدورة مع توقعات دقيقة لأيام الخصوبة"
     },
     "dueDateCalculator": {
@@ -417,7 +417,7 @@
       "description": "دليل تحضير الرضاعة الطبيعية"
     },
     "babySleepTracker": {
-      "title": "متتبع نوم الطفل",
+      "title": "سجل نوم الطفل",
       "description": "تحليل أنماط النوم مع إحصائيات يومية وأسبوعية"
     },
     "babyGrowth": {
@@ -425,7 +425,7 @@
       "description": "تتبع النمو بمخططات WHO"
     },
     "diaperTracker": {
-      "title": "متتبع الحفاضات الذكي",
+      "title": "سجل الحفاضات الذكي",
       "description": "سجل يومي ذكي للحفاضات مع إحصائيات وتنبيهات"
     },
     "babyCryTranslator": {

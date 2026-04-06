@@ -310,7 +310,7 @@
       "title": "Guía de confort para la espalda",
       "description": "Ejercicios personalizados para el confort de la espalda en el embarazo."
     },
-    "vitaminTracker": {
+    "vitaminLog": {
       "title": "Mi Nutrición Diaria",
       "description": "Calendario de vitaminas y suplementos con análisis de cumplimiento diario."
     },
@@ -342,8 +342,8 @@
       "title": "Diario de contracciones",
       "description": "Registra tus patrones de contracciones."
     },
-    "cycleTracker": {
-      "title": "Rastreador de ciclo",
+    "cycleLog": {
+      "title": "Mi Diario de Ciclo",
       "description": "Análisis inteligente del ciclo con predicciones precisas de fertilidad."
     },
     "dueDateCalculator": {
@@ -391,16 +391,16 @@
       "title": "Guía inteligente de lactancia",
       "description": "Guía de preparación para la lactancia."
     },
-    "babySleepTracker": {
-      "title": "Seguimiento del sueño del bebé",
+    "babySleepLog": {
+      "title": "Registro de Sueño del Bebé",
       "description": "Análisis de patrones de sueño con estadísticas diarias y semanales."
     },
     "babyGrowth": {
       "title": "Crecimiento inteligente del bebé",
       "description": "Rastrea el crecimiento con gráficos OMS."
     },
-    "diaperTracker": {
-      "title": "Rastreador inteligente de pañales",
+    "diaperLog": {
+      "title": "Registro de Pañales",
       "description": "Registro diario inteligente de pañales con estadísticas y alertas."
     },
     "babyCryTranslator": {
@@ -464,9 +464,9 @@
     "trackingTools": {
       "kickCounter": "Diario de movimientos",
       "kickCounterDesc": "Registra movimientos del bebé",
-      "weightTracker": "Seguimiento de peso",
+      "weightLog": "Seguimiento de peso",
       "weightTrackerDesc": "Monitorea aumento de peso",
-      "vitaminTracker": "Seguimiento de vitaminas",
+      "vitaminLog": "Seguimiento de vitaminas",
       "vitaminTrackerDesc": "Suplementos diarios",
       "appointments": "Citas",
       "appointmentsDesc": "Visitas médicas",
@@ -482,7 +482,7 @@
       "bumpPhotosDesc": "Fotos semanales",
       "babySleep": "Sueño del bebé",
       "babySleepDesc": "Patrones de sueño",
-      "diaperTracker": "Seguimiento de pañales",
+      "diaperLog": "Seguimiento de pañales",
       "diaperTrackerDesc": "Cambios diarios",
       "babyCry": "Guía de llanto",
       "babyCryDesc": "Comprender patrones de llanto",
@@ -1826,7 +1826,7 @@
       "chartTimes": "veces",
       "chartNoSymptoms": "No se registraron síntomas en los últimos 14 días"
     },
-    "vitaminTracker": {
+    "vitaminLog": {
       "title": "Seguimiento de Vitaminas",
       "subtitle": "Controla tus vitaminas prenatales diarias",
       "pregnancyWeek": "Semana de Embarazo",
@@ -2870,7 +2870,7 @@
         "newbornCare": "Cuidado del recién nacido"
       }
     },
-    "laborTracker": {
+    "laborLog": {
       "title": "Diario de contracciones",
       "subtitle": "Registra tus patrones de contracciones",
       "startContraction": "Iniciar contracción",
@@ -3264,7 +3264,7 @@
       "analyzing": "Analizando...",
       "weeklyChart": "Sueño 7 días"
     },
-    "diaperTracker": {
+    "diaperLog": {
       "title": "Seguimiento de Pañales",
       "subtitle": "Registra cambios, monitorea la salud",
       "logChange": "Registrar Cambio",
@@ -3350,7 +3350,7 @@
       "totalEstimate": "Costo Total Estimado",
       "aiRecommendations": "Obtener Recomendaciones IA"
     },
-    "cycleTracker": {
+    "cycleLog": {
       "title": "Diario del ciclo",
       "subtitle": "Rastrea tu ciclo y encuentra tus días fértiles",
       "lastPeriod": "Inicio de Última Menstruación",
@@ -5868,7 +5868,7 @@
       "cottageCheeseBowl": "Cottage Cheese Bowl"
     }
   },
-  "vitaminTracker": {
+  "vitaminLog": {
     "subtitle": "Sigue tus vitaminas prenatales diarias",
     "pregnancyWeek": "Semana de embarazo",
     "todaysProgress": "Progreso de hoy",
