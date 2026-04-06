@@ -85,17 +85,17 @@
     "allTools": "Alle Tools",
     "toolsAvailable": "{{count}} Tools verfügbar",
     "noToolsFound": "Keine passenden Tools gefunden.",
-    "medicalDisclaimer": "Diese Tools dienen nur zur Information. Konsultieren Sie immer Ihren Arzt.",
+    "medicalDisclaimer": "✦ Bildungs-Wellness-Begleiter · Kein Medizinprodukt · Konsultieren Sie Ihren Arzt",
     "footer": "Nur zu Informationszwecken. Konsultieren Sie immer Ihren Arzt.",
     "back": "Zurück",
     "allToolsBtn": "Alle Tools"
   },
   "ai": {
-    "resultDisclaimer": "KI-generiert • Konsultieren Sie Ihren Arzt"
+    "resultDisclaimer": "✦ Bildungsinhalte · Keine medizinische Beratung · Konsultieren Sie Ihren Arzt"
   },
   "compliance": {
-    "disclaimerCompact": "Nur zu Informationszwecken. Konsultieren Sie Ihren Arzt.",
-    "disclaimerFull": "Dieses Tool bietet allgemeine Hinweise. Konsultieren Sie immer Ihren Arzt für medizinische Beratung."
+    "disclaimerCompact": "✦ Nur zu Bildungszwecken · Konsultieren Sie Ihren Arzt",
+    "disclaimerFull": "✦ Dieses Tool bietet nur Bildungshinweise. Es ersetzt keine professionelle Betreuung."
   },
   "categories": {
     "all": "Alle",

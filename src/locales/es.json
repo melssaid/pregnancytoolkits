@@ -85,17 +85,17 @@
     "allTools": "Todas las herramientas",
     "toolsAvailable": "{{count}} herramientas disponibles",
     "noToolsFound": "No se encontraron herramientas.",
-    "medicalDisclaimer": "Estas herramientas son solo informativas. Consulta siempre a tu médico.",
+    "medicalDisclaimer": "✦ Compañero de bienestar educativo · No es un dispositivo médico · Consulte a su proveedor",
     "footer": "Solo con fines informativos. Consulta siempre a tu médico.",
     "back": "Volver",
     "allToolsBtn": "Todas las herramientas"
   },
   "ai": {
-    "resultDisclaimer": "Generado por IA • Consulta a tu médico"
+    "resultDisclaimer": "✦ Contenido educativo · No es consejo médico · Consulte a su proveedor de salud"
   },
   "compliance": {
-    "disclaimerCompact": "Solo con fines informativos. Consulta a tu profesional de salud.",
-    "disclaimerFull": "Esta herramienta proporciona orientación general. Consulta siempre a tu profesional de salud para asesoramiento médico."
+    "disclaimerCompact": "✦ Solo con fines educativos · Consulte a su proveedor de salud",
+    "disclaimerFull": "✦ Esta herramienta ofrece orientación educativa solamente. No reemplaza la atención profesional."
   },
   "categories": {
     "all": "Todo",

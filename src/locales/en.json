@@ -85,17 +85,17 @@
     "allTools": "All Tools",
     "toolsAvailable": "{{count}} tools available",
     "noToolsFound": "No tools found matching your search.",
-    "medicalDisclaimer": "These tools are for informational purposes only. Always consult your care provider.",
+    "medicalDisclaimer": "✦ Educational wellness companion · Not a medical device · Always consult your care provider",
     "footer": "For informational purposes only. Always consult your care provider.",
     "back": "Back",
     "allToolsBtn": "All Tools"
   },
   "ai": {
-    "resultDisclaimer": "AI-generated • Consult your doctor"
+    "resultDisclaimer": "✦ Educational content · Not medical advice · Always consult your provider"
   },
   "compliance": {
-    "disclaimerCompact": "For informational purposes only. Consult your care provider.",
-    "disclaimerFull": "This tool provides general guidance. Always consult your care provider for medical advice."
+    "disclaimerCompact": "✦ For educational purposes only · Consult your care provider",
+    "disclaimerFull": "✦ This tool provides educational guidance only. It does not replace professional care. Always consult your provider."
   },
   "categories": {
     "all": "All",

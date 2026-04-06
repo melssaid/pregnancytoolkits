@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { motion } from "framer-motion";
-import { Lightbulb } from "lucide-react";
+import { Lightbulb, ShieldCheck } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { BackButton } from "./BackButton";
@@ -300,16 +300,19 @@ export function ToolFrame({
         </section>
 
 
-        {/* Minimal Footer Disclaimer */}
+        {/* Elegant Footer Disclaimer */}
         <motion.footer
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.7 }}
           className="px-4 sm:px-6 pb-8"
         >
-          <p className="text-[8px] text-muted-foreground/40 text-center tracking-wide leading-relaxed">
-            {t('app.medicalDisclaimer')}
-          </p>
+          <div className="flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-muted/15 border border-border/25">
+            <ShieldCheck className="w-3 h-3 text-muted-foreground/40 flex-shrink-0" />
+            <p className="text-[8px] text-muted-foreground/50 font-medium text-center tracking-wide leading-relaxed">
+              {t('app.medicalDisclaimer')}
+            </p>
+          </div>
         </motion.footer>
 
 

@@ -85,17 +85,17 @@
     "allTools": "Tüm Araçlar",
     "toolsAvailable": "{{count}} araç mevcut",
     "noToolsFound": "Aramanıza uygun araç bulunamadı.",
-    "medicalDisclaimer": "Bu araçlar yalnızca bilgi amaçlıdır. Her zaman sağlık uzmanınıza danışın.",
+    "medicalDisclaimer": "✦ Eğitim amaçlı sağlık arkadaşı · Tıbbi cihaz değildir · Sağlık uzmanınıza danışın",
     "footer": "Yalnızca bilgi amaçlıdır. Her zaman sağlık uzmanınıza danışın.",
     "back": "Geri",
     "allToolsBtn": "Tüm Araçlar"
   },
   "ai": {
-    "resultDisclaimer": "Yapay zeka ile üretildi • Doktorunuza danışın"
+    "resultDisclaimer": "✦ Eğitim içeriği · Tıbbi tavsiye değildir · Her zaman sağlık uzmanınıza danışın"
   },
   "compliance": {
-    "disclaimerCompact": "Yalnızca bilgi amaçlıdır. Sağlık uzmanınıza danışın.",
-    "disclaimerFull": "Bu araç genel rehberlik sağlar. Tıbbi tavsiye için her zaman sağlık uzmanınıza danışın."
+    "disclaimerCompact": "✦ Yalnızca eğitim amaçlıdır · Sağlık uzmanınıza danışın",
+    "disclaimerFull": "✦ Bu araç yalnızca eğitim rehberliği sunar. Profesyonel bakımın yerini almaz."
   },
   "categories": {
     "all": "Tümü",
