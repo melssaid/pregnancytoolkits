@@ -3134,7 +3134,7 @@
       "addAppointment": "Agregar Cita",
       "appointmentType": "Tipo de Cita",
       "checkup": "Control Regular",
-      "ultrasound": "Ecografía",
+      "scan": "Ecografía",
       "bloodTest": "Análisis de Sangre",
       "glucoseTest": "Prueba de Glucosa",
       "other": "Otro",

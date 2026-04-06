@@ -65,7 +65,7 @@ export const toolTopicMap: Record<string, string[]> = {
   // Pregnancy tracking
   "due-date": [
     "how only 5% of babies arrive on their due date",
-    "why due dates calculated from ultrasound differ from LMP",
+    "why due dates calculated from early scan differ from LMP",
     "a tip about preparing a flexible birth timeline",
     "how the baby decides when labor starts",
   ],

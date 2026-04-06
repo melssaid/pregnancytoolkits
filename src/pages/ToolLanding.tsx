@@ -19,7 +19,7 @@ const toolSEO: Record<string, { h1: string; desc: string; longDesc: string; keyw
     longDesc: "Our due date calculator uses Naegele's rule — the same method used by healthcare providers worldwide. Enter your last menstrual period (LMP) date or IVF transfer date, and get an instant estimated delivery date along with trimester milestones, important checkup dates, and a week-by-week pregnancy timeline.",
     keywords: "due date calculator, pregnancy due date, estimated delivery date, EDD calculator, pregnancy calculator",
     faqs: [
-      { q: "How accurate is a due date calculator?", a: "Due date calculators use Naegele's rule to estimate delivery within a 2-week window. Only about 5% of babies arrive on the exact due date. Your healthcare provider may adjust the date based on ultrasound measurements." },
+      { q: "How accurate is a due date calculator?", a: "Due date calculators use Naegele's rule to estimate delivery within a 2-week window. Only about 5% of babies arrive on the exact due date. Your healthcare provider may adjust the date based on early scan measurements." },
       { q: "Can I calculate my due date from IVF transfer?", a: "Yes. Our calculator supports both LMP-based and IVF transfer date calculations. For IVF, we adjust the calculation based on whether you had a Day 3 or Day 5 transfer." },
     ],
   },
@@ -278,9 +278,9 @@ const toolSEO: Record<string, { h1: string; desc: string; longDesc: string; keyw
   },
   "smart-appointment-reminder": {
     h1: "Pregnancy Appointment Reminder — Never Miss a Checkup",
-    desc: "Track prenatal appointments, ultrasounds, and lab tests with smart reminders. AI schedules recommended checkups based on your pregnancy timeline.",
-    longDesc: "Stay on top of your prenatal care with our Smart Appointment Reminder. The AI automatically suggests recommended checkups, ultrasounds, glucose tests, and lab work based on standard prenatal care guidelines and your pregnancy timeline. Set reminders, add notes from visits, and track questions to ask your provider.",
-    keywords: "prenatal appointment tracker, pregnancy checkup schedule, ultrasound schedule pregnancy, pregnancy appointment reminder, prenatal care timeline",
+    desc: "Track prenatal appointments and lab tests with smart reminders. AI schedules recommended checkups based on your pregnancy timeline.",
+    longDesc: "Stay on top of your prenatal care with our Smart Appointment Reminder. The AI automatically suggests recommended checkups, glucose tests, and lab work based on standard prenatal care guidelines and your pregnancy timeline. Set reminders, add notes from visits, and track questions to ask your provider.",
+    keywords: "prenatal appointment tracker, pregnancy checkup schedule, pregnancy photo timeline, pregnancy appointment reminder, prenatal care timeline",
     faqs: [
       { q: "How often should I see my doctor during pregnancy?", a: "Standard prenatal visit schedule: monthly until week 28, every 2 weeks from weeks 28-36, then weekly until delivery. High-risk pregnancies may require more frequent visits." },
     ],

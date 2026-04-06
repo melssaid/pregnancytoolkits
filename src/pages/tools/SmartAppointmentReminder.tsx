@@ -31,7 +31,7 @@ interface Appointment {
 
 const APPOINTMENT_TYPES = [
   { key: 'checkup',     icon: Stethoscope, color: 'bg-primary/10 text-primary' },
-  { key: 'ultrasound',  icon: Baby,        color: 'bg-accent/20 text-accent-foreground' },
+  { key: 'checkup',  icon: Baby,        color: 'bg-accent/20 text-accent-foreground' },
   { key: 'bloodTest',   icon: TestTube,    color: 'bg-destructive/10 text-destructive' },
   { key: 'glucoseTest', icon: Activity,    color: 'bg-secondary text-secondary-foreground' },
   { key: 'other',       icon: Calendar,    color: 'bg-muted text-muted-foreground' },
@@ -346,7 +346,7 @@ Format as a numbered list (1-5), one question per line. Be concise and relevant.
 
   const getAppointmentIcon = (title: string) => {
     const lowerTitle = title.toLowerCase();
-    if (lowerTitle.includes('ultrasound') || lowerTitle.includes('سونار') || lowerTitle.includes('ultrason')) {
+    if (lowerTitle.includes('checkup') || lowerTitle.includes('فحص') || lowerTitle.includes('ultrason')) {
       return APPOINTMENT_TYPES[1];
     }
     if (lowerTitle.includes('blood') || lowerTitle.includes('دم') || lowerTitle.includes('blut')) {

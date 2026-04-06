@@ -31,7 +31,7 @@ interface SubscriptionStatus {
  * Keep this list small to maximize trial value.
  */
 const PREMIUM_ONLY_TOOL_IDS = new Set([
-  "fetal-growth",            // سونار / Ultrasound fetal tracking
+  "fetal-growth",            // Baby growth tracking
   "smart-pregnancy-plan",    // AI Smart Plan
   "ai-bump-photos",          // AI Bump Photo analysis
   "baby-cry-translator",     // AI Baby Cry Translator

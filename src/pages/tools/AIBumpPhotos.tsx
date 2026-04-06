@@ -60,7 +60,7 @@ const AIBumpPhotos: React.FC = () => {
   const abortRef = useRef(false);
   const { toast } = useToast();
   const { sendChat, isLoading: isSmartLoading } = useSmartChat({
-    section: "ultrasound",
+    section: "bump-photos",
     toolType: "bump-photos",
   });
   const { isLimitReached, remaining } = useAIUsage();
@@ -219,10 +219,10 @@ const AIBumpPhotos: React.FC = () => {
       const previousPhoto = photos.find(p => p.week < photo.week);
       
       const textPrompt = previousPhoto 
-        ? `I am in week ${photo.week} of pregnancy (previous ultrasound was at week ${previousPhoto.week}). Please analyze this ultrasound (sonogram) image and provide educational observations about what is visible, baby's development at this stage, and any notable features.`
-        : `I am in week ${photo.week} of pregnancy. Please analyze this ultrasound (sonogram) image and provide educational observations about what is visible, baby's development at this stage, and any notable features.`;
+        ? `I am in week ${photo.week} of pregnancy (previous photo was at week ${previousPhoto.week}). Please analyze this bump photo and provide educational observations about what is visible, baby's development at this stage, and any notable features.`
+        : `I am in week ${photo.week} of pregnancy. Please analyze this bump photo and provide educational observations about what is visible, baby's development at this stage, and any notable features.`;
 
-      // Build multimodal message with ultrasound image
+      // Build multimodal message with bump photo
       const messageContent: ChatMessage = {
         role: 'user',
         content: [

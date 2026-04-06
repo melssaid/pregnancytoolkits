@@ -4,7 +4,7 @@
  * Local-first with server sync capability.
  * 
  * FREE: 5 attempts/month | PREMIUM: 60 attempts/month
- * Weights: standard=1, ultrasound image=2, lightweight=0.5
+ * Weights: standard=1, bump photo=2, lightweight=0.5
  */
 
 import { QUOTA_TIERS, type InsightWeight, type QuotaState } from "./types";
