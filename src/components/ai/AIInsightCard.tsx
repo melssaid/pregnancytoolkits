@@ -93,7 +93,7 @@ const AITYPE_TO_SECTION: Record<string, SmartSection> = {
   'mental-health': 'mental-wellbeing',
   'back-pain-relief': 'movement',
   'appointment-prep': 'appointments',
-  'bump-photos': 'ultrasound',
+  'bump-photos': 'checkup',
   'baby-cry-analysis': 'postpartum',
   'birth-plan': 'pregnancy-plan',
   'baby-growth-analysis': 'pregnancy-plan',
