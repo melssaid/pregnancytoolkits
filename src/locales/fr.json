@@ -351,12 +351,12 @@
       "description": "Découvrez quand votre bébé arrivera."
     },
     "fetalGrowth": {
-      "title": "Suivi de la croissance fœtale",
-      "description": "Graphique interactif de croissance fœtale avec comparaisons hebdomadaires."
+      "title": "Suivi de la croissance du bébée",
+      "description": "Graphique interactif de croissance du bébée avec comparaisons hebdomadaires."
     },
     "kickCounter": {
       "title": "Suivi des coups de pied fœtaux",
-      "description": "Compteur intelligent avec analyse quotidienne de l'activité fœtale."
+      "description": "Compteur intelligent avec analyse quotidienne de l'activité du bébée."
     },
     "weightGain": {
       "title": "Analyse du poids de grossesse",
@@ -474,7 +474,7 @@
       "birthPlanDesc": "Préférences d'accouchement",
       "hospitalBag": "Sac d'hôpital",
       "hospitalBagDesc": "Liste de préparation",
-      "fetalGrowth": "Croissance fœtale",
+      "fetalGrowth": "Croissance du bébé",
       "fetalGrowthDesc": "Développement du bébé",
       "babyGrowth": "Croissance du bébé",
       "babyGrowthDesc": "Suivi postnatal",
@@ -1343,7 +1343,7 @@
       "differentWeek": "Changer la semaine",
       "refresh": "Actualiser",
       "trackTip": "Suivez votre semaine pour obtenir des informations personnalisées sur la croissance de votre bébé et les changements de votre corps",
-      "fetalDevLink": "Fetal Development",
+      "fetalDevLink": "Bébé Development",
       "fetalDevLinkDesc": "See your baby's size and development this week",
       "kickCounterLink": "Kick Counter",
       "kickCounterLinkDesc": "Track and journal your baby's movements",
@@ -1610,7 +1610,7 @@
       "info": "Seulement environ 5% des bébés naissent à la date prévue. La plupart naissent dans les 2 semaines avant ou après.",
       "cycleTrackerLink": "Suivi du cycle menstruel",
       "cycleTrackerLinkDesc": "Suivez votre cycle menstruel et obtenez des prédictions précises",
-      "fetalDevLink": "Développement fœtal",
+      "fetalDevLink": "Développement du bébé",
       "fetalDevLinkDesc": "Suivez la croissance de votre bébé semaine par semaine",
       "weeklySummaryLink": "Résumé hebdomadaire",
       "weeklySummaryLinkDesc": "Obtenez des mises à jour hebdomadaires intelligentes",
@@ -1668,7 +1668,7 @@
       "warningDecrease": "Diminution significative de l'activité habituelle",
       "warningNoMovements": "Aucun mouvement ressenti depuis plusieurs heures",
       "educationalNote": "Les bébés sont plus actifs entre 21h et 1h. Comptez à la même heure chaque jour.",
-      "fetalDevLink": "Développement fœtal",
+      "fetalDevLink": "Développement du bébé",
       "fetalDevLinkDesc": "Suivez la croissance et le développement de votre bébé",
       "weeklySummaryLink": "Résumé hebdomadaire",
       "weeklySummaryLinkDesc": "Obtenez des informations hebdomadaires intelligentes",
@@ -3583,7 +3583,7 @@
       "yourWeight": "Votre poids",
       "weekAxis": "Semaine",
       "weightGainKg": "Prise de poids (kg)",
-      "fetalDevLink": "Développement fœtal",
+      "fetalDevLink": "Développement du bébé",
       "fetalDevLinkDesc": "Croissance du bébé semaine par semaine",
       "kickCounterLink": "Compteur de coups",
       "kickCounterLinkDesc": "Suivre les mouvements du bébé",
@@ -6362,7 +6362,7 @@
     "kickCounterDesc": "Enregistrez les mouvements du bébé et surveillez les schémas d'activité",
     "aiAssistant": "Guide Intelligent de Grossesse",
     "aiAssistantDesc": "Obtenez des réponses instantanées d'un guide IA spécialisé en grossesse",
-    "maternalHealth": "Santé maternelle et fœtale",
+    "maternalHealth": "Santé maternelle et du bébée",
     "maternalHealthDesc": "Conseils quotidiens personnalisés pour la nutrition, l'exercice et les soins",
     "contractionTimer": "Minuteur de contractions",
     "contractionTimerDesc": "Mesure précise du timing des contractions",
@@ -6725,7 +6725,7 @@
       "daysRemaining": "{{days}} jours restants"
     },
     "sections": {
-      "fetalDev": "Développement fœtal",
+      "fetalDev": "Développement du bébé",
       "bodyChanges": "Changements corporels",
       "nutrition": "Focus nutrition",
       "mentalWellness": "Bien-être mental",
@@ -7684,7 +7684,7 @@
         "doctorQ": {
           "0": "Quelle taille et quel poids fait le bébé ?",
           "1": "Le volume de liquide amniotique est-il suffisant ?",
-          "2": "Ai-je besoin d'un monitoring fœtal ?"
+          "2": "Ai-je besoin d'un monitoring du bébé ?"
         },
         "checklist": {
           "0": "Surveillez les signes d'accouchement prématuré",
@@ -7716,7 +7716,7 @@
         "mentalTip": "Discutez du projet de naissance avec votre partenaire",
         "doctorQ": {
           "0": "Que faire contre les douleurs sciatiques ?",
-          "1": "À quelle fréquence le monitoring fœtal ?",
+          "1": "À quelle fréquence le monitoring du bébé ?",
           "2": "Que se passe-t-il si le bébé est en siège ?"
         },
         "checklist": {
