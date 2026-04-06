@@ -2498,13 +2498,13 @@
       "clickRefresh": "Click \"Re-analyze\" for educational AI notes",
       "journeyTimeline": "Photo History",
       "photoTipsTitle": "Tips for Better Bump Photos",
-      "photoTip1": "Photograph the ultrasound screen directly without flash for better clarity",
+      "photoTip1": "Photograph the screen directly without flash for better clarity",
       "photoTip2": "Make sure the week and date info is visible in the image",
       "photoTip3": "Take the photo straight without tilting",
       "photoTip4": "Keep the original printed bump photos in a safe place",
       "errorSelectImage": "Please select an image file",
       "errorTooLarge": "Image too large. Maximum size is 10MB",
-      "photoSavedDesc": "Week {{week}} ultrasound stored locally on your device",
+      "photoSavedDesc": "Week {{week}} bump photo stored locally on your device",
       "captionUpdated": "Note Updated",
       "captionUpdatedDesc": "Your scan note has been saved",
       "loadingError": "Loading Error",
@@ -4525,7 +4525,7 @@
         },
         "whenToSeekHelp": {
           "title": "When to Consult a Specialist",
-          "content": "Consider seeking professional fertility guidance if:\n\n• You're under 35 and have been trying for 12 months without success.\n• You're 35–39 and have been trying for 6 months.\n• You're 40 or older — consult early, as time is a factor.\n• You have irregular or absent periods.\n• You have a known condition: endometriosis, PCOS, thyroid disorder, or previous pelvic surgery.\n• You've experienced recurrent miscarriages (2 or more).\n• Your partner has known fertility concerns.\n\nA fertility specialist can run tests (hormone panels, ultrasound, semen analysis) and discuss options ranging from lifestyle changes to assisted reproduction."
+          "content": "Consider seeking professional fertility guidance if:\n\n• You're under 35 and have been trying for 12 months without success.\n• You're 35–39 and have been trying for 6 months.\n• You're 40 or older — consult early, as time is a factor.\n• You have irregular or absent periods.\n• You have a known condition: endometriosis, PCOS, thyroid disorder, or previous pelvic surgery.\n• You've experienced recurrent miscarriages (2 or more).\n• Your partner has known fertility concerns.\n\nA fertility specialist can run tests (hormone panels, scans, semen analysis) and discuss options ranging from lifestyle changes to assisted reproduction."
         },
         "maleFertility": {
           "title": "Male Fertility Essentials",
@@ -6816,7 +6816,7 @@
         "mentalTip": "Talk to your partner about your feelings — sharing eases anxiety",
         "doctorQ": {
           "0": "How do I manage severe nausea?",
-          "1": "When is my first ultrasound?",
+          "1": "When is my first scan?",
           "2": "Are my current medications safe?"
         },
         "checklist": {
@@ -6919,7 +6919,7 @@
           "2": "Is intimacy safe?"
         },
         "checklist": {
-          "0": "Schedule your dating ultrasound",
+          "0": "Schedule your first scan",
           "1": "Increase fiber intake to prevent constipation",
           "2": "Stay active with gentle walks",
           "3": "Moisturize your belly to prevent stretch marks",
@@ -6952,7 +6952,7 @@
           "2": "How do I handle extreme fatigue?"
         },
         "checklist": {
-          "0": "Attend your dating ultrasound",
+          "0": "Attend your first scan",
           "1": "Begin researching birthing options",
           "2": "Eat iron-rich foods (spinach, lentils)",
           "3": "Avoid hot tubs and saunas",
@@ -6980,7 +6980,7 @@
         "mentalAffirmation": "One-third done! You're amazing",
         "mentalTip": "Share your joy with loved ones — social support is important",
         "doctorQ": {
-          "0": "What does the latest ultrasound show?",
+          "0": "What did the latest checkup show?",
           "1": "Is the baby developing normally?",
           "2": "When can I know the gender?"
         },
@@ -7117,7 +7117,7 @@
           "2": "How do I manage back pain?"
         },
         "checklist": {
-          "0": "Schedule mid-pregnancy ultrasound (18-20 weeks)",
+          "0": "Schedule mid-pregnancy scan (18-20 weeks)",
           "1": "Start doing prenatal yoga or swimming",
           "2": "Eat vitamin C-rich fruits daily",
           "3": "Monitor weight gain — aim for steady increase",
@@ -7642,7 +7642,7 @@
         "doctorQ": {
           "0": "Is the baby in the right position?",
           "1": "What are pain relief options for labor?",
-          "2": "Do I need another ultrasound?"
+          "2": "Do I need another checkup?"
         },
         "checklist": {
           "0": "Continue biweekly prenatal checkups",

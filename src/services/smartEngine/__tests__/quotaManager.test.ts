@@ -26,7 +26,7 @@ describe('quotaManager', () => {
     expect(state.remaining).toBe(4);
   });
 
-  it('consumes quota with weight 2 (ultrasound)', () => {
+  it('consumes quota with weight 2 (bump-photos)', () => {
     consumeQuota(2);
     const state = getQuotaState();
     expect(state.used).toBe(2);
@@ -155,7 +155,7 @@ describe('resolveWeight', () => {
   });
 
   it('resolves weight from section when no toolType', () => {
-    expect(resolveWeight(undefined, 'ultrasound')).toBe(2); // maps to bump-photos
+    expect(resolveWeight(undefined, 'bump-photos')).toBe(2); // maps to bump-photos
   });
 
   it('resolves weight from section for standard sections', () => {

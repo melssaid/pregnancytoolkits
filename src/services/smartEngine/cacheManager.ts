@@ -7,7 +7,7 @@
  * - daily_insight_<section>_<date>
  * - section_insight_<section>_<contentHash>_<date>
  * - kick_analysis_<contentHash>_<date>
- * - ultrasound_summary_<contentHash>
+ * - bump_photo_summary_<contentHash>
  */
 
 import type { CacheEntry, SmartSection } from "./types";
@@ -21,7 +21,7 @@ const SECTION_TTL: Partial<Record<SmartSection, number>> = {
   "kick-analysis": 2 * 60 * 60 * 1000,    // 2 hours — movement patterns change
   "symptoms": 2 * 60 * 60 * 1000,          // 2 hours
   "weight": 24 * 60 * 60 * 1000,           // 24 hours — weight doesn't change fast
-  "ultrasound": 7 * 24 * 60 * 60 * 1000,   // 7 days — ultrasound results are stable
+  "bump-photos": 7 * 24 * 60 * 60 * 1000,   // 7 days — bump photo results are stable
   "medications": 24 * 60 * 60 * 1000,      // 24 hours
   "appointments": 12 * 60 * 60 * 1000,     // 12 hours
   "nutrition": 6 * 60 * 60 * 1000,         // 6 hours

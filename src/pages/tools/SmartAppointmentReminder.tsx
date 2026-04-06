@@ -346,7 +346,7 @@ Format as a numbered list (1-5), one question per line. Be concise and relevant.
 
   const getAppointmentIcon = (title: string) => {
     const lowerTitle = title.toLowerCase();
-    if (lowerTitle.includes('checkup') || lowerTitle.includes('سونار') || lowerTitle.includes('ultrason')) {
+    if (lowerTitle.includes('checkup') || lowerTitle.includes('فحص') || lowerTitle.includes('ultrason')) {
       return APPOINTMENT_TYPES[1];
     }
     if (lowerTitle.includes('blood') || lowerTitle.includes('دم') || lowerTitle.includes('blut')) {

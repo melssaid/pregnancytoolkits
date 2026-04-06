@@ -17,7 +17,7 @@ export type SmartSection =
   | "postpartum"
   | "lab-checks"
   | "safety"
-  | "ultrasound"
+  | "bump-photos-legacy"
   | "kick-analysis";
 
 // ── AI Tool Types (maps to edge function types) ──
@@ -47,7 +47,7 @@ export const SECTION_TOOL_MAP: Record<SmartSection, AIToolType> = {
   "postpartum": "postpartum-recovery",
   "lab-checks": "pregnancy-assistant",
   "safety": "symptom-analysis",
-  "ultrasound": "bump-photos",
+  "bump-photos-legacy": "bump-photos",
   "kick-analysis": "kick-analysis",
 };
 
@@ -80,7 +80,7 @@ export const TOOL_WEIGHT_REGISTRY: Record<AIToolType, InsightWeight> = {
   "sleep-meditation": 0.5,    // sub-action of Pregnancy Comfort
   "sleep-routine": 0.5,       // sub-action of Pregnancy Comfort
   "vitamin-advice": 0.5,        // quick vitamin tips
-  "bump-photos": 2,           // ultrasound image analysis — higher cost
+  "bump-photos": 2,           // bump photo analysis — higher cost
   "baby-cry-analysis": 0.5,     // quick cry classification
   "postpartum-recovery": 1,
   "hospital-bag": 1,
