@@ -343,7 +343,7 @@
       "description": "Protokollieren Sie Ihre Kontraktionsmuster."
     },
     "cycleTracker": {
-      "title": "Zyklus-Tracker",
+      "title": "Mein Zyklus-Tagebuch",
       "description": "Intelligente Zyklusanalyse mit präzisen Fruchtbarkeitsprognosen."
     },
     "dueDateCalculator": {
@@ -392,7 +392,7 @@
       "description": "Stillvorbereitungsanleitung."
     },
     "babySleepTracker": {
-      "title": "Baby-Schlaf-Tracker",
+      "title": "Baby-Schlaf-Protokoll",
       "description": "Schlafmusteranalyse mit täglichen und wöchentlichen Statistiken."
     },
     "babyGrowth": {
@@ -400,7 +400,7 @@
       "description": "Verfolgen Sie das Wachstum mit WHO-Diagrammen."
     },
     "diaperTracker": {
-      "title": "Intelligenter Windel-Tracker",
+      "title": "Windel-Protokoll",
       "description": "Intelligentes Windelprotokoll mit Statistiken und Benachrichtigungen."
     },
     "babyCryTranslator": {

@@ -343,7 +343,7 @@
       "description": "Consignez vos schémas de contractions."
     },
     "cycleTracker": {
-      "title": "Tracker de cycle",
+      "title": "Mon Journal de Cycle",
       "description": "Analyse intelligente du cycle avec prédictions précises de fertilité."
     },
     "dueDateCalculator": {
@@ -392,7 +392,7 @@
       "description": "Guide de préparation à l'allaitement."
     },
     "babySleepTracker": {
-      "title": "Suivi du sommeil bébé",
+      "title": "Journal de Sommeil Bébé",
       "description": "Analyse des habitudes de sommeil avec statistiques quotidiennes et hebdomadaires."
     },
     "babyGrowth": {
@@ -400,7 +400,7 @@
       "description": "Suivez la croissance avec les courbes OMS."
     },
     "diaperTracker": {
-      "title": "Suivi intelligent des couches",
+      "title": "Journal de Couches",
       "description": "Journal quotidien intelligent des couches avec statistiques et alertes."
     },
     "babyCryTranslator": {

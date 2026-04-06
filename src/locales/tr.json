@@ -343,7 +343,7 @@
       "description": "Kasılma düzenlerinizi kaydedin."
     },
     "cycleTracker": {
-      "title": "Döngü Takipçisi",
+      "title": "Döngü Günlüğüm",
       "description": "Hassas doğurganlık tahminleriyle akıllı döngü analizi."
     },
     "dueDateCalculator": {
@@ -392,7 +392,7 @@
       "description": "Emzirme hazırlık rehberi."
     },
     "babySleepTracker": {
-      "title": "Bebek Uyku Takibi",
+      "title": "Bebek Uyku Günlüğü",
       "description": "Günlük ve haftalık istatistiklerle uyku düzeni analizi."
     },
     "babyGrowth": {
@@ -400,7 +400,7 @@
       "description": "WHO grafikleriyle büyümeyi takip edin."
     },
     "diaperTracker": {
-      "title": "Akıllı Bez Takibi",
+      "title": "Bez Günlüğü",
       "description": "İstatistikler ve uyarılarla akıllı günlük bez kaydı."
     },
     "babyCryTranslator": {

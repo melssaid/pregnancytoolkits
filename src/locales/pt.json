@@ -343,7 +343,7 @@
       "description": "Registre seus padrões de contrações."
     },
     "cycleTracker": {
-      "title": "Rastreador de ciclo",
+      "title": "Meu Diário de Ciclo",
       "description": "Análise inteligente do ciclo com previsões precisas de fertilidade."
     },
     "dueDateCalculator": {
@@ -392,7 +392,7 @@
       "description": "Guia de preparação para amamentação."
     },
     "babySleepTracker": {
-      "title": "Rastreador de sono do bebê",
+      "title": "Registro de Sono do Bebê",
       "description": "Análise de padrões de sono com estatísticas diárias e semanais."
     },
     "babyGrowth": {
@@ -400,7 +400,7 @@
       "description": "Acompanhe o crescimento com gráficos da OMS."
     },
     "diaperTracker": {
-      "title": "Rastreador inteligente de fraldas",
+      "title": "Registro de Fraldas",
       "description": "Registro diário inteligente de fraldas com estatísticas e alertas."
     },
     "babyCryTranslator": {

@@ -35,7 +35,7 @@
     "mealSuggestionLinkDesc": "Get personalized meal suggestions for your trimester",
     "groceryListLink": "Smart Grocery List",
     "groceryListLinkDesc": "Build a pregnancy-optimized shopping list",
-    "vitaminTrackerLink": "Vitamin Tracker",
+    "vitaminTrackerLink": "My Daily Nutrition",
     "vitaminTrackerLinkDesc": "Track your daily supplement intake",
     "cravingLink": "Craving Alternatives",
     "cravingLinkDesc": "Find healthy swaps for your cravings"
@@ -53,7 +53,7 @@
     "lactationLinkDesc": "Prepare for breastfeeding with AI guidance",
     "recoveryLink": "Postpartum Recovery",
     "recoveryLinkDesc": "6-week recovery plan after birth",
-    "babySleepLink": "Baby Sleep Tracker",
+    "babySleepLink": "Baby Sleep Log",
     "babySleepLinkDesc": "Track and optimize your baby's sleep"
   },
   "videoLibrary": {
@@ -368,7 +368,7 @@
       "description": "Log and journal your contraction patterns."
     },
     "cycleTracker": {
-      "title": "Cycle Tracker",
+      "title": "My Cycle Journal",
       "description": "Smart cycle analysis with precise fertility window predictions."
     },
     "dueDateCalculator": {
@@ -417,7 +417,7 @@
       "description": "Breastfeeding preparation guide."
     },
     "babySleepTracker": {
-      "title": "Baby Sleep Tracker",
+      "title": "Baby Sleep Log",
       "description": "Sleep pattern analysis with daily and weekly statistics."
     },
     "babyGrowth": {
@@ -425,7 +425,7 @@
       "description": "Track growth with WHO charts."
     },
     "diaperTracker": {
-      "title": "Smart Diaper Tracker",
+      "title": "Smart Diaper Log",
       "description": "Smart daily diaper log with statistics and alerts."
     },
     "babyCryTranslator": {
@@ -491,7 +491,7 @@
       "kickCounterDesc": "Journal baby movements",
       "weightTracker": "Weight Tracker",
       "weightTrackerDesc": "Monitor weight gain",
-      "vitaminTracker": "Vitamin Tracker",
+      "vitaminTracker": "My Daily Nutrition",
       "vitaminTrackerDesc": "Daily supplements",
       "appointments": "Appointments",
       "appointmentsDesc": "Medical visits",
@@ -507,7 +507,7 @@
       "bumpPhotosDesc": "Educational insights",
       "babySleep": "Baby Sleep",
       "babySleepDesc": "Sleep patterns",
-      "diaperTracker": "Diaper Tracker",
+      "diaperTracker": "Diaper Log",
       "diaperTrackerDesc": "Daily changes",
       "babyCry": "Cry Guide",
       "babyCryDesc": "Understand cry patterns",
@@ -1033,7 +1033,7 @@
     "disclaimer": "This is a general guide. Always consult your care provider about dietary restrictions specific to your pregnancy."
   },
   "babySleepPage": {
-    "title": "Baby Sleep Tracker",
+    "title": "Baby Sleep Log",
     "logSleep": "Log Sleep",
     "startTime": "Start Time",
     "endTime": "End Time",
@@ -1042,7 +1042,7 @@
     "sleepLog": "Sleep Log"
   },
   "diaperPage": {
-    "title": "Diaper Tracker",
+    "title": "Diaper Log",
     "subtitle": "Track your baby's diaper changes",
     "logChange": "Log Change",
     "quickAdd": "Quick Add",
@@ -1633,7 +1633,7 @@
       "share": "Share",
       "save": "Save",
       "info": "Only about 5% of babies are born on their exact due date. Most are born within 2 weeks before or after. Your care provider may adjust your due date based on early scan measurements.",
-      "cycleTrackerLink": "Cycle Tracker",
+      "cycleTrackerLink": "My Cycle Journal",
       "cycleTrackerLinkDesc": "Track your menstrual cycle and get accurate predictions",
       "fetalDevLink": "Baby Development Tracker",
       "fetalDevLinkDesc": "Track your baby's growth week by week",
@@ -1852,7 +1852,7 @@
       "chartNoSymptoms": "No symptoms logged in the last 14 days"
     },
     "vitaminTracker": {
-      "title": "Vitamin Tracker",
+      "title": "My Daily Nutrition",
       "subtitle": "Track your daily prenatal vitamins",
       "pregnancyWeek": "Pregnancy Week",
       "todaysProgress": "Today's Progress",
@@ -3249,7 +3249,7 @@
       "history": "Growth History"
     },
     "babySleep": {
-      "title": "Baby Sleep Tracker",
+      "title": "Baby Sleep Log",
       "subtitle": "AI-powered sleep pattern analysis for your baby",
       "startSleep": "Start Sleep",
       "endSleep": "End Sleep Session",
@@ -3290,7 +3290,7 @@
       "weeklyChart": "7-Day Sleep"
     },
     "diaperTracker": {
-      "title": "Diaper Tracker",
+      "title": "Diaper Log",
       "subtitle": "Log changes, track wellness",
       "logChange": "Log Change",
       "wet": "Wet",
@@ -3376,7 +3376,7 @@
       "aiRecommendations": "Get AI Recommendations"
     },
     "cycleTracker": {
-      "title": "Cycle & Ovulation Tracker",
+      "title": "My Cycle & Ovulation Journal",
       "subtitle": "Track your cycle and find your fertile days",
       "lastPeriod": "Last Period Start",
       "cycleLength": "Average Cycle Length",
