@@ -35,7 +35,7 @@
     "mealSuggestionLinkDesc": "احصلي على اقتراحات وجبات مخصصة لمرحلة حملك",
     "groceryListLink": "قائمة البقالة الذكية",
     "groceryListLinkDesc": "أنشئي قائمة تسوق مُحسّنة للحمل",
-    "vitaminTrackerLink": "المتتبع الذكي للفيتامينات",
+    "vitaminTrackerLink": "تغذيتي اليومية",
     "vitaminTrackerLinkDesc": "تتبعي تناول المكملات الغذائية يومياً",
     "cravingLink": "بدائل الرغبات",
     "cravingLinkDesc": "اكتشفي بدائل صحية لرغباتك الغذائية"
@@ -491,7 +491,7 @@
       "kickCounterDesc": "تتبعي حركات الطفل",
       "weightTracker": "متتبع الوزن",
       "weightTrackerDesc": "راقبي زيادة الوزن",
-      "vitaminTracker": "المتتبع الذكي للفيتامينات",
+      "vitaminTracker": "تغذيتي اليومية",
       "vitaminTrackerDesc": "المكملات اليومية",
       "appointments": "المواعيد",
       "appointmentsDesc": "الزيارات الطبية",
@@ -2447,7 +2447,7 @@
       }
     },
     "bumpPhotos": {
-      "title": "تحليل صور السونار",
+      "title": "معرض بطني",
       "subtitle": "حللي صور السونار واحصلي على رؤى تعليمية بالذكاء الاصطناعي",
       "currentWeek": "الأسبوع الحالي",
       "takePhoto": "التقطي صورة",
@@ -4743,7 +4743,7 @@
       "progressLabel": "فحوصات مُتابَعة",
       "tracked": "مُتابَع",
       "related": {
-        "academy": "أكاديمية الخصوبة",
+        "academy": "رحلة خصوبتي",
         "academyDesc": "تعليم شامل حول الخصوبة",
         "nutrition": "دليل التغذية",
         "nutritionDesc": "تغذية ومكملات ما قبل الحمل"

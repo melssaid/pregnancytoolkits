@@ -503,7 +503,7 @@
       "fetalGrowthDesc": "Baby development",
       "babyGrowth": "Baby Growth",
       "babyGrowthDesc": "Postnatal tracking",
-      "bumpPhotos": "Ultrasound",
+      "bumpPhotos": "Bump Photos",
       "bumpPhotosDesc": "Educational insights",
       "babySleep": "Baby Sleep",
       "babySleepDesc": "Sleep patterns",
@@ -752,7 +752,7 @@
             "Smart Appointment Planner",
             "Fitness & Flexibility Coach",
             "Contraction Logger",
-            "Ultrasound Gallery"
+            "My Bump Gallery"
           ],
           "dataNote": "When using AI features, only your specific query text is sent anonymously to our secure backend. Your stored health data remains entirely on your device and is never transmitted.",
           "noTraining": "Your queries are NOT used to train AI models"
@@ -765,9 +765,9 @@
           "canDisable": "Can be enabled/disabled in settings"
         },
         "photos": {
-          "title": "Ultrasound Gallery & Media",
+          "title": "Bump Gallery & Media",
           "desc": "The Ultrasound Gallery allows you to save and view your ultrasound photos with optional AI-powered educational observations. This feature does NOT perform medical diagnoses or clinical image analysis — it provides general educational information only.",
-          "localDefault": "Ultrasound photos are stored locally on your device by default using compressed Base64",
+          "localDefault": "Bump photos are stored locally on your device by default using compressed Base64",
           "localOnly": "All photos are stored exclusively on your device and never uploaded to any server",
           "noPublic": "Photos are never publicly accessible or shared with third parties",
           "noDiagnosis": "AI observations are educational only — not a substitute for professional medical interpretation"
@@ -2447,12 +2447,12 @@
       }
     },
     "bumpPhotos": {
-      "title": "Ultrasound Gallery",
+      "title": "My Bump Gallery",
       "subtitle": "Save & explore your ultrasound photos with educational insights",
       "currentWeek": "Current Week",
       "takePhoto": "Take Photo",
       "uploadPhoto": "Upload Photo",
-      "photoTimeline": "Ultrasound Gallery",
+      "photoTimeline": "My Bump Gallery",
       "noPhotos": "No ultrasound photos yet",
       "noPhotosDesc": "Upload your ultrasound images for educational insights",
       "compareWeeks": "Compare Weeks",
@@ -2463,7 +2463,7 @@
       "caption": "Note",
       "addCaption": "Add a note...",
       "saveCaption": "Save Note",
-      "photoSaved": "Ultrasound Saved!",
+      "photoSaved": "Photo Saved!",
       "photoDeleted": "Photo Deleted",
       "storageInfo": "Photos stored locally on your device",
       "localStorageTitle": "Local Storage",
@@ -2492,11 +2492,11 @@
       "week": "Week",
       "localLabel": "Local",
       "startDocumenting": "Start uploading your ultrasound photos from week {{week}}!",
-      "aiAnalysisWeek": "Ultrasound Analysis - Week {{week}}",
+      "aiAnalysisWeek": "Photo Notes - Week {{week}}",
       "analyzing": "Analyzing...",
       "refresh": "Re-analyze",
       "clickRefresh": "Click \"Re-analyze\" for AI ultrasound reading",
-      "journeyTimeline": "Ultrasound History",
+      "journeyTimeline": "Photo History",
       "photoTipsTitle": "Tips for Better Ultrasound Photos",
       "photoTip1": "Photograph the ultrasound screen directly without flash for better clarity",
       "photoTip2": "Make sure the week and date info is visible in the image",
@@ -2776,7 +2776,7 @@
       "optimalNutrition": "Nutrient-Dense Options"
     },
     "birthPosition": {
-      "title": "AI Birth Positions",
+      "title": "Comfort Positions Guide",
       "subtitle": "Optimal positions for your labor",
       "commonPositions": "Common Birth Positions",
       "laborStage": "Labor Stage",
@@ -3159,7 +3159,7 @@
       "addAppointment": "Add Appointment",
       "appointmentType": "Appointment Type",
       "checkup": "Regular Checkup",
-      "ultrasound": "Ultrasound",
+      "ultrasound": "Bump Photos",
       "bloodTest": "Blood Test",
       "glucoseTest": "Glucose Test",
       "other": "Other",
@@ -4743,7 +4743,7 @@
       "progressLabel": "Screenings tracked",
       "tracked": "tracked",
       "related": {
-        "academy": "Fertility Academy",
+        "academy": "My Fertility Journey",
         "academyDesc": "Comprehensive fertility education",
         "nutrition": "Nutrition Guide",
         "nutritionDesc": "Preconception nutrition & supplements"
