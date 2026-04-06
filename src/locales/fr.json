@@ -129,7 +129,7 @@
     "mo": "mois",
     "yr": "an",
     "save": "Économisez 44%",
-    "feature1": "35 outils IA avancés",
+    "feature1": "36+ outils bien-être intelligents",
     "feature2": "40 analyses intelligentes par mois",
     "feature3": "Rapports de santé IA personnalisés",
     "feature4": "Traitement prioritaire des requêtes",
@@ -4988,7 +4988,7 @@
   "welcome": {
     "title": "Welcome to Pregnancy Toolkits",
     "subtitle": "Votre compagnon de grossesse personnalisé",
-    "feature1": "30+ outils de grossesse alimentés par l'IA",
+    "feature1": "36+ outils intelligents de grossesse",
     "feature2": "Suivi personnalisé semaine par semaine",
     "disclaimerTitle": "Important Notice",
     "disclaimerText": "Cette application fournit des informations générales de bien-être uniquement et ne remplace pas les conseils médicaux professionnels.",
@@ -6247,7 +6247,7 @@
     "pushGuideReload": "Recharger la page après activation",
     "pushEnabledSuccess": "Notifications push activées ! Vous serez notifiée même quand l'app est en arrière-plan.",
     "welcome": "👋 Bienvenue !",
-    "welcomeDesc": "Profitez de 30+ outils intelligents pour suivre votre grossesse facilement et en toute sécurité.",
+    "welcomeDesc": "Profitez de 36+ outils intelligents pour suivre votre grossesse facilement et en toute sécurité.",
     "disclaimer": "📋 Avis important",
     "disclaimerDesc": "Cette application est à titre informatif uniquement et ne remplace pas les conseils de santé professionnels.",
     "disclaimerTitle": "Avis important",
@@ -6354,7 +6354,7 @@
   },
   "seo": {
     "title": "Meilleure application de suivi de grossesse",
-    "description": "Application de grossesse complète avec 30+ outils IA pour chaque étape de la maternité. 100% gratuite et disponible en 7 langues.",
+    "description": "Application de grossesse complète avec 36+ outils intelligents pour chaque étape de la maternité. 100% gratuite et disponible en 7 langues.",
     "babyGrowth": "Suivi de croissance du bébé",
     "babyGrowthDesc": "Suivez le développement hebdomadaire de votre bébé avec des comparaisons de taille",
     "kickCounter": "Compteur de coups de pied",
@@ -6617,7 +6617,7 @@
     "toolLocked": "\"{{tool}}\" is available for subscribers only",
     "subtitle": "Accès illimité à toutes les fonctionnalités",
     "benefits": {
-      "allAITools": "35 AI-powered tools",
+      "allAITools": "36+ smart wellness tools",
       "dailyAnalyses": "40 smart analyses per month",
       "personalizedInsights": "Tips personalized to your week",
       "fullAccess": "Full access with no limits"

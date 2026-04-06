@@ -20,7 +20,7 @@ const tools = [
 ];
 
 const benefits = [
-  "42+ free AI-powered pregnancy and fertility tools",
+  "36+ free smart pregnancy and fertility tools",
   "Week-by-week fetal development tracking",
   "Evidence-based health information from medical sources",
   "Available in 7 languages including English, Spanish, French, and German",
@@ -31,7 +31,7 @@ const benefits = [
 const faqs = [
   {
     q: "Is this pregnancy tracker app really free?",
-    a: "Yes, Pregnancy Toolkits is completely free to use. All 42+ tools including the due date calculator, kick counter, and AI assistant are available at no cost with no hidden fees."
+    a: "Yes, Pregnancy Toolkits is completely free to use. All 36+ tools including the due date calculator, kick counter, and AI assistant are available at no cost with no hidden fees."
   },
   {
     q: "How accurate is the due date calculator?",
@@ -57,7 +57,7 @@ export default function LandingEN() {
     "@type": "WebApplication",
     "name": "Pregnancy Toolkits",
     "url": "https://pregnancytoolkits.lovable.app/en",
-    "description": "Free pregnancy tracker with 42+ AI tools: due date calculator, kick counter, contraction timer, baby growth tracker, and more.",
+    "description": "Free pregnancy tracker with 36+ smart tools: due date calculator, kick counter, contraction timer, baby growth tracker, and more.",
     "applicationCategory": "HealthApplication",
     "operatingSystem": "Web",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -111,7 +111,7 @@ export default function LandingEN() {
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight text-foreground">
             Your Complete{" "}
             <span className="text-primary">Pregnancy Tracker</span>{" "}
-            with 42+ AI-Powered Tools
+            with 36+ Smart Tools
           </h1>
           
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
@@ -192,7 +192,7 @@ export default function LandingEN() {
         <div className="text-center mt-8">
           <Link to="/">
             <Button variant="outline" className="gap-2">
-              View All 42+ Tools <ArrowRight className="h-4 w-4" />
+              View All 36+ Tools <ArrowRight className="h-4 w-4" />
             </Button>
           </Link>
         </div>
