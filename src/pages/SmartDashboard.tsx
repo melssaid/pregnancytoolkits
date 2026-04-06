@@ -71,7 +71,7 @@ const SmartDashboard = () => {
         {/* 6. Symptoms Summary */}
         <SymptomsSummary />
 
-        {/* 7 & 8. Fetal Movement + Weight — side by side on wider screens */}
+        {/* 7 & 8. Baby Movement + Weight — side by side on wider screens */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
           <FetalMovementCard todayKicks={stats.dailyTracking.todayKicks} />
           <WeightTrendCard />
