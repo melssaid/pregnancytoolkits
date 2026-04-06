@@ -35,7 +35,7 @@
     "mealSuggestionLinkDesc": "Erhalten Sie personalisierte Mahlzeitenvorschläge für Ihr Trimester",
     "groceryListLink": "Intelligente Einkaufsliste",
     "groceryListLinkDesc": "Erstellen Sie eine schwangerschaftsoptimierte Einkaufsliste",
-    "vitaminTrackerLink": "Vitamin-Tracker",
+    "vitaminTrackerLink": "Tägliche Ernährung",
     "vitaminTrackerLinkDesc": "Verfolgen Sie Ihre tägliche Nahrungsergänzung",
     "cravingLink": "Heißhunger-Alternativen",
     "cravingLinkDesc": "Finden Sie gesunde Alternativen für Ihre Gelüste"
@@ -53,7 +53,7 @@
     "lactationLinkDesc": "Bereiten Sie sich mit KI-Unterstützung aufs Stillen vor",
     "recoveryLink": "Wochenbett-Erholung",
     "recoveryLinkDesc": "6-Wochen-Erholungsplan nach der Geburt",
-    "babySleepLink": "Baby-Schlaf-Tracker",
+    "babySleepLink": "Baby-Schlaf-Protokoll",
     "babySleepLinkDesc": "Verfolgen und optimieren Sie den Schlaf Ihres Babys"
   },
   "videoLibrary": {
@@ -310,7 +310,7 @@
       "title": "Rückenkomfort-Ratgeber",
       "description": "Personalisierte Übungen für Rückenkomfort in der Schwangerschaft."
     },
-    "vitaminTracker": {
+    "vitaminLog": {
       "title": "Meine tägliche Ernährung",
       "description": "Vitamin- und Nahrungsergänzungsplan mit täglicher Einnahmeanalyse."
     },
@@ -342,7 +342,7 @@
       "title": "Kontraktions-Tagebuch",
       "description": "Protokollieren Sie Ihre Kontraktionsmuster."
     },
-    "cycleTracker": {
+    "cycleLog": {
       "title": "Mein Zyklus-Tagebuch",
       "description": "Intelligente Zyklusanalyse mit präzisen Fruchtbarkeitsprognosen."
     },
@@ -391,7 +391,7 @@
       "title": "Intelligenter Stillratgeber",
       "description": "Stillvorbereitungsanleitung."
     },
-    "babySleepTracker": {
+    "babySleepLog": {
       "title": "Baby-Schlaf-Protokoll",
       "description": "Schlafmusteranalyse mit täglichen und wöchentlichen Statistiken."
     },
@@ -399,7 +399,7 @@
       "title": "Intelligentes Baby-Wachstum",
       "description": "Verfolgen Sie das Wachstum mit WHO-Diagrammen."
     },
-    "diaperTracker": {
+    "diaperLog": {
       "title": "Windel-Protokoll",
       "description": "Intelligentes Windelprotokoll mit Statistiken und Benachrichtigungen."
     },
@@ -464,9 +464,9 @@
     "trackingTools": {
       "kickCounter": "Bewegungstagebuch",
       "kickCounterDesc": "Babybewegungen festhalten",
-      "weightTracker": "Gewichtstracker",
+      "weightLog": "Gewichtstracker",
       "weightTrackerDesc": "Gewichtszunahme überwachen",
-      "vitaminTracker": "Vitamin-Tracker",
+      "vitaminLog": "Tägliche Ernährung",
       "vitaminTrackerDesc": "Tägliche Nahrungsergänzung",
       "appointments": "Termine",
       "appointmentsDesc": "Arztbesuche",
@@ -482,7 +482,7 @@
       "bumpPhotosDesc": "Wöchentliche Schnappschüsse",
       "babySleep": "Babyschlaf",
       "babySleepDesc": "Schlafmuster",
-      "diaperTracker": "Windel-Tracker",
+      "diaperLog": "Windel-Protokoll",
       "diaperTrackerDesc": "Tägliche Wechsel",
       "babyCry": "Wein-Ratgeber",
       "babyCryDesc": "Weinmuster verstehen",
@@ -1008,7 +1008,7 @@
     "disclaimer": "Dies ist ein allgemeiner Leitfaden. Konsultieren Sie immer Ihren Arzt zu Ernährungseinschränkungen speziell für Ihre Schwangerschaft."
   },
   "babySleepPage": {
-    "title": "Baby-Schlaf-Tracker",
+    "title": "Baby-Schlaf-Protokoll",
     "logSleep": "Schlaf protokollieren",
     "startTime": "Startzeit",
     "endTime": "Endzeit",
@@ -1017,7 +1017,7 @@
     "sleepLog": "Schlafprotokoll"
   },
   "diaperPage": {
-    "title": "Windel-Tracker",
+    "title": "Windel-Protokoll",
     "subtitle": "Verfolgen Sie die Windelwechsel Ihres Babys",
     "logChange": "Wechsel protokollieren",
     "quickAdd": "Schnell hinzufügen",
@@ -1826,8 +1826,8 @@
       "chartTimes": "Mal",
       "chartNoSymptoms": "Keine Symptome in den letzten 14 Tagen protokolliert"
     },
-    "vitaminTracker": {
-      "title": "Vitamin-Tracker",
+    "vitaminLog": {
+      "title": "Tägliche Ernährung",
       "subtitle": "Verfolgen Sie Ihre täglichen Schwangerschaftsvitamine",
       "pregnancyWeek": "Schwangerschaftswoche",
       "todaysProgress": "Heutiger Fortschritt",
@@ -2870,7 +2870,7 @@
         "newbornCare": "Neugeborenenpflege"
       }
     },
-    "laborTracker": {
+    "laborLog": {
       "title": "Kontraktions-Tagebuch",
       "subtitle": "Protokollieren Sie Ihre Kontraktionsmuster",
       "startContraction": "Kontraktion starten",
@@ -3224,7 +3224,7 @@
       "history": "Wachstumsverlauf"
     },
     "babySleep": {
-      "title": "Baby-Schlaf-Tracker",
+      "title": "Baby-Schlaf-Protokoll",
       "subtitle": "KI-gestützte Schlafmuster-Einblicke für Ihr Baby",
       "startSleep": "Schlaf starten",
       "endSleep": "Schlaf beenden",
@@ -3264,8 +3264,8 @@
       "analyzing": "Analyse...",
       "weeklyChart": "7-Tage-Schlaf"
     },
-    "diaperTracker": {
-      "title": "Windel-Tracker",
+    "diaperLog": {
+      "title": "Windel-Protokoll",
       "subtitle": "Windelwechsel verfolgen",
       "logChange": "Wechsel eintragen",
       "wet": "Nass",
@@ -3350,7 +3350,7 @@
       "totalEstimate": "Geschätzte Gesamtkosten",
       "aiRecommendations": "KI-Empfehlungen erhalten"
     },
-    "cycleTracker": {
+    "cycleLog": {
       "title": "Zyklustagebuch",
       "subtitle": "Verfolgen Sie Ihren Zyklus und finden Sie Ihre fruchtbaren Tage",
       "lastPeriod": "Letzte Periodenstart",
@@ -5868,7 +5868,7 @@
       "cottageCheeseBowl": "Hüttenkäse-Schüssel"
     }
   },
-  "vitaminTracker": {
+  "vitaminLog": {
     "subtitle": "Verfolgen Sie Ihre täglichen Schwangerschaftsvitamine",
     "pregnancyWeek": "Schwangerschaftswoche",
     "todaysProgress": "Heutiger Fortschritt",

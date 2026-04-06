@@ -310,7 +310,7 @@
       "title": "Sırt Konfor Rehberi",
       "description": "Hamilelikte sırt konforu için kişiselleştirilmiş egzersizler."
     },
-    "vitaminTracker": {
+    "vitaminLog": {
       "title": "Günlük Beslenmem",
       "description": "Vitamin ve takviye programı ile günlük uyum analizi."
     },
@@ -342,7 +342,7 @@
       "title": "Kasılma Günlüğü",
       "description": "Kasılma düzenlerinizi kaydedin."
     },
-    "cycleTracker": {
+    "cycleLog": {
       "title": "Döngü Günlüğüm",
       "description": "Hassas doğurganlık tahminleriyle akıllı döngü analizi."
     },
@@ -391,7 +391,7 @@
       "title": "Akıllı Emzirme Rehberi",
       "description": "Emzirme hazırlık rehberi."
     },
-    "babySleepTracker": {
+    "babySleepLog": {
       "title": "Bebek Uyku Günlüğü",
       "description": "Günlük ve haftalık istatistiklerle uyku düzeni analizi."
     },
@@ -399,7 +399,7 @@
       "title": "Akıllı Bebek Büyümesi",
       "description": "WHO grafikleriyle büyümeyi takip edin."
     },
-    "diaperTracker": {
+    "diaperLog": {
       "title": "Bez Günlüğü",
       "description": "İstatistikler ve uyarılarla akıllı günlük bez kaydı."
     },
@@ -464,9 +464,9 @@
     "trackingTools": {
       "kickCounter": "Hareket Günlüğü",
       "kickCounterDesc": "Bebek hareketlerini kaydet",
-      "weightTracker": "Kilo Takibi",
+      "weightLog": "Kilo Takibi",
       "weightTrackerDesc": "Kilo alımını izle",
-      "vitaminTracker": "Vitamin Takibi",
+      "vitaminLog": "Vitamin Takibi",
       "vitaminTrackerDesc": "Günlük takviyeler",
       "appointments": "Randevular",
       "appointmentsDesc": "Tıbbi ziyaretler",
@@ -482,7 +482,7 @@
       "bumpPhotosDesc": "Haftalık fotoğraflar",
       "babySleep": "Bebek Uykusu",
       "babySleepDesc": "Uyku düzeni",
-      "diaperTracker": "Bez Takibi",
+      "diaperLog": "Bez Takibi",
       "diaperTrackerDesc": "Günlük değişimler",
       "babyCry": "Ağlama Rehberi",
       "babyCryDesc": "Ağlama kalıplarını anla",
@@ -1826,7 +1826,7 @@
       "chartTimes": "kez",
       "chartNoSymptoms": "Son 14 günde belirti kaydedilmedi"
     },
-    "vitaminTracker": {
+    "vitaminLog": {
       "title": "Vitamin Takibi",
       "subtitle": "Günlük prenatal vitaminlerinizi takip edin",
       "pregnancyWeek": "Hamilelik Haftası",
@@ -2870,7 +2870,7 @@
         "newbornCare": "Yenidoğan Bakımı"
       }
     },
-    "laborTracker": {
+    "laborLog": {
       "title": "Kasılma Günlüğü",
       "subtitle": "Kasılma düzenlerinizi kaydedin",
       "startContraction": "Kasılmayı Başlat",
@@ -3264,7 +3264,7 @@
       "analyzing": "Analiz ediliyor...",
       "weeklyChart": "7 Günlük Uyku"
     },
-    "diaperTracker": {
+    "diaperLog": {
       "title": "Bez Takibi",
       "subtitle": "Değişiklikleri kaydedin, sağlığı izleyin",
       "logChange": "Değişiklik Kaydet",
@@ -3350,7 +3350,7 @@
       "totalEstimate": "Toplam Tahmini Maliyet",
       "aiRecommendations": "AI Önerileri Al"
     },
-    "cycleTracker": {
+    "cycleLog": {
       "title": "Döngü Günlüğü",
       "subtitle": "Döngünüzü takip edin ve verimli günlerinizi bulun",
       "lastPeriod": "Son Adet Başlangıcı",
@@ -5868,7 +5868,7 @@
       "cottageCheeseBowl": "Cottage Cheese Bowl"
     }
   },
-  "vitaminTracker": {
+  "vitaminLog": {
     "subtitle": "Günlük doğum öncesi vitaminlerinizi takip edin",
     "pregnancyWeek": "Hamilelik Haftası",
     "todaysProgress": "Bugünün ilerlemesi",
