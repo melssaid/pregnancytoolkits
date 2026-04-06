@@ -77,7 +77,7 @@ export default function LandingEN() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SEOHead
-        title="Free Pregnancy Tracker App — Due Date Calculator, Kick Counter & 42+ AI Tools"
+        title="Free Pregnancy Tracker App — Due Date Calculator, Kick Counter & 36+ Smart Tools"
         description="Track your pregnancy week by week with our free app. Due date calculator, baby kick counter, contraction timer, fetal development guide, meal planner & more. No signup required."
       />
 
@@ -141,7 +141,7 @@ export default function LandingEN() {
         <div className="container">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             <div>
-              <p className="text-2xl font-bold text-primary">42+</p>
+              <p className="text-2xl font-bold text-primary">36+</p>
               <p className="text-sm text-muted-foreground">Free AI Tools</p>
             </div>
             <div>
