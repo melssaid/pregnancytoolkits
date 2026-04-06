@@ -235,7 +235,7 @@ Provide personalized advice with: 1) Assessment 2) Nutritional tips 3) Exercise 
   return (
     <ToolFrame
       toolId="weight-gain"
-      title={t('tools.weightGain.title', 'Weight Gain Analyzer')}
+      title={t('tools.weightGain.title', 'Weight Wellness Guide')}
       subtitle={t('tools.weightGain.subtitle', 'Track and analyze your pregnancy weight gain')}
       icon={Gauge}
     >
