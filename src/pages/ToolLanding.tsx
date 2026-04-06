@@ -308,7 +308,7 @@ const toolSEO: Record<string, { h1: string; desc: string; longDesc: string; keyw
   // ═══════════════════════════════════════════════════════════
   "postpartum-mental-health": {
     h1: "Postpartum Mood & Wellness Coach — Self-Check & Support",
-    desc: "Follow your emotional wellbeing after birth with mood tracking, mood self-check tools, and AI-guided coping strategies. Not a clinical tool.",
+    desc: "Follow your emotional wellbeing after birth with mood tracking, mood self-check tools, and AI-guided coping strategies. For educational purposes only.",
     longDesc: "The postpartum period brings significant emotional changes. Our Mental Health Coach helps you monitor mood patterns, screen for signs of postpartum depression using validated questionnaires (Edinburgh Scale), and access evidence-based coping strategies. Connect with support resources and track your emotional recovery journey. This is an educational tool, not a diagnostic or treatment service.",
     keywords: "postpartum depression, mood self-check, postpartum mood wellness, baby blues, postpartum anxiety, postpartum mood journal, postnatal mood changes",
     faqs: [

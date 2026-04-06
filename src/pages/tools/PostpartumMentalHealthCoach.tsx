@@ -103,7 +103,7 @@ export default function PostpartumMentalHealthCoach() {
     const answersSummary = buildAnswersSummary();
 
     const detailedContext = `
-Postpartum Mental Health Screening Results (EPDS-based):
+Postpartum Mood Wellness Self-Check Results (EPDS-based):
 Total Score: ${score}/${maxScore} (${level} risk level)
 
 Individual Answers:
@@ -111,9 +111,9 @@ ${answersSummary}
 `;
 
     const prompts: Record<string, string> = {
-      en: `As a postpartum wellness guide, analyze these detailed screening results and create a personalized coping plan:\n\n${detailedContext}\n\nBased on the specific areas where the mother scored higher, provide targeted advice. Include:\n1. Analysis of the key concern areas based on her specific answers\n2. Daily routines tailored to her struggles\n3. Self-care tips for her specific symptoms\n4. Breathing and relaxation exercises\n5. When to seek professional support\n6. Partner/family support suggestions\n7. Baby bonding activities that may help`,
+      en: `As a postpartum wellness guide, analyze these detailed self-check results and create a personalized coping plan:\n\n${detailedContext}\n\nBased on the specific areas where the mother scored higher, provide targeted advice. Include:\n1. Analysis of the key concern areas based on her specific answers\n2. Daily routines tailored to her struggles\n3. Self-care tips for her specific symptoms\n4. Breathing and relaxation exercises\n5. When to seek professional support\n6. Partner/family support suggestions\n7. Baby bonding activities that may help`,
       ar: `بصفتك مرشدة صحية متخصصة في فترة ما بعد الولادة، حللي نتائج الفحص التالية وأنشئي خطة تكيف مخصصة:\n\n${detailedContext}\n\nبناءً على المجالات التي سجلت فيها الأم درجات أعلى، قدمي نصائح موجهة.`,
-      de: `Als postpartale Wellness-Beraterin, analysiere diese Screening-Ergebnisse und erstelle einen personalisierten Bewältigungsplan:\n\n${detailedContext}`,
+      de: `Als postpartale Wellness-Beraterin, analysiere diese Selbstcheck-Ergebnisse und erstelle einen personalisierten Bewältigungsplan:\n\n${detailedContext}`,
       fr: `En tant que guide bien-être postnatal, analysez ces résultats de dépistage et créez un plan personnalisé:\n\n${detailedContext}`,
       es: `Como guía de bienestar posparto, analiza estos resultados de evaluación y crea un plan personalizado:\n\n${detailedContext}`,
       pt: `Como guia de bem-estar pós-parto, analise estes resultados de rastreio e crie um plano personalizado:\n\n${detailedContext}`,

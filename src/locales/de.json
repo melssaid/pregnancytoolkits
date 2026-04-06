@@ -3105,8 +3105,8 @@
     "mentalHealth": {
       "title": "Ratgeber für seelisches Wohlbefinden",
       "subtitle": "EPDS-Fragebogen und Unterstützung",
-      "takeScreening": "EPDS-Fragebogen ausfüllen",
-      "screeningDesc": "Edinburgh-Postnatal-Depressions-Skala",
+      "takeUntersuchung": "EPDS-Fragebogen ausfüllen",
+      "untersuchungDesc": "Edinburgh-Postnatal-Depressions-Skala",
       "yourScore": "Ihr Ergebnis",
       "lowRisk": "Niedriges Risiko",
       "moderateRisk": "Mittleres Risiko",
@@ -4051,7 +4051,7 @@
       "question": "Frage",
       "of": "von",
       "score": "Punktzahl",
-      "takeScreeningAgain": "Fragebogen wiederholen",
+      "takeUntersuchungAgain": "Fragebogen wiederholen",
       "previousQuestion": "Vorherige Frage",
       "responseBreakdown": "Antwortübersicht",
       "aiPersonalizedPlan": "KI-personalisierter Bewältigungsplan",
@@ -4063,7 +4063,7 @@
       "psiNumber": "0800-111-0111",
       "crisisLinelineName": "988 Suizid- & Krisenhotline",
       "crisisLinelineDesc": "Anrufen oder SMS an 988",
-      "screeningDisclaimer": "⚠️ Dies ist ein Wellness-Fragebogen basierend auf der Edinburgh Postnatal Depression Scale (EPDS). Er stellt keine professionelle Bewertung dar. Konsultiere immer einen Fachmann für eine ordnungsgemäße Bewertung.",
+      "untersuchungDisclaimer": "⚠️ Dies ist ein Wellness-Fragebogen basierend auf der Edinburgh Postnatal Depression Scale (EPDS). Er stellt keine professionelle Bewertung dar. Konsultiere immer einen Fachmann für eine ordnungsgemäße Bewertung.",
       "mentalWellnessVideos": "Mentale Wellness-Videos",
       "videosSubtitle": "Unterstützung und Selbstpflege-Ressourcen",
       "videos": {
@@ -4660,7 +4660,7 @@
       "allComplete": "Tolle Vorbereitung! Besprechen Sie Ihre Ergebnisse mit Ihrem Arzt.",
       "categories": {
         "essential": "Grundlegende Gesundheitschecks",
-        "wellness-check": "Infektions- & Immunitätsscreening",
+        "wellness-check": "Infektions- & Immunitätsuntersuchung",
         "specialized": "Spezialuntersuchungen",
         "medications": "Medikamente & Impfungen"
       },
@@ -4674,7 +4674,7 @@
           "description": "Überprüft auf Anämie, Infektionen und allgemeine Blutgesundheit. Identifiziert Eisenmangel, der vor der Schwangerschaft behandelt werden sollte."
         },
         "pap": {
-          "title": "Zervixabstrich / Gebärmutterhals-Screening",
+          "title": "Zervixabstrich / Gebärmutterhals-Untersuchung",
           "description": "Untersuchung auf Zervix-Anomalien. Am besten vor der Schwangerschaft durchzuführen, um Probleme ohne die zusätzliche Komplexität einer Schwangerschaft zu behandeln."
         },
         "thyroid": {
@@ -4686,19 +4686,19 @@
           "description": "Röteln in der Schwangerschaft können schwere Geburtsfehler verursachen. Wenn Sie nicht immun sind, wird eine Impfung mindestens 1 Monat vor dem Empfängnisversuch empfohlen."
         },
         "hepatitis": {
-          "title": "Hepatitis B & C Screening",
+          "title": "Hepatitis B & C Untersuchung",
           "description": "Hepatitis B kann bei der Geburt auf das Baby übertragen werden. Die Kenntnis Ihres Status ermöglicht vorbeugende Maßnahmen. Hepatitis C erfordert Überwachung während der Schwangerschaft."
         },
         "hiv": {
-          "title": "HIV- & STI-Screening",
-          "description": "Routinemäßiges Screening auf HIV und sexuell übertragbare Infektionen schützt Ihre Gesundheit und die Ihres zukünftigen Babys. Früherkennung ermöglicht wirksame Behandlung."
+          "title": "HIV- & STI-Untersuchung",
+          "description": "Routinemäßiges Untersuchung auf HIV und sexuell übertragbare Infektionen schützt Ihre Gesundheit und die Ihres zukünftigen Babys. Früherkennung ermöglicht wirksame Behandlung."
         },
         "dental": {
           "title": "Zahnärztliche Untersuchung",
           "description": "Zahnfleischerkrankungen stehen mit Frühgeburt und niedrigem Geburtsgewicht in Verbindung. Hormonelle Veränderungen in der Schwangerschaft können bestehende Zahnprobleme verschlimmern."
         },
         "geneticOverview": {
-          "title": "Genetisches Träger-Screening",
+          "title": "Genetisches Träger-Untersuchung",
           "description": "Testet, ob Sie oder Ihr Partner Gene für Erkrankungen wie Mukoviszidose, Sichelzellanämie oder Thalassämie tragen."
         },
         "mentalHealth": {
@@ -6955,12 +6955,12 @@
         "mentalAffirmation": "Sie tragen ein kleines Wunder unter dem Herzen",
         "mentalTip": "Machen Sie einen Spaziergang in der Natur – das beruhigt den Geist",
         "doctorQ": {
-          "0": "Ist ein Nackentransparenz-Screening empfohlen?",
+          "0": "Ist ein Nackentransparenz-Untersuchung empfohlen?",
           "1": "Wie groß ist das Baby jetzt?",
           "2": "Gibt es Anzeichen für Komplikationen?"
         },
         "checklist": {
-          "0": "Erwägen Sie NIPT oder Ersttrimester-Screening",
+          "0": "Erwägen Sie NIPT oder Ersttrimester-Untersuchung",
           "1": "Trinken Sie viel Wasser (10 Tassen/Tag)",
           "2": "Essen Sie kalziumreiche Lebensmittel für die Knochen",
           "3": "Setzen Sie Ihr sanftes Training fort",
@@ -6993,7 +6993,7 @@
           "2": "Wie kann ich das Risiko einer Fehlgeburt reduzieren?"
         },
         "checklist": {
-          "0": "Überprüfen Sie die Screening-Ergebnisse",
+          "0": "Überprüfen Sie die Untersuchung-Ergebnisse",
           "1": "Erhöhen Sie die Proteinzufuhr für das Wachstum",
           "2": "Üben Sie Entspannung und tiefes Atmen",
           "3": "Halten Sie Zahnarzttermine ein",
@@ -7021,7 +7021,7 @@
         "mentalAffirmation": "Das erste Trimester ist geschafft – feiern Sie diesen Meilenstein!",
         "mentalTip": "Überlegen Sie, wann Sie die frohe Nachricht teilen möchten",
         "doctorQ": {
-          "0": "Wie war das Ergebnis des Nackentransparenz-Screenings?",
+          "0": "Wie war das Ergebnis des Nackentransparenz-Untersuchungs?",
           "1": "Kann ich jetzt die Schwangerschaft verkünden?",
           "2": "Brauche ich weitere Bluttests?"
         },
@@ -7356,7 +7356,7 @@
           "2": "Wie ist das Wachstum des Babys?"
         },
         "checklist": {
-          "0": "Vereinbaren Sie den Glukose-Screening-Test (Woche 24-28)",
+          "0": "Vereinbaren Sie den Glukose-Untersuchung-Test (Woche 24-28)",
           "1": "Essen Sie ballaststoffreiche Lebensmittel gegen Hämorrhoiden",
           "2": "Üben Sie Atemtechniken für die Geburt",
           "3": "Kaufen Sie ein Schwangerschaftskissen",
@@ -7422,7 +7422,7 @@
           "2": "Wie kann ich besser schlafen?"
         },
         "checklist": {
-          "0": "Machen Sie den Gestationsdiabetes-Screening",
+          "0": "Machen Sie den Gestationsdiabetes-Untersuchung",
           "1": "Essen Sie komplexe Kohlenhydrate für anhaltende Energie",
           "2": "Machen Sie sanfte Kniebeugen zur Geburtsvorbereitung",
           "3": "Melden Sie sich für Stillkurse an",
@@ -8146,7 +8146,7 @@
   },
   "gdm": {
     "evidence": {
-      "title": "Screening auf Schwangerschaftsdiabetes",
+      "title": "Untersuchung auf Schwangerschaftsdiabetes",
       "content": "Der Glukosetoleranztest wird normalerweise zwischen der 24. und 28. Schwangerschaftswoche durchgeführt. Schwangerschaftsdiabetes betrifft 6-9 % der Schwangerschaften weltweit und kann in 80-90 % der Fälle durch Ernährung und Bewegung ohne Insulin kontrolliert werden.",
       "source": "Quelle: American Diabetes Association — Standards of Care in Diabetes, 2024"
     },

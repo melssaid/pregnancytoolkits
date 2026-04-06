@@ -20,7 +20,7 @@ const CATEGORIES = [
     checks: ["generalCheckup", "bloodWork", "thyroid"],
   },
   {
-    key: "screening",
+    key: "wellness-checks",
     icon: Shield,
     color: "hsl(280,45%,55%)",
     checks: ["pap", "rubella", "hepatitis", "hiv"],
@@ -283,7 +283,7 @@ Important: Frame all advice as general educational information, not medical dire
             })));
             const cats = CATEGORIES.map(c => ({
               key: c.key,
-              emoji: c.key === 'essential' ? '❤️' : c.key === 'screening' ? '🔬' : c.key === 'specialized' ? '🩺' : '💊',
+              emoji: c.key === 'essential' ? '❤️' : c.key === 'wellness-checks' ? '🔬' : c.key === 'specialized' ? '🩺' : '💊',
               label: t(`toolsInternal.preconceptionCheckup.categories.${c.key}`),
             }));
             const text = formatChecklistShare(

@@ -2,7 +2,7 @@ import { memo } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { Bot, Hand, Gauge, TrendingUp, Calendar, Stethoscope, Camera, Pill } from "lucide-react";
+import { Bot, Hand, Gauge, TrendingUp, Calendar, Heart, Camera, Pill } from "lucide-react";
 
 const actions = [
   { id: "pregnancy-assistant", icon: Bot,          href: "/tools/pregnancy-assistant",  labelKey: "assistant", accent: "from-violet-500/15 to-violet-500/5" },
@@ -10,7 +10,7 @@ const actions = [
   { id: "weight-gain",         icon: Gauge,        href: "/tools/weight-gain",          labelKey: "weight",    accent: "from-emerald-500/15 to-emerald-500/5" },
   { id: "fetal-growth",        icon: TrendingUp,   href: "/tools/fetal-growth",         labelKey: "growth",    accent: "from-blue-500/15 to-blue-500/5" },
   { id: "smart-appointment",   icon: Calendar,     href: "/tools/smart-appointment-reminder", labelKey: "appointment", accent: "from-amber-500/15 to-amber-500/5" },
-  { id: "ai-symptom-analyzer", icon: Stethoscope,  href: "/tools/wellness-diary",       labelKey: "symptoms",  accent: "from-rose-500/15 to-rose-500/5" },
+  { id: "wellness-diary", icon: Heart,  href: "/tools/wellness-diary",       labelKey: "symptoms",  accent: "from-rose-500/15 to-rose-500/5" },
   { id: "vitamin-tracker",     icon: Pill,         href: "/tools/vitamin-tracker",      labelKey: "vitamins",  accent: "from-teal-500/15 to-teal-500/5" },
   { id: "ai-bump-photos",      icon: Camera,       href: "/tools/ai-bump-photos",       labelKey: "photos",    accent: "from-purple-500/15 to-purple-500/5" },
 ];

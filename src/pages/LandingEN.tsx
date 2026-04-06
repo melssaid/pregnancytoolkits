@@ -10,7 +10,7 @@ import { Card, CardContent } from "@/components/ui/card";
 
 const tools = [
   { icon: Calendar, title: "Due Date Calculator", desc: "Calculate your estimated due date based on your last menstrual period or IVF transfer date.", link: "/tools/due-date-calculator", keyword: "due date calculator" },
-  { icon: Activity, title: "Baby Kick Counter", desc: "Track fetal movements and monitor your baby's activity patterns throughout pregnancy.", link: "/tools/kick-counter", keyword: "baby kick counter" },
+  { icon: Activity, title: "Baby Kick Counter", desc: "Follow baby movements and track your baby's activity patterns throughout pregnancy.", link: "/tools/kick-counter", keyword: "baby kick counter" },
   { icon: Baby, title: "Baby Growth Tracker", desc: "Follow your baby's week-by-week development with size comparisons and milestones.", link: "/tools/baby-growth", keyword: "baby growth tracker" },
   { icon: Brain, title: "AI Pregnancy Assistant", desc: "Get instant, evidence-based answers to your pregnancy questions from our AI companion.", link: "/tools/pregnancy-assistant", keyword: "pregnancy assistant" },
   { icon: Apple, title: "Pregnancy Meal Planner", desc: "Personalized nutrition plans and safe food guides for every trimester.", link: "/tools/ai-meal-suggestion", keyword: "pregnancy nutrition" },
@@ -21,7 +21,7 @@ const tools = [
 
 const benefits = [
   "36+ free smart pregnancy and fertility tools",
-  "Week-by-week fetal development tracking",
+  "Week-by-week baby development guide",
   "Evidence-based health information from medical sources",
   "Available in 7 languages including English, Spanish, French, and German",
   "No account required — your data stays private on your device",
@@ -46,7 +46,7 @@ const faqs = [
     a: "Yes. Our cycle tracker predicts ovulation, identifies your fertile window, and analyzes cycle patterns. It's designed for both trying-to-conceive and general menstrual health tracking."
   },
   {
-    q: "Is this app a substitute for medical advice?",
+    q: "Is this app a substitute for professional care?",
     a: "No. Pregnancy Toolkits is an educational and lifestyle companion, not a medical device. Always consult your healthcare provider for medical decisions. Our tools provide general wellness information based on published medical guidelines."
   },
 ];
@@ -78,7 +78,7 @@ export default function LandingEN() {
     <div className="min-h-screen bg-background text-foreground">
       <SEOHead
         title="Free Pregnancy Tracker App — Due Date Calculator, Kick Counter & 36+ Smart Tools"
-        description="Track your pregnancy week by week with our free app. Due date calculator, baby kick counter, contraction timer, fetal development guide, meal planner & more. No signup required."
+        description="Track your pregnancy week by week with our free app. Due date calculator, baby kick counter, contraction timer, baby development guide, meal planner & more. No signup required."
       />
 
       {/* JSON-LD Structured Data */}
@@ -116,7 +116,7 @@ export default function LandingEN() {
           
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Track your pregnancy week by week with our free due date calculator, baby kick counter, 
-            contraction timer, fetal development guide, and personalized AI assistant. 
+            contraction timer, baby development guide, and personalized AI assistant. 
             Designed for expecting parents worldwide — available in 7 languages.
           </p>
 
@@ -240,8 +240,8 @@ export default function LandingEN() {
               Often called the "golden trimester," many women feel their best during this period. 
               You'll likely feel your baby's first kicks around week 20. Use our{" "}
               <Link to="/tools/kick-counter" className="text-primary hover:underline">baby kick counter</Link>{" "}
-              to start tracking fetal movements. The{" "}
-              <Link to="/tools/fetal-growth" className="text-primary hover:underline">fetal development tracker</Link>{" "}
+              to start tracking baby movements. The{" "}
+              <Link to="/tools/fetal-growth" className="text-primary hover:underline">baby development guide</Link>{" "}
               shows you exactly how your baby is growing each week with accurate size comparisons.
             </p>
 
@@ -298,7 +298,7 @@ export default function LandingEN() {
         <div className="container text-center space-y-3">
           <p className="text-xs text-muted-foreground">
             Pregnancy Toolkits is an educational and lifestyle companion, not a medical device. 
-            Always consult your healthcare provider for medical advice.
+            Always consult your healthcare provider for professional care.
           </p>
           <div className="flex items-center justify-center gap-4 text-xs text-muted-foreground">
             <Link to="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link>

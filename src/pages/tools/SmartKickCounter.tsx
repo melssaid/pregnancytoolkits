@@ -487,7 +487,7 @@ const SmartKickCounter: React.FC = () => {
                   <AIInsightCard
                     title={t('toolsInternal.kickCounter.aiAnalysisTitle')}
                     aiType="kick-analysis"
-                    prompt={`You are an expert perinatal nurse providing fetal movement analysis.
+                    prompt={`You are an supportive pregnancy wellness guide reviewing baby movement patterns.
 
 ## Patient Data
 - Pregnancy Week: ${currentWeek}

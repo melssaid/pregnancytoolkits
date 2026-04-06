@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Baby, ChevronDown, ChevronUp, Sparkles, Heart } from "lucide-react";
 import { Link } from "react-router-dom";
 
-// Fetal size comparisons by week — keys reference i18n: weeklyHero.fetalSize.<week>
+// Baby size comparisons by week — keys reference i18n: weeklyHero.fetalSize.<week>
 const fetalSizeData: Record<number, { sizeKey: string; lengthCm: string; weightG: string; emoji: string }> = {
   4: { sizeKey: "4", lengthCm: "0.1", weightG: "<1", emoji: "🌱" },
   5: { sizeKey: "5", lengthCm: "0.2", weightG: "<1", emoji: "🌱" },
@@ -173,7 +173,7 @@ const WeeklyHeroCard = memo(function WeeklyHeroCard() {
             </p>
           </div>
 
-          {/* Fetal emoji + size */}
+          {/* Baby emoji + size */}
           {fetalInfo && (
             <motion.div 
               className="text-center"
@@ -232,7 +232,7 @@ const WeeklyHeroCard = memo(function WeeklyHeroCard() {
           </div>
         </div>
 
-        {/* Fetal metrics */}
+        {/* Baby metrics */}
         {fetalInfo && (
           <div className="flex gap-2 mb-3">
             <div className="flex-1 bg-white/10 rounded-xl px-3 py-2 backdrop-blur-sm text-center">

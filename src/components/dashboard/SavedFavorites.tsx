@@ -10,7 +10,7 @@ import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 
 const toolNames: Record<string, Record<string, string>> = {
   'smart-pregnancy-plan': { ar: 'الخطة الذكية', en: 'Smart Plan', de: 'Smartplan', fr: 'Plan intelligent', es: 'Plan inteligente', pt: 'Plano inteligente', tr: 'Akıllı Plan' },
-  'symptom-analyzer': { ar: 'تحليل الأعراض', en: 'Symptom Analyzer', de: 'Symptomanalyse', fr: 'Analyse des symptômes', es: 'Analizador', pt: 'Analisador', tr: 'Semptom Analizi' },
+  'wellness-diary': { ar: 'يوميات العافية', en: 'Wellness Diary', de: 'Wellness-Tagebuch', fr: 'Journal bien-être', es: 'Diario', pt: 'Diário', tr: 'Sağlık Günlüğü' },
   'weekly-summary': { ar: 'الملخص الأسبوعي', en: 'Weekly Summary', de: 'Wochenzusammenfassung', fr: 'Résumé hebdomadaire', es: 'Resumen semanal', pt: 'Resumo semanal', tr: 'Haftalık Özet' },
   'meal-suggestion': { ar: 'اقتراح وجبات', en: 'Meal Plan', de: 'Mahlzeitenplan', fr: 'Plan repas', es: 'Plan comidas', pt: 'Plano refeições', tr: 'Yemek Planı' },
   'birth-plan': { ar: 'خطة الولادة', en: 'Birth Plan', de: 'Geburtsplan', fr: 'Plan de naissance', es: 'Plan de parto', pt: 'Plano de parto', tr: 'Doğum Planı' },
