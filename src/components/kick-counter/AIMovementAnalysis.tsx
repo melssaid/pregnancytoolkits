@@ -140,7 +140,7 @@ export const AIMovementAnalysis: React.FC<AIMovementAnalysisProps> = ({
     const sessionData = recentSessions.map(s => `${s.date} at ${s.startTime}: ${s.kicks} kicks in ${s.duration} min`).join('\n');
 
     await generate({
-      prompt: `You are an expert perinatal nurse providing fetal movement analysis.
+      prompt: `You are an supportive pregnancy wellness guide reviewing baby movement patterns.
 
 ## Patient Data
 - Pregnancy Week: ${currentWeek}
