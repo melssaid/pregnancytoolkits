@@ -50,6 +50,12 @@ export interface Tool {
 // PREGNANCY TOOLKITS - ORGANIZED BY USER JOURNEY
 // ═══════════════════════════════════════════════════════════════════════════
 
+// ┌─────────────────────────────────────────────────────────────────────────┐
+// │ HIDDEN_FOR_COMPLIANCE — Temporarily hidden tools for Google Play       │
+// │ compliance. Uncomment all lines marked with /* HIDDEN_FOR_COMPLIANCE */ │
+// │ to restore them. Search for "HIDDEN_FOR_COMPLIANCE" in this file.      │
+// └─────────────────────────────────────────────────────────────────────────┘
+
 export const toolsData: Tool[] = [
   // ═══════════════════════════════════════════════════════════════
   // SMART ASSISTANT — Flagship AI tools
