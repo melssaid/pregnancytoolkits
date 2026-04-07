@@ -255,8 +255,8 @@
       "description": "Créez votre plan de naissance personnalisé avec l'aide de l'IA."
     },
     "contractionTimer": {
-      "title": "Minuteur de contractions",
-      "description": "Suivez la durée et les intervalles des contractions avec précision."
+      "title": "Minuteur des vagues",
+      "description": "Suivez la durée et les intervalles de vos vagues avec précision."
     },
     "smartAppointmentReminder": {
       "title": "Planificateur intelligent de rendez-vous",
@@ -312,7 +312,7 @@
     },
     "vitaminLog": {
       "title": "Ma Nutrition Quotidienne",
-      "description": "Calendrier des vitamines et suppléments avec analyse de l'observance quotidienne."
+      "description": "Calendrier bien-être avec analyse de l'observance quotidienne."
     },
     "forbiddenFoods": {
       "title": "Aliments à éviter",
@@ -339,8 +339,8 @@
       "description": "Étirements personnalisés pour votre confort."
     },
     "aiLaborProgress": {
-      "title": "Journal des contractions",
-      "description": "Consignez vos schémas de contractions."
+      "title": "Journal des vagues",
+      "description": "Consignez vos schémas de vagues."
     },
     "cycleLog": {
       "title": "Mon Journal de Cycle",

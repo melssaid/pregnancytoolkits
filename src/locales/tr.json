@@ -244,7 +244,7 @@
     },
     "aiMealSuggestion": {
       "title": "Akıllı Öğün Önerileri",
-      "description": "Trimesterinize göre kişiselleştirilmiş öğün önerileri alın."
+      "description": "Hamilelik aşamanıza göre kişiselleştirilmiş öğün önerileri alın."
     },
     "weeklySummary": {
       "title": "Haftalık Hamilelik Özeti",
@@ -312,7 +312,7 @@
     },
     "vitaminLog": {
       "title": "Günlük Beslenmem",
-      "description": "Vitamin ve takviye programı ile günlük uyum analizi."
+      "description": "Günlük sağlıklı yaşam programı ve uyum analizi."
     },
     "forbiddenFoods": {
       "title": "Yasak Yiyecekler",
@@ -324,7 +324,7 @@
     },
     "smartWalkingCoach": {
       "title": "Yürüyüş Rehberi",
-      "description": "Trimesterinize uygun güvenli yürüyüş programları."
+      "description": "Hamilelik aşamanıza uygun güvenli yürüyüş programları."
     },
     "smartSnackPlanner": {
       "title": "Atıştırmalık Planlayıcısı",

@@ -244,7 +244,7 @@
     },
     "aiMealSuggestion": {
       "title": "Intelligente Mahlzeitenvorschläge",
-      "description": "Personalisierte Mahlzeitenvorschläge für Ihr Trimester."
+      "description": "Personalisierte Mahlzeitenvorschläge für Ihre Schwangerschaftsphase."
     },
     "weeklySummary": {
       "title": "Wöchentliche Schwangerschaftsübersicht",
@@ -312,7 +312,7 @@
     },
     "vitaminLog": {
       "title": "Meine tägliche Ernährung",
-      "description": "Vitamin- und Nahrungsergänzungsplan mit täglicher Einnahmeanalyse."
+      "description": "Wellness- und Ernährungsplan mit täglicher Einnahmeanalyse."
     },
     "forbiddenFoods": {
       "title": "Verbotene Lebensmittel",
@@ -324,7 +324,7 @@
     },
     "smartWalkingCoach": {
       "title": "Geh-Ratgeber",
-      "description": "Sichere Gehprogramme für Ihr Trimester."
+      "description": "Sichere Gehprogramme für Ihre Schwangerschaftsphase."
     },
     "smartSnackPlanner": {
       "title": "Snack-Planer",
