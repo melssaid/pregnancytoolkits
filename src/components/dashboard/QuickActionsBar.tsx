@@ -2,16 +2,16 @@ import { memo } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { Bot, Hand, Gauge, TrendingUp, Calendar, Heart, Camera, Pill } from "lucide-react";
+import { Bot, Hand, Gauge, Heart, Camera, Utensils, Dumbbell, Moon } from "lucide-react";
 
 const actions = [
   { id: "pregnancy-assistant", icon: Bot,          href: "/tools/pregnancy-assistant",  labelKey: "assistant", accent: "from-violet-500/15 to-violet-500/5" },
   { id: "kick-counter",        icon: Hand,         href: "/tools/kick-counter",         labelKey: "kicks",     accent: "from-pink-500/15 to-pink-500/5" },
   { id: "weight-gain",         icon: Gauge,        href: "/tools/weight-gain",          labelKey: "weight",    accent: "from-emerald-500/15 to-emerald-500/5" },
-  { id: "fetal-growth",        icon: TrendingUp,   href: "/tools/fetal-growth",         labelKey: "growth",    accent: "from-blue-500/15 to-blue-500/5" },
-  { id: "smart-appointment",   icon: Calendar,     href: "/tools/smart-appointment-reminder", labelKey: "appointment", accent: "from-amber-500/15 to-amber-500/5" },
-  { id: "wellness-diary", icon: Heart,  href: "/tools/wellness-diary",       labelKey: "symptoms",  accent: "from-rose-500/15 to-rose-500/5" },
-  { id: "vitamin-tracker",     icon: Pill,         href: "/tools/vitamin-tracker",      labelKey: "vitamins",  accent: "from-teal-500/15 to-teal-500/5" },
+  { id: "ai-meal-suggestion",  icon: Utensils,     href: "/tools/ai-meal-suggestion",   labelKey: "meals",     accent: "from-orange-500/15 to-orange-500/5" },
+  { id: "wellness-diary",      icon: Heart,        href: "/tools/wellness-diary",       labelKey: "symptoms",  accent: "from-rose-500/15 to-rose-500/5" },
+  { id: "ai-fitness-coach",    icon: Dumbbell,     href: "/tools/ai-fitness-coach",     labelKey: "fitness",   accent: "from-blue-500/15 to-blue-500/5" },
+  { id: "pregnancy-comfort",   icon: Moon,         href: "/tools/pregnancy-comfort",    labelKey: "comfort",   accent: "from-indigo-500/15 to-indigo-500/5" },
   { id: "ai-bump-photos",      icon: Camera,       href: "/tools/ai-bump-photos",       labelKey: "photos",    accent: "from-purple-500/15 to-purple-500/5" },
 ];
 

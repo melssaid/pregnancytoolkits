@@ -1,7 +1,7 @@
 import { memo, useMemo, useCallback } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { Check, Circle, Droplets, Hand, Pill, Calendar } from "lucide-react";
+import { Check, Circle, Droplets, Hand, Dumbbell, Utensils } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface DailyPrioritiesProps {
@@ -27,14 +27,6 @@ export const DailyPriorities = memo(function DailyPriorities({
 
   const items: PriorityItem[] = useMemo(() => [
     {
-      id: "vitamins",
-      labelKey: "dailyDashboard.priorities.vitamins",
-      done: vitaminsTaken >= 5,
-      icon: Pill,
-      href: "/tools/vitamin-tracker",
-      detail: `${vitaminsTaken}/5`,
-    },
-    {
       id: "kicks",
       labelKey: "dailyDashboard.priorities.kicks",
       done: todayKicks >= 10,
@@ -51,14 +43,20 @@ export const DailyPriorities = memo(function DailyPriorities({
       detail: `${waterGlasses}/8`,
     },
     {
-      id: "appointment",
-      labelKey: "dailyDashboard.priorities.appointment",
+      id: "meals",
+      labelKey: "dailyDashboard.priorities.meals",
       done: false,
-      icon: Calendar,
-      href: "/tools/smart-appointment-reminder",
-      detail: upcomingAppointments > 0 ? `${upcomingAppointments}` : undefined,
+      icon: Utensils,
+      href: "/tools/ai-meal-suggestion",
     },
-  ], [vitaminsTaken, todayKicks, waterGlasses, upcomingAppointments]);
+    {
+      id: "fitness",
+      labelKey: "dailyDashboard.priorities.fitness",
+      done: false,
+      icon: Dumbbell,
+      href: "/tools/ai-fitness-coach",
+    },
+  ], [todayKicks, waterGlasses]);
 
   const completedCount = items.filter(i => i.done).length;
 

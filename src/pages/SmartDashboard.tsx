@@ -17,7 +17,7 @@ import { HydrationTracker } from "@/components/dashboard/HydrationTracker";
 import { SymptomsSummary } from "@/components/dashboard/SymptomsSummary";
 import { FetalMovementCard } from "@/components/dashboard/FetalMovementCard";
 import { WeightTrendCard } from "@/components/dashboard/WeightTrendCard";
-import { AppointmentsCard } from "@/components/dashboard/AppointmentsCard";
+// AppointmentsCard hidden — HIDDEN_FOR_COMPLIANCE (Healthcare Services category)
 import { RecentAIResults } from "@/components/dashboard/RecentAIResults";
 import { UsageStatsNudge } from "@/components/dashboard/UsageStatsNudge";
 
@@ -77,8 +77,7 @@ const SmartDashboard = () => {
           <WeightTrendCard />
         </div>
 
-        {/* 9. Appointments */}
-        <AppointmentsCard />
+        {/* HIDDEN_FOR_COMPLIANCE - AppointmentsCard (Healthcare Services) */}
 
         {/* 10. Recent AI Results */}
         <RecentAIResults />

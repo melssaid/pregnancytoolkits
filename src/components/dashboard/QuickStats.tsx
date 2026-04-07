@@ -66,7 +66,7 @@ export function QuickStats({
       labelKey: "dashboard.quickStats.water",
       value: `${waterGlasses}/8`,
       unit: "",
-      href: "/tools/vitamin-tracker",
+      href: "#hydration-tracker",
       color: "text-primary",
       bg: "bg-primary/8",
     },
@@ -149,7 +149,7 @@ export function QuickStats({
               className="flex-1"
             >
               <Link
-                to="/tools/smart-appointment-reminder"
+                to="/tools/ai-meal-suggestion"
                 className="flex items-center gap-2.5 p-2.5 rounded-xl bg-primary/5 border border-primary/20 hover:border-primary/40 transition-all group"
               >
                 <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">

@@ -2,7 +2,7 @@ import { useState, useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, Droplets, Activity, Pill, Calendar, Brain, ChevronRight, Bookmark, BookmarkCheck, Trash2 } from "lucide-react";
+import { Sparkles, Droplets, Activity, Dumbbell, Utensils, Brain, ChevronRight, Bookmark, BookmarkCheck, Trash2 } from "lucide-react";
 import { SEOHead } from "@/components/SEOHead";
 import { Layout } from "@/components/Layout";
 import { Card, CardContent } from "@/components/ui/card";
@@ -122,8 +122,8 @@ Provide: 1 main recommendation, 2 secondary tips (nutrition + activity). Keep it
   const quickActions = [
     { icon: Brain, label: t("dailyInsights.actions.logSymptoms"), path: "/tools/wellness-diary" },
     { icon: Droplets, label: t("dailyInsights.actions.trackWater"), path: "/dashboard" },
-    { icon: Pill, label: t("dailyInsights.actions.logVitamins"), path: "/tools/vitamin-tracker" },
-    { icon: Calendar, label: t("dailyInsights.actions.viewAppointments"), path: "/tools/smart-appointment-reminder" },
+    { icon: Dumbbell, label: t("dailyInsights.actions.fitness", "Fitness"), path: "/tools/ai-fitness-coach" },
+    { icon: Utensils, label: t("dailyInsights.actions.meals", "Meals"), path: "/tools/ai-meal-suggestion" },
   ];
 
   return (
