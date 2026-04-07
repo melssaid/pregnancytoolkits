@@ -2788,7 +2788,7 @@
       "hipPain": "Hip pain",
       "sciatica": "Sciatica",
       "spd": "SPD/Pelvic pain",
-      "highBP": "High blood pressure",
+      "highBP": "High stress level",
       "noConditions": "No specific conditions",
       "getPositions": "Get AI Position Recommendations",
       "analyzing": "Analyzing...",
@@ -3849,7 +3849,7 @@
       "title": "Wellness Tracking",
       "subtitle": "Comprehensive wellness overview with insights",
       "weight": "Weight",
-      "bloodPressure": "Blood Pressure",
+      "bloodPressure": "Balance Level",
       "risks": "Risks",
       "normal": "Normal",
       "normalForWeek": "Normal for week {{week}}",
@@ -3882,7 +3882,7 @@
         "tip4": "Walk during cooler parts of the day",
         "tip5": "Take breaks when needed"
       },
-      "warningMessage": "Stop walking if you experience dizziness, shortness of breath, chest pain, contractions, or any unusual symptoms. Always consult your care provider.",
+      "warningMessage": "Stop walking if you feel dizzy, short of breath, chest pain, or any unusual discomfort.",
       "trimesterNotes": {
         "1": "Start slowly, listen to your body",
         "2": "Best time for active walking",
@@ -4088,12 +4088,12 @@
       "videos": {
         "v1": {
           "title": "Postpartum Depression: Signs & Symptoms",
-          "description": "Medical professionals explain how to recognize postpartum depression",
+          "description": "Signs, indicators, and when to seek support",
           "category": "Education"
         },
         "v2": {
           "title": "Understanding Postpartum Depression",
-          "description": "From causes to treatment: a comprehensive guide",
+          "description": "Indicators, contributing factors, and support options",
           "category": "Education"
         },
         "v3": {
@@ -4291,7 +4291,7 @@
     },
     "ovulation": {
       "subtitle": "Find your most fertile days",
-      "calculateTitle": "Calculate Your Fertile Window",
+      "calculateTitle": "Calculate Your Peak Days",
       "calculateDesc": "Enter your cycle details to discover your best days ✨",
       "firstDayLastPeriod": "First Day of Last Period",
       "avgCycleLength": "Average Cycle Length (days)",
@@ -4299,20 +4299,20 @@
       "calculateBtn": "Calculate Ovulation",
       "saveCalculation": "Save This Calculation",
       "daysUntilOvulation": "Days Until Ovulation",
-      "getReady": "Get ready for your fertile window!",
+      "getReady": "Get ready for your peak days!",
       "ovulationDay": "Ovulation Day",
-      "peakFertility": "Peak fertility day",
+      "peakFertility": "Peak Day",
       "nextPeriod": "Next Period",
       "expectedStart": "Expected start",
-      "fertileWindow": "Fertile Window",
+      "fertileWindow": "Peak Window",
       "bestDays": "Your best days for conception",
       "start": "Start",
       "end": "End",
-      "sixDays": "6 days of peak fertility",
-      "aiFertilityInsights": "AI Fertility Insights",
-      "getPersonalizedAdvice": "Get Personalized Fertility Advice",
+      "sixDays": "6 peak days",
+      "aiFertilityInsights": "AI Cycle Insights",
+      "getPersonalizedAdvice": "Get personalized cycle advice",
       "tip": "Tip",
-      "tipText": "For the best chances, try to be intimate during your fertile window, especially 1-2 days before ovulation.",
+      "tipText": "For the best results, track your cycle consistently to improve prediction accuracy.",
       "savedCalculations": "Saved Calculations",
       "ovulation": "Ovulation",
       "cycle": "Cycle",
@@ -4323,8 +4323,8 @@
       "deleted": "Deleted",
       "deletedDesc": "Result removed from history.",
       "disclaimer": "This calculator provides estimates based on average cycle patterns. Individual cycles may vary. Consider using ovulation predictor kits for more accuracy.",
-      "videosTitle": "Fertility & Ovulation Videos",
-      "videosSubtitle": "Learn about your fertile window and ovulation cycle"
+      "videosTitle": "Cycle & Ovulation Videos",
+      "videosSubtitle": "Learn about your peak days and cycle patterns"
     },
     "babyCryTranslator": {
       "subtitle": "Understand what your baby is trying to tell you",
