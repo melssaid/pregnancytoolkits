@@ -269,7 +269,7 @@
     },
     "aiMealSuggestion": {
       "title": "Smart Meal Suggestions",
-      "description": "Get personalized meal suggestions for your trimester."
+      "description": "Get personalized meal suggestions for your pregnancy stage."
     },
     "weeklySummary": {
       "title": "Weekly Pregnancy Summary",
@@ -281,11 +281,11 @@
     },
     "contractionTimer": {
       "title": "Contraction Timer",
-      "description": "Track contraction duration and intervals accurately."
+      "description": "Time and log your labor wave duration and intervals."
     },
     "smartAppointmentReminder": {
       "title": "Smart Appointment Planner",
-      "description": "Never miss a prenatal appointment."
+      "description": "Never miss an important appointment."
     },
     "aiCravingAlternatives": {
       "title": "AI Craving Alternatives",
@@ -337,7 +337,7 @@
     },
     "vitaminTracker": {
       "title": "My Daily Nutrition",
-      "description": "Track your daily vitamins and supplements with smart reminders."
+      "description": "Track your daily wellness routine with smart reminders."
     },
     "forbiddenFoods": {
       "title": "Foods to Avoid",
@@ -349,7 +349,7 @@
     },
     "smartWalkingCoach": {
       "title": "Walking Guide",
-      "description": "Safe walking routines tailored to your trimester."
+      "description": "Safe walking routines tailored to your pregnancy stage."
     },
     "smartSnackPlanner": {
       "title": "Snack Planner",
@@ -364,8 +364,8 @@
       "description": "Personalized stretching routines for your comfort."
     },
     "aiLaborProgress": {
-      "title": "Contraction Logger",
-      "description": "Log and journal your contraction patterns."
+      "title": "Labor Wave Logger",
+      "description": "Log and journal your labor wave patterns."
     },
     "cycleTracker": {
       "title": "My Cycle Journal",
@@ -397,8 +397,8 @@
       "description": "Learn about balanced nutrition and healthy eating habits during pregnancy."
     },
     "preeclampsiaRisk": {
-      "title": "Blood Pressure Awareness",
-      "description": "Educational guide about blood pressure during pregnancy."
+      "title": "Daily Wellness Guide",
+      "description": "Educational guide about staying balanced during pregnancy."
     },
     "maternalHealth": {
       "title": "Mom Wellness Guide",
@@ -445,8 +445,8 @@
       "twwTab": "TWW"
     },
     "nutritionSupplements": {
-      "title": "Nutritional Supplements Guide",
-      "description": "Complete nutrition and prenatal supplements guide for conception.",
+      "title": "Nutrition Essentials Guide",
+      "description": "Complete nutrition essentials guide for your journey.",
       "nutritionTab": "Nutrition",
       "supplementsTab": "Supplements",
       "videosTitle": "Educational Videos",

@@ -260,7 +260,7 @@
     },
     "smartAppointmentReminder": {
       "title": "Planificador inteligente de citas",
-      "description": "Nunca pierdas una cita prenatal."
+      "description": "Nunca pierdas una cita importante."
     },
     "aiCravingAlternatives": {
       "title": "Alternativas a antojos IA",
@@ -312,7 +312,7 @@
     },
     "vitaminLog": {
       "title": "Mi Nutrición Diaria",
-      "description": "Calendario de vitaminas y suplementos con análisis de cumplimiento diario."
+      "description": "Calendario de bienestar con análisis de cumplimiento diario."
     },
     "forbiddenFoods": {
       "title": "Alimentos a evitar",
@@ -373,11 +373,11 @@
     },
     "preeclampsiaRisk": {
       "title": "Conciencia de Presión Arterial",
-      "description": "Conoce los factores comunes de la preeclampsia."
+      "description": "Guía educativa sobre el bienestar durante el embarazo."
     },
     "maternalHealth": {
       "title": "Guía de Bienestar Mamá",
-      "description": "Información educativa sobre diabetes gestacional y preeclampsia."
+      "description": "Información educativa sobre hábitos saludables durante el embarazo."
     },
     "pregnancyComfort": {
       "title": "Embarazo cómodo",
@@ -425,7 +425,7 @@
     },
     "nutritionSupplements": {
       "title": "Guía de suplementos nutricionales",
-      "description": "Guía completa de nutrición y suplementos prenatales.",
+      "description": "Guía completa de nutrición esencial para tu viaje.",
       "nutritionTab": "Nutrición",
       "supplementsTab": "Suplementos",
       "videosTitle": "Videos educativos",
