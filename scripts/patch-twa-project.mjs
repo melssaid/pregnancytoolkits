@@ -110,21 +110,26 @@ if (!nextManifest.includes('com.android.vending.BILLING')) {
   console.log('[patch-twa-project] Added BILLING permission');
 }
 
-// Ensure AD_ID permission is present (matches Play Console declaration)
-const adIdPermission = '<uses-permission android:name="com.google.android.gms.permission.AD_ID" />';
+// Remove AD_ID permission (Play Console declaration = "No")
+if (!nextManifest.includes('xmlns:tools=')) {
+  nextManifest = nextManifest.replace(
+    /<manifest\b([^>]*)>/,
+    '<manifest$1\n    xmlns:tools="http://schemas.android.com/tools">'
+  );
+}
+const adIdRemoval = '    <uses-permission android:name="com.google.android.gms.permission.AD_ID" tools:node="remove" />';
 if (!nextManifest.includes('com.google.android.gms.permission.AD_ID')) {
   nextManifest = nextManifest.replace(
     /<manifest\b[^>]*>/,
-    `$&\n    ${adIdPermission}`
+    `$&\n${adIdRemoval}`
   );
-  console.log('[patch-twa-project] Added AD_ID permission');
-} else {
-  // If it exists with tools:node="remove", replace with normal declaration
+  console.log('[patch-twa-project] Added AD_ID removal directive');
+} else if (!nextManifest.includes('tools:node="remove"')) {
   nextManifest = nextManifest.replace(
-    /\s*<uses-permission\s+android:name="com\.google\.android\.gms\.permission\.AD_ID"\s+tools:node="remove"\s*\/>/,
-    `\n    ${adIdPermission}`
+    /\s*<uses-permission\s+android:name="com\.google\.android\.gms\.permission\.AD_ID"\s*\/>/,
+    `\n${adIdRemoval}`
   );
-  console.log('[patch-twa-project] Ensured AD_ID permission is declared (not removed)');
+  console.log('[patch-twa-project] Replaced AD_ID with removal directive');
 }
 
 nextManifest = normalizeDelegationService(nextManifest, packageName);
