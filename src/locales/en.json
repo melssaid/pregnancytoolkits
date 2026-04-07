@@ -1828,22 +1828,22 @@
       "saveEntry": "Save Diary Entry",
       "entrySaved": "Entry saved to your diary!",
       "entryDeleted": "Entry removed",
-      "selectAtLeastOne": "Please select at least one symptom or mood",
+      "selectAtLeastOne": "Please select at least one note or mood",
       "todayEntries": "{{count}} entries logged today",
       "diaryHistory": "Diary History",
       "showInsight": "Show AI insight",
       "hideInsight": "Hide AI insight",
       "chartTitle": "Wellness Trends",
       "chartMoodTab": "Mood",
-      "chartSymptomsTab": "Symptoms",
+      "chartSymptomsTab": "Notes",
       "chartMinEntries": "Log at least 2 diary entries to see your wellness trends",
-      "chartSymptomCount": "{{count}} symptoms",
+      "chartSymptomCount": "{{count}} notes",
       "chartAverage": "Average",
       "chartImproving": "Improving",
       "chartDeclining": "Declining",
       "chartStable": "Stable",
       "chartTimes": "times",
-      "chartNoSymptoms": "No symptoms logged in the last 14 days"
+      "chartNoSymptoms": "No notes logged in the last 14 days"
     },
     "vitaminTracker": {
       "title": "My Daily Nutrition",
@@ -1964,7 +1964,7 @@
       "clickToCollapse": "Click to collapse",
       "bloodTypeGuide": "AI Blood Type Guide",
       "cycleAnalysis": "AI Cycle Analysis",
-      "preeclampsiaCoach": "AI Preeclampsia Prevention Coach",
+      "preeclampsiaCoach": "AI Wellness Coach",
       "nutritionAnalysis": "AI Nutrition Analysis",
       "weeklyMealPlan": "AI Weekly Meal Plan",
       "groceryOptimizer": "AI Grocery Optimizer"
@@ -2375,7 +2375,7 @@
         "appointments": {
           "label": "Medical Appointments",
           "icon": "🏥",
-          "desc": "Being involved in prenatal care"
+          "desc": "Being involved in care visits"
         },
         "communication": {
           "label": "Communication",
@@ -2427,7 +2427,7 @@
         "dontSay": {
           "title": "Things to Avoid",
           "item1": "Don't compare her to other pregnant women",
-          "item2": "Don't dismiss her symptoms as 'just hormones'",
+          "item2": "Don't dismiss her feelings as 'just hormones'",
           "item3": "Don't make decisions about the baby without her",
           "item4": "Don't comment on her body changes negatively"
         },
@@ -2748,7 +2748,7 @@
       "nutrientNeedsDesc": "your body may signal what it lacks",
       "emotionalComfort": "Emotional comfort",
       "emotionalComfortDesc": "certain foods provide psychological relief",
-      "bloodSugar": "Blood sugar fluctuations",
+      "bloodSugar": "Energy level fluctuations",
       "bloodSugarDesc": "can trigger sweet cravings",
       "cravings": {
         "pizza": "Pizza",
@@ -3773,9 +3773,9 @@
         "week40": "Fully developed and ready for birth! Welcome to the world!"
       },
       "tips": {
-        "week4": "Schedule your first prenatal appointment.",
+        "week4": "Schedule your first care provider visit.",
         "week6": "Stay hydrated and rest well.",
-        "week8": "First prenatal visit recommended.",
+        "week8": "First care provider visit recommended.",
         "week10": "Morning sickness may peak now.",
         "week12": "End of first trimester!",
         "week14": "Energy levels may improve.",
@@ -3788,7 +3788,7 @@
         "week28": "Third trimester begins!",
         "week30": "Pack your hospital bag.",
         "week32": "Baby is gaining weight fast!",
-        "week34": "Prenatal visits every 2 weeks.",
+        "week34": "Care visits every 2 weeks.",
         "week36": "Baby may drop lower.",
         "week38": "Could arrive any day!",
         "week40": "Due date!"
@@ -3854,7 +3854,7 @@
       "normal": "Normal",
       "normalForWeek": "Normal for week {{week}}",
       "pretermBirth": "Preterm birth",
-      "preeclampsia": "Preeclampsia",
+      "preeclampsia": "Wellness Balance",
       "low": "Low",
       "medium": "Medium"
     },
@@ -3923,7 +3923,7 @@
       "snackingTips": {
         "tip1": "Aim for snacks combining protein + carbs for sustained energy",
         "tip2": "Keep portable snacks in your bag for unexpected hunger",
-        "tip3": "Eat every 2-3 hours to maintain stable blood sugar",
+        "tip3": "Eat every 2-3 hours to maintain stable energy levels",
         "tip4": "Stay hydrated - sometimes thirst feels like hunger"
       },
       "categories": {
@@ -4087,7 +4087,7 @@
       "videosSubtitle": "Support and self-care resources",
       "videos": {
         "v1": {
-          "title": "Postpartum Depression: Signs & Symptoms",
+          "title": "Postpartum Mood: Signs & Indicators",
           "description": "Signs, indicators, and when to seek support",
           "category": "Education"
         },
