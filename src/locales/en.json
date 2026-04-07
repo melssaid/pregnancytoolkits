@@ -101,7 +101,7 @@
     "all": "All",
     "ai": "Smart Tools",
     "smartAssistant": "Smart Pregnancy Assistant",
-    "fertility": "Fertility Planning",
+    "fertility": "Cycle & Planning",
     "pregnancy": "Pregnancy Journey",
     "nutrition": "Pregnancy Nutrition",
     "labor": "Labor & Delivery",
@@ -211,7 +211,7 @@
       "title": "Where are you in your journey?",
       "subtitle": "We'll personalize everything for you",
       "fertility": "Dreaming of a Baby",
-      "fertilityDesc": "Fertility tracking and pregnancy planning tools",
+      "fertilityDesc": "Cycle journaling and motherhood planning tools",
       "pregnant": "My Pregnancy",
       "pregnantDesc": "Your comprehensive pregnancy companion",
       "postpartum": "My Baby",
@@ -369,15 +369,15 @@
     },
     "cycleTracker": {
       "title": "My Cycle Journal",
-      "description": "Smart cycle analysis with precise fertility window predictions."
+      "description": "Smart cycle journal with estimated peak days"
     },
     "dueDateCalculator": {
       "title": "Baby Arrival Countdown",
       "description": "Find out when your little one will arrive."
     },
     "babyGrowth": {
-      "title": "Baby Growth Tracking",
-      "description": "Interactive baby growth chart with weekly size comparisons."
+      "title": "Smart Baby Growth",
+      "description": "Track growth with WHO charts."
     },
     "kickCounter": {
       "title": "Baby Kick Tracking",
@@ -419,10 +419,6 @@
     "babySleepTracker": {
       "title": "Baby Sleep Log",
       "description": "Sleep pattern analysis with daily and weekly statistics."
-    },
-    "babyGrowth": {
-      "title": "Smart Baby Growth",
-      "description": "Track growth with WHO charts."
     },
     "diaperTracker": {
       "title": "Smart Diaper Log",
@@ -499,8 +495,6 @@
       "birthPlanDesc": "Delivery preferences",
       "hospitalBag": "Hospital Bag",
       "hospitalBagDesc": "Packing checklist",
-      "babyGrowth": "Baby Growth",
-      "babyGrowthDesc": "Baby development",
       "babyGrowth": "Baby Growth",
       "babyGrowthDesc": "Postnatal tracking",
       "bumpPhotos": "Bump Photos",
@@ -6601,7 +6595,7 @@
     "smart-pregnancy-plan": "Plan your pregnancy journey with a personalized schedule for appointments and checkups. Consider the plan as an organizational guide. Any health concerns should be discussed with your doctor.",
     "cycle-tracker": "Track your menstrual cycle to know expected fertility windows. Results are estimates, not diagnoses. If your cycle is irregular for an extended period, consult your doctor.",
     "due-date-calculator": "Calculate your expected due date based on your last period. This is an estimate and may differ from a medical assessment. Follow up with your doctor for an accurate date.",
-    "baby-growth": "Follow your baby's growth and compare with general averages. Measurements are educational references only.",
+    "baby-growth": "Follow your baby's growth and compare with WHO standards. Measurements are general references. Regular medical check-ups are essential for growth assessment.",
     "kick-counter": "Record your baby's daily movements to track activity. Overall patterns matter more than individual numbers. If you notice a significant decrease in movement, contact your care provider immediately.",
     "weight-gain": "Track your pregnancy weight gain and compare with normal ranges. Results are general guidelines. Discuss any concerns with your care provider.",
     "ai-bump-photos": "Document your pregnancy journey with weekly photos and a timeline. This is a personal documentation tool. Any concerning physical observations warrant a medical consultation.",
@@ -6629,7 +6623,6 @@
     "postpartum-recovery": "Track your postpartum recovery with personalized guidance. Advice is general and educational. Any unusual postpartum symptoms require immediate medical attention.",
     "baby-cry-translator": "Understand your baby's needs through cry pattern analysis. Results are intelligent guesses, not diagnoses. If crying persists abnormally, consult your pediatrician.",
     "baby-sleep-tracker": "Log your baby's sleep to understand patterns and improve them. Data is for personal observation only. Any concerns about your baby's sleep should be discussed with your pediatrician.",
-    "baby-growth": "Follow your baby's growth and compare with WHO standards. Measurements are general references. Regular medical check-ups are essential for growth assessment.",
     "diaper-tracker": "Record diaper changes to follow your baby's digestive health. Data is for personal observation. Any concerning changes in stool or urine warrant consulting your pediatrician.",
     "fertile-window": "Estimate your most fertile days based on cycle data. Results are approximate and for planning purposes only. Consult your care provider for personalized fertility guidance.",
     "fertility-academy": "A comprehensive fertility education hub with lessons, body signs, and stress management techniques. Content is for general awareness. Your doctor can provide advice specific to your situation.",
