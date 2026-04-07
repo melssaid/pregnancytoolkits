@@ -2,7 +2,7 @@ import { useState, useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, Droplets, Activity, Pill, Calendar, Brain, ChevronRight, Bookmark, BookmarkCheck, Trash2 } from "lucide-react";
+import { Sparkles, Droplets, Activity, Dumbbell, Utensils, Brain, ChevronRight, Bookmark, BookmarkCheck, Trash2 } from "lucide-react";
 import { SEOHead } from "@/components/SEOHead";
 import { Layout } from "@/components/Layout";
 import { Card, CardContent } from "@/components/ui/card";
