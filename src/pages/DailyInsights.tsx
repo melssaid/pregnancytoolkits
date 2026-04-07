@@ -122,8 +122,8 @@ Provide: 1 main recommendation, 2 secondary tips (nutrition + activity). Keep it
   const quickActions = [
     { icon: Brain, label: t("dailyInsights.actions.logSymptoms"), path: "/tools/wellness-diary" },
     { icon: Droplets, label: t("dailyInsights.actions.trackWater"), path: "/dashboard" },
-    { icon: Pill, label: t("dailyInsights.actions.logVitamins"), path: "/tools/vitamin-tracker" },
-    { icon: Calendar, label: t("dailyInsights.actions.viewAppointments"), path: "/tools/smart-appointment-reminder" },
+    { icon: Dumbbell, label: t("dailyInsights.actions.fitness", "Fitness"), path: "/tools/ai-fitness-coach" },
+    { icon: Utensils, label: t("dailyInsights.actions.meals", "Meals"), path: "/tools/ai-meal-suggestion" },
   ];
 
   return (

@@ -66,7 +66,7 @@ export function QuickStats({
       labelKey: "dashboard.quickStats.water",
       value: `${waterGlasses}/8`,
       unit: "",
-      href: "/tools/vitamin-tracker",
+      href: "#hydration-tracker",
       color: "text-primary",
       bg: "bg-primary/8",
     },
