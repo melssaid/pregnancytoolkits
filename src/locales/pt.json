@@ -573,7 +573,7 @@
         "anxious": "Ansiosa",
         "bad": "Ruim"
       },
-      "todaysSymptoms": "Sintomas de hoje",
+      "todaysSymptoms": "Notas de hoje",
       "symptoms": {
         "nausea": "Náusea",
         "headache": "Dor de cabeça",
@@ -6671,9 +6671,9 @@
       "addGlass": "+ Copo de água"
     },
     "symptoms": {
-      "title": "Resumo de sintomas",
-      "noSymptoms": "Nenhum sintoma registrado",
-      "noData": "Registre seus sintomas e humor hoje"
+      "title": "Notas diárias de bem-estar",
+      "noSymptoms": "Sem notas",
+      "noData": "Registre como você está se sentindo hoje"
     },
     "do bebéMovement": {
       "title": "Movimento do bebé",

@@ -351,8 +351,8 @@
       "description": "Découvrez quand votre bébé arrivera."
     },
     "babyGrowth": {
-      "title": "Suivi de la croissance du bébée",
-      "description": "Graphique interactif de croissance du bébée avec comparaisons hebdomadaires."
+      "title": "Croissance intelligente du bébé",
+      "description": "Suivez la croissance avec les courbes OMS."
     },
     "kickCounter": {
       "title": "Suivi des coups de pied fœtaux",
@@ -394,10 +394,6 @@
     "babySleepLog": {
       "title": "Journal de Sommeil Bébé",
       "description": "Analyse des habitudes de sommeil avec statistiques quotidiennes et hebdomadaires."
-    },
-    "babyGrowth": {
-      "title": "Croissance intelligente du bébé",
-      "description": "Suivez la croissance avec les courbes OMS."
     },
     "diaperLog": {
       "title": "Journal de Couches",
@@ -474,8 +470,6 @@
       "birthPlanDesc": "Préférences d'accouchement",
       "hospitalBag": "Sac d'hôpital",
       "hospitalBagDesc": "Liste de préparation",
-      "babyGrowth": "Croissance du bébé",
-      "babyGrowthDesc": "Développement du bébé",
       "babyGrowth": "Croissance du bébé",
       "babyGrowthDesc": "Suivi postnatal",
       "bumpPhotos": "Photos du ventre",
@@ -573,7 +567,7 @@
         "anxious": "Anxieuse",
         "bad": "Mauvaise"
       },
-      "todaysSymptoms": "Symptômes d'aujourd'hui",
+      "todaysSymptoms": "Notes d'aujourd'hui",
       "symptoms": {
         "nausea": "Nausées",
         "headache": "Maux de tête",
@@ -6576,7 +6570,7 @@
     "smart-pregnancy-plan": "Planifiez votre grossesse avec un calendrier personnalisé. Le plan est un guide organisationnel. Les préoccupations de santé doivent être discutées avec votre médecin.",
     "cycle-tracker": "Suivez votre cycle pour connaître vos fenêtres de fertilité. Les résultats sont des estimations. En cas d'irrégularité prolongée, consultez votre médecin.",
     "due-date-calculator": "Calculez votre date d'accouchement prévue. C'est une estimation. Confirmez avec votre médecin pour une date précise.",
-    "baby-growth": "Suivez la croissance de votre bébé. Les mesures sont des références éducatives. Toute préoccupation de croissance nécessite un examen médical.",
+    "baby-growth": "Suivez la croissance de votre bébé selon les normes OMS. Des bilans médicaux réguliers sont essentiels.",
     "kick-counter": "Enregistrez les mouvements quotidiens de votre bébé. En cas de diminution significative, contactez votre médecin immédiatement.",
     "weight-gain": "Suivez votre prise de poids pendant la grossesse. Les résultats sont des indications générales. Discutez de vos préoccupations avec votre médecin.",
     "ai-bump-photos": "Documentez votre grossesse avec des photos hebdomadaires. En cas d'observations physiques préoccupantes, consultez votre médecin.",
@@ -6604,7 +6598,6 @@
     "postpartum-recovery": "Suivez votre récupération post-partum. Les symptômes inhabituels nécessitent une attention médicale immédiate.",
     "baby-cry-translator": "Comprenez les besoins de votre bébé par l'analyse des pleurs. Si les pleurs persistent anormalement, consultez votre pédiatre.",
     "baby-sleep-tracker": "Suivez le sommeil de votre bébé. Les préoccupations de sommeil doivent être discutées avec votre pédiatre.",
-    "baby-growth": "Suivez la croissance de votre bébé selon les normes OMS. Des bilans médicaux réguliers sont essentiels.",
     "diaper-tracker": "Enregistrez les changes pour surveiller la santé digestive. Les changements préoccupants de selles doivent être signalés à votre pédiatre.",
     "fertile-window": "Estimate your most fertile days based on cycle data. Results are approximate and for planning purposes only. Consult your healthcare provider for personalized fertility guidance.",
     "fertility-academy": "Un centre éducatif complet sur la fertilité avec leçons, signes corporels et techniques de gestion du stress. Le contenu est informatif. Votre médecin peut vous donner des conseils personnalisés.",
@@ -6671,9 +6664,9 @@
       "addGlass": "+ Verre d'eau"
     },
     "symptoms": {
-      "title": "Résumé des symptômes",
-      "noSymptoms": "Aucun symptôme enregistré",
-      "noData": "Enregistrez vos symptômes et votre humeur aujourd'hui"
+      "title": "Notes bien-être du jour",
+      "noSymptoms": "Aucune note",
+      "noData": "Notez comment vous vous sentez aujourd'hui"
     },
     "babyMovement": {
       "title": "Mouvements fœtaux",

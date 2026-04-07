@@ -351,8 +351,8 @@
       "description": "Finden Sie heraus, wann Ihr Kleines ankommt."
     },
     "babyGrowth": {
-      "title": "Baby-Wachstum verfolgen",
-      "description": "Interaktives Wachstumsdiagramm mit wöchentlichen Größenvergleichen."
+      "title": "Intelligentes Baby-Wachstum",
+      "description": "Verfolgen Sie das Wachstum mit WHO-Diagrammen."
     },
     "kickCounter": {
       "title": "Baby- Tritte verfolgen",
@@ -394,10 +394,6 @@
     "babySleepLog": {
       "title": "Baby-Schlaf-Protokoll",
       "description": "Schlafmusteranalyse mit täglichen und wöchentlichen Statistiken."
-    },
-    "babyGrowth": {
-      "title": "Intelligentes Baby-Wachstum",
-      "description": "Verfolgen Sie das Wachstum mit WHO-Diagrammen."
     },
     "diaperLog": {
       "title": "Windel-Protokoll",
@@ -474,8 +470,6 @@
       "birthPlanDesc": "Entbindungspräferenzen",
       "hospitalBag": "Krankenhaustasche",
       "hospitalBagDesc": "Packliste",
-      "babyGrowth": "Baby-Wachstum",
-      "babyGrowthDesc": "Babyentwicklung",
       "babyGrowth": "Babywachstum",
       "babyGrowthDesc": "Postnatales Tracking",
       "bumpPhotos": "Babybauch-Fotos",
@@ -573,7 +567,7 @@
         "anxious": "Ängstlich",
         "bad": "Schlecht"
       },
-      "todaysSymptoms": "Heutige Symptome",
+      "todaysSymptoms": "Heutige Notizen",
       "symptoms": {
         "nausea": "Übelkeit",
         "headache": "Kopfschmerzen",
@@ -6576,7 +6570,7 @@
     "smart-pregnancy-plan": "Planen Sie Ihre Schwangerschaft mit einem personalisierten Zeitplan. Der Plan dient als Organisationshilfe. Gesundheitliche Bedenken besprechen Sie mit Ihrem Arzt.",
     "cycle-tracker": "Verfolgen Sie Ihren Zyklus zur Bestimmung der Fruchtbarkeitsfenster. Ergebnisse sind Schätzungen. Bei anhaltender Unregelmäßigkeit konsultieren Sie Ihren Arzt.",
     "due-date-calculator": "Berechnen Sie Ihren voraussichtlichen Geburtstermin. Dies ist eine Schätzung. Lassen Sie den genauen Termin von Ihrem Arzt bestimmen.",
-    "baby-growth": "Verfolgen Sie das Wachstum Ihres Babys anhand allgemeiner Durchschnittswerte. Bei Wachstumsbedenken ist eine ärztliche Untersuchung erforderlich.",
+    "baby-growth": "Verfolgen Sie das Wachstum Ihres Babys nach WHO-Standards. Regelmäßige ärztliche Kontrollen sind für die Wachstumsbeurteilung unerlässlich.",
     "kick-counter": "Erfassen Sie die täglichen Bewegungen Ihres Babys. Bei deutlich verminderter Aktivität kontaktieren Sie sofort Ihren Arzt.",
     "weight-gain": "Verfolgen Sie Ihre Gewichtszunahme während der Schwangerschaft. Ergebnisse sind allgemeine Richtwerte. Besprechen Sie Bedenken mit Ihrem Arzt.",
     "ai-bump-photos": "Dokumentieren Sie Ihre Schwangerschaft mit wöchentlichen Fotos. Bei auffälligen körperlichen Veränderungen konsultieren Sie Ihren Arzt.",
@@ -6604,7 +6598,6 @@
     "postpartum-recovery": "Verfolgen Sie Ihre Erholung nach der Geburt. Ungewöhnliche Symptome erfordern sofortige ärztliche Aufmerksamkeit.",
     "baby-cry-translator": "Verstehen Sie die Bedürfnisse Ihres Babys durch Weinmuster-Analyse. Bei anhaltendem ungewöhnlichem Weinen konsultieren Sie Ihren Kinderarzt.",
     "baby-sleep-tracker": "Verfolgen Sie den Schlaf Ihres Babys. Schlafbedenken sollten mit dem Kinderarzt besprochen werden.",
-    "baby-growth": "Verfolgen Sie das Wachstum Ihres Babys nach WHO-Standards. Regelmäßige ärztliche Kontrollen sind für die Wachstumsbeurteilung unerlässlich.",
     "diaper-tracker": "Erfassen Sie Windelwechsel zur Überwachung der Verdauungsgesundheit. Auffällige Veränderungen bei Stuhl oder Urin sollten mit dem Kinderarzt besprochen werden.",
     "fertile-window": "Estimate your most fertile days based on cycle data. Results are approximate and for planning purposes only. Consult your healthcare provider for personalized fertility guidance.",
     "fertility-academy": "Ein umfassendes Fruchtbarkeits-Bildungszentrum mit Lektionen, Körperzeichen und Stressbewältigungstechniken. Inhalte dienen der allgemeinen Aufklärung. Ihre Ärztin kann individuelle Empfehlungen geben.",
@@ -6671,9 +6664,9 @@
       "addGlass": "+ Glas Wasser"
     },
     "symptoms": {
-      "title": "Symptomzusammenfassung",
-      "noSymptoms": "Keine Symptome aufgezeichnet",
-      "noData": "Erfassen Sie Ihre Symptome und Stimmung heute"
+      "title": "Tägliche Wellness-Notizen",
+      "noSymptoms": "Keine Notizen",
+      "noData": "Notiere wie du dich heute fühlst"
     },
     "babyMovement": {
       "title": "Kindsbewegungen",

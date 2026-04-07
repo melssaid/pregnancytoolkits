@@ -573,7 +573,7 @@
         "anxious": "Endişeli",
         "bad": "Kötü"
       },
-      "todaysSymptoms": "Bugünkü Semptomlar",
+      "todaysSymptoms": "Bugünkü Notlar",
       "symptoms": {
         "nausea": "Mide bulantısı",
         "headache": "Baş ağrısı",
@@ -6671,9 +6671,9 @@
       "addGlass": "+ Bardak su"
     },
     "symptoms": {
-      "title": "Belirti özeti",
-      "noSymptoms": "Kayıtlı belirti yok",
-      "noData": "Bugünkü belirtilerinizi ve ruh halinizi kaydedin"
+      "title": "Günlük Wellness Notları",
+      "noSymptoms": "Not yok",
+      "noData": "Bugün nasıl hissettiğinizi kaydedin"
     },
     "bebekMovement": {
       "title": "Bebek hareketleri",
