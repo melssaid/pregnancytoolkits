@@ -1828,22 +1828,22 @@
       "saveEntry": "Save Diary Entry",
       "entrySaved": "Entry saved to your diary!",
       "entryDeleted": "Entry removed",
-      "selectAtLeastOne": "Please select at least one symptom or mood",
+      "selectAtLeastOne": "Please select at least one note or mood",
       "todayEntries": "{{count}} entries logged today",
       "diaryHistory": "Diary History",
       "showInsight": "Show AI insight",
       "hideInsight": "Hide AI insight",
       "chartTitle": "Wellness Trends",
       "chartMoodTab": "Mood",
-      "chartSymptomsTab": "Symptoms",
+      "chartSymptomsTab": "Notes",
       "chartMinEntries": "Log at least 2 diary entries to see your wellness trends",
-      "chartSymptomCount": "{{count}} symptoms",
+      "chartSymptomCount": "{{count}} notes",
       "chartAverage": "Average",
       "chartImproving": "Improving",
       "chartDeclining": "Declining",
       "chartStable": "Stable",
       "chartTimes": "times",
-      "chartNoSymptoms": "No symptoms logged in the last 14 days"
+      "chartNoSymptoms": "No notes logged in the last 14 days"
     },
     "vitaminTracker": {
       "title": "My Daily Nutrition",
@@ -1964,7 +1964,7 @@
       "clickToCollapse": "Click to collapse",
       "bloodTypeGuide": "AI Blood Type Guide",
       "cycleAnalysis": "AI Cycle Analysis",
-      "preeclampsiaCoach": "AI Preeclampsia Prevention Coach",
+      "preeclampsiaCoach": "AI Wellness Coach",
       "nutritionAnalysis": "AI Nutrition Analysis",
       "weeklyMealPlan": "AI Weekly Meal Plan",
       "groceryOptimizer": "AI Grocery Optimizer"
@@ -1996,14 +1996,14 @@
       "restTime": "Rest Time",
       "skip": "Skip",
       "dailyTip": "Daily Fitness Tip",
-      "fitnessVideos": "Prenatal Fitness Videos",
+      "fitnessVideos": "Pregnancy Fitness Videos",
       "fitnessVideosSubtitle": "Safe workout guides for every trimester",
       "safetyFirst": "Safety First",
       "safetyText": "Stop immediately if you feel dizziness, pain, or shortness of breath. Keep water nearby.",
       "libraryStats": "{{count}} exercises available",
       "categoriesCount": "{{count}} categories",
       "exerciseNames": {
-        "prenatalSquats": "Prenatal Squats",
+        "prenatalSquats": "Pregnancy Squats",
         "birdDog": "Bird Dog",
         "pelvicTilts": "Pelvic Tilts",
         "wallPushups": "Wall Pushups",
@@ -2138,11 +2138,11 @@
       },
       "videos": {
         "fullBody": {
-          "title": "Full Body Prenatal Workout",
+          "title": "Full Body Pregnancy Workout",
           "description": "25-minute low impact full body workout — safe for all trimesters"
         },
         "strength": {
-          "title": "Bodyweight Prenatal Strength",
+          "title": "Bodyweight Pregnancy Strength",
           "description": "35-minute no equipment strength workout for pregnancy"
         },
         "stretching": {
@@ -2150,7 +2150,7 @@
           "description": "20-minute gentle stretching safe for all trimesters"
         },
         "yoga": {
-          "title": "Prenatal Yoga for Relaxation",
+          "title": "Pregnancy Yoga for Relaxation",
           "description": "Deep relaxation yoga for pregnancy"
         },
         "relaxation": {
@@ -2162,12 +2162,12 @@
           "description": "30-minute cardio and birth preparation exercises"
         },
         "core": {
-          "title": "Safe Prenatal Core Workout",
+          "title": "Safe Pregnancy Core Workout",
           "description": "10-minute safe core workout for first trimester"
         },
         "lowImpact": {
-          "title": "Low Impact Prenatal Workout",
-          "description": "25-minute gentle full body prenatal exercise"
+          "title": "Low Impact Pregnancy Workout",
+          "description": "25-minute gentle full body pregnancy exercise"
         }
       },
       "sections": {
@@ -2375,7 +2375,7 @@
         "appointments": {
           "label": "Medical Appointments",
           "icon": "🏥",
-          "desc": "Being involved in prenatal care"
+          "desc": "Being involved in care visits"
         },
         "communication": {
           "label": "Communication",
@@ -2427,7 +2427,7 @@
         "dontSay": {
           "title": "Things to Avoid",
           "item1": "Don't compare her to other pregnant women",
-          "item2": "Don't dismiss her symptoms as 'just hormones'",
+          "item2": "Don't dismiss her feelings as 'just hormones'",
           "item3": "Don't make decisions about the baby without her",
           "item4": "Don't comment on her body changes negatively"
         },
@@ -2748,7 +2748,7 @@
       "nutrientNeedsDesc": "your body may signal what it lacks",
       "emotionalComfort": "Emotional comfort",
       "emotionalComfortDesc": "certain foods provide psychological relief",
-      "bloodSugar": "Blood sugar fluctuations",
+      "bloodSugar": "Energy level fluctuations",
       "bloodSugarDesc": "can trigger sweet cravings",
       "cravings": {
         "pizza": "Pizza",
@@ -2788,7 +2788,7 @@
       "hipPain": "Hip pain",
       "sciatica": "Sciatica",
       "spd": "SPD/Pelvic pain",
-      "highBP": "High blood pressure",
+      "highBP": "High stress level",
       "noConditions": "No specific conditions",
       "getPositions": "Get AI Position Recommendations",
       "analyzing": "Analyzing...",
@@ -3389,7 +3389,7 @@
       "startDate": "Start Date",
       "endDate": "End Date (optional)",
       "flowIntensity": "Flow Intensity",
-      "symptoms": "Symptoms (optional)",
+      "symptoms": "Notes (optional)",
       "cycleHistory": "Cycle History",
       "dayCycle": "day cycle",
       "flow": "flow",
@@ -3476,7 +3476,7 @@
       "emptyDesc": "Tap the days of your last period on the calendar above to get predictions and insights.",
       "clearAll": "Clear All Data & Start Over",
       "clearAllTitle": "Clear all cycle data?",
-      "clearAllDesc": "This will permanently delete all your tracked periods, symptoms, and predictions. This action cannot be undone.",
+      "clearAllDesc": "This will permanently delete all your tracked periods, notes, and predictions. This cannot be undone.",
       "cancel": "Cancel",
       "confirmClear": "Yes, clear everything",
       "clearedSuccess": "All data cleared successfully",
@@ -3773,9 +3773,9 @@
         "week40": "Fully developed and ready for birth! Welcome to the world!"
       },
       "tips": {
-        "week4": "Schedule your first prenatal appointment.",
+        "week4": "Schedule your first care provider visit.",
         "week6": "Stay hydrated and rest well.",
-        "week8": "First prenatal visit recommended.",
+        "week8": "First care provider visit recommended.",
         "week10": "Morning sickness may peak now.",
         "week12": "End of first trimester!",
         "week14": "Energy levels may improve.",
@@ -3788,7 +3788,7 @@
         "week28": "Third trimester begins!",
         "week30": "Pack your hospital bag.",
         "week32": "Baby is gaining weight fast!",
-        "week34": "Prenatal visits every 2 weeks.",
+        "week34": "Care visits every 2 weeks.",
         "week36": "Baby may drop lower.",
         "week38": "Could arrive any day!",
         "week40": "Due date!"
@@ -3849,12 +3849,12 @@
       "title": "Wellness Tracking",
       "subtitle": "Comprehensive wellness overview with insights",
       "weight": "Weight",
-      "bloodPressure": "Blood Pressure",
+      "bloodPressure": "Balance Level",
       "risks": "Risks",
       "normal": "Normal",
       "normalForWeek": "Normal for week {{week}}",
       "pretermBirth": "Preterm birth",
-      "preeclampsia": "Preeclampsia",
+      "preeclampsia": "Wellness Balance",
       "low": "Low",
       "medium": "Medium"
     },
@@ -3882,7 +3882,7 @@
         "tip4": "Walk during cooler parts of the day",
         "tip5": "Take breaks when needed"
       },
-      "warningMessage": "Stop walking if you experience dizziness, shortness of breath, chest pain, contractions, or any unusual symptoms. Always consult your care provider.",
+      "warningMessage": "Stop walking if you feel dizzy, short of breath, chest pain, or any unusual discomfort.",
       "trimesterNotes": {
         "1": "Start slowly, listen to your body",
         "2": "Best time for active walking",
@@ -3923,7 +3923,7 @@
       "snackingTips": {
         "tip1": "Aim for snacks combining protein + carbs for sustained energy",
         "tip2": "Keep portable snacks in your bag for unexpected hunger",
-        "tip3": "Eat every 2-3 hours to maintain stable blood sugar",
+        "tip3": "Eat every 2-3 hours to maintain stable energy levels",
         "tip4": "Stay hydrated - sometimes thirst feels like hunger"
       },
       "categories": {
@@ -4087,13 +4087,13 @@
       "videosSubtitle": "Support and self-care resources",
       "videos": {
         "v1": {
-          "title": "Postpartum Depression: Signs & Symptoms",
-          "description": "Medical professionals explain how to recognize postpartum depression",
+          "title": "Postpartum Mood: Signs & Indicators",
+          "description": "Signs, indicators, and when to seek support",
           "category": "Education"
         },
         "v2": {
           "title": "Understanding Postpartum Depression",
-          "description": "From causes to treatment: a comprehensive guide",
+          "description": "Indicators, contributing factors, and support options",
           "category": "Education"
         },
         "v3": {
@@ -4291,7 +4291,7 @@
     },
     "ovulation": {
       "subtitle": "Find your most fertile days",
-      "calculateTitle": "Calculate Your Fertile Window",
+      "calculateTitle": "Calculate Your Peak Days",
       "calculateDesc": "Enter your cycle details to discover your best days ✨",
       "firstDayLastPeriod": "First Day of Last Period",
       "avgCycleLength": "Average Cycle Length (days)",
@@ -4299,20 +4299,20 @@
       "calculateBtn": "Calculate Ovulation",
       "saveCalculation": "Save This Calculation",
       "daysUntilOvulation": "Days Until Ovulation",
-      "getReady": "Get ready for your fertile window!",
+      "getReady": "Get ready for your peak days!",
       "ovulationDay": "Ovulation Day",
-      "peakFertility": "Peak fertility day",
+      "peakFertility": "Peak Day",
       "nextPeriod": "Next Period",
       "expectedStart": "Expected start",
-      "fertileWindow": "Fertile Window",
+      "fertileWindow": "Peak Window",
       "bestDays": "Your best days for conception",
       "start": "Start",
       "end": "End",
-      "sixDays": "6 days of peak fertility",
-      "aiFertilityInsights": "AI Fertility Insights",
-      "getPersonalizedAdvice": "Get Personalized Fertility Advice",
+      "sixDays": "6 peak days",
+      "aiFertilityInsights": "AI Cycle Insights",
+      "getPersonalizedAdvice": "Get personalized cycle advice",
       "tip": "Tip",
-      "tipText": "For the best chances, try to be intimate during your fertile window, especially 1-2 days before ovulation.",
+      "tipText": "For the best results, track your cycle consistently to improve prediction accuracy.",
       "savedCalculations": "Saved Calculations",
       "ovulation": "Ovulation",
       "cycle": "Cycle",
@@ -4323,8 +4323,8 @@
       "deleted": "Deleted",
       "deletedDesc": "Result removed from history.",
       "disclaimer": "This calculator provides estimates based on average cycle patterns. Individual cycles may vary. Consider using ovulation predictor kits for more accuracy.",
-      "videosTitle": "Fertility & Ovulation Videos",
-      "videosSubtitle": "Learn about your fertile window and ovulation cycle"
+      "videosTitle": "Cycle & Ovulation Videos",
+      "videosSubtitle": "Learn about your peak days and cycle patterns"
     },
     "babyCryTranslator": {
       "subtitle": "Understand what your baby is trying to tell you",
@@ -6680,7 +6680,7 @@
       "weight": "Weight",
       "growth": "Growth",
       "appointment": "Appt.",
-      "symptoms": "Symptoms",
+      "symptoms": "My Notes",
       "vitamins": "Vitamins",
       "photos": "Photos"
     },
@@ -6713,8 +6713,8 @@
     },
     "alerts": {
       "title": "Health Alert",
-      "highBP": "High blood pressure — consult your doctor",
-      "lowBP": "Low blood pressure — stay hydrated and rest",
+      "highBP": "Wellness alert — consult your care provider",
+      "lowBP": "Wellness alert — stay hydrated and rest",
       "lowKicks": "Fewer movements than usual — note and consult"
     },
     "aiInsight": {
@@ -6723,7 +6723,7 @@
       "description": "Get personalized advice for your current week",
       "generate": "Get Insight",
       "loading": "Analyzing...",
-      "askSymptom": "Ask about symptoms",
+      "askSymptom": "Ask about your notes",
       "askNutrition": "Nutrition tips",
       "askSleep": "Improve sleep",
       "prompt": "Give me a brief personalized health tip for pregnancy week {{week}}. Focus on the top 3 things to watch."

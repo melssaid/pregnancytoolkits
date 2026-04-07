@@ -1971,7 +1971,7 @@
       "restTime": "Pausenzeit",
       "skip": "Überspringen",
       "dailyTip": "Täglicher Fitness-Tipp",
-      "fitnessVideos": "Schwangerschafts-Fitness-Videos",
+      "fitnessVideos": "Schwangerschafts-Fitnessvideos",
       "fitnessVideosSubtitle": "Sichere Trainingsanleitungen für jedes Trimester",
       "safetyFirst": "Sicherheit zuerst",
       "safetyText": "Stoppen Sie sofort bei Schwindel, Schmerzen oder Atemnot. Halten Sie Wasser bereit.",
@@ -4977,6 +4977,9 @@
       "windowEnd": "Fenster schließt sich",
       "estimatedOvulation": "Geschätzter Tag des Eisprungs",
       "disclaimer": "Dies ist eine Schätzung, die auf durchschnittlichen Zyklusdaten basiert. Der tatsächliche Eisprung kann variieren. Wenden Sie sich für eine individuelle Beratung an Ihren Arzt."
+    },
+    "cycleTracker": {
+      "symptoms": "Notizen (optional)"
     }
   },
   "welcome": {
@@ -6655,7 +6658,7 @@
       "weight": "Gewicht",
       "growth": "Wachstum",
       "appointment": "Termin",
-      "symptoms": "Symptome",
+      "symptoms": "Meine Notizen",
       "vitamins": "Vitamine",
       "photos": "Fotos"
     },

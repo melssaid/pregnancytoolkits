@@ -1971,7 +1971,7 @@
       "restTime": "Temps de repos",
       "skip": "Passer",
       "dailyTip": "Conseil fitness du jour",
-      "fitnessVideos": "Vidéos Fitness Prénatal",
+      "fitnessVideos": "Vidéos fitness grossesse",
       "fitnessVideosSubtitle": "Guides d'entraînement sûrs pour chaque trimestre",
       "safetyFirst": "Sécurité d'abord",
       "safetyText": "Arrêtez immédiatement si vous ressentez des étourdissements, des douleurs ou un essoufflement.",
@@ -4977,6 +4977,9 @@
       "windowEnd": "La fenêtre se ferme",
       "estimatedOvulation": "Jour d'ovulation estimé",
       "disclaimer": "Il s'agit d'une estimation basée sur les données de cycle moyen. L'ovulation réelle peut varier. Consultez votre professionnel de la santé pour des conseils personnalisés."
+    },
+    "cycleTracker": {
+      "symptoms": "Notes (optionnel)"
     }
   },
   "welcome": {
@@ -6655,7 +6658,7 @@
       "weight": "Poids",
       "growth": "Croissance",
       "appointment": "RDV",
-      "symptoms": "Symptômes",
+      "symptoms": "Mes notes",
       "vitamins": "Vitamines",
       "photos": "Photos"
     },
