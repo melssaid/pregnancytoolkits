@@ -598,7 +598,7 @@
         "anxious": "Anxious",
         "bad": "Bad"
       },
-      "todaysSymptoms": "Today's Symptoms",
+      "todaysSymptoms": "Today's Notes",
       "symptoms": {
         "nausea": "Nausea",
         "headache": "Headache",
@@ -6696,9 +6696,9 @@
       "addGlass": "+ Glass of water"
     },
     "symptoms": {
-      "title": "Symptoms Summary",
-      "noSymptoms": "No symptoms logged",
-      "noData": "Log your symptoms and mood today"
+      "title": "Daily Wellness Notes",
+      "noSymptoms": "No notes logged",
+      "noData": "Log how you're feeling today"
     },
     "babyMovement": {
       "title": "Baby Movement",
