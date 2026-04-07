@@ -129,7 +129,7 @@
     "mo": "mês",
     "yr": "ano",
     "save": "Economize 44%",
-    "feature1": "36+ ferramentas inteligentes de bem-estar",
+    "feature1": "23+ ferramentas inteligentes de bem-estar",
     "feature2": "40 análises inteligentes por mês",
     "feature3": "Relatórios de saúde IA personalizados",
     "feature4": "Processamento prioritário de solicitações",
@@ -4988,7 +4988,7 @@
   "welcome": {
     "title": "Welcome to Pregnancy Toolkits",
     "subtitle": "Sua companheira personalizada de gravidez",
-    "feature1": "36+ ferramentas inteligentes para a gravidez",
+    "feature1": "23+ ferramentas inteligentes para a gravidez",
     "feature2": "Acompanhamento personalizado semana a semana",
     "disclaimerTitle": "Important Notice",
     "disclaimerText": "Este app fornece informações gerais de bem-estar e não substitui o conselho médico profissional.",
@@ -6247,7 +6247,7 @@
     "pushGuideReload": "Recarregar página após ativar",
     "pushEnabledSuccess": "Notificações push ativadas! Você será notificada mesmo com o app em segundo plano.",
     "welcome": "👋 Bem-vinda!",
-    "welcomeDesc": "Aproveite 36+ ferramentas inteligentes para acompanhar sua gravidez com facilidade e segurança.",
+    "welcomeDesc": "Aproveite 23+ ferramentas inteligentes para acompanhar sua gravidez com facilidade e segurança.",
     "disclaimer": "📋 Aviso importante",
     "disclaimerDesc": "Este aplicativo é apenas informativo e não substitui orientação profissional de saúde.",
     "disclaimerTitle": "Aviso importante",
@@ -6354,7 +6354,7 @@
   },
   "seo": {
     "title": "Melhor app de acompanhamento de gravidez",
-    "description": "App de gravidez completo com 36+ ferramentas inteligentes para cada etapa da maternidade. 100% grátis e disponível em 7 idiomas.",
+    "description": "App de gravidez completo com 23+ ferramentas inteligentes para cada etapa da maternidade. 100% grátis e disponível em 7 idiomas.",
     "babyGrowth": "Acompanhamento do crescimento do bebê",
     "babyGrowthDesc": "Acompanhe o desenvolvimento semanal do bebê com comparações de tamanho de frutas",
     "kickCounter": "Contador de chutes",
@@ -6617,7 +6617,7 @@
     "toolLocked": "\"{{tool}}\" is available for subscribers only",
     "subtitle": "Acesso ilimitado a todas as funcionalidades",
     "benefits": {
-      "allAITools": "36+ smart wellness tools",
+      "allAITools": "23+ smart wellness tools",
       "dailyAnalyses": "40 smart analyses per month",
       "personalizedInsights": "Tips personalized to your week",
       "fullAccess": "Full access with no limits"

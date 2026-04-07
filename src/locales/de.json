@@ -129,7 +129,7 @@
     "mo": "Mo.",
     "yr": "Jahr",
     "save": "44% sparen",
-    "feature1": "36+ intelligente Wellness-Tools",
+    "feature1": "23+ intelligente Wellness-Tools",
     "feature2": "40 intelligente Analysen pro Monat",
     "feature3": "Personalisierte KI-Gesundheitsberichte",
     "feature4": "Priorisierte Anfragenverarbeitung",
@@ -907,7 +907,7 @@
   "subscription": {
     "subscribeNow": "Premium holen - 0,79€/Monat",
     "premiumFeature": "Premium-Funktion",
-    "unlockAccess": "Alle 36+ Tools freischalten",
+    "unlockAccess": "Alle 23+ Tools freischalten",
     "subscribeToAccess": "Abonnieren zum Freischalten"
   },
   "dueDatePage": {
@@ -4982,7 +4982,7 @@
   "welcome": {
     "title": "Willkommen bei Pregnancy Toolkits",
     "subtitle": "Ihre persönliche Schwangerschaftsbegleitung",
-    "feature1": "36+ intelligente Schwangerschafts-Tools",
+    "feature1": "23+ intelligente Schwangerschafts-Tools",
     "feature2": "Personalisierte Gesundheitsverfolgung",
     "disclaimerTitle": "Wichtiger Hinweis",
     "disclaimerText": "Diese App bietet allgemeine Gesundheitsinformationen und ersetzt keine professionelle medizinische Beratung.",
@@ -6085,7 +6085,7 @@
   "socialProof": {
     "title": "Alles was du brauchst 💕",
     "subtitle": "Dein kompletter Schwangerschaftsbegleiter",
-    "tools": "36+ Tools",
+    "tools": "23+ Tools",
     "toolsDesc": "Für deine Reise",
     "trackEverything": "Alles verfolgen",
     "trackDesc": "Tritte, Wehen & mehr",
@@ -6241,7 +6241,7 @@
     "pushGuideReload": "Seite nach Aktivierung neu laden",
     "pushEnabledSuccess": "Push-Benachrichtigungen aktiviert! Du wirst benachrichtigt, auch wenn die App im Hintergrund ist.",
     "welcome": "👋 Willkommen!",
-    "welcomeDesc": "Genieße 36+ intelligente Tools für deine Schwangerschaft.",
+    "welcomeDesc": "Genieße 23+ intelligente Tools für deine Schwangerschaft.",
     "disclaimer": "📋 Wichtiger Hinweis",
     "disclaimerDesc": "Diese App dient nur zu Informationszwecken und ist kein Ersatz für professionelle Gesundheitsberatung.",
     "disclaimerTitle": "Wichtiger Hinweis",
@@ -6348,7 +6348,7 @@
   },
   "seo": {
     "title": "Beste Schwangerschafts-Tracking-App",
-    "description": "Komplette Schwangerschafts-App mit 36+ intelligenten Tools für jede Phase der Mutterschaft - von der Planung bis zur Nachsorge. 100% kostenlos in 7 Sprachen.",
+    "description": "Komplette Schwangerschafts-App mit 23+ intelligenten Tools für jede Phase der Mutterschaft - von der Planung bis zur Nachsorge. 100% kostenlos in 7 Sprachen.",
     "babyGrowth": "Baby-Wachstumsverfolgung",
     "babyGrowthDesc": "Verfolge die wöchentliche Entwicklung deines Babys mit Fruchtgrößenvergleichen",
     "kickCounter": "Trittzähler",
@@ -6610,7 +6610,7 @@
     "toolLocked": "\"{{tool}}\" is available for subscribers only",
     "subtitle": "Unbegrenzter Zugang zu allen Funktionen",
     "benefits": {
-      "allAITools": "36+ smart wellness tools",
+      "allAITools": "23+ smart wellness tools",
       "dailyAnalyses": "40 smart analyses per month",
       "personalizedInsights": "Tips personalized to your week",
       "fullAccess": "Full access with no limits"

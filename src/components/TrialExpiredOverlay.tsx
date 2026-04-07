@@ -71,7 +71,7 @@ export function TrialExpiredOverlay({ onClose }: TrialExpiredOverlayProps) {
                 {t("trialExpired.premiumBenefit", "60 analyses/month")}
               </p>
               <p className="text-[10px] text-muted-foreground">
-                {t("trialExpired.premiumDesc", "Unlock all 36+ smart tools")}
+                {t("trialExpired.premiumDesc", "Unlock all 23+ smart tools")}
               </p>
             </div>
           </div>
