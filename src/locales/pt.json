@@ -1977,7 +1977,7 @@
       "restTime": "Tempo de Descanso",
       "skip": "Pular",
       "dailyTip": "Dica Fitness do Dia",
-      "fitnessVideos": "Vídeos de Fitness Pré-natal",
+      "fitnessVideos": "Vídeos de fitness para gravidez",
       "fitnessVideosSubtitle": "Guias de treino seguros para cada trimestre",
       "safetyFirst": "Segurança Primeiro",
       "safetyText": "Pare imediatamente se sentir tontura, dor ou falta de ar. Mantenha água por perto.",
@@ -4983,6 +4983,9 @@
       "windowEnd": "A janela fecha",
       "estimatedOvulation": "Dia estimado de ovulação",
       "disclaimer": "Esta é uma estimativa baseada em dados de ciclo médio. A ovulação real pode variar. Consulte seu médico para orientação personalizada."
+    },
+    "cycleTracker": {
+      "symptoms": "Notas (opcional)"
     }
   },
   "welcome": {
@@ -6662,7 +6665,7 @@
       "weight": "Peso",
       "growth": "Crescimento",
       "appointment": "Consulta",
-      "symptoms": "Sintomas",
+      "symptoms": "Minhas notas",
       "vitamins": "Vitaminas",
       "photos": "Fotos"
     },

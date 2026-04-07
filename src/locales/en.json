@@ -1996,14 +1996,14 @@
       "restTime": "Rest Time",
       "skip": "Skip",
       "dailyTip": "Daily Fitness Tip",
-      "fitnessVideos": "Prenatal Fitness Videos",
+      "fitnessVideos": "Pregnancy Fitness Videos",
       "fitnessVideosSubtitle": "Safe workout guides for every trimester",
       "safetyFirst": "Safety First",
       "safetyText": "Stop immediately if you feel dizziness, pain, or shortness of breath. Keep water nearby.",
       "libraryStats": "{{count}} exercises available",
       "categoriesCount": "{{count}} categories",
       "exerciseNames": {
-        "prenatalSquats": "Prenatal Squats",
+        "prenatalSquats": "Pregnancy Squats",
         "birdDog": "Bird Dog",
         "pelvicTilts": "Pelvic Tilts",
         "wallPushups": "Wall Pushups",
@@ -2138,11 +2138,11 @@
       },
       "videos": {
         "fullBody": {
-          "title": "Full Body Prenatal Workout",
+          "title": "Full Body Pregnancy Workout",
           "description": "25-minute low impact full body workout — safe for all trimesters"
         },
         "strength": {
-          "title": "Bodyweight Prenatal Strength",
+          "title": "Bodyweight Pregnancy Strength",
           "description": "35-minute no equipment strength workout for pregnancy"
         },
         "stretching": {
@@ -2150,7 +2150,7 @@
           "description": "20-minute gentle stretching safe for all trimesters"
         },
         "yoga": {
-          "title": "Prenatal Yoga for Relaxation",
+          "title": "Pregnancy Yoga for Relaxation",
           "description": "Deep relaxation yoga for pregnancy"
         },
         "relaxation": {
@@ -2162,12 +2162,12 @@
           "description": "30-minute cardio and birth preparation exercises"
         },
         "core": {
-          "title": "Safe Prenatal Core Workout",
+          "title": "Safe Pregnancy Core Workout",
           "description": "10-minute safe core workout for first trimester"
         },
         "lowImpact": {
-          "title": "Low Impact Prenatal Workout",
-          "description": "25-minute gentle full body prenatal exercise"
+          "title": "Low Impact Pregnancy Workout",
+          "description": "25-minute gentle full body pregnancy exercise"
         }
       },
       "sections": {
@@ -3389,7 +3389,7 @@
       "startDate": "Start Date",
       "endDate": "End Date (optional)",
       "flowIntensity": "Flow Intensity",
-      "symptoms": "Symptoms (optional)",
+      "symptoms": "Notes (optional)",
       "cycleHistory": "Cycle History",
       "dayCycle": "day cycle",
       "flow": "flow",
@@ -3476,7 +3476,7 @@
       "emptyDesc": "Tap the days of your last period on the calendar above to get predictions and insights.",
       "clearAll": "Clear All Data & Start Over",
       "clearAllTitle": "Clear all cycle data?",
-      "clearAllDesc": "This will permanently delete all your tracked periods, symptoms, and predictions. This action cannot be undone.",
+      "clearAllDesc": "This will permanently delete all your tracked periods, notes, and predictions. This cannot be undone.",
       "cancel": "Cancel",
       "confirmClear": "Yes, clear everything",
       "clearedSuccess": "All data cleared successfully",
@@ -6680,7 +6680,7 @@
       "weight": "Weight",
       "growth": "Growth",
       "appointment": "Appt.",
-      "symptoms": "Symptoms",
+      "symptoms": "My Notes",
       "vitamins": "Vitamins",
       "photos": "Photos"
     },
@@ -6713,8 +6713,8 @@
     },
     "alerts": {
       "title": "Health Alert",
-      "highBP": "High blood pressure — consult your doctor",
-      "lowBP": "Low blood pressure — stay hydrated and rest",
+      "highBP": "Wellness alert — consult your care provider",
+      "lowBP": "Wellness alert — stay hydrated and rest",
       "lowKicks": "Fewer movements than usual — note and consult"
     },
     "aiInsight": {
@@ -6723,7 +6723,7 @@
       "description": "Get personalized advice for your current week",
       "generate": "Get Insight",
       "loading": "Analyzing...",
-      "askSymptom": "Ask about symptoms",
+      "askSymptom": "Ask about your notes",
       "askNutrition": "Nutrition tips",
       "askSleep": "Improve sleep",
       "prompt": "Give me a brief personalized health tip for pregnancy week {{week}}. Focus on the top 3 things to watch."

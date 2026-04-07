@@ -4983,6 +4983,9 @@
       "windowEnd": "Pencere kapanır",
       "estimatedOvulation": "Tahmini yumurtlama günü",
       "disclaimer": "Bu, ortalama döngü verilerine dayanan bir tahmindir. Gerçek yumurtlama farklılık gösterebilir. Kişisel rehberlik için sağlık uzmanınıza danışın."
+    },
+    "cycleTracker": {
+      "symptoms": "Notlar (isteğe bağlı)"
     }
   },
   "welcome": {
@@ -6662,7 +6665,7 @@
       "weight": "Ağırlık",
       "growth": "Büyüme",
       "appointment": "Randevu",
-      "symptoms": "Belirtiler",
+      "symptoms": "Notlarım",
       "vitamins": "Vitaminler",
       "photos": "Fotoğraflar"
     },
