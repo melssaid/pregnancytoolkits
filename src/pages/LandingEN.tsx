@@ -47,7 +47,7 @@ const faqs = [
   },
   {
     q: "Is this app a substitute for professional care?",
-    a: "No. Pregnancy Toolkits is an educational and lifestyle companion, not a medical device. Always consult your healthcare provider for medical decisions. Our tools provide general wellness information based on published medical guidelines."
+    a: "No. Pregnancy Toolkits is an educational and lifestyle companion, for educational purposes only. Always consult your healthcare provider for medical decisions. Our tools provide general wellness information based on published medical guidelines."
   },
 ];
 
@@ -356,7 +356,7 @@ export default function LandingEN() {
       <footer className="border-t border-border bg-card py-8">
         <div className="container text-center space-y-3">
           <p className="text-xs text-muted-foreground">
-            Pregnancy Toolkits is an educational and lifestyle companion, not a medical device. 
+            Pregnancy Toolkits is an educational and lifestyle companion, for educational purposes only. 
             Always consult your healthcare provider for professional care.
           </p>
           <div className="flex items-center justify-center gap-4 text-xs text-muted-foreground">
