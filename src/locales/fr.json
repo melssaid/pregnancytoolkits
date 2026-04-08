@@ -423,9 +423,9 @@
       "title": "Guide Nutritionnel",
       "description": "Guide complet de nutrition pour votre parcours.",
       "nutritionTab": "Nutrition",
-      "supplementsTab": "Compléments",
+      "supplementsTab": "aide nutritionnels",
       "videosTitle": "Vidéos éducatives",
-      "videosSubtitle": "Découvrez la nutrition et les compléments prénataux"
+      "videosSubtitle": "Découvrez la nutrition et les aide nutritionnels prénataux"
     },
     "twwCompanion": {
       "title": "Compagne d'attente",
@@ -4482,19 +4482,19 @@
       "lessons": {
         "menstrualCycle": {
           "title": "Comprendre le cycle menstruel",
-          "content": "Le cycle menstruel se divise en quatre phases principales : les règles, la phase folliculaire, l'ovulation et la phase lutéale. Un cycle moyen dure 28 jours mais peut varier entre 21 et 35 jours. Pendant les règles, l'utérus élimine sa muqueuse. La phase folliculaire voit l'œstrogène stimuler la croissance des follicules. À l'ovulation, un ovule mature est libéré. La phase lutéale produit de la progestérone pour préparer l'utérus à une éventuelle grossesse."
+          "content": "Le cycle menstruel se divise en quatre phases principales : les règles, la phase folliculaire, l'egg release et la phase lutéale. Un cycle moyen dure 28 jours mais peut varier entre 21 et 35 jours. Pendant les règles, l'utérus élimine sa muqueuse. La phase folliculaire voit l'œstrogène stimuler la croissance des follicules. À l'egg release, un ovule mature est libéré. La phase lutéale produit de la progestérone pour préparer l'utérus à une éventuelle grossesse."
         },
         "ovulationProcess": {
-          "title": "Comment fonctionne l'ovulation",
-          "content": "L'ovulation est la libération d'un ovule mature par l'ovaire, généralement au milieu du cycle. Une poussée de LH déclenche cette libération. L'ovule survit 12-24 heures, rendant le timing crucial. Les spermatozoïdes peuvent survivre jusqu'à 5 jours, donc la fenêtre fertile s'étend sur plusieurs jours avant l'ovulation."
+          "title": "Comment fonctionne l'egg release",
+          "content": "L'egg release est la libération d'un ovule mature par l'ovaire, généralement au milieu du cycle. Une poussée de LH déclenche cette libération. L'ovule survit 12-24 heures, rendant le timing crucial. Les spermatozoïdes peuvent survivre jusqu'à 5 jours, donc la fenêtre peak s'étend sur plusieurs jours avant l'egg release."
         },
         "fertilizationBasics": {
-          "title": "Fécondation et implantation",
-          "content": "La fécondation se produit quand un spermatozoïde rencontre l'ovule dans la trompe de Fallope. Parmi des millions, un seul pénètre l'ovule. L'œuf fécondé commence à se diviser et atteint l'utérus en 3-5 jours. L'implantation se produit quand le blastocyste s'attache à la muqueuse utérine, généralement 6-12 jours après l'ovulation."
+          "title": "conception et early attachment",
+          "content": "La conception se produit quand un spermatozoïde rencontre l'ovule dans la trompe de Fallope. Parmi des millions, un seul pénètre l'ovule. L'œuf fécondé commence à se diviser et atteint l'utérus en 3-5 jours. L'early attachment se produit quand le blastocyste s'attache à la muqueuse utérine, généralement 6-12 jours après l'egg release."
         },
         "hormonesRole": {
-          "title": "Hormones clés de la fertilité",
-          "content": "Plusieurs hormones jouent des rôles essentiels. La FSH stimule la croissance folliculaire. L'œstrogène prépare la muqueuse utérine et favorise la glaire cervicale fertile. La poussée de LH déclenche l'ovulation. La progestérone soutient la phase lutéale. Tout déséquilibre peut affecter la fertilité."
+          "title": "Body signals clés de la fertilité",
+          "content": "Plusieurs body signals jouent des rôles essentiels. La FSH stimule la croissance folliculaire. L'œstrogène prépare la muqueuse utérine et favorise la glaire corporele peak. La poussée de LH déclenche l'egg release. La progestérone soutient la phase lutéale. Tout déséquilibre peut affecter la fertilité."
         },
         "ageAndFertility": {
           "title": "Âge et fertilité",
@@ -4502,11 +4502,11 @@
         },
         "lifestyleFactors": {
           "title": "Facteurs de mode de vie",
-          "content": "Le mode de vie influence considérablement la fertilité. Le tabac réduit la fertilité des deux sexes. L'alcool excessif affecte la qualité des ovules et des spermatozoïdes. Le surpoids ou l'insuffisance pondérale perturbent l'équilibre hormonal. Le stress chronique augmente le cortisol. Une alimentation saine, une activité modérée et un sommeil suffisant soutiennent la fertilité."
+          "content": "Le mode de vie influence considérablement la fertilité. Le tabac réduit la fertilité des deux sexes. L'alcool excessif affecte la qualité des ovules et des spermatozoïdes. Le surpoids ou l'insuffisance pondérale perturbent l'équilibre natural body. Le stress chronique augmente le cortisol. Une alimentation saine, une activité modérée et un sommeil suffisant soutiennent la fertilité."
         },
         "commonMyths": {
           "title": "Mythes vs réalités de la fertilité",
-          "content": "Mythe : On peut tomber enceinte n'importe quel jour. Réalité : La fenêtre fertile est d'environ 6 jours. Mythe : Certaines positions augmentent les chances. Réalité : Aucune preuve scientifique. Mythe : La pilule cause l'infertilité. Réalité : La fertilité revient après l'arrêt. Mythe : L'infertilité est uniquement féminine. Réalité : Un tiers des cas sont d'origine masculine."
+          "content": "Mythe : On peut tomber enceinte n'importe quel jour. Réalité : La fenêtre peak est d'environ 6 jours. Mythe : Certaines positions augmentent les chances. Réalité : Aucune preuve scientifique. Mythe : La pilule cause l'infertilité. Réalité : La fertilité revient après l'arrêt. Mythe : L'infertilité est uniquement féminine. Réalité : Un tiers des cas sont d'origine masculine."
         },
         "whenToSeekHelp": {
           "title": "Quand consulter un spécialiste",
@@ -4522,59 +4522,59 @@
         },
         "trackingMethods": {
           "title": "Méthodes de suivi de fertilité",
-          "content": "Plusieurs méthodes existent : mesure de la température basale le matin avant de se lever, observation de la glaire cervicale qui devient transparente et élastique près de l'ovulation, tests d'ovulation détectant la poussée de LH, et suivi de la position du col. Combiner plusieurs méthodes donne une image plus précise de la fenêtre fertile."
+          "content": "Plusieurs méthodes existent : mesure de la température basale le matin avant de se lever, observation de la glaire corporele qui devient transparente et élastique près de l'egg release, tests d'egg release détectant la poussée de LH, et suivi de la position du col. Combiner plusieurs méthodes donne une image plus précise de la fenêtre peak."
         },
         "optimizingTiming": {
           "title": "Optimiser le timing",
-          "content": "Le meilleur moment pour concevoir est les cinq jours avant l'ovulation et le jour même. Des rapports tous les jours ou deux jours pendant la fenêtre fertile sont recommandés. Les spermatozoïdes survivent plusieurs jours. Évitez les lubrifiants qui peuvent nuire aux spermatozoïdes. La détente aide également."
+          "content": "Le meilleur moment pour concevoir est les cinq jours avant l'egg release et le jour même. Des rapports tous les jours ou deux jours pendant la fenêtre peak sont recommandés. Les spermatozoïdes survivent plusieurs jours. Évitez les lubrifiants qui peuvent nuire aux spermatozoïdes. La détente aide également."
         },
         "implantationWindow": {
-          "title": "La fenêtre d'implantation",
-          "content": "La fenêtre d'implantation est la période où la muqueuse utérine est prête à recevoir l'embryon, généralement entre le jour 6 et 10 après l'ovulation. La muqueuse devient plus réceptive. De légères crampes ou saignements peuvent survenir. La progestérone joue un rôle essentiel dans cette préparation."
+          "title": "La fenêtre d'early attachment",
+          "content": "La fenêtre d'early attachment est la période où la muqueuse utérine est prête à recevoir l'embryon, généralement entre le jour 6 et 10 après l'egg release. La muqueuse devient plus réceptive. De légères crampes ou saignements peuvent survenir. La progestérone joue un rôle essentiel dans cette préparation."
         },
         "cervicalHealth": {
-          "title": "Santé cervicale et fertilité",
-          "content": "Le col de l'utérus joue un rôle central. Il produit une glaire qui change au cours du cycle : sèche après les règles, crémeuse puis transparente et élastique près de l'ovulation, facilitant le passage des spermatozoïdes. Les infections et interventions antérieures peuvent affecter la production de glaire. Des examens réguliers sont importants."
+          "title": "Santé corporele et fertilité",
+          "content": "Le corps joue un rôle central. Il produit une glaire qui change au cours du cycle : sèche après les règles, crémeuse puis transparente et élastique près de l'egg release, facilitant le passage des spermatozoïdes. Les infections et interventions antérieures peuvent affecter la production de glaire. Des examens réguliers sont importants."
         },
         "thyroidFertility": {
-          "title": "Thyroïde et fertilité",
-          "content": "Les troubles thyroïdiens sont fréquents et affectent directement la fertilité. L'hyper et l'hypothyroïdie peuvent perturber l'ovulation et le cycle. Les anticorps thyroïdiens peuvent affecter l'implantation. Un bilan thyroïdien est recommandé lors de la planification d'une grossesse. Le traitement médicamenteux peut réguler les niveaux."
+          "title": "équilibre métabolique et fertilité",
+          "content": "Les troubles thyroïdiens sont fréquents et affectent directement la fertilité. L'hyper et l'hypothyroïdie peuvent perturber l'egg release et le cycle. Les anticorps thyroïdiens peuvent affecter l'early attachment. Un bilan équilibre métabolique est recommandé lors de la planification d'une grossesse. Le traitement médicamenteux peut réguler les niveaux."
         },
         "pcosManagement": {
           "title": "Gestion du SOPK et fertilité",
-          "content": "Le syndrome des ovaires polykystiques (SOPK) est l'une des causes les plus fréquentes de troubles de l'ovulation. Les symptômes incluent cycles irréguliers, androgènes élevés et petits kystes ovariens. La gestion du poids, une alimentation saine et l'exercice améliorent les symptômes. Des médicaments comme la metformine sont disponibles sous supervision médicale."
+          "content": "Le syndrome des ovaires polykystiques (SOPK) est l'une des causes les plus fréquentes de troubles de l'egg release. Les signes incluent cycles irréguliers, androgènes élevés et petits kystes ovariens. La gestion du poids, une alimentation saine et l'exercice améliorent les signes. Des médicaments comme la metformine sont disponibles sous supervision médicale."
         },
         "endometriosisAwareness": {
-          "title": "Endométriose et fertilité",
-          "content": "L'endométriose se produit quand un tissu similaire à la muqueuse utérine se développe à l'extérieur. Elle cause des douleurs et peut affecter la fertilité par des adhérences, des dommages aux trompes et l'impact sur la qualité des ovules. Le diagnostic précoce est important. Les options vont des médicaments à la laparoscopie et la PMA."
+          "title": "inconfort cyclique et fertilité",
+          "content": "L'inconfort cyclique se produit quand un tissu similaire à la muqueuse utérine se développe à l'extérieur. Elle cause des douleurs et peut affecter la fertilité par des adhérences, des dommages aux trompes et l'impact sur la qualité des ovules. Le evaluation précoce est important. Les options vont des médicaments à la laparoscopie et la PMA."
         },
         "nutritionFertility": {
           "title": "Nutrition optimale pour la fertilité",
           "content": "Une alimentation saine soutient considérablement la fertilité. Privilégiez : acide folique (400-800 µg/jour), fer, oméga-3 des poissons et noix, antioxydants des fruits et légumes colorés, et protéines suffisantes. Réduisez les sucres raffinés, aliments transformés et caféine excessive."
         },
         "sleepHormones": {
-          "title": "Sommeil et hormones de fertilité",
-          "content": "Un bon sommeil est essentiel pour l'équilibre hormonal. Le manque de sommeil augmente le cortisol et réduit la mélatonine qui protège les ovules. Visez 7-9 heures par nuit. Maintenez des horaires réguliers et évitez les écrans avant le coucher. Une chambre sombre et fraîche soutient la production de mélatonine."
+          "title": "Sommeil et body signals de fertilité",
+          "content": "Un bon sommeil est essentiel pour l'équilibre natural body. Le manque de sommeil augmente le cortisol et réduit la mélatonine qui protège les ovules. Visez 7-9 heures par nuit. Maintenez des horaires réguliers et évitez les écrans avant le coucher. Une chambre sombre et fraîche soutient la production de mélatonine."
         },
         "exerciseBalance": {
           "title": "Équilibre exercice et fertilité",
-          "content": "L'activité physique modérée soutient la fertilité en améliorant la circulation, réduisant le stress et régulant les hormones. L'exercice excessif peut perturber l'ovulation. Activités idéales : marche rapide, yoga, natation et musculation modérée. Écoutez votre corps et reposez-vous au besoin."
+          "content": "L'activité physique modérée soutient la fertilité en améliorant la circulation, réduisant le stress et régulant les body signals. L'exercice excessif peut perturber l'egg release. Activités idéales : marche rapide, yoga, natation et musculation modérée. Écoutez votre corps et reposez-vous au besoin."
         },
         "supplementsGuide": {
-          "title": "Guide des compléments",
-          "content": "Compléments utiles : folate méthylé, vitamine D3, CoQ10 pour la qualité des ovules, oméga-3, zinc, vitamine E et inositol pour le SOPK. Les hommes bénéficient du zinc, sélénium et CoQ10. Consultez votre médecin avant de commencer et vérifiez les interactions médicamenteuses."
+          "title": "Guide des aide nutritionnels",
+          "content": "aide nutritionnels utiles : folate méthylé, nutriment D3, CoQ10 pour la qualité des ovules, oméga-3, zinc, nutriment E et inositol pour le SOPK. Les hommes bénéficient du zinc, sélénium et CoQ10. Consultez votre médecin avant de commencer et vérifiez les interactions médicamenteuses."
         },
         "environmentalToxins": {
           "title": "Toxines environnementales et fertilité",
           "content": "L'exposition aux toxines peut affecter la fertilité. Les risques incluent : pesticides, plastiques (BPA), métaux lourds et produits chimiques dans les produits ménagers et cosmétiques. Réduisez l'exposition : choisissez bio, utilisez des contenants en verre, évitez les parfums synthétiques et aérez bien votre maison."
         },
         "geneticFactors": {
-          "title": "Facteurs génétiques et fertilité",
-          "content": "Les gènes jouent un rôle dans la fertilité. Des conditions comme le syndrome de Turner ou la mucoviscidose peuvent affecter la capacité reproductive. Le conseil génétique avant la grossesse est utile en cas d'antécédents familiaux ou de fausses couches répétées. Les tests génétiques aident à l'évaluation des risques."
+          "title": "Facteurs héréditaires et fertilité",
+          "content": "Les gènes jouent un rôle dans la fertilité. Des conditions comme le syndrome de Turner ou la mucoviscidose peuvent affecter la capacité body. Le conseil héréditaire avant la grossesse est utile en cas d'antécédents familiaux ou de fausses couches répétées. Les tests héréditaires aident à l'évaluation des risques."
         },
         "immunologyFertility": {
-          "title": "Immunologie et fertilité",
-          "content": "Le système immunitaire joue un rôle important dans la grossesse. Parfois, le corps produit des anticorps contre les spermatozoïdes ou l'embryon. Les maladies auto-immunes comme le lupus peuvent causer des problèmes d'implantation ou des fausses couches. Des tests immunologiques et traitements spécialisés sont disponibles."
+          "title": "bien-être immunitaire et fertilité",
+          "content": "Le système immunitaire joue un rôle important dans la grossesse. Parfois, le corps produit des anticorps contre les spermatozoïdes ou l'embryon. Les maladies auto-immunes comme le lupus peuvent causer des problèmes d'early attachment ou des fausses couches. Des tests immunologiques et traitements spécialisés sont disponibles."
         },
         "secondaryInfertility": {
           "title": "Infertilité secondaire",
@@ -4589,8 +4589,8 @@
           "content": "La congélation d'ovules ou d'embryons permet de préserver la fertilité pour l'avenir. Recommandée avant une chimiothérapie ou radiothérapie, ou pour des raisons personnelles. Les meilleurs résultats sont obtenus avant 35 ans. Le processus comprend la stimulation ovarienne et le prélèvement sous anesthésie. Les taux de réussite s'améliorent constamment."
         },
         "assistedReproduction": {
-          "title": "Techniques de reproduction assistée",
-          "content": "La PMA comprend : l'insémination intra-utérine (IIU), la fécondation in vitro (FIV) et l'injection intracytoplasmique (ICSI). Le traitement commence généralement par les options les plus simples. Chaque technique a des taux de réussite et des exigences différents. Le choix dépend du diagnostic, de l'âge et de l'historique médical."
+          "title": "Techniques de conception assistée",
+          "content": "La PMA comprend : l'insémination intra-utérine (IIU), la conception in vitro (FIV) et l'injection intracytoplasmique (ICSI). Le traitement commence généralement par les options les plus simples. Chaque technique a des taux de réussite et des exigences différents. Le choix dépend du evaluation, de l'âge et de l'historique médical."
         },
         "epigeneticsFertility": {
           "title": "Épigénétique et santé transgénérationnelle",
@@ -4598,7 +4598,7 @@
         },
         "mindBodyConnection": {
           "title": "La connexion corps-esprit",
-          "content": "L'esprit et le corps sont profondément liés dans le parcours de fertilité. Le stress et l'anxiété affectent les hormones et l'ovulation. La méditation, la pleine conscience, la visualisation positive et l'art-thérapie peuvent améliorer le bien-être mental et soutenir la fertilité. L'équilibre entre le désir d'enfant et le plaisir de vivre est essentiel."
+          "content": "L'esprit et le corps sont profondément liés dans le parcours de fertilité. Le stress et l'anxiété affectent les body signals et l'egg release. La méditation, la pleine conscience, la visualisation positive et l'art-thérapie peuvent améliorer le bien-être mental et soutenir la fertilité. L'équilibre entre le désir d'enfant et le plaisir de vivre est essentiel."
         }
       },
       "lessonsCount": "Modules d'apprentissage {{count}}"
@@ -4606,54 +4606,54 @@
     "fertilitySigns": {
       "signs": {
         "cervicalMucus": {
-          "title": "Changements de la glaire cervicale",
-          "description": "À l'approche de l'ovulation, la glaire cervicale devient plus transparente, élastique et glissante, semblable au blanc d'œuf cru. Ce type facilite le mouvement des spermatozoïdes et offre un environnement optimal. Après l'ovulation, elle devient épaisse et collante. Le suivi quotidien donne un indicateur fiable du moment de l'ovulation.",
+          "title": "Changements de la glaire corporele",
+          "description": "À l'approche de l'egg release, la glaire corporele devient plus transparente, élastique et glissante, semblable au blanc d'œuf cru. Ce type facilite le mouvement des spermatozoïdes et offre un environnement optimal. Après l'egg release, elle devient épaisse et collante. Le suivi quotidien donne un indicateur fiable du moment de l'egg release.",
           "tip": "Vérifiez la glaire avant d'uriner en essuyant avec du papier toilette et observez la couleur, la consistance et l'élasticité."
         },
         "basalTemp": {
           "title": "Élévation de la température basale",
-          "description": "Après l'ovulation, la température basale augmente de 0,2 à 0,5°C grâce à la progestérone. Mesurez chaque matin avant de vous lever avec un thermomètre précis. Une élévation maintenue trois jours confirme l'ovulation. Cette méthode confirme l'ovulation rétrospectivement.",
+          "description": "Après l'egg release, la température basale augmente de 0,2 à 0,5°C grâce à la progestérone. Mesurez chaque matin avant de vous lever avec un thermomètre précis. Une élévation maintenue trois jours confirme l'egg release. Cette méthode confirme l'egg release rétrospectivement.",
           "tip": "Utilisez un thermomètre basal à 0,01°C près et mesurez à la même heure chaque jour avant toute activité."
         },
         "cervicalPosition": {
           "title": "Changements de position du col",
-          "description": "Le col change au cours du cycle. Près de l'ovulation, il devient plus haut, plus mou, plus ouvert et plus humide. Après l'ovulation, il descend et devient plus ferme et fermé. L'auto-examen nécessite de la pratique mais donne des informations précieuses.",
+          "description": "Le col change au cours du cycle. Près de l'egg release, il devient plus haut, plus mou, plus ouvert et plus humide. Après l'egg release, il descend et devient plus ferme et fermé. L'auto-examen nécessite de la pratique mais donne des informations précieuses.",
           "tip": "Examinez le col à la même heure et dans la même position chaque jour pour des résultats cohérents."
         },
         "ovulationPain": {
-          "title": "Douleur d'ovulation (Mittelschmerz)",
-          "description": "Certaines femmes ressentent une douleur ou un pincement d'un côté du bas-ventre pendant l'ovulation. Cela peut durer de minutes à heures et alterner de côté mensuellement. Pas un indicateur fiable seul, mais utile avec d'autres méthodes de suivi.",
-          "tip": "Notez toute sensation pelvienne dans votre calendrier mensuel pour identifier votre schéma d'ovulation."
+          "title": "Douleur d'egg release (Mittelschmerz)",
+          "description": "Certaines femmes ressentent une douleur ou un pincement d'un côté du bas-ventre pendant l'egg release. Cela peut durer de minutes à heures et alterner de côté mensuellement. Pas un indicateur fiable seul, mais utile avec d'autres méthodes de suivi.",
+          "tip": "Notez toute sensation pelvienne dans votre calendrier mensuel pour identifier votre schéma d'egg release."
         },
         "breastTenderness": {
           "title": "Sensibilité mammaire",
-          "description": "Vous pouvez remarquer une sensibilité ou un léger gonflement des seins autour de l'ovulation ou après, dû à l'augmentation de la progestérone. Ces changements sont normaux et reflètent les fluctuations hormonales. L'intensité varie d'un mois à l'autre.",
+          "description": "Vous pouvez remarquer une sensibilité ou un léger gonflement des seins autour de l'egg release ou après, dû à l'augmentation de la progestérone. Ces changements sont normaux et reflètent les fluctuations natureles. L'intensité varie d'un mois à l'autre.",
           "tip": "Un soutien-gorge confortable et de soutien aide à soulager l'inconfort pendant cette période."
         },
         "libidoChanges": {
           "title": "Changements du désir",
-          "description": "De nombreuses femmes remarquent une augmentation naturelle du désir autour de l'ovulation due à l'augmentation de l'œstrogène et de la testostérone. C'est une réponse biologique naturelle coïncidant avec la fertilité maximale. Observer ces changements peut être un indicateur supplémentaire utile.",
+          "description": "De nombreuses femmes remarquent une augmentation naturelle du désir autour de l'egg release due à l'augmentation de l'œstrogène et de la testostérone. C'est une réponse biologique naturelle coïncidant avec la fertilité maximale. Observer ces changements peut être un indicateur supplémentaire utile.",
           "tip": "Observez les changements de votre désir au cours du mois et reliez-les aux autres signes de fertilité."
         },
         "moodShifts": {
           "title": "Variations d'humeur et d'énergie",
-          "description": "Les fluctuations hormonales affectent l'humeur et l'énergie. Beaucoup de femmes se sentent de meilleure humeur et plus énergiques autour de l'ovulation. L'humeur peut baisser en phase lutéale. Comprendre ces schémas aide à mieux gérer son quotidien.",
+          "description": "Les fluctuations natureles affectent l'humeur et l'énergie. Beaucoup de femmes se sentent de meilleure humeur et plus énergiques autour de l'egg release. L'humeur peut baisser en phase lutéale. Comprendre ces schémas aide à mieux gérer son quotidien.",
           "tip": "Notez votre humeur et votre niveau d'énergie quotidiennement pour découvrir les schémas liés à votre cycle."
         },
         "bloating": {
           "title": "Léger ballonnement",
-          "description": "Vous pouvez ressentir un léger ballonnement autour de l'ovulation dû à la rétention d'eau liée aux changements hormonaux. C'est normal et temporaire. Cela peut s'accompagner d'une sensation de lourdeur pelvienne et disparaît en un ou deux jours.",
-          "tip": "Buvez suffisamment d'eau et réduisez le sel pour atténuer le ballonnement hormonal."
+          "description": "Vous pouvez ressentir un léger ballonnement autour de l'egg release dû à la rétention d'eau liée aux changements hormonaux. C'est normal et temporaire. Cela peut s'accompagner d'une sensation de lourdeur pelvienne et disparaît en un ou deux jours.",
+          "tip": "Buvez suffisamment d'eau et réduisez le sel pour atténuer le ballonnement natural body."
         },
         "lightSpotting": {
-          "title": "Saignement d'ovulation",
-          "description": "Certaines femmes remarquent de légères taches de sang ou des pertes rosées autour de l'ovulation, dues à la chute rapide d'œstrogène lors de la libération de l'ovule. C'est parfaitement normal et un bon signe d'ovulation. Cela dure généralement un jour ou moins.",
+          "title": "Saignement d'egg release",
+          "description": "Certaines femmes remarquent de légères taches de sang ou des pertes rosées autour de l'egg release, dues à la chute rapide d'œstrogène lors de la libération de l'ovule. C'est parfaitement normal et un bon signe d'egg release. Cela dure généralement un jour ou moins.",
           "tip": "Si le saignement est abondant ou dure plus de deux jours, consultez votre médecin."
         },
         "heightenedSenses": {
           "title": "Sens aiguisés",
-          "description": "Vous pouvez remarquer une sensibilité accrue de l'odorat ou du goût autour de l'ovulation due à l'augmentation de l'œstrogène. Certaines femmes deviennent plus sensibles aux odeurs ou remarquent des saveurs plus intenses. Ces changements sensoriels sont un signe du pic hormonal.",
-          "tip": "Soyez attentive aux changements de vos sens au milieu du cycle, ils peuvent indiquer l'approche de l'ovulation."
+          "description": "Vous pouvez remarquer une sensibilité accrue de l'odorat ou du goût autour de l'egg release due à l'augmentation de l'œstrogène. Certaines femmes deviennent plus sensibles aux odeurs ou remarquent des saveurs plus intenses. Ces changements sensoriels sont un signe du pic natural body.",
+          "tip": "Soyez attentive aux changements de vos sens au milieu du cycle, ils peuvent indiquer l'approche de l'egg release."
         }
       },
       "signsCount": "Panneaux {{count}} à connaître"
@@ -4717,7 +4717,7 @@
         },
         "medications": {
           "title": "Révision des médicaments",
-          "description": "Passez en revue tous les médicaments, suppléments et remèdes à base de plantes actuels avec votre médecin. Certains médicaments ne sont pas sûrs pendant la grossesse."
+          "description": "Passez en revue tous les médicaments, aide nutritionnels et remèdes à base de plantes actuels avec votre médecin. Certains médicaments ne sont pas sûrs pendant la grossesse."
         },
         "vaccinations": {
           "title": "Vérification des vaccinations",
@@ -4731,7 +4731,7 @@
         "academy": "Académie de fertilité",
         "academyDesc": "Éducation complète sur la fécondité",
         "nutrition": "Guide nutritionnel",
-        "nutritionDesc": "Nutrition et suppléments avant la conception"
+        "nutritionDesc": "Nutrition et aide nutritionnels avant la conception"
       }
     },
     "preconceptionNutrition": {
@@ -4790,56 +4790,56 @@
       "categoriesCount": "Catégories nutritionnelles {{count}}"
     },
     "prenatalVitamins": {
-      "supplementsCount": "Suppléments {{count}} à revoir",
+      "supplementsCount": "aide nutritionnels {{count}} à revoir",
       "vitamins": {
         "folicAcid": {
-          "title": "Acide folique (Vitamine B9)",
-          "description": "Le complément le plus important avant la grossesse. L'acide folique réduit significativement le risque de malformations du tube neural (spina bifida, anencéphalie). Commencez au moins 1 à 3 mois avant d'essayer de concevoir.",
+          "title": "Acide folique (nutriment B9)",
+          "description": "Le aide nutritionnel le plus important avant la grossesse. L'acide folique réduit significativement le risque de malformations du tube neural (spina bifida, anencéphalie). Commencez au moins 1 à 3 mois avant d'essayer de concevoir.",
           "dosage": "Recommandé : 400–800 µg par jour. Certaines femmes peuvent avoir besoin de 4–5 mg — consultez votre médecin."
         },
         "iron": {
           "title": "Fer",
           "description": "Les besoins en fer augmentent considérablement pendant la grossesse (de 18 mg à 27 mg par jour). Constituer des réserves de fer avant la conception aide à prévenir l'anémie ferriprive.",
-          "dosage": "Recommandé : 18 mg par jour avant la grossesse. Prendre avec de la vitamine C pour améliorer l'absorption. Éviter avec le calcium ou le thé."
+          "dosage": "Recommandé : 18 mg par jour avant la grossesse. Prendre avec de la nutriment C pour améliorer l'absorption. Éviter avec le calcium ou le thé."
         },
         "vitaminD": {
-          "title": "Vitamine D",
-          "description": "La vitamine D soutient la fonction immunitaire, l'absorption du calcium et la santé reproductive. Sa carence est liée à des complications de grossesse incluant le diabète gestationnel et la prééclampsie.",
+          "title": "nutriment D",
+          "description": "La nutriment D soutient la fonction immunitaire, l'absorption du calcium et la santé reproductive. Sa carence est liée à des complications de grossesse incluant le diabète gestationnel et la prééclampsie.",
           "dosage": "Recommandé : 600–2000 UI par jour. Votre médecin peut tester vos niveaux et recommander une dose plus élevée en cas de carence."
         },
         "omega3DHA": {
           "title": "Oméga-3 DHA",
           "description": "Le DHA est crucial pour le développement cérébral et rétinien du fœtus. Commencer la supplémentation avant la grossesse assure des réserves adéquates dès les premiers stades du développement embryonnaire.",
-          "dosage": "Recommandé : 200–300 mg de DHA par jour. Choisissez des compléments testés pour le mercure et les contaminants."
+          "dosage": "Recommandé : 200–300 mg de DHA par jour. Choisissez des aide nutritionnels testés pour le mercure et les contaminants."
         },
         "calcium": {
           "title": "Calcium",
           "description": "Si l'apport en calcium de la mère est insuffisant pendant la grossesse, le bébé puisera le calcium dans ses os. Constituer de solides réserves de calcium avant la grossesse protège la santé osseuse maternelle.",
-          "dosage": "Recommandé : 1000 mg par jour alimentation et compléments combinés. Mieux absorbé en doses de 500 mg ou moins."
+          "dosage": "Recommandé : 1000 mg par jour alimentation et aide nutritionnels combinés. Mieux absorbé en doses de 500 mg ou moins."
         },
         "iodine": {
           "title": "Iode",
           "description": "L'iode est essentiel à la fonction thyroïdienne, qui affecte directement la fertilité et le développement cérébral du fœtus. La carence en iode est la principale cause évitable de handicap intellectuel dans le monde.",
-          "dosage": "Recommandé : 150 µg par jour avant la grossesse, 220 µg pendant la grossesse. Vérifiez que votre vitamine prénatale contient de l'iode."
+          "dosage": "Recommandé : 150 µg par jour avant la grossesse, 220 µg pendant la grossesse. Vérifiez que votre nutriment pré-grossesse contient de l'iode."
         },
         "zinc": {
           "title": "Zinc",
           "description": "Le zinc soutient la qualité des ovocytes, l'équilibre hormonal et la fonction immunitaire. Il joue aussi un rôle clé dans la synthèse de l'ADN et la division cellulaire.",
-          "dosage": "Recommandé : 8 mg par jour pour les femmes. La plupart des vitamines prénatales contiennent suffisamment de zinc."
+          "dosage": "Recommandé : 8 mg par jour pour les femmes. La plupart des nutriments pré-grossesse contiennent suffisamment de zinc."
         },
         "vitaminB12": {
-          "title": "Vitamine B12",
+          "title": "nutriment B12",
           "description": "La B12 travaille avec le folate pour soutenir la synthèse de l'ADN et le développement du système nerveux. La carence est plus fréquente chez les végétariens et les véganes.",
           "dosage": "Recommandé : 2,4 µg par jour. Les véganes doivent se supplémenter car la B12 se trouve principalement dans les produits animaux."
         },
         "vitaminC": {
-          "title": "Vitamine C",
-          "description": "La vitamine C est un puissant antioxydant qui protège les ovocytes des dommages oxydatifs. Elle améliore aussi l'absorption du fer et soutient la fonction immunitaire.",
+          "title": "nutriment C",
+          "description": "La nutriment C est un puissant antioxydant qui protège les ovocytes des dommages oxydatifs. Elle améliore aussi l'absorption du fer et soutient la fonction immunitaire.",
           "dosage": "Recommandé : 75–90 mg par jour. Facilement obtenue à partir d'agrumes, de baies et de poivrons."
         },
         "vitaminE": {
-          "title": "Vitamine E",
-          "description": "La vitamine E soutient l'épaisseur et la qualité de la muqueuse utérine, importante pour l'implantation. Elle protège aussi les membranes cellulaires du stress oxydatif.",
+          "title": "nutriment E",
+          "description": "La nutriment E soutient l'épaisseur et la qualité de la muqueuse utérine, importante pour l'attachement précoce. Elle protège aussi les membranes cellulaires du stress oxydatif.",
           "dosage": "Recommandé : 15 mg (22 UI) par jour. Présente dans les noix, graines et huiles végétales."
         },
         "coq10": {
@@ -4858,12 +4858,12 @@
       "topics": {
         "stressHormones": {
           "title": "Comment le stress affecte la fertilité",
-          "content": "Le stress chronique libère du cortisol et de l'adrénaline qui interfèrent avec les hormones de fertilité. Un cortisol élevé peut supprimer la GnRH, affectant la FSH et la LH et perturbant l'ovulation. Il peut aussi affecter la qualité de la muqueuse utérine et la capacité d'implantation.",
+          "content": "Le stress chronique libère du cortisol et de l'adrénaline qui interfèrent avec les body signals de fertilité. Un cortisol élevé peut supprimer la GnRH, affectant la FSH et la LH et perturbant l'egg release. Il peut aussi affecter la qualité de la muqueuse utérine et la capacité d'early attachment.",
           "practice": "Consacrez 10 minutes par jour à un exercice de relaxation profonde avec respiration lente et musique apaisante."
         },
         "cortisol": {
           "title": "Comprendre le cortisol",
-          "content": "Le cortisol est la principale hormone du stress. Ses niveaux normaux suivent un rythme quotidien : élevé le matin, bas le soir. Le stress chronique perturbe ce rythme, affectant le sommeil, les hormones reproductives et l'immunité. Maintenir des niveaux normaux est important pour la fertilité naturelle.",
+          "content": "Le cortisol est la principale body signal du stress. Ses niveaux normaux suivent un rythme quotidien : élevé le matin, bas le soir. Le stress chronique perturbe ce rythme, affectant le sommeil, les body signals reproductives et l'immunité. Maintenir des niveaux normaux est important pour la fertilité naturelle.",
           "practice": "Exposez-vous à la lumière du matin et évitez la caféine l'après-midi pour réguler le rythme du cortisol."
         },
         "mindfulness": {
@@ -4883,7 +4883,7 @@
         },
         "sleep": {
           "title": "Sommeil et fertilité",
-          "content": "Un bon sommeil est essentiel pour l'équilibre hormonal et la gestion du stress. Le manque de sommeil augmente le cortisol et perturbe le rythme circadien. Visez 7-9 heures dans une pièce sombre, calme et fraîche. Évitez les écrans une heure avant le coucher. Des horaires réguliers soutiennent la production de mélatonine.",
+          "content": "Un bon sommeil est essentiel pour l'équilibre natural body et la gestion du stress. Le manque de sommeil augmente le cortisol et perturbe le rythme circadien. Visez 7-9 heures dans une pièce sombre, calme et fraîche. Évitez les écrans une heure avant le coucher. Des horaires réguliers soutiennent la production de mélatonine.",
           "practice": "Créez une routine du soir : bain chaud, lecture légère, puis coucher à la même heure."
         },
         "exercise": {
@@ -4996,6 +4996,63 @@
     },
     "cycleTracker": {
       "symptoms": "Notes (optionnel)"
+    },
+    "vitaminTracker": {
+      "title": "Ma Nutrition Quotidienne",
+      "subtitle": "Suivez vos nutriments quotidiens",
+      "pregnancyWeek": "Semaine de grossesse",
+      "todaysProgress": "Progrès du jour",
+      "vitaminsCount": "{{taken}} sur {{total}} nutriments pris aujourd'hui",
+      "aiAnalysisTitle": "Analyse Nutritionnelle Intelligente",
+      "analyzeRoutine": "Analyser ma routine nutritionnelle",
+      "analyzingIntake": "Analyse de votre apport nutritionnel...",
+      "weeklyStats": "Statistiques hebdomadaires",
+      "recentHistory": "Historique récent",
+      "days": "jours",
+      "thisWeek": "cette semaine",
+      "alreadyTaken": "Déjà pris",
+      "alreadyTakenDesc": "Vous avez déjà enregistré {{name}} aujourd'hui",
+      "logged": "Enregistré !",
+      "loggedDesc": "{{name}} enregistré avec succès",
+      "failedToLog": "Échec de l'enregistrement",
+      "take": "Prendre",
+      "done": "Fait",
+      "tipTitle": "Conseil du jour",
+      "tipContent": "Prenez le fer avec de la vitamine C (jus d'orange) pour une meilleure absorption, et évitez de le prendre avec du calcium ou du thé.",
+      "vitamins": {
+        "folicAcid": "Acide folique",
+        "iron": "Fer",
+        "calcium": "Calcium",
+        "vitaminD": "Nutriment D",
+        "omega3": "Oméga 3",
+        "prenatal": "Nutriments pré-grossesse"
+      },
+      "analyzing": "Analyse...",
+      "dosages": "Dosages",
+      "importance": "Importance",
+      "allDone": "🎉 Tous les nutriments pris !",
+      "allDoneDesc": "Bravo ! Vous avez complété votre routine nutritionnelle.",
+      "completedMessage": "Tout est fait pour aujourd'hui ! 🎉",
+      "remainingMessage": "{{count}} nutriments restants",
+      "streakDays": "jours consécutifs",
+      "currentStreak": "Série actuelle",
+      "bestStreak": "Meilleure série",
+      "weeklyOverview": "Aperçu 7 jours",
+      "less": "Moins",
+      "more": "Plus",
+      "timing": {
+        "morning": "Matin",
+        "evening": "Soir",
+        "afternoon": "Après-midi",
+        "withMeal": "Avec repas"
+      },
+      "days_sun": "Dim",
+      "days_mon": "Lun",
+      "days_tue": "Mar",
+      "days_wed": "Mer",
+      "days_thu": "Jeu",
+      "days_fri": "Ven",
+      "days_sat": "Sam"
     }
   },
   "welcome": {

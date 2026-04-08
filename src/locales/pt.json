@@ -427,9 +427,9 @@
       "title": "Guia de Nutrição",
       "description": "Guia completo de nutrição essencial para sua jornada.",
       "nutritionTab": "Nutrição",
-      "supplementsTab": "Suplementos",
+      "supplementsTab": "ajuda nutricional",
       "videosTitle": "Vídeos educativos",
-      "videosSubtitle": "Saiba mais sobre nutrição e suplementos pré-natais"
+      "videosSubtitle": "Saiba mais sobre nutrição e ajuda nutricional pré-natais"
     },
     "twwCompanion": {
       "title": "Companheira de espera",
@@ -4488,123 +4488,123 @@
       "lessons": {
         "menstrualCycle": {
           "title": "Entender o ciclo menstrual",
-          "content": "O ciclo menstrual divide-se em quatro fases principais: menstruação, fase folicular, ovulação e fase lútea. Um ciclo médio dura 28 dias mas pode variar entre 21 e 35 dias. Durante a menstruação, o útero elimina o seu revestimento. Na fase folicular, o estrogénio estimula o crescimento folicular. Na ovulação, um óvulo maduro é libertado. A fase lútea produz progesterona para preparar o útero para uma possível gravidez."
+          "content": "O ciclo menstrual divide-se em quatro fases principais: menstruação, fase folicular, liberação do óvulo e fase lútea. Um ciclo médio dura 28 dias mas pode variar entre 21 e 35 dias. Durante a menstruação, o útero elimina o seu revestimento. Na fase folicular, o estrogénio estimula o crescimento folicular. Na liberação do óvulo, um óvulo maduro é libertado. A fase lútea produz progesterona para preparar o útero para uma possível gravidez."
         },
         "ovulationProcess": {
-          "title": "Como funciona a ovulação",
-          "content": "A ovulação é a libertação de um óvulo maduro do ovário, geralmente no meio do ciclo. Um aumento de LH desencadeia a libertação. O óvulo sobrevive 12-24 horas, tornando o momento crucial. Os espermatozoides podem sobreviver até 5 dias, pelo que a janela fértil abrange vários dias antes da ovulação."
+          "title": "Como funciona a liberação do óvulo",
+          "content": "A liberação do óvulo é a libertação de um óvulo maduro do ovário, geralmente no meio do ciclo. Um aumento de LH desencadeia a libertação. O óvulo sobrevive 12-24 horas, tornando o momento crucial. Os espermatozoides podem sobreviver até 5 dias, pelo que a janela favorável abrange vários dias antes da liberação do óvulo."
         },
         "fertilizationBasics": {
-          "title": "Fecundação e implantação",
-          "content": "A fecundação ocorre quando um espermatozoide encontra o óvulo na trompa de Falópio. De milhões, apenas um penetra o óvulo. O óvulo fecundado começa a dividir-se e chega ao útero em 3-5 dias. A implantação ocorre quando o blastocisto se fixa no revestimento uterino, geralmente 6-12 dias após a ovulação."
+          "title": "concepção e fixação inicial",
+          "content": "A concepção ocorre quando um espermatozoide encontra o óvulo na trompa de Falópio. De milhões, apenas um penetra o óvulo. O óvulo fecundado começa a dividir-se e chega ao útero em 3-5 dias. A fixação inicial ocorre quando o blastocisto se fixa no revestimento uterino, geralmente 6-12 dias após a liberação do óvulo."
         },
         "hormonesRole": {
-          "title": "Hormonas-chave da fertilidade",
-          "content": "Várias hormonas desempenham papéis vitais. A FSH estimula o crescimento folicular. O estrogénio prepara o revestimento uterino e promove o muco cervical fértil. O aumento de LH desencadeia a ovulação. A progesterona sustenta a fase lútea. Qualquer desequilíbrio pode afetar a fertilidade."
+          "title": "Hormonas-chave da bem-estar do ciclo",
+          "content": "Várias hormonas desempenham papéis vitais. A FSH estimula o crescimento folicular. O estrogénio prepara o revestimento uterino e promove o muco body favorável. O aumento de LH desencadeia a liberação do óvulo. A progesterona sustenta a fase lútea. Qualquer desequilíbrio pode afetar a bem-estar do ciclo."
         },
         "ageAndFertility": {
-          "title": "Idade e fertilidade",
-          "content": "A fertilidade feminina atinge o pico nos vinte anos e diminui gradualmente após os 30. O declínio acentua-se após os 35 e significativamente após os 40. A qualidade e quantidade de óvulos diminuem com a idade. Cada mulher é única e muitas concebem com sucesso nos trinta e quarenta. A qualidade do esperma masculino também diminui gradualmente."
+          "title": "Idade e bem-estar do ciclo",
+          "content": "A bem-estar do ciclo feminina atinge o pico nos vinte anos e diminui gradualmente após os 30. O declínio acentua-se após os 35 e significativamente após os 40. A qualidade e quantidade de óvulos diminuem com a idade. Cada mulher é única e muitas concebem com sucesso nos trinta e quarenta. A qualidade do esperma masculino também diminui gradualmente."
         },
         "lifestyleFactors": {
           "title": "Fatores do estilo de vida",
-          "content": "O estilo de vida influencia consideravelmente a fertilidade. O tabaco reduz a fertilidade em ambos os sexos. O álcool excessivo afeta a qualidade dos óvulos e espermatozoides. O excesso ou défice de peso perturba o equilíbrio hormonal. O stress crónico eleva o cortisol. Uma alimentação saudável, exercício moderado e sono suficiente apoiam a fertilidade."
+          "content": "O estilo de vida influencia consideravelmente a bem-estar do ciclo. O tabaco reduz a bem-estar do ciclo em ambos os sexos. O álcool excessivo afeta a qualidade dos óvulos e espermatozoides. O excesso ou défice de peso perturba o equilíbrio natural body. O stress crónico eleva o cortisol. Uma alimentação saudável, exercício moderado e sono suficiente apoiam a bem-estar do ciclo."
         },
         "commonMyths": {
-          "title": "Mitos vs realidades da fertilidade",
-          "content": "Mito: Pode engravidar em qualquer dia. Realidade: A janela fértil é de aproximadamente 6 dias. Mito: Certas posições aumentam as hipóteses. Realidade: Não há evidência científica. Mito: A pílula causa infertilidade. Realidade: A fertilidade regressa ao parar. Mito: A infertilidade é só problema feminino. Realidade: Um terço dos casos são de fatores masculinos."
+          "title": "Mitos vs realidades da bem-estar do ciclo",
+          "content": "Mito: Pode engravidar em qualquer dia. Realidade: A janela favorável é de aproximadamente 6 dias. Mito: Certas posições aumentam as hipóteses. Realidade: Não há evidência científica. Mito: A pílula causa desafios de concepção. Realidade: A bem-estar do ciclo regressa ao parar. Mito: A desafios de concepção é só problema feminino. Realidade: Um terço dos casos são de fatores masculinos."
         },
         "whenToSeekHelp": {
           "title": "Quando consultar um especialista",
           "content": "Consulte se tem menos de 35 anos e não concebeu após um ano, ou mais de 35 anos após 6 meses. Consulte imediatamente se os ciclos são irregulares ou muito dolorosos, se houve abortos recorrentes ou problemas pélvicos. Um especialista pode realizar exames completos e criar um plano de tratamento adequado."
         },
         "maleFertility": {
-          "title": "Fertilidade masculina",
-          "content": "Os fatores masculinos representam um terço dos problemas de fertilidade. A saúde dos espermatozoides é avaliada pela contagem, mobilidade e forma. Os fatores incluem: calor excessivo, tabaco, álcool, certos medicamentos e stress. As melhorias incluem antioxidantes, zinco, ácido fólico e manutenção de peso saudável."
+          "title": "bem-estar do ciclo masculina",
+          "content": "Os fatores masculinos representam um terço dos problemas de bem-estar do ciclo. A saúde dos espermatozoides é avaliada pela contagem, mobilidade e forma. Os fatores incluem: calor excessivo, tabaco, álcool, certos medicamentos e stress. As melhorias incluem antioxidantes, zinco, ácido fólico e manutenção de peso saudável."
         },
         "emotionalWellbeing": {
           "title": "Bem-estar emocional",
-          "content": "O percurso da fertilidade pode ser emocionalmente desgastante. É normal sentir frustração, ansiedade e tristeza. Fale com o seu parceiro ou uma amiga de confiança. Pratique técnicas de relaxamento como meditação e respiração profunda. Não hesite em procurar apoio psicológico profissional. Estas emoções são naturais."
+          "content": "O percurso da bem-estar do ciclo pode ser emocionalmente desgastante. É normal sentir frustração, ansiedade e tristeza. Fale com o seu parceiro ou uma amiga de confiança. Pratique técnicas de relaxamento como meditação e respiração profunda. Não hesite em procurar apoio psicológico profissional. Estas emoções são naturais."
         },
         "trackingMethods": {
-          "title": "Métodos de rastreamento da fertilidade",
-          "content": "Existem vários métodos: medição da temperatura basal de manhã antes de levantar, observação do muco cervical que se torna transparente e elástico perto da ovulação, testes de ovulação que detetam o aumento de LH, e rastreamento da posição cervical. Combinar vários métodos dá uma imagem mais precisa da janela fértil."
+          "title": "Métodos de rastreamento da bem-estar do ciclo",
+          "content": "Existem vários métodos: medição da temperatura basal de manhã antes de levantar, observação do muco body que se torna transparente e elástico perto da liberação do óvulo, testes de liberação do óvulo que detetam o aumento de LH, e rastreamento da posição body. Combinar vários métodos dá uma imagem mais precisa da janela favorável."
         },
         "optimizingTiming": {
           "title": "Otimizar o momento",
-          "content": "O melhor momento para conceber são os cinco dias antes da ovulação e o próprio dia. Relações a cada dia ou dois dias durante a janela fértil são recomendadas. Os espermatozoides sobrevivem vários dias. Evite lubrificantes que possam prejudicar os espermatozoides. O relaxamento também ajuda."
+          "content": "O melhor momento para conceber são os cinco dias antes da liberação do óvulo e o próprio dia. Relações a cada dia ou dois dias durante a janela favorável são recomendadas. Os espermatozoides sobrevivem vários dias. Evite lubrificantes que possam prejudicar os espermatozoides. O relaxamento também ajuda."
         },
         "implantationWindow": {
-          "title": "A janela de implantação",
-          "content": "A janela de implantação é o período em que o revestimento uterino está pronto para receber o embrião, geralmente entre o dia 6 e 10 após a ovulação. O revestimento torna-se mais recetivo. Podem ocorrer cólicas leves ou manchas. A progesterona desempenha um papel essencial nesta preparação."
+          "title": "A janela de fixação inicial",
+          "content": "A janela de fixação inicial é o período em que o revestimento uterino está pronto para receber o embrião, geralmente entre o dia 6 e 10 após a liberação do óvulo. O revestimento torna-se mais recetivo. Podem ocorrer cólicas leves ou manchas. A progesterona desempenha um papel essencial nesta preparação."
         },
         "cervicalHealth": {
-          "title": "Saúde cervical e fertilidade",
-          "content": "O colo do útero desempenha um papel central. Produz muco que muda durante o ciclo: seco após a menstruação, cremoso e depois transparente e elástico perto da ovulação, facilitando a passagem dos espermatozoides. Infeções e intervenções anteriores podem afetar a produção de muco."
+          "title": "Saúde body e bem-estar do ciclo",
+          "content": "O colo do útero desempenha um papel central. Produz muco que muda durante o ciclo: seco após a menstruação, cremoso e depois transparente e elástico perto da liberação do óvulo, facilitando a passagem dos espermatozoides. Infeções e intervenções anteriores podem afetar a produção de muco."
         },
         "thyroidFertility": {
-          "title": "Tireoide e fertilidade",
-          "content": "Os distúrbios da tireoide são frequentes e afetam diretamente a fertilidade. Tanto o hipertiroidismo como o hipotiroidismo podem alterar a ovulação e o ciclo. Os anticorpos tiroideus podem afetar a implantação. Recomenda-se um exame tiroideo ao planear uma gravidez. O tratamento medicamentoso pode regular os níveis."
+          "title": "equilíbrio metabólico e bem-estar do ciclo",
+          "content": "Os distúrbios da equilíbrio metabólico são frequentes e afetam diretamente a bem-estar do ciclo. Tanto o hipertiroidismo como o hipotiroidismo podem alterar a liberação do óvulo e o ciclo. Os anticorpos tiroideus podem afetar a fixação inicial. Recomenda-se um exame tiroideo ao planear uma gravidez. O tratamento medicamentoso pode regular os níveis."
         },
         "pcosManagement": {
-          "title": "Gestão do SOP e fertilidade",
-          "content": "A síndrome dos ovários poliquísticos (SOP) é uma das causas mais frequentes de distúrbios de ovulação. Os sintomas incluem ciclos irregulares, androgénios elevados e pequenos quistos ováricos. O controlo do peso, alimentação saudável e exercício melhoram os sintomas. Medicamentos como a metformina estão disponíveis sob supervisão médica."
+          "title": "Gestão do irregularidade do ciclo e bem-estar do ciclo",
+          "content": "A síndrome dos ovários poliquísticos (irregularidade do ciclo) é uma das causas mais frequentes de distúrbios de liberação do óvulo. Os sinal incluem ciclos irregulares, androgénios elevados e pequenos quistos ováricos. O controlo do peso, alimentação saudável e exercício melhoram os sinal. Medicamentos como a metformina estão disponíveis sob supervisão médica."
         },
         "endometriosisAwareness": {
-          "title": "Endometriose e fertilidade",
-          "content": "A endometriose ocorre quando tecido semelhante ao revestimento uterino cresce fora do útero. Causa dor e pode afetar a fertilidade através de aderências, danos nas trompas e impacto na qualidade dos óvulos. O diagnóstico precoce é importante. As opções vão de medicamentos à laparoscopia e reprodução assistida."
+          "title": "desconforto cíclico e bem-estar do ciclo",
+          "content": "A desconforto cíclico ocorre quando tecido semelhante ao revestimento uterino cresce fora do útero. Causa dor e pode afetar a bem-estar do ciclo através de aderências, danos nas trompas e impacto na qualidade dos óvulos. O diagnóstico precoce é importante. As opções vão de medicamentos à laparoscopia e corporal assistida."
         },
         "nutritionFertility": {
-          "title": "Nutrição ótima para a fertilidade",
-          "content": "Uma alimentação saudável apoia significativamente a fertilidade. Foque-se em: ácido fólico (400-800 µg/dia), ferro, ómega-3 de peixes e frutos secos, antioxidantes de frutas e legumes coloridos, e proteína suficiente. Reduza açúcares refinados, alimentos processados e cafeína excessiva."
+          "title": "Nutrição ótima para a bem-estar do ciclo",
+          "content": "Uma alimentação saudável apoia significativamente a bem-estar do ciclo. Foque-se em: ácido fólico (400-800 µg/dia), ferro, ómega-3 de peixes e frutos secos, antioxidantes de frutas e legumes coloridos, e proteína suficiente. Reduza açúcares refinados, alimentos processados e cafeína excessiva."
         },
         "sleepHormones": {
-          "title": "Sono e hormonas da fertilidade",
-          "content": "Um bom sono é essencial para o equilíbrio hormonal. A falta de sono aumenta o cortisol e reduz a melatonina que protege os óvulos. Aponte para 7-9 horas por noite. Mantenha horários regulares e evite ecrãs antes de dormir. Um quarto escuro e fresco apoia a produção de melatonina."
+          "title": "Sono e hormonas da bem-estar do ciclo",
+          "content": "Um bom sono é essencial para o equilíbrio natural body. A falta de sono aumenta o cortisol e reduz a melatonina que protege os óvulos. Aponte para 7-9 horas por noite. Mantenha horários regulares e evite ecrãs antes de dormir. Um quarto escuro e fresco apoia a produção de melatonina."
         },
         "exerciseBalance": {
-          "title": "Equilíbrio entre exercício e fertilidade",
-          "content": "A atividade física moderada apoia a fertilidade melhorando a circulação, reduzindo o stress e regulando as hormonas. O exercício excessivo pode perturbar a ovulação. Atividades ideais: caminhada rápida, yoga, natação e treino de força moderado. Ouça o seu corpo e descanse quando necessário."
+          "title": "Equilíbrio entre exercício e bem-estar do ciclo",
+          "content": "A atividade física moderada apoia a bem-estar do ciclo melhorando a circulação, reduzindo o stress e regulando as hormonas. O exercício excessivo pode perturbar a liberação do óvulo. Atividades ideais: caminhada rápida, yoga, natação e treino de força moderado. Ouça o seu corpo e descanse quando necessário."
         },
         "supplementsGuide": {
-          "title": "Guia de suplementos",
-          "content": "Suplementos úteis: folato metilado, vitamina D3, CoQ10 para qualidade dos óvulos, ómega-3, zinco, vitamina E e inositol para SOP. Os homens beneficiam de zinco, selénio e CoQ10. Consulte o seu médico antes de começar e verifique interações medicamentosas."
+          "title": "Guia de ajuda nutricional",
+          "content": "ajuda nutricional úteis: folato metilado, nutriente D3, CoQ10 para qualidade dos óvulos, ómega-3, zinco, nutriente E e inositol para irregularidade do ciclo. Os homens beneficiam de zinco, selénio e CoQ10. Consulte o seu médico antes de começar e verifique interações medicamentosas."
         },
         "environmentalToxins": {
-          "title": "Toxinas ambientais e fertilidade",
-          "content": "A exposição a toxinas pode afetar a fertilidade. Os riscos incluem: pesticidas, plásticos (BPA), metais pesados e químicos em produtos de limpeza e cuidados pessoais. Reduza a exposição: escolha alimentos biológicos, use recipientes de vidro, evite fragrâncias sintéticas e ventile bem a casa."
+          "title": "Toxinas ambientais e bem-estar do ciclo",
+          "content": "A exposição a toxinas pode afetar a bem-estar do ciclo. Os riscos incluem: pesticidas, plásticos (BPA), metais pesados e químicos em produtos de limpeza e cuidados pessoais. Reduza a exposição: escolha alimentos biológicos, use recipientes de vidro, evite fragrâncias sintéticas e ventile bem a casa."
         },
         "geneticFactors": {
-          "title": "Fatores genéticos e fertilidade",
-          "content": "Os genes desempenham um papel na fertilidade. Condições como a síndrome de Turner ou fibrose quística podem afetar a capacidade reprodutiva. O aconselhamento genético pré-gravidez é útil se há histórico familiar ou abortos recorrentes. Os testes genéticos ajudam na avaliação de riscos."
+          "title": "Fatores hereditários e bem-estar do ciclo",
+          "content": "Os genes desempenham um papel na bem-estar do ciclo. Condições como a síndrome de Turner ou fibrose quística podem afetar a capacidade reprodutiva. O aconselhamento hereditário pré-gravidez é útil se há histórico familiar ou abortos recorrentes. Os testes hereditários ajudam na avaliação de riscos."
         },
         "immunologyFertility": {
-          "title": "Imunologia e fertilidade",
-          "content": "O sistema imunitário desempenha um papel importante na gravidez. Por vezes o corpo produz anticorpos contra os espermatozoides ou o embrião. Doenças autoimunes como o lúpus podem causar problemas de implantação ou abortos. Existem testes imunológicos e tratamentos especializados."
+          "title": "Imunologia e bem-estar do ciclo",
+          "content": "O sistema imunitário desempenha um papel importante na gravidez. Por vezes o corpo produz anticorpos contra os espermatozoides ou o embrião. Doenças autoimunes como o lúpus podem causar problemas de fixação inicial ou abortos. Existem testes bem-estar imunológico e tratamentos especializados."
         },
         "secondaryInfertility": {
-          "title": "Infertilidade secundária",
-          "content": "A infertilidade secundária ocorre quando uma mulher tem dificuldade em conceber após uma gravidez bem-sucedida anterior. As causas podem ser mudanças de idade, novos problemas de saúde ou fatores desconhecidos. Esta experiência é emocionalmente frustrante. A ajuda médica é importante e as opções de tratamento são as mesmas da infertilidade primária."
+          "title": "desafios de concepção secundária",
+          "content": "A desafios de concepção secundária ocorre quando uma mulher tem dificuldade em conceber após uma gravidez bem-sucedida anterior. As causas podem ser mudanças de idade, novos problemas de saúde ou fatores desconhecidos. Esta experiência é emocionalmente frustrante. A ajuda médica é importante e as opções de tratamento são as mesmas da desafios de concepção primária."
         },
         "recurrentLoss": {
           "title": "Entender as perdas recorrentes",
-          "content": "As perdas recorrentes são definidas como duas ou mais perdas consecutivas. As causas incluem: anomalias cromossómicas, malformações uterinas, distúrbios hormonais, problemas imunológicos e distúrbios de coagulação. Exames completos são importantes. Os tratamentos disponíveis obtêm bons resultados em muitos casos."
+          "content": "As perdas recorrentes são definidas como duas ou mais perdas consecutivas. As causas incluem: anomalias cromossómicas, malformações uterinas, distúrbios hormonais, problemas bem-estar imunológico e distúrbios de coagulação. Exames completos são importantes. Os tratamentos disponíveis obtêm bons resultados em muitos casos."
         },
         "fertilityPreservation": {
-          "title": "Preservação da fertilidade",
-          "content": "A congelação de óvulos ou embriões permite preservar a fertilidade para o futuro. Recomendada antes de quimioterapia ou radioterapia, ou por razões pessoais. Os melhores resultados são obtidos antes dos 35 anos. O processo inclui estimulação ovárica e recolha sob anestesia. As taxas de sucesso melhoram constantemente."
+          "title": "Preservação da bem-estar do ciclo",
+          "content": "A congelação de óvulos ou embriões permite preservar a bem-estar do ciclo para o futuro. Recomendada antes de quimioterapia ou radioterapia, ou por razões pessoais. Os melhores resultados são obtidos antes dos 35 anos. O processo inclui estimulação ovárica e recolha sob anestesia. As taxas de sucesso melhoram constantemente."
         },
         "assistedReproduction": {
-          "title": "Técnicas de reprodução assistida",
-          "content": "A reprodução assistida inclui: inseminação intrauterina (IIU), fertilização in vitro (FIV) e injeção intracitoplasmática (ICSI). O tratamento geralmente começa com opções mais simples. Cada técnica tem diferentes taxas de sucesso e requisitos. A escolha depende do diagnóstico, idade e histórico médico."
+          "title": "Técnicas de corporal assistida",
+          "content": "A corporal assistida inclui: inseminação intrauterina (IIU), fertilização in vitro (FIV) e injeção intracitoplasmática (ICSI). O tratamento geralmente começa com opções mais simples. Cada técnica tem diferentes taxas de sucesso e requisitos. A escolha depende do diagnóstico, idade e histórico médico."
         },
         "epigeneticsFertility": {
-          "title": "Epigenética e saúde transgeracional",
-          "content": "A epigenética estuda como o ambiente e o estilo de vida influenciam a expressão genética sem alterar o ADN. A sua alimentação, nível de stress e exposição a toxinas podem afetar a saúde dos seus filhos e netos. Cuidar da saúde antes da gravidez beneficia também as gerações futuras."
+          "title": "fatores de estilo de vida e saúde transgeracional",
+          "content": "A fatores de estilo de vida estuda como o ambiente e o estilo de vida influenciam a expressão hereditária sem alterar o ADN. A sua alimentação, nível de stress e exposição a toxinas podem afetar a saúde dos seus filhos e netos. Cuidar da saúde antes da gravidez beneficia também as gerações futuras."
         },
         "mindBodyConnection": {
           "title": "A conexão mente-corpo",
-          "content": "A mente e o corpo estão profundamente conectados no percurso da fertilidade. O stress e a ansiedade afetam as hormonas e a ovulação. Técnicas como meditação, mindfulness, visualização positiva e arteterapia podem melhorar o bem-estar mental e apoiar a fertilidade. O equilíbrio entre o desejo de ser mãe e o prazer de viver é essencial."
+          "content": "A mente e o corpo estão profundamente conectados no percurso da bem-estar do ciclo. O stress e a ansiedade afetam as hormonas e a liberação do óvulo. Técnicas como meditação, mindfulness, visualização positiva e arteterapia podem melhorar o bem-estar mental e apoiar a bem-estar do ciclo. O equilíbrio entre o desejo de ser mãe e o prazer de viver é essencial."
         }
       },
       "lessonsCount": "Módulos de aprendizagem {{count}}"
@@ -4612,54 +4612,54 @@
     "fertilitySigns": {
       "signs": {
         "cervicalMucus": {
-          "title": "Alterações do muco cervical",
-          "description": "Ao aproximar-se a ovulação, o muco cervical torna-se mais transparente, elástico e escorregadio, semelhante à clara de ovo crua. Este tipo facilita o movimento dos espermatozoides. Após a ovulação torna-se espesso e pegajoso. O acompanhamento diário dá um indicador fiável do momento da ovulação.",
+          "title": "Alterações do muco body",
+          "description": "Ao aproximar-se a liberação do óvulo, o muco body torna-se mais transparente, elástico e escorregadio, semelhante à clara de ovo crua. Este tipo facilita o movimento dos espermatozoides. Após a liberação do óvulo torna-se espesso e pegajoso. O acompanhamento diário dá um indicador fiável do momento da liberação do óvulo.",
           "tip": "Verifique o muco antes de urinar limpando com papel higiénico e observe a cor, consistência e elasticidade."
         },
         "basalTemp": {
           "title": "Aumento da temperatura basal",
-          "description": "Após a ovulação, a temperatura basal sobe 0,2-0,5°C devido ao aumento da progesterona. Meça todas as manhãs antes de se levantar com um termómetro preciso. Um aumento mantido por três dias confirma a ovulação. Este método confirma a ovulação retrospetivamente.",
+          "description": "Após a liberação do óvulo, a temperatura basal sobe 0,2-0,5°C devido ao aumento da progesterona. Meça todas as manhãs antes de se levantar com um termómetro preciso. Um aumento mantido por três dias confirma a liberação do óvulo. Este método confirma a liberação do óvulo retrospetivamente.",
           "tip": "Use um termómetro basal com precisão de 0,01°C e meça à mesma hora todos os dias antes de qualquer atividade."
         },
         "cervicalPosition": {
-          "title": "Alterações da posição cervical",
-          "description": "O colo do útero muda durante o ciclo. Perto da ovulação torna-se mais alto, macio, aberto e húmido. Depois desce e torna-se mais firme e fechado. O autoexame requer prática mas dá informações valiosas sobre o momento fértil.",
+          "title": "Alterações da posição body",
+          "description": "O colo do útero muda durante o ciclo. Perto da liberação do óvulo torna-se mais alto, macio, aberto e húmido. Depois desce e torna-se mais firme e fechado. O autoexame requer prática mas dá informações valiosas sobre o momento favorável.",
           "tip": "Examine o colo à mesma hora e na mesma posição todos os dias para resultados consistentes."
         },
         "ovulationPain": {
-          "title": "Dor de ovulação (Mittelschmerz)",
-          "description": "Algumas mulheres sentem uma dor ou pontada num lado do baixo ventre durante a ovulação. Pode durar de minutos a horas e alternar de lado mensalmente. Não é um indicador fiável isoladamente, mas é útil com outros métodos de rastreamento.",
-          "tip": "Anote qualquer sensação pélvica no seu calendário mensal para identificar o seu padrão de ovulação."
+          "title": "Dor de liberação do óvulo (Mittelschmerz)",
+          "description": "Algumas mulheres sentem uma dor ou pontada num lado do baixo ventre durante a liberação do óvulo. Pode durar de minutos a horas e alternar de lado mensalmente. Não é um indicador fiável isoladamente, mas é útil com outros métodos de rastreamento.",
+          "tip": "Anote qualquer sensação pélvica no seu calendário mensal para identificar o seu padrão de liberação do óvulo."
         },
         "breastTenderness": {
           "title": "Sensibilidade mamária",
-          "description": "Pode notar sensibilidade ou ligeiro inchaço nos seios à volta da ovulação ou depois, devido ao aumento da progesterona. Estas alterações são normais e refletem as flutuações hormonais. A intensidade varia de mês para mês.",
+          "description": "Pode notar sensibilidade ou ligeiro inchaço nos seios à volta da liberação do óvulo ou depois, devido ao aumento da progesterona. Estas alterações são normais e refletem as flutuações hormonais. A intensidade varia de mês para mês.",
           "tip": "Um soutien confortável e de suporte ajuda a aliviar o desconforto durante este período."
         },
         "libidoChanges": {
           "title": "Alterações no desejo",
-          "description": "Muitas mulheres notam um aumento natural do desejo à volta da ovulação pelo aumento de estrogénio e testosterona. É uma resposta biológica natural que coincide com a máxima fertilidade. Notar estas alterações pode ser um indicador adicional útil.",
-          "tip": "Observe as alterações no seu desejo ao longo do mês e relacione-as com outros sinais de fertilidade."
+          "description": "Muitas mulheres notam um aumento natural do desejo à volta da liberação do óvulo pelo aumento de estrogénio e testosterona. É uma resposta biológica natural que coincide com a máxima bem-estar do ciclo. Notar estas alterações pode ser um indicador adicional útil.",
+          "tip": "Observe as alterações no seu desejo ao longo do mês e relacione-as com outros sinais de bem-estar do ciclo."
         },
         "moodShifts": {
           "title": "Mudanças de humor e energia",
-          "description": "As flutuações hormonais afetam o humor e o nível de energia. Muitas mulheres sentem-se de melhor humor e mais enérgicas à volta da ovulação. O humor pode baixar na fase lútea. Compreender estes padrões ajuda a geri-los conscientemente.",
+          "description": "As flutuações hormonais afetam o humor e o nível de energia. Muitas mulheres sentem-se de melhor humor e mais enérgicas à volta da liberação do óvulo. O humor pode baixar na fase lútea. Compreender estes padrões ajuda a geri-los conscientemente.",
           "tip": "Registe o seu humor e nível de energia diariamente para descobrir padrões relacionados com o seu ciclo."
         },
         "bloating": {
           "title": "Inchaço leve",
-          "description": "Pode sentir um ligeiro inchaço à volta da ovulação por retenção de líquidos devida às alterações hormonais. É normal e temporário. Pode acompanhar-se de sensação de peso pélvico e desaparece em um ou dois dias.",
-          "tip": "Beba água suficiente e reduza o sal para aliviar o inchaço hormonal."
+          "description": "Pode sentir um ligeiro inchaço à volta da liberação do óvulo por retenção de líquidos devida às alterações hormonais. É normal e temporário. Pode acompanhar-se de sensação de peso pélvico e desaparece em um ou dois dias.",
+          "tip": "Beba água suficiente e reduza o sal para aliviar o inchaço natural body."
         },
         "lightSpotting": {
-          "title": "Spotting de ovulação",
-          "description": "Algumas mulheres notam manchas leves de sangue ou corrimento rosado à volta da ovulação, pela queda rápida de estrogénio ao libertar-se o óvulo. É perfeitamente normal e um bom sinal de ovulação. Geralmente dura um dia ou menos.",
+          "title": "Spotting de liberação do óvulo",
+          "description": "Algumas mulheres notam manchas leves de sangue ou corrimento rosado à volta da liberação do óvulo, pela queda rápida de estrogénio ao libertar-se o óvulo. É perfeitamente normal e um bom sinal de liberação do óvulo. Geralmente dura um dia ou menos.",
           "tip": "Se o sangramento for abundante ou durar mais de dois dias, consulte a sua médica."
         },
         "heightenedSenses": {
           "title": "Sentidos aguçados",
-          "description": "Pode notar maior sensibilidade olfativa ou gustativa à volta da ovulação pelo aumento de estrogénio. Algumas mulheres tornam-se mais sensíveis a cheiros ou notam sabores mais intensos. Estas alterações sensoriais são sinal do pico hormonal.",
-          "tip": "Preste atenção a alterações nos seus sentidos a meio do ciclo, podem indicar a aproximação da ovulação."
+          "description": "Pode notar maior sensibilidade olfativa ou gustativa à volta da liberação do óvulo pelo aumento de estrogénio. Algumas mulheres tornam-se mais sensíveis a cheiros ou notam sabores mais intensos. Estas alterações sensoriais são sinal do pico natural body.",
+          "tip": "Preste atenção a alterações nos seus sentidos a meio do ciclo, podem indicar a aproximação da liberação do óvulo."
         }
       },
       "signsCount": "{{count}} sinaliza para saber"
@@ -4690,7 +4690,7 @@
           "description": "Verifica anemia, infeções e saúde sanguínea geral. Identifica deficiência de ferro que deve ser tratada antes da gravidez."
         },
         "pap": {
-          "title": "Citologia cervical (Papanicolau)",
+          "title": "Citologia corporal (Papanicolau)",
           "description": "Rastreia anomalias cervicais. É melhor ser feita antes da gravidez para tratar quaisquer problemas sem a complexidade adicional da gravidez."
         },
         "thyroid": {
@@ -4723,7 +4723,7 @@
         },
         "medications": {
           "title": "Revisão de medicamentos",
-          "description": "Reveja todos os medicamentos, suplementos e remédios à base de plantas atuais com o seu médico. Alguns medicamentos não são seguros durante a gravidez."
+          "description": "Reveja todos os medicamentos, ajuda nutricional e remédios à base de plantas atuais com o seu médico. Alguns medicamentos não são seguros durante a gravidez."
         },
         "vaccinations": {
           "title": "Verificação de vacinação",
@@ -4737,7 +4737,7 @@
         "academy": "Academia de Fertilidade",
         "academyDesc": "Educação abrangente sobre fertilidade",
         "nutrition": "Guia de nutrição",
-        "nutritionDesc": "Nutrição e suplementos pré-concepção"
+        "nutritionDesc": "Nutrição e ajuda nutricional pré-concepção"
       }
     },
     "preconceptionNutrition": {
@@ -4796,56 +4796,56 @@
       "categoriesCount": "Categorias de nutrição {{count}}"
     },
     "prenatalVitamins": {
-      "supplementsCount": "Suplementos {{count}} para revisar",
+      "supplementsCount": "ajuda nutricional {{count}} para revisar",
       "vitamins": {
         "folicAcid": {
-          "title": "Ácido fólico (Vitamina B9)",
-          "description": "O suplemento mais importante antes da gravidez. O ácido fólico reduz significativamente o risco de defeitos do tubo neural (espinha bífida, anencefalia). Comece pelo menos 1-3 meses antes de tentar conceber.",
+          "title": "Ácido fólico (nutriente B9)",
+          "description": "O ajuda nutricional mais importante antes da gravidez. O ácido fólico reduz significativamente o risco de defeitos do tubo neural (espinha bífida, anencefalia). Comece pelo menos 1-3 meses antes de tentar conceber.",
           "dosage": "Recomendado: 400-800 µg diários. Algumas mulheres podem precisar de 4-5 mg — consulte o seu médico."
         },
         "iron": {
           "title": "Ferro",
           "description": "As necessidades de ferro aumentam drasticamente durante a gravidez (de 18 mg para 27 mg diários). Criar reservas de ferro antes da conceção ajuda a prevenir a anemia por deficiência de ferro.",
-          "dosage": "Recomendado: 18 mg diários antes da gravidez. Tomar com vitamina C para melhorar a absorção. Evitar com cálcio ou chá."
+          "dosage": "Recomendado: 18 mg diários antes da gravidez. Tomar com nutriente C para melhorar a absorção. Evitar com cálcio ou chá."
         },
         "vitaminD": {
-          "title": "Vitamina D",
-          "description": "A vitamina D apoia a função imunitária, a absorção de cálcio e a saúde reprodutiva. A sua deficiência está ligada a complicações da gravidez incluindo diabetes gestacional e pré-eclâmpsia.",
+          "title": "nutriente D",
+          "description": "A nutriente D apoia a função imunitária, a absorção de cálcio e a saúde reprodutiva. A sua deficiência está ligada a complicações da gravidez incluindo diabetes gestacional e pré-eclâmpsia.",
           "dosage": "Recomendado: 600-2000 UI diárias. O seu médico pode testar os seus níveis e recomendar dose mais alta se houver deficiência."
         },
         "omega3DHA": {
           "title": "Ómega-3 DHA",
           "description": "O DHA é crucial para o desenvolvimento cerebral e retiniano do feto. Começar a suplementação antes da gravidez garante reservas adequadas desde as primeiras fases do desenvolvimento embrionário.",
-          "dosage": "Recomendado: 200-300 mg de DHA diários. Escolha suplementos testados para mercúrio e contaminantes."
+          "dosage": "Recomendado: 200-300 mg de DHA diários. Escolha ajuda nutricional testados para mercúrio e contaminantes."
         },
         "calcium": {
           "title": "Cálcio",
           "description": "Se a ingestão de cálcio da mãe for insuficiente durante a gravidez, o bebé retirará cálcio dos seus ossos. Criar reservas sólidas de cálcio antes da gravidez protege a saúde óssea materna.",
-          "dosage": "Recomendado: 1000 mg diários de alimentos e suplementos combinados. Melhor absorvido em doses de 500 mg ou menos."
+          "dosage": "Recomendado: 1000 mg diários de alimentos e ajuda nutricional combinados. Melhor absorvido em doses de 500 mg ou menos."
         },
         "iodine": {
           "title": "Iodo",
           "description": "O iodo é essencial para a função tiroideia, que afeta diretamente a fertilidade e o desenvolvimento cerebral do bebé. A deficiência de iodo é a principal causa evitável de deficiência intelectual no mundo.",
-          "dosage": "Recomendado: 150 µg diários antes da gravidez, 220 µg durante a gravidez. Verifique se a sua vitamina pré-natal inclui iodo."
+          "dosage": "Recomendado: 150 µg diários antes da gravidez, 220 µg durante a gravidez. Verifique se a sua nutriente pré-natal inclui iodo."
         },
         "zinc": {
           "title": "Zinco",
           "description": "O zinco apoia a qualidade dos óvulos, o equilíbrio hormonal e a função imunitária. Também desempenha um papel fundamental na síntese de ADN e divisão celular.",
-          "dosage": "Recomendado: 8 mg diários para mulheres. A maioria das vitaminas pré-natais contém zinco suficiente."
+          "dosage": "Recomendado: 8 mg diários para mulheres. A maioria das nutrientes pré-natais contém zinco suficiente."
         },
         "vitaminB12": {
-          "title": "Vitamina B12",
+          "title": "nutriente B12",
           "description": "A B12 trabalha com o folato para apoiar a síntese de ADN e o desenvolvimento do sistema nervoso. A deficiência é mais comum em vegetarianos e veganos.",
           "dosage": "Recomendado: 2,4 µg diários. Os veganos devem suplementar pois a B12 encontra-se principalmente em produtos animais."
         },
         "vitaminC": {
-          "title": "Vitamina C",
-          "description": "A vitamina C é um poderoso antioxidante que protege os óvulos de danos oxidativos. Também melhora a absorção de ferro e apoia a função imunitária.",
+          "title": "nutriente C",
+          "description": "A nutriente C é um poderoso antioxidante que protege os óvulos de danos oxidativos. Também melhora a absorção de ferro e apoia a função imunitária.",
           "dosage": "Recomendado: 75-90 mg diários. Facilmente obtida de citrinos, bagas e pimentos."
         },
         "vitaminE": {
-          "title": "Vitamina E",
-          "description": "A vitamina E apoia a espessura e qualidade do revestimento uterino, importante para a implantação. Também protege as membranas celulares do stress oxidativo.",
+          "title": "nutriente E",
+          "description": "A nutriente E apoia a espessura e qualidade do revestimento uterino, importante para a implantação. Também protege as membranas celulares do stress oxidativo.",
           "dosage": "Recomendado: 15 mg (22 UI) diários. Encontra-se em frutos secos, sementes e óleos vegetais."
         },
         "coq10": {
@@ -4863,18 +4863,18 @@
     "stressFertility": {
       "topics": {
         "stressHormones": {
-          "title": "Como o stress afeta a fertilidade",
-          "content": "O stress crónico liberta cortisol e adrenalina que interferem com as hormonas da fertilidade. O cortisol elevado pode suprimir a GnRH, afetando FSH e LH e perturbando a ovulação. Pode também afetar a qualidade do revestimento uterino e a capacidade de implantação.",
+          "title": "Como o stress afeta a bem-estar do ciclo",
+          "content": "O stress crónico liberta cortisol e adrenalina que interferem com as hormonas da bem-estar do ciclo. O cortisol elevado pode suprimir a GnRH, afetando FSH e LH e perturbando a liberação do óvulo. Pode também afetar a qualidade do revestimento uterino e a capacidade de fixação inicial.",
           "practice": "Dedique 10 minutos diários a um exercício de relaxamento profundo com respiração lenta e música tranquila."
         },
         "cortisol": {
           "title": "Compreender o cortisol",
-          "content": "O cortisol é a principal hormona do stress. Os seus níveis normais seguem um padrão diário: alto de manhã, baixo à noite. O stress crónico perturba este padrão afetando o sono, as hormonas reprodutivas e a imunidade. Manter níveis normais é importante para a fertilidade natural.",
+          "content": "O cortisol é a principal hormona do stress. Os seus níveis normais seguem um padrão diário: alto de manhã, baixo à noite. O stress crónico perturba este padrão afetando o sono, as hormonas reprodutivas e a imunidade. Manter níveis normais é importante para a bem-estar do ciclo natural.",
           "practice": "Exponha-se à luz solar matinal e evite cafeína à tarde para regular o ritmo do cortisol."
         },
         "mindfulness": {
-          "title": "Mindfulness e fertilidade",
-          "content": "A investigação mostra que a prática de mindfulness reduz o stress e melhora os resultados de fertilidade. A meditação consciente significa focar-se no momento presente sem julgar. Mesmo 10 minutos diários podem reduzir o cortisol. Apps de meditação guiada ajudam principiantes.",
+          "title": "Mindfulness e bem-estar do ciclo",
+          "content": "A investigação mostra que a prática de mindfulness reduz o stress e melhora os resultados de bem-estar do ciclo. A meditação consciente significa focar-se no momento presente sem julgar. Mesmo 10 minutos diários podem reduzir o cortisol. Apps de meditação guiada ajudam principiantes.",
           "practice": "Experimente um body scan: feche os olhos e foque-se em cada parte do corpo da cabeça aos pés durante 5 minutos."
         },
         "breathing": {
@@ -4884,12 +4884,12 @@
         },
         "journaling": {
           "title": "Escrita terapêutica",
-          "content": "A escrita expressiva ajuda a processar emoções e reduzir o stress. Escreva sobre os seus sentimentos, medos e esperanças no seu percurso de fertilidade. Não se preocupe com regras ou estilo. A investigação mostra que escrever regularmente melhora o humor e reduz a ansiedade.",
+          "content": "A escrita expressiva ajuda a processar emoções e reduzir o stress. Escreva sobre os seus sentimentos, medos e esperanças no seu percurso de bem-estar do ciclo. Não se preocupe com regras ou estilo. A investigação mostra que escrever regularmente melhora o humor e reduz a ansiedade.",
           "practice": "Dedique 15 minutos antes de dormir à escrita livre sobre o seu dia e as suas emoções."
         },
         "sleep": {
-          "title": "Sono e fertilidade",
-          "content": "Um bom sono é essencial para o equilíbrio hormonal e gestão do stress. A falta de sono aumenta o cortisol e perturba o ritmo circadiano. Aponte para 7-9 horas num quarto escuro, calmo e fresco. Evite ecrãs uma hora antes de dormir. Horários regulares apoiam a produção de melatonina.",
+          "title": "Sono e bem-estar do ciclo",
+          "content": "Um bom sono é essencial para o equilíbrio natural body e gestão do stress. A falta de sono aumenta o cortisol e perturba o ritmo circadiano. Aponte para 7-9 horas num quarto escuro, calmo e fresco. Evite ecrãs uma hora antes de dormir. Horários regulares apoiam a produção de melatonina.",
           "practice": "Crie uma rotina noturna: banho quente, leitura leve e dormir à mesma hora."
         },
         "exercise": {
@@ -4899,17 +4899,17 @@
         },
         "socialSupport": {
           "title": "Construir a rede de apoio",
-          "content": "O percurso da fertilidade é mais fácil com um sistema de apoio forte. Partilhe regularmente as suas emoções com o seu parceiro. Fale com uma amiga de confiança ou junte-se a um grupo de apoio. As comunidades online oferecem espaços seguros para partilhar experiências. Não hesite em pedir ajuda.",
+          "content": "O percurso da bem-estar do ciclo é mais fácil com um sistema de apoio forte. Partilhe regularmente as suas emoções com o seu parceiro. Fale com uma amiga de confiança ou junte-se a um grupo de apoio. As comunidades online oferecem espaços seguros para partilhar experiências. Não hesite em pedir ajuda.",
           "practice": "Planeie um tempo semanal para falar com o seu parceiro sobre as suas emoções e necessidades."
         },
         "professionalHelp": {
           "title": "Quando procurar apoio profissional",
-          "content": "Não hesite em procurar ajuda psicológica se sentir ansiedade ou depressão persistente. Um terapeuta especializado em fertilidade compreende os seus desafios únicos. A terapia cognitivo-comportamental e EMDR mostraram-se eficazes no stress relacionado com a fertilidade.",
-          "practice": "Procure um terapeuta especializado em saúde feminina e fertilidade e marque uma sessão exploratória."
+          "content": "Não hesite em procurar ajuda psicológica se sentir ansiedade ou depressão persistente. Um terapeuta especializado em bem-estar do ciclo compreende os seus desafios únicos. A terapia cognitivo-comportamental e EMDR mostraram-se eficazes no stress relacionado com a bem-estar do ciclo.",
+          "practice": "Procure um terapeuta especializado em saúde feminina e bem-estar do ciclo e marque uma sessão exploratória."
         },
         "acceptance": {
           "title": "Praticar a aceitação",
-          "content": "A aceitação não significa desistir mas fazer as pazes com a incerteza. O percurso da fertilidade está cheio de coisas fora do nosso controlo. Foque-se no que pode controlar: a sua saúde, o seu estilo de vida, as suas relações. Viva um dia de cada vez e permita-se sentir tristeza e esperança simultaneamente.",
+          "content": "A aceitação não significa desistir mas fazer as pazes com a incerteza. O percurso da bem-estar do ciclo está cheio de coisas fora do nosso controlo. Foque-se no que pode controlar: a sua saúde, o seu estilo de vida, as suas relações. Viva um dia de cada vez e permita-se sentir tristeza e esperança simultaneamente.",
           "practice": "Comece o dia com uma meditação de aceitação: reconheço as minhas emoções e foco-me no que posso fazer hoje."
         }
       },
@@ -5002,6 +5002,63 @@
     },
     "cycleTracker": {
       "symptoms": "Notas (opcional)"
+    },
+    "vitaminTracker": {
+      "title": "Minha Nutrição Diária",
+      "subtitle": "Acompanhe seus nutrientes diários",
+      "pregnancyWeek": "Semana de gravidez",
+      "todaysProgress": "Progresso de hoje",
+      "vitaminsCount": "{{taken}} de {{total}} nutrientes tomados hoje",
+      "aiAnalysisTitle": "Análise Nutricional Inteligente",
+      "analyzeRoutine": "Analisar minha rotina nutricional",
+      "analyzingIntake": "Analisando sua ingestão de nutrientes...",
+      "weeklyStats": "Estatísticas semanais",
+      "recentHistory": "Histórico recente",
+      "days": "dias",
+      "thisWeek": "esta semana",
+      "alreadyTaken": "Já tomado",
+      "alreadyTakenDesc": "Você já registrou {{name}} hoje",
+      "logged": "Registrado!",
+      "loggedDesc": "{{name}} registrado com sucesso",
+      "failedToLog": "Falha ao registrar",
+      "take": "Tomar",
+      "done": "Feito",
+      "tipTitle": "Dica do dia",
+      "tipContent": "Tome ferro com nutriente C (suco de laranja) para melhor absorção, e evite tomá-lo com cálcio ou chá.",
+      "vitamins": {
+        "folicAcid": "Ácido fólico",
+        "iron": "Ferro",
+        "calcium": "Cálcio",
+        "vitaminD": "Nutriente D",
+        "omega3": "Ômega 3",
+        "prenatal": "Nutrientes pré-gravidez"
+      },
+      "analyzing": "Analisando...",
+      "dosages": "Dosagens",
+      "importance": "Importância",
+      "allDone": "🎉 Todos os nutrientes tomados!",
+      "allDoneDesc": "Ótimo! Você completou sua rotina nutricional diária.",
+      "completedMessage": "Tudo feito por hoje! 🎉",
+      "remainingMessage": "{{count}} nutrientes restantes",
+      "streakDays": "dias seguidos",
+      "currentStreak": "Sequência atual",
+      "bestStreak": "Melhor sequência",
+      "weeklyOverview": "Visão de 7 dias",
+      "less": "Menos",
+      "more": "Mais",
+      "timing": {
+        "morning": "Manhã",
+        "evening": "Noite",
+        "afternoon": "Tarde",
+        "withMeal": "Com refeição"
+      },
+      "days_sun": "Dom",
+      "days_mon": "Seg",
+      "days_tue": "Ter",
+      "days_wed": "Qua",
+      "days_thu": "Qui",
+      "days_fri": "Sex",
+      "days_sat": "Sáb"
     }
   },
   "welcome": {
