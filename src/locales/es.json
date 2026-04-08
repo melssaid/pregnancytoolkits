@@ -6289,7 +6289,21 @@
     "privacy": "Privacidad y seguridad",
     "privacyDesc": "Tus datos están cifrados y protegidos",
     "searchKeywords": "Palabras clave de búsqueda",
-    "defaultDescription": "App embarazo gratis con 33+ herramientas: calculadora fecha parto, contador movimientos, temporizador contracciones, seguimiento bebé. 7 idiomas."
+    "defaultDescription": "App embarazo gratis con 33+ herramientas: calculadora fecha parto, contador movimientos, temporizador contracciones, seguimiento bebé. 7 idiomas.",
+    "faq": {
+      "q1": "¿Cómo calculo mi fecha probable de parto?",
+      "a1": "Suma 280 días (40 semanas) al primer día de tu última menstruación. Usa nuestra calculadora de fecha de parto para obtener un resultado preciso.",
+      "q2": "¿Cuándo debo empezar a contar los movimientos del bebé?",
+      "a2": "Desde la semana 28, cuenta 10 movimientos en 2 horas. Nuestro contador de patadas facilita el seguimiento diario.",
+      "q3": "¿Cuáles son las señales del trabajo de parto real?",
+      "a3": "Contracciones regulares que se intensifican, rotura de membranas y dolor lumbar persistente. Usa nuestro temporizador de contracciones.",
+      "q4": "¿Cuánto aumento de peso es normal en el embarazo?",
+      "a4": "Un aumento de 11-16 kg es normal según tu peso inicial. Nuestro analizador inteligente de peso te ayuda con el seguimiento semanal.",
+      "q5": "¿La aplicación es gratuita?",
+      "a5": "Sí, la app es completamente gratuita con más de 33 herramientas inteligentes: seguimiento de embarazo, calculadora de parto, contador de patadas y planificador de comidas.",
+      "q6": "¿Cómo calculo mis días de ovulación?",
+      "a6": "La ovulación ocurre aproximadamente el día 14 del ciclo. Usa nuestro rastreador de ciclo para determinar con precisión tu período fértil."
+    }
   },
   "videoLibraryPage": {
     "title": "Videoteca",

@@ -6283,7 +6283,21 @@
     "privacy": "Confidentialité et sécurité",
     "privacyDesc": "Vos données sont chiffrées et protégées",
     "searchKeywords": "Mots-clés de recherche",
-    "defaultDescription": "App grossesse gratuite avec 33+ outils: calculateur date accouchement, compteur mouvements, minuteur contractions, suivi bébé, repas. 7 langues."
+    "defaultDescription": "App grossesse gratuite avec 33+ outils: calculateur date accouchement, compteur mouvements, minuteur contractions, suivi bébé, repas. 7 langues.",
+    "faq": {
+      "q1": "Comment calculer ma date prévue d'accouchement ?",
+      "a1": "Ajoutez 280 jours (40 semaines) au premier jour de vos dernières règles. Utilisez notre calculateur de date d'accouchement pour un résultat précis.",
+      "q2": "Quand commencer à compter les mouvements du bébé ?",
+      "a2": "À partir de la 28e semaine, comptez 10 mouvements en 2 heures. Notre compteur de coups de pied facilite le suivi quotidien.",
+      "q3": "Quels sont les signes du vrai travail ?",
+      "a3": "Des contractions régulières qui s'intensifient, la rupture de la poche des eaux et des douleurs lombaires persistantes. Utilisez notre minuteur de contractions.",
+      "q4": "Quelle prise de poids est normale pendant la grossesse ?",
+      "a4": "Une prise de 11 à 16 kg est typique selon votre poids initial. Notre analyseur de poids intelligent vous aide à suivre semaine par semaine.",
+      "q5": "L'application est-elle gratuite ?",
+      "a5": "Oui, l'application est entièrement gratuite avec plus de 33 outils intelligents : suivi de grossesse, calculateur de date, compteur de coups de pied et planificateur de repas.",
+      "q6": "Comment calculer mes jours d'ovulation ?",
+      "a6": "L'ovulation a lieu environ au 14e jour du cycle. Utilisez notre suivi de cycle pour déterminer précisément votre période fertile."
+    }
   },
   "videoLibraryPage": {
     "title": "Vidéothèque",
