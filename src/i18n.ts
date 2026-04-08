@@ -94,30 +94,36 @@ const initialLang = getInitialLanguage();
 
 // Pre-load initial locale files, then init i18n with resources ready
 const initPromise = (async () => {
-  const toLoad = [initialLang];
-  if (initialLang !== 'en') toLoad.push('en');
-  
-  // Load raw JSON before i18n.init
-  const bundles = await Promise.all(
-    toLoad.map(async (lng) => {
-      const loader = localeLoaders[lng];
-      if (!loader) return { lng, data: {} };
-      const data = await loader();
-      return { lng, data: expandDottedKeys(data) };
-    })
-  );
+  let resources: Record<string, { translation: Record<string, any> }> = {};
 
-  const resources: Record<string, { translation: Record<string, any> }> = {};
-  for (const { lng, data } of bundles) {
-    resources[lng] = { translation: data };
-    loadedLanguages.add(lng);
+  try {
+    const toLoad = [initialLang];
+    if (initialLang !== 'en') toLoad.push('en');
+
+    const bundles = await Promise.all(
+      toLoad.map(async (lng) => {
+        const loader = localeLoaders[lng];
+        if (!loader) return { lng, data: {} };
+        const data = await loader();
+        return { lng, data: expandDottedKeys(data) };
+      })
+    );
+
+    for (const { lng, data } of bundles) {
+      resources[lng] = { translation: data };
+      loadedLanguages.add(lng);
+    }
+  } catch (e) {
+    console.warn('[i18n] Failed to load locale bundles, starting with empty resources', e);
+    // Ensure at least an empty English bundle so i18n doesn't throw
+    resources = { en: { translation: {} } };
   }
 
   await i18n
     .use(initReactI18next)
     .init({
       resources,
-      lng: initialLang,
+      lng: Object.keys(resources).includes(initialLang) ? initialLang : 'en',
       fallbackLng: 'en',
       supportedLngs: SUPPORTED_LANGUAGES,
       interpolation: { escapeValue: false },
@@ -125,6 +131,12 @@ const initPromise = (async () => {
       partialBundledLanguages: true,
       react: { useSuspense: false },
     });
+
+  // If bundles failed, try loading them again in the background
+  if (!loadedLanguages.has(initialLang)) {
+    loadLanguage(initialLang).catch(() => {});
+    if (initialLang !== 'en') loadLanguage('en').catch(() => {});
+  }
 })();
 
 // On language change, lazy-load the new locale
