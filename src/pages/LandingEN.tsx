@@ -141,7 +141,7 @@ export default function LandingEN() {
         <div className="container">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             <div>
-              <p className="text-2xl font-bold text-primary">23+</p>
+              <p className="text-2xl font-bold text-primary">33+</p>
               <p className="text-sm text-muted-foreground">Free AI Tools</p>
             </div>
             <div>
