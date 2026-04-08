@@ -4489,12 +4489,12 @@
           "content": "L'egg release est la libération d'un ovule mature par l'ovaire, généralement au milieu du cycle. Une poussée de LH déclenche cette libération. L'ovule survit 12-24 heures, rendant le timing crucial. Les spermatozoïdes peuvent survivre jusqu'à 5 jours, donc la fenêtre peak s'étend sur plusieurs jours avant l'egg release."
         },
         "fertilizationBasics": {
-          "title": "Fécondation et early attachment",
-          "content": "La fécondation se produit quand un spermatozoïde rencontre l'ovule dans la trompe de Fallope. Parmi des millions, un seul pénètre l'ovule. L'œuf fécondé commence à se diviser et atteint l'utérus en 3-5 jours. L'early attachment se produit quand le blastocyste s'attache à la muqueuse utérine, généralement 6-12 jours après l'egg release."
+          "title": "conception et early attachment",
+          "content": "La conception se produit quand un spermatozoïde rencontre l'ovule dans la trompe de Fallope. Parmi des millions, un seul pénètre l'ovule. L'œuf fécondé commence à se diviser et atteint l'utérus en 3-5 jours. L'early attachment se produit quand le blastocyste s'attache à la muqueuse utérine, généralement 6-12 jours après l'egg release."
         },
         "hormonesRole": {
           "title": "Body signals clés de la fertilité",
-          "content": "Plusieurs body signals jouent des rôles essentiels. La FSH stimule la croissance folliculaire. L'œstrogène prépare la muqueuse utérine et favorise la glaire cervicale peak. La poussée de LH déclenche l'egg release. La progestérone soutient la phase lutéale. Tout déséquilibre peut affecter la fertilité."
+          "content": "Plusieurs body signals jouent des rôles essentiels. La FSH stimule la croissance folliculaire. L'œstrogène prépare la muqueuse utérine et favorise la glaire corporele peak. La poussée de LH déclenche l'egg release. La progestérone soutient la phase lutéale. Tout déséquilibre peut affecter la fertilité."
         },
         "ageAndFertility": {
           "title": "Âge et fertilité",
@@ -4522,7 +4522,7 @@
         },
         "trackingMethods": {
           "title": "Méthodes de suivi de fertilité",
-          "content": "Plusieurs méthodes existent : mesure de la température basale le matin avant de se lever, observation de la glaire cervicale qui devient transparente et élastique près de l'egg release, tests d'egg release détectant la poussée de LH, et suivi de la position du col. Combiner plusieurs méthodes donne une image plus précise de la fenêtre peak."
+          "content": "Plusieurs méthodes existent : mesure de la température basale le matin avant de se lever, observation de la glaire corporele qui devient transparente et élastique près de l'egg release, tests d'egg release détectant la poussée de LH, et suivi de la position du col. Combiner plusieurs méthodes donne une image plus précise de la fenêtre peak."
         },
         "optimizingTiming": {
           "title": "Optimiser le timing",
@@ -4533,20 +4533,20 @@
           "content": "La fenêtre d'early attachment est la période où la muqueuse utérine est prête à recevoir l'embryon, généralement entre le jour 6 et 10 après l'egg release. La muqueuse devient plus réceptive. De légères crampes ou saignements peuvent survenir. La progestérone joue un rôle essentiel dans cette préparation."
         },
         "cervicalHealth": {
-          "title": "Santé cervicale et fertilité",
-          "content": "Le col de l'utérus joue un rôle central. Il produit une glaire qui change au cours du cycle : sèche après les règles, crémeuse puis transparente et élastique près de l'egg release, facilitant le passage des spermatozoïdes. Les infections et interventions antérieures peuvent affecter la production de glaire. Des examens réguliers sont importants."
+          "title": "Santé corporele et fertilité",
+          "content": "Le corps joue un rôle central. Il produit une glaire qui change au cours du cycle : sèche après les règles, crémeuse puis transparente et élastique près de l'egg release, facilitant le passage des spermatozoïdes. Les infections et interventions antérieures peuvent affecter la production de glaire. Des examens réguliers sont importants."
         },
         "thyroidFertility": {
-          "title": "Thyroïde et fertilité",
-          "content": "Les troubles thyroïdiens sont fréquents et affectent directement la fertilité. L'hyper et l'hypothyroïdie peuvent perturber l'egg release et le cycle. Les anticorps thyroïdiens peuvent affecter l'early attachment. Un bilan thyroïdien est recommandé lors de la planification d'une grossesse. Le traitement médicamenteux peut réguler les niveaux."
+          "title": "équilibre métabolique et fertilité",
+          "content": "Les troubles thyroïdiens sont fréquents et affectent directement la fertilité. L'hyper et l'hypothyroïdie peuvent perturber l'egg release et le cycle. Les anticorps thyroïdiens peuvent affecter l'early attachment. Un bilan équilibre métabolique est recommandé lors de la planification d'une grossesse. Le traitement médicamenteux peut réguler les niveaux."
         },
         "pcosManagement": {
           "title": "Gestion du SOPK et fertilité",
-          "content": "Le syndrome des ovaires polykystiques (SOPK) est l'une des causes les plus fréquentes de troubles de l'egg release. Les symptômes incluent cycles irréguliers, androgènes élevés et petits kystes ovariens. La gestion du poids, une alimentation saine et l'exercice améliorent les symptômes. Des médicaments comme la metformine sont disponibles sous supervision médicale."
+          "content": "Le syndrome des ovaires polykystiques (SOPK) est l'une des causes les plus fréquentes de troubles de l'egg release. Les signes incluent cycles irréguliers, androgènes élevés et petits kystes ovariens. La gestion du poids, une alimentation saine et l'exercice améliorent les signes. Des médicaments comme la metformine sont disponibles sous supervision médicale."
         },
         "endometriosisAwareness": {
-          "title": "Endométriose et fertilité",
-          "content": "L'endométriose se produit quand un tissu similaire à la muqueuse utérine se développe à l'extérieur. Elle cause des douleurs et peut affecter la fertilité par des adhérences, des dommages aux trompes et l'impact sur la qualité des ovules. Le evaluation précoce est important. Les options vont des médicaments à la laparoscopie et la PMA."
+          "title": "inconfort cyclique et fertilité",
+          "content": "L'inconfort cyclique se produit quand un tissu similaire à la muqueuse utérine se développe à l'extérieur. Elle cause des douleurs et peut affecter la fertilité par des adhérences, des dommages aux trompes et l'impact sur la qualité des ovules. Le evaluation précoce est important. Les options vont des médicaments à la laparoscopie et la PMA."
         },
         "nutritionFertility": {
           "title": "Nutrition optimale pour la fertilité",
@@ -4561,19 +4561,19 @@
           "content": "L'activité physique modérée soutient la fertilité en améliorant la circulation, réduisant le stress et régulant les body signals. L'exercice excessif peut perturber l'egg release. Activités idéales : marche rapide, yoga, natation et musculation modérée. Écoutez votre corps et reposez-vous au besoin."
         },
         "supplementsGuide": {
-          "title": "Guide des compléments",
-          "content": "Compléments utiles : folate méthylé, vitamine D3, CoQ10 pour la qualité des ovules, oméga-3, zinc, vitamine E et inositol pour le SOPK. Les hommes bénéficient du zinc, sélénium et CoQ10. Consultez votre médecin avant de commencer et vérifiez les interactions médicamenteuses."
+          "title": "Guide des aide nutritionnels",
+          "content": "aide nutritionnels utiles : folate méthylé, nutriment D3, CoQ10 pour la qualité des ovules, oméga-3, zinc, nutriment E et inositol pour le SOPK. Les hommes bénéficient du zinc, sélénium et CoQ10. Consultez votre médecin avant de commencer et vérifiez les interactions médicamenteuses."
         },
         "environmentalToxins": {
           "title": "Toxines environnementales et fertilité",
           "content": "L'exposition aux toxines peut affecter la fertilité. Les risques incluent : pesticides, plastiques (BPA), métaux lourds et produits chimiques dans les produits ménagers et cosmétiques. Réduisez l'exposition : choisissez bio, utilisez des contenants en verre, évitez les parfums synthétiques et aérez bien votre maison."
         },
         "geneticFactors": {
-          "title": "Facteurs génétiques et fertilité",
-          "content": "Les gènes jouent un rôle dans la fertilité. Des conditions comme le syndrome de Turner ou la mucoviscidose peuvent affecter la capacité body. Le conseil génétique avant la grossesse est utile en cas d'antécédents familiaux ou de fausses couches répétées. Les tests génétiques aident à l'évaluation des risques."
+          "title": "Facteurs héréditaires et fertilité",
+          "content": "Les gènes jouent un rôle dans la fertilité. Des conditions comme le syndrome de Turner ou la mucoviscidose peuvent affecter la capacité body. Le conseil héréditaire avant la grossesse est utile en cas d'antécédents familiaux ou de fausses couches répétées. Les tests héréditaires aident à l'évaluation des risques."
         },
         "immunologyFertility": {
-          "title": "Immunologie et fertilité",
+          "title": "bien-être immunitaire et fertilité",
           "content": "Le système immunitaire joue un rôle important dans la grossesse. Parfois, le corps produit des anticorps contre les spermatozoïdes ou l'embryon. Les maladies auto-immunes comme le lupus peuvent causer des problèmes d'early attachment ou des fausses couches. Des tests immunologiques et traitements spécialisés sont disponibles."
         },
         "secondaryInfertility": {
@@ -4590,7 +4590,7 @@
         },
         "assistedReproduction": {
           "title": "Techniques de conception assistée",
-          "content": "La PMA comprend : l'insémination intra-utérine (IIU), la fécondation in vitro (FIV) et l'injection intracytoplasmique (ICSI). Le traitement commence généralement par les options les plus simples. Chaque technique a des taux de réussite et des exigences différents. Le choix dépend du evaluation, de l'âge et de l'historique médical."
+          "content": "La PMA comprend : l'insémination intra-utérine (IIU), la conception in vitro (FIV) et l'injection intracytoplasmique (ICSI). Le traitement commence généralement par les options les plus simples. Chaque technique a des taux de réussite et des exigences différents. Le choix dépend du evaluation, de l'âge et de l'historique médical."
         },
         "epigeneticsFertility": {
           "title": "Épigénétique et santé transgénérationnelle",
@@ -4606,8 +4606,8 @@
     "fertilitySigns": {
       "signs": {
         "cervicalMucus": {
-          "title": "Changements de la glaire cervicale",
-          "description": "À l'approche de l'egg release, la glaire cervicale devient plus transparente, élastique et glissante, semblable au blanc d'œuf cru. Ce type facilite le mouvement des spermatozoïdes et offre un environnement optimal. Après l'egg release, elle devient épaisse et collante. Le suivi quotidien donne un indicateur fiable du moment de l'egg release.",
+          "title": "Changements de la glaire corporele",
+          "description": "À l'approche de l'egg release, la glaire corporele devient plus transparente, élastique et glissante, semblable au blanc d'œuf cru. Ce type facilite le mouvement des spermatozoïdes et offre un environnement optimal. Après l'egg release, elle devient épaisse et collante. Le suivi quotidien donne un indicateur fiable du moment de l'egg release.",
           "tip": "Vérifiez la glaire avant d'uriner en essuyant avec du papier toilette et observez la couleur, la consistance et l'élasticité."
         },
         "basalTemp": {
@@ -4627,7 +4627,7 @@
         },
         "breastTenderness": {
           "title": "Sensibilité mammaire",
-          "description": "Vous pouvez remarquer une sensibilité ou un léger gonflement des seins autour de l'egg release ou après, dû à l'augmentation de la progestérone. Ces changements sont normaux et reflètent les fluctuations hormonales. L'intensité varie d'un mois à l'autre.",
+          "description": "Vous pouvez remarquer une sensibilité ou un léger gonflement des seins autour de l'egg release ou après, dû à l'augmentation de la progestérone. Ces changements sont normaux et reflètent les fluctuations natureles. L'intensité varie d'un mois à l'autre.",
           "tip": "Un soutien-gorge confortable et de soutien aide à soulager l'inconfort pendant cette période."
         },
         "libidoChanges": {
@@ -4637,7 +4637,7 @@
         },
         "moodShifts": {
           "title": "Variations d'humeur et d'énergie",
-          "description": "Les fluctuations hormonales affectent l'humeur et l'énergie. Beaucoup de femmes se sentent de meilleure humeur et plus énergiques autour de l'egg release. L'humeur peut baisser en phase lutéale. Comprendre ces schémas aide à mieux gérer son quotidien.",
+          "description": "Les fluctuations natureles affectent l'humeur et l'énergie. Beaucoup de femmes se sentent de meilleure humeur et plus énergiques autour de l'egg release. L'humeur peut baisser en phase lutéale. Comprendre ces schémas aide à mieux gérer son quotidien.",
           "tip": "Notez votre humeur et votre niveau d'énergie quotidiennement pour découvrir les schémas liés à votre cycle."
         },
         "bloating": {

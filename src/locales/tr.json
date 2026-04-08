@@ -4492,18 +4492,18 @@
         },
         "ovulationProcess": {
           "title": "Yumurtlama Nasıl Gerçekleşir",
-          "content": "Yumurtlama, yumurtalıktan olgun bir yumurtanın serbest bırakılmasıdır ve genellikle döngünün ortasında gerçekleşir. LH hormonu artışı yumurtanın serbest kalmasını tetikler. Yumurta 12-24 saat yaşar, bu da zamanlamayı kritik kılar. Sperm üreme sisteminde 5 güne kadar yaşayabilir, bu nedenle verimli pencere yumurtlamadan birkaç gün öncesini kapsar."
+          "content": "Yumurtlama, yumurtalıktan olgun bir yumurtanın serbest bırakılmasıdır ve genellikle döngünün ortasında gerçekleşir. LH vücut sinyali artışı yumurtanın serbest kalmasını tetikler. Yumurta 12-24 saat yaşar, bu da zamanlamayı kritik kılar. Sperm üreme sisteminde 5 güne kadar yaşayabilir, bu nedenle uygun pencere yumurtlamadan birkaç gün öncesini kapsar."
         },
         "fertilizationBasics": {
-          "title": "Döllenme ve İmplantasyon",
-          "content": "Döllenme, spermin tüp içinde yumurtayla buluşmasıyla gerçekleşir. Milyonlarca spermden yalnızca biri yumurtayı dölleyebilir. Döllenmeden sonra zigot bölünmeye başlar ve 3-5 günde rahime ulaşır. İmplantasyon, blastosistin rahim iç tabakasına yerleşmesiyle gerçekleşir, genellikle yumurtlamadan 6-12 gün sonra."
+          "title": "gebe kalma ve İmplantasyon",
+          "content": "gebe kalma, spermin tüp içinde yumurtayla buluşmasıyla gerçekleşir. Milyonlarca spermden yalnızca biri yumurtayı dölleyebilir. Döllenmeden sonra zigot bölünmeye başlar ve 3-5 günde rahime ulaşır. İmplantasyon, blastosistin rahim iç tabakasına yerleşmesiyle gerçekleşir, genellikle yumurtlamadan 6-12 gün sonra."
         },
         "hormonesRole": {
-          "title": "Temel Doğurganlık Hormonları",
-          "content": "Birçok hormon doğurganlıkta önemli roller oynar. FSH folikül büyümesini uyarır. Östrojen rahim iç tabakasını hazırlar ve doğurgan servikal mukus üretimini teşvik eder. LH artışı yumurtlamayı tetikler. Progesteron luteal fazı destekler ve rahim iç tabakasını korur. Bu hormonlardaki herhangi bir dengesizlik doğurganlığı etkileyebilir."
+          "title": "Temel döngü sağlığı vücut sinyaliı",
+          "content": "Birçok vücut sinyali doğurganlıkta önemli roller oynar. FSH folikül büyümesini uyarır. Östrojen rahim iç tabakasını hazırlar ve doğurgan bedensel mukus üretimini teşvik eder. LH artışı yumurtlamayı tetikler. Progesteron luteal fazı destekler ve rahim iç tabakasını korur. Bu hormonlardaki herhangi bir dengesizlik doğurganlığı etkileyebilir."
         },
         "ageAndFertility": {
-          "title": "Yaş ve Doğurganlık",
+          "title": "Yaş ve döngü sağlığı",
           "content": "Kadın doğurganlığı 20'li yaşlarda zirveye ulaşır ve 30'dan sonra kademeli olarak azalır. 35'ten sonra daha belirgin, 40'tan sonra ise önemli ölçüde azalır. Yumurta kalitesi ve sayısı yaşla birlikte düşer. Ancak her kadın benzersizdir ve birçok kadın 30'lu ve 40'lı yaşlarda başarıyla hamile kalır. Erkeklerde de sperm kalitesi zamanla azalır."
         },
         "lifestyleFactors": {
@@ -4511,80 +4511,80 @@
           "content": "Yaşam tarzı doğurganlığı önemli ölçüde etkiler. Sigara her iki cinsiyette doğurganlığı azaltır. Aşırı alkol yumurta ve sperm kalitesini olumsuz etkiler. Fazla veya aşırı düşük kilo natural body dengeyi bozar. Kronik stres kortizolü artırır ve yumurtlamayı etkiler. Sağlıklı beslenme, ılımlı egzersiz ve yeterli uyku doğurganlığı destekler."
         },
         "commonMyths": {
-          "title": "Doğurganlık Mitleri ve Gerçekler",
-          "content": "Mit: Her gün hamile kalabilirsiniz. Gerçek: Verimli pencere yaklaşık 6 gündür. Mit: Belirli pozisyonlar şansı artırır. Gerçek: Bunun bilimsel kanıtı yoktur. Mit: Doğum kontrol hapı kısırlığa neden olur. Gerçek: Bırakıldıktan sonra doğurganlık geri döner. Mit: Kısırlık sadece kadın sorunudur. Gerçek: Vakaların üçte biri erkek faktörlerinden kaynaklanır."
+          "title": "döngü sağlığı Mitleri ve Gerçekler",
+          "content": "Mit: Her gün hamile kalabilirsiniz. Gerçek: uygun pencere yaklaşık 6 gündür. Mit: Belirli pozisyonlar şansı artırır. Gerçek: Bunun bilimsel kanıtı yoktur. Mit: Doğum kontrol hapı kısırlığa neden olur. Gerçek: Bırakıldıktan sonra döngü sağlığı geri döner. Mit: gebe kalma zorlukları sadece kadın sorunudur. Gerçek: Vakaların üçte biri erkek faktörlerinden kaynaklanır."
         },
         "whenToSeekHelp": {
           "title": "Ne Zaman Uzmana Başvurmalı",
-          "content": "35 yaşın altındaysanız ve bir yıl sonra hamile kalamadıysanız veya 35 yaşın üzerindeyseniz 6 aydan sonra bir uzmana başvurun. Düzensiz veya çok ağrılı adet döngüleri, tekrarlayan düşükler veya pelvik sorunlar varsa hemen danışın. Bir doğurganlık uzmanı kapsamlı testler yapabilir ve uygun tedavi planı oluşturabilir."
+          "content": "35 yaşın altındaysanız ve bir yıl sonra hamile kalamadıysanız veya 35 yaşın üzerindeyseniz 6 aydan sonra bir uzmana başvurun. Düzensiz veya çok ağrılı adet döngüleri, tekrarlayan düşükler veya pelvik sorunlar varsa hemen danışın. Bir döngü sağlığı uzmanı kapsamlı testler yapabilir ve uygun tedavi planı oluşturabilir."
         },
         "maleFertility": {
           "title": "Erkek Doğurganlığı Temelleri",
-          "content": "Erkek faktörleri doğurganlık sorunlarının üçte birini oluşturur. Sperm sağlığı sayı, hareketlilik ve şekil açısından değerlendirilir. Etkileyen faktörler: yüksek sıcaklık, sigara, alkol, bazı ilaçlar ve stres. İyileştirmeler antioksidanlar, çinko, folik asit, aşırı ısıdan kaçınma ve sağlıklı kilonun korunmasını içerir."
+          "content": "Erkek faktörleri döngü sağlığı sorunlarının üçte birini oluşturur. Sperm sağlığı sayı, hareketlilik ve şekil açısından değerlendirilir. Etkileyen faktörler: yüksek sıcaklık, sigara, alkol, bazı ilaçlar ve stres. İyileştirmeler antioksidanlar, çinko, folik asit, aşırı ısıdan kaçınma ve sağlıklı kilonun korunmasını içerir."
         },
         "emotionalWellbeing": {
           "title": "Duygusal İyi Oluş",
-          "content": "Doğurganlık yolculuğu duygusal olarak zorlu olabilir. Hayal kırıklığı, kaygı ve üzüntü hissetmek normaldir. Partnerinizle veya güvendiğiniz bir arkadaşınızla konuşun. Meditasyon ve derin nefes gibi rahatlama tekniklerini uygulayın. Profesyonel psikolojik destek almaktan çekinmeyin. Bu duygular doğaldır ve zayıflık değildir."
+          "content": "döngü sağlığı yolculuğu duygusal olarak zorlu olabilir. Hayal kırıklığı, kaygı ve üzüntü hissetmek normaldir. Partnerinizle veya güvendiğiniz bir arkadaşınızla konuşun. Meditasyon ve derin nefes gibi rahatlama tekniklerini uygulayın. Profesyonel psikolojik destek almaktan çekinmeyin. Bu duygular doğaldır ve zayıflık değildir."
         },
         "trackingMethods": {
-          "title": "Doğurganlık Takip Yöntemleri",
-          "content": "Çeşitli yöntemler vardır: kalkmadan önce sabah bazal vücut ısısı ölçümü, yumurtlamaya yakın berrak ve esnek hale gelen servikal mukus gözlemi, LH artışını tespit eden yumurtlama testleri ve serviks pozisyonu takibi. Birden fazla yöntemi birleştirmek verimli pencere hakkında daha doğru bir tablo verir."
+          "title": "döngü sağlığı Takip Yöntemleri",
+          "content": "Çeşitli yöntemler vardır: kalkmadan önce sabah bazal vücut ısısı ölçümü, yumurtlamaya yakın berrak ve esnek hale gelen bedensel mukus gözlemi, LH artışını tespit eden yumurtlama testleri ve serviks pozisyonu takibi. Birden fazla yöntemi birleştirmek uygun pencere hakkında daha doğru bir tablo verir."
         },
         "optimizingTiming": {
           "title": "Zamanlama Optimizasyonu",
-          "content": "Hamile kalmak için en iyi zaman yumurtlamadan önceki beş gün ve yumurtlama günüdür. Verimli pencerede her gün veya iki günde bir ilişki önerilir. Sperm birkaç gün yaşar, bu nedenle mükemmel zamanlama gerekmez. Sperme zarar verebilecek kayganlaştırıcılardan kaçının. Rahatlamak da yardımcı olur."
+          "content": "Hamile kalmak için en iyi zaman yumurtlamadan önceki beş gün ve yumurtlama günüdür. uygun pencerede her gün veya iki günde bir ilişki önerilir. Sperm birkaç gün yaşar, bu nedenle mükemmel zamanlama gerekmez. Sperme zarar verebilecek kayganlaştırıcılardan kaçının. Rahatlamak da yardımcı olur."
         },
         "implantationWindow": {
           "title": "İmplantasyon Penceresi",
           "content": "İmplantasyon penceresi, rahim iç tabakasının embriyoyu kabul etmeye hazır olduğu dönemdir, genellikle yumurtlamadan 6-10 gün sonra. İç tabaka daha alıcı hale gelir. Hafif kramplar veya lekelenme olabilir. Progesteron bu sürecin hazırlanmasında temel bir rol oynar."
         },
         "cervicalHealth": {
-          "title": "Serviks Sağlığı ve Doğurganlık",
+          "title": "Serviks Sağlığı ve döngü sağlığı",
           "content": "Serviks doğurganlıkta merkezi bir rol oynar. Döngü boyunca değişen mukus üretir: adet sonrası kuru, kremsi, sonra yumurtlama yakınında berrak ve esnek olarak sperm geçişini kolaylaştırır. Enfeksiyonlar ve önceki işlemler mukus üretimini etkileyebilir. Düzenli kontroller ve iyi hijyen önemlidir."
         },
         "thyroidFertility": {
-          "title": "Tiroid ve Doğurganlık",
-          "content": "Tiroid bozuklukları yaygındır ve doğurganlığı doğrudan etkiler. Hem hipertiroidi hem hipotiroidi yumurtlamayı bozabilir ve döngüyü etkileyebilir. Tiroid antikorları implantasyonu olumsuz etkileyebilir. Hamilelik planlarken tiroid testi önerilir. İlaç tedavisi seviyeleri düzenleyebilir ve doğurganlığı geri kazandırabilir."
+          "title": "metabolik denge ve döngü sağlığı",
+          "content": "metabolik denge bozuklukları yaygındır ve doğurganlığı doğrudan etkiler. Hem hipertiroidi hem hipotiroidi yumurtlamayı bozabilir ve döngüyü etkileyebilir. metabolik denge antikorları implantasyonu olumsuz etkileyebilir. Hamilelik planlarken metabolik denge testi önerilir. İlaç tedavisi seviyeleri düzenleyebilir ve doğurganlığı geri kazandırabilir."
         },
         "pcosManagement": {
-          "title": "hormonal imbalance Yönetimi ve Doğurganlık",
-          "content": "Polikistik over sendromu (hormonal imbalance) en yaygın yumurtlama bozukluğu nedenlerinden biridir. Belirtiler arasında düzensiz döngüler, yüksek androjenler ve yumurtalıklarda küçük kistler bulunur. Kilo yönetimi, sağlıklı beslenme ve egzersiz belirtileri iyileştirir. Metformin ve yumurtlama stimülasyonu gibi ilaçlar doktor gözetiminde mevcuttur."
+          "title": "vücut sinyali imbalance Yönetimi ve döngü sağlığı",
+          "content": "Polikistik over sendromu (vücut sinyali imbalance) en yaygın yumurtlama bozukluğu nedenlerinden biridir. Belirtiler arasında düzensiz döngüler, yüksek androjenler ve yumurtalıklarda küçük kistler bulunur. Kilo yönetimi, sağlıklı beslenme ve egzersiz belirtileri iyileştirir. Metformin ve yumurtlama stimülasyonu gibi ilaçlar doktor gözetiminde mevcuttur."
         },
         "endometriosisAwareness": {
-          "title": "Endometriozis ve Doğurganlık",
+          "title": "Endometriozis ve döngü sağlığı",
           "content": "Endometriozis, rahim iç tabakasına benzer dokunun rahim dışında büyümesiyle oluşur. Ağrıya neden olur ve yapışıklıklar, tüp hasarı ve yumurta kalitesi üzerindeki etkisiyle doğurganlığı etkileyebilir. Erken teşhis önemlidir. Tedavi seçenekleri ilaçlardan laparoskopiye ve yardımcı üreme tekniklerine kadar uzanır."
         },
         "nutritionFertility": {
-          "title": "Doğurganlık İçin Optimal Beslenme",
+          "title": "döngü sağlığı İçin Optimal Beslenme",
           "content": "Sağlıklı beslenme doğurganlığı önemli ölçüde destekler. Odaklanılması gerekenler: folik asit (günde 400-800 µg), demir, balık ve kuruyemişlerden omega-3, renkli meyve ve sebzelerden antioksidanlar ve yeterli protein. Rafine şeker, işlenmiş gıdalar ve aşırı kafeini azaltın."
         },
         "sleepHormones": {
-          "title": "Uyku ve Doğurganlık Hormonları",
+          "title": "Uyku ve döngü sağlığı vücut sinyaliı",
           "content": "İyi uyku natural body denge için gereklidir. Uyku eksikliği kortizolü artırır ve yumurtaları koruyan melatonini düşürür. Günde 7-9 saat uykuyu hedefleyin. Düzenli uyku saatleri koruyun ve yatmadan önce ekranlardan kaçının. Karanlık ve serin bir yatak odası melatonin üretimini destekler."
         },
         "exerciseBalance": {
-          "title": "Egzersiz ve Doğurganlık Dengesi",
-          "content": "Ilımlı fiziksel aktivite kan dolaşımını iyileştirerek, stresi azaltarak ve hormonları düzenleyerek doğurganlığı destekler. Aşırı yoğun antrenman yumurtlamayı bozabilir. İdeal aktiviteler: tempolu yürüyüş, yoga, yüzme ve ılımlı güç antrenmanı. Vücudunuzu dinleyin ve gerektiğinde dinlenin."
+          "title": "Egzersiz ve döngü sağlığı Dengesi",
+          "content": "Ilımlı fiziksel aktivite kan dolaşımını iyileştirerek, stresi azaltarak ve vücut sinyaliı düzenleyerek doğurganlığı destekler. Aşırı yoğun antrenman yumurtlamayı bozabilir. İdeal aktiviteler: tempolu yürüyüş, yoga, yüzme ve ılımlı güç antrenmanı. Vücudunuzu dinleyin ve gerektiğinde dinlenin."
         },
         "supplementsGuide": {
-          "title": "Akıllı Takviye Rehberi",
-          "content": "Yararlı takviyeler: metil folat, D3 vitamini, yumurta kalitesi için CoQ10, omega-3, çinko, E vitamini ve hormonal imbalance için inositol. Erkekler çinko, selenyum ve CoQ10'dan faydalanır. Başlamadan önce doktorunuza danışın ve diğer ilaçlarla etkileşimleri kontrol edin."
+          "title": "Akıllı beslenme desteği Rehberi",
+          "content": "Yararlı beslenme desteği: metil folat, D3 besin öğesi, yumurta kalitesi için CoQ10, omega-3, çinko, E besin öğesi ve vücut sinyali imbalance için inositol. Erkekler çinko, selenyum ve CoQ10'dan faydalanır. Başlamadan önce doktorunuza danışın ve diğer ilaçlarla etkileşimleri kontrol edin."
         },
         "environmentalToxins": {
-          "title": "Çevresel Toksinler ve Doğurganlık",
+          "title": "Çevresel Toksinler ve döngü sağlığı",
           "content": "Çevresel toksinlere maruz kalma doğurganlığı etkileyebilir. Riskler arasında pestisitler, plastikler (BPA), ağır metaller ve temizlik ile kişisel bakım ürünlerindeki kimyasallar yer alır. Maruziyeti azaltın: organik gıdalar tercih edin, cam kaplar kullanın, sentetik kokulardan kaçının ve evi iyi havalandırın."
         },
         "geneticFactors": {
-          "title": "Genetik Faktörler ve Doğurganlık",
-          "content": "Genler doğurganlıkta rol oynar. Turner sendromu veya kistik fibrozis gibi genetik durumlar üreme yeteneğini etkileyebilir. Aile öyküsü veya tekrarlayan düşükler varsa hamilelik öncesi genetik danışmanlık faydalıdır. Genetik testler risk değerlendirmesine ve planlamaya yardımcı olur."
+          "title": "kalıtsal Faktörler ve döngü sağlığı",
+          "content": "Genler doğurganlıkta rol oynar. Turner sendromu veya kistik fibrozis gibi kalıtsal durumlar üreme yeteneğini etkileyebilir. Aile öyküsü veya tekrarlayan düşükler varsa hamilelik öncesi kalıtsal danışmanlık faydalıdır. kalıtsal testler risk değerlendirmesine ve planlamaya yardımcı olur."
         },
         "immunologyFertility": {
-          "title": "İmmünoloji ve Doğurganlık",
-          "content": "Bağışıklık sistemi gebelikte önemli bir rol oynar. Bazen vücut sperme veya embriyoya karşı antikorlar üretir. Lupus ve antifosfolipid sendromu gibi otoimmün hastalıklar implantasyon sorunlarına veya düşüklere neden olabilir. İmmünolojik testler ve uzmanlaşmış tedaviler mevcuttur."
+          "title": "İmmünoloji ve döngü sağlığı",
+          "content": "Bağışıklık sistemi gebelikte önemli bir rol oynar. Bazen vücut sperme veya embriyoya karşı antikorlar üretir. Lupus ve antifosfolipid sendromu gibi otoimmün hastalıklar erken tutunma sorunlarına veya düşüklere neden olabilir. İmmünolojik testler ve uzmanlaşmış tedaviler mevcuttur."
         },
         "secondaryInfertility": {
-          "title": "İkincil Kısırlık",
-          "content": "İkincil kısırlık, daha önce başarılı bir gebelik yaşayan kadının tekrar hamile kalmakta güçlük çekmesidir. Nedenler arasında yaş değişiklikleri, yeni sağlık sorunları veya bilinmeyen faktörler olabilir. Bu deneyim duygusal olarak zorludur. Tıbbi yardım önemlidir ve tedavi seçenekleri birincil kısırlıkla aynıdır."
+          "title": "İkincil gebe kalma zorlukları",
+          "content": "İkincil gebe kalma zorlukları, daha önce başarılı bir gebelik yaşayan kadının tekrar hamile kalmakta güçlük çekmesidir. Nedenler arasında yaş değişiklikleri, yeni sağlık sorunları veya bilinmeyen faktörler olabilir. Bu deneyim duygusal olarak zorludur. Tıbbi yardım önemlidir ve tedavi seçenekleri birincil kısırlıkla aynıdır."
         },
         "recurrentLoss": {
           "title": "Tekrarlayan Gebelik Kaybını Anlamak",
@@ -4599,12 +4599,12 @@
           "content": "Yardımcı üreme teknikleri şunlardır: rahim içi inseminasyon (IUI), tüp bebek (IVF) ve intrasitoplazmik sperm enjeksiyonu (ICSI). Tedavi genellikle daha basit seçeneklerle başlar. Her tekniğin farklı başarı oranları ve gereksinimleri vardır. Seçim tanıya, yaşa ve tıbbi geçmişe bağlıdır. Psikolojik destek önemlidir."
         },
         "epigeneticsFertility": {
-          "title": "Epigenetik ve Nesiller Arası Sağlık",
-          "content": "Epigenetik, çevrenin ve yaşam tarzının DNA'yı değiştirmeden gen ifadesini nasıl etkilediğini inceler. Beslenmeniz, stres seviyeniz ve toksinlere maruziyetiniz çocuklarınızın ve torunlarınızın sağlığını etkileyebilir. Hamilelik öncesi sağlığınıza özen göstermek gelecek nesillere de fayda sağlar."
+          "title": "yaşam tarzı faktörleri ve Nesiller Arası Sağlık",
+          "content": "yaşam tarzı faktörleri, çevrenin ve yaşam tarzının DNA'yı değiştirmeden gen ifadesini nasıl etkilediğini inceler. Beslenmeniz, stres seviyeniz ve toksinlere maruziyetiniz çocuklarınızın ve torunlarınızın sağlığını etkileyebilir. Hamilelik öncesi sağlığınıza özen göstermek gelecek nesillere de fayda sağlar."
         },
         "mindBodyConnection": {
           "title": "Zihin-Beden Bağlantısı",
-          "content": "Zihin ve beden doğurganlık yolculuğunda derin bir şekilde bağlantılıdır. Stres ve kaygı hormonları ve yumurtlamayı etkiler. Meditasyon, farkındalık, olumlu görselleştirme ve sanat terapisi gibi teknikler ruh sağlığını iyileştirebilir ve doğurganlığı destekleyebilir. Çocuk sahibi olma arzusu ile günlük hayattan keyif alma arasındaki denge önemlidir."
+          "content": "Zihin ve beden döngü sağlığı yolculuğunda derin bir şekilde bağlantılıdır. Stres ve kaygı vücut sinyaliı ve yumurtlamayı etkiler. Meditasyon, farkındalık, olumlu görselleştirme ve sanat terapisi gibi teknikler ruh sağlığını iyileştirebilir ve doğurganlığı destekleyebilir. Çocuk sahibi olma arzusu ile günlük hayattan keyif alma arasındaki denge önemlidir."
         }
       },
       "lessonsCount": "{{count}} öğrenme modülü"
@@ -4612,8 +4612,8 @@
     "fertilitySigns": {
       "signs": {
         "cervicalMucus": {
-          "title": "Servikal Mukus Değişiklikleri",
-          "description": "Yumurtlama yaklaştıkça servikal mukus daha berrak, esnek ve kaygan hale gelir, çiğ yumurta akına benzer. Bu tür mukus sperm hareketini kolaylaştırır ve optimal bir yaşam ortamı sağlar. Yumurtlamadan sonra kalın ve yapışkan olur. Bu değişiklikleri günlük takip etmek yumurtlama zamanlaması hakkında güvenilir bir gösterge verir.",
+          "title": "bedensel Mukus Değişiklikleri",
+          "description": "Yumurtlama yaklaştıkça bedensel mukus daha berrak, esnek ve kaygan hale gelir, çiğ yumurta akına benzer. Bu tür mukus sperm hareketini kolaylaştırır ve optimal bir yaşam ortamı sağlar. Yumurtlamadan sonra kalın ve yapışkan olur. Bu değişiklikleri günlük takip etmek yumurtlama zamanlaması hakkında güvenilir bir gösterge verir.",
           "tip": "Tuvaletten önce tuvalet kağıdıyla silerek mukusu kontrol edin ve renk, kıvam ve esnekliğe dikkat edin."
         },
         "basalTemp": {
@@ -4623,7 +4623,7 @@
         },
         "cervicalPosition": {
           "title": "Serviks Pozisyonu Değişiklikleri",
-          "description": "Serviks döngü boyunca değişir. Yumurtlama yakınında daha yüksek, yumuşak, açık ve nemli olur. Yumurtlamadan sonra alçalır, sertleşir ve kapanır. Kendi kendinize muayene pratik gerektirir ancak verimli zamanlama hakkında değerli bilgi verir.",
+          "description": "Serviks döngü boyunca değişir. Yumurtlama yakınında daha yüksek, yumuşak, açık ve nemli olur. Yumurtlamadan sonra alçalır, sertleşir ve kapanır. Kendi kendinize muayene pratik gerektirir ancak uygun zamanlama hakkında değerli bilgi verir.",
           "tip": "Her gün aynı saatte ve aynı pozisyonda serviksi kontrol edin."
         },
         "ovulationPain": {
@@ -4638,8 +4638,8 @@
         },
         "libidoChanges": {
           "title": "Arzu Değişiklikleri",
-          "description": "Birçok kadın yumurtlama döneminde östrojen ve testosteron artışıyla doğal bir arzu artışı fark eder. Bu, en yüksek doğurganlıkla örtüşen biyolojik olarak doğal bir yanıttır. Bu değişiklikleri fark etmek doğurganlık takibinde ek bir yararlı gösterge olabilir.",
-          "tip": "Ay boyunca arzunuzdaki değişiklikleri gözlemleyin ve diğer doğurganlık işaretleriyle ilişkilendirin."
+          "description": "Birçok kadın yumurtlama döneminde östrojen ve testosteron artışıyla doğal bir arzu artışı fark eder. Bu, en yüksek doğurganlıkla örtüşen biyolojik olarak doğal bir yanıttır. Bu değişiklikleri fark etmek döngü sağlığı takibinde ek bir yararlı gösterge olabilir.",
+          "tip": "Ay boyunca arzunuzdaki değişiklikleri gözlemleyin ve diğer döngü sağlığı işaretleriyle ilişkilendirin."
         },
         "moodShifts": {
           "title": "Ruh Hali ve Enerji Değişimleri",
@@ -4864,17 +4864,17 @@
       "topics": {
         "stressHormones": {
           "title": "Stres Doğurganlığı Nasıl Etkiler",
-          "content": "Kronik stres kortizol ve adrenalin salgılayarak doğurganlık hormonlarını bozar. Yüksek kortizol GnRH'yi baskılayarak FSH ve LH'yi etkileyebilir ve yumurtlamayı bozabilir. Ayrıca rahim iç tabakası kalitesini ve implantasyon kapasitesini etkileyebilir.",
+          "content": "Kronik stres kortizol ve adrenalin salgılayarak döngü sağlığı vücut sinyaliını bozar. Yüksek kortizol GnRH'yi baskılayarak FSH ve LH'yi etkileyebilir ve yumurtlamayı bozabilir. Ayrıca rahim iç tabakası kalitesini ve erken tutunma kapasitesini etkileyebilir.",
           "practice": "Her gün 10 dakikayı yavaş nefes ve sakinleştirici müzik eşliğinde derin gevşeme egzersizine ayırın."
         },
         "cortisol": {
           "title": "Kortizolü Anlamak",
-          "content": "Kortizol ana stres hormonudur. Normal seviyeleri günlük bir kalıp izler: sabah yüksek, akşam düşük. Kronik stres bu kalıbı bozarak uyku, üreme hormonları ve bağışıklık sistemini etkiler. Normal kortizol seviyelerini korumak doğal doğurganlığı desteklemek için önemlidir.",
+          "content": "Kortizol ana stres hormonudur. Normal seviyeleri günlük bir kalıp izler: sabah yüksek, akşam düşük. Kronik stres bu kalıbı bozarak uyku, üreme vücut sinyaliı ve bağışıklık sistemini etkiler. Normal kortizol seviyelerini korumak doğal doğurganlığı desteklemek için önemlidir.",
           "practice": "Sabah güneş ışığına çıkın ve öğleden sonra kafeinden kaçının."
         },
         "mindfulness": {
-          "title": "Farkındalık ve Doğurganlık",
-          "content": "Araştırmalar farkındalık pratiğinin stresi azalttığını ve doğurganlık sonuçlarını iyileştirdiğini göstermektedir. Farkındalık meditasyonu yargılamadan şimdiki ana odaklanmak demektir. Günde sadece 10 dakika bile kortizolü düşürebilir ve ruh halini iyileştirebilir. Rehberli meditasyon uygulamaları yeni başlayanlara yardımcı olur.",
+          "title": "Farkındalık ve döngü sağlığı",
+          "content": "Araştırmalar farkındalık pratiğinin stresi azalttığını ve döngü sağlığı sonuçlarını iyileştirdiğini göstermektedir. Farkındalık meditasyonu yargılamadan şimdiki ana odaklanmak demektir. Günde sadece 10 dakika bile kortizolü düşürebilir ve ruh halini iyileştirebilir. Rehberli meditasyon uygulamaları yeni başlayanlara yardımcı olur.",
           "practice": "Vücut taraması deneyin: gözlerinizi kapatın ve 5 dakika boyunca baştan ayağa her bölgeye odaklanın."
         },
         "breathing": {
@@ -4884,11 +4884,11 @@
         },
         "journaling": {
           "title": "Terapötik Yazı Yazma",
-          "content": "İfade edici yazı duyguları işlemeye ve stresi azaltmaya yardımcı olur. Doğurganlık yolculuğunuzla ilgili duygularınızı, korkularınızı ve umutlarınızı yazın. Kurallar veya stil konusunda endişelenmeyin - amaç özgür ifadedir. Düzenli yazmanın ruh halini iyileştirdiği ve kaygıyı azalttığı gösterilmiştir.",
+          "content": "İfade edici yazı duyguları işlemeye ve stresi azaltmaya yardımcı olur. döngü sağlığı yolculuğunuzla ilgili duygularınızı, korkularınızı ve umutlarınızı yazın. Kurallar veya stil konusunda endişelenmeyin - amaç özgür ifadedir. Düzenli yazmanın ruh halini iyileştirdiği ve kaygıyı azalttığı gösterilmiştir.",
           "practice": "Yatmadan önce 15 dakikanızı gününüz ve duygularınız hakkında serbest yazmaya ayırın."
         },
         "sleep": {
-          "title": "Uyku ve Doğurganlık",
+          "title": "Uyku ve döngü sağlığı",
           "content": "İyi uyku natural body denge ve stres yönetimi için gereklidir. Uyku eksikliği kortizolü artırır ve sirkadiyen ritmi bozar. Karanlık, sessiz ve serin bir odada 7-9 saat uykuyu hedefleyin. Yatmadan bir saat önce ekranlardan kaçının. Düzenli uyku saatleri melatonin üretimini destekler.",
           "practice": "Bir akşam rutini oluşturun: ılık duş, hafif okuma, sonra her gün aynı saatte uyku."
         },
@@ -4899,17 +4899,17 @@
         },
         "socialSupport": {
           "title": "Destek Ağınızı Kurmak",
-          "content": "Doğurganlık yolculuğu güçlü bir destek sistemiyle daha kolaydır. Duygularınızı düzenli olarak partnerinizle paylaşın. Güvendiğiniz bir arkadaşla konuşun veya bir destek grubuna katılın. Çevrimiçi topluluklar deneyim paylaşımı için güvenli alanlar sunar. Yardım istemekten çekinmeyin.",
+          "content": "döngü sağlığı yolculuğu güçlü bir destek sistemiyle daha kolaydır. Duygularınızı düzenli olarak partnerinizle paylaşın. Güvendiğiniz bir arkadaşla konuşun veya bir destek grubuna katılın. Çevrimiçi topluluklar deneyim paylaşımı için güvenli alanlar sunar. Yardım istemekten çekinmeyin.",
           "practice": "Haftalık olarak partnerinizle duygularınız ve ihtiyaçlarınız hakkında konuşmak için zaman ayırın."
         },
         "professionalHelp": {
           "title": "Ne Zaman Profesyonel Destek Aramalı",
-          "content": "Sürekli kaygı veya depresyon hissediyorsanız profesyonel psikolojik yardım aramaktan çekinmeyin. Doğurganlık konusunda uzmanlaşmış bir terapist benzersiz zorluklarınızı anlar. Bilişsel davranışçı terapi ve EMDR doğurganlıkla ilgili streste etkili olmuştur.",
-          "practice": "Kadın sağlığı ve doğurganlık konusunda uzmanlaşmış bir terapist bulun ve keşif seansı ayırtın."
+          "content": "Sürekli kaygı veya depresyon hissediyorsanız profesyonel psikolojik yardım aramaktan çekinmeyin. döngü sağlığı konusunda uzmanlaşmış bir terapist benzersiz zorluklarınızı anlar. Bilişsel davranışçı terapi ve EMDR doğurganlıkla ilgili streste etkili olmuştur.",
+          "practice": "Kadın sağlığı ve döngü sağlığı konusunda uzmanlaşmış bir terapist bulun ve keşif seansı ayırtın."
         },
         "acceptance": {
           "title": "Kabullenmeyi Uygulamak",
-          "content": "Kabul, pes etmek değil belirsizlikle barışmak demektir. Doğurganlık yolculuğu kontrolümüz dışında birçok şeyle doludur. Kontrol edebileceğinize odaklanın: sağlığınız, yaşam tarzınız, ilişkileriniz. Gününüzü yaşayın ve kendinize hem üzülme hem umut etme izni verin. Tüm duygularınız geçerli ve meşrudur.",
+          "content": "Kabul, pes etmek değil belirsizlikle barışmak demektir. döngü sağlığı yolculuğu kontrolümüz dışında birçok şeyle doludur. Kontrol edebileceğinize odaklanın: sağlığınız, yaşam tarzınız, ilişkileriniz. Gününüzü yaşayın ve kendinize hem üzülme hem umut etme izni verin. Tüm duygularınız geçerli ve meşrudur.",
           "practice": "Güne bir kabul meditasyonuyla başlayın: duygularımı tanıyorum, kabul ediyorum ve bugün yapabileceğime odaklanıyorum."
         }
       },
