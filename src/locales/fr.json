@@ -364,8 +364,8 @@
       "subtitle": "Suivez et analysez votre prise de poids pendant la grossesse"
     },
     "postpartumMentalHealth": {
-      "title": "Journal Humeur & Bien-être",
-      "description": "Questionnaire EPDS et soutien bien-être mental."
+      "title": "Guide Détente & Confort",
+      "description": "Suivez votre bien-être émotionnel et recevez des conseils de soutien."
     },
     "gestationalDiabetes": {
       "title": "Habitudes Alimentaires Saines",
@@ -376,8 +376,8 @@
       "description": "Découvrez les facteurs courants de la prééclampsie."
     },
     "maternalHealth": {
-      "title": "Guide Bien-être Maman",
-      "description": "Informations éducatives sur le diabète gestationnel et la prééclampsie."
+      "title": "Journal de Grossesse",
+      "description": "Aperçu complet du bien-être pour les futures mamans."
     },
     "pregnancyComfort": {
       "title": "Grossesse confortable",
@@ -404,24 +404,24 @@
       "description": "Aperçus IA des pleurs de votre bébé."
     },
     "postpartumRecovery": {
-      "title": "Guide de récupération post-partum",
-      "description": "Votre plan de récupération de 6 semaines."
+      "title": "Guide Intelligent Nouvelle Maman",
+      "description": "Votre plan de soins personnels de 6 semaines après la naissance."
     },
     "fertileWindow": {
       "title": "Fenêtre de fertilité",
       "description": "Identifiez vos jours les plus fertiles."
     },
     "fertilityAcademy": {
-      "title": "Mon Parcours de Fertilité",
-      "description": "Éducation complète sur la fertilité : leçons, signes corporels et gestion du stress.",
+      "title": "Guide de la Maternité",
+      "description": "Leçons complètes sur votre cycle : signes corporels et conseils de mode de vie.",
       "lessonsTab": "Leçons",
       "signsTab": "Signes corporels",
       "stressTab": "Stress & Calme",
       "twwTab": "Attente"
     },
     "nutritionSupplements": {
-      "title": "Guide des compléments alimentaires",
-      "description": "Guide complet de nutrition et compléments prénataux.",
+      "title": "Guide Nutritionnel",
+      "description": "Guide complet de nutrition pour votre parcours.",
       "nutritionTab": "Nutrition",
       "supplementsTab": "Compléments",
       "videosTitle": "Vidéos éducatives",
@@ -432,8 +432,24 @@
       "description": "Soutien quotidien pendant les deux semaines d'attente."
     },
     "preconceptionCheckup": {
-      "title": "Bilan pré-conceptionnel",
-      "description": "Examens essentiels avant la grossesse."
+      "title": "Préparation à la Maternité",
+      "description": "Liste de préparation et aperçu du bien-être avant la grossesse."
+    },
+    "fetalGrowth": {
+      "title": "Suivi de Croissance Bébé",
+      "description": "Suivez la taille et le développement de votre bébé chaque semaine."
+    },
+    "vitaminTracker": {
+      "title": "Organisateur Nutrition Quotidienne",
+      "description": "Suivez votre routine nutritionnelle avec des rappels intelligents."
+    },
+    "smartAppointment": {
+      "title": "Rappel de Rendez-vous",
+      "description": "Ne manquez jamais un rendez-vous important avec des rappels intelligents."
+    },
+    "lactationPrep": {
+      "title": "Nutrition Intelligente du Nouveau-né",
+      "description": "Guide essentiel pour nourrir votre nouveau-né en toute confiance."
     }
   },
   "dashboard": {

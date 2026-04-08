@@ -364,8 +364,8 @@
       "subtitle": "Verfolge und analysiere deine Gewichtszunahme in der Schwangerschaft"
     },
     "postpartumMentalHealth": {
-      "title": "Stimmungs- & Wellness-Tagebuch",
-      "description": "EPDS-Fragebogen und Unterstützung für seelisches Wohlbefinden."
+      "title": "Entspannungs- & Komfort-Guide",
+      "description": "Verfolgen Sie Ihr emotionales Wohlbefinden und erhalten Sie unterstützende Tipps."
     },
     "gestationalDiabetes": {
       "title": "Gesunde Essgewohnheiten",
@@ -376,8 +376,8 @@
       "description": "Erfahren Sie mehr über häufige Präeklampsie-Faktoren."
     },
     "maternalHealth": {
-      "title": "Mama-Wellness-Guide",
-      "description": "Aufklärung über Schwangerschaftsdiabetes und Präeklampsie."
+      "title": "Schwangerschaftstagebuch",
+      "description": "Umfassender Wellness-Überblick für werdende Mütter."
     },
     "pregnancyComfort": {
       "title": "Komfortable Schwangerschaft",
@@ -404,24 +404,24 @@
       "description": "KI-Einblicke in die Weinmuster Ihres Babys."
     },
     "postpartumRecovery": {
-      "title": "Erholungsplan nach der Geburt",
-      "description": "Ihr 6-Wochen-Erholungsplan nach der Geburt."
+      "title": "Intelligenter Guide für neue Mamas",
+      "description": "Ihr 6-Wochen-Selbstpflegeplan nach der Geburt."
     },
     "fertileWindow": {
       "title": "Fruchtbarkeitsfenster",
       "description": "Bestimmen Sie Ihre fruchtbarsten Tage."
     },
     "fertilityAcademy": {
-      "title": "Meine Fruchtbarkeitsreise",
-      "description": "Umfassende Fruchtbarkeitsbildung: Lektionen, Körperzeichen und Stressbewältigung.",
+      "title": "Mutterschafts-Ratgeber",
+      "description": "Umfassende Lektionen über Ihren Zyklus: Körperzeichen und Lifestyle-Tipps.",
       "lessonsTab": "Lektionen",
       "signsTab": "Körperzeichen",
       "stressTab": "Stress & Ruhe",
       "twwTab": "Wartezeit"
     },
     "nutritionSupplements": {
-      "title": "Ratgeber für Nahrungsergänzungsmittel",
-      "description": "Umfassender Leitfaden für Ernährung und pränatale Nahrungsergänzung.",
+      "title": "Ernährungsratgeber",
+      "description": "Umfassender Ernährungsleitfaden für Ihre Reise.",
       "nutritionTab": "Ernährung",
       "supplementsTab": "Ergänzungen",
       "videosTitle": "Lehrvideos",
@@ -432,8 +432,24 @@
       "description": "Tägliche Unterstützung während der Wartezeit."
     },
     "preconceptionCheckup": {
-      "title": "Vorsorgeuntersuchungen",
-      "description": "Wichtige Tests vor der Schwangerschaft."
+      "title": "Vorbereitung auf die Mutterschaft",
+      "description": "Vorbereitungscheckliste und Wellness-Überblick vor der Schwangerschaft."
+    },
+    "fetalGrowth": {
+      "title": "Baby-Wachstum verfolgen",
+      "description": "Verfolgen Sie die Größe und Entwicklung Ihres Babys Woche für Woche."
+    },
+    "vitaminTracker": {
+      "title": "Täglicher Ernährungs-Organizer",
+      "description": "Verfolgen Sie Ihre tägliche Ernährungsroutine mit intelligenten Erinnerungen."
+    },
+    "smartAppointment": {
+      "title": "Intelligente Terminerinnerung",
+      "description": "Verpassen Sie nie einen wichtigen Termin mit intelligenten Erinnerungen."
+    },
+    "lactationPrep": {
+      "title": "Intelligente Neugeborenen-Ernährung",
+      "description": "Wesentlicher Leitfaden für die Ernährung Ihres Neugeborenen."
     }
   },
   "dashboard": {

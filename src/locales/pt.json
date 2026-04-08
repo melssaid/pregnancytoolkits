@@ -364,8 +364,8 @@
       "subtitle": "Acompanhe e analise seu ganho de peso na gravidez"
     },
     "postpartumMentalHealth": {
-      "title": "Diário de Humor e Bem-estar",
-      "description": "Questionário EPDS e suporte de bem-estar mental."
+      "title": "Guia de Relaxamento e Conforto",
+      "description": "Acompanhe seu bem-estar emocional e receba dicas de apoio."
     },
     "gestationalDiabetes": {
       "title": "Hábitos Alimentares Saudáveis",
@@ -376,8 +376,8 @@
       "description": "Conheça os fatores comuns da pré-eclâmpsia."
     },
     "maternalHealth": {
-      "title": "Guia de Bem-estar da Mamãe",
-      "description": "Informações educativas sobre diabetes gestacional e pré-eclâmpsia."
+      "title": "Diário de Gravidez",
+      "description": "Visão geral completa de bem-estar para futuras mamães."
     },
     "pregnancyComfort": {
       "title": "Gravidez confortável",
@@ -408,24 +408,24 @@
       "description": "Insights IA dos padrões de choro do seu bebê."
     },
     "postpartumRecovery": {
-      "title": "Guia de recuperação pós-parto",
-      "description": "Seu plano de recuperação de 6 semanas após o parto."
+      "title": "Guia Inteligente para Nova Mamãe",
+      "description": "Seu plano de autocuidado de 6 semanas após o parto."
     },
     "fertileWindow": {
       "title": "Janela de fertilidade",
       "description": "Identifique seus dias mais férteis."
     },
     "fertilityAcademy": {
-      "title": "Minha Jornada de Fertilidade",
-      "description": "Educação completa sobre fertilidade: lições, sinais corporais e gestão do estresse.",
+      "title": "Guia da Maternidade",
+      "description": "Lições completas sobre seu ciclo: sinais corporais e dicas de estilo de vida.",
       "lessonsTab": "Lições",
       "signsTab": "Sinais corporais",
       "stressTab": "Estresse & Calma",
       "twwTab": "Espera"
     },
     "nutritionSupplements": {
-      "title": "Guia de suplementos nutricionais",
-      "description": "Guia completo de nutrição e suplementos pré-natais.",
+      "title": "Guia de Nutrição",
+      "description": "Guia completo de nutrição essencial para sua jornada.",
       "nutritionTab": "Nutrição",
       "supplementsTab": "Suplementos",
       "videosTitle": "Vídeos educativos",
@@ -436,8 +436,24 @@
       "description": "Apoio diário durante as duas semanas de espera."
     },
     "preconceptionCheckup": {
-      "title": "Check-up pré-concepcional",
-      "description": "Exames essenciais antes da gravidez."
+      "title": "Preparação para a Maternidade",
+      "description": "Lista de preparação e visão geral de bem-estar antes da gravidez."
+    },
+    "fetalGrowth": {
+      "title": "Acompanhamento do Crescimento do Bebê",
+      "description": "Acompanhe o tamanho e desenvolvimento do seu bebê semana a semana."
+    },
+    "vitaminTracker": {
+      "title": "Organizador de Nutrição Diária",
+      "description": "Acompanhe sua rotina nutricional diária com lembretes inteligentes."
+    },
+    "smartAppointment": {
+      "title": "Lembrete Inteligente de Consultas",
+      "description": "Nunca perca uma consulta importante com lembretes inteligentes."
+    },
+    "lactationPrep": {
+      "title": "Nutrição Inteligente do Recém-nascido",
+      "description": "Guia essencial para alimentar seu recém-nascido com confiança."
     }
   },
   "dashboard": {

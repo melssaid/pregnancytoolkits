@@ -336,8 +336,8 @@
       "description": "Personalized exercises for pregnancy back comfort."
     },
     "vitaminTracker": {
-      "title": "My Daily Nutrition",
-      "description": "Track your daily wellness routine with smart reminders."
+      "title": "Daily Nutrition Organizer",
+      "description": "Track your daily nutrition routine with smart reminders."
     },
     "forbiddenFoods": {
       "title": "Foods to Avoid",
@@ -389,7 +389,7 @@
       "subtitle": "Track and analyze your pregnancy weight gain"
     },
     "postpartumMentalHealth": {
-      "title": "Mood & Wellness Journal",
+      "title": "Relaxation & Comfort Guide",
       "description": "Track your emotional wellbeing and get supportive tips."
     },
     "gestationalDiabetes": {
@@ -401,7 +401,7 @@
       "description": "Educational guide about staying balanced during pregnancy."
     },
     "maternalHealth": {
-      "title": "Mom Wellness Guide",
+      "title": "Pregnancy Journal",
       "description": "Comprehensive wellness overview for expectant mothers."
     },
     "pregnancyComfort": {
@@ -429,23 +429,23 @@
       "description": "AI insights into your baby's crying patterns."
     },
     "postpartumRecovery": {
-      "title": "Postpartum Recovery Guide",
-      "description": "Your 6-week recovery plan after birth."
+      "title": "Smart Guide for New Mom",
+      "description": "Your 6-week self-care plan after birth."
     },
     "fertileWindow": {
       "title": "Fertile Window Indicator",
       "description": "Pinpoint your most fertile days each cycle."
     },
     "fertilityAcademy": {
-      "title": "My Fertility Journey",
-      "description": "Comprehensive fertility education: lessons, body signs, and lifestyle tips.",
+      "title": "Motherhood Guide",
+      "description": "Comprehensive lessons about your cycle: body signs and lifestyle tips.",
       "lessonsTab": "Lessons",
       "signsTab": "Body Signs",
       "stressTab": "Stress & Calm",
       "twwTab": "TWW"
     },
     "nutritionSupplements": {
-      "title": "Nutrition Essentials Guide",
+      "title": "Nutrition Guide",
       "description": "Complete nutrition essentials guide for your journey.",
       "nutritionTab": "Nutrition",
       "supplementsTab": "Supplements",
@@ -457,8 +457,20 @@
       "description": "Daily support during the wait after ovulation."
     },
     "preconceptionCheckup": {
-      "title": "Preconception Checkup Guide",
+      "title": "Motherhood Preparation",
       "description": "Preparation checklist and wellness overview before pregnancy."
+    },
+    "fetalGrowth": {
+      "title": "Baby Growth Tracker",
+      "description": "Track your baby's size and development week by week."
+    },
+    "smartAppointment": {
+      "title": "Smart Appointment Reminder",
+      "description": "Never miss an important appointment with smart reminders."
+    },
+    "lactationPrep": {
+      "title": "Smart Newborn Nutrition",
+      "description": "Essential guide for feeding your newborn with confidence."
     }
   },
   "dashboard": {
