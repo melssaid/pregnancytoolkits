@@ -229,10 +229,8 @@ export default function LandingEN() {
             <p>
               The first trimester is a time of rapid development. By week 6, your baby's heart begins to beat. 
               Common symptoms include morning sickness, fatigue, and breast tenderness. Our{" "}
-              <Link to="/tools/ai-nausea-relief" className="text-primary hover:underline">AI nausea relief tool</Link>{" "}
-              offers evidence-based remedies, while the{" "}
               <Link to="/tools/ai-meal-suggestion" className="text-primary hover:underline">pregnancy meal planner</Link>{" "}
-              helps you maintain proper nutrition even when appetite is low.
+              helps you maintain proper nutrition even when appetite is low. Make sure to take folic acid and avoid unsafe foods during this critical period when major organs are forming.
             </p>
 
             <h3 className="text-lg font-semibold text-foreground mt-6">Second Trimester (Weeks 13–26)</h3>
@@ -241,17 +239,78 @@ export default function LandingEN() {
               You'll likely feel your baby's first kicks around week 20. Use our{" "}
               <Link to="/tools/kick-counter" className="text-primary hover:underline">baby kick counter</Link>{" "}
               to start tracking baby movements. The{" "}
-              <Link to="/tools/fetal-growth" className="text-primary hover:underline">baby development guide</Link>{" "}
-              shows you exactly how your baby is growing each week with accurate size comparisons.
+              <Link to="/tools/baby-growth" className="text-primary hover:underline">baby development guide</Link>{" "}
+              shows you exactly how your baby is growing each week with accurate size comparisons. Your baby grows rapidly and starts hearing your voice.
             </p>
 
             <h3 className="text-lg font-semibold text-foreground mt-6">Third Trimester (Weeks 27–40)</h3>
             <p>
               As you approach your due date, preparation becomes key. Our{" "}
               <Link to="/tools/ai-hospital-bag" className="text-primary hover:underline">hospital bag checklist</Link>{" "}
-              ensures you're packed and ready. Our{" "}
+              ensures you're packed and ready by week 36. Our{" "}
               <Link to="/tools/ai-birth-plan" className="text-primary hover:underline">AI birth plan generator</Link>{" "}
-              helps you create a comprehensive plan for your delivery.
+              helps you create a comprehensive plan for delivery including pain management preferences and breastfeeding goals. Monitor baby movements regularly and use the contraction timer when you notice regular contractions.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      {/* Fertility Planning Guide */}
+      <section className="bg-muted/40 border-y border-border py-16">
+        <div className="container max-w-3xl">
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-6">
+            Fertility &amp; Conception Planning Guide
+          </h2>
+          <article className="prose prose-sm max-w-none text-foreground/90 space-y-4">
+            <p>
+              Planning for pregnancy starts with understanding your menstrual cycle and identifying your fertile window. Our{" "}
+              <Link to="/tools/cycle-tracker" className="text-primary hover:underline">cycle and ovulation tracker</Link>{" "}
+              helps you pinpoint your ovulation date accurately by analyzing cycle patterns. Learn about natural ovulation signs such as cervical mucus changes and basal body temperature shifts.
+            </p>
+            <p>
+              <strong>Tips to boost fertility:</strong> maintain a healthy weight, eat foods rich in folate, iron, and zinc, exercise moderately, avoid smoking and excessive caffeine, and get enough sleep. A balanced diet and stress reduction are essential factors for improving your chances of conceiving. Use our{" "}
+              <Link to="/tools/preconception-checkup" className="text-primary hover:underline">motherhood preparation tool</Link>{" "}
+              to assess your readiness with a comprehensive wellness checklist covering nutrition, lifestyle, and emotional preparedness.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      {/* Birth Preparation */}
+      <section className="container py-16">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-6">
+            Preparing for Birth: Everything You Need to Know
+          </h2>
+          <article className="prose prose-sm max-w-none text-foreground/90 space-y-4">
+            <p>
+              Birth is an experience that requires both physical and mental preparation. Learn about the signs of labor such as regular contractions and water breaking. Choose the birth method that suits you — natural or cesarean — and use our{" "}
+              <Link to="/tools/ai-birth-plan" className="text-primary hover:underline">smart birth plan generator</Link>{" "}
+              to create a comprehensive plan that includes your preferences for pain management, breastfeeding, and the first hours with your baby.
+            </p>
+            <p>
+              <strong>Hospital bag essentials:</strong> Pack by week 36 at the latest. Include comfortable clothes for you and your baby, personal care essentials, important documents, healthy snacks, and a phone charger. Don't forget to prepare the car seat for your newborn before the big day.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      {/* Postpartum & Newborn Care */}
+      <section className="bg-muted/40 border-y border-border py-16">
+        <div className="container max-w-3xl">
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground text-center mb-6">
+            Postpartum Guide &amp; Newborn Care
+          </h2>
+          <article className="prose prose-sm max-w-none text-foreground/90 space-y-4">
+            <p>
+              The postpartum period is full of challenges and joy. Take care of your mental and physical health during this stage. Sleep when the baby sleeps, ask family for help, and maintain good nutrition. Use our{" "}
+              <Link to="/tools/postpartum-recovery" className="text-primary hover:underline">relaxation and calm guide</Link>{" "}
+              for practical recovery tips, and the{" "}
+              <Link to="/tools/ai-lactation-prep" className="text-primary hover:underline">smart newborn nutrition tool</Link>{" "}
+              to track feeding schedules and ensure your baby is getting proper nourishment.
+            </p>
+            <p>
+              <strong>Daily wellness tips:</strong> Drink 8-10 glasses of water daily, eat small frequent meals rich in protein and fiber, walk for 30 minutes daily when cleared by your provider, take regular rest breaks, and journal your feelings. Remember — taking care of yourself is taking care of your baby.
             </p>
           </article>
         </div>
