@@ -9,6 +9,7 @@ import { EncryptionIndicator } from "./EncryptionIndicator";
 import { LanguageDropdown } from "./LanguageDropdown";
 import { TrialExpiryBanner } from "./TrialExpiryBanner";
 import { useEffect } from "react";
+import { getTotalToolsCount } from "@/lib/tools-data";
 
 interface LayoutProps {
   children: React.ReactNode;
