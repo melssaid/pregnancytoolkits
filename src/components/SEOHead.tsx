@@ -15,8 +15,9 @@ interface SEOHeadProps {
   description?: string;
   type?: "website" | "article";
   noindex?: boolean;
-  /** Additional keywords for this page */
   keywords?: string;
+  /** HowTo steps for rich snippets */
+  howToSteps?: { name: string; text: string }[];
 }
 
 /**
@@ -31,6 +32,7 @@ export function SEOHead({
   type = "website",
   noindex = false,
   keywords,
+  howToSteps,
 }: SEOHeadProps = {}) {
   const { t, i18n } = useTranslation();
   const location = useLocation();
@@ -117,6 +119,20 @@ export function SEOHead({
       .filter(Boolean),
   } : null;
 
+  // HowTo schema for tool pages with steps
+  const howToSchema = howToSteps && howToSteps.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": pageTitle || fullTitle,
+    "description": seoDesc,
+    "step": howToSteps.map((step, i) => ({
+      "@type": "HowToStep",
+      "position": i + 1,
+      "name": step.name,
+      "text": step.text,
+    })),
+  } : null;
+
   // Locale mapping for Open Graph
   const ogLocaleMap: Record<string, string> = {
     en: "en_US", ar: "ar_SA", de: "de_DE", fr: "fr_FR",
@@ -190,6 +206,13 @@ export function SEOHead({
       {faqSchema && (
         <script type="application/ld+json">
           {JSON.stringify(faqSchema)}
+        </script>
+      )}
+
+      {/* HowTo Schema */}
+      {howToSchema && (
+        <script type="application/ld+json">
+          {JSON.stringify(howToSchema)}
         </script>
       )}
     </Helmet>
