@@ -359,8 +359,8 @@ export default function PricingDemo() {
           </div>
         </motion.div>
 
-        {/* Billing Diagnostics Panel */}
-        <BillingDiagnosticsPanel isAr={isAr} />
+        {/* Billing Diagnostics Panel — hidden until 5 taps on title */}
+        {devMode && <BillingDiagnosticsPanel isAr={isAr} />}
       </div>
     </div>
   );
