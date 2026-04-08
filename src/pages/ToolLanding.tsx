@@ -1,13 +1,14 @@
 import { useParams, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { SEOHead } from "@/components/SEOHead";
-import { toolsData, getRelatedTools } from "@/lib/tools-data";
+import { toolsData, getRelatedTools, getTotalToolsCount } from "@/lib/tools-data";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Baby, ArrowRight, CheckCircle2, Smartphone, Sparkles,
   Shield, Globe, Star, Download, ExternalLink,
 } from "lucide-react";
+import { getLocalizedToolSEO } from "@/data/toolSeoLocales";
 
 const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=app.pregnancytoolkits.android";
 
@@ -374,12 +375,27 @@ const toolSEO: Record<string, { h1: string; desc: string; longDesc: string; keyw
 };
 
 // Fallback for tools without specific SEO data
-function getToolSEO(toolId: string, toolTitle: string) {
+function getToolSEO(toolId: string, toolTitle: string, lang: string = "en") {
+  // Try localized version first (non-English)
+  if (lang !== "en") {
+    const localized = getLocalizedToolSEO(lang, toolId);
+    if (localized) {
+      // Merge with English longDesc and keywords
+      const enData = toolSEO[toolId];
+      return {
+        ...localized,
+        longDesc: enData?.longDesc || localized.desc,
+        keywords: enData?.keywords || `${toolTitle.toLowerCase()}, pregnancy app`,
+      };
+    }
+  }
+  // English or fallback
   if (toolSEO[toolId]) return toolSEO[toolId];
+  const count = getTotalToolsCount();
   return {
     h1: `${toolTitle} — Free Pregnancy Tool`,
-    desc: `Use our free ${toolTitle.toLowerCase()} to support your pregnancy journey. Part of Pregnancy Toolkits' 35+ AI-powered tools.`,
-    longDesc: `${toolTitle} is part of Pregnancy Toolkits, a comprehensive free pregnancy app with 35+ AI-powered tools. Track your pregnancy, monitor your baby's growth, and get personalized insights — all in one app.`,
+    desc: `Use our free ${toolTitle.toLowerCase()} to support your pregnancy journey. Part of Pregnancy Toolkits' ${count}+ AI-powered tools.`,
+    longDesc: `${toolTitle} is part of Pregnancy Toolkits, a comprehensive free pregnancy app with ${count}+ AI-powered tools. Track your pregnancy, monitor your baby's growth, and get personalized insights — all in one app.`,
     keywords: `${toolTitle.toLowerCase()}, pregnancy app, pregnancy tools`,
     faqs: [] as { q: string; a: string }[],
   };
@@ -387,7 +403,8 @@ function getToolSEO(toolId: string, toolTitle: string) {
 
 export default function ToolLanding() {
   const { toolSlug } = useParams();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language;
 
   // Map slug to tool
   const tool = toolsData.find((t) => {
@@ -409,7 +426,7 @@ export default function ToolLanding() {
   }
 
   const toolTitle = t(tool.titleKey);
-  const seo = getToolSEO(tool.id, toolTitle);
+  const seo = getToolSEO(tool.id, toolTitle, lang);
   const related = getRelatedTools(tool.id, 4);
 
   const jsonLd = {
@@ -418,7 +435,7 @@ export default function ToolLanding() {
     "name": `${seo.h1} | Pregnancy Toolkits`,
     "url": `https://pregnancytoolkits.lovable.app/tool/${toolSlug}`,
     "description": seo.desc,
-    "applicationCategory": "HealthApplication",
+    "applicationCategory": "LifestyleApplication",
     "operatingSystem": "Web, Android",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
     "isPartOf": {
@@ -531,7 +548,7 @@ export default function ToolLanding() {
           </div>
           <div className="flex flex-col items-center gap-1">
             <Star className="h-5 w-5 text-primary" />
-            <span className="text-xs text-muted-foreground">35+ Free Tools</span>
+            <span className="text-xs text-muted-foreground">{getTotalToolsCount()}+ Free Tools</span>
           </div>
           <div className="flex flex-col items-center gap-1">
             <Sparkles className="h-5 w-5 text-primary" />
