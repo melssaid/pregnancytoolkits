@@ -84,14 +84,26 @@ export default function PricingDemo() {
         window.dispatchEvent(new CustomEvent('subscription-activated', { detail: { plan: selected } }));
         navigate("/");
 
+        // Show syncing indicator
+        const syncToastId = toast.loading(
+          isAr ? '🔄 جارٍ مزامنة الاشتراك...' : '🔄 Syncing subscription...',
+          { duration: 12000 }
+        );
+
         // Poll server to confirm subscription sync (max 3 attempts, 2s apart)
         const poll = async (attempt = 0) => {
-          if (attempt >= 3) return;
+          if (attempt >= 3) {
+            toast.dismiss(syncToastId);
+            toast.success(isAr ? '✅ تم تفعيل الاشتراك' : '✅ Subscription activated');
+            return;
+          }
           try {
             const { data } = await supabase.functions.invoke('pregnancy-ai-perplexity', {
               body: { action: 'check-quota' },
             });
             if (data?.tier === 'premium') {
+              toast.dismiss(syncToastId);
+              toast.success(isAr ? '✅ تمت المزامنة بنجاح' : '✅ Synced successfully');
               refreshAIUsage();
               return;
             }
