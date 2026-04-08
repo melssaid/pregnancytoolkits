@@ -77,6 +77,8 @@ export default function PricingDemo() {
     const sent = await requestPurchase(
       selected,
       () => {
+        // Force premium tier immediately so crown & UI update instantly
+        qmSetTier('premium');
         refreshAIUsage();
         // Dispatch custom event so App.tsx can show SubscriptionSuccessSheet
         window.dispatchEvent(new CustomEvent('subscription-activated', { detail: { plan: selected } }));
