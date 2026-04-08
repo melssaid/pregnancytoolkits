@@ -704,7 +704,7 @@
       "privacyFirst": {
         "title": "Privacy-First Approach",
         "badge": "Important",
-        "content": "We offer all services without the collection of personal data. Our application is a lifestyle and educational companion — it is NOT a medical device under EU MDR (Medical Device Regulation) or any jurisdiction. It does not provide diagnoses, clinical assessments, or medical advice. All AI-generated content is educational only. All health data is stored locally on your device and optionally encrypted."
+        "content": "We offer all services without the collection of personal data. Our application is a lifestyle and educational companion — it is NOT a medical device under EU MDR (Medical Device Regulation) or any jurisdiction. It does not provide professional health evaluations or advice. All AI-generated content is educational only. All health data is stored locally on your device and optionally encrypted."
       },
       "keyPoint": "Key Point",
       "sections": {
@@ -772,7 +772,7 @@
         },
         "photos": {
           "title": "Bump Gallery & Media",
-          "desc": "The Bump Gallery allows you to save and view your bump photos with optional AI-powered educational observations. This feature does NOT perform medical diagnoses or clinical image analysis — it provides general educational information only.",
+          "desc": "The Bump Gallery allows you to save and view your bump photos with optional AI-powered educational observations. This feature does NOT perform health evaluations or image-based assessments — it provides general educational information only.",
           "localDefault": "Bump photos are stored locally on your device by default using compressed Base64",
           "localOnly": "All photos are stored exclusively on your device and never uploaded to any server",
           "noPublic": "Photos are never publicly accessible or shared with third parties",
@@ -840,7 +840,7 @@
           "title": "Educational Disclaimer",
           "warning": "⚠️ Very Important: Please Read Carefully",
           "content": "Pregnancy Toolkits is a lifestyle and educational companion only. It is NOT a medical device, diagnostic tool, or healthcare service. This application:",
-          "noAdvice": "Does NOT provide professional health guidance, diagnosis, or treatments",
+          "noAdvice": "Does NOT provide professional health guidance, evaluations, or treatments",
           "noReplace": "Does NOT replace consultation with a doctor or care provider",
           "noEmergency": "Should NOT be used for emergency health decisions",
           "consultDoctor": "Always consult your doctor or qualified care provider regarding any medical or health questions."
@@ -863,7 +863,7 @@
         },
         "accuracy": {
           "title": "Accuracy of Information",
-          "content": "While we strive to provide accurate and up-to-date information, we do not guarantee the accuracy or completeness of any information in the app. All calculations, estimates, AI-generated insights, and growth charts are approximate and for educational reference only. They may differ from actual clinical measurements. Always verify important information with your care provider."
+          "content": "While we strive to provide accurate and up-to-date information, we do not guarantee the accuracy or completeness of any information in the app. All calculations, estimates, AI-generated insights, and growth charts are approximate and for educational reference only. They may differ from actual professional measurements. Always verify important information with your care provider."
         },
         "appStore": {
           "title": "App Store Terms",
@@ -3333,7 +3333,7 @@
     },
     "gestationalDiabetes": {
       "title": "Gestational Diabetes Awareness (General Info)",
-      "subtitle": "This tool provides simple information about gestational diabetes: common factors, related lifestyle patterns, and useful questions to discuss with your doctor. It does not measure blood sugar, provide a diagnosis, or replace prenatal care with your healthcare team.",
+      "subtitle": "This tool provides simple information about gestational diabetes: common factors, related lifestyle patterns, and useful questions to discuss with your doctor. It does not measure blood sugar, provide an evaluation, or replace prenatal care with your healthcare team.",
       "riskFactors": "Risk Factors",
       "age35Plus": "Age 35 or older",
       "overweight": "Overweight before pregnancy",
@@ -3814,7 +3814,7 @@
     },
     "gdm": {
       "title": "Gestational Diabetes Awareness (General Info)",
-      "subtitle": "This tool provides simple information about gestational diabetes: common factors, related lifestyle patterns, and useful questions to discuss with your doctor. It does not measure blood sugar, provide a diagnosis, or replace prenatal care with your healthcare team.",
+      "subtitle": "This tool provides simple information about gestational diabetes: common factors, related lifestyle patterns, and useful questions to discuss with your doctor. It does not measure blood sugar, provide an evaluation, or replace prenatal care with your healthcare team.",
       "disclaimer": "This is an educational awareness tool only. It does not provide a professional evaluation for gestational diabetes. Always consult your care provider for proper testing.",
       "checkRiskFactors": "Check Your Risk Factors",
       "riskFactorsSelected": "Risk Factors Selected",
@@ -6635,8 +6635,8 @@
     "ai-sleep-optimizer": "Get personalized tips to improve your sleep during pregnancy. Tips are general guidance. If you suffer from chronic insomnia or breathing issues during sleep, consult your doctor.",
     "ai-nausea-relief": "Discover natural ways to relieve pregnancy nausea. Advice is general and educational. If nausea is severe and prevents eating or drinking, see your doctor immediately.",
     "ai-pregnancy-skincare": "Get a safe skincare routine during pregnancy. Suggested products are general guidance. If skin reactions or unusual changes appear, consult a dermatologist.",
-    "postpartum-mental-health": "Follow your postpartum mood with self-assessment tools. Results are for awareness only, not a clinical conclusion. If you experience depression or persistent anxiety symptoms, speak with a professional immediately.",
-    "gestational-diabetes": "Review your potential gestational diabetes factors. Results are for awareness only, not a clinical conclusion. Medical tests are essential for proper evaluation.",
+    "postpartum-mental-health": "Follow your postpartum mood with self-assessment tools. Results are for awareness only, not a professional evaluation. If you experience depression or persistent anxiety symptoms, speak with a professional immediately.",
+    "gestational-diabetes": "Review your potential gestational diabetes factors. Results are for awareness only, not a professional evaluation. Medical tests are essential for proper evaluation.",
     "preeclampsia-risk": "Review factors associated with preeclampsia. Results are for awareness only. Any symptoms like severe headache or sudden swelling require immediate medical attention.",
     "ai-labor-progress": "Track labor signs and progress. Information is general and educational. When actual labor begins, contact your medical team immediately.",
     "ai-birth-plan": "Create a personalized birth plan expressing your preferences. The plan is a personal document to discuss with your medical team. Final decisions are made by the medical team based on your condition.",
