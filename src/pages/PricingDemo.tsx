@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
-import { Check, X, Sparkles, Brain, Shield, Zap, Heart, Crown } from "lucide-react";
+import { Check, X, Sparkles, Brain, Shield, Zap, Heart, Crown, Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { requestPurchase, isDigitalGoodsAvailable, runBillingDiagnostics, clearBillingCache, type PlanType } from "@/lib/googlePlayBilling";
@@ -25,6 +25,7 @@ export default function PricingDemo() {
   const { isRTL } = useLanguage();
   const navigate = useNavigate();
   const [selected, setSelected] = useState<PlanType>("yearly");
+  const [syncing, setSyncing] = useState(false);
   const [devTaps, setDevTaps] = useState(0);
   const devMode = devTaps >= 5;
   const isAr = i18n.language === "ar";
@@ -84,16 +85,13 @@ export default function PricingDemo() {
         window.dispatchEvent(new CustomEvent('subscription-activated', { detail: { plan: selected } }));
         navigate("/");
 
-        // Show syncing indicator
-        const syncToastId = toast.loading(
-          isAr ? '🔄 جارٍ مزامنة الاشتراك...' : '🔄 Syncing subscription...',
-          { duration: 12000 }
-        );
+        // Show syncing spinner overlay
+        setSyncing(true);
 
         // Poll server to confirm subscription sync (max 3 attempts, 2s apart)
         const poll = async (attempt = 0) => {
           if (attempt >= 3) {
-            toast.dismiss(syncToastId);
+            setSyncing(false);
             toast.success(isAr ? '✅ تم تفعيل الاشتراك' : '✅ Subscription activated');
             return;
           }
@@ -102,7 +100,7 @@ export default function PricingDemo() {
               body: { action: 'check-quota' },
             });
             if (data?.tier === 'premium') {
-              toast.dismiss(syncToastId);
+              setSyncing(false);
               toast.success(isAr ? '✅ تمت المزامنة بنجاح' : '✅ Synced successfully');
               refreshAIUsage();
               return;
@@ -131,6 +129,22 @@ export default function PricingDemo() {
       className="min-h-[100dvh] bg-background flex flex-col relative overflow-hidden"
       dir={isRTL ? "rtl" : "ltr"}
     >
+      {/* Sync Spinner Overlay */}
+      {syncing && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-background/80 backdrop-blur-sm"
+        >
+          <div className="flex flex-col items-center gap-3">
+            <Loader2 className="w-10 h-10 text-primary animate-spin" />
+            <p className="text-sm font-medium text-foreground">
+              {isAr ? 'جارٍ مزامنة الاشتراك...' : 'Syncing subscription...'}
+            </p>
+          </div>
+        </motion.div>
+      )}
+
       {/* Background */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 inset-x-0 h-[45vh] bg-gradient-to-b from-primary/[0.04] to-transparent" />
