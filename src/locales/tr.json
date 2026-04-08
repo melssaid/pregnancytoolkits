@@ -364,8 +364,8 @@
       "subtitle": "Hamilelikte kilo artışını takip edin ve analiz edin"
     },
     "postpartumMentalHealth": {
-      "title": "Ruh Hali ve Sağlık Günlüğü",
-      "description": "EPDS anketi ve ruhsal iyilik desteği."
+      "title": "Rahatlama ve Konfor Rehberi",
+      "description": "Duygusal iyilik halinizi takip edin ve destekleyici ipuçları alın."
     },
     "gestationalDiabetes": {
       "title": "Sağlıklı Beslenme Alışkanlıkları",
@@ -376,8 +376,8 @@
       "description": "Preeklampsiyle ilgili yaygın faktörleri öğrenin."
     },
     "maternalHealth": {
-      "title": "Anne Sağlığı Rehberi",
-      "description": "Gebelik diyabeti ve preeklampsi hakkında eğitici bilgiler."
+      "title": "Hamilelik Günlüğü",
+      "description": "Beklenen anneler için kapsamlı sağlık genel bakışı."
     },
     "pregnancyComfort": {
       "title": "Konforlu Hamilelik",
@@ -408,24 +408,24 @@
       "description": "Bebeğinizin ağlama kalıpları hakkında AI bilgileri."
     },
     "postpartumRecovery": {
-      "title": "Doğum Sonrası İyileşme Rehberi",
-      "description": "Doğum sonrası 6 haftalık iyileşme planınız."
+      "title": "Yeni Anne İçin Akıllı Rehber",
+      "description": "Doğum sonrası 6 haftalık öz bakım planınız."
     },
     "fertileWindow": {
       "title": "Doğurganlık Penceresi",
       "description": "En verimli günlerinizi belirleyin."
     },
     "fertilityAcademy": {
-      "title": "Doğurganlık Yolculuğum",
-      "description": "Kapsamlı doğurganlık eğitimi: dersler, vücut işaretleri ve stres yönetimi.",
+      "title": "Annelik Rehberi",
+      "description": "Döngünüz hakkında kapsamlı dersler: vücut işaretleri ve yaşam tarzı ipuçları.",
       "lessonsTab": "Dersler",
       "signsTab": "Vücut İşaretleri",
       "stressTab": "Stres & Huzur",
       "twwTab": "Bekleme"
     },
     "nutritionSupplements": {
-      "title": "Besin Takviyesi Rehberi",
-      "description": "Gebe kalmak için kapsamlı beslenme ve takviye rehberi.",
+      "title": "Beslenme Rehberi",
+      "description": "Yolculuğunuz için kapsamlı beslenme rehberi.",
       "nutritionTab": "Beslenme",
       "supplementsTab": "Takviyeler",
       "videosTitle": "Eğitim Videoları",
@@ -436,8 +436,24 @@
       "description": "İki haftalık bekleme süresinde günlük destek."
     },
     "preconceptionCheckup": {
-      "title": "Gebelik öncesi kontrol",
-      "description": "Hamilelik öncesi temel testler."
+      "title": "Anneliğe Hazırlık",
+      "description": "Hamilelik öncesi hazırlık listesi ve sağlık genel bakışı."
+    },
+    "fetalGrowth": {
+      "title": "Bebek Büyüme Takibi",
+      "description": "Bebeğinizin boyutunu ve gelişimini hafta hafta takip edin."
+    },
+    "vitaminTracker": {
+      "title": "Günlük Beslenme Düzenleyici",
+      "description": "Akıllı hatırlatıcılarla günlük beslenme rutininizi takip edin."
+    },
+    "smartAppointment": {
+      "title": "Akıllı Randevu Hatırlatıcı",
+      "description": "Akıllı hatırlatıcılarla önemli randevularınızı kaçırmayın."
+    },
+    "lactationPrep": {
+      "title": "Yenidoğan İçin Akıllı Beslenme",
+      "description": "Yenidoğanınızı güvenle beslemek için temel rehber."
     }
   },
   "dashboard": {

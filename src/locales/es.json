@@ -364,8 +364,8 @@
       "subtitle": "Registra y analiza tu aumento de peso durante el embarazo"
     },
     "postpartumMentalHealth": {
-      "title": "Diario de Ánimo y Bienestar",
-      "description": "Cuestionario EPDS y apoyo de bienestar mental."
+      "title": "Guía de Relajación y Confort",
+      "description": "Sigue tu bienestar emocional y recibe consejos de apoyo."
     },
     "gestationalDiabetes": {
       "title": "Hábitos Alimenticios Saludables",
@@ -376,8 +376,8 @@
       "description": "Guía educativa sobre el bienestar durante el embarazo."
     },
     "maternalHealth": {
-      "title": "Guía de Bienestar Mamá",
-      "description": "Información educativa sobre hábitos saludables durante el embarazo."
+      "title": "Diario de Embarazo",
+      "description": "Resumen completo de bienestar para futuras mamás."
     },
     "pregnancyComfort": {
       "title": "Embarazo cómodo",
@@ -408,23 +408,23 @@
       "description": "Perspectivas IA de los patrones de llanto de tu bebé."
     },
     "postpartumRecovery": {
-      "title": "Guía de recuperación posparto",
-      "description": "Tu plan de recuperación de 6 semanas después del parto."
+      "title": "Guía Inteligente para Nueva Mamá",
+      "description": "Tu plan de autocuidado de 6 semanas después del parto."
     },
     "fertileWindow": {
       "title": "Ventana de fertilidad",
       "description": "Identifica tus días más fértiles."
     },
     "fertilityAcademy": {
-      "title": "Mi Viaje de Fertilidad",
-      "description": "Educación integral sobre fertilidad: lecciones, señales corporales y manejo del estrés.",
+      "title": "Guía de Maternidad",
+      "description": "Lecciones completas sobre tu ciclo: señales corporales y consejos de estilo de vida.",
       "lessonsTab": "Lecciones",
       "signsTab": "Señales corporales",
       "stressTab": "Estrés y Calma",
       "twwTab": "Espera"
     },
     "nutritionSupplements": {
-      "title": "Guía de suplementos nutricionales",
+      "title": "Guía de Nutrición",
       "description": "Guía completa de nutrición esencial para tu viaje.",
       "nutritionTab": "Nutrición",
       "supplementsTab": "Suplementos",
@@ -436,8 +436,24 @@
       "description": "Apoyo diario durante las dos semanas de espera."
     },
     "preconceptionCheckup": {
-      "title": "Chequeo preconcepcional",
-      "description": "Exámenes esenciales antes del embarazo."
+      "title": "Preparación para la Maternidad",
+      "description": "Lista de preparación y resumen de bienestar antes del embarazo."
+    },
+    "fetalGrowth": {
+      "title": "Seguimiento del Crecimiento del Bebé",
+      "description": "Sigue el tamaño y desarrollo de tu bebé semana a semana."
+    },
+    "vitaminTracker": {
+      "title": "Organizador de Nutrición Diaria",
+      "description": "Sigue tu rutina nutricional diaria con recordatorios inteligentes."
+    },
+    "smartAppointment": {
+      "title": "Recordatorio Inteligente de Citas",
+      "description": "Nunca pierdas una cita importante con recordatorios inteligentes."
+    },
+    "lactationPrep": {
+      "title": "Nutrición Inteligente del Recién Nacido",
+      "description": "Guía esencial para alimentar a tu recién nacido con confianza."
     }
   },
   "dashboard": {
