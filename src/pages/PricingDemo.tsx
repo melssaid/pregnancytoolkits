@@ -25,6 +25,7 @@ export default function PricingDemo() {
   const { isRTL } = useLanguage();
   const navigate = useNavigate();
   const [selected, setSelected] = useState<PlanType>("yearly");
+  const [syncing, setSyncing] = useState(false);
   const [devTaps, setDevTaps] = useState(0);
   const devMode = devTaps >= 5;
   const isAr = i18n.language === "ar";
