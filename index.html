@@ -263,15 +263,21 @@
 
         vid.addEventListener('ended', endSplash, {once:true});
         vid.addEventListener('error', endSplash, {once:true});
+        vid.addEventListener('stalled', function(){
+          setTimeout(endSplash, 2000);
+        }, {once:true});
 
         vid.src='/splash-video.mp4';
-        var playPromise=vid.play();
-        if(playPromise && playPromise.then){
-          playPromise.catch(function(){
-            endSplash();
-          });
-        }
+        try{
+          var playPromise=vid.play();
+          if(playPromise && playPromise.then){
+            playPromise.catch(function(){
+              endSplash();
+            });
+          }
+        }catch(e){ endSplash(); }
 
+        // Safety: max 4s for video
         setTimeout(endSplash, 4000);
       })();
     </script>
