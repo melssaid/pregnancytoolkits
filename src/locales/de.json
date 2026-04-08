@@ -907,7 +907,7 @@
   "subscription": {
     "subscribeNow": "Premium holen - 0,79€/Monat",
     "premiumFeature": "Premium-Funktion",
-    "unlockAccess": "Alle 23+ Tools freischalten",
+    "unlockAccess": "Alle 33+ Tools freischalten",
     "subscribeToAccess": "Abonnieren zum Freischalten"
   },
   "dueDatePage": {
@@ -6613,7 +6613,7 @@
     "toolLocked": "\"{{tool}}\" is available for subscribers only",
     "subtitle": "Unbegrenzter Zugang zu allen Funktionen",
     "benefits": {
-      "allAITools": "23+ smart wellness tools",
+      "allAITools": "33+ smart wellness tools",
       "dailyAnalyses": "40 smart analyses per month",
       "personalizedInsights": "Tips personalized to your week",
       "fullAccess": "Full access with no limits"
