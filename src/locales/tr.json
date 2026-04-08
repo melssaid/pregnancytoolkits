@@ -3146,20 +3146,20 @@
     },
     "appointmentReminder": {
       "title": "Akıllı Randevu Hatırlatıcı",
-      "subtitle": "Asla bir doğum öncesi randevuyu kaçırmayın",
-      "addAppointment": "Randevu Ekle",
-      "appointmentType": "Randevu Türü",
-      "checkup": "Düzenli Kontrol",
-      "scan": "Ultrason",
-      "bloodTest": "Kan Testi",
-      "glucoseTest": "Şeker Testi",
+      "subtitle": "Hiçbir randevunuzu kaçırmayın",
+      "addAppointment": "Randevu ekle",
+      "appointmentType": "Randevu türü",
+      "checkup": "Rutin kontrol",
+      "scan": "Karın fotoğrafları",
+      "bloodTest": "Kan testi",
+      "glucoseTest": "Glukoz testi",
       "other": "Diğer",
       "date": "Tarih",
       "time": "Saat",
       "notes": "Notlar",
-      "reminder": "Hatırlatıcı",
-      "dayBefore": "1 Gün Önce",
-      "hoursBefore": "2 Saat Önce",
+      "reminder": "Hatırlatma",
+      "dayBefore": "1 gün önce",
+      "hoursBefore": "2 saat önce",
       "upcoming": "Yaklaşan",
       "past": "Geçmiş",
       "noAppointments": "Planlanmış randevu yok",
@@ -3168,20 +3168,20 @@
       "tomorrow": "Yarın",
       "passed": "Geçti",
       "inDays": "{{count}} gün içinde",
-      "customType": "Veya özel tür girin...",
+      "customType": "Veya özel bir tür girin...",
       "selectTime": "Saat seçin",
-      "doctorName": "Doktor Adı",
+      "doctorName": "Doktor adı",
       "location": "Konum",
       "locationPlaceholder": "Hastane veya klinik adı",
       "notesPlaceholder": "Ek notlar...",
-      "questionsForDoctor": "Doktora Sorular",
-      "aiSuggestions": "AI Önerileri",
-      "aiSuggestionsLabel": "AI Önerilen Sorular:",
+      "questionsForDoctor": "Doktora sorular",
+      "aiSuggestions": "AI önerileri",
+      "aiSuggestionsLabel": "AI tarafından önerilen sorular:",
       "yourQuestions": "Sorularınız",
       "addFirst": "İlk randevunuzu ekleyin!",
-      "details": "Ayrıntılar",
+      "details": "Detaylar",
       "notificationHint": "Bir hatırlatma alacaksınız",
-      "questionsHint": "Doktor için sorular",
+      "questionsHint": "Doktora sorular",
       "savedWithQuestions": "Sorularla kaydedildi",
       "skipQuestions": "Soruları atla"
     },
@@ -3798,49 +3798,29 @@
       "weightGainLinkDesc": "Sağlıklı kilo alımınızı izleyin"
     },
     "gdm": {
-      "title": "Gestasyonel Diyabet Farkındalığı (Genel Bilgi)",
-      "subtitle": "Bu araç, gestasyonel diyabet hakkında basit bilgiler sunar: yaygın faktörler, ilgili yaşam tarzı kalıpları ve doktorunuzla tartışmanız için faydalı sorular. Kan şekerini ölçmez, teşhis veya tedavi planı sunmaz ve sağlık ekibinizle doğum öncesi takibin yerini almaz.",
-      "disclaimer": "Bu yalnızca eğitim amaçlı bir farkındalık aracıdır. Profesyonel değerlendirme sağlamaz. Uygun test için her zaman doktorunuza danışın.",
-      "checkRiskFactors": "Risk Faktörlerinizi Kontrol Edin",
-      "riskFactorsSelected": "Seçilen Risk Faktörleri",
-      "aiCoachTitle": "Yapay Zeka Diyabet Önleme Koçu",
-      "getPreventionPlan": "Kişiselleştirilmiş Önleme Planı Al",
-      "preventionTipsTitle": "Önleme İpuçları",
-      "infoNote": "Gestasyonel diyabet testi genellikle 24-28. haftalarda yapılır. Birden fazla risk faktörünüz varsa doktorunuz erken test önerebilir.",
+      "title": "Hamilelik Günlüğü - Sağlık İpuçları",
+      "subtitle": "Hamilelikte genel sağlık bilgileri",
+      "disclaimer": "Bu yalnızca eğitim amaçlıdır. Her zaman sağlık uzmanınıza danışın.",
+      "checkRiskFactors": "Faktörlerinizi kontrol edin",
+      "riskFactorsSelected": "Seçilen faktörler",
+      "aiCoachTitle": "AI Sağlık Koçu",
+      "getPreventionPlan": "Kişisel plan al",
+      "preventionTipsTitle": "Sağlık ipuçları",
+      "infoNote": "Bu araç yalnızca eğitim amaçlıdır ve profesyonel tavsiyenin yerini tutmaz.",
       "riskLevels": {
         "high": {
-          "title": "Çok Faktör",
-          "description": "Faktörleriniz yüksek olasılık gösteriyor. Erken test önerilebilir."
+          "title": "Yüksek dikkat",
+          "description": "Birden fazla faktör belirlendi. Düzenli kontrol önerilir."
         },
         "moderate": {
-          "title": "Bazı Faktörler",
-          "description": "Bazı faktörleriniz var. 24-28. haftalarda standart test önerilir."
+          "title": "Orta dikkat",
+          "description": "Bazı faktörler mevcut. Standart kontrol önerilir."
         },
         "low": {
-          "title": "Az Faktör",
-          "description": "Az faktörünüz var, ancak 24-28. haftalarda rutin test hâlâ önerilir."
+          "title": "Az faktör",
+          "description": "Az faktör belirlendi. Sağlıklı alışkanlıklarınıza devam edin."
         }
-      },
-      "riskFactors": {
-        "age": "35 yaş veya üzeri",
-        "bmi": "Hamilelik öncesi BMI 30 veya üzeri",
-        "family": "Ailede diyabet öyküsü (ebeveyn veya kardeş)",
-        "previousGdm": "Önceki gestasyonel diyabet",
-        "previousLarge": "Daha önce 4 kg üzeri bebek doğurma",
-        "pcos": "Polikistik over sendromu (PCOS)",
-        "prediabetes": "Prediyabet veya yüksek kan şekeri",
-        "ethnicity": "Yüksek riskli etnik köken",
-        "multiple": "Çoğul gebelik (ikiz, üçüz)",
-        "sedentary": "Hamilelik öncesi hareketsiz yaşam tarzı"
-      },
-      "preventionTips": {
-        "tip1": "Hamilelik öncesi ve sırasında sağlıklı kilonuzu koruyun",
-        "tip2": "Lif ve tam tahıl açısından zengin dengeli beslenin",
-        "tip3": "Doktor onaylı egzersizlerle fiziksel olarak aktif kalın",
-        "tip4": "Düzenli izleme için tüm doğum öncesi randevularınıza katılın",
-        "tip5": "Şekerli yiyecekleri ve rafine karbonhidratları sınırlayın"
-      },
-      "reset": "Sıfırla"
+      }
     },
     "healthMonitor": {
       "title": "Sağlık İzleme Sistemi",
@@ -4058,173 +4038,38 @@
       }
     },
     "mentalHealthCoach": {
-      "title": "Doğum Sonrası Ruhsal İyilik Rehberi",
-      "subtitle": "Edinburgh Doğum Sonrası Depresyon Ölçeği anketi",
-      "youreNotAlone": "Yalnız değilsin",
-      "emergencyMessage": "Yanıtlarınıza göre, yardımcı olabilecek biriyle konuşmanız önemli. Doğum sonrası depresyon yaygın ve tedavi edilebilir.",
-      "postpartumSupport": "Doğum sonrası destek",
+      "title": "Doğum Sonrası Duygusal Sağlık Rehberi",
+      "subtitle": "Kişisel sağlık anketi",
+      "youreNotAlone": "Yalnız değilsiniz",
+      "emergencyMessage": "Yanıtlarınıza göre, size yardımcı olabilecek biriyle konuşmanız önemlidir.",
+      "postpartumSupport": "Doğum Sonrası Destek",
       "crisisHotline": "Kriz hattı",
       "question": "Soru",
       "of": "/",
       "score": "Puan",
       "takeScreeningAgain": "Anketi tekrarla",
       "previousQuestion": "Önceki soru",
-      "responseBreakdown": "Yanıt dağılımı",
-      "aiPersonalizedPlan": "Yapay zeka kişiselleştirilmiş baş etme planı",
+      "responseBreakdown": "Yanıt detayları",
+      "aiPersonalizedPlan": "AI Kişisel Sağlık Planı",
       "generateMyPlan": "Kişisel planımı oluştur",
-      "creatingPlan": "Kişisel planınız oluşturuluyor...",
-      "dailyCopingStrategies": "Günlük baş etme stratejileri",
+      "creatingPlan": "Planınız oluşturuluyor...",
+      "dailyCopingStrategies": "Günlük başa çıkma stratejileri",
       "supportResources": "Destek kaynakları",
-      "psiName": "Uluslararası Doğum Sonrası Destek",
-      "psiNumber": "1-800-944-4773",
-      "crisisLinelineName": "988 İntihar ve Kriz Hattı",
-      "crisisLinelineDesc": "988'i arayın veya mesaj gönderin",
-      "screeningDisclaimer": "⚠️ Bu, Edinburgh Doğum Sonrası Depresyon Ölçeği'ne (EPDS) dayalı bir sağlık anketidir. Profesyonel değerlendirme sağlamaz. Uygun değerlendirme için her zaman bir profesyonele danışın.",
-      "mentalWellnessVideos": "Ruh sağlığı videoları",
-      "videosSubtitle": "Destek ve öz bakım kaynakları",
-      "videos": {
-        "v1": {
-          "title": "Doğum sonrası depresyon nedir?",
-          "description": "Belirtiler, semptomlar ve ne zaman yardım aramalısınız",
-          "category": "Eğitim"
-        },
-        "v2": {
-          "title": "Doğum sonrası depresyon açıklandı",
-          "description": "Semptomlar, risk faktörleri ve tedavi seçenekleri",
-          "category": "Eğitim"
-        },
-        "v3": {
-          "title": "Hamilelikte rahatlama meditasyonu",
-          "description": "Daha iyi ruh sağlığı için sakinleştirici meditasyon",
-          "category": "Rahatlama"
-        },
-        "v4": {
-          "title": "Yenidoğan bakımı - 1. Hafta",
-          "description": "Bebekle ilk hafta için pediatrist rehberi",
-          "category": "Öz Bakım"
-        },
-        "v5": {
-          "title": "Managing Pregnancy Anxiety",
-          "description": "Practical strategies for coping with anxiety during pregnancy",
-          "category": "Anxiety"
-        }
-      },
+      "mentalWellnessVideos": "Duygusal sağlık videoları",
       "riskLevels": {
-        "low": {
-          "title": "Düşük risk",
-          "message": "Yanıtlarınız iyi başa çıktığınızı gösteriyor. Öz bakımı uygulamaya devam edin."
+        "high": {
+          "title": "Yüksek dikkat",
+          "message": "Yanıtlarınız ek desteğin faydalı olabileceğini gösteriyor."
         },
         "moderate": {
-          "title": "Orta",
-          "message": "Nasıl hissettiğiniz hakkında doktorunuzla konuşmayı düşünün."
+          "title": "Orta dikkat",
+          "message": "Dikkat edilmesi gereken bazı işaretler var. Öz bakım önemlidir."
         },
-        "high": {
-          "title": "Destek arayın",
-          "message": "Lütfen doktorunuza veya bir ruh sağlığı uzmanına başvurun."
+        "low": {
+          "title": "İyi durum",
+          "message": "Bu dönemi iyi yönetiyor görünüyorsunuz. Böyle devam edin!"
         }
-      },
-      "epds": {
-        "q1": {
-          "question": "Gülebildim ve olayların komik yanını görebildim",
-          "o0": "Her zamanki kadar",
-          "o1": "Şimdi o kadar değil",
-          "o2": "Kesinlikle şimdi o kadar değil",
-          "o3": "Hiç"
-        },
-        "q2": {
-          "question": "Olayları zevkle bekledim",
-          "o0": "Her zamanki kadar",
-          "o1": "Eskisinden biraz az",
-          "o2": "Eskisinden kesinlikle az",
-          "o3": "Neredeyse hiç"
-        },
-        "q3": {
-          "question": "İşler ters gittiğinde gereksiz yere kendimi suçladım",
-          "o0": "Hayır, hiçbir zaman",
-          "o1": "Çok sık değil",
-          "o2": "Evet, bazen",
-          "o3": "Evet, çoğu zaman"
-        },
-        "q4": {
-          "question": "İyi bir neden olmadan endişeli veya kaygılı oldum",
-          "o0": "Hayır, hiç",
-          "o1": "Neredeyse hiç",
-          "o2": "Evet, bazen",
-          "o3": "Evet, çok sık"
-        },
-        "q5": {
-          "question": "İyi bir neden olmadan korkmuş veya panik olmuş hissettim",
-          "o0": "Hayır, hiç",
-          "o1": "Hayır, pek değil",
-          "o2": "Evet, bazen",
-          "o3": "Evet, oldukça çok"
-        },
-        "q6": {
-          "question": "Fırsat olmasına rağmen uyumakta zorlandım",
-          "o0": "Hayır, hiç",
-          "o1": "Nadiren",
-          "o2": "Evet, bazen",
-          "o3": "Evet, çoğu zaman"
-        },
-        "q7": {
-          "question": "Kendimi üzgün hissettim veya ağladım",
-          "o0": "Hayır, hiç",
-          "o1": "Çok nadiren",
-          "o2": "Evet, bazen",
-          "o3": "Evet, çoğu zaman"
-        },
-        "q8": {
-          "question": "İştahım belirgin şekilde değişti (arttı veya azaldı)",
-          "o0": "Hayır, normal",
-          "o1": "Biraz değişti",
-          "o2": "Belirgin şekilde değişti",
-          "o3": "İştahımı tamamen kaybettim veya aşırı yiyorum"
-        },
-        "q9": {
-          "question": "Odaklanmakta veya karar vermekte zorlandım",
-          "o0": "Hayır, hiç",
-          "o1": "Nadiren",
-          "o2": "Evet, bazen",
-          "o3": "Evet, çoğu zaman"
-        },
-        "q10": {
-          "question": "Kendimi bitkin ve enerjisiz hissettim",
-          "o0": "Hayır, enerjim iyi",
-          "o1": "Normalden daha az enerji",
-          "o2": "Çoğu zaman bitkin",
-          "o3": "Tamamen tükenmiş"
-        }
-      },
-      "coping": {
-        "sunlight": {
-          "title": "Sabah güneş ışığı",
-          "desc": "Her sabah 10-15 dakika doğal ışık alın"
-        },
-        "movement": {
-          "title": "Hafif hareket",
-          "desc": "Kısa bir yürüyüş ruh halini önemli ölçüde iyileştirebilir"
-        },
-        "connect": {
-          "title": "Günlük bağlantı",
-          "desc": "Her gün bir arkadaş veya aile üyesiyle konuşun"
-        },
-        "rest": {
-          "title": "Mümkün olduğunda dinlenin",
-          "desc": "Bebek uyuduğunda siz de uyuyun, kısa bile olsa"
-        },
-        "nourish": {
-          "title": "Kendinizi besleyin",
-          "desc": "Düzenli, besleyici öğünler yiyin"
-        },
-        "journal": {
-          "title": "Günlük",
-          "desc": "Minnettar olduğunuz 3 şeyi yazın"
-        }
-      },
-      "helpfulVideos": "Faydalı Videolar",
-      "personalizedPlan": "Kişiselleştirilmiş Plan",
-      "retake": "Tekrar Değerlendir",
-      "scoreLabel": "Puan"
+      }
     },
     "mealSuggestion": {
       "subtitle": "Hamileliğiniz için akıllı yemek önerileri",

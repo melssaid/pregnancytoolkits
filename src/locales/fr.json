@@ -3139,13 +3139,13 @@
       "getInsights": "Obtenir les aperçus"
     },
     "appointmentReminder": {
-      "title": "Rappel de Rendez-vous Intelligent",
-      "subtitle": "Ne manquez jamais un rendez-vous prénatal",
+      "title": "Mémo Intelligent des Rendez-vous",
+      "subtitle": "Ne manquez jamais un rendez-vous",
       "addAppointment": "Ajouter un rendez-vous",
       "appointmentType": "Type de rendez-vous",
-      "checkup": "Consultation de routine",
-      "scan": "Échographie",
-      "bloodTest": "Prise de sang",
+      "checkup": "Visite de routine",
+      "scan": "Photos du ventre",
+      "bloodTest": "Analyse de sang",
       "glucoseTest": "Test de glucose",
       "other": "Autre",
       "date": "Date",
@@ -3158,7 +3158,7 @@
       "past": "Passés",
       "noAppointments": "Aucun rendez-vous prévu",
       "fillRequired": "Veuillez remplir les champs obligatoires",
-      "confirmDelete": "Êtes-vous sûre de vouloir supprimer ce rendez-vous?",
+      "confirmDelete": "Êtes-vous sûre de vouloir supprimer ce rendez-vous ?",
       "tomorrow": "Demain",
       "passed": "Passé",
       "inDays": "Dans {{count}} jours",
@@ -3170,13 +3170,13 @@
       "notesPlaceholder": "Notes supplémentaires...",
       "questionsForDoctor": "Questions pour le médecin",
       "aiSuggestions": "Suggestions IA",
-      "aiSuggestionsLabel": "Questions suggérées par l'IA:",
+      "aiSuggestionsLabel": "Questions suggérées par l'IA :",
       "yourQuestions": "Vos questions",
-      "addFirst": "Ajoutez votre premier rendez-vous!",
+      "addFirst": "Ajoutez votre premier rendez-vous !",
       "details": "Détails",
       "notificationHint": "Vous recevrez un rappel",
       "questionsHint": "Questions pour le médecin",
-      "savedWithQuestions": "Enregistré avec questions",
+      "savedWithQuestions": "Enregistré avec les questions",
       "skipQuestions": "Passer les questions"
     },
     "babyGrowth": {
@@ -3792,49 +3792,29 @@
       "weightGainLinkDesc": "Surveillez votre prise de poids saine"
     },
     "gdm": {
-      "title": "Sensibilisation au diabète gestationnel (Infos générales)",
-      "subtitle": "Cet outil fournit des informations simples sur le diabète gestationnel : facteurs courants, habitudes de vie associées et questions utiles à discuter avec votre médecin. Il ne mesure pas la glycémie, ne fournit pas de diagnostic ni de plan de traitement, et ne remplace pas le suivi prénatal avec votre équipe de soins.",
-      "disclaimer": "Ceci est un outil de sensibilisation éducatif uniquement. Il ne remplace pas une évaluation professionnelle. Consultez toujours votre médecin.",
-      "checkRiskFactors": "Vérifiez vos facteurs de risque",
-      "riskFactorsSelected": "Facteurs de risque sélectionnés",
-      "aiCoachTitle": "Coach IA de prévention du diabète",
-      "getPreventionPlan": "Obtenir un plan de prévention personnalisé",
-      "preventionTipsTitle": "Conseils de prévention",
-      "infoNote": "Le test du diabète gestationnel a lieu entre les semaines 24-28. Si vous avez plusieurs facteurs de risque, votre médecin peut recommander un test plus précoce.",
+      "title": "Journal de Grossesse - Conseils de Bien-être",
+      "subtitle": "Informations générales sur le bien-être pendant la grossesse",
+      "disclaimer": "Ceci est un outil éducatif uniquement. Consultez toujours votre professionnel de santé.",
+      "checkRiskFactors": "Vérifier vos facteurs",
+      "riskFactorsSelected": "Facteurs sélectionnés",
+      "aiCoachTitle": "Coach Bien-être IA",
+      "getPreventionPlan": "Obtenir un plan personnalisé",
+      "preventionTipsTitle": "Conseils de bien-être",
+      "infoNote": "Cet outil est à des fins éducatives uniquement et ne remplace pas les conseils professionnels.",
       "riskLevels": {
         "high": {
-          "title": "Nombreux facteurs",
-          "description": "Vos facteurs suggèrent une probabilité accrue. Un test précoce peut être recommandé."
+          "title": "Attention accrue",
+          "description": "Plusieurs facteurs identifiés. Un suivi régulier est recommandé."
         },
         "moderate": {
-          "title": "Quelques facteurs",
-          "description": "Vous avez quelques facteurs. Le test standard aux semaines 24-28 est recommandé."
+          "title": "Attention modérée",
+          "description": "Quelques facteurs présents. Le suivi standard est recommandé."
         },
         "low": {
           "title": "Peu de facteurs",
-          "description": "Vous avez peu de facteurs, mais le test de routine aux semaines 24-28 est toujours recommandé."
+          "description": "Peu de facteurs identifiés. Continuez vos habitudes saines."
         }
-      },
-      "riskFactors": {
-        "age": "35 ans ou plus",
-        "bmi": "IMC 30 ou plus avant la grossesse",
-        "family": "Antécédents familiaux de diabète (parent ou frère/sœur)",
-        "previousGdm": "Diabète gestationnel antérieur",
-        "previousLarge": "Bébé précédent de plus de 4 kg",
-        "pcos": "Syndrome des ovaires polykystiques (SOPK)",
-        "prediabetes": "Prédiabète ou glycémie élevée",
-        "ethnicity": "Origine ethnique à risque plus élevé",
-        "multiple": "Grossesse multiple (jumeaux, triplés)",
-        "sedentary": "Mode de vie sédentaire avant la grossesse"
-      },
-      "preventionTips": {
-        "tip1": "Maintenez un poids sain avant et pendant la grossesse",
-        "tip2": "Adoptez une alimentation équilibrée riche en fibres et céréales complètes",
-        "tip3": "Restez physiquement active avec des exercices approuvés par votre médecin",
-        "tip4": "Assistez à tous les rendez-vous prénataux pour un suivi régulier",
-        "tip5": "Limitez les aliments sucrés et les glucides raffinés"
-      },
-      "reset": "Réinitialiser"
+      }
     },
     "healthMonitor": {
       "title": "Système de surveillance de la santé",
@@ -4052,11 +4032,11 @@
       }
     },
     "mentalHealthCoach": {
-      "title": "Guide bien-être mental post-partum",
-      "subtitle": "Questionnaire de l'échelle de dépression postnatale d'Édimbourg",
+      "title": "Guide de Bien-être Émotionnel Post-partum",
+      "subtitle": "Questionnaire de bien-être personnel",
       "youreNotAlone": "Vous n'êtes pas seule",
-      "emergencyMessage": "D'après vos réponses, il est important de parler à quelqu'un qui peut vous aider. La dépression post-partum est courante et traitable.",
-      "postpartumSupport": "Support post-partum",
+      "emergencyMessage": "D'après vos réponses, il est important de parler à quelqu'un qui peut vous aider.",
+      "postpartumSupport": "Soutien Post-partum",
       "crisisHotline": "Ligne de crise",
       "question": "Question",
       "of": "sur",
@@ -4064,161 +4044,26 @@
       "takeScreeningAgain": "Refaire le questionnaire",
       "previousQuestion": "Question précédente",
       "responseBreakdown": "Détail des réponses",
-      "aiPersonalizedPlan": "Plan de gestion personnalisé IA",
-      "generateMyPlan": "Générer mon plan personnalisé",
-      "creatingPlan": "Création de votre plan personnalisé...",
-      "dailyCopingStrategies": "Stratégies de gestion quotidiennes",
+      "aiPersonalizedPlan": "Plan personnel de bien-être IA",
+      "generateMyPlan": "Générer mon plan personnel",
+      "creatingPlan": "Création de votre plan...",
+      "dailyCopingStrategies": "Stratégies quotidiennes",
       "supportResources": "Ressources de soutien",
-      "psiName": "Soutien international post-partum",
-      "psiNumber": "3114",
-      "crisisLinelineName": "988 Ligne de crise et suicide",
-      "crisisLinelineDesc": "Appelez ou envoyez un SMS au 988",
-      "screeningDisclaimer": "⚠️ Ceci est un questionnaire de bien-être basé sur l'échelle de dépression postnatale d'Édimbourg (EPDS). Il ne fournit pas une évaluation professionnelle. Consultez toujours un professionnel pour une évaluation appropriée.",
-      "mentalWellnessVideos": "Vidéos de bien-être mental",
-      "videosSubtitle": "Ressources de soutien et d'auto-soins",
-      "videos": {
-        "v1": {
-          "title": "Qu'est-ce que la dépression post-partum ?",
-          "description": "Signes, symptômes et quand chercher de l'aide",
-          "category": "Éducation"
-        },
-        "v2": {
-          "title": "La dépression post-partum expliquée",
-          "description": "Symptômes, facteurs de risque et options de traitement",
-          "category": "Éducation"
-        },
-        "v3": {
-          "title": "Méditation de relaxation pendant la grossesse",
-          "description": "Méditation apaisante pour une meilleure santé mentale",
-          "category": "Relaxation"
-        },
-        "v4": {
-          "title": "Soins du nouveau-né - Semaine 1",
-          "description": "Guide du pédiatre pour la première semaine avec bébé",
-          "category": "Auto-soins"
-        },
-        "v5": {
-          "title": "Managing Pregnancy Anxiety",
-          "description": "Practical strategies for coping with anxiety during pregnancy",
-          "category": "Anxiety"
-        }
-      },
+      "mentalWellnessVideos": "Vidéos de bien-être émotionnel",
       "riskLevels": {
-        "low": {
-          "title": "Risque faible",
-          "message": "Vos réponses suggèrent que vous vous en sortez bien. Continuez à pratiquer l'auto-soin."
+        "high": {
+          "title": "Attention accrue",
+          "message": "Vos réponses suggèrent qu'un soutien supplémentaire pourrait être bénéfique."
         },
         "moderate": {
-          "title": "Modéré",
-          "message": "Envisagez de parler à votre médecin de ce que vous ressentez."
+          "title": "Attention modérée",
+          "message": "Quelques signes à surveiller. Prendre soin de soi est important."
         },
-        "high": {
-          "title": "Cherchez du soutien",
-          "message": "Veuillez contacter votre médecin ou un professionnel de la santé mentale."
+        "low": {
+          "title": "Bon état",
+          "message": "Vous semblez bien gérer cette période. Continuez à prendre soin de vous."
         }
-      },
-      "epds": {
-        "q1": {
-          "question": "J'ai pu rire et voir le côté amusant des choses",
-          "o0": "Autant que d'habitude",
-          "o1": "Pas tout à fait autant maintenant",
-          "o2": "Certainement pas autant maintenant",
-          "o3": "Pas du tout"
-        },
-        "q2": {
-          "question": "J'ai attendu les choses avec plaisir",
-          "o0": "Autant que jamais",
-          "o1": "Plutôt moins qu'avant",
-          "o2": "Certainement moins qu'avant",
-          "o3": "Presque pas"
-        },
-        "q3": {
-          "question": "Je me suis blâmée inutilement quand les choses ont mal tourné",
-          "o0": "Non, jamais",
-          "o1": "Pas très souvent",
-          "o2": "Oui, parfois",
-          "o3": "Oui, la plupart du temps"
-        },
-        "q4": {
-          "question": "J'ai été anxieuse ou inquiète sans bonne raison",
-          "o0": "Non, pas du tout",
-          "o1": "Presque jamais",
-          "o2": "Oui, parfois",
-          "o3": "Oui, très souvent"
-        },
-        "q5": {
-          "question": "J'ai eu peur ou panique sans bonne raison",
-          "o0": "Non, pas du tout",
-          "o1": "Non, pas beaucoup",
-          "o2": "Oui, parfois",
-          "o3": "Oui, assez souvent"
-        },
-        "q6": {
-          "question": "J'ai eu du mal à dormir même quand j'en avais la possibilité",
-          "o0": "Non, pas du tout",
-          "o1": "Rarement",
-          "o2": "Oui, parfois",
-          "o3": "Oui, la plupart du temps"
-        },
-        "q7": {
-          "question": "Je me suis sentie triste ou j'ai pleuré",
-          "o0": "Non, pas du tout",
-          "o1": "Très rarement",
-          "o2": "Oui, parfois",
-          "o3": "Oui, la plupart du temps"
-        },
-        "q8": {
-          "question": "Mon appétit a changé de façon notable (augmenté ou diminué)",
-          "o0": "Non, il est normal",
-          "o1": "Légèrement changé",
-          "o2": "Changé de façon notable",
-          "o3": "J'ai perdu l'appétit ou je mange trop"
-        },
-        "q9": {
-          "question": "J'ai eu du mal à me concentrer ou à prendre des décisions",
-          "o0": "Non, pas du tout",
-          "o1": "Rarement",
-          "o2": "Oui, parfois",
-          "o3": "Oui, la plupart du temps"
-        },
-        "q10": {
-          "question": "Je me suis sentie épuisée et sans énergie",
-          "o0": "Non, mon énergie est bonne",
-          "o1": "Moins d'énergie que d'habitude",
-          "o2": "Épuisée la plupart du temps",
-          "o3": "Complètement vidée"
-        }
-      },
-      "coping": {
-        "sunlight": {
-          "title": "Lumière matinale",
-          "desc": "Exposez-vous 10-15 minutes à la lumière naturelle chaque matin"
-        },
-        "movement": {
-          "title": "Mouvement doux",
-          "desc": "Une courte promenade peut améliorer significativement l'humeur"
-        },
-        "connect": {
-          "title": "Connectez-vous quotidiennement",
-          "desc": "Parlez à une amie ou un membre de la famille chaque jour"
-        },
-        "rest": {
-          "title": "Reposez-vous quand c'est possible",
-          "desc": "Dormez quand bébé dort, même brièvement"
-        },
-        "nourish": {
-          "title": "Nourrissez-vous",
-          "desc": "Mangez des repas réguliers et nutritifs"
-        },
-        "journal": {
-          "title": "Journal",
-          "desc": "Écrivez 3 choses pour lesquelles vous êtes reconnaissante"
-        }
-      },
-      "helpfulVideos": "Vidéos utiles",
-      "personalizedPlan": "Plan personnalisé",
-      "retake": "Refaire l'évaluation",
-      "scoreLabel": "Score"
+      }
     },
     "mealSuggestion": {
       "subtitle": "Suggestions de repas intelligentes pour votre grossesse",

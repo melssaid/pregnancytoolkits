@@ -3145,43 +3145,43 @@
       "getInsights": "Obtener Información Semanal"
     },
     "appointmentReminder": {
-      "title": "Recordatorio de Citas Inteligente",
-      "subtitle": "Nunca pierdas una cita prenatal",
-      "addAppointment": "Agregar Cita",
-      "appointmentType": "Tipo de Cita",
-      "checkup": "Control Regular",
-      "scan": "Ecografía",
-      "bloodTest": "Análisis de Sangre",
-      "glucoseTest": "Prueba de Glucosa",
+      "title": "Recordatorio Inteligente de Citas",
+      "subtitle": "No pierdas ninguna cita",
+      "addAppointment": "Agregar cita",
+      "appointmentType": "Tipo de cita",
+      "checkup": "Control rutinario",
+      "scan": "Fotos del vientre",
+      "bloodTest": "Análisis de sangre",
+      "glucoseTest": "Test de glucosa",
       "other": "Otro",
       "date": "Fecha",
       "time": "Hora",
       "notes": "Notas",
       "reminder": "Recordatorio",
-      "dayBefore": "1 Día Antes",
-      "hoursBefore": "2 Horas Antes",
+      "dayBefore": "1 día antes",
+      "hoursBefore": "2 horas antes",
       "upcoming": "Próximas",
       "past": "Pasadas",
-      "noAppointments": "Sin citas programadas",
-      "fillRequired": "Por favor complete los campos requeridos",
-      "confirmDelete": "¿Está segura de eliminar esta cita?",
+      "noAppointments": "No hay citas programadas",
+      "fillRequired": "Por favor completa los campos requeridos",
+      "confirmDelete": "¿Estás segura de que deseas eliminar esta cita?",
       "tomorrow": "Mañana",
-      "passed": "Pasada",
+      "passed": "Pasado",
       "inDays": "En {{count}} días",
-      "customType": "O ingrese tipo personalizado...",
+      "customType": "O ingresa un tipo personalizado...",
       "selectTime": "Seleccionar hora",
-      "doctorName": "Nombre del Doctor",
+      "doctorName": "Nombre del doctor",
       "location": "Ubicación",
       "locationPlaceholder": "Nombre del hospital o clínica",
       "notesPlaceholder": "Notas adicionales...",
-      "questionsForDoctor": "Preguntas para el Doctor",
-      "aiSuggestions": "Sugerencias AI",
-      "aiSuggestionsLabel": "Preguntas sugeridas por AI:",
-      "yourQuestions": "Tus Preguntas",
+      "questionsForDoctor": "Preguntas para el doctor",
+      "aiSuggestions": "Sugerencias IA",
+      "aiSuggestionsLabel": "Preguntas sugeridas por IA:",
+      "yourQuestions": "Tus preguntas",
       "addFirst": "¡Agrega tu primera cita!",
       "details": "Detalles",
       "notificationHint": "Recibirás un recordatorio",
-      "questionsHint": "Preguntas para el médico",
+      "questionsHint": "Preguntas para el doctor",
       "savedWithQuestions": "Guardado con preguntas",
       "skipQuestions": "Omitir preguntas"
     },
@@ -3798,49 +3798,29 @@
       "weightGainLinkDesc": "Monitorea tu aumento de peso saludable"
     },
     "gdm": {
-      "title": "Concienciación sobre diabetes gestacional (Info general)",
-      "subtitle": "Esta herramienta ofrece información sencilla sobre la diabetes gestacional: factores comunes, hábitos de vida relacionados y preguntas útiles para comentar con tu médico. No mide el azúcar en sangre, no proporciona un diagnóstico ni un plan de tratamiento, y no sustituye el seguimiento prenatal con tu equipo de salud.",
-      "disclaimer": "Esta es solo una herramienta educativa de concienciación. No reemplaza la evaluación profesional. Consulta siempre a tu médico.",
-      "checkRiskFactors": "Verifica tus Factores de Riesgo",
-      "riskFactorsSelected": "Factores de Riesgo Seleccionados",
-      "aiCoachTitle": "Coach IA de Prevención de Diabetes",
-      "getPreventionPlan": "Obtener Plan de Prevención Personalizado",
-      "preventionTipsTitle": "Consejos de Prevención",
-      "infoNote": "La prueba de diabetes gestacional se realiza entre las semanas 24-28. Si tienes múltiples factores de riesgo, tu médico puede recomendar una prueba más temprana.",
+      "title": "Diario de Embarazo - Consejos de Bienestar",
+      "subtitle": "Información general sobre el bienestar durante el embarazo",
+      "disclaimer": "Esta es una herramienta educativa. Siempre consulta con tu profesional de salud.",
+      "checkRiskFactors": "Verificar tus factores",
+      "riskFactorsSelected": "Factores seleccionados",
+      "aiCoachTitle": "Coach de Bienestar IA",
+      "getPreventionPlan": "Obtener plan personalizado",
+      "preventionTipsTitle": "Consejos de bienestar",
+      "infoNote": "Esta herramienta es solo para fines educativos y no reemplaza los consejos profesionales.",
       "riskLevels": {
         "high": {
-          "title": "Muchos factores",
-          "description": "Tus factores sugieren una mayor probabilidad. Se puede recomendar una prueba temprana."
+          "title": "Atención elevada",
+          "description": "Varios factores identificados. Se recomienda seguimiento regular."
         },
         "moderate": {
-          "title": "Algunos factores",
-          "description": "Tienes algunos factores. Se recomienda la prueba estándar en las semanas 24-28."
+          "title": "Atención moderada",
+          "description": "Algunos factores presentes. Se recomienda seguimiento estándar."
         },
         "low": {
           "title": "Pocos factores",
-          "description": "Tienes pocos factores, pero la prueba rutinaria en las semanas 24-28 sigue siendo recomendada."
+          "description": "Pocos factores identificados. Continúa con hábitos saludables."
         }
-      },
-      "riskFactors": {
-        "age": "35 años o más",
-        "bmi": "IMC 30 o más antes del embarazo",
-        "family": "Historial familiar de diabetes (padre o hermano)",
-        "previousGdm": "Diabetes gestacional previa",
-        "previousLarge": "Bebé anterior de más de 4 kg",
-        "pcos": "Síndrome de ovario poliquístico (SOP)",
-        "prediabetes": "Prediabetes o azúcar alta en sangre",
-        "ethnicity": "Etnia de mayor riesgo",
-        "multiple": "Embarazo múltiple (gemelos, trillizos)",
-        "sedentary": "Estilo de vida sedentario antes del embarazo"
-      },
-      "preventionTips": {
-        "tip1": "Mantén un peso saludable antes y durante el embarazo",
-        "tip2": "Come una dieta equilibrada rica en fibra y granos integrales",
-        "tip3": "Mantente físicamente activa con ejercicios aprobados por tu médico",
-        "tip4": "Asiste a todas las citas prenatales para un monitoreo regular",
-        "tip5": "Limita los alimentos azucarados y los carbohidratos refinados"
-      },
-      "reset": "Restablecer"
+      }
     },
     "healthMonitor": {
       "title": "Sistema de Monitoreo de Salud",
@@ -4058,11 +4038,11 @@
       }
     },
     "mentalHealthCoach": {
-      "title": "Guía de bienestar mental posparto",
-      "subtitle": "Detección de la Escala de Depresión Postnatal de Edimburgo",
+      "title": "Guía de Bienestar Emocional Postparto",
+      "subtitle": "Cuestionario de bienestar personal",
       "youreNotAlone": "No estás sola",
-      "emergencyMessage": "Según tus respuestas, es importante hablar con alguien que pueda ayudarte. La depresión posparto es común y tratable.",
-      "postpartumSupport": "Apoyo posparto",
+      "emergencyMessage": "Según tus respuestas, es importante hablar con alguien que pueda ayudarte.",
+      "postpartumSupport": "Apoyo Postparto",
       "crisisHotline": "Línea de crisis",
       "question": "Pregunta",
       "of": "de",
@@ -4070,161 +4050,26 @@
       "takeScreeningAgain": "Repetir cuestionario",
       "previousQuestion": "Pregunta anterior",
       "responseBreakdown": "Desglose de respuestas",
-      "aiPersonalizedPlan": "Plan de afrontamiento personalizado con IA",
-      "generateMyPlan": "Generar mi plan personalizado",
-      "creatingPlan": "Creando tu plan personalizado...",
-      "dailyCopingStrategies": "Estrategias de afrontamiento diarias",
+      "aiPersonalizedPlan": "Plan personalizado de bienestar IA",
+      "generateMyPlan": "Generar mi plan personal",
+      "creatingPlan": "Creando tu plan...",
+      "dailyCopingStrategies": "Estrategias diarias",
       "supportResources": "Recursos de apoyo",
-      "psiName": "Apoyo Internacional Posparto",
-      "psiNumber": "024",
-      "crisisLinelineName": "988 Línea de Crisis y Suicidio",
-      "crisisLinelineDesc": "Llama o envía un mensaje al 988",
-      "screeningDisclaimer": "⚠️ Este es un cuestionario de bienestar basado en la Escala de Depresión Postnatal de Edimburgo (EPDS). No proporciona una evaluación profesional. Consulta siempre a un profesional para una evaluación adecuada.",
-      "mentalWellnessVideos": "Videos de bienestar mental",
-      "videosSubtitle": "Recursos de apoyo y autocuidado",
-      "videos": {
-        "v1": {
-          "title": "¿Qué es la depresión posparto?",
-          "description": "Signos, síntomas y cuándo buscar ayuda",
-          "category": "Educación"
-        },
-        "v2": {
-          "title": "La depresión posparto explicada",
-          "description": "Síntomas, factores de riesgo y opciones de tratamiento",
-          "category": "Educación"
-        },
-        "v3": {
-          "title": "Meditación de relajación en el embarazo",
-          "description": "Meditación calmante para una mejor salud mental",
-          "category": "Relajación"
-        },
-        "v4": {
-          "title": "Cuidado del recién nacido - Semana 1",
-          "description": "Guía del pediatra para la primera semana",
-          "category": "Autocuidado"
-        },
-        "v5": {
-          "title": "Managing Pregnancy Anxiety",
-          "description": "Practical strategies for coping with anxiety during pregnancy",
-          "category": "Anxiety"
-        }
-      },
+      "mentalWellnessVideos": "Videos de bienestar emocional",
       "riskLevels": {
-        "low": {
-          "title": "Riesgo bajo",
-          "message": "Tus respuestas sugieren que lo estás llevando bien. Continúa practicando el autocuidado."
+        "high": {
+          "title": "Atención elevada",
+          "message": "Tus respuestas sugieren que apoyo adicional podría ser beneficioso."
         },
         "moderate": {
-          "title": "Moderado",
-          "message": "Considera hablar con tu médico sobre cómo te sientes."
+          "title": "Atención moderada",
+          "message": "Algunas señales a tener en cuenta. El autocuidado es importante."
         },
-        "high": {
-          "title": "Busca apoyo",
-          "message": "Por favor, contacta a tu médico o un profesional de salud mental."
+        "low": {
+          "title": "Buen estado",
+          "message": "Pareces manejar bien esta etapa. ¡Sigue así!"
         }
-      },
-      "epds": {
-        "q1": {
-          "question": "He podido reír y ver el lado divertido de las cosas",
-          "o0": "Tanto como siempre",
-          "o1": "No tanto ahora",
-          "o2": "Definitivamente no tanto ahora",
-          "o3": "Para nada"
-        },
-        "q2": {
-          "question": "He esperado con ilusión las cosas",
-          "o0": "Tanto como siempre",
-          "o1": "Algo menos de lo habitual",
-          "o2": "Definitivamente menos de lo habitual",
-          "o3": "Casi nada"
-        },
-        "q3": {
-          "question": "Me he culpado innecesariamente cuando las cosas salían mal",
-          "o0": "No, nunca",
-          "o1": "No muy a menudo",
-          "o2": "Sí, a veces",
-          "o3": "Sí, la mayor parte del tiempo"
-        },
-        "q4": {
-          "question": "He estado ansiosa o preocupada sin razón",
-          "o0": "No, para nada",
-          "o1": "Casi nunca",
-          "o2": "Sí, a veces",
-          "o3": "Sí, muy a menudo"
-        },
-        "q5": {
-          "question": "He sentido miedo o pánico sin razón",
-          "o0": "No, para nada",
-          "o1": "No, no mucho",
-          "o2": "Sí, a veces",
-          "o3": "Sí, bastante"
-        },
-        "q6": {
-          "question": "He tenido dificultad para dormir aunque tenía la oportunidad",
-          "o0": "No, para nada",
-          "o1": "Raramente",
-          "o2": "Sí, a veces",
-          "o3": "Sí, la mayor parte del tiempo"
-        },
-        "q7": {
-          "question": "Me he sentido triste o he llorado",
-          "o0": "No, para nada",
-          "o1": "Muy raramente",
-          "o2": "Sí, a veces",
-          "o3": "Sí, la mayor parte del tiempo"
-        },
-        "q8": {
-          "question": "Mi apetito ha cambiado notablemente (aumentado o disminuido)",
-          "o0": "No, es normal",
-          "o1": "Cambió ligeramente",
-          "o2": "Cambió notablemente",
-          "o3": "Perdí el apetito o como en exceso"
-        },
-        "q9": {
-          "question": "He tenido dificultad para concentrarme o tomar decisiones",
-          "o0": "No, para nada",
-          "o1": "Raramente",
-          "o2": "Sí, a veces",
-          "o3": "Sí, la mayor parte del tiempo"
-        },
-        "q10": {
-          "question": "Me he sentido agotada y sin energía",
-          "o0": "No, mi energía está bien",
-          "o1": "Menos energía de lo habitual",
-          "o2": "Agotada la mayor parte del tiempo",
-          "o3": "Completamente exhausta"
-        }
-      },
-      "coping": {
-        "sunlight": {
-          "title": "Luz solar matutina",
-          "desc": "Obtén 10-15 minutos de luz natural cada mañana"
-        },
-        "movement": {
-          "title": "Movimiento suave",
-          "desc": "Un paseo corto puede mejorar significativamente el ánimo"
-        },
-        "connect": {
-          "title": "Conéctate diariamente",
-          "desc": "Habla con una amiga o familiar cada día"
-        },
-        "rest": {
-          "title": "Descansa cuando sea posible",
-          "desc": "Duerme cuando el bebé duerma, aunque sea brevemente"
-        },
-        "nourish": {
-          "title": "Aliméntate bien",
-          "desc": "Come comidas regulares y nutritivas"
-        },
-        "journal": {
-          "title": "Diario",
-          "desc": "Escribe 3 cosas por las que estás agradecida"
-        }
-      },
-      "helpfulVideos": "Videos útiles",
-      "personalizedPlan": "Plan personalizado",
-      "retake": "Repetir evaluación",
-      "scoreLabel": "Puntuación"
+      }
     },
     "mealSuggestion": {
       "subtitle": "Sugerencias inteligentes de comidas para tu embarazo",
