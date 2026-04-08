@@ -2,7 +2,7 @@
   "name": "Pregnancy Toolkits",
   "short_name": "Pregnancy Toolkits",
   "version": "1.0.16",
-  "description": "Your personal pregnancy journal & lifestyle companion with 42+ wellness tools, daily tips, trackers & educational content. Not a medical device. For informational and educational purposes only.",
+  "description": "Free pregnancy tracker & lifestyle companion with 33+ smart tools: due date calculator, kick counter, baby growth tracker, cycle tracker, meal planner & more. For educational purposes only.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#faf6f2",
@@ -68,28 +68,28 @@
       "sizes": "1080x1920",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "Home - 42+ Pregnancy Wellness & Journal Tools"
+      "label": "Home - 33+ Pregnancy Wellness & Lifestyle Tools"
     }
   ],
   "shortcuts": [
     {
-      "name": "Baby Arrival Countdown",
-      "short_name": "Countdown",
-      "description": "Track your pregnancy timeline with a personalized countdown",
+      "name": "Due Date Calculator",
+      "short_name": "Due Date",
+      "description": "Calculate your estimated due date",
       "url": "/tools/due-date-calculator",
       "icons": [{ "src": "/icons/icon-96x96.png", "sizes": "96x96" }]
     },
     {
-      "name": "Baby Movement Diary",
-      "short_name": "Movement Diary",
-      "description": "Log and journal your baby's daily movements",
+      "name": "Baby Kick Counter",
+      "short_name": "Kick Counter",
+      "description": "Track your baby's daily movements",
       "url": "/tools/kick-counter",
       "icons": [{ "src": "/icons/icon-96x96.png", "sizes": "96x96" }]
     },
     {
-      "name": "Contraction Logger",
+      "name": "Contraction Timer",
       "short_name": "Contractions",
-      "description": "Log and journal your contraction patterns",
+      "description": "Time and log your contraction patterns",
       "url": "/tools/contraction-timer",
       "icons": [{ "src": "/icons/icon-96x96.png", "sizes": "96x96" }]
     },
@@ -101,13 +101,12 @@
       "icons": [{ "src": "/icons/icon-96x96.png", "sizes": "96x96" }]
     }
   ],
-  "related_applications": [],
-  "prefer_related_applications": true,
   "related_applications": [
     {
       "platform": "play",
       "url": "https://play.google.com/store/apps/details?id=app.pregnancytoolkits.android",
       "id": "app.pregnancytoolkits.android"
     }
-  ]
+  ],
+  "prefer_related_applications": true
 }
