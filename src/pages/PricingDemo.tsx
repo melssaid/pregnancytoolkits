@@ -85,16 +85,13 @@ export default function PricingDemo() {
         window.dispatchEvent(new CustomEvent('subscription-activated', { detail: { plan: selected } }));
         navigate("/");
 
-        // Show syncing indicator
-        const syncToastId = toast.loading(
-          isAr ? '🔄 جارٍ مزامنة الاشتراك...' : '🔄 Syncing subscription...',
-          { duration: 12000 }
-        );
+        // Show syncing spinner overlay
+        setSyncing(true);
 
         // Poll server to confirm subscription sync (max 3 attempts, 2s apart)
         const poll = async (attempt = 0) => {
           if (attempt >= 3) {
-            toast.dismiss(syncToastId);
+            setSyncing(false);
             toast.success(isAr ? '✅ تم تفعيل الاشتراك' : '✅ Subscription activated');
             return;
           }
@@ -103,7 +100,7 @@ export default function PricingDemo() {
               body: { action: 'check-quota' },
             });
             if (data?.tier === 'premium') {
-              toast.dismiss(syncToastId);
+              setSyncing(false);
               toast.success(isAr ? '✅ تمت المزامنة بنجاح' : '✅ Synced successfully');
               refreshAIUsage();
               return;
