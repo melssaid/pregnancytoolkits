@@ -61,12 +61,7 @@ export function SmartAppBanner() {
           target="_blank"
           rel="noopener noreferrer"
           className="flex-shrink-0 bg-primary text-primary-foreground text-xs font-bold px-4 py-2 rounded-full hover:bg-primary/90 transition-colors"
-          onClick={() => {
-            // Track banner click via existing analytics
-            try {
-              const { enqueueEvent } = require("@/hooks/useAnalytics");
-            } catch {}
-          }}
+          onClick={() => {}}
         >
           {t("smartBanner.cta", "GET")}
         </a>
