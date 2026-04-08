@@ -425,7 +425,7 @@
       "nutritionTab": "Ernährung",
       "supplementsTab": "Ergänzungen",
       "videosTitle": "Lehrvideos",
-      "videosSubtitle": "Erfahren Sie mehr über pränatale Ernährung und Nahrungsergänzung"
+      "videosSubtitle": "Erfahren Sie mehr über pränatale Ernährung und Ernährungshilfe"
     },
     "twwCompanion": {
       "title": "Wartezeitbegleiterin",
@@ -4717,7 +4717,7 @@
         },
         "medications": {
           "title": "Medikamentenüberprüfung",
-          "description": "Überprüfen Sie alle aktuellen Medikamente, Nahrungsergänzungsmittel und Kräutermittel mit Ihrem Arzt. Einige Medikamente sind in der Schwangerschaft nicht sicher."
+          "description": "Überprüfen Sie alle aktuellen Medikamente, Ernährungshilfe und Kräutermittel mit Ihrem Arzt. Einige Medikamente sind in der Schwangerschaft nicht sicher."
         },
         "vaccinations": {
           "title": "Impfungsüberprüfung",
@@ -4731,7 +4731,7 @@
         "academy": "Fruchtbarkeitsakademie",
         "academyDesc": "Umfassende Fruchtbarkeitsschulung",
         "nutrition": "Ernährungsratgeber",
-        "nutritionDesc": "Ernährung und Nahrungsergänzungsmittel vor der Empfängnis"
+        "nutritionDesc": "Ernährung und Ernährungshilfe vor der Empfängnis"
       }
     },
     "preconceptionNutrition": {
@@ -4793,18 +4793,18 @@
       "supplementsCount": "{{count}}-Ergänzungen zur Überprüfung",
       "vitamins": {
         "folicAcid": {
-          "title": "Folsäure (Vitamin B9)",
-          "description": "Das wichtigste Nahrungsergänzungsmittel vor der Schwangerschaft. Folsäure reduziert das Risiko von Neuralrohrdefekten (Spina bifida, Anenzephalie) erheblich. Beginnen Sie mindestens 1–3 Monate vor dem Kinderwunsch.",
+          "title": "Folsäure (Nährstoff B9)",
+          "description": "Das wichtigste Ernährungshilfe vor der Schwangerschaft. Folsäure reduziert das Risiko von Neuralrohrdefekten (Spina bifida, Anenzephalie) erheblich. Beginnen Sie mindestens 1–3 Monate vor dem Kinderwunsch.",
           "dosage": "Empfohlen: 400–800 µg täglich. Einige Frauen benötigen möglicherweise 4–5 mg — sprechen Sie mit Ihrem Arzt."
         },
         "iron": {
           "title": "Eisen",
           "description": "Der Eisenbedarf steigt in der Schwangerschaft drastisch (von 18 mg auf 27 mg täglich). Der Aufbau von Eisenreserven vor der Empfängnis hilft, Eisenmangelanämie vorzubeugen.",
-          "dosage": "Empfohlen: 18 mg täglich vor der Schwangerschaft. Mit Vitamin C einnehmen zur besseren Aufnahme. Nicht mit Kalzium oder Tee einnehmen."
+          "dosage": "Empfohlen: 18 mg täglich vor der Schwangerschaft. Mit Nährstoff C einnehmen zur besseren Aufnahme. Nicht mit Kalzium oder Tee einnehmen."
         },
         "vitaminD": {
-          "title": "Vitamin D",
-          "description": "Vitamin D unterstützt die Immunfunktion, Kalziumaufnahme und reproduktive Gesundheit. Mangel ist mit Schwangerschaftskomplikationen einschließlich Gestationsdiabetes und Präeklampsie verbunden.",
+          "title": "Nährstoff D",
+          "description": "Nährstoff D unterstützt die Immunfunktion, Kalziumaufnahme und reproduktive Gesundheit. Mangel ist mit Schwangerschaftskomplikationen einschließlich Gestationsdiabetes und Präeklampsie verbunden.",
           "dosage": "Empfohlen: 600–2000 IE täglich. Ihr Arzt kann Ihre Werte testen und bei Mangel eine höhere Dosis empfehlen."
         },
         "omega3DHA": {
@@ -4828,18 +4828,18 @@
           "dosage": "Empfohlen: 8 mg täglich für Frauen. Die meisten Pränatalvitamine enthalten ausreichend Zink."
         },
         "vitaminB12": {
-          "title": "Vitamin B12",
+          "title": "Nährstoff B12",
           "description": "B12 arbeitet mit Folat zusammen, um DNA-Synthese und Nervensystementwicklung zu unterstützen. Mangel ist bei Vegetariern und Veganern häufiger. Niedrige B12-Werte sind mit wiederkehrenden Fehlgeburten und Neuralrohrdefekten verbunden.",
           "dosage": "Empfohlen: 2,4 µg täglich. Veganer sollten supplementieren, da B12 hauptsächlich in tierischen Produkten vorkommt."
         },
         "vitaminC": {
-          "title": "Vitamin C",
-          "description": "Vitamin C ist ein starkes Antioxidans, das Eizellen vor oxidativen Schäden schützt. Es verbessert auch die Eisenaufnahme und unterstützt die Immunfunktion.",
+          "title": "Nährstoff C",
+          "description": "Nährstoff C ist ein starkes Antioxidans, das Eizellen vor oxidativen Schäden schützt. Es verbessert auch die Eisenaufnahme und unterstützt die Immunfunktion.",
           "dosage": "Empfohlen: 75–90 mg täglich. Leicht aus Zitrusfrüchten, Beeren und Paprika erhältlich."
         },
         "vitaminE": {
-          "title": "Vitamin E",
-          "description": "Vitamin E unterstützt die Dicke und Qualität der Gebärmutterschleimhaut, was wichtig für die Einnistung ist. Es schützt auch Zellmembranen vor oxidativem Stress.",
+          "title": "Nährstoff E",
+          "description": "Nährstoff E unterstützt die Dicke und Qualität der Gebärmutterschleimhaut, was wichtig für die Einnistung ist. Es schützt auch Zellmembranen vor oxidativem Stress.",
           "dosage": "Empfohlen: 15 mg (22 IE) täglich. In Nüssen, Samen und Pflanzenölen enthalten."
         },
         "coq10": {

@@ -448,9 +448,9 @@
       "title": "Nutrition Guide",
       "description": "Complete nutrition essentials guide for your journey.",
       "nutritionTab": "Nutrition",
-      "supplementsTab": "Supplements",
+      "supplementsTab": "Nutrition Aids",
       "videosTitle": "Educational Videos",
-      "videosSubtitle": "Learn about prenatal nutrition and supplements"
+      "videosSubtitle": "Learn about pre-pregnancy nutrition and nutrition aids"
     },
     "twwCompanion": {
       "title": "Two-Week Wait Companion",
@@ -1859,13 +1859,13 @@
     },
     "vitaminTracker": {
       "title": "My Daily Nutrition",
-      "subtitle": "Track your daily prenatal vitamins",
+      "subtitle": "Track your daily pre-pregnancy nutrients",
       "pregnancyWeek": "Pregnancy Week",
       "todaysProgress": "Today's Progress",
-      "vitaminsCount": "{{taken}} of {{total}} vitamins taken today",
-      "aiAnalysisTitle": "AI Supplement Analysis",
-      "analyzeRoutine": "Analyze My Vitamin Routine",
-      "analyzingIntake": "Analyzing your vitamin intake...",
+      "vitaminsCount": "{{taken}} of {{total}} nutrients taken today",
+      "aiAnalysisTitle": "AI Nutrition Aid Analysis",
+      "analyzeRoutine": "Analyze My Nutrient Routine",
+      "analyzingIntake": "Analyzing your nutrient intake...",
       "weeklyStats": "Weekly Statistics",
       "recentHistory": "Recent History",
       "days": "days",
@@ -1878,22 +1878,22 @@
       "take": "Take",
       "done": "Done",
       "tipTitle": "Tip of the Day",
-      "tipContent": "Take iron with vitamin C (orange juice) for better absorption, and avoid taking it with calcium or tea.",
+      "tipContent": "Take iron with nutrient C (orange juice) for better absorption, and avoid taking it with calcium or tea.",
       "vitamins": {
         "folicAcid": "Folic Acid",
         "iron": "Iron",
         "calcium": "Calcium",
-        "vitaminD": "Vitamin D",
+        "vitaminD": "Nutrient D",
         "omega3": "Omega 3",
-        "prenatal": "Prenatal Vitamins"
+        "prenatal": "Pre-pregnancy Nutrients"
       },
       "analyzing": "Analyzing...",
       "dosages": "Dosages",
       "importance": "Importance",
-      "allDone": "🎉 All Vitamins Taken!",
-      "allDoneDesc": "Great job! You completed your daily vitamin routine.",
+      "allDone": "🎉 All Nutrients Taken!",
+      "allDoneDesc": "Great job! You completed your daily nutrient routine.",
       "completedMessage": "All done for today! 🎉",
-      "remainingMessage": "{{count}} vitamins remaining",
+      "remainingMessage": "{{count}} nutrients remaining",
       "streakDays": "day streak",
       "currentStreak": "Current Streak",
       "bestStreak": "Best Streak",
@@ -4431,7 +4431,7 @@
         },
         "painManagement": {
           "title": "Pain Management",
-          "desc": "Take prescribed medications as directed"
+          "desc": "Take recommended medications as directed"
         },
         "gentleWalking": {
           "title": "Gentle Walking",
@@ -4483,7 +4483,7 @@
         },
         "fullCheckup": {
           "title": "Full Checkup",
-          "desc": "Complete postpartum medical exam"
+          "desc": "Complete postpartum professional exam"
         },
         "longTermPlan": {
           "title": "Long-term Plan",
@@ -4698,19 +4698,19 @@
       "checks": {
         "generalCheckup": {
           "title": "General Health Checkup",
-          "description": "A comprehensive physical exam to assess your overall health, blood pressure, weight, and discuss your pregnancy plans."
+          "description": "A comprehensive physical exam to assess your overall health, wellness balance, weight, and discuss your pregnancy plans."
         },
         "bloodWork": {
           "title": "Complete Blood Count (CBC)",
           "description": "Checks for anemia, infections, and overall blood health. Identifies iron deficiency that should be addressed before pregnancy."
         },
         "pap": {
-          "title": "Pap Smear / Cervical Check",
-          "description": "Screens for cervical abnormalities. Best done before pregnancy to address any issues without the added complexity of pregnancy."
+          "title": "Pap Smear / Body Check",
+          "description": "Screens for body abnormalities. Best done before pregnancy to address any issues without the added complexity of pregnancy."
         },
         "thyroid": {
-          "title": "Thyroid Function Test (TSH)",
-          "description": "Thyroid disorders are common and can significantly affect fertility and pregnancy. Both hypothyroidism and hyperthyroidism should be managed before conceiving."
+          "title": "metabolic balance Function Test (TSH)",
+          "description": "metabolic balance disorders are common and can significantly affect cycle wellness and pregnancy. Both hypothyroidism and hyperthyroidism should be managed before conceiving."
         },
         "rubella": {
           "title": "Rubella (German Measles) Immunity",
@@ -4722,14 +4722,14 @@
         },
         "hiv": {
           "title": "HIV & STI Check",
-          "description": "Routine checks for HIV and sexually transmitted infections protects both your health and your future baby's health. Early detection enables effective treatment."
+          "description": "Routine checks for HIV and sexually transmitted infections protects both your health and your future baby's health. Early detection enables effective support."
         },
         "dental": {
           "title": "Dental Checkup",
           "description": "Gum disease is linked to preterm birth and low birth weight. Hormonal changes during pregnancy can worsen existing dental issues. Complete any necessary dental work before conceiving."
         },
         "geneticOverview": {
-          "title": "Genetic Carrier Check",
+          "title": "Hereditary Carrier Check",
           "description": "Tests whether you or your partner carry genes for conditions like cystic fibrosis, sickle cell disease, or thalassemia. Results help with informed family planning decisions."
         },
         "mentalHealth": {
@@ -4738,21 +4738,21 @@
         },
         "medications": {
           "title": "Medication Review",
-          "description": "Review all current medications, supplements, and herbal remedies with your doctor. Some medications are not safe during pregnancy and alternatives should be arranged in advance."
+          "description": "Review all current medications, nutrition aids, and herbal remedies with your doctor. Some medications are not safe during pregnancy and alternatives should be arranged in advance."
         },
         "vaccinations": {
           "title": "Vaccination Review",
           "description": "Ensure you're up to date on recommended vaccinations including MMR, varicella, flu, and Tdap. Some vaccines cannot be given during pregnancy, so complete them beforehand."
         }
       },
-      "disclaimer": "This checklist is an educational reference to help you organize conversations with your care provider. It does not replace professional medical advice, diagnosis, or treatment. All screenings and tests should be discussed with and ordered by a qualified healthcare professional.",
+      "disclaimer": "This checklist is an educational reference to help you organize conversations with your care provider. It does not replace professional professional advice, evaluation, or support. All screenings and tests should be discussed with and ordered by a qualified healthcare professional.",
       "progressLabel": "Checks completed",
       "tracked": "tracked",
       "related": {
-        "academy": "My Fertility Journey",
-        "academyDesc": "Comprehensive fertility education",
+        "academy": "My cycle wellness Journey",
+        "academyDesc": "Comprehensive cycle wellness education",
         "nutrition": "Nutrition Guide",
-        "nutritionDesc": "Preconception nutrition & supplements"
+        "nutritionDesc": "Preconception nutrition & nutrition aids"
       }
     },
     "preconceptionNutrition": {
@@ -4811,56 +4811,56 @@
       "categoriesCount": "{{count}} nutrition categories"
     },
     "prenatalVitamins": {
-      "supplementsCount": "{{count}} supplements to review",
+      "supplementsCount": "{{count}} nutrition aids to review",
       "vitamins": {
         "folicAcid": {
-          "title": "Folic Acid (Vitamin B9)",
-          "description": "The most important preconception supplement. Folic acid significantly reduces the risk of neural tube defects (spina bifida, anencephaly). Start taking it at least 1–3 months before trying to conceive for maximum benefit.",
+          "title": "Folic Acid (Nutrient B9)",
+          "description": "The most important preconception nutrition aid. Folic acid significantly reduces the risk of neural tube defects (spina bifida, anencephaly). Start taking it at least 1–3 months before trying to conceive for maximum benefit.",
           "dosage": "Recommended: 400–800mcg daily. Some women (with history of NTDs, on certain medications) may need 4–5mg — consult your doctor."
         },
         "iron": {
           "title": "Iron",
           "description": "Iron requirements increase dramatically during pregnancy (from 18mg to 27mg daily). Building iron stores before conception helps prevent iron-deficiency anemia, which is associated with preterm birth and low birth weight.",
-          "dosage": "Recommended: 18mg daily pre-pregnancy. Take with vitamin C to improve absorption. Avoid taking with calcium or tea."
+          "dosage": "Recommended: 18mg daily pre-pregnancy. Take with nutrient C to improve absorption. Avoid taking with calcium or tea."
         },
         "vitaminD": {
-          "title": "Vitamin D",
-          "description": "Vitamin D supports immune function, calcium absorption, and reproductive health. Deficiency is linked to pregnancy complications including gestational diabetes and preeclampsia. Most people need supplementation, especially in winter months.",
+          "title": "Nutrient D",
+          "description": "Nutrient D supports immune function, calcium absorption, and reproductive health. Deficiency is linked to pregnancy complications including pregnancy-related diabetes and wellness awareness. Most people need supplementation, especially in winter months.",
           "dosage": "Recommended: 600–2000 IU daily. Your doctor may test your levels and recommend a higher dose if deficient."
         },
         "omega3DHA": {
           "title": "Omega-3 DHA",
           "description": "DHA is crucial for baby's brain and retinal development. Starting supplementation before pregnancy ensures adequate stores from the earliest stages of embryonic development. EPA also supports maternal cardiovascular health.",
-          "dosage": "Recommended: 200–300mg DHA daily. Choose supplements tested for mercury and contaminants."
+          "dosage": "Recommended: 200–300mg DHA daily. Choose nutrition aids tested for mercury and contaminants."
         },
         "calcium": {
           "title": "Calcium",
           "description": "If the mother's calcium intake is insufficient during pregnancy, the baby will draw calcium from her bones. Building strong calcium reserves before pregnancy protects maternal bone health.",
-          "dosage": "Recommended: 1000mg daily from food and supplements combined. Best absorbed in doses of 500mg or less at a time."
+          "dosage": "Recommended: 1000mg daily from food and nutrition aids combined. Best absorbed in doses of 500mg or less at a time."
         },
         "iodine": {
           "title": "Iodine",
-          "description": "Iodine is essential for thyroid function, which directly impacts fertility and baby's brain development. Deficiency is the leading preventable cause of intellectual disability worldwide.",
-          "dosage": "Recommended: 150mcg daily before pregnancy, 220mcg during pregnancy. Check that your prenatal vitamin includes iodine."
+          "description": "Iodine is essential for metabolic balance function, which directly impacts cycle wellness and baby's brain development. Deficiency is the leading preventable cause of intellectual disability worldwide.",
+          "dosage": "Recommended: 150mcg daily before pregnancy, 220mcg during pregnancy. Check that your pre-pregnancy nutrient includes iodine."
         },
         "zinc": {
           "title": "Zinc",
-          "description": "Zinc supports egg quality, hormone balance, and immune function. It also plays a key role in DNA synthesis and cell division — critical processes in early pregnancy.",
-          "dosage": "Recommended: 8mg daily for women. Most prenatal vitamins contain adequate zinc."
+          "description": "Zinc supports egg quality, body signal balance, and immune function. It also plays a key role in DNA synthesis and cell division — critical processes in early pregnancy.",
+          "dosage": "Recommended: 8mg daily for women. Most pre-pregnancy nutrients contain adequate zinc."
         },
         "vitaminB12": {
-          "title": "Vitamin B12",
+          "title": "Nutrient B12",
           "description": "B12 works with folate to support DNA synthesis and nervous system development. Deficiency is more common in vegetarians and vegans. Low B12 levels are associated with recurrent miscarriage and neural tube defects.",
-          "dosage": "Recommended: 2.4mcg daily. Vegans should supplement as B12 is found primarily in animal products."
+          "dosage": "Recommended: 2.4mcg daily. Vegans should nutrition aid as B12 is found primarily in animal products."
         },
         "vitaminC": {
-          "title": "Vitamin C",
-          "description": "Vitamin C is a powerful antioxidant that protects eggs from oxidative damage. It also enhances iron absorption and supports immune function. Progesterone levels may also benefit from adequate vitamin C intake.",
+          "title": "Nutrient C",
+          "description": "Nutrient C is a powerful antioxidant that protects eggs from oxidative damage. It also enhances iron absorption and supports immune function. Progesterone levels may also benefit from adequate nutrient C intake.",
           "dosage": "Recommended: 75–90mg daily. Easily obtained from citrus fruits, berries, and bell peppers."
         },
         "vitaminE": {
-          "title": "Vitamin E",
-          "description": "Vitamin E supports endometrial lining thickness and quality, which is important for implantation. It also protects cell membranes from oxidative stress and supports overall reproductive health.",
+          "title": "Nutrient E",
+          "description": "Nutrient E supports endometrial lining thickness and quality, which is important for early attachment. It also protects cell membranes from oxidative stress and supports overall reproductive health.",
           "dosage": "Recommended: 15mg (22 IU) daily. Found in nuts, seeds, and vegetable oils."
         },
         "coq10": {
@@ -4870,7 +4870,7 @@
         },
         "probiotics": {
           "title": "Probiotics",
-          "description": "A healthy vaginal and gut microbiome supports fertility. Lactobacillus strains help maintain optimal vaginal pH, which is important for sperm survival. Gut health also affects hormone metabolism and nutrient absorption.",
+          "description": "A healthy vaginal and gut microbiome supports cycle wellness. Lactobacillus strains help maintain optimal vaginal pH, which is important for sperm survival. Gut health also affects body signal metabolism and nutrient absorption.",
           "dosage": "Choose a multi-strain probiotic with Lactobacillus strains. Consume fermented foods: yogurt, kefir, sauerkraut, kimchi."
         }
       }

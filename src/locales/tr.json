@@ -427,9 +427,9 @@
       "title": "Beslenme Rehberi",
       "description": "Yolculuğunuz için kapsamlı beslenme rehberi.",
       "nutritionTab": "Beslenme",
-      "supplementsTab": "Takviyeler",
+      "supplementsTab": "beslenme desteği",
       "videosTitle": "Eğitim Videoları",
-      "videosSubtitle": "Doğum öncesi beslenme ve takviyeler hakkında bilgi edinin"
+      "videosSubtitle": "Doğum öncesi beslenme ve beslenme desteği hakkında bilgi edinin"
     },
     "twwCompanion": {
       "title": "Bekleme Arkadaşı",
@@ -4737,7 +4737,7 @@
         "academy": "Doğurganlık Akademisi",
         "academyDesc": "Kapsamlı doğurganlık eğitimi",
         "nutrition": "Beslenme Rehberi",
-        "nutritionDesc": "Gebelik öncesi beslenme ve takviyeler"
+        "nutritionDesc": "Gebelik öncesi beslenme ve beslenme desteği"
       }
     },
     "preconceptionNutrition": {
@@ -4796,27 +4796,27 @@
       "categoriesCount": "{{count}} kategori"
     },
     "prenatalVitamins": {
-      "supplementsCount": "{{count}} takviye",
+      "supplementsCount": "{{count}} beslenme desteği",
       "vitamins": {
         "folicAcid": {
-          "title": "Folik Asit (B9 Vitamini)",
-          "description": "Gebelik öncesi en önemli takviye. Folik asit nöral tüp defektleri (spina bifida, anensefali) riskini önemli ölçüde azaltır. Gebe kalmaya çalışmadan en az 1-3 ay önce almaya başlayın.",
+          "title": "Folik Asit (B9 besin öğesi)",
+          "description": "Gebelik öncesi en önemli beslenme desteği. Folik asit nöral tüp defektleri (spina bifida, anensefali) riskini önemli ölçüde azaltır. Gebe kalmaya çalışmadan en az 1-3 ay önce almaya başlayın.",
           "dosage": "Önerilen: Günlük 400-800 µg. Bazı kadınlar 4-5 mg'a ihtiyaç duyabilir — doktorunuza danışın."
         },
         "iron": {
           "title": "Demir",
           "description": "Gebelikte demir ihtiyacı dramatik olarak artar (günde 18 mg'dan 27 mg'a). Gebe kalmadan önce demir depoları oluşturmak, erken doğum ve düşük doğum ağırlığı ile ilişkili demir eksikliği anemisini önlemeye yardımcı olur.",
-          "dosage": "Önerilen: Gebelik öncesi günlük 18 mg. Emilimi artırmak için C vitamini ile alın. Kalsiyum veya çay ile almayın."
+          "dosage": "Önerilen: Gebelik öncesi günlük 18 mg. Emilimi artırmak için C besin öğesi ile alın. Kalsiyum veya çay ile almayın."
         },
         "vitaminD": {
-          "title": "D Vitamini",
-          "description": "D vitamini bağışıklık fonksiyonunu, kalsiyum emilimini ve üreme sağlığını destekler. Eksikliği gestasyonel diyabet ve preeklampsi dahil gebelik komplikasyonlarıyla ilişkilidir.",
+          "title": "D besin öğesi",
+          "description": "D besin öğesi bağışıklık fonksiyonunu, kalsiyum emilimini ve üreme sağlığını destekler. Eksikliği gestasyonel diyabet ve preeklampsi dahil gebelik komplikasyonlarıyla ilişkilidir.",
           "dosage": "Önerilen: Günlük 600-2000 IU. Doktorunuz seviyelerinizi test edebilir ve eksiklik varsa daha yüksek doz önerebilir."
         },
         "omega3DHA": {
           "title": "Omega-3 DHA",
-          "description": "DHA fetüs beyin ve retina gelişimi için çok önemlidir. Gebelikten önce takviye başlamak, embriyonik gelişimin en erken aşamalarından itibaren yeterli depoları sağlar.",
-          "dosage": "Önerilen: Günlük 200-300 mg DHA. Cıva ve kirleticiler için test edilmiş takviyeler seçin."
+          "description": "DHA fetüs beyin ve retina gelişimi için çok önemlidir. Gebelikten önce beslenme desteği başlamak, embriyonik gelişimin en erken aşamalarından itibaren yeterli depoları sağlar.",
+          "dosage": "Önerilen: Günlük 200-300 mg DHA. Cıva ve kirleticiler için test edilmiş beslenme desteği seçin."
         },
         "calcium": {
           "title": "Kalsiyum",
@@ -4826,31 +4826,31 @@
         "iodine": {
           "title": "İyot",
           "description": "İyot, doğurganlığı ve fetüs beyin gelişimini doğrudan etkileyen tiroid fonksiyonu için gereklidir. İyot eksikliği dünyada önlenebilir zihinsel engelin önde gelen nedenidir.",
-          "dosage": "Önerilen: Gebelik öncesi günlük 150 µg, gebelikte 220 µg. Prenatal vitamininizin iyot içerdiğinden emin olun."
+          "dosage": "Önerilen: Gebelik öncesi günlük 150 µg, gebelikte 220 µg. Hamilelik öncesi vitamininizin iyot içerdiğinden emin olun."
         },
         "zinc": {
           "title": "Çinko",
           "description": "Çinko yumurta kalitesini, hormon dengesini ve bağışıklık fonksiyonunu destekler. DNA sentezi ve hücre bölünmesinde de önemli rol oynar — erken gebelikte kritik süreçler.",
-          "dosage": "Önerilen: Kadınlar için günlük 8 mg. Çoğu prenatal vitamin yeterli çinko içerir."
+          "dosage": "Önerilen: Kadınlar için günlük 8 mg. Çoğu hamilelik öncesi besin öğesi yeterli çinko içerir."
         },
         "vitaminB12": {
-          "title": "B12 Vitamini",
+          "title": "B12 besin öğesi",
           "description": "B12, DNA sentezi ve sinir sistemi gelişimini desteklemek için folatla birlikte çalışır. Eksiklik vejetaryenler ve veganlarda daha yaygındır. Düşük B12 seviyeleri tekrarlayan düşük ve nöral tüp defektleriyle ilişkilidir.",
-          "dosage": "Önerilen: Günlük 2,4 µg. Veganlar takviye almalıdır çünkü B12 esas olarak hayvansal ürünlerde bulunur."
+          "dosage": "Önerilen: Günlük 2,4 µg. Veganlar beslenme desteği almalıdır çünkü B12 esas olarak hayvansal ürünlerde bulunur."
         },
         "vitaminC": {
-          "title": "C Vitamini",
-          "description": "C vitamini yumurtaları oksidatif hasardan koruyan güçlü bir antioksidandır. Ayrıca demir emilimini artırır ve bağışıklık fonksiyonunu destekler.",
+          "title": "C besin öğesi",
+          "description": "C besin öğesi yumurtaları oksidatif hasardan koruyan güçlü bir antioksidandır. Ayrıca demir emilimini artırır ve bağışıklık fonksiyonunu destekler.",
           "dosage": "Önerilen: Günlük 75-90 mg. Narenciye, çilek türleri ve biberden kolayca elde edilir."
         },
         "vitaminE": {
-          "title": "E Vitamini",
-          "description": "E vitamini implantasyon için önemli olan endometriyal tabaka kalınlığını ve kalitesini destekler. Ayrıca hücre zarlarını oksidatif stresten korur.",
+          "title": "E besin öğesi",
+          "description": "E besin öğesi implantasyon için önemli olan endometriyal tabaka kalınlığını ve kalitesini destekler. Ayrıca hücre zarlarını oksidatif stresten korur.",
           "dosage": "Önerilen: Günlük 15 mg (22 IU). Fındık, tohum ve bitkisel yağlarda bulunur."
         },
         "coq10": {
           "title": "CoQ10 (Koenzim Q10)",
-          "description": "CoQ10, yumurtalardaki mitokondri fonksiyonunu destekleyen bir antioksidandır. Yumurta kalitesi yaşla birlikte doğal olarak azaldığından, CoQ10 takviyesi hücresel enerji üretimini sürdürmeye yardımcı olabilir. Özellikle 35 yaş üstü kadınlar için umut verici.",
+          "description": "CoQ10, yumurtalardaki mitokondri fonksiyonunu destekleyen bir antioksidandır. Yumurta kalitesi yaşla birlikte doğal olarak azaldığından, CoQ10 beslenme desteği hücresel enerji üretimini sürdürmeye yardımcı olabilir. Özellikle 35 yaş üstü kadınlar için umut verici.",
           "dosage": "Yaygın doz: Günlük 100-600 mg. Ubiquinol formu daha iyi emilir. Doktorunuza danışın."
         },
         "probiotics": {

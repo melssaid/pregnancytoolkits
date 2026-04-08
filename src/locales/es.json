@@ -427,9 +427,9 @@
       "title": "Guía de Nutrición",
       "description": "Guía completa de nutrición esencial para tu viaje.",
       "nutritionTab": "Nutrición",
-      "supplementsTab": "Suplementos",
+      "supplementsTab": "ayuda nutricional",
       "videosTitle": "Videos educativos",
-      "videosSubtitle": "Aprende sobre nutrición y suplementos prenatales"
+      "videosSubtitle": "Aprende sobre nutrición y ayuda nutricional pre-embarazo"
     },
     "twwCompanion": {
       "title": "Compañera de espera",
@@ -4690,8 +4690,8 @@
           "description": "Verifica anemia, infecciones y salud sanguínea general. Identifica deficiencia de hierro que debe tratarse antes del embarazo."
         },
         "pap": {
-          "title": "Citología cervical (Papanicolaou)",
-          "description": "Detecta anomalías cervicales. Es mejor realizarla antes del embarazo para abordar cualquier problema sin la complejidad adicional del embarazo."
+          "title": "Citología corporal (Papanicolaou)",
+          "description": "Detecta anomalías corporales. Es mejor realizarla antes del embarazo para abordar cualquier problema sin la complejidad adicional del embarazo."
         },
         "thyroid": {
           "title": "Prueba de función tiroidea (TSH)",
@@ -4723,7 +4723,7 @@
         },
         "medications": {
           "title": "Revisión de medicamentos",
-          "description": "Revise todos los medicamentos, suplementos y remedios herbales actuales con su médico. Algunos medicamentos no son seguros durante el embarazo y deben organizarse alternativas con anticipación."
+          "description": "Revise todos los medicamentos, ayuda nutricional y remedios herbales actuales con su médico. Algunos medicamentos no son seguros durante el embarazo y deben organizarse alternativas con anticipación."
         },
         "vaccinations": {
           "title": "Revisión de vacunas",
@@ -4737,7 +4737,7 @@
         "academy": "Academia de fertilidad",
         "academyDesc": "Educación integral en fertilidad",
         "nutrition": "Guía de nutrición",
-        "nutritionDesc": "Nutrición y suplementos previos a la concepción"
+        "nutritionDesc": "Nutrición y ayuda nutricional previos a la concepción"
       }
     },
     "preconceptionNutrition": {
@@ -4796,56 +4796,56 @@
       "categoriesCount": "{{count}} categorías nutricionales"
     },
     "prenatalVitamins": {
-      "supplementsCount": "Suplementos {{count}} para revisar",
+      "supplementsCount": "ayuda nutricional {{count}} para revisar",
       "vitamins": {
         "folicAcid": {
-          "title": "Ácido fólico (Vitamina B9)",
-          "description": "El suplemento más importante antes del embarazo. El ácido fólico reduce significativamente el riesgo de defectos del tubo neural (espina bífida, anencefalia). Comience al menos 1-3 meses antes de intentar concebir.",
+          "title": "Ácido fólico (nutriente B9)",
+          "description": "El ayuda nutricional más importante antes del embarazo. El ácido fólico reduce significativamente el riesgo de defectos del tubo neural (espina bífida, anencefalia). Comience al menos 1-3 meses antes de intentar concebir.",
           "dosage": "Recomendado: 400-800 µg diarios. Algunas mujeres pueden necesitar 4-5 mg — consulte a su médico."
         },
         "iron": {
           "title": "Hierro",
           "description": "Los requisitos de hierro aumentan drásticamente durante el embarazo (de 18 mg a 27 mg diarios). Acumular reservas de hierro antes de la concepción ayuda a prevenir la anemia por deficiencia de hierro.",
-          "dosage": "Recomendado: 18 mg diarios antes del embarazo. Tomar con vitamina C para mejorar la absorción. Evitar con calcio o té."
+          "dosage": "Recomendado: 18 mg diarios antes del embarazo. Tomar con nutriente C para mejorar la absorción. Evitar con calcio o té."
         },
         "vitaminD": {
-          "title": "Vitamina D",
-          "description": "La vitamina D apoya la función inmune, la absorción de calcio y la salud reproductiva. Su deficiencia se vincula con complicaciones del embarazo incluyendo diabetes gestacional y preeclampsia.",
+          "title": "nutriente D",
+          "description": "La nutriente D apoya la función inmune, la absorción de calcio y la salud reproductiva. Su deficiencia se vincula con complicaciones del embarazo incluyendo diabetes gestacional y conciencia de bienestar.",
           "dosage": "Recomendado: 600-2000 UI diarias. Su médico puede analizar sus niveles y recomendar una dosis mayor si hay deficiencia."
         },
         "omega3DHA": {
           "title": "Omega-3 DHA",
           "description": "El DHA es crucial para el desarrollo cerebral y retiniano del feto. Comenzar la suplementación antes del embarazo asegura reservas adecuadas desde las primeras etapas del desarrollo embrionario.",
-          "dosage": "Recomendado: 200-300 mg de DHA diarios. Elija suplementos analizados para mercurio y contaminantes."
+          "dosage": "Recomendado: 200-300 mg de DHA diarios. Elija ayuda nutricional analizados para mercurio y contaminantes."
         },
         "calcium": {
           "title": "Calcio",
           "description": "Si la ingesta de calcio de la madre es insuficiente durante el embarazo, el bebé extraerá calcio de sus huesos. Crear reservas sólidas de calcio antes del embarazo protege la salud ósea materna.",
-          "dosage": "Recomendado: 1000 mg diarios de alimentos y suplementos combinados. Se absorbe mejor en dosis de 500 mg o menos."
+          "dosage": "Recomendado: 1000 mg diarios de alimentos y ayuda nutricional combinados. Se absorbe mejor en dosis de 500 mg o menos."
         },
         "iodine": {
           "title": "Yodo",
           "description": "El yodo es esencial para la función tiroidea, que afecta directamente la fertilidad y el desarrollo cerebral del bebé. La deficiencia de yodo es la principal causa prevenible de discapacidad intelectual a nivel mundial.",
-          "dosage": "Recomendado: 150 µg diarios antes del embarazo, 220 µg durante el embarazo. Verifique que su vitamina prenatal incluya yodo."
+          "dosage": "Recomendado: 150 µg diarios antes del embarazo, 220 µg durante el embarazo. Verifique que su nutriente pre-embarazo incluya yodo."
         },
         "zinc": {
           "title": "Zinc",
           "description": "El zinc apoya la calidad de los óvulos, el equilibrio hormonal y la función inmune. También juega un papel clave en la síntesis de ADN y la división celular.",
-          "dosage": "Recomendado: 8 mg diarios para mujeres. La mayoría de las vitaminas prenatales contienen zinc suficiente."
+          "dosage": "Recomendado: 8 mg diarios para mujeres. La mayoría de las nutrientes pre-embarazo contienen zinc suficiente."
         },
         "vitaminB12": {
-          "title": "Vitamina B12",
+          "title": "nutriente B12",
           "description": "La B12 trabaja con el folato para apoyar la síntesis de ADN y el desarrollo del sistema nervioso. La deficiencia es más común en vegetarianos y veganos.",
           "dosage": "Recomendado: 2,4 µg diarios. Los veganos deben suplementar ya que la B12 se encuentra principalmente en productos animales."
         },
         "vitaminC": {
-          "title": "Vitamina C",
-          "description": "La vitamina C es un poderoso antioxidante que protege los óvulos del daño oxidativo. También mejora la absorción de hierro y apoya la función inmune.",
+          "title": "nutriente C",
+          "description": "La nutriente C es un poderoso antioxidante que protege los óvulos del daño oxidativo. También mejora la absorción de hierro y apoya la función inmune.",
           "dosage": "Recomendado: 75-90 mg diarios. Fácilmente obtenida de cítricos, bayas y pimientos."
         },
         "vitaminE": {
-          "title": "Vitamina E",
-          "description": "La vitamina E apoya el grosor y calidad del revestimiento uterino, importante para la implantación. También protege las membranas celulares del estrés oxidativo.",
+          "title": "nutriente E",
+          "description": "La nutriente E apoya el grosor y calidad del revestimiento uterino, importante para la implantación. También protege las membranas celulares del estrés oxidativo.",
           "dosage": "Recomendado: 15 mg (22 UI) diarios. Se encuentra en frutos secos, semillas y aceites vegetales."
         },
         "coq10": {

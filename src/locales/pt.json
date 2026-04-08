@@ -427,9 +427,9 @@
       "title": "Guia de Nutrição",
       "description": "Guia completo de nutrição essencial para sua jornada.",
       "nutritionTab": "Nutrição",
-      "supplementsTab": "Suplementos",
+      "supplementsTab": "ajuda nutricional",
       "videosTitle": "Vídeos educativos",
-      "videosSubtitle": "Saiba mais sobre nutrição e suplementos pré-natais"
+      "videosSubtitle": "Saiba mais sobre nutrição e ajuda nutricional pré-natais"
     },
     "twwCompanion": {
       "title": "Companheira de espera",
@@ -4690,7 +4690,7 @@
           "description": "Verifica anemia, infeções e saúde sanguínea geral. Identifica deficiência de ferro que deve ser tratada antes da gravidez."
         },
         "pap": {
-          "title": "Citologia cervical (Papanicolau)",
+          "title": "Citologia corporal (Papanicolau)",
           "description": "Rastreia anomalias cervicais. É melhor ser feita antes da gravidez para tratar quaisquer problemas sem a complexidade adicional da gravidez."
         },
         "thyroid": {
@@ -4723,7 +4723,7 @@
         },
         "medications": {
           "title": "Revisão de medicamentos",
-          "description": "Reveja todos os medicamentos, suplementos e remédios à base de plantas atuais com o seu médico. Alguns medicamentos não são seguros durante a gravidez."
+          "description": "Reveja todos os medicamentos, ajuda nutricional e remédios à base de plantas atuais com o seu médico. Alguns medicamentos não são seguros durante a gravidez."
         },
         "vaccinations": {
           "title": "Verificação de vacinação",
@@ -4737,7 +4737,7 @@
         "academy": "Academia de Fertilidade",
         "academyDesc": "Educação abrangente sobre fertilidade",
         "nutrition": "Guia de nutrição",
-        "nutritionDesc": "Nutrição e suplementos pré-concepção"
+        "nutritionDesc": "Nutrição e ajuda nutricional pré-concepção"
       }
     },
     "preconceptionNutrition": {
@@ -4796,56 +4796,56 @@
       "categoriesCount": "Categorias de nutrição {{count}}"
     },
     "prenatalVitamins": {
-      "supplementsCount": "Suplementos {{count}} para revisar",
+      "supplementsCount": "ajuda nutricional {{count}} para revisar",
       "vitamins": {
         "folicAcid": {
-          "title": "Ácido fólico (Vitamina B9)",
-          "description": "O suplemento mais importante antes da gravidez. O ácido fólico reduz significativamente o risco de defeitos do tubo neural (espinha bífida, anencefalia). Comece pelo menos 1-3 meses antes de tentar conceber.",
+          "title": "Ácido fólico (nutriente B9)",
+          "description": "O ajuda nutricional mais importante antes da gravidez. O ácido fólico reduz significativamente o risco de defeitos do tubo neural (espinha bífida, anencefalia). Comece pelo menos 1-3 meses antes de tentar conceber.",
           "dosage": "Recomendado: 400-800 µg diários. Algumas mulheres podem precisar de 4-5 mg — consulte o seu médico."
         },
         "iron": {
           "title": "Ferro",
           "description": "As necessidades de ferro aumentam drasticamente durante a gravidez (de 18 mg para 27 mg diários). Criar reservas de ferro antes da conceção ajuda a prevenir a anemia por deficiência de ferro.",
-          "dosage": "Recomendado: 18 mg diários antes da gravidez. Tomar com vitamina C para melhorar a absorção. Evitar com cálcio ou chá."
+          "dosage": "Recomendado: 18 mg diários antes da gravidez. Tomar com nutriente C para melhorar a absorção. Evitar com cálcio ou chá."
         },
         "vitaminD": {
-          "title": "Vitamina D",
-          "description": "A vitamina D apoia a função imunitária, a absorção de cálcio e a saúde reprodutiva. A sua deficiência está ligada a complicações da gravidez incluindo diabetes gestacional e pré-eclâmpsia.",
+          "title": "nutriente D",
+          "description": "A nutriente D apoia a função imunitária, a absorção de cálcio e a saúde reprodutiva. A sua deficiência está ligada a complicações da gravidez incluindo diabetes gestacional e pré-eclâmpsia.",
           "dosage": "Recomendado: 600-2000 UI diárias. O seu médico pode testar os seus níveis e recomendar dose mais alta se houver deficiência."
         },
         "omega3DHA": {
           "title": "Ómega-3 DHA",
           "description": "O DHA é crucial para o desenvolvimento cerebral e retiniano do feto. Começar a suplementação antes da gravidez garante reservas adequadas desde as primeiras fases do desenvolvimento embrionário.",
-          "dosage": "Recomendado: 200-300 mg de DHA diários. Escolha suplementos testados para mercúrio e contaminantes."
+          "dosage": "Recomendado: 200-300 mg de DHA diários. Escolha ajuda nutricional testados para mercúrio e contaminantes."
         },
         "calcium": {
           "title": "Cálcio",
           "description": "Se a ingestão de cálcio da mãe for insuficiente durante a gravidez, o bebé retirará cálcio dos seus ossos. Criar reservas sólidas de cálcio antes da gravidez protege a saúde óssea materna.",
-          "dosage": "Recomendado: 1000 mg diários de alimentos e suplementos combinados. Melhor absorvido em doses de 500 mg ou menos."
+          "dosage": "Recomendado: 1000 mg diários de alimentos e ajuda nutricional combinados. Melhor absorvido em doses de 500 mg ou menos."
         },
         "iodine": {
           "title": "Iodo",
           "description": "O iodo é essencial para a função tiroideia, que afeta diretamente a fertilidade e o desenvolvimento cerebral do bebé. A deficiência de iodo é a principal causa evitável de deficiência intelectual no mundo.",
-          "dosage": "Recomendado: 150 µg diários antes da gravidez, 220 µg durante a gravidez. Verifique se a sua vitamina pré-natal inclui iodo."
+          "dosage": "Recomendado: 150 µg diários antes da gravidez, 220 µg durante a gravidez. Verifique se a sua nutriente pré-natal inclui iodo."
         },
         "zinc": {
           "title": "Zinco",
           "description": "O zinco apoia a qualidade dos óvulos, o equilíbrio hormonal e a função imunitária. Também desempenha um papel fundamental na síntese de ADN e divisão celular.",
-          "dosage": "Recomendado: 8 mg diários para mulheres. A maioria das vitaminas pré-natais contém zinco suficiente."
+          "dosage": "Recomendado: 8 mg diários para mulheres. A maioria das nutrientes pré-natais contém zinco suficiente."
         },
         "vitaminB12": {
-          "title": "Vitamina B12",
+          "title": "nutriente B12",
           "description": "A B12 trabalha com o folato para apoiar a síntese de ADN e o desenvolvimento do sistema nervoso. A deficiência é mais comum em vegetarianos e veganos.",
           "dosage": "Recomendado: 2,4 µg diários. Os veganos devem suplementar pois a B12 encontra-se principalmente em produtos animais."
         },
         "vitaminC": {
-          "title": "Vitamina C",
-          "description": "A vitamina C é um poderoso antioxidante que protege os óvulos de danos oxidativos. Também melhora a absorção de ferro e apoia a função imunitária.",
+          "title": "nutriente C",
+          "description": "A nutriente C é um poderoso antioxidante que protege os óvulos de danos oxidativos. Também melhora a absorção de ferro e apoia a função imunitária.",
           "dosage": "Recomendado: 75-90 mg diários. Facilmente obtida de citrinos, bagas e pimentos."
         },
         "vitaminE": {
-          "title": "Vitamina E",
-          "description": "A vitamina E apoia a espessura e qualidade do revestimento uterino, importante para a implantação. Também protege as membranas celulares do stress oxidativo.",
+          "title": "nutriente E",
+          "description": "A nutriente E apoia a espessura e qualidade do revestimento uterino, importante para a implantação. Também protege as membranas celulares do stress oxidativo.",
           "dosage": "Recomendado: 15 mg (22 UI) diários. Encontra-se em frutos secos, sementes e óleos vegetais."
         },
         "coq10": {

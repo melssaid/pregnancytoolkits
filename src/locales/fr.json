@@ -423,9 +423,9 @@
       "title": "Guide Nutritionnel",
       "description": "Guide complet de nutrition pour votre parcours.",
       "nutritionTab": "Nutrition",
-      "supplementsTab": "Compléments",
+      "supplementsTab": "aide nutritionnels",
       "videosTitle": "Vidéos éducatives",
-      "videosSubtitle": "Découvrez la nutrition et les compléments prénataux"
+      "videosSubtitle": "Découvrez la nutrition et les aide nutritionnels prénataux"
     },
     "twwCompanion": {
       "title": "Compagne d'attente",
@@ -4717,7 +4717,7 @@
         },
         "medications": {
           "title": "Révision des médicaments",
-          "description": "Passez en revue tous les médicaments, suppléments et remèdes à base de plantes actuels avec votre médecin. Certains médicaments ne sont pas sûrs pendant la grossesse."
+          "description": "Passez en revue tous les médicaments, aide nutritionnels et remèdes à base de plantes actuels avec votre médecin. Certains médicaments ne sont pas sûrs pendant la grossesse."
         },
         "vaccinations": {
           "title": "Vérification des vaccinations",
@@ -4731,7 +4731,7 @@
         "academy": "Académie de fertilité",
         "academyDesc": "Éducation complète sur la fécondité",
         "nutrition": "Guide nutritionnel",
-        "nutritionDesc": "Nutrition et suppléments avant la conception"
+        "nutritionDesc": "Nutrition et aide nutritionnels avant la conception"
       }
     },
     "preconceptionNutrition": {
@@ -4790,56 +4790,56 @@
       "categoriesCount": "Catégories nutritionnelles {{count}}"
     },
     "prenatalVitamins": {
-      "supplementsCount": "Suppléments {{count}} à revoir",
+      "supplementsCount": "aide nutritionnels {{count}} à revoir",
       "vitamins": {
         "folicAcid": {
-          "title": "Acide folique (Vitamine B9)",
-          "description": "Le complément le plus important avant la grossesse. L'acide folique réduit significativement le risque de malformations du tube neural (spina bifida, anencéphalie). Commencez au moins 1 à 3 mois avant d'essayer de concevoir.",
+          "title": "Acide folique (nutriment B9)",
+          "description": "Le aide nutritionnel le plus important avant la grossesse. L'acide folique réduit significativement le risque de malformations du tube neural (spina bifida, anencéphalie). Commencez au moins 1 à 3 mois avant d'essayer de concevoir.",
           "dosage": "Recommandé : 400–800 µg par jour. Certaines femmes peuvent avoir besoin de 4–5 mg — consultez votre médecin."
         },
         "iron": {
           "title": "Fer",
           "description": "Les besoins en fer augmentent considérablement pendant la grossesse (de 18 mg à 27 mg par jour). Constituer des réserves de fer avant la conception aide à prévenir l'anémie ferriprive.",
-          "dosage": "Recommandé : 18 mg par jour avant la grossesse. Prendre avec de la vitamine C pour améliorer l'absorption. Éviter avec le calcium ou le thé."
+          "dosage": "Recommandé : 18 mg par jour avant la grossesse. Prendre avec de la nutriment C pour améliorer l'absorption. Éviter avec le calcium ou le thé."
         },
         "vitaminD": {
-          "title": "Vitamine D",
-          "description": "La vitamine D soutient la fonction immunitaire, l'absorption du calcium et la santé reproductive. Sa carence est liée à des complications de grossesse incluant le diabète gestationnel et la prééclampsie.",
+          "title": "nutriment D",
+          "description": "La nutriment D soutient la fonction immunitaire, l'absorption du calcium et la santé reproductive. Sa carence est liée à des complications de grossesse incluant le diabète gestationnel et la prééclampsie.",
           "dosage": "Recommandé : 600–2000 UI par jour. Votre médecin peut tester vos niveaux et recommander une dose plus élevée en cas de carence."
         },
         "omega3DHA": {
           "title": "Oméga-3 DHA",
           "description": "Le DHA est crucial pour le développement cérébral et rétinien du fœtus. Commencer la supplémentation avant la grossesse assure des réserves adéquates dès les premiers stades du développement embryonnaire.",
-          "dosage": "Recommandé : 200–300 mg de DHA par jour. Choisissez des compléments testés pour le mercure et les contaminants."
+          "dosage": "Recommandé : 200–300 mg de DHA par jour. Choisissez des aide nutritionnels testés pour le mercure et les contaminants."
         },
         "calcium": {
           "title": "Calcium",
           "description": "Si l'apport en calcium de la mère est insuffisant pendant la grossesse, le bébé puisera le calcium dans ses os. Constituer de solides réserves de calcium avant la grossesse protège la santé osseuse maternelle.",
-          "dosage": "Recommandé : 1000 mg par jour alimentation et compléments combinés. Mieux absorbé en doses de 500 mg ou moins."
+          "dosage": "Recommandé : 1000 mg par jour alimentation et aide nutritionnels combinés. Mieux absorbé en doses de 500 mg ou moins."
         },
         "iodine": {
           "title": "Iode",
           "description": "L'iode est essentiel à la fonction thyroïdienne, qui affecte directement la fertilité et le développement cérébral du fœtus. La carence en iode est la principale cause évitable de handicap intellectuel dans le monde.",
-          "dosage": "Recommandé : 150 µg par jour avant la grossesse, 220 µg pendant la grossesse. Vérifiez que votre vitamine prénatale contient de l'iode."
+          "dosage": "Recommandé : 150 µg par jour avant la grossesse, 220 µg pendant la grossesse. Vérifiez que votre nutriment pré-grossesse contient de l'iode."
         },
         "zinc": {
           "title": "Zinc",
           "description": "Le zinc soutient la qualité des ovocytes, l'équilibre hormonal et la fonction immunitaire. Il joue aussi un rôle clé dans la synthèse de l'ADN et la division cellulaire.",
-          "dosage": "Recommandé : 8 mg par jour pour les femmes. La plupart des vitamines prénatales contiennent suffisamment de zinc."
+          "dosage": "Recommandé : 8 mg par jour pour les femmes. La plupart des nutriments pré-grossesse contiennent suffisamment de zinc."
         },
         "vitaminB12": {
-          "title": "Vitamine B12",
+          "title": "nutriment B12",
           "description": "La B12 travaille avec le folate pour soutenir la synthèse de l'ADN et le développement du système nerveux. La carence est plus fréquente chez les végétariens et les véganes.",
           "dosage": "Recommandé : 2,4 µg par jour. Les véganes doivent se supplémenter car la B12 se trouve principalement dans les produits animaux."
         },
         "vitaminC": {
-          "title": "Vitamine C",
-          "description": "La vitamine C est un puissant antioxydant qui protège les ovocytes des dommages oxydatifs. Elle améliore aussi l'absorption du fer et soutient la fonction immunitaire.",
+          "title": "nutriment C",
+          "description": "La nutriment C est un puissant antioxydant qui protège les ovocytes des dommages oxydatifs. Elle améliore aussi l'absorption du fer et soutient la fonction immunitaire.",
           "dosage": "Recommandé : 75–90 mg par jour. Facilement obtenue à partir d'agrumes, de baies et de poivrons."
         },
         "vitaminE": {
-          "title": "Vitamine E",
-          "description": "La vitamine E soutient l'épaisseur et la qualité de la muqueuse utérine, importante pour l'implantation. Elle protège aussi les membranes cellulaires du stress oxydatif.",
+          "title": "nutriment E",
+          "description": "La nutriment E soutient l'épaisseur et la qualité de la muqueuse utérine, importante pour l'attachement précoce. Elle protège aussi les membranes cellulaires du stress oxydatif.",
           "dosage": "Recommandé : 15 mg (22 UI) par jour. Présente dans les noix, graines et huiles végétales."
         },
         "coq10": {
