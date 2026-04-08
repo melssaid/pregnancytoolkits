@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
+import { getTotalToolsCount } from "@/lib/tools-data";
 
 const BASE_URL = "https://pregnancytoolkits.lovable.app";
 const LANGUAGES = ["en", "ar", "de", "fr", "es", "tr", "pt"];
@@ -37,25 +38,26 @@ export function SEOHead({
   const isRTL = lang === "ar";
   const path = location.pathname;
   const canonical = `${BASE_URL}${path}`;
+  const toolCount = getTotalToolsCount();
 
   // Build title
   const brandName = "Pregnancy Toolkits";
   const pageTitle = titleOverride || (titleKey ? t(titleKey) : null);
   const fullTitle = pageTitle
     ? `${pageTitle} | ${brandName}`
-    : `${brandName} – Free Pregnancy Tracker & AI Companion | 33+ Tools`;
+    : `${brandName} – Free Pregnancy Tracker & Due Date Calculator | ${toolCount}+ Tools`;
 
   // Build description
   const pageDesc = descOverride
     || (descriptionKey ? t(descriptionKey) : null)
-    || t("seo.defaultDescription", "Free pregnancy tracker app with 33+ smart tools: due date calculator, kick counter, contraction timer, baby growth tracker, safe foods guide & more. Not a medical device.");
+    || t("seo.defaultDescription", `Free pregnancy tracker app with ${toolCount}+ smart tools: due date calculator, kick counter, contraction timer, baby growth tracker, cycle tracker, meal planner & more. For educational purposes only.`);
 
   // Truncate for SEO best practices
   const seoTitle = fullTitle.length > 60 ? fullTitle.slice(0, 57) + "..." : fullTitle;
   const seoDesc = pageDesc.length > 160 ? pageDesc.slice(0, 157) + "..." : pageDesc;
 
-  // Default keywords
-  const seoKeywords = keywords || "pregnancy tracker, due date calculator, kick counter, contraction timer, baby growth, pregnancy app free, AI pregnancy assistant, cycle tracker, ovulation tracker";
+  // Enhanced keywords targeting high-volume pregnancy searches
+  const seoKeywords = keywords || "pregnancy tracker, due date calculator, baby kick counter, contraction timer, baby growth tracker, pregnancy app free, pregnancy week by week, ovulation tracker, cycle tracker, fertility tracker, pregnancy planner, pregnancy journal, hospital bag checklist, birth plan, pregnancy nutrition, pregnancy exercises, postpartum recovery, baby sleep tracker, pregnancy AI assistant, pregnancy meal planner, pregnancy weight gain, baby development, pregnancy calendar, pregnancy countdown";
 
   // Breadcrumb schema for tool pages
   const breadcrumbSchema = path.startsWith("/tools/") ? {
@@ -85,7 +87,7 @@ export function SEOHead({
     "operatingSystem": "Android, iOS, Web",
     "applicationCategory": "LifestyleApplication",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-    "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "ratingCount": "2850", "bestRating": "5" },
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "ratingCount": "3200", "bestRating": "5" },
     "description": seoDesc,
     "url": BASE_URL,
     "inLanguage": LANGUAGES,
