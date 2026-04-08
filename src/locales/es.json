@@ -8290,5 +8290,25 @@
       "5": "Descansa cuando tu cuerpo te lo pida — ¡está construyendo una vida! 💤",
       "6": "Los ejercicios de Kegel fortalecen el suelo pélvico — intenta 3 series hoy 💪"
     }
+  },
+  "seoArticle": {
+    "pregnancyTitle": "Tu guía completa para el seguimiento del embarazo semana a semana",
+    "pregnancyIntro": "El embarazo es un viaje único lleno de cambios físicos y emocionales. Ya seas madre primeriza o tengas experiencia previa, seguir el desarrollo de tu bebé y entender lo que ocurre en tu cuerpo cada semana te da confianza y tranquilidad. Nuestra app ofrece herramientas inteligentes para acompañarte en cada etapa.",
+    "firstTrimesterTitle": "Primer trimestre: Semanas 1-12",
+    "firstTrimesterContent": "Durante las primeras semanas, tu cuerpo se adapta a importantes cambios hormonales. Puedes experimentar náuseas, fatiga y sensibilidad a los olores. En la semana 6, el corazón de tu bebé comienza a latir. Toma ácido fólico, evita alimentos no seguros y usa el planificador inteligente de comidas para mantener una nutrición equilibrada.",
+    "secondTrimesterTitle": "Segundo trimestre: Semanas 13-26",
+    "secondTrimesterContent": "Conocido como el trimestre de oro, los síntomas mejoran y empiezas a sentir los movimientos de tu bebé alrededor de la semana 20. Tu bebé crece rápidamente y empieza a escuchar tu voz. Usa el diario de movimientos para registrar la actividad y sigue el crecimiento semanal con comparaciones de frutas.",
+    "thirdTrimesterTitle": "Tercer trimestre: Semanas 27-40",
+    "thirdTrimesterContent": "A medida que se acerca tu fecha de parto, la preparación es clave. Prepara tu bolsa de hospital con la lista inteligente y crea un plan de parto personalizado. Monitorea los movimientos regularmente y usa el temporizador de contracciones cuando notes contracciones regulares.",
+    "fertilityTitle": "Guía de planificación de fertilidad y concepción",
+    "fertilityContent": "Planificar un embarazo comienza con entender tu ciclo menstrual y conocer tus días fértiles. El rastreador de ciclos te ayuda a identificar tu fecha de ovulación y tu ventana de fertilidad óptima. Una dieta equilibrada, sueño adecuado y reducción del estrés son factores esenciales para mejorar tus posibilidades de concebir.",
+    "fertilityTips": "Consejos para mejorar la fertilidad: mantén un peso saludable, consume alimentos ricos en folato, hierro y zinc, haz ejercicio moderado, evita el tabaco y la cafeína excesiva, y duerme lo suficiente.",
+    "birthTitle": "Preparación para el parto: todo lo que necesitas saber",
+    "birthContent": "El parto requiere preparación física y mental. Aprende sobre los signos del trabajo de parto como contracciones regulares y rotura de aguas. Usa el generador inteligente de plan de parto para crear un plan completo con tus preferencias para el manejo del dolor y la lactancia.",
+    "birthPreparation": "Prepara tu bolsa de hospital antes de la semana 36. Debe incluir: ropa cómoda, artículos de cuidado personal, documentos importantes, snacks saludables y un cargador de teléfono. No olvides preparar la silla de auto para el bebé.",
+    "postpartumTitle": "Guía posparto y cuidado del recién nacido",
+    "postpartumContent": "El período posparto está lleno de desafíos y alegría. Cuida tu salud mental y física. Duerme cuando el bebé duerma, pide ayuda a la familia y mantén una buena alimentación. Usa la guía de relajación para consejos prácticos de recuperación.",
+    "wellnessTips": "Consejos diarios de bienestar: bebe 8-10 vasos de agua al día, come comidas pequeñas y frecuentes ricas en proteínas y fibra, camina 30 minutos al día, toma descansos regulares y escribe tus sentimientos en tu diario.",
+    "appBenefits": "Por qué elegir nuestro compañero inteligente: más de 33 herramientas gratuitas, disponible en 7 idiomas, privacidad total, insights con IA, actualizaciones personalizadas y sin registro necesario."
   }
 }
