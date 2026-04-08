@@ -662,7 +662,7 @@
   "layout": {
     "trustBar": {
       "scienceBacked": "Bilimsel Temelli",
-      "aiTools": "32 AI Araç",
+      "aiTools": "{{count}}+ AI Araç",
       "premium": "Verilerin sana ait",
       "launchBanner": "🎁 Lansman Teklifi — 10 gün ücretsiz"
     },

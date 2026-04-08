@@ -662,7 +662,7 @@
   "layout": {
     "trustBar": {
       "scienceBacked": "Base Científica",
-      "aiTools": "32 Herramientas IA",
+      "aiTools": "{{count}}+ Herramientas IA",
       "premium": "Tus datos son tuyos",
       "launchBanner": "🎁 Oferta de lanzamiento — 10 días gratis"
     },
