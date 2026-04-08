@@ -438,15 +438,10 @@ function BillingDiagnosticsPanel({ isAr }: { isAr: boolean }) {
       <div className="flex flex-col items-center gap-1 mt-4">
         <button
           onClick={() => { setVisible(true); runDiag(); }}
+          onContextMenu={(e) => { e.preventDefault(); setVisible(true); runDiag(true); }}
           className="text-[10px] text-muted-foreground/40 underline"
         >
           {isAr ? "تشخيص حالة الدفع" : "Payment Diagnostics"}
-        </button>
-        <button
-          onClick={() => { setVisible(true); runDiag(true); }}
-          className="text-[9px] text-primary/50 underline"
-        >
-          {isAr ? "🔄 تشخيص بدون كاش (Force Refresh)" : "🔄 Force Refresh Diagnostics"}
         </button>
       </div>
     );
