@@ -58,7 +58,7 @@ export default function LandingEN() {
     "name": "Pregnancy Toolkits",
     "url": "https://pregnancytoolkits.lovable.app/en",
     "description": "Free pregnancy tracker with 33+ smart tools: due date calculator, kick counter, contraction timer, baby growth tracker, and more.",
-    "applicationCategory": "HealthApplication",
+    "applicationCategory": "LifestyleApplication",
     "operatingSystem": "Web",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
     "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "ratingCount": "2450" },
