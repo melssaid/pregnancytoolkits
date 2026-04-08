@@ -20,7 +20,7 @@ const tools = [
 ];
 
 const benefits = [
-  "23+ free smart pregnancy and fertility tools",
+  "33+ free smart pregnancy and fertility tools",
   "Week-by-week baby development guide",
   "Evidence-based health information from medical sources",
   "Available in 7 languages including English, Spanish, French, and German",
@@ -31,7 +31,7 @@ const benefits = [
 const faqs = [
   {
     q: "Is this pregnancy tracker app really free?",
-    a: "Yes, Pregnancy Toolkits is completely free to use. All 23+ tools including the due date calculator, kick counter, and AI assistant are available at no cost with no hidden fees."
+    a: "Yes, Pregnancy Toolkits is completely free to use. All 33+ tools including the due date calculator, kick counter, and AI assistant are available at no cost with no hidden fees."
   },
   {
     q: "How accurate is the due date calculator?",
@@ -57,7 +57,7 @@ export default function LandingEN() {
     "@type": "WebApplication",
     "name": "Pregnancy Toolkits",
     "url": "https://pregnancytoolkits.lovable.app/en",
-    "description": "Free pregnancy tracker with 23+ smart tools: due date calculator, kick counter, contraction timer, baby growth tracker, and more.",
+    "description": "Free pregnancy tracker with 33+ smart tools: due date calculator, kick counter, contraction timer, baby growth tracker, and more.",
     "applicationCategory": "HealthApplication",
     "operatingSystem": "Web",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -77,7 +77,7 @@ export default function LandingEN() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SEOHead
-        title="Free Pregnancy Tracker App — Due Date Calculator, Kick Counter & 23+ Smart Tools"
+        title="Free Pregnancy Tracker App — Due Date Calculator, Kick Counter & 33+ Smart Tools"
         description="Track your pregnancy week by week with our free app. Due date calculator, baby kick counter, contraction timer, baby development guide, meal planner & more. No signup required."
       />
 
@@ -111,7 +111,7 @@ export default function LandingEN() {
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight text-foreground">
             Your Complete{" "}
             <span className="text-primary">Pregnancy Tracker</span>{" "}
-            with 23+ Smart Tools
+            with 33+ Smart Tools
           </h1>
           
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
@@ -192,7 +192,7 @@ export default function LandingEN() {
         <div className="text-center mt-8">
           <Link to="/">
             <Button variant="outline" className="gap-2">
-              View All 23+ Tools <ArrowRight className="h-4 w-4" />
+              View All 33+ Tools <ArrowRight className="h-4 w-4" />
             </Button>
           </Link>
         </div>
