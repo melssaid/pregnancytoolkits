@@ -669,7 +669,7 @@
   "layout": {
     "trustBar": {
       "scienceBacked": "مبني علمياً",
-      "aiTools": "32 أداة ذكية",
+      "aiTools": "{{count}}+ أداة ذكية",
       "premium": "بياناتكِ ملككِ",
       "launchBanner": "🎁 عرض الإطلاق — 10 أيام مجاناً"
     },

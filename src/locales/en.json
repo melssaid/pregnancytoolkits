@@ -677,7 +677,7 @@
   "layout": {
     "trustBar": {
       "scienceBacked": "Science-Backed",
-      "aiTools": "32 AI Tools",
+      "aiTools": "{{count}}+ AI Tools",
       "premium": "Your Data Stays Yours",
       "launchBanner": "🎁 Launch Offer — 10 Days Free"
     },

@@ -656,7 +656,7 @@
   "layout": {
     "trustBar": {
       "scienceBacked": "Scientifique",
-      "aiTools": "32 Outils IA",
+      "aiTools": "{{count}}+ Outils IA",
       "premium": "Vos données restent privées",
       "launchBanner": "🎁 Offre de lancement — 10 jours gratuits"
     },
