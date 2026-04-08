@@ -9,9 +9,9 @@ jobs:
   cleanup:
     runs-on: ubuntu-latest
     steps:
-      - name: Delete old artifacts (keep latest 4)
+      - name: Delete old artifacts (keep latest 5)
         run: |
-          artifacts=$(gh api repos/${{ github.repository }}/actions/artifacts --paginate -q '.artifacts | sort_by(.created_at) | reverse | .[4:] | .[].id')
+          artifacts=$(gh api repos/${{ github.repository }}/actions/artifacts --paginate -q '.artifacts | sort_by(.created_at) | reverse | .[5:] | .[].id')
           for id in $artifacts; do
             echo "Deleting artifact $id"
             gh api -X DELETE /repos/${{ github.repository }}/actions/artifacts/$id || true
