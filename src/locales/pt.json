@@ -4500,7 +4500,7 @@
         },
         "hormonesRole": {
           "title": "Hormonas-chave da fertilidade",
-          "content": "Várias hormonas desempenham papéis vitais. A FSH estimula o crescimento folicular. O estrogénio prepara o revestimento uterino e promove o muco cervical fértil. O aumento de LH desencadeia a ovulação. A progesterona sustenta a fase lútea. Qualquer desequilíbrio pode afetar a fertilidade."
+          "content": "Várias hormonas desempenham papéis vitais. A FSH estimula o crescimento folicular. O estrogénio prepara o revestimento uterino e promove o muco body fértil. O aumento de LH desencadeia a ovulação. A progesterona sustenta a fase lútea. Qualquer desequilíbrio pode afetar a fertilidade."
         },
         "ageAndFertility": {
           "title": "Idade e fertilidade",
@@ -4508,7 +4508,7 @@
         },
         "lifestyleFactors": {
           "title": "Fatores do estilo de vida",
-          "content": "O estilo de vida influencia consideravelmente a fertilidade. O tabaco reduz a fertilidade em ambos os sexos. O álcool excessivo afeta a qualidade dos óvulos e espermatozoides. O excesso ou défice de peso perturba o equilíbrio hormonal. O stress crónico eleva o cortisol. Uma alimentação saudável, exercício moderado e sono suficiente apoiam a fertilidade."
+          "content": "O estilo de vida influencia consideravelmente a fertilidade. O tabaco reduz a fertilidade em ambos os sexos. O álcool excessivo afeta a qualidade dos óvulos e espermatozoides. O excesso ou défice de peso perturba o equilíbrio natural body. O stress crónico eleva o cortisol. Uma alimentação saudável, exercício moderado e sono suficiente apoiam a fertilidade."
         },
         "commonMyths": {
           "title": "Mitos vs realidades da fertilidade",
@@ -4528,7 +4528,7 @@
         },
         "trackingMethods": {
           "title": "Métodos de rastreamento da fertilidade",
-          "content": "Existem vários métodos: medição da temperatura basal de manhã antes de levantar, observação do muco cervical que se torna transparente e elástico perto da ovulação, testes de ovulação que detetam o aumento de LH, e rastreamento da posição cervical. Combinar vários métodos dá uma imagem mais precisa da janela fértil."
+          "content": "Existem vários métodos: medição da temperatura basal de manhã antes de levantar, observação do muco body que se torna transparente e elástico perto da ovulação, testes de ovulação que detetam o aumento de LH, e rastreamento da posição body. Combinar vários métodos dá uma imagem mais precisa da janela fértil."
         },
         "optimizingTiming": {
           "title": "Otimizar o momento",
@@ -4539,7 +4539,7 @@
           "content": "A janela de implantação é o período em que o revestimento uterino está pronto para receber o embrião, geralmente entre o dia 6 e 10 após a ovulação. O revestimento torna-se mais recetivo. Podem ocorrer cólicas leves ou manchas. A progesterona desempenha um papel essencial nesta preparação."
         },
         "cervicalHealth": {
-          "title": "Saúde cervical e fertilidade",
+          "title": "Saúde body e fertilidade",
           "content": "O colo do útero desempenha um papel central. Produz muco que muda durante o ciclo: seco após a menstruação, cremoso e depois transparente e elástico perto da ovulação, facilitando a passagem dos espermatozoides. Infeções e intervenções anteriores podem afetar a produção de muco."
         },
         "thyroidFertility": {
@@ -4560,7 +4560,7 @@
         },
         "sleepHormones": {
           "title": "Sono e hormonas da fertilidade",
-          "content": "Um bom sono é essencial para o equilíbrio hormonal. A falta de sono aumenta o cortisol e reduz a melatonina que protege os óvulos. Aponte para 7-9 horas por noite. Mantenha horários regulares e evite ecrãs antes de dormir. Um quarto escuro e fresco apoia a produção de melatonina."
+          "content": "Um bom sono é essencial para o equilíbrio natural body. A falta de sono aumenta o cortisol e reduz a melatonina que protege os óvulos. Aponte para 7-9 horas por noite. Mantenha horários regulares e evite ecrãs antes de dormir. Um quarto escuro e fresco apoia a produção de melatonina."
         },
         "exerciseBalance": {
           "title": "Equilíbrio entre exercício e fertilidade",
@@ -4612,8 +4612,8 @@
     "fertilitySigns": {
       "signs": {
         "cervicalMucus": {
-          "title": "Alterações do muco cervical",
-          "description": "Ao aproximar-se a ovulação, o muco cervical torna-se mais transparente, elástico e escorregadio, semelhante à clara de ovo crua. Este tipo facilita o movimento dos espermatozoides. Após a ovulação torna-se espesso e pegajoso. O acompanhamento diário dá um indicador fiável do momento da ovulação.",
+          "title": "Alterações do muco body",
+          "description": "Ao aproximar-se a ovulação, o muco body torna-se mais transparente, elástico e escorregadio, semelhante à clara de ovo crua. Este tipo facilita o movimento dos espermatozoides. Após a ovulação torna-se espesso e pegajoso. O acompanhamento diário dá um indicador fiável do momento da ovulação.",
           "tip": "Verifique o muco antes de urinar limpando com papel higiénico e observe a cor, consistência e elasticidade."
         },
         "basalTemp": {
@@ -4622,7 +4622,7 @@
           "tip": "Use um termómetro basal com precisão de 0,01°C e meça à mesma hora todos os dias antes de qualquer atividade."
         },
         "cervicalPosition": {
-          "title": "Alterações da posição cervical",
+          "title": "Alterações da posição body",
           "description": "O colo do útero muda durante o ciclo. Perto da ovulação torna-se mais alto, macio, aberto e húmido. Depois desce e torna-se mais firme e fechado. O autoexame requer prática mas dá informações valiosas sobre o momento fértil.",
           "tip": "Examine o colo à mesma hora e na mesma posição todos os dias para resultados consistentes."
         },
@@ -4649,7 +4649,7 @@
         "bloating": {
           "title": "Inchaço leve",
           "description": "Pode sentir um ligeiro inchaço à volta da ovulação por retenção de líquidos devida às alterações hormonais. É normal e temporário. Pode acompanhar-se de sensação de peso pélvico e desaparece em um ou dois dias.",
-          "tip": "Beba água suficiente e reduza o sal para aliviar o inchaço hormonal."
+          "tip": "Beba água suficiente e reduza o sal para aliviar o inchaço natural body."
         },
         "lightSpotting": {
           "title": "Spotting de ovulação",
@@ -4658,7 +4658,7 @@
         },
         "heightenedSenses": {
           "title": "Sentidos aguçados",
-          "description": "Pode notar maior sensibilidade olfativa ou gustativa à volta da ovulação pelo aumento de estrogénio. Algumas mulheres tornam-se mais sensíveis a cheiros ou notam sabores mais intensos. Estas alterações sensoriais são sinal do pico hormonal.",
+          "description": "Pode notar maior sensibilidade olfativa ou gustativa à volta da ovulação pelo aumento de estrogénio. Algumas mulheres tornam-se mais sensíveis a cheiros ou notam sabores mais intensos. Estas alterações sensoriais são sinal do pico natural body.",
           "tip": "Preste atenção a alterações nos seus sentidos a meio do ciclo, podem indicar a aproximação da ovulação."
         }
       },
@@ -4889,7 +4889,7 @@
         },
         "sleep": {
           "title": "Sono e fertilidade",
-          "content": "Um bom sono é essencial para o equilíbrio hormonal e gestão do stress. A falta de sono aumenta o cortisol e perturba o ritmo circadiano. Aponte para 7-9 horas num quarto escuro, calmo e fresco. Evite ecrãs uma hora antes de dormir. Horários regulares apoiam a produção de melatonina.",
+          "content": "Um bom sono é essencial para o equilíbrio natural body e gestão do stress. A falta de sono aumenta o cortisol e perturba o ritmo circadiano. Aponte para 7-9 horas num quarto escuro, calmo e fresco. Evite ecrãs uma hora antes de dormir. Horários regulares apoiam a produção de melatonina.",
           "practice": "Crie uma rotina noturna: banho quente, leitura leve e dormir à mesma hora."
         },
         "exercise": {

@@ -4494,7 +4494,7 @@
         },
         "hormonesRole": {
           "title": "Wichtige Fruchtbarkeitshormone",
-          "content": "Mehrere Hormone spielen eine entscheidende Rolle für die Fruchtbarkeit. FSH stimuliert das Follikelwachstum. Östrogen bereitet die Gebärmutterschleimhaut vor und fördert fruchtbaren Zervixschleim. Der LH-Anstieg löst den Eisprung aus. Progesteron unterstützt die Lutealphase und erhält die Gebärmutterschleimhaut. Jedes Ungleichgewicht kann die Fruchtbarkeit beeinträchtigen."
+          "content": "Mehrere Body signal spielen eine entscheidende Rolle für die Fruchtbarkeit. FSH stimuliert das Follikelwachstum. Östrogen bereitet die Gebärmutterschleimhaut vor und fördert fruchtbaren Zervixschleim. Der LH-Anstieg löst den Eisprung aus. Progesteron unterstützt die Lutealphase und erhält die Gebärmutterschleimhaut. Jedes Ungleichgewicht kann die Fruchtbarkeit beeinträchtigen."
         },
         "ageAndFertility": {
           "title": "Alter und Fruchtbarkeit",
@@ -4541,8 +4541,8 @@
           "content": "Schilddrüsenerkrankungen sind häufig und beeinflussen die Fruchtbarkeit direkt. Sowohl Über- als auch Unterfunktion können den Eisprung stören und den Zyklus beeinflussen. Schilddrüsenantikörper können die Einnistung beeinträchtigen. Ein Schilddrüsentest bei Kinderwunsch wird empfohlen. Medikamentöse Behandlung kann die Werte regulieren und die Fruchtbarkeit wiederherstellen."
         },
         "pcosManagement": {
-          "title": "PCOS-Management und Fruchtbarkeit",
-          "content": "Das polyzystische Ovarialsyndrom (PCOS) ist eine der häufigsten Ursachen für Eisprungstörungen. Symptome umfassen unregelmäßige Zyklen, erhöhte Androgene und kleine Zysten an den Eierstöcken. Gewichtsmanagement, gesunde Ernährung und Bewegung verbessern die Symptome. Medikamente wie Metformin und Eisprungstimulation sind unter ärztlicher Aufsicht verfügbar."
+          "title": "hormonal imbalance-Management und Fruchtbarkeit",
+          "content": "Das polyzystische Ovarialsyndrom (hormonal imbalance) ist eine der häufigsten Ursachen für Eisprungstörungen. Symptome umfassen unregelmäßige Zyklen, erhöhte Androgene und kleine Zysten an den Eierstöcken. Gewichtsmanagement, gesunde Ernährung und Bewegung verbessern die Symptome. Medikamente wie Metformin und Eisprungstimulation sind unter ärztlicher Aufsicht verfügbar."
         },
         "endometriosisAwareness": {
           "title": "Endometriose und Fruchtbarkeit",
@@ -4562,7 +4562,7 @@
         },
         "supplementsGuide": {
           "title": "Leitfaden für kluge Nahrungsergänzung",
-          "content": "Nützliche Ergänzungsmittel: Methylfolat, Vitamin D3, CoQ10 für die Eizellenqualität, Omega-3, Zink, Vitamin E und Inositol bei PCOS. Männer profitieren von Zink, Selen und CoQ10. Konsultieren Sie Ihren Arzt vor der Einnahme und prüfen Sie Wechselwirkungen mit anderen Medikamenten."
+          "content": "Nützliche Ergänzungsmittel: Methylfolat, Nutrient D3, CoQ10 für die Eizellenqualität, Omega-3, Zink, Nutrient E und Inositol bei hormonal imbalance. Männer profitieren von Zink, Selen und CoQ10. Konsultieren Sie Ihren Arzt vor der Einnahme und prüfen Sie Wechselwirkungen mit anderen Medikamenten."
         },
         "environmentalToxins": {
           "title": "Umweltgifte und Fruchtbarkeit",
@@ -4590,7 +4590,7 @@
         },
         "assistedReproduction": {
           "title": "Assistierte Reproduktionstechniken",
-          "content": "Assistierte Reproduktion umfasst: intrauterine Insemination (IUI), In-vitro-Fertilisation (IVF) und intrazytoplasmatische Spermieninjektion (ICSI). Die Behandlung beginnt meist mit einfacheren Optionen. Jede Technik hat unterschiedliche Erfolgsraten und Anforderungen. Die Wahl hängt von Diagnose, Alter und Krankengeschichte ab. Psychologische Unterstützung ist wichtig."
+          "content": "Assistierte Reproduktion umfasst: intrauterine Insemination (IUI), In-vitro-Fertilisation (IVF) und intrazytoplasmatische Spermieninjektion (ICSI). Die Behandlung beginnt meist mit einfacheren Optionen. Jede Technik hat unterschiedliche Erfolgsraten und Anforderungen. Die Wahl hängt von evaluation, Alter und Krankengeschichte ab. Psychologische Unterstützung ist wichtig."
         },
         "epigeneticsFertility": {
           "title": "Epigenetik und generationsübergreifende Gesundheit",
@@ -4598,7 +4598,7 @@
         },
         "mindBodyConnection": {
           "title": "Die Verbindung von Geist und Körper",
-          "content": "Geist und Körper sind auf dem Kinderwunschweg tief verbunden. Stress und Angst beeinflussen Hormone und Eisprung. Techniken wie Meditation, Achtsamkeit, positive Visualisierung und Kunsttherapie können die psychische Gesundheit verbessern und die Fruchtbarkeit unterstützen. Das Gleichgewicht zwischen Kinderwunsch und Lebensfreude ist essentiell."
+          "content": "Geist und Körper sind auf dem Kinderwunschweg tief verbunden. Stress und Angst beeinflussen Body signal und Eisprung. Techniken wie Meditation, Achtsamkeit, positive Visualisierung und Kunsttherapie können die psychische Gesundheit verbessern und die Fruchtbarkeit unterstützen. Das Gleichgewicht zwischen Kinderwunsch und Lebensfreude ist essentiell."
         }
       },
       "lessonsCount": "{{count}}-Lernmodule"

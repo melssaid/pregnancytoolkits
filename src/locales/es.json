@@ -4500,7 +4500,7 @@
         },
         "hormonesRole": {
           "title": "Hormonas clave de la fertilidad",
-          "content": "Varias hormonas juegan roles vitales. La FSH estimula el crecimiento folicular. El estrógeno prepara el revestimiento uterino y promueve el moco cervical fértil. El aumento de LH desencadena la ovulación. La progesterona sostiene la fase lútea. Cualquier desequilibrio puede afectar la fertilidad."
+          "content": "Varias hormonas juegan roles vitales. La FSH estimula el crecimiento folicular. El estrógeno prepara el revestimiento uterino y promueve el moco body fértil. El aumento de LH desencadena la ovulación. La progesterona sostiene la fase lútea. Cualquier desequilibrio puede afectar la fertilidad."
         },
         "ageAndFertility": {
           "title": "Edad y fertilidad",
@@ -4508,7 +4508,7 @@
         },
         "lifestyleFactors": {
           "title": "Factores del estilo de vida",
-          "content": "El estilo de vida influye considerablemente en la fertilidad. El tabaco reduce la fertilidad en ambos sexos. El alcohol excesivo afecta la calidad de óvulos y espermatozoides. El sobrepeso o bajo peso extremo alteran el equilibrio hormonal. El estrés crónico eleva el cortisol. Una alimentación saludable, ejercicio moderado y sueño suficiente apoyan la fertilidad."
+          "content": "El estilo de vida influye considerablemente en la fertilidad. El tabaco reduce la fertilidad en ambos sexos. El alcohol excesivo afecta la calidad de óvulos y espermatozoides. El sobrepeso o bajo peso extremo alteran el equilibrio natural body. El estrés crónico eleva el cortisol. Una alimentación saludable, ejercicio moderado y sueño suficiente apoyan la fertilidad."
         },
         "commonMyths": {
           "title": "Mitos vs realidades de fertilidad",
@@ -4528,7 +4528,7 @@
         },
         "trackingMethods": {
           "title": "Métodos de seguimiento de fertilidad",
-          "content": "Existen varios métodos: medición de temperatura basal por la mañana antes de levantarse, observación del moco cervical que se vuelve transparente y elástico cerca de la ovulación, pruebas de ovulación que detectan el aumento de LH, y seguimiento de la posición cervical. Combinar varios métodos da una imagen más precisa de la ventana fértil."
+          "content": "Existen varios métodos: medición de temperatura basal por la mañana antes de levantarse, observación del moco body que se vuelve transparente y elástico cerca de la ovulación, pruebas de ovulación que detectan el aumento de LH, y seguimiento de la posición body. Combinar varios métodos da una imagen más precisa de la ventana fértil."
         },
         "optimizingTiming": {
           "title": "Optimizar el momento",
@@ -4539,7 +4539,7 @@
           "content": "La ventana de implantación es el período en que el revestimiento uterino está listo para recibir al embrión, generalmente entre el día 6 y 10 después de la ovulación. El revestimiento se vuelve más receptivo. Pueden ocurrir leves calambres o manchado. La progesterona juega un papel esencial en esta preparación."
         },
         "cervicalHealth": {
-          "title": "Salud cervical y fertilidad",
+          "title": "Salud body y fertilidad",
           "content": "El cuello uterino juega un papel central. Produce moco que cambia durante el ciclo: seco después de la menstruación, cremoso y luego transparente y elástico cerca de la ovulación, facilitando el paso de los espermatozoides. Las infecciones e intervenciones previas pueden afectar la producción de moco."
         },
         "thyroidFertility": {
@@ -4551,8 +4551,8 @@
           "content": "El síndrome de ovario poliquístico (SOP) es una de las causas más frecuentes de trastornos de ovulación. Los síntomas incluyen ciclos irregulares, andrógenos elevados y pequeños quistes ováricos. El control del peso, alimentación saludable y ejercicio mejoran los síntomas. Medicamentos como la metformina están disponibles bajo supervisión médica."
         },
         "endometriosisAwareness": {
-          "title": "Endometriosis y fertilidad",
-          "content": "La endometriosis ocurre cuando tejido similar al revestimiento uterino crece fuera del útero. Causa dolor y puede afectar la fertilidad mediante adherencias, daño a las trompas y afectación de la calidad de los óvulos. El diagnóstico temprano es importante. Las opciones van desde medicamentos hasta laparoscopia y reproducción asistida."
+          "title": "cycle-related discomfort y fertilidad",
+          "content": "La cycle-related discomfort ocurre cuando tejido similar al revestimiento uterino crece fuera del útero. Causa dolor y puede afectar la fertilidad mediante adherencias, daño a las trompas y afectación de la calidad de los óvulos. El diagnóstico temprano es importante. Las opciones van desde medicamentos hasta laparoscopia y reproducción asistida."
         },
         "nutritionFertility": {
           "title": "Nutrición óptima para la fertilidad",
@@ -4560,7 +4560,7 @@
         },
         "sleepHormones": {
           "title": "Sueño y hormonas de fertilidad",
-          "content": "Un buen sueño es esencial para el equilibrio hormonal. La falta de sueño aumenta el cortisol y reduce la melatonina que protege los óvulos. Apunta a 7-9 horas por noche. Mantén horarios regulares y evita pantallas antes de dormir. Una habitación oscura y fresca apoya la producción de melatonina."
+          "content": "Un buen sueño es esencial para el equilibrio natural body. La falta de sueño aumenta el cortisol y reduce la melatonina que protege los óvulos. Apunta a 7-9 horas por noche. Mantén horarios regulares y evita pantallas antes de dormir. Una habitación oscura y fresca apoya la producción de melatonina."
         },
         "exerciseBalance": {
           "title": "Equilibrio entre ejercicio y fertilidad",
@@ -4612,8 +4612,8 @@
     "fertilitySigns": {
       "signs": {
         "cervicalMucus": {
-          "title": "Cambios en el moco cervical",
-          "description": "Al acercarse la ovulación, el moco cervical se vuelve más transparente, elástico y resbaladizo, similar a la clara de huevo cruda. Este tipo facilita el movimiento de los espermatozoides y ofrece un ambiente óptimo. Después de la ovulación se vuelve espeso y pegajoso. El seguimiento diario da un indicador fiable del momento de la ovulación.",
+          "title": "Cambios en el moco body",
+          "description": "Al acercarse la ovulación, el moco body se vuelve más transparente, elástico y resbaladizo, similar a la clara de huevo cruda. Este tipo facilita el movimiento de los espermatozoides y ofrece un ambiente óptimo. Después de la ovulación se vuelve espeso y pegajoso. El seguimiento diario da un indicador fiable del momento de la ovulación.",
           "tip": "Revisa el moco antes de orinar limpiando con papel higiénico y observa el color, consistencia y elasticidad."
         },
         "basalTemp": {
@@ -4622,7 +4622,7 @@
           "tip": "Usa un termómetro basal con precisión de 0.01°C y mide a la misma hora cada día antes de cualquier actividad."
         },
         "cervicalPosition": {
-          "title": "Cambios de posición cervical",
+          "title": "Cambios de posición body",
           "description": "El cuello uterino cambia durante el ciclo. Cerca de la ovulación se vuelve más alto, suave, abierto y húmedo. Después baja y se vuelve más firme y cerrado. El autoexamen requiere práctica pero da información valiosa sobre el momento fértil.",
           "tip": "Examina el cuello uterino a la misma hora y en la misma posición cada día para resultados consistentes."
         },
@@ -4649,7 +4649,7 @@
         "bloating": {
           "title": "Hinchazón leve",
           "description": "Puedes sentir una ligera hinchazón alrededor de la ovulación por la retención de líquidos debida a los cambios hormonales. Es normal y temporal. Puede acompañarse de sensación de pesadez pélvica y desaparece en uno o dos días después de la ovulación.",
-          "tip": "Bebe suficiente agua y reduce la sal para aliviar la hinchazón hormonal."
+          "tip": "Bebe suficiente agua y reduce la sal para aliviar la hinchazón natural body."
         },
         "lightSpotting": {
           "title": "Sangrado de ovulación",
@@ -4658,7 +4658,7 @@
         },
         "heightenedSenses": {
           "title": "Sentidos agudizados",
-          "description": "Puedes notar mayor sensibilidad olfativa o gustativa alrededor de la ovulación por el aumento de estrógeno. Algunas mujeres se vuelven más sensibles a los olores o notan sabores más intensos. Estos cambios sensoriales son señal del pico hormonal de la ovulación.",
+          "description": "Puedes notar mayor sensibilidad olfativa o gustativa alrededor de la ovulación por el aumento de estrógeno. Algunas mujeres se vuelven más sensibles a los olores o notan sabores más intensos. Estos cambios sensoriales son señal del pico natural body de la ovulación.",
           "tip": "Presta atención a cambios en tus sentidos a mitad del ciclo, pueden indicar que se acerca la ovulación."
         }
       },
@@ -4889,7 +4889,7 @@
         },
         "sleep": {
           "title": "Sueño y fertilidad",
-          "content": "Un buen sueño es esencial para el equilibrio hormonal y el manejo del estrés. La falta de sueño aumenta el cortisol y altera el ritmo circadiano. Apunta a 7-9 horas en una habitación oscura, tranquila y fresca. Evita pantallas una hora antes de dormir. Horarios regulares apoyan la producción de melatonina.",
+          "content": "Un buen sueño es esencial para el equilibrio natural body y el manejo del estrés. La falta de sueño aumenta el cortisol y altera el ritmo circadiano. Apunta a 7-9 horas en una habitación oscura, tranquila y fresca. Evita pantallas una hora antes de dormir. Horarios regulares apoyan la producción de melatonina.",
           "practice": "Crea una rutina nocturna: baño caliente, lectura ligera y dormir a la misma hora cada día."
         },
         "exercise": {
