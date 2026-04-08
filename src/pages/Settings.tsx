@@ -21,7 +21,7 @@ import { cn } from '@/lib/utils';
 
 type SettingsView = 'main' | 'profile' | 'language' | 'security' | 'backup' | 'delete';
 
-const APP_VERSION = '2.5.0';
+const APP_VERSION = '1.0.16';
 
 const Settings: React.FC = () => {
   const { t, i18n } = useTranslation();
