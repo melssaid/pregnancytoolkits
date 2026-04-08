@@ -19,13 +19,9 @@ declare global {
 }
 
 let splashDismissed = false;
-let appFirstRenderReady = false;
-let htmlSplashEnded = false;
 
 const dismissSplash = () => {
   if (splashDismissed) return;
-  if (!appFirstRenderReady || !htmlSplashEnded) return;
-
   splashDismissed = true;
   const splash = document.getElementById("splash-overlay");
   if (!splash) return;
@@ -34,14 +30,31 @@ const dismissSplash = () => {
   setTimeout(() => splash.remove(), 500);
 };
 
+// Dismiss splash when EITHER React renders OR html-splash video ends
+// (whichever comes LAST — but with a hard 5s safety net)
+let appFirstRenderReady = false;
+let htmlSplashEnded = false;
+
+const tryDismiss = () => {
+  if (appFirstRenderReady && htmlSplashEnded) dismissSplash();
+};
+
 window.addEventListener("app:first-render", () => {
   appFirstRenderReady = true;
-  dismissSplash();
+  tryDismiss();
 }, { once: true });
+
 window.addEventListener("html-splash-ended", () => {
   htmlSplashEnded = true;
-  dismissSplash();
+  tryDismiss();
 }, { once: true });
+
+// If splash overlay is already gone (returning user), mark it
+if (!document.getElementById("splash-overlay")) {
+  htmlSplashEnded = true;
+}
+
+// Hard safety: dismiss after 5s no matter what
 setTimeout(() => {
   appFirstRenderReady = true;
   htmlSplashEnded = true;
