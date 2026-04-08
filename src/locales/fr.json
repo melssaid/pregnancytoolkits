@@ -8283,5 +8283,25 @@
       "5": "Reposez-vous quand votre corps vous le demande — il construit une vie ! 💤",
       "6": "Les exercices de Kegel renforcent votre plancher pelvien — essayez 3 séries aujourd'hui 💪"
     }
+  },
+  "seoArticle": {
+    "pregnancyTitle": "Votre guide complet pour suivre la grossesse semaine par semaine",
+    "pregnancyIntro": "La grossesse est un voyage unique rempli de changements physiques et émotionnels. Que vous soyez enceinte pour la première fois ou non, suivre le développement de votre bébé et comprendre ce qui se passe dans votre corps chaque semaine vous donne confiance et sérénité. Notre application propose des outils intelligents conçus pour vous accompagner à chaque étape.",
+    "firstTrimesterTitle": "Premier trimestre : Semaines 1 à 12",
+    "firstTrimesterContent": "Durant les premières semaines, votre corps s'adapte à d'importants changements hormonaux. Vous pouvez ressentir des nausées, de la fatigue et une sensibilité aux odeurs. Vers la 6e semaine, le cœur de votre bébé commence à battre. Prenez de l'acide folique, évitez les aliments non sûrs et utilisez le planificateur de repas intelligent.",
+    "secondTrimesterTitle": "Deuxième trimestre : Semaines 13 à 26",
+    "secondTrimesterContent": "Appelé le trimestre d'or, les symptômes s'améliorent et vous commencez à sentir les mouvements de votre bébé vers la 20e semaine. Votre bébé grandit rapidement et commence à entendre votre voix. Utilisez le journal des mouvements pour enregistrer l'activité quotidienne et suivez la croissance hebdomadaire.",
+    "thirdTrimesterTitle": "Troisième trimestre : Semaines 27 à 40",
+    "thirdTrimesterContent": "À l'approche de votre date prévue, la préparation devient essentielle. Préparez votre valise de maternité avec la liste intelligente et créez un plan de naissance personnalisé. Surveillez les mouvements régulièrement et utilisez le minuteur de contractions en cas de contractions régulières.",
+    "fertilityTitle": "Guide de planification de la fertilité et de la conception",
+    "fertilityContent": "La planification d'une grossesse commence par la compréhension de votre cycle menstruel et la connaissance de vos jours fertiles. Le suivi de cycle vous aide à identifier votre date d'ovulation et votre fenêtre de fertilité optimale. Une alimentation équilibrée, un sommeil suffisant et la réduction du stress sont essentiels pour améliorer vos chances de concevoir.",
+    "fertilityTips": "Conseils pour améliorer la fertilité : maintenez un poids sain, consommez des aliments riches en folates, fer et zinc, faites de l'exercice modérément, évitez le tabac et la caféine excessive, et dormez suffisamment.",
+    "birthTitle": "Préparer l'accouchement : tout ce que vous devez savoir",
+    "birthContent": "L'accouchement nécessite une préparation physique et mentale. Reconnaissez les signes du travail comme les contractions régulières et la perte des eaux. Utilisez le générateur intelligent de plan de naissance pour créer un plan incluant vos préférences pour la gestion de la douleur et l'allaitement.",
+    "birthPreparation": "Préparez votre valise de maternité avant la 36e semaine. Elle doit contenir : vêtements confortables, articles de soins personnels, documents importants, collations saines et un chargeur de téléphone. N'oubliez pas le siège auto pour le nouveau-né.",
+    "postpartumTitle": "Guide post-partum et soins du nouveau-né",
+    "postpartumContent": "La période post-partum est pleine de défis et de joie. Prenez soin de votre santé mentale et physique. Dormez quand le bébé dort, demandez de l'aide à votre famille et maintenez une bonne alimentation. Utilisez le guide de relaxation pour des conseils pratiques de récupération.",
+    "wellnessTips": "Conseils bien-être quotidiens : buvez 8 à 10 verres d'eau par jour, mangez des repas petits et fréquents riches en protéines et fibres, marchez 30 minutes par jour, prenez des pauses régulières et notez vos sentiments dans votre journal.",
+    "appBenefits": "Pourquoi choisir notre compagnon intelligent : plus de 33 outils gratuits, disponible en 7 langues, confidentialité totale, insights IA, mises à jour personnalisées et aucune inscription requise."
   }
 }

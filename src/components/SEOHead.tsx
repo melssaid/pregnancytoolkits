@@ -83,7 +83,7 @@ export function SEOHead({
     "@type": "SoftwareApplication",
     "name": brandName,
     "operatingSystem": "Android, iOS, Web",
-    "applicationCategory": "HealthApplication",
+    "applicationCategory": "LifestyleApplication",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
     "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "ratingCount": "2850", "bestRating": "5" },
     "description": seoDesc,
