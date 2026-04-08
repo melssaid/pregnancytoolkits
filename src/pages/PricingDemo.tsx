@@ -129,6 +129,22 @@ export default function PricingDemo() {
       className="min-h-[100dvh] bg-background flex flex-col relative overflow-hidden"
       dir={isRTL ? "rtl" : "ltr"}
     >
+      {/* Sync Spinner Overlay */}
+      {syncing && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-background/80 backdrop-blur-sm"
+        >
+          <div className="flex flex-col items-center gap-3">
+            <Loader2 className="w-10 h-10 text-primary animate-spin" />
+            <p className="text-sm font-medium text-foreground">
+              {isAr ? 'جارٍ مزامنة الاشتراك...' : 'Syncing subscription...'}
+            </p>
+          </div>
+        </motion.div>
+      )}
+
       {/* Background */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 inset-x-0 h-[45vh] bg-gradient-to-b from-primary/[0.04] to-transparent" />
