@@ -24,6 +24,8 @@ export default function PricingDemo() {
   const { isRTL } = useLanguage();
   const navigate = useNavigate();
   const [selected, setSelected] = useState<PlanType>("yearly");
+  const [devTaps, setDevTaps] = useState(0);
+  const devMode = devTaps >= 5;
   const isAr = i18n.language === "ar";
   const canPurchase = isDigitalGoodsAvailable();
   const { refresh: refreshAIUsage } = useAIUsage();
@@ -204,8 +206,9 @@ export default function PricingDemo() {
             </motion.div>
 
             <h1
-              className="text-lg font-extrabold text-foreground tracking-tight mb-1 leading-tight"
+              className="text-lg font-extrabold text-foreground tracking-tight mb-1 leading-tight select-none"
               style={{ fontFamily: isAr ? "'Almarai', 'Tajawal', sans-serif" : "'Montserrat', sans-serif" }}
+              onClick={() => setDevTaps(p => p + 1)}
             >
               {t("pricing.title")}
             </h1>
@@ -359,8 +362,8 @@ export default function PricingDemo() {
           </div>
         </motion.div>
 
-        {/* Billing Diagnostics Panel */}
-        <BillingDiagnosticsPanel isAr={isAr} />
+        {/* Billing Diagnostics Panel — hidden until 5 taps on title */}
+        {devMode && <BillingDiagnosticsPanel isAr={isAr} />}
       </div>
     </div>
   );
