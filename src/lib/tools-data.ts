@@ -50,11 +50,6 @@ export interface Tool {
 // PREGNANCY TOOLKITS - ORGANIZED BY USER JOURNEY
 // ═══════════════════════════════════════════════════════════════════════════
 
-// ┌─────────────────────────────────────────────────────────────────────────┐
-// │ HIDDEN_FOR_COMPLIANCE — Temporarily hidden tools for Google Play       │
-// │ compliance. Uncomment all lines marked with /* HIDDEN_FOR_COMPLIANCE */ │
-// │ to restore them. Search for "HIDDEN_FOR_COMPLIANCE" in this file.      │
-// └─────────────────────────────────────────────────────────────────────────┘
 
 export const toolsData: Tool[] = [
   // ═══════════════════════════════════════════════════════════════
@@ -70,23 +65,14 @@ export const toolsData: Tool[] = [
   { id: "cycle-tracker", titleKey: "tools.cycleTracker.title", descriptionKey: "tools.cycleTracker.description", icon: Calendar, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/calendar--v1.png", categoryKey: "categories.fertility", href: "/tools/cycle-tracker", priority: 4 },
   { id: "due-date-calculator", titleKey: "tools.dueDateCalculator.title", descriptionKey: "tools.dueDateCalculator.description", icon: Baby, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/baby.png", categoryKey: "categories.fertility", href: "/tools/due-date-calculator", priority: 5 },
   
-  /* HIDDEN_FOR_COMPLIANCE - fertility-academy (Reproductive Health category — requires Organization)
   { id: "fertility-academy", titleKey: "tools.fertilityAcademy.title", descriptionKey: "tools.fertilityAcademy.description", icon: Star, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/graduation-cap--v1.png", categoryKey: "categories.fertility", href: "/tools/fertility-academy", priority: 7 },
-  */
-  /* HIDDEN_FOR_COMPLIANCE - nutrition-supplements (Medication Management category — requires Organization)
   { id: "nutrition-supplements", titleKey: "tools.nutritionSupplements.title", descriptionKey: "tools.nutritionSupplements.description", icon: Leaf, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/pill.png", categoryKey: "categories.fertility", href: "/tools/nutrition-supplements", priority: 8 },
-  */
-  
-  /* HIDDEN_FOR_COMPLIANCE - preconception-checkup
   { id: "preconception-checkup", titleKey: "tools.preconceptionCheckup.title", descriptionKey: "tools.preconceptionCheckup.description", icon: CheckSquare, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/checklist.png", categoryKey: "categories.fertility", href: "/tools/preconception-checkup", priority: 10 },
-  */
 
   // ═══════════════════════════════════════════════════════════════
   // PREGNANCY TRACKING
   // ═══════════════════════════════════════════════════════════════
-  /* HIDDEN_FOR_COMPLIANCE - fetal-growth (Baby Size Explorer)
   { id: "fetal-growth", titleKey: "tools.fetalGrowth.title", descriptionKey: "tools.fetalGrowth.description", icon: TrendingUp, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/growth.png", categoryKey: "categories.pregnancy", href: "/tools/fetal-growth", priority: 6, hasAI: true },
-  */
   { id: "ai-birth-plan", titleKey: "tools.aiBirthPlan.title", descriptionKey: "tools.aiBirthPlan.description", icon: FileText, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/document--v1.png", categoryKey: "categories.pregnancy", href: "/tools/ai-birth-plan", priority: 6.5, hasAI: true },
   { id: "contraction-timer", titleKey: "tools.contractionTimer.title", descriptionKey: "tools.contractionTimer.description", icon: Activity, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/timer.png", categoryKey: "categories.pregnancy", href: "/tools/contraction-timer", priority: 6.6 },
   { id: "kick-counter", titleKey: "tools.kickCounter.title", descriptionKey: "tools.kickCounter.description", icon: Hand, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/baby-feet.png", categoryKey: "categories.pregnancy", href: "/tools/kick-counter", priority: 7, hasAI: true },
@@ -99,9 +85,7 @@ export const toolsData: Tool[] = [
   { id: "ai-meal-suggestion", titleKey: "tools.aiMealSuggestion.title", descriptionKey: "tools.aiMealSuggestion.description", icon: Utensils, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/meal.png", categoryKey: "categories.nutrition", href: "/tools/ai-meal-suggestion", priority: 10, hasAI: true },
   
   { id: "smart-grocery-list", titleKey: "tools.smartGroceryList.title", descriptionKey: "tools.smartGroceryList.description", icon: CheckSquare, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/shopping-cart--v1.png", categoryKey: "categories.nutrition", href: "/tools/smart-grocery-list", priority: 12, hasAI: true },
-  /* HIDDEN_FOR_COMPLIANCE - vitamin-tracker (Medication Management category — requires Organization)
   { id: "vitamin-tracker", titleKey: "tools.vitaminTracker.title", descriptionKey: "tools.vitaminTracker.description", icon: Pill, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/pill.png", categoryKey: "categories.nutrition", href: "/tools/vitamin-tracker", priority: 13, hasAI: true },
-  */
 
   // ═══════════════════════════════════════════════════════════════
   // WELLNESS & FITNESS (Hub)
@@ -119,28 +103,18 @@ export const toolsData: Tool[] = [
   // ═══════════════════════════════════════════════════════════════
   // PREPARATION & BIRTH
   // ═══════════════════════════════════════════════════════════════
-  /* HIDDEN_FOR_COMPLIANCE - maternal-health-awareness
   { id: "maternal-health-awareness", titleKey: "tools.maternalHealth.title", descriptionKey: "tools.maternalHealth.description", icon: Heart, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/like--v1.png", categoryKey: "categories.preparation", href: "/tools/maternal-health", priority: 30 },
-  */
   { id: "ai-hospital-bag", titleKey: "tools.aiHospitalBag.title", descriptionKey: "tools.aiHospitalBag.description", icon: Briefcase, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/briefcase--v1.png", categoryKey: "categories.preparation", href: "/tools/ai-hospital-bag", priority: 32, hasAI: true },
   { id: "baby-gear-recommender", titleKey: "tools.babyGearRecommender.title", descriptionKey: "tools.babyGearRecommender.description", icon: CheckSquare, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/shopping-cart--v1.png", categoryKey: "categories.preparation", href: "/tools/baby-gear-recommender", priority: 33, hasAI: true },
-  /* HIDDEN_FOR_COMPLIANCE - smart-appointment-reminder (Healthcare Services category — requires Organization)
   { id: "smart-appointment-reminder", titleKey: "tools.smartAppointmentReminder.title", descriptionKey: "tools.smartAppointmentReminder.description", icon: Bell, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/alarm-clock--v1.png", categoryKey: "categories.preparation", href: "/tools/smart-appointment-reminder", priority: 34, hasAI: true },
-  */
   { id: "ai-partner-guide", titleKey: "tools.aiPartnerGuide.title", descriptionKey: "tools.aiPartnerGuide.description", icon: HeartHandshake, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/handshake.png", categoryKey: "categories.preparation", href: "/tools/ai-partner-guide", priority: 35, hasAI: true },
 
   // ═══════════════════════════════════════════════════════════════
   // POSTPARTUM & BABY
   // ═══════════════════════════════════════════════════════════════
-  /* HIDDEN_FOR_COMPLIANCE - postpartum-mental-health (Mental/Behavioral Health category — requires Organization)
   { id: "postpartum-mental-health", titleKey: "tools.postpartumMentalHealth.title", descriptionKey: "tools.postpartumMentalHealth.description", icon: Brain, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/brain.png", categoryKey: "categories.postpartum", href: "/tools/mental-health-coach", priority: 36, hasAI: true },
-  */
-  /* HIDDEN_FOR_COMPLIANCE - ai-lactation-prep (Reproductive Health category — requires Organization)
   { id: "ai-lactation-prep", titleKey: "tools.aiLactationPrep.title", descriptionKey: "tools.aiLactationPrep.description", icon: Milk, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/baby-bottle.png", categoryKey: "categories.postpartum", href: "/tools/ai-lactation-prep", priority: 37, hasAI: true },
-  */
-  /* HIDDEN_FOR_COMPLIANCE - postpartum-recovery (Healthcare Services category — requires Organization)
   { id: "postpartum-recovery", titleKey: "tools.postpartumRecovery.title", descriptionKey: "tools.postpartumRecovery.description", icon: Flower2, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/lotus.png", categoryKey: "categories.postpartum", href: "/tools/postpartum-recovery", priority: 38, hasAI: true },
-  */
   { id: "baby-cry-translator", titleKey: "tools.babyCryTranslator.title", descriptionKey: "tools.babyCryTranslator.description", icon: Volume2, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/voice-id.png", categoryKey: "categories.postpartum", href: "/tools/baby-cry-translator", priority: 39, hasAI: true },
   { id: "baby-sleep-tracker", titleKey: "tools.babySleepTracker.title", descriptionKey: "tools.babySleepTracker.description", icon: Moon, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/moon-symbol.png", categoryKey: "categories.postpartum", href: "/tools/baby-sleep-tracker", priority: 40, hasAI: true },
   { id: "baby-growth", titleKey: "tools.babyGrowth.title", descriptionKey: "tools.babyGrowth.description", icon: Ruler, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/ruler.png", categoryKey: "categories.postpartum", href: "/tools/baby-growth", priority: 41 },
@@ -198,7 +172,7 @@ const toolRelationships: Record<string, string[]> = {
   "due-date-calculator": ["cycle-tracker", "weekly-summary", "baby-growth"],
 
   // Pregnancy Tracking
-  /* HIDDEN_FOR_COMPLIANCE */ // "fetal-growth": ["weekly-summary", "kick-counter", "baby-growth"],
+  "fetal-growth": ["weekly-summary", "kick-counter", "baby-growth"],
   "kick-counter": ["baby-growth", "wellness-diary", "ai-birth-plan"],
   "weight-gain": ["ai-meal-suggestion", "ai-fitness-coach", "weekly-summary"],
   "ai-bump-photos": ["weekly-summary", "baby-growth", "kick-counter"],
@@ -218,7 +192,7 @@ const toolRelationships: Record<string, string[]> = {
   "postpartum-mental-health": ["pregnancy-comfort", "pregnancy-assistant", "wellness-diary"],
   "ai-pregnancy-skincare": ["ai-meal-suggestion", "vitamin-tracker", "weekly-summary"],
 
-  /* HIDDEN_FOR_COMPLIANCE */ // "maternal-health-awareness": ["ai-meal-suggestion", "ai-fitness-coach", "wellness-diary"],
+  "maternal-health-awareness": ["ai-meal-suggestion", "ai-fitness-coach", "wellness-diary"],
 
   // Preparation
   "ai-hospital-bag": ["ai-birth-plan", "ai-partner-guide", "baby-gear-recommender"],

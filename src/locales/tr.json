@@ -129,7 +129,7 @@
     "mo": "ay",
     "yr": "yıl",
     "save": "%44 Tasarruf",
-    "feature1": "23+ akıllı sağlık aracı",
+    "feature1": "33+ akıllı sağlık aracı",
     "feature2": "Ayda 40 akıllı analiz",
     "feature3": "Kişiselleştirilmiş AI sağlık raporları",
     "feature4": "Öncelikli istek işleme",
@@ -4991,7 +4991,7 @@
   "welcome": {
     "title": "Welcome to Pregnancy Toolkits",
     "subtitle": "Kişiselleştirilmiş hamilelik asistanınız",
-    "feature1": "23+ akıllı hamilelik aracı",
+    "feature1": "33+ akıllı hamilelik aracı",
     "feature2": "Haftalık kişiselleştirilmiş takip",
     "disclaimerTitle": "Important Notice",
     "disclaimerText": "Bu uygulama genel sağlık bilgileri sunar ve profesyonel tıbbi tavsiyenin yerini almaz.",
@@ -6620,7 +6620,7 @@
     "toolLocked": "\"{{tool}}\" is available for subscribers only",
     "subtitle": "Tüm özelliklere sınırsız erişim",
     "benefits": {
-      "allAITools": "23+ smart wellness tools",
+      "allAITools": "33+ smart wellness tools",
       "dailyAnalyses": "40 smart analyses per month",
       "personalizedInsights": "Tips personalized to your week",
       "fullAccess": "Full access with no limits"
