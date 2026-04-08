@@ -6399,7 +6399,21 @@
     "privacy": "Privacy & Security",
     "privacyDesc": "Your data is encrypted and protected - your privacy is our top priority",
     "searchKeywords": "Search Keywords",
-    "defaultDescription": "Free pregnancy tracker with 33+ smart tools: due date calculator, kick counter, contraction timer, baby growth tracker, cycle tracker, meal planner & more."
+    "defaultDescription": "Free pregnancy tracker with 33+ smart tools: due date calculator, kick counter, contraction timer, baby growth tracker, cycle tracker, meal planner & more.",
+    "faq": {
+      "q1": "How do I calculate my due date?",
+      "a1": "Add 280 days (40 weeks) from the first day of your last menstrual period. Use our due date calculator for an accurate result.",
+      "q2": "When should I start counting baby kicks?",
+      "a2": "From week 28, count 10 movements within 2 hours daily. Our kick counter makes tracking easy.",
+      "q3": "What are the signs of real labor?",
+      "a3": "Regular contractions that intensify, water breaking, and persistent lower back pain. Use our contraction timer to track them.",
+      "q4": "How much weight gain is normal during pregnancy?",
+      "a4": "A gain of 11-16 kg is typical depending on your starting weight. Our smart weight analyzer helps with weekly tracking.",
+      "q5": "Is the app free?",
+      "a5": "Yes, the app is completely free with 33+ smart tools including pregnancy tracker, due date calculator, kick counter, and meal planner.",
+      "q6": "How do I calculate my ovulation days?",
+      "a6": "Ovulation typically occurs on day 14 of a regular 28-day cycle. Use our cycle tracker to determine your fertile window precisely."
+    }
   },
   "videoLibraryPage": {
     "title": "Video Library",
