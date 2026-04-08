@@ -86,10 +86,34 @@ const packageName = discoverPackageName(manifest, buildGradle);
 const packageDir = packageName.split('.').join(path.sep);
 const delegationServicePath = path.join(appDir, 'src', 'main', 'java', packageDir, 'DelegationService.java');
 
+// Read version from twa-manifest.json
+const twaManifestPath = path.join(projectRoot, 'twa-manifest.json');
+let appVersionCode = 1;
+let appVersionName = '1.0.0';
+if (fs.existsSync(twaManifestPath)) {
+  try {
+    const twaManifest = JSON.parse(fs.readFileSync(twaManifestPath, 'utf8'));
+    appVersionCode = twaManifest.appVersionCode || 1;
+    appVersionName = twaManifest.appVersionName || '1.0.0';
+  } catch (e) {
+    console.log('[patch-twa-project] Warning: could not parse twa-manifest.json, using defaults');
+  }
+}
+console.log(`[patch-twa-project] Version: ${appVersionName} (${appVersionCode})`);
+
 let nextBuildGradle = buildGradle;
 nextBuildGradle = replaceSdkValue(nextBuildGradle, [/((?:compileSdkVersion|compileSdk)\s+)\d+/g], '36');
 nextBuildGradle = replaceSdkValue(nextBuildGradle, [/((?:targetSdkVersion|targetSdk)\s+)\d+/g], '35');
 nextBuildGradle = replaceSdkValue(nextBuildGradle, [/((?:minSdkVersion|minSdk)\s+)\d+/g], '23');
+
+// Ensure versionName and versionCode are set correctly (fix null issue)
+nextBuildGradle = nextBuildGradle.replace(/(versionCode\s+)\S+/, `$1${appVersionCode}`);
+if (/versionName\s/.test(nextBuildGradle)) {
+  nextBuildGradle = nextBuildGradle.replace(/(versionName\s+)["']?[^"'\n]*["']?/, `$1"${appVersionName}"`);
+} else {
+  // Add versionName after versionCode if missing
+  nextBuildGradle = nextBuildGradle.replace(/(versionCode\s+\S+)/, `$1\n        versionName "${appVersionName}"`);
+}
 
 if (!/com\.google\.androidbrowserhelper:androidbrowserhelper/.test(nextBuildGradle)) {
   nextBuildGradle = ensureDependency(nextBuildGradle, 'implementation "com.google.androidbrowserhelper:androidbrowserhelper:2.4.0"');
