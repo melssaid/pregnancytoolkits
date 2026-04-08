@@ -21,8 +21,8 @@
     "path": "./android.keystore",
     "alias": "android"
   },
-  "appVersionCode": 15,
-  "appVersionName": "1.0.15",
+  "appVersionCode": 16,
+  "appVersionName": "1.0.16",
   "shortcuts": [],
   "generatorApp": "bubblewrap-cli",
   "webManifestUrl": "https://pregnancytoolkits.lovable.app/manifest.json",
