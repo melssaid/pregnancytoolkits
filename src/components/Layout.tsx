@@ -68,7 +68,7 @@ export function Layout({ children, showBack = false }: LayoutProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.45, duration: 0.5, ease: 'easeOut' }}
           >
-            {t('layout.trustBar.aiTools', '33+ Smart Tools')}
+            {t('layout.trustBar.aiTools', { count: getTotalToolsCount(), defaultValue: '{{count}}+ Smart Tools' })}
           </motion.span>
           
           <motion.span 
