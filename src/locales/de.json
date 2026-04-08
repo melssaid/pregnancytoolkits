@@ -6283,7 +6283,21 @@
     "privacy": "Datenschutz & Sicherheit",
     "privacyDesc": "Deine Daten sind verschlüsselt und geschützt",
     "searchKeywords": "Suchbegriffe",
-    "defaultDescription": "Kostenlose Schwangerschafts-App mit 33+ Tools: Geburtsterminrechner, Bewegungszähler, Wehen-Timer, Baby-Wachstum, Ernährungsplaner. 7 Sprachen verfügbar."
+    "defaultDescription": "Kostenlose Schwangerschafts-App mit 33+ Tools: Geburtsterminrechner, Bewegungszähler, Wehen-Timer, Baby-Wachstum, Ernährungsplaner. 7 Sprachen verfügbar.",
+    "faq": {
+      "q1": "Wie berechne ich meinen Geburtstermin?",
+      "a1": "Addieren Sie 280 Tage (40 Wochen) zum ersten Tag Ihrer letzten Periode. Nutzen Sie unseren Geburtsterminrechner für ein genaues Ergebnis.",
+      "q2": "Wann sollte ich Kindsbewegungen zählen?",
+      "a2": "Ab der 28. Schwangerschaftswoche wird empfohlen, täglich 10 Bewegungen innerhalb von 2 Stunden zu zählen.",
+      "q3": "Was sind Anzeichen echter Wehen?",
+      "a3": "Regelmäßige, stärker werdende Kontraktionen, Blasensprung und anhaltende Rückenschmerzen. Nutzen Sie unseren Wehen-Timer zur Überwachung.",
+      "q4": "Wie viel Gewichtszunahme ist normal?",
+      "a4": "Eine Zunahme von 11-16 kg ist typisch, abhängig vom Ausgangsgewicht. Unser Smart-Gewichtsanalyser hilft bei der wöchentlichen Kontrolle.",
+      "q5": "Ist die App kostenlos?",
+      "a5": "Ja, die App ist komplett kostenlos mit über 33 intelligenten Tools wie Schwangerschaftstracker, Geburtsterminrechner, Trittezähler und Ernährungsplaner.",
+      "q6": "Wie bestimme ich meine fruchtbaren Tage?",
+      "a6": "Der Eisprung findet etwa am 14. Zyklustag statt. Nutzen Sie unseren Zyklustracker für eine präzise Bestimmung Ihrer fruchtbaren Phase."
+    }
   },
   "videoLibraryPage": {
     "title": "Videobibliothek",

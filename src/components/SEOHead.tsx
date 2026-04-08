@@ -94,6 +94,26 @@ export function SEOHead({
     "isAccessibleForFree": true,
   } : null;
 
+  // FAQPage schema from translations (ar, de, fr, es have localized FAQs)
+  const faqKeys = [1, 2, 3, 4, 5, 6];
+  const hasFaq = (path === "/" || path === "/en") && t("seo.faq.q1", "") !== "" && t("seo.faq.q1", "") !== "seo.faq.q1";
+  const faqSchema = hasFaq ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqKeys
+      .map((i) => {
+        const q = t(`seo.faq.q${i}`, "");
+        const a = t(`seo.faq.a${i}`, "");
+        if (!q || !a || q === `seo.faq.q${i}`) return null;
+        return {
+          "@type": "Question",
+          "name": q,
+          "acceptedAnswer": { "@type": "Answer", "text": a },
+        };
+      })
+      .filter(Boolean),
+  } : null;
+
   // Locale mapping for Open Graph
   const ogLocaleMap: Record<string, string> = {
     en: "en_US", ar: "ar_SA", de: "de_DE", fr: "fr_FR",
@@ -160,6 +180,13 @@ export function SEOHead({
       {appSchema && (
         <script type="application/ld+json">
           {JSON.stringify(appSchema)}
+        </script>
+      )}
+
+      {/* FAQPage Schema */}
+      {faqSchema && (
+        <script type="application/ld+json">
+          {JSON.stringify(faqSchema)}
         </script>
       )}
     </Helmet>
