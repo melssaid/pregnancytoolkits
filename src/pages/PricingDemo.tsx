@@ -206,8 +206,9 @@ export default function PricingDemo() {
             </motion.div>
 
             <h1
-              className="text-lg font-extrabold text-foreground tracking-tight mb-1 leading-tight"
+              className="text-lg font-extrabold text-foreground tracking-tight mb-1 leading-tight select-none"
               style={{ fontFamily: isAr ? "'Almarai', 'Tajawal', sans-serif" : "'Montserrat', sans-serif" }}
+              onClick={() => setDevTaps(p => p + 1)}
             >
               {t("pricing.title")}
             </h1>
