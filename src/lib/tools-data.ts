@@ -172,7 +172,7 @@ const toolRelationships: Record<string, string[]> = {
   "due-date-calculator": ["cycle-tracker", "weekly-summary", "baby-growth"],
 
   // Pregnancy Tracking
-  /* HIDDEN_FOR_COMPLIANCE */ // "fetal-growth": ["weekly-summary", "kick-counter", "baby-growth"],
+  "fetal-growth": ["weekly-summary", "kick-counter", "baby-growth"],
   "kick-counter": ["baby-growth", "wellness-diary", "ai-birth-plan"],
   "weight-gain": ["ai-meal-suggestion", "ai-fitness-coach", "weekly-summary"],
   "ai-bump-photos": ["weekly-summary", "baby-growth", "kick-counter"],
@@ -192,7 +192,7 @@ const toolRelationships: Record<string, string[]> = {
   "postpartum-mental-health": ["pregnancy-comfort", "pregnancy-assistant", "wellness-diary"],
   "ai-pregnancy-skincare": ["ai-meal-suggestion", "vitamin-tracker", "weekly-summary"],
 
-  /* HIDDEN_FOR_COMPLIANCE */ // "maternal-health-awareness": ["ai-meal-suggestion", "ai-fitness-coach", "wellness-diary"],
+  "maternal-health-awareness": ["ai-meal-suggestion", "ai-fitness-coach", "wellness-diary"],
 
   // Preparation
   "ai-hospital-bag": ["ai-birth-plan", "ai-partner-guide", "baby-gear-recommender"],
