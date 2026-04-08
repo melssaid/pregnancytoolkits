@@ -42,10 +42,13 @@ export function SEOHead({
 
   // Build title
   const brandName = "Pregnancy Toolkits";
+  const localizedSeoTitle = t("seo.title", "");
   const pageTitle = titleOverride || (titleKey ? t(titleKey) : null);
   const fullTitle = pageTitle
     ? `${pageTitle} | ${brandName}`
-    : `${brandName} – Free Pregnancy Tracker & Due Date Calculator | ${toolCount}+ Tools`;
+    : (localizedSeoTitle && localizedSeoTitle !== "seo.title")
+      ? localizedSeoTitle
+      : `${brandName} – Free Pregnancy Tracker & Due Date Calculator | ${toolCount}+ Tools`;
 
   // Build description
   const pageDesc = descOverride
