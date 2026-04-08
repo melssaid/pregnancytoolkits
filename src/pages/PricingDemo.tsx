@@ -76,13 +76,29 @@ export default function PricingDemo() {
 
     const sent = await requestPurchase(
       selected,
-      () => {
+      async () => {
         // Force premium tier immediately so crown & UI update instantly
         qmSetTier('premium');
         refreshAIUsage();
         // Dispatch custom event so App.tsx can show SubscriptionSuccessSheet
         window.dispatchEvent(new CustomEvent('subscription-activated', { detail: { plan: selected } }));
         navigate("/");
+
+        // Poll server to confirm subscription sync (max 3 attempts, 2s apart)
+        const poll = async (attempt = 0) => {
+          if (attempt >= 3) return;
+          try {
+            const { data } = await supabase.functions.invoke('pregnancy-ai-perplexity', {
+              body: { action: 'check-quota' },
+            });
+            if (data?.tier === 'premium') {
+              refreshAIUsage();
+              return;
+            }
+          } catch { /* ignore */ }
+          setTimeout(() => poll(attempt + 1), 2000);
+        };
+        setTimeout(() => poll(), 2000);
       },
       (msg) => {
         purchaseErrorShown = true;
