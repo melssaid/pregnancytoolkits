@@ -417,10 +417,18 @@ const ShareAppButton = memo(function ShareAppButton() {
 
   const handleShare = async () => {
     const shareData = { title: l.shareTitle, text: l.shareText, url: PLAY_STORE_URL };
-    if (navigator.share) {
-      try { await navigator.share(shareData); } catch {}
-    } else {
-      try { await navigator.clipboard.writeText(`${l.shareText}\n${PLAY_STORE_URL}`); toast.success('✓'); } catch {}
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+      } else {
+        await navigator.clipboard.writeText(`${l.shareText}\n${PLAY_STORE_URL}`);
+        toast.success(lang === 'ar' ? 'تم نسخ الرابط ✓' : 'Link copied ✓');
+      }
+    } catch (e: any) {
+      // User cancelled share or clipboard failed — try fallback
+      if (e?.name !== 'AbortError') {
+        window.open(`https://wa.me/?text=${encodeURIComponent(`${l.shareText}\n${PLAY_STORE_URL}`)}`, '_blank');
+      }
     }
   };
 
