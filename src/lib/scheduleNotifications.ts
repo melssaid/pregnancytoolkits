@@ -67,6 +67,48 @@ export async function sendDailyScheduleToSW(): Promise<void> {
     }
   }
 
+  // Return reminder — if user hasn't opened app in 48h (checked via localStorage)
+  const lastVisit = localStorage.getItem('pt_last_visit_ts');
+  const now48h = now - 48 * 3600000;
+  if (lastVisit && parseInt(lastVisit, 10) < now48h) {
+    const fireAt = todayAt(10);
+    if (fireAt > now) {
+      reminders.push({
+        title: tn('returnReminderTitle'),
+        body: tn('returnReminderMsg'),
+        tag: 'return-reminder-' + todayStr,
+        url: '/',
+        fireAt,
+      });
+    }
+  }
+  // Always update last visit
+  localStorage.setItem('pt_last_visit_ts', String(now));
+
+  // Milestone notifications (week-based)
+  try {
+    const profile = JSON.parse(localStorage.getItem('userProfile') || '{}');
+    const week = profile.pregnancyWeek || 0;
+    const milestones = [12, 20, 28, 37];
+    const lastMilestone = parseInt(localStorage.getItem('pt_milestone_notified') || '0', 10);
+    for (const m of milestones) {
+      if (week >= m && m > lastMilestone) {
+        const fireAt = todayAt(11);
+        if (fireAt > now) {
+          reminders.push({
+            title: tn('milestoneTitle'),
+            body: tn('milestoneMsg'),
+            tag: 'milestone-' + m,
+            url: '/dashboard',
+            fireAt,
+          });
+          localStorage.setItem('pt_milestone_notified', String(m));
+        }
+        break;
+      }
+    }
+  } catch {}
+
   if (reminders.length > 0) {
     await scheduleRemindersInSW(reminders);
   }
