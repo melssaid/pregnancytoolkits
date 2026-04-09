@@ -138,6 +138,7 @@ const WhyUs = lazy(() => import("@/pages/WhyUs"));
 const Testimonials = lazy(() => import("@/pages/Testimonials"));
 const DiscoverTools = lazy(() => import("@/pages/DiscoverTools"));
 const AdminUsageDashboardPage = lazy(() => import("@/pages/AdminUsageDashboard"));
+const WeeklyAchievements = lazy(() => import("@/pages/WeeklyAchievements"));
 
 export function AnimatedRoutes() {
   return (
@@ -239,6 +240,7 @@ export function AnimatedRoutes() {
         <Route path="/why-us" element={<PageTransition><WhyUs /></PageTransition>} />
         <Route path="/testimonials" element={<PageTransition><Testimonials /></PageTransition>} />
         <Route path="/discover" element={<PageTransition><DiscoverTools /></PageTransition>} />
+        <Route path="/achievements" element={<PageTransition><WeeklyAchievements /></PageTransition>} />
 
         {/* ADMIN */}
         <Route path="/admin/ai-usage" element={<PageTransition><AIUsageDashboard /></PageTransition>} />
