@@ -6645,7 +6645,9 @@
       "vitamins": "Tomar vitaminas",
       "kicks": "Registrar movimentos fetais",
       "water": "Beber água",
-      "appointment": "Consultas próximas"
+      "appointment": "Consultas próximas",
+      "meals": "Comer refeições saudáveis",
+      "fitness": "Exercício leve"
     },
     "quickActions": {
       "title": "Ações rápidas",
@@ -6656,7 +6658,10 @@
       "appointment": "Consulta",
       "symptoms": "Minhas notas",
       "vitamins": "Vitaminas",
-      "photos": "Fotos"
+      "photos": "Fotos",
+      "meals": "Refeições",
+      "fitness": "Exercício",
+      "comfort": "Conforto"
     },
     "hydration": {
       "title": "Hidratação",
@@ -8427,7 +8432,13 @@
     "title": "Certificado Semana {{week}}"
   },
   "challenge": {
-    "daily": "Desafio do dia"
+    "daily": "Desafio do dia",
+    "water": "Beber {{target}} copos de água",
+    "walk": "Caminhar {{target}} minutos",
+    "exercise": "Completar uma sessão",
+    "glasses": "copos",
+    "minutes": "min",
+    "session": "sessão"
   },
   "countdown": {
     "complete": "Completo",

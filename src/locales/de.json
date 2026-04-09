@@ -6645,7 +6645,9 @@
       "vitamins": "Vitamine nehmen",
       "kicks": "Kindsbewegungen aufzeichnen",
       "water": "Wasser trinken",
-      "appointment": "Anstehende Termine"
+      "appointment": "Anstehende Termine",
+      "meals": "Gesunde Mahlzeiten essen",
+      "fitness": "Leichte Übungen"
     },
     "quickActions": {
       "title": "Schnellzugriff",
@@ -6656,7 +6658,10 @@
       "appointment": "Termin",
       "symptoms": "Meine Notizen",
       "vitamins": "Vitamine",
-      "photos": "Fotos"
+      "photos": "Fotos",
+      "meals": "Mahlzeiten",
+      "fitness": "Fitness",
+      "comfort": "Komfort"
     },
     "hydration": {
       "title": "Flüssigkeitszufuhr",
@@ -8427,7 +8432,13 @@
     "title": "Zertifikat Woche {{week}}"
   },
   "challenge": {
-    "daily": "Tages-Challenge"
+    "daily": "Tages-Challenge",
+    "water": "Trinke {{target}} Gläser Wasser",
+    "walk": "{{target}} Minuten spazieren",
+    "exercise": "Trainingseinheit absolvieren",
+    "glasses": "Gläser",
+    "minutes": "Min.",
+    "session": "Einheit"
   },
   "countdown": {
     "complete": "Abgeschlossen",

@@ -6714,7 +6714,9 @@
       "vitamins": "تناول الفيتامينات",
       "kicks": "تسجيل حركات الجنين",
       "water": "شرب الماء",
-      "appointment": "المواعيد القادمة"
+      "appointment": "المواعيد القادمة",
+      "meals": "تناولي وجبات صحية",
+      "fitness": "تمارين خفيفة"
     },
     "quickActions": {
       "title": "إجراءات سريعة",
@@ -6725,7 +6727,10 @@
       "appointment": "الموعد",
       "symptoms": "ملاحظاتي",
       "vitamins": "الفيتامينات",
-      "photos": "الصور"
+      "photos": "الصور",
+      "meals": "وجبات",
+      "fitness": "رياضة",
+      "comfort": "راحة"
     },
     "hydration": {
       "title": "حالة الترطيب",
@@ -8496,7 +8501,13 @@
     "title": "شهادة الأسبوع {{week}}"
   },
   "challenge": {
-    "daily": "تحدي اليوم"
+    "daily": "تحدي اليوم",
+    "water": "اشربي {{target}} أكواب ماء",
+    "walk": "امشي {{target}} دقيقة",
+    "exercise": "أكملي جلسة تمرين",
+    "glasses": "أكواب",
+    "minutes": "دقيقة",
+    "session": "جلسة"
   },
   "countdown": {
     "complete": "مكتمل",

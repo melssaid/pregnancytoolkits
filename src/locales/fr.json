@@ -6645,7 +6645,9 @@
       "vitamins": "Prendre les vitamines",
       "kicks": "Suivre les mouvements fœtaux",
       "water": "Boire de l'eau",
-      "appointment": "Rendez-vous à venir"
+      "appointment": "Rendez-vous à venir",
+      "meals": "Manger des repas sains",
+      "fitness": "Exercice léger"
     },
     "quickActions": {
       "title": "Actions rapides",
@@ -6656,7 +6658,10 @@
       "appointment": "RDV",
       "symptoms": "Mes notes",
       "vitamins": "Vitamines",
-      "photos": "Photos"
+      "photos": "Photos",
+      "meals": "Repas",
+      "fitness": "Fitness",
+      "comfort": "Confort"
     },
     "hydration": {
       "title": "Hydratation",
@@ -8427,7 +8432,13 @@
     "title": "Certificat Semaine {{week}}"
   },
   "challenge": {
-    "daily": "Défi du jour"
+    "daily": "Défi du jour",
+    "water": "Boire {{target}} verres d'eau",
+    "walk": "Marcher {{target}} minutes",
+    "exercise": "Compléter une séance",
+    "glasses": "verres",
+    "minutes": "min",
+    "session": "séance"
   },
   "countdown": {
     "complete": "Terminé",

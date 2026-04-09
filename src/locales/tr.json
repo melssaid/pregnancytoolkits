@@ -6645,7 +6645,9 @@
       "vitamins": "Vitamin al",
       "kicks": "Bebek hareketlerini kaydet",
       "water": "Su iç",
-      "appointment": "Yaklaşan randevular"
+      "appointment": "Yaklaşan randevular",
+      "meals": "Sağlıklı öğünler yiyin",
+      "fitness": "Hafif egzersiz"
     },
     "quickActions": {
       "title": "Hızlı işlemler",
@@ -6656,7 +6658,10 @@
       "appointment": "Randevu",
       "symptoms": "Notlarım",
       "vitamins": "Vitaminler",
-      "photos": "Fotoğraflar"
+      "photos": "Fotoğraflar",
+      "meals": "Öğünler",
+      "fitness": "Egzersiz",
+      "comfort": "Rahatlık"
     },
     "hydration": {
       "title": "Hidrasyon",
@@ -8427,7 +8432,13 @@
     "title": "{{week}}. Hafta Sertifikası"
   },
   "challenge": {
-    "daily": "Günün Mücadelesi"
+    "daily": "Günün Mücadelesi",
+    "water": "{{target}} bardak su için",
+    "walk": "{{target}} dakika yürüyün",
+    "exercise": "Bir antrenman tamamlayın",
+    "glasses": "bardak",
+    "minutes": "dk",
+    "session": "seans"
   },
   "countdown": {
     "complete": "Tamamlandı",
