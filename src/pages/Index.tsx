@@ -484,8 +484,8 @@ const Index = () => {
             <JourneyCard key={config.key} config={config} index={index} isSubscriptionActive={subLoading || isUnlocked} tier={subLoading ? undefined : tier} />
           ))}
           
-          <ShareAppButton />
           <FooterCard />
+          <ShareAppButton />
         </div>
       </section>
     </Layout>
