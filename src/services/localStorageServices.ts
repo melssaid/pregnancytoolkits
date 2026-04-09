@@ -99,57 +99,146 @@ export const UserProfileService = {
 
 export const BumpPhotoService = {
   async upload(file: File, week: number, caption?: string): Promise<BumpPhoto> {
-    const base64 = await new Promise<string>((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onloadend = () => resolve(reader.result as string);
-      reader.onerror = () => reject(new Error('Failed to read file'));
-      reader.readAsDataURL(file);
-    });
+    const {
+      savePhotoToDB,
+      fileToBlob,
+      createPhotoURL,
+    } = await import('@/lib/indexedDBPhotos');
 
     const now = new Date().toISOString();
-    const photo: BumpPhoto = {
-      id: generateId(),
-      user_id: getUserId(),
-      week,
-      image_ref: base64,
-      storage_path: `local/${generateId()}`,
-      caption: caption || null,
-      ai_analysis: null,
-      created_at: now,
-      updated_at: now
-    };
+    const id = generateId();
+    const userId = getUserId();
 
-    const photos = loadData<BumpPhoto>('bump_photos');
-    photos.push(photo);
-    saveData('bump_photos', photos);
-    return photo;
+    try {
+      // Compress and store blob in IndexedDB (hundreds of MB capacity)
+      const blob = await fileToBlob(file);
+      await savePhotoToDB({
+        id,
+        user_id: userId,
+        week,
+        image_blob: blob,
+        caption: caption || null,
+        ai_analysis: null,
+        created_at: now,
+        updated_at: now,
+      });
+
+      // Create a temporary object URL for immediate display
+      const objectUrl = createPhotoURL({ image_blob: blob } as any);
+
+      const photo: BumpPhoto = {
+        id,
+        user_id: userId,
+        week,
+        image_ref: objectUrl,
+        storage_path: `indexeddb/${id}`,
+        caption: caption || null,
+        ai_analysis: null,
+        created_at: now,
+        updated_at: now,
+      };
+
+      // Store lightweight metadata in localStorage (no base64)
+      const metas = loadData<BumpPhoto>('bump_photos_meta');
+      metas.push({ ...photo, image_ref: `idb://${id}` });
+      saveData('bump_photos_meta', metas);
+
+      return photo;
+    } catch {
+      // Fallback to localStorage base64 if IndexedDB fails
+      const base64 = await new Promise<string>((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result as string);
+        reader.onerror = () => reject(new Error('Failed to read file'));
+        reader.readAsDataURL(file);
+      });
+
+      const photo: BumpPhoto = {
+        id,
+        user_id: userId,
+        week,
+        image_ref: base64,
+        storage_path: `local/${id}`,
+        caption: caption || null,
+        ai_analysis: null,
+        created_at: now,
+        updated_at: now,
+      };
+
+      const photos = loadData<BumpPhoto>('bump_photos');
+      photos.push(photo);
+      saveData('bump_photos', photos);
+      return photo;
+    }
   },
 
   async getByWeek(week: number): Promise<BumpPhoto[]> {
-    return loadData<BumpPhoto>('bump_photos').filter(p => p.week === week);
+    const all = await this.getAll();
+    return all.filter(p => p.week === week);
   },
 
   async getAll(): Promise<BumpPhoto[]> {
+    try {
+      const { getPhotosFromDB, createPhotoURL } = await import('@/lib/indexedDBPhotos');
+      const userId = getUserId();
+      const idbPhotos = await getPhotosFromDB(userId);
+
+      if (idbPhotos.length > 0) {
+        return idbPhotos.map(p => ({
+          id: p.id,
+          user_id: p.user_id,
+          week: p.week,
+          image_ref: createPhotoURL(p),
+          storage_path: `indexeddb/${p.id}`,
+          caption: p.caption,
+          ai_analysis: p.ai_analysis,
+          created_at: p.created_at,
+          updated_at: p.updated_at,
+        }));
+      }
+    } catch {
+      // IndexedDB unavailable, fall through to localStorage
+    }
+
+    // Legacy localStorage fallback
     return loadData<BumpPhoto>('bump_photos');
   },
 
   async delete(id: string, _storagePath?: string): Promise<void> {
+    try {
+      const { deletePhotoFromDB } = await import('@/lib/indexedDBPhotos');
+      await deletePhotoFromDB(id);
+    } catch { /* ignore */ }
+
+    // Also clean from metadata and legacy stores
+    const metas = loadData<BumpPhoto>('bump_photos_meta').filter(p => p.id !== id);
+    saveData('bump_photos_meta', metas);
     const photos = loadData<BumpPhoto>('bump_photos').filter(p => p.id !== id);
     saveData('bump_photos', photos);
   },
 
   async updateCaption(id: string, caption: string): Promise<void> {
-    const photos = loadData<BumpPhoto>('bump_photos').map(p =>
+    try {
+      const { updatePhotoInDB } = await import('@/lib/indexedDBPhotos');
+      await updatePhotoInDB(id, { caption });
+    } catch { /* ignore */ }
+
+    const metas = loadData<BumpPhoto>('bump_photos_meta').map(p =>
       p.id === id ? { ...p, caption, updated_at: new Date().toISOString() } : p
     );
-    saveData('bump_photos', photos);
+    saveData('bump_photos_meta', metas);
   },
 
   async updateAnalysis(id: string, analysis: string): Promise<void> {
-    const photos = loadData<BumpPhoto>('bump_photos').map(p =>
+    try {
+      const { updatePhotoInDB } = await import('@/lib/indexedDBPhotos');
+      await updatePhotoInDB(id, { ai_analysis: analysis });
+    } catch { /* ignore */ }
+
+    const metas = loadData<BumpPhoto>('bump_photos_meta').map(p =>
       p.id === id ? { ...p, ai_analysis: analysis, updated_at: new Date().toISOString() } : p
     );
-    saveData('bump_photos', photos);
+    saveData('bump_photos_meta', metas);
   }
 };
 
