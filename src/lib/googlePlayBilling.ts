@@ -11,6 +11,7 @@
 
 import { supabase } from '@/integrations/supabase/client';
 import { setTier as setQuotaTier } from '@/services/smartEngine/quotaManager';
+import { cacheSubscriptionStatus } from '@/lib/subscriptionCache';
 
 export const PRODUCT_IDS = {
   monthly: "premium_monthly",
@@ -637,6 +638,8 @@ async function activateOnServer(
     console.log('[Billing] ✅ Subscription activated');
     // Update local quota to premium (40 credits)
     setQuotaTier('premium');
+    // Cache premium status for instant access on next app open
+    cacheSubscriptionStatus('premium', 'paid');
     return true;
   } catch (err) {
     console.error('[Billing] Activation error:', err);

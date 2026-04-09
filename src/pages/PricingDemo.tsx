@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
-import { Check, X, Sparkles, Brain, Shield, Zap, Heart, Crown, Loader2 } from "lucide-react";
+import { Check, X, Sparkles, Brain, Shield, Zap, Heart, Crown } from "lucide-react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { requestPurchase, isDigitalGoodsAvailable, runBillingDiagnostics, clearBillingCache, type PlanType } from "@/lib/googlePlayBilling";
@@ -11,6 +11,10 @@ import pricingLogo from "@/assets/pricing-logo.webp";
 import { supabase } from "@/integrations/supabase/client";
 import { useAIUsage } from "@/contexts/AIUsageContext";
 import { setTier as qmSetTier } from "@/services/smartEngine/quotaManager";
+import { usePlayPrices } from "@/hooks/usePlayPrices";
+import { PurchaseConfirmationSheet } from "@/components/billing/PurchaseConfirmationSheet";
+import { PurchaseProgressOverlay, type PurchaseStep } from "@/components/billing/PurchaseProgressOverlay";
+import { PurchaseErrorSheet } from "@/components/billing/PurchaseErrorSheet";
 
 const features = [
   { icon: Brain, key: "feature1" },
@@ -20,17 +24,60 @@ const features = [
   { icon: Sparkles, key: "feature5" },
 ];
 
+// Track pricing page visit for abandoned cart reminder (#10)
+function scheduleAbandonedCartReminder() {
+  if (!("Notification" in window) || Notification.permission !== "granted") return;
+  const REMINDER_KEY = "pricing_visit_ts";
+  localStorage.setItem(REMINDER_KEY, Date.now().toString());
+
+  // Schedule a check after 1 hour
+  setTimeout(() => {
+    const visitTs = localStorage.getItem(REMINDER_KEY);
+    if (!visitTs) return; // User purchased (we clear it on success)
+    const elapsed = Date.now() - parseInt(visitTs);
+    if (elapsed >= 3500000) { // ~1 hour
+      try {
+        new Notification(
+          document.documentElement.lang === "ar" ? "🌸 عرض خاص ينتظرك!" : "🌸 A special offer awaits!",
+          {
+            body: document.documentElement.lang === "ar"
+              ? "عودي لإكمال اشتراكك والوصول لجميع الأدوات الذكية"
+              : "Come back to complete your subscription and unlock all smart tools",
+            icon: "/icons/icon-192x192.png",
+            tag: "abandoned-cart",
+          }
+        );
+      } catch {}
+    }
+  }, 3600000);
+}
+
+function clearAbandonedCartReminder() {
+  localStorage.removeItem("pricing_visit_ts");
+}
+
 export default function PricingDemo() {
   const { t, i18n } = useTranslation();
   const { isRTL } = useLanguage();
   const navigate = useNavigate();
   const [selected, setSelected] = useState<PlanType>("yearly");
-  const [syncing, setSyncing] = useState(false);
   const [devTaps, setDevTaps] = useState(0);
   const devMode = devTaps >= 5;
   const isAr = i18n.language === "ar";
   const canPurchase = isDigitalGoodsAvailable();
   const { refresh: refreshAIUsage } = useAIUsage();
+  const prices = usePlayPrices();
+
+  // UI states for new billing UX
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [purchaseStep, setPurchaseStep] = useState<PurchaseStep>(null);
+  const [errorMsg, setErrorMsg] = useState("");
+  const [showError, setShowError] = useState(false);
+
+  // Abandoned cart reminder (#10)
+  useEffect(() => {
+    scheduleAbandonedCartReminder();
+  }, []);
 
   const normalizeBillingError = (message?: string) => {
     if (!message) {
@@ -52,15 +99,8 @@ export default function PricingDemo() {
     return message;
   };
 
-  const handleSubscribe = async () => {
-    console.log('[PricingDemo] canPurchase:', canPurchase, 'getDigitalGoodsService:', typeof window.getDigitalGoodsService);
-    
-    // Run diagnostics first
-    const diag = await runBillingDiagnostics();
-    console.log('[PricingDemo] Diagnostics result:', diag);
-
+  const handleSubscribeClick = async () => {
     if (!canPurchase) {
-      // On web: redirect user to download the app from Google Play
       const playStoreUrl = "https://play.google.com/store/apps/details?id=app.pregnancytoolkits.android";
       window.open(playStoreUrl, "_blank");
       toast.info(
@@ -72,60 +112,68 @@ export default function PricingDemo() {
       return;
     }
 
+    // Show confirmation sheet (#1)
+    setShowConfirm(true);
+  };
+
+  const executePurchase = async () => {
+    setShowConfirm(false);
+    setPurchaseStep("connecting");
+
+    const diag = await runBillingDiagnostics();
     if (!diag.serviceConnected) {
-      toast.error(normalizeBillingError(diag.error || 'لا يمكن الاتصال بخدمة الدفع'));
+      setPurchaseStep(null);
+      setErrorMsg(normalizeBillingError(diag.error || "لا يمكن الاتصال بخدمة الدفع"));
+      setShowError(true);
       return;
     }
 
-    let purchaseErrorShown = false;
+    setPurchaseStep("payment");
 
     const sent = await requestPurchase(
       selected,
       async () => {
-        // Force premium tier immediately so crown & UI update instantly
-        qmSetTier('premium');
+        setPurchaseStep("activating");
+        qmSetTier("premium");
         refreshAIUsage();
-        // Dispatch custom event so App.tsx can show SubscriptionSuccessSheet
-        window.dispatchEvent(new CustomEvent('subscription-activated', { detail: { plan: selected } }));
-        navigate("/");
+        clearAbandonedCartReminder();
+        window.dispatchEvent(new CustomEvent("subscription-activated", { detail: { plan: selected } }));
 
-        // Show syncing spinner overlay
-        setSyncing(true);
-
-        // Poll server to confirm subscription sync (max 3 attempts, 2s apart)
+        // Poll server
         const poll = async (attempt = 0) => {
           if (attempt >= 3) {
-            setSyncing(false);
-            toast.success(isAr ? '✅ تم تفعيل الاشتراك' : '✅ Subscription activated');
+            setPurchaseStep("done");
+            setTimeout(() => { setPurchaseStep(null); navigate("/"); }, 1500);
             return;
           }
           try {
-            const { data } = await supabase.functions.invoke('pregnancy-ai-perplexity', {
-              body: { action: 'check-quota' },
+            const { data } = await supabase.functions.invoke("pregnancy-ai-perplexity", {
+              body: { action: "check-quota" },
             });
-            if (data?.tier === 'premium') {
-              setSyncing(false);
-              toast.success(isAr ? '✅ تمت المزامنة بنجاح' : '✅ Synced successfully');
+            if (data?.tier === "premium") {
               refreshAIUsage();
+              setPurchaseStep("done");
+              setTimeout(() => { setPurchaseStep(null); navigate("/"); }, 1500);
               return;
             }
-          } catch { /* ignore */ }
+          } catch {}
           setTimeout(() => poll(attempt + 1), 2000);
         };
         setTimeout(() => poll(), 2000);
       },
       (msg) => {
-        purchaseErrorShown = true;
-        toast.error(normalizeBillingError(msg));
+        setPurchaseStep(null);
+        setErrorMsg(normalizeBillingError(msg));
+        setShowError(true);
       },
     );
 
-    if (!sent && !purchaseErrorShown) {
-      toast.info(t("pricing.purchaseCancelled") || "Purchase was cancelled");
+    if (!sent && !showError) {
+      setPurchaseStep(null);
     }
   };
 
-  const price = selected === "yearly" ? "$19.99" : "$2.99";
+  const priceDisplay = selected === "yearly" ? prices.yearly.display : prices.monthly.display;
   const period = selected === "yearly" ? t("pricing.yr") : t("pricing.mo");
 
   return (
@@ -133,21 +181,26 @@ export default function PricingDemo() {
       className="min-h-[100dvh] bg-background flex flex-col relative overflow-hidden"
       dir={isRTL ? "rtl" : "ltr"}
     >
-      {/* Sync Spinner Overlay */}
-      {syncing && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-background/80 backdrop-blur-sm"
-        >
-          <div className="flex flex-col items-center gap-3">
-            <Loader2 className="w-10 h-10 text-primary animate-spin" />
-            <p className="text-sm font-medium text-foreground">
-              {isAr ? 'جارٍ مزامنة الاشتراك...' : 'Syncing subscription...'}
-            </p>
-          </div>
-        </motion.div>
-      )}
+      {/* Purchase Progress Overlay (#6) */}
+      <PurchaseProgressOverlay step={purchaseStep} />
+
+      {/* Purchase Error Sheet (#4, #9) */}
+      <PurchaseErrorSheet
+        open={showError}
+        onClose={() => setShowError(false)}
+        onRetry={executePurchase}
+        errorMessage={errorMsg}
+      />
+
+      {/* Purchase Confirmation Sheet (#1) */}
+      <PurchaseConfirmationSheet
+        open={showConfirm}
+        onClose={() => setShowConfirm(false)}
+        onConfirm={executePurchase}
+        plan={selected}
+        priceDisplay={priceDisplay}
+        period={period}
+      />
 
       {/* Background */}
       <div className="absolute inset-0 pointer-events-none">
@@ -199,7 +252,6 @@ export default function PricingDemo() {
                 animate={{ scale: [1, 1.4, 1], opacity: [0.3, 0.6, 0.3] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
               />
-              {/* Orbiting hearts */}
               {/* Logo */}
               <div className="relative z-0 rounded-full overflow-hidden shadow-xl shadow-primary/20 ring-[3px] ring-primary/15 bg-white" style={{ width: 88, height: 88 }}>
                 <img src={pricingLogo} alt="Pregnancy Toolkits" className="w-full h-full object-cover" loading="eager" width={88} height={88} />
@@ -292,8 +344,7 @@ export default function PricingDemo() {
             ))}
           </motion.div>
 
-
-
+          {/* Plan cards with real prices (#2) */}
           <motion.div
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
@@ -326,12 +377,12 @@ export default function PricingDemo() {
               <span className="text-[11px] font-bold text-foreground mb-1">{t("pricing.yearly")}</span>
 
               <span className="text-[22px] font-extrabold text-foreground tabular-nums leading-none" style={{ fontFamily: "'Cairo', sans-serif" }}>
-                $19.99
+                {prices.yearly.display}
               </span>
               <span className="text-[10px] text-muted-foreground mt-0.5">/{t("pricing.yr")}</span>
 
               <div className="mt-2 flex flex-col items-center gap-1">
-                <span className="text-[9px] text-muted-foreground">$1.67/{t("pricing.mo")}</span>
+                <span className="text-[9px] text-muted-foreground">{prices.monthlyEquivalent}/{t("pricing.mo")}</span>
                 <motion.span 
                   className="text-[8px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
                   animate={{ scale: [1, 1.08, 1] }}
@@ -363,7 +414,7 @@ export default function PricingDemo() {
               <span className="text-[11px] font-bold text-foreground mb-1">{t("pricing.monthly")}</span>
 
               <span className="text-[22px] font-extrabold text-foreground tabular-nums leading-none" style={{ fontFamily: "'Cairo', sans-serif" }}>
-                $2.99
+                {prices.monthly.display}
               </span>
               <span className="text-[10px] text-muted-foreground mt-0.5">/{t("pricing.mo")}</span>
             </button>
@@ -378,7 +429,7 @@ export default function PricingDemo() {
           className="mt-5 space-y-2"
         >
           <Button
-            onClick={handleSubscribe}
+            onClick={handleSubscribeClick}
             size="lg"
             className="w-full h-[46px] text-[13px] font-bold rounded-2xl shadow-lg shadow-primary/20 whitespace-normal leading-snug"
             style={{ fontFamily: isAr ? "'Almarai', sans-serif" : "'Montserrat', sans-serif" }}
@@ -390,7 +441,7 @@ export default function PricingDemo() {
             className="text-center text-[10px] text-muted-foreground leading-snug"
             style={{ fontFamily: isAr ? "'Tajawal', sans-serif" : "'Montserrat', sans-serif" }}
           >
-            {t("pricing.ctaSub", { price, period })}
+            {t("pricing.ctaSub", { price: priceDisplay, period })}
           </p>
 
           <p className="text-center text-[9px] text-muted-foreground/50 leading-relaxed">
@@ -439,14 +490,12 @@ function BillingDiagnosticsPanel({ isAr }: { isAr: boolean }) {
     setLoading(false);
   };
 
-  // Auto-refresh every 30 seconds
   useEffect(() => {
     if (!autoRefresh || !visible) return;
     const interval = setInterval(() => { runDiag(); }, 30000);
     return () => clearInterval(interval);
   }, [autoRefresh, visible]);
 
-  // Fetch last saved report from database
   useEffect(() => {
     if (!visible) return;
     const fetchLastReport = async () => {
@@ -526,7 +575,6 @@ function BillingDiagnosticsPanel({ isAr }: { isAr: boolean }) {
         </div>
       </div>
 
-      {/* Auto-refresh toggle */}
       <div className="flex items-center justify-between mb-2 px-1">
         <span className="text-[9px] text-muted-foreground">
           {isAr ? "تحديث تلقائي كل 30 ثانية" : "Auto-refresh every 30s"}
@@ -543,8 +591,7 @@ function BillingDiagnosticsPanel({ isAr }: { isAr: boolean }) {
         <p className="text-muted-foreground text-center py-2">{isAr ? "جاري الفحص..." : "Checking..."}</p>
       ) : diag ? (
         <div className="space-y-1.5">
-          {/* Readiness Status Hero */}
-          <div className={`flex flex-col items-center gap-1 py-2 px-3 rounded-lg bg-muted/50 mb-2`}>
+          <div className="flex flex-col items-center gap-1 py-2 px-3 rounded-lg bg-muted/50 mb-2">
             <span className={`font-bold text-sm ${readinessColor}`}>{readinessLabel}</span>
             <div className="w-full bg-muted rounded-full h-2 mt-1">
               <div
@@ -555,7 +602,6 @@ function BillingDiagnosticsPanel({ isAr }: { isAr: boolean }) {
             <span className="text-[9px] text-muted-foreground">{diag.readinessScore}% {isAr ? 'جاهزية' : 'readiness'}</span>
           </div>
 
-          {/* App Info Section */}
           <div className="flex items-center justify-between gap-2">
             <span className="text-muted-foreground">{isAr ? "إصدار التطبيق" : "App Version"}</span>
             <span className="font-mono font-bold text-muted-foreground">{diag.appVersionName || '—'}</span>
@@ -616,7 +662,6 @@ function BillingDiagnosticsPanel({ isAr }: { isAr: boolean }) {
               {diag.error}
             </div>
           )}
-          {/* Timings section */}
           {diag.timings && Object.keys(diag.timings).length > 0 && (
             <div className="mt-2 p-2 rounded-lg bg-muted/30 text-[9px]">
               <span className="font-bold text-muted-foreground">{isAr ? "⏱ أزمنة التشخيص:" : "⏱ Timings:"}</span>
@@ -716,7 +761,6 @@ function BillingDiagnosticsPanel({ isAr }: { isAr: boolean }) {
             </button>
           </div>
 
-          {/* Last saved DB report */}
           {lastDbReport && (
             <div className="mt-3 p-2 rounded-lg bg-muted/30 border border-border/30 text-[9px]">
               <span className="font-bold text-muted-foreground block mb-1">
@@ -728,7 +772,7 @@ function BillingDiagnosticsPanel({ isAr }: { isAr: boolean }) {
                 <div>{isAr ? "الكتالوج" : "Catalog"}: {lastDbReport.catalog_ready ? '✅' : '❌'}</div>
                 {lastDbReport.errors?.length > 0 && (
                   <div className="text-destructive">
-                    {lastDbReport.errors.map((e: string, i: number) => <div key={i}>• {e}</div>)}
+                    {isAr ? "أخطاء" : "Errors"}: {lastDbReport.errors.join(', ')}
                   </div>
                 )}
               </div>
