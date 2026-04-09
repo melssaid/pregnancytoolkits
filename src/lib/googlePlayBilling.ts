@@ -495,7 +495,7 @@ export async function requestPurchase(
           const orderId = responseDetails?.orderId || responseDetails?.order_id;
           console.log('[Billing] Direct purchase response:', { hasPurchaseToken: !!purchaseToken, hasOrderId: !!orderId });
           if (purchaseToken) {
-            try { await svc.service.acknowledge(purchaseToken, 'onetime'); } catch {}
+            try { await svc.service.acknowledge(purchaseToken, 'repeatable'); } catch {}
             const activated = await activateOnServer(purchaseToken, productId, orderId);
             await response.complete(activated ? 'success' : 'fail');
             if (activated) onSuccess?.(productId);
@@ -536,9 +536,9 @@ export async function requestPurchase(
       return false;
     }
 
-    // Acknowledge purchase — 'onetime' for subscriptions (not 'repeatable' which is for consumables)
+    // Acknowledge purchase — 'repeatable' for subscriptions (auto-renewing)
     try {
-      await svc.service.acknowledge(purchaseToken, 'onetime');
+      await svc.service.acknowledge(purchaseToken, 'repeatable');
       console.log('[Billing] ✅ Purchase acknowledged');
     } catch (ackErr: any) {
       console.warn('[Billing] Acknowledge failed (non-fatal):', ackErr?.message);
