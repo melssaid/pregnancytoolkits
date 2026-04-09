@@ -17,10 +17,10 @@ import { useCallback } from 'react';
 
 const REVIEW_KEY = 'app_review_state';
 const TOOL_USAGE_KEY = 'app_tools_used';
-const MIN_SESSIONS = 3;
-const MIN_TOOLS_USED = 3;
-const MIN_DAYS_INSTALLED = 7;
-const COOLDOWN_MS = 45 * 24 * 60 * 60 * 1000; // 45 days
+const MIN_SESSIONS = 2;
+const MIN_TOOLS_USED = 2;
+const MIN_DAYS_INSTALLED = 3;
+const COOLDOWN_MS = 30 * 24 * 60 * 60 * 1000; // 30 days
 
 interface ReviewState {
   lastPromptedAt: string | null;
@@ -143,7 +143,7 @@ function triggerReview() {
     return true;
   }
   // Fallback: open Play Store page
-  const packageName = 'app.lovable.pregnancytoolkits';
+  const packageName = 'app.pregnancytoolkits.android';
   window.open(
     `https://play.google.com/store/apps/details?id=${packageName}`,
     '_blank'
