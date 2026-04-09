@@ -105,9 +105,13 @@ export default function DiscoverTools() {
           <h1 className="text-xl font-bold text-foreground mb-1">
             {t("discover.title", "Discover Tools for You")}
           </h1>
-          <p className="text-xs text-muted-foreground">
+          <p className="text-xs text-muted-foreground mb-3">
             {week ? t("discover.weekContext", { week, defaultValue: "Recommended for week {{week}} of your journey" }) : t("discover.generalContext", "Based on popular tools")}
           </p>
+          <Link to="/achievements" className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-bold hover:bg-amber-500/20 transition-colors">
+            <Trophy className="w-3.5 h-3.5" />
+            {t("discover.viewAchievements", "View My Achievements")}
+          </Link>
         </motion.div>
 
         {/* New / Not yet tried */}
