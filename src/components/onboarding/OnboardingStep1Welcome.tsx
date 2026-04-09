@@ -67,22 +67,6 @@ export const OnboardingStep1Welcome: React.FC<Props> = ({ selectedLang, onSelect
         </p>
       </div>
 
-      {/* Visual showcase - what you can do */}
-      <div className="px-4 pb-3">
-        <div className="flex items-center justify-center gap-3 py-2">
-          {showcaseItems.map((item, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 + i * 0.08 }}
-              className={cn("w-10 h-10 rounded-xl flex items-center justify-center", item.bgClass)}
-            >
-              <item.icon className={cn("w-5 h-5", item.colorClass)} />
-            </motion.div>
-          ))}
-        </div>
-      </div>
 
       {/* Value props */}
       <div className="px-4 pb-3">
