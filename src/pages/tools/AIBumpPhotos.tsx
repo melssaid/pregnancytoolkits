@@ -53,6 +53,7 @@ const AIBumpPhotos: React.FC = () => {
   const [showFullscreen, setShowFullscreen] = useState(false);
   const [showCompare, setShowCompare] = useState(false);
   const [storageUsed, setStorageUsed] = useState(0);
+  const [isExportingPhotos, setIsExportingPhotos] = useState(false);
   const [editingPhotoId, setEditingPhotoId] = useState<string | null>(null);
   const [editCaption, setEditCaption] = useState('');
   const fileInputRef = useRef<HTMLInputElement>(null);
