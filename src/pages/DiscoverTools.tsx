@@ -4,8 +4,9 @@ import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { toolsData } from "@/lib/tools-data";
-import { Sparkles, ArrowRight, ArrowLeft } from "lucide-react";
+import { Sparkles, ArrowRight, ArrowLeft, Star, Trophy } from "lucide-react";
 import { useMemo } from "react";
+import { useToolRating } from "@/hooks/useToolRating";
 
 /**
  * Recommends tools based on pregnancy week stored in localStorage.
