@@ -6658,7 +6658,10 @@
       "appointment": "RDV",
       "symptoms": "Mes notes",
       "vitamins": "Vitamines",
-      "photos": "Photos"
+      "photos": "Photos",
+      "meals": "Repas",
+      "fitness": "Fitness",
+      "comfort": "Confort"
     },
     "hydration": {
       "title": "Hydratation",

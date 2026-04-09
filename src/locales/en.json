@@ -6727,7 +6727,10 @@
       "appointment": "Appt.",
       "symptoms": "My Notes",
       "vitamins": "Vitamins",
-      "photos": "Photos"
+      "photos": "Photos",
+      "meals": "Meals",
+      "fitness": "Fitness",
+      "comfort": "Comfort"
     },
     "hydration": {
       "title": "Hydration",

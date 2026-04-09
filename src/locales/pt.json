@@ -6658,7 +6658,10 @@
       "appointment": "Consulta",
       "symptoms": "Minhas notas",
       "vitamins": "Vitaminas",
-      "photos": "Fotos"
+      "photos": "Fotos",
+      "meals": "Refeições",
+      "fitness": "Exercício",
+      "comfort": "Conforto"
     },
     "hydration": {
       "title": "Hidratação",

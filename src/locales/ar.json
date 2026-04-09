@@ -6727,7 +6727,10 @@
       "appointment": "الموعد",
       "symptoms": "ملاحظاتي",
       "vitamins": "الفيتامينات",
-      "photos": "الصور"
+      "photos": "الصور",
+      "meals": "وجبات",
+      "fitness": "رياضة",
+      "comfort": "راحة"
     },
     "hydration": {
       "title": "حالة الترطيب",

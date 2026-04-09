@@ -6658,7 +6658,10 @@
       "appointment": "Termin",
       "symptoms": "Meine Notizen",
       "vitamins": "Vitamine",
-      "photos": "Fotos"
+      "photos": "Fotos",
+      "meals": "Mahlzeiten",
+      "fitness": "Fitness",
+      "comfort": "Komfort"
     },
     "hydration": {
       "title": "Flüssigkeitszufuhr",

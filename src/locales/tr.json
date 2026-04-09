@@ -6658,7 +6658,10 @@
       "appointment": "Randevu",
       "symptoms": "Notlarım",
       "vitamins": "Vitaminler",
-      "photos": "Fotoğraflar"
+      "photos": "Fotoğraflar",
+      "meals": "Öğünler",
+      "fitness": "Egzersiz",
+      "comfort": "Rahatlık"
     },
     "hydration": {
       "title": "Hidrasyon",
