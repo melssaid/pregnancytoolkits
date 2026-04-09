@@ -42,17 +42,24 @@ export function Layout({ children, showBack = false }: LayoutProps) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       >
-        {/* Animated shimmer overlay */}
+        {/* Animated shimmer overlay — brighter */}
         <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
+          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent"
           initial={{ x: '-100%' }}
           animate={{ x: '200%' }}
-          transition={{ duration: 3, repeat: Infinity, repeatDelay: 4, ease: 'linear' }}
+          transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 3, ease: 'linear' }}
+        />
+        {/* Secondary subtle shimmer for extra glow */}
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
+          initial={{ x: '200%' }}
+          animate={{ x: '-100%' }}
+          transition={{ duration: 3.5, repeat: Infinity, repeatDelay: 2, ease: 'linear' }}
         />
         
         <div className="relative flex items-center justify-center gap-4 sm:gap-6 pt-2 pb-2 px-4">
           <motion.span 
-            className={`${trustTextSize} font-extrabold tracking-widest uppercase drop-shadow-md text-primary-foreground`}
+            className={`${trustTextSize} font-extrabold tracking-widest uppercase drop-shadow-lg text-primary-foreground`}
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.5, ease: 'easeOut' }}
@@ -61,14 +68,14 @@ export function Layout({ children, showBack = false }: LayoutProps) {
           </motion.span>
           
           <motion.span 
-            className="w-1 h-1 rounded-full bg-primary-foreground/50 flex-shrink-0"
+            className="w-1.5 h-1.5 rounded-full bg-primary-foreground/70 flex-shrink-0 shadow-[0_0_6px_2px_rgba(255,255,255,0.4)]"
             initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.5, type: 'spring', stiffness: 300 }}
+            animate={{ scale: [1, 1.3, 1] }}
+            transition={{ delay: 0.5, duration: 2, repeat: Infinity, ease: 'easeInOut' }}
           />
           
           <motion.span 
-            className={`${trustTextSize} font-extrabold tracking-widest uppercase drop-shadow-md text-primary-foreground`}
+            className={`${trustTextSize} font-extrabold tracking-widest uppercase drop-shadow-lg text-primary-foreground`}
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.45, duration: 0.5, ease: 'easeOut' }}
@@ -77,14 +84,14 @@ export function Layout({ children, showBack = false }: LayoutProps) {
           </motion.span>
           
           <motion.span 
-            className="hidden sm:block w-1 h-1 rounded-full bg-primary-foreground/50 flex-shrink-0"
+            className="hidden sm:block w-1.5 h-1.5 rounded-full bg-primary-foreground/70 flex-shrink-0 shadow-[0_0_6px_2px_rgba(255,255,255,0.4)]"
             initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.65, type: 'spring', stiffness: 300 }}
+            animate={{ scale: [1, 1.3, 1] }}
+            transition={{ delay: 0.65, duration: 2, repeat: Infinity, ease: 'easeInOut' }}
           />
           
           <motion.span 
-            className={`hidden sm:inline ${trustTextSize} font-extrabold tracking-widest uppercase drop-shadow-md text-primary-foreground`}
+            className={`hidden sm:inline ${trustTextSize} font-extrabold tracking-widest uppercase drop-shadow-lg text-primary-foreground`}
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.5, ease: 'easeOut' }}
@@ -92,19 +99,19 @@ export function Layout({ children, showBack = false }: LayoutProps) {
             {t('layout.trustBar.premium')}
           </motion.span>
         </div>
-        {/* Animated glowing bottom line */}
+        {/* Animated glowing bottom line — brighter */}
         <div className="relative h-[3px] overflow-hidden">
           <motion.div
-            className="absolute inset-0 bg-gradient-to-r from-primary-foreground/15 via-primary-foreground/60 to-primary-foreground/15"
+            className="absolute inset-0 bg-gradient-to-r from-primary-foreground/20 via-primary-foreground/70 to-primary-foreground/20"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6, duration: 0.5 }}
           />
           <motion.div
-            className="absolute h-full w-1/4 bg-gradient-to-r from-transparent via-white/90 to-transparent rounded-full blur-[2px]"
+            className="absolute h-full w-1/3 bg-gradient-to-r from-transparent via-white to-transparent rounded-full blur-[1px]"
             initial={{ x: '-100%' }}
             animate={{ x: '500%' }}
-            transition={{ delay: 0.8, duration: 1.8, repeat: Infinity, repeatDelay: 2, ease: 'easeInOut' }}
+            transition={{ delay: 0.8, duration: 1.5, repeat: Infinity, repeatDelay: 1.5, ease: 'easeInOut' }}
           />
         </div>
       </motion.div>
