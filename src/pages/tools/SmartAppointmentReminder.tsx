@@ -12,7 +12,7 @@ import { AppointmentService } from '@/services/supabaseServices';
 import { useUserProfile } from '@/hooks/useUserProfile';
 import { useSmartInsight } from '@/hooks/useSmartInsight';
 import { TimePicker } from '@/components/ui/time-picker';
-import { AIResultDisclaimer } from '@/components/compliance/AIResultDisclaimer';
+
 import { ToolFrame } from '@/components/ToolFrame';
 import { WeekSlider } from '@/components/WeekSlider';
 import { MedicalDisclaimer } from '@/components/compliance';
@@ -712,10 +712,6 @@ Format as a numbered list (1-5), one question per line. Be concise and relevant.
                             </div>
                           )}
 
-                          {/* AI Disclaimer after generation */}
-                          {suggestedQuestions.length > 0 && (
-                            <AIResultDisclaimer />
-                          )}
                           
                           {aiError && (
                             <div className="bg-destructive/10 text-destructive p-2.5 rounded-xl text-xs">
