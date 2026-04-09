@@ -70,7 +70,7 @@ export function ToolCard({ titleKey, descriptionKey, icon: Icon, href, index, va
             <h3 className="text-sm font-semibold text-foreground leading-snug whitespace-normal" style={{ overflowWrap: 'anywhere' }}>
               {t(titleKey)}
             </h3>
-            <p className="text-xs text-foreground/70 mt-0.5 leading-relaxed whitespace-normal" style={{ overflowWrap: 'anywhere' }}>
+            <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed whitespace-normal" style={{ overflowWrap: 'anywhere' }}>
               {t(descriptionKey)}
             </p>
           </div>
@@ -78,7 +78,7 @@ export function ToolCard({ titleKey, descriptionKey, icon: Icon, href, index, va
             {isLocked ? (
               <Lock className="w-4 h-4 text-muted-foreground" />
             ) : (
-              <ChevronIcon className="w-4 h-4 text-foreground/50 group-hover:text-primary transition-colors duration-300" />
+              <ChevronIcon className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors duration-300" />
             )}
           </div>
         </div>

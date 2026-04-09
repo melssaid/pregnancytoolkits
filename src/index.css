@@ -10,6 +10,13 @@
 }
 @font-face {
   font-family: 'Tajawal';
+  src: url('/fonts/Tajawal-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Tajawal';
   src: url('/fonts/Tajawal-Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
@@ -48,7 +55,7 @@ html[lang="ar"] .ar-heading {
     
     /* Muted - Warm beige */
     --muted: 30 20% 93%;
-    --muted-foreground: 25 15% 36%;
+    --muted-foreground: 25 15% 28%;
     
     /* Accent - Soft sage green for lifestyle */
     --accent: 150 35% 55%;
@@ -111,7 +118,7 @@ html[lang="ar"] .ar-heading {
     --secondary: 25 12% 18%;
     --secondary-foreground: 340 50% 68%;
     --muted: 25 12% 16%;
-    --muted-foreground: 25 10% 52%;
+    --muted-foreground: 25 10% 58%;
     --accent: 150 35% 50%;
     --accent-foreground: 0 0% 100%;
     --destructive: 12 55% 48%;
@@ -189,6 +196,7 @@ html[lang="ar"] .ar-heading {
 
   html[dir="rtl"] body {
     font-family: 'Tajawal', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    font-weight: 500;
     background: hsl(0 0% 100%);
   }
 
@@ -224,6 +232,21 @@ html[lang="ar"] .ar-heading {
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-bold tracking-tight text-foreground;
+  }
+
+  /* Boost body text legibility — use medium weight for RTL (Tajawal) */
+  html[dir="rtl"] p,
+  html[dir="rtl"] span,
+  html[dir="rtl"] li,
+  html[dir="rtl"] td,
+  html[dir="rtl"] label,
+  html[dir="rtl"] a {
+    font-weight: 500;
+  }
+
+  /* Ensure description/secondary text has adequate contrast */
+  .text-muted-foreground {
+    letter-spacing: 0.01em;
   }
 }
 
