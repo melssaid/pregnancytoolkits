@@ -60,10 +60,14 @@ export default function PricingDemo() {
     console.log('[PricingDemo] Diagnostics result:', diag);
 
     if (!canPurchase) {
-      toast.error(
-        isAr 
-          ? "خدمة الدفع غير متوفرة حالياً. تأكد من تحديث التطبيق وخدمات Google Play، ثم أعد فتح التطبيق." 
-          : "Payment service unavailable. Please update the app and Google Play services, then reopen."
+      // On web: redirect user to download the app from Google Play
+      const playStoreUrl = "https://play.google.com/store/apps/details?id=app.pregnancytoolkits.android";
+      window.open(playStoreUrl, "_blank");
+      toast.info(
+        isAr
+          ? "الدفع متاح فقط داخل التطبيق. حمّلي التطبيق من Google Play للاشتراك."
+          : "Payment is only available in the app. Download from Google Play to subscribe.",
+        { duration: 6000 }
       );
       return;
     }
