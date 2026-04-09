@@ -6645,7 +6645,9 @@
       "vitamins": "Tomar vitaminas",
       "kicks": "Registrar movimientos del bebées",
       "water": "Beber agua",
-      "appointment": "Citas próximas"
+      "appointment": "Citas próximas",
+      "meals": "Comer comidas saludables",
+      "fitness": "Ejercicio ligero"
     },
     "quickActions": {
       "title": "Acciones rápidas",
@@ -8427,7 +8429,13 @@
     "title": "Certificado Semana {{week}}"
   },
   "challenge": {
-    "daily": "Desafío del día"
+    "daily": "Desafío del día",
+    "water": "Beber {{target}} vasos de agua",
+    "walk": "Caminar {{target}} minutos",
+    "exercise": "Completar una sesión",
+    "glasses": "vasos",
+    "minutes": "min",
+    "session": "sesión"
   },
   "countdown": {
     "complete": "Completo",

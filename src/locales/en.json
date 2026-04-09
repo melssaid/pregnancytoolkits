@@ -6714,7 +6714,9 @@
       "vitamins": "Take vitamins",
       "kicks": "Track baby movements",
       "water": "Drink water",
-      "appointment": "Upcoming appointments"
+      "appointment": "Upcoming appointments",
+      "meals": "Eat healthy meals",
+      "fitness": "Light exercise"
     },
     "quickActions": {
       "title": "Quick Actions",
@@ -8496,7 +8498,13 @@
     "title": "Week {{week}} Certificate"
   },
   "challenge": {
-    "daily": "Today's Challenge"
+    "daily": "Today's Challenge",
+    "water": "Drink {{target}} glasses of water",
+    "walk": "Walk for {{target}} minutes",
+    "exercise": "Complete a workout session",
+    "glasses": "glasses",
+    "minutes": "min",
+    "session": "session"
   },
   "countdown": {
     "complete": "Complete",
