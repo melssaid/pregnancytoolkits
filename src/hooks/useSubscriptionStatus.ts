@@ -13,6 +13,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { ensureAuthenticated } from "@/lib/auth";
+import { getCachedSubscriptionStatus, cacheSubscriptionStatus } from "@/lib/subscriptionCache";
 
 export type SubscriptionTier = "free" | "trial" | "premium";
 
@@ -72,10 +73,12 @@ async function createTrialSubscription(userId: string): Promise<boolean> {
 }
 
 export function useSubscriptionStatus(): SubscriptionStatus {
-  const [tier, setTier] = useState<SubscriptionTier>("free");
+  // Read optimistic cache for instant premium state on app restart
+  const cached = getCachedSubscriptionStatus();
+  const [tier, setTier] = useState<SubscriptionTier>(cached?.tier || "free");
   const [isLoading, setIsLoading] = useState(true);
   const [trialDaysLeft, setTrialDaysLeft] = useState(0);
-  const [subscriptionType, setSubscriptionType] = useState<string | null>(null);
+  const [subscriptionType, setSubscriptionType] = useState<string | null>(cached?.subscriptionType || null);
 
   const checkStatus = useCallback(async () => {
     try {
@@ -127,6 +130,7 @@ export function useSubscriptionStatus(): SubscriptionStatus {
         setTrialDaysLeft(daysLeft);
         setTier("trial");
         setSubscriptionType("trial");
+        cacheSubscriptionStatus("trial", "trial");
       } else if (sub.status === "active" && sub.subscription_type !== "trial") {
         // Verify subscription hasn't expired
         const subEnd = sub.subscription_end ? new Date(sub.subscription_end) : null;
@@ -139,6 +143,7 @@ export function useSubscriptionStatus(): SubscriptionStatus {
           setTier("premium");
           setSubscriptionType(sub.subscription_type);
           setTrialDaysLeft(0);
+          cacheSubscriptionStatus("premium", sub.subscription_type);
         }
       } else {
         // Trial expired, no paid subscription
