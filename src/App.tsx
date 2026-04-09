@@ -12,6 +12,7 @@ import { initializeAuth } from "@/lib/auth";
 import { toast } from "sonner";
 import { prefetchCriticalRoutes } from "@/lib/routePrefetch";
 import { captureAttribution } from "@/hooks/useAttribution";
+import { useVisitorTracking } from "@/hooks/useVisitorTracking";
 
 // Lazy-load OnboardingDisclaimer — heavy imports (Calendar, date-fns) only needed on first visit
 const OnboardingDisclaimer = lazy(() => import("@/components/OnboardingDisclaimer").then(m => ({ default: m.OnboardingDisclaimer })));
@@ -40,6 +41,8 @@ const recoverFromChunkError = async () => {
 
 const App = () => {
   const [successSheet, setSuccessSheet] = useState<{ open: boolean; plan: 'monthly' | 'yearly' | null }>({ open: false, plan: null });
+
+  useVisitorTracking();
 
   // Initialize anonymous auth & prefetch critical routes
   useEffect(() => {
