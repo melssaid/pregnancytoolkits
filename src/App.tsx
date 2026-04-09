@@ -113,7 +113,7 @@ const App = () => {
           <AnimatedRoutes />
           <Suspense fallback={null}><OnboardingDisclaimer /></Suspense>
           <Suspense fallback={null}><GuidedTour /></Suspense>
-          <Suspense fallback={null}><OfflineBanner /></Suspense>
+          <Suspense fallback={null}>
             <SubscriptionSuccessSheet
               open={successSheet.open}
               planType={successSheet.plan}
