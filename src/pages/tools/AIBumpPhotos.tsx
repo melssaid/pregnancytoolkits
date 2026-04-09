@@ -320,6 +320,59 @@ const AIBumpPhotos: React.FC = () => {
     }
   };
 
+  const handleExportAllPhotos = async () => {
+    if (photos.length === 0) return;
+    setIsExportingPhotos(true);
+    try {
+      // Download each photo individually with a small delay
+      for (let i = 0; i < photos.length; i++) {
+        const photo = photos[i];
+        const link = document.createElement('a');
+        
+        // Handle both blob URLs and data URLs
+        if (photo.image_ref.startsWith('blob:') || photo.image_ref.startsWith('data:')) {
+          link.href = photo.image_ref;
+        } else {
+          // Try to fetch and create blob URL
+          try {
+            const resp = await fetch(photo.image_ref);
+            const blob = await resp.blob();
+            link.href = URL.createObjectURL(blob);
+          } catch {
+            link.href = photo.image_ref;
+          }
+        }
+
+        const weekStr = String(photo.week).padStart(2, '0');
+        link.download = `bump-week-${weekStr}-${i + 1}.jpg`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        // Small delay between downloads to avoid browser blocking
+        if (i < photos.length - 1) {
+          await new Promise(r => setTimeout(r, 500));
+        }
+      }
+      
+      toast({
+        title: isRTL ? 'تم تصدير الصور بنجاح ✅' : 'Photos exported successfully ✅',
+        description: isRTL
+          ? `تم تحميل ${photos.length} صورة إلى جهازك`
+          : `${photos.length} photos downloaded to your device`,
+      });
+    } catch (error: any) {
+      console.error('Export error:', error);
+      toast({
+        title: isRTL ? 'فشل التصدير' : 'Export failed',
+        description: error.message,
+        variant: 'destructive',
+      });
+    } finally {
+      setIsExportingPhotos(false);
+    }
+  };
+
   if (isLoading) {
     return (
       <ToolFrame
