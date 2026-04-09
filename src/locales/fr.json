@@ -147,7 +147,9 @@
     "termsPrefix": "En continuant, vous acceptez nos",
     "and": "et",
     "subscriptionSuccess": "Abonnement activé avec succès !",
-    "purchaseCancelled": "L'achat a été annulé"
+    "purchaseCancelled": "L'achat a été annulé",
+    "savePercent": "Économisez 44%",
+    "savingsBanner": "Économisez 15,89$/an vs mensuel"
   },
   "onboarding": {
     "title": "Bienvenue dans votre parcours",
@@ -450,6 +452,18 @@
     "lactationPrep": {
       "title": "Nutrition Intelligente du Nouveau-né",
       "description": "Guide essentiel pour nourrir votre nouveau-né en toute confiance."
+    },
+    "cycleTracker": {
+      "title": "Mon Journal de Cycle",
+      "description": "Journal de cycle intelligent avec jours de fertilité estimés"
+    },
+    "babySleepTracker": {
+      "title": "Journal de Sommeil Bébé",
+      "description": "Analyse des habitudes de sommeil avec statistiques quotidiennes et hebdomadaires."
+    },
+    "diaperTracker": {
+      "title": "Journal de Couches Intelligent",
+      "description": "Journal quotidien intelligent de couches avec statistiques et alertes."
     }
   },
   "dashboard": {
@@ -497,7 +511,10 @@
       "babyCry": "Guide des pleurs",
       "babyCryDesc": "Comprendre les pleurs",
       "groceryList": "Liste de courses",
-      "groceryListDesc": "Planificateur d'achats"
+      "groceryListDesc": "Planificateur d'achats",
+      "weightTracker": "Bien-être Poids",
+      "vitaminTracker": "Ma Nutrition Quotidienne",
+      "diaperTracker": "Journal de Couches"
     },
     "summary": {
       "noDataToday": "Aucune donnée aujourd'hui",
@@ -3127,7 +3144,8 @@
       "copingStrategies": "Stratégies d'adaptation",
       "selfCare": "Conseils d'auto-soin",
       "professionalHelp": "Quand chercher de l'aide",
-      "crisis": "En cas de crise, appelez immédiatement votre médecin ou les services d'urgence."
+      "crisis": "En cas de crise, appelez immédiatement votre médecin ou les services d'urgence.",
+      "takeQuestionnaire": "Take EPDS Questionnaire"
     },
     "weeklyInsights": {
       "title": "Aperçus hebdomadaires",
@@ -3236,15 +3254,15 @@
       "history": "Historique de croissance"
     },
     "babySleep": {
-      "title": "Suivi du sommeil bébé",
-      "subtitle": "Aperçus IA des habitudes de sommeil de votre bébé",
-      "startSleep": "Commencer le sommeil",
-      "endSleep": "Terminer le sommeil",
+      "title": "Journal de Sommeil Bébé",
+      "subtitle": "Analysez les habitudes de sommeil de votre bébé",
+      "startSleep": "Début du sommeil",
+      "endSleep": "Fin du sommeil",
       "sleeping": "Dort",
       "awake": "Éveillé",
       "totalToday": "Total du jour",
       "avgSleep": "Moyenne 7 jours",
-      "sleepLog": "Journal du sommeil",
+      "sleepLog": "Journal de sommeil",
       "noSleepData": "Pas encore de données de sommeil",
       "aiSleepAdvice": "Conseils sommeil IA",
       "startSleepTracking": "Commencer le suivi",
@@ -3274,7 +3292,17 @@
       "qualityNeedsAttention": "Nécessite attention",
       "startedAt": "Commencé à",
       "analyzing": "Analyse...",
-      "weeklyChart": "Sommeil 7 jours"
+      "weeklyChart": "Sommeil 7 jours",
+      "totalSleep": "Sommeil total",
+      "avgSleepDuration": "Durée moyenne de sommeil",
+      "noSleepRecords": "Aucun enregistrement de sommeil",
+      "quality": "Qualité",
+      "good": "Bonne",
+      "fair": "Moyenne",
+      "poor": "Mauvaise",
+      "sleepTrends": "Tendances de sommeil",
+      "dailyGoal": "Objectif quotidien",
+      "hoursSlept": "Heures dormies"
     },
     "diaperLog": {
       "title": "Suivi des couches",
@@ -3492,8 +3520,8 @@
       "slightVariation": "Légère variation"
     },
     "weightGain": {
-      "title": "Guide de prise de poids",
-      "subtitle": "Surveiller la prise de poids saine",
+      "title": "Analyseur de Poids Intelligent",
+      "subtitle": "Suivi de la prise de poids pendant la grossesse",
       "heroTitle": "Suivez votre poids en confiance",
       "heroDesc": "Outil médical basé sur les directives OMS/IOM",
       "iomBadge": "Basé sur les directives IOM & OMS",
@@ -3501,14 +3529,14 @@
       "profileSetupDesc": "Entrez vos données pour calculer votre fourchette saine",
       "startAnalysis": "Démarrer l'analyse",
       "currentWeight": "Poids actuel",
-      "prePregnancyWeight": "Poids avant grossesse",
+      "prePregnancyWeight": "Poids pré-grossesse",
       "height": "Taille",
       "currentWeek": "Semaine actuelle",
       "analyze": "Analyser la prise de poids",
       "totalGain": "Prise totale",
       "recommended": "Fourchette recommandée",
       "status": "Statut",
-      "onTrack": "Dans l'objectif",
+      "onTrack": "Dans la norme",
       "belowTarget": "Sous l'objectif",
       "aboveTarget": "Au-dessus de l'objectif",
       "weeklyGain": "Prise hebdomadaire",
@@ -3596,7 +3624,7 @@
       "weekAxis": "Semaine",
       "weightGainKg": "Prise de poids (kg)",
       "babyDevLink": "Développement du bébé",
-      "babyDevLinkDesc": "Croissance du bébé semaine par semaine",
+      "babyDevLinkDesc": "Suivez la croissance et le développement de votre bébé semaine par semaine",
       "kickCounterLink": "Compteur de coups",
       "kickCounterLinkDesc": "Suivre les mouvements du bébé",
       "mealSuggestionLink": "Suggestions de repas",
@@ -3642,7 +3670,20 @@
       "bmiPrePregnancy": "IMC avant la grossesse",
       "history": "Historique",
       "invalidWeight": "Veuillez saisir un poids valide",
-      "noEntries": "Aucune entrée de poids pour le moment. Ajoutez la première ci-dessus."
+      "noEntries": "Aucune entrée de poids pour le moment. Ajoutez la première ci-dessus.",
+      "recommendedGain": "Prise recommandée",
+      "weeklyRate": "Taux hebdomadaire",
+      "aboveRange": "Au-dessus de la norme",
+      "belowRange": "En dessous de la norme",
+      "bmi": "IMC",
+      "underweight": "Insuffisance pondérale",
+      "normal": "Normal",
+      "overweight": "Surpoids",
+      "obese": "Obèse",
+      "weightLog": "Journal de poids",
+      "addWeight": "Ajouter poids",
+      "weightTrend": "Tendance de poids",
+      "trimesterBreakdown": "Répartition par trimestre"
     },
     "bloodType": {
       "title": "Calculateur de groupe sanguin",
@@ -3816,7 +3857,27 @@
           "title": "Peu de facteurs",
           "description": "Peu de facteurs identifiés. Continuez vos habitudes saines."
         }
-      }
+      },
+      "riskFactors": {
+        "age": "Age 35 or older",
+        "bmi": "BMI 30 or higher before pregnancy",
+        "family": "Family history of diabetes (parent or sibling)",
+        "previousGdm": "Previous gestational diabetes",
+        "previousLarge": "Previously gave birth to a baby over 9 lbs",
+        "pcos": "Polycystic ovary syndrome (PCOS)",
+        "prediabetes": "Prediabetes or high blood sugar",
+        "ethnicity": "Higher-risk ethnicity",
+        "multiple": "Pregnant with multiples (twins, triplets)",
+        "sedentary": "Sedentary lifestyle before pregnancy"
+      },
+      "preventionTips": {
+        "tip1": "Maintain a healthy weight before and during pregnancy",
+        "tip2": "Eat a balanced diet rich in fiber and whole grains",
+        "tip3": "Stay physically active with doctor-approved exercises",
+        "tip4": "Attend all prenatal appointments for regular follow-up",
+        "tip5": "Limit sugary foods and refined carbohydrates"
+      },
+      "reset": "Reset"
     },
     "healthMonitor": {
       "title": "Système de surveillance de la santé",
@@ -4066,7 +4127,142 @@
           "message": "Vous semblez bien gérer cette période. Continuez à prendre soin de vous."
         }
       },
-      "generating": "Génération en cours..."
+      "generating": "Génération en cours...",
+      "psiName": "Postpartum Support International",
+      "psiNumber": "1-800-944-4773",
+      "crisisLinelineName": "988 Suicide & Crisis Lifeline",
+      "crisisLinelineDesc": "Call or text 988",
+      "screeningDisclaimer": "⚠️ This is a wellness questionnaire based on the Wellness Self-Check (EPDS). It does not provide a professional evaluation. Always consult with a healthcare professional for proper assessment.",
+      "videosSubtitle": "Support and self-care resources",
+      "videos": {
+        "v1": {
+          "title": "Postpartum Mood: Signs & Indicators",
+          "description": "Signs, indicators, and when to seek support",
+          "category": "Education"
+        },
+        "v2": {
+          "title": "Understanding Postpartum Depression",
+          "description": "Indicators, contributing factors, and support options",
+          "category": "Education"
+        },
+        "v3": {
+          "title": "Postpartum Meditation for Calm",
+          "description": "Guided meditation to feel calm and grounded in motherhood",
+          "category": "Relaxation"
+        },
+        "v4": {
+          "title": "Mental Health and Pregnancy",
+          "description": "ACOG explains mental health during pregnancy and postpartum",
+          "category": "Wellness"
+        },
+        "v5": {
+          "title": "Managing Pregnancy Anxiety",
+          "description": "Practical strategies for coping with anxiety during pregnancy",
+          "category": "Anxiety"
+        }
+      },
+      "epds": {
+        "q1": {
+          "question": "I have been able to laugh and see the funny side of things",
+          "o0": "As much as I always could",
+          "o1": "Not quite so much now",
+          "o2": "Definitely not so much now",
+          "o3": "Not at all"
+        },
+        "q2": {
+          "question": "I have looked forward with enjoyment to things",
+          "o0": "As much as I ever did",
+          "o1": "Rather less than I used to",
+          "o2": "Definitely less than I used to",
+          "o3": "Hardly at all"
+        },
+        "q3": {
+          "question": "I have blamed myself unnecessarily when things went wrong",
+          "o0": "No, never",
+          "o1": "Not very often",
+          "o2": "Yes, some of the time",
+          "o3": "Yes, most of the time"
+        },
+        "q4": {
+          "question": "I have been anxious or worried for no good reason",
+          "o0": "No, not at all",
+          "o1": "Hardly ever",
+          "o2": "Yes, sometimes",
+          "o3": "Yes, very often"
+        },
+        "q5": {
+          "question": "I have felt scared or panicky for no very good reason",
+          "o0": "No, not at all",
+          "o1": "No, not much",
+          "o2": "Yes, sometimes",
+          "o3": "Yes, quite a lot"
+        },
+        "q6": {
+          "question": "I have had difficulty sleeping even when I had the chance",
+          "o0": "No, not at all",
+          "o1": "Rarely",
+          "o2": "Yes, sometimes",
+          "o3": "Yes, most of the time"
+        },
+        "q7": {
+          "question": "I have felt sad or tearful",
+          "o0": "No, not at all",
+          "o1": "Very rarely",
+          "o2": "Yes, sometimes",
+          "o3": "Yes, most of the time"
+        },
+        "q8": {
+          "question": "My appetite has changed noticeably (increased or decreased)",
+          "o0": "No, it's normal",
+          "o1": "Changed slightly",
+          "o2": "Changed noticeably",
+          "o3": "Lost my appetite completely or overeating"
+        },
+        "q9": {
+          "question": "I have had difficulty concentrating or making decisions",
+          "o0": "No, not at all",
+          "o1": "Rarely",
+          "o2": "Yes, sometimes",
+          "o3": "Yes, most of the time"
+        },
+        "q10": {
+          "question": "I have felt exhausted and low on energy",
+          "o0": "No, my energy is good",
+          "o1": "Less energy than usual",
+          "o2": "Exhausted most of the time",
+          "o3": "Completely drained"
+        }
+      },
+      "coping": {
+        "sunlight": {
+          "title": "Morning Sunlight",
+          "desc": "Get 10-15 minutes of natural light each morning"
+        },
+        "movement": {
+          "title": "Gentle Movement",
+          "desc": "A short walk can boost mood significantly"
+        },
+        "connect": {
+          "title": "Connect Daily",
+          "desc": "Talk to a friend or family member each day"
+        },
+        "rest": {
+          "title": "Rest When Possible",
+          "desc": "Sleep when baby sleeps, even briefly"
+        },
+        "nourish": {
+          "title": "Nourish Yourself",
+          "desc": "Eat regular, nutritious meals"
+        },
+        "journal": {
+          "title": "Journal",
+          "desc": "Write down 3 things you're grateful for"
+        }
+      },
+      "helpfulVideos": "Helpful Videos",
+      "personalizedPlan": "Personalized Plan",
+      "retake": "Retake Assessment",
+      "scoreLabel": "Score"
     },
     "mealSuggestion": {
       "subtitle": "Suggestions de repas intelligentes pour votre grossesse",
@@ -4844,7 +5040,156 @@
       "disclaimer": "Il s'agit d'une estimation basée sur les données de cycle moyen. L'ovulation réelle peut varier. Consultez votre professionnel de la santé pour des conseils personnalisés."
     },
     "cycleTracker": {
-      "symptoms": "Notes (optionnel)"
+      "symptoms": "Symptômes",
+      "title": "Mon Journal de Cycle",
+      "subtitle": "Suivi intelligent avec jours de fertilité estimés",
+      "periodStart": "Début des règles",
+      "periodEnd": "Fin des règles",
+      "cycleLength": "Durée du cycle",
+      "periodLength": "Durée des règles",
+      "nextPeriod": "Prochaines règles",
+      "ovulationDay": "Jour d'ovulation",
+      "fertileWindow": "Fenêtre fertile",
+      "currentDay": "Jour actuel",
+      "phase": "Phase",
+      "follicular": "Folliculaire",
+      "ovulation": "Ovulation",
+      "luteal": "Lutéale",
+      "menstrual": "Menstruelle",
+      "logSymptoms": "Enregistrer les symptômes",
+      "mood": "Humeur",
+      "flow": "Flux",
+      "light": "Léger",
+      "medium": "Moyen",
+      "heavy": "Abondant",
+      "notes": "Notes",
+      "save": "Enregistrer",
+      "history": "Historique",
+      "insights": "Informations",
+      "settings": "Paramètres",
+      "avgCycleLength": "Durée moyenne du cycle",
+      "setupTitle": "Configurer votre cycle",
+      "setupDesc": "Entrez les informations de vos dernières règles pour commencer le suivi",
+      "lastPeriodDate": "Date des dernières règles",
+      "averageCycleLength": "Durée moyenne du cycle",
+      "averagePeriodLength": "Durée moyenne des règles",
+      "startTracking": "Commencer le suivi",
+      "days": "jours",
+      "today": "Aujourd'hui",
+      "fertile": "Fertile",
+      "notFertile": "Non fertile",
+      "daysUntilPeriod": "jours avant les règles",
+      "daysUntilOvulation": "jours avant l'ovulation",
+      "periodIn": "Règles dans",
+      "ovulationIn": "Ovulation dans",
+      "cycleDay": "Jour {{day}} du cycle",
+      "lastPeriod": "Last Period Start",
+      "calculate": "Calculate Fertile Window",
+      "logPeriod": "Log Period",
+      "aiInsights": "AI Fertility Insights",
+      "yourStatistics": "Your Statistics",
+      "share": "Share",
+      "avgPeriodLength": "Avg Period Length",
+      "analyzePatterns": "Review My Patterns",
+      "startDate": "Start Date",
+      "endDate": "End Date (optional)",
+      "flowIntensity": "Flow Intensity",
+      "cycleHistory": "Cycle History",
+      "dayCycle": "day cycle",
+      "trackTip": "Track at least 3-6 cycles for more accurate predictions. Cycle length can vary due to stress, illness, or other factors.",
+      "dueDateLink": "Due Date Calculator",
+      "dueDateLinkDesc": "Calculate your expected due date based on your last period",
+      "videosTitle": "Menstrual Cycle Videos",
+      "videosSubtitle": "Learn about cycle tracking and reproductive health",
+      "flowLevels": {
+        "spotting": "Spotting",
+        "light": "Light",
+        "medium": "Medium",
+        "heavy": "Heavy"
+      },
+      "moods": {
+        "great": "Great",
+        "good": "Good",
+        "okay": "Okay",
+        "bad": "Bad",
+        "awful": "Awful"
+      },
+      "notesPlaceholder": "Add notes about your day...",
+      "saveDay": "Save",
+      "removeDay": "Remove Entry",
+      "dayMarked": "Period day marked",
+      "dayRemoved": "Day removed",
+      "calendarHint": "Tap a day to mark your period. Tap a marked day to edit or delete it.",
+      "calendarHintTitle": "How to use",
+      "predicted": "Predicted",
+      "symptomOptions": {
+        "cramps": "Cramps",
+        "headache": "Headache",
+        "bloating": "Bloating",
+        "moodSwings": "Mood swings",
+        "fatigue": "Fatigue",
+        "breastTenderness": "Breast tenderness",
+        "acne": "Acne",
+        "backPain": "Back pain"
+      },
+      "saved": "Saved!",
+      "savedDesc": "Cycle entry has been recorded.",
+      "deleted": "Deleted",
+      "deletedDesc": "Cycle entry removed.",
+      "day": "day",
+      "copied": "Copied!",
+      "copiedDesc": "Stats copied to clipboard.",
+      "currentPhase": "Current Phase",
+      "fertileWindowDates": "Fertile Window",
+      "ovulationDate": "Ovulation Day",
+      "nextPeriodDate": "Next Period",
+      "phaseDescription": {
+        "menstrual": "Your period is here. Rest and gentle activities recommended.",
+        "follicular": "Your body is preparing to ovulate. Energy is rising!",
+        "ovulation": "Peak fertility window. Best time to conceive.",
+        "luteal": "Your body is preparing for the next cycle. Focus on self-care."
+      },
+      "selectStartDate": "Select start date",
+      "selectEndDate": "Select end date",
+      "addNewEntry": "Add Entry",
+      "cycleInsights": "Cycle Insights",
+      "fertileCalendar": "Fertility Calendar",
+      "noDataYet": "Log your first cycle to see predictions",
+      "regularity": "Regularity",
+      "regular": "Regular",
+      "irregular": "Irregular",
+      "cyclesTracked": "Cycles Tracked",
+      "statusSummary": "You are currently on day {{day}} of your cycle, in the {{phase}} phase. Your average cycle is {{avgCycle}} days, and your next period is expected around {{nextDate}}. {{fertileNote}}",
+      "fertileNoteActive": "You are in or near your fertile window — ovulation is expected around {{ovDate}}.",
+      "fertileNoteUpcoming": "Your fertile window starts around {{fertileDate}}, about {{days}} days from now.",
+      "fertileNotePassed": "Your fertile window has passed for this cycle.",
+      "generalStatus": "General Status",
+      "stickyAnalyze": "Analyze with AI",
+      "emptyTitle": "Start tracking your cycle",
+      "emptyDesc": "Tap the days of your last period on the calendar above to get predictions and insights.",
+      "clearAll": "Clear All Data & Start Over",
+      "clearAllTitle": "Clear all cycle data?",
+      "clearAllDesc": "This will permanently delete all your tracked periods, notes, and predictions. This cannot be undone.",
+      "cancel": "Cancel",
+      "confirmClear": "Yes, clear everything",
+      "clearedSuccess": "All data cleared successfully",
+      "setup": {
+        "cycleLengthTitle": "How long is your cycle?",
+        "cycleLengthDesc": "The number of days from the first day of one period to the first day of the next. Most cycles are 21–35 days.",
+        "dontKnow": "Don't know? 28 days is the average.",
+        "periodLengthTitle": "How long does your period last?",
+        "periodLengthDesc": "The number of days you typically bleed. Most periods last 3–7 days.",
+        "periodHint": "Most women have 4–6 day periods.",
+        "lastPeriodTitle": "When did your last period start?",
+        "lastPeriodDesc": "Select the first day of your most recent period.",
+        "back": "Back",
+        "next": "Next",
+        "start": "Start Tracking"
+      },
+      "avgLabel": "Average",
+      "markPeriod": "Mark period",
+      "normal": "Normal",
+      "slightVariation": "Slight variation"
     },
     "vitaminTracker": {
       "title": "Ma Nutrition Quotidienne",
@@ -4912,6 +5257,101 @@
       "subtitle": "Suivez la croissance de votre bébé semaine par semaine",
       "title": "Développement fœtal",
       "yourCurrentWeek": "Votre semaine actuelle"
+    },
+    "laborTracker": {
+      "title": "Journal des Contractions",
+      "subtitle": "Enregistrez et analysez vos schémas de contractions",
+      "startContraction": "Démarrer Contraction",
+      "endContraction": "Terminer Contraction",
+      "duration": "Durée",
+      "interval": "Intervalle",
+      "avgDuration": "Durée moyenne",
+      "avgInterval": "Intervalle moyen",
+      "contractionLog": "Journal des Contractions",
+      "laborStage": "Phase estimée",
+      "earlyLabor": "Phase précoce",
+      "earlyLaborDesc": "Reposez-vous, restez confortable et hydratez-vous",
+      "earlyPhase": "Phase précoce",
+      "earlyPhaseDesc": "Reposez-vous, restez confortable et hydratez-vous",
+      "activeLabor": "Phase active",
+      "activeLaborDesc": "Envisagez de partager ce journal avec votre médecin",
+      "activePhase": "Phase active",
+      "activePhaseDesc": "Envisagez de partager ce journal avec votre médecin",
+      "transitionPhase": "Phase de transition",
+      "transitionPhaseDesc": "Préparez-vous à aller à l'hôpital",
+      "callDoctor": "Contactez votre médecin",
+      "callDoctorDesc": "Les contractions sont régulières et fréquentes",
+      "noContractions": "Aucune contraction enregistrée",
+      "reset": "Réinitialiser",
+      "shareLog": "Partager le journal",
+      "exportPdf": "Exporter PDF",
+      "totalContractions": "Total des contractions",
+      "sessionDuration": "Durée de la session",
+      "babyDevLink": "Développement du bébé",
+      "babyDevLinkDesc": "Suivez la croissance et le développement de votre bébé semaine par semaine",
+      "transition": "Intensive Phase",
+      "transitionDesc": "Contact your care provider with this journal",
+      "intensivePhase": "Intensive Phase",
+      "intensivePhaseDesc": "Contact your care provider with this journal",
+      "providerAlert": "Consider Contacting Your Provider",
+      "providerAlertDesc": "Based on the 5-1-1 guideline, your logged contractions are now 5 minutes apart and lasting 1 minute or more. You may want to share this journal with your care provider.",
+      "rule511": "The 5-1-1 Guideline",
+      "rule511Desc": "Many care providers suggest contacting them when contractions are 5 minutes apart, lasting 1 minute each, and continue for 1 hour. Share your log for guidance.",
+      "callProvider": "Call Provider",
+      "understand": "I Understand",
+      "inProgress": "Contraction in progress...",
+      "ready": "Ready to track",
+      "getAIAnalysis": "Get AI Journal Insights",
+      "aiAnalysis": "AI Journal Insights",
+      "contractions": "Contractions",
+      "contractionPattern": "Contraction Pattern",
+      "recentContractions": "Recent Contractions",
+      "durationSec": "Duration (sec)",
+      "intensity": {
+        "mild": "Mild",
+        "moderate": "Moderate",
+        "strong": "Strong",
+        "very-strong": "Very Strong"
+      },
+      "disclaimer": "This tool is for informational purposes only. Always follow your care provider's guidance.",
+      "aiAnalysisDesc": "Get personalized breathing techniques, comfort measures, and encouragement based on your journal entries.",
+      "analyzing": "Analyzing your journal...",
+      "breathingGuide": "Quick Breathing Guide",
+      "breathingEarly": "Early Phase: Slow Breathing",
+      "breathingEarlyDesc": "Inhale through nose (4 counts) → Exhale through mouth (6 counts)",
+      "breathingActive": "Active Phase: Patterned Breathing",
+      "breathingActiveDesc": "Light breathing: \"Hee-hee-hoo\" pattern, focus on exhale",
+      "breathingIntensive": "Intensive Phase: Blow Breathing",
+      "breathingIntensiveDesc": "Short inhale → Long blow out, like blowing a candle slowly",
+      "comfortTips": "Comfort Tips",
+      "warmWater": "Warm shower on back",
+      "walkGently": "Walk gently between",
+      "birthBall": "Sway on birth ball",
+      "counterPressure": "Counter-pressure on lower back"
+    },
+    "diaperTracker": {
+      "title": "Journal de Couches Intelligent",
+      "subtitle": "Journal quotidien avec statistiques et alertes",
+      "wet": "Mouillée",
+      "dirty": "Sale",
+      "mixed": "Mixte",
+      "addEntry": "Ajouter une entrée",
+      "todayCount": "Nombre aujourd'hui",
+      "dailyGoal": "Objectif quotidien",
+      "lastChange": "Dernier changement",
+      "ago": "il y a",
+      "history": "Historique",
+      "noEntries": "Pas d'entrées aujourd'hui",
+      "stats": "Statistiques",
+      "weeklyAvg": "Moyenne hebdomadaire",
+      "color": "Couleur",
+      "texture": "Texture",
+      "notes": "Notes",
+      "logChange": "Log Change",
+      "both": "Both",
+      "recentChanges": "Recent Changes",
+      "noChanges": "No changes logged yet",
+      "aiHealthTips": "AI Health Tips"
     }
   },
   "welcome": {
@@ -8483,5 +8923,117 @@
     "subtitle": "Découvrez pourquoi les mamans nous font confiance",
     "title": "Pourquoi nous choisir",
     "us": "Nous"
+  },
+  "trialBanner": {
+    "expiringSoon": "Votre essai se termine bientôt !",
+    "remaining": "restant",
+    "subscribe": "S'abonner maintenant"
+  },
+  "trialExpired": {
+    "title": "Votre essai est terminé",
+    "subtitle": "Vous avez expérimenté la puissance de l'IA",
+    "usedAnalyses": "Vous avez utilisé {{count}} analyses IA",
+    "duringTrial": "pendant votre période d'essai",
+    "premiumBenefit": "60 analyses/mois",
+    "premiumDesc": "Débloquez les 33+ outils IA",
+    "cta": "Voir les plans Premium",
+    "dismiss": "Peut-être plus tard"
+  },
+  "usageNudge": {
+    "title": "{{used}}/{{limit}} analyses utilisées",
+    "upgrade": "Passez à 60/mois →"
+  },
+  "smartPrompt": {
+    "nearLimit": "Vous avez utilisé {{used}} sur {{limit}} analyses ! Abonnez-vous pour 60/mois.",
+    "upgradeNow": "Mettre à niveau"
+  },
+  "vitaminTracker": {
+    "title": "Suivi des Vitamines",
+    "subtitle": "Contrôlez votre apport quotidien en compléments",
+    "addVitamin": "Ajouter Vitamine",
+    "taken": "Prise",
+    "missed": "Manquée",
+    "streak": "Série",
+    "days": "jours",
+    "today": "Aujourd'hui",
+    "weekly": "Hebdomadaire",
+    "monthly": "Mensuel",
+    "reminder": "Rappel",
+    "setReminder": "Définir Rappel",
+    "commonVitamins": "Vitamines courantes",
+    "folicAcid": "Acide Folique",
+    "iron": "Fer",
+    "calcium": "Calcium",
+    "vitaminD": "Vitamine D",
+    "omega3": "Oméga 3",
+    "prenatal": "Prénatal",
+    "magnesium": "Magnésium",
+    "zinc": "Zinc",
+    "vitaminC": "Vitamine C",
+    "vitaminB12": "Vitamine B12",
+    "iodine": "Iode",
+    "dha": "DHA",
+    "compliance": "Observance",
+    "perfectWeek": "Semaine Parfaite",
+    "addCustom": "Ajouter personnalisée",
+    "dose": "Dose",
+    "frequency": "Fréquence",
+    "daily": "Quotidienne",
+    "twiceDaily": "Deux fois par jour",
+    "weekly2": "Hebdomadaire",
+    "morning": "Matin",
+    "afternoon": "Après-midi",
+    "evening": "Soir",
+    "withFood": "Avec nourriture",
+    "emptyState": "Pas encore de vitamines — ajoutez votre première vitamine",
+    "complianceRate": "Taux d'observance",
+    "monthlyReport": "Rapport mensuel",
+    "importantNote": "Note Importante",
+    "consultDoctor": "Consultez votre médecin avant de prendre des compléments",
+    "weeklyProgress": "Progrès hebdomadaire",
+    "allTaken": "Toutes prises aujourd'hui",
+    "remaining": "restantes aujourd'hui",
+    "pregnancyWeek": "Pregnancy Week",
+    "todaysProgress": "Today's Progress",
+    "vitaminsCount": "{{taken}} of {{total}} vitamins taken today",
+    "aiAnalysisTitle": "AI Vitamin Analysis",
+    "analyzeRoutine": "Analyze My Routine",
+    "analyzingIntake": "Analyzing your intake...",
+    "alreadyTaken": "Already taken!",
+    "alreadyTakenDesc": "You've already logged {{name}} today.",
+    "logged": "Vitamin Logged!",
+    "loggedDesc": "{{name}} has been logged.",
+    "failedToLog": "Failed to log vitamin",
+    "done": "Done",
+    "take": "Take",
+    "thisWeek": "this week",
+    "weeklyStats": "Weekly Stats",
+    "recentHistory": "Recent History",
+    "tipTitle": "Pro Tip",
+    "tipContent": "Take iron supplements with vitamin C for better absorption, but avoid taking them with calcium.",
+    "vitamins": {
+      "folicAcid": "Folic Acid",
+      "iron": "Iron",
+      "calcium": "Calcium",
+      "vitaminD": "Vitamin D",
+      "omega3": "Omega 3",
+      "prenatal": "Prenatal Vitamins"
+    },
+    "dosages": {
+      "folicAcid": "400-800 mcg",
+      "iron": "27 mg",
+      "calcium": "1000 mg",
+      "vitaminD": "600 IU",
+      "omega3": "200-300 mg DHA",
+      "prenatal": "As directed"
+    },
+    "importance": {
+      "folicAcid": "Essential for neural development",
+      "iron": "Prevents anemia",
+      "calcium": "For bone health",
+      "vitaminD": "Calcium absorption",
+      "omega3": "Baby brain development",
+      "prenatal": "Complete & balanced"
+    }
   }
 }
