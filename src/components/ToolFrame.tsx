@@ -11,6 +11,7 @@ import { LanguageDropdown } from "./LanguageDropdown";
 import { trackToolUsage } from "@/hooks/useInAppReview";
 
 import { FertilityDailyTip } from "./FertilityDailyTip";
+import { ToolRating } from "./ToolRating";
 
 import { SEOHead } from "./SEOHead";
 const logoImage = "/logo.webp";
@@ -284,6 +285,13 @@ export function ToolFrame({
           {toolId && FERTILITY_TOOL_IDS.has(toolId) && (
             <div className="mt-4">
               <FertilityDailyTip titleKey="fertilityExpert.title" />
+            </div>
+          )}
+
+          {/* Tool Rating */}
+          {toolId && (
+            <div className="mt-4">
+              <ToolRating toolId={toolId} />
             </div>
           )}
 

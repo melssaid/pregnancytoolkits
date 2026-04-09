@@ -9,6 +9,7 @@ import { EncryptionIndicator } from "./EncryptionIndicator";
 import { LanguageDropdown } from "./LanguageDropdown";
 import { TrialExpiryBanner } from "./TrialExpiryBanner";
 import { SmartAppBanner } from "./SmartAppBanner";
+import { BreadcrumbSchema } from "./BreadcrumbSchema";
 import { useEffect } from "react";
 import { getTotalToolsCount } from "@/lib/tools-data";
 
@@ -25,6 +26,10 @@ export function Layout({ children, showBack = false }: LayoutProps) {
   useEffect(() => {
     window.dispatchEvent(new CustomEvent("app:first-render"));
   }, []);
+
+  return (
+    <div className="min-h-screen bg-background flex flex-col overflow-x-hidden">
+      <BreadcrumbSchema />
 
   return (
     <div className="min-h-screen bg-background flex flex-col overflow-x-hidden">
