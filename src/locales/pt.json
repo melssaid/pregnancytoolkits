@@ -147,7 +147,9 @@
     "termsPrefix": "Ao continuar, você concorda com nossos",
     "and": "e",
     "subscriptionSuccess": "Assinatura ativada com sucesso!",
-    "purchaseCancelled": "A compra foi cancelada"
+    "purchaseCancelled": "A compra foi cancelada",
+    "savePercent": "Economize 44%",
+    "savingsBanner": "Economize $15.89/ano vs mensal"
   },
   "onboarding": {
     "title": "Bem-vinda à sua jornada",
@@ -454,6 +456,18 @@
     "lactationPrep": {
       "title": "Nutrição Inteligente do Recém-nascido",
       "description": "Guia essencial para alimentar seu recém-nascido com confiança."
+    },
+    "cycleTracker": {
+      "title": "Meu Diário de Ciclo",
+      "description": "Diário inteligente do ciclo com dias estimados de pico de fertilidade"
+    },
+    "babySleepTracker": {
+      "title": "Registro de Sono do Bebê",
+      "description": "Análise de padrões de sono com estatísticas diárias e semanais."
+    },
+    "diaperTracker": {
+      "title": "Registro Inteligente de Fraldas",
+      "description": "Registro diário inteligente de fraldas com estatísticas e alertas."
     }
   },
   "dashboard": {
@@ -503,7 +517,10 @@
       "babyCry": "Guia de choro",
       "babyCryDesc": "Compreender padrões de choro",
       "groceryList": "Lista de compras",
-      "groceryListDesc": "Planejador de compras"
+      "groceryListDesc": "Planejador de compras",
+      "weightTracker": "Bem-estar de Peso",
+      "vitaminTracker": "Minha Nutrição Diária",
+      "diaperTracker": "Registro de Fraldas"
     },
     "summary": {
       "noDataToday": "Sem dados hoje",
@@ -1375,7 +1392,9 @@
       "current": "Atual",
       "localStorageNote": "Resumos salvos localmente",
       "trimester": "Trimestre",
-      "generating": "Gerando resumo..."
+      "generating": "Gerando resumo...",
+      "babyDevLink": "Baby Development",
+      "babyDevLinkDesc": "See your baby's size and development this week"
     },
     "hospitalBag": {
       "title": "Mala de Maternidade IA",
@@ -1636,7 +1655,9 @@
       "videosTitle": "Vídeos da Linha do Tempo da Gravidez",
       "videosSubtitle": "Guias de desenvolvimento semanal e preparação para o parto",
       "pickDate": "Escolher uma data",
-      "fromProfile": "Preenchido automaticamente do seu perfil"
+      "fromProfile": "Preenchido automaticamente do seu perfil",
+      "babyDevLink": "Baby Development Guide",
+      "babyDevLinkDesc": "Log your baby's growth week by week"
     },
     "kickCounter": {
       "title": "Diário de movimentos do bebê",
@@ -1701,7 +1722,9 @@
       "recentActivity": "Atividade recente",
       "lastSessions": "Últimas {{count}} sessões",
       "aiAnalysisTitle": "Análise inteligente de movimentos",
-      "aiAnalysisButton": "Análise IA de movimentos"
+      "aiAnalysisButton": "Análise IA de movimentos",
+      "babyDevLink": "Baby Development",
+      "babyDevLinkDesc": "Log your baby's growth and development week by week"
     },
     "contractionTimer": {
       "title": "Temporizador de Contrações",
@@ -3133,7 +3156,8 @@
       "copingStrategies": "Estratégias de Enfrentamento",
       "selfCare": "Dicas de Autocuidado",
       "professionalHelp": "Quando Buscar Ajuda Profissional",
-      "crisis": "Se você está em crise, ligue para seu médico ou serviços de emergência imediatamente."
+      "crisis": "Se você está em crise, ligue para seu médico ou serviços de emergência imediatamente.",
+      "takeQuestionnaire": "Take EPDS Questionnaire"
     },
     "weeklyInsights": {
       "title": "Insights Semanais",
@@ -3242,8 +3266,8 @@
       "history": "Histórico de crescimento"
     },
     "babySleep": {
-      "title": "Rastreador de Sono do Bebê",
-      "subtitle": "Análise de padrões de sono com IA",
+      "title": "Registro de Sono do Bebê",
+      "subtitle": "Analise os padrões de sono do seu bebê",
       "startSleep": "Iniciar Sono",
       "endSleep": "Terminar Sono",
       "sleeping": "Dormindo",
@@ -3262,7 +3286,7 @@
       "aiSleepAdvisor": "Consultor de Sono IA",
       "todaysBreakdown": "Detalhes do dia",
       "sessions": "Sessões",
-      "naps": "Sonecas",
+      "naps": "Cochilos",
       "night": "Noite",
       "recentSessions": "Sessões recentes",
       "recommendedSleep": "Sono recomendado por idade (Diretrizes AAP)",
@@ -3280,7 +3304,17 @@
       "qualityNeedsAttention": "Precisa de Atenção",
       "startedAt": "Começou às",
       "analyzing": "Analisando...",
-      "weeklyChart": "Sono 7 dias"
+      "weeklyChart": "Sono 7 dias",
+      "totalSleep": "Sono Total",
+      "avgSleepDuration": "Duração Média do Sono",
+      "noSleepRecords": "Nenhum registro de sono ainda",
+      "quality": "Qualidade",
+      "good": "Boa",
+      "fair": "Regular",
+      "poor": "Ruim",
+      "sleepTrends": "Tendências de Sono",
+      "dailyGoal": "Meta Diária",
+      "hoursSlept": "Horas Dormidas"
     },
     "diaperLog": {
       "title": "Rastreador de Fraldas",
@@ -3498,23 +3532,23 @@
       "slightVariation": "Variação leve"
     },
     "weightGain": {
-      "title": "Guia de ganho de peso",
-      "subtitle": "Monitorar ganho de peso saudável",
+      "title": "Analisador de Peso Inteligente",
+      "subtitle": "Acompanhamento do ganho de peso na gravidez",
       "heroTitle": "Acompanhe seu peso com confiança",
       "heroDesc": "Ferramenta médica baseada nas diretrizes OMS/IOM",
       "iomBadge": "Baseado nas diretrizes IOM e OMS",
       "profileSetup": "Seu perfil",
       "profileSetupDesc": "Insira seus dados para calcular sua faixa saudável",
       "startAnalysis": "Iniciar análise",
-      "currentWeight": "Peso atual",
-      "prePregnancyWeight": "Peso pré-gravidez",
+      "currentWeight": "Peso Atual",
+      "prePregnancyWeight": "Peso Pré-Gravidez",
       "height": "Altura",
       "currentWeek": "Semana atual",
       "analyze": "Analisar ganho de peso",
-      "totalGain": "Ganho total",
+      "totalGain": "Ganho Total",
       "recommended": "Faixa recomendada",
       "status": "Status",
-      "onTrack": "No objetivo",
+      "onTrack": "No Caminho",
       "belowTarget": "Abaixo do objetivo",
       "aboveTarget": "Acima do objetivo",
       "weeklyGain": "Ganho semanal",
@@ -3648,7 +3682,22 @@
       "bmiPrePregnancy": "IMC pré-gestacional",
       "history": "Histórico",
       "invalidWeight": "Digite um peso válido",
-      "noEntries": "Ainda não há registros de peso. Adicione o primeiro acima."
+      "noEntries": "Ainda não há registros de peso. Adicione o primeiro acima.",
+      "babyDevLink": "Desenvolvimento do Bebê",
+      "babyDevLinkDesc": "Registre o crescimento e desenvolvimento do seu bebê semana a semana",
+      "recommendedGain": "Ganho Recomendado",
+      "weeklyRate": "Taxa Semanal",
+      "aboveRange": "Acima do Intervalo",
+      "belowRange": "Abaixo do Intervalo",
+      "bmi": "IMC",
+      "underweight": "Abaixo do Peso",
+      "normal": "Normal",
+      "overweight": "Sobrepeso",
+      "obese": "Obeso",
+      "weightLog": "Registro de Peso",
+      "addWeight": "Adicionar Peso",
+      "weightTrend": "Tendência de Peso",
+      "trimesterBreakdown": "Detalhamento por Trimestre"
     },
     "bloodType": {
       "title": "Calculadora de Tipo Sanguíneo",
@@ -3822,7 +3871,27 @@
           "title": "Poucos fatores",
           "description": "Poucos fatores. Continue com hábitos saudáveis."
         }
-      }
+      },
+      "riskFactors": {
+        "age": "Age 35 or older",
+        "bmi": "BMI 30 or higher before pregnancy",
+        "family": "Family history of diabetes (parent or sibling)",
+        "previousGdm": "Previous gestational diabetes",
+        "previousLarge": "Previously gave birth to a baby over 9 lbs",
+        "pcos": "Polycystic ovary syndrome (PCOS)",
+        "prediabetes": "Prediabetes or high blood sugar",
+        "ethnicity": "Higher-risk ethnicity",
+        "multiple": "Pregnant with multiples (twins, triplets)",
+        "sedentary": "Sedentary lifestyle before pregnancy"
+      },
+      "preventionTips": {
+        "tip1": "Maintain a healthy weight before and during pregnancy",
+        "tip2": "Eat a balanced diet rich in fiber and whole grains",
+        "tip3": "Stay physically active with doctor-approved exercises",
+        "tip4": "Attend all prenatal appointments for regular follow-up",
+        "tip5": "Limit sugary foods and refined carbohydrates"
+      },
+      "reset": "Reset"
     },
     "healthMonitor": {
       "title": "Sistema de Monitoramento de Saúde",
@@ -4072,7 +4141,142 @@
           "message": "Você parece lidar bem com esta fase. Continue assim!"
         }
       },
-      "generating": "Gerando..."
+      "generating": "Gerando...",
+      "psiName": "Postpartum Support International",
+      "psiNumber": "1-800-944-4773",
+      "crisisLinelineName": "988 Suicide & Crisis Lifeline",
+      "crisisLinelineDesc": "Call or text 988",
+      "screeningDisclaimer": "⚠️ This is a wellness questionnaire based on the Wellness Self-Check (EPDS). It does not provide a professional evaluation. Always consult with a healthcare professional for proper assessment.",
+      "videosSubtitle": "Support and self-care resources",
+      "videos": {
+        "v1": {
+          "title": "Postpartum Mood: Signs & Indicators",
+          "description": "Signs, indicators, and when to seek support",
+          "category": "Education"
+        },
+        "v2": {
+          "title": "Understanding Postpartum Depression",
+          "description": "Indicators, contributing factors, and support options",
+          "category": "Education"
+        },
+        "v3": {
+          "title": "Postpartum Meditation for Calm",
+          "description": "Guided meditation to feel calm and grounded in motherhood",
+          "category": "Relaxation"
+        },
+        "v4": {
+          "title": "Mental Health and Pregnancy",
+          "description": "ACOG explains mental health during pregnancy and postpartum",
+          "category": "Wellness"
+        },
+        "v5": {
+          "title": "Managing Pregnancy Anxiety",
+          "description": "Practical strategies for coping with anxiety during pregnancy",
+          "category": "Anxiety"
+        }
+      },
+      "epds": {
+        "q1": {
+          "question": "I have been able to laugh and see the funny side of things",
+          "o0": "As much as I always could",
+          "o1": "Not quite so much now",
+          "o2": "Definitely not so much now",
+          "o3": "Not at all"
+        },
+        "q2": {
+          "question": "I have looked forward with enjoyment to things",
+          "o0": "As much as I ever did",
+          "o1": "Rather less than I used to",
+          "o2": "Definitely less than I used to",
+          "o3": "Hardly at all"
+        },
+        "q3": {
+          "question": "I have blamed myself unnecessarily when things went wrong",
+          "o0": "No, never",
+          "o1": "Not very often",
+          "o2": "Yes, some of the time",
+          "o3": "Yes, most of the time"
+        },
+        "q4": {
+          "question": "I have been anxious or worried for no good reason",
+          "o0": "No, not at all",
+          "o1": "Hardly ever",
+          "o2": "Yes, sometimes",
+          "o3": "Yes, very often"
+        },
+        "q5": {
+          "question": "I have felt scared or panicky for no very good reason",
+          "o0": "No, not at all",
+          "o1": "No, not much",
+          "o2": "Yes, sometimes",
+          "o3": "Yes, quite a lot"
+        },
+        "q6": {
+          "question": "I have had difficulty sleeping even when I had the chance",
+          "o0": "No, not at all",
+          "o1": "Rarely",
+          "o2": "Yes, sometimes",
+          "o3": "Yes, most of the time"
+        },
+        "q7": {
+          "question": "I have felt sad or tearful",
+          "o0": "No, not at all",
+          "o1": "Very rarely",
+          "o2": "Yes, sometimes",
+          "o3": "Yes, most of the time"
+        },
+        "q8": {
+          "question": "My appetite has changed noticeably (increased or decreased)",
+          "o0": "No, it's normal",
+          "o1": "Changed slightly",
+          "o2": "Changed noticeably",
+          "o3": "Lost my appetite completely or overeating"
+        },
+        "q9": {
+          "question": "I have had difficulty concentrating or making decisions",
+          "o0": "No, not at all",
+          "o1": "Rarely",
+          "o2": "Yes, sometimes",
+          "o3": "Yes, most of the time"
+        },
+        "q10": {
+          "question": "I have felt exhausted and low on energy",
+          "o0": "No, my energy is good",
+          "o1": "Less energy than usual",
+          "o2": "Exhausted most of the time",
+          "o3": "Completely drained"
+        }
+      },
+      "coping": {
+        "sunlight": {
+          "title": "Morning Sunlight",
+          "desc": "Get 10-15 minutes of natural light each morning"
+        },
+        "movement": {
+          "title": "Gentle Movement",
+          "desc": "A short walk can boost mood significantly"
+        },
+        "connect": {
+          "title": "Connect Daily",
+          "desc": "Talk to a friend or family member each day"
+        },
+        "rest": {
+          "title": "Rest When Possible",
+          "desc": "Sleep when baby sleeps, even briefly"
+        },
+        "nourish": {
+          "title": "Nourish Yourself",
+          "desc": "Eat regular, nutritious meals"
+        },
+        "journal": {
+          "title": "Journal",
+          "desc": "Write down 3 things you're grateful for"
+        }
+      },
+      "helpfulVideos": "Helpful Videos",
+      "personalizedPlan": "Personalized Plan",
+      "retake": "Retake Assessment",
+      "scoreLabel": "Score"
     },
     "mealSuggestion": {
       "subtitle": "Sugestões inteligentes de refeições para sua gravidez",
@@ -4850,7 +5054,156 @@
       "disclaimer": "Esta é uma estimativa baseada em dados de ciclo médio. A ovulação real pode variar. Consulte seu médico para orientação personalizada."
     },
     "cycleTracker": {
-      "symptoms": "Notas (opcional)"
+      "symptoms": "Sintomas",
+      "title": "Meu Diário de Ciclo",
+      "subtitle": "Acompanhamento inteligente com dias estimados de fertilidade",
+      "lastPeriod": "Last Period Start",
+      "cycleLength": "Duração do Ciclo",
+      "periodLength": "Duração do Período",
+      "calculate": "Calculate Fertile Window",
+      "fertileWindow": "Janela Fértil",
+      "ovulationDay": "Dia de Ovulação",
+      "nextPeriod": "Próximo Período",
+      "logPeriod": "Log Period",
+      "aiInsights": "AI Fertility Insights",
+      "yourStatistics": "Your Statistics",
+      "share": "Share",
+      "avgCycleLength": "Duração Média do Ciclo",
+      "avgPeriodLength": "Avg Period Length",
+      "analyzePatterns": "Review My Patterns",
+      "startDate": "Start Date",
+      "endDate": "End Date (optional)",
+      "flowIntensity": "Flow Intensity",
+      "cycleHistory": "Cycle History",
+      "dayCycle": "day cycle",
+      "flow": "Fluxo",
+      "trackTip": "Track at least 3-6 cycles for more accurate predictions. Cycle length can vary due to stress, illness, or other factors.",
+      "dueDateLink": "Due Date Calculator",
+      "dueDateLinkDesc": "Calculate your expected due date based on your last period",
+      "videosTitle": "Menstrual Cycle Videos",
+      "videosSubtitle": "Learn about cycle tracking and reproductive health",
+      "flowLevels": {
+        "spotting": "Spotting",
+        "light": "Light",
+        "medium": "Medium",
+        "heavy": "Heavy"
+      },
+      "mood": "Humor",
+      "moods": {
+        "great": "Great",
+        "good": "Good",
+        "okay": "Okay",
+        "bad": "Bad",
+        "awful": "Awful"
+      },
+      "notes": "Notas",
+      "notesPlaceholder": "Add notes about your day...",
+      "saveDay": "Save",
+      "removeDay": "Remove Entry",
+      "dayMarked": "Period day marked",
+      "dayRemoved": "Day removed",
+      "calendarHint": "Tap a day to mark your period. Tap a marked day to edit or delete it.",
+      "calendarHintTitle": "How to use",
+      "predicted": "Predicted",
+      "symptomOptions": {
+        "cramps": "Cramps",
+        "headache": "Headache",
+        "bloating": "Bloating",
+        "moodSwings": "Mood swings",
+        "fatigue": "Fatigue",
+        "breastTenderness": "Breast tenderness",
+        "acne": "Acne",
+        "backPain": "Back pain"
+      },
+      "saved": "Saved!",
+      "savedDesc": "Cycle entry has been recorded.",
+      "deleted": "Deleted",
+      "deletedDesc": "Cycle entry removed.",
+      "days": "dias",
+      "day": "day",
+      "copied": "Copied!",
+      "copiedDesc": "Stats copied to clipboard.",
+      "currentPhase": "Current Phase",
+      "cycleDay": "Dia {{day}} do Ciclo",
+      "menstrual": "Menstrual",
+      "follicular": "Folicular",
+      "ovulation": "Ovulação",
+      "luteal": "Lútea",
+      "fertileWindowDates": "Fertile Window",
+      "ovulationDate": "Ovulation Day",
+      "nextPeriodDate": "Next Period",
+      "daysUntilOvulation": "dias para a ovulação",
+      "daysUntilPeriod": "dias para o período",
+      "phaseDescription": {
+        "menstrual": "Your period is here. Rest and gentle activities recommended.",
+        "follicular": "Your body is preparing to ovulate. Energy is rising!",
+        "ovulation": "Peak fertility window. Best time to conceive.",
+        "luteal": "Your body is preparing for the next cycle. Focus on self-care."
+      },
+      "selectStartDate": "Select start date",
+      "selectEndDate": "Select end date",
+      "addNewEntry": "Add Entry",
+      "cycleInsights": "Cycle Insights",
+      "fertileCalendar": "Fertility Calendar",
+      "noDataYet": "Log your first cycle to see predictions",
+      "regularity": "Regularity",
+      "regular": "Regular",
+      "irregular": "Irregular",
+      "cyclesTracked": "Cycles Tracked",
+      "statusSummary": "You are currently on day {{day}} of your cycle, in the {{phase}} phase. Your average cycle is {{avgCycle}} days, and your next period is expected around {{nextDate}}. {{fertileNote}}",
+      "fertileNoteActive": "You are in or near your fertile window — ovulation is expected around {{ovDate}}.",
+      "fertileNoteUpcoming": "Your fertile window starts around {{fertileDate}}, about {{days}} days from now.",
+      "fertileNotePassed": "Your fertile window has passed for this cycle.",
+      "generalStatus": "General Status",
+      "stickyAnalyze": "Analyze with AI",
+      "emptyTitle": "Start tracking your cycle",
+      "emptyDesc": "Tap the days of your last period on the calendar above to get predictions and insights.",
+      "clearAll": "Clear All Data & Start Over",
+      "clearAllTitle": "Clear all cycle data?",
+      "clearAllDesc": "This will permanently delete all your tracked periods, notes, and predictions. This cannot be undone.",
+      "cancel": "Cancel",
+      "confirmClear": "Yes, clear everything",
+      "clearedSuccess": "All data cleared successfully",
+      "setup": {
+        "cycleLengthTitle": "How long is your cycle?",
+        "cycleLengthDesc": "The number of days from the first day of one period to the first day of the next. Most cycles are 21–35 days.",
+        "dontKnow": "Don't know? 28 days is the average.",
+        "periodLengthTitle": "How long does your period last?",
+        "periodLengthDesc": "The number of days you typically bleed. Most periods last 3–7 days.",
+        "periodHint": "Most women have 4–6 day periods.",
+        "lastPeriodTitle": "When did your last period start?",
+        "lastPeriodDesc": "Select the first day of your most recent period.",
+        "back": "Back",
+        "next": "Next",
+        "start": "Start Tracking"
+      },
+      "avgLabel": "Average",
+      "markPeriod": "Mark period",
+      "normal": "Normal",
+      "slightVariation": "Slight variation",
+      "periodStart": "Início do Período",
+      "periodEnd": "Fim do Período",
+      "currentDay": "Dia Atual",
+      "phase": "Fase",
+      "logSymptoms": "Registrar Sintomas",
+      "light": "Leve",
+      "medium": "Moderado",
+      "heavy": "Intenso",
+      "save": "Salvar",
+      "history": "Histórico",
+      "insights": "Informações",
+      "settings": "Configurações",
+      "setupTitle": "Configurar seu Ciclo",
+      "setupDesc": "Insira as informações do seu último período para começar o acompanhamento",
+      "lastPeriodDate": "Data do Último Período",
+      "averageCycleLength": "Duração Média do Ciclo",
+      "averagePeriodLength": "Duração Média do Período",
+      "startTracking": "Iniciar Acompanhamento",
+      "today": "Hoje",
+      "fertile": "Fértil",
+      "notFertile": "Não Fértil",
+      "periodIn": "Período em",
+      "ovulationIn": "Ovulação em"
     },
     "vitaminTracker": {
       "title": "Minha Nutrição Diária",
@@ -4918,6 +5271,204 @@
       "subtitle": "Acompanhe o crescimento do seu bebê semana a semana",
       "title": "Desenvolvimento fetal",
       "yourCurrentWeek": "Sua semana atual"
+    },
+    "laborTracker": {
+      "title": "Registro de Contrações",
+      "subtitle": "Registre e analise seus padrões de contrações",
+      "startContraction": "Iniciar Contração",
+      "endContraction": "Terminar Contração",
+      "duration": "Duração",
+      "interval": "Intervalo",
+      "avgDuration": "Duração Média",
+      "avgInterval": "Intervalo Médio",
+      "contractionLog": "Registro de Contrações",
+      "laborStage": "Fase Estimada",
+      "earlyLabor": "Fase Inicial",
+      "earlyLaborDesc": "Descanse, fique confortável e mantenha-se hidratada",
+      "earlyPhase": "Fase Inicial",
+      "earlyPhaseDesc": "Descanse, fique confortável e mantenha-se hidratada",
+      "activeLabor": "Fase Ativa",
+      "activeLaborDesc": "Considere compartilhar este registro com seu médico",
+      "activePhase": "Fase Ativa",
+      "activePhaseDesc": "Considere compartilhar este registro com seu médico",
+      "transition": "Intensive Phase",
+      "transitionDesc": "Contact your care provider with this journal",
+      "intensivePhase": "Intensive Phase",
+      "intensivePhaseDesc": "Contact your care provider with this journal",
+      "providerAlert": "Consider Contacting Your Provider",
+      "providerAlertDesc": "Based on the 5-1-1 guideline, your logged contractions are now 5 minutes apart and lasting 1 minute or more. You may want to share this journal with your care provider.",
+      "rule511": "The 5-1-1 Guideline",
+      "rule511Desc": "Many care providers suggest contacting them when contractions are 5 minutes apart, lasting 1 minute each, and continue for 1 hour. Share your log for guidance.",
+      "callProvider": "Call Provider",
+      "understand": "I Understand",
+      "inProgress": "Contraction in progress...",
+      "ready": "Ready to track",
+      "getAIAnalysis": "Get AI Journal Insights",
+      "aiAnalysis": "AI Journal Insights",
+      "contractions": "Contractions",
+      "contractionPattern": "Contraction Pattern",
+      "recentContractions": "Recent Contractions",
+      "durationSec": "Duration (sec)",
+      "intensity": {
+        "mild": "Mild",
+        "moderate": "Moderate",
+        "strong": "Strong",
+        "very-strong": "Very Strong"
+      },
+      "disclaimer": "This tool is for informational purposes only. Always follow your care provider's guidance.",
+      "aiAnalysisDesc": "Get personalized breathing techniques, comfort measures, and encouragement based on your journal entries.",
+      "analyzing": "Analyzing your journal...",
+      "breathingGuide": "Quick Breathing Guide",
+      "breathingEarly": "Early Phase: Slow Breathing",
+      "breathingEarlyDesc": "Inhale through nose (4 counts) → Exhale through mouth (6 counts)",
+      "breathingActive": "Active Phase: Patterned Breathing",
+      "breathingActiveDesc": "Light breathing: \"Hee-hee-hoo\" pattern, focus on exhale",
+      "breathingIntensive": "Intensive Phase: Blow Breathing",
+      "breathingIntensiveDesc": "Short inhale → Long blow out, like blowing a candle slowly",
+      "comfortTips": "Comfort Tips",
+      "warmWater": "Warm shower on back",
+      "walkGently": "Walk gently between",
+      "birthBall": "Sway on birth ball",
+      "counterPressure": "Counter-pressure on lower back",
+      "transitionPhase": "Fase de Transição",
+      "transitionPhaseDesc": "Prepare-se para ir ao hospital",
+      "callDoctor": "Contacte seu médico",
+      "callDoctorDesc": "As contrações são regulares e frequentes",
+      "noContractions": "Nenhuma contração registrada ainda",
+      "reset": "Reiniciar",
+      "shareLog": "Compartilhar Registro",
+      "exportPdf": "Exportar PDF",
+      "totalContractions": "Total de Contrações",
+      "sessionDuration": "Duração da Sessão",
+      "babyDevLink": "Desenvolvimento do Bebê",
+      "babyDevLinkDesc": "Registre o crescimento e desenvolvimento do seu bebê semana a semana"
+    },
+    "diaperTracker": {
+      "title": "Registro Inteligente de Fraldas",
+      "subtitle": "Registro diário com estatísticas e alertas",
+      "logChange": "Log Change",
+      "wet": "Molhada",
+      "dirty": "Suja",
+      "both": "Both",
+      "todayCount": "Contagem de Hoje",
+      "recentChanges": "Recent Changes",
+      "noChanges": "No changes logged yet",
+      "aiHealthTips": "AI Health Tips",
+      "mixed": "Mista",
+      "addEntry": "Adicionar Entrada",
+      "dailyGoal": "Meta Diária",
+      "lastChange": "Última Troca",
+      "ago": "atrás",
+      "history": "Histórico",
+      "noEntries": "Sem entradas hoje",
+      "stats": "Estatísticas",
+      "weeklyAvg": "Média Semanal",
+      "color": "Cor",
+      "texture": "Textura",
+      "notes": "Notas"
+    },
+    "babyDevelopment": {
+      "title": "Baby Development Timeline",
+      "subtitle": "Week by week journey of your baby's growth",
+      "pregnancyProgress": "Pregnancy Progress",
+      "setAsMyWeek": "Set as my week",
+      "yourCurrentWeek": "Your current week",
+      "sizeOf": "Size of a {{size}}",
+      "developing": "Developing",
+      "length": "Length",
+      "weight": "Weight",
+      "units": {
+        "cm": "cm",
+        "g": "g",
+        "kg": "kg"
+      },
+      "organs": {
+        "heart": "Heart",
+        "brain": "Brain",
+        "ears": "Ears",
+        "eyes": "Eyes",
+        "hands": "Hands",
+        "feet": "Feet"
+      },
+      "thisWeeksDevelopment": "This Week's Development",
+      "aiWeeklyInsights": "AI Weekly Insights",
+      "development": "Development",
+      "nutrition": "Nutrition",
+      "exercise": "Exercise",
+      "trimesters": {
+        "first": "First Trimester",
+        "second": "Second Trimester",
+        "third": "Third Trimester"
+      },
+      "sizes": {
+        "poppySeed": "Poppy seed",
+        "sweetPea": "Sweet pea",
+        "raspberry": "Raspberry",
+        "prune": "Prune",
+        "lime": "Lime",
+        "lemon": "Lemon",
+        "avocado": "Avocado",
+        "bellPepper": "Bell pepper",
+        "banana": "Banana",
+        "papaya": "Papaya",
+        "corn": "Corn",
+        "lettuce": "Lettuce",
+        "eggplant": "Eggplant",
+        "cabbage": "Cabbage",
+        "squash": "Squash",
+        "cantaloupe": "Cantaloupe",
+        "honeydew": "Honeydew",
+        "pumpkin": "Pumpkin",
+        "watermelon": "Watermelon"
+      },
+      "developments": {
+        "week4": "Cells are dividing rapidly. The neural tube is forming.",
+        "week6": "Heart begins to beat. Brain and spinal cord are developing.",
+        "week8": "Tiny fingers and toes are forming. Heart is beating steadily.",
+        "week10": "All vital organs have formed. Baby starts to move.",
+        "week12": "Reflexes are developing. Fingernails are forming.",
+        "week14": "Can make facial expressions. Gender may be visible.",
+        "week16": "Can make sucking motions. Bones are hardening.",
+        "week18": "You may feel first kicks! Ears are in final position.",
+        "week20": "Can hear sounds. Regular sleep cycles begin.",
+        "week22": "Eyebrows and eyelids are fully formed.",
+        "week24": "Lungs are developing. Responds to sounds and light.",
+        "week26": "Eyes begin to open. Brain is developing rapidly.",
+        "week28": "Eyes can open and close. Baby can dream!",
+        "week30": "Brain continues rapid growth. Can regulate body temperature.",
+        "week32": "Practicing breathing. Bones are fully formed but soft.",
+        "week34": "Fingernails reach fingertips. Fat layers developing.",
+        "week36": "Lungs are nearly mature. Head may engage in pelvis.",
+        "week38": "Fully developed and gaining weight. Ready soon!",
+        "week40": "Fully developed and ready for birth! Welcome to the world!"
+      },
+      "tips": {
+        "week4": "Schedule your first care provider visit.",
+        "week6": "Stay hydrated and rest well.",
+        "week8": "First care provider visit recommended.",
+        "week10": "Morning sickness may peak now.",
+        "week12": "End of first trimester!",
+        "week14": "Energy levels may improve.",
+        "week16": "You might feel flutters!",
+        "week18": "Anatomy scan time!",
+        "week20": "Halfway there!",
+        "week22": "Baby can taste what you eat.",
+        "week24": "Viability milestone reached!",
+        "week26": "Glucose test may be scheduled.",
+        "week28": "Third trimester begins!",
+        "week30": "Pack your hospital bag.",
+        "week32": "Baby is gaining weight fast!",
+        "week34": "Care visits every 2 weeks.",
+        "week36": "Baby may drop lower.",
+        "week38": "Could arrive any day!",
+        "week40": "Due date!"
+      },
+      "kickCounterLink": "Kick Counter",
+      "kickCounterLinkDesc": "Log your baby's movements and activity patterns",
+      "dueDateLink": "Due Date Calculator",
+      "dueDateLinkDesc": "Calculate your expected delivery date",
+      "weightGainLink": "Weight Gain Guide",
+      "weightGainLinkDesc": "Follow your healthy weight journey"
     }
   },
   "welcome": {
@@ -6306,7 +6857,21 @@
     "privacy": "Privacidade e segurança",
     "privacyDesc": "Seus dados são criptografados e protegidos",
     "searchKeywords": "Palavras-chave de pesquisa",
-    "defaultDescription": "App gravidez grátis com 33+ ferramentas: calculadora data parto, contador movimentos, temporizador contrações, acompanhamento bebê. 7 idiomas."
+    "defaultDescription": "App gravidez grátis com 33+ ferramentas: calculadora data parto, contador movimentos, temporizador contrações, acompanhamento bebê. 7 idiomas.",
+    "faq": {
+      "q1": "O aplicativo é seguro para gestantes?",
+      "a1": "Sim, todas as informações são baseadas em fontes médicas confiáveis. No entanto, sempre consulte seu médico.",
+      "q2": "O aplicativo é gratuito?",
+      "a2": "Sim, o aplicativo é gratuito com funcionalidades premium opcionais.",
+      "q3": "Posso usar o aplicativo sem internet?",
+      "a3": "Sim, a maioria das ferramentas funciona offline após o primeiro carregamento.",
+      "q4": "Meus dados estão seguros?",
+      "a4": "Sim, seus dados são armazenados localmente no seu dispositivo com criptografia.",
+      "q5": "Quantas ferramentas estão disponíveis?",
+      "a5": "Mais de 33 ferramentas inteligentes cobrindo todas as fases da gravidez.",
+      "q6": "O aplicativo suporta vários idiomas?",
+      "a6": "Sim, o aplicativo suporta 7 idiomas incluindo árabe, inglês, espanhol, francês, alemão, português e turco."
+    }
   },
   "videoLibraryPage": {
     "title": "Biblioteca de Vídeos",
@@ -6606,7 +7171,7 @@
     },
     "hydration": {
       "title": "Hidratação",
-      "addGlass": "+ Copo de água"
+      "addGlass": "Adicionar copo"
     },
     "symptoms": {
       "title": "Notas diárias de bem-estar",
@@ -6652,7 +7217,15 @@
       "empty": "Nenhum chute registrado hoje",
       "goal": "Meta: 10 chutes/dia",
       "title": "Movimento fetal"
-    }
+    },
+    "babyMovement": {
+      "title": "Baby Movement",
+      "goal": "goal",
+      "empty": "Start tracking your baby's movements today"
+    },
+    "priorityTitle": "Prioridades Diárias",
+    "steps": "Passos",
+    "sleep": "Sono"
   },
   "weeklyJourney": {
     "subtitle": "Sua jornada semanal com seu bebê",
@@ -6674,7 +7247,8 @@
       "doctorQuestions": "Perguntas para seu médico",
       "checklist": "Lista semanal",
       "aiInsight": "Insight IA",
-      "fetalDev": "Desenvolvimento fetal"
+      "fetalDev": "Desenvolvimento fetal",
+      "babyDev": "Baby Development"
     },
     "copied": "Copiado!",
     "aiDescription": "Obtenha uma análise completa e personalizada da sua semana atual com IA",
@@ -6711,6 +7285,12 @@
           "2": "Comece vitaminas pré-natais com ferro",
           "3": "Pare completamente com tabaco e álcool",
           "4": "Comece um diário de gravidez"
+        },
+        "babyDev": {
+          "0": "Three primary germ layers are forming",
+          "1": "The primitive heart begins to develop",
+          "2": "The neural tube is taking shape",
+          "3": "Blood flow to the uterus increases"
         }
       },
       "w5": {
@@ -6744,6 +7324,12 @@
           "2": "Faça refeições pequenas e frequentes contra enjoos",
           "3": "Mantenha-se hidratada apesar dos enjoos matinais",
           "4": "Evite levantar peso e exercícios intensos"
+        },
+        "babyDev": {
+          "0": "The heart starts beating",
+          "1": "Arm and leg buds appear",
+          "2": "The neural tube develops further",
+          "3": "Major organs begin forming"
         }
       },
       "w6": {
@@ -6777,6 +7363,12 @@
           "2": "Trate os enjoos matinais naturalmente",
           "3": "Coma gengibre ou biscoitos para aliviar enjoos",
           "4": "Descanse quando estiver cansada"
+        },
+        "babyDev": {
+          "0": "Nose, mouth, and ears take shape",
+          "1": "Intestines begin forming",
+          "2": "Brain grows rapidly",
+          "3": "Fingers start to form"
         }
       },
       "w7": {
@@ -6810,6 +7402,12 @@
           "2": "Comece exercícios do assoalho pélvico (Kegel)",
           "3": "Use roupas confortáveis e com suporte",
           "4": "Discuta opções de testes genéticos com seu médico"
+        },
+        "babyDev": {
+          "0": "Facial features become distinct",
+          "1": "Hands and feet are growing",
+          "2": "The liver develops quickly",
+          "3": "Bone formation begins"
         }
       },
       "w8": {
@@ -6843,6 +7441,12 @@
           "2": "Mantenha-se ativa com caminhadas leves",
           "3": "Hidrate a barriga para prevenir estrias",
           "4": "Compartilhe a notícia com seu parceiro"
+        },
+        "babyDev": {
+          "0": "Limbs move for the first time",
+          "1": "Fingers are clearly visible",
+          "2": "The embryonic tail disappears",
+          "3": "The retina begins developing"
         }
       },
       "w9": {
@@ -6876,6 +7480,12 @@
           "2": "Coma alimentos ricos em ferro (espinafre, lentilhas)",
           "3": "Evite banheiras de hidromassagem e saunas",
           "4": "Comece o planejamento financeiro para o bebê"
+        },
+        "babyDev": {
+          "0": "Major joints form",
+          "1": "Tooth buds form under gums",
+          "2": "Muscles are growing",
+          "3": "The digestive system develops"
         }
       },
       "w10": {
@@ -6909,6 +7519,12 @@
           "2": "Coma alimentos ricos em cálcio para os ossos",
           "3": "Continue sua rotina de exercícios leves",
           "4": "Comece a comprar roupas de gestante"
+        },
+        "babyDev": {
+          "0": "Fingers and toes are complete",
+          "1": "Urine production begins",
+          "2": "Bones gradually harden",
+          "3": "Brain development accelerates"
         }
       },
       "w11": {
@@ -6942,6 +7558,12 @@
           "2": "Pratique relaxamento e respiração profunda",
           "3": "Mantenha as consultas com o dentista",
           "4": "Pesquise opções de creche antecipadamente"
+        },
+        "babyDev": {
+          "0": "Can open and close fists",
+          "1": "Tooth buds are forming",
+          "2": "Fine hair (lanugo) grows",
+          "3": "Genitals begin to differentiate"
         }
       },
       "w12": {
@@ -6975,6 +7597,12 @@
           "2": "Agende o ultrassom de translucência nucal",
           "3": "Coma alimentos ricos em ômega-3",
           "4": "Comece a hidratar a pele contra coceira"
+        },
+        "babyDev": {
+          "0": "Nails are developing",
+          "1": "Kidneys produce urine",
+          "2": "Active movement inside the womb",
+          "3": "Vocal cords are forming"
         }
       },
       "w13": {
@@ -7008,6 +7636,12 @@
           "2": "Comece a dormir de lado",
           "3": "Aumente a ingestão calórica em 300 kcal",
           "4": "Pesquise cursos de preparação para o parto"
+        },
+        "babyDev": {
+          "0": "Unique fingerprints form",
+          "1": "Liver produces bile",
+          "2": "Can suck and swallow",
+          "3": "Insulin production begins"
         }
       },
       "w14": {
@@ -7041,6 +7675,12 @@
           "2": "Coma frutas ricas em vitamina C diariamente",
           "3": "Monitore o ganho de peso constante",
           "4": "Crie uma lista de enxoval"
+        },
+        "babyDev": {
+          "0": "Can yawn and stretch",
+          "1": "Eyebrows and lashes grow",
+          "2": "Central nervous system develops",
+          "3": "Fingerprints are forming"
         }
       },
       "w15": {
@@ -7074,6 +7714,12 @@
           "2": "Mantenha boa postura com a barriga crescendo",
           "3": "Aplique óleo ou creme na barriga diariamente",
           "4": "Comece a escolher nomes para o bebê"
+        },
+        "babyDev": {
+          "0": "Hearing sense develops",
+          "1": "Moves freely in amniotic fluid",
+          "2": "Bones grow and harden",
+          "3": "Can sense light"
         }
       },
       "w16": {
@@ -7107,6 +7753,12 @@
           "2": "Coma alimentos ricos em DHA para o cérebro",
           "3": "Renove o guarda-roupa com peças de gestante",
           "4": "Planeje viagens antes do 3º trimestre"
+        },
+        "babyDev": {
+          "0": "Facial muscles form",
+          "1": "Can make facial expressions",
+          "2": "Nails are fully grown",
+          "3": "Circulatory system develops"
         }
       },
       "w17": {
@@ -7140,6 +7792,12 @@
           "2": "Coma alimentos ricos em potássio (bananas, abacates)",
           "3": "Alongue-se 10 minutos por dia",
           "4": "Converse ou cante para seu bebê — ele ouve!"
+        },
+        "babyDev": {
+          "0": "Fat begins accumulating under skin",
+          "1": "Touch sense develops",
+          "2": "Can hear your voice",
+          "3": "Umbilical cord grows stronger"
         }
       },
       "w18": {
@@ -7173,6 +7831,12 @@
           "2": "Faça exercícios de Kegel 3 vezes ao dia",
           "3": "Considere contratar uma doula",
           "4": "Inicie uma rotina de relaxamento antes de dormir"
+        },
+        "babyDev": {
+          "0": "You may feel first movements",
+          "1": "Retina develops further",
+          "2": "Sensory nerves form",
+          "3": "Yawns and sleeps regularly"
         }
       },
       "w19": {
@@ -7206,6 +7870,12 @@
           "2": "Aumente o magnésio (nozes, chocolate amargo)",
           "3": "Use sapatos com suporte se os pés incharem",
           "4": "Comece um rascunho do plano de parto"
+        },
+        "babyDev": {
+          "0": "Protective waxy coating forms",
+          "1": "All five senses develop",
+          "2": "Hair grows on the head",
+          "3": "Noticeably more active"
         }
       },
       "w20": {
@@ -7239,6 +7909,12 @@
           "2": "Coma alimentos ricos em cálcio para os ossos",
           "3": "Aplique creme anti-estrias",
           "4": "Inscreva-se em um curso de preparação para o parto"
+        },
+        "babyDev": {
+          "0": "Halfway there! Baby growing fast",
+          "1": "Can swallow and produce meconium",
+          "2": "Taste buds develop",
+          "3": "Distinguishes sleep from wake"
         }
       },
       "w21": {
@@ -7272,6 +7948,12 @@
           "2": "Faça alongamentos para dor nas costas",
           "3": "Caminhe 20 minutos diários",
           "4": "Pesquise pediatras na sua região"
+        },
+        "babyDev": {
+          "0": "Absorbs nutrients from amniotic fluid",
+          "1": "Eyebrows are visible",
+          "2": "Immune system develops",
+          "3": "Practices breathing movements"
         }
       },
       "w22": {
@@ -7305,6 +7987,12 @@
           "2": "Pratique técnicas de respiração para o parto",
           "3": "Compre um travesseiro de gestante",
           "4": "Comece a congelar refeições para o pós-parto"
+        },
+        "babyDev": {
+          "0": "Inner ear is fully formed",
+          "1": "Can hear external sounds",
+          "2": "Lungs are growing",
+          "3": "Responds to external stimuli"
         }
       },
       "w23": {
@@ -7338,6 +8026,12 @@
           "2": "Comece a massagem perineal para se preparar",
           "3": "Prepare a área de sono do bebê",
           "4": "Faça a lista da bolsa maternidade"
+        },
+        "babyDev": {
+          "0": "Can distinguish your voice",
+          "1": "Lungs develop rapidly",
+          "2": "Brain grows intensively",
+          "3": "Practices breathing patterns"
         }
       },
       "w24": {
@@ -7371,6 +8065,12 @@
           "2": "Faça agachamentos leves para preparação ao parto",
           "3": "Inscreva-se em cursos de amamentação",
           "4": "Verifique seu plano de saúde e licença maternidade"
+        },
+        "babyDev": {
+          "0": "Footprints are forming",
+          "1": "Gaining weight steadily",
+          "2": "Lungs maturing gradually",
+          "3": "Sleeps in regular cycles"
         }
       },
       "w25": {
@@ -7404,6 +8104,12 @@
           "2": "Pratique posições de parto e respiração",
           "3": "Lave e organize as roupas do bebê",
           "4": "Crie um documento de preferências de parto"
+        },
+        "babyDev": {
+          "0": "Can open eyes",
+          "1": "Responds to light and sound",
+          "2": "Airways are developing",
+          "3": "Increased physical activity"
         }
       },
       "w26": {
@@ -7437,6 +8143,12 @@
           "2": "Coma refeições pequenas e frequentes contra azia",
           "3": "Faça inclinações pélvicas para dor lombar",
           "4": "Finalize a escolha do nome"
+        },
+        "babyDev": {
+          "0": "Eyelashes fully grown",
+          "1": "Actively practices breathing",
+          "2": "Can grasp the umbilical cord",
+          "3": "Nervous system develops"
         }
       },
       "w27": {
@@ -7470,6 +8182,12 @@
           "2": "Durma do lado esquerdo para melhor circulação",
           "3": "Prepare os irmãos mais velhos para o bebê",
           "4": "Visite a maternidade"
+        },
+        "babyDev": {
+          "0": "Sense of smell develops",
+          "1": "Regular sleep-wake cycles",
+          "2": "Bones hardening further",
+          "3": "Reconhece claramente sua voz"
         }
       },
       "w28": {
@@ -7503,6 +8221,12 @@
           "2": "Coma alimentos ricos em zinco para imunidade",
           "3": "Pratique técnicas de relaxamento diariamente",
           "4": "Comece a preparar a bolsa maternidade"
+        },
+        "babyDev": {
+          "0": "Os olhos abrem e fecham regularmente",
+          "1": "O cérebro se desenvolve rapidamente",
+          "2": "Os pulmões praticam a respiração",
+          "3": "Movimentos fortes e regulares"
         }
       },
       "w29": {
@@ -7536,6 +8260,12 @@
           "2": "Mantenha-se hidratada — inchaço é normal mas observe",
           "3": "Compareça às aulas de preparação para o parto",
           "4": "Instale a cadeirinha do carro"
+        },
+        "babyDev": {
+          "0": "Ganhando peso rapidamente",
+          "1": "Os pulmões amadurecem mais",
+          "2": "O sistema imunológico se fortalece",
+          "3": "Responde a sons familiares"
         }
       },
       "w30": {
@@ -7569,6 +8299,12 @@
           "2": "Faça círculos com os tornozelos contra inchaço",
           "3": "Finalize o plano de parto com seu médico",
           "4": "Prepare suprimentos de recuperação pós-parto"
+        },
+        "babyDev": {
+          "0": "Pratica a respiração regularmente",
+          "1": "Ossos completos mas macios",
+          "2": "Pode seguir fontes de luz",
+          "3": "O cabelo cresce na cabeça"
         }
       },
       "w31": {
@@ -7602,6 +8338,12 @@
           "2": "Durma com travesseiro entre os joelhos",
           "3": "Pré-registre-se no hospital",
           "4": "Estoque essenciais para o pós-parto"
+        },
+        "babyDev": {
+          "0": "Gradualmente assume a posição de parto",
+          "1": "O cérebro processa informação",
+          "2": "Os cinco sentidos funcionam",
+          "3": "Ganha 200g semanalmente"
         }
       },
       "w32": {
@@ -7635,6 +8377,12 @@
           "2": "Faça exercícios do assoalho pélvico 3x/dia",
           "3": "Lave toda a roupa de cama e roupas do bebê",
           "4": "Discuta opções de controle da dor"
+        },
+        "babyDev": {
+          "0": "As unhas chegam às pontas dos dedos",
+          "1": "A pele fica mais macia e grossa",
+          "2": "Respira líquido para fortalecer os pulmões",
+          "3": "Responde à música"
         }
       },
       "w33": {
@@ -7668,6 +8416,12 @@
           "2": "Pratique posições de parto com seu parceiro",
           "3": "Prepare refeições congeladas para após o parto",
           "4": "Revise posições e técnicas de amamentação"
+        },
+        "babyDev": {
+          "0": "Os ossos endurecem exceto o crânio",
+          "1": "Sonha durante o sono",
+          "2": "A imunidade se fortalece da mãe",
+          "3": "Assume posição de cabeça para baixo"
         }
       },
       "w34": {
@@ -7701,6 +8455,12 @@
           "2": "Alongue-se para dores no quadril e costas",
           "3": "Termine de preparar a bolsa maternidade",
           "4": "Discuta opções de banco de sangue do cordão"
+        },
+        "babyDev": {
+          "0": "Pulmões quase completos",
+          "1": "Pode reconhecer vozes",
+          "2": "Unhas completamente crescidas",
+          "3": "Acumulando camadas de gordura"
         }
       },
       "w35": {
@@ -7734,6 +8494,12 @@
           "2": "Faça massagem perineal 3-4 vezes/semana",
           "3": "Finalize os arranjos de cuidados infantis",
           "4": "Aprenda cuidados básicos com recém-nascidos"
+        },
+        "babyDev": {
+          "0": "Rins completamente funcionais",
+          "1": "Pratica sucção e deglutição",
+          "2": "O cérebro cresce muito rapidamente",
+          "3": "A pele é rosada e macia"
         }
       },
       "w36": {
@@ -7767,6 +8533,12 @@
           "2": "Coma alimentos ricos em ferro para preparação",
           "3": "Descanse e guarde energia para o trabalho de parto",
           "4": "Confirme sua equipe de apoio ao parto"
+        },
+        "babyDev": {
+          "0": "Pulmões quase prontos",
+          "1": "Assume a posição final de parto",
+          "2": "Sistema digestivo completo",
+          "3": "Ganha 30g diários"
         }
       },
       "w37": {
@@ -7800,6 +8572,12 @@
           "2": "Coma refeições nutritivas e mantenha-se hidratada",
           "3": "Caminhe suavemente para encorajar o trabalho de parto",
           "4": "Saiba quando ligar para o médico ou ir ao hospital"
+        },
+        "babyDev": {
+          "0": "Considerado a termo completo",
+          "1": "Os pulmões estão completamente maduros",
+          "2": "Pode agarrar firmemente",
+          "3": "Pronto para a vida fora"
         }
       },
       "w38": {
@@ -7833,6 +8611,12 @@
           "2": "Faça exercícios de relaxamento e visualização",
           "3": "Verifique sua bolsa maternidade novamente",
           "4": "Pratique cronometrar as contrações"
+        },
+        "babyDev": {
+          "0": "Todos os órgãos funcionam eficientemente",
+          "1": "Perdendo o lanugo",
+          "2": "Ganhando as últimas camadas de gordura",
+          "3": "Aguardando o sinal do parto"
         }
       },
       "w39": {
@@ -7866,6 +8650,12 @@
           "2": "Descanse o máximo possível entre atividades",
           "3": "Confirme o plano de transporte ao hospital",
           "4": "Revise o plano de alimentação do recém-nascido"
+        },
+        "babyDev": {
+          "0": "Completamente desenvolvido",
+          "1": "Pronto para nascer a qualquer momento",
+          "2": "Os pulmões produzem surfactante",
+          "3": "Imunidade no seu ponto mais forte"
         }
       },
       "w40": {
@@ -7899,6 +8689,12 @@
           "2": "Coma refeições equilibradas para manter energia",
           "3": "Monitore os movimentos do bebê com atenção",
           "4": "Contate seu médico se as contrações começarem"
+        },
+        "babyDev": {
+          "0": "Data prevista! Todos os sistemas ótimos",
+          "1": "Completamente pronto para conhecer o mundo",
+          "2": "Crânio flexível para o parto",
+          "3": "Todos os órgãos funcionam perfeitamente"
         }
       },
       "w41": {
@@ -7932,6 +8728,12 @@
           "2": "Continue monitorando os movimentos do bebê",
           "3": "Descanse e guarde energia para o parto",
           "4": "Fique perto de casa e do hospital"
+        },
+        "babyDev": {
+          "0": "Continua ganhando peso",
+          "1": "Placenta trabalhando em capacidade total",
+          "2": "O médico pode sugerir indução",
+          "3": "Monitore os movimentos de perto"
         }
       },
       "w42": {
@@ -7965,6 +8767,12 @@
           "2": "Compareça à sua consulta de controle agendada",
           "3": "Mantenha-se hidratada e descanse bem",
           "4": "Confie na sua equipe médica — você está quase lá!"
+        },
+        "babyDev": {
+          "0": "Data passada — acompanhamento com o médico",
+          "1": "O parto pode ser induzido",
+          "2": "Continue contando os chutes",
+          "3": "Esteja pronta para o hospital"
         }
       },
       "w1": {
@@ -8314,6 +9122,47 @@
       "4": "Coma um punhado de amêndoas para um impulso saudável de ômega-3 🥜",
       "5": "Descanse quando seu corpo pedir — ele está construindo uma vida! 💤",
       "6": "Exercícios de Kegel fortalecem o assoalho pélvico — tente 3 séries hoje 💪"
+    },
+    "babySize": {
+      "4": "Semente de papoula",
+      "5": "Semente de gergelim",
+      "6": "Lentilha",
+      "7": "Mirtilo",
+      "8": "Framboesa",
+      "9": "Cereja",
+      "10": "Morango",
+      "11": "Figo",
+      "12": "Lima",
+      "13": "Pêssego",
+      "14": "Limão",
+      "15": "Maçã",
+      "16": "Abacate",
+      "17": "Pera",
+      "18": "Pimentão",
+      "19": "Manga",
+      "20": "Banana",
+      "21": "Cenoura",
+      "22": "Mamão",
+      "23": "Toranja",
+      "24": "Milho",
+      "25": "Couve-flor",
+      "26": "Alface",
+      "27": "Repolho",
+      "28": "Berinjela",
+      "29": "Abóbora",
+      "30": "Coco",
+      "31": "Abacaxi",
+      "32": "Abobrinha",
+      "33": "Aipo",
+      "34": "Melão",
+      "35": "Melão verde",
+      "36": "Alface romana",
+      "37": "Acelga",
+      "38": "Alho-poró",
+      "39": "Melancia",
+      "40": "Abóbora",
+      "41": "Melancia",
+      "42": "Jaca"
     }
   },
   "seoArticle": {
@@ -8476,5 +9325,117 @@
     "subtitle": "Descubra por que mães confiam em nós",
     "title": "Por que nos escolher",
     "us": "Nós"
+  },
+  "trialBanner": {
+    "expiringSoon": "Seu teste está acabando!",
+    "remaining": "restante",
+    "subscribe": "Assine Agora"
+  },
+  "trialExpired": {
+    "title": "Seu teste terminou",
+    "subtitle": "Você experimentou o poder da IA",
+    "usedAnalyses": "Você usou {{count}} análises de IA",
+    "duringTrial": "durante seu período de teste",
+    "premiumBenefit": "60 análises/mês",
+    "premiumDesc": "Desbloqueie todas as 33+ ferramentas de IA",
+    "cta": "Ver Planos Premium",
+    "dismiss": "Talvez depois"
+  },
+  "usageNudge": {
+    "title": "{{used}}/{{limit}} análises usadas",
+    "upgrade": "Atualize para 60/mês →"
+  },
+  "smartPrompt": {
+    "nearLimit": "Você usou {{used}} de {{limit}} análises! Assine para 60/mês.",
+    "upgradeNow": "Atualizar Agora"
+  },
+  "vitaminTracker": {
+    "subtitle": "Controle sua ingestão diária de suplementos",
+    "pregnancyWeek": "Pregnancy Week",
+    "todaysProgress": "Today's Progress",
+    "vitaminsCount": "{{taken}} of {{total}} vitamins taken today",
+    "aiAnalysisTitle": "AI Vitamin Analysis",
+    "analyzeRoutine": "Analyze My Routine",
+    "analyzingIntake": "Analyzing your intake...",
+    "alreadyTaken": "Already taken!",
+    "alreadyTakenDesc": "You've already logged {{name}} today.",
+    "logged": "Vitamin Logged!",
+    "loggedDesc": "{{name}} has been logged.",
+    "failedToLog": "Failed to log vitamin",
+    "done": "Done",
+    "take": "Take",
+    "thisWeek": "this week",
+    "weeklyStats": "Weekly Stats",
+    "days": "dias",
+    "recentHistory": "Recent History",
+    "tipTitle": "Pro Tip",
+    "tipContent": "Take iron supplements with vitamin C for better absorption, but avoid taking them with calcium.",
+    "vitamins": {
+      "folicAcid": "Folic Acid",
+      "iron": "Iron",
+      "calcium": "Calcium",
+      "vitaminD": "Vitamin D",
+      "omega3": "Omega 3",
+      "prenatal": "Prenatal Vitamins"
+    },
+    "dosages": {
+      "folicAcid": "400-800 mcg",
+      "iron": "27 mg",
+      "calcium": "1000 mg",
+      "vitaminD": "600 IU",
+      "omega3": "200-300 mg DHA",
+      "prenatal": "As directed"
+    },
+    "importance": {
+      "folicAcid": "Essential for neural development",
+      "iron": "Prevents anemia",
+      "calcium": "For bone health",
+      "vitaminD": "Calcium absorption",
+      "omega3": "Baby brain development",
+      "prenatal": "Complete & balanced"
+    },
+    "title": "Rastreador de Vitaminas",
+    "addVitamin": "Adicionar Vitamina",
+    "taken": "Tomada",
+    "missed": "Perdida",
+    "streak": "Sequência",
+    "today": "Hoje",
+    "weekly": "Semanal",
+    "monthly": "Mensal",
+    "reminder": "Lembrete",
+    "setReminder": "Definir Lembrete",
+    "commonVitamins": "Vitaminas Comuns",
+    "folicAcid": "Ácido Fólico",
+    "iron": "Ferro",
+    "calcium": "Cálcio",
+    "vitaminD": "Vitamina D",
+    "omega3": "Ômega 3",
+    "prenatal": "Pré-natal",
+    "magnesium": "Magnésio",
+    "zinc": "Zinco",
+    "vitaminC": "Vitamina C",
+    "vitaminB12": "Vitamina B12",
+    "iodine": "Iodo",
+    "dha": "DHA",
+    "compliance": "Adesão",
+    "perfectWeek": "Semana Perfeita",
+    "addCustom": "Adicionar Personalizada",
+    "dose": "Dose",
+    "frequency": "Frequência",
+    "daily": "Diária",
+    "twiceDaily": "Duas vezes ao dia",
+    "weekly2": "Semanal",
+    "morning": "Manhã",
+    "afternoon": "Tarde",
+    "evening": "Noite",
+    "withFood": "Com comida",
+    "emptyState": "Sem vitaminas ainda — adicione sua primeira vitamina",
+    "complianceRate": "Taxa de Adesão",
+    "monthlyReport": "Relatório Mensal",
+    "importantNote": "Nota Importante",
+    "consultDoctor": "Consulte seu médico antes de tomar suplementos",
+    "weeklyProgress": "Progresso Semanal",
+    "allTaken": "Todas tomadas hoje",
+    "remaining": "restantes hoje"
   }
 }

@@ -147,7 +147,9 @@
     "termsPrefix": "Devam ederek kabul etmiş olursunuz",
     "and": "ve",
     "subscriptionSuccess": "Abonelik başarıyla etkinleştirildi!",
-    "purchaseCancelled": "Satın alma iptal edildi"
+    "purchaseCancelled": "Satın alma iptal edildi",
+    "savePercent": "%44 Tasarruf",
+    "savingsBanner": "Aylık plana göre yılda $15.89 tasarruf"
   },
   "onboarding": {
     "title": "Yolculuğunuza hoş geldiniz",
@@ -454,6 +456,18 @@
     "lactationPrep": {
       "title": "Yenidoğan İçin Akıllı Beslenme",
       "description": "Yenidoğanınızı güvenle beslemek için temel rehber."
+    },
+    "cycleTracker": {
+      "title": "Döngü Günlüğüm",
+      "description": "Tahmini yüksek verimlilik günleri ile akıllı döngü günlüğü"
+    },
+    "babySleepTracker": {
+      "title": "Bebek Uyku Kaydı",
+      "description": "Günlük ve haftalık istatistiklerle uyku düzeni analizi."
+    },
+    "diaperTracker": {
+      "title": "Akıllı Bez Kaydı",
+      "description": "İstatistikler ve uyarılarla akıllı günlük bez kaydı."
     }
   },
   "dashboard": {
@@ -503,7 +517,10 @@
       "babyCry": "Ağlama Rehberi",
       "babyCryDesc": "Ağlama kalıplarını anla",
       "groceryList": "Alışveriş Listesi",
-      "groceryListDesc": "Alışveriş planlayıcı"
+      "groceryListDesc": "Alışveriş planlayıcı",
+      "weightTracker": "Kilo Takibi",
+      "vitaminTracker": "Günlük Beslenme",
+      "diaperTracker": "Bez Kaydı"
     },
     "summary": {
       "noDataToday": "Bugün veri yok",
@@ -1375,7 +1392,9 @@
       "current": "Mevcut",
       "localStorageNote": "Özetler yerel olarak saklanır",
       "trimester": "Trimester",
-      "generating": "Özet oluşturuluyor..."
+      "generating": "Özet oluşturuluyor...",
+      "babyDevLink": "Baby Development",
+      "babyDevLinkDesc": "See your baby's size and development this week"
     },
     "hospitalBag": {
       "title": "AI Hastane Çantası",
@@ -1636,7 +1655,9 @@
       "videosTitle": "Gebelik Zaman Çizelgesi Videoları",
       "videosSubtitle": "Haftalık gelişim ve doğuma hazırlık rehberleri",
       "pickDate": "Bir tarih seçin",
-      "fromProfile": "Profilinizden otomatik dolduruldu"
+      "fromProfile": "Profilinizden otomatik dolduruldu",
+      "babyDevLink": "Baby Development Guide",
+      "babyDevLinkDesc": "Log your baby's growth week by week"
     },
     "kickCounter": {
       "title": "Bebek Hareket Günlüğü",
@@ -1701,7 +1722,9 @@
       "recentActivity": "Son Aktivite",
       "lastSessions": "Son {{count}} oturum",
       "aiAnalysisTitle": "Akıllı Hareket Analizi",
-      "aiAnalysisButton": "Yapay Zeka Hareket Analizi"
+      "aiAnalysisButton": "Yapay Zeka Hareket Analizi",
+      "babyDevLink": "Baby Development",
+      "babyDevLinkDesc": "Log your baby's growth and development week by week"
     },
     "contractionTimer": {
       "title": "Kasılma Zamanlayıcı",
@@ -3133,7 +3156,8 @@
       "copingStrategies": "Başa Çıkma Stratejileri",
       "selfCare": "Öz Bakım İpuçları",
       "professionalHelp": "Ne Zaman Profesyonel Yardım Almalısınız",
-      "crisis": "Kriz durumundaysanız, hemen sağlık uzmanınızı veya acil servisi arayın."
+      "crisis": "Kriz durumundaysanız, hemen sağlık uzmanınızı veya acil servisi arayın.",
+      "takeQuestionnaire": "Take EPDS Questionnaire"
     },
     "weeklyInsights": {
       "title": "Haftalık İçgörüler",
@@ -3242,15 +3266,15 @@
       "history": "Büyüme geçmişi"
     },
     "babySleep": {
-      "title": "Bebek Uyku Takibi",
-      "subtitle": "AI destekli uyku analizi",
+      "title": "Bebek Uyku Kaydı",
+      "subtitle": "Bebeğinizin uyku düzenlerini analiz edin",
       "startSleep": "Uyku Başlat",
       "endSleep": "Uyku Bitir",
       "sleeping": "Uyuyor",
       "awake": "Uyanık",
       "totalToday": "Bugün Toplam",
       "avgSleep": "7 Gün Ort.",
-      "sleepLog": "Uyku Günlüğü",
+      "sleepLog": "Uyku Kaydı",
       "noSleepData": "Henüz uyku verisi yok",
       "aiSleepAdvice": "AI Uyku Tavsiyesi",
       "startSleepTracking": "Takibi başlat",
@@ -3280,7 +3304,17 @@
       "qualityNeedsAttention": "Dikkat Gerekiyor",
       "startedAt": "Başlama saati",
       "analyzing": "Analiz ediliyor...",
-      "weeklyChart": "7 Günlük Uyku"
+      "weeklyChart": "7 Günlük Uyku",
+      "totalSleep": "Toplam Uyku",
+      "avgSleepDuration": "Ortalama Uyku Süresi",
+      "noSleepRecords": "Henüz uyku kaydı yok",
+      "quality": "Kalite",
+      "good": "İyi",
+      "fair": "Orta",
+      "poor": "Kötü",
+      "sleepTrends": "Uyku Trendleri",
+      "dailyGoal": "Günlük Hedef",
+      "hoursSlept": "Uyunan Saatler"
     },
     "diaperLog": {
       "title": "Bez Takibi",
@@ -3498,23 +3532,23 @@
       "slightVariation": "Hafif değişiklik"
     },
     "weightGain": {
-      "title": "Kilo Alma Rehberi",
-      "subtitle": "Sağlıklı kilo alımını izleyin",
+      "title": "Akıllı Kilo Analizi",
+      "subtitle": "Hamilelik kilo artışı takibi",
       "heroTitle": "Kilonuzu güvenle takip edin",
       "heroDesc": "DSÖ/IOM kılavuzlarına dayalı tıbbi araç",
       "iomBadge": "IOM ve DSÖ kılavuzlarına dayalı",
       "profileSetup": "Profiliniz",
       "profileSetupDesc": "Sağlıklı aralığınızı hesaplamak için verilerinizi girin",
       "startAnalysis": "Analizi başlat",
-      "currentWeight": "Mevcut ağırlık",
-      "prePregnancyWeight": "Hamilelik öncesi ağırlık",
+      "currentWeight": "Mevcut Kilo",
+      "prePregnancyWeight": "Hamilelik Öncesi Kilo",
       "height": "Boy",
       "currentWeek": "Mevcut hafta",
       "analyze": "Kilo alımını analiz et",
-      "totalGain": "Toplam artış",
+      "totalGain": "Toplam Artış",
       "recommended": "Önerilen aralık",
       "status": "Durum",
-      "onTrack": "Hedefte",
+      "onTrack": "Yolunda",
       "belowTarget": "Hedefin altında",
       "aboveTarget": "Hedefin üstünde",
       "weeklyGain": "Haftalık artış",
@@ -3648,7 +3682,22 @@
       "bmiPrePregnancy": "Hamilelik öncesi BMI",
       "history": "Geçmiş",
       "invalidWeight": "Lütfen geçerli bir kilo girin",
-      "noEntries": "Henüz kilo kaydı yok. İlk kaydı yukarıdan ekleyin."
+      "noEntries": "Henüz kilo kaydı yok. İlk kaydı yukarıdan ekleyin.",
+      "babyDevLink": "Bebek Gelişimi",
+      "babyDevLinkDesc": "Bebeğinizin büyümesini ve gelişimini hafta hafta kaydedin",
+      "recommendedGain": "Önerilen Artış",
+      "weeklyRate": "Haftalık Oran",
+      "aboveRange": "Aralığın Üstünde",
+      "belowRange": "Aralığın Altında",
+      "bmi": "VKİ",
+      "underweight": "Zayıf",
+      "normal": "Normal",
+      "overweight": "Fazla Kilolu",
+      "obese": "Obez",
+      "weightLog": "Kilo Kaydı",
+      "addWeight": "Kilo Ekle",
+      "weightTrend": "Kilo Trendi",
+      "trimesterBreakdown": "Trimester Dağılımı"
     },
     "bloodType": {
       "title": "Kan Grubu Hesaplayıcı",
@@ -3822,7 +3871,27 @@
           "title": "Az faktör",
           "description": "Az faktör belirlendi. Sağlıklı alışkanlıklarınıza devam edin."
         }
-      }
+      },
+      "riskFactors": {
+        "age": "Age 35 or older",
+        "bmi": "BMI 30 or higher before pregnancy",
+        "family": "Family history of diabetes (parent or sibling)",
+        "previousGdm": "Previous gestational diabetes",
+        "previousLarge": "Previously gave birth to a baby over 9 lbs",
+        "pcos": "Polycystic ovary syndrome (PCOS)",
+        "prediabetes": "Prediabetes or high blood sugar",
+        "ethnicity": "Higher-risk ethnicity",
+        "multiple": "Pregnant with multiples (twins, triplets)",
+        "sedentary": "Sedentary lifestyle before pregnancy"
+      },
+      "preventionTips": {
+        "tip1": "Maintain a healthy weight before and during pregnancy",
+        "tip2": "Eat a balanced diet rich in fiber and whole grains",
+        "tip3": "Stay physically active with doctor-approved exercises",
+        "tip4": "Attend all prenatal appointments for regular follow-up",
+        "tip5": "Limit sugary foods and refined carbohydrates"
+      },
+      "reset": "Reset"
     },
     "healthMonitor": {
       "title": "Sağlık İzleme Sistemi",
@@ -4072,7 +4141,142 @@
           "message": "Bu dönemi iyi yönetiyor görünüyorsunuz. Böyle devam edin!"
         }
       },
-      "generating": "Oluşturuluyor..."
+      "generating": "Oluşturuluyor...",
+      "psiName": "Postpartum Support International",
+      "psiNumber": "1-800-944-4773",
+      "crisisLinelineName": "988 Suicide & Crisis Lifeline",
+      "crisisLinelineDesc": "Call or text 988",
+      "screeningDisclaimer": "⚠️ This is a wellness questionnaire based on the Wellness Self-Check (EPDS). It does not provide a professional evaluation. Always consult with a healthcare professional for proper assessment.",
+      "videosSubtitle": "Support and self-care resources",
+      "videos": {
+        "v1": {
+          "title": "Postpartum Mood: Signs & Indicators",
+          "description": "Signs, indicators, and when to seek support",
+          "category": "Education"
+        },
+        "v2": {
+          "title": "Understanding Postpartum Depression",
+          "description": "Indicators, contributing factors, and support options",
+          "category": "Education"
+        },
+        "v3": {
+          "title": "Postpartum Meditation for Calm",
+          "description": "Guided meditation to feel calm and grounded in motherhood",
+          "category": "Relaxation"
+        },
+        "v4": {
+          "title": "Mental Health and Pregnancy",
+          "description": "ACOG explains mental health during pregnancy and postpartum",
+          "category": "Wellness"
+        },
+        "v5": {
+          "title": "Managing Pregnancy Anxiety",
+          "description": "Practical strategies for coping with anxiety during pregnancy",
+          "category": "Anxiety"
+        }
+      },
+      "epds": {
+        "q1": {
+          "question": "I have been able to laugh and see the funny side of things",
+          "o0": "As much as I always could",
+          "o1": "Not quite so much now",
+          "o2": "Definitely not so much now",
+          "o3": "Not at all"
+        },
+        "q2": {
+          "question": "I have looked forward with enjoyment to things",
+          "o0": "As much as I ever did",
+          "o1": "Rather less than I used to",
+          "o2": "Definitely less than I used to",
+          "o3": "Hardly at all"
+        },
+        "q3": {
+          "question": "I have blamed myself unnecessarily when things went wrong",
+          "o0": "No, never",
+          "o1": "Not very often",
+          "o2": "Yes, some of the time",
+          "o3": "Yes, most of the time"
+        },
+        "q4": {
+          "question": "I have been anxious or worried for no good reason",
+          "o0": "No, not at all",
+          "o1": "Hardly ever",
+          "o2": "Yes, sometimes",
+          "o3": "Yes, very often"
+        },
+        "q5": {
+          "question": "I have felt scared or panicky for no very good reason",
+          "o0": "No, not at all",
+          "o1": "No, not much",
+          "o2": "Yes, sometimes",
+          "o3": "Yes, quite a lot"
+        },
+        "q6": {
+          "question": "I have had difficulty sleeping even when I had the chance",
+          "o0": "No, not at all",
+          "o1": "Rarely",
+          "o2": "Yes, sometimes",
+          "o3": "Yes, most of the time"
+        },
+        "q7": {
+          "question": "I have felt sad or tearful",
+          "o0": "No, not at all",
+          "o1": "Very rarely",
+          "o2": "Yes, sometimes",
+          "o3": "Yes, most of the time"
+        },
+        "q8": {
+          "question": "My appetite has changed noticeably (increased or decreased)",
+          "o0": "No, it's normal",
+          "o1": "Changed slightly",
+          "o2": "Changed noticeably",
+          "o3": "Lost my appetite completely or overeating"
+        },
+        "q9": {
+          "question": "I have had difficulty concentrating or making decisions",
+          "o0": "No, not at all",
+          "o1": "Rarely",
+          "o2": "Yes, sometimes",
+          "o3": "Yes, most of the time"
+        },
+        "q10": {
+          "question": "I have felt exhausted and low on energy",
+          "o0": "No, my energy is good",
+          "o1": "Less energy than usual",
+          "o2": "Exhausted most of the time",
+          "o3": "Completely drained"
+        }
+      },
+      "coping": {
+        "sunlight": {
+          "title": "Morning Sunlight",
+          "desc": "Get 10-15 minutes of natural light each morning"
+        },
+        "movement": {
+          "title": "Gentle Movement",
+          "desc": "A short walk can boost mood significantly"
+        },
+        "connect": {
+          "title": "Connect Daily",
+          "desc": "Talk to a friend or family member each day"
+        },
+        "rest": {
+          "title": "Rest When Possible",
+          "desc": "Sleep when baby sleeps, even briefly"
+        },
+        "nourish": {
+          "title": "Nourish Yourself",
+          "desc": "Eat regular, nutritious meals"
+        },
+        "journal": {
+          "title": "Journal",
+          "desc": "Write down 3 things you're grateful for"
+        }
+      },
+      "helpfulVideos": "Helpful Videos",
+      "personalizedPlan": "Personalized Plan",
+      "retake": "Retake Assessment",
+      "scoreLabel": "Score"
     },
     "mealSuggestion": {
       "subtitle": "Hamileliğiniz için akıllı yemek önerileri",
@@ -4850,7 +5054,156 @@
       "disclaimer": "Bu, ortalama döngü verilerine dayanan bir tahmindir. Gerçek yumurtlama farklılık gösterebilir. Kişisel rehberlik için sağlık uzmanınıza danışın."
     },
     "cycleTracker": {
-      "symptoms": "Notlar (isteğe bağlı)"
+      "symptoms": "Semptomlar",
+      "title": "Döngü Günlüğüm",
+      "subtitle": "Tahmini doğurganlık günleri ile akıllı takip",
+      "lastPeriod": "Last Period Start",
+      "cycleLength": "Döngü Süresi",
+      "periodLength": "Adet Süresi",
+      "calculate": "Calculate Fertile Window",
+      "fertileWindow": "Doğurgan Pencere",
+      "ovulationDay": "Yumurtlama Günü",
+      "nextPeriod": "Sonraki Adet",
+      "logPeriod": "Log Period",
+      "aiInsights": "AI Fertility Insights",
+      "yourStatistics": "Your Statistics",
+      "share": "Share",
+      "avgCycleLength": "Ortalama Döngü Süresi",
+      "avgPeriodLength": "Avg Period Length",
+      "analyzePatterns": "Review My Patterns",
+      "startDate": "Start Date",
+      "endDate": "End Date (optional)",
+      "flowIntensity": "Flow Intensity",
+      "cycleHistory": "Cycle History",
+      "dayCycle": "day cycle",
+      "flow": "Akış",
+      "trackTip": "Track at least 3-6 cycles for more accurate predictions. Cycle length can vary due to stress, illness, or other factors.",
+      "dueDateLink": "Due Date Calculator",
+      "dueDateLinkDesc": "Calculate your expected due date based on your last period",
+      "videosTitle": "Menstrual Cycle Videos",
+      "videosSubtitle": "Learn about cycle tracking and reproductive health",
+      "flowLevels": {
+        "spotting": "Spotting",
+        "light": "Light",
+        "medium": "Medium",
+        "heavy": "Heavy"
+      },
+      "mood": "Ruh Hali",
+      "moods": {
+        "great": "Great",
+        "good": "Good",
+        "okay": "Okay",
+        "bad": "Bad",
+        "awful": "Awful"
+      },
+      "notes": "Notlar",
+      "notesPlaceholder": "Add notes about your day...",
+      "saveDay": "Save",
+      "removeDay": "Remove Entry",
+      "dayMarked": "Period day marked",
+      "dayRemoved": "Day removed",
+      "calendarHint": "Tap a day to mark your period. Tap a marked day to edit or delete it.",
+      "calendarHintTitle": "How to use",
+      "predicted": "Predicted",
+      "symptomOptions": {
+        "cramps": "Cramps",
+        "headache": "Headache",
+        "bloating": "Bloating",
+        "moodSwings": "Mood swings",
+        "fatigue": "Fatigue",
+        "breastTenderness": "Breast tenderness",
+        "acne": "Acne",
+        "backPain": "Back pain"
+      },
+      "saved": "Saved!",
+      "savedDesc": "Cycle entry has been recorded.",
+      "deleted": "Deleted",
+      "deletedDesc": "Cycle entry removed.",
+      "days": "gün",
+      "day": "day",
+      "copied": "Copied!",
+      "copiedDesc": "Stats copied to clipboard.",
+      "currentPhase": "Current Phase",
+      "cycleDay": "Döngü Günü {{day}}",
+      "menstrual": "Adet",
+      "follicular": "Foliküler",
+      "ovulation": "Yumurtlama",
+      "luteal": "Luteal",
+      "fertileWindowDates": "Fertile Window",
+      "ovulationDate": "Ovulation Day",
+      "nextPeriodDate": "Next Period",
+      "daysUntilOvulation": "yumurtlama için gün",
+      "daysUntilPeriod": "adet için gün",
+      "phaseDescription": {
+        "menstrual": "Your period is here. Rest and gentle activities recommended.",
+        "follicular": "Your body is preparing to ovulate. Energy is rising!",
+        "ovulation": "Peak fertility window. Best time to conceive.",
+        "luteal": "Your body is preparing for the next cycle. Focus on self-care."
+      },
+      "selectStartDate": "Select start date",
+      "selectEndDate": "Select end date",
+      "addNewEntry": "Add Entry",
+      "cycleInsights": "Cycle Insights",
+      "fertileCalendar": "Fertility Calendar",
+      "noDataYet": "Log your first cycle to see predictions",
+      "regularity": "Regularity",
+      "regular": "Regular",
+      "irregular": "Irregular",
+      "cyclesTracked": "Cycles Tracked",
+      "statusSummary": "You are currently on day {{day}} of your cycle, in the {{phase}} phase. Your average cycle is {{avgCycle}} days, and your next period is expected around {{nextDate}}. {{fertileNote}}",
+      "fertileNoteActive": "You are in or near your fertile window — ovulation is expected around {{ovDate}}.",
+      "fertileNoteUpcoming": "Your fertile window starts around {{fertileDate}}, about {{days}} days from now.",
+      "fertileNotePassed": "Your fertile window has passed for this cycle.",
+      "generalStatus": "General Status",
+      "stickyAnalyze": "Analyze with AI",
+      "emptyTitle": "Start tracking your cycle",
+      "emptyDesc": "Tap the days of your last period on the calendar above to get predictions and insights.",
+      "clearAll": "Clear All Data & Start Over",
+      "clearAllTitle": "Clear all cycle data?",
+      "clearAllDesc": "This will permanently delete all your tracked periods, notes, and predictions. This cannot be undone.",
+      "cancel": "Cancel",
+      "confirmClear": "Yes, clear everything",
+      "clearedSuccess": "All data cleared successfully",
+      "setup": {
+        "cycleLengthTitle": "How long is your cycle?",
+        "cycleLengthDesc": "The number of days from the first day of one period to the first day of the next. Most cycles are 21–35 days.",
+        "dontKnow": "Don't know? 28 days is the average.",
+        "periodLengthTitle": "How long does your period last?",
+        "periodLengthDesc": "The number of days you typically bleed. Most periods last 3–7 days.",
+        "periodHint": "Most women have 4–6 day periods.",
+        "lastPeriodTitle": "When did your last period start?",
+        "lastPeriodDesc": "Select the first day of your most recent period.",
+        "back": "Back",
+        "next": "Next",
+        "start": "Start Tracking"
+      },
+      "avgLabel": "Average",
+      "markPeriod": "Mark period",
+      "normal": "Normal",
+      "slightVariation": "Slight variation",
+      "periodStart": "Adet Başlangıcı",
+      "periodEnd": "Adet Bitişi",
+      "currentDay": "Mevcut Gün",
+      "phase": "Faz",
+      "logSymptoms": "Semptom Kaydet",
+      "light": "Hafif",
+      "medium": "Orta",
+      "heavy": "Yoğun",
+      "save": "Kaydet",
+      "history": "Geçmiş",
+      "insights": "Bilgiler",
+      "settings": "Ayarlar",
+      "setupTitle": "Döngünüzü Ayarlayın",
+      "setupDesc": "Takibe başlamak için son adet bilgilerinizi girin",
+      "lastPeriodDate": "Son Adet Tarihi",
+      "averageCycleLength": "Ortalama Döngü Süresi",
+      "averagePeriodLength": "Ortalama Adet Süresi",
+      "startTracking": "Takibe Başla",
+      "today": "Bugün",
+      "fertile": "Doğurgan",
+      "notFertile": "Doğurgan Değil",
+      "periodIn": "Adet",
+      "ovulationIn": "Yumurtlama"
     },
     "vitaminTracker": {
       "title": "Günlük Beslenme Düzenleyicim",
@@ -4918,6 +5271,204 @@
       "subtitle": "Bebeğinizin hafta hafta büyümesini izleyin",
       "title": "Fetüs Gelişimi",
       "yourCurrentWeek": "Mevcut haftanız"
+    },
+    "laborTracker": {
+      "title": "Kasılma Kaydı",
+      "subtitle": "Kasılma düzenlerinizi kaydedin ve analiz edin",
+      "startContraction": "Kasılma Başlat",
+      "endContraction": "Kasılma Bitir",
+      "duration": "Süre",
+      "interval": "Aralık",
+      "avgDuration": "Ortalama Süre",
+      "avgInterval": "Ortalama Aralık",
+      "contractionLog": "Kasılma Kaydı",
+      "laborStage": "Tahmini Faz",
+      "earlyLabor": "Erken Faz",
+      "earlyLaborDesc": "Dinlenin, rahat olun ve bol su için",
+      "earlyPhase": "Erken Faz",
+      "earlyPhaseDesc": "Dinlenin, rahat olun ve bol su için",
+      "activeLabor": "Aktif Faz",
+      "activeLaborDesc": "Bu kaydı doktorunuzla paylaşmayı düşünün",
+      "activePhase": "Aktif Faz",
+      "activePhaseDesc": "Bu kaydı doktorunuzla paylaşmayı düşünün",
+      "transition": "Intensive Phase",
+      "transitionDesc": "Contact your care provider with this journal",
+      "intensivePhase": "Intensive Phase",
+      "intensivePhaseDesc": "Contact your care provider with this journal",
+      "providerAlert": "Consider Contacting Your Provider",
+      "providerAlertDesc": "Based on the 5-1-1 guideline, your logged contractions are now 5 minutes apart and lasting 1 minute or more. You may want to share this journal with your care provider.",
+      "rule511": "The 5-1-1 Guideline",
+      "rule511Desc": "Many care providers suggest contacting them when contractions are 5 minutes apart, lasting 1 minute each, and continue for 1 hour. Share your log for guidance.",
+      "callProvider": "Call Provider",
+      "understand": "I Understand",
+      "inProgress": "Contraction in progress...",
+      "ready": "Ready to track",
+      "getAIAnalysis": "Get AI Journal Insights",
+      "aiAnalysis": "AI Journal Insights",
+      "contractions": "Contractions",
+      "contractionPattern": "Contraction Pattern",
+      "recentContractions": "Recent Contractions",
+      "durationSec": "Duration (sec)",
+      "intensity": {
+        "mild": "Mild",
+        "moderate": "Moderate",
+        "strong": "Strong",
+        "very-strong": "Very Strong"
+      },
+      "disclaimer": "This tool is for informational purposes only. Always follow your care provider's guidance.",
+      "aiAnalysisDesc": "Get personalized breathing techniques, comfort measures, and encouragement based on your journal entries.",
+      "analyzing": "Analyzing your journal...",
+      "breathingGuide": "Quick Breathing Guide",
+      "breathingEarly": "Early Phase: Slow Breathing",
+      "breathingEarlyDesc": "Inhale through nose (4 counts) → Exhale through mouth (6 counts)",
+      "breathingActive": "Active Phase: Patterned Breathing",
+      "breathingActiveDesc": "Light breathing: \"Hee-hee-hoo\" pattern, focus on exhale",
+      "breathingIntensive": "Intensive Phase: Blow Breathing",
+      "breathingIntensiveDesc": "Short inhale → Long blow out, like blowing a candle slowly",
+      "comfortTips": "Comfort Tips",
+      "warmWater": "Warm shower on back",
+      "walkGently": "Walk gently between",
+      "birthBall": "Sway on birth ball",
+      "counterPressure": "Counter-pressure on lower back",
+      "transitionPhase": "Geçiş Fazı",
+      "transitionPhaseDesc": "Hastaneye gitmeye hazırlanın",
+      "callDoctor": "Doktorunuzu arayın",
+      "callDoctorDesc": "Kasılmalar düzenli ve sık",
+      "noContractions": "Henüz kasılma kaydedilmedi",
+      "reset": "Sıfırla",
+      "shareLog": "Kaydı Paylaş",
+      "exportPdf": "PDF Dışa Aktar",
+      "totalContractions": "Toplam Kasılmalar",
+      "sessionDuration": "Oturum Süresi",
+      "babyDevLink": "Bebek Gelişimi",
+      "babyDevLinkDesc": "Bebeğinizin büyümesini ve gelişimini hafta hafta kaydedin"
+    },
+    "diaperTracker": {
+      "title": "Akıllı Bez Kaydı",
+      "subtitle": "İstatistikler ve uyarılarla günlük kayıt",
+      "logChange": "Log Change",
+      "wet": "Islak",
+      "dirty": "Kirli",
+      "both": "Both",
+      "todayCount": "Bugünkü Sayı",
+      "recentChanges": "Recent Changes",
+      "noChanges": "No changes logged yet",
+      "aiHealthTips": "AI Health Tips",
+      "mixed": "Karışık",
+      "addEntry": "Giriş Ekle",
+      "dailyGoal": "Günlük Hedef",
+      "lastChange": "Son Değişim",
+      "ago": "önce",
+      "history": "Geçmiş",
+      "noEntries": "Bugün giriş yok",
+      "stats": "İstatistikler",
+      "weeklyAvg": "Haftalık Ortalama",
+      "color": "Renk",
+      "texture": "Doku",
+      "notes": "Notlar"
+    },
+    "babyDevelopment": {
+      "title": "Baby Development Timeline",
+      "subtitle": "Week by week journey of your baby's growth",
+      "pregnancyProgress": "Pregnancy Progress",
+      "setAsMyWeek": "Set as my week",
+      "yourCurrentWeek": "Your current week",
+      "sizeOf": "Size of a {{size}}",
+      "developing": "Developing",
+      "length": "Length",
+      "weight": "Weight",
+      "units": {
+        "cm": "cm",
+        "g": "g",
+        "kg": "kg"
+      },
+      "organs": {
+        "heart": "Heart",
+        "brain": "Brain",
+        "ears": "Ears",
+        "eyes": "Eyes",
+        "hands": "Hands",
+        "feet": "Feet"
+      },
+      "thisWeeksDevelopment": "This Week's Development",
+      "aiWeeklyInsights": "AI Weekly Insights",
+      "development": "Development",
+      "nutrition": "Nutrition",
+      "exercise": "Exercise",
+      "trimesters": {
+        "first": "First Trimester",
+        "second": "Second Trimester",
+        "third": "Third Trimester"
+      },
+      "sizes": {
+        "poppySeed": "Poppy seed",
+        "sweetPea": "Sweet pea",
+        "raspberry": "Raspberry",
+        "prune": "Prune",
+        "lime": "Lime",
+        "lemon": "Lemon",
+        "avocado": "Avocado",
+        "bellPepper": "Bell pepper",
+        "banana": "Banana",
+        "papaya": "Papaya",
+        "corn": "Corn",
+        "lettuce": "Lettuce",
+        "eggplant": "Eggplant",
+        "cabbage": "Cabbage",
+        "squash": "Squash",
+        "cantaloupe": "Cantaloupe",
+        "honeydew": "Honeydew",
+        "pumpkin": "Pumpkin",
+        "watermelon": "Watermelon"
+      },
+      "developments": {
+        "week4": "Cells are dividing rapidly. The neural tube is forming.",
+        "week6": "Heart begins to beat. Brain and spinal cord are developing.",
+        "week8": "Tiny fingers and toes are forming. Heart is beating steadily.",
+        "week10": "All vital organs have formed. Baby starts to move.",
+        "week12": "Reflexes are developing. Fingernails are forming.",
+        "week14": "Can make facial expressions. Gender may be visible.",
+        "week16": "Can make sucking motions. Bones are hardening.",
+        "week18": "You may feel first kicks! Ears are in final position.",
+        "week20": "Can hear sounds. Regular sleep cycles begin.",
+        "week22": "Eyebrows and eyelids are fully formed.",
+        "week24": "Lungs are developing. Responds to sounds and light.",
+        "week26": "Eyes begin to open. Brain is developing rapidly.",
+        "week28": "Eyes can open and close. Baby can dream!",
+        "week30": "Brain continues rapid growth. Can regulate body temperature.",
+        "week32": "Practicing breathing. Bones are fully formed but soft.",
+        "week34": "Fingernails reach fingertips. Fat layers developing.",
+        "week36": "Lungs are nearly mature. Head may engage in pelvis.",
+        "week38": "Fully developed and gaining weight. Ready soon!",
+        "week40": "Fully developed and ready for birth! Welcome to the world!"
+      },
+      "tips": {
+        "week4": "Schedule your first care provider visit.",
+        "week6": "Stay hydrated and rest well.",
+        "week8": "First care provider visit recommended.",
+        "week10": "Morning sickness may peak now.",
+        "week12": "End of first trimester!",
+        "week14": "Energy levels may improve.",
+        "week16": "You might feel flutters!",
+        "week18": "Anatomy scan time!",
+        "week20": "Halfway there!",
+        "week22": "Baby can taste what you eat.",
+        "week24": "Viability milestone reached!",
+        "week26": "Glucose test may be scheduled.",
+        "week28": "Third trimester begins!",
+        "week30": "Pack your hospital bag.",
+        "week32": "Baby is gaining weight fast!",
+        "week34": "Care visits every 2 weeks.",
+        "week36": "Baby may drop lower.",
+        "week38": "Could arrive any day!",
+        "week40": "Due date!"
+      },
+      "kickCounterLink": "Kick Counter",
+      "kickCounterLinkDesc": "Log your baby's movements and activity patterns",
+      "dueDateLink": "Due Date Calculator",
+      "dueDateLinkDesc": "Calculate your expected delivery date",
+      "weightGainLink": "Weight Gain Guide",
+      "weightGainLinkDesc": "Follow your healthy weight journey"
     }
   },
   "welcome": {
@@ -6306,7 +6857,21 @@
     "privacy": "Gizlilik ve Güvenlik",
     "privacyDesc": "Verileriniz şifreli ve korumalıdır",
     "searchKeywords": "Arama Anahtar Kelimeleri",
-    "defaultDescription": "33+ akıllı araçla ücretsiz hamilelik takibi: doğum tarihi hesaplama, hareket sayacı, kasılma zamanlayıcı, bebek büyüme takibi, beslenme. 7 dilde."
+    "defaultDescription": "33+ akıllı araçla ücretsiz hamilelik takibi: doğum tarihi hesaplama, hareket sayacı, kasılma zamanlayıcı, bebek büyüme takibi, beslenme. 7 dilde.",
+    "faq": {
+      "q1": "Uygulama hamileler için güvenli mi?",
+      "a1": "Evet, tüm bilgiler güvenilir tıbbi kaynaklara dayanmaktadır. Ancak her zaman doktorunuza danışın.",
+      "q2": "Uygulama ücretsiz mi?",
+      "a2": "Evet, uygulama isteğe bağlı premium özelliklerle ücretsizdir.",
+      "q3": "Uygulamayı internetsiz kullanabilir miyim?",
+      "a3": "Evet, araçların çoğu ilk yüklemeden sonra çevrimdışı çalışır.",
+      "q4": "Verilerim güvende mi?",
+      "a4": "Evet, verileriniz şifreleme ile cihazınızda yerel olarak saklanır.",
+      "q5": "Kaç araç mevcut?",
+      "a5": "Hamileliğin tüm aşamalarını kapsayan 33'ten fazla akıllı araç.",
+      "q6": "Uygulama birden fazla dili destekliyor mu?",
+      "a6": "Evet, uygulama Arapça, İngilizce, İspanyolca, Fransızca, Almanca, Portekizce ve Türkçe dahil 7 dili destekler."
+    }
   },
   "videoLibraryPage": {
     "title": "Video Kütüphanesi",
@@ -6605,8 +7170,8 @@
       "photos": "Fotoğraflar"
     },
     "hydration": {
-      "title": "Su tüketimi",
-      "addGlass": "+ Bardak su"
+      "title": "Hidrasyon",
+      "addGlass": "Bardak ekle"
     },
     "symptoms": {
       "title": "Günlük Wellness Notları",
@@ -6652,7 +7217,15 @@
       "empty": "Bugün henüz tekme kaydedilmedi",
       "goal": "Hedef: Günde 10 tekme",
       "title": "Bebek Hareketleri"
-    }
+    },
+    "babyMovement": {
+      "title": "Baby Movement",
+      "goal": "goal",
+      "empty": "Start tracking your baby's movements today"
+    },
+    "priorityTitle": "Günlük Öncelikler",
+    "steps": "Adımlar",
+    "sleep": "Uyku"
   },
   "weeklyJourney": {
     "subtitle": "Bebeğinizle haftalık yolculuğunuz",
@@ -6674,7 +7247,8 @@
       "doctorQuestions": "Doktorunuza Sorular",
       "checklist": "Haftalık Kontrol Listesi",
       "aiInsight": "Yapay Zeka Analizi",
-      "fetalDev": "Fetüs Gelişimi"
+      "fetalDev": "Fetüs Gelişimi",
+      "babyDev": "Baby Development"
     },
     "copied": "Kopyalandı!",
     "aiDescription": "Mevcut haftanız için yapay zeka ile kapsamlı, kişiselleştirilmiş bir analiz alın",
@@ -6711,6 +7285,12 @@
           "2": "Demir içeren gebelik vitaminlerine başlayın",
           "3": "Sigara ve alkolü tamamen bırakın",
           "4": "Bir gebelik günlüğü tutmaya başlayın"
+        },
+        "babyDev": {
+          "0": "Three primary germ layers are forming",
+          "1": "The primitive heart begins to develop",
+          "2": "The neural tube is taking shape",
+          "3": "Blood flow to the uterus increases"
         }
       },
       "w5": {
@@ -6744,6 +7324,12 @@
           "2": "Bulantıya karşı az az sık sık yiyin",
           "3": "Sabah bulantısına rağmen bol su için",
           "4": "Ağır kaldırma ve ağır egzersizlerden kaçının"
+        },
+        "babyDev": {
+          "0": "The heart starts beating",
+          "1": "Arm and leg buds appear",
+          "2": "The neural tube develops further",
+          "3": "Major organs begin forming"
         }
       },
       "w6": {
@@ -6777,6 +7363,12 @@
           "2": "Sabah bulantısını doğal yollarla yönetin",
           "3": "Bulantı için zencefil veya kraker yiyin",
           "4": "Yorgun hissedince dinlenin"
+        },
+        "babyDev": {
+          "0": "Nose, mouth, and ears take shape",
+          "1": "Intestines begin forming",
+          "2": "Brain grows rapidly",
+          "3": "Fingers start to form"
         }
       },
       "w7": {
@@ -6810,6 +7402,12 @@
           "2": "Pelvik taban egzersizlerine (Kegel) başlayın",
           "3": "Rahat ve destekleyici kıyafetler giyin",
           "4": "Doktorunuzla genetik tarama seçeneklerini konuşun"
+        },
+        "babyDev": {
+          "0": "Facial features become distinct",
+          "1": "Hands and feet are growing",
+          "2": "The liver develops quickly",
+          "3": "Bone formation begins"
         }
       },
       "w8": {
@@ -6843,6 +7441,12 @@
           "2": "Hafif yürüyüşlerle aktif kalın",
           "3": "Çatlak önlemek için karnınızı nemlendirin",
           "4": "Haberi eşinizle paylaşın"
+        },
+        "babyDev": {
+          "0": "Limbs move for the first time",
+          "1": "Fingers are clearly visible",
+          "2": "The embryonic tail disappears",
+          "3": "The retina begins developing"
         }
       },
       "w9": {
@@ -6876,6 +7480,12 @@
           "2": "Demir açısından zengin yiyecekler yiyin (ıspanak, mercimek)",
           "3": "Jakuzi ve saunalardan kaçının",
           "4": "Bebek masrafları için bütçe planlamaya başlayın"
+        },
+        "babyDev": {
+          "0": "Major joints form",
+          "1": "Tooth buds form under gums",
+          "2": "Muscles are growing",
+          "3": "The digestive system develops"
         }
       },
       "w10": {
@@ -6909,6 +7519,12 @@
           "2": "Kemikler için kalsiyum açısından zengin yiyecekler yiyin",
           "3": "Hafif egzersiz rutininize devam edin",
           "4": "Hamile kıyafetleri almaya başlayın"
+        },
+        "babyDev": {
+          "0": "Fingers and toes are complete",
+          "1": "Urine production begins",
+          "2": "Bones gradually harden",
+          "3": "Brain development accelerates"
         }
       },
       "w11": {
@@ -6942,6 +7558,12 @@
           "2": "Gevşeme ve derin nefes egzersizi yapın",
           "3": "Diş randevularınızı aksatmayın",
           "4": "Çocuk bakımı seçeneklerini erken araştırın"
+        },
+        "babyDev": {
+          "0": "Can open and close fists",
+          "1": "Tooth buds are forming",
+          "2": "Fine hair (lanugo) grows",
+          "3": "Genitals begin to differentiate"
         }
       },
       "w12": {
@@ -6975,6 +7597,12 @@
           "2": "Ense kalınlığı ölçümünü planlayın",
           "3": "Omega-3 açısından zengin yiyecekler yiyin",
           "4": "Kaşıntıyı önlemek için cildi nemlendirmeye başlayın"
+        },
+        "babyDev": {
+          "0": "Nails are developing",
+          "1": "Kidneys produce urine",
+          "2": "Active movement inside the womb",
+          "3": "Vocal cords are forming"
         }
       },
       "w13": {
@@ -7008,6 +7636,12 @@
           "2": "Yan yatarak uyumaya başlayın",
           "3": "Günlük kalori alımını 300 kcal artırın",
           "4": "Doğuma hazırlık kurslarını araştırın"
+        },
+        "babyDev": {
+          "0": "Unique fingerprints form",
+          "1": "Liver produces bile",
+          "2": "Can suck and swallow",
+          "3": "Insulin production begins"
         }
       },
       "w14": {
@@ -7041,6 +7675,12 @@
           "2": "Her gün C vitamini açısından zengin meyveler yiyin",
           "3": "Düzenli kilo alımını takip edin",
           "4": "Bebek ihtiyaç listesi oluşturun"
+        },
+        "babyDev": {
+          "0": "Can yawn and stretch",
+          "1": "Eyebrows and lashes grow",
+          "2": "Central nervous system develops",
+          "3": "Fingerprints are forming"
         }
       },
       "w15": {
@@ -7074,6 +7714,12 @@
           "2": "Karnınız büyürken iyi duruş pozisyonunu koruyun",
           "3": "Her gün karın yağı veya kremi sürün",
           "4": "Bebeğe isim aramaya başlayın"
+        },
+        "babyDev": {
+          "0": "Hearing sense develops",
+          "1": "Moves freely in amniotic fluid",
+          "2": "Bones grow and harden",
+          "3": "Can sense light"
         }
       },
       "w16": {
@@ -7107,6 +7753,12 @@
           "2": "Beyin gelişimi için DHA açısından zengin yiyecekler yiyin",
           "3": "Hamile giyim temel parçalarıyla gardırobunuzu yenileyin",
           "4": "Üçüncü trimesterden önce seyahatleri planlayın"
+        },
+        "babyDev": {
+          "0": "Facial muscles form",
+          "1": "Can make facial expressions",
+          "2": "Nails are fully grown",
+          "3": "Circulatory system develops"
         }
       },
       "w17": {
@@ -7140,6 +7792,12 @@
           "2": "Potasyum açısından zengin yiyecekler yiyin (muz, avokado)",
           "3": "Günde 10 dakika esneme yapın",
           "4": "Bebeğinize konuşun veya şarkı söyleyin — sizi duyabilir!"
+        },
+        "babyDev": {
+          "0": "Fat begins accumulating under skin",
+          "1": "Touch sense develops",
+          "2": "Can hear your voice",
+          "3": "Umbilical cord grows stronger"
         }
       },
       "w18": {
@@ -7173,6 +7831,12 @@
           "2": "Günde 3 kez Kegel egzersizi yapın",
           "3": "Bir doula tutmayı düşünün",
           "4": "Uyku öncesi gevşeme rutini başlatın"
+        },
+        "babyDev": {
+          "0": "You may feel first movements",
+          "1": "Retina develops further",
+          "2": "Sensory nerves form",
+          "3": "Yawns and sleeps regularly"
         }
       },
       "w19": {
@@ -7206,6 +7870,12 @@
           "2": "Magnezyum alımını artırın (fındık, bitter çikolata)",
           "3": "Ayaklar şişiyorsa destekli ayakkabı giyin",
           "4": "Doğum planı taslağı yazmaya başlayın"
+        },
+        "babyDev": {
+          "0": "Protective waxy coating forms",
+          "1": "All five senses develop",
+          "2": "Hair grows on the head",
+          "3": "Noticeably more active"
         }
       },
       "w20": {
@@ -7239,6 +7909,12 @@
           "2": "Kemikler için kalsiyum açısından zengin yiyecekler yiyin",
           "3": "Çatlak önleme kremi sürün",
           "4": "Doğuma hazırlık kursuna kaydolun"
+        },
+        "babyDev": {
+          "0": "Halfway there! Baby growing fast",
+          "1": "Can swallow and produce meconium",
+          "2": "Taste buds develop",
+          "3": "Distinguishes sleep from wake"
         }
       },
       "w21": {
@@ -7272,6 +7948,12 @@
           "2": "Sırt ağrısı için esneme egzersizleri yapın",
           "3": "Günde 20 dakika yürüyün",
           "4": "Bölgenizdeki çocuk doktorlarını araştırın"
+        },
+        "babyDev": {
+          "0": "Absorbs nutrients from amniotic fluid",
+          "1": "Eyebrows are visible",
+          "2": "Immune system develops",
+          "3": "Practices breathing movements"
         }
       },
       "w22": {
@@ -7305,6 +7987,12 @@
           "2": "Doğum için nefes teknikleri çalışın",
           "3": "Hamile yastığı alın",
           "4": "Doğum sonrası için yemek dondurma başlayın"
+        },
+        "babyDev": {
+          "0": "Inner ear is fully formed",
+          "1": "Can hear external sounds",
+          "2": "Lungs are growing",
+          "3": "Responds to external stimuli"
         }
       },
       "w23": {
@@ -7338,6 +8026,12 @@
           "2": "Perine masajına başlayın",
           "3": "Bebeğin uyku alanını hazırlayın",
           "4": "Hastane çantası listesi oluşturun"
+        },
+        "babyDev": {
+          "0": "Can distinguish your voice",
+          "1": "Lungs develop rapidly",
+          "2": "Brain grows intensively",
+          "3": "Practices breathing patterns"
         }
       },
       "w24": {
@@ -7371,6 +8065,12 @@
           "2": "Doğuma hazırlık için hafif çömelme egzersizleri yapın",
           "3": "Emzirme kursuna kaydolun",
           "4": "Sağlık sigortanızı ve doğum izninizi kontrol edin"
+        },
+        "babyDev": {
+          "0": "Footprints are forming",
+          "1": "Gaining weight steadily",
+          "2": "Lungs maturing gradually",
+          "3": "Sleeps in regular cycles"
         }
       },
       "w25": {
@@ -7404,6 +8104,12 @@
           "2": "Doğum pozisyonları ve nefes çalışın",
           "3": "Bebek giysilerini yıkayıp düzenleyin",
           "4": "Doğum tercihleri belgesi oluşturun"
+        },
+        "babyDev": {
+          "0": "Can open eyes",
+          "1": "Responds to light and sound",
+          "2": "Airways are developing",
+          "3": "Increased physical activity"
         }
       },
       "w26": {
@@ -7437,6 +8143,12 @@
           "2": "Mide yanması için az az sık sık yiyin",
           "3": "Bel ağrısı için pelvis eğmeleri yapın",
           "4": "İsim seçimini sonlandırın"
+        },
+        "babyDev": {
+          "0": "Eyelashes fully grown",
+          "1": "Actively practices breathing",
+          "2": "Can grasp the umbilical cord",
+          "3": "Nervous system develops"
         }
       },
       "w27": {
@@ -7470,6 +8182,12 @@
           "2": "En iyi kan dolaşımı için sol yanınızda uyuyun",
           "3": "Büyük kardeşleri yeni bebeğe hazırlayın",
           "4": "Doğum tesisini gezin"
+        },
+        "babyDev": {
+          "0": "Sense of smell develops",
+          "1": "Regular sleep-wake cycles",
+          "2": "Bones hardening further",
+          "3": "Sesinizi net olarak tanıyor"
         }
       },
       "w28": {
@@ -7503,6 +8221,12 @@
           "2": "Bağışıklık için çinko açısından zengin yiyecekler yiyin",
           "3": "Her gün gevşeme teknikleri uygulayın",
           "4": "Hastane çantanızı hazırlamaya başlayın"
+        },
+        "babyDev": {
+          "0": "Gözler düzenli olarak açılıp kapanıyor",
+          "1": "Beyin hızla gelişiyor",
+          "2": "Akciğerler nefes pratiği yapıyor",
+          "3": "Güçlü, düzenli hareketler"
         }
       },
       "w29": {
@@ -7536,6 +8260,12 @@
           "2": "Bol su için — şişlik normaldir ama takip edin",
           "3": "Doğuma hazırlık kurslarına katılın",
           "4": "Bebek araba koltuğunu takın"
+        },
+        "babyDev": {
+          "0": "Hızla kilo alıyor",
+          "1": "Akciğerler daha da olgunlaşıyor",
+          "2": "Bağışıklık sistemi güçleniyor",
+          "3": "Tanıdık seslere tepki veriyor"
         }
       },
       "w30": {
@@ -7569,6 +8299,12 @@
           "2": "Şişliği azaltmak için ayak bileği çevreleri yapın",
           "3": "Doğum planını doktorunuzla sonlandırın",
           "4": "Doğum sonrası iyileşme malzemelerini hazırlayın"
+        },
+        "babyDev": {
+          "0": "Düzenli nefes pratiği yapıyor",
+          "1": "Kemikler tam ama yumuşak",
+          "2": "Işık kaynaklarını takip edebiliyor",
+          "3": "Başta saç büyüyor"
         }
       },
       "w31": {
@@ -7602,6 +8338,12 @@
           "2": "Dizlerinizin arasına yastık koyarak uyuyun",
           "3": "Hastaneye ön kayıt yaptırın",
           "4": "Doğum sonrası temel ihtiyaçları stoklayın"
+        },
+        "babyDev": {
+          "0": "Yavaş yavaş doğum pozisyonunu alıyor",
+          "1": "Beyin bilgi işliyor",
+          "2": "Beş duyu da işlevsel",
+          "3": "Haftalık 200g alıyor"
         }
       },
       "w32": {
@@ -7635,6 +8377,12 @@
           "2": "Günde 3 kez pelvik taban egzersizi yapın",
           "3": "Tüm bebek nevresimlerini ve giysilerini yıkayın",
           "4": "Ağrı yönetimi seçeneklerini doktorunuzla konuşun"
+        },
+        "babyDev": {
+          "0": "Tırnaklar parmak uçlarına ulaşıyor",
+          "1": "Cilt daha pürüzsüz ve kalın oluyor",
+          "2": "Akciğerleri güçlendirmek için sıvı soluyor",
+          "3": "Müziğe tepki veriyor"
         }
       },
       "w33": {
@@ -7668,6 +8416,12 @@
           "2": "Eşinizle doğum pozisyonları çalışın",
           "3": "Doğum sonrası için donmuş yemekler hazırlayın",
           "4": "Emzirme pozisyonlarını ve tekniklerini gözden geçirin"
+        },
+        "babyDev": {
+          "0": "Kafatası hariç kemikler sertleşiyor",
+          "1": "Uyku sırasında rüya görüyor",
+          "2": "Bağışıklık anneden güçleniyor",
+          "3": "Baş aşağı pozisyonu alıyor"
         }
       },
       "w34": {
@@ -7701,6 +8455,12 @@
           "2": "Kalça ve sırt ağrıları için esneme yapın",
           "3": "Hastane çantanızı tamamen hazırlayın",
           "4": "Kordon kanı bankacılığı seçeneklerini konuşun"
+        },
+        "babyDev": {
+          "0": "Akciğerler neredeyse tamamlandı",
+          "1": "Sesleri tanıyabiliyor",
+          "2": "Tırnaklar tamamen büyümüş",
+          "3": "Yağ tabakaları birikiyor"
         }
       },
       "w35": {
@@ -7734,6 +8494,12 @@
           "2": "Haftada 3-4 kez perine masajı yapın",
           "3": "Çocuk bakımı düzenlemelerini sonlandırın",
           "4": "Yenidoğan bakım temellerini öğrenin"
+        },
+        "babyDev": {
+          "0": "Böbrekler tamamen işlevsel",
+          "1": "Emme ve yutma pratiği yapıyor",
+          "2": "Beyin çok hızlı büyüyor",
+          "3": "Cilt pembe ve pürüzsüz"
         }
       },
       "w36": {
@@ -7767,6 +8533,12 @@
           "2": "Doğum hazırlığı için demir açısından zengin yiyecekler yiyin",
           "3": "Dinlenin ve doğum için enerji biriktirin",
           "4": "Doğum destek ekibinizi onaylayın"
+        },
+        "babyDev": {
+          "0": "Akciğerler neredeyse hazır",
+          "1": "Son doğum pozisyonunu alıyor",
+          "2": "Sindirim sistemi tamamlandı",
+          "3": "Günlük 30g alıyor"
         }
       },
       "w37": {
@@ -7800,6 +8572,12 @@
           "2": "Besleyici yemekler yiyin ve bol su için",
           "3": "Doğumu teşvik etmek için hafif yürüyün",
           "4": "Ne zaman doktoru arayacağınızı veya hastaneye gideceğinizi bilin"
+        },
+        "babyDev": {
+          "0": "Tam dönem olarak kabul ediliyor",
+          "1": "Akciğerler tamamen olgunlaşmış",
+          "2": "Sıkıca kavrayabiliyor",
+          "3": "Dış dünya için hazır"
         }
       },
       "w38": {
@@ -7833,6 +8611,12 @@
           "2": "Gevşeme ve görselleştirme egzersizleri yapın",
           "3": "Hastane çantanızı tekrar kontrol edin",
           "4": "Kasılmaları zamanlamayı pratik yapın"
+        },
+        "babyDev": {
+          "0": "Tüm organlar verimli çalışıyor",
+          "1": "Lanugo dökülüyor",
+          "2": "Son yağ tabakalarını kazanıyor",
+          "3": "Doğum sinyalini bekliyor"
         }
       },
       "w39": {
@@ -7866,6 +8650,12 @@
           "2": "Aktiviteler arasında mümkün olduğunca dinlenin",
           "3": "Hastaneye ulaşım planını onaylayın",
           "4": "Yenidoğan beslenme planını gözden geçirin"
+        },
+        "babyDev": {
+          "0": "Tamamen gelişmiş",
+          "1": "Her an doğuma hazır",
+          "2": "Akciğerler sürfaktan üretiyor",
+          "3": "Bağışıklık en güçlü seviyede"
         }
       },
       "w40": {
@@ -7899,6 +8689,12 @@
           "2": "Enerjiyi korumak için dengeli yiyin",
           "3": "Bebek hareketlerini dikkatle takip edin",
           "4": "Kasılmalar başlarsa doktorunuza ulaşın"
+        },
+        "babyDev": {
+          "0": "Beklenen tarih! Tüm sistemler optimal",
+          "1": "Dünyayla tanışmaya tamamen hazır",
+          "2": "Kafatası doğum için esnek",
+          "3": "Tüm organlar mükemmel çalışıyor"
         }
       },
       "w41": {
@@ -7932,6 +8728,12 @@
           "2": "Bebek hareketlerini izlemeye devam edin",
           "3": "Dinlenin ve doğum için enerji biriktirin",
           "4": "Ev ve hastaneye yakın kalın"
+        },
+        "babyDev": {
+          "0": "Kilo almaya devam ediyor",
+          "1": "Plasenta tam kapasitede çalışıyor",
+          "2": "Doktor indüksiyon önerebilir",
+          "3": "Hareketleri yakından takip edin"
         }
       },
       "w42": {
@@ -7965,6 +8767,12 @@
           "2": "Planlanan kontrol randevunuza gidin",
           "3": "Bol su için ve iyi dinlenin",
           "4": "Tıbbi ekibinize güvenin — neredeyse oradasınız!"
+        },
+        "babyDev": {
+          "0": "Tarih geçti — doktorla takip edin",
+          "1": "Doğum başlatılabilir",
+          "2": "Tekmeleri saymaya devam edin",
+          "3": "Hastane için hazır olun"
         }
       },
       "w1": {
@@ -8314,6 +9122,47 @@
       "4": "Sağlıklı omega-3 için bir avuç badem ye 🥜",
       "5": "Vücudun istediğinde dinlen — bir hayat inşa ediyor! 💤",
       "6": "Kegel egzersizleri pelvik tabanını güçlendirir — bugün 3 set dene 💪"
+    },
+    "babySize": {
+      "4": "Haşhaş tohumu",
+      "5": "Susam tohumu",
+      "6": "Mercimek",
+      "7": "Yaban mersini",
+      "8": "Ahududu",
+      "9": "Kiraz",
+      "10": "Çilek",
+      "11": "İncir",
+      "12": "Misket limonu",
+      "13": "Şeftali",
+      "14": "Limon",
+      "15": "Elma",
+      "16": "Avokado",
+      "17": "Armut",
+      "18": "Biber",
+      "19": "Mango",
+      "20": "Muz",
+      "21": "Havuç",
+      "22": "Papaya",
+      "23": "Greyfurt",
+      "24": "Mısır",
+      "25": "Karnabahar",
+      "26": "Marul",
+      "27": "Lahana",
+      "28": "Patlıcan",
+      "29": "Balkabağı",
+      "30": "Hindistancevizi",
+      "31": "Ananas",
+      "32": "Kabak",
+      "33": "Kereviz",
+      "34": "Kavun",
+      "35": "Bal kavunu",
+      "36": "Marul",
+      "37": "Pazı",
+      "38": "Pırasa",
+      "39": "Karpuz",
+      "40": "Balkabağı",
+      "41": "Karpuz",
+      "42": "Jackfruit"
     }
   },
   "seoArticle": {
@@ -8476,5 +9325,117 @@
     "subtitle": "Annelerin neden bize güvendiğini görün",
     "title": "Neden Bizi Seçmelisiniz",
     "us": "Biz"
+  },
+  "trialBanner": {
+    "expiringSoon": "Deneme süreniz bitiyor!",
+    "remaining": "kalan",
+    "subscribe": "Şimdi Abone Ol"
+  },
+  "trialExpired": {
+    "title": "Deneme süreniz sona erdi",
+    "subtitle": "Yapay zekanın gücünü deneyimlediniz",
+    "usedAnalyses": "{{count}} AI analizi kullandınız",
+    "duringTrial": "deneme süreniz boyunca",
+    "premiumBenefit": "60 analiz/ay",
+    "premiumDesc": "33+ AI aracının tümünü açın",
+    "cta": "Premium Planları Gör",
+    "dismiss": "Belki sonra"
+  },
+  "usageNudge": {
+    "title": "{{used}}/{{limit}} analiz kullanıldı",
+    "upgrade": "Ayda 60'a yükseltin →"
+  },
+  "smartPrompt": {
+    "nearLimit": "{{limit}} analizden {{used}} tanesini kullandınız! Ayda 60 için abone olun.",
+    "upgradeNow": "Şimdi Yükselt"
+  },
+  "vitaminTracker": {
+    "subtitle": "Günlük takviye alımınızı kontrol edin",
+    "pregnancyWeek": "Pregnancy Week",
+    "todaysProgress": "Today's Progress",
+    "vitaminsCount": "{{taken}} of {{total}} vitamins taken today",
+    "aiAnalysisTitle": "AI Vitamin Analysis",
+    "analyzeRoutine": "Analyze My Routine",
+    "analyzingIntake": "Analyzing your intake...",
+    "alreadyTaken": "Already taken!",
+    "alreadyTakenDesc": "You've already logged {{name}} today.",
+    "logged": "Vitamin Logged!",
+    "loggedDesc": "{{name}} has been logged.",
+    "failedToLog": "Failed to log vitamin",
+    "done": "Done",
+    "take": "Take",
+    "thisWeek": "this week",
+    "weeklyStats": "Weekly Stats",
+    "days": "gün",
+    "recentHistory": "Recent History",
+    "tipTitle": "Pro Tip",
+    "tipContent": "Take iron supplements with vitamin C for better absorption, but avoid taking them with calcium.",
+    "vitamins": {
+      "folicAcid": "Folic Acid",
+      "iron": "Iron",
+      "calcium": "Calcium",
+      "vitaminD": "Vitamin D",
+      "omega3": "Omega 3",
+      "prenatal": "Prenatal Vitamins"
+    },
+    "dosages": {
+      "folicAcid": "400-800 mcg",
+      "iron": "27 mg",
+      "calcium": "1000 mg",
+      "vitaminD": "600 IU",
+      "omega3": "200-300 mg DHA",
+      "prenatal": "As directed"
+    },
+    "importance": {
+      "folicAcid": "Essential for neural development",
+      "iron": "Prevents anemia",
+      "calcium": "For bone health",
+      "vitaminD": "Calcium absorption",
+      "omega3": "Baby brain development",
+      "prenatal": "Complete & balanced"
+    },
+    "title": "Vitamin Takibi",
+    "addVitamin": "Vitamin Ekle",
+    "taken": "Alındı",
+    "missed": "Kaçırıldı",
+    "streak": "Seri",
+    "today": "Bugün",
+    "weekly": "Haftalık",
+    "monthly": "Aylık",
+    "reminder": "Hatırlatma",
+    "setReminder": "Hatırlatma Ayarla",
+    "commonVitamins": "Yaygın Vitaminler",
+    "folicAcid": "Folik Asit",
+    "iron": "Demir",
+    "calcium": "Kalsiyum",
+    "vitaminD": "D Vitamini",
+    "omega3": "Omega 3",
+    "prenatal": "Doğum Öncesi",
+    "magnesium": "Magnezyum",
+    "zinc": "Çinko",
+    "vitaminC": "C Vitamini",
+    "vitaminB12": "B12 Vitamini",
+    "iodine": "İyot",
+    "dha": "DHA",
+    "compliance": "Uyum",
+    "perfectWeek": "Mükemmel Hafta",
+    "addCustom": "Özel Ekle",
+    "dose": "Doz",
+    "frequency": "Sıklık",
+    "daily": "Günlük",
+    "twiceDaily": "Günde iki kez",
+    "weekly2": "Haftalık",
+    "morning": "Sabah",
+    "afternoon": "Öğleden sonra",
+    "evening": "Akşam",
+    "withFood": "Yemekle",
+    "emptyState": "Henüz vitamin yok — ilk vitamininizi ekleyin",
+    "complianceRate": "Uyum Oranı",
+    "monthlyReport": "Aylık Rapor",
+    "importantNote": "Önemli Not",
+    "consultDoctor": "Takviye almadan önce doktorunuza danışın",
+    "weeklyProgress": "Haftalık İlerleme",
+    "allTaken": "Bugün hepsi alındı",
+    "remaining": "bugün kalan"
   }
 }
