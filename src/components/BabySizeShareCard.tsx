@@ -28,6 +28,8 @@ export function BabySizeShareCard({ week }: BabySizeShareCardProps) {
   const sizeName = isAr ? data.sizeAr : data.sizeEn;
   const emoji = fruitEmojis[data.sizeEn] || "👶";
 
+  const playStoreLink = 'https://play.google.com/store/apps/details?id=app.pregnancytoolkits.android';
+
   const handleShare = () => {
     const msg = `${emoji} *${t("babySizeCard.shareTitle", { week, defaultValue: "My baby at week {{week}}!" })}*
 
@@ -36,7 +38,8 @@ export function BabySizeShareCard({ week }: BabySizeShareCardProps) {
 ⚖️ ${t("babySizeCard.weight", "Weight")}: *${data.weightG} g*
 
 ━━━━━━━━━━━━━━━━━━━━
-🤰 _Pregnancy Toolkits_`;
+🤰 _Pregnancy Toolkits_
+📲 ${playStoreLink}`;
 
     openWhatsApp(msg);
   };

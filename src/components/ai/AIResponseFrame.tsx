@@ -6,6 +6,7 @@ import { useMemo, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useNavigate } from 'react-router-dom';
 import { SaveResultButton } from './SaveResultButton';
+import { AIFeedbackPrompt } from './AIFeedbackPrompt';
 import { useAIUsage } from '@/contexts/AIUsageContext';
 
 interface AIResponseFrameProps {
@@ -131,6 +132,14 @@ export const AIResponseFrame = ({
         <div className="rounded-xl bg-gradient-to-b from-primary/[0.04] to-transparent p-3">
           {children || <MarkdownRenderer content={content} isLoading={isLoading} />}
         </div>
+
+        {/* Feedback prompt after AI result */}
+        {!isLoading && content && toolId && (
+          <div className="mt-2">
+            <AIFeedbackPrompt toolId={toolId} />
+          </div>
+        )}
+
         {footer}
 
         {/* Single unified usage + Pro footer */}

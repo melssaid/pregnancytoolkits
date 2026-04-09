@@ -16,6 +16,8 @@ import { captureAttribution } from "@/hooks/useAttribution";
 // Lazy-load OnboardingDisclaimer — heavy imports (Calendar, date-fns) only needed on first visit
 const OnboardingDisclaimer = lazy(() => import("@/components/OnboardingDisclaimer").then(m => ({ default: m.OnboardingDisclaimer })));
 const SubscriptionSuccessSheet = lazy(() => import("@/components/SubscriptionSuccessSheet"));
+const GuidedTour = lazy(() => import("@/components/GuidedTour"));
+const OfflineBanner = lazy(() => import("@/components/OfflineBanner").then(m => ({ default: m.OfflineBanner })));
 
 const queryClient = new QueryClient();
 const CHUNK_RECOVERY_KEY = "pt_chunk_recovery_done";
@@ -110,6 +112,7 @@ const App = () => {
           <SmartScrollRestoration />
           <AnimatedRoutes />
           <Suspense fallback={null}><OnboardingDisclaimer /></Suspense>
+          <Suspense fallback={null}><GuidedTour /></Suspense>
           <Suspense fallback={null}>
             <SubscriptionSuccessSheet
               open={successSheet.open}
