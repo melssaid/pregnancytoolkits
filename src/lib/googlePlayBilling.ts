@@ -549,7 +549,12 @@ export async function requestPurchase(
     const activated = await activateOnServer(purchaseToken, productId, orderId);
     
     // Complete the payment response after server activation
-    await response.complete(activated ? 'success' : 'fail');
+    try {
+      await response.complete(activated ? 'success' : 'fail');
+    } catch (completeErr) {
+      console.warn('[Billing] response.complete() threw (non-fatal):', completeErr);
+      // Non-fatal — purchase is already processed
+    }
 
     if (activated) {
       onSuccess?.(productId);
