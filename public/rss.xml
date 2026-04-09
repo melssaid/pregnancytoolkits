@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Pregnancy Toolkits — Your Pregnancy Companion</title>
+    <link>https://pregnancytoolkits.lovable.app</link>
+    <description>Free pregnancy tracker with 33+ smart tools: due date calculator, kick counter, contraction timer, baby growth tracker, AI meal planner &amp; more.</description>
+    <language>en</language>
+    <lastBuildDate>Thu, 09 Apr 2026 00:00:00 GMT</lastBuildDate>
+    <atom:link href="https://pregnancytoolkits.lovable.app/rss.xml" rel="self" type="application/rss+xml"/>
+    <image>
+      <url>https://pregnancytoolkits.lovable.app/logo.webp</url>
+      <title>Pregnancy Toolkits</title>
+      <link>https://pregnancytoolkits.lovable.app</link>
+    </image>
+
+    <item>
+      <title>Due Date Calculator — Estimate Your Baby's Arrival</title>
+      <link>https://pregnancytoolkits.lovable.app/tool/due-date-calculator</link>
+      <description>Calculate your estimated due date based on your last menstrual period or IVF transfer date. Free, accurate, and easy to use.</description>
+      <guid isPermaLink="true">https://pregnancytoolkits.lovable.app/tool/due-date-calculator</guid>
+      <dc:creator>Pregnancy Toolkits</dc:creator>
+    </item>
+
+    <item>
+      <title>Baby Kick Counter — Track Baby Movements</title>
+      <link>https://pregnancytoolkits.lovable.app/tool/kick-counter</link>
+      <description>Follow your baby's kick patterns with our free kick counter. Track movements, get daily counts, and monitor activity patterns.</description>
+      <guid isPermaLink="true">https://pregnancytoolkits.lovable.app/tool/kick-counter</guid>
+      <dc:creator>Pregnancy Toolkits</dc:creator>
+    </item>
+
+    <item>
+      <title>Contraction Timer — Track Labor Contractions</title>
+      <link>https://pregnancytoolkits.lovable.app/tool/contraction-timer</link>
+      <description>Time your contractions accurately. Track frequency, duration, and intensity to know when it's time to head to the hospital.</description>
+      <guid isPermaLink="true">https://pregnancytoolkits.lovable.app/tool/contraction-timer</guid>
+      <dc:creator>Pregnancy Toolkits</dc:creator>
+    </item>
+
+    <item>
+      <title>AI Pregnancy Assistant — 24/7 Answers</title>
+      <link>https://pregnancytoolkits.lovable.app/tool/pregnancy-assistant</link>
+      <description>Ask any pregnancy question and get evidence-based answers from our AI assistant. Available 24/7 in 7 languages.</description>
+      <guid isPermaLink="true">https://pregnancytoolkits.lovable.app/tool/pregnancy-assistant</guid>
+      <dc:creator>Pregnancy Toolkits</dc:creator>
+    </item>
+
+    <item>
+      <title>Cycle &amp; Ovulation Tracker — Predict Your Fertile Window</title>
+      <link>https://pregnancytoolkits.lovable.app/tool/cycle-tracker</link>
+      <description>Track your menstrual cycle, predict ovulation, and identify your fertile window with AI-powered insights.</description>
+      <guid isPermaLink="true">https://pregnancytoolkits.lovable.app/tool/cycle-tracker</guid>
+      <dc:creator>Pregnancy Toolkits</dc:creator>
+    </item>
+
+    <item>
+      <title>Baby Development Guide — Week by Week</title>
+      <link>https://pregnancytoolkits.lovable.app/tool/fetal-growth</link>
+      <description>Follow your baby's week-by-week development with size comparisons and developmental milestones from week 4 to 42.</description>
+      <guid isPermaLink="true">https://pregnancytoolkits.lovable.app/tool/fetal-growth</guid>
+      <dc:creator>Pregnancy Toolkits</dc:creator>
+    </item>
+
+    <item>
+      <title>AI Meal Planner — Safe Pregnancy Nutrition</title>
+      <link>https://pregnancytoolkits.lovable.app/tool/ai-meal-suggestion</link>
+      <description>Get personalized meal suggestions safe for pregnancy. AI-powered recommendations based on your trimester and dietary needs.</description>
+      <guid isPermaLink="true">https://pregnancytoolkits.lovable.app/tool/ai-meal-suggestion</guid>
+      <dc:creator>Pregnancy Toolkits</dc:creator>
+    </item>
+
+    <item>
+      <title>Pregnancy Weight Gain Tracker</title>
+      <link>https://pregnancytoolkits.lovable.app/tool/weight-gain</link>
+      <description>Monitor healthy pregnancy weight gain with BMI-based guidelines. Track your progress and get personalized recommendations.</description>
+      <guid isPermaLink="true">https://pregnancytoolkits.lovable.app/tool/weight-gain</guid>
+      <dc:creator>Pregnancy Toolkits</dc:creator>
+    </item>
+
+    <item>
+      <title>AI Birth Plan Generator</title>
+      <link>https://pregnancytoolkits.lovable.app/tool/ai-birth-plan</link>
+      <description>Generate a detailed, customizable birth plan with AI. Cover labor preferences, comfort options, and postpartum wishes.</description>
+      <guid isPermaLink="true">https://pregnancytoolkits.lovable.app/tool/ai-birth-plan</guid>
+      <dc:creator>Pregnancy Toolkits</dc:creator>
+    </item>
+
+    <item>
+      <title>AI Fitness Coach — Safe Pregnancy Exercises</title>
+      <link>https://pregnancytoolkits.lovable.app/tool/ai-fitness-coach</link>
+      <description>Get trimester-specific workout plans designed for pregnant women. AI-powered fitness guidance with safety alerts.</description>
+      <guid isPermaLink="true">https://pregnancytoolkits.lovable.app/tool/ai-fitness-coach</guid>
+      <dc:creator>Pregnancy Toolkits</dc:creator>
+    </item>
+
+    <item>
+      <title>Smart Pregnancy Plan — Personalized Guide</title>
+      <link>https://pregnancytoolkits.lovable.app/tool/smart-pregnancy-plan</link>
+      <description>Get a personalized pregnancy plan tailored to your health profile, trimester, and goals. AI-powered week-by-week recommendations.</description>
+      <guid isPermaLink="true">https://pregnancytoolkits.lovable.app/tool/smart-pregnancy-plan</guid>
+      <dc:creator>Pregnancy Toolkits</dc:creator>
+    </item>
+
+    <item>
+      <title>Baby Cry Translator — Understand Your Baby</title>
+      <link>https://pregnancytoolkits.lovable.app/tool/baby-cry-translator</link>
+      <description>AI-powered baby cry analysis. Understand what your baby is trying to tell you with intelligent sound pattern recognition.</description>
+      <guid isPermaLink="true">https://pregnancytoolkits.lovable.app/tool/baby-cry-translator</guid>
+      <dc:creator>Pregnancy Toolkits</dc:creator>
+    </item>
+
+    <item>
+      <title>Postpartum Recovery Guide</title>
+      <link>https://pregnancytoolkits.lovable.app/tool/postpartum-recovery</link>
+      <description>6-week wellness guide for postpartum recovery. Track healing milestones, emotional wellness, and get evidence-based tips.</description>
+      <guid isPermaLink="true">https://pregnancytoolkits.lovable.app/tool/postpartum-recovery</guid>
+      <dc:creator>Pregnancy Toolkits</dc:creator>
+    </item>
+
+    <item>
+      <title>Fertility Academy — Complete Conception Guide</title>
+      <link>https://pregnancytoolkits.lovable.app/tool/fertility-academy</link>
+      <description>Learn everything about fertility, ovulation, and conception. Expert-reviewed educational content for trying to conceive.</description>
+      <guid isPermaLink="true">https://pregnancytoolkits.lovable.app/tool/fertility-academy</guid>
+      <dc:creator>Pregnancy Toolkits</dc:creator>
+    </item>
+
+    <item>
+      <title>Baby Sleep Tracker</title>
+      <link>https://pregnancytoolkits.lovable.app/tool/baby-sleep-tracker</link>
+      <description>Track your baby's sleep patterns, naps, and nighttime sleep. Get AI insights to improve your baby's sleep routine.</description>
+      <guid isPermaLink="true">https://pregnancytoolkits.lovable.app/tool/baby-sleep-tracker</guid>
+      <dc:creator>Pregnancy Toolkits</dc:creator>
+    </item>
+  </channel>
+</rss>
