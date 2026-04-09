@@ -42,6 +42,8 @@ const recoverFromChunkError = async () => {
 const App = () => {
   const [successSheet, setSuccessSheet] = useState<{ open: boolean; plan: 'monthly' | 'yearly' | null }>({ open: false, plan: null });
 
+  useVisitorTracking();
+
   // Initialize anonymous auth & prefetch critical routes
   useEffect(() => {
     initializeAuth();
