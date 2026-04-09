@@ -397,6 +397,46 @@ const FooterCard = memo(function FooterCard() {
   );
 });
 
+// ── Share App Button ────────────────────────────────────────────────────
+const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=app.pregnancytoolkits.android";
+
+const ShareAppButton = memo(function ShareAppButton() {
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language?.split('-')[0] || 'en';
+
+  const shareLabels: Record<string, { text: string; shareTitle: string; shareText: string }> = {
+    en: { text: 'Share with a friend', shareTitle: 'Pregnancy Toolkits', shareText: 'Check out this free pregnancy app with 33+ smart tools!' },
+    ar: { text: 'شاركي التطبيق مع صديقة', shareTitle: 'أدوات الحمل الذكية', shareText: 'جربي هذا التطبيق المجاني لمتابعة الحمل مع 33+ أداة ذكية!' },
+    de: { text: 'Mit einer Freundin teilen', shareTitle: 'Pregnancy Toolkits', shareText: 'Schau dir diese kostenlose Schwangerschafts-App mit 33+ Tools an!' },
+    fr: { text: 'Partager avec une amie', shareTitle: 'Pregnancy Toolkits', shareText: 'Découvre cette app de grossesse gratuite avec 33+ outils!' },
+    es: { text: 'Compartir con una amiga', shareTitle: 'Pregnancy Toolkits', shareText: '¡Mira esta app de embarazo gratis con 33+ herramientas!' },
+    pt: { text: 'Compartilhar com uma amiga', shareTitle: 'Pregnancy Toolkits', shareText: 'Confira este app de gravidez grátis com 33+ ferramentas!' },
+    tr: { text: 'Bir arkadaşınla paylaş', shareTitle: 'Pregnancy Toolkits', shareText: '33+ akıllı araçla bu ücretsiz hamilelik uygulamasına göz at!' },
+  };
+  const l = shareLabels[lang] || shareLabels.en;
+
+  const handleShare = async () => {
+    const shareData = { title: l.shareTitle, text: l.shareText, url: PLAY_STORE_URL };
+    if (navigator.share) {
+      try { await navigator.share(shareData); } catch {}
+    } else {
+      try { await navigator.clipboard.writeText(`${l.shareText}\n${PLAY_STORE_URL}`); toast.success('✓'); } catch {}
+    }
+  };
+
+  return (
+    <motion.button
+      onClick={handleShare}
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      whileTap={{ scale: 0.97 }}
+      className="w-full flex items-center justify-center gap-2 p-3 rounded-xl bg-primary/[0.06] border border-primary/15 hover:bg-primary/[0.1] transition-all"
+    >
+      <Share2 className="w-4 h-4 text-primary" />
+      <span className="text-xs font-bold text-primary">{l.text}</span>
+    </motion.button>
+  );
+});
 
 
 // ── Main page ───────────────────────────────────────────────────────────
