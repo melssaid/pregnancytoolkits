@@ -30,9 +30,6 @@ export function Layout({ children, showBack = false }: LayoutProps) {
   return (
     <div className="min-h-screen bg-background flex flex-col overflow-x-hidden">
       <BreadcrumbSchema />
-
-  return (
-    <div className="min-h-screen bg-background flex flex-col overflow-x-hidden">
       {/* Smart App Banner — web only, not inside TWA */}
       <SmartAppBanner />
       {/* Trial Expiry Banner */}
