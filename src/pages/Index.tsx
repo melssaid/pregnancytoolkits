@@ -425,9 +425,14 @@ const ShareAppButton = memo(function ShareAppButton() {
         toast.success(lang === 'ar' ? 'تم نسخ الرابط ✓' : 'Link copied ✓');
       }
     } catch (e: any) {
-      // User cancelled share or clipboard failed — try fallback
       if (e?.name !== 'AbortError') {
-        window.open(`https://wa.me/?text=${encodeURIComponent(`${l.shareText}\n${PLAY_STORE_URL}`)}`, '_blank');
+        // Fallback: copy to clipboard
+        try {
+          await navigator.clipboard.writeText(`${l.shareText}\n${PLAY_STORE_URL}`);
+          toast.success(lang === 'ar' ? 'تم نسخ الرابط — شاركيه في أي تطبيق ✓' : 'Link copied — share it anywhere ✓');
+        } catch {
+          toast.error(lang === 'ar' ? 'لم نتمكن من المشاركة' : 'Could not share');
+        }
       }
     }
   };
