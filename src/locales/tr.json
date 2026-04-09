@@ -7169,7 +7169,10 @@
       "vitamins": "Vitaminler",
       "photos": "Fotoğraflar"
     },
-    "hydration": "Hidrasyon",
+    "hydration": {
+      "title": "Hidrasyon",
+      "addGlass": "Bardak ekle"
+    },
     "symptoms": {
       "title": "Günlük Wellness Notları",
       "noSymptoms": "Not yok",
