@@ -665,7 +665,8 @@
       "terms": "AGB",
       "contact": "Kontakt",
       "disclaimerTitle": "Wichtiger Hinweis",
-      "disclaimerText": "Diese App dient nur zu Bildungs- und Informationszwecken und ist kein Ersatz für professionelle Gesundheitsberatung. Konsultieren Sie bei gesundheitlichen Bedenken immer einen qualifizierten Gesundheitsdienstleister."
+      "disclaimerText": "Diese App dient nur zu Bildungs- und Informationszwecken und ist kein Ersatz für professionelle Gesundheitsberatung. Konsultieren Sie bei gesundheitlichen Bedenken immer einen qualifizierten Gesundheitsdienstleister.",
+      "testimonials": "Bewertungen"
     },
     "share": {
       "title": "Schwangerschafts-Tools",
@@ -1740,7 +1741,8 @@
       "selectIntensity": "Wehenintensität",
       "fiveOneOneAlert": "5-1-1-Regel erfüllt!",
       "fiveOneOneDesc": "Wehen alle 5 Min., 1 Min. Dauer, seit 1 Stunde. Kontaktieren Sie Ihren Arzt.",
-      "shareContractions": "Daten teilen"
+      "shareContractions": "Daten teilen",
+      "clear": "Löschen"
     },
     "symptomAnalyzer": {
       "title": "Schwangerschafts-Wohlbefinden-Tagebuch",
@@ -4063,7 +4065,8 @@
           "title": "Guter Zustand",
           "message": "Sie scheinen diese Zeit gut zu bewältigen. Weiter so!"
         }
-      }
+      },
+      "generating": "Wird generiert..."
     },
     "mealSuggestion": {
       "subtitle": "Intelligente Mahlzeitenvorschläge für Ihre Schwangerschaft",
@@ -4577,7 +4580,8 @@
         "academyDesc": "Umfassende Fruchtbarkeitsschulung",
         "nutrition": "Ernährungsratgeber",
         "nutritionDesc": "Ernährung und Ernährungshilfe vor der Empfängnis"
-      }
+      },
+      "title": "Vorsorgeuntersuchung"
     },
     "preconceptionNutrition": {
       "categories": {
@@ -4897,7 +4901,17 @@
       "days_wed": "Mi",
       "days_thu": "Do",
       "days_fri": "Fr",
-      "days_sat": "Sa"
+      "days_sat": "Sa",
+      "streak": "Serie",
+      "weeklyAdherence": "Wöchentliche Einhaltung"
+    },
+    "fetalDevelopment": {
+      "aiWeeklyInsights": "Wöchentliche KI-Einblicke",
+      "setAsMyWeek": "Als meine Woche festlegen",
+      "sizeOf": "Größe von",
+      "subtitle": "Beobachten Sie das Wachstum Ihres Babys Woche für Woche",
+      "title": "Fetale Entwicklung",
+      "yourCurrentWeek": "Ihre aktuelle Woche"
     }
   },
   "welcome": {
@@ -6013,7 +6027,10 @@
     "exportReports": "Berichte exportieren",
     "exportDesc": "Mit deinem Arzt teilen",
     "noAds": "Keine Werbung",
-    "noAdsDesc": "Premium-Erlebnis"
+    "noAdsDesc": "Premium-Erlebnis",
+    "aiSupport": "KI-Unterstützung",
+    "freePrivate": "Kostenlos & Privat",
+    "languages": "Sprachen"
   },
   "quotes": {
     "q1": "Jeder Tag bringt dich deinem schönen Moment näher 💕",
@@ -6637,6 +6654,11 @@
       "askNutrition": "Ernährungstipps",
       "askSleep": "Schlaf verbessern",
       "prompt": "Geben Sie mir einen kurzen personalisierten Gesundheitstipp für Schwangerschaftswoche {{week}}. Fokus auf die 3 wichtigsten Punkte."
+    },
+    "fetalMovement": {
+      "empty": "Heute noch keine Tritte erfasst",
+      "goal": "Ziel: 10 Tritte/Tag",
+      "title": "Kindsbewegungen"
     }
   },
   "weeklyJourney": {
@@ -6658,7 +6680,8 @@
       "mentalWellness": "Mentale Gesundheit",
       "doctorQuestions": "Fragen an Ihren Arzt",
       "checklist": "Wöchentliche Checkliste",
-      "aiInsight": "KI-Einblick"
+      "aiInsight": "KI-Einblick",
+      "fetalDev": "Fetale Entwicklung"
     },
     "copied": "Kopiert!",
     "aiDescription": "Erhalten Sie eine umfassende, personalisierte Analyse Ihrer aktuellen Woche mit KI",
@@ -8166,7 +8189,9 @@
       "logSymptoms": "Symptome erfassen",
       "trackWater": "Wasser tracken",
       "logVitamins": "Vitamine erfassen",
-      "viewAppointments": "Termine"
+      "viewAppointments": "Termine",
+      "fitness": "Fitness",
+      "meals": "Mahlzeiten"
     },
     "tips": {
       "hydration": "Du bist in Woche {{week}} — ausreichend trinken ist jetzt besonders wichtig",
@@ -8317,5 +8342,146 @@
     "postpartumContent": "Die Wochenbettzeit ist voller Herausforderungen und Freude. Achten Sie auf Ihre psychische und körperliche Gesundheit. Schlafen Sie, wenn das Baby schläft, bitten Sie die Familie um Hilfe und ernähren Sie sich gut. Nutzen Sie den Entspannungsratgeber für praktische Erholungstipps.",
     "wellnessTips": "Tägliche Wellness-Tipps: Trinken Sie 8-10 Gläser Wasser, essen Sie kleine häufige Mahlzeiten reich an Eiweiß und Ballaststoffen, gehen Sie 30 Minuten spazieren, machen Sie regelmäßige Pausen und führen Sie ein Schwangerschaftstagebuch.",
     "appBenefits": "Warum unseren intelligenten Begleiter wählen: 33+ kostenlose Tools, in 7 Sprachen verfügbar, vollständiger Datenschutz, KI-gestützte Einblicke, personalisierte Updates und keine Registrierung nötig."
+  },
+  "achievements": {
+    "daysActive": "Aktive Tage",
+    "kicksLogged": "Tritt-Sitzungen",
+    "seoTitle": "Meine Erfolge",
+    "shareTitle": "Meine wöchentlichen Erfolge!",
+    "shareWhatsApp": "Auf WhatsApp teilen",
+    "subtitle": "Verfolgen Sie Ihren Wellness-Fortschritt",
+    "title": "Ihre Erfolge",
+    "toolsUsed": "Verwendete Tools",
+    "weekProgress": "Woche {{week}} der Schwangerschaft",
+    "weeks": "Wochen",
+    "weightEntries": "Gewichtseinträge"
+  },
+  "aiFeedback": {
+    "no": "Nein",
+    "question": "War dieses Ergebnis hilfreich?",
+    "thankYou": "Danke für Ihr Feedback! 💕",
+    "willImprove": "Danke! Wir werden uns verbessern 🙏",
+    "yes": "Ja"
+  },
+  "babySizeCard": {
+    "babyIs": "Ihr Baby ist so groß wie",
+    "length": "Länge",
+    "share": "Auf WhatsApp teilen",
+    "shareTitle": "Mein Baby in Woche {{week}}!",
+    "size": "Größe",
+    "weekLabel": "Woche {{week}}",
+    "weight": "Gewicht"
+  },
+  "certificate": {
+    "share": "Teilen Sie Ihre Leistung",
+    "shareBody": "Jede Woche ist ein neuer Meilenstein auf meiner Mutterschaftsreise",
+    "shareTitle": "Woche {{week}} geschafft! 🎉",
+    "subtitle": "Eine wunderbare Leistung in Ihrer Schwangerschaft 💪",
+    "title": "Zertifikat Woche {{week}}"
+  },
+  "challenge": {
+    "daily": "Tages-Challenge"
+  },
+  "countdown": {
+    "complete": "Abgeschlossen",
+    "days": "Tage",
+    "daysLeft": "Tage übrig",
+    "dueDate": "Voraussichtlicher Geburtstermin",
+    "title": "Geburts-Countdown",
+    "weeks": "Wochen"
+  },
+  "disclaimer": {
+    "medical": "Nur zu Informationszwecken. Konsultieren Sie Ihren Arzt."
+  },
+  "discover": {
+    "alreadyUsed": "Bereits verwendet",
+    "generalContext": "Basierend auf beliebten Tools",
+    "newForYou": "Neu für Sie",
+    "seoTitle": "Neue Tools entdecken",
+    "title": "Entdecken Sie passende Tools",
+    "viewAchievements": "Meine Erfolge anzeigen",
+    "weekContext": "Empfohlen für Woche {{week}} Ihrer Reise"
+  },
+  "faq": {
+    "title": "Häufige Fragen für Ihre Woche"
+  },
+  "offline": {
+    "localTools": "Lokale Tools funktionieren normal",
+    "title": "Sie sind offline"
+  },
+  "rating": {
+    "rateUs": "Bewerten Sie uns ⭐",
+    "reviews": "Bewertungen"
+  },
+  "resultShare": {
+    "share": "Teilen",
+    "yourResult": "Ihr Ergebnis"
+  },
+  "smartBanner": {
+    "cta": "LADEN",
+    "subtitle": "Kostenlos bei Google Play • 33+ Tools"
+  },
+  "stageRec": {
+    "suggested": "Für Sie vorgeschlagen"
+  },
+  "stickyCta": {
+    "download": "Kostenlos herunterladen — Google Play"
+  },
+  "streak": {
+    "days": "Tage in Folge"
+  },
+  "testimonials": {
+    "subtitle": "Echte Geschichten von echten Müttern weltweit",
+    "title": "Was Mütter sagen"
+  },
+  "toolRating": {
+    "rateThis": "Bewerten Sie dieses Tool",
+    "ratings": "Bewertungen"
+  },
+  "tour": {
+    "next": "Weiter",
+    "start": "Jetzt starten",
+    "step1Desc": "KI-gestützte Tools für jede Phase Ihrer Schwangerschaft",
+    "step1Title": "33+ Intelligente Tools",
+    "step2Desc": "Verfolgen Sie Gewicht, Kindsbewegungen und Arzttermine an einem Ort",
+    "step2Title": "Intelligentes Dashboard",
+    "step3Desc": "Entdecken Sie die Entwicklung Ihres Babys jede Woche mit persönlichen Tipps",
+    "step3Title": "Wöchentliche Reise"
+  },
+  "whyUs": {
+    "comp": {
+      "aiPowered": "KI-gestützt",
+      "darkMode": "Dunkelmodus",
+      "fertility": "Fruchtbarkeits-Tracking",
+      "freeTools": "Kostenlose Tools",
+      "languages": "7 Sprachen",
+      "noAds": "Keine Werbung",
+      "offline": "Funktioniert offline",
+      "privacyFirst": "Datenschutz zuerst",
+      "toolCount": "33+ Tools",
+      "whatsapp": "WhatsApp-Teilen"
+    },
+    "compTitle": "Unser Vergleich",
+    "cta": "Starten Sie jetzt Ihre Reise",
+    "ctaSub": "Kostenlos • Kein Konto nötig • 33+ Tools",
+    "feature": "Funktion",
+    "hl": {
+      "ai": "KI-gestützt",
+      "aiDesc": "Intelligente Analyse für jedes Anliegen",
+      "fast": "Schnell",
+      "fastDesc": "Sofortige Ergebnisse, kein Warten",
+      "free": "Kostenlos",
+      "freeDesc": "Alle Tools für immer kostenlos",
+      "global": "Global",
+      "globalDesc": "7 Sprachen, funktioniert überall",
+      "journey": "Vollständige Reise",
+      "journeyDesc": "Von Fruchtbarkeit bis nach der Geburt",
+      "privacy": "Privat",
+      "privacyDesc": "Ihre Daten bleiben auf Ihrem Gerät"
+    },
+    "others": "Andere",
+    "subtitle": "Erfahren Sie, warum Mütter weltweit uns vertrauen",
+    "title": "Warum uns wählen",
+    "us": "Wir"
   }
 }

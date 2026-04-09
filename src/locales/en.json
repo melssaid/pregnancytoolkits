@@ -686,7 +686,8 @@
       "terms": "Terms",
       "contact": "Contact",
       "disclaimerTitle": "Important Notice",
-      "disclaimerText": "This app is for educational and informational purposes only. It is not a substitute for professional health guidance. Always consult a qualified care provider for any health concerns."
+      "disclaimerText": "This app is for educational and informational purposes only. It is not a substitute for professional health guidance. Always consult a qualified care provider for any health concerns.",
+      "testimonials": "Reviews"
     },
     "share": {
       "title": "Pregnancy Toolkits",
@@ -1761,7 +1762,8 @@
       "selectIntensity": "Contraction intensity",
       "fiveOneOneAlert": "5-1-1 Rule Met!",
       "fiveOneOneDesc": "Contractions every 5 min, lasting 1 min, for 1 hour. Contact your doctor.",
-      "shareContractions": "Share Data"
+      "shareContractions": "Share Data",
+      "clear": "Clear"
     },
     "symptomAnalyzer": {
       "title": "Pregnancy Wellness Diary",
@@ -1912,7 +1914,9 @@
       "days_wed": "Wed",
       "days_thu": "Thu",
       "days_fri": "Fri",
-      "days_sat": "Sat"
+      "days_sat": "Sat",
+      "streak": "Streak",
+      "weeklyAdherence": "Weekly Adherence"
     },
     "common": {
       "week": "Week",
@@ -4239,7 +4243,8 @@
       "helpfulVideos": "Helpful Videos",
       "personalizedPlan": "Personalized Plan",
       "retake": "Retake Assessment",
-      "scoreLabel": "Score"
+      "scoreLabel": "Score",
+      "generating": "Generating..."
     },
     "mealSuggestion": {
       "subtitle": "Smart meal suggestions for your pregnancy",
@@ -4753,7 +4758,8 @@
         "academyDesc": "Comprehensive cycle wellness education",
         "nutrition": "Nutrition Guide",
         "nutritionDesc": "Preconception nutrition & nutrition aids"
-      }
+      },
+      "title": "Preconception Checkup"
     },
     "preconceptionNutrition": {
       "categories": {
@@ -5014,6 +5020,14 @@
       "windowEnd": "Window closes",
       "estimatedOvulation": "Estimated ovulation day",
       "disclaimer": "This is an estimate based on average cycle data. Actual ovulation may vary. Consult your care provider for personalized guidance."
+    },
+    "fetalDevelopment": {
+      "aiWeeklyInsights": "AI Weekly Insights",
+      "setAsMyWeek": "Set as my week",
+      "sizeOf": "Size of",
+      "subtitle": "Watch your baby grow week by week",
+      "title": "Fetal Development",
+      "yourCurrentWeek": "Your current week"
     }
   },
   "welcome": {
@@ -6129,7 +6143,10 @@
     "exportReports": "Export Reports",
     "exportDesc": "Share with your doctor",
     "noAds": "No Ads",
-    "noAdsDesc": "Premium experience"
+    "noAdsDesc": "Premium experience",
+    "aiSupport": "AI Support",
+    "freePrivate": "Free & Private",
+    "languages": "Languages"
   },
   "quotes": {
     "q1": "Every day brings you closer to your beautiful moment 💕",
@@ -6753,6 +6770,11 @@
       "askNutrition": "Nutrition tips",
       "askSleep": "Improve sleep",
       "prompt": "Give me a brief personalized health tip for pregnancy week {{week}}. Focus on the top 3 things to watch."
+    },
+    "fetalMovement": {
+      "empty": "No kicks logged yet today",
+      "goal": "Goal: 10 kicks/day",
+      "title": "Fetal Movement"
     }
   },
   "weeklyJourney": {
@@ -6774,7 +6796,8 @@
       "mentalWellness": "Mental Wellness",
       "doctorQuestions": "Questions for Your Doctor",
       "checklist": "Weekly Checklist",
-      "aiInsight": "AI Insight"
+      "aiInsight": "AI Insight",
+      "fetalDev": "Fetal Development"
     },
     "copied": "Copied!",
     "aiDescription": "Get a comprehensive, personalized analysis for your current week powered by AI",
@@ -8282,7 +8305,9 @@
       "logSymptoms": "Log Symptoms",
       "trackWater": "Track Water",
       "logVitamins": "Log Vitamins",
-      "viewAppointments": "Appointments"
+      "viewAppointments": "Appointments",
+      "fitness": "Fitness",
+      "meals": "Meals"
     },
     "tips": {
       "hydration": "You're in week {{week}} — staying well-hydrated is especially important now",
@@ -8433,5 +8458,146 @@
     "postpartumContent": "The postpartum period is full of challenges and joy. Take care of your mental and physical health during this stage. Sleeping when the baby sleeps, asking family for help, and maintaining good nutrition are all essential. Use the relaxation and calm guide for practical recovery tips, and the smart newborn nutrition tool to track feeding schedules.",
     "wellnessTips": "Daily wellness tips for pregnancy: drink 8-10 glasses of water daily, eat small frequent meals rich in protein and fiber, walk for 30 minutes daily, take regular rest breaks, and journal your feelings in your pregnancy diary.",
     "appBenefits": "Why choose the smart motherhood companion: 33+ free tools, available in 7 languages, complete data privacy, AI-powered insights, personalized weekly updates, and no account registration required."
+  },
+  "achievements": {
+    "daysActive": "Days Active",
+    "kicksLogged": "Kick Sessions",
+    "seoTitle": "My Achievements",
+    "shareTitle": "My Weekly Achievements!",
+    "shareWhatsApp": "Share on WhatsApp",
+    "subtitle": "Track your wellness journey progress",
+    "title": "Your Achievements",
+    "toolsUsed": "Tools Used",
+    "weekProgress": "Week {{week}} of pregnancy",
+    "weeks": "weeks",
+    "weightEntries": "Weight Entries"
+  },
+  "aiFeedback": {
+    "no": "No",
+    "question": "Was this result helpful?",
+    "thankYou": "Thanks for your feedback! 💕",
+    "willImprove": "Thanks! We'll improve 🙏",
+    "yes": "Yes"
+  },
+  "babySizeCard": {
+    "babyIs": "Your baby is the size of a",
+    "length": "Length",
+    "share": "Share on WhatsApp",
+    "shareTitle": "My baby at week {{week}}!",
+    "size": "Size",
+    "weekLabel": "Week {{week}}",
+    "weight": "Weight"
+  },
+  "certificate": {
+    "share": "Share your achievement",
+    "shareBody": "Every week is a new milestone in my motherhood journey",
+    "shareTitle": "Week {{week}} Complete! 🎉",
+    "subtitle": "A wonderful achievement in your pregnancy journey 💪",
+    "title": "Week {{week}} Certificate"
+  },
+  "challenge": {
+    "daily": "Today's Challenge"
+  },
+  "countdown": {
+    "complete": "Complete",
+    "days": "days",
+    "daysLeft": "days left",
+    "dueDate": "Expected due date",
+    "title": "Birth Countdown",
+    "weeks": "weeks"
+  },
+  "disclaimer": {
+    "medical": "For informational purposes only. Consult your healthcare provider."
+  },
+  "discover": {
+    "alreadyUsed": "Already Used",
+    "generalContext": "Based on popular tools",
+    "newForYou": "New for You",
+    "seoTitle": "Discover New Tools",
+    "title": "Discover Tools for You",
+    "viewAchievements": "View My Achievements",
+    "weekContext": "Recommended for week {{week}} of your journey"
+  },
+  "faq": {
+    "title": "Common Questions for Your Week"
+  },
+  "offline": {
+    "localTools": "Local tools work normally",
+    "title": "You are offline"
+  },
+  "rating": {
+    "rateUs": "Rate us ⭐",
+    "reviews": "reviews"
+  },
+  "resultShare": {
+    "share": "Share",
+    "yourResult": "Your Result"
+  },
+  "smartBanner": {
+    "cta": "GET",
+    "subtitle": "Free on Google Play • 33+ Tools"
+  },
+  "stageRec": {
+    "suggested": "Suggested for you"
+  },
+  "stickyCta": {
+    "download": "Download Free — Google Play"
+  },
+  "streak": {
+    "days": "day streak"
+  },
+  "testimonials": {
+    "subtitle": "Real stories from real moms around the world",
+    "title": "What Moms Say"
+  },
+  "toolRating": {
+    "rateThis": "Rate this tool",
+    "ratings": "ratings"
+  },
+  "tour": {
+    "next": "Next",
+    "start": "Start now",
+    "step1Desc": "AI-powered tools for every stage of your pregnancy",
+    "step1Title": "33+ Smart Tools",
+    "step2Desc": "Track your weight, baby kicks, and medical appointments in one place",
+    "step2Title": "Smart Dashboard",
+    "step3Desc": "Discover your baby's development each week with personalized tips",
+    "step3Title": "Weekly Journey"
+  },
+  "whyUs": {
+    "comp": {
+      "aiPowered": "AI-Powered",
+      "darkMode": "Dark Mode",
+      "fertility": "Fertility Tracking",
+      "freeTools": "Free Tools",
+      "languages": "7 Languages",
+      "noAds": "No Ads",
+      "offline": "Works Offline",
+      "privacyFirst": "Privacy First",
+      "toolCount": "33+ Tools",
+      "whatsapp": "WhatsApp Sharing"
+    },
+    "compTitle": "How We Compare",
+    "cta": "Start Your Journey Now",
+    "ctaSub": "Free • No account needed • 33+ tools",
+    "feature": "Feature",
+    "hl": {
+      "ai": "AI-Powered",
+      "aiDesc": "Smart analysis for every concern",
+      "fast": "Fast",
+      "fastDesc": "Instant results, no waiting",
+      "free": "Free",
+      "freeDesc": "All tools free forever",
+      "global": "Global",
+      "globalDesc": "7 languages, works everywhere",
+      "journey": "Full Journey",
+      "journeyDesc": "Fertility to postpartum",
+      "privacy": "Private",
+      "privacyDesc": "Your data stays on your device"
+    },
+    "others": "Others",
+    "subtitle": "See why mothers trust us worldwide",
+    "title": "Why Choose Us",
+    "us": "Us"
   }
 }

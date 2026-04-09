@@ -665,7 +665,8 @@
       "terms": "Conditions",
       "contact": "Contact",
       "disclaimerTitle": "Avis Important",
-      "disclaimerText": "Cette application est uniquement à des fins éducatives et informatives et ne remplace pas les conseils de santé professionnels. Consultez toujours un professionnel de santé qualifié pour toute préoccupation de santé."
+      "disclaimerText": "Cette application est uniquement à des fins éducatives et informatives et ne remplace pas les conseils de santé professionnels. Consultez toujours un professionnel de santé qualifié pour toute préoccupation de santé.",
+      "testimonials": "Avis"
     },
     "share": {
       "title": "Outils de Grossesse",
@@ -1740,7 +1741,8 @@
       "selectIntensity": "Intensité de la contraction",
       "fiveOneOneAlert": "Règle 5-1-1 atteinte !",
       "fiveOneOneDesc": "Contractions toutes les 5 min, durant 1 min, pendant 1 heure. Contactez votre médecin.",
-      "shareContractions": "Partager les données"
+      "shareContractions": "Partager les données",
+      "clear": "Effacer"
     },
     "symptomAnalyzer": {
       "title": "Journal de bien-être grossesse",
@@ -4063,7 +4065,8 @@
           "title": "Bon état",
           "message": "Vous semblez bien gérer cette période. Continuez à prendre soin de vous."
         }
-      }
+      },
+      "generating": "Génération en cours..."
     },
     "mealSuggestion": {
       "subtitle": "Suggestions de repas intelligentes pour votre grossesse",
@@ -4577,7 +4580,8 @@
         "academyDesc": "Éducation complète sur la fécondité",
         "nutrition": "Guide nutritionnel",
         "nutritionDesc": "Nutrition et aide nutritionnels avant la conception"
-      }
+      },
+      "title": "Bilan préconceptionnel"
     },
     "preconceptionNutrition": {
       "categories": {
@@ -4897,7 +4901,17 @@
       "days_wed": "Mer",
       "days_thu": "Jeu",
       "days_fri": "Ven",
-      "days_sat": "Sam"
+      "days_sat": "Sam",
+      "streak": "Série",
+      "weeklyAdherence": "Adhérence hebdomadaire"
+    },
+    "fetalDevelopment": {
+      "aiWeeklyInsights": "Aperçus IA hebdomadaires",
+      "setAsMyWeek": "Définir comme ma semaine",
+      "sizeOf": "Taille de",
+      "subtitle": "Suivez la croissance de votre bébé semaine par semaine",
+      "title": "Développement fœtal",
+      "yourCurrentWeek": "Votre semaine actuelle"
     }
   },
   "welcome": {
@@ -6013,7 +6027,10 @@
     "exportReports": "Exporter les rapports",
     "exportDesc": "Partager avec votre médecin",
     "noAds": "Sans publicité",
-    "noAdsDesc": "Expérience premium"
+    "noAdsDesc": "Expérience premium",
+    "aiSupport": "Support IA",
+    "freePrivate": "Gratuit & Privé",
+    "languages": "Langues"
   },
   "quotes": {
     "q1": "Chaque jour vous rapproche de votre beau moment 💕",
@@ -6637,6 +6654,11 @@
       "askNutrition": "Conseils nutrition",
       "askSleep": "Améliorer le sommeil",
       "prompt": "Donnez-moi un conseil santé personnalisé pour la semaine {{week}} de grossesse. Focus sur les 3 points essentiels."
+    },
+    "fetalMovement": {
+      "empty": "Aucun coup enregistré aujourd'hui",
+      "goal": "Objectif : 10 coups/jour",
+      "title": "Mouvements fœtaux"
     }
   },
   "weeklyJourney": {
@@ -6658,7 +6680,8 @@
       "mentalWellness": "Bien-être mental",
       "doctorQuestions": "Questions pour votre médecin",
       "checklist": "Liste hebdomadaire",
-      "aiInsight": "Aperçu IA"
+      "aiInsight": "Aperçu IA",
+      "fetalDev": "Développement fœtal"
     },
     "copied": "Copié !",
     "aiDescription": "Obtenez une analyse complète et personnalisée de votre semaine actuelle grâce à l'IA",
@@ -8166,7 +8189,9 @@
       "logSymptoms": "Enregistrer symptômes",
       "trackWater": "Suivre l'eau",
       "logVitamins": "Enregistrer vitamines",
-      "viewAppointments": "Rendez-vous"
+      "viewAppointments": "Rendez-vous",
+      "fitness": "Fitness",
+      "meals": "Repas"
     },
     "tips": {
       "hydration": "Vous êtes à la semaine {{week}} — bien s'hydrater est essentiel maintenant",
@@ -8317,5 +8342,146 @@
     "postpartumContent": "La période post-partum est pleine de défis et de joie. Prenez soin de votre santé mentale et physique. Dormez quand le bébé dort, demandez de l'aide à votre famille et maintenez une bonne alimentation. Utilisez le guide de relaxation pour des conseils pratiques de récupération.",
     "wellnessTips": "Conseils bien-être quotidiens : buvez 8 à 10 verres d'eau par jour, mangez des repas petits et fréquents riches en protéines et fibres, marchez 30 minutes par jour, prenez des pauses régulières et notez vos sentiments dans votre journal.",
     "appBenefits": "Pourquoi choisir notre compagnon intelligent : plus de 33 outils gratuits, disponible en 7 langues, confidentialité totale, insights IA, mises à jour personnalisées et aucune inscription requise."
+  },
+  "achievements": {
+    "daysActive": "Jours actifs",
+    "kicksLogged": "Sessions de coups",
+    "seoTitle": "Mes réalisations",
+    "shareTitle": "Mes réalisations hebdomadaires !",
+    "shareWhatsApp": "Partager sur WhatsApp",
+    "subtitle": "Suivez vos progrès bien-être",
+    "title": "Vos réalisations",
+    "toolsUsed": "Outils utilisés",
+    "weekProgress": "Semaine {{week}} de grossesse",
+    "weeks": "semaines",
+    "weightEntries": "Entrées de poids"
+  },
+  "aiFeedback": {
+    "no": "Non",
+    "question": "Ce résultat vous a-t-il été utile ?",
+    "thankYou": "Merci pour votre avis ! 💕",
+    "willImprove": "Merci ! Nous nous améliorerons 🙏",
+    "yes": "Oui"
+  },
+  "babySizeCard": {
+    "babyIs": "Votre bébé a la taille d'un(e)",
+    "length": "Longueur",
+    "share": "Partager sur WhatsApp",
+    "shareTitle": "Mon bébé à la semaine {{week}} !",
+    "size": "Taille",
+    "weekLabel": "Semaine {{week}}",
+    "weight": "Poids"
+  },
+  "certificate": {
+    "share": "Partagez votre réussite",
+    "shareBody": "Chaque semaine est une nouvelle étape dans mon parcours de maternité",
+    "shareTitle": "Semaine {{week}} terminée ! 🎉",
+    "subtitle": "Une belle réussite dans votre grossesse 💪",
+    "title": "Certificat Semaine {{week}}"
+  },
+  "challenge": {
+    "daily": "Défi du jour"
+  },
+  "countdown": {
+    "complete": "Terminé",
+    "days": "jours",
+    "daysLeft": "jours restants",
+    "dueDate": "Date prévue d'accouchement",
+    "title": "Compte à rebours naissance",
+    "weeks": "semaines"
+  },
+  "disclaimer": {
+    "medical": "À titre informatif uniquement. Consultez votre médecin."
+  },
+  "discover": {
+    "alreadyUsed": "Déjà utilisé",
+    "generalContext": "Basé sur les outils populaires",
+    "newForYou": "Nouveau pour vous",
+    "seoTitle": "Découvrir de nouveaux outils",
+    "title": "Découvrez les outils pour vous",
+    "viewAchievements": "Voir mes réalisations",
+    "weekContext": "Recommandé pour la semaine {{week}}"
+  },
+  "faq": {
+    "title": "Questions fréquentes pour votre semaine"
+  },
+  "offline": {
+    "localTools": "Les outils locaux fonctionnent normalement",
+    "title": "Vous êtes hors ligne"
+  },
+  "rating": {
+    "rateUs": "Évaluez-nous ⭐",
+    "reviews": "avis"
+  },
+  "resultShare": {
+    "share": "Partager",
+    "yourResult": "Votre résultat"
+  },
+  "smartBanner": {
+    "cta": "OBTENIR",
+    "subtitle": "Gratuit sur Google Play • 33+ outils"
+  },
+  "stageRec": {
+    "suggested": "Suggéré pour vous"
+  },
+  "stickyCta": {
+    "download": "Télécharger gratuitement — Google Play"
+  },
+  "streak": {
+    "days": "jours consécutifs"
+  },
+  "testimonials": {
+    "subtitle": "Des histoires vraies de vraies mamans du monde entier",
+    "title": "Ce que disent les mamans"
+  },
+  "toolRating": {
+    "rateThis": "Évaluez cet outil",
+    "ratings": "évaluations"
+  },
+  "tour": {
+    "next": "Suivant",
+    "start": "Commencer",
+    "step1Desc": "Outils alimentés par l'IA pour chaque étape de votre grossesse",
+    "step1Title": "33+ Outils intelligents",
+    "step2Desc": "Suivez votre poids, les coups du bébé et vos rendez-vous médicaux",
+    "step2Title": "Tableau de bord intelligent",
+    "step3Desc": "Découvrez le développement de votre bébé chaque semaine avec des conseils personnalisés",
+    "step3Title": "Parcours hebdomadaire"
+  },
+  "whyUs": {
+    "comp": {
+      "aiPowered": "Propulsé par l'IA",
+      "darkMode": "Mode sombre",
+      "fertility": "Suivi de fertilité",
+      "freeTools": "Outils gratuits",
+      "languages": "7 Langues",
+      "noAds": "Sans publicité",
+      "offline": "Fonctionne hors ligne",
+      "privacyFirst": "Confidentialité d'abord",
+      "toolCount": "33+ Outils",
+      "whatsapp": "Partage WhatsApp"
+    },
+    "compTitle": "Notre comparaison",
+    "cta": "Commencez votre parcours maintenant",
+    "ctaSub": "Gratuit • Sans compte • 33+ outils",
+    "feature": "Fonctionnalité",
+    "hl": {
+      "ai": "IA",
+      "aiDesc": "Analyse intelligente pour chaque question",
+      "fast": "Rapide",
+      "fastDesc": "Résultats instantanés, sans attente",
+      "free": "Gratuit",
+      "freeDesc": "Tous les outils gratuits pour toujours",
+      "global": "Mondial",
+      "globalDesc": "7 langues, fonctionne partout",
+      "journey": "Parcours complet",
+      "journeyDesc": "De la fertilité au post-partum",
+      "privacy": "Privé",
+      "privacyDesc": "Vos données restent sur votre appareil"
+    },
+    "others": "Autres",
+    "subtitle": "Découvrez pourquoi les mamans nous font confiance",
+    "title": "Pourquoi nous choisir",
+    "us": "Nous"
   }
 }

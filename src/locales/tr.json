@@ -671,7 +671,8 @@
       "terms": "Şartlar",
       "contact": "İletişim",
       "disclaimerTitle": "Önemli Bilgilendirme",
-      "disclaimerText": "Bu uygulama yalnızca eğitim ve bilgilendirme amaçlıdır ve profesyonel sağlık rehberliğinin yerini almaz. Herhangi bir sağlık endişesi için her zaman nitelikli bir sağlık hizmeti sağlayıcısına danışın."
+      "disclaimerText": "Bu uygulama yalnızca eğitim ve bilgilendirme amaçlıdır ve profesyonel sağlık rehberliğinin yerini almaz. Herhangi bir sağlık endişesi için her zaman nitelikli bir sağlık hizmeti sağlayıcısına danışın.",
+      "testimonials": "Yorumlar"
     },
     "share": {
       "title": "Hamilelik Araçları",
@@ -1746,7 +1747,8 @@
       "selectIntensity": "Kasılma şiddeti",
       "fiveOneOneAlert": "5-1-1 Kuralı karşılandı!",
       "fiveOneOneDesc": "Her 5 dk kasılma, 1 dk süre, 1 saattir. Doktorunuza başvurun.",
-      "shareContractions": "Verileri paylaş"
+      "shareContractions": "Verileri paylaş",
+      "clear": "Temizle"
     },
     "symptomAnalyzer": {
       "title": "Hamilelik Sağlık Günlüğü",
@@ -4069,7 +4071,8 @@
           "title": "İyi durum",
           "message": "Bu dönemi iyi yönetiyor görünüyorsunuz. Böyle devam edin!"
         }
-      }
+      },
+      "generating": "Oluşturuluyor..."
     },
     "mealSuggestion": {
       "subtitle": "Hamileliğiniz için akıllı yemek önerileri",
@@ -4583,7 +4586,8 @@
         "academyDesc": "Kapsamlı doğurganlık eğitimi",
         "nutrition": "Beslenme Rehberi",
         "nutritionDesc": "Gebelik öncesi beslenme ve beslenme desteği"
-      }
+      },
+      "title": "Gebelik Öncesi Kontrol"
     },
     "preconceptionNutrition": {
       "categories": {
@@ -4903,7 +4907,17 @@
       "days_wed": "Çar",
       "days_thu": "Per",
       "days_fri": "Cum",
-      "days_sat": "Cmt"
+      "days_sat": "Cmt",
+      "streak": "Seri",
+      "weeklyAdherence": "Haftalık Uyum"
+    },
+    "fetalDevelopment": {
+      "aiWeeklyInsights": "Haftalık Yapay Zeka Görüşleri",
+      "setAsMyWeek": "Haftam olarak ayarla",
+      "sizeOf": "Boyutu",
+      "subtitle": "Bebeğinizin hafta hafta büyümesini izleyin",
+      "title": "Fetüs Gelişimi",
+      "yourCurrentWeek": "Mevcut haftanız"
     }
   },
   "welcome": {
@@ -6019,7 +6033,10 @@
     "exportReports": "Raporları dışa aktar",
     "exportDesc": "Doktorunla paylaş",
     "noAds": "Reklamsız",
-    "noAdsDesc": "Premium deneyim"
+    "noAdsDesc": "Premium deneyim",
+    "aiSupport": "Yapay Zeka Desteği",
+    "freePrivate": "Ücretsiz ve Özel",
+    "languages": "Diller"
   },
   "quotes": {
     "q1": "Her gün seni güzel anına yaklaştırıyor 💕",
@@ -6630,6 +6647,11 @@
       "askNutrition": "Beslenme ipuçları",
       "askSleep": "Uyku iyileştirme",
       "prompt": "Hamileliğin {{week}}. haftası için kısa ve kişisel bir sağlık ipucu verin. En önemli 3 noktaya odaklanın."
+    },
+    "fetalMovement": {
+      "empty": "Bugün henüz tekme kaydedilmedi",
+      "goal": "Hedef: Günde 10 tekme",
+      "title": "Bebek Hareketleri"
     }
   },
   "weeklyJourney": {
@@ -6651,7 +6673,8 @@
       "mentalWellness": "Ruhsal Sağlık",
       "doctorQuestions": "Doktorunuza Sorular",
       "checklist": "Haftalık Kontrol Listesi",
-      "aiInsight": "Yapay Zeka Analizi"
+      "aiInsight": "Yapay Zeka Analizi",
+      "fetalDev": "Fetüs Gelişimi"
     },
     "copied": "Kopyalandı!",
     "aiDescription": "Mevcut haftanız için yapay zeka ile kapsamlı, kişiselleştirilmiş bir analiz alın",
@@ -8159,7 +8182,9 @@
       "logSymptoms": "Belirtileri kaydet",
       "trackWater": "Su takibi",
       "logVitamins": "Vitamin kaydet",
-      "viewAppointments": "Randevular"
+      "viewAppointments": "Randevular",
+      "fitness": "Fitness",
+      "meals": "Öğünler"
     },
     "tips": {
       "hydration": "{{week}}. haftadasınız — yeterli su içmek şimdi çok önemli",
@@ -8310,5 +8335,146 @@
     "postpartumContent": "Doğum sonrası dönem zorluklarla ve sevinçle doludur. Ruhsal ve fiziksel sağlığınıza dikkat edin. Bebek uyuduğunda uyuyun, ailenizden yardım isteyin ve iyi beslenmeyi sürdürün. Pratik iyileşme ipuçları için rahatlama rehberini kullanın.",
     "wellnessTips": "Günlük sağlıklı yaşam ipuçları: günde 8-10 bardak su için, protein ve lif açısından zengin küçük ve sık öğünler yiyin, günde 30 dakika yürüyüş yapın, düzenli mola verin ve duygularınızı günlüğünüze yazın.",
     "appBenefits": "Akıllı annelik yoldaşımızı neden seçmelisiniz: 33+ ücretsiz araç, 7 dilde mevcut, tam veri gizliliği, yapay zeka destekli içgörüler, kişiselleştirilmiş güncellemeler ve kayıt gerektirmez."
+  },
+  "achievements": {
+    "daysActive": "Aktif Günler",
+    "kicksLogged": "Tekme Seansları",
+    "seoTitle": "Başarılarım",
+    "shareTitle": "Haftalık Başarılarım!",
+    "shareWhatsApp": "WhatsApp'ta Paylaş",
+    "subtitle": "Sağlık yolculuğunuzun ilerlemesini takip edin",
+    "title": "Başarılarınız",
+    "toolsUsed": "Kullanılan Araçlar",
+    "weekProgress": "Hamileliğin {{week}}. haftası",
+    "weeks": "hafta",
+    "weightEntries": "Kilo Kayıtları"
+  },
+  "aiFeedback": {
+    "no": "Hayır",
+    "question": "Bu sonuç faydalı oldu mu?",
+    "thankYou": "Geri bildiriminiz için teşekkürler! 💕",
+    "willImprove": "Teşekkürler! Gelişeceğiz 🙏",
+    "yes": "Evet"
+  },
+  "babySizeCard": {
+    "babyIs": "Bebeğiniz bir",
+    "length": "Boy",
+    "share": "WhatsApp'ta Paylaş",
+    "shareTitle": "Bebeğim {{week}}. haftada!",
+    "size": "Boyut",
+    "weekLabel": "{{week}}. Hafta",
+    "weight": "Ağırlık"
+  },
+  "certificate": {
+    "share": "Başarınızı paylaşın",
+    "shareBody": "Her hafta annelik yolculuğumda yeni bir kilometre taşı",
+    "shareTitle": "{{week}}. Hafta tamamlandı! 🎉",
+    "subtitle": "Hamilelik yolculuğunuzda harika bir başarı 💪",
+    "title": "{{week}}. Hafta Sertifikası"
+  },
+  "challenge": {
+    "daily": "Günün Mücadelesi"
+  },
+  "countdown": {
+    "complete": "Tamamlandı",
+    "days": "gün",
+    "daysLeft": "gün kaldı",
+    "dueDate": "Tahmini doğum tarihi",
+    "title": "Doğum Geri Sayımı",
+    "weeks": "hafta"
+  },
+  "disclaimer": {
+    "medical": "Yalnızca bilgilendirme amaçlıdır. Doktorunuza danışın."
+  },
+  "discover": {
+    "alreadyUsed": "Zaten Kullanıldı",
+    "generalContext": "Popüler araçlara göre",
+    "newForYou": "Sizin için Yeni",
+    "seoTitle": "Yeni Araçları Keşfet",
+    "title": "Size Uygun Araçları Keşfedin",
+    "viewAchievements": "Başarılarımı Gör",
+    "weekContext": "Yolculuğunuzun {{week}}. haftası için önerilen"
+  },
+  "faq": {
+    "title": "Haftanız için Sık Sorulan Sorular"
+  },
+  "offline": {
+    "localTools": "Yerel araçlar normal çalışıyor",
+    "title": "Çevrimdışısınız"
+  },
+  "rating": {
+    "rateUs": "Bizi değerlendirin ⭐",
+    "reviews": "yorum"
+  },
+  "resultShare": {
+    "share": "Paylaş",
+    "yourResult": "Sonucunuz"
+  },
+  "smartBanner": {
+    "cta": "İNDİR",
+    "subtitle": "Google Play'de ücretsiz • 33+ Araç"
+  },
+  "stageRec": {
+    "suggested": "Sizin için önerilen"
+  },
+  "stickyCta": {
+    "download": "Ücretsiz İndir — Google Play"
+  },
+  "streak": {
+    "days": "gün üst üste"
+  },
+  "testimonials": {
+    "subtitle": "Dünyanın dört bir yanından gerçek annelerin gerçek hikayeleri",
+    "title": "Anneler Ne Diyor"
+  },
+  "toolRating": {
+    "rateThis": "Bu aracı değerlendirin",
+    "ratings": "değerlendirme"
+  },
+  "tour": {
+    "next": "İleri",
+    "start": "Şimdi başla",
+    "step1Desc": "Hamileliğinizin her aşaması için yapay zeka destekli araçlar",
+    "step1Title": "33+ Akıllı Araç",
+    "step2Desc": "Kilonuzu, bebek tekmelerini ve doktor randevularını tek yerde takip edin",
+    "step2Title": "Akıllı Panel",
+    "step3Desc": "Her hafta bebeğinizin gelişimini kişiselleştirilmiş ipuçlarıyla keşfedin",
+    "step3Title": "Haftalık Yolculuk"
+  },
+  "whyUs": {
+    "comp": {
+      "aiPowered": "Yapay Zeka Destekli",
+      "darkMode": "Karanlık Mod",
+      "fertility": "Doğurganlık Takibi",
+      "freeTools": "Ücretsiz Araçlar",
+      "languages": "7 Dil",
+      "noAds": "Reklamsız",
+      "offline": "Çevrimdışı Çalışır",
+      "privacyFirst": "Gizlilik Öncelikli",
+      "toolCount": "33+ Araç",
+      "whatsapp": "WhatsApp Paylaşımı"
+    },
+    "compTitle": "Nasıl Karşılaştırıyoruz",
+    "cta": "Yolculuğunuza Şimdi Başlayın",
+    "ctaSub": "Ücretsiz • Hesap gerekmez • 33+ araç",
+    "feature": "Özellik",
+    "hl": {
+      "ai": "Yapay Zeka",
+      "aiDesc": "Her endişe için akıllı analiz",
+      "fast": "Hızlı",
+      "fastDesc": "Anında sonuçlar, bekleme yok",
+      "free": "Ücretsiz",
+      "freeDesc": "Tüm araçlar sonsuza kadar ücretsiz",
+      "global": "Global",
+      "globalDesc": "7 dil, her yerde çalışır",
+      "journey": "Tam Yolculuk",
+      "journeyDesc": "Doğurganlıktan doğum sonrasına",
+      "privacy": "Gizli",
+      "privacyDesc": "Verileriniz cihazınızda kalır"
+    },
+    "others": "Diğerleri",
+    "subtitle": "Annelerin neden bize güvendiğini görün",
+    "title": "Neden Bizi Seçmelisiniz",
+    "us": "Biz"
   }
 }

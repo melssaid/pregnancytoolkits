@@ -671,7 +671,8 @@
       "terms": "Termos",
       "contact": "Contato",
       "disclaimerTitle": "Aviso Importante",
-      "disclaimerText": "Este aplicativo é apenas para fins educacionais e informativos e não substitui orientação profissional de saúde. Sempre consulte um profissional de saúde qualificado para qualquer preocupação de saúde."
+      "disclaimerText": "Este aplicativo é apenas para fins educacionais e informativos e não substitui orientação profissional de saúde. Sempre consulte um profissional de saúde qualificado para qualquer preocupação de saúde.",
+      "testimonials": "Avaliações"
     },
     "share": {
       "title": "Ferramentas de Gravidez",
@@ -1746,7 +1747,8 @@
       "selectIntensity": "Intensidade da contração",
       "fiveOneOneAlert": "Regra 5-1-1 atingida!",
       "fiveOneOneDesc": "Contrações a cada 5 min, com 1 min de duração, por 1 hora. Contacte o seu médico.",
-      "shareContractions": "Compartilhar dados"
+      "shareContractions": "Compartilhar dados",
+      "clear": "Limpar"
     },
     "symptomAnalyzer": {
       "title": "Diário de bem-estar da gravidez",
@@ -4069,7 +4071,8 @@
           "title": "Bom estado",
           "message": "Você parece lidar bem com esta fase. Continue assim!"
         }
-      }
+      },
+      "generating": "Gerando..."
     },
     "mealSuggestion": {
       "subtitle": "Sugestões inteligentes de refeições para sua gravidez",
@@ -4583,7 +4586,8 @@
         "academyDesc": "Educação abrangente sobre fertilidade",
         "nutrition": "Guia de nutrição",
         "nutritionDesc": "Nutrição e ajuda nutricional pré-concepção"
-      }
+      },
+      "title": "Checkup pré-concepção"
     },
     "preconceptionNutrition": {
       "categories": {
@@ -4903,7 +4907,17 @@
       "days_wed": "Qua",
       "days_thu": "Qui",
       "days_fri": "Sex",
-      "days_sat": "Sáb"
+      "days_sat": "Sáb",
+      "streak": "Sequência",
+      "weeklyAdherence": "Adesão semanal"
+    },
+    "fetalDevelopment": {
+      "aiWeeklyInsights": "Insights semanais com IA",
+      "setAsMyWeek": "Definir como minha semana",
+      "sizeOf": "Tamanho de",
+      "subtitle": "Acompanhe o crescimento do seu bebê semana a semana",
+      "title": "Desenvolvimento fetal",
+      "yourCurrentWeek": "Sua semana atual"
     }
   },
   "welcome": {
@@ -6019,7 +6033,10 @@
     "exportReports": "Exportar relatórios",
     "exportDesc": "Compartilhe com seu médico",
     "noAds": "Sem anúncios",
-    "noAdsDesc": "Experiência premium"
+    "noAdsDesc": "Experiência premium",
+    "aiSupport": "Suporte IA",
+    "freePrivate": "Grátis e Privado",
+    "languages": "Idiomas"
   },
   "quotes": {
     "q1": "Cada dia te aproxima do seu lindo momento 💕",
@@ -6630,6 +6647,11 @@
       "askNutrition": "Dicas de nutrição",
       "askSleep": "Melhorar o sono",
       "prompt": "Dê-me uma dica de saúde personalizada para a semana {{week}} da gravidez. Foque nos 3 pontos mais importantes."
+    },
+    "fetalMovement": {
+      "empty": "Nenhum chute registrado hoje",
+      "goal": "Meta: 10 chutes/dia",
+      "title": "Movimento fetal"
     }
   },
   "weeklyJourney": {
@@ -6651,7 +6673,8 @@
       "mentalWellness": "Bem-estar mental",
       "doctorQuestions": "Perguntas para seu médico",
       "checklist": "Lista semanal",
-      "aiInsight": "Insight IA"
+      "aiInsight": "Insight IA",
+      "fetalDev": "Desenvolvimento fetal"
     },
     "copied": "Copiado!",
     "aiDescription": "Obtenha uma análise completa e personalizada da sua semana atual com IA",
@@ -8159,7 +8182,9 @@
       "logSymptoms": "Registrar sintomas",
       "trackWater": "Registrar água",
       "logVitamins": "Registrar vitaminas",
-      "viewAppointments": "Consultas"
+      "viewAppointments": "Consultas",
+      "fitness": "Fitness",
+      "meals": "Refeições"
     },
     "tips": {
       "hydration": "Você está na semana {{week}} — manter-se hidratada é muito importante agora",
@@ -8310,5 +8335,146 @@
     "postpartumContent": "O período pós-parto é cheio de desafios e alegria. Cuide da sua saúde mental e física. Durma quando o bebê dormir, peça ajuda à família e mantenha boa alimentação. Use o guia de relaxamento para dicas práticas de recuperação.",
     "wellnessTips": "Dicas diárias de bem-estar: beba 8-10 copos de água por dia, faça refeições pequenas e frequentes ricas em proteínas e fibras, caminhe 30 minutos por dia, faça pausas regulares e registre seus sentimentos no seu diário.",
     "appBenefits": "Por que escolher nosso companheiro inteligente: mais de 33 ferramentas gratuitas, disponível em 7 idiomas, privacidade total, insights com IA, atualizações personalizadas e sem necessidade de cadastro."
+  },
+  "achievements": {
+    "daysActive": "Dias ativos",
+    "kicksLogged": "Sessões de chutes",
+    "seoTitle": "Minhas conquistas",
+    "shareTitle": "Minhas conquistas semanais!",
+    "shareWhatsApp": "Compartilhar no WhatsApp",
+    "subtitle": "Acompanhe seu progresso de bem-estar",
+    "title": "Suas conquistas",
+    "toolsUsed": "Ferramentas usadas",
+    "weekProgress": "Semana {{week}} de gravidez",
+    "weeks": "semanas",
+    "weightEntries": "Registros de peso"
+  },
+  "aiFeedback": {
+    "no": "Não",
+    "question": "Este resultado foi útil?",
+    "thankYou": "Obrigada pelo seu feedback! 💕",
+    "willImprove": "Obrigada! Vamos melhorar 🙏",
+    "yes": "Sim"
+  },
+  "babySizeCard": {
+    "babyIs": "Seu bebê tem o tamanho de",
+    "length": "Comprimento",
+    "share": "Compartilhar no WhatsApp",
+    "shareTitle": "Meu bebê na semana {{week}}!",
+    "size": "Tamanho",
+    "weekLabel": "Semana {{week}}",
+    "weight": "Peso"
+  },
+  "certificate": {
+    "share": "Compartilhe sua conquista",
+    "shareBody": "Cada semana é uma nova conquista na minha jornada de maternidade",
+    "shareTitle": "Semana {{week}} concluída! 🎉",
+    "subtitle": "Uma conquista maravilhosa na sua gravidez 💪",
+    "title": "Certificado Semana {{week}}"
+  },
+  "challenge": {
+    "daily": "Desafio do dia"
+  },
+  "countdown": {
+    "complete": "Completo",
+    "days": "dias",
+    "daysLeft": "dias restantes",
+    "dueDate": "Data prevista do parto",
+    "title": "Contagem regressiva do parto",
+    "weeks": "semanas"
+  },
+  "disclaimer": {
+    "medical": "Apenas para fins informativos. Consulte seu médico."
+  },
+  "discover": {
+    "alreadyUsed": "Já utilizado",
+    "generalContext": "Baseado em ferramentas populares",
+    "newForYou": "Novo para você",
+    "seoTitle": "Descubra novas ferramentas",
+    "title": "Descubra ferramentas para você",
+    "viewAchievements": "Ver minhas conquistas",
+    "weekContext": "Recomendado para a semana {{week}}"
+  },
+  "faq": {
+    "title": "Perguntas frequentes para sua semana"
+  },
+  "offline": {
+    "localTools": "Ferramentas locais funcionam normalmente",
+    "title": "Você está offline"
+  },
+  "rating": {
+    "rateUs": "Avalie-nos ⭐",
+    "reviews": "avaliações"
+  },
+  "resultShare": {
+    "share": "Compartilhar",
+    "yourResult": "Seu resultado"
+  },
+  "smartBanner": {
+    "cta": "OBTER",
+    "subtitle": "Grátis no Google Play • 33+ ferramentas"
+  },
+  "stageRec": {
+    "suggested": "Sugerido para você"
+  },
+  "stickyCta": {
+    "download": "Baixar grátis — Google Play"
+  },
+  "streak": {
+    "days": "dias consecutivos"
+  },
+  "testimonials": {
+    "subtitle": "Histórias reais de mães reais ao redor do mundo",
+    "title": "O que as mães dizem"
+  },
+  "toolRating": {
+    "rateThis": "Avalie esta ferramenta",
+    "ratings": "avaliações"
+  },
+  "tour": {
+    "next": "Próximo",
+    "start": "Começar agora",
+    "step1Desc": "Ferramentas com IA para cada fase da sua gravidez",
+    "step1Title": "33+ Ferramentas inteligentes",
+    "step2Desc": "Acompanhe peso, chutes do bebê e consultas em um só lugar",
+    "step2Title": "Painel inteligente",
+    "step3Desc": "Descubra o desenvolvimento do seu bebê a cada semana com dicas personalizadas",
+    "step3Title": "Jornada semanal"
+  },
+  "whyUs": {
+    "comp": {
+      "aiPowered": "Com IA",
+      "darkMode": "Modo escuro",
+      "fertility": "Rastreamento de fertilidade",
+      "freeTools": "Ferramentas gratuitas",
+      "languages": "7 Idiomas",
+      "noAds": "Sem anúncios",
+      "offline": "Funciona offline",
+      "privacyFirst": "Privacidade em primeiro",
+      "toolCount": "33+ Ferramentas",
+      "whatsapp": "Compartilhar WhatsApp"
+    },
+    "compTitle": "Como nos comparamos",
+    "cta": "Comece sua jornada agora",
+    "ctaSub": "Grátis • Sem conta • 33+ ferramentas",
+    "feature": "Recurso",
+    "hl": {
+      "ai": "IA",
+      "aiDesc": "Análise inteligente para cada questão",
+      "fast": "Rápido",
+      "fastDesc": "Resultados instantâneos, sem espera",
+      "free": "Grátis",
+      "freeDesc": "Todas as ferramentas grátis para sempre",
+      "global": "Global",
+      "globalDesc": "7 idiomas, funciona em qualquer lugar",
+      "journey": "Jornada completa",
+      "journeyDesc": "Da fertilidade ao pós-parto",
+      "privacy": "Privado",
+      "privacyDesc": "Seus dados ficam no seu dispositivo"
+    },
+    "others": "Outros",
+    "subtitle": "Descubra por que mães confiam em nós",
+    "title": "Por que nos escolher",
+    "us": "Nós"
   }
 }
