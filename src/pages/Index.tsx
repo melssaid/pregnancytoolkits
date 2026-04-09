@@ -433,16 +433,31 @@ const ShareAppButton = memo(function ShareAppButton() {
   };
 
   return (
-    <motion.button
-      onClick={handleShare}
+    <motion.div
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
-      whileTap={{ scale: 0.97 }}
-      className="w-full flex items-center justify-center gap-2 p-3 rounded-xl bg-primary/[0.06] border border-primary/15 hover:bg-primary/[0.1] transition-all"
+      transition={{ duration: 0.35, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+      className="mt-1.5"
     >
-      <Share2 className="w-4 h-4 text-primary" />
-      <span className="text-xs font-bold text-primary">{l.text}</span>
-    </motion.button>
+      <button
+        onClick={handleShare}
+        className="w-full text-start rounded-xl overflow-hidden bg-card border border-border/30 hover:border-border/50 shadow-sm hover:shadow-md transition-all duration-300 group"
+      >
+        <div className="px-3 py-2.5 flex items-center gap-2.5">
+          <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center border border-emerald-500/15">
+            <Share2 className="w-3.5 h-3.5 text-emerald-500" strokeWidth={1.8} />
+          </div>
+          <span className="flex-1 text-[11px] font-semibold text-muted-foreground group-hover:text-foreground transition-colors" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+            {l.text}
+          </span>
+          {lang === 'ar' ? (
+            <ChevronLeft className="w-3 h-3 text-muted-foreground/30 group-hover:text-muted-foreground/60 transition-colors" />
+          ) : (
+            <ChevronRight className="w-3 h-3 text-muted-foreground/30 group-hover:text-muted-foreground/60 transition-colors" />
+          )}
+        </div>
+      </button>
+    </motion.div>
   );
 });
 
