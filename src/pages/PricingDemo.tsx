@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
-import { Check, X, Sparkles, Brain, Shield, Zap, Heart, Crown } from "lucide-react";
+import { Check, X, Sparkles, Brain, Shield, Zap, Heart, Crown, Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { requestPurchase, isDigitalGoodsAvailable, runBillingDiagnostics, clearBillingCache, type PlanType } from "@/lib/googlePlayBilling";
@@ -12,9 +12,6 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAIUsage } from "@/contexts/AIUsageContext";
 import { setTier as qmSetTier } from "@/services/smartEngine/quotaManager";
 import { usePlayPrices } from "@/hooks/usePlayPrices";
-import { PurchaseConfirmationSheet } from "@/components/billing/PurchaseConfirmationSheet";
-import { PurchaseProgressOverlay, type PurchaseStep } from "@/components/billing/PurchaseProgressOverlay";
-import { PurchaseErrorSheet } from "@/components/billing/PurchaseErrorSheet";
 
 const features = [
   { icon: Brain, key: "feature1" },
@@ -24,43 +21,12 @@ const features = [
   { icon: Sparkles, key: "feature5" },
 ];
 
-// Track pricing page visit for abandoned cart reminder (#10)
-function scheduleAbandonedCartReminder() {
-  if (!("Notification" in window) || Notification.permission !== "granted") return;
-  const REMINDER_KEY = "pricing_visit_ts";
-  localStorage.setItem(REMINDER_KEY, Date.now().toString());
-
-  // Schedule a check after 1 hour
-  setTimeout(() => {
-    const visitTs = localStorage.getItem(REMINDER_KEY);
-    if (!visitTs) return; // User purchased (we clear it on success)
-    const elapsed = Date.now() - parseInt(visitTs);
-    if (elapsed >= 3500000) { // ~1 hour
-      try {
-        new Notification(
-          document.documentElement.lang === "ar" ? "🌸 عرض خاص ينتظرك!" : "🌸 A special offer awaits!",
-          {
-            body: document.documentElement.lang === "ar"
-              ? "عودي لإكمال اشتراكك والوصول لجميع الأدوات الذكية"
-              : "Come back to complete your subscription and unlock all smart tools",
-            icon: "/icons/icon-192x192.png",
-            tag: "abandoned-cart",
-          }
-        );
-      } catch {}
-    }
-  }, 3600000);
-}
-
-function clearAbandonedCartReminder() {
-  localStorage.removeItem("pricing_visit_ts");
-}
-
 export default function PricingDemo() {
   const { t, i18n } = useTranslation();
   const { isRTL } = useLanguage();
   const navigate = useNavigate();
   const [selected, setSelected] = useState<PlanType>("yearly");
+  const [purchasing, setPurchasing] = useState(false);
   const [devTaps, setDevTaps] = useState(0);
   const devMode = devTaps >= 5;
   const isAr = i18n.language === "ar";
@@ -68,38 +34,9 @@ export default function PricingDemo() {
   const { refresh: refreshAIUsage } = useAIUsage();
   const prices = usePlayPrices();
 
-  // UI states for new billing UX
-  const [showConfirm, setShowConfirm] = useState(false);
-  const [purchaseStep, setPurchaseStep] = useState<PurchaseStep>(null);
-  const [errorMsg, setErrorMsg] = useState("");
-  const [showError, setShowError] = useState(false);
+  const handleSubscribe = async () => {
+    if (purchasing) return;
 
-  // Abandoned cart reminder (#10)
-  useEffect(() => {
-    scheduleAbandonedCartReminder();
-  }, []);
-
-  const normalizeBillingError = (message?: string) => {
-    if (!message) {
-      return isAr ? "تعذر إكمال عملية الشراء حالياً. حاول مرة أخرى." : "Unable to complete the purchase right now. Please try again.";
-    }
-
-    if (message.includes("clientAppUnavailable")) {
-      return isAr
-        ? "خدمة Google Play على الجهاز غير جاهزة حالياً. امسح كاش Google Play Store وGoogle Play Services ثم افتح التطبيق المثبت من Google Play مرة أخرى."
-        : "Google Play services are not ready on this device. Clear Google Play Store and Google Play Services cache, then reopen the installed app from Google Play.";
-    }
-
-    if (message.includes("Digital Goods API") || message.includes("Payment service unavailable")) {
-      return isAr
-        ? "خدمة الدفع غير متاحة حالياً داخل التطبيق. تأكد أنك فتحت النسخة المثبتة من Google Play وأن خدمات Google Play محدثة."
-        : "Billing is currently unavailable inside the app. Make sure you opened the installed Google Play version and that Google Play services are up to date.";
-    }
-
-    return message;
-  };
-
-  const handleSubscribeClick = async () => {
     if (!canPurchase) {
       const playStoreUrl = "https://play.google.com/store/apps/details?id=app.pregnancytoolkits.android";
       window.open(playStoreUrl, "_blank");
@@ -112,66 +49,41 @@ export default function PricingDemo() {
       return;
     }
 
-    // Show confirmation sheet (#1)
-    setShowConfirm(true);
-  };
-
-  const executePurchase = async () => {
-    setShowConfirm(false);
-    setPurchaseStep("connecting");
-
-    const diag = await runBillingDiagnostics();
-    if (!diag.serviceConnected) {
-      setPurchaseStep(null);
-      setErrorMsg(normalizeBillingError(diag.error || "لا يمكن الاتصال بخدمة الدفع"));
-      setShowError(true);
-      return;
-    }
-
-    setPurchaseStep("payment");
+    setPurchasing(true);
 
     const sent = await requestPurchase(
       selected,
       async () => {
-        setPurchaseStep("activating");
+        // Success — update everything immediately
         qmSetTier("premium");
         refreshAIUsage();
-        clearAbandonedCartReminder();
+        localStorage.removeItem("pricing_visit_ts");
         window.dispatchEvent(new CustomEvent("subscription-activated", { detail: { plan: selected } }));
-
-        // Poll server
-        const poll = async (attempt = 0) => {
-          if (attempt >= 3) {
-            setPurchaseStep("done");
-            setTimeout(() => { setPurchaseStep(null); navigate("/"); }, 1500);
-            return;
-          }
-          try {
-            const { data } = await supabase.functions.invoke("pregnancy-ai-perplexity", {
-              body: { action: "check-quota" },
-            });
-            if (data?.tier === "premium") {
-              refreshAIUsage();
-              setPurchaseStep("done");
-              setTimeout(() => { setPurchaseStep(null); navigate("/"); }, 1500);
-              return;
-            }
-          } catch {}
-          setTimeout(() => poll(attempt + 1), 2000);
-        };
-        setTimeout(() => poll(), 2000);
+        setPurchasing(false);
+        navigate("/");
       },
       (msg) => {
-        setPurchaseStep(null);
-        setErrorMsg(normalizeBillingError(msg));
-        setShowError(true);
+        setPurchasing(false);
+        if (msg) {
+          toast.error(
+            msg.includes("clientAppUnavailable")
+              ? (isAr ? "أعد تشغيل التطبيق وحاول مرة أخرى" : "Restart the app and try again")
+              : msg,
+            { duration: 5000 }
+          );
+        }
       },
     );
 
-    if (!sent && !showError) {
-      setPurchaseStep(null);
+    if (!sent) {
+      setPurchasing(false);
     }
   };
+
+  // Abandoned cart reminder
+  useEffect(() => {
+    localStorage.setItem("pricing_visit_ts", Date.now().toString());
+  }, []);
 
   const priceDisplay = selected === "yearly" ? prices.yearly.display : prices.monthly.display;
   const period = selected === "yearly" ? t("pricing.yr") : t("pricing.mo");
@@ -181,26 +93,21 @@ export default function PricingDemo() {
       className="min-h-[100dvh] bg-background flex flex-col relative overflow-hidden"
       dir={isRTL ? "rtl" : "ltr"}
     >
-      {/* Purchase Progress Overlay (#6) */}
-      <PurchaseProgressOverlay step={purchaseStep} />
-
-      {/* Purchase Error Sheet (#4, #9) */}
-      <PurchaseErrorSheet
-        open={showError}
-        onClose={() => setShowError(false)}
-        onRetry={executePurchase}
-        errorMessage={errorMsg}
-      />
-
-      {/* Purchase Confirmation Sheet (#1) */}
-      <PurchaseConfirmationSheet
-        open={showConfirm}
-        onClose={() => setShowConfirm(false)}
-        onConfirm={executePurchase}
-        plan={selected}
-        priceDisplay={priceDisplay}
-        period={period}
-      />
+      {/* Simple purchasing overlay */}
+      {purchasing && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-background/80 backdrop-blur-sm"
+        >
+          <div className="flex flex-col items-center gap-3">
+            <Loader2 className="w-10 h-10 text-primary animate-spin" />
+            <p className="text-sm font-medium text-foreground">
+              {isAr ? "جارٍ إتمام الاشتراك..." : "Processing subscription..."}
+            </p>
+          </div>
+        </motion.div>
+      )}
 
       {/* Background */}
       <div className="absolute inset-0 pointer-events-none">
@@ -236,7 +143,6 @@ export default function PricingDemo() {
               animate={{ scale: 1 }}
               transition={{ duration: 0.5, delay: 0.1, type: "spring", stiffness: 200 }}
             >
-              {/* Ripple rings */}
               {[0, 1, 2].map((i) => (
                 <motion.div
                   key={i}
@@ -246,17 +152,14 @@ export default function PricingDemo() {
                   transition={{ duration: 2.5, delay: i * 0.7, repeat: Infinity, ease: "easeOut" }}
                 />
               ))}
-              {/* Breathing aura */}
               <motion.div
                 className="absolute w-20 h-20 rounded-full bg-primary/10 blur-xl"
                 animate={{ scale: [1, 1.4, 1], opacity: [0.3, 0.6, 0.3] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
               />
-              {/* Logo */}
               <div className="relative z-0 rounded-full overflow-hidden shadow-xl shadow-primary/20 ring-[3px] ring-primary/15 bg-white" style={{ width: 88, height: 88 }}>
                 <img src={pricingLogo} alt="Pregnancy Toolkits" className="w-full h-full object-cover" loading="eager" width={88} height={88} />
               </div>
-              {/* Blooming flowers */}
               {[
                 { angle: 0, radius: 52, size: 17, emoji: '🌸', dur: 7, delay: 0 },
                 { angle: 72, radius: 48, size: 14, emoji: '🌸', dur: 9, delay: 0.6 },
@@ -267,39 +170,16 @@ export default function PricingDemo() {
                 <motion.span
                   key={`flower-${i}`}
                   className="absolute z-10 pointer-events-none select-none"
-                  style={{
-                    left: '50%',
-                    top: '50%',
-                    marginLeft: -f.size / 2,
-                    marginTop: -f.size / 2,
-                    fontSize: f.size,
-                  }}
+                  style={{ left: '50%', top: '50%', marginLeft: -f.size / 2, marginTop: -f.size / 2, fontSize: f.size }}
                   initial={{ scale: 0, opacity: 0 }}
                   animate={{
-                    x: [
-                      Math.cos((f.angle * Math.PI) / 180) * f.radius,
-                      Math.cos(((f.angle + 90) * Math.PI) / 180) * (f.radius * 0.85),
-                      Math.cos(((f.angle + 180) * Math.PI) / 180) * f.radius,
-                      Math.cos(((f.angle + 270) * Math.PI) / 180) * (f.radius * 0.85),
-                      Math.cos(((f.angle + 360) * Math.PI) / 180) * f.radius,
-                    ],
-                    y: [
-                      Math.sin((f.angle * Math.PI) / 180) * f.radius,
-                      Math.sin(((f.angle + 90) * Math.PI) / 180) * (f.radius * 0.85),
-                      Math.sin(((f.angle + 180) * Math.PI) / 180) * f.radius,
-                      Math.sin(((f.angle + 270) * Math.PI) / 180) * (f.radius * 0.85),
-                      Math.sin(((f.angle + 360) * Math.PI) / 180) * f.radius,
-                    ],
+                    x: [0, 90, 180, 270, 360].map(a => Math.cos(((f.angle + a) * Math.PI) / 180) * (a % 180 === 0 ? f.radius : f.radius * 0.85)),
+                    y: [0, 90, 180, 270, 360].map(a => Math.sin(((f.angle + a) * Math.PI) / 180) * (a % 180 === 0 ? f.radius : f.radius * 0.85)),
                     scale: [0, 1.2, 1, 1.15, 0],
                     opacity: [0, 1, 0.85, 1, 0],
                     rotate: [0, 15, -10, 8, 0],
                   }}
-                  transition={{
-                    duration: f.dur,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: f.delay,
-                  }}
+                  transition={{ duration: f.dur, repeat: Infinity, ease: "easeInOut", delay: f.delay }}
                 >
                   {f.emoji}
                 </motion.span>
@@ -344,7 +224,7 @@ export default function PricingDemo() {
             ))}
           </motion.div>
 
-          {/* Plan cards with real prices (#2) */}
+          {/* Plan cards with real prices */}
           <motion.div
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
@@ -360,30 +240,24 @@ export default function PricingDemo() {
                   : "border-border/30 bg-card/60 hover:border-border/50"
               }`}
             >
-              {/* Best value badge */}
               <div className="absolute -top-px -end-px">
                 <div className="px-2 py-0.5 rounded-es-lg rounded-se-[12px] bg-gradient-to-r from-primary to-primary/80">
                   <span className="text-[8px] font-bold text-primary-foreground">{t("pricing.bestValue")}</span>
                 </div>
               </div>
-
-              {/* Radio */}
               <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mb-2 transition-colors ${
                 selected === "yearly" ? "border-primary bg-primary" : "border-muted-foreground/25"
               }`}>
                 {selected === "yearly" && <Check className="w-2.5 h-2.5 text-primary-foreground" strokeWidth={3} />}
               </div>
-
               <span className="text-[11px] font-bold text-foreground mb-1">{t("pricing.yearly")}</span>
-
               <span className="text-[22px] font-extrabold text-foreground tabular-nums leading-none" style={{ fontFamily: "'Cairo', sans-serif" }}>
                 {prices.yearly.display}
               </span>
               <span className="text-[10px] text-muted-foreground mt-0.5">/{t("pricing.yr")}</span>
-
               <div className="mt-2 flex flex-col items-center gap-1">
                 <span className="text-[9px] text-muted-foreground">{prices.monthlyEquivalent}/{t("pricing.mo")}</span>
-                <motion.span 
+                <motion.span
                   className="text-[8px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
                   animate={{ scale: [1, 1.08, 1] }}
                   transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
@@ -410,9 +284,7 @@ export default function PricingDemo() {
               }`}>
                 {selected === "monthly" && <Check className="w-2.5 h-2.5 text-primary-foreground" strokeWidth={3} />}
               </div>
-
               <span className="text-[11px] font-bold text-foreground mb-1">{t("pricing.monthly")}</span>
-
               <span className="text-[22px] font-extrabold text-foreground tabular-nums leading-none" style={{ fontFamily: "'Cairo', sans-serif" }}>
                 {prices.monthly.display}
               </span>
@@ -421,7 +293,7 @@ export default function PricingDemo() {
           </motion.div>
         </div>
 
-        {/* Bottom CTA */}
+        {/* Bottom CTA — Direct purchase on click */}
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
@@ -429,11 +301,15 @@ export default function PricingDemo() {
           className="mt-5 space-y-2"
         >
           <Button
-            onClick={handleSubscribeClick}
+            onClick={handleSubscribe}
+            disabled={purchasing}
             size="lg"
             className="w-full h-[46px] text-[13px] font-bold rounded-2xl shadow-lg shadow-primary/20 whitespace-normal leading-snug"
             style={{ fontFamily: isAr ? "'Almarai', sans-serif" : "'Montserrat', sans-serif" }}
           >
+            {purchasing ? (
+              <Loader2 className="w-4 h-4 animate-spin me-2" />
+            ) : null}
             {t("pricing.cta")}
           </Button>
 
@@ -462,7 +338,6 @@ export default function PricingDemo() {
           </div>
         </motion.div>
 
-        {/* Billing Diagnostics Panel — hidden until 5 taps on title */}
         {devMode && <BillingDiagnosticsPanel isAr={isAr} />}
       </div>
     </div>
@@ -550,8 +425,8 @@ function BillingDiagnosticsPanel({ isAr }: { isAr: boolean }) {
 
   const readinessLabel = diag ? {
     'READY': isAr ? '✅ جاهز للشراء' : '✅ Ready to Purchase',
-    'ALMOST_READY': isAr ? '⏳ شبه جاهز — انتظر انتشار الكتالوج' : '⏳ Almost Ready — Catalog Propagating',
-    'PARTIAL': isAr ? '⚠️ جزئي — تحقق من الإعدادات' : '⚠️ Partial — Check Settings',
+    'ALMOST_READY': isAr ? '⏳ شبه جاهز' : '⏳ Almost Ready',
+    'PARTIAL': isAr ? '⚠️ جزئي' : '⚠️ Partial',
     'NOT_READY': isAr ? '❌ غير جاهز' : '❌ Not Ready',
   }[diag.readinessSummary] || '—' : '—';
 
@@ -562,28 +437,20 @@ function BillingDiagnosticsPanel({ isAr }: { isAr: boolean }) {
       className="mt-4 p-3 rounded-xl bg-card/80 border border-border/40 text-[10px]"
     >
       <div className="flex items-center justify-between mb-2">
-        <span className="font-bold text-foreground text-[11px]">
-          {isAr ? "🔧 تشخيص الدفع" : "🔧 Billing Diagnostics"}
-        </span>
+        <span className="font-bold text-foreground text-[11px]">🔧 {isAr ? "تشخيص الدفع" : "Billing Diagnostics"}</span>
         <div className="flex items-center gap-2">
-          {lastCheck && (
-            <span className="text-[8px] text-muted-foreground/60">{lastCheck}</span>
-          )}
-          <button onClick={() => setVisible(false)} className="text-muted-foreground">
-            <X className="w-3.5 h-3.5" />
-          </button>
+          {lastCheck && <span className="text-[8px] text-muted-foreground/60">{lastCheck}</span>}
+          <button onClick={() => setVisible(false)} className="text-muted-foreground"><X className="w-3.5 h-3.5" /></button>
         </div>
       </div>
 
       <div className="flex items-center justify-between mb-2 px-1">
-        <span className="text-[9px] text-muted-foreground">
-          {isAr ? "تحديث تلقائي كل 30 ثانية" : "Auto-refresh every 30s"}
-        </span>
+        <span className="text-[9px] text-muted-foreground">{isAr ? "تحديث تلقائي كل 30 ثانية" : "Auto-refresh every 30s"}</span>
         <button
           onClick={() => setAutoRefresh(!autoRefresh)}
           className={`px-2 py-0.5 rounded-full text-[9px] font-bold transition-colors ${autoRefresh ? 'bg-emerald-500/20 text-emerald-600' : 'bg-muted text-muted-foreground'}`}
         >
-          {autoRefresh ? (isAr ? "🟢 مفعّل" : "🟢 ON") : (isAr ? "⚪ معطّل" : "⚪ OFF")}
+          {autoRefresh ? "🟢 ON" : "⚪ OFF"}
         </button>
       </div>
 
@@ -599,37 +466,8 @@ function BillingDiagnosticsPanel({ isAr }: { isAr: boolean }) {
                 style={{ width: `${diag.readinessScore}%` }}
               />
             </div>
-            <span className="text-[9px] text-muted-foreground">{diag.readinessScore}% {isAr ? 'جاهزية' : 'readiness'}</span>
+            <span className="text-[9px] text-muted-foreground">{diag.readinessScore}%</span>
           </div>
-
-          <div className="flex items-center justify-between gap-2">
-            <span className="text-muted-foreground">{isAr ? "إصدار التطبيق" : "App Version"}</span>
-            <span className="font-mono font-bold text-muted-foreground">{diag.appVersionName || '—'}</span>
-          </div>
-          <div className="flex items-center justify-between gap-2">
-            <span className="text-muted-foreground">{isAr ? "مصدر التثبيت" : "Install Source"}</span>
-            <span className={`font-mono font-bold ${diag.installSource?.includes('Play') ? 'text-emerald-500' : 'text-muted-foreground'}`}>{diag.installSource || '—'}</span>
-          </div>
-          <div className="flex items-center justify-between gap-2">
-            <span className="text-muted-foreground">{isAr ? "كتالوج المنتجات" : "Catalog Status"}</span>
-            <span className={`font-mono font-bold ${diag.catalogReady ? 'text-emerald-500' : 'text-destructive'}`}>{diag.catalogReady ? '✅' : (isAr ? '❌ لم ينتشر بعد' : '❌ Not propagated')}</span>
-          </div>
-          {diag.basePlanType && (
-            <div className="flex items-center justify-between gap-2">
-              <span className="text-muted-foreground">{isAr ? "نوع الخطة الأساسية" : "Base Plan Type"}</span>
-              <span className={`font-mono font-bold ${diag.basePlanType?.includes('auto') ? 'text-emerald-500' : 'text-amber-500'}`}>{diag.basePlanType}</span>
-            </div>
-          )}
-          <div className="flex items-center justify-between gap-2">
-            <span className="text-muted-foreground">{isAr ? "الشبكة" : "Network"}</span>
-            <span className={`font-mono font-bold ${diag.networkReachable ? 'text-emerald-500' : 'text-destructive'}`}>{diag.networkReachable ? '✅' : '❌'}</span>
-          </div>
-          {diag.connectionLatencyMs != null && (
-            <div className="flex items-center justify-between gap-2">
-              <span className="text-muted-foreground">{isAr ? "زمن الاتصال" : "Connect Latency"}</span>
-              <span className="font-mono font-bold text-muted-foreground">{diag.connectionLatencyMs}ms</span>
-            </div>
-          )}
 
           {items.map((item, i) => (
             <div key={i} className="flex items-center justify-between gap-2">
@@ -639,142 +477,70 @@ function BillingDiagnosticsPanel({ isAr }: { isAr: boolean }) {
               </span>
             </div>
           ))}
+
           {diag.productDetails?.length > 0 && (
             <div className="mt-2 p-2 rounded-lg bg-primary/5 text-[9px]">
               <span className="font-bold text-foreground">{isAr ? "تفاصيل المنتجات:" : "Product Details:"}</span>
               {diag.productDetails.map((p: any, idx: number) => (
-                <div key={idx} className="text-muted-foreground mt-0.5">
-                  {p.id}: {p.price} ({p.type})
-                </div>
+                <div key={idx} className="text-muted-foreground mt-0.5">{p.id}: {p.price} ({p.type})</div>
               ))}
             </div>
           )}
+
           {diag.errors?.length > 0 && (
             <div className="mt-2 p-2 rounded-lg bg-destructive/10 text-destructive text-[9px] space-y-1">
-              <span className="font-bold">{isAr ? "⚠️ مشاكل مكتشفة:" : "⚠️ Issues Found:"}</span>
+              <span className="font-bold">⚠️ {isAr ? "مشاكل:" : "Issues:"}</span>
               {diag.errors.map((err: string, idx: number) => (
                 <div key={idx} className="break-all">• {err}</div>
               ))}
             </div>
           )}
-          {diag.error && !diag.errors?.length && (
-            <div className="mt-2 p-2 rounded-lg bg-destructive/10 text-destructive text-[9px] break-all">
-              {diag.error}
-            </div>
-          )}
-          {diag.timings && Object.keys(diag.timings).length > 0 && (
-            <div className="mt-2 p-2 rounded-lg bg-muted/30 text-[9px]">
-              <span className="font-bold text-muted-foreground">{isAr ? "⏱ أزمنة التشخيص:" : "⏱ Timings:"}</span>
-              <div className="flex flex-wrap gap-x-3 gap-y-0.5 mt-1 text-muted-foreground">
-                {Object.entries(diag.timings).map(([k, v]) => (
-                  <span key={k}>{k}: <strong>{v as number}ms</strong></span>
-                ))}
-              </div>
-            </div>
-          )}
+
           <div className="flex gap-2 mt-2">
-            <button
-              onClick={() => runDiag()}
-              className="flex-1 py-1.5 rounded-lg bg-primary/10 text-primary text-[10px] font-bold"
-            >
+            <button onClick={() => runDiag()} className="flex-1 py-1.5 rounded-lg bg-primary/10 text-primary text-[10px] font-bold">
               {isAr ? "إعادة الفحص" : "Re-check"}
             </button>
-            <button
-              onClick={() => runDiag(true)}
-              className="flex-1 py-1.5 rounded-lg bg-amber-500/15 text-amber-600 dark:text-amber-400 text-[10px] font-bold"
-            >
-              {isAr ? "🔄 Force Refresh" : "🔄 Force Refresh"}
+            <button onClick={() => runDiag(true)} className="flex-1 py-1.5 rounded-lg bg-amber-500/15 text-amber-600 dark:text-amber-400 text-[10px] font-bold">
+              🔄 Force Refresh
             </button>
             <button
               onClick={() => {
                 const lines = items.map(i => `${i.label}: ${i.value}`);
-                lines.push(`${isAr ? "إصدار التطبيق" : "App Version"}: ${diag.appVersionName || '—'}`);
-                lines.push(`${isAr ? "مصدر التثبيت" : "Install Source"}: ${diag.installSource || '—'}`);
-                lines.push(`${isAr ? "كتالوج المنتجات" : "Catalog Status"}: ${diag.catalogReady ? '✅' : '❌'}`);
-                lines.push(`${isAr ? "نوع الخطة" : "Base Plan Type"}: ${diag.basePlanType || '—'}`);
-                lines.push(`${isAr ? "الشبكة" : "Network"}: ${diag.networkReachable ? '✅' : '❌'}`);
-                lines.push(`${isAr ? "زمن الاتصال" : "Connect Latency"}: ${diag.connectionLatencyMs ?? '—'}ms`);
-                lines.push(`${isAr ? "نسبة الجاهزية" : "Readiness"}: ${diag.readinessScore}%`);
-                if (diag.timings) {
-                  lines.push("--- Timings ---");
-                  Object.entries(diag.timings).forEach(([k, v]) => lines.push(`  ${k}: ${v}ms`));
-                }
-                if (diag.productDetails?.length) {
-                  lines.push("--- Products ---");
-                  diag.productDetails.forEach((p: any) => lines.push(`  ${p.id}: ${p.price} (${p.type}${p.subscriptionPeriod ? ', ' + p.subscriptionPeriod : ''})`));
-                }
-                if (diag.errors?.length) {
-                  lines.push("--- Issues ---");
-                  diag.errors.forEach((e: string) => lines.push(`  • ${e}`));
-                }
-                lines.push(`UserAgent: ${diag.userAgent?.slice(0, 80)}`);
-                const text = lines.join("\n");
-                navigator.clipboard.writeText(text).then(() => toast.success(isAr ? "تم النسخ" : "Copied!"));
+                if (diag.productDetails?.length) diag.productDetails.forEach((p: any) => lines.push(`${p.id}: ${p.price}`));
+                if (diag.errors?.length) diag.errors.forEach((e: string) => lines.push(`• ${e}`));
+                navigator.clipboard.writeText(lines.join("\n")).then(() => toast.success(isAr ? "تم النسخ" : "Copied!"));
               }}
               className="flex-1 py-1.5 rounded-lg bg-muted text-foreground text-[10px] font-bold"
             >
-              {isAr ? "نسخ النتائج" : "Copy Results"}
+              {isAr ? "نسخ" : "Copy"}
             </button>
             <button
               onClick={async () => {
                 try {
                   const { data: { user } } = await supabase.auth.getUser();
-                  const { error } = await supabase.from('billing_diagnostics').insert({
+                  await supabase.from('billing_diagnostics').insert({
                     user_id: user?.id || null,
-                    device_info: {
-                      userAgent: diag.userAgent?.slice(0, 200),
-                      chromeVersion: diag.chromeVersion,
-                      androidVersion: diag.androidVersion,
-                      displayMode: diag.displayMode,
-                      referrer: diag.referrer,
-                      installSource: diag.installSource,
-                      appVersionName: diag.appVersionName,
-                    },
-                    diagnostics_result: {
-                      apiAvailable: diag.apiAvailable,
-                      serviceConnected: diag.serviceConnected,
-                      connectedMethod: diag.connectedMethod,
-                      productsFound: diag.productsFound,
-                      existingPurchases: diag.existingPurchases,
-                      canMakePayment: diag.canMakePayment,
-                      isTWA: diag.isTWA,
-                      isStandalone: diag.isStandalone,
-                      playStoreInstall: diag.playStoreInstall,
-                      authStatus: diag.authStatus,
-                      productDetails: diag.productDetails,
-                    },
+                    device_info: { userAgent: diag.userAgent?.slice(0, 200), chromeVersion: diag.chromeVersion, androidVersion: diag.androidVersion, displayMode: diag.displayMode, referrer: diag.referrer, installSource: diag.installSource },
+                    diagnostics_result: { apiAvailable: diag.apiAvailable, serviceConnected: diag.serviceConnected, connectedMethod: diag.connectedMethod, productsFound: diag.productsFound, existingPurchases: diag.existingPurchases, canMakePayment: diag.canMakePayment, isTWA: diag.isTWA, isStandalone: diag.isStandalone, playStoreInstall: diag.playStoreInstall, authStatus: diag.authStatus, productDetails: diag.productDetails },
                     readiness_score: diag.readinessScore || 0,
                     readiness_summary: diag.readinessSummary || 'NOT_READY',
                     catalog_ready: diag.catalogReady || false,
                     errors: diag.errors || [],
                   } as any);
-                  if (error) throw error;
-                  toast.success(isAr ? "✅ تم إرسال التقرير" : "✅ Report sent");
-                } catch (e: any) {
-                  console.error('[Diagnostics] Send failed:', e);
-                  toast.error(isAr ? "فشل إرسال التقرير" : "Failed to send report");
-                }
+                  toast.success(isAr ? "✅ تم الإرسال" : "✅ Sent");
+                } catch { toast.error(isAr ? "فشل الإرسال" : "Failed"); }
               }}
               className="flex-1 py-1.5 rounded-lg bg-primary/20 text-primary text-[10px] font-bold"
             >
-              {isAr ? "📤 إرسال للمتابعة" : "📤 Send Report"}
+              📤
             </button>
           </div>
 
           {lastDbReport && (
             <div className="mt-3 p-2 rounded-lg bg-muted/30 border border-border/30 text-[9px]">
-              <span className="font-bold text-muted-foreground block mb-1">
-                {isAr ? "📋 آخر تقرير محفوظ:" : "📋 Last Saved Report:"}
-              </span>
-              <div className="space-y-0.5 text-muted-foreground">
-                <div>{isAr ? "التاريخ" : "Date"}: {new Date(lastDbReport.created_at).toLocaleString()}</div>
-                <div>{isAr ? "الجاهزية" : "Readiness"}: {lastDbReport.readiness_score}% — {lastDbReport.readiness_summary}</div>
-                <div>{isAr ? "الكتالوج" : "Catalog"}: {lastDbReport.catalog_ready ? '✅' : '❌'}</div>
-                {lastDbReport.errors?.length > 0 && (
-                  <div className="text-destructive">
-                    {isAr ? "أخطاء" : "Errors"}: {lastDbReport.errors.join(', ')}
-                  </div>
-                )}
+              <span className="font-bold text-muted-foreground block mb-1">📋 {isAr ? "آخر تقرير:" : "Last Report:"}</span>
+              <div className="text-muted-foreground">
+                <div>{new Date(lastDbReport.created_at).toLocaleString()} — {lastDbReport.readiness_score}%</div>
               </div>
             </div>
           )}
