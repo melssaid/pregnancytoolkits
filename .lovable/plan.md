@@ -1,70 +1,33 @@
 
 
-# خطة إصلاح المفاتيح المفقودة في ملفات الترجمة
+# خطة: إزالة تكرار إخلاء المسؤولية الطبية
 
 ## المشكلة
-- **4,983 مشكلة إجمالية** في ملفات الترجمة حسب أداة الفحص
-- **ar.json**: 5 مفاتيح مفقودة + 1 مفتاح إضافي
-- **de/fr**: ~350 مفتاح مفقود + ~284 مفتاح إضافي لكل منهما
-- **es/pt/tr**: ~657 مفتاح مفقود + ~584 مفتاح إضافي لكل منهما
-- مفتاح `wellness-checks` في الكود لكن الملفات تحتوي `wellness-check` (بدون s)
-- مفاتيح `fetalDevelopment` غير موجودة في أي ملف ترجمة
-- مفاتيح المكونات الجديدة (streak, countdown, certificate, challenge, tour, aiFeedback, offline, rating, stageRec, faq) غير موجودة
+
+1. **شاشة الترحيب (Step 5)**: يظهر إخلاء المسؤولية مرتين — مربع "إخلاء المسؤولية الطبية" + نص `consultNote` أسفله (نفس المعنى مكرر)
+2. **ToolFrame**: كل أداة تعرض disclaimer في الفوتر عبر `ToolFrame` — وبعض الأدوات تضيف `AIResultDisclaimer` إضافي داخل المحتوى (مثل SmartAppointmentReminder)
 
 ## الإجراءات
 
-### 1. إصلاح `wellness-check` → `wellness-checks`
-إضافة مفتاح `wellness-checks` بجانب `wellness-check` في جميع الملفات السبعة
+### 1. دمج الإخلاء في شاشة الترحيب (OnboardingStep5Privacy.tsx)
+- **حذف** نص `consultNote` المنفصل (السطر 72-74) لأن مربع الإخلاء أعلاه يحتوي نفس المعنى بالفعل
+- **تحسين** مربع الإخلاء ليكون شاملاً بنص واحد واضح ومختصر
 
-### 2. إضافة مفاتيح `fetalDevelopment` المفقودة
-إضافة داخل `toolsInternal` في كل الملفات السبعة:
-- `title`, `subtitle`, `sizeOf`, `yourCurrentWeek`, `setAsMyWeek`, `aiWeeklyInsights`
-- `organs`: brain, heart, eyes, ears, hands, feet
-- `development`, `nutrition`, `exercise`
-- `units`: cm, g, mm
-- `sizes` و `developments` و `tips` (المفاتيح الديناميكية — سيتم إضافة الشائعة منها)
-- أسماء الثلاثات: `firstTrimester`, `secondTrimester`, `thirdTrimester`
+### 2. فحص الأدوات للتكرار
+- أداة `SmartAppointmentReminder` تعرض `AIResultDisclaimer` داخلياً + فوتر `ToolFrame` = تكرار → إزالة `AIResultDisclaimer` الداخلي لأن `ToolFrame` يغطيه
+- فحص باقي الأدوات التي تستخدم `MedicalDisclaimer` (حالياً auto-accept بدون UI) — هذه لا تسبب تكراراً مرئياً
 
-### 3. إضافة مفاتيح المكونات الجديدة (~50 مفتاح)
-في كل الملفات السبعة:
-```
-streak.days
-countdown.daysLeft, countdown.title, countdown.weeks, countdown.days, countdown.dueDate, countdown.complete
-certificate.title, certificate.subtitle, certificate.share, certificate.shareTitle, certificate.shareBody
-challenge.daily
-tour.step1Title, tour.step1Desc, tour.step2Title, tour.step2Desc, tour.step3Title, tour.step3Desc, tour.next, tour.start
-aiFeedback.thankYou, aiFeedback.willImprove, aiFeedback.question, aiFeedback.yes, aiFeedback.no
-offline.title, offline.localTools
-rating.reviews, rating.rateUs
-stageRec.suggested
-faq.title
-```
-
-### 4. إصلاح المفاتيح المفقودة في ar.json
-- إضافة `tools.smartAppointment.title/description`
-- إضافة `tools.lactationPrep.title/description`
-- إضافة `toolsInternal.mentalHealthCoach.screeningDisclaimer`
-- حذف المفتاح الإضافي `questionnaireDisclaimer`
-
-### 5. إضافة المفاتيح المشتركة المفقودة في de/fr/es/pt/tr
-أبرز المفاتيح: `pricing.*`, `trialBanner.*`, `trialExpired.*`, `paywall.*`, `subscription.*` وغيرها (~350-657 مفتاح لكل لغة)
+### 3. توحيد الأسلوب
+- الاعتماد على فوتر `ToolFrame` كإخلاء وحيد لكل الأدوات
+- إبقاء `AIResultDisclaimer` فقط عندما لا يكون داخل `ToolFrame`
 
 ## الملفات المتأثرة
 
 | الملف | التغيير |
 |-------|---------|
-| `src/locales/ar.json` | +60 مفتاح، إصلاح 5 مفقودة |
-| `src/locales/en.json` | +50 مفتاح (fetalDevelopment + مكونات جديدة) |
-| `src/locales/de.json` | +400 مفتاح |
-| `src/locales/fr.json` | +400 مفتاح |
-| `src/locales/es.json` | +700 مفتاح |
-| `src/locales/pt.json` | +700 مفتاح |
-| `src/locales/tr.json` | +700 مفتاح |
+| `src/components/onboarding/OnboardingStep5Privacy.tsx` | حذف `consultNote` المكرر |
+| `src/pages/tools/SmartAppointmentReminder.tsx` | إزالة `AIResultDisclaimer` المكرر |
 
-## ملاحظة مهمة
-حجم العمل كبير جداً (~3,000+ مفتاح مفقود عبر 7 ملفات). سأبدأ بالأولوية القصوى:
-1. **المفاتيح المرئية للمستخدم** (fetalDevelopment, المكونات الجديدة, wellness-checks) — تؤثر على التجربة مباشرة
-2. **ar.json** كأولوية أولى (اللغة الرئيسية)
-3. **en.json** كقاعدة أساسية
-4. ثم باقي اللغات الخمس
+## النتيجة
+إخلاء مسؤولية واحد فقط في كل شاشة — لا تكرار.
 
