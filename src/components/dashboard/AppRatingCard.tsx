@@ -6,7 +6,7 @@ import { useInAppReview } from '@/hooks/useInAppReview';
 
 export const AppRatingCard = memo(function AppRatingCard() {
   const { t } = useTranslation();
-  const { triggerReview } = useInAppReview();
+  const { maybePromptReview } = useInAppReview();
 
   // Generate a realistic rating count that grows organically
   const reviewCount = useMemo(() => {
@@ -24,7 +24,7 @@ export const AppRatingCard = memo(function AppRatingCard() {
       const current = parseInt(localStorage.getItem('pt_local_review_count') || '0', 10);
       localStorage.setItem('pt_local_review_count', String(current + 1));
     } catch {}
-    triggerReview();
+    maybePromptReview('ai_result_positive');
   };
 
   const formattedCount = reviewCount > 1000 ? `${(reviewCount / 1000).toFixed(1)}K` : String(reviewCount);

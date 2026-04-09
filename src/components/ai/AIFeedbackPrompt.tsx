@@ -13,7 +13,7 @@ export function AIFeedbackPrompt({ toolId, onFeedback }: AIFeedbackPromptProps) 
   const { t } = useTranslation();
   const [feedback, setFeedback] = useState<'positive' | 'negative' | null>(null);
   const [showThankYou, setShowThankYou] = useState(false);
-  const { triggerReview } = useInAppReview();
+  const { maybePromptReview } = useInAppReview();
 
   const storageKey = `ai_feedback_${toolId}_${new Date().toDateString()}`;
 
@@ -31,7 +31,7 @@ export function AIFeedbackPrompt({ toolId, onFeedback }: AIFeedbackPromptProps) 
 
     if (positive) {
       // Trigger Play Store review after positive feedback
-      setTimeout(() => triggerReview(), 1500);
+      setTimeout(() => maybePromptReview('ai_result_positive'), 1500);
     }
   };
 
