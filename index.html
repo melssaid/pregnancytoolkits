@@ -226,17 +226,28 @@
     <script>
       (function(){
         var SPLASH_KEY='pt_video_splash_seen';
+        var ONBOARDING_KEY='onboarding_disclaimer_accepted';
         var overlay=document.getElementById('splash-overlay');
         var vid=document.getElementById('splash-video');
         if(!overlay||!vid){return;}
 
-        // Only show video on FIRST app open
-        if(localStorage.getItem(SPLASH_KEY)){
+        // Show video only on FIRST app open
+        // Also check: if onboarding was never accepted, this IS a new user
+        var splashSeen=localStorage.getItem(SPLASH_KEY);
+        var onboardingDone=localStorage.getItem(ONBOARDING_KEY);
+        
+        // If splash was seen AND onboarding done => returning user, skip
+        if(splashSeen && onboardingDone){
           overlay.parentNode.removeChild(overlay);
           return;
         }
 
-        
+        // If splash was seen but onboarding NOT done => user cleared app data partially
+        // Reset splash so they see it again
+        if(splashSeen && !onboardingDone){
+          localStorage.removeItem(SPLASH_KEY);
+        }
+
         window.__htmlSplashVideoActive=true;
         window.__htmlSplashVideoEnded=false;
 
@@ -273,10 +284,11 @@
           var playPromise=vid.play();
           if(playPromise && playPromise.then){
             playPromise.catch(function(){
-              endSplash();
+              // Autoplay blocked — still show poster for 2s then fade
+              setTimeout(endSplash, 2000);
             });
           }
-        }catch(e){ endSplash(); }
+        }catch(e){ setTimeout(endSplash, 2000); }
 
         // Safety: max 4s for video
         setTimeout(endSplash, 4000);
