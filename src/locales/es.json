@@ -5124,7 +5124,7 @@
       "copied": "Copied!",
       "copiedDesc": "Stats copied to clipboard.",
       "currentPhase": "Current Phase",
-      "cycleDay": "Día del Ciclo",
+      "cycleDay": "Día {{day}} del Ciclo",
       "menstrual": "Menstrual",
       "follicular": "Folicular",
       "ovulation": "Ovulación",

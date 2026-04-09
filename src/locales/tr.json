@@ -5124,7 +5124,7 @@
       "copied": "Copied!",
       "copiedDesc": "Stats copied to clipboard.",
       "currentPhase": "Current Phase",
-      "cycleDay": "Döngü Günü",
+      "cycleDay": "Döngü Günü {{day}}",
       "menstrual": "Adet",
       "follicular": "Foliküler",
       "ovulation": "Yumurtlama",
@@ -6857,7 +6857,21 @@
     "privacy": "Gizlilik ve Güvenlik",
     "privacyDesc": "Verileriniz şifreli ve korumalıdır",
     "searchKeywords": "Arama Anahtar Kelimeleri",
-    "defaultDescription": "33+ akıllı araçla ücretsiz hamilelik takibi: doğum tarihi hesaplama, hareket sayacı, kasılma zamanlayıcı, bebek büyüme takibi, beslenme. 7 dilde."
+    "defaultDescription": "33+ akıllı araçla ücretsiz hamilelik takibi: doğum tarihi hesaplama, hareket sayacı, kasılma zamanlayıcı, bebek büyüme takibi, beslenme. 7 dilde.",
+    "faq": {
+      "q1": "Uygulama hamileler için güvenli mi?",
+      "a1": "Evet, tüm bilgiler güvenilir tıbbi kaynaklara dayanmaktadır. Ancak her zaman doktorunuza danışın.",
+      "q2": "Uygulama ücretsiz mi?",
+      "a2": "Evet, uygulama isteğe bağlı premium özelliklerle ücretsizdir.",
+      "q3": "Uygulamayı internetsiz kullanabilir miyim?",
+      "a3": "Evet, araçların çoğu ilk yüklemeden sonra çevrimdışı çalışır.",
+      "q4": "Verilerim güvende mi?",
+      "a4": "Evet, verileriniz şifreleme ile cihazınızda yerel olarak saklanır.",
+      "q5": "Kaç araç mevcut?",
+      "a5": "Hamileliğin tüm aşamalarını kapsayan 33'ten fazla akıllı araç.",
+      "q6": "Uygulama birden fazla dili destekliyor mu?",
+      "a6": "Evet, uygulama Arapça, İngilizce, İspanyolca, Fransızca, Almanca, Portekizce ve Türkçe dahil 7 dili destekler."
+    }
   },
   "videoLibraryPage": {
     "title": "Video Kütüphanesi",

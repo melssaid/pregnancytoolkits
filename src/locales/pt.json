@@ -5124,7 +5124,7 @@
       "copied": "Copied!",
       "copiedDesc": "Stats copied to clipboard.",
       "currentPhase": "Current Phase",
-      "cycleDay": "Dia do Ciclo",
+      "cycleDay": "Dia {{day}} do Ciclo",
       "menstrual": "Menstrual",
       "follicular": "Folicular",
       "ovulation": "Ovulação",
@@ -6857,7 +6857,21 @@
     "privacy": "Privacidade e segurança",
     "privacyDesc": "Seus dados são criptografados e protegidos",
     "searchKeywords": "Palavras-chave de pesquisa",
-    "defaultDescription": "App gravidez grátis com 33+ ferramentas: calculadora data parto, contador movimentos, temporizador contrações, acompanhamento bebê. 7 idiomas."
+    "defaultDescription": "App gravidez grátis com 33+ ferramentas: calculadora data parto, contador movimentos, temporizador contrações, acompanhamento bebê. 7 idiomas.",
+    "faq": {
+      "q1": "O aplicativo é seguro para gestantes?",
+      "a1": "Sim, todas as informações são baseadas em fontes médicas confiáveis. No entanto, sempre consulte seu médico.",
+      "q2": "O aplicativo é gratuito?",
+      "a2": "Sim, o aplicativo é gratuito com funcionalidades premium opcionais.",
+      "q3": "Posso usar o aplicativo sem internet?",
+      "a3": "Sim, a maioria das ferramentas funciona offline após o primeiro carregamento.",
+      "q4": "Meus dados estão seguros?",
+      "a4": "Sim, seus dados são armazenados localmente no seu dispositivo com criptografia.",
+      "q5": "Quantas ferramentas estão disponíveis?",
+      "a5": "Mais de 33 ferramentas inteligentes cobrindo todas as fases da gravidez.",
+      "q6": "O aplicativo suporta vários idiomas?",
+      "a6": "Sim, o aplicativo suporta 7 idiomas incluindo árabe, inglês, espanhol, francês, alemão, português e turco."
+    }
   },
   "videoLibraryPage": {
     "title": "Biblioteca de Vídeos",
