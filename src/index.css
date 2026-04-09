@@ -233,6 +233,21 @@ html[lang="ar"] .ar-heading {
   h1, h2, h3, h4, h5, h6 {
     @apply font-bold tracking-tight text-foreground;
   }
+
+  /* Boost body text legibility — use medium weight for RTL (Tajawal) */
+  html[dir="rtl"] p,
+  html[dir="rtl"] span,
+  html[dir="rtl"] li,
+  html[dir="rtl"] td,
+  html[dir="rtl"] label,
+  html[dir="rtl"] a {
+    font-weight: 500;
+  }
+
+  /* Ensure description/secondary text has adequate contrast */
+  .text-muted-foreground {
+    letter-spacing: 0.01em;
+  }
 }
 
 @layer utilities {
