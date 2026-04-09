@@ -36,7 +36,7 @@ export function Layout({ children, showBack = false }: LayoutProps) {
       <TrialExpiryBanner />
       {/* Trust Bar - Above header */}
       <motion.div 
-        className="relative overflow-hidden bg-gradient-to-r from-primary via-primary/90 to-primary text-primary-foreground"
+        className="relative overflow-hidden bg-gradient-to-r from-primary/80 via-primary to-primary/80 text-primary-foreground"
         style={{ paddingTop: 'env(safe-area-inset-top)', filter: 'brightness(0.85)' }}
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
