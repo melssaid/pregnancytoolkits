@@ -465,6 +465,43 @@ const AIBumpPhotos: React.FC = () => {
           </CardContent>
         </Card>
 
+        {/* ──────────── BACKUP / EXPORT ALL PHOTOS ──────────── */}
+        {photos.length > 0 && (
+          <Card className="border-primary/20">
+            <CardContent className="p-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <HardDrive className="w-5 h-5 text-primary" />
+                  <div>
+                    <p className="text-sm font-semibold">
+                      {isRTL ? 'نسخ احتياطي للصور' : 'Backup Photos'}
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      {isRTL
+                        ? `${photos.length} صورة محفوظة — صدّرها قبل مسح البيانات`
+                        : `${photos.length} photos saved — export before clearing data`}
+                    </p>
+                  </div>
+                </div>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="gap-1.5"
+                  disabled={isExportingPhotos}
+                  onClick={handleExportAllPhotos}
+                >
+                  {isExportingPhotos ? (
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                  ) : (
+                    <Download className="w-4 h-4" />
+                  )}
+                  {isRTL ? 'تصدير الكل' : 'Export All'}
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
         {/* ──────────── 2. PHOTOS GRID ──────────── */}
         {photos.length > 0 ? (
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
