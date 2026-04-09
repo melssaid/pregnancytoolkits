@@ -8184,7 +8184,7 @@
           "0": "Sense of smell develops",
           "1": "Regular sleep-wake cycles",
           "2": "Bones hardening further",
-          "3": "Clearly recognizes your voice"
+          "3": "Reconoce claramente tu voz"
         }
       },
       "w28": {
@@ -8220,10 +8220,10 @@
           "4": "Empieza a preparar la bolsa del hospital"
         },
         "babyDev": {
-          "0": "Eyes open and close regularly",
-          "1": "Brain developing rapidly",
-          "2": "Lungs practicing breathing",
-          "3": "Strong, regular movements"
+          "0": "Los ojos se abren y cierran regularmente",
+          "1": "El cerebro se desarrolla rápidamente",
+          "2": "Los pulmones practican la respiración",
+          "3": "Movimientos fuertes y regulares"
         }
       },
       "w29": {
@@ -8259,10 +8259,10 @@
           "4": "Instala la silla de coche"
         },
         "babyDev": {
-          "0": "Gaining weight quickly",
-          "1": "Lungs maturing further",
-          "2": "Immune system strengthening",
-          "3": "Responds to familiar sounds"
+          "0": "Aumentando de peso rápidamente",
+          "1": "Los pulmones maduran más",
+          "2": "El sistema inmunológico se fortalece",
+          "3": "Responde a sonidos familiares"
         }
       },
       "w30": {
@@ -8298,10 +8298,10 @@
           "4": "Prepara suministros de recuperación posparto"
         },
         "babyDev": {
-          "0": "Practices breathing regularly",
-          "1": "Bones complete but soft",
-          "2": "Can track light sources",
-          "3": "Hair growing on head"
+          "0": "Practica la respiración regularmente",
+          "1": "Huesos completos pero suaves",
+          "2": "Puede seguir fuentes de luz",
+          "3": "El cabello crece en la cabeza"
         }
       },
       "w31": {
@@ -8337,10 +8337,10 @@
           "4": "Abastécete de esenciales para el posparto"
         },
         "babyDev": {
-          "0": "Gradually assumes birth position",
-          "1": "Brain processes information",
-          "2": "All five senses functional",
-          "3": "Gains 200g weekly"
+          "0": "Gradualmente asume la posición de parto",
+          "1": "El cerebro procesa información",
+          "2": "Los cinco sentidos funcionan",
+          "3": "Gana 200g semanalmente"
         }
       },
       "w32": {
@@ -8376,10 +8376,10 @@
           "4": "Discute opciones de manejo del dolor"
         },
         "babyDev": {
-          "0": "Nails reach fingertips",
-          "1": "Skin becomes smoother and thicker",
-          "2": "Breathes fluid to strengthen lungs",
-          "3": "Responds to music"
+          "0": "Las uñas llegan a las puntas de los dedos",
+          "1": "La piel se vuelve más suave y gruesa",
+          "2": "Respira líquido para fortalecer los pulmones",
+          "3": "Responde a la música"
         }
       },
       "w33": {
@@ -8415,10 +8415,10 @@
           "4": "Repasa posiciones y técnicas de lactancia"
         },
         "babyDev": {
-          "0": "Bones harden except skull",
-          "1": "Dreams during sleep",
-          "2": "Immunity strengthens from mother",
-          "3": "Assumes head-down position"
+          "0": "Los huesos se endurecen excepto el cráneo",
+          "1": "Sueña durante el sueño",
+          "2": "La inmunidad se fortalece de la madre",
+          "3": "Asume la posición cabeza abajo"
         }
       },
       "w34": {
@@ -8454,10 +8454,10 @@
           "4": "Discute opciones de banco de sangre de cordón"
         },
         "babyDev": {
-          "0": "Lungs nearly complete",
-          "1": "Can recognize voices",
-          "2": "Nails fully grown",
-          "3": "Accumulating fat layers"
+          "0": "Los pulmones casi completos",
+          "1": "Puede reconocer voces",
+          "2": "Uñas completamente crecidas",
+          "3": "Acumulando capas de grasa"
         }
       },
       "w35": {
@@ -8493,10 +8493,10 @@
           "4": "Aprende los cuidados básicos del recién nacido"
         },
         "babyDev": {
-          "0": "Kidneys fully functional",
-          "1": "Practices sucking and swallowing",
-          "2": "Brain growing very rapidly",
-          "3": "Skin is pink and smooth"
+          "0": "Los riñones completamente funcionales",
+          "1": "Practica la succión y la deglución",
+          "2": "El cerebro crece muy rápidamente",
+          "3": "La piel es rosada y suave"
         }
       },
       "w36": {
@@ -8532,10 +8532,10 @@
           "4": "Confirma tu equipo de apoyo al parto"
         },
         "babyDev": {
-          "0": "Lungs nearly ready",
-          "1": "Assumes final birth position",
-          "2": "Digestive system complete",
-          "3": "Gains 30g daily"
+          "0": "Los pulmones casi listos",
+          "1": "Asume la posición final de parto",
+          "2": "Sistema digestivo completo",
+          "3": "Gana 30g diarios"
         }
       },
       "w37": {
@@ -8571,10 +8571,10 @@
           "4": "Sabe cuándo llamar a tu médico o ir al hospital"
         },
         "babyDev": {
-          "0": "Considered full term",
-          "1": "Lungs are fully mature",
-          "2": "Can grip firmly",
-          "3": "Ready for life outside"
+          "0": "Considerado a término completo",
+          "1": "Los pulmones están completamente maduros",
+          "2": "Puede agarrar firmemente",
+          "3": "Listo para la vida fuera"
         }
       },
       "w38": {
@@ -8610,10 +8610,10 @@
           "4": "Practica cronometrar las contracciones"
         },
         "babyDev": {
-          "0": "All organs functioning efficiently",
-          "1": "Shedding lanugo",
-          "2": "Gaining final fat layers",
-          "3": "Awaiting labor signal"
+          "0": "Todos los órganos funcionan eficientemente",
+          "1": "Perdiendo el lanugo",
+          "2": "Ganando las últimas capas de grasa",
+          "3": "Esperando la señal de parto"
         }
       },
       "w39": {
@@ -8649,10 +8649,10 @@
           "4": "Repasa el plan de alimentación del recién nacido"
         },
         "babyDev": {
-          "0": "Fully developed",
-          "1": "Ready for birth anytime",
-          "2": "Lungs producing surfactant",
-          "3": "Immunity at its strongest"
+          "0": "Completamente desarrollado",
+          "1": "Listo para nacer en cualquier momento",
+          "2": "Los pulmones producen surfactante",
+          "3": "Inmunidad en su punto más fuerte"
         }
       },
       "w40": {
@@ -8688,10 +8688,10 @@
           "4": "Contacta a tu médico si empiezan las contracciones"
         },
         "babyDev": {
-          "0": "Due date! All systems optimal",
-          "1": "Completely ready to meet the world",
-          "2": "Skull flexible for delivery",
-          "3": "All organs functioning perfectly"
+          "0": "¡Fecha de parto! Todos los sistemas óptimos",
+          "1": "Completamente listo para conocer el mundo",
+          "2": "Cráneo flexible para el parto",
+          "3": "Todos los órganos funcionan perfectamente"
         }
       },
       "w41": {
@@ -8727,10 +8727,10 @@
           "4": "Quédate cerca de casa y del hospital"
         },
         "babyDev": {
-          "0": "Continues gaining weight",
-          "1": "Placenta working at full capacity",
-          "2": "Doctor may suggest induction",
-          "3": "Monitor movements closely"
+          "0": "Continúa ganando peso",
+          "1": "La placenta trabaja a máxima capacidad",
+          "2": "El médico puede sugerir inducción",
+          "3": "Monitorea los movimientos de cerca"
         }
       },
       "w42": {
@@ -8766,10 +8766,10 @@
           "4": "Confía en tu equipo médico — ¡ya casi estás!"
         },
         "babyDev": {
-          "0": "Past due — follow up with doctor",
-          "1": "Labor may be induced",
-          "2": "Continue counting kicks",
-          "3": "Be ready for hospital"
+          "0": "Fecha pasada — seguimiento con el médico",
+          "1": "El parto puede ser inducido",
+          "2": "Continúa contando las patadas",
+          "3": "Prepárate para el hospital"
         }
       },
       "w1": {
