@@ -8170,7 +8170,7 @@
           "0": "Sense of smell develops",
           "1": "Regular sleep-wake cycles",
           "2": "Bones hardening further",
-          "3": "Clearly recognizes your voice"
+          "3": "Sesinizi net olarak tanıyor"
         }
       },
       "w28": {
@@ -8206,10 +8206,10 @@
           "4": "Hastane çantanızı hazırlamaya başlayın"
         },
         "babyDev": {
-          "0": "Eyes open and close regularly",
-          "1": "Brain developing rapidly",
-          "2": "Lungs practicing breathing",
-          "3": "Strong, regular movements"
+          "0": "Gözler düzenli olarak açılıp kapanıyor",
+          "1": "Beyin hızla gelişiyor",
+          "2": "Akciğerler nefes pratiği yapıyor",
+          "3": "Güçlü, düzenli hareketler"
         }
       },
       "w29": {
@@ -8245,10 +8245,10 @@
           "4": "Bebek araba koltuğunu takın"
         },
         "babyDev": {
-          "0": "Gaining weight quickly",
-          "1": "Lungs maturing further",
-          "2": "Immune system strengthening",
-          "3": "Responds to familiar sounds"
+          "0": "Hızla kilo alıyor",
+          "1": "Akciğerler daha da olgunlaşıyor",
+          "2": "Bağışıklık sistemi güçleniyor",
+          "3": "Tanıdık seslere tepki veriyor"
         }
       },
       "w30": {
@@ -8284,10 +8284,10 @@
           "4": "Doğum sonrası iyileşme malzemelerini hazırlayın"
         },
         "babyDev": {
-          "0": "Practices breathing regularly",
-          "1": "Bones complete but soft",
-          "2": "Can track light sources",
-          "3": "Hair growing on head"
+          "0": "Düzenli nefes pratiği yapıyor",
+          "1": "Kemikler tam ama yumuşak",
+          "2": "Işık kaynaklarını takip edebiliyor",
+          "3": "Başta saç büyüyor"
         }
       },
       "w31": {
@@ -8323,10 +8323,10 @@
           "4": "Doğum sonrası temel ihtiyaçları stoklayın"
         },
         "babyDev": {
-          "0": "Gradually assumes birth position",
-          "1": "Brain processes information",
-          "2": "All five senses functional",
-          "3": "Gains 200g weekly"
+          "0": "Yavaş yavaş doğum pozisyonunu alıyor",
+          "1": "Beyin bilgi işliyor",
+          "2": "Beş duyu da işlevsel",
+          "3": "Haftalık 200g alıyor"
         }
       },
       "w32": {
@@ -8362,10 +8362,10 @@
           "4": "Ağrı yönetimi seçeneklerini doktorunuzla konuşun"
         },
         "babyDev": {
-          "0": "Nails reach fingertips",
-          "1": "Skin becomes smoother and thicker",
-          "2": "Breathes fluid to strengthen lungs",
-          "3": "Responds to music"
+          "0": "Tırnaklar parmak uçlarına ulaşıyor",
+          "1": "Cilt daha pürüzsüz ve kalın oluyor",
+          "2": "Akciğerleri güçlendirmek için sıvı soluyor",
+          "3": "Müziğe tepki veriyor"
         }
       },
       "w33": {
@@ -8401,10 +8401,10 @@
           "4": "Emzirme pozisyonlarını ve tekniklerini gözden geçirin"
         },
         "babyDev": {
-          "0": "Bones harden except skull",
-          "1": "Dreams during sleep",
-          "2": "Immunity strengthens from mother",
-          "3": "Assumes head-down position"
+          "0": "Kafatası hariç kemikler sertleşiyor",
+          "1": "Uyku sırasında rüya görüyor",
+          "2": "Bağışıklık anneden güçleniyor",
+          "3": "Baş aşağı pozisyonu alıyor"
         }
       },
       "w34": {
@@ -8440,10 +8440,10 @@
           "4": "Kordon kanı bankacılığı seçeneklerini konuşun"
         },
         "babyDev": {
-          "0": "Lungs nearly complete",
-          "1": "Can recognize voices",
-          "2": "Nails fully grown",
-          "3": "Accumulating fat layers"
+          "0": "Akciğerler neredeyse tamamlandı",
+          "1": "Sesleri tanıyabiliyor",
+          "2": "Tırnaklar tamamen büyümüş",
+          "3": "Yağ tabakaları birikiyor"
         }
       },
       "w35": {
@@ -8479,10 +8479,10 @@
           "4": "Yenidoğan bakım temellerini öğrenin"
         },
         "babyDev": {
-          "0": "Kidneys fully functional",
-          "1": "Practices sucking and swallowing",
-          "2": "Brain growing very rapidly",
-          "3": "Skin is pink and smooth"
+          "0": "Böbrekler tamamen işlevsel",
+          "1": "Emme ve yutma pratiği yapıyor",
+          "2": "Beyin çok hızlı büyüyor",
+          "3": "Cilt pembe ve pürüzsüz"
         }
       },
       "w36": {
@@ -8518,10 +8518,10 @@
           "4": "Doğum destek ekibinizi onaylayın"
         },
         "babyDev": {
-          "0": "Lungs nearly ready",
-          "1": "Assumes final birth position",
-          "2": "Digestive system complete",
-          "3": "Gains 30g daily"
+          "0": "Akciğerler neredeyse hazır",
+          "1": "Son doğum pozisyonunu alıyor",
+          "2": "Sindirim sistemi tamamlandı",
+          "3": "Günlük 30g alıyor"
         }
       },
       "w37": {
@@ -8557,10 +8557,10 @@
           "4": "Ne zaman doktoru arayacağınızı veya hastaneye gideceğinizi bilin"
         },
         "babyDev": {
-          "0": "Considered full term",
-          "1": "Lungs are fully mature",
-          "2": "Can grip firmly",
-          "3": "Ready for life outside"
+          "0": "Tam dönem olarak kabul ediliyor",
+          "1": "Akciğerler tamamen olgunlaşmış",
+          "2": "Sıkıca kavrayabiliyor",
+          "3": "Dış dünya için hazır"
         }
       },
       "w38": {
@@ -8596,10 +8596,10 @@
           "4": "Kasılmaları zamanlamayı pratik yapın"
         },
         "babyDev": {
-          "0": "All organs functioning efficiently",
-          "1": "Shedding lanugo",
-          "2": "Gaining final fat layers",
-          "3": "Awaiting labor signal"
+          "0": "Tüm organlar verimli çalışıyor",
+          "1": "Lanugo dökülüyor",
+          "2": "Son yağ tabakalarını kazanıyor",
+          "3": "Doğum sinyalini bekliyor"
         }
       },
       "w39": {
@@ -8635,10 +8635,10 @@
           "4": "Yenidoğan beslenme planını gözden geçirin"
         },
         "babyDev": {
-          "0": "Fully developed",
-          "1": "Ready for birth anytime",
-          "2": "Lungs producing surfactant",
-          "3": "Immunity at its strongest"
+          "0": "Tamamen gelişmiş",
+          "1": "Her an doğuma hazır",
+          "2": "Akciğerler sürfaktan üretiyor",
+          "3": "Bağışıklık en güçlü seviyede"
         }
       },
       "w40": {
@@ -8674,10 +8674,10 @@
           "4": "Kasılmalar başlarsa doktorunuza ulaşın"
         },
         "babyDev": {
-          "0": "Due date! All systems optimal",
-          "1": "Completely ready to meet the world",
-          "2": "Skull flexible for delivery",
-          "3": "All organs functioning perfectly"
+          "0": "Beklenen tarih! Tüm sistemler optimal",
+          "1": "Dünyayla tanışmaya tamamen hazır",
+          "2": "Kafatası doğum için esnek",
+          "3": "Tüm organlar mükemmel çalışıyor"
         }
       },
       "w41": {
@@ -8713,10 +8713,10 @@
           "4": "Ev ve hastaneye yakın kalın"
         },
         "babyDev": {
-          "0": "Continues gaining weight",
-          "1": "Placenta working at full capacity",
-          "2": "Doctor may suggest induction",
-          "3": "Monitor movements closely"
+          "0": "Kilo almaya devam ediyor",
+          "1": "Plasenta tam kapasitede çalışıyor",
+          "2": "Doktor indüksiyon önerebilir",
+          "3": "Hareketleri yakından takip edin"
         }
       },
       "w42": {
@@ -8752,10 +8752,10 @@
           "4": "Tıbbi ekibinize güvenin — neredeyse oradasınız!"
         },
         "babyDev": {
-          "0": "Past due — follow up with doctor",
-          "1": "Labor may be induced",
-          "2": "Continue counting kicks",
-          "3": "Be ready for hospital"
+          "0": "Tarih geçti — doktorla takip edin",
+          "1": "Doğum başlatılabilir",
+          "2": "Tekmeleri saymaya devam edin",
+          "3": "Hastane için hazır olun"
         }
       },
       "w1": {
