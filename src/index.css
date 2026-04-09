@@ -200,21 +200,15 @@ html[lang="ar"] .ar-heading {
     background: hsl(0 0% 100%);
   }
 
-  /* RTL headings — always bold for Arabic readability */
-  html[dir="rtl"] h1, html[dir="rtl"] h2, html[dir="rtl"] h3, html[dir="rtl"] h4 {
+  /* RTL readability — boost content text weights without affecting branding */
+  html[dir="rtl"] main h1, html[dir="rtl"] main h2, html[dir="rtl"] main h3, html[dir="rtl"] main h4 {
     font-weight: 700 !important;
   }
-  html[dir="rtl"] .font-semibold {
+  html[dir="rtl"] main .font-semibold {
     font-weight: 700 !important;
   }
-  html[dir="rtl"] .font-medium {
+  html[dir="rtl"] main .font-medium {
     font-weight: 600 !important;
-  }
-  html[dir="rtl"] .font-bold {
-    font-weight: 800 !important;
-  }
-  html[dir="rtl"] .font-extrabold, html[dir="rtl"] .font-black {
-    font-weight: 900 !important;
   }
 
   .dark body {
