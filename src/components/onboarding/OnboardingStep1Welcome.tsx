@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { Shield, Globe, Check, Lock, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Shield, Globe, Lock, Sparkles, ChevronLeft, ChevronRight, Check, Baby, Activity, Brain, UtensilsCrossed } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -34,6 +34,13 @@ export const OnboardingStep1Welcome: React.FC<Props> = ({ selectedLang, onSelect
     changeLanguage(code);
   };
 
+  const showcaseItems = [
+    { icon: Baby, colorClass: 'text-pink-500', bgClass: 'bg-pink-500/10' },
+    { icon: Activity, colorClass: 'text-emerald-500', bgClass: 'bg-emerald-500/10' },
+    { icon: Brain, colorClass: 'text-violet-500', bgClass: 'bg-violet-500/10' },
+    { icon: UtensilsCrossed, colorClass: 'text-amber-500', bgClass: 'bg-amber-500/10' },
+  ];
+
   return (
     <motion.div
       key="step1"
@@ -44,15 +51,37 @@ export const OnboardingStep1Welcome: React.FC<Props> = ({ selectedLang, onSelect
     >
       {/* Logo & Title */}
       <div className="px-5 pt-3 pb-2 text-center">
-        <div className="w-14 h-14 mx-auto mb-2.5 rounded-2xl overflow-hidden shadow-md">
+        <motion.div
+          className="w-16 h-16 mx-auto mb-2.5 rounded-2xl overflow-hidden shadow-lg ring-2 ring-primary/20"
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+        >
           <img src={logoImage} alt="App Logo" className="w-full h-full object-cover" />
-        </div>
+        </motion.div>
         <h2 className="text-base font-bold text-foreground">
           {t('onboarding.title', 'Welcome to Your Journey')}
         </h2>
         <p className="text-xs text-muted-foreground mt-1">
           {t('onboarding.subtitle', 'Your lifestyle & educational companion')}
         </p>
+      </div>
+
+      {/* Visual showcase - what you can do */}
+      <div className="px-4 pb-3">
+        <div className="flex items-center justify-center gap-3 py-2">
+          {showcaseItems.map((item, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 + i * 0.08 }}
+              className={cn("w-10 h-10 rounded-xl flex items-center justify-center", item.bgClass)}
+            >
+              <item.icon className={cn("w-5 h-5", item.colorClass)} />
+            </motion.div>
+          ))}
+        </div>
       </div>
 
       {/* Value props */}
@@ -64,12 +93,18 @@ export const OnboardingStep1Welcome: React.FC<Props> = ({ selectedLang, onSelect
             { icon: Lock, key: 'privacyFirst' },
             { icon: Shield, key: 'transparency' },
           ].map((vp, i) => (
-            <div key={i} className="flex items-center gap-1.5 px-2.5 py-2 rounded-xl bg-muted/40">
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2 + i * 0.05 }}
+              className="flex items-center gap-1.5 px-2.5 py-2 rounded-xl bg-muted/40"
+            >
               <vp.icon className="w-3.5 h-3.5 text-primary flex-shrink-0" />
               <span className="text-[10px] text-foreground/70 leading-tight">
                 {t(`onboarding.${vp.key}`)}
               </span>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -105,12 +140,13 @@ export const OnboardingStep1Welcome: React.FC<Props> = ({ selectedLang, onSelect
       </div>
 
       <div className="px-4 pb-4">
-        <button
+        <motion.button
+          whileTap={{ scale: 0.97 }}
           onClick={onNext}
-          className="w-full py-2.5 rounded-xl bg-primary text-primary-foreground font-semibold text-xs flex items-center justify-center gap-1.5 hover:opacity-90 transition-opacity"
+          className="w-full py-2.5 rounded-xl bg-primary text-primary-foreground font-semibold text-xs flex items-center justify-center gap-1.5 hover:opacity-90 transition-opacity shadow-md shadow-primary/20"
         >
           {t('onboarding.next', 'Continue')} <NextIcon className="w-3.5 h-3.5" />
-        </button>
+        </motion.button>
       </div>
     </motion.div>
   );
