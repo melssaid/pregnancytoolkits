@@ -9,7 +9,7 @@ import {
   Shield, Globe, Star, Download, ExternalLink,
 } from "lucide-react";
 import { getLocalizedToolSEO } from "@/data/toolSeoLocales";
-
+import { StickyCTA } from "@/components/StickyCTA";
 const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=app.pregnancytoolkits.android";
 
 // SEO-optimized descriptions per tool (EN)
@@ -680,6 +680,7 @@ export default function ToolLanding() {
           </div>
         </div>
       </footer>
+      <StickyCTA />
     </div>
   );
 }

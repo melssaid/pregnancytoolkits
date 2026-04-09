@@ -134,6 +134,10 @@ const KeywordLibrary = lazy(() => import("@/pages/KeywordLibrary"));
 const ASOGenerator = lazy(() => import("@/pages/ASOGenerator"));
 const LanguageSelection = lazy(() => import("@/pages/LanguageSelection"));
 const ToolLanding = lazy(() => import("@/pages/ToolLanding"));
+const WhyUs = lazy(() => import("@/pages/WhyUs"));
+const Testimonials = lazy(() => import("@/pages/Testimonials"));
+const DiscoverTools = lazy(() => import("@/pages/DiscoverTools"));
+const AdminUsageDashboardPage = lazy(() => import("@/pages/AdminUsageDashboard"));
 
 export function AnimatedRoutes() {
   return (
@@ -231,10 +235,16 @@ export function AnimatedRoutes() {
         {/* VIDEO LIBRARY */}
         <Route path="/videos" element={<PageTransition><VideoLibraryPage /></PageTransition>} />
 
+        {/* NEW PAGES */}
+        <Route path="/why-us" element={<PageTransition><WhyUs /></PageTransition>} />
+        <Route path="/testimonials" element={<PageTransition><Testimonials /></PageTransition>} />
+        <Route path="/discover" element={<PageTransition><DiscoverTools /></PageTransition>} />
+
         {/* ADMIN */}
         <Route path="/admin/ai-usage" element={<PageTransition><AIUsageDashboard /></PageTransition>} />
         <Route path="/admin/keywords" element={<PageTransition><KeywordLibrary /></PageTransition>} />
         <Route path="/admin/aso-generator" element={<PageTransition><ASOGenerator /></PageTransition>} />
+        <Route path="/admin/usage" element={<PageTransition><AdminUsageDashboardPage /></PageTransition>} />
 
         {/* LEGACY REDIRECTS — deleted tools */}
         <Route path="/tools/smart-walking-coach" element={<Navigate to="/tools/ai-fitness-coach" replace />} />

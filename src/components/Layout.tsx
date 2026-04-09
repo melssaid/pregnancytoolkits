@@ -265,7 +265,7 @@ export function Layout({ children, showBack = false }: LayoutProps) {
             </div>
             
             {/* Styled Links Container */}
-            <div className="inline-flex items-center gap-1 px-4 py-2 rounded-full bg-gradient-to-r from-muted/50 via-muted/30 to-muted/50 border border-border/60 shadow-sm">
+            <div className="inline-flex items-center gap-1 px-4 py-2 rounded-full bg-gradient-to-r from-muted/50 via-muted/30 to-muted/50 border border-border/60 shadow-sm flex-wrap justify-center">
               <Link to="/privacy" className="text-[10px] text-muted-foreground hover:text-primary transition-colors duration-200 px-2.5 py-1 rounded-full hover:bg-primary/10 active:scale-95">
                 {t('layout.footer.privacy', 'Privacy')}
               </Link>
@@ -276,6 +276,10 @@ export function Layout({ children, showBack = false }: LayoutProps) {
               <span className="text-muted-foreground/40">•</span>
               <Link to="/contact" className="text-[10px] text-muted-foreground hover:text-primary transition-colors duration-200 px-2.5 py-1 rounded-full hover:bg-primary/10 active:scale-95">
                 {t('layout.footer.contact', 'Contact')}
+              </Link>
+              <span className="text-muted-foreground/40">•</span>
+              <Link to="/testimonials" className="text-[10px] text-muted-foreground hover:text-primary transition-colors duration-200 px-2.5 py-1 rounded-full hover:bg-primary/10 active:scale-95">
+                {t('layout.footer.testimonials', 'Reviews')}
               </Link>
             </div>
           </div>
