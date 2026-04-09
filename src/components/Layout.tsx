@@ -36,12 +36,14 @@ export function Layout({ children, showBack = false }: LayoutProps) {
       <TrialExpiryBanner />
       {/* Trust Bar - Above header */}
       <motion.div 
-        className="relative overflow-hidden bg-gradient-to-r from-primary/80 via-primary to-primary/80 text-primary-foreground"
-        style={{ paddingTop: 'env(safe-area-inset-top)', filter: 'brightness(0.85)' }}
+        className="relative overflow-hidden bg-primary text-primary-foreground"
+        style={{ paddingTop: 'env(safe-area-inset-top)' }}
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       >
+        {/* Dark edge gradient overlay — under content */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/20 pointer-events-none" />
         {/* Animated shimmer overlay — brighter */}
         <motion.div
           className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent"
