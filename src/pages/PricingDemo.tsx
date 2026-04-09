@@ -278,10 +278,10 @@ export default function PricingDemo() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.2, delay: 0.12 + idx * 0.04 }}
-                className="flex items-center gap-1 px-2 py-1 rounded-full bg-primary/[0.06] border border-primary/10"
+                className="flex items-center gap-1 px-2 py-1 rounded-full bg-muted/60 border border-border/30"
               >
-                <Icon className="w-2.5 h-2.5 text-primary" strokeWidth={2} />
-                <span className="text-[9px] font-semibold text-foreground leading-none whitespace-nowrap">
+                <Icon className="w-2 h-2 text-muted-foreground" strokeWidth={2} />
+                <span className="text-[8px] font-medium text-muted-foreground leading-none whitespace-nowrap">
                   {t(`pricing.${key}`)}
                 </span>
               </motion.div>
