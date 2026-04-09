@@ -712,10 +712,6 @@ Format as a numbered list (1-5), one question per line. Be concise and relevant.
                             </div>
                           )}
 
-                          {/* AI Disclaimer after generation */}
-                          {suggestedQuestions.length > 0 && (
-                            <AIResultDisclaimer />
-                          )}
                           
                           {aiError && (
                             <div className="bg-destructive/10 text-destructive p-2.5 rounded-xl text-xs">

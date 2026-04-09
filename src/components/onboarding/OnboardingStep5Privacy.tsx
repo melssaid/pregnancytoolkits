@@ -69,9 +69,6 @@ export const OnboardingStep5Privacy: React.FC<Props> = ({ onFinish, onBack }) =>
           </div>
         </div>
 
-        <p className="text-[9px] text-muted-foreground/50 text-center">
-          {t('onboarding.consultNote')}
-        </p>
       </div>
 
       {/* Navigation */}
