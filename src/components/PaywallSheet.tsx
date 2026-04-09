@@ -27,6 +27,13 @@ export function PaywallSheet({ open, onClose, toolName }: PaywallSheetProps) {
   const showTrialOffer = tier === "free";
 
   const handleSubscribe = () => {
+    const canPurchaseInApp = typeof window.getDigitalGoodsService === 'function';
+    if (!canPurchaseInApp) {
+      // On web: redirect to Play Store
+      window.open("https://play.google.com/store/apps/details?id=app.pregnancytoolkits.android", "_blank");
+      onClose();
+      return;
+    }
     onClose();
     navigate("/pricing-demo");
   };
