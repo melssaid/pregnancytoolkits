@@ -268,42 +268,6 @@ export type Database = {
         }
         Relationships: []
       }
-      visitor_sessions: {
-        Row: {
-          country_hint: string | null
-          id: string
-          is_twa: boolean | null
-          language: string | null
-          platform: string | null
-          referrer: string | null
-          screen_width: number | null
-          session_start: string
-          visitor_id: string
-        }
-        Insert: {
-          country_hint?: string | null
-          id?: string
-          is_twa?: boolean | null
-          language?: string | null
-          platform?: string | null
-          referrer?: string | null
-          screen_width?: number | null
-          session_start?: string
-          visitor_id: string
-        }
-        Update: {
-          country_hint?: string | null
-          id?: string
-          is_twa?: boolean | null
-          language?: string | null
-          platform?: string | null
-          referrer?: string | null
-          screen_width?: number | null
-          session_start?: string
-          visitor_id?: string
-        }
-        Relationships: []
-      }
     }
     Views: {
       [_ in never]: never
