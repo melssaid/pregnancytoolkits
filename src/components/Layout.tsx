@@ -209,12 +209,12 @@ export function Layout({ children, showBack = false }: LayoutProps) {
                 </div>
               </div>
               {showBack ? (
-                <span className="text-[13px] font-bold text-foreground tracking-tight leading-snug break-words" style={{ fontFamily: "'Tajawal', 'Plus Jakarta Sans', system-ui, sans-serif" }}>
+                <span className="text-[13px] font-bold text-foreground tracking-tight leading-snug break-words" style={{ fontFamily: "'Cairo', 'Plus Jakarta Sans', system-ui, sans-serif" }}>
                   {t('app.name')}
                 </span>
               ) : (
                 <div className="flex flex-col min-w-0">
-                  <span className="text-[13.5px] font-bold text-foreground tracking-tight leading-snug break-words" style={{ fontFamily: "'Tajawal', 'Plus Jakarta Sans', system-ui, sans-serif" }}>
+                  <span className="text-[13.5px] font-bold text-foreground tracking-tight leading-snug break-words" style={{ fontFamily: "'Cairo', 'Plus Jakarta Sans', system-ui, sans-serif" }}>
                     {t('app.name')}
                   </span>
                   <span className="text-[10.5px] text-muted-foreground font-medium mt-0.5 leading-snug break-words">
