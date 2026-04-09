@@ -46,7 +46,7 @@ export function CategorySection({
           </div>
         )}
         <div className="flex-1">
-          <h2 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+          <h2 className="text-2xl font-extrabold text-foreground group-hover:text-primary transition-colors">
             {t(categoryKey)}
           </h2>
           <p className="text-sm text-muted-foreground">
