@@ -288,14 +288,25 @@
               setTimeout(endSplash, 2000);
             });
           }
-        }catch(e){ setTimeout(endSplash, 2000); }
+        }catch(e){ setTimeout(endSplash, 1500); }
 
         // Safety: max 4s for video
         setTimeout(endSplash, 4000);
       })();
     </script>
 
-    <div id="root"></div>
+    <div id="root">
+      <!-- Pre-React loading state — replaced once React mounts -->
+      <div id="pre-react-loader" style="display:flex;align-items:center;justify-content:center;min-height:100vh;background:#faf6f2;">
+        <div style="text-align:center;">
+          <img src="/logo.webp" alt="" width="64" height="64" style="border-radius:50%;margin:0 auto 12px;display:block;" />
+          <div style="width:40px;height:4px;border-radius:2px;background:#f0e0e8;margin:0 auto;overflow:hidden;">
+            <div style="width:60%;height:100%;background:#d4608a;border-radius:2px;animation:loader-slide 1s ease-in-out infinite alternate;"></div>
+          </div>
+        </div>
+      </div>
+      <style>@keyframes loader-slide{0%{transform:translateX(-40%)}100%{transform:translateX(40%)}}</style>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
