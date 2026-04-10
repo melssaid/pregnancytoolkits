@@ -139,6 +139,9 @@ export function HealthInputForm({ health, onUpdate, lang }: HealthInputFormProps
             {kl.goTrack}
           </Link>
         </div>
+        <p className="text-[9px] text-muted-foreground/70 mt-1.5 ps-9 leading-relaxed">
+          {t("smartPlan.kickHint", "يعرض هذا الشريط عدد الركلات المسجّلة تلقائياً من عدّاد الركلات لتحليلها ضمن خطتك")}
+        </p>
       </div>
 
       <button onClick={() => setShowMore(!showMore)} className="text-xs text-primary flex items-center gap-1">
