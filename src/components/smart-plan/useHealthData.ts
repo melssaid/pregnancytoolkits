@@ -5,7 +5,7 @@ const STORAGE_KEY = 'smart-plan-health-data';
 
 const DEFAULT_HEALTH: HealthData = {
   week: 24, weight: 65, height: 165, age: 28,
-  painLevel: 3, bloodPressureSys: 120, bloodPressureDia: 80,
+  waterIntake: 6, bloodPressureSys: 120, bloodPressureDia: 80,
   sleepHours: 7, activityLevel: 'moderate', mood: 'good', conditions: [],
 };
 
