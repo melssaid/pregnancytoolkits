@@ -471,10 +471,7 @@ const ShareAppButton = memo(function ShareAppButton() {
 const Index = () => {
   const { t, i18n } = useTranslation();
   const { tier, isUnlocked, isLoading: subLoading } = useSubscriptionStatus();
-  const { remaining, limit, used, tier: aiTier } = useAIUsage();
   const lang = i18n.language?.split('-')[0] || 'en';
-  const isAr = lang === 'ar';
-  const pct = limit > 0 ? Math.round((used / limit) * 100) : 0;
 
   return (
     <Layout>
@@ -484,31 +481,6 @@ const Index = () => {
       <section className="pt-4 pb-0 relative z-10">
         <div className="px-2.5 sm:px-4 md:px-6 lg:px-8 max-w-4xl mx-auto space-y-3 pb-6">
 
-          {/* Compact AI Credits Bar */}
-          <div className="flex items-center gap-2 px-1">
-            <Zap className="w-3 h-3 shrink-0 text-primary" />
-            <span className="text-[10px] text-muted-foreground font-medium">
-              {isAr ? 'رصيدك' : 'Credits'}
-            </span>
-            <div className="flex-1 h-[5px] rounded-full bg-muted/30 overflow-hidden">
-              <motion.div
-                className="h-full rounded-full"
-                style={{
-                  background: remaining <= 0
-                    ? 'linear-gradient(90deg, hsl(0 72% 51%), hsl(0 72% 40%))'
-                    : (remaining / limit) <= 0.15
-                    ? 'linear-gradient(90deg, hsl(0 72% 51%), hsl(25 95% 53%))'
-                    : 'linear-gradient(90deg, hsl(var(--primary)), hsl(330 65% 50%))',
-                }}
-                initial={{ width: 0 }}
-                animate={{ width: `${Math.min(pct, 100)}%` }}
-                transition={{ duration: 0.6, ease: 'easeOut' }}
-              />
-            </div>
-            <span className="text-[11px] font-bold text-primary tabular-nums shrink-0">
-              {remaining}<span className="text-[9px] opacity-40 font-normal">/{limit}</span>
-            </span>
-          </div>
 
           {journeyConfigs.map((config, index) => (
             <JourneyCard key={config.key} config={config} index={index} isSubscriptionActive={subLoading || isUnlocked} tier={subLoading ? undefined : tier} />
