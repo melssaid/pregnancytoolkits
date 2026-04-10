@@ -51,26 +51,10 @@ export interface Tool {
 // ═══════════════════════════════════════════════════════════════════════════
 
 // ═══════════════════════════════════════════════════════════════════════════
-// HIDDEN TOOLS — Temporarily hidden for Google Play compliance.
-// To restore: remove the ID from this set. All code, routes, and
-// translation keys remain intact.
+// HIDDEN TOOLS — No tools are currently hidden. All 14 previously hidden
+// tools have been restored. To hide again: add IDs to this set.
 // ═══════════════════════════════════════════════════════════════════════════
-const HIDDEN_TOOL_IDS = new Set([
-  "fertility-academy",          // دليل الأمومة — Reproductive Health category
-  "preconception-checkup",      // الاستعداد للأمومة — Reproductive Health
-  "nutrition-supplements",      // دليل التغذية — Medication Management
-  "fetal-growth",               // متابعة نمو الطفل — Fetal terminology
-  "kick-counter",               // عداد حركات الطفل — Fetal monitoring
-  "contraction-timer",          // مؤقت الانقباضات — Labor/Medical
-  "ai-birth-plan",              // خطة الولادة — Labor/Medical
-  "maternal-health-awareness",  // يوميات الحمل — Medical Health
-  "vitamin-tracker",            // منظم التغذية — Medication Management
-  "postpartum-mental-health",   // دليل الراحة — Mental Health category
-  "ai-lactation-prep",          // التغذية الذكية للمولود — Reproductive Health
-  "due-date-calculator",        // حاسبة موعد الولادة — Pregnancy/Medical
-  "smart-appointment-reminder", // المذكرة الذكية — Medical Appointments
-  "postpartum-recovery",        // دليل الأم الجديدة — Medical Recovery
-]);
+const HIDDEN_TOOL_IDS = new Set<string>([]);
 
 const allTools: Tool[] = [
   // ═══════════════════════════════════════════════════════════════
