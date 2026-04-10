@@ -54,6 +54,14 @@ export default function PricingDemo() {
     const sent = await requestPurchase(
       selected,
       async () => {
+        // Instant celebratory toast
+        toast.success(
+          isAr ? '🎉 تم تفعيل اشتراككِ بنجاح!' : '🎉 Subscription activated!',
+          {
+            description: isAr ? 'تم منحكِ 60 نقطة — جميع الأدوات مفتوحة' : '60 credits granted — all tools unlocked',
+            duration: 4000,
+          }
+        );
         // Success — quota already set to premium in activateOnServer
         refreshAIUsage();
         localStorage.removeItem("pricing_visit_ts");
@@ -61,7 +69,7 @@ export default function PricingDemo() {
         // Dispatch event BEFORE navigate so App.tsx listener catches it
         window.dispatchEvent(new CustomEvent("subscription-activated", { detail: { plan: selected } }));
         // Small delay to let event propagate before unmounting
-        setTimeout(() => navigate("/"), 100);
+        setTimeout(() => navigate("/"), 300);
       },
       (msg) => {
         setPurchasing(false);
