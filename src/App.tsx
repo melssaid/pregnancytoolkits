@@ -19,6 +19,7 @@ const OnboardingDisclaimer = lazy(() => import("@/components/OnboardingDisclaime
 const SubscriptionSuccessSheet = lazy(() => import("@/components/SubscriptionSuccessSheet"));
 const GuidedTour = lazy(() => import("@/components/GuidedTour"));
 const OfflineBanner = lazy(() => import("@/components/OfflineBanner").then(m => ({ default: m.OfflineBanner })));
+const PushOnboardingSheet = lazy(() => import("@/components/notifications/PushOnboardingSheet").then(m => ({ default: m.PushOnboardingSheet })));
 
 const queryClient = new QueryClient();
 const CHUNK_RECOVERY_KEY = "pt_chunk_recovery_done";
