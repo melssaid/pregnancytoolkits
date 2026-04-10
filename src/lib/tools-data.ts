@@ -67,6 +67,9 @@ const HIDDEN_TOOL_IDS = new Set([
   "vitamin-tracker",            // منظم التغذية — Medication Management
   "postpartum-mental-health",   // دليل الراحة — Mental Health category
   "ai-lactation-prep",          // التغذية الذكية للمولود — Reproductive Health
+  "due-date-calculator",        // حاسبة موعد الولادة — Pregnancy/Medical
+  "smart-appointment-reminder", // المذكرة الذكية — Medical Appointments
+  "postpartum-recovery",        // دليل الأم الجديدة — Medical Recovery
 ]);
 
 const allTools: Tool[] = [
