@@ -50,8 +50,26 @@ export interface Tool {
 // PREGNANCY TOOLKITS - ORGANIZED BY USER JOURNEY
 // ═══════════════════════════════════════════════════════════════════════════
 
+// ═══════════════════════════════════════════════════════════════════════════
+// HIDDEN TOOLS — Temporarily hidden for Google Play compliance.
+// To restore: remove the ID from this set. All code, routes, and
+// translation keys remain intact.
+// ═══════════════════════════════════════════════════════════════════════════
+const HIDDEN_TOOL_IDS = new Set([
+  "fertility-academy",          // دليل الأمومة — Reproductive Health category
+  "preconception-checkup",      // الاستعداد للأمومة — Reproductive Health
+  "nutrition-supplements",      // دليل التغذية — Medication Management
+  "fetal-growth",               // متابعة نمو الطفل — Fetal terminology
+  "kick-counter",               // عداد حركات الطفل — Fetal monitoring
+  "contraction-timer",          // مؤقت الانقباضات — Labor/Medical
+  "ai-birth-plan",              // خطة الولادة — Labor/Medical
+  "maternal-health-awareness",  // يوميات الحمل — Medical Health
+  "vitamin-tracker",            // منظم التغذية — Medication Management
+  "postpartum-mental-health",   // دليل الراحة — Mental Health category
+  "ai-lactation-prep",          // التغذية الذكية للمولود — Reproductive Health
+]);
 
-export const toolsData: Tool[] = [
+const allTools: Tool[] = [
   // ═══════════════════════════════════════════════════════════════
   // SMART ASSISTANT — Flagship AI tools
   // ═══════════════════════════════════════════════════════════════
@@ -60,7 +78,7 @@ export const toolsData: Tool[] = [
   { id: "weekly-summary", titleKey: "tools.weeklySummary.title", descriptionKey: "tools.weeklySummary.description", icon: Star, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/star--v1.png", categoryKey: "categories.smartAssistant", href: "/tools/weekly-summary", priority: 3, hasAI: true },
 
   // ═══════════════════════════════════════════════════════════════
-  // FERTILITY & PLANNING — "أحلم بطفل" Journey
+  // FERTILITY & PLANNING
   // ═══════════════════════════════════════════════════════════════
   { id: "cycle-tracker", titleKey: "tools.cycleTracker.title", descriptionKey: "tools.cycleTracker.description", icon: Calendar, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/calendar--v1.png", categoryKey: "categories.fertility", href: "/tools/cycle-tracker", priority: 4 },
   { id: "due-date-calculator", titleKey: "tools.dueDateCalculator.title", descriptionKey: "tools.dueDateCalculator.description", icon: Baby, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/baby.png", categoryKey: "categories.fertility", href: "/tools/due-date-calculator", priority: 5 },
@@ -88,17 +106,13 @@ export const toolsData: Tool[] = [
   { id: "vitamin-tracker", titleKey: "tools.vitaminTracker.title", descriptionKey: "tools.vitaminTracker.description", icon: Pill, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/pill.png", categoryKey: "categories.nutrition", href: "/tools/vitamin-tracker", priority: 13, hasAI: true },
 
   // ═══════════════════════════════════════════════════════════════
-  // WELLNESS & FITNESS (Hub)
+  // WELLNESS & FITNESS
   // ═══════════════════════════════════════════════════════════════
   { id: "wellness-diary", titleKey: "tools.wellnessDiary.title", descriptionKey: "tools.wellnessDiary.description", icon: Heart, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/like--v1.png", categoryKey: "categories.wellness", href: "/tools/wellness-diary", priority: 16 },
   { id: "ai-fitness-coach", titleKey: "tools.aiFitnessCoach.title", descriptionKey: "tools.aiFitnessCoach.description", icon: Dumbbell, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/dumbbell.png", categoryKey: "categories.wellness", href: "/tools/ai-fitness-coach", priority: 17, hasAI: true },
   { id: "pregnancy-comfort", titleKey: "tools.pregnancyComfort.title", descriptionKey: "tools.pregnancyComfort.description", icon: Bed, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/sleeping-in-bed.png", categoryKey: "categories.wellness", href: "/tools/pregnancy-comfort", priority: 19, hasAI: true },
   { id: "ai-pregnancy-skincare", titleKey: "tools.aiSkincare.title", descriptionKey: "tools.aiSkincare.description", icon: Palette, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/spa.png", categoryKey: "categories.wellness", href: "/tools/ai-skincare", priority: 21, hasAI: true },
   
-
-  // Mental health moved to postpartum section
-
-  // Self-check tools merged into preparation section below
 
   // ═══════════════════════════════════════════════════════════════
   // PREPARATION & BIRTH
@@ -120,6 +134,12 @@ export const toolsData: Tool[] = [
   { id: "baby-growth", titleKey: "tools.babyGrowth.title", descriptionKey: "tools.babyGrowth.description", icon: Ruler, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/ruler.png", categoryKey: "categories.postpartum", href: "/tools/baby-growth", priority: 41 },
   { id: "diaper-tracker", titleKey: "tools.diaperTracker.title", descriptionKey: "tools.diaperTracker.description", icon: Baby, pngIcon: "https://img.icons8.com/ios-filled/50/D4657E/baby.png", categoryKey: "categories.postpartum", href: "/tools/diaper-tracker", priority: 42 },
 ];
+
+// Filtered visible tools (hidden tools excluded from UI but routes remain active)
+export const toolsData: Tool[] = allTools.filter(t => !HIDDEN_TOOL_IDS.has(t.id));
+
+// Full list including hidden — for route resolution and internal lookups
+export const allToolsIncludingHidden: Tool[] = allTools;
 
 // ═══════════════════════════════════════════════════════════════════════════
 // CATEGORY CONFIGURATION
