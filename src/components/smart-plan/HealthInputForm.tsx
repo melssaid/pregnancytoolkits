@@ -76,6 +76,15 @@ interface HealthInputFormProps {
 export function HealthInputForm({ health, onUpdate, lang }: HealthInputFormProps) {
   const { t } = useTranslation();
   const [showMore, setShowMore] = useState(false);
+  const kickStats = useMemo(() => getLatestKickStats(), []);
+
+  // Sync kick count into health data for AI prompt
+  useState(() => {
+    if (kickStats.totalKicks > 0 && health.lastKickCount !== kickStats.totalKicks) {
+      onUpdate('lastKickCount', kickStats.totalKicks);
+    }
+  });
+  const [showMore, setShowMore] = useState(false);
 
   const getLabel = (option: Record<string, string>) => option[lang] || option.en;
 
