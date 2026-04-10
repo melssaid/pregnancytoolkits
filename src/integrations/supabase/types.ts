@@ -122,6 +122,39 @@ export type Database = {
         }
         Relationships: []
       }
+      notification_logs: {
+        Row: {
+          body: string
+          created_at: string
+          id: string
+          language: string | null
+          title: string
+          total_failed: number
+          total_sent: number
+          total_subscribers: number
+        }
+        Insert: {
+          body: string
+          created_at?: string
+          id?: string
+          language?: string | null
+          title: string
+          total_failed?: number
+          total_sent?: number
+          total_subscribers?: number
+        }
+        Update: {
+          body?: string
+          created_at?: string
+          id?: string
+          language?: string | null
+          title?: string
+          total_failed?: number
+          total_sent?: number
+          total_subscribers?: number
+        }
+        Relationships: []
+      }
       push_subscriptions: {
         Row: {
           auth: string

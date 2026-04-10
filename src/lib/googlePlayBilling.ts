@@ -589,18 +589,7 @@ async function activateOnServer(
     let currentUser = user;
 
     if (!currentUser) {
-      // Try to sign in anonymously without triggering redirects
-      const { data, error } = await supabase.auth.signInAnonymously();
-      if (error) {
-        console.error('[Billing] Auth failed:', error.message);
-        // Still try to activate without auth as fallback
-      } else {
-        currentUser = data.user;
-      }
-    }
-
-    if (!currentUser) {
-      console.error('[Billing] No authenticated user — cannot activate');
+      console.error('[Billing] No authenticated user — cannot activate subscription');
       return false;
     }
 
@@ -641,7 +630,7 @@ async function activateOnServer(
     }
 
     console.log('[Billing] ✅ Subscription activated');
-    // Update local quota to premium (40 credits)
+    // Update local quota to premium (60 credits)
     setQuotaTier('premium');
     // Cache premium status for instant access on next app open
     cacheSubscriptionStatus('premium', 'paid');

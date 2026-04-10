@@ -15,9 +15,11 @@ interface NotificationLog {
   id: string;
   title: string;
   body: string;
-  sent_at: string;
+  created_at: string;
   total_sent: number;
   total_failed: number;
+  total_subscribers: number;
+  language: string | null;
 }
 
 export default function AdminNotifications() {
@@ -33,14 +35,24 @@ export default function AdminNotifications() {
     loadLogs();
   }, []);
 
+  const getAuthHeaders = async () => {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session?.access_token) throw new Error("Not authenticated");
+    return {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${session.access_token}`,
+    };
+  };
+
   const fetchSubscriberCount = async () => {
     try {
+      const headers = await getAuthHeaders();
       const projectId = import.meta.env.VITE_SUPABASE_PROJECT_ID;
       const res = await fetch(
         `https://${projectId}.supabase.co/functions/v1/send-push-notification`,
         {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers,
           body: JSON.stringify({ action: "count" }),
         }
       );
@@ -51,17 +63,23 @@ export default function AdminNotifications() {
     }
   };
 
-  const loadLogs = () => {
+  const loadLogs = async () => {
     try {
+      const { data, error } = await supabase.functions.invoke("send-push-notification", {
+        body: { action: "logs" },
+      });
+      // Fallback: edge function doesn't support logs action yet, use localStorage
+      if (data?.logs) {
+        setLogs(data.logs);
+      } else {
+        // Fallback to localStorage for old logs
+        const stored = localStorage.getItem("pt_notification_logs");
+        if (stored) setLogs(JSON.parse(stored));
+      }
+    } catch {
       const stored = localStorage.getItem("pt_notification_logs");
       if (stored) setLogs(JSON.parse(stored));
-    } catch {}
-  };
-
-  const saveLog = (log: NotificationLog) => {
-    const updated = [log, ...logs].slice(0, 50);
-    setLogs(updated);
-    localStorage.setItem("pt_notification_logs", JSON.stringify(updated));
+    }
   };
 
   const handleSend = async () => {
@@ -72,12 +90,13 @@ export default function AdminNotifications() {
 
     setSending(true);
     try {
+      const headers = await getAuthHeaders();
       const projectId = import.meta.env.VITE_SUPABASE_PROJECT_ID;
       const res = await fetch(
         `https://${projectId}.supabase.co/functions/v1/send-push-notification`,
         {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers,
           body: JSON.stringify({
             action: "send",
             title: title.trim(),
@@ -91,14 +110,18 @@ export default function AdminNotifications() {
 
       if (!res.ok) throw new Error(data.error || "Failed to send");
 
-      saveLog({
+      // Add to local logs for immediate display
+      const newLog: NotificationLog = {
         id: crypto.randomUUID(),
         title: title.trim(),
         body: body.trim(),
-        sent_at: new Date().toISOString(),
+        created_at: new Date().toISOString(),
         total_sent: data.sent || 0,
         total_failed: data.failed || 0,
-      });
+        total_subscribers: data.total || 0,
+        language: language === "all" ? null : language,
+      };
+      setLogs((prev) => [newLog, ...prev]);
 
       toast.success(`✅ تم إرسال ${data.sent} إشعار بنجاح`);
       setTitle("");
@@ -251,7 +274,7 @@ export default function AdminNotifications() {
                   <div className="flex items-center justify-between">
                     <span className="text-sm font-semibold" dir="auto">{log.title}</span>
                     <Badge variant="secondary" className="text-[9px]">
-                      {new Date(log.sent_at).toLocaleDateString("ar")}
+                      {new Date(log.created_at).toLocaleDateString("ar")}
                     </Badge>
                   </div>
                   <p className="text-xs text-muted-foreground" dir="auto">{log.body}</p>
