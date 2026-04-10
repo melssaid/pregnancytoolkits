@@ -600,11 +600,11 @@ async function activateOnServer(
     }
 
     if (!currentUser) {
-      console.error('[Billing] No authenticated user — cannot activate subscription');
-      // Even if server activation fails, set premium locally so user gets access
+      console.warn('[Billing] No authenticated user — granting premium locally');
+      // Grant premium locally so user gets access even without server sync
       setQuotaTier('premium');
       cacheSubscriptionStatus('premium', productId === 'premium_yearly' ? 'yearly' : 'monthly');
-      return false;
+      return true; // Return true since Google Play purchase succeeded
     }
 
     console.log('[Billing] Invoking activate-subscription with:', {
