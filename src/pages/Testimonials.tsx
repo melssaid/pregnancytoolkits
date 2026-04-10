@@ -2,7 +2,12 @@ import { Layout } from "@/components/Layout";
 import { SEOHead } from "@/components/SEOHead";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { Star, Quote } from "lucide-react";
+import { Star, Quote, Send, Loader2 } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { toast } from "sonner";
 
 interface Testimonial {
   nameKey: string;
@@ -11,6 +16,13 @@ interface Testimonial {
   defaultText: string;
   stars: number;
   weekOrContext: string;
+}
+
+interface UserReview {
+  name: string;
+  stars: number;
+  comment: string;
+  date: string;
 }
 
 const testimonials: Testimonial[] = [
@@ -26,9 +38,53 @@ const testimonials: Testimonial[] = [
   { nameKey: "testimonials.t10.name", defaultName: "Carmen V.", textKey: "testimonials.t10.text", defaultText: "Mi herramienta favorita es el planificador de comidas con IA. Recomienda recetas seguras para cada trimestre. ¡Es como tener una nutricionista personal!", stars: 5, weekOrContext: "Week 26" },
 ];
 
+const REVIEWS_KEY = "pt_user_reviews";
+
 export default function Testimonials() {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === "ar";
+
+  const [userReviews, setUserReviews] = useState<UserReview[]>(() => {
+    try {
+      const stored = localStorage.getItem(REVIEWS_KEY);
+      return stored ? JSON.parse(stored) : [];
+    } catch { return []; }
+  });
+
+  const [name, setName] = useState("");
+  const [stars, setStars] = useState(0);
+  const [hoverStars, setHoverStars] = useState(0);
+  const [comment, setComment] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleSubmit = () => {
+    if (!name.trim() || stars === 0 || !comment.trim()) {
+      toast.error(t("testimonials.form.fillAll", "يرجى ملء جميع الحقول واختيار التقييم"));
+      return;
+    }
+    if (name.trim().length > 50 || comment.trim().length > 500) {
+      toast.error(t("testimonials.form.tooLong", "النص طويل جداً"));
+      return;
+    }
+
+    setSubmitting(true);
+    setTimeout(() => {
+      const review: UserReview = {
+        name: name.trim(),
+        stars,
+        comment: comment.trim(),
+        date: new Date().toISOString(),
+      };
+      const updated = [review, ...userReviews].slice(0, 20);
+      setUserReviews(updated);
+      localStorage.setItem(REVIEWS_KEY, JSON.stringify(updated));
+      setName("");
+      setStars(0);
+      setComment("");
+      setSubmitting(false);
+      toast.success(t("testimonials.form.success", "شكراً لتقييمك! 💕"));
+    }, 500);
+  };
 
   return (
     <Layout showBack>
@@ -77,6 +133,96 @@ export default function Testimonials() {
             </motion.div>
           ))}
         </div>
+
+        {/* User reviews */}
+        {userReviews.length > 0 && (
+          <div className="mt-6 space-y-3">
+            <h2 className="text-sm font-bold text-foreground">{t("testimonials.yourReviews", "تقييماتكم")}</h2>
+            {userReviews.map((r, i) => (
+              <motion.div key={i} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
+                className="p-4 rounded-2xl bg-card border border-primary/20 relative">
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xs">
+                    {r.name[0]}
+                  </div>
+                  <div>
+                    <div className="text-sm font-bold text-foreground">{r.name}</div>
+                    <div className="text-[10px] text-muted-foreground">
+                      {new Date(r.date).toLocaleDateString(i18n.language)}
+                    </div>
+                  </div>
+                  <div className="ms-auto flex gap-0.5">
+                    {Array.from({ length: r.stars }).map((_, j) => (
+                      <Star key={j} className="h-3 w-3 text-yellow-400 fill-yellow-400" />
+                    ))}
+                  </div>
+                </div>
+                <p className="text-xs text-foreground/80 leading-relaxed" dir="auto">{r.comment}</p>
+              </motion.div>
+            ))}
+          </div>
+        )}
+
+        {/* Add review form */}
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
+          className="mt-8 p-5 rounded-2xl bg-card border border-border space-y-4">
+          <h2 className="text-sm font-bold text-foreground text-center">
+            {t("testimonials.form.title", "شاركينا تجربتك ⭐")}
+          </h2>
+
+          {/* Star rating */}
+          <div className="flex justify-center gap-1">
+            {[1, 2, 3, 4, 5].map((s) => (
+              <button
+                key={s}
+                type="button"
+                onClick={() => setStars(s)}
+                onMouseEnter={() => setHoverStars(s)}
+                onMouseLeave={() => setHoverStars(0)}
+                className="p-1 transition-transform hover:scale-110 active:scale-95"
+              >
+                <Star
+                  className={`h-7 w-7 transition-colors ${
+                    s <= (hoverStars || stars)
+                      ? "text-yellow-400 fill-yellow-400"
+                      : "text-muted-foreground/30"
+                  }`}
+                />
+              </button>
+            ))}
+          </div>
+
+          <Input
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder={t("testimonials.form.name", "اسمك (مثال: سارة م.)")}
+            className="h-10 text-sm"
+            maxLength={50}
+            dir="auto"
+          />
+
+          <Textarea
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+            placeholder={t("testimonials.form.comment", "اكتبي تجربتك مع التطبيق...")}
+            className="text-sm min-h-[80px] resize-none"
+            maxLength={500}
+            dir="auto"
+          />
+          <p className="text-[10px] text-muted-foreground text-end">{comment.length}/500</p>
+
+          <Button
+            onClick={handleSubmit}
+            disabled={submitting || !name.trim() || stars === 0 || !comment.trim()}
+            className="w-full"
+          >
+            {submitting ? (
+              <><Loader2 className="w-4 h-4 animate-spin mr-2" /> {t("testimonials.form.sending", "جاري الإرسال...")}</>
+            ) : (
+              <><Send className="w-4 h-4 mr-2" /> {t("testimonials.form.submit", "إرسال التقييم")}</>
+            )}
+          </Button>
+        </motion.div>
       </div>
     </Layout>
   );
