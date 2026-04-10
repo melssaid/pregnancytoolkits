@@ -15,7 +15,7 @@ export interface HealthData {
   weight: number;
   height: number;
   age: number;
-  painLevel: number;
+  waterIntake: number;
   bloodPressureSys: number;
   bloodPressureDia: number;
   sleepHours: number;
@@ -78,7 +78,7 @@ export function HealthInputForm({ health, onUpdate, lang }: HealthInputFormProps
 
       <div>
         <div className="flex items-center gap-1.5 mb-1">
-          <Label className="text-xs">{t("smartPlan.painLevel", "Pain Level")}: {health.painLevel}/10</Label>
+          <Label className="text-xs">{t("smartPlan.waterIntake", "Water Intake")}: {health.waterIntake} {t("smartPlan.glasses", "glasses")}</Label>
           <Tooltip>
             <TooltipTrigger asChild>
               <button type="button" className="inline-flex items-center justify-center rounded-full w-4 h-4 bg-muted text-muted-foreground hover:bg-muted/80 transition-colors">
@@ -86,11 +86,11 @@ export function HealthInputForm({ health, onUpdate, lang }: HealthInputFormProps
               </button>
             </TooltipTrigger>
             <TooltipContent side="top" className="max-w-[240px] text-xs leading-relaxed">
-              {t("smartPlan.painLevelHint", "0 = No pain, 1-3 = Mild, 4-6 = Moderate, 7-9 = Severe, 10 = Worst pain")}
+              {t("smartPlan.waterIntakeHint", "Recommended: 8-12 glasses per day during pregnancy")}
             </TooltipContent>
           </Tooltip>
         </div>
-        <Slider value={[health.painLevel]} max={10} step={1} onValueChange={([v]) => onUpdate('painLevel', v)} />
+        <Slider value={[health.waterIntake]} max={15} step={1} onValueChange={([v]) => onUpdate('waterIntake', v)} />
       </div>
 
       <button onClick={() => setShowMore(!showMore)} className="text-xs text-primary flex items-center gap-1">
