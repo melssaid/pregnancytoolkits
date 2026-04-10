@@ -589,6 +589,17 @@ async function activateOnServer(
     let currentUser = user;
 
     if (!currentUser) {
+      // App has no login system — use anonymous auth for billing identity
+      console.log('[Billing] No user session — signing in anonymously for billing...');
+      const { data, error } = await supabase.auth.signInAnonymously();
+      if (error) {
+        console.error('[Billing] Anonymous auth failed:', error.message);
+      } else {
+        currentUser = data.user;
+      }
+    }
+
+    if (!currentUser) {
       console.error('[Billing] No authenticated user — cannot activate subscription');
       return false;
     }
