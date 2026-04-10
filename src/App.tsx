@@ -116,6 +116,7 @@ const App = () => {
           <SmartScrollRestoration />
           <AnimatedRoutes />
           <Suspense fallback={null}><OnboardingDisclaimer /></Suspense>
+          <Suspense fallback={null}><PushOnboardingSheet /></Suspense>
           <Suspense fallback={null}><GuidedTour /></Suspense>
           <Suspense fallback={null}>
             <SubscriptionSuccessSheet
