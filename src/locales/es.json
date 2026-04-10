@@ -130,7 +130,7 @@
     "yr": "año",
     "save": "Ahorra 44%",
     "feature1": "33+ herramientas inteligentes de bienestar",
-    "feature2": "40 análisis inteligentes al mes",
+    "feature2": "60 análisis inteligentes al mes",
     "feature3": "Informes de salud IA personalizados",
     "feature4": "Procesamiento prioritario de solicitudes",
     "feature5": "7 idiomas con análisis avanzado",
@@ -6100,7 +6100,7 @@
   "subscriptionModal": {
     "premium": "Premium",
     "unlockFullAccess": "Desbloquear acceso completo",
-    "allAIFeatures": "Todas las funciones de IA, 40 análisis mensuales",
+    "allAIFeatures": "Todas las funciones de IA, 60 análisis mensuales",
     "freeTrialDays": "Suscribirse ahora",
     "fullAccessCancel": "Acceso completo, cancela cuando quieras",
     "monthly": "Mensual",
@@ -6120,7 +6120,7 @@
     "thankYou": "¡Gracias por tu interés!",
     "comingSoon": "La suscripción estará disponible en la versión de la tienda de apps.",
     "trialActivated": "¡Premium activado!",
-    "trialDesc": "¡Disfruta de todas las funciones premium con 40 análisis mensuales!",
+    "trialDesc": "¡Disfruta de todas las funciones premium con 60 análisis mensuales!",
     "errorProcessing": "No se pudo procesar la suscripción",
     "trialRemaining": "Premium activo",
     "trialEnded": "Suscripción finalizada",
@@ -8283,7 +8283,7 @@
   "quotaExhausted": {
     "upgradeHint": "Desbloquea más análisis personalizados con Premium",
     "upgradeCTA": "Continuar con Premium",
-    "postAnalysisHint": "Actualiza a Premium para 40 análisis mensuales e información más profunda",
+    "postAnalysisHint": "Actualiza a Premium para 60 análisis mensuales e información más profunda",
     "unlockMore": "Desbloquear más"
   },
   "smartAlerts": {
