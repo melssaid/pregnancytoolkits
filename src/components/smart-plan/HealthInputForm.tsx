@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { ChevronDown, ChevronUp, Info } from "lucide-react";
+import { ChevronDown, ChevronUp, Info, Baby } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -9,19 +9,40 @@ import { Slider } from "@/components/ui/slider";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { WeekSlider } from "@/components/WeekSlider";
+import { Link } from "react-router-dom";
 
 export interface HealthData {
   week: number;
   weight: number;
   height: number;
   age: number;
-  waterIntake: number;
+  lastKickCount: number;
   bloodPressureSys: number;
   bloodPressureDia: number;
   sleepHours: number;
   activityLevel: string;
   mood: string;
   conditions: string[];
+}
+
+/** Read latest kick session stats from localStorage */
+function getLatestKickStats(): { totalKicks: number; lastSessionDate: string | null } {
+  try {
+    const userId = localStorage.getItem('pregnancy_user_id') || 'default';
+    const raw = localStorage.getItem(`kick_sessions_${userId}`);
+    if (!raw) return { totalKicks: 0, lastSessionDate: null };
+    const sessions = JSON.parse(raw) as Array<{ total_kicks?: number; ended_at?: string; started_at?: string }>;
+    const completed = sessions.filter(s => s.ended_at).sort((a, b) =>
+      new Date(b.ended_at!).getTime() - new Date(a.ended_at!).getTime()
+    );
+    if (completed.length === 0) return { totalKicks: 0, lastSessionDate: null };
+    return {
+      totalKicks: completed[0].total_kicks || 0,
+      lastSessionDate: completed[0].ended_at || null,
+    };
+  } catch {
+    return { totalKicks: 0, lastSessionDate: null };
+  }
 }
 
 const conditionOptions = [
@@ -55,8 +76,27 @@ interface HealthInputFormProps {
 export function HealthInputForm({ health, onUpdate, lang }: HealthInputFormProps) {
   const { t } = useTranslation();
   const [showMore, setShowMore] = useState(false);
+  const kickStats = useMemo(() => getLatestKickStats(), []);
+
+  // Sync kick count into health data for AI prompt
+  useEffect(() => {
+    if (kickStats.totalKicks > 0 && health.lastKickCount !== kickStats.totalKicks) {
+      onUpdate('lastKickCount', kickStats.totalKicks);
+    }
+  }, [kickStats.totalKicks]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const getLabel = (option: Record<string, string>) => option[lang] || option.en;
+
+  const kickLabels: Record<string, { title: string; noData: string; kicks: string; lastSession: string; goTrack: string }> = {
+    ar: { title: 'حركات الطفل', noData: 'لا توجد بيانات — سجّلي حركات طفلك', kicks: 'ركلة', lastSession: 'آخر جلسة', goTrack: 'تتبع الحركات' },
+    en: { title: 'Baby Movements', noData: 'No data — track your baby\'s kicks', kicks: 'kicks', lastSession: 'Last session', goTrack: 'Track Kicks' },
+    de: { title: 'Babybewegungen', noData: 'Keine Daten — erfasse die Tritte', kicks: 'Tritte', lastSession: 'Letzte Sitzung', goTrack: 'Tritte erfassen' },
+    fr: { title: 'Mouvements du bébé', noData: 'Aucune donnée — suivez les coups', kicks: 'coups', lastSession: 'Dernière session', goTrack: 'Suivre les coups' },
+    es: { title: 'Movimientos del bebé', noData: 'Sin datos — registra las patadas', kicks: 'patadas', lastSession: 'Última sesión', goTrack: 'Registrar patadas' },
+    pt: { title: 'Movimentos do bebê', noData: 'Sem dados — registre os chutes', kicks: 'chutes', lastSession: 'Última sessão', goTrack: 'Registrar chutes' },
+    tr: { title: 'Bebek Hareketleri', noData: 'Veri yok — bebek tekmelerini kaydet', kicks: 'tekme', lastSession: 'Son oturum', goTrack: 'Tekmeleri kaydet' },
+  };
+  const kl = kickLabels[lang] || kickLabels.en;
 
   return (
     <div className="space-y-3">
@@ -76,21 +116,29 @@ export function HealthInputForm({ health, onUpdate, lang }: HealthInputFormProps
         </div>
       </div>
 
-      <div>
-        <div className="flex items-center gap-1.5 mb-1">
-          <Label className="text-xs">{t("smartPlan.waterIntake", "Water Intake")}: {health.waterIntake} {t("smartPlan.glasses", "glasses")}</Label>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <button type="button" className="inline-flex items-center justify-center rounded-full w-4 h-4 bg-muted text-muted-foreground hover:bg-muted/80 transition-colors">
-                <Info className="w-3 h-3" />
-              </button>
-            </TooltipTrigger>
-            <TooltipContent side="top" className="max-w-[240px] text-xs leading-relaxed">
-              {t("smartPlan.waterIntakeHint", "Recommended: 8-12 glasses per day during pregnancy")}
-            </TooltipContent>
-          </Tooltip>
+      {/* Baby Kick Stats — linked from Kick Counter */}
+      <div className="rounded-xl border border-primary/15 bg-primary/[0.03] p-2.5">
+        <div className="flex items-center gap-2">
+          <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+            <Baby className="w-3.5 h-3.5 text-primary" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <p className="text-[11px] font-semibold text-foreground">{kl.title}</p>
+            {kickStats.totalKicks > 0 ? (
+              <p className="text-[10px] text-muted-foreground">
+                {kickStats.totalKicks} {kl.kicks} · {kl.lastSession}
+              </p>
+            ) : (
+              <p className="text-[10px] text-muted-foreground">{kl.noData}</p>
+            )}
+          </div>
+          <Link
+            to="/tools/kick-counter"
+            className="text-[9px] font-bold text-primary px-2 py-1 rounded-md bg-primary/10 hover:bg-primary/15 transition-colors shrink-0"
+          >
+            {kl.goTrack}
+          </Link>
         </div>
-        <Slider value={[health.waterIntake]} max={15} step={1} onValueChange={([v]) => onUpdate('waterIntake', v)} />
       </div>
 
       <button onClick={() => setShowMore(!showMore)} className="text-xs text-primary flex items-center gap-1">
