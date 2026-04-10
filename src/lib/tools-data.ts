@@ -174,9 +174,12 @@ export const getToolsByCategory = (categoryKey: string) =>
 export const getToolsCountByCategory = (categoryKey: string) =>
   getToolsByCategory(categoryKey).length;
 
-export const getToolById = (id: string) => toolsData.find((t) => t.id === id);
+export const getToolById = (id: string) => allToolsIncludingHidden.find((t) => t.id === id);
 
 export const getTotalToolsCount = () => toolsData.length;
+
+/** Get hidden tool count for restoration tracking */
+export const getHiddenToolsCount = () => HIDDEN_TOOL_IDS.size;
 
 // Logical tool relationships for smart recommendations
 const toolRelationships: Record<string, string[]> = {
