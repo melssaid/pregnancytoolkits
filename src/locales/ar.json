@@ -6189,7 +6189,7 @@
   "subscriptionModal": {
     "premium": "مميز",
     "unlockFullAccess": "فتح الوصول الكامل",
-    "allAIFeatures": "جميع ميزات الذكاء الاصطناعي، 40 تحليل شهرياً",
+    "allAIFeatures": "جميع ميزات الذكاء الاصطناعي، 60 تحليل شهرياً",
     "freeTrialDays": "اشتركي الآن",
     "fullAccessCancel": "وصول كامل، إلغاء في أي وقت",
     "monthly": "شهري",
@@ -6197,7 +6197,7 @@
     "save": "وفّر 44%",
     "perMonth": "/شهر",
     "perYear": "/سنة",
-    "unlimitedAI": "40 تحليل شهرياً بالذكاء الاصطناعي",
+    "unlimitedAI": "60 تحليل شهرياً بالذكاء الاصطناعي",
     "personalizedMeals": "خطط وجبات مخصصة",
     "advancedHealth": "تتبع صحي متقدم",
     "prioritySupport": "دعم ذو أولوية",
@@ -6209,7 +6209,7 @@
     "thankYou": "شكراً لاهتمامك!",
     "comingSoon": "الاشتراك سيكون متاحاً في نسخة المتجر.",
     "trialActivated": "تم تفعيل الاشتراك المميز!",
-    "trialDesc": "استمتعي بجميع الميزات المميزة مع 40 تحليل شهرياً!",
+    "trialDesc": "استمتعي بجميع الميزات المميزة مع 60 تحليل شهرياً!",
     "errorProcessing": "تعذر معالجة الاشتراك",
     "trialRemaining": "الاشتراك المميز فعّال",
     "trialEnded": "انتهى الاشتراك",
@@ -6699,7 +6699,7 @@
     "subtitle": "اشتركي للوصول لجميع الأدوات الذكية",
     "benefits": {
       "allAITools": "33+ أداة ذكية",
-      "dailyAnalyses": "40 تحليل ذكي شهرياً",
+      "dailyAnalyses": "60 تحليل ذكي شهرياً",
       "personalizedInsights": "نصائح مخصصة لأسبوع حملك",
       "fullAccess": "وصول كامل بدون قيود"
     },
@@ -8372,7 +8372,7 @@
   "quotaExhausted": {
     "upgradeHint": "افتحي المزيد من التحليلات المخصصة مع Premium",
     "upgradeCTA": "تابعي مع Premium",
-    "postAnalysisHint": "ترقّي للاشتراك المميز للحصول على 40 تحليل شهرياً ورؤى أعمق",
+    "postAnalysisHint": "ترقّي للاشتراك المميز للحصول على 60 تحليل شهرياً ورؤى أعمق",
     "unlockMore": "افتح المزيد"
   },
   "smartAlerts": {

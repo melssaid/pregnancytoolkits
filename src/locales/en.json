@@ -6189,7 +6189,7 @@
   "subscriptionModal": {
     "premium": "Premium",
     "unlockFullAccess": "Unlock Full Access",
-    "allAIFeatures": "All AI features, 40 monthly analyses",
+    "allAIFeatures": "All AI features, 60 monthly analyses",
     "freeTrialDays": "Subscribe Now",
     "fullAccessCancel": "Full access, cancel anytime",
     "monthly": "Monthly",
@@ -6197,7 +6197,7 @@
     "save": "Save 44%",
     "perMonth": "/month",
     "perYear": "/year",
-    "unlimitedAI": "40 AI analyses per month",
+    "unlimitedAI": "60 AI analyses per month",
     "personalizedMeals": "Personalized Meal Plans",
     "advancedHealth": "Advanced Health Tracking",
     "prioritySupport": "Priority Support",
@@ -6209,7 +6209,7 @@
     "thankYou": "Thank you for your interest!",
     "comingSoon": "Subscription will be available in the app store version.",
     "trialActivated": "Premium Activated!",
-    "trialDesc": "Enjoy all premium features with 40 monthly analyses!",
+    "trialDesc": "Enjoy all premium features with 60 monthly analyses!",
     "errorProcessing": "Unable to process subscription",
     "trialRemaining": "Premium active",
     "trialEnded": "Subscription ended",
@@ -6699,7 +6699,7 @@
     "subtitle": "Subscribe to unlock all smart tools",
     "benefits": {
       "allAITools": "33+ smart wellness tools",
-      "dailyAnalyses": "40 smart analyses per month",
+      "dailyAnalyses": "60 smart analyses per month",
       "personalizedInsights": "Tips personalized to your week",
       "fullAccess": "Full access with no limits"
     },
@@ -8372,7 +8372,7 @@
   "quotaExhausted": {
     "upgradeHint": "Unlock more personalized insights with Premium",
     "upgradeCTA": "Continue with Premium",
-    "postAnalysisHint": "Upgrade to Premium for 40 monthly analyses and deeper insights",
+    "postAnalysisHint": "Upgrade to Premium for 60 monthly analyses and deeper insights",
     "unlockMore": "Unlock more"
   },
   "smartAlerts": {
