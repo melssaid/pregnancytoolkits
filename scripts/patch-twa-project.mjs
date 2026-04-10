@@ -107,12 +107,14 @@ nextBuildGradle = replaceSdkValue(nextBuildGradle, [/((?:targetSdkVersion|target
 nextBuildGradle = replaceSdkValue(nextBuildGradle, [/((?:minSdkVersion|minSdk)\s+)\d+/g], '23');
 
 // Ensure versionName and versionCode are set correctly (fix null issue)
-nextBuildGradle = nextBuildGradle.replace(/(versionCode\s+)\S+/, `$1${appVersionCode}`);
-if (/versionName\s/.test(nextBuildGradle)) {
-  nextBuildGradle = nextBuildGradle.replace(/(versionName\s+)["']?[^"'\n]*["']?/, `$1"${appVersionName}"`);
+// Handle versionCode with or without '='
+nextBuildGradle = nextBuildGradle.replace(/(versionCode\s*=?\s*)\S+/, `$1${appVersionCode}`);
+// Handle versionName with or without '=', quoted or unquoted, including 'null'
+if (/versionName\s*=?\s/.test(nextBuildGradle)) {
+  nextBuildGradle = nextBuildGradle.replace(/(versionName\s*=?\s*)["']?[^"'\n]*["']?/, `$1"${appVersionName}"`);
 } else {
   // Add versionName after versionCode if missing
-  nextBuildGradle = nextBuildGradle.replace(/(versionCode\s+\S+)/, `$1\n        versionName "${appVersionName}"`);
+  nextBuildGradle = nextBuildGradle.replace(/(versionCode\s*=?\s*\S+)/, `$1\n        versionName "${appVersionName}"`);
 }
 
 if (!/com\.google\.androidbrowserhelper:androidbrowserhelper/.test(nextBuildGradle)) {
