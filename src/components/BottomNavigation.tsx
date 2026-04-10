@@ -291,12 +291,12 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
               </motion.div>
             )}
             
-            {/* Background */}
+            {/* Background — warm white with soft rose tint & top shadow */}
             <div className={`absolute inset-0 ${
               isPremium
-                ? 'bg-gradient-to-t from-[hsl(40,30%,88%)] via-card/95 to-card/95'
-                : 'bg-gradient-to-t from-[hsl(220,15%,90%)] via-card/95 to-card/95'
-            } backdrop-blur-xl shadow-[0_-6px_30px_-5px_hsl(220,15%,50%,0.2)]`} />
+                ? 'bg-[hsl(340,15%,99%)]'
+                : 'bg-[hsl(340,15%,99%)]'
+            } backdrop-blur-xl shadow-[0_-4px_24px_-4px_hsl(340,40%,70%,0.12)]`} />
             
             <div className="relative flex items-center justify-evenly px-2 py-2">
               {NAV_ITEMS.map((item, idx) => {
