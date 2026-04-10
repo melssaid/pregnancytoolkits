@@ -10,7 +10,7 @@ import { useNavigate, Link } from "react-router-dom";
 import pricingLogo from "@/assets/pricing-logo.webp";
 import { supabase } from "@/integrations/supabase/client";
 import { useAIUsage } from "@/contexts/AIUsageContext";
-import { setTier as qmSetTier } from "@/services/smartEngine/quotaManager";
+
 import { usePlayPrices } from "@/hooks/usePlayPrices";
 
 const features = [
@@ -54,8 +54,7 @@ export default function PricingDemo() {
     const sent = await requestPurchase(
       selected,
       async () => {
-        // Success — update everything immediately
-        qmSetTier("premium");
+        // Success — quota already set to premium in activateOnServer
         refreshAIUsage();
         localStorage.removeItem("pricing_visit_ts");
         window.dispatchEvent(new CustomEvent("subscription-activated", { detail: { plan: selected } }));

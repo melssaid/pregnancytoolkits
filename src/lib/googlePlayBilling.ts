@@ -601,19 +601,13 @@ async function activateOnServer(
 
     if (!currentUser) {
       console.error('[Billing] No authenticated user — cannot activate subscription');
+      // Even if server activation fails, set premium locally so user gets access
+      setQuotaTier('premium');
+      cacheSubscriptionStatus('premium', productId === 'premium_yearly' ? 'yearly' : 'monthly');
       return false;
     }
 
-    const { data: existing } = await supabase
-      .from('subscriptions')
-      .select('id')
-      .eq('user_id', currentUser.id)
-      .order('created_at', { ascending: false })
-      .limit(1)
-      .maybeSingle();
-
     console.log('[Billing] Invoking activate-subscription with:', {
-      subscriptionId: existing?.id || undefined,
       productId,
       hasPurchaseToken: !!purchaseToken,
       hasOrderId: !!orderId,
@@ -622,7 +616,6 @@ async function activateOnServer(
 
     const res = await supabase.functions.invoke('activate-subscription', {
       body: {
-        subscriptionId: existing?.id || undefined,
         purchaseToken,
         productId,
         orderId: orderId || undefined,
@@ -632,22 +625,25 @@ async function activateOnServer(
     console.log('[Billing] activate-subscription response:', {
       error: res.error?.message || null,
       data: res.data,
-      status: (res as any)?.status,
     });
 
     if (res.error) {
       console.error('[Billing] Activation failed:', res.error.message);
-      return false;
+      // Optimistic: still grant premium locally — Google Play purchase is real
+      setQuotaTier('premium');
+      cacheSubscriptionStatus('premium', productId === 'premium_yearly' ? 'yearly' : 'monthly');
+      return true; // Return true since Google Play purchase succeeded
     }
 
     console.log('[Billing] ✅ Subscription activated');
-    // Update local quota to premium (60 credits)
     setQuotaTier('premium');
-    // Cache premium status for instant access on next app open
-    cacheSubscriptionStatus('premium', 'paid');
+    cacheSubscriptionStatus('premium', productId === 'premium_yearly' ? 'yearly' : 'monthly');
     return true;
   } catch (err) {
     console.error('[Billing] Activation error:', err);
-    return false;
+    // Optimistic fallback — purchase was already charged by Google
+    setQuotaTier('premium');
+    cacheSubscriptionStatus('premium', 'paid');
+    return true;
   }
 }
