@@ -272,11 +272,11 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
         {/* Bottom Navigation */}
         <nav ref={ref} className="fixed bottom-0 left-0 right-0 z-50 md:hidden safe-area-bottom">
           <div className="relative">
-            {/* Top accent line — gold for premium, silver for free */}
-            <div className={`absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r from-transparent ${
+            {/* Top accent line — gold for premium, soft rose for free */}
+            <div className={`absolute top-0 left-6 right-6 h-[1.5px] bg-gradient-to-r from-transparent ${
               isPremium 
                 ? 'via-[hsl(40,75%,55%)]' 
-                : 'via-[hsl(220,15%,65%)]'
+                : 'via-[hsl(340,50%,80%)]'
             } to-transparent z-10`} />
 
             {/* Premium crown badge — centered between 2nd and 3rd nav items */}
@@ -291,12 +291,12 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
               </motion.div>
             )}
             
-            {/* Background */}
+            {/* Background — warm white with soft rose tint & top shadow */}
             <div className={`absolute inset-0 ${
               isPremium
-                ? 'bg-gradient-to-t from-[hsl(40,30%,88%)] via-card/95 to-card/95'
-                : 'bg-gradient-to-t from-[hsl(220,15%,90%)] via-card/95 to-card/95'
-            } backdrop-blur-xl shadow-[0_-6px_30px_-5px_hsl(220,15%,50%,0.2)]`} />
+                ? 'bg-[hsl(340,15%,99%)]'
+                : 'bg-[hsl(340,15%,99%)]'
+            } backdrop-blur-xl shadow-[0_-4px_24px_-4px_hsl(340,40%,70%,0.12)]`} />
             
             <div className="relative flex items-center justify-evenly px-2 py-2">
               {NAV_ITEMS.map((item, idx) => {
