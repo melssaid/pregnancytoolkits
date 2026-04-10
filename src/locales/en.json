@@ -6313,7 +6313,7 @@
     "pushGuideStep2": "Find \"Notifications\" and change to \"Allow\"",
     "pushGuideStep3": "Reload the page and try again",
     "pushGuideReload": "Reload page after enabling",
-    "pushEnabledSuccess": "Push notifications enabled! You'll be notified even when the app is in the background.",
+    "pushEnabledSuccess": "Notifications enabled successfully! ✅",
     "welcome": "👋 Welcome!",
     "welcomeDesc": "Enjoy 33+ smart tools to track your pregnancy easily and safely.",
     "disclaimer": "📋 Important Notice",
