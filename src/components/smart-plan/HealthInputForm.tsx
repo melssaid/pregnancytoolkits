@@ -84,9 +84,19 @@ export function HealthInputForm({ health, onUpdate, lang }: HealthInputFormProps
       onUpdate('lastKickCount', kickStats.totalKicks);
     }
   });
-  const [showMore, setShowMore] = useState(false);
 
   const getLabel = (option: Record<string, string>) => option[lang] || option.en;
+
+  const kickLabels: Record<string, { title: string; noData: string; kicks: string; lastSession: string; goTrack: string }> = {
+    ar: { title: 'حركات الطفل', noData: 'لا توجد بيانات — سجّلي حركات طفلك', kicks: 'ركلة', lastSession: 'آخر جلسة', goTrack: 'تتبع الحركات' },
+    en: { title: 'Baby Movements', noData: 'No data — track your baby\'s kicks', kicks: 'kicks', lastSession: 'Last session', goTrack: 'Track Kicks' },
+    de: { title: 'Babybewegungen', noData: 'Keine Daten — erfasse die Tritte', kicks: 'Tritte', lastSession: 'Letzte Sitzung', goTrack: 'Tritte erfassen' },
+    fr: { title: 'Mouvements du bébé', noData: 'Aucune donnée — suivez les coups', kicks: 'coups', lastSession: 'Dernière session', goTrack: 'Suivre les coups' },
+    es: { title: 'Movimientos del bebé', noData: 'Sin datos — registra las patadas', kicks: 'patadas', lastSession: 'Última sesión', goTrack: 'Registrar patadas' },
+    pt: { title: 'Movimentos do bebê', noData: 'Sem dados — registre os chutes', kicks: 'chutes', lastSession: 'Última sessão', goTrack: 'Registrar chutes' },
+    tr: { title: 'Bebek Hareketleri', noData: 'Veri yok — bebek tekmelerini kaydet', kicks: 'tekme', lastSession: 'Son oturum', goTrack: 'Tekmeleri kaydet' },
+  };
+  const kl = kickLabels[lang] || kickLabels.en;
 
   return (
     <div className="space-y-3">
@@ -106,21 +116,29 @@ export function HealthInputForm({ health, onUpdate, lang }: HealthInputFormProps
         </div>
       </div>
 
-      <div>
-        <div className="flex items-center gap-1.5 mb-1">
-          <Label className="text-xs">{t("smartPlan.waterIntake", "Water Intake")}: {health.waterIntake} {t("smartPlan.glasses", "glasses")}</Label>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <button type="button" className="inline-flex items-center justify-center rounded-full w-4 h-4 bg-muted text-muted-foreground hover:bg-muted/80 transition-colors">
-                <Info className="w-3 h-3" />
-              </button>
-            </TooltipTrigger>
-            <TooltipContent side="top" className="max-w-[240px] text-xs leading-relaxed">
-              {t("smartPlan.waterIntakeHint", "Recommended: 8-12 glasses per day during pregnancy")}
-            </TooltipContent>
-          </Tooltip>
+      {/* Baby Kick Stats — linked from Kick Counter */}
+      <div className="rounded-xl border border-primary/15 bg-primary/[0.03] p-2.5">
+        <div className="flex items-center gap-2">
+          <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+            <Baby className="w-3.5 h-3.5 text-primary" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <p className="text-[11px] font-semibold text-foreground">{kl.title}</p>
+            {kickStats.totalKicks > 0 ? (
+              <p className="text-[10px] text-muted-foreground">
+                {kickStats.totalKicks} {kl.kicks} · {kl.lastSession}
+              </p>
+            ) : (
+              <p className="text-[10px] text-muted-foreground">{kl.noData}</p>
+            )}
+          </div>
+          <Link
+            to="/tools/kick-counter"
+            className="text-[9px] font-bold text-primary px-2 py-1 rounded-md bg-primary/10 hover:bg-primary/15 transition-colors shrink-0"
+          >
+            {kl.goTrack}
+          </Link>
         </div>
-        <Slider value={[health.waterIntake]} max={15} step={1} onValueChange={([v]) => onUpdate('waterIntake', v)} />
       </div>
 
       <button onClick={() => setShowMore(!showMore)} className="text-xs text-primary flex items-center gap-1">
