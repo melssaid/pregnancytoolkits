@@ -1,4 +1,4 @@
-import { Star } from 'lucide-react';
+import { Star } from "lucide-react";
 import { useToolRating } from '@/hooks/useToolRating';
 import { useTranslation } from 'react-i18next';
 import { cn } from '@/lib/utils';
