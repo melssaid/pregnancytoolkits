@@ -314,7 +314,7 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
         </div>
 
         {/* Mini usage bar */}
-        {!hasGenerated && <MiniUsageBar toolType={resolvedToolType} section={resolvedSection} />}
+        <MiniUsageBar toolType={resolvedToolType} section={resolvedSection} />
 
         {/* Error banner */}
         {error && (
