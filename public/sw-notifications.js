@@ -126,6 +126,35 @@ self.addEventListener('fetch', (event) => {
   }
 });
 
+// ── Web Push event (from server) ──
+self.addEventListener('push', (event) => {
+  let data = { title: 'Pregnancy Toolkits', body: 'You have a new update!', url: '/' };
+  try {
+    if (event.data) {
+      const parsed = event.data.json();
+      if (parsed.title) data.title = parsed.title;
+      if (parsed.body) data.body = parsed.body;
+      if (parsed.url) data.url = parsed.url;
+    }
+  } catch {
+    // If not JSON, use text
+    try { if (event.data) data.body = event.data.text(); } catch {}
+  }
+
+  event.waitUntil(
+    self.registration.showNotification(data.title, {
+      body: data.body,
+      icon: '/favicon.png',
+      badge: '/favicon.png',
+      tag: 'server-push-' + Date.now(),
+      data: { url: data.url },
+      vibrate: [100, 50, 100],
+      requireInteraction: false,
+      silent: false,
+    })
+  );
+});
+
 // ── Notification handlers ──
 
 function clearAllTimers() {
