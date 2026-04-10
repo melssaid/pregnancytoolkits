@@ -2,8 +2,8 @@ import { Layout } from "@/components/Layout";
 import { SEOHead } from "@/components/SEOHead";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { Star, Quote, Send, Loader2, ChevronLeft, ChevronRight } from "lucide-react";
-import { useState } from "react";
+import { Star, Quote, Send, Loader2, ChevronLeft, ChevronRight, Languages } from "lucide-react";
+import { useState, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -26,41 +26,58 @@ interface UserReview {
 }
 
 const testimonials: Testimonial[] = [
-  { nameKey: "testimonials.t1.name", defaultName: "Sarah M.", textKey: "testimonials.t1.text", defaultText: "This app has been my daily companion since week 8. The kick counter and weekly summaries are incredibly helpful. I love that everything is in one place!", stars: 5, weekOrContext: "Week 32" },
-  { nameKey: "testimonials.t2.name", defaultName: "Fatima A.", textKey: "testimonials.t2.text", defaultText: "أفضل تطبيق حمل استخدمته. الذكاء الاصطناعي يعطيني نصائح مخصصة كل أسبوع وأشعر بالاطمئنان. شكراً لكم!", stars: 5, weekOrContext: "Week 28" },
-  { nameKey: "testimonials.t3.name", defaultName: "Emma L.", textKey: "testimonials.t3.text", defaultText: "The contraction timer was a lifesaver during labor! Super easy to use even when I was stressed. The whole app is beautifully designed.", stars: 5, weekOrContext: "Postpartum" },
-  { nameKey: "testimonials.t4.name", defaultName: "Ayşe K.", textKey: "testimonials.t4.text", defaultText: "Türkçe desteği harika! Hamileliğim boyunca her gün kullandım. Beslenme önerileri ve vitamin takibi çok faydalı.", stars: 5, weekOrContext: "Week 36" },
-  { nameKey: "testimonials.t5.name", defaultName: "Marie D.", textKey: "testimonials.t5.text", defaultText: "J'adore l'assistant IA ! Il répond à toutes mes questions sur la grossesse instantanément. L'application est gratuite et sans publicité, c'est rare.", stars: 5, weekOrContext: "Week 20" },
-  { nameKey: "testimonials.t6.name", defaultName: "Lisa R.", textKey: "testimonials.t6.text", defaultText: "The AI meal planner changed how I eat during pregnancy. No more guessing what's safe — it suggests delicious meals for each trimester.", stars: 4, weekOrContext: "Week 24" },
-  { nameKey: "testimonials.t7.name", defaultName: "Nour H.", textKey: "testimonials.t7.text", defaultText: "ميزة تتبع الوزن مع التوصيات المبنية على مؤشر كتلة الجسم ممتازة. أشعر بالتحكم في صحتي وصحة طفلي.", stars: 5, weekOrContext: "Week 30" },
-  { nameKey: "testimonials.t8.name", defaultName: "Ana P.", textKey: "testimonials.t8.text", defaultText: "O rastreador de ciclo me ajudou a engravidar! Depois, usei todas as ferramentas de gravidez. Aplicativo incrível e 100% gratuito.", stars: 5, weekOrContext: "TTC → Week 16" },
-  { nameKey: "testimonials.t9.name", defaultName: "Julia S.", textKey: "testimonials.t9.text", defaultText: "Die App funktioniert sogar offline! Ich benutze den Vitamin-Tracker und den Wochenplaner täglich. Sehr durchdacht und wunderschön gestaltet.", stars: 5, weekOrContext: "Week 18" },
-  { nameKey: "testimonials.t10.name", defaultName: "Carmen V.", textKey: "testimonials.t10.text", defaultText: "Mi herramienta favorita es el planificador de comidas con IA. Recomienda recetas seguras para cada trimestre. ¡Es como tener una nutricionista personal!", stars: 5, weekOrContext: "Week 26" },
-  // Additional testimonials
-  { nameKey: "testimonials.t11.name", defaultName: "Hana B.", textKey: "testimonials.t11.text", defaultText: "التطبيق ساعدني كثيراً في فترة ما بعد الولادة. دليل الأم الجديدة ومتتبع نوم الطفل أدوات لا غنى عنها!", stars: 5, weekOrContext: "Postpartum" },
-  { nameKey: "testimonials.t12.name", defaultName: "Sophie W.", textKey: "testimonials.t12.text", defaultText: "I've tried 5 pregnancy apps before this one. None of them had AI-powered insights this good. The symptom analyzer is incredibly accurate.", stars: 5, weekOrContext: "Week 22" },
-  { nameKey: "testimonials.t13.name", defaultName: "Leila M.", textKey: "testimonials.t13.text", defaultText: "أحب ميزة صور البطن! أتابع تطور حملي بصرياً كل أسبوع. الذكاء الاصطناعي يحلل الصور ويعطيني ملاحظات رائعة.", stars: 5, weekOrContext: "Week 34" },
-  { nameKey: "testimonials.t14.name", defaultName: "Marta G.", textKey: "testimonials.t14.text", defaultText: "La lista de compras inteligente me ahorra mucho tiempo. Genera exactamente lo que necesito según mi semana de embarazo.", stars: 4, weekOrContext: "Week 19" },
-  { nameKey: "testimonials.t15.name", defaultName: "Yuki T.", textKey: "testimonials.t15.text", defaultText: "The fitness coach adapts workouts to my trimester. I feel safe exercising knowing the AI considers my pregnancy stage.", stars: 5, weekOrContext: "Week 27" },
-  { nameKey: "testimonials.t16.name", defaultName: "Amira S.", textKey: "testimonials.t16.text", defaultText: "خاصية حاسبة موعد الولادة دقيقة جداً! والملخص الأسبوعي يخبرني بكل ما أحتاج معرفته عن تطور طفلي.", stars: 5, weekOrContext: "Week 14" },
-  { nameKey: "testimonials.t17.name", defaultName: "Elena R.", textKey: "testimonials.t17.text", defaultText: "L'application est magnifique et intuitive. Le suivi du poids avec les recommandations personnalisées est exactement ce dont j'avais besoin.", stars: 5, weekOrContext: "Week 25" },
-  { nameKey: "testimonials.t18.name", defaultName: "Priya K.", textKey: "testimonials.t18.text", defaultText: "The hospital bag checklist was so thorough! I didn't forget a single thing. This app thinks of everything a mom needs.", stars: 5, weekOrContext: "Week 38" },
-  { nameKey: "testimonials.t19.name", defaultName: "Zeynep A.", textKey: "testimonials.t19.text", defaultText: "Bebek ağlama çeviricisi inanılmaz! Bebeğimin ne istediğini anlamama yardımcı oluyor. Teknoloji harikası bir uygulama.", stars: 5, weekOrContext: "Postpartum" },
-  { nameKey: "testimonials.t20.name", defaultName: "Laura B.", textKey: "testimonials.t20.text", defaultText: "O guia de parceiro é fantástico! Meu marido usa todos os dias para entender melhor o que estou passando. Muito útil!", stars: 5, weekOrContext: "Week 31" },
-  { nameKey: "testimonials.t21.name", defaultName: "Rania F.", textKey: "testimonials.t21.text", defaultText: "مؤقت الانقباضات أنقذني! سهل الاستخدام حتى في أصعب اللحظات. التطبيق بأكمله مصمم بعناية فائقة.", stars: 5, weekOrContext: "Week 40" },
-  { nameKey: "testimonials.t22.name", defaultName: "Clara H.", textKey: "testimonials.t22.text", defaultText: "Der KI-Ernährungsberater ist großartig! Er schlägt sichere Rezepte für jedes Trimester vor. Wie eine persönliche Ernährungsberaterin.", stars: 5, weekOrContext: "Week 21" },
-  { nameKey: "testimonials.t23.name", defaultName: "Isabella C.", textKey: "testimonials.t23.text", defaultText: "El rastreador de vitaminas me recuerda tomar mis suplementos. Simple pero muy útil. ¡5 estrellas sin duda!", stars: 5, weekOrContext: "Week 12" },
-  { nameKey: "testimonials.t24.name", defaultName: "Dina A.", textKey: "testimonials.t24.text", defaultText: "التطبيق يدعم 7 لغات! أستخدمه بالعربية وصديقتي تستخدمه بالفرنسية. الترجمة ممتازة ودقيقة.", stars: 5, weekOrContext: "Week 29" },
-  { nameKey: "testimonials.t25.name", defaultName: "Michelle T.", textKey: "testimonials.t25.text", defaultText: "The skincare analyzer helped me avoid unsafe products during pregnancy. I had no idea some of my favorites contained retinol!", stars: 4, weekOrContext: "Week 15" },
-  { nameKey: "testimonials.t26.name", defaultName: "Aisha K.", textKey: "testimonials.t26.text", defaultText: "أداة تتبع الدورة ساعدتني في التخطيط للحمل. بعدها استخدمت كل أدوات الحمل. تطبيق شامل ومجاني!", stars: 5, weekOrContext: "TTC → Week 10" },
-  { nameKey: "testimonials.t27.name", defaultName: "Hannah P.", textKey: "testimonials.t27.text", defaultText: "Best pregnancy app I've ever used. The daily insights keep me informed and the AI assistant answers all my questions instantly.", stars: 5, weekOrContext: "Week 33" },
-  { nameKey: "testimonials.t28.name", defaultName: "Lina M.", textKey: "testimonials.t28.text", defaultText: "ميزة الراحة أثناء الحمل رائعة! تمارين التنفس والاسترخاء تساعدني على النوم بشكل أفضل كل ليلة.", stars: 5, weekOrContext: "Week 35" },
-  { nameKey: "testimonials.t29.name", defaultName: "Olivia J.", textKey: "testimonials.t29.text", defaultText: "The diaper tracker is a game changer for new moms! I can track patterns and know when something is off. So smart!", stars: 5, weekOrContext: "Postpartum" },
-  { nameKey: "testimonials.t30.name", defaultName: "Selin D.", textKey: "testimonials.t30.text", defaultText: "Haftalık başarılar ve sertifikalar çok motivasyonlu! Her hafta ilerlemeimi görmek beni mutlu ediyor. Harika bir uygulama!", stars: 5, weekOrContext: "Week 23" },
+  { nameKey: "testimonials.t1.name", defaultName: "Sarah M.", textKey: "testimonials.t1.text", defaultText: "This app has been my daily companion since week 8, the kick counter and weekly summaries are incredibly helpful — I love that everything is in one place!", stars: 5, weekOrContext: "Week 32" },
+  { nameKey: "testimonials.t2.name", defaultName: "Fatima A.", textKey: "testimonials.t2.text", defaultText: "أفضل تطبيق حمل استخدمته، الذكاء الاصطناعي يعطيني نصائح مخصصة كل أسبوع وأشعر بالاطمئنان — شكراً لكم!", stars: 5, weekOrContext: "Week 28" },
+  { nameKey: "testimonials.t3.name", defaultName: "Emma L.", textKey: "testimonials.t3.text", defaultText: "The contraction timer was a lifesaver during labor! Super easy to use even when I was stressed — the whole app is beautifully designed", stars: 5, weekOrContext: "Postpartum" },
+  { nameKey: "testimonials.t4.name", defaultName: "Ayşe K.", textKey: "testimonials.t4.text", defaultText: "Türkçe desteği harika! Hamileliğim boyunca her gün kullandım, beslenme önerileri ve vitamin takibi çok faydalı", stars: 5, weekOrContext: "Week 36" },
+  { nameKey: "testimonials.t5.name", defaultName: "Marie D.", textKey: "testimonials.t5.text", defaultText: "J'adore l'assistant IA ! Il répond à toutes mes questions sur la grossesse instantanément — l'application est gratuite et sans publicité, c'est rare", stars: 5, weekOrContext: "Week 20" },
+  { nameKey: "testimonials.t6.name", defaultName: "Lisa R.", textKey: "testimonials.t6.text", defaultText: "The AI meal planner changed how I eat during pregnancy — no more guessing what's safe, it suggests delicious meals for each trimester", stars: 4, weekOrContext: "Week 24" },
+  { nameKey: "testimonials.t7.name", defaultName: "Nour H.", textKey: "testimonials.t7.text", defaultText: "ميزة تتبع الوزن مع التوصيات المبنية على مؤشر كتلة الجسم ممتازة، أشعر بالتحكم في صحتي وصحة طفلي", stars: 5, weekOrContext: "Week 30" },
+  { nameKey: "testimonials.t8.name", defaultName: "Ana P.", textKey: "testimonials.t8.text", defaultText: "O rastreador de ciclo me ajudou a engravidar! Depois usei todas as ferramentas de gravidez — aplicativo incrível e 100% gratuito", stars: 5, weekOrContext: "TTC → Week 16" },
+  { nameKey: "testimonials.t9.name", defaultName: "Julia S.", textKey: "testimonials.t9.text", defaultText: "Die App funktioniert sogar offline! Ich benutze den Vitamin-Tracker und den Wochenplaner täglich — sehr durchdacht und wunderschön gestaltet", stars: 5, weekOrContext: "Week 18" },
+  { nameKey: "testimonials.t10.name", defaultName: "Carmen V.", textKey: "testimonials.t10.text", defaultText: "Mi herramienta favorita es el planificador de comidas con IA, recomienda recetas seguras para cada trimestre — ¡es como tener una nutricionista personal!", stars: 5, weekOrContext: "Week 26" },
+  { nameKey: "testimonials.t11.name", defaultName: "Hana B.", textKey: "testimonials.t11.text", defaultText: "التطبيق ساعدني كثيراً في فترة ما بعد الولادة، دليل الأم الجديدة ومتتبع نوم الطفل أدوات لا غنى عنها!", stars: 5, weekOrContext: "Postpartum" },
+  { nameKey: "testimonials.t12.name", defaultName: "Sophie W.", textKey: "testimonials.t12.text", defaultText: "I've tried 5 pregnancy apps before this one — none of them had AI-powered insights this good, the symptom analyzer is incredibly accurate", stars: 5, weekOrContext: "Week 22" },
+  { nameKey: "testimonials.t13.name", defaultName: "Leila M.", textKey: "testimonials.t13.text", defaultText: "أحب ميزة صور البطن! أتابع تطور حملي بصرياً كل أسبوع، الذكاء الاصطناعي يحلل الصور ويعطيني ملاحظات رائعة", stars: 5, weekOrContext: "Week 34" },
+  { nameKey: "testimonials.t14.name", defaultName: "Marta G.", textKey: "testimonials.t14.text", defaultText: "La lista de compras inteligente me ahorra mucho tiempo, genera exactamente lo que necesito según mi semana de embarazo", stars: 4, weekOrContext: "Week 19" },
+  { nameKey: "testimonials.t15.name", defaultName: "Yuki T.", textKey: "testimonials.t15.text", defaultText: "The fitness coach adapts workouts to my trimester — I feel safe exercising knowing the AI considers my pregnancy stage", stars: 5, weekOrContext: "Week 27" },
+  { nameKey: "testimonials.t16.name", defaultName: "Amira S.", textKey: "testimonials.t16.text", defaultText: "خاصية حاسبة موعد الولادة دقيقة جداً! والملخص الأسبوعي يخبرني بكل ما أحتاج معرفته عن تطور طفلي", stars: 5, weekOrContext: "Week 14" },
+  { nameKey: "testimonials.t17.name", defaultName: "Elena R.", textKey: "testimonials.t17.text", defaultText: "L'application est magnifique et intuitive, le suivi du poids avec les recommandations personnalisées est exactement ce dont j'avais besoin", stars: 5, weekOrContext: "Week 25" },
+  { nameKey: "testimonials.t18.name", defaultName: "Priya K.", textKey: "testimonials.t18.text", defaultText: "The hospital bag checklist was so thorough! I didn't forget a single thing — this app thinks of everything a mom needs", stars: 5, weekOrContext: "Week 38" },
+  { nameKey: "testimonials.t19.name", defaultName: "Zeynep A.", textKey: "testimonials.t19.text", defaultText: "Bebek ağlama çeviricisi inanılmaz! Bebeğimin ne istediğini anlamama yardımcı oluyor, teknoloji harikası bir uygulama", stars: 5, weekOrContext: "Postpartum" },
+  { nameKey: "testimonials.t20.name", defaultName: "Laura B.", textKey: "testimonials.t20.text", defaultText: "O guia de parceiro é fantástico! Meu marido usa todos os dias para entender melhor o que estou passando — muito útil!", stars: 5, weekOrContext: "Week 31" },
+  { nameKey: "testimonials.t21.name", defaultName: "Rania F.", textKey: "testimonials.t21.text", defaultText: "مؤقت الانقباضات أنقذني! سهل الاستخدام حتى في أصعب اللحظات، التطبيق بأكمله مصمم بعناية فائقة", stars: 5, weekOrContext: "Week 40" },
+  { nameKey: "testimonials.t22.name", defaultName: "Clara H.", textKey: "testimonials.t22.text", defaultText: "Der KI-Ernährungsberater ist großartig! Er schlägt sichere Rezepte für jedes Trimester vor — wie eine persönliche Ernährungsberaterin", stars: 5, weekOrContext: "Week 21" },
+  { nameKey: "testimonials.t23.name", defaultName: "Isabella C.", textKey: "testimonials.t23.text", defaultText: "El rastreador de vitaminas me recuerda tomar mis suplementos — simple pero muy útil, ¡5 estrellas sin duda!", stars: 5, weekOrContext: "Week 12" },
+  { nameKey: "testimonials.t24.name", defaultName: "Dina A.", textKey: "testimonials.t24.text", defaultText: "التطبيق يدعم 7 لغات! أستخدمه بالعربية وصديقتي تستخدمه بالفرنسية، الترجمة ممتازة ودقيقة", stars: 5, weekOrContext: "Week 29" },
+  { nameKey: "testimonials.t25.name", defaultName: "Michelle T.", textKey: "testimonials.t25.text", defaultText: "The skincare analyzer helped me avoid unsafe products during pregnancy — I had no idea some of my favorites contained retinol!", stars: 4, weekOrContext: "Week 15" },
+  { nameKey: "testimonials.t26.name", defaultName: "Aisha K.", textKey: "testimonials.t26.text", defaultText: "أداة تتبع الدورة ساعدتني في التخطيط للحمل، بعدها استخدمت كل أدوات الحمل — تطبيق شامل ومجاني!", stars: 5, weekOrContext: "TTC → Week 10" },
+  { nameKey: "testimonials.t27.name", defaultName: "Hannah P.", textKey: "testimonials.t27.text", defaultText: "Best pregnancy app I've ever used — the daily insights keep me informed and the AI assistant answers all my questions instantly", stars: 5, weekOrContext: "Week 33" },
+  { nameKey: "testimonials.t28.name", defaultName: "Lina M.", textKey: "testimonials.t28.text", defaultText: "ميزة الراحة أثناء الحمل رائعة! تمارين التنفس والاسترخاء تساعدني على النوم بشكل أفضل كل ليلة", stars: 5, weekOrContext: "Week 35" },
+  { nameKey: "testimonials.t29.name", defaultName: "Olivia J.", textKey: "testimonials.t29.text", defaultText: "The diaper tracker is a game changer for new moms! I can track patterns and know when something is off — so smart!", stars: 5, weekOrContext: "Postpartum" },
+  { nameKey: "testimonials.t30.name", defaultName: "Selin D.", textKey: "testimonials.t30.text", defaultText: "Haftalık başarılar ve sertifikalar çok motivasyonlu! Her hafta ilerlemeimi görmek beni mutlu ediyor, harika bir uygulama!", stars: 5, weekOrContext: "Week 23" },
 ];
 
 const REVIEWS_KEY = "pt_user_reviews";
 const PAGE_SIZE = 30;
+
+function TranslateButton({ text }: { text: string }) {
+  const { t } = useTranslation();
+  const handleTranslate = useCallback(() => {
+    const url = `https://translate.google.com/?sl=auto&tl=auto&text=${encodeURIComponent(text)}&op=translate`;
+    window.open(url, '_blank', 'noopener');
+  }, [text]);
+
+  return (
+    <button
+      onClick={handleTranslate}
+      className="flex items-center gap-1 text-[10px] text-primary/60 hover:text-primary transition-colors mt-2"
+    >
+      <Languages className="w-3 h-3" />
+      {t("testimonials.translate", "ترجمة")}
+    </button>
+  );
+}
 
 export default function Testimonials() {
   const { t, i18n } = useTranslation();
@@ -80,7 +97,6 @@ export default function Testimonials() {
   const [submitting, setSubmitting] = useState(false);
   const [page, setPage] = useState(1);
 
-  // Merge user reviews (first) + static testimonials into one list
   const allItems = [
     ...userReviews.map((r) => ({
       type: "user" as const,
@@ -122,9 +138,8 @@ export default function Testimonials() {
       setStars(0);
       setComment("");
       setSubmitting(false);
-      setPage(1); // Go to first page to show the new review
+      setPage(1);
       toast.success(t("testimonials.form.success", "شكراً لتقييمك! 💕"));
-      // Scroll to top to see the new review
       window.scrollTo({ top: 0, behavior: "smooth" });
     }, 500);
   };
@@ -156,7 +171,6 @@ export default function Testimonials() {
           </div>
         </motion.div>
 
-        {/* All reviews — unified list (user reviews first, then static) */}
         <div className="space-y-4">
           {pageItems.map((item, i) => {
             if (item.type === "user") {
@@ -183,11 +197,13 @@ export default function Testimonials() {
                     </div>
                   </div>
                   <p className="text-xs text-foreground/80 leading-relaxed" dir="auto">{r.comment}</p>
+                  <TranslateButton text={r.comment} />
                 </motion.div>
               );
             }
 
             const t2 = item as Testimonial & { type: "static"; index: number };
+            const reviewText = t(t2.textKey, t2.defaultText);
             return (
               <motion.div key={`static-${t2.index}`} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.03 }}
@@ -208,14 +224,14 @@ export default function Testimonials() {
                   </div>
                 </div>
                 <p className="text-xs text-foreground/80 leading-relaxed" dir={/[\u0600-\u06FF]/.test(t2.defaultText) ? "rtl" : "ltr"}>
-                  {t(t2.textKey, t2.defaultText)}
+                  {reviewText}
                 </p>
+                <TranslateButton text={reviewText} />
               </motion.div>
             );
           })}
         </div>
 
-        {/* Pagination */}
         {totalPages > 1 && (
           <div className="flex items-center justify-center gap-2 mt-8">
             <Button
@@ -254,14 +270,12 @@ export default function Testimonials() {
           </div>
         )}
 
-        {/* Add review form */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
           className="mt-8 p-5 rounded-2xl bg-card border border-border space-y-4">
           <h2 className="text-sm font-bold text-foreground text-center">
             {t("testimonials.form.title", "شاركينا تجربتك ⭐")}
           </h2>
 
-          {/* Star rating */}
           <div className="flex justify-center gap-1">
             {[1, 2, 3, 4, 5].map((s) => (
               <button
