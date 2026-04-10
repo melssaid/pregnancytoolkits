@@ -7,6 +7,20 @@ const corsHeaders = {
 
 const VAPID_PUBLIC_KEY = "BCQ2QGl7rRwrzUwCTpP84RLAKdsoI-u61PUe1J83ZAqowJELVxxuFoZVZb-vKM-GP2StukfgTbHHMCKobOb3TVc";
 
+// Hardcoded admin user IDs — only these users can send notifications
+const ADMIN_USER_IDS: string[] = [
+  // Add your admin user IDs here
+];
+
+const MAX_DAILY_SENDS = 3;
+
+function jsonResponse(data: unknown, status = 200) {
+  return new Response(JSON.stringify(data), {
+    status,
+    headers: { ...corsHeaders, "Content-Type": "application/json" },
+  });
+}
+
 // Web Push helpers
 function base64UrlToUint8Array(base64Url: string): Uint8Array {
   const padding = "=".repeat((4 - (base64Url.length % 4)) % 4);
@@ -22,7 +36,6 @@ async function importVapidKeys() {
   const privateKeyBytes = base64UrlToUint8Array(privateKeyRaw);
   const publicKeyBytes = base64UrlToUint8Array(VAPID_PUBLIC_KEY);
 
-  // Build raw PKCS8 for P-256 private key
   const pkcs8Header = new Uint8Array([
     0x30, 0x81, 0x87, 0x02, 0x01, 0x00, 0x30, 0x13, 0x06, 0x07, 0x2a, 0x86,
     0x48, 0xce, 0x3d, 0x02, 0x01, 0x06, 0x08, 0x2a, 0x86, 0x48, 0xce, 0x3d,
@@ -72,11 +85,9 @@ async function createVapidAuthHeader(endpoint: string) {
     enc.encode(unsigned)
   );
 
-  // Convert DER signature to raw r||s
   const sigArray = new Uint8Array(signature);
   let r: Uint8Array, s: Uint8Array;
   if (sigArray[0] === 0x30) {
-    // DER format
     const rLen = sigArray[3];
     const rStart = 4;
     const rBytes = sigArray.slice(rStart, rStart + rLen);
@@ -88,7 +99,6 @@ async function createVapidAuthHeader(endpoint: string) {
     if (r.length < 32) { const padded = new Uint8Array(32); padded.set(r, 32 - r.length); r = padded; }
     if (s.length < 32) { const padded = new Uint8Array(32); padded.set(s, 32 - s.length); s = padded; }
   } else {
-    // Already raw
     r = sigArray.slice(0, 32);
     s = sigArray.slice(32, 64);
   }
@@ -118,12 +128,42 @@ async function sendWebPush(subscription: { endpoint: string; p256dh: string; aut
   return res.ok || res.status === 201;
 }
 
+/** Authenticate admin user from JWT */
+async function authenticateAdmin(req: Request): Promise<{ authorized: boolean; userId?: string }> {
+  const authHeader = req.headers.get("Authorization");
+  if (!authHeader?.startsWith("Bearer ")) {
+    return { authorized: false };
+  }
+
+  const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
+  const anonKey = Deno.env.get("SUPABASE_ANON_KEY")!;
+  const client = createClient(supabaseUrl, anonKey, {
+    global: { headers: { Authorization: authHeader } },
+  });
+
+  const { data: { user }, error } = await client.auth.getUser();
+  if (error || !user?.id) return { authorized: false };
+
+  // If ADMIN_USER_IDS is empty, allow any authenticated user (for initial setup)
+  if (ADMIN_USER_IDS.length > 0 && !ADMIN_USER_IDS.includes(user.id)) {
+    return { authorized: false };
+  }
+
+  return { authorized: true, userId: user.id };
+}
+
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response("ok", { headers: corsHeaders });
   }
 
   try {
+    // Authenticate admin for ALL actions
+    const { authorized } = await authenticateAdmin(req);
+    if (!authorized) {
+      return jsonResponse({ error: "Unauthorized — admin access required" }, 401);
+    }
+
     const { action, title, body, language } = await req.json();
 
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
@@ -132,17 +172,24 @@ Deno.serve(async (req) => {
 
     if (action === "count") {
       const { count } = await sb.from("push_subscriptions").select("*", { count: "exact", head: true });
-      return new Response(JSON.stringify({ count: count || 0 }), {
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
+      return jsonResponse({ count: count || 0 });
     }
 
     if (action === "send") {
       if (!title || !body) {
-        return new Response(JSON.stringify({ error: "title and body required" }), {
-          status: 400,
-          headers: { ...corsHeaders, "Content-Type": "application/json" },
-        });
+        return jsonResponse({ error: "title and body required" }, 400);
+      }
+
+      // Rate limit: max 3 sends per day
+      const todayStart = new Date();
+      todayStart.setHours(0, 0, 0, 0);
+      const { count: todayCount } = await sb
+        .from("notification_logs")
+        .select("*", { count: "exact", head: true })
+        .gte("created_at", todayStart.toISOString());
+
+      if ((todayCount || 0) >= MAX_DAILY_SENDS) {
+        return jsonResponse({ error: `Rate limit: max ${MAX_DAILY_SENDS} notifications per day` }, 429);
       }
 
       let query = sb.from("push_subscriptions").select("*");
@@ -181,19 +228,21 @@ Deno.serve(async (req) => {
         await sb.from("push_subscriptions").delete().in("id", expired);
       }
 
-      return new Response(JSON.stringify({ sent, failed, total: (subs || []).length }), {
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      // Log to database
+      await sb.from("notification_logs").insert({
+        title,
+        body,
+        language: language || null,
+        total_sent: sent,
+        total_failed: failed,
+        total_subscribers: (subs || []).length,
       });
+
+      return jsonResponse({ sent, failed, total: (subs || []).length });
     }
 
-    return new Response(JSON.stringify({ error: "Invalid action" }), {
-      status: 400,
-      headers: { ...corsHeaders, "Content-Type": "application/json" },
-    });
+    return jsonResponse({ error: "Invalid action" }, 400);
   } catch (err) {
-    return new Response(JSON.stringify({ error: err.message }), {
-      status: 500,
-      headers: { ...corsHeaders, "Content-Type": "application/json" },
-    });
+    return jsonResponse({ error: err.message }, 500);
   }
 });
