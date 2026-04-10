@@ -1296,7 +1296,27 @@
       "status": "Used: {{used}}/{{limit}} • Remaining: {{remaining}}",
       "success": "Reset! 30 attempts available now",
       "button": "Reset Attempts (Premium)"
-    }
+    },
+    "notifications": {
+      "title": "Notifications",
+      "desc": "Weekly updates & reminders",
+      "pushToggle": "Push Notifications",
+      "activeDesc": "Receiving notifications",
+      "inactiveDesc": "Enable to receive alerts",
+      "enabled": "Notifications enabled! 🔔",
+      "disabled": "Notifications disabled",
+      "blocked": "Notifications are blocked. Please enable them in your device settings.",
+      "notSupported": "Push notifications are not supported on this device",
+      "typesTitle": "Notification Types",
+      "weeklyUpdates": "Weekly Pregnancy Updates",
+      "weeklyDesc": "Baby development & tips every week",
+      "weeklyOn": "Weekly updates enabled",
+      "statusActive": "You'll receive notifications even when the app is closed"
+    },
+    "generalSection": "General",
+    "dataSection": "Data & Privacy",
+    "supportSection": "Support",
+    "contactSupport": "Contact Support"
   },
   "charts": {
     "babyGrowth": {

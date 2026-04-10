@@ -3,7 +3,8 @@ import { SEOHead } from '@/components/SEOHead';
 import { useNavigate } from 'react-router-dom';
 import { 
   Globe, User, Download, Trash2, Heart, 
-  ChevronRight, ChevronLeft, Lock, RotateCcw
+  ChevronRight, ChevronLeft, Lock, RotateCcw,
+  Bell, BellRing, Info, Mail, Star, ExternalLink
 } from 'lucide-react';
 import { useAIUsage } from '@/contexts/AIUsageContext';
 import { toast } from 'sonner';
@@ -14,12 +15,14 @@ import { LanguageSelector } from '@/components/settings/LanguageSelector';
 import { ProfileEditor } from '@/components/settings/ProfileEditor';
 import { Layout } from '@/components/Layout';
 import PrivacyTrustCard from '@/components/settings/PrivacyTrustCard';
+import { NotificationSettings } from '@/components/settings/NotificationSettings';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import { Switch } from '@/components/ui/switch';
 
-type SettingsView = 'main' | 'profile' | 'language' | 'security' | 'backup' | 'delete';
+type SettingsView = 'main' | 'profile' | 'language' | 'security' | 'backup' | 'delete' | 'notifications';
 
 const APP_VERSION = '1.0.16';
 
@@ -31,53 +34,64 @@ const Settings: React.FC = () => {
   const navigate = useNavigate();
   const ChevronIcon = isRTL ? ChevronLeft : ChevronRight;
 
-  const settingsItems: {
-    id: SettingsView;
-    icon: React.ComponentType<{ className?: string }>;
-    label: string;
-    desc: string;
-    iconColor: string;
-    iconBg: string;
-  }[] = [
+  const settingsGroups = [
     {
-      id: 'profile',
-      icon: User,
-      label: t('settings.profile.title'),
-      desc: t('settings.profile.desc'),
-      iconColor: 'text-primary',
-      iconBg: 'bg-primary/10',
+      title: t('settings.generalSection', 'General'),
+      items: [
+        {
+          id: 'profile' as SettingsView,
+          icon: User,
+          label: t('settings.profile.title'),
+          desc: t('settings.profile.desc'),
+          iconColor: 'text-blue-500',
+          iconBg: 'bg-blue-500/10',
+        },
+        {
+          id: 'language' as SettingsView,
+          icon: Globe,
+          label: t('settings.language.sectionTitle'),
+          desc: t('settings.language.desc'),
+          iconColor: 'text-emerald-500',
+          iconBg: 'bg-emerald-500/10',
+        },
+        {
+          id: 'notifications' as SettingsView,
+          icon: Bell,
+          label: t('settings.notifications.title', 'Notifications'),
+          desc: t('settings.notifications.desc', 'Weekly updates & reminders'),
+          iconColor: 'text-orange-500',
+          iconBg: 'bg-orange-500/10',
+        },
+      ],
     },
     {
-      id: 'language',
-      icon: Globe,
-      label: t('settings.language.sectionTitle'),
-      desc: t('settings.language.desc'),
-      iconColor: 'text-primary',
-      iconBg: 'bg-primary/10',
-    },
-    {
-      id: 'backup',
-      icon: Download,
-      label: t('settings.backup.title'),
-      desc: t('settings.backup.description'),
-      iconColor: 'text-accent',
-      iconBg: 'bg-accent/10',
-    },
-    {
-      id: 'security',
-      icon: Lock,
-      label: t('settings.securityPrivacy'),
-      desc: t('settings.securityDesc'),
-      iconColor: 'text-amber-500',
-      iconBg: 'bg-amber-500/10',
-    },
-    {
-      id: 'delete',
-      icon: Trash2,
-      label: t('settings.deleteAccount.title'),
-      desc: t('settings.deleteAccount.description'),
-      iconColor: 'text-destructive',
-      iconBg: 'bg-destructive/10',
+      title: t('settings.dataSection', 'Data & Privacy'),
+      items: [
+        {
+          id: 'backup' as SettingsView,
+          icon: Download,
+          label: t('settings.backup.title'),
+          desc: t('settings.backup.description'),
+          iconColor: 'text-violet-500',
+          iconBg: 'bg-violet-500/10',
+        },
+        {
+          id: 'security' as SettingsView,
+          icon: Lock,
+          label: t('settings.securityPrivacy'),
+          desc: t('settings.securityDesc'),
+          iconColor: 'text-amber-500',
+          iconBg: 'bg-amber-500/10',
+        },
+        {
+          id: 'delete' as SettingsView,
+          icon: Trash2,
+          label: t('settings.deleteAccount.title'),
+          desc: t('settings.deleteAccount.description'),
+          iconColor: 'text-red-500',
+          iconBg: 'bg-red-500/10',
+        },
+      ],
     },
   ];
 
@@ -88,12 +102,15 @@ const Settings: React.FC = () => {
       case 'security': return <EncryptionManager compact />;
       case 'backup': return <DataBackupManager compact />;
       case 'delete': return <AccountDeletion compact />;
+      case 'notifications': return <NotificationSettings />;
       default: return null;
     }
   };
 
   const getSubViewTitle = () => {
-    const item = settingsItems.find(i => i.id === activeView);
+    if (activeView === 'notifications') return t('settings.notifications.title', 'Notifications');
+    const allItems = settingsGroups.flatMap(g => g.items);
+    const item = allItems.find(i => i.id === activeView);
     return item?.label || t('settings.title');
   };
 
@@ -110,49 +127,61 @@ const Settings: React.FC = () => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: isRTL ? -20 : 20 }}
               transition={{ duration: 0.2 }}
-              className="space-y-4"
+              className="space-y-5"
             >
-              {/* Header */}
-              <div className="text-center mb-2">
-                <h1 className="text-xl font-bold text-foreground">{t('settings.title')}</h1>
-                <p className="text-xs text-muted-foreground mt-1">{t('settings.subtitle')}</p>
+              {/* App Header */}
+              <div className="flex flex-col items-center gap-2 pt-2 pb-1">
+                <div className="w-16 h-16 rounded-[18px] bg-gradient-to-br from-primary to-accent shadow-lg flex items-center justify-center">
+                  <Heart className="w-8 h-8 text-primary-foreground" fill="currentColor" />
+                </div>
+                <div className="text-center">
+                  <h1 className="text-lg font-bold text-foreground">Pregnancy Toolkits</h1>
+                  <p className="text-[11px] text-muted-foreground">v{APP_VERSION}</p>
+                </div>
               </div>
 
-              {/* Settings List */}
-              <div className="rounded-2xl border bg-card overflow-hidden divide-y divide-border/50">
-                {settingsItems.map((item, i) => {
-                  const Icon = item.icon;
-                  return (
-                    <motion.button
-                      key={item.id}
-                      initial={{ opacity: 0, y: 8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: i * 0.04 }}
-                      onClick={() => item.id === 'language' ? navigate('/language') : setActiveView(item.id)}
-                      className="w-full flex items-center gap-3 px-4 py-3.5 hover:bg-muted/40 transition-colors active:scale-[0.99]"
-                    >
-                      <div className={cn("w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0", item.iconBg)}>
-                        <Icon className={cn("w-4.5 h-4.5", item.iconColor)} />
-                      </div>
-                      <div className="flex-1 text-start min-w-0">
-                        <span className="text-sm font-medium text-foreground block">{item.label}</span>
-                        <span className="text-[10px] text-muted-foreground line-clamp-1">{item.desc}</span>
-                      </div>
-                      <ChevronIcon className="w-4 h-4 text-muted-foreground/40 flex-shrink-0" />
-                    </motion.button>
-                  );
-                })}
-              </div>
+              {/* Settings Groups */}
+              {settingsGroups.map((group, gi) => (
+                <div key={gi} className="space-y-1.5">
+                  <h3 className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider px-1">
+                    {group.title}
+                  </h3>
+                  <div className="rounded-2xl border bg-card overflow-hidden divide-y divide-border/40">
+                    {group.items.map((item, i) => {
+                      const Icon = item.icon;
+                      return (
+                        <motion.button
+                          key={item.id}
+                          initial={{ opacity: 0, y: 6 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: (gi * 3 + i) * 0.03 }}
+                          onClick={() => item.id === 'language' ? navigate('/language') : setActiveView(item.id)}
+                          className="w-full flex items-center gap-3 px-4 py-3 hover:bg-muted/40 transition-colors active:scale-[0.99]"
+                        >
+                          <div className={cn("w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0", item.iconBg)}>
+                            <Icon className={cn("w-4 h-4", item.iconColor)} />
+                          </div>
+                          <div className="flex-1 text-start min-w-0">
+                            <span className="text-[13px] font-semibold text-foreground block leading-tight">{item.label}</span>
+                            <span className="text-[10px] text-muted-foreground line-clamp-1">{item.desc}</span>
+                          </div>
+                          <ChevronIcon className="w-4 h-4 text-muted-foreground/30 flex-shrink-0" />
+                        </motion.button>
+                      );
+                    })}
+                  </div>
+                </div>
+              ))}
 
               {/* Admin AI Reset — dev only */}
               {import.meta.env.DEV && (
                 <div className="rounded-2xl border border-amber-500/30 bg-card p-4 space-y-3">
                   <div className="flex items-center gap-2">
-                    <div className="w-9 h-9 rounded-xl bg-amber-500/10 flex items-center justify-center">
-                      <RotateCcw className="w-4.5 h-4.5 text-amber-500" />
+                    <div className="w-8 h-8 rounded-xl bg-amber-500/10 flex items-center justify-center">
+                      <RotateCcw className="w-4 h-4 text-amber-500" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <span className="text-sm font-medium text-foreground block">
+                      <span className="text-[13px] font-semibold text-foreground block">
                         {t('settings.aiReset.title')}
                       </span>
                       <span className="text-[10px] text-muted-foreground">
@@ -169,30 +198,76 @@ const Settings: React.FC = () => {
                   >
                     {t('settings.aiReset.button')}
                   </button>
-                  <p className="text-[9px] text-amber-500/60 text-center">⚠ DEV ONLY — hidden in production</p>
+                  <p className="text-[9px] text-amber-500/60 text-center">⚠ DEV ONLY</p>
                 </div>
               )}
 
               {/* Privacy Trust Card */}
               <PrivacyTrustCard />
 
+              {/* Support & About */}
+              <div className="space-y-1.5">
+                <h3 className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider px-1">
+                  {t('settings.supportSection', 'Support')}
+                </h3>
+                <div className="rounded-2xl border bg-card overflow-hidden divide-y divide-border/40">
+                  <a
+                    href="mailto:pregnancytoolkits@gmail.com"
+                    className="w-full flex items-center gap-3 px-4 py-3 hover:bg-muted/40 transition-colors"
+                  >
+                    <div className="w-8 h-8 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <Mail className="w-4 h-4 text-primary" />
+                    </div>
+                    <div className="flex-1 text-start min-w-0">
+                      <span className="text-[13px] font-semibold text-foreground block leading-tight">
+                        {t('settings.contactSupport', 'Contact Support')}
+                      </span>
+                      <span className="text-[10px] text-muted-foreground">pregnancytoolkits@gmail.com</span>
+                    </div>
+                    <ExternalLink className="w-3.5 h-3.5 text-muted-foreground/30 flex-shrink-0" />
+                  </a>
+
+                  <Link
+                    to="/privacy"
+                    className="w-full flex items-center gap-3 px-4 py-3 hover:bg-muted/40 transition-colors"
+                  >
+                    <div className="w-8 h-8 rounded-xl bg-muted/60 flex items-center justify-center flex-shrink-0">
+                      <Info className="w-4 h-4 text-muted-foreground" />
+                    </div>
+                    <div className="flex-1 text-start min-w-0">
+                      <span className="text-[13px] font-semibold text-foreground block leading-tight">
+                        {t('settings.dataPrivacy')}
+                      </span>
+                    </div>
+                    <ChevronIcon className="w-4 h-4 text-muted-foreground/30 flex-shrink-0" />
+                  </Link>
+
+                  <Link
+                    to="/terms"
+                    className="w-full flex items-center gap-3 px-4 py-3 hover:bg-muted/40 transition-colors"
+                  >
+                    <div className="w-8 h-8 rounded-xl bg-muted/60 flex items-center justify-center flex-shrink-0">
+                      <Info className="w-4 h-4 text-muted-foreground" />
+                    </div>
+                    <div className="flex-1 text-start min-w-0">
+                      <span className="text-[13px] font-semibold text-foreground block leading-tight">
+                        {t('layout.footer.terms')}
+                      </span>
+                    </div>
+                    <ChevronIcon className="w-4 h-4 text-muted-foreground/30 flex-shrink-0" />
+                  </Link>
+                </div>
+              </div>
+
               {/* Footer */}
-              <div className="text-center space-y-2 pt-2">
+              <div className="text-center pt-2 pb-4">
                 <div className="flex items-center justify-center gap-1.5">
                   <Heart className="w-3 h-3 text-primary" />
-                  <span className="text-xs text-muted-foreground">{t('settings.appTagline')}</span>
+                  <span className="text-[10px] text-muted-foreground">{t('settings.appTagline')}</span>
                 </div>
-                <div className="flex items-center justify-center gap-3 text-[10px] text-muted-foreground/60">
-                  <span>v{APP_VERSION}</span>
-                  <span>·</span>
-                  <Link to="/privacy" className="hover:text-primary transition-colors">
-                    {t('settings.dataPrivacy')}
-                  </Link>
-                  <span>·</span>
-                  <Link to="/terms" className="hover:text-primary transition-colors">
-                    {t('layout.footer.terms')}
-                  </Link>
-                </div>
+                <p className="text-[9px] text-muted-foreground/50 mt-1.5 max-w-[260px] mx-auto leading-relaxed">
+                  {t('settings.medicalNote')}
+                </p>
               </div>
             </motion.div>
           ) : (
