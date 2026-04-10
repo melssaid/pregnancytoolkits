@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { ChevronDown, ChevronUp, Info, Baby } from "lucide-react";
@@ -79,11 +79,11 @@ export function HealthInputForm({ health, onUpdate, lang }: HealthInputFormProps
   const kickStats = useMemo(() => getLatestKickStats(), []);
 
   // Sync kick count into health data for AI prompt
-  useState(() => {
+  useEffect(() => {
     if (kickStats.totalKicks > 0 && health.lastKickCount !== kickStats.totalKicks) {
       onUpdate('lastKickCount', kickStats.totalKicks);
     }
-  });
+  }, [kickStats.totalKicks]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const getLabel = (option: Record<string, string>) => option[lang] || option.en;
 
