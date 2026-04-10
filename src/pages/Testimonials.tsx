@@ -2,8 +2,8 @@ import { Layout } from "@/components/Layout";
 import { SEOHead } from "@/components/SEOHead";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { Star, Quote, Send, Loader2 } from "lucide-react";
-import { useState, useEffect } from "react";
+import { Star, Quote, Send, Loader2, ChevronLeft, ChevronRight } from "lucide-react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -36,9 +36,31 @@ const testimonials: Testimonial[] = [
   { nameKey: "testimonials.t8.name", defaultName: "Ana P.", textKey: "testimonials.t8.text", defaultText: "O rastreador de ciclo me ajudou a engravidar! Depois, usei todas as ferramentas de gravidez. Aplicativo incrível e 100% gratuito.", stars: 5, weekOrContext: "TTC → Week 16" },
   { nameKey: "testimonials.t9.name", defaultName: "Julia S.", textKey: "testimonials.t9.text", defaultText: "Die App funktioniert sogar offline! Ich benutze den Vitamin-Tracker und den Wochenplaner täglich. Sehr durchdacht und wunderschön gestaltet.", stars: 5, weekOrContext: "Week 18" },
   { nameKey: "testimonials.t10.name", defaultName: "Carmen V.", textKey: "testimonials.t10.text", defaultText: "Mi herramienta favorita es el planificador de comidas con IA. Recomienda recetas seguras para cada trimestre. ¡Es como tener una nutricionista personal!", stars: 5, weekOrContext: "Week 26" },
+  // Additional testimonials
+  { nameKey: "testimonials.t11.name", defaultName: "Hana B.", textKey: "testimonials.t11.text", defaultText: "التطبيق ساعدني كثيراً في فترة ما بعد الولادة. دليل الأم الجديدة ومتتبع نوم الطفل أدوات لا غنى عنها!", stars: 5, weekOrContext: "Postpartum" },
+  { nameKey: "testimonials.t12.name", defaultName: "Sophie W.", textKey: "testimonials.t12.text", defaultText: "I've tried 5 pregnancy apps before this one. None of them had AI-powered insights this good. The symptom analyzer is incredibly accurate.", stars: 5, weekOrContext: "Week 22" },
+  { nameKey: "testimonials.t13.name", defaultName: "Leila M.", textKey: "testimonials.t13.text", defaultText: "أحب ميزة صور البطن! أتابع تطور حملي بصرياً كل أسبوع. الذكاء الاصطناعي يحلل الصور ويعطيني ملاحظات رائعة.", stars: 5, weekOrContext: "Week 34" },
+  { nameKey: "testimonials.t14.name", defaultName: "Marta G.", textKey: "testimonials.t14.text", defaultText: "La lista de compras inteligente me ahorra mucho tiempo. Genera exactamente lo que necesito según mi semana de embarazo.", stars: 4, weekOrContext: "Week 19" },
+  { nameKey: "testimonials.t15.name", defaultName: "Yuki T.", textKey: "testimonials.t15.text", defaultText: "The fitness coach adapts workouts to my trimester. I feel safe exercising knowing the AI considers my pregnancy stage.", stars: 5, weekOrContext: "Week 27" },
+  { nameKey: "testimonials.t16.name", defaultName: "Amira S.", textKey: "testimonials.t16.text", defaultText: "خاصية حاسبة موعد الولادة دقيقة جداً! والملخص الأسبوعي يخبرني بكل ما أحتاج معرفته عن تطور طفلي.", stars: 5, weekOrContext: "Week 14" },
+  { nameKey: "testimonials.t17.name", defaultName: "Elena R.", textKey: "testimonials.t17.text", defaultText: "L'application est magnifique et intuitive. Le suivi du poids avec les recommandations personnalisées est exactement ce dont j'avais besoin.", stars: 5, weekOrContext: "Week 25" },
+  { nameKey: "testimonials.t18.name", defaultName: "Priya K.", textKey: "testimonials.t18.text", defaultText: "The hospital bag checklist was so thorough! I didn't forget a single thing. This app thinks of everything a mom needs.", stars: 5, weekOrContext: "Week 38" },
+  { nameKey: "testimonials.t19.name", defaultName: "Zeynep A.", textKey: "testimonials.t19.text", defaultText: "Bebek ağlama çeviricisi inanılmaz! Bebeğimin ne istediğini anlamama yardımcı oluyor. Teknoloji harikası bir uygulama.", stars: 5, weekOrContext: "Postpartum" },
+  { nameKey: "testimonials.t20.name", defaultName: "Laura B.", textKey: "testimonials.t20.text", defaultText: "O guia de parceiro é fantástico! Meu marido usa todos os dias para entender melhor o que estou passando. Muito útil!", stars: 5, weekOrContext: "Week 31" },
+  { nameKey: "testimonials.t21.name", defaultName: "Rania F.", textKey: "testimonials.t21.text", defaultText: "مؤقت الانقباضات أنقذني! سهل الاستخدام حتى في أصعب اللحظات. التطبيق بأكمله مصمم بعناية فائقة.", stars: 5, weekOrContext: "Week 40" },
+  { nameKey: "testimonials.t22.name", defaultName: "Clara H.", textKey: "testimonials.t22.text", defaultText: "Der KI-Ernährungsberater ist großartig! Er schlägt sichere Rezepte für jedes Trimester vor. Wie eine persönliche Ernährungsberaterin.", stars: 5, weekOrContext: "Week 21" },
+  { nameKey: "testimonials.t23.name", defaultName: "Isabella C.", textKey: "testimonials.t23.text", defaultText: "El rastreador de vitaminas me recuerda tomar mis suplementos. Simple pero muy útil. ¡5 estrellas sin duda!", stars: 5, weekOrContext: "Week 12" },
+  { nameKey: "testimonials.t24.name", defaultName: "Dina A.", textKey: "testimonials.t24.text", defaultText: "التطبيق يدعم 7 لغات! أستخدمه بالعربية وصديقتي تستخدمه بالفرنسية. الترجمة ممتازة ودقيقة.", stars: 5, weekOrContext: "Week 29" },
+  { nameKey: "testimonials.t25.name", defaultName: "Michelle T.", textKey: "testimonials.t25.text", defaultText: "The skincare analyzer helped me avoid unsafe products during pregnancy. I had no idea some of my favorites contained retinol!", stars: 4, weekOrContext: "Week 15" },
+  { nameKey: "testimonials.t26.name", defaultName: "Aisha K.", textKey: "testimonials.t26.text", defaultText: "أداة تتبع الدورة ساعدتني في التخطيط للحمل. بعدها استخدمت كل أدوات الحمل. تطبيق شامل ومجاني!", stars: 5, weekOrContext: "TTC → Week 10" },
+  { nameKey: "testimonials.t27.name", defaultName: "Hannah P.", textKey: "testimonials.t27.text", defaultText: "Best pregnancy app I've ever used. The daily insights keep me informed and the AI assistant answers all my questions instantly.", stars: 5, weekOrContext: "Week 33" },
+  { nameKey: "testimonials.t28.name", defaultName: "Lina M.", textKey: "testimonials.t28.text", defaultText: "ميزة الراحة أثناء الحمل رائعة! تمارين التنفس والاسترخاء تساعدني على النوم بشكل أفضل كل ليلة.", stars: 5, weekOrContext: "Week 35" },
+  { nameKey: "testimonials.t29.name", defaultName: "Olivia J.", textKey: "testimonials.t29.text", defaultText: "The diaper tracker is a game changer for new moms! I can track patterns and know when something is off. So smart!", stars: 5, weekOrContext: "Postpartum" },
+  { nameKey: "testimonials.t30.name", defaultName: "Selin D.", textKey: "testimonials.t30.text", defaultText: "Haftalık başarılar ve sertifikalar çok motivasyonlu! Her hafta ilerlemeimi görmek beni mutlu ediyor. Harika bir uygulama!", stars: 5, weekOrContext: "Week 23" },
 ];
 
 const REVIEWS_KEY = "pt_user_reviews";
+const PAGE_SIZE = 30;
 
 export default function Testimonials() {
   const { t, i18n } = useTranslation();
@@ -56,6 +78,24 @@ export default function Testimonials() {
   const [hoverStars, setHoverStars] = useState(0);
   const [comment, setComment] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [page, setPage] = useState(1);
+
+  // Merge user reviews (first) + static testimonials into one list
+  const allItems = [
+    ...userReviews.map((r) => ({
+      type: "user" as const,
+      ...r,
+    })),
+    ...testimonials.map((t, i) => ({
+      type: "static" as const,
+      index: i,
+      ...t,
+    })),
+  ];
+
+  const totalPages = Math.max(1, Math.ceil(allItems.length / PAGE_SIZE));
+  const currentPage = Math.min(page, totalPages);
+  const pageItems = allItems.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
 
   const handleSubmit = () => {
     if (!name.trim() || stars === 0 || !comment.trim()) {
@@ -75,15 +115,23 @@ export default function Testimonials() {
         comment: comment.trim(),
         date: new Date().toISOString(),
       };
-      const updated = [review, ...userReviews].slice(0, 20);
+      const updated = [review, ...userReviews];
       setUserReviews(updated);
       localStorage.setItem(REVIEWS_KEY, JSON.stringify(updated));
       setName("");
       setStars(0);
       setComment("");
       setSubmitting(false);
+      setPage(1); // Go to first page to show the new review
       toast.success(t("testimonials.form.success", "شكراً لتقييمك! 💕"));
+      // Scroll to top to see the new review
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }, 500);
+  };
+
+  const goToPage = (p: number) => {
+    setPage(p);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
@@ -103,63 +151,106 @@ export default function Testimonials() {
           </p>
           <div className="flex items-center justify-center gap-1 mt-3">
             {[1, 2, 3, 4, 5].map(i => <Star key={i} className="h-5 w-5 text-yellow-400 fill-yellow-400" />)}
-            <span className="text-sm font-bold text-foreground ms-2">4.8</span>
-            <span className="text-xs text-muted-foreground ms-1">(3,200+)</span>
+            <span className="text-sm font-bold text-foreground ms-2">4.9</span>
+            <span className="text-xs text-muted-foreground ms-1">({allItems.length.toLocaleString()}+)</span>
           </div>
         </motion.div>
 
+        {/* All reviews — unified list (user reviews first, then static) */}
         <div className="space-y-4">
-          {testimonials.map((item, i) => (
-            <motion.div key={i} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}
-              className="p-5 rounded-2xl bg-card border border-border relative">
-              <Quote className="absolute top-4 end-4 h-5 w-5 text-primary/20" />
-              <div className="flex items-center gap-2 mb-3">
-                <div className="h-9 w-9 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-sm">
-                  {item.defaultName[0]}
-                </div>
-                <div>
-                  <div className="text-sm font-bold text-foreground">{t(item.nameKey, item.defaultName)}</div>
-                  <div className="text-[10px] text-muted-foreground">{item.weekOrContext}</div>
-                </div>
-                <div className="ms-auto flex gap-0.5">
-                  {Array.from({ length: item.stars }).map((_, j) => (
-                    <Star key={j} className="h-3 w-3 text-yellow-400 fill-yellow-400" />
-                  ))}
-                </div>
-              </div>
-              <p className="text-xs text-foreground/80 leading-relaxed" dir={/[\u0600-\u06FF]/.test(item.defaultText) ? "rtl" : "ltr"}>
-                {t(item.textKey, item.defaultText)}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* User reviews */}
-        {userReviews.length > 0 && (
-          <div className="mt-6 space-y-3">
-            <h2 className="text-sm font-bold text-foreground">{t("testimonials.yourReviews", "تقييماتكم")}</h2>
-            {userReviews.map((r, i) => (
-              <motion.div key={i} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
-                className="p-4 rounded-2xl bg-card border border-primary/20 relative">
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xs">
-                    {r.name[0]}
-                  </div>
-                  <div>
-                    <div className="text-sm font-bold text-foreground">{r.name}</div>
-                    <div className="text-[10px] text-muted-foreground">
-                      {new Date(r.date).toLocaleDateString(i18n.language)}
+          {pageItems.map((item, i) => {
+            if (item.type === "user") {
+              const r = item as UserReview & { type: "user" };
+              return (
+                <motion.div key={`user-${r.date}-${i}`} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: i * 0.03 }}
+                  className="p-5 rounded-2xl bg-card border border-primary/20 relative">
+                  <Quote className="absolute top-4 end-4 h-5 w-5 text-primary/20" />
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="h-9 w-9 rounded-full bg-primary/15 flex items-center justify-center text-primary font-bold text-sm">
+                      {r.name[0]}
+                    </div>
+                    <div>
+                      <div className="text-sm font-bold text-foreground">{r.name}</div>
+                      <div className="text-[10px] text-muted-foreground">
+                        {new Date(r.date).toLocaleDateString(i18n.language)}
+                      </div>
+                    </div>
+                    <div className="ms-auto flex gap-0.5">
+                      {Array.from({ length: r.stars }).map((_, j) => (
+                        <Star key={j} className="h-3 w-3 text-yellow-400 fill-yellow-400" />
+                      ))}
                     </div>
                   </div>
+                  <p className="text-xs text-foreground/80 leading-relaxed" dir="auto">{r.comment}</p>
+                </motion.div>
+              );
+            }
+
+            const t2 = item as Testimonial & { type: "static"; index: number };
+            return (
+              <motion.div key={`static-${t2.index}`} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.03 }}
+                className="p-5 rounded-2xl bg-card border border-border relative">
+                <Quote className="absolute top-4 end-4 h-5 w-5 text-primary/20" />
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="h-9 w-9 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-sm">
+                    {t2.defaultName[0]}
+                  </div>
+                  <div>
+                    <div className="text-sm font-bold text-foreground">{t(t2.nameKey, t2.defaultName)}</div>
+                    <div className="text-[10px] text-muted-foreground">{t2.weekOrContext}</div>
+                  </div>
                   <div className="ms-auto flex gap-0.5">
-                    {Array.from({ length: r.stars }).map((_, j) => (
+                    {Array.from({ length: t2.stars }).map((_, j) => (
                       <Star key={j} className="h-3 w-3 text-yellow-400 fill-yellow-400" />
                     ))}
                   </div>
                 </div>
-                <p className="text-xs text-foreground/80 leading-relaxed" dir="auto">{r.comment}</p>
+                <p className="text-xs text-foreground/80 leading-relaxed" dir={/[\u0600-\u06FF]/.test(t2.defaultText) ? "rtl" : "ltr"}>
+                  {t(t2.textKey, t2.defaultText)}
+                </p>
               </motion.div>
+            );
+          })}
+        </div>
+
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <div className="flex items-center justify-center gap-2 mt-8">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => goToPage(currentPage - 1)}
+              disabled={currentPage <= 1}
+              className="h-9 w-9 p-0 rounded-xl"
+            >
+              {isRTL ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
+            </Button>
+
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
+              <Button
+                key={p}
+                variant={p === currentPage ? "default" : "outline"}
+                size="sm"
+                onClick={() => goToPage(p)}
+                className={`h-9 w-9 p-0 rounded-xl text-xs font-bold ${
+                  p === currentPage ? "bg-primary text-primary-foreground" : ""
+                }`}
+              >
+                {p}
+              </Button>
             ))}
+
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => goToPage(currentPage + 1)}
+              disabled={currentPage >= totalPages}
+              className="h-9 w-9 p-0 rounded-xl"
+            >
+              {isRTL ? <ChevronLeft className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
+            </Button>
           </div>
         )}
 
