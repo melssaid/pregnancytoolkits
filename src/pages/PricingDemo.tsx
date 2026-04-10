@@ -57,9 +57,11 @@ export default function PricingDemo() {
         // Success — quota already set to premium in activateOnServer
         refreshAIUsage();
         localStorage.removeItem("pricing_visit_ts");
-        window.dispatchEvent(new CustomEvent("subscription-activated", { detail: { plan: selected } }));
         setPurchasing(false);
-        navigate("/");
+        // Dispatch event BEFORE navigate so App.tsx listener catches it
+        window.dispatchEvent(new CustomEvent("subscription-activated", { detail: { plan: selected } }));
+        // Small delay to let event propagate before unmounting
+        setTimeout(() => navigate("/"), 100);
       },
       (msg) => {
         setPurchasing(false);

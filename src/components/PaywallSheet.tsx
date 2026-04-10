@@ -45,7 +45,7 @@ export function PaywallSheet({ open, onClose, toolName }: PaywallSheetProps) {
 
     setPurchasing(true);
 
-    await requestPurchase(
+    const sent = await requestPurchase(
       plan,
       async () => {
         qmSetTier("premium");
@@ -53,7 +53,6 @@ export function PaywallSheet({ open, onClose, toolName }: PaywallSheetProps) {
         window.dispatchEvent(new CustomEvent("subscription-activated", { detail: { plan } }));
         setPurchasing(false);
         onClose();
-        navigate("/");
       },
       (msg) => {
         setPurchasing(false);
@@ -68,7 +67,9 @@ export function PaywallSheet({ open, onClose, toolName }: PaywallSheetProps) {
       },
     );
 
-    setPurchasing(false);
+    if (!sent) {
+      setPurchasing(false);
+    }
   };
 
   return (
