@@ -1,7 +1,6 @@
 import { Layout } from "@/components/Layout";
 import { SEOHead } from "@/components/SEOHead";
 import { useState, useEffect } from "react";
-import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,7 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
-import { Bell, Send, Users, Clock, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
+import { Bell, Send, Users, CheckCircle, AlertCircle, Loader2, Lock } from "lucide-react";
 
 interface NotificationLog {
   id: string;
@@ -22,6 +21,8 @@ interface NotificationLog {
   language: string | null;
 }
 
+const ADMIN_KEY_STORAGE = "pt_admin_notifications_key";
+
 export default function AdminNotifications() {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
@@ -30,56 +31,67 @@ export default function AdminNotifications() {
   const [subscriberCount, setSubscriberCount] = useState<number | null>(null);
   const [logs, setLogs] = useState<NotificationLog[]>([]);
 
-  useEffect(() => {
-    fetchSubscriberCount();
-    loadLogs();
-  }, []);
+  // Admin key from URL param or localStorage
+  const [adminKey, setAdminKey] = useState<string>(() => {
+    const params = new URLSearchParams(window.location.search);
+    const keyFromUrl = params.get("key");
+    if (keyFromUrl) {
+      localStorage.setItem(ADMIN_KEY_STORAGE, keyFromUrl);
+      return keyFromUrl;
+    }
+    return localStorage.getItem(ADMIN_KEY_STORAGE) || "";
+  });
+  const [keyInput, setKeyInput] = useState("");
+  const [authenticated, setAuthenticated] = useState(!!adminKey);
 
-  const getAuthHeaders = async () => {
-    const { data: { session } } = await supabase.auth.getSession();
-    if (!session?.access_token) throw new Error("Not authenticated");
-    return {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${session.access_token}`,
-    };
-  };
+  useEffect(() => {
+    if (adminKey) {
+      fetchSubscriberCount();
+      loadLogs();
+    }
+  }, [adminKey]);
+
+  const getHeaders = () => ({
+    "Content-Type": "application/json",
+    "x-admin-key": adminKey,
+  });
 
   const fetchSubscriberCount = async () => {
     try {
-      const headers = await getAuthHeaders();
       const projectId = import.meta.env.VITE_SUPABASE_PROJECT_ID;
       const res = await fetch(
         `https://${projectId}.supabase.co/functions/v1/send-push-notification`,
         {
           method: "POST",
-          headers,
+          headers: getHeaders(),
           body: JSON.stringify({ action: "count" }),
         }
       );
       const data = await res.json();
-      if (data.count !== undefined) setSubscriberCount(data.count);
+      if (res.ok && data.count !== undefined) {
+        setSubscriberCount(data.count);
+        setAuthenticated(true);
+      } else {
+        setAuthenticated(false);
+        toast.error("مفتاح غير صالح");
+      }
     } catch {
       // ignore
     }
   };
 
-  const loadLogs = async () => {
+  const loadLogs = () => {
     try {
-      const { data, error } = await supabase.functions.invoke("send-push-notification", {
-        body: { action: "logs" },
-      });
-      // Fallback: edge function doesn't support logs action yet, use localStorage
-      if (data?.logs) {
-        setLogs(data.logs);
-      } else {
-        // Fallback to localStorage for old logs
-        const stored = localStorage.getItem("pt_notification_logs");
-        if (stored) setLogs(JSON.parse(stored));
-      }
-    } catch {
       const stored = localStorage.getItem("pt_notification_logs");
       if (stored) setLogs(JSON.parse(stored));
-    }
+    } catch {}
+  };
+
+  const handleLogin = () => {
+    if (!keyInput.trim()) return;
+    localStorage.setItem(ADMIN_KEY_STORAGE, keyInput.trim());
+    setAdminKey(keyInput.trim());
+    setAuthenticated(true);
   };
 
   const handleSend = async () => {
@@ -90,13 +102,12 @@ export default function AdminNotifications() {
 
     setSending(true);
     try {
-      const headers = await getAuthHeaders();
       const projectId = import.meta.env.VITE_SUPABASE_PROJECT_ID;
       const res = await fetch(
         `https://${projectId}.supabase.co/functions/v1/send-push-notification`,
         {
           method: "POST",
-          headers,
+          headers: getHeaders(),
           body: JSON.stringify({
             action: "send",
             title: title.trim(),
@@ -110,7 +121,6 @@ export default function AdminNotifications() {
 
       if (!res.ok) throw new Error(data.error || "Failed to send");
 
-      // Add to local logs for immediate display
       const newLog: NotificationLog = {
         id: crypto.randomUUID(),
         title: title.trim(),
@@ -121,7 +131,9 @@ export default function AdminNotifications() {
         total_subscribers: data.total || 0,
         language: language === "all" ? null : language,
       };
-      setLogs((prev) => [newLog, ...prev]);
+      const updated = [newLog, ...logs].slice(0, 50);
+      setLogs(updated);
+      localStorage.setItem("pt_notification_logs", JSON.stringify(updated));
 
       toast.success(`✅ تم إرسال ${data.sent} إشعار بنجاح`);
       setTitle("");
@@ -139,6 +151,38 @@ export default function AdminNotifications() {
     { label: "🍎 تغذية", title: "نصيحة غذائية مهمة", body: "اكتشفي أفضل الأطعمة لهذا الأسبوع من الحمل وفوائدها لك ولطفلك." },
     { label: "🏃 حركة", title: "وقت التمارين! 🧘", body: "تمارين خفيفة مناسبة لمرحلتك جاهزة في التطبيق. ابدئي الآن!" },
   ];
+
+  // Login screen
+  if (!authenticated) {
+    return (
+      <Layout showBack>
+        <SEOHead title="Admin - Notifications" description="Admin panel" />
+        <div className="container py-12 max-w-sm mx-auto flex flex-col items-center gap-6">
+          <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center">
+            <Lock className="w-8 h-8 text-primary" />
+          </div>
+          <div className="text-center">
+            <h1 className="text-lg font-bold text-foreground mb-1">لوحة الإدارة</h1>
+            <p className="text-xs text-muted-foreground">أدخل مفتاح الإدارة للوصول</p>
+          </div>
+          <div className="w-full space-y-3">
+            <Input
+              type="password"
+              value={keyInput}
+              onChange={(e) => setKeyInput(e.target.value)}
+              placeholder="المفتاح السري..."
+              className="text-center"
+              onKeyDown={(e) => e.key === "Enter" && handleLogin()}
+              dir="ltr"
+            />
+            <Button onClick={handleLogin} className="w-full" disabled={!keyInput.trim()}>
+              دخول
+            </Button>
+          </div>
+        </div>
+      </Layout>
+    );
+  }
 
   return (
     <Layout showBack>

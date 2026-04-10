@@ -2,15 +2,10 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2.49.1";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-admin-key",
 };
 
 const VAPID_PUBLIC_KEY = "BCQ2QGl7rRwrzUwCTpP84RLAKdsoI-u61PUe1J83ZAqowJELVxxuFoZVZb-vKM-GP2StukfgTbHHMCKobOb3TVc";
-
-// Hardcoded admin user IDs — only these users can send notifications
-const ADMIN_USER_IDS: string[] = [
-  // Add your admin user IDs here
-];
 
 const MAX_DAILY_SENDS = 3;
 
@@ -128,28 +123,15 @@ async function sendWebPush(subscription: { endpoint: string; p256dh: string; aut
   return res.ok || res.status === 201;
 }
 
-/** Authenticate admin user from JWT */
-async function authenticateAdmin(req: Request): Promise<{ authorized: boolean; userId?: string }> {
-  const authHeader = req.headers.get("Authorization");
-  if (!authHeader?.startsWith("Bearer ")) {
-    return { authorized: false };
+/** Authenticate admin via secret key header */
+function authenticateAdmin(req: Request): boolean {
+  const adminKey = Deno.env.get("ADMIN_NOTIFICATIONS_KEY");
+  if (!adminKey) {
+    console.error("ADMIN_NOTIFICATIONS_KEY not configured");
+    return false;
   }
-
-  const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
-  const anonKey = Deno.env.get("SUPABASE_ANON_KEY")!;
-  const client = createClient(supabaseUrl, anonKey, {
-    global: { headers: { Authorization: authHeader } },
-  });
-
-  const { data: { user }, error } = await client.auth.getUser();
-  if (error || !user?.id) return { authorized: false };
-
-  // If ADMIN_USER_IDS is empty, allow any authenticated user (for initial setup)
-  if (ADMIN_USER_IDS.length > 0 && !ADMIN_USER_IDS.includes(user.id)) {
-    return { authorized: false };
-  }
-
-  return { authorized: true, userId: user.id };
+  const providedKey = req.headers.get("x-admin-key");
+  return providedKey === adminKey;
 }
 
 Deno.serve(async (req) => {
@@ -158,10 +140,9 @@ Deno.serve(async (req) => {
   }
 
   try {
-    // Authenticate admin for ALL actions
-    const { authorized } = await authenticateAdmin(req);
-    if (!authorized) {
-      return jsonResponse({ error: "Unauthorized — admin access required" }, 401);
+    // Authenticate admin via secret key
+    if (!authenticateAdmin(req)) {
+      return jsonResponse({ error: "Unauthorized — invalid admin key" }, 401);
     }
 
     const { action, title, body, language } = await req.json();
