@@ -51,6 +51,14 @@ export function PaywallSheet({ open, onClose, toolName }: PaywallSheetProps) {
     const sent = await requestPurchase(
       selectedPlan,
       async () => {
+        // Instant celebratory toast
+        toast.success(
+          isAr ? '🎉 تم تفعيل اشتراككِ بنجاح!' : '🎉 Subscription activated!',
+          {
+            description: isAr ? 'تم منحكِ 60 نقطة — جميع الأدوات مفتوحة' : '60 credits granted — all tools unlocked',
+            duration: 4000,
+          }
+        );
         qmSetTier("premium");
         refreshAIUsage();
         window.dispatchEvent(new CustomEvent("subscription-activated", { detail: { plan: selectedPlan } }));
