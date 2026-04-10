@@ -130,7 +130,7 @@
     "yr": "Jahr",
     "save": "44% sparen",
     "feature1": "33+ intelligente Wellness-Tools",
-    "feature2": "40 intelligente Analysen pro Monat",
+    "feature2": "60 intelligente Analysen pro Monat",
     "feature3": "Personalisierte KI-Gesundheitsberichte",
     "feature4": "Priorisierte Anfragenverarbeitung",
     "feature5": "7 Sprachen mit erweiterten Analysen",
@@ -6100,7 +6100,7 @@
   "subscriptionModal": {
     "premium": "Premium",
     "unlockFullAccess": "Vollen Zugang freischalten",
-    "allAIFeatures": "Alle KI-Funktionen, 40 monatliche Analysen",
+    "allAIFeatures": "Alle KI-Funktionen, 60 monatliche Analysen",
     "freeTrialDays": "Jetzt abonnieren",
     "fullAccessCancel": "Voller Zugang, jederzeit kündbar",
     "monthly": "Monatlich",
@@ -6108,7 +6108,7 @@
     "save": "44% sparen",
     "perMonth": "/Monat",
     "perYear": "/Jahr",
-    "unlimitedAI": "40 monatliche KI-Analysen",
+    "unlimitedAI": "60 monatliche KI-Analysen",
     "personalizedMeals": "Personalisierte Mahlzeitenpläne",
     "advancedHealth": "Erweiterte Gesundheitsverfolgung",
     "prioritySupport": "Prioritäts-Support",
@@ -6120,7 +6120,7 @@
     "thankYou": "Vielen Dank für dein Interesse!",
     "comingSoon": "Das Abo wird in der App-Store-Version verfügbar sein.",
     "trialActivated": "Premium aktiviert!",
-    "trialDesc": "Genieße alle Premium-Funktionen mit 40 monatlichen Analysen!",
+    "trialDesc": "Genieße alle Premium-Funktionen mit 60 monatlichen Analysen!",
     "errorProcessing": "Abo konnte nicht verarbeitet werden",
     "trialRemaining": "Premium aktiv",
     "trialEnded": "Abonnement beendet",
@@ -8283,7 +8283,7 @@
   "quotaExhausted": {
     "upgradeHint": "Schalten Sie mehr personalisierte Einblicke mit Premium frei",
     "upgradeCTA": "Weiter mit Premium",
-    "postAnalysisHint": "Upgrade auf Premium für 40 monatliche Analysen und tiefere Einblicke",
+    "postAnalysisHint": "Upgrade auf Premium für 60 monatliche Analysen und tiefere Einblicke",
     "unlockMore": "Mehr freischalten"
   },
   "smartAlerts": {

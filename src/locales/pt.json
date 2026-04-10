@@ -130,7 +130,7 @@
     "yr": "ano",
     "save": "Economize 44%",
     "feature1": "33+ ferramentas inteligentes de bem-estar",
-    "feature2": "40 análises inteligentes por mês",
+    "feature2": "60 análises inteligentes por mês",
     "feature3": "Relatórios de saúde IA personalizados",
     "feature4": "Processamento prioritário de solicitações",
     "feature5": "7 idiomas com análise avançada",
@@ -6100,7 +6100,7 @@
   "subscriptionModal": {
     "premium": "Premium",
     "unlockFullAccess": "Desbloquear acesso completo",
-    "allAIFeatures": "Todos os recursos de IA, 40 análises mensais",
+    "allAIFeatures": "Todos os recursos de IA, 60 análises mensais",
     "freeTrialDays": "Assinar agora",
     "fullAccessCancel": "Acesso completo, cancele quando quiser",
     "monthly": "Mensal",
@@ -6108,7 +6108,7 @@
     "save": "Economize 44%",
     "perMonth": "/mês",
     "perYear": "/ano",
-    "unlimitedAI": "40 análises de IA por mês",
+    "unlimitedAI": "60 análises de IA por mês",
     "personalizedMeals": "Planos de refeições personalizados",
     "advancedHealth": "Acompanhamento de saúde avançado",
     "prioritySupport": "Suporte prioritário",
@@ -6120,7 +6120,7 @@
     "thankYou": "Obrigado pelo seu interesse!",
     "comingSoon": "A assinatura estará disponível na versão da loja de apps.",
     "trialActivated": "Premium ativado!",
-    "trialDesc": "Aproveite todos os recursos premium com 40 análises mensais!",
+    "trialDesc": "Aproveite todos os recursos premium com 60 análises mensais!",
     "errorProcessing": "Não foi possível processar a assinatura",
     "trialRemaining": "Premium ativo",
     "trialEnded": "Assinatura encerrada",
@@ -8283,7 +8283,7 @@
   "quotaExhausted": {
     "upgradeHint": "Desbloqueie mais análises personalizadas com Premium",
     "upgradeCTA": "Continuar com Premium",
-    "postAnalysisHint": "Atualize para Premium para 40 análises mensais e insights mais profundos",
+    "postAnalysisHint": "Atualize para Premium para 60 análises mensais e insights mais profundos",
     "unlockMore": "Desbloquear mais"
   },
   "smartAlerts": {
