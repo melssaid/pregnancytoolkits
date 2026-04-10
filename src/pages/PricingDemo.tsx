@@ -10,7 +10,7 @@ import { useNavigate, Link } from "react-router-dom";
 import pricingLogo from "@/assets/pricing-logo.webp";
 import { supabase } from "@/integrations/supabase/client";
 import { useAIUsage } from "@/contexts/AIUsageContext";
-import { setTier as qmSetTier } from "@/services/smartEngine/quotaManager";
+
 import { usePlayPrices } from "@/hooks/usePlayPrices";
 
 const features = [
