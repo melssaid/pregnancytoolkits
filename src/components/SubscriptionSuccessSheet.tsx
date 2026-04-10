@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Crown, Check, Sparkles, X, Brain, Shield, Heart, Zap } from 'lucide-react';
+import { Crown, Check, Sparkles, X, Brain, Shield, Heart, Zap, Gift, Star } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '@/contexts/LanguageContext';
 import pricingLogo from '@/assets/pricing-logo.webp';
@@ -19,93 +19,136 @@ const i18nLabels: Record<string, {
   yearly: string;
   monthlyPrice: string;
   yearlyPrice: string;
+  creditsBadge: string;
   perks: string[];
   cta: string;
   enjoy: string;
 }> = {
   en: {
-    title: 'Welcome to Premium!',
-    subtitle: 'Your subscription is now active',
+    title: 'You\'re Premium Now! 🎉',
+    subtitle: 'Everything is unlocked and ready for you',
     plan: 'Your Plan',
     monthly: 'Monthly Premium',
     yearly: 'Yearly Premium',
     monthlyPrice: '$2.99/month',
     yearlyPrice: '$19.99/year',
-    perks: ['60 AI analyses per month', 'All 33+ smart wellness tools unlocked', 'Personalized health insights', 'Priority support'],
-    cta: 'Start Exploring',
-    enjoy: 'Thank you for choosing Pregnancy Toolkits Premium ✨',
+    creditsBadge: '60 credits granted',
+    perks: [
+      '60 AI analyses every month',
+      'All 36+ smart tools unlocked',
+      'Personalized wellness insights',
+      'Priority support & updates',
+    ],
+    cta: 'Start Exploring ✨',
+    enjoy: 'Welcome to the full experience — enjoy every feature!',
   },
   ar: {
-    title: 'مرحباً بكِ في بريميوم!',
-    subtitle: 'اشتراككِ مفعّل الآن',
+    title: 'أنتِ بريميوم الآن! 🎉',
+    subtitle: 'كل شيء مفتوح وجاهز لكِ',
     plan: 'خطتكِ',
     monthly: 'الاشتراك الشهري',
     yearly: 'الاشتراك السنوي',
     monthlyPrice: '$2.99/شهر',
     yearlyPrice: '$19.99/سنة',
-    perks: ['60 تحليل ذكاء اصطناعي شهرياً', 'جميع 33+ أداة ذكية', 'رؤى صحية مخصصة', 'دعم أولوية'],
-    cta: 'ابدئي الاستكشاف',
-    enjoy: 'شكراً لاختياركِ Pregnancy Toolkits بريميوم ✨',
+    creditsBadge: 'تم منحكِ 60 نقطة',
+    perks: [
+      '60 تحليل ذكاء اصطناعي شهرياً',
+      'جميع 36+ أداة ذكية مفتوحة',
+      'رؤى صحية مخصصة لكِ',
+      'دعم وتحديثات بأولوية',
+    ],
+    cta: 'ابدئي الاستكشاف ✨',
+    enjoy: 'مرحباً بكِ في التجربة الكاملة — استمتعي بكل الميزات!',
   },
   de: {
-    title: 'Willkommen bei Premium!',
-    subtitle: 'Dein Abo ist jetzt aktiv',
+    title: 'Du bist jetzt Premium! 🎉',
+    subtitle: 'Alles ist freigeschaltet und bereit für dich',
     plan: 'Dein Plan',
     monthly: 'Monatliches Premium',
     yearly: 'Jährliches Premium',
     monthlyPrice: '2,99 $/Monat',
     yearlyPrice: '19,99 $/Jahr',
-    perks: ['60 KI-Analysen pro Monat', 'Alle 33+ Smart-Tools freigeschaltet', 'Personalisierte Gesundheitseinblicke', 'Prioritäts-Support'],
-    cta: 'Jetzt entdecken',
-    enjoy: 'Danke, dass du Pregnancy Toolkits Premium gewählt hast ✨',
+    creditsBadge: '60 Credits erhalten',
+    perks: [
+      '60 KI-Analysen pro Monat',
+      'Alle 36+ Smart-Tools freigeschaltet',
+      'Personalisierte Wellness-Einblicke',
+      'Prioritäts-Support & Updates',
+    ],
+    cta: 'Jetzt entdecken ✨',
+    enjoy: 'Willkommen zum vollen Erlebnis — genieße jede Funktion!',
   },
   fr: {
-    title: 'Bienvenue en Premium !',
-    subtitle: 'Votre abonnement est maintenant actif',
+    title: 'Vous êtes Premium ! 🎉',
+    subtitle: 'Tout est débloqué et prêt pour vous',
     plan: 'Votre forfait',
     monthly: 'Premium mensuel',
     yearly: 'Premium annuel',
     monthlyPrice: '2,99 $/mois',
     yearlyPrice: '19,99 $/an',
-    perks: ['60 analyses IA par mois', 'Tous les 33+ outils intelligents débloqués', 'Conseils santé personnalisés', 'Support prioritaire'],
-    cta: 'Commencer à explorer',
-    enjoy: 'Merci d\'avoir choisi Pregnancy Toolkits Premium ✨',
+    creditsBadge: '60 crédits accordés',
+    perks: [
+      '60 analyses IA par mois',
+      'Tous les 36+ outils intelligents débloqués',
+      'Conseils bien-être personnalisés',
+      'Support & mises à jour prioritaires',
+    ],
+    cta: 'Commencer à explorer ✨',
+    enjoy: 'Bienvenue dans l\'expérience complète — profitez de chaque fonctionnalité !',
   },
   es: {
-    title: '¡Bienvenida a Premium!',
-    subtitle: 'Tu suscripción ya está activa',
+    title: '¡Ya eres Premium! 🎉',
+    subtitle: 'Todo está desbloqueado y listo para ti',
     plan: 'Tu plan',
     monthly: 'Premium mensual',
     yearly: 'Premium anual',
     monthlyPrice: '$2.99/mes',
     yearlyPrice: '$19.99/año',
-    perks: ['60 análisis IA por mes', 'Todas las 33+ herramientas IA', 'Información de salud personalizada', 'Soporte prioritario'],
-    cta: 'Empezar a explorar',
-    enjoy: 'Gracias por elegir Pregnancy Toolkits Premium ✨',
+    creditsBadge: '60 créditos otorgados',
+    perks: [
+      '60 análisis IA por mes',
+      'Todas las 36+ herramientas desbloqueadas',
+      'Información de bienestar personalizada',
+      'Soporte y actualizaciones prioritarias',
+    ],
+    cta: 'Empezar a explorar ✨',
+    enjoy: '¡Bienvenida a la experiencia completa — disfruta cada función!',
   },
   pt: {
-    title: 'Bem-vinda ao Premium!',
-    subtitle: 'Sua assinatura está ativa',
+    title: 'Você é Premium agora! 🎉',
+    subtitle: 'Tudo está desbloqueado e pronto para você',
     plan: 'Seu plano',
     monthly: 'Premium mensal',
     yearly: 'Premium anual',
     monthlyPrice: '$2.99/mês',
     yearlyPrice: '$19.99/ano',
-    perks: ['60 análises IA por mês', 'Todas as 33+ ferramentas IA', 'Insights de saúde personalizados', 'Suporte prioritário'],
-    cta: 'Começar a explorar',
-    enjoy: 'Obrigada por escolher Pregnancy Toolkits Premium ✨',
+    creditsBadge: '60 créditos concedidos',
+    perks: [
+      '60 análises IA por mês',
+      'Todas as 36+ ferramentas desbloqueadas',
+      'Insights de bem-estar personalizados',
+      'Suporte e atualizações prioritárias',
+    ],
+    cta: 'Começar a explorar ✨',
+    enjoy: 'Bem-vinda à experiência completa — aproveite cada recurso!',
   },
   tr: {
-    title: 'Premium\'a Hoş Geldiniz!',
-    subtitle: 'Aboneliğiniz artık aktif',
+    title: 'Artık Premiumsun! 🎉',
+    subtitle: 'Her şey açık ve seni bekliyor',
     plan: 'Planınız',
     monthly: 'Aylık Premium',
     yearly: 'Yıllık Premium',
     monthlyPrice: '$2.99/ay',
     yearlyPrice: '$19.99/yıl',
-    perks: ['Ayda 60 AI analizi', 'Tüm 33+ akıllı araç açık', 'Kişiselleştirilmiş sağlık önerileri', 'Öncelikli destek'],
-    cta: 'Keşfetmeye Başla',
-    enjoy: 'Pregnancy Toolkits Premium\'u seçtiğiniz için teşekkürler ✨',
+    creditsBadge: '60 kredi verildi',
+    perks: [
+      'Ayda 60 AI analizi',
+      'Tüm 36+ akıllı araç açık',
+      'Kişiselleştirilmiş sağlık önerileri',
+      'Öncelikli destek ve güncellemeler',
+    ],
+    cta: 'Keşfetmeye Başla ✨',
+    enjoy: 'Tam deneyime hoş geldiniz — her özelliğin tadını çıkarın!',
   },
 };
 
@@ -121,6 +164,13 @@ export const SubscriptionSuccessSheet: React.FC<SubscriptionSuccessSheetProps> =
   const lang = i18n.language?.split('-')[0] || 'en';
   const labels = i18nLabels[lang] || i18nLabels.en;
   const isYearly = planType === 'yearly';
+
+  // Haptic feedback on open (if available)
+  useEffect(() => {
+    if (open && navigator.vibrate) {
+      navigator.vibrate([50, 30, 80]);
+    }
+  }, [open]);
 
   return (
     <AnimatePresence>
@@ -159,32 +209,26 @@ export const SubscriptionSuccessSheet: React.FC<SubscriptionSuccessSheetProps> =
               </button>
 
               <div className="px-6 pb-8 pt-2 space-y-5">
-                {/* Hero — Animated checkmark + logo */}
-                <div className="flex flex-col items-center gap-3">
+                {/* Hero — Animated logo with success ring */}
+                <div className="flex flex-col items-center gap-3 relative">
                   <motion.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ delay: 0.2, type: 'spring', stiffness: 300, damping: 15 }}
                     className="relative"
                   >
-                    {/* Success ring */}
+                    {/* Animated gradient ring */}
                     <motion.div
                       className="absolute -inset-3 rounded-full"
-                      style={{ background: 'conic-gradient(from 0deg, hsl(var(--primary)), hsl(330 65% 50%), hsl(270 55% 50%), hsl(var(--primary)))' }}
+                      style={{ background: 'conic-gradient(from 0deg, hsl(var(--primary)), hsl(45 95% 55%), hsl(330 65% 50%), hsl(160 60% 45%), hsl(var(--primary)))' }}
                       animate={{ rotate: 360 }}
-                      transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
-                    />
-                    <motion.div
-                      className="absolute -inset-3 rounded-full"
-                      style={{ background: 'conic-gradient(from 0deg, hsl(var(--primary)), hsl(330 65% 50%), hsl(270 55% 50%), hsl(var(--primary)))' }}
-                      animate={{ rotate: 360, opacity: [0.3, 0.6, 0.3] }}
                       transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
                     />
                     <div className="relative w-20 h-20 rounded-full bg-card flex items-center justify-center shadow-xl ring-4 ring-card overflow-hidden">
                       <img src={pricingLogo} alt="" className="w-full h-full object-cover" width={80} height={80} />
                     </div>
 
-                    {/* Floating check badge */}
+                    {/* Success badge */}
                     <motion.div
                       initial={{ scale: 0, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
@@ -195,30 +239,37 @@ export const SubscriptionSuccessSheet: React.FC<SubscriptionSuccessSheetProps> =
                     </motion.div>
                   </motion.div>
 
-                  {/* Confetti particles */}
-                  {[...Array(8)].map((_, i) => (
+                  {/* Confetti burst */}
+                  {[...Array(12)].map((_, i) => (
                     <motion.div
                       key={i}
                       className="absolute pointer-events-none"
                       style={{
-                        top: '15%',
+                        top: '18%',
                         left: '50%',
-                        width: 6,
-                        height: 6,
+                        width: i % 3 === 0 ? 8 : 5,
+                        height: i % 3 === 0 ? 8 : 5,
                         borderRadius: i % 2 === 0 ? '50%' : '2px',
-                        background: ['hsl(var(--primary))', 'hsl(330 65% 50%)', 'hsl(45 95% 55%)', 'hsl(160 60% 45%)', 'hsl(270 55% 50%)', 'hsl(0 70% 55%)', 'hsl(200 70% 50%)', 'hsl(30 90% 55%)'][i],
+                        background: [
+                          'hsl(var(--primary))', 'hsl(45 95% 55%)', 'hsl(330 65% 50%)',
+                          'hsl(160 60% 45%)', 'hsl(270 55% 50%)', 'hsl(0 70% 55%)',
+                          'hsl(200 70% 50%)', 'hsl(30 90% 55%)', 'hsl(120 60% 50%)',
+                          'hsl(var(--primary))', 'hsl(45 95% 55%)', 'hsl(330 65% 50%)',
+                        ][i],
                       }}
                       initial={{ x: 0, y: 0, opacity: 0, scale: 0 }}
                       animate={{
-                        x: Math.cos((i * Math.PI * 2) / 8) * (60 + Math.random() * 40),
-                        y: Math.sin((i * Math.PI * 2) / 8) * (40 + Math.random() * 30) - 20,
+                        x: Math.cos((i * Math.PI * 2) / 12) * (70 + Math.random() * 50),
+                        y: Math.sin((i * Math.PI * 2) / 12) * (50 + Math.random() * 35) - 20,
                         opacity: [0, 1, 1, 0],
                         scale: [0, 1.5, 1, 0],
+                        rotate: [0, 180 + Math.random() * 180],
                       }}
-                      transition={{ duration: 1.2, delay: 0.4 + i * 0.05, ease: 'easeOut' }}
+                      transition={{ duration: 1.4, delay: 0.3 + i * 0.04, ease: 'easeOut' }}
                     />
                   ))}
 
+                  {/* Title & subtitle */}
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -232,6 +283,32 @@ export const SubscriptionSuccessSheet: React.FC<SubscriptionSuccessSheetProps> =
                     <p className="text-sm text-muted-foreground">{labels.subtitle}</p>
                   </motion.div>
                 </div>
+
+                {/* Credits badge — the "wow" moment */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.4, type: 'spring', stiffness: 300 }}
+                  className="mx-auto w-fit"
+                >
+                  <div className="flex items-center gap-2 px-5 py-2.5 rounded-2xl border-2 border-primary/30 shadow-md"
+                    style={{ background: 'linear-gradient(135deg, hsl(var(--primary) / 0.08), hsl(45 95% 55% / 0.08))' }}
+                  >
+                    <motion.div
+                      animate={{ rotate: [0, -10, 10, -5, 0] }}
+                      transition={{ delay: 0.7, duration: 0.6 }}
+                    >
+                      <Gift className="w-5 h-5 text-primary" />
+                    </motion.div>
+                    <span className="text-sm font-bold text-foreground">{labels.creditsBadge}</span>
+                    <motion.div
+                      animate={{ scale: [1, 1.2, 1] }}
+                      transition={{ delay: 0.9, duration: 0.5 }}
+                    >
+                      <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
+                    </motion.div>
+                  </div>
+                </motion.div>
 
                 {/* Plan card */}
                 <motion.div
@@ -261,7 +338,7 @@ export const SubscriptionSuccessSheet: React.FC<SubscriptionSuccessSheetProps> =
                   </div>
                 </motion.div>
 
-                {/* Perks */}
+                {/* Perks list */}
                 <div className="space-y-2">
                   {labels.perks.map((perk, i) => {
                     const Icon = perkIcons[i] || Sparkles;
