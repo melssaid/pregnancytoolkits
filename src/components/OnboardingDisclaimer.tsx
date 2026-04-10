@@ -14,10 +14,11 @@ import { OnboardingStep2Journey } from '@/components/onboarding/OnboardingStep2J
 import { OnboardingStep3Health } from '@/components/onboarding/OnboardingStep3Health';
 import { OnboardingStep4Goals } from '@/components/onboarding/OnboardingStep4Goals';
 import { OnboardingStep5Privacy } from '@/components/onboarding/OnboardingStep5Privacy';
+import { OnboardingStep6Notifications } from '@/components/onboarding/OnboardingStep6Notifications';
 
 const ONBOARDING_KEY = 'onboarding_disclaimer_accepted';
 const FIRST_VISIT_KEY = 'language_selected_first_visit';
-const TOTAL_STEPS = 5;
+const TOTAL_STEPS = 6;
 
 export function OnboardingDisclaimer() {
   const [show, setShow] = useState(false);
@@ -187,8 +188,14 @@ export function OnboardingDisclaimer() {
               )}
               {step === 5 && (
                 <OnboardingStep5Privacy
-                  onFinish={handleFinish}
+                  onFinish={() => setStep(6)}
                   onBack={() => setStep(4)}
+                />
+              )}
+              {step === 6 && (
+                <OnboardingStep6Notifications
+                  onFinish={handleFinish}
+                  onBack={() => setStep(5)}
                 />
               )}
             </AnimatePresence>
