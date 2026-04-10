@@ -471,10 +471,7 @@ const ShareAppButton = memo(function ShareAppButton() {
 const Index = () => {
   const { t, i18n } = useTranslation();
   const { tier, isUnlocked, isLoading: subLoading } = useSubscriptionStatus();
-  const { remaining, limit, used, tier: aiTier } = useAIUsage();
   const lang = i18n.language?.split('-')[0] || 'en';
-  const isAr = lang === 'ar';
-  const pct = limit > 0 ? Math.round((used / limit) * 100) : 0;
 
   return (
     <Layout>
