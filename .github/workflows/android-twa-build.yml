@@ -188,6 +188,16 @@ jobs:
         run: |
           node scripts/patch-twa-project.mjs "${{ github.workspace }}"
 
+      - name: Verify versionName is not null
+        run: |
+          if grep -qE 'versionName\s*=?\s*null' app/build.gradle; then
+            echo "❌ FAIL: versionName is still null after patching!"
+            grep -n "versionName" app/build.gradle
+            exit 1
+          fi
+          echo "✅ versionName verified:"
+          grep -n "versionName" app/build.gradle
+
       - name: Deep verification of TWA native binding
         run: |
           echo "╔══════════════════════════════════════════════════╗"
