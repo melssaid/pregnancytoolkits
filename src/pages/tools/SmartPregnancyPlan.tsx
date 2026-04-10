@@ -45,7 +45,7 @@ const SmartPregnancyPlan = () => {
 
   const generatePlan = useCallback(async () => {
     const conditionsText = health.conditions.length > 0 ? health.conditions.join(', ') : 'none';
-    const base = `Week ${health.week}, Weight: ${health.weight}kg, Height: ${health.height}cm, Age: ${health.age}, Pain: ${health.painLevel}/10, BP: ${health.bloodPressureSys}/${health.bloodPressureDia}, Sleep: ${health.sleepHours}hrs, Mood: ${health.mood}, Activity: ${health.activityLevel}, Conditions: ${conditionsText}`;
+    const base = `Week ${health.week}, Weight: ${health.weight}kg, Height: ${health.height}cm, Age: ${health.age}, Water: ${health.waterIntake} glasses/day, BP: ${health.bloodPressureSys}/${health.bloodPressureDia}, Sleep: ${health.sleepHours}hrs, Mood: ${health.mood}, Activity: ${health.activityLevel}, Conditions: ${conditionsText}`;
 
     setResearchEnhanced(false);
 
