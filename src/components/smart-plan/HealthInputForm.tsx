@@ -16,13 +16,33 @@ export interface HealthData {
   weight: number;
   height: number;
   age: number;
-  waterIntake: number;
+  lastKickCount: number;
   bloodPressureSys: number;
   bloodPressureDia: number;
   sleepHours: number;
   activityLevel: string;
   mood: string;
   conditions: string[];
+}
+
+/** Read latest kick session stats from localStorage */
+function getLatestKickStats(): { totalKicks: number; lastSessionDate: string | null } {
+  try {
+    const userId = localStorage.getItem('pregnancy_user_id') || 'default';
+    const raw = localStorage.getItem(`kick_sessions_${userId}`);
+    if (!raw) return { totalKicks: 0, lastSessionDate: null };
+    const sessions = JSON.parse(raw) as Array<{ total_kicks?: number; ended_at?: string; started_at?: string }>;
+    const completed = sessions.filter(s => s.ended_at).sort((a, b) =>
+      new Date(b.ended_at!).getTime() - new Date(a.ended_at!).getTime()
+    );
+    if (completed.length === 0) return { totalKicks: 0, lastSessionDate: null };
+    return {
+      totalKicks: completed[0].total_kicks || 0,
+      lastSessionDate: completed[0].ended_at || null,
+    };
+  } catch {
+    return { totalKicks: 0, lastSessionDate: null };
+  }
 }
 
 const conditionOptions = [
