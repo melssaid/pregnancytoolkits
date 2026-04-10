@@ -54,8 +54,7 @@ export default function PricingDemo() {
     const sent = await requestPurchase(
       selected,
       async () => {
-        // Success — update everything immediately
-        qmSetTier("premium");
+        // Success — quota already set to premium in activateOnServer
         refreshAIUsage();
         localStorage.removeItem("pricing_visit_ts");
         window.dispatchEvent(new CustomEvent("subscription-activated", { detail: { plan: selected } }));
