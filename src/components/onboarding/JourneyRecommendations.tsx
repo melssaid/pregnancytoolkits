@@ -1,92 +1,80 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Baby, Flower2, Heart, CalendarDays, Dumbbell, Apple, Activity, BookOpen, Stethoscope, Moon, Droplets } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
+import { getToolsByJourney } from '@/lib/tools-data';
 import type { JourneyStage } from '@/hooks/useUserProfile';
 
 interface Props {
   stage: JourneyStage;
 }
 
-interface ToolRec {
-  icon: React.ElementType;
-  labelKey: string;
-  fallback: string;
-}
+const stageToJourney: Record<JourneyStage, import('@/lib/tools-data').JourneyKey> = {
+  fertility: 'planning',
+  pregnant: 'pregnant',
+  postpartum: 'postpartum',
+};
 
-const pregnantTools: ToolRec[] = [
-  { icon: CalendarDays, labelKey: 'journey.rec.dueDate', fallback: 'Due Date Calculator' },
-  { icon: Baby, labelKey: 'journey.rec.fetalGrowth', fallback: 'Fetal Growth Tracker' },
-  { icon: Dumbbell, labelKey: 'journey.rec.exercises', fallback: 'Safe Exercises' },
-  { icon: Apple, labelKey: 'journey.rec.nutrition', fallback: 'Nutrition Guide' },
-  { icon: Activity, labelKey: 'journey.rec.kickCounter', fallback: 'Kick Counter' },
-  { icon: Stethoscope, labelKey: 'journey.rec.symptoms', fallback: 'Symptom Analyzer' },
-];
-
-const fertilityTools: ToolRec[] = [
-  { icon: Activity, labelKey: 'journey.rec.cycleTracker', fallback: 'Cycle & Ovulation Tracker' },
-  { icon: Stethoscope, labelKey: 'journey.rec.preconception', fallback: 'Preconception Checkup' },
-  { icon: BookOpen, labelKey: 'journey.rec.fertilityAcademy', fallback: 'Fertility Academy' },
-  { icon: Apple, labelKey: 'journey.rec.supplements', fallback: 'Supplements Guide' },
-];
-
-const postpartumTools: ToolRec[] = [
-  { icon: Baby, labelKey: 'journey.rec.babySleep', fallback: 'Baby Sleep Tracker' },
-  { icon: Heart, labelKey: 'journey.rec.mentalHealth', fallback: 'Postpartum Mental Health' },
-  { icon: Droplets, labelKey: 'journey.rec.diaper', fallback: 'Diaper Tracker' },
-  { icon: Moon, labelKey: 'journey.rec.recovery', fallback: 'Recovery Guide' },
-  { icon: Apple, labelKey: 'journey.rec.lactation', fallback: 'Lactation Support' },
-];
-
-const stageConfig: Record<JourneyStage, { tools: ToolRec[]; titleKey: string; titleFallback: string; color: string }> = {
-  pregnant: {
-    tools: pregnantTools,
-    titleKey: 'journey.rec.pregnantTitle',
-    titleFallback: 'Essential tools for your pregnancy',
-    color: 'primary',
-  },
-  fertility: {
-    tools: fertilityTools,
-    titleKey: 'journey.rec.fertilityTitle',
-    titleFallback: 'Tools to help you conceive',
-    color: 'pink-500',
-  },
-  postpartum: {
-    tools: postpartumTools,
-    titleKey: 'journey.rec.postpartumTitle',
-    titleFallback: 'Tools for you & your baby',
-    color: 'violet-500',
-  },
+const stageHeader: Record<JourneyStage, { titleKey: string; fallback: string }> = {
+  fertility: { titleKey: 'journey.rec.fertilityTitle', fallback: 'Tools to help you conceive' },
+  pregnant: { titleKey: 'journey.rec.pregnantTitle', fallback: 'Essential tools for your pregnancy' },
+  postpartum: { titleKey: 'journey.rec.postpartumTitle', fallback: 'Tools for you & your baby' },
 };
 
 export const JourneyRecommendations: React.FC<Props> = ({ stage }) => {
   const { t } = useTranslation();
-  const config = stageConfig[stage];
-  if (!config) return null;
+  const journeyKey = stageToJourney[stage];
+  const tools = getToolsByJourney(journeyKey);
+  const header = stageHeader[stage];
+
+  if (!tools.length) return null;
 
   return (
     <AnimatePresence mode="wait">
       <motion.div
         key={stage}
-        initial={{ opacity: 0, y: 8 }}
+        initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -8 }}
+        exit={{ opacity: 0, y: -10 }}
         transition={{ duration: 0.25 }}
-        className="rounded-xl border border-primary/15 bg-primary/[0.04] p-3"
+        className="rounded-2xl border border-primary/15 bg-gradient-to-br from-primary/[0.04] to-transparent p-3.5 mt-1"
       >
-        <p className="text-[11px] font-bold text-primary mb-2">
-          {t(config.titleKey, config.titleFallback)}
-        </p>
-        <div className="flex flex-wrap gap-1.5">
-          {config.tools.map(({ icon: Icon, labelKey, fallback }, i) => (
-            <span
-              key={i}
-              className="inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-background/80 border border-border/40 text-[10px] font-semibold text-foreground/80"
-            >
-              <Icon className="w-3 h-3 text-primary/70 flex-shrink-0" strokeWidth={2} />
-              {t(labelKey, fallback)}
-            </span>
-          ))}
+        {/* Header */}
+        <div className="flex items-center gap-2 mb-2.5">
+          <div className="w-6 h-6 rounded-lg bg-primary/12 flex items-center justify-center">
+            <Sparkles className="w-3.5 h-3.5 text-primary" />
+          </div>
+          <p className="text-xs font-bold text-primary">
+            {t(header.titleKey, header.fallback)}
+          </p>
+          <span className="text-[9px] font-bold text-primary/60 bg-primary/8 px-1.5 py-0.5 rounded-full ms-auto">
+            {tools.length}
+          </span>
+        </div>
+
+        {/* Tools grid */}
+        <div className="grid grid-cols-2 gap-1.5">
+          {tools.map((tool, i) => {
+            const hasPng = !!tool.pngIcon;
+            return (
+              <motion.div
+                key={tool.id}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: i * 0.03 }}
+                className="flex items-center gap-2 px-2.5 py-2 rounded-xl bg-background/70 border border-border/30"
+              >
+                {hasPng ? (
+                  <img src={tool.pngIcon} alt="" className="w-4 h-4 object-contain opacity-75 flex-shrink-0" />
+                ) : (
+                  <tool.icon className="w-4 h-4 text-primary/60 flex-shrink-0" strokeWidth={1.8} />
+                )}
+                <span className="text-[10px] font-semibold text-foreground/75 leading-tight line-clamp-2">
+                  {t(tool.titleKey)}
+                </span>
+              </motion.div>
+            );
+          })}
         </div>
       </motion.div>
     </AnimatePresence>
