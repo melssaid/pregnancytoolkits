@@ -61,38 +61,87 @@ const testimonials: Testimonial[] = [
 const REVIEWS_KEY = "pt_user_reviews";
 const PAGE_SIZE = 30;
 
-function TranslateButton({ text }: { text: string }) {
+function TranslateButton({ text, defaultText }: { text: string; defaultText: string }) {
   const { t, i18n } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [translatedText, setTranslatedText] = useState<string | null>(null);
+  const [error, setError] = useState(false);
 
   const handleTranslate = useCallback(async () => {
     if (translatedText) {
-      setTranslatedText(null); // Toggle back to original
+      setTranslatedText(null);
+      setError(false);
       return;
     }
     setLoading(true);
+    setError(false);
     try {
-      const targetLang = i18n.language === 'ar' ? 'en' : 'ar';
+      // Detect source language to pick the right target
+      const isArabicSource = /[\u0600-\u06FF]/.test(text);
+      const currentLang = i18n.language;
+      
+      // Build target: if text is Arabic → translate to user's lang (or English fallback)
+      // If text is non-Arabic → translate to Arabic (or user's lang)
+      let sourceLang = isArabicSource ? 'ar' : 'en';
+      let targetLang = currentLang;
+      
+      // If source matches current UI language, flip to the other
+      if ((isArabicSource && currentLang === 'ar') || (!isArabicSource && currentLang === 'en')) {
+        targetLang = isArabicSource ? 'en' : 'ar';
+      }
+
+      // Map language codes for the API
+      const langMap: Record<string, string> = { ar: 'ar', en: 'en', de: 'de', fr: 'fr', es: 'es', tr: 'tr', pt: 'pt' };
+      const from = langMap[sourceLang] || 'en';
+      const to = langMap[targetLang] || 'en';
+
+      if (from === to) {
+        // No translation needed — show the default text as fallback
+        setTranslatedText(defaultText !== text ? defaultText : text);
+        return;
+      }
+
       const res = await fetch(
-        `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text.slice(0, 500))}&langpair=auto|${targetLang}`
+        `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text.slice(0, 500))}&langpair=${from}|${to}`
       );
+      
+      if (!res.ok) throw new Error('API error');
+      
       const data = await res.json();
-      if (data?.responseData?.translatedText) {
-        setTranslatedText(data.responseData.translatedText);
+      const result = data?.responseData?.translatedText;
+      
+      if (result && result !== text && !result.includes('MYMEMORY WARNING') && data?.responseStatus === 200) {
+        setTranslatedText(result);
+      } else {
+        // Fallback: show the default English/Arabic text
+        if (defaultText && defaultText !== text) {
+          setTranslatedText(defaultText);
+        } else {
+          setError(true);
+        }
       }
     } catch {
-      // Silent fail
+      // Fallback to default text if available
+      if (defaultText && defaultText !== text) {
+        setTranslatedText(defaultText);
+      } else {
+        setError(true);
+      }
     } finally {
       setLoading(false);
     }
-  }, [text, i18n.language, translatedText]);
+  }, [text, defaultText, i18n.language, translatedText]);
 
   return (
     <>
       {translatedText && (
         <p className="text-xs text-primary/80 leading-relaxed mt-2 pt-2 border-t border-border/30" dir="auto">
           {translatedText}
+        </p>
+      )}
+      {error && (
+        <p className="text-[10px] text-destructive/60 mt-1">
+          {t("testimonials.translateError", "تعذرت الترجمة حالياً")}
         </p>
       )}
       <button
