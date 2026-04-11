@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles } from 'lucide-react';
+import { getToolsByJourney } from '@/lib/tools-data';
 import { getToolsByJourney } from '@/lib/tools-data';
 import type { JourneyStage } from '@/hooks/useUserProfile';
 
@@ -16,9 +16,9 @@ const stageToJourney: Record<JourneyStage, import('@/lib/tools-data').JourneyKey
 };
 
 const stageHeader: Record<JourneyStage, { titleKey: string; fallback: string }> = {
-  fertility: { titleKey: 'journey.rec.fertilityTitle', fallback: 'Tools to help you conceive' },
-  pregnant: { titleKey: 'journey.rec.pregnantTitle', fallback: 'Essential tools for your pregnancy' },
-  postpartum: { titleKey: 'journey.rec.postpartumTitle', fallback: 'Tools for you & your baby' },
+  fertility: { titleKey: 'journey.rec.fertilityTitle', fallback: 'We have professional tools for you' },
+  pregnant: { titleKey: 'journey.rec.pregnantTitle', fallback: 'We have professional tools for you' },
+  postpartum: { titleKey: 'journey.rec.postpartumTitle', fallback: 'We have professional tools for you' },
 };
 
 export const JourneyRecommendations: React.FC<Props> = ({ stage }) => {
@@ -40,14 +40,11 @@ export const JourneyRecommendations: React.FC<Props> = ({ stage }) => {
         className="rounded-2xl border border-primary/15 bg-gradient-to-br from-primary/[0.04] to-transparent p-3.5 mt-1"
       >
         {/* Header */}
-        <div className="flex items-center gap-2 mb-2.5">
-          <div className="w-6 h-6 rounded-lg bg-primary/12 flex items-center justify-center">
-            <Sparkles className="w-3.5 h-3.5 text-primary" />
-          </div>
-          <p className="text-xs font-bold text-primary">
+        <div className="flex items-center justify-between mb-2.5">
+          <p className="text-[11px] font-bold text-amber-600 dark:text-amber-400">
             {t(header.titleKey, header.fallback)}
           </p>
-          <span className="text-[9px] font-bold text-primary/60 bg-primary/8 px-1.5 py-0.5 rounded-full ms-auto">
+          <span className="text-[9px] font-bold text-amber-600/60 bg-amber-500/10 px-1.5 py-0.5 rounded-full">
             {tools.length}
           </span>
         </div>
