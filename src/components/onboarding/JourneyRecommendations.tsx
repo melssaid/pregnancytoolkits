@@ -40,7 +40,7 @@ export const JourneyRecommendations: React.FC<Props> = ({ stage }) => {
       >
         {/* Header */}
         <div className="flex items-center justify-between mb-2.5">
-          <p className="text-[11px] font-bold text-amber-600 dark:text-amber-400">
+          <p className="text-sm font-extrabold text-primary">
             {t(header.titleKey, header.fallback)}
           </p>
           <span className="text-[9px] font-bold text-amber-600/60 bg-amber-500/10 px-1.5 py-0.5 rounded-full">
