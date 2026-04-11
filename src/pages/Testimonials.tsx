@@ -276,7 +276,7 @@ export default function Testimonials() {
                     </div>
                   </div>
                   <p className="text-xs text-foreground/80 leading-relaxed" dir="auto">{r.comment}</p>
-                  <TranslateButton text={r.comment} />
+                  <TranslateButton text={r.comment} defaultText={r.comment} />
                 </motion.div>
               );
             }
@@ -305,7 +305,7 @@ export default function Testimonials() {
                 <p className="text-xs text-foreground/80 leading-relaxed" dir={/[\u0600-\u06FF]/.test(t2.defaultText) ? "rtl" : "ltr"}>
                   {reviewText}
                 </p>
-                <TranslateButton text={reviewText} />
+                <TranslateButton text={reviewText} defaultText={t2.defaultText} />
               </motion.div>
             );
           })}
