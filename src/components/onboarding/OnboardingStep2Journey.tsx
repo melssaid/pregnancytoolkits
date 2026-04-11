@@ -47,12 +47,9 @@ export const OnboardingStep2Journey: React.FC<Props> = ({
       transition={{ duration: 0.2 }}
     >
       <div className="px-5 pt-3 pb-2 text-center">
-        <h2 className="text-sm font-bold text-foreground">
+        <h2 className="text-base font-extrabold text-foreground">
           {t('onboarding.step2.title', 'Where are you in your journey?')}
         </h2>
-        <p className="text-[11px] text-muted-foreground mt-0.5">
-          {t('onboarding.step2.subtitle', 'We\'ll personalize everything for you')}
-        </p>
       </div>
 
       <div className="px-4 pb-3 space-y-2">
