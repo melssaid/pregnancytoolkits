@@ -12,13 +12,12 @@ import { safeSaveToLocalStorage } from '@/lib/safeStorage';
 import { OnboardingStep1Welcome } from '@/components/onboarding/OnboardingStep1Welcome';
 import { OnboardingStep2Journey } from '@/components/onboarding/OnboardingStep2Journey';
 import { OnboardingStep3Health } from '@/components/onboarding/OnboardingStep3Health';
-import { OnboardingStep4Goals } from '@/components/onboarding/OnboardingStep4Goals';
 import { OnboardingStep5Privacy } from '@/components/onboarding/OnboardingStep5Privacy';
-import { OnboardingStep6Notifications } from '@/components/onboarding/OnboardingStep6Notifications';
+import { OnboardingStep5Notifications } from '@/components/onboarding/OnboardingStep5Notifications';
 
 const ONBOARDING_KEY = 'onboarding_disclaimer_accepted';
 const FIRST_VISIT_KEY = 'language_selected_first_visit';
-const TOTAL_STEPS = 6;
+const TOTAL_STEPS = 5;
 
 export function OnboardingDisclaimer() {
   const [show, setShow] = useState(false);
