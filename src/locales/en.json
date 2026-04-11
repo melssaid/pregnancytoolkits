@@ -271,6 +271,13 @@
       "notifWater": "Water Reminders",
       "notifAppointments": "Appointment Reminders"
     },
+    "notifications": {
+      "title": "Notifications & Reminders",
+      "subtitle": "Stay on track with helpful reminders",
+      "inApp": "In-App Reminders",
+      "push": "Push Notifications",
+      "continue": "Continue"
+    },
     "step5": {
       "title": "Your Privacy First",
       "subtitle": "We take your privacy seriously",
