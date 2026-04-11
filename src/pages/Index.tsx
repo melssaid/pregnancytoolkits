@@ -173,35 +173,34 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
       className={`rounded-2xl bg-gradient-to-br ${config.bg} border ${config.border} overflow-hidden shadow-sm animate-fade-in journey-card-glow relative journey-card-shimmer`}
       style={{ animationDelay: `${index * 120}ms` }}
     >
-      {/* Gradient Header — clickable to toggle */}
+      {/* Gradient Header — premium Pregnancy+ style */}
       <button
         onClick={toggle}
-        className={`${config.headerGradient} px-3.5 py-3 relative overflow-hidden w-full text-start min-h-[60px] flex items-center`}
+        className={`${config.headerGradient} px-4 py-4 relative overflow-hidden w-full text-start min-h-[68px] flex items-center`}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent" />
-        <div className="absolute -top-6 -end-6 w-24 h-24 rounded-full bg-white/10 blur-2xl" />
+        <div className="absolute -top-6 -end-6 w-28 h-28 rounded-full bg-white/8 blur-2xl" />
         
-        <div className="relative flex items-center gap-2.5 w-full">
+        <div className="relative flex items-center gap-3 w-full">
           <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2">
-              <h2 className={`text-xl sm:text-2xl font-extrabold ${config.headerText} tracking-tight leading-snug break-words ar-heading`} style={{ overflowWrap: 'anywhere' }}>
-                {t(`journeys.${config.key}`)}
-              </h2>
-              <span className={`text-[9px] font-bold ${config.headerText} bg-white/20 backdrop-blur-sm px-1.5 py-0.5 rounded-full`}>
-                {totalTools}
-              </span>
-            </div>
-            <p className={`text-[11px] ${config.headerText} opacity-75 mt-0.5 leading-snug break-words`}>
+            <h2 className={`text-[22px] sm:text-2xl font-black ${config.headerText} tracking-tight leading-tight break-words ar-heading`} style={{ overflowWrap: 'anywhere', textShadow: '0 1px 3px rgba(0,0,0,0.15)' }}>
+              {t(`journeys.${config.key}`)}
+            </h2>
+            <p className={`text-xs ${config.headerText} opacity-80 mt-1 leading-snug break-words font-medium`}>
               {t(`journeys.${config.key}Desc`)}
             </p>
           </div>
-          <motion.div
-            animate={{ rotate: isOpen ? 180 : 0 }}
-            transition={{ duration: 0.25, ease: "easeInOut" }}
-            className="flex-shrink-0"
-          >
-            <ChevronDown className={`w-5 h-5 ${config.headerText} opacity-60`} strokeWidth={2} />
-          </motion.div>
+          <div className="flex items-center gap-2 flex-shrink-0">
+            <span className={`text-xs font-bold ${config.headerText} bg-white/20 backdrop-blur-sm px-2 py-0.5 rounded-full`}>
+              {totalTools}
+            </span>
+            <motion.div
+              animate={{ rotate: isOpen ? 180 : 0 }}
+              transition={{ duration: 0.25, ease: "easeInOut" }}
+            >
+              <ChevronDown className={`w-5 h-5 ${config.headerText} opacity-70`} strokeWidth={2.5} />
+            </motion.div>
+          </div>
         </div>
       </button>
 
