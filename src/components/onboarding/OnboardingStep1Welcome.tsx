@@ -49,47 +49,23 @@ export const OnboardingStep1Welcome: React.FC<Props> = ({ selectedLang, onSelect
       exit={{ opacity: 0, x: isRtl ? 20 : -20 }}
       transition={{ duration: 0.2 }}
     >
-      {/* Logo & Title */}
-      <div className="px-5 pt-3 pb-2 text-center">
+      {/* Logo & Title — compact */}
+      <div className="px-5 pt-3 pb-2 flex items-center gap-3">
         <motion.div
-          className="w-16 h-16 mx-auto mb-2.5 rounded-2xl overflow-hidden shadow-lg ring-2 ring-primary/20"
+          className="w-12 h-12 rounded-xl overflow-hidden shadow-md ring-2 ring-primary/20 flex-shrink-0"
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ type: 'spring', stiffness: 300, damping: 20 }}
         >
           <img src={logoImage} alt="App Logo" className="w-full h-full object-cover" />
         </motion.div>
-        <h2 className="text-base font-bold text-foreground">
-          {t('onboarding.title', 'Welcome to Your Journey')}
-        </h2>
-        <p className="text-xs text-muted-foreground mt-1">
-          {t('onboarding.subtitle', 'Your lifestyle & educational companion')}
-        </p>
-      </div>
-
-
-      {/* Value props */}
-      <div className="px-4 pb-3">
-        <div className="grid grid-cols-2 gap-1.5">
-          {[
-            { icon: Sparkles, key: 'aiAssistant247' },
-            { icon: Globe, key: 'sevenLangs' },
-            { icon: Lock, key: 'privacyFirst' },
-            { icon: Shield, key: 'transparency' },
-          ].map((vp, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2 + i * 0.05 }}
-              className="flex items-center gap-1.5 px-2.5 py-2 rounded-xl bg-muted/40"
-            >
-              <vp.icon className="w-3.5 h-3.5 text-primary flex-shrink-0" />
-              <span className="text-[10px] text-foreground/70 leading-tight">
-                {t(`onboarding.${vp.key}`)}
-              </span>
-            </motion.div>
-          ))}
+        <div className="min-w-0">
+          <h2 className="text-sm font-bold text-foreground leading-tight">
+            {t('onboarding.title', 'Welcome to Your Journey')}
+          </h2>
+          <p className="text-[11px] text-muted-foreground mt-0.5 leading-snug">
+            {t('onboarding.subtitle', 'Your lifestyle & educational companion')}
+          </p>
         </div>
       </div>
 
