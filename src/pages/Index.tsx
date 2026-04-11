@@ -244,32 +244,69 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
   );
 });
 
-// ── Footer Card — Premium CTA: elegant, adaptive ───────────────────────
+// ── Footer Card — Premium CTA: world-class subscription design ─────────
 const FooterCard = memo(function FooterCard() {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const lang = i18n.language?.split('-')[0] || 'en';
   const { remaining, limit, isLimitReached, tier, refresh } = useAIUsage();
 
-  // Refresh quota state when returning from pricing page
   useEffect(() => { refresh(); }, [refresh]);
   const isAr = lang === 'ar';
   const isFree = tier === 'free';
   const usagePercent = limit > 0 ? (remaining / limit) * 100 : 0;
-
   const isPremium = tier === 'premium';
 
-  const labels: Record<string, { title: string; desc: string; exhaustedTitle: string; exhaustedDesc: string; cta: string; premiumTitle: string; premiumDesc: string }> = {
-    en: { title: 'Premium Access', desc: '60 monthly analyses · All tools unlocked', exhaustedTitle: 'Insights Used Up', exhaustedDesc: 'Unlock more personalized insights with Premium', cta: 'View Plans', premiumTitle: 'Premium Member ✨', premiumDesc: 'You have 60 monthly AI analyses' },
-    ar: { title: 'الوصول المميز', desc: '60 تحليل شهرياً · جميع الأدوات مفتوحة', exhaustedTitle: 'نفدت التحليلات', exhaustedDesc: 'افتحي المزيد من التحليلات المخصصة مع Premium', cta: 'عرض الخطط', premiumTitle: 'عضوة مميزة ✨', premiumDesc: 'لديكِ 60 تحليل ذكاء اصطناعي شهرياً' },
-    de: { title: 'Premium-Zugang', desc: '60 monatliche Analysen · Alle Tools freigeschaltet', exhaustedTitle: 'Analysen aufgebraucht', exhaustedDesc: 'Schalten Sie mehr personalisierte Einblicke frei', cta: 'Pläne ansehen', premiumTitle: 'Premium-Mitglied ✨', premiumDesc: 'Sie haben 60 monatliche KI-Analysen' },
-    fr: { title: 'Accès Premium', desc: '60 analyses mensuelles · Tous les outils débloqués', exhaustedTitle: 'Analyses épuisées', exhaustedDesc: 'Débloquez plus d\'analyses personnalisées avec Premium', cta: 'Voir les plans', premiumTitle: 'Membre Premium ✨', premiumDesc: 'Vous avez 60 analyses IA mensuelles' },
-    es: { title: 'Acceso Premium', desc: '60 análisis mensuales · Todas las herramientas', exhaustedTitle: 'Análisis agotados', exhaustedDesc: 'Desbloquea más análisis personalizados con Premium', cta: 'Ver planes', premiumTitle: 'Miembro Premium ✨', premiumDesc: 'Tienes 60 análisis IA mensuales' },
-    pt: { title: 'Acesso Premium', desc: '60 análises mensais · Todas as ferramentas', exhaustedTitle: 'Análises esgotadas', exhaustedDesc: 'Desbloqueie mais análises personalizadas com Premium', cta: 'Ver planos', premiumTitle: 'Membro Premium ✨', premiumDesc: 'Você tem 60 análises IA mensais' },
-    tr: { title: 'Premium Erişim', desc: '60 aylık analiz · Tüm araçlar açık', exhaustedTitle: 'Analizler tükendi', exhaustedDesc: 'Premium ile daha fazla kişiselleştirilmiş analiz açın', cta: 'Planları gör', premiumTitle: 'Premium Üye ✨', premiumDesc: 'Aylık 60 AI analiziniz var' },
+  const labels: Record<string, {
+    title: string; cta: string; ctaPrice: string; trust: string;
+    feat1: string; feat2: string; feat3: string;
+    exhaustedTitle: string; exhaustedCta: string;
+    premiumTitle: string; premiumDesc: string;
+  }> = {
+    en: {
+      title: 'Get Premium', cta: 'Subscribe Now', ctaPrice: '$2.99/month', trust: 'Free trial · Cancel anytime',
+      feat1: '60 smart analyses/month', feat2: 'All 36+ tools unlocked', feat3: 'Personalized tips for your journey',
+      exhaustedTitle: 'Your analyses are used up!', exhaustedCta: 'Subscribe Now',
+      premiumTitle: 'Premium Member ✨', premiumDesc: 'You have 60 monthly AI analyses',
+    },
+    ar: {
+      title: 'احصلي على Premium', cta: 'اشتركي الآن', ctaPrice: '$2.99/شهر', trust: 'تجربة مجانية · إلغاء أي وقت',
+      feat1: '60 تحليل ذكي شهرياً', feat2: 'جميع الأدوات مفتوحة (36+)', feat3: 'نصائح مخصصة لرحلتك',
+      exhaustedTitle: 'نفدت تحليلاتك!', exhaustedCta: 'اشتركي الآن',
+      premiumTitle: 'عضوة مميزة ✨', premiumDesc: 'لديكِ 60 تحليل ذكاء اصطناعي شهرياً',
+    },
+    de: {
+      title: 'Premium holen', cta: 'Jetzt abonnieren', ctaPrice: '$2.99/Monat', trust: 'Kostenlose Testversion · Jederzeit kündbar',
+      feat1: '60 smarte Analysen/Monat', feat2: 'Alle 36+ Tools freigeschaltet', feat3: 'Personalisierte Tipps',
+      exhaustedTitle: 'Analysen aufgebraucht!', exhaustedCta: 'Jetzt abonnieren',
+      premiumTitle: 'Premium-Mitglied ✨', premiumDesc: 'Sie haben 60 monatliche KI-Analysen',
+    },
+    fr: {
+      title: 'Obtenir Premium', cta: "S'abonner maintenant", ctaPrice: '$2.99/mois', trust: 'Essai gratuit · Annulation à tout moment',
+      feat1: '60 analyses intelligentes/mois', feat2: 'Tous les 36+ outils débloqués', feat3: 'Conseils personnalisés',
+      exhaustedTitle: 'Analyses épuisées!', exhaustedCta: "S'abonner",
+      premiumTitle: 'Membre Premium ✨', premiumDesc: 'Vous avez 60 analyses IA mensuelles',
+    },
+    es: {
+      title: 'Obtener Premium', cta: 'Suscríbete ahora', ctaPrice: '$2.99/mes', trust: 'Prueba gratis · Cancela cuando quieras',
+      feat1: '60 análisis inteligentes/mes', feat2: 'Todas las 36+ herramientas', feat3: 'Consejos personalizados',
+      exhaustedTitle: '¡Análisis agotados!', exhaustedCta: 'Suscríbete',
+      premiumTitle: 'Miembro Premium ✨', premiumDesc: 'Tienes 60 análisis IA mensuales',
+    },
+    pt: {
+      title: 'Obter Premium', cta: 'Assine agora', ctaPrice: '$2.99/mês', trust: 'Teste grátis · Cancele a qualquer momento',
+      feat1: '60 análises inteligentes/mês', feat2: 'Todas as 36+ ferramentas', feat3: 'Dicas personalizadas',
+      exhaustedTitle: 'Análises esgotadas!', exhaustedCta: 'Assine agora',
+      premiumTitle: 'Membro Premium ✨', premiumDesc: 'Você tem 60 análises IA mensais',
+    },
+    tr: {
+      title: 'Premium Al', cta: 'Şimdi Abone Ol', ctaPrice: '$2.99/ay', trust: 'Ücretsiz deneme · İstediğin zaman iptal et',
+      feat1: '60 akıllı analiz/ay', feat2: 'Tüm 36+ araç açık', feat3: 'Kişiselleştirilmiş ipuçları',
+      exhaustedTitle: 'Analizler tükendi!', exhaustedCta: 'Şimdi Abone Ol',
+      premiumTitle: 'Premium Üye ✨', premiumDesc: 'Aylık 60 AI analiziniz var',
+    },
   };
   const l = labels[lang] || labels.en;
-
   const showExhausted = isLimitReached && isFree;
 
   // Premium member card
@@ -281,28 +318,26 @@ const FooterCard = memo(function FooterCard() {
         transition={{ duration: 0.4, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
         className="mt-3"
       >
-        <div className="w-full text-start rounded-xl overflow-hidden bg-gradient-to-br from-amber-500/[0.08] via-card to-primary/[0.04] border border-amber-500/20 shadow-sm">
+        <div className="w-full text-start rounded-2xl overflow-hidden bg-gradient-to-br from-amber-500/[0.08] via-card to-primary/[0.04] border border-amber-500/20 shadow-sm">
           <div className="h-[2px] bg-gradient-to-r from-amber-500/30 via-amber-500 to-amber-500/30" />
-          <div className="px-3 py-3 flex items-center gap-2.5">
-            <div className="relative flex-shrink-0">
-              <div className="relative w-9 h-9 rounded-lg bg-gradient-to-br from-amber-500/20 to-amber-500/10 flex items-center justify-center border border-amber-500/25">
-                <Crown className="w-4 h-4 text-amber-500" strokeWidth={1.8} />
-              </div>
+          <div className="px-4 py-3.5 flex items-center gap-3">
+            <div className="relative w-11 h-11 rounded-xl bg-gradient-to-br from-amber-500/25 to-amber-500/10 flex items-center justify-center border border-amber-500/25 flex-shrink-0">
+              <Crown className="w-5 h-5 text-amber-500" strokeWidth={1.8} />
             </div>
             <div className="flex-1 min-w-0">
-              <h4 className="text-[12px] font-bold text-foreground leading-tight" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+              <h4 className="text-sm font-extrabold text-foreground leading-tight" style={{ fontFamily: "'Tajawal', sans-serif" }}>
                 {l.premiumTitle}
               </h4>
-              <p className="text-[10px] text-muted-foreground mt-0.5 leading-snug">
+              <p className="text-xs text-muted-foreground mt-0.5 font-medium leading-snug">
                 {l.premiumDesc}
               </p>
             </div>
-            <span className="text-[13px] font-extrabold text-primary tabular-nums" style={{ fontFamily: "'Cairo', sans-serif" }}>
-              {remaining}<span className="text-[9px] opacity-40 font-normal">/{limit}</span>
+            <span className="text-base font-extrabold text-primary tabular-nums" style={{ fontFamily: "'Cairo', sans-serif" }}>
+              {remaining}<span className="text-[10px] opacity-40 font-normal">/{limit}</span>
             </span>
           </div>
-          <div className="px-3 pb-2.5">
-            <div className="h-[4px] rounded-full bg-muted/50 overflow-hidden">
+          <div className="px-4 pb-3">
+            <div className="h-[5px] rounded-full bg-muted/50 overflow-hidden">
               <motion.div
                 className="h-full rounded-full bg-gradient-to-r from-amber-500 to-primary"
                 initial={{ width: 0 }}
@@ -321,78 +356,112 @@ const FooterCard = memo(function FooterCard() {
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-      className="mt-3"
+      className="mt-4"
     >
-      <button
+      <div
         onClick={() => navigate('/pricing-demo')}
-        className="w-full text-start rounded-xl overflow-hidden bg-gradient-to-br from-primary/[0.06] via-card to-accent/[0.04] border border-primary/15 shadow-sm hover:shadow-md hover:border-primary/25 transition-all duration-300 group"
+        className={`w-full cursor-pointer rounded-2xl overflow-hidden border shadow-lg hover:shadow-xl transition-all duration-300 ${
+          showExhausted
+            ? 'bg-gradient-to-br from-destructive/[0.06] via-card to-destructive/[0.03] border-destructive/25'
+            : 'bg-gradient-to-br from-primary/[0.06] via-card to-amber-500/[0.04] border-primary/20'
+        }`}
       >
-        {/* Accent bar */}
-        <div className={`h-[2px] relative overflow-hidden ${showExhausted ? 'bg-gradient-to-r from-primary/50 via-primary to-primary/50' : 'bg-gradient-to-r from-primary/20 via-primary/60 to-primary/20'}`}>
+        {/* Top accent */}
+        <div className={`h-[3px] relative overflow-hidden ${
+          showExhausted
+            ? 'bg-gradient-to-r from-destructive/40 via-destructive to-destructive/40'
+            : 'bg-gradient-to-r from-primary/30 via-primary to-amber-500/60'
+        }`}>
           <motion.div
-            className="absolute h-full w-1/3 bg-gradient-to-r from-transparent via-white/40 to-transparent"
+            className="absolute h-full w-1/3 bg-gradient-to-r from-transparent via-white/50 to-transparent"
             animate={{ x: ['-100%', '400%'] }}
-            transition={{ duration: 3, repeat: Infinity, repeatDelay: 5, ease: 'linear' }}
+            transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 4, ease: 'linear' }}
           />
         </div>
 
-        <div className="px-3 py-3 flex items-center gap-2.5">
-          {/* Icon */}
-          <div className="relative flex-shrink-0">
-            {showExhausted && (
-              <motion.div
-                className="absolute inset-0 rounded-lg bg-primary/20 blur-md"
-                animate={{ scale: [1, 1.4, 1], opacity: [0.3, 0.6, 0.3] }}
-                transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-              />
-            )}
-            <div className="relative w-9 h-9 rounded-lg bg-gradient-to-br from-primary/15 to-primary/5 flex items-center justify-center border border-primary/20">
-              <Crown className="w-4 h-4 text-primary" strokeWidth={1.8} />
+        <div className="px-4 pt-4 pb-3">
+          {/* Header with crown */}
+          <div className="flex items-center gap-3 mb-3">
+            <div className="relative flex-shrink-0">
+              {showExhausted && (
+                <motion.div
+                  className="absolute inset-0 rounded-xl bg-destructive/25 blur-lg"
+                  animate={{ scale: [1, 1.5, 1], opacity: [0.3, 0.7, 0.3] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                />
+              )}
+              <div className={`relative w-12 h-12 rounded-xl flex items-center justify-center border ${
+                showExhausted
+                  ? 'bg-gradient-to-br from-destructive/20 to-destructive/5 border-destructive/25'
+                  : 'bg-gradient-to-br from-amber-500/20 to-primary/10 border-amber-500/25'
+              }`}>
+                <Crown className={`w-6 h-6 ${showExhausted ? 'text-destructive' : 'text-amber-500'}`} strokeWidth={1.8} />
+              </div>
+            </div>
+            <div className="flex-1 min-w-0">
+              <h4 className="text-sm font-extrabold text-foreground leading-tight" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+                {showExhausted ? l.exhaustedTitle : l.title}
+              </h4>
             </div>
           </div>
 
-          {/* Text */}
-          <div className="flex-1 min-w-0">
-            <h4 className="text-[12px] font-bold text-foreground leading-tight" style={{ fontFamily: "'Tajawal', sans-serif" }}>
-              {showExhausted ? l.exhaustedTitle : l.title}
-            </h4>
-            <p className="text-[10px] text-muted-foreground mt-0.5 leading-snug">
-              {showExhausted ? l.exhaustedDesc : l.desc}
-            </p>
-          </div>
+          {/* Features list */}
+          {!showExhausted && (
+            <div className="space-y-1.5 mb-4">
+              {[l.feat1, l.feat2, l.feat3].map((feat, i) => (
+                <div key={i} className="flex items-center gap-2">
+                  <div className="w-4 h-4 rounded-full bg-primary/15 flex items-center justify-center flex-shrink-0">
+                    <Check className="w-2.5 h-2.5 text-primary" strokeWidth={3} />
+                  </div>
+                  <span className="text-xs font-semibold text-foreground/80">{feat}</span>
+                </div>
+              ))}
+            </div>
+          )}
 
-          {/* CTA chip */}
-          <div className="flex-shrink-0">
-            <span className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-md bg-primary/10 text-primary text-[9px] font-bold group-hover:bg-primary/15 transition-colors">
-              {l.cta}
-              {isAr ? <ChevronLeft className="w-2.5 h-2.5" /> : <ChevronRight className="w-2.5 h-2.5" />}
-            </span>
-          </div>
+          {/* Usage bar for free users */}
+          {isFree && (
+            <div className="mb-3">
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-[10px] text-muted-foreground flex items-center gap-1 font-medium">
+                  <Brain className="w-3 h-3 text-primary/50" strokeWidth={1.8} />
+                  {isAr ? 'التحليلات المتبقية' : 'Remaining analyses'}
+                </span>
+                <span className="text-xs font-extrabold text-primary tabular-nums" style={{ fontFamily: "'Cairo', sans-serif" }}>
+                  {remaining}<span className="text-[9px] opacity-40 font-normal">/{limit}</span>
+                </span>
+              </div>
+              <div className="h-[5px] rounded-full bg-muted/50 overflow-hidden">
+                <motion.div
+                  className={`h-full rounded-full ${isLimitReached ? 'bg-destructive' : 'bg-gradient-to-r from-primary to-amber-500/70'}`}
+                  initial={{ width: 0 }}
+                  animate={{ width: `${usagePercent}%` }}
+                  transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                />
+              </div>
+            </div>
+          )}
+
+          {/* Big CTA Button */}
+          <motion.div
+            whileTap={{ scale: 0.97 }}
+            className={`w-full h-11 rounded-xl flex items-center justify-center gap-2 font-bold text-sm text-white shadow-md ${
+              showExhausted
+                ? 'bg-gradient-to-r from-destructive to-destructive/80'
+                : 'bg-gradient-to-r from-primary via-primary to-amber-500/80'
+            }`}
+          >
+            <Crown className="w-4 h-4" strokeWidth={2} />
+            <span>{showExhausted ? l.exhaustedCta : l.cta}</span>
+            <span className="text-white/70 text-xs font-normal">— {l.ctaPrice}</span>
+          </motion.div>
+
+          {/* Trust line */}
+          <p className="text-center text-[10px] text-muted-foreground mt-2 font-medium">
+            {l.trust}
+          </p>
         </div>
-
-        {/* Usage bar — only show for free users */}
-        {isFree && (
-          <div className="px-3 pb-2.5">
-            <div className="flex items-center justify-between mb-1">
-              <span className="text-[9px] text-muted-foreground flex items-center gap-1">
-                <Brain className="w-2.5 h-2.5 text-primary/40" strokeWidth={1.8} />
-                {isAr ? 'التحليلات المتبقية' : 'Remaining analyses'}
-              </span>
-              <span className="text-[11px] font-bold text-primary tabular-nums" style={{ fontFamily: "'Cairo', sans-serif" }}>
-                {remaining}<span className="text-[9px] opacity-40 font-normal">/{limit}</span>
-              </span>
-            </div>
-            <div className="h-[4px] rounded-full bg-muted/50 overflow-hidden">
-              <motion.div
-                className={`h-full rounded-full ${isLimitReached ? 'bg-destructive' : 'bg-gradient-to-r from-primary to-primary/60'}`}
-                initial={{ width: 0 }}
-                animate={{ width: `${usagePercent}%` }}
-                transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              />
-            </div>
-          </div>
-        )}
-      </button>
+      </div>
     </motion.div>
   );
 });
