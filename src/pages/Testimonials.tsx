@@ -76,24 +76,33 @@ function TranslateButton({ text, defaultText }: { text: string; defaultText: str
     setLoading(true);
     setError(false);
     try {
-      // Detect source language to pick the right target
-      const isArabicSource = /[\u0600-\u06FF]/.test(text);
-      const currentLang = i18n.language;
-      
-      // Build target: if text is Arabic → translate to user's lang (or English fallback)
-      // If text is non-Arabic → translate to Arabic (or user's lang)
-      let sourceLang = isArabicSource ? 'ar' : 'en';
+      // Auto-detect source language from text content
+      const hasArabic = /[\u0600-\u06FF]/.test(text);
+      const hasTurkish = /[İıĞğÜüŞşÖöÇç]/.test(text);
+      const hasGerman = /[äöüßÄÖÜ]/.test(text);
+      const hasFrench = /[àâéèêëïîôùûüÿçœæÀÂÉÈ]/.test(text);
+      const hasSpanish = /[ñáéíóúüÑÁÉÍÓÚÜ¿¡]/.test(text);
+      const hasPortuguese = /[ãõçÃÕÇàáâéêíóôú]/.test(text);
+
+      let sourceLang = 'en'; // default fallback
+      if (hasArabic) sourceLang = 'ar';
+      else if (hasTurkish) sourceLang = 'tr';
+      else if (hasGerman) sourceLang = 'de';
+      else if (hasFrench) sourceLang = 'fr';
+      else if (hasSpanish) sourceLang = 'es';
+      else if (hasPortuguese) sourceLang = 'pt';
+
+      // Target = user's current UI language
+      const currentLang = i18n.language?.split('-')[0] || 'en';
       let targetLang = currentLang;
-      
-      // If source matches current UI language, flip to the other
-      if ((isArabicSource && currentLang === 'ar') || (!isArabicSource && currentLang === 'en')) {
-        targetLang = isArabicSource ? 'en' : 'ar';
+
+      // If source matches target, flip to a useful alternative
+      if (sourceLang === targetLang) {
+        targetLang = sourceLang === 'en' ? 'ar' : 'en';
       }
 
-      // Map language codes for the API
-      const langMap: Record<string, string> = { ar: 'ar', en: 'en', de: 'de', fr: 'fr', es: 'es', tr: 'tr', pt: 'pt' };
-      const from = langMap[sourceLang] || 'en';
-      const to = langMap[targetLang] || 'en';
+      const from = sourceLang;
+      const to = targetLang;
 
       if (from === to) {
         // No translation needed — show the default text as fallback
