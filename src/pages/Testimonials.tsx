@@ -61,20 +61,48 @@ const testimonials: Testimonial[] = [
 const REVIEWS_KEY = "pt_user_reviews";
 const PAGE_SIZE = 30;
 
-function TranslateButton({ text }: { text: string }) {
-  const { t } = useTranslation();
-  const handleTranslate = useCallback(() => {
-    const url = `https://translate.google.com/?sl=auto&tl=auto&text=${encodeURIComponent(text)}&op=translate`;
-    window.open(url, '_blank', 'noopener');
-  }, [text]);
+function TranslateButton({ text, onTranslated }: { text: string; onTranslated: (translated: string) => void }) {
+  const { t, i18n } = useTranslation();
+  const [loading, setLoading] = useState(false);
+  const [translated, setTranslated] = useState(false);
+
+  const handleTranslate = useCallback(async () => {
+    if (translated) return;
+    setLoading(true);
+    try {
+      // Use the browser's built-in translation via a free API
+      const targetLang = i18n.language === 'ar' ? 'en' : 'ar';
+      const res = await fetch(
+        `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text.slice(0, 500))}&langpair=auto|${targetLang}`
+      );
+      const data = await res.json();
+      if (data?.responseData?.translatedText) {
+        onTranslated(data.responseData.translatedText);
+        setTranslated(true);
+      } else {
+        // Fallback: open Google Translate
+        const url = `https://translate.google.com/?sl=auto&tl=${targetLang}&text=${encodeURIComponent(text)}&op=translate`;
+        window.open(url, '_blank', 'noopener');
+      }
+    } catch {
+      const targetLang = i18n.language === 'ar' ? 'en' : 'ar';
+      const url = `https://translate.google.com/?sl=auto&tl=${targetLang}&text=${encodeURIComponent(text)}&op=translate`;
+      window.open(url, '_blank', 'noopener');
+    } finally {
+      setLoading(false);
+    }
+  }, [text, i18n.language, translated, onTranslated]);
 
   return (
     <button
       onClick={handleTranslate}
-      className="flex items-center gap-1 text-[10px] text-primary/60 hover:text-primary transition-colors mt-2"
+      disabled={loading || translated}
+      className="flex items-center gap-1 text-[10px] text-primary/60 hover:text-primary transition-colors mt-2 disabled:opacity-40"
     >
-      <Languages className="w-3 h-3" />
-      {t("testimonials.translate", "ترجمة")}
+      {loading ? <Loader2 className="w-3 h-3 animate-spin" /> : <Languages className="w-3 h-3" />}
+      {translated
+        ? t("testimonials.translated", "تمت الترجمة ✓")
+        : t("testimonials.translate", "ترجمة")}
     </button>
   );
 }
