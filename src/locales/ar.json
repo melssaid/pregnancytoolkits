@@ -168,7 +168,30 @@
   },
   "usageNudge": {
     "title": "{{used}}/{{limit}} تحليل مُستخدم",
-    "upgrade": "اشتركي للحصول على 60 تحليل شهرياً ←"
+    "upgrade": "اشتركي للحصول على 60 تحليل شهرياً",
+    "subscribe": "اشتركي الآن"
+  },
+  "journey": {
+    "rec": {
+      "pregnantTitle": "أدوات مهمة لحملك",
+      "fertilityTitle": "أدوات تساعدك على الحمل",
+      "postpartumTitle": "أدوات لكِ ولطفلك",
+      "dueDate": "حاسبة موعد الولادة",
+      "fetalGrowth": "متابعة نمو الجنين",
+      "exercises": "تمارين آمنة للحامل",
+      "nutrition": "دليل التغذية",
+      "kickCounter": "عداد حركات الجنين",
+      "symptoms": "تحليل الأعراض",
+      "cycleTracker": "متابعة الدورة والتبويض",
+      "preconception": "فحوصات ما قبل الحمل",
+      "fertilityAcademy": "أكاديمية الخصوبة",
+      "supplements": "دليل المكملات",
+      "babySleep": "متابعة نوم الطفل",
+      "mentalHealth": "الصحة النفسية بعد الولادة",
+      "diaper": "متابعة الحفاضات",
+      "recovery": "دليل التعافي",
+      "lactation": "دعم الرضاعة"
+    }
   },
   "smartPrompt": {
     "nearLimit": "استخدمتِ {{used}} من {{limit}} تحليل! اشتركي الآن للحصول على 60 تحليل شهرياً.",

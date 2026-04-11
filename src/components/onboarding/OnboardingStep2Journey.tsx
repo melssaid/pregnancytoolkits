@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils';
 import { formatLocalized } from '@/lib/dateLocale';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Calendar } from '@/components/ui/calendar';
+import { JourneyRecommendations } from './JourneyRecommendations';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Button } from '@/components/ui/button';
 import type { JourneyStage } from '@/hooks/useUserProfile';
@@ -138,6 +139,9 @@ export const OnboardingStep2Journey: React.FC<Props> = ({
             </div>
           </div>
         )}
+
+        {/* Smart recommendations based on journey stage */}
+        <JourneyRecommendations stage={journeyStage} />
       </div>
 
       {/* Navigation */}

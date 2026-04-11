@@ -168,7 +168,30 @@
   },
   "usageNudge": {
     "title": "{{used}}/{{limit}} analyses used",
-    "upgrade": "Upgrade for 60/month →"
+    "upgrade": "Upgrade for 60 analyses/month",
+    "subscribe": "Subscribe Now"
+  },
+  "journey": {
+    "rec": {
+      "pregnantTitle": "Essential tools for your pregnancy",
+      "fertilityTitle": "Tools to help you conceive",
+      "postpartumTitle": "Tools for you & your baby",
+      "dueDate": "Due Date Calculator",
+      "fetalGrowth": "Fetal Growth Tracker",
+      "exercises": "Safe Exercises",
+      "nutrition": "Nutrition Guide",
+      "kickCounter": "Kick Counter",
+      "symptoms": "Symptom Analyzer",
+      "cycleTracker": "Cycle & Ovulation Tracker",
+      "preconception": "Preconception Checkup",
+      "fertilityAcademy": "Fertility Academy",
+      "supplements": "Supplements Guide",
+      "babySleep": "Baby Sleep Tracker",
+      "mentalHealth": "Postpartum Mental Health",
+      "diaper": "Diaper Tracker",
+      "recovery": "Recovery Guide",
+      "lactation": "Lactation Support"
+    }
   },
   "smartPrompt": {
     "nearLimit": "You've used {{used}} of {{limit}} analyses! Subscribe for 60/month.",
