@@ -139,6 +139,9 @@ export const OnboardingStep2Journey: React.FC<Props> = ({
             </div>
           </div>
         )}
+
+        {/* Smart recommendations based on journey stage */}
+        <JourneyRecommendations stage={journeyStage} />
       </div>
 
       {/* Navigation */}
