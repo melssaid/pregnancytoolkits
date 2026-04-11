@@ -405,13 +405,13 @@ const ShareAppButton = memo(function ShareAppButton() {
   const lang = i18n.language?.split('-')[0] || 'en';
 
   const shareLabels: Record<string, { text: string; shareTitle: string; shareText: string }> = {
-    en: { text: 'Share with a friend', shareTitle: 'Pregnancy Toolkits', shareText: 'Check out this free pregnancy app with 33+ smart tools!' },
-    ar: { text: 'شاركي التطبيق مع صديقة', shareTitle: 'أدوات الحمل الذكية', shareText: 'جربي هذا التطبيق المجاني لمتابعة الحمل مع 33+ أداة ذكية!' },
-    de: { text: 'Mit einer Freundin teilen', shareTitle: 'Pregnancy Toolkits', shareText: 'Schau dir diese kostenlose Schwangerschafts-App mit 33+ Tools an!' },
-    fr: { text: 'Partager avec une amie', shareTitle: 'Pregnancy Toolkits', shareText: 'Découvre cette app de grossesse gratuite avec 33+ outils!' },
-    es: { text: 'Compartir con una amiga', shareTitle: 'Pregnancy Toolkits', shareText: '¡Mira esta app de embarazo gratis con 33+ herramientas!' },
-    pt: { text: 'Compartilhar com uma amiga', shareTitle: 'Pregnancy Toolkits', shareText: 'Confira este app de gravidez grátis com 33+ ferramentas!' },
-    tr: { text: 'Bir arkadaşınla paylaş', shareTitle: 'Pregnancy Toolkits', shareText: '33+ akıllı araçla bu ücretsiz hamilelik uygulamasına göz at!' },
+    en: { text: 'Share with an expecting friend', shareTitle: 'Pregnancy Toolkits', shareText: '🤰 Try "Pregnancy Toolkits" — 30+ free smart tools for pregnancy tracking, due date calculator & personalized daily tips!\n⭐ Free & Private' },
+    ar: { text: 'شاركي التطبيق مع صديقة حامل', shareTitle: 'أدوات الحمل الذكية', shareText: '🤰 جربي "أدوات الحمل الذكية" — أكثر من 30 أداة مجانية لمتابعة الحمل وحاسبة الولادة ونصائح يومية!\n⭐ مجاني وخاص' },
+    de: { text: 'Mit einer werdenden Mutter teilen', shareTitle: 'Pregnancy Toolkits', shareText: '🤰 Probier "Pregnancy Toolkits" — 30+ kostenlose Tools für Schwangerschaft, Geburtsterminrechner & tägliche Tipps!\n⭐ Kostenlos & Privat' },
+    fr: { text: 'Partager avec une future maman', shareTitle: 'Pregnancy Toolkits', shareText: '🤰 Essaye "Pregnancy Toolkits" — 30+ outils gratuits pour le suivi de grossesse et conseils personnalisés!\n⭐ Gratuit & Privé' },
+    es: { text: 'Compartir con una futura mamá', shareTitle: 'Pregnancy Toolkits', shareText: '🤰 Prueba "Pregnancy Toolkits" — 30+ herramientas gratuitas para el embarazo y consejos diarios!\n⭐ Gratis y Privado' },
+    pt: { text: 'Compartilhar com uma futura mamãe', shareTitle: 'Pregnancy Toolkits', shareText: '🤰 Experimente "Pregnancy Toolkits" — 30+ ferramentas gratuitas para acompanhamento da gravidez!\n⭐ Grátis e Privado' },
+    tr: { text: 'Hamile bir arkadaşınla paylaş', shareTitle: 'Pregnancy Toolkits', shareText: '🤰 "Pregnancy Toolkits"i dene — 30+ ücretsiz hamilelik takip aracı ve günlük ipuçları!\n⭐ Ücretsiz ve Gizli' },
   };
   const l = shareLabels[lang] || shareLabels.en;
 

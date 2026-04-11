@@ -38,8 +38,9 @@ export function BabySizeShareCard({ week }: BabySizeShareCardProps) {
 ⚖️ ${t("babySizeCard.weight", "Weight")}: *${data.weightG} g*
 
 ━━━━━━━━━━━━━━━━━━━━
-🤰 _Pregnancy Toolkits_
-📲 ${playStoreLink}`;
+🤰 _Pregnancy Toolkits_ — 30+ Smart Tools
+📲 ${playStoreLink}
+⭐ Free & Private`;
 
     openWhatsApp(msg);
   };

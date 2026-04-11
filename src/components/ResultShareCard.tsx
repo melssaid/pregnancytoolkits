@@ -27,7 +27,7 @@ export function ResultShareCard({ toolName, toolId, resultSummary, details, emoj
       });
     }
     
-    msg += `\n━━━━━━━━━━━━━━━━━━━━\n🤰 _Pregnancy Toolkits_\n📲 https://play.google.com/store/apps/details?id=app.pregnancytoolkits.android`;
+    msg += `\n━━━━━━━━━━━━━━━━━━━━\n🤰 _Pregnancy Toolkits_ — 30+ Smart Tools\n📲 https://play.google.com/store/apps/details?id=app.pregnancytoolkits.android\n⭐ Free & Private`;
     openWhatsApp(msg);
   };
 
