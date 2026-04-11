@@ -2,7 +2,6 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { getToolsByJourney } from '@/lib/tools-data';
-import { getToolsByJourney } from '@/lib/tools-data';
 import type { JourneyStage } from '@/hooks/useUserProfile';
 
 interface Props {
