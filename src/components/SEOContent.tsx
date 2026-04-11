@@ -11,7 +11,12 @@ export function SEOContent() {
       "نصائح الحمل", "مراحل الحمل", "الحمل أسبوع بأسبوع", "حقيبة الولادة",
       "علامات الولادة", "الطلق", "الرضاعة الطبيعية", "ما بعد الولادة",
       "التبويض", "الخصوبة", "متابعة التبويض", "الدورة الشهرية",
-      "صحة الحامل", "خطة الولادة", "تمارين الحامل", "تغذية المولود"
+      "صحة الحامل", "خطة الولادة", "تمارين الحامل", "تغذية المولود",
+      "حاسبة الحمل", "أدوات الحمل", "تطبيق الحمل", "حاسبة موعد الولادة",
+      "حاسبة الحمل بالأسابيع", "تطبيق حمل ذكي", "متابعة الحمل مجاناً",
+      "عداد ركلات الجنين", "مؤقت الانقباضات", "وزن الحامل",
+      "فيتامينات الحمل", "نصائح الحمل اليومية", "حاسبة التبويض",
+      "تقلصات الولادة", "حركة الجنين", "رحلة الأمومة"
     ],
     en: [
       "pregnancy guide", "due date calculator", "baby movement diary", "pregnancy tracker",
@@ -19,42 +24,56 @@ export function SEOContent() {
       "pregnancy tips", "pregnancy stages", "week by week pregnancy", "hospital bag",
       "labor signs", "contractions", "breastfeeding", "postpartum care",
       "ovulation", "fertility", "ovulation tracker", "menstrual cycle",
-      "birth plan", "pregnancy fitness", "newborn care", "pregnancy journal"
+      "birth plan", "pregnancy fitness", "newborn care", "pregnancy journal",
+      "smart pregnancy tools", "pregnancy toolkit", "all in one pregnancy app",
+      "pregnancy calculator", "pregnancy app with AI", "baby size by week",
+      "pregnancy companion", "kick counter", "contraction timer",
+      "pregnancy app free", "best pregnancy app 2026"
     ],
     de: [
       "Schwangerschaftsratgeber", "Geburtsterminrechner", "Baby-Bewegungstagebuch", "Schwangerschafts-Tracker",
       "Babywachstum", "Schwangerschaftssymptome", "Ernährung Schwangerschaft", "Schwangerschaftsübungen",
       "Schwangerschaftstipps", "Schwangerschaftsphasen", "Woche für Woche", "Kliniktasche",
       "Wehenzeichen", "Wehen", "Stillen", "Wochenbett",
-      "Eisprung", "Fruchtbarkeit", "Geburtsplan", "Menstruationszyklus"
+      "Eisprung", "Fruchtbarkeit", "Geburtsplan", "Menstruationszyklus",
+      "Schwangerschaftsrechner", "SSW Rechner", "Schwangerschafts-App kostenlos",
+      "Schwangerschaftskalender", "Baby Entwicklung", "Wehen Timer"
     ],
     fr: [
       "guide de grossesse", "date d'accouchement", "mouvements bébé", "suivi de grossesse",
       "croissance bébé", "symptômes grossesse", "nutrition prénatale", "exercices grossesse",
       "conseils grossesse", "étapes grossesse", "semaine par semaine", "valise maternité",
       "signes travail", "contractions", "allaitement", "post-partum",
-      "ovulation", "fertilité", "plan de naissance", "cycle menstruel"
+      "ovulation", "fertilité", "plan de naissance", "cycle menstruel",
+      "calculateur grossesse", "application grossesse gratuite", "compteur contractions",
+      "suivi bébé semaine par semaine", "date accouchement prévue"
     ],
     es: [
       "guía embarazo", "fecha de parto", "movimientos bebé", "seguimiento embarazo",
       "crecimiento bebé", "síntomas embarazo", "nutrición prenatal", "ejercicios embarazo",
       "consejos embarazo", "etapas embarazo", "semana a semana", "bolsa hospital",
       "señales parto", "contracciones", "lactancia", "posparto",
-      "ovulación", "fertilidad", "plan de parto", "ciclo menstrual"
+      "ovulación", "fertilidad", "plan de parto", "ciclo menstrual",
+      "calculadora embarazo", "aplicación embarazo gratis", "contador patadas bebé",
+      "calendario embarazo", "fecha probable de parto"
     ],
     tr: [
       "hamilelik rehberi", "doğum tarihi", "bebek hareketleri", "hamilelik takibi",
       "bebek büyümesi", "hamilelik belirtileri", "beslenme", "hamilelik egzersizleri",
       "hamilelik ipuçları", "hamilelik aşamaları", "hafta hafta", "hastane çantası",
       "doğum belirtileri", "kasılmalar", "emzirme", "doğum sonrası",
-      "yumurtlama", "doğurganlık", "doğum planı", "adet döngüsü"
+      "yumurtlama", "doğurganlık", "doğum planı", "adet döngüsü",
+      "hamilelik hesaplama", "hamilelik uygulaması ücretsiz", "gebelik haftası",
+      "bebek gelişimi hafta hafta", "doğum tarihi hesaplama"
     ],
     pt: [
       "guia gravidez", "data de parto", "movimentos bebê", "acompanhamento gravidez",
       "crescimento bebê", "sintomas gravidez", "nutrição pré-natal", "exercícios gravidez",
       "dicas gravidez", "fases gravidez", "semana a semana", "mala maternidade",
       "sinais parto", "contrações", "amamentação", "pós-parto",
-      "ovulação", "fertilidade", "plano de parto", "ciclo menstrual"
+      "ovulação", "fertilidade", "plano de parto", "ciclo menstrual",
+      "calculadora gravidez", "aplicativo gravidez grátis", "contador movimentos bebê",
+      "calendário gravidez", "data provável do parto"
     ]
   };
 
