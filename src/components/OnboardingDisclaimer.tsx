@@ -172,29 +172,21 @@ export function OnboardingDisclaimer() {
                 />
               )}
               {step === 4 && (
-                <OnboardingStep4Goals
-                  goals={goals}
-                  onGoalsChange={setGoals}
+                <OnboardingStep5Privacy
+                  onFinish={() => setStep(5)}
+                  onBack={() => setStep(3)}
+                />
+              )}
+              {step === 5 && (
+                <OnboardingStep5Notifications
                   notifVitamins={notifVitamins}
                   onNotifVitaminsChange={setNotifVitamins}
                   notifWater={notifWater}
                   onNotifWaterChange={setNotifWater}
                   notifAppointments={notifAppointments}
                   onNotifAppointmentsChange={setNotifAppointments}
-                  onNext={() => setStep(5)}
-                  onBack={() => setStep(3)}
-                />
-              )}
-              {step === 5 && (
-                <OnboardingStep5Privacy
-                  onFinish={() => setStep(6)}
-                  onBack={() => setStep(4)}
-                />
-              )}
-              {step === 6 && (
-                <OnboardingStep6Notifications
                   onFinish={handleFinish}
-                  onBack={() => setStep(5)}
+                  onBack={() => setStep(4)}
                 />
               )}
             </AnimatePresence>
