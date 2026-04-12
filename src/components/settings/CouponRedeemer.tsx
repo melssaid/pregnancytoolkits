@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Input } from '@/components/ui/input';
 import { useActiveCoupon } from '@/hooks/useActiveCoupon';
 import { useAIUsage } from '@/contexts/AIUsageContext';
+import { applyCouponTier } from '@/services/smartEngine';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
@@ -22,6 +23,9 @@ export const CouponRedeemer: React.FC = () => {
     setErrorMsg('');
     const result = await redeemCoupon(code);
     if (result.success) {
+      if (result.coupon) {
+        applyCouponTier(result.coupon.expiresAt, result.coupon.bonusPoints);
+      }
       setJustActivated(true);
       setCode('');
       refresh();
