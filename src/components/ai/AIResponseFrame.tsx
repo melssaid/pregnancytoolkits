@@ -161,15 +161,26 @@ export const AIResponseFrame = ({
 
         {/* Post-analysis upgrade nudge for free users */}
         {isFree && !isLoading && content && (
-          <button
+          <motion.button
             onClick={() => navigate('/pricing-demo')}
-            className="mt-2 w-full flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-gradient-to-r from-primary/[0.06] to-primary/[0.02] border border-primary/15 hover:border-primary/30 transition-all"
+            whileTap={{ scale: 0.98 }}
+            className="mt-3 w-full rounded-xl border border-primary/20 bg-gradient-to-r from-primary/[0.06] via-primary/[0.03] to-transparent p-3 flex items-center gap-3 hover:border-primary/35 hover:shadow-sm transition-all duration-200"
           >
-            <Crown className="w-3 h-3 text-primary shrink-0" />
-            <span className="text-[10px] font-semibold text-primary leading-tight">
-              {t('quotaExhausted.postAnalysisHint', { remaining, limit: 40 })}
+            <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+              <Crown className="w-4 h-4 text-primary" />
+            </div>
+            <div className="flex-1 min-w-0 text-start">
+              <p className="text-xs font-bold text-foreground leading-tight">
+                {i18n.language?.startsWith('ar') ? 'تريدين تحليلات أكثر؟' : 'Want more analyses?'}
+              </p>
+              <p className="text-[10px] text-muted-foreground font-medium mt-0.5">
+                {i18n.language?.startsWith('ar') ? '60 تحليل ذكي كل شهر' : 'Get 60 smart analyses every month'}
+              </p>
+            </div>
+            <span className="text-[10px] font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-lg shrink-0">
+              {i18n.language?.startsWith('ar') ? 'عرض الباقات' : 'View Plans'}
             </span>
-          </button>
+          </motion.button>
         )}
 
         <p className="mt-2 text-center text-[9px] font-semibold text-muted-foreground/70 tracking-wide">
