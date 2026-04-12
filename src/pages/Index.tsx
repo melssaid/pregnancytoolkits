@@ -495,31 +495,51 @@ const ShareAppButton = memo(function ShareAppButton() {
     }
   };
 
+  const subtitleMap: Record<string, string> = {
+    ar: 'ساعدي أمهات أخريات في رحلتهن',
+    en: 'Help other moms on their journey',
+    de: 'Hilf anderen Müttern auf ihrem Weg',
+    fr: 'Aidez d\'autres mamans dans leur parcours',
+    es: 'Ayuda a otras mamás en su camino',
+    pt: 'Ajude outras mães em sua jornada',
+    tr: 'Diğer annelere yolculuklarında yardım edin',
+  };
+  const sub = subtitleMap[lang] || subtitleMap.en;
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 8 }}
+      initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.35, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-      className="mt-2"
+      transition={{ duration: 0.4, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+      className="mt-3"
     >
       <button
         onClick={handleShare}
-        className="w-full rounded-2xl overflow-hidden border border-emerald-500/20 hover:border-emerald-500/40 bg-gradient-to-r from-emerald-500/[0.08] via-teal-500/[0.05] to-emerald-500/[0.08] hover:shadow-md transition-all duration-300 group active:scale-[0.98]"
+        className="w-full relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary/90 via-primary to-primary/80 text-primary-foreground shadow-lg hover:shadow-xl active:scale-[0.98] transition-all duration-300 group"
       >
-        <div className="px-4 py-3.5 flex items-center gap-3">
-          <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-emerald-500/15 group-hover:bg-emerald-500/25 flex items-center justify-center transition-colors">
-            <Share2 className="w-5 h-5 text-emerald-600" strokeWidth={2} />
+        {/* Decorative circles */}
+        <div className="absolute -top-6 -end-6 w-20 h-20 rounded-full bg-white/10" />
+        <div className="absolute -bottom-4 -start-4 w-16 h-16 rounded-full bg-white/[0.07]" />
+
+        <div className="relative px-5 py-4 flex items-center gap-4">
+          {/* Icon */}
+          <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-inner">
+            <Share2 className="w-6 h-6 text-white drop-shadow-sm" strokeWidth={2.2} />
           </div>
+
+          {/* Text */}
           <div className="flex-1 min-w-0 text-start">
-            <p className="text-sm font-bold text-foreground leading-tight" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+            <p className="text-sm font-extrabold leading-tight tracking-tight drop-shadow-sm">
               {l.text}
             </p>
-            <p className="text-[10px] text-muted-foreground font-medium mt-0.5">
-              {lang === 'ar' ? 'ساعدي أمهات أخريات في رحلتهن 💕' : 'Help other moms on their journey 💕'}
+            <p className="text-xs font-medium opacity-80 mt-1 leading-snug">
+              {sub} 💕
             </p>
           </div>
-          <div className="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-500/10 group-hover:bg-emerald-500/20 flex items-center justify-center transition-colors">
-            <Heart className="w-3.5 h-3.5 text-emerald-500" />
+
+          {/* Arrow / Heart CTA */}
+          <div className="flex-shrink-0 w-10 h-10 rounded-full bg-white/20 group-hover:bg-white/30 flex items-center justify-center transition-colors shadow-sm">
+            <Heart className="w-5 h-5 text-white fill-white/40 group-hover:fill-white/60 transition-colors" />
           </div>
         </div>
       </button>
