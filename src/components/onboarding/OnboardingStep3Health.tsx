@@ -69,7 +69,7 @@ export const OnboardingStep3Health: React.FC<Props> = ({
           <h2 className="text-sm font-bold text-foreground leading-tight">
             {t('onboarding.step3.title', 'Your Health Data')}
           </h2>
-          <p className="text-[10px] text-muted-foreground leading-snug">
+          <p className="text-[10px] text-foreground/60 font-medium leading-snug">
             {t('onboarding.step3.subtitle', 'Helps us give accurate recommendations')}
           </p>
         </div>
@@ -79,7 +79,7 @@ export const OnboardingStep3Health: React.FC<Props> = ({
         {/* Weight, Height & Blood Type — 3 columns */}
         <div className="grid grid-cols-3 gap-1.5">
           <div>
-            <label className="text-[10px] font-medium text-muted-foreground block mb-0.5">
+            <label className="text-[10px] font-semibold text-foreground/70 block mb-0.5">
               {t('onboarding.weight', 'Weight')} (kg)
             </label>
             <input
@@ -91,7 +91,7 @@ export const OnboardingStep3Health: React.FC<Props> = ({
             />
           </div>
           <div>
-            <label className="text-[10px] font-medium text-muted-foreground block mb-0.5">
+            <label className="text-[10px] font-semibold text-foreground/70 block mb-0.5">
               {t('onboarding.height', 'Height')} (cm)
             </label>
             <input
@@ -103,7 +103,7 @@ export const OnboardingStep3Health: React.FC<Props> = ({
             />
           </div>
           <div>
-            <label className="text-[10px] font-medium text-muted-foreground block mb-0.5">
+            <label className="text-[10px] font-semibold text-foreground/70 block mb-0.5">
               {t('onboarding.step3.bloodType', 'Blood Type')}
             </label>
             <Select value={bloodType} onValueChange={onBloodTypeChange}>
@@ -122,7 +122,7 @@ export const OnboardingStep3Health: React.FC<Props> = ({
 
         {/* Health Conditions — 2 columns */}
         <div>
-          <label className="text-[10px] font-medium text-muted-foreground block mb-1">
+          <label className="text-[10px] font-semibold text-foreground/70 block mb-1">
             {t('onboarding.step3.healthConsiderations', 'Health Considerations')}
           </label>
           <div className="grid grid-cols-2 gap-1">
