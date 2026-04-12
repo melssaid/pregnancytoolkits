@@ -13,11 +13,10 @@ import { OnboardingStep1Welcome } from '@/components/onboarding/OnboardingStep1W
 import { OnboardingStep2Journey } from '@/components/onboarding/OnboardingStep2Journey';
 import { OnboardingStep3Health } from '@/components/onboarding/OnboardingStep3Health';
 import { OnboardingStep5Privacy } from '@/components/onboarding/OnboardingStep5Privacy';
-import { OnboardingStep5Notifications } from '@/components/onboarding/OnboardingStep5Notifications';
 
 const ONBOARDING_KEY = 'onboarding_disclaimer_accepted';
 const FIRST_VISIT_KEY = 'language_selected_first_visit';
-const TOTAL_STEPS = 5;
+const TOTAL_STEPS = 4;
 
 export function OnboardingDisclaimer() {
   const [show, setShow] = useState(false);
@@ -173,20 +172,8 @@ export function OnboardingDisclaimer() {
               )}
               {step === 4 && (
                 <OnboardingStep5Privacy
-                  onFinish={() => setStep(5)}
-                  onBack={() => setStep(3)}
-                />
-              )}
-              {step === 5 && (
-                <OnboardingStep5Notifications
-                  notifVitamins={notifVitamins}
-                  onNotifVitaminsChange={setNotifVitamins}
-                  notifWater={notifWater}
-                  onNotifWaterChange={setNotifWater}
-                  notifAppointments={notifAppointments}
-                  onNotifAppointmentsChange={setNotifAppointments}
                   onFinish={handleFinish}
-                  onBack={() => setStep(4)}
+                  onBack={() => setStep(3)}
                 />
               )}
             </AnimatePresence>
