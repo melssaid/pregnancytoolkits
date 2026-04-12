@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Brain } from "lucide-react";
+import { Brain, Crown } from "lucide-react";
 import { useSmartInsight } from "@/hooks/useSmartInsight";
+import { useAIUsage } from "@/contexts/AIUsageContext";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { AILoadingDots } from "@/components/ai/AILoadingDots";
 import { AIActionButton } from "@/components/ai/AIActionButton";
@@ -23,6 +25,15 @@ interface DiaperAIAnalysisProps {
 
 export const DiaperAIAnalysis = ({ entries, todayStats }: DiaperAIAnalysisProps) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const { remaining, limit, tier, isLimitReached } = useAIUsage();
+  const isFree = tier === 'free';
+  const usagePct = limit > 0 ? Math.round((remaining / limit) * 100) : 100;
+  const usageColor = isLimitReached
+    ? 'text-destructive'
+    : usagePct <= 20
+      ? 'text-amber-600 dark:text-amber-400'
+      : 'text-muted-foreground';
   const { generate, isLoading: aiLoading, content: aiInsight, error, errorType, clearError, reset } = useSmartInsight({
     section: 'postpartum',
     toolType: 'baby-cry-analysis', // closest postpartum tool type
@@ -107,6 +118,22 @@ Helpful tips for diaper changes and tracking`,
               {aiInsight && (
                 <div className="overflow-x-auto">
                   <MarkdownRenderer content={aiInsight} />
+                </div>
+              )}
+              {aiInsight && !aiLoading && (
+                <div className="mt-3 flex items-center justify-between gap-2 px-1">
+                  <span className={`text-[11px] font-semibold tabular-nums ${usageColor}`}>
+                    {remaining} <span className="text-foreground/50">/ {limit}</span>
+                  </span>
+                  {isFree && (
+                    <button
+                      onClick={() => navigate('/pricing-demo')}
+                      className="flex items-center gap-1 text-[10px] font-semibold text-primary hover:text-primary/80 transition-colors"
+                    >
+                      <Crown className="w-3 h-3" />
+                      <span>{t('aiUsage.subscribePro')}</span>
+                    </button>
+                  )}
                 </div>
               )}
             </div>

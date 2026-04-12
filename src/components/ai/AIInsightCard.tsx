@@ -116,7 +116,33 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
     toolType: resolvedToolType,
   });
 
-  const { isLimitReached } = useAIUsage();
+  const { isLimitReached, remaining, limit, tier } = useAIUsage();
+  const isFree = tier === 'free';
+  const usagePct = limit > 0 ? Math.round((remaining / limit) * 100) : 100;
+  const usageColor = isLimitReached
+    ? 'text-destructive'
+    : usagePct <= 20
+      ? 'text-amber-600 dark:text-amber-400'
+      : 'text-muted-foreground';
+
+  const UsageFooter = () => (
+    hasGenerated && !isLoading && insight ? (
+      <div className="mt-3 flex items-center justify-between gap-2 px-1">
+        <span className={`text-[11px] font-semibold tabular-nums ${usageColor}`}>
+          {remaining} <span className="text-foreground/50">/ {limit}</span>
+        </span>
+        {isFree && (
+          <button
+            onClick={() => navigate('/pricing-demo')}
+            className="flex items-center gap-1 text-[10px] font-semibold text-primary hover:text-primary/80 transition-colors"
+          >
+            <Crown className="w-3 h-3" />
+            <span>{t('aiUsage.subscribePro')}</span>
+          </button>
+        )}
+      </div>
+    ) : null
+  );
   const [isExpanded, setIsExpanded] = useState(autoExpand);
   const [hasGenerated, setHasGenerated] = useState(false);
   const prevLangRef = useRef(currentLanguage);
@@ -202,6 +228,7 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
                       <MarkdownRenderer content={insight} />
                     </motion.div>
                   )}
+                  <UsageFooter />
                 </CardContent>
               </Card>
             </motion.div>
@@ -259,6 +286,7 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
                   </motion.div>
                 </motion.div>
               )}
+              <UsageFooter />
             </AnimatePresence>
           </CardContent>
         </Card>
@@ -358,6 +386,8 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
                   </Button>
                 </motion.div>
               )}
+
+              <UsageFooter />
 
               {showDisclaimer && insight && !isLoading && (
                 <p className="mt-3 text-center text-[9px] font-semibold text-muted-foreground/70 tracking-wide">
