@@ -30,7 +30,7 @@ const Settings: React.FC = () => {
   const isRTL = i18n.language === 'ar';
   const [activeView, setActiveView] = useState<SettingsView>('main');
   const { used, limit, remaining, resetUsage } = useAIUsage();
-  const isDeveloperToolsVisible = import.meta.env.DEV;
+  const isDeveloperToolsVisible = import.meta.env.DEV && typeof window !== 'undefined' && ['localhost', '127.0.0.1'].includes(window.location.hostname);
   const navigate = useNavigate();
   const ChevronIcon = isRTL ? ChevronLeft : ChevronRight;
 
