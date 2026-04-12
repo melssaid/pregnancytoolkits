@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Brain, Loader2, Sparkles, Crown, Zap } from 'lucide-react';
+import { Brain, Loader2, Crown } from 'lucide-react';
 import { UpgradeCard } from './UpgradeCard';
 import { useAIUsage } from '@/contexts/AIUsageContext';
 import { useTranslation } from 'react-i18next';
@@ -99,7 +99,7 @@ export const AIActionButton: React.FC<AIActionButtonProps> = ({
 
         {showUsage && (
           <div className="flex items-center gap-2.5 px-1">
-            <Zap className="w-3 h-3 shrink-0 text-destructive" />
+            
             <div className="flex-1 h-2 rounded-full bg-muted/30 overflow-hidden" style={{ boxShadow: 'inset 0 1px 2px hsl(0 0% 0% / 0.08)' }}>
               <div className="h-full rounded-full w-full" style={{ background: getBarGradient() }} />
             </div>
@@ -150,10 +150,7 @@ export const AIActionButton: React.FC<AIActionButtonProps> = ({
             </div>
           ) : (
             <div className="flex items-center gap-2.5">
-              <div className="relative shrink-0">
-                <Icon className={`${isCompact ? 'w-3.5 h-3.5' : 'w-[18px] h-[18px]'}`} />
-                <Sparkles className={`absolute -top-1 -end-1.5 text-yellow-300 opacity-80 ${isCompact ? 'w-2 h-2' : 'w-2.5 h-2.5'}`} />
-              </div>
+              <Icon className={`shrink-0 ${isCompact ? 'w-3.5 h-3.5' : 'w-[18px] h-[18px]'}`} />
               <span className="min-w-0 whitespace-normal text-center leading-tight">{label}</span>
             </div>
           )}
@@ -170,7 +167,7 @@ export const AIActionButton: React.FC<AIActionButtonProps> = ({
       {showUsage && (
         <div className="space-y-1.5">
           <div className="flex items-center gap-2.5 px-1">
-            <Zap className="w-3 h-3 shrink-0 text-primary" />
+            
             <div className="flex-1 h-2 rounded-full bg-muted/30 overflow-hidden" style={{ boxShadow: 'inset 0 1px 2px hsl(0 0% 0% / 0.08)' }}>
               <motion.div
                 className="h-full rounded-full"
@@ -189,10 +186,7 @@ export const AIActionButton: React.FC<AIActionButtonProps> = ({
           {isFree && (
             <div className="space-y-2">
               <p className="text-[10px] text-muted-foreground/70 text-center font-medium px-1">
-                <span className="inline-flex items-center gap-1">
-                  <span className="inline-block w-1.5 h-1.5 rounded-full bg-primary/50" />
-                  {weight === 0 ? labels.costHint0 : weight === 2 ? labels.costHint2 : weight === 0.5 ? labels.costHint05 : labels.costHint1}
-                </span>
+                {weight === 0 ? labels.costHint0 : weight === 2 ? labels.costHint2 : weight === 0.5 ? labels.costHint05 : labels.costHint1}
               </p>
               <UpgradeCard />
             </div>
