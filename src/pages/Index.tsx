@@ -79,10 +79,9 @@ const journeyConfigs: JourneyConfig[] = [
 const ToolRow = memo(function ToolRow({ tool, isRTL, isLocked = false }: { tool: Tool; isRTL: boolean; isLocked?: boolean }) {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const ToolIcon = tool.icon;
+  const ToolIconComp = tool.icon;
   const hasPng = !!tool.pngIcon;
   const style = categoryStyles[tool.categoryKey] || { iconColor: "text-muted-foreground", iconBg: "bg-muted/30", toolHover: "hover:bg-muted/50", hoverShadow: "hover:shadow-sm", hoverBorder: "hover:border-border/30" };
-  const ChevronIcon = isRTL ? ChevronLeft : ChevronRight;
 
   const handleClick = (e: React.MouseEvent) => {
     if (isLocked) {
@@ -91,22 +90,24 @@ const ToolRow = memo(function ToolRow({ tool, isRTL, isLocked = false }: { tool:
     }
   };
 
+  const [imgError, setImgError] = useState(false);
+
   return (
     <Link to={isLocked ? "#" : tool.href} onClick={handleClick} className="block">
-      <div className={`group flex flex-col items-center gap-1.5 p-3 rounded-2xl bg-card/70 backdrop-blur-sm ${style.toolHover} ${style.hoverShadow} border border-border/15 ${style.hoverBorder} transition-all duration-250 hover:-translate-y-[1px] hover:shadow-md ${isLocked ? "opacity-50" : ""}`}>
-        <div className={`w-11 h-11 rounded-xl ${style.iconBg} border border-border/15 flex items-center justify-center shadow-sm group-hover:shadow-md transition-all duration-250 group-hover:scale-105 ${isLocked ? "grayscale-[30%]" : ""}`}>
-          {hasPng ? (
-            <img src={tool.pngIcon} alt="" className="w-5.5 h-5.5 object-contain opacity-80" loading="lazy" />
+      <div className={`group flex flex-col items-center gap-1 p-2.5 rounded-xl bg-card/60 backdrop-blur-sm ${style.toolHover} border border-border/10 transition-all duration-200 hover:-translate-y-[1px] hover:shadow-sm active:scale-[0.97] ${isLocked ? "opacity-50" : ""}`}>
+        <div className={`relative w-9 h-9 rounded-lg ${style.iconBg} flex items-center justify-center transition-all duration-200 group-hover:scale-105 ${isLocked ? "grayscale-[30%]" : ""}`}>
+          {hasPng && !imgError ? (
+            <img src={tool.pngIcon} alt="" className="w-4.5 h-4.5 object-contain opacity-75" loading="lazy" onError={() => setImgError(true)} />
           ) : (
-            <ToolIcon className={`w-5 h-5 ${style.iconColor} group-hover:opacity-100 transition-opacity duration-250`} strokeWidth={1.8} />
+            <ToolIconComp className={`w-4 h-4 ${style.iconColor} opacity-80`} strokeWidth={1.8} />
           )}
           {isLocked && (
-            <div className="absolute -top-1 -end-1 w-4 h-4 rounded-full bg-muted flex items-center justify-center border border-border/30">
+            <div className="absolute -top-0.5 -end-0.5 w-3.5 h-3.5 rounded-full bg-muted flex items-center justify-center border border-border/20">
               <Lock className="w-2 h-2 text-muted-foreground/60" />
             </div>
           )}
         </div>
-        <span className="text-[10px] font-semibold text-foreground/80 leading-tight text-center line-clamp-2 min-h-[28px] flex items-center" style={{ fontFamily: "'Tajawal', sans-serif", overflowWrap: 'anywhere' }}>
+        <span className="text-[9px] font-semibold text-foreground/75 leading-tight text-center line-clamp-2 min-h-[24px] flex items-center" style={{ fontFamily: "'Tajawal', sans-serif", overflowWrap: 'anywhere' }}>
           {t(tool.titleKey)}
         </span>
       </div>
