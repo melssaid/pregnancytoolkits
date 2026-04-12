@@ -10,6 +10,7 @@ import {
   consumeQuota,
   syncFromServer as qmSyncFromServer,
   setTier as qmSetTier,
+  applyCouponTier,
   type QuotaState,
 } from '@/services/smartEngine';
 
@@ -70,9 +71,21 @@ export function AIUsageProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (hasSynced.current) return;
     hasSynced.current = true;
+
+    // Check active coupon from localStorage cache
+    try {
+      const raw = localStorage.getItem('active_coupon_v1');
+      if (raw) {
+        const coupon = JSON.parse(raw);
+        if (coupon?.expiresAt && new Date(coupon.expiresAt) > new Date()) {
+          applyCouponTier(coupon.expiresAt);
+          refresh();
+        }
+      }
+    } catch { /* ignore */ }
+
     fetchServerQuota().then((server) => {
       if (!server) return;
-      // If server reports higher usage than local, trust server
       const local = getQuotaState();
       if (server.used > local.used) {
         qmSyncFromServer(server.used, server.tier);

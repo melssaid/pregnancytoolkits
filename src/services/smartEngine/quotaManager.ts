@@ -116,6 +116,17 @@ export function setTier(tier: "free" | "premium"): void {
 }
 
 /**
+ * Temporarily set tier to premium for an active coupon.
+ * Checks expiry before applying.
+ */
+export function applyCouponTier(expiresAt: string): void {
+  if (new Date(expiresAt) <= new Date()) return;
+  const stored = readQuota();
+  stored.tier = "premium";
+  writeQuota(stored);
+}
+
+/**
  * Admin reset for testing. ONLY available in development.
  */
 export function resetQuota(): void {
