@@ -226,7 +226,6 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
                 ))}
               </div>
             </div>
-            </div>
           </motion.div>
         )}
       </AnimatePresence>
