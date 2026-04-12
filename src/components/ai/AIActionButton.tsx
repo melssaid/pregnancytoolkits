@@ -99,7 +99,7 @@ export const AIActionButton: React.FC<AIActionButtonProps> = ({
 
         {showUsage && (
           <div className="flex items-center gap-2.5 px-1">
-            <Zap className="w-3 h-3 shrink-0 text-destructive" />
+            
             <div className="flex-1 h-2 rounded-full bg-muted/30 overflow-hidden" style={{ boxShadow: 'inset 0 1px 2px hsl(0 0% 0% / 0.08)' }}>
               <div className="h-full rounded-full w-full" style={{ background: getBarGradient() }} />
             </div>
@@ -167,7 +167,7 @@ export const AIActionButton: React.FC<AIActionButtonProps> = ({
       {showUsage && (
         <div className="space-y-1.5">
           <div className="flex items-center gap-2.5 px-1">
-            <Zap className="w-3 h-3 shrink-0 text-primary" />
+            
             <div className="flex-1 h-2 rounded-full bg-muted/30 overflow-hidden" style={{ boxShadow: 'inset 0 1px 2px hsl(0 0% 0% / 0.08)' }}>
               <motion.div
                 className="h-full rounded-full"
@@ -187,8 +187,8 @@ export const AIActionButton: React.FC<AIActionButtonProps> = ({
             <div className="space-y-2">
               <p className="text-[10px] text-muted-foreground/70 text-center font-medium px-1">
                 <span className="inline-flex items-center gap-1">
-                  <span className="inline-block w-1.5 h-1.5 rounded-full bg-primary/50" />
                   {weight === 0 ? labels.costHint0 : weight === 2 ? labels.costHint2 : weight === 0.5 ? labels.costHint05 : labels.costHint1}
+                </span>
                 </span>
               </p>
               <UpgradeCard />
