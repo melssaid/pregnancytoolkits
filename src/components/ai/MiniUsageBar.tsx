@@ -1,19 +1,19 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Zap } from 'lucide-react';
+import { Zap, Crown } from 'lucide-react';
 import { useAIUsage } from '@/contexts/AIUsageContext';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { resolveWeight, type AIToolType, type SmartSection } from '@/services/smartEngine/types';
 
-const usageLabels: Record<string, { costHint0: string; costHint05: string; costHint1: string; costHint2: string; upgradeHint: string }> = {
-  en: { costHint0: 'Free ✨', costHint05: 'Uses ½ credit', costHint1: 'Uses 1 credit', costHint2: 'Uses 2 credits', upgradeHint: 'Get 60/month with Premium →' },
-  ar: { costHint0: 'مجاني ✨', costHint05: 'تستهلك نصف نقطة', costHint1: 'تستهلك نقطة واحدة', costHint2: 'تستهلك نقطتين', upgradeHint: 'ترقّي للحصول على 60 تحليل شهرياً ←' },
-  de: { costHint0: 'Kostenlos ✨', costHint05: '½ Credit', costHint1: '1 Credit verbraucht', costHint2: '2 Credits verbraucht', upgradeHint: '60/Monat mit Premium erhalten →' },
-  fr: { costHint0: 'Gratuit ✨', costHint05: '½ crédit', costHint1: 'Utilise 1 crédit', costHint2: 'Utilise 2 crédits', upgradeHint: 'Obtenez 60/mois avec Premium →' },
-  es: { costHint0: 'Gratis ✨', costHint05: '½ crédito', costHint1: 'Usa 1 crédito', costHint2: 'Usa 2 créditos', upgradeHint: 'Obtén 60/mes con Premium →' },
-  pt: { costHint0: 'Grátis ✨', costHint05: '½ crédito', costHint1: 'Usa 1 crédito', costHint2: 'Usa 2 créditos', upgradeHint: 'Obtenha 60/mês com Premium →' },
-  tr: { costHint0: 'Ücretsiz ✨', costHint05: '½ kredi', costHint1: '1 kredi kullanır', costHint2: '2 kredi kullanır', upgradeHint: 'Premium ile 60/ay alın →' },
+const usageLabels: Record<string, { costHint0: string; costHint05: string; costHint1: string; costHint2: string; upgradeTitle: string; upgradeSub: string; upgradeCta: string }> = {
+  en: { costHint0: 'Free ✨', costHint05: 'Uses ½ credit', costHint1: 'Uses 1 credit', costHint2: 'Uses 2 credits', upgradeTitle: 'Want more analyses?', upgradeSub: 'Get 60 smart analyses every month', upgradeCta: 'View Plans' },
+  ar: { costHint0: 'مجاني ✨', costHint05: 'تستهلك نصف نقطة', costHint1: 'تستهلك نقطة واحدة', costHint2: 'تستهلك نقطتين', upgradeTitle: 'تريدين تحليلات أكثر؟', upgradeSub: '60 تحليل ذكي كل شهر', upgradeCta: 'عرض الباقات' },
+  de: { costHint0: 'Kostenlos ✨', costHint05: '½ Credit', costHint1: '1 Credit verbraucht', costHint2: '2 Credits verbraucht', upgradeTitle: 'Mehr Analysen gewünscht?', upgradeSub: '60 smarte Analysen pro Monat', upgradeCta: 'Pläne ansehen' },
+  fr: { costHint0: 'Gratuit ✨', costHint05: '½ crédit', costHint1: 'Utilise 1 crédit', costHint2: 'Utilise 2 crédits', upgradeTitle: 'Plus d\'analyses ?', upgradeSub: '60 analyses intelligentes par mois', upgradeCta: 'Voir les offres' },
+  es: { costHint0: 'Gratis ✨', costHint05: '½ crédito', costHint1: 'Usa 1 crédito', costHint2: 'Usa 2 créditos', upgradeTitle: '¿Más análisis?', upgradeSub: '60 análisis inteligentes al mes', upgradeCta: 'Ver planes' },
+  pt: { costHint0: 'Grátis ✨', costHint05: '½ crédito', costHint1: 'Usa 1 crédito', costHint2: 'Usa 2 créditos', upgradeTitle: 'Quer mais análises?', upgradeSub: '60 análises inteligentes por mês', upgradeCta: 'Ver planos' },
+  tr: { costHint0: 'Ücretsiz ✨', costHint05: '½ kredi', costHint1: '1 kredi kullanır', costHint2: '2 kredi kullanır', upgradeTitle: 'Daha fazla analiz?', upgradeSub: 'Ayda 60 akıllı analiz', upgradeCta: 'Planları gör' },
 };
 
 interface MiniUsageBarProps {
@@ -42,7 +42,8 @@ export const MiniUsageBar: React.FC<MiniUsageBarProps> = ({ toolType, section, c
   };
 
   return (
-    <div className={`space-y-1.5 ${className}`}>
+    <div className={`space-y-2 ${className}`}>
+      {/* Usage bar */}
       <div className="flex items-center gap-2.5 px-1">
         <Zap className={`w-3 h-3 shrink-0 ${isLimitReached ? 'text-destructive' : 'text-primary'}`} />
         <div className="flex-1 h-2 rounded-full bg-muted/30 overflow-hidden" style={{ boxShadow: 'inset 0 1px 2px hsl(0 0% 0% / 0.08)' }}>
@@ -59,20 +60,39 @@ export const MiniUsageBar: React.FC<MiniUsageBarProps> = ({ toolType, section, c
         </span>
       </div>
 
-      {isFree && (
-        <p className="text-[10px] text-muted-foreground/60 text-center leading-tight px-1">
+      {/* Cost hint */}
+      {weight > 0 && (
+        <p className="text-[10px] text-muted-foreground/70 text-center font-medium px-1">
           <span className="inline-flex items-center gap-1">
-            <span className="inline-block w-1.5 h-1.5 rounded-full bg-primary/60" />
-            {weight === 0 ? labels.costHint0 : weight === 2 ? labels.costHint2 : weight === 0.5 ? labels.costHint05 : labels.costHint1}
-          </span>
-          {' · '}
-          <span
-            className="text-primary/70 cursor-pointer hover:text-primary hover:underline transition-colors"
-            onClick={(e) => { e.stopPropagation(); navigate('/pricing-demo'); }}
-          >
-            {labels.upgradeHint}
+            <span className="inline-block w-1.5 h-1.5 rounded-full bg-primary/50" />
+            {weight === 2 ? labels.costHint2 : weight === 0.5 ? labels.costHint05 : labels.costHint1}
           </span>
         </p>
+      )}
+      {weight === 0 && (
+        <p className="text-[10px] text-muted-foreground/70 text-center font-medium px-1">
+          {labels.costHint0}
+        </p>
+      )}
+
+      {/* Upgrade CTA card for free users */}
+      {isFree && (
+        <motion.button
+          onClick={(e) => { e.stopPropagation(); navigate('/pricing-demo'); }}
+          whileTap={{ scale: 0.98 }}
+          className="w-full rounded-xl border border-primary/20 bg-gradient-to-r from-primary/[0.06] via-primary/[0.03] to-transparent p-3 flex items-center gap-3 hover:border-primary/35 hover:shadow-sm transition-all duration-200"
+        >
+          <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+            <Crown className="w-4 h-4 text-primary" />
+          </div>
+          <div className="flex-1 min-w-0 text-start">
+            <p className="text-xs font-bold text-foreground leading-tight">{labels.upgradeTitle}</p>
+            <p className="text-[10px] text-muted-foreground font-medium mt-0.5">{labels.upgradeSub}</p>
+          </div>
+          <span className="text-[10px] font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-lg shrink-0">
+            {labels.upgradeCta}
+          </span>
+        </motion.button>
       )}
     </div>
   );
