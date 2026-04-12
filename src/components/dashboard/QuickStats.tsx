@@ -133,17 +133,12 @@ export function QuickStats({
             >
               <Link
                 to="/tools/ai-meal-suggestion"
-                className="flex items-center gap-2.5 p-2.5 rounded-xl bg-primary/5 border border-primary/20 hover:border-primary/40 transition-all group"
+                className="flex flex-col p-3 rounded-xl bg-primary/5 border border-primary/20 hover:border-primary/40 transition-all group"
               >
-                <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <Calendar className="w-3.5 h-3.5 text-primary" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-[10px] font-semibold text-foreground group-hover:text-primary transition-colors leading-tight whitespace-normal break-words">
-                    {t("dashboard.quickStats.nextAppointment")}
-                  </p>
-                  <p className="text-[9px] text-muted-foreground whitespace-normal break-words">{nextAppointment}</p>
-                </div>
+                <p className="text-[11px] font-semibold text-foreground group-hover:text-primary transition-colors leading-tight whitespace-normal break-words">
+                  {t("dashboard.quickStats.nextAppointment")}
+                </p>
+                <p className="text-[10px] text-foreground/60 font-medium whitespace-normal break-words mt-0.5">{nextAppointment}</p>
               </Link>
             </motion.div>
           )}
