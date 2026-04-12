@@ -25,7 +25,7 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
     const [moreOpen, setMoreOpen] = useState(false);
     const [aiToolsOpen, setAiToolsOpen] = useState(false);
     const { unreadCount } = useNotifications();
-    const { tier } = useAIUsage();
+    const { tier, remaining } = useAIUsage();
     const isPremium = tier === 'premium';
 
     const aiTools = useMemo(() => toolsData.filter(tool => tool.hasAI), []);
