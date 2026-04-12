@@ -64,10 +64,7 @@ export const MiniUsageBar: React.FC<MiniUsageBarProps> = ({ toolType, section, c
       {/* Cost hint */}
       {weight > 0 && (
         <p className="text-[10px] text-muted-foreground/70 text-center font-medium px-1">
-          <span className="inline-flex items-center gap-1">
-            {weight === 2 ? labels.costHint2 : weight === 0.5 ? labels.costHint05 : labels.costHint1}
-          </span>
-          </span>
+          {weight === 2 ? labels.costHint2 : weight === 0.5 ? labels.costHint05 : labels.costHint1}
         </p>
       )}
       {weight === 0 && (
