@@ -9,6 +9,7 @@ import {
 import { useAIUsage } from '@/contexts/AIUsageContext';
 import { toast } from 'sonner';
 import { DataBackupManager } from '@/components/settings/DataBackupManager';
+import { CouponRedeemer } from '@/components/settings/CouponRedeemer';
 import { EncryptionManager } from '@/components/settings/EncryptionManager';
 import { AccountDeletion } from '@/components/settings/AccountDeletion';
 import { LanguageSelector } from '@/components/settings/LanguageSelector';
@@ -172,6 +173,11 @@ const Settings: React.FC = () => {
                   </div>
                 </div>
               ))}
+
+              {/* Coupon Redeemer */}
+              <div className="rounded-2xl border bg-card p-4">
+                <CouponRedeemer />
+              </div>
 
               {/* Admin AI Reset — dev only */}
               {import.meta.env.DEV && (
