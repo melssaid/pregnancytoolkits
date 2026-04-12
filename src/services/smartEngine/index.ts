@@ -31,6 +31,7 @@ export {
   consumeQuota,
   syncFromServer,
   setTier,
+  applyCouponTier,
   canClaimBonus,
   claimBonus,
   isPromoActive,
