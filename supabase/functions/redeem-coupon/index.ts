@@ -3,7 +3,7 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2.49.1";
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers":
-    "authorization, x-client-info, apikey, content-type",
+    "authorization, x-client-info, apikey, content-type, x-admin-key",
 };
 
 function jsonResponse(body: Record<string, unknown>, status = 200) {
@@ -44,6 +44,21 @@ Deno.serve(async (req) => {
 
     const body = await req.json();
     const { action, code, device_fingerprint, user_id } = body;
+
+    // ── ACTION: ADMIN STATS (no fingerprint needed) ──
+    if (action === "admin_stats") {
+      const adminKey = req.headers.get("x-admin-key") || "";
+      const expectedKey = Deno.env.get("ADMIN_NOTIFICATIONS_KEY") || "";
+      if (!adminKey || adminKey !== expectedKey) {
+        return jsonResponse({ error: "UNAUTHORIZED" }, 401);
+      }
+      const { data: allClaims } = await supabase
+        .from("coupon_claims")
+        .select("id, coupon_id, device_fingerprint, user_id, expires_at, created_at")
+        .order("created_at", { ascending: false })
+        .limit(1000);
+      return jsonResponse({ claims: allClaims || [] });
+    }
 
     if (!device_fingerprint || !user_id) {
       return jsonResponse({ error: "Missing device_fingerprint or user_id" }, 400);

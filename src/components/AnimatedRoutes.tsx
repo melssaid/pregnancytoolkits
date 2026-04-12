@@ -139,6 +139,7 @@ const Testimonials = lazy(() => import("@/pages/Testimonials"));
 const DiscoverTools = lazy(() => import("@/pages/DiscoverTools"));
 const AdminUsageDashboardPage = lazy(() => import("@/pages/AdminUsageDashboard"));
 const AdminNotifications = lazy(() => import("@/pages/AdminNotifications"));
+const AdminCoupons = lazy(() => import("@/pages/AdminCoupons"));
 const WeeklyAchievements = lazy(() => import("@/pages/WeeklyAchievements"));
 
 export function AnimatedRoutes() {
@@ -249,6 +250,7 @@ export function AnimatedRoutes() {
         <Route path="/admin/aso-generator" element={<PageTransition><ASOGenerator /></PageTransition>} />
         <Route path="/admin/usage" element={<PageTransition><AdminUsageDashboardPage /></PageTransition>} />
         <Route path="/admin/notifications" element={<PageTransition><AdminNotifications /></PageTransition>} />
+        <Route path="/admin/coupons" element={<PageTransition><AdminCoupons /></PageTransition>} />
 
         {/* LEGACY REDIRECTS — deleted tools */}
         <Route path="/tools/smart-walking-coach" element={<Navigate to="/tools/ai-fitness-coach" replace />} />
