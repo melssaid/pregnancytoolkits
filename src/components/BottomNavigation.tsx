@@ -1,5 +1,5 @@
 import { forwardRef, useState, memo, useMemo } from "react";
-import { Home, LayoutDashboard, Sparkles, Menu, Search, Bell, Settings, X, Crown } from "lucide-react";
+import { Home, LayoutDashboard, Grid3X3, Menu, Search, Bell, Settings, X, Crown } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence, PanInfo } from "framer-motion";
@@ -12,7 +12,7 @@ import { useAIUsage } from "@/contexts/AIUsageContext";
 const NAV_ITEMS = [
   { id: "home", icon: Home, labelKey: "nav.home", href: "/" },
   { id: "dashboard", icon: LayoutDashboard, labelKey: "nav.dashboard", href: "/dashboard" },
-  { id: "ai-tools", icon: Sparkles, labelKey: "nav.aiTools", href: null },
+  { id: "ai-tools", icon: Grid3X3, labelKey: "nav.aiTools", href: null },
   { id: "more", icon: Menu, labelKey: "nav.more", href: null },
 ] as const;
 
