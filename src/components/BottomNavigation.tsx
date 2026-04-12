@@ -279,7 +279,21 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
                 : 'via-[hsl(340,50%,80%)]'
             } to-transparent z-10`} />
 
-            {/* Premium crown badge — centered between 2nd and 3rd nav items */}
+            {/* Remaining analyses badge — centered top */}
+            {!isPremium && (
+              <Link
+                to="/pricing"
+                className="absolute -top-3 z-20 flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-gradient-to-r from-primary/90 to-primary/70 shadow-md ring-2 ring-card"
+                style={{ left: '50%', transform: 'translateX(-50%)' }}
+              >
+                <Sparkles className="w-2.5 h-2.5 text-white" strokeWidth={2.5} />
+                <span className="text-[8px] font-bold text-white whitespace-nowrap">
+                  {t("nav.freeRemaining", { count: remaining })}
+                </span>
+              </Link>
+            )}
+
+            {/* Premium crown badge — centered */}
             {isPremium && (
               <motion.div
                 className="absolute -top-3 z-20 w-7 h-7 rounded-full bg-gradient-to-br from-[hsl(45,80%,60%)] to-[hsl(35,70%,45%)] flex items-center justify-center shadow-lg ring-2 ring-card"
@@ -292,11 +306,7 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
             )}
             
             {/* Background — warm white with soft rose tint & top shadow */}
-            <div className={`absolute inset-0 ${
-              isPremium
-                ? 'bg-[hsl(340,15%,99%)]'
-                : 'bg-[hsl(340,15%,99%)]'
-            } backdrop-blur-xl shadow-[0_-4px_24px_-4px_hsl(340,40%,70%,0.12)]`} />
+            <div className="absolute inset-0 bg-[hsl(340,15%,99%)] backdrop-blur-xl shadow-[0_-4px_24px_-4px_hsl(340,40%,70%,0.12)]" />
             
             <div className="relative flex items-center justify-evenly px-2 py-2">
               {NAV_ITEMS.map((item, idx) => {
