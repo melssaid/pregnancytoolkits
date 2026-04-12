@@ -558,7 +558,13 @@ const CouponAndShareRow = memo(function CouponAndShareRow() {
 const Index = () => {
   const { t, i18n } = useTranslation();
   const { tier, isUnlocked, isLoading: subLoading } = useSubscriptionStatus();
+  const { refresh } = useAIUsage();
   const lang = i18n.language?.split('-')[0] || 'en';
+
+  // Refresh account state every time user navigates to home
+  useEffect(() => {
+    refresh();
+  }, [refresh]);
 
   return (
     <Layout>
