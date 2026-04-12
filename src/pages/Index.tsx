@@ -30,6 +30,13 @@ const categoryStyles: Record<string, { iconColor: string; iconBg: string; toolHo
   "categories.postpartum":    { iconColor: "text-[hsl(310,35%,52%)] dark:text-[hsl(310,30%,62%)]", iconBg: "bg-[hsl(310,30%,94%)] dark:bg-[hsl(310,22%,18%)]", toolHover: "hover:bg-[hsl(310,25%,96%)] dark:hover:bg-[hsl(310,20%,14%)]", hoverShadow: "hover:shadow-[0_2px_12px_-2px_hsl(310,30%,52%,0.15)]", hoverBorder: "hover:border-[hsl(310,22%,85%)] dark:hover:border-[hsl(310,18%,25%)]" },
 };
 
+// Journey-specific icon colors — match each section's header gradient
+const journeyIconStyles: Record<JourneyKey, { iconColor: string; iconBg: string }> = {
+  planning:   { iconColor: "text-[hsl(15,70%,55%)] dark:text-[hsl(15,65%,62%)]",   iconBg: "bg-[hsl(15,55%,94%)] dark:bg-[hsl(15,35%,18%)]" },
+  pregnant:   { iconColor: "text-[hsl(340,65%,52%)] dark:text-[hsl(340,60%,62%)]", iconBg: "bg-[hsl(340,50%,94%)] dark:bg-[hsl(340,35%,18%)]" },
+  postpartum: { iconColor: "text-[hsl(290,35%,52%)] dark:text-[hsl(290,30%,62%)]", iconBg: "bg-[hsl(290,30%,94%)] dark:bg-[hsl(290,22%,18%)]" },
+};
+
 // ── Journey card theming — emotionally resonant, brand-cohesive ─────────
 interface JourneyConfig {
   key: JourneyKey;
@@ -76,12 +83,14 @@ const journeyConfigs: JourneyConfig[] = [
 ];
 
 // ── Tool row component ──────────────────────────────────────────────────
-const ToolRow = memo(function ToolRow({ tool, isRTL, isLocked = false }: { tool: Tool; isRTL: boolean; isLocked?: boolean }) {
+const ToolRow = memo(function ToolRow({ tool, isRTL, isLocked = false, journeyKey }: { tool: Tool; isRTL: boolean; isLocked?: boolean; journeyKey?: JourneyKey }) {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const ToolIconComp = tool.icon;
   const hasPng = !!tool.pngIcon;
-  const style = categoryStyles[tool.categoryKey] || { iconColor: "text-muted-foreground", iconBg: "bg-muted/30", toolHover: "hover:bg-muted/50", hoverShadow: "hover:shadow-sm", hoverBorder: "hover:border-border/30" };
+  const catStyle = categoryStyles[tool.categoryKey] || { iconColor: "text-muted-foreground", iconBg: "bg-muted/30", toolHover: "hover:bg-muted/50", hoverShadow: "hover:shadow-sm", hoverBorder: "hover:border-border/30" };
+  const jStyle = journeyKey ? journeyIconStyles[journeyKey] : null;
+  const style = { ...catStyle, ...(jStyle || {}) };
 
   const handleClick = (e: React.MouseEvent) => {
     if (isLocked) {
@@ -221,7 +230,7 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.25, delay: toolIdx * 0.03, ease: [0.25, 0.1, 0.25, 1] }}
                   >
-                    <ToolRow tool={tool} isRTL={isRTL} isLocked={false} />
+                    <ToolRow tool={tool} isRTL={isRTL} isLocked={false} journeyKey={config.key} />
                   </motion.div>
                 ))}
               </div>
