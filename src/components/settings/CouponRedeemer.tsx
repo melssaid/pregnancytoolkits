@@ -56,7 +56,7 @@ export const CouponRedeemer: React.FC = () => {
   };
 
   return (
-    <div className="space-y-4" data-build="coupon-live-fix-20260412">
+    <div className="space-y-4">
       {/* Success animation */}
       <AnimatePresence>
         {justActivated && (
