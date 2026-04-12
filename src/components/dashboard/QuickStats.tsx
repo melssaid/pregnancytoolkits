@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Gauge, Activity, Heart, Droplets, Calendar, Ruler } from "lucide-react";
+import { Calendar, Ruler } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
