@@ -54,9 +54,22 @@ export function CategorySection({
           </p>
         </div>
         {onToggle && (
-          <ChevronRight 
-            className={`h-5 w-5 text-muted-foreground transition-transform duration-300 ${isExpanded ? 'rotate-90' : ''}`} 
-          />
+          <motion.div
+            animate={{ rotate: isExpanded ? 90 : 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className={`w-8 h-8 rounded-xl flex items-center justify-center transition-colors duration-300 ${
+              isExpanded
+                ? 'bg-primary/12 shadow-sm'
+                : 'bg-muted/50 group-hover:bg-primary/8'
+            }`}
+          >
+            <ChevronRight
+              className={`h-4 w-4 transition-colors duration-300 ${
+                isExpanded ? 'text-primary' : 'text-muted-foreground group-hover:text-primary/70'
+              }`}
+              strokeWidth={2.5}
+            />
+          </motion.div>
         )}
       </div>
       
