@@ -30,6 +30,7 @@ const Settings: React.FC = () => {
   const isRTL = i18n.language === 'ar';
   const [activeView, setActiveView] = useState<SettingsView>('main');
   const { used, limit, remaining, resetUsage } = useAIUsage();
+  const isDeveloperToolsVisible = import.meta.env.DEV;
   const navigate = useNavigate();
   const ChevronIcon = isRTL ? ChevronLeft : ChevronRight;
 
@@ -158,36 +159,37 @@ const Settings: React.FC = () => {
                 </div>
               ))}
 
-              {/* AI Usage & Reset */}
-              <div className="space-y-1.5">
-                <h3 className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider px-1">
-                  {t('settings.aiSection', 'AI Tools')}
-                </h3>
-                <div className="rounded-2xl border bg-card p-4 space-y-3">
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      <RotateCcw className="w-4 h-4 text-primary" />
+              {isDeveloperToolsVisible && (
+                <div className="space-y-1.5">
+                  <h3 className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider px-1">
+                    {t('settings.aiSection', 'AI Tools')}
+                  </h3>
+                  <div className="rounded-2xl border bg-card p-4 space-y-3">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <RotateCcw className="w-4 h-4 text-primary" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <span className="text-[13px] font-semibold text-foreground block leading-tight">
+                          {t('settings.aiReset.title')}
+                        </span>
+                        <span className="text-[10px] text-muted-foreground">
+                          {t('settings.aiReset.status', { used, limit, remaining })}
+                        </span>
+                      </div>
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <span className="text-[13px] font-semibold text-foreground block leading-tight">
-                        {t('settings.aiReset.title')}
-                      </span>
-                      <span className="text-[10px] text-muted-foreground">
-                        {t('settings.aiReset.status', { used, limit, remaining })}
-                      </span>
-                    </div>
+                    <button
+                      onClick={() => {
+                        resetUsage();
+                        toast.success(t('settings.aiReset.success'));
+                      }}
+                      className="w-full py-2.5 rounded-xl bg-primary/10 text-primary text-sm font-semibold hover:bg-primary/20 transition-colors active:scale-[0.98]"
+                    >
+                      {t('settings.aiReset.button')}
+                    </button>
                   </div>
-                  <button
-                    onClick={() => {
-                      resetUsage();
-                      toast.success(t('settings.aiReset.success'));
-                    }}
-                    className="w-full py-2.5 rounded-xl bg-primary/10 text-primary text-sm font-semibold hover:bg-primary/20 transition-colors active:scale-[0.98]"
-                  >
-                    {t('settings.aiReset.button')}
-                  </button>
                 </div>
-              </div>
+              )}
 
               {/* Coupon Redeemer */}
               <div className="rounded-2xl border bg-card p-4">
