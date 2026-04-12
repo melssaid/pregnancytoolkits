@@ -6,6 +6,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { getDeviceFingerprint } from '@/lib/deviceFingerprint';
 import { getUserId } from '@/hooks/useSupabase';
+import { getBackendFunctionUrl, getBackendPublishableKey } from '@/lib/backendConfig';
 
 const CACHE_KEY = 'active_coupon_v1';
 
@@ -51,6 +52,9 @@ export function useActiveCoupon() {
     redeeming: false,
   });
 
+  const couponEndpoint = getBackendFunctionUrl('redeem-coupon');
+  const couponAuthHeader = `Bearer ${getBackendPublishableKey()}`;
+
   // Check server for active coupon on mount
   useEffect(() => {
     let cancelled = false;
@@ -58,17 +62,14 @@ export function useActiveCoupon() {
       try {
         const fingerprint = await getDeviceFingerprint();
         const userId = getUserId();
-        const res = await fetch(
-          `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/redeem-coupon`,
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
-            },
-            body: JSON.stringify({ action: 'check', device_fingerprint: fingerprint, user_id: userId }),
-          }
-        );
+        const res = await fetch(couponEndpoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: couponAuthHeader,
+          },
+          body: JSON.stringify({ action: 'check', device_fingerprint: fingerprint, user_id: userId }),
+        });
         if (!res.ok) { setState(s => ({ ...s, loading: false })); return; }
         const data = await res.json();
         if (!cancelled) {
@@ -81,24 +82,21 @@ export function useActiveCoupon() {
       }
     })();
     return () => { cancelled = true; };
-  }, []);
+  }, [couponAuthHeader, couponEndpoint]);
 
   const redeemCoupon = useCallback(async (code: string): Promise<{ success: boolean; error?: string; coupon?: ActiveCoupon }> => {
     setState(s => ({ ...s, redeeming: true }));
     try {
       const fingerprint = await getDeviceFingerprint();
       const userId = getUserId();
-      const res = await fetch(
-        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/redeem-coupon`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
-          },
-          body: JSON.stringify({ action: 'redeem', code: code.trim().toUpperCase(), device_fingerprint: fingerprint, user_id: userId }),
-        }
-      );
+      const res = await fetch(couponEndpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: couponAuthHeader,
+        },
+        body: JSON.stringify({ action: 'redeem', code: code.trim().toUpperCase(), device_fingerprint: fingerprint, user_id: userId }),
+      });
       const data = await res.json();
       if (!res.ok) {
         setState(s => ({ ...s, redeeming: false }));
@@ -118,7 +116,7 @@ export function useActiveCoupon() {
       setState(s => ({ ...s, redeeming: false }));
       return { success: false, error: 'Network error' };
     }
-  }, []);
+  }, [couponAuthHeader, couponEndpoint]);
 
   // Computed: is coupon still valid?
   const isActive = state.activeCoupon ? new Date(state.activeCoupon.expiresAt) > new Date() : false;
