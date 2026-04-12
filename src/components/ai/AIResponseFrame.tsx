@@ -33,7 +33,7 @@ export const AIResponseFrame = ({
   expectedLength = 2000,
   toolId,
 }: AIResponseFrameProps) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { isRTL } = useLanguage();
   const navigate = useNavigate();
   const { remaining, limit, tier, isLimitReached } = useAIUsage();
