@@ -122,6 +122,77 @@ export type Database = {
         }
         Relationships: []
       }
+      coupon_claims: {
+        Row: {
+          activated_at: string
+          coupon_id: string
+          created_at: string
+          device_fingerprint: string
+          expires_at: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          activated_at?: string
+          coupon_id: string
+          created_at?: string
+          device_fingerprint: string
+          expires_at: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          activated_at?: string
+          coupon_id?: string
+          created_at?: string
+          device_fingerprint?: string
+          expires_at?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "coupon_claims_coupon_id_fkey"
+            columns: ["coupon_id"]
+            isOneToOne: false
+            referencedRelation: "coupons"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      coupons: {
+        Row: {
+          code: string
+          created_at: string
+          current_claims: number
+          duration_type: string
+          expires_at: string | null
+          id: string
+          is_active: boolean
+          max_claims: number
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          current_claims?: number
+          duration_type: string
+          expires_at?: string | null
+          id?: string
+          is_active?: boolean
+          max_claims?: number
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          current_claims?: number
+          duration_type?: string
+          expires_at?: string | null
+          id?: string
+          is_active?: boolean
+          max_claims?: number
+        }
+        Relationships: []
+      }
       notification_logs: {
         Row: {
           body: string
