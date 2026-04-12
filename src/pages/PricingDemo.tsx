@@ -203,7 +203,7 @@ export default function PricingDemo() {
               {t("pricing.title")}
             </h1>
             <p
-              className="text-[11px] text-muted-foreground leading-relaxed max-w-[220px] mx-auto"
+              className="text-xs text-muted-foreground leading-relaxed max-w-[240px] mx-auto"
               style={{ fontFamily: isAr ? "'Tajawal', sans-serif" : "'Montserrat', sans-serif" }}
             >
               {t("pricing.subtitle")}
