@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
-import { Check, X, Sparkles, Brain, Shield, Zap, Heart, Crown, Loader2 } from "lucide-react";
+import { Check, X, Sparkles, Brain, Shield, Zap, Heart, Crown, Loader2, Ticket } from "lucide-react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { requestPurchase, isDigitalGoodsAvailable, runBillingDiagnostics, clearBillingCache, type PlanType } from "@/lib/googlePlayBilling";
@@ -10,8 +10,8 @@ import { useNavigate, Link } from "react-router-dom";
 import pricingLogo from "@/assets/pricing-logo.webp";
 import { supabase } from "@/integrations/supabase/client";
 import { useAIUsage } from "@/contexts/AIUsageContext";
-
 import { usePlayPrices } from "@/hooks/usePlayPrices";
+import { CouponRedeemer } from "@/components/settings/CouponRedeemer";
 
 const features = [
   { icon: Brain, key: "feature1" },
@@ -203,7 +203,7 @@ export default function PricingDemo() {
               {t("pricing.title")}
             </h1>
             <p
-              className="text-[11px] text-muted-foreground leading-relaxed max-w-[220px] mx-auto"
+              className="text-xs text-muted-foreground leading-relaxed max-w-[240px] mx-auto"
               style={{ fontFamily: isAr ? "'Tajawal', sans-serif" : "'Montserrat', sans-serif" }}
             >
               {t("pricing.subtitle")}
@@ -223,10 +223,10 @@ export default function PricingDemo() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.2, delay: 0.12 + idx * 0.04 }}
-                className="flex items-center gap-1 px-2 py-1 rounded-full bg-muted/60 border border-border/30"
+                className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-muted/60 border border-border/30"
               >
-                <Icon className="w-2 h-2 text-muted-foreground" strokeWidth={2} />
-                <span className="text-[8px] font-medium text-muted-foreground leading-none whitespace-nowrap">
+                <Icon className="w-2.5 h-2.5 text-muted-foreground" strokeWidth={2} />
+                <span className="text-[10px] font-medium text-muted-foreground leading-none whitespace-nowrap">
                   {t(`pricing.${key}`)}
                 </span>
               </motion.div>
@@ -243,7 +243,7 @@ export default function PricingDemo() {
             {/* Yearly */}
             <button
               onClick={() => setSelected("yearly")}
-              className={`relative flex flex-col items-center text-center px-2 py-3.5 rounded-2xl border-2 transition-all duration-300 overflow-hidden ${
+              className={`relative flex flex-col items-center text-center px-2 py-3 rounded-2xl border-2 transition-all duration-300 overflow-hidden ${
                 selected === "yearly"
                   ? "border-primary bg-primary/[0.04] shadow-[0_0_20px_-6px_hsl(var(--primary)/0.2)]"
                   : "border-border/30 bg-card/60 hover:border-border/50"
@@ -251,53 +251,50 @@ export default function PricingDemo() {
             >
               <div className="absolute -top-px -end-px">
                 <div className="px-2 py-0.5 rounded-es-lg rounded-se-[12px] bg-gradient-to-r from-primary to-primary/80">
-                  <span className="text-[8px] font-bold text-primary-foreground">{t("pricing.bestValue")}</span>
+                  <span className="text-[9px] font-bold text-primary-foreground">{t("pricing.bestValue")}</span>
                 </div>
               </div>
-              <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mb-2 transition-colors ${
+              <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mb-1.5 transition-colors ${
                 selected === "yearly" ? "border-primary bg-primary" : "border-muted-foreground/25"
               }`}>
                 {selected === "yearly" && <Check className="w-2.5 h-2.5 text-primary-foreground" strokeWidth={3} />}
               </div>
-              <span className="text-[11px] font-bold text-foreground mb-1">{t("pricing.yearly")}</span>
-              <span className="text-[22px] font-extrabold text-foreground tabular-nums leading-none" style={{ fontFamily: "'Cairo', sans-serif" }}>
+              <span className="text-xs font-bold text-foreground mb-0.5">{t("pricing.yearly")}</span>
+              <span className="text-xl font-extrabold text-foreground tabular-nums leading-none" style={{ fontFamily: "'Cairo', sans-serif" }}>
                 {prices.yearly.display}
               </span>
-              <span className="text-[10px] text-muted-foreground mt-0.5">/{t("pricing.yr")}</span>
-              <div className="mt-2 flex flex-col items-center gap-1">
-                <span className="text-[9px] text-muted-foreground">{prices.monthlyEquivalent}/{t("pricing.mo")}</span>
+              <span className="text-[11px] text-muted-foreground mt-0.5">/{t("pricing.yr")}</span>
+              <div className="mt-1.5 flex flex-col items-center gap-0.5">
+                <span className="text-[10px] text-muted-foreground">{prices.monthlyEquivalent}/{t("pricing.mo")}</span>
                 <motion.span
-                  className="text-[8px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
+                  className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
                   animate={{ scale: [1, 1.08, 1] }}
                   transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                 >
                   {t("pricing.save")}
                 </motion.span>
-                <span className="text-[7px] text-muted-foreground/70 text-center leading-tight mt-0.5">
-                  {t("pricing.savingsBanner", "Save $15.89/year vs monthly")}
-                </span>
               </div>
             </button>
 
             {/* Monthly */}
             <button
               onClick={() => setSelected("monthly")}
-              className={`relative flex flex-col items-center text-center px-2 py-3.5 rounded-2xl border-2 transition-all duration-300 ${
+              className={`relative flex flex-col items-center text-center px-2 py-3 rounded-2xl border-2 transition-all duration-300 ${
                 selected === "monthly"
                   ? "border-primary bg-primary/[0.04] shadow-[0_0_20px_-6px_hsl(var(--primary)/0.2)]"
                   : "border-border/30 bg-card/60 hover:border-border/50"
               }`}
             >
-              <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mb-2 transition-colors ${
+              <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center mb-1.5 transition-colors ${
                 selected === "monthly" ? "border-primary bg-primary" : "border-muted-foreground/25"
               }`}>
                 {selected === "monthly" && <Check className="w-2.5 h-2.5 text-primary-foreground" strokeWidth={3} />}
               </div>
-              <span className="text-[11px] font-bold text-foreground mb-1">{t("pricing.monthly")}</span>
-              <span className="text-[22px] font-extrabold text-foreground tabular-nums leading-none" style={{ fontFamily: "'Cairo', sans-serif" }}>
+              <span className="text-xs font-bold text-foreground mb-0.5">{t("pricing.monthly")}</span>
+              <span className="text-xl font-extrabold text-foreground tabular-nums leading-none" style={{ fontFamily: "'Cairo', sans-serif" }}>
                 {prices.monthly.display}
               </span>
-              <span className="text-[10px] text-muted-foreground mt-0.5">/{t("pricing.mo")}</span>
+              <span className="text-[11px] text-muted-foreground mt-0.5">/{t("pricing.mo")}</span>
             </button>
           </motion.div>
         </div>
@@ -323,18 +320,18 @@ export default function PricingDemo() {
           </Button>
 
           <p
-            className="text-center text-[10px] text-muted-foreground leading-snug"
+            className="text-center text-[11px] text-muted-foreground leading-snug"
             style={{ fontFamily: isAr ? "'Tajawal', sans-serif" : "'Montserrat', sans-serif" }}
           >
             {t("pricing.ctaSub", { price: priceDisplay, period })}
           </p>
 
-          <p className="text-center text-[9px] text-muted-foreground/50 leading-relaxed">
+          <p className="text-center text-[10px] text-muted-foreground/60 leading-relaxed">
             {t("pricing.autoRenew")}
           </p>
 
-          <div className="flex items-center justify-center gap-2 flex-wrap pt-0.5">
-            <span className="text-[9px] text-muted-foreground/50 text-center">
+          <div className="flex items-center justify-center gap-2 flex-wrap">
+            <span className="text-[10px] text-muted-foreground/60 text-center">
               {t("pricing.termsPrefix")}{" "}
               <Link to="/terms" className="underline hover:text-foreground transition-colors">
                 {t("layout.footer.terms")}
@@ -344,6 +341,11 @@ export default function PricingDemo() {
                 {t("layout.footer.privacy")}
               </Link>
             </span>
+          </div>
+
+          {/* Coupon Redeemer */}
+          <div className="pt-2 border-t border-border/20">
+            <CouponRedeemer />
           </div>
         </motion.div>
 
