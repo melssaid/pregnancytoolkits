@@ -360,11 +360,16 @@ const FooterCard = memo(function FooterCard() {
     >
       <div
         onClick={() => navigate('/pricing-demo')}
-        className={`w-full cursor-pointer rounded-2xl overflow-hidden border shadow-lg hover:shadow-xl transition-all duration-300 ${
+        className={`w-full cursor-pointer rounded-2xl overflow-hidden border transition-all duration-300 ${
           showExhausted
             ? 'bg-gradient-to-br from-destructive/[0.06] via-card to-destructive/[0.03] border-destructive/25'
             : 'bg-gradient-to-br from-[hsl(300,25%,97%)] via-card to-[hsl(340,20%,96%)] border-[hsl(340,25%,88%)] dark:from-[hsl(300,15%,12%)] dark:via-card dark:to-[hsl(340,15%,11%)] dark:border-[hsl(340,15%,20%)]'
         }`}
+        style={{
+          boxShadow: showExhausted
+            ? '0 4px 20px -4px hsl(12 60% 55% / 0.15), 0 2px 8px -2px hsl(12 60% 55% / 0.1)'
+            : '0 4px 24px -6px hsl(340 50% 55% / 0.18), 0 2px 10px -3px hsl(300 30% 55% / 0.08), 0 1px 4px -1px hsl(340 40% 50% / 0.06)'
+        }}
       >
         {/* Top accent */}
         <div className={`h-[3px] relative overflow-hidden ${
@@ -507,6 +512,7 @@ const CouponAndShareRow = memo(function CouponAndShareRow() {
         <button
           onClick={() => setCouponOpen(true)}
           className="flex-1 flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-gradient-to-r from-[hsl(340,30%,96%)] to-[hsl(35,40%,96%)] border border-[hsl(340,30%,88%)] hover:from-[hsl(340,35%,94%)] hover:to-[hsl(35,45%,94%)] active:scale-[0.98] transition-all dark:from-[hsl(340,20%,14%)] dark:to-[hsl(35,20%,14%)] dark:border-[hsl(340,15%,22%)]"
+          style={{ boxShadow: '0 2px 12px -3px hsl(340 40% 55% / 0.12), 0 1px 4px -1px hsl(340 30% 50% / 0.06)' }}
         >
           <Gift className="w-4 h-4 text-primary flex-shrink-0" strokeWidth={2} />
           <span className="text-xs font-semibold text-foreground/70">
@@ -518,6 +524,7 @@ const CouponAndShareRow = memo(function CouponAndShareRow() {
         <button
           onClick={handleShare}
           className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-gradient-to-r from-[hsl(290,20%,96%)] to-[hsl(310,25%,96%)] border border-[hsl(290,20%,88%)] hover:from-[hsl(290,25%,94%)] hover:to-[hsl(310,30%,94%)] active:scale-[0.98] transition-all dark:from-[hsl(290,15%,14%)] dark:to-[hsl(310,15%,14%)] dark:border-[hsl(290,10%,22%)]"
+          style={{ boxShadow: '0 2px 12px -3px hsl(290 25% 55% / 0.1), 0 1px 4px -1px hsl(310 20% 50% / 0.05)' }}
         >
           <Share2 className="w-4 h-4 text-primary flex-shrink-0" strokeWidth={2} />
           <span className="text-xs font-semibold text-foreground/70">

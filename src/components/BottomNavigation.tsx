@@ -303,7 +303,7 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
             )}
             
             {/* Background — warm white with soft rose tint & top shadow */}
-            <div className="absolute inset-0 bg-[hsl(340,15%,99%)] backdrop-blur-xl shadow-[0_-4px_24px_-4px_hsl(340,40%,70%,0.12)]" />
+            <div className="absolute inset-0 bg-[hsl(340,15%,99%)] backdrop-blur-xl" style={{ boxShadow: '0 -6px 28px -6px hsl(340 40% 65% / 0.14), 0 -2px 10px -3px hsl(300 25% 60% / 0.06)' }} />
             
             <div className="relative flex items-center justify-evenly px-2 py-2">
               {NAV_ITEMS.map((item, idx) => {
