@@ -292,14 +292,18 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
 
             {/* Premium crown badge — centered */}
             {isPremium && (
-              <motion.div
-                className="absolute -top-3 z-20 w-7 h-7 rounded-full bg-gradient-to-br from-[hsl(45,80%,60%)] to-[hsl(35,70%,45%)] flex items-center justify-center shadow-lg ring-2 ring-card"
+              <div
+                className="absolute -top-3 z-20"
                 style={{ left: '50%', transform: 'translateX(-50%)' }}
-                animate={{ scale: [1, 1.15, 1], boxShadow: ['0 0 8px hsl(40,75%,55%,0.3)', '0 0 16px hsl(40,75%,55%,0.6)', '0 0 8px hsl(40,75%,55%,0.3)'] }}
-                transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
               >
-                <Crown className="w-3.5 h-3.5 text-white" strokeWidth={2.5} fill="currentColor" />
-              </motion.div>
+                <motion.div
+                  className="w-7 h-7 rounded-full bg-gradient-to-br from-[hsl(45,80%,60%)] to-[hsl(35,70%,45%)] flex items-center justify-center shadow-lg ring-2 ring-card"
+                  animate={{ scale: [1, 1.15, 1], boxShadow: ['0 0 8px hsl(40,75%,55%,0.3)', '0 0 16px hsl(40,75%,55%,0.6)', '0 0 8px hsl(40,75%,55%,0.3)'] }}
+                  transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <Crown className="w-3.5 h-3.5 text-white" strokeWidth={2.5} fill="currentColor" />
+                </motion.div>
+              </div>
             )}
             
             {/* Background — warm white with soft rose tint & top shadow */}
