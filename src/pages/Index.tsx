@@ -463,68 +463,65 @@ const FooterCard = memo(function FooterCard() {
   );
 });
 
-// ── Share App Button ────────────────────────────────────────────────────
+// ── Coupon + Share Row ──────────────────────────────────────────────────
 const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=app.pregnancytoolkits.android";
 
-const ShareAppButton = memo(function ShareAppButton() {
-  const { t, i18n } = useTranslation();
+const CouponAndShareRow = memo(function CouponAndShareRow() {
+  const { i18n } = useTranslation();
+  const navigate = useNavigate();
   const lang = i18n.language?.split('-')[0] || 'en';
-
-  const shareLabels: Record<string, { text: string; shareTitle: string; shareText: string }> = {
-    en: { text: 'Share with an expecting friend', shareTitle: 'Pregnancy Toolkits', shareText: '🤰 Try "Pregnancy Toolkits" — 30+ free smart tools for pregnancy tracking, due date calculator & personalized daily tips!\n⭐ Free & Private' },
-    ar: { text: 'شاركي التطبيق مع صديقة حامل', shareTitle: 'أدوات الحمل الذكية', shareText: '🤰 جربي "أدوات الحمل الذكية" — أكثر من 30 أداة مجانية لمتابعة الحمل وحاسبة الولادة ونصائح يومية!\n⭐ مجاني وخاص' },
-    de: { text: 'Mit einer werdenden Mutter teilen', shareTitle: 'Pregnancy Toolkits', shareText: '🤰 Probier "Pregnancy Toolkits" — 30+ kostenlose Tools für Schwangerschaft, Geburtsterminrechner & tägliche Tipps!\n⭐ Kostenlos & Privat' },
-    fr: { text: 'Partager avec une future maman', shareTitle: 'Pregnancy Toolkits', shareText: '🤰 Essaye "Pregnancy Toolkits" — 30+ outils gratuits pour le suivi de grossesse et conseils personnalisés!\n⭐ Gratuit & Privé' },
-    es: { text: 'Compartir con una futura mamá', shareTitle: 'Pregnancy Toolkits', shareText: '🤰 Prueba "Pregnancy Toolkits" — 30+ herramientas gratuitas para el embarazo y consejos diarios!\n⭐ Gratis y Privado' },
-    pt: { text: 'Compartilhar com uma futura mamãe', shareTitle: 'Pregnancy Toolkits', shareText: '🤰 Experimente "Pregnancy Toolkits" — 30+ ferramentas gratuitas para acompanhamento da gravidez!\n⭐ Grátis e Privado' },
-    tr: { text: 'Hamile bir arkadaşınla paylaş', shareTitle: 'Pregnancy Toolkits', shareText: '🤰 "Pregnancy Toolkits"i dene — 30+ ücretsiz hamilelik takip aracı ve günlük ipuçları!\n⭐ Ücretsiz ve Gizli' },
-  };
-  const l = shareLabels[lang] || shareLabels.en;
+  const isAr = lang === 'ar';
 
   const handleShare = async () => {
-    const shareData = { title: l.shareTitle, text: l.shareText, url: PLAY_STORE_URL };
+    const shareText = isAr
+      ? '🤰 جربي "أدوات الحمل الذكية" — أكثر من 30 أداة مجانية لمتابعة الحمل وحاسبة الولادة ونصائح يومية!\n⭐ مجاني وخاص'
+      : '🤰 Try "Pregnancy Toolkits" — 30+ free smart tools for pregnancy tracking & daily tips!\n⭐ Free & Private';
     try {
       if (navigator.share) {
-        await navigator.share(shareData);
+        await navigator.share({ title: 'Pregnancy Toolkits', text: shareText, url: PLAY_STORE_URL });
       } else {
-        await navigator.clipboard.writeText(`${l.shareText}\n${PLAY_STORE_URL}`);
-        toast.success(lang === 'ar' ? 'تم نسخ الرابط ✓' : 'Link copied ✓');
+        await navigator.clipboard.writeText(`${shareText}\n${PLAY_STORE_URL}`);
+        toast.success(isAr ? 'تم نسخ الرابط ✓' : 'Link copied ✓');
       }
     } catch (e: any) {
       if (e?.name !== 'AbortError') {
-        // Fallback: copy to clipboard
         try {
-          await navigator.clipboard.writeText(`${l.shareText}\n${PLAY_STORE_URL}`);
-          toast.success(lang === 'ar' ? 'تم نسخ الرابط — شاركيه في أي تطبيق ✓' : 'Link copied — share it anywhere ✓');
-        } catch {
-          toast.error(lang === 'ar' ? 'لم نتمكن من المشاركة' : 'Could not share');
-        }
+          await navigator.clipboard.writeText(`${shareText}\n${PLAY_STORE_URL}`);
+          toast.success(isAr ? 'تم نسخ الرابط ✓' : 'Link copied ✓');
+        } catch {}
       }
     }
   };
 
-  const subtitleMap: Record<string, string> = {
-    ar: 'ساعدي أمهات أخريات في رحلتهن',
-    en: 'Help other moms on their journey',
-    de: 'Hilf anderen Müttern auf ihrem Weg',
-    fr: 'Aidez d\'autres mamans dans leur parcours',
-    es: 'Ayuda a otras mamás en su camino',
-    pt: 'Ajude outras mães em sua jornada',
-    tr: 'Diğer annelere yolculuklarında yardım edin',
-  };
-  const sub = subtitleMap[lang] || subtitleMap.en;
-
   return (
-    <motion.button
+    <motion.div
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, delay: 0.3 }}
-      onClick={handleShare}
-      className="w-full mt-3 flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-muted/50 border border-border/30 hover:bg-muted/70 active:scale-[0.98] transition-all"
+      className="mt-3 flex gap-2"
     >
-      <Share2 className="w-4 h-4 text-primary flex-shrink-0" strokeWidth={2} />
-      <span className="text-xs font-semibold text-foreground/70">{l.text}</span>
-    </motion.button>
+      {/* Coupon CTA */}
+      <button
+        onClick={() => navigate('/settings')}
+        className="flex-1 flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-amber-500/[0.08] border border-amber-500/20 hover:bg-amber-500/[0.12] active:scale-[0.98] transition-all"
+      >
+        <Gift className="w-4 h-4 text-amber-600 flex-shrink-0" strokeWidth={2} />
+        <span className="text-xs font-semibold text-foreground/70">
+          {isAr ? 'لديكِ قسيمة؟' : 'Have a coupon?'}
+        </span>
+      </button>
+
+      {/* Share CTA */}
+      <button
+        onClick={handleShare}
+        className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-muted/50 border border-border/30 hover:bg-muted/70 active:scale-[0.98] transition-all"
+      >
+        <Share2 className="w-4 h-4 text-primary flex-shrink-0" strokeWidth={2} />
+        <span className="text-xs font-semibold text-foreground/70">
+          {isAr ? 'شاركي' : 'Share'}
+        </span>
+      </button>
+    </motion.div>
   );
 });
 
@@ -550,8 +547,8 @@ const Index = () => {
           
           <FooterCard />
 
-          {/* Share CTA — prominent placement like world-class apps */}
-          <ShareAppButton />
+          {/* Coupon + Share row */}
+          <CouponAndShareRow />
         </div>
       </section>
     </Layout>
