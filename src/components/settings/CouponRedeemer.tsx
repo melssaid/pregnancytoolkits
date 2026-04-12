@@ -32,8 +32,8 @@ export const CouponRedeemer: React.FC = () => {
         INVALID_CODE: isRTL ? '❌ رمز القسيمة غير صالح. تأكدي من كتابته بشكل صحيح.' : '❌ Invalid coupon code. Please check and try again.',
         COUPON_EXPIRED: isRTL ? '⏰ انتهت صلاحية هذه القسيمة ولم تعد متاحة للاستخدام.' : '⏰ This coupon has expired and is no longer available.',
         ALREADY_CLAIMED: isRTL
-          ? '⚠️ لقد استخدمتِ هذه القسيمة مسبقًا على هذا الجهاز. كل قسيمة تُستخدم مرة واحدة فقط لكل جهاز.'
-          : '⚠️ You already used this coupon on this device. Each coupon can only be used once per device.',
+          ? '⚠️ لقد استُخدمت هذه القسيمة مسبقًا على هذا الجهاز. القسيمة تبقى متاحة للجميع، لكن مرة واحدة فقط لكل جهاز.'
+          : '⚠️ This coupon was already used on this device. It remains available for everyone, but only once per device.',
         MISSING_CODE: isRTL ? '📝 يرجى إدخال رمز القسيمة.' : '📝 Please enter a coupon code.',
         CLAIM_FAILED: isRTL ? '❌ حدث خطأ أثناء تفعيل القسيمة. يرجى المحاولة مرة أخرى.' : '❌ Failed to activate coupon. Please try again.',
         INTERNAL_ERROR: isRTL ? '❌ حدث خطأ في الخادم. يرجى المحاولة لاحقًا.' : '❌ Server error. Please try again later.',
