@@ -23,14 +23,14 @@ interface AIActionButtonProps {
   section?: SmartSection;
 }
 
-const usageLabels: Record<string, { remaining: string; of: string; free: string; pro: string; upgrade: string; limitReached: string; resetsMonthly: string; unlockMore: string; costHint0: string; costHint05: string; costHint1: string; costHint2: string; upgradeHint: string }> = {
-  en: { remaining: 'remaining', of: 'of', free: 'Free', pro: 'PRO', upgrade: 'Upgrade for 60 monthly', limitReached: 'Monthly limit reached', resetsMonthly: 'Resets monthly', unlockMore: 'Unlock 60 Monthly Analyses', costHint0: 'Free ✨', costHint05: 'Uses ½ credit', costHint1: 'Uses 1 credit', costHint2: 'Uses 2 credits', upgradeHint: 'Get 60/month with Premium →' },
-  ar: { remaining: 'متبقي', of: 'من', free: 'مجاني', pro: 'PRO', upgrade: 'ترقية لـ 60 شهرياً', limitReached: 'تم استنفاد الحد الشهري', resetsMonthly: 'يتجدد شهرياً', unlockMore: 'احصلي على 60 تحليل شهرياً', costHint0: 'مجاني ✨', costHint05: 'تستهلك نصف نقطة', costHint1: 'تستهلك نقطة واحدة', costHint2: 'تستهلك نقطتين', upgradeHint: 'ترقّي للحصول على 60 تحليل شهرياً ←' },
-  de: { remaining: 'übrig', of: 'von', free: 'Gratis', pro: 'PRO', upgrade: 'Upgrade für 60 monatlich', limitReached: 'Monatslimit erreicht', resetsMonthly: 'Monatlich zurückgesetzt', unlockMore: '60 Analysen pro Monat freischalten', costHint0: 'Kostenlos ✨', costHint05: '½ Credit verbraucht', costHint1: '1 Credit verbraucht', costHint2: '2 Credits verbraucht', upgradeHint: '60/Monat mit Premium erhalten →' },
-  fr: { remaining: 'restants', of: 'sur', free: 'Gratuit', pro: 'PRO', upgrade: 'Passer à 60 par mois', limitReached: 'Limite mensuelle atteinte', resetsMonthly: 'Réinitialisation mensuelle', unlockMore: 'Débloquer 60 analyses par mois', costHint0: 'Gratuit ✨', costHint05: 'Utilise ½ crédit', costHint1: 'Utilise 1 crédit', costHint2: 'Utilise 2 crédits', upgradeHint: 'Obtenez 60/mois avec Premium →' },
-  es: { remaining: 'restantes', of: 'de', free: 'Gratis', pro: 'PRO', upgrade: 'Mejora a 60 mensuales', limitReached: 'Límite mensual alcanzado', resetsMonthly: 'Se renueva mensualmente', unlockMore: 'Desbloquear 60 análisis mensuales', costHint0: 'Gratis ✨', costHint05: 'Usa ½ crédito', costHint1: 'Usa 1 crédito', costHint2: 'Usa 2 créditos', upgradeHint: 'Obtén 60/mes con Premium →' },
-  pt: { remaining: 'restantes', of: 'de', free: 'Grátis', pro: 'PRO', upgrade: 'Upgrade para 60 mensais', limitReached: 'Limite mensal atingido', resetsMonthly: 'Renova mensalmente', unlockMore: 'Desbloquear 60 análises mensais', costHint0: 'Grátis ✨', costHint05: 'Usa ½ crédito', costHint1: 'Usa 1 crédito', costHint2: 'Usa 2 créditos', upgradeHint: 'Obtenha 60/mês com Premium →' },
-  tr: { remaining: 'kalan', of: '/', free: 'Ücretsiz', pro: 'PRO', upgrade: '60 aylık için yükseltin', limitReached: 'Aylık limit doldu', resetsMonthly: 'Aylık sıfırlanır', unlockMore: 'Aylık 60 analiz açın', costHint0: 'Ücretsiz ✨', costHint05: '½ kredi kullanır', costHint1: '1 kredi kullanır', costHint2: '2 kredi kullanır', upgradeHint: 'Premium ile 60/ay alın →' },
+const usageLabels: Record<string, { remaining: string; of: string; free: string; pro: string; limitReached: string; resetsMonthly: string; unlockMore: string; costHint0: string; costHint05: string; costHint1: string; costHint2: string; upgradeTitle: string; upgradeSub: string; upgradeCta: string }> = {
+  en: { remaining: 'remaining', of: 'of', free: 'Free', pro: 'PRO', limitReached: 'Monthly limit reached', resetsMonthly: 'Resets monthly', unlockMore: 'Unlock 60 Monthly Analyses', costHint0: 'Free ✨', costHint05: 'Uses ½ credit', costHint1: 'Uses 1 credit', costHint2: 'Uses 2 credits', upgradeTitle: 'Want more analyses?', upgradeSub: 'Get 60 smart analyses every month', upgradeCta: 'View Plans' },
+  ar: { remaining: 'متبقي', of: 'من', free: 'مجاني', pro: 'PRO', limitReached: 'تم استنفاد الحد الشهري', resetsMonthly: 'يتجدد شهرياً', unlockMore: 'احصلي على 60 تحليل شهرياً', costHint0: 'مجاني ✨', costHint05: 'تستهلك نصف نقطة', costHint1: 'تستهلك نقطة واحدة', costHint2: 'تستهلك نقطتين', upgradeTitle: 'تريدين تحليلات أكثر؟', upgradeSub: '60 تحليل ذكي كل شهر', upgradeCta: 'عرض الباقات' },
+  de: { remaining: 'übrig', of: 'von', free: 'Gratis', pro: 'PRO', limitReached: 'Monatslimit erreicht', resetsMonthly: 'Monatlich zurückgesetzt', unlockMore: '60 Analysen pro Monat freischalten', costHint0: 'Kostenlos ✨', costHint05: '½ Credit verbraucht', costHint1: '1 Credit verbraucht', costHint2: '2 Credits verbraucht', upgradeTitle: 'Mehr Analysen gewünscht?', upgradeSub: '60 smarte Analysen pro Monat', upgradeCta: 'Pläne ansehen' },
+  fr: { remaining: 'restants', of: 'sur', free: 'Gratuit', pro: 'PRO', limitReached: 'Limite mensuelle atteinte', resetsMonthly: 'Réinitialisation mensuelle', unlockMore: 'Débloquer 60 analyses par mois', costHint0: 'Gratuit ✨', costHint05: 'Utilise ½ crédit', costHint1: 'Utilise 1 crédit', costHint2: 'Utilise 2 crédits', upgradeTitle: 'Plus d\'analyses ?', upgradeSub: '60 analyses intelligentes par mois', upgradeCta: 'Voir les offres' },
+  es: { remaining: 'restantes', of: 'de', free: 'Gratis', pro: 'PRO', limitReached: 'Límite mensual alcanzado', resetsMonthly: 'Se renueva mensualmente', unlockMore: 'Desbloquear 60 análisis mensuales', costHint0: 'Gratis ✨', costHint05: 'Usa ½ crédito', costHint1: 'Usa 1 crédito', costHint2: 'Usa 2 créditos', upgradeTitle: '¿Más análisis?', upgradeSub: '60 análisis inteligentes al mes', upgradeCta: 'Ver planes' },
+  pt: { remaining: 'restantes', of: 'de', free: 'Grátis', pro: 'PRO', limitReached: 'Limite mensal atingido', resetsMonthly: 'Renova mensalmente', unlockMore: 'Desbloquear 60 análises mensais', costHint0: 'Grátis ✨', costHint05: 'Usa ½ crédito', costHint1: 'Usa 1 crédito', costHint2: 'Usa 2 créditos', upgradeTitle: 'Quer mais análises?', upgradeSub: '60 análises inteligentes por mês', upgradeCta: 'Ver planos' },
+  tr: { remaining: 'kalan', of: '/', free: 'Ücretsiz', pro: 'PRO', limitReached: 'Aylık limit doldu', resetsMonthly: 'Aylık sıfırlanır', unlockMore: 'Aylık 60 analiz açın', costHint0: 'Ücretsiz ✨', costHint05: '½ kredi kullanır', costHint1: '1 kredi kullanır', costHint2: '2 kredi kullanır', upgradeTitle: 'Daha fazla analiz?', upgradeSub: 'Ayda 60 akıllı analiz', upgradeCta: 'Planları gör' },
 };
 
 /**
@@ -184,21 +184,32 @@ export const AIActionButton: React.FC<AIActionButtonProps> = ({
             </span>
           </div>
 
-          {/* Cost hint for free users */}
+          {/* Cost hint + upgrade CTA for free users */}
           {isFree && (
-            <p className="text-[10px] text-muted-foreground/60 text-center leading-tight px-1">
-              <span className="inline-flex items-center gap-1">
-                <span className="inline-block w-1.5 h-1.5 rounded-full bg-primary/60" />
-                {weight === 0 ? labels.costHint0 : weight === 2 ? labels.costHint2 : weight === 0.5 ? labels.costHint05 : labels.costHint1}
-              </span>
-              {' · '}
-              <span
-                className="text-primary/70 cursor-pointer hover:text-primary hover:underline transition-colors"
+            <div className="space-y-2">
+              <p className="text-[10px] text-muted-foreground/70 text-center font-medium px-1">
+                <span className="inline-flex items-center gap-1">
+                  <span className="inline-block w-1.5 h-1.5 rounded-full bg-primary/50" />
+                  {weight === 0 ? labels.costHint0 : weight === 2 ? labels.costHint2 : weight === 0.5 ? labels.costHint05 : labels.costHint1}
+                </span>
+              </p>
+              <motion.button
                 onClick={(e) => { e.stopPropagation(); navigate('/pricing-demo'); }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full rounded-xl border border-primary/20 bg-gradient-to-r from-primary/[0.06] via-primary/[0.03] to-transparent p-3 flex items-center gap-3 hover:border-primary/35 hover:shadow-sm transition-all duration-200"
               >
-                {labels.upgradeHint}
-              </span>
-            </p>
+                <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                  <Crown className="w-4 h-4 text-primary" />
+                </div>
+                <div className="flex-1 min-w-0 text-start">
+                  <p className="text-xs font-bold text-foreground leading-tight">{labels.upgradeTitle}</p>
+                  <p className="text-[10px] text-muted-foreground font-medium mt-0.5">{labels.upgradeSub}</p>
+                </div>
+                <span className="text-[10px] font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-lg shrink-0">
+                  {labels.upgradeCta}
+                </span>
+              </motion.button>
+            </div>
           )}
         </div>
       )}
