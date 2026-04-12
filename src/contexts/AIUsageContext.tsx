@@ -102,11 +102,30 @@ export function AIUsageProvider({ children }: { children: ReactNode }) {
     const onStorage = (e: StorageEvent) => {
       if (e.key?.includes('smart_quota') || e.key?.includes('smart_admin')) refresh();
     };
+    const onVisibility = () => {
+      if (document.visibilityState === 'visible') {
+        refresh();
+        // Re-sync from server when user returns to the app
+        fetchServerQuota().then((server) => {
+          if (!server) return;
+          const local = getQuotaState();
+          if (server.used > local.used) {
+            qmSyncFromServer(server.used, server.tier);
+          }
+          if (server.tier === 'premium' && local.tier !== 'premium') {
+            qmSetTier('premium');
+          }
+          refresh();
+        });
+      }
+    };
     window.addEventListener('storage', onStorage);
     window.addEventListener('focus', refresh);
+    document.addEventListener('visibilitychange', onVisibility);
     return () => {
       window.removeEventListener('storage', onStorage);
       window.removeEventListener('focus', refresh);
+      document.removeEventListener('visibilitychange', onVisibility);
     };
   }, [refresh]);
 
