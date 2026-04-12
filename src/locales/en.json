@@ -294,11 +294,11 @@
       "description": "Ask any pregnancy question and get instant answers."
     },
     "wellnessDiary": {
-      "title": "Pregnancy Wellness Diary",
+      "title": "Health Diary",
       "description": "Log and reflect on how you feel throughout your pregnancy journey."
     },
     "aiMealSuggestion": {
-      "title": "Smart Meal Suggestions",
+      "title": "Smart Meal Planner",
       "description": "Get personalized meal suggestions for your pregnancy stage."
     },
     "weeklySummary": {
@@ -306,7 +306,7 @@
       "description": "Smart weekly updates on your baby's growth."
     },
     "aiBirthPlan": {
-      "title": "Smart Birth Plan",
+      "title": "Birth Plan Generator",
       "description": "Create your personalized birth plan with AI guidance."
     },
     "contractionTimer": {
@@ -314,15 +314,15 @@
       "description": "Time and log your labor wave duration and intervals."
     },
     "smartAppointmentReminder": {
-      "title": "Smart Appointment Planner",
+      "title": "Medical Appointment Reminder",
       "description": "Never miss an important appointment."
     },
     "aiCravingAlternatives": {
-      "title": "AI Craving Alternatives",
+      "title": "Healthy Craving Alternatives",
       "description": "Healthy swaps for pregnancy cravings."
     },
     "smartGroceryList": {
-      "title": "Pro Grocery List",
+      "title": "Smart Grocery List",
       "description": "AI-powered shopping list for pregnancy nutrition."
     },
     "aiSleepOptimizer": {
@@ -330,19 +330,19 @@
       "description": "Personalized sleep guidance for pregnancy."
     },
     "aiHospitalBag": {
-      "title": "Smart Hospital Bag",
+      "title": "Hospital Bag Checklist",
       "description": "Complete packing list for delivery day."
     },
     "aiPartnerGuide": {
-      "title": "Partner's Guide",
+      "title": "Partner Guide",
       "description": "Support tips for expecting fathers and partners."
     },
     "aiBirthPosition": {
-      "title": "Comfort Positions Guide",
+      "title": "Birth Positions Guide",
       "description": "Discover comfortable positions for labor and birth."
     },
     "aiSkincare": {
-      "title": "Pregnancy Skincare Tips",
+      "title": "Pregnancy Skincare Guide",
       "description": "Get personalized skincare tips safe for pregnancy."
     },
     "aiNauseaRelief": {
@@ -354,27 +354,27 @@
       "description": "Plan baby expenses smartly."
     },
     "aiBumpPhotos": {
-      "title": "My Bump Gallery",
+      "title": "Bump Photo Album",
       "description": "Save and view your bump photos with optional AI educational notes."
     },
     "aiFitnessCoach": {
-      "title": "Fitness & Flexibility Coach",
+      "title": "Pregnancy Fitness Coach",
       "description": "Safe exercises customized for your pregnancy stage."
     },
     "aiBackPainRelief": {
-      "title": "Back Comfort Guide",
+      "title": "Back Pain Relief Guide",
       "description": "Personalized exercises for pregnancy back comfort."
     },
     "vitaminTracker": {
-      "title": "Daily Nutrition Organizer",
+      "title": "Vitamin & Supplement Tracker",
       "description": "Track your daily nutrition routine with smart reminders."
     },
     "forbiddenFoods": {
-      "title": "Foods to Avoid",
+      "title": "Foods to Avoid During Pregnancy",
       "description": "Know what's safe to eat."
     },
     "smartPregnancyPlan": {
-      "title": "Smart Pregnancy Plan",
+      "title": "Comprehensive Pregnancy Plan",
       "description": "Your personalized daily plan with exercises and meals."
     },
     "smartWalkingCoach": {
@@ -398,76 +398,76 @@
       "description": "Log and journal your labor wave patterns."
     },
     "cycleTracker": {
-      "title": "My Cycle Journal",
+      "title": "Cycle Tracker",
       "description": "Smart cycle journal with estimated peak days"
     },
     "dueDateCalculator": {
-      "title": "Baby Arrival Countdown",
+      "title": "Due Date Calculator",
       "description": "Find out when your little one will arrive."
     },
     "babyGrowth": {
-      "title": "Smart Baby Growth",
+      "title": "Baby Growth Tracker",
       "description": "Track growth with WHO charts."
     },
     "kickCounter": {
-      "title": "Baby Kick Tracking",
+      "title": "Kick Counter",
       "description": "Smart kick counter with daily baby activity analysis."
     },
     "weightGain": {
-      "title": "Weight Wellness Guide",
+      "title": "Weight Gain Tracker",
       "description": "Track your pregnancy weight with smart wellness insights.",
       "subtitle": "Track and analyze your pregnancy weight gain"
     },
     "postpartumMentalHealth": {
-      "title": "Relaxation & Comfort Guide",
+      "title": "Postpartum Mental Health",
       "description": "Track your emotional wellbeing and get supportive tips."
     },
     "gestationalDiabetes": {
-      "title": "Healthy Eating Habits",
+      "title": "Gestational Diabetes Guide",
       "description": "Learn about balanced nutrition and healthy eating habits during pregnancy."
     },
     "preeclampsiaRisk": {
-      "title": "Daily Wellness Guide",
+      "title": "Blood Pressure & Risk Monitor",
       "description": "Educational guide about staying balanced during pregnancy."
     },
     "maternalHealth": {
-      "title": "Pregnancy Journal",
+      "title": "Maternal Health",
       "description": "Comprehensive wellness overview for expectant mothers."
     },
     "pregnancyComfort": {
-      "title": "Comfortable Pregnancy",
+      "title": "Pregnancy Comfort Guide",
       "description": "Advanced sleep tips and nausea relief during pregnancy."
     },
     "babyGearRecommender": {
-      "title": "Baby Essentials Setup",
+      "title": "Baby Gear Guide",
       "description": "Essential items checklist for your new arrival."
     },
     "aiLactationPrep": {
-      "title": "Smart Breastfeeding Guide",
+      "title": "Lactation Preparation",
       "description": "Breastfeeding preparation guide."
     },
     "babySleepTracker": {
-      "title": "Baby Sleep Log",
+      "title": "Baby Sleep Tracker",
       "description": "Sleep pattern analysis with daily and weekly statistics."
     },
     "diaperTracker": {
-      "title": "Smart Diaper Log",
+      "title": "Diaper Tracker",
       "description": "Smart daily diaper log with statistics and alerts."
     },
     "babyCryTranslator": {
-      "title": "Baby Cry Guide",
+      "title": "Baby Cry Translator",
       "description": "AI insights into your baby's crying patterns."
     },
     "postpartumRecovery": {
-      "title": "Smart Guide for New Mom",
+      "title": "Postpartum Recovery Guide",
       "description": "Your 6-week self-care plan after birth."
     },
     "fertileWindow": {
-      "title": "Fertile Window Indicator",
+      "title": "Ovulation Calculator",
       "description": "Pinpoint your most fertile days each cycle."
     },
     "fertilityAcademy": {
-      "title": "Motherhood Guide",
+      "title": "Fertility Academy",
       "description": "Comprehensive lessons about your cycle: body signs and lifestyle tips.",
       "lessonsTab": "Lessons",
       "signsTab": "Body Signs",
@@ -475,7 +475,7 @@
       "twwTab": "TWW"
     },
     "nutritionSupplements": {
-      "title": "Nutrition Guide",
+      "title": "Nutrition Supplements Guide",
       "description": "Complete nutrition essentials guide for your journey.",
       "nutritionTab": "Nutrition",
       "supplementsTab": "Nutrition Aids",
@@ -487,19 +487,19 @@
       "description": "Daily support during the wait after ovulation."
     },
     "preconceptionCheckup": {
-      "title": "Motherhood Preparation",
+      "title": "Preconception Checkup",
       "description": "Preparation checklist and wellness overview before pregnancy."
     },
     "fetalGrowth": {
-      "title": "Baby Growth Tracker",
+      "title": "Fetal Growth Tracker",
       "description": "Track your baby's size and development week by week."
     },
     "smartAppointment": {
-      "title": "Smart Appointment Reminder",
+      "title": "Medical Appointment Reminder",
       "description": "Never miss an important appointment with smart reminders."
     },
     "lactationPrep": {
-      "title": "Smart Newborn Nutrition",
+      "title": "Breastfeeding Preparation",
       "description": "Essential guide for feeding your newborn with confidence."
     }
   },
