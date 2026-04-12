@@ -127,11 +127,8 @@ ${week > 0 ? `\n🤰 ${t('achievements.weekProgress', { week, defaultValue: 'Wee
               transition={{ delay: 0.15 + i * 0.05 }}
               className="p-4 rounded-2xl bg-card border border-border/50 text-center"
             >
-              <div className={cn("w-10 h-10 mx-auto mb-2 rounded-xl flex items-center justify-center", stat.bg)}>
-                <stat.icon className={cn("w-5 h-5", stat.color)} />
-              </div>
-              <p className="text-xl font-black text-foreground">{stat.value}</p>
-              <p className="text-[10px] text-muted-foreground mt-0.5">{stat.label}</p>
+              <p className={cn("text-2xl font-black", stat.color)}>{stat.value}</p>
+              <p className="text-[11px] text-foreground/60 font-medium mt-1">{stat.label}</p>
             </motion.div>
           ))}
         </div>
