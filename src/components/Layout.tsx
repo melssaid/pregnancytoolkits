@@ -127,14 +127,14 @@ export function Layout({ children, showBack = false }: LayoutProps) {
             <path d="M0,0 L0,5 C200,90 400,90 720,90 C1040,90 1240,90 1440,5 L1440,0 Z" className="fill-card" />
           </svg>
         </div>
-        <div className="flex h-16 items-center justify-between px-4">
-          <div className="flex items-center gap-2.5">
-            {showBack && <BackButton />}
-            
+        <div className={`flex h-16 items-center ${showBack ? 'justify-between' : 'justify-center'} px-4`}>
+          {showBack ? (
+            /* Sub-pages: back button + logo + name on left */
+            <div className="flex items-center gap-2.5">
+              <BackButton />
               <Link to="/" className="flex items-center gap-2.5">
-              <div className="relative flex items-center justify-center flex-shrink-0" style={{ width: showBack ? 80 : 72, height: showBack ? 80 : 72 }}>
-                {/* Rotating ring */}
-                {showBack && (
+                <div className="relative flex items-center justify-center flex-shrink-0" style={{ width: 80, height: 80 }}>
+                  {/* Rotating ring */}
                   <>
                     <motion.div
                       className="absolute rounded-full border border-primary/15"
@@ -142,7 +142,6 @@ export function Layout({ children, showBack = false }: LayoutProps) {
                       animate={{ rotate: 360 }}
                       transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                     />
-                    {/* Heart particles */}
                     {[0, 1, 2, 3, 4, 5].map((i) => {
                       const angle = (i / 6) * 360;
                       const radius = 34;
@@ -195,7 +194,6 @@ export function Layout({ children, showBack = false }: LayoutProps) {
                         </motion.span>
                       );
                     })}
-                    {/* Aura */}
                     <motion.div
                       className="absolute rounded-full bg-primary/8 blur-lg"
                       style={{ width: 68, height: 68 }}
@@ -203,52 +201,49 @@ export function Layout({ children, showBack = false }: LayoutProps) {
                       transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                     />
                   </>
-                )}
-                <div className={`rounded-full overflow-hidden shadow-lg ${showBack ? 'h-11 w-11' : 'h-[3.2rem] w-[3.2rem]'}`}>
-                  <img 
-                    src={logoImage} 
-                    alt="Pregnancy Toolkits" 
-                    width={showBack ? 64 : 52}
-                    height={showBack ? 64 : 52}
-                    loading="eager"
-                    decoding="async"
-                    fetchPriority="high"
-                    className="w-full h-full object-cover"
-                  />
+                  <div className="rounded-full overflow-hidden shadow-lg h-11 w-11">
+                    <img src={logoImage} alt="Pregnancy Toolkits" width={64} height={64} loading="eager" decoding="async" fetchPriority="high" className="w-full h-full object-cover" />
+                  </div>
                 </div>
-              </div>
-              {showBack ? (
                 <span className="text-[13px] font-extrabold text-foreground tracking-tight leading-snug break-words" style={{ fontFamily: "'Tajawal', 'Plus Jakarta Sans', system-ui, sans-serif", fontWeight: 700 }}>
                   {t('app.name')}
                 </span>
-              ) : (
-                <div className="flex flex-col min-w-0">
-                  <span className="text-[13.5px] font-extrabold text-foreground tracking-tight leading-snug break-words" style={{ fontFamily: "'Tajawal', 'Plus Jakarta Sans', system-ui, sans-serif", fontWeight: 700 }}>
-                    {t('app.name')}
-                  </span>
-                  <span className="text-[10.5px] text-muted-foreground font-medium mt-0.5 leading-snug break-words">
-                    {t('app.tagline')}
-                  </span>
-                </div>
-              )}
-            </Link>
-          </div>
-
-          <div className="flex items-center gap-1.5">
-            <LanguageDropdown variant="compact" />
-
-            <div className="hidden md:flex">
-              <EncryptionIndicator />
+              </Link>
             </div>
+          ) : (
+            /* Homepage: centered logo only, no title */
+            <>
+              {/* Left spacer for centering */}
+              <div className="absolute left-4 flex items-center gap-1.5">
+                <LanguageDropdown variant="compact" />
+              </div>
+              <Link to="/" className="flex items-center justify-center">
+                <div className="rounded-full overflow-hidden shadow-lg h-[3.2rem] w-[3.2rem]">
+                  <img src={logoImage} alt="Pregnancy Toolkits" width={52} height={52} loading="eager" decoding="async" fetchPriority="high" className="w-full h-full object-cover" />
+                </div>
+              </Link>
+              <div className="absolute right-4 flex items-center gap-1.5">
+                <div className="hidden md:flex">
+                  <EncryptionIndicator />
+                </div>
+                <Link to="/settings" className="hidden md:flex items-center justify-center rounded-lg p-2 text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors" title="Settings">
+                  <Settings className="h-4.5 w-4.5" />
+                </Link>
+              </div>
+            </>
+          )}
 
-            <Link 
-              to="/settings"
-              className="hidden md:flex items-center justify-center rounded-lg p-2 text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
-              title="Settings"
-            >
-              <Settings className="h-4.5 w-4.5" />
-            </Link>
-          </div>
+          {showBack && (
+            <div className="flex items-center gap-1.5">
+              <LanguageDropdown variant="compact" />
+              <div className="hidden md:flex">
+                <EncryptionIndicator />
+              </div>
+              <Link to="/settings" className="hidden md:flex items-center justify-center rounded-lg p-2 text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors" title="Settings">
+                <Settings className="h-4.5 w-4.5" />
+              </Link>
+            </div>
+          )}
         </div>
       </header>
 
