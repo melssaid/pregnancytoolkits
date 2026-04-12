@@ -218,8 +218,8 @@ export function Layout({ children, showBack = false }: LayoutProps) {
                 <LanguageDropdown variant="compact" />
               </div>
               <Link to="/" className="flex items-center justify-center">
-                <div className="rounded-full overflow-hidden shadow-xl ring-2 ring-primary/10 h-11 w-11">
-                  <img src={logoImage} alt="Pregnancy Toolkits" width={44} height={44} loading="eager" decoding="async" fetchPriority="high" className="w-full h-full object-cover" />
+                <div className="rounded-full overflow-hidden shadow-xl ring-2 ring-primary/10 h-14 w-14">
+                  <img src={logoImage} alt="Pregnancy Toolkits" width={56} height={56} loading="eager" decoding="async" fetchPriority="high" className="w-full h-full object-cover" />
                 </div>
               </Link>
               <div className="absolute right-4 flex items-center gap-1.5">
