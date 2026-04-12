@@ -212,16 +212,16 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
             }}
             className="overflow-hidden"
           >
-            <div className="px-2.5 pb-3 pt-1.5 space-y-1.5">
+            <div className="px-2.5 pb-3 pt-2 space-y-2">
               {toolsByCategory.map(({ catKey, tools }) => (
                 <div key={catKey}>
-                  <div className="space-y-2">
+                  <div className="grid grid-cols-3 gap-2">
                     {tools.map((tool, toolIdx) => (
                       <motion.div
                         key={tool.id}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.3, delay: toolIdx * 0.04, ease: [0.25, 0.1, 0.25, 1] }}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.25, delay: toolIdx * 0.03, ease: [0.25, 0.1, 0.25, 1] }}
                       >
                         <ToolRow tool={tool} isRTL={isRTL} isLocked={false} />
                       </motion.div>
