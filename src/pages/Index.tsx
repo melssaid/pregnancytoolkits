@@ -550,6 +550,9 @@ const Index = () => {
           ))}
           
           <FooterCard />
+
+          {/* Share CTA — prominent placement like world-class apps */}
+          <ShareAppButton />
         </div>
       </section>
     </Layout>
