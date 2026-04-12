@@ -13,6 +13,7 @@ import {
   applyCouponTier,
   type QuotaState,
 } from '@/services/smartEngine';
+import { getCouponRequestHeaders } from '@/lib/couponRequestHeaders';
 
 export type SubscriptionTier = 'free' | 'premium';
 
@@ -43,12 +44,13 @@ async function fetchServerQuota(): Promise<{ used: number; limit: number; tier: 
     const { supabase } = await import('@/integrations/supabase/client');
     const { data: { session } } = await supabase.auth.getSession();
     const token = session?.access_token || import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+    const couponHeaders = await getCouponRequestHeaders();
 
     const res = await fetch(
       `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/pregnancy-ai-perplexity`,
       {
         method: 'GET',
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${token}`, ...couponHeaders },
       }
     );
     if (!res.ok) return null;
@@ -86,13 +88,7 @@ export function AIUsageProvider({ children }: { children: ReactNode }) {
 
     fetchServerQuota().then((server) => {
       if (!server) return;
-      const local = getQuotaState();
-      if (server.used > local.used) {
-        qmSyncFromServer(server.used, server.tier);
-      }
-      if (server.tier === 'premium' && local.tier !== 'premium') {
-        qmSetTier('premium');
-      }
+      qmSyncFromServer(server.used, server.tier, server.limit);
       refresh();
     });
   }, [refresh]);

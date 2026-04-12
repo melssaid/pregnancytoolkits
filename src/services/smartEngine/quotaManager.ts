@@ -100,11 +100,19 @@ export function consumeQuota(weight: InsightWeight = 1): QuotaState {
 /**
  * Sync usage from server response headers.
  */
-export function syncFromServer(serverUsed: number, serverTier?: "free" | "premium"): void {
+export function syncFromServer(serverUsed: number, serverTier?: "free" | "premium", serverLimit?: number): void {
   if (isAdminBypass()) return;
   const stored = readQuota();
   stored.used = serverUsed;
   if (serverTier) stored.tier = serverTier;
+  if (typeof serverLimit === "number" && Number.isFinite(serverLimit)) {
+    const tierConfig = QUOTA_TIERS[stored.tier] || QUOTA_TIERS.free;
+    if (serverLimit > tierConfig.monthly) {
+      stored.bonusCredits = serverLimit;
+    } else {
+      delete stored.bonusCredits;
+    }
+  }
   stored.monthKey = getCurrentMonthKey();
   writeQuota(stored);
 }

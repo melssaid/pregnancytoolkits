@@ -5,6 +5,7 @@
  */
 
 import { supabase } from "@/integrations/supabase/client";
+import { getCouponRequestHeaders } from "@/lib/couponRequestHeaders";
 import {
   type SmartRequest,
   type SmartResponse,
@@ -42,6 +43,25 @@ export function classifyError(status?: number, message?: string): SmartError {
     return { type: "network", message: message || "Network error", retryable: true };
   }
   return { type: "unknown", message: message || "Unknown error", retryable: false };
+}
+
+function syncQuotaFromResponseHeaders(headers: Headers): void {
+  const serverUsed = headers.get("X-Daily-Used");
+  const serverTier = headers.get("X-Subscription-Tier");
+  const serverLimit = headers.get("X-Daily-Limit");
+  const parsedUsed = serverUsed ? parseFloat(serverUsed) : NaN;
+  const parsedLimit = serverLimit ? parseFloat(serverLimit) : NaN;
+
+  if (!Number.isNaN(parsedUsed)) {
+    syncFromServer(
+      parsedUsed,
+      serverTier === "premium" ? "premium" : serverTier === "free" ? "free" : undefined,
+      Number.isNaN(parsedLimit) ? undefined : parsedLimit,
+    );
+    return;
+  }
+
+  if (serverTier === "premium") setTier("premium");
 }
 
 // ── SSE Stream processor ──
@@ -142,9 +162,11 @@ export async function executeSmartRequest({
   // 3. Call edge function
   try {
     const authHeader = await getAuthHeader();
+    const couponHeaders = await getCouponRequestHeaders();
     const headers: Record<string, string> = {
       "Content-Type": "application/json",
       Authorization: authHeader,
+      ...couponHeaders,
     };
     if (isAdminBypass()) headers["X-Admin-Bypass"] = "true";
 
@@ -164,10 +186,7 @@ export async function executeSmartRequest({
     );
 
     // Sync server-reported usage
-    const serverUsed = response.headers.get("X-Daily-Used");
-    if (serverUsed) syncFromServer(parseInt(serverUsed, 10));
-    const serverTier = response.headers.get("X-Subscription-Tier");
-    if (serverTier === "premium") setTier("premium");
+    syncQuotaFromResponseHeaders(response.headers);
 
     if (!response.ok) {
       let serverMsg: string | undefined;
@@ -193,6 +212,7 @@ export async function executeSmartRequest({
                 headers: {
                   "Content-Type": "application/json",
                   Authorization: `Bearer ${session.access_token}`,
+                  ...couponHeaders,
                   ...(isAdminBypass() ? { "X-Admin-Bypass": "true" } : {}),
                 },
                 body: JSON.stringify({
@@ -203,6 +223,7 @@ export async function executeSmartRequest({
               }
             );
             if (retryResp.ok && retryResp.body) {
+              syncQuotaFromResponseHeaders(retryResp.headers);
               let full = "";
               await processStream(retryResp.body, (chunk) => {
                 full += chunk;
