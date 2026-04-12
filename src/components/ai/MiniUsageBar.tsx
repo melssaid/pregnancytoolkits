@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { UpgradeCard } from './UpgradeCard';
-import { UpgradeCard } from './UpgradeCard';
 import { useAIUsage } from '@/contexts/AIUsageContext';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
