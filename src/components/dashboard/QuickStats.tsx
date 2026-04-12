@@ -32,43 +32,35 @@ export function QuickStats({
   const stats = [
     {
       id: "weight",
-      icon: Gauge,
       labelKey: "dashboard.quickStats.weight",
       value: weight > 0 ? `${weight}` : "—",
       unit: weight > 0 ? "kg" : "",
       href: "/tools/weight-gain",
       color: "text-primary",
-      bg: "bg-primary/10",
     },
     {
       id: "kicks",
-      icon: Activity,
       labelKey: "dashboard.quickStats.kicksToday",
       value: kicks > 0 ? String(kicks) : "—",
       unit: "",
       href: "/tools/kick-counter",
       color: "text-primary",
-      bg: "bg-primary/10",
     },
     {
       id: "mood",
-      icon: Heart,
       labelKey: "dashboard.quickStats.mood",
       value: mood ? t(`dashboard.quickStats.moods.${mood.toLowerCase()}`, mood) : "—",
       unit: "",
       href: "/tools/mental-health-coach",
       color: "text-destructive",
-      bg: "bg-destructive/10",
     },
     {
       id: "water",
-      icon: Droplets,
       labelKey: "dashboard.quickStats.water",
       value: `${waterGlasses}/8`,
       unit: "",
       href: "#hydration-tracker",
       color: "text-primary",
-      bg: "bg-primary/8",
     },
   ];
 
