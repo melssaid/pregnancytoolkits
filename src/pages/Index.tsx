@@ -213,7 +213,7 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
             }}
             className="overflow-hidden"
           >
-            <div className="px-2.5 pb-3 pt-2 space-y-2">
+            <div className="px-2 pb-2.5 pt-1.5 space-y-1.5">
               {toolsByCategory.map(({ catKey, tools }) => (
                 <div key={catKey}>
                   <div className="grid grid-cols-3 gap-2">
