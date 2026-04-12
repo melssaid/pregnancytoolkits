@@ -2,7 +2,7 @@
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-admin-bypass, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
+  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-admin-bypass, x-device-fingerprint, x-local-user-id, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
   "Access-Control-Expose-Headers": "X-Daily-Limit, X-Daily-Used, X-Daily-Remaining, X-Subscription-Tier",
 };
 
@@ -49,7 +49,7 @@ const MAX_CONTENT_LENGTH = 10000;
 
 // ── Monthly usage limits by tier ──
 const FREE_MONTHLY_LIMIT = 5;
-const PREMIUM_MONTHLY_LIMIT = 40;
+const PREMIUM_MONTHLY_LIMIT = 60;
 
 // ── Rate limiting (per-minute burst protection) ──
 const RATE_LIMIT_WINDOW_MS = 60_000;
@@ -126,6 +126,41 @@ async function getMonthlyUsageCount(clientId: string, userId: string | null): Pr
   } catch (e) {
     console.error("[AI] monthly usage check failed:", String(e).substring(0, 100));
     return 0; // Fail open
+  }
+}
+
+async function getActiveCouponBonus(deviceFingerprint: string | null, localUserId: string | null): Promise<number | null> {
+  const filters: string[] = [];
+  if (deviceFingerprint) filters.push(`device_fingerprint.eq.${deviceFingerprint}`);
+  if (localUserId) filters.push(`user_id.eq.${localUserId}`);
+  if (filters.length === 0) return null;
+
+  try {
+    const { createClient } = await import("https://esm.sh/@supabase/supabase-js@2");
+    const adminClient = createClient(
+      Deno.env.get("SUPABASE_URL") ?? "",
+      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "",
+    );
+
+    const { data: claims, error } = await adminClient
+      .from("coupon_claims")
+      .select("expires_at, coupons(bonus_points)")
+      .or(filters.join(","))
+      .gt("expires_at", new Date().toISOString())
+      .order("expires_at", { ascending: false })
+      .limit(1);
+
+    if (error) {
+      console.error("[AI] coupon lookup failed:", error.message);
+      return null;
+    }
+
+    const claim = claims?.[0] as { coupons?: { bonus_points?: number } } | undefined;
+    const bonusPoints = claim?.coupons?.bonus_points;
+    return typeof bonusPoints === "number" && bonusPoints > 0 ? bonusPoints : null;
+  } catch (e) {
+    console.error("[AI] coupon lookup error:", String(e).substring(0, 120));
+    return null;
   }
 }
 
@@ -734,6 +769,8 @@ Deno.serve(async (req) => {
       }
 
       const clientId = getClientId(req);
+      const deviceFingerprint = req.headers.get("x-device-fingerprint");
+      const localUserId = req.headers.get("x-local-user-id");
       let userId: string | null = null;
       let isPremium = false;
 
@@ -768,10 +805,14 @@ Deno.serve(async (req) => {
         } catch {}
       }
 
+      const couponBonus = await getActiveCouponBonus(deviceFingerprint, localUserId);
       const monthlyUsed = await getMonthlyUsageCount(clientId, userId);
-      const limit = isPremium ? PREMIUM_MONTHLY_LIMIT : FREE_MONTHLY_LIMIT;
+      const limit = couponBonus
+        ? Math.max(isPremium ? PREMIUM_MONTHLY_LIMIT : FREE_MONTHLY_LIMIT, couponBonus)
+        : (isPremium ? PREMIUM_MONTHLY_LIMIT : FREE_MONTHLY_LIMIT);
+      const tier = isPremium || !!couponBonus ? "premium" : "free";
 
-      return new Response(JSON.stringify({ used: monthlyUsed, limit, tier: isPremium ? "premium" : "free" }), {
+      return new Response(JSON.stringify({ used: monthlyUsed, limit, tier }), {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     } catch (e) {
@@ -790,6 +831,8 @@ Deno.serve(async (req) => {
     }
 
     const ipClientId = getClientId(req);
+    const deviceFingerprint = req.headers.get("x-device-fingerprint");
+    const localUserId = req.headers.get("x-local-user-id");
     let rateLimitId = ipClientId;
     let authenticatedUserId: string | null = null;
 
@@ -849,7 +892,15 @@ Deno.serve(async (req) => {
       }
     }
 
-    const MONTHLY_LIMIT = isPremium ? PREMIUM_MONTHLY_LIMIT : FREE_MONTHLY_LIMIT;
+    const couponBonus = await getActiveCouponBonus(deviceFingerprint, localUserId);
+    if (couponBonus) {
+      isPremium = true;
+      subscriptionTier = "premium";
+    }
+
+    const MONTHLY_LIMIT = couponBonus
+      ? Math.max(isPremium ? PREMIUM_MONTHLY_LIMIT : FREE_MONTHLY_LIMIT, couponBonus)
+      : (isPremium ? PREMIUM_MONTHLY_LIMIT : FREE_MONTHLY_LIMIT);
 
     // ── Admin bypass check (dev/testing only) ──
     const adminBypass = req.headers.get("X-Admin-Bypass") === "true";

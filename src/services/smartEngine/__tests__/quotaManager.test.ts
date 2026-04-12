@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { getQuotaState, canAfford, consumeQuota, setTier, clearAdminBypass } from '../quotaManager';
+import { getQuotaState, canAfford, consumeQuota, setTier, clearAdminBypass, syncFromServer } from '../quotaManager';
 import { resolveWeight, TOOL_WEIGHT_REGISTRY } from '../types';
 
 const STORAGE_KEY = 'smart_quota_v2';
@@ -96,6 +96,23 @@ describe('quotaManager', () => {
     consumeQuota(1);
     const state = getQuotaState();
     expect(state.used).toBe(2); // exactly 2, not more
+  });
+
+  it('syncs coupon-backed server limit into local quota state', () => {
+    syncFromServer(3, 'premium', 20);
+    const state = getQuotaState();
+    expect(state.used).toBe(3);
+    expect(state.tier).toBe('premium');
+    expect(state.limit).toBe(20);
+    expect(state.remaining).toBe(17);
+  });
+
+  it('removes coupon override when server returns default premium limit', () => {
+    syncFromServer(1, 'premium', 20);
+    syncFromServer(2, 'premium', 60);
+    const state = getQuotaState();
+    expect(state.limit).toBe(60);
+    expect(state.remaining).toBe(58);
   });
 
   it('weight-2 tool exhausts free quota faster', () => {
