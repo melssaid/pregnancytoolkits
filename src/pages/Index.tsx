@@ -151,11 +151,10 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
   }, [config.key]);
 
   const categories = useMemo(() => getJourneyCategories(config.key), [config.key]);
-  const toolsByCategory = useMemo(() => {
-    return categories.map(catKey => ({
-      catKey,
-      tools: getToolsByCategory(catKey),
-    })).filter(g => g.tools.length > 0);
+  const allJourneyTools = useMemo(() => {
+    return categories
+      .flatMap(catKey => getToolsByCategory(catKey))
+      .sort((a, b) => a.priority - b.priority);
   }, [categories]);
 
   const totalTools = useMemo(() => toolsByCategory.reduce((sum, g) => sum + g.tools.length, 0), [toolsByCategory]);
