@@ -283,12 +283,12 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
             {!isPremium && (
               <Link
                 to="/pricing"
-                className="absolute -top-3 z-20 flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-gradient-to-r from-primary/90 to-primary/70 shadow-md ring-2 ring-card"
+                className="absolute -top-3.5 z-20 flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-[hsl(45,85%,52%)] to-[hsl(35,80%,48%)] shadow-lg ring-2 ring-card"
                 style={{ left: '50%', transform: 'translateX(-50%)' }}
               >
-                <Sparkles className="w-2.5 h-2.5 text-white" strokeWidth={2.5} />
-                <span className="text-[8px] font-bold text-white whitespace-nowrap">
-                  {t("nav.freeRemaining", { count: remaining })}
+                <Crown className="w-3 h-3 text-white" strokeWidth={2.5} fill="currentColor" />
+                <span className="text-[9px] font-black text-white whitespace-nowrap tracking-wide uppercase">
+                  {t("nav.getPremium")}
                 </span>
               </Link>
             )}
