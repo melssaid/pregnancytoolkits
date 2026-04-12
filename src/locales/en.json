@@ -16,7 +16,8 @@
     "alerts": "Alerts",
     "search": "Search",
     "settings": "Settings",
-    "freeRemaining": "{{count}} free analyses left"
+    "freeRemaining": "{{count}} free analyses left",
+    "getPremium": "GET PREMIUM"
   },
   "hubNav": {
     "meals": "Meals",
