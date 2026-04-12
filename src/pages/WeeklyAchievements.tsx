@@ -54,10 +54,10 @@ export default function WeeklyAchievements() {
   const week = profile.pregnancyWeek || 0;
 
   const stats = [
-    { icon: Baby, value: data.toolsUsed, label: t('achievements.toolsUsed', 'Tools Used'), color: 'text-pink-500', bg: 'bg-pink-500/10' },
-    { icon: Calendar, value: data.daysActive, label: t('achievements.daysActive', 'Days Active'), color: 'text-violet-500', bg: 'bg-violet-500/10' },
-    { icon: Footprints, value: data.kicksLogged, label: t('achievements.kicksLogged', 'Kick Sessions'), color: 'text-emerald-500', bg: 'bg-emerald-500/10' },
-    { icon: Weight, value: data.weightEntries, label: t('achievements.weightEntries', 'Weight Entries'), color: 'text-amber-500', bg: 'bg-amber-500/10' },
+    { value: data.toolsUsed, label: t('achievements.toolsUsed', 'Tools Used'), color: 'text-pink-500' },
+    { value: data.daysActive, label: t('achievements.daysActive', 'Days Active'), color: 'text-violet-500' },
+    { value: data.kicksLogged, label: t('achievements.kicksLogged', 'Kick Sessions'), color: 'text-emerald-500' },
+    { value: data.weightEntries, label: t('achievements.weightEntries', 'Weight Entries'), color: 'text-amber-500' },
   ];
 
   const handleShare = () => {
