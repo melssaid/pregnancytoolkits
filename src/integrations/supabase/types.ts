@@ -162,6 +162,7 @@ export type Database = {
       }
       coupons: {
         Row: {
+          bonus_points: number
           code: string
           created_at: string
           current_claims: number
@@ -172,6 +173,7 @@ export type Database = {
           max_claims: number
         }
         Insert: {
+          bonus_points?: number
           code: string
           created_at?: string
           current_claims?: number
@@ -182,6 +184,7 @@ export type Database = {
           max_claims?: number
         }
         Update: {
+          bonus_points?: number
           code?: string
           created_at?: string
           current_claims?: number

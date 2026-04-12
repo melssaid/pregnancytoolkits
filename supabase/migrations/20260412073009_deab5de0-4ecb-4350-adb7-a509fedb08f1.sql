@@ -1,0 +1,1 @@
+ALTER TABLE coupons ADD COLUMN bonus_points integer NOT NULL DEFAULT 60;
