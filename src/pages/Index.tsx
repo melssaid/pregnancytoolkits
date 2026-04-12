@@ -88,7 +88,8 @@ const ToolRow = memo(function ToolRow({ tool, isRTL, isLocked = false, journeyKe
   const navigate = useNavigate();
   const ToolIconComp = tool.icon;
   const hasPng = !!tool.pngIcon;
-  const style = categoryStyles[tool.categoryKey] || { iconColor: "text-muted-foreground", iconBg: "bg-muted/30", toolHover: "hover:bg-muted/50", hoverShadow: "hover:shadow-sm", hoverBorder: "hover:border-border/30" };
+  const jStyle = journeyKey ? journeyIconStyles[journeyKey] : null;
+  const style = jStyle || categoryStyles[tool.categoryKey] || { iconColor: "text-muted-foreground", iconBg: "bg-muted/30", toolHover: "hover:bg-muted/50", hoverShadow: "hover:shadow-sm", hoverBorder: "hover:border-border/30" };
 
   const handleClick = (e: React.MouseEvent) => {
     if (isLocked) {
