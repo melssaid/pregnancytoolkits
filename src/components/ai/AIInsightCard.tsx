@@ -105,6 +105,7 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
   showPrintButton = false, showDisclaimer = false, printTitle,
 }) => {
   const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
   const currentLanguage = i18n.language?.split('-')[0] || 'en';
 
   // Resolve section from prop or legacy aiType
