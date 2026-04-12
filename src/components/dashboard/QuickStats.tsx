@@ -77,7 +77,6 @@ export function QuickStats({
       {/* 4 compact stat cards in 2x2 grid */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
         {stats.map((stat, i) => {
-          const Icon = stat.icon;
           return (
             <motion.div
               key={stat.id}
@@ -87,16 +86,13 @@ export function QuickStats({
             >
               <Link
                 to={stat.href}
-                className="flex flex-col items-center p-2.5 rounded-xl bg-card border border-border/40 hover:border-primary/30 transition-all group text-center min-h-[72px] justify-center"
+                className="flex flex-col items-center p-3 rounded-xl bg-card border border-border/40 hover:border-primary/30 transition-all group text-center min-h-[68px] justify-center"
               >
-                <div className={`w-7 h-7 rounded-lg ${stat.bg} flex items-center justify-center mb-1`}>
-                  <Icon className={`w-3.5 h-3.5 ${stat.color}`} />
-                </div>
-                <p className="text-sm font-bold text-foreground leading-none group-hover:text-primary transition-colors">
+                <p className={`text-base font-bold leading-none group-hover:text-primary transition-colors ${stat.color}`}>
                   {stat.value}
-                  {stat.unit && <span className="text-[9px] font-medium text-muted-foreground ms-0.5">{stat.unit}</span>}
+                  {stat.unit && <span className="text-[10px] font-medium text-muted-foreground ms-0.5">{stat.unit}</span>}
                 </p>
-                <p className="text-[10px] text-muted-foreground mt-0.5 leading-tight whitespace-normal break-words overflow-wrap-anywhere w-full">{t(stat.labelKey)}</p>
+                <p className="text-[11px] text-foreground/60 font-medium mt-1.5 leading-tight whitespace-normal break-words overflow-wrap-anywhere w-full">{t(stat.labelKey)}</p>
               </Link>
             </motion.div>
           );
