@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Loader2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Input } from '@/components/ui/input';
 import { useActiveCoupon } from '@/hooks/useActiveCoupon';
 import { useAIUsage } from '@/contexts/AIUsageContext';
 import { useTranslation } from 'react-i18next';
