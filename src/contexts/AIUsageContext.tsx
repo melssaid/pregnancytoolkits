@@ -139,11 +139,18 @@ export function AIUsageProvider({ children }: { children: ReactNode }) {
     const onStorage = (e: StorageEvent) => {
       if (e.key?.includes('smart_quota') || e.key?.includes('smart_admin')) refresh();
     };
+    // Listen for subscription-activated event to immediately sync premium tier
+    const onSubscriptionActivated = () => {
+      qmSetTier('premium');
+      refresh();
+    };
     window.addEventListener('storage', onStorage);
     window.addEventListener('focus', refresh);
+    window.addEventListener('subscription-activated', onSubscriptionActivated);
     return () => {
       window.removeEventListener('storage', onStorage);
       window.removeEventListener('focus', refresh);
+      window.removeEventListener('subscription-activated', onSubscriptionActivated);
     };
   }, [refresh]);
 
