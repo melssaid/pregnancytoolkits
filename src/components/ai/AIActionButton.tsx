@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Brain, Loader2, Crown, Zap } from 'lucide-react';
+import { Brain, Loader2, Crown } from 'lucide-react';
 import { UpgradeCard } from './UpgradeCard';
 import { useAIUsage } from '@/contexts/AIUsageContext';
 import { useTranslation } from 'react-i18next';

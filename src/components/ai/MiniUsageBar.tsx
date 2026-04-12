@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Zap } from 'lucide-react';
+import { UpgradeCard } from './UpgradeCard';
 import { UpgradeCard } from './UpgradeCard';
 import { useAIUsage } from '@/contexts/AIUsageContext';
 import { useNavigate } from 'react-router-dom';
