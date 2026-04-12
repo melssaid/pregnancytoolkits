@@ -468,9 +468,9 @@ const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=app.pregna
 
 const CouponAndShareRow = memo(function CouponAndShareRow() {
   const { i18n } = useTranslation();
-  const navigate = useNavigate();
   const lang = i18n.language?.split('-')[0] || 'en';
   const isAr = lang === 'ar';
+  const [couponOpen, setCouponOpen] = useState(false);
 
   const handleShare = async () => {
     const shareText = isAr
@@ -494,34 +494,53 @@ const CouponAndShareRow = memo(function CouponAndShareRow() {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 8 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3, delay: 0.3 }}
-      className="mt-3 flex gap-2"
-    >
-      {/* Coupon CTA */}
-      <button
-        onClick={() => navigate('/settings')}
-        className="flex-1 flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-amber-500/[0.08] border border-amber-500/20 hover:bg-amber-500/[0.12] active:scale-[0.98] transition-all"
+    <>
+      <motion.div
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3, delay: 0.3 }}
+        className="mt-3 flex gap-2"
       >
-        <Gift className="w-4 h-4 text-amber-600 flex-shrink-0" strokeWidth={2} />
-        <span className="text-xs font-semibold text-foreground/70">
-          {isAr ? 'لديكِ قسيمة؟' : 'Have a coupon?'}
-        </span>
-      </button>
+        {/* Coupon CTA */}
+        <button
+          onClick={() => setCouponOpen(true)}
+          className="flex-1 flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-amber-500/[0.08] border border-amber-500/20 hover:bg-amber-500/[0.12] active:scale-[0.98] transition-all"
+        >
+          <Gift className="w-4 h-4 text-amber-600 flex-shrink-0" strokeWidth={2} />
+          <span className="text-xs font-semibold text-foreground/70">
+            {isAr ? 'لديكِ قسيمة؟' : 'Have a coupon?'}
+          </span>
+        </button>
 
-      {/* Share CTA */}
-      <button
-        onClick={handleShare}
-        className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-muted/50 border border-border/30 hover:bg-muted/70 active:scale-[0.98] transition-all"
-      >
-        <Share2 className="w-4 h-4 text-primary flex-shrink-0" strokeWidth={2} />
-        <span className="text-xs font-semibold text-foreground/70">
-          {isAr ? 'شاركي' : 'Share'}
-        </span>
-      </button>
-    </motion.div>
+        {/* Share CTA */}
+        <button
+          onClick={handleShare}
+          className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-muted/50 border border-border/30 hover:bg-muted/70 active:scale-[0.98] transition-all"
+        >
+          <Share2 className="w-4 h-4 text-primary flex-shrink-0" strokeWidth={2} />
+          <span className="text-xs font-semibold text-foreground/70">
+            {isAr ? 'شاركي' : 'Share'}
+          </span>
+        </button>
+      </motion.div>
+
+      {/* Coupon Dialog */}
+      <Dialog open={couponOpen} onOpenChange={setCouponOpen}>
+        <DialogContent className="max-w-[340px] rounded-2xl p-5">
+          <DialogHeader>
+            <DialogTitle className="text-center text-base font-bold">
+              {isAr ? '🎁 تفعيل قسيمة' : '🎁 Redeem Coupon'}
+            </DialogTitle>
+            <DialogDescription className="text-center text-xs text-muted-foreground">
+              {isAr ? 'أدخلي رمز القسيمة لفتح المميزات المدفوعة' : 'Enter your coupon code to unlock premium features'}
+            </DialogDescription>
+          </DialogHeader>
+          <div className="mt-2">
+            <CouponRedeemer />
+          </div>
+        </DialogContent>
+      </Dialog>
+    </>
   );
 });
 
