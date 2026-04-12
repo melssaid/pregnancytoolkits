@@ -230,7 +230,7 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.25, delay: toolIdx * 0.03, ease: [0.25, 0.1, 0.25, 1] }}
                   >
-                    <ToolRow tool={tool} isRTL={isRTL} isLocked={false} />
+                    <ToolRow tool={tool} isRTL={isRTL} isLocked={false} journeyKey={config.key} />
                   </motion.div>
                 ))}
               </div>
