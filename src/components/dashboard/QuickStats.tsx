@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Calendar, Ruler } from "lucide-react";
+
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
@@ -103,28 +103,23 @@ export function QuickStats({
             >
               <Link
                 to="/settings"
-                className="flex items-center gap-2.5 p-2.5 rounded-xl bg-card border border-border/40 hover:border-primary/30 transition-all group"
+                className="flex flex-col p-3 rounded-xl bg-card border border-border/40 hover:border-primary/30 transition-all group"
               >
-                <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <Ruler className="w-3.5 h-3.5 text-primary" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-[9px] text-muted-foreground">{t("dashboard.quickStats.bmi", "BMI")}</p>
-                  <p className="text-sm font-bold text-foreground group-hover:text-primary transition-colors leading-none">
-                    {bmi}
-                    <span className={`text-[9px] font-medium ms-1 ${
-                      bmi < 18.5 ? 'text-primary' : bmi < 25 ? 'text-emerald-600' : bmi < 30 ? 'text-amber-600' : 'text-destructive'
-                    }`}>
-                      {bmi < 18.5
-                        ? t("settings.profile.bmi.underweight", "↓")
-                        : bmi < 25
-                        ? "✓"
-                        : bmi < 30
-                        ? t("settings.profile.bmi.overweight", "↑")
-                        : t("settings.profile.bmi.obese", "↑↑")}
-                    </span>
-                  </p>
-                </div>
+                <p className="text-[10px] text-foreground/60 font-medium">{t("dashboard.quickStats.bmi", "BMI")}</p>
+                <p className="text-base font-bold text-foreground group-hover:text-primary transition-colors leading-none mt-1">
+                  {bmi}
+                  <span className={`text-[10px] font-medium ms-1 ${
+                    bmi < 18.5 ? 'text-primary' : bmi < 25 ? 'text-emerald-600' : bmi < 30 ? 'text-amber-600' : 'text-destructive'
+                  }`}>
+                    {bmi < 18.5
+                      ? t("settings.profile.bmi.underweight", "↓")
+                      : bmi < 25
+                      ? "✓"
+                      : bmi < 30
+                      ? t("settings.profile.bmi.overweight", "↑")
+                      : t("settings.profile.bmi.obese", "↑↑")}
+                  </span>
+                </p>
               </Link>
             </motion.div>
           )}
