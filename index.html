@@ -289,9 +289,10 @@
   <body style="background:#faf6f2;">
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <!-- Splash overlay (outside #root so React doesn't displace it) -->
-    <div id="splash-overlay" style="position:fixed;inset:0;z-index:9999;transition:opacity 0.4s ease;will-change:opacity;background:url('/splash-video-poster.jpg') center center / cover no-repeat #faf6f2;">
-      <video id="splash-video" poster="/splash-video-poster.jpg" autoplay muted playsinline webkit-playsinline preload="auto"
-        style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;opacity:1;"
+    <div id="splash-overlay" style="position:fixed;inset:0;z-index:9999;transition:opacity 0.4s ease;will-change:opacity;background:#faf6f2;display:flex;align-items:center;justify-content:center;">
+      <video id="splash-video" autoplay muted playsinline webkit-playsinline preload="auto"
+        style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;"
+        src="/splash-video.mp4"
       ></video>
       <style>
         #splash-video::-webkit-media-controls{display:none!important}
@@ -310,19 +311,14 @@
         var vid=document.getElementById('splash-video');
         if(!overlay||!vid){return;}
 
-        // Show video only on FIRST app open
-        // Also check: if onboarding was never accepted, this IS a new user
         var splashSeen=localStorage.getItem(SPLASH_KEY);
         var onboardingDone=localStorage.getItem(ONBOARDING_KEY);
         
-        // If splash was seen AND onboarding done => returning user, skip
         if(splashSeen && onboardingDone){
           overlay.parentNode.removeChild(overlay);
           return;
         }
 
-        // If splash was seen but onboarding NOT done => user cleared app data partially
-        // Reset splash so they see it again
         if(splashSeen && !onboardingDone){
           localStorage.removeItem(SPLASH_KEY);
         }
@@ -344,32 +340,21 @@
           window.dispatchEvent(new CustomEvent('html-splash-ended'));
         }
 
-        vid.addEventListener('canplay', function(){
-          vid.style.opacity='1';
-        }, {once:true});
-
-        vid.addEventListener('playing', function(){
-          vid.style.opacity='1';
-        }, {once:true});
-
         vid.addEventListener('ended', endSplash, {once:true});
         vid.addEventListener('error', endSplash, {once:true});
         vid.addEventListener('stalled', function(){
           setTimeout(endSplash, 2000);
         }, {once:true});
 
-        vid.src='/splash-video.mp4';
         try{
           var playPromise=vid.play();
           if(playPromise && playPromise.then){
             playPromise.catch(function(){
-              // Autoplay blocked — still show poster for 2s then fade
               setTimeout(endSplash, 2000);
             });
           }
         }catch(e){ setTimeout(endSplash, 1500); }
 
-        // Safety: max 4s for video
         setTimeout(endSplash, 4000);
       })();
     </script>
