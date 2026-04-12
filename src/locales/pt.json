@@ -1268,6 +1268,7 @@
       "error": "Erro de exclusão",
       "errorDesc": "Ocorreu um erro ao excluir os dados"
     },
+    "aiSection": "Ferramentas de IA",
     "aiReset": {
       "title": "Redefinir tentativas de IA",
       "status": "Usado: {{used}}/{{limit}} • Restante: {{remaining}}",

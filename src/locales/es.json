@@ -1268,6 +1268,7 @@
       "error": "Error de eliminación",
       "errorDesc": "Ocurrió un error al eliminar los datos"
     },
+    "aiSection": "Herramientas de IA",
     "aiReset": {
       "title": "Restablecer intentos de IA",
       "status": "Usado: {{used}}/{{limit}} • Restante: {{remaining}}",

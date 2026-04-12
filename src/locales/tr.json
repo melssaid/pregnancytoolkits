@@ -1268,6 +1268,7 @@
       "error": "Silme hatası",
       "errorDesc": "Veriler silinirken bir hata oluştu"
     },
+    "aiSection": "Yapay Zeka Araçları",
     "aiReset": {
       "title": "Yapay Zeka Denemelerini Sıfırla",
       "status": "Kullanılan: {{used}}/{{limit}} • Kalan: {{remaining}}",

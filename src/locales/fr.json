@@ -1268,6 +1268,7 @@
       "error": "Erreur de suppression",
       "errorDesc": "Une erreur est survenue lors de la suppression des données"
     },
+    "aiSection": "Outils IA",
     "aiReset": {
       "title": "Réinitialiser les essais IA",
       "status": "Utilisé: {{used}}/{{limit}} • Restant: {{remaining}}",
