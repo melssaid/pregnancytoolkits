@@ -184,21 +184,32 @@ export const AIActionButton: React.FC<AIActionButtonProps> = ({
             </span>
           </div>
 
-          {/* Cost hint for free users */}
+          {/* Cost hint + upgrade CTA for free users */}
           {isFree && (
-            <p className="text-[10px] text-muted-foreground/60 text-center leading-tight px-1">
-              <span className="inline-flex items-center gap-1">
-                <span className="inline-block w-1.5 h-1.5 rounded-full bg-primary/60" />
-                {weight === 0 ? labels.costHint0 : weight === 2 ? labels.costHint2 : weight === 0.5 ? labels.costHint05 : labels.costHint1}
-              </span>
-              {' · '}
-              <span
-                className="text-primary/70 cursor-pointer hover:text-primary hover:underline transition-colors"
+            <div className="space-y-2">
+              <p className="text-[10px] text-muted-foreground/70 text-center font-medium px-1">
+                <span className="inline-flex items-center gap-1">
+                  <span className="inline-block w-1.5 h-1.5 rounded-full bg-primary/50" />
+                  {weight === 0 ? labels.costHint0 : weight === 2 ? labels.costHint2 : weight === 0.5 ? labels.costHint05 : labels.costHint1}
+                </span>
+              </p>
+              <motion.button
                 onClick={(e) => { e.stopPropagation(); navigate('/pricing-demo'); }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full rounded-xl border border-primary/20 bg-gradient-to-r from-primary/[0.06] via-primary/[0.03] to-transparent p-3 flex items-center gap-3 hover:border-primary/35 hover:shadow-sm transition-all duration-200"
               >
-                {labels.upgradeHint}
-              </span>
-            </p>
+                <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                  <Crown className="w-4 h-4 text-primary" />
+                </div>
+                <div className="flex-1 min-w-0 text-start">
+                  <p className="text-xs font-bold text-foreground leading-tight">{labels.upgradeTitle}</p>
+                  <p className="text-[10px] text-muted-foreground font-medium mt-0.5">{labels.upgradeSub}</p>
+                </div>
+                <span className="text-[10px] font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-lg shrink-0">
+                  {labels.upgradeCta}
+                </span>
+              </motion.button>
+            </div>
           )}
         </div>
       )}
