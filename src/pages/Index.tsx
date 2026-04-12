@@ -93,28 +93,22 @@ const ToolRow = memo(function ToolRow({ tool, isRTL, isLocked = false }: { tool:
 
   return (
     <Link to={isLocked ? "#" : tool.href} onClick={handleClick} className="block">
-      <div className={`group flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-card/60 backdrop-blur-sm shadow-[0_1px_3px_0_hsl(0,0%,0%,0.04)] ${style.toolHover} ${style.hoverShadow} ${style.hoverBorder} border border-border/10 transition-all duration-250 hover:-translate-y-[1px] ${isLocked ? "opacity-50" : ""}`}>
-        <div className={`flex-shrink-0 w-9 h-9 rounded-lg ${style.iconBg} border border-border/15 flex items-center justify-center shadow-sm group-hover:shadow-md transition-all duration-250 group-hover:scale-105 ${isLocked ? "grayscale-[30%]" : ""}`}>
+      <div className={`group flex flex-col items-center gap-1.5 p-3 rounded-2xl bg-card/70 backdrop-blur-sm ${style.toolHover} ${style.hoverShadow} border border-border/15 ${style.hoverBorder} transition-all duration-250 hover:-translate-y-[1px] hover:shadow-md ${isLocked ? "opacity-50" : ""}`}>
+        <div className={`w-11 h-11 rounded-xl ${style.iconBg} border border-border/15 flex items-center justify-center shadow-sm group-hover:shadow-md transition-all duration-250 group-hover:scale-105 ${isLocked ? "grayscale-[30%]" : ""}`}>
           {hasPng ? (
-            <img
-              src={tool.pngIcon}
-              alt=""
-              className="w-5 h-5 object-contain opacity-80"
-              loading="lazy"
-            />
+            <img src={tool.pngIcon} alt="" className="w-5.5 h-5.5 object-contain opacity-80" loading="lazy" />
           ) : (
-            <ToolIcon className={`w-[18px] h-[18px] ${style.iconColor} group-hover:opacity-100 transition-opacity duration-250`} strokeWidth={1.8} />
+            <ToolIcon className={`w-5 h-5 ${style.iconColor} group-hover:opacity-100 transition-opacity duration-250`} strokeWidth={1.8} />
+          )}
+          {isLocked && (
+            <div className="absolute -top-1 -end-1 w-4 h-4 rounded-full bg-muted flex items-center justify-center border border-border/30">
+              <Lock className="w-2 h-2 text-muted-foreground/60" />
+            </div>
           )}
         </div>
-        <div className="flex-1 min-w-0">
-          <h3 className="text-[12px] font-semibold text-foreground leading-snug line-clamp-2" style={{ fontFamily: "'Tajawal', sans-serif", overflowWrap: 'anywhere' }}>{t(tool.titleKey)}</h3>
-          <p className="text-[10px] text-muted-foreground mt-0.5 leading-snug line-clamp-2" style={{ overflowWrap: 'anywhere' }}>{t(tool.descriptionKey)}</p>
-        </div>
-        {isLocked ? (
-          <Lock className="flex-shrink-0 w-3.5 h-3.5 text-muted-foreground/40" />
-        ) : (
-          <ChevronIcon className="flex-shrink-0 w-3.5 h-3.5 text-muted-foreground/20 group-hover:text-muted-foreground/60 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5 transition-all duration-250" />
-        )}
+        <span className="text-[10px] font-semibold text-foreground/80 leading-tight text-center line-clamp-2 min-h-[28px] flex items-center" style={{ fontFamily: "'Tajawal', sans-serif", overflowWrap: 'anywhere' }}>
+          {t(tool.titleKey)}
+        </span>
       </div>
     </Link>
   );
@@ -218,16 +212,16 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
             }}
             className="overflow-hidden"
           >
-            <div className="px-2.5 pb-3 pt-1.5 space-y-1.5">
+            <div className="px-2.5 pb-3 pt-2 space-y-2">
               {toolsByCategory.map(({ catKey, tools }) => (
                 <div key={catKey}>
-                  <div className="space-y-2">
+                  <div className="grid grid-cols-3 gap-2">
                     {tools.map((tool, toolIdx) => (
                       <motion.div
                         key={tool.id}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.3, delay: toolIdx * 0.04, ease: [0.25, 0.1, 0.25, 1] }}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.25, delay: toolIdx * 0.03, ease: [0.25, 0.1, 0.25, 1] }}
                       >
                         <ToolRow tool={tool} isRTL={isRTL} isLocked={false} />
                       </motion.div>
