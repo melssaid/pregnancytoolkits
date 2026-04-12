@@ -145,8 +145,8 @@ export const AIResponseFrame = ({
 
         {/* Single unified usage + Pro footer */}
         <div className="mt-3 flex items-center justify-between gap-2 px-1">
-          <span className={`text-[10px] font-medium tabular-nums ${usageColor}`}>
-            {remaining} <span className="opacity-60">/ {limit}</span>
+          <span className={`text-[11px] font-semibold tabular-nums ${usageColor}`}>
+            {remaining} <span className="text-foreground/50">/ {limit}</span>
           </span>
 
           {isFree && (

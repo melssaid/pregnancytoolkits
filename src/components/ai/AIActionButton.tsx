@@ -103,8 +103,8 @@ export const AIActionButton: React.FC<AIActionButtonProps> = ({
             <div className="flex-1 h-2 rounded-full bg-muted/30 overflow-hidden" style={{ boxShadow: 'inset 0 1px 2px hsl(0 0% 0% / 0.08)' }}>
               <div className="h-full rounded-full w-full" style={{ background: getBarGradient() }} />
             </div>
-            <span className="text-[10px] text-muted-foreground font-semibold tabular-nums shrink-0">
-              0 <span className="opacity-50">/ {limit}</span>
+            <span className="text-[11px] text-muted-foreground font-semibold tabular-nums shrink-0">
+              0 <span className="text-foreground/50 font-medium">/ {limit}</span>
             </span>
           </div>
         )}
@@ -177,8 +177,8 @@ export const AIActionButton: React.FC<AIActionButtonProps> = ({
                 transition={{ duration: 0.6, ease: 'easeOut' }}
               />
             </div>
-            <span className="text-[10px] text-muted-foreground font-semibold tabular-nums shrink-0">
-              {remaining} <span className="opacity-50">/ {limit}</span>
+            <span className="text-[11px] text-muted-foreground font-semibold tabular-nums shrink-0">
+              {remaining} <span className="text-foreground/50 font-medium">/ {limit}</span>
             </span>
           </div>
 

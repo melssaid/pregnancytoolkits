@@ -55,8 +55,8 @@ export const MiniUsageBar: React.FC<MiniUsageBarProps> = ({ toolType, section, c
             transition={{ duration: 0.6, ease: 'easeOut' }}
           />
         </div>
-        <span className="text-[10px] text-muted-foreground font-semibold tabular-nums shrink-0">
-          {remaining} <span className="opacity-50">/ {limit}</span>
+        <span className="text-[11px] text-muted-foreground font-semibold tabular-nums shrink-0">
+          {remaining} <span className="text-foreground/50 font-medium">/ {limit}</span>
         </span>
       </div>
 

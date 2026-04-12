@@ -412,12 +412,11 @@ const FooterCard = memo(function FooterCard() {
           {isFree && (
             <div className="mb-3">
               <div className="flex items-center justify-between mb-1">
-                <span className="text-[10px] text-muted-foreground flex items-center gap-1 font-medium">
-                  <Brain className="w-3 h-3 text-primary/50" strokeWidth={1.8} />
+                <span className="text-[11px] text-muted-foreground flex items-center gap-1 font-semibold">
                   {isAr ? 'التحليلات المتبقية' : 'Remaining analyses'}
                 </span>
-                <span className="text-xs font-extrabold text-primary tabular-nums" style={{ fontFamily: "'Cairo', sans-serif" }}>
-                  {remaining}<span className="text-[9px] opacity-40 font-normal">/{limit}</span>
+                <span className="text-xs font-extrabold text-primary tabular-nums">
+                  {remaining}<span className="text-[10px] text-foreground/60 font-semibold">/{limit}</span>
                 </span>
               </div>
               <div className="h-[5px] rounded-full bg-muted/50 overflow-hidden">
