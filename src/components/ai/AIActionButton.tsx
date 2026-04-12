@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Brain, Loader2, Sparkles, Crown, Zap } from 'lucide-react';
+import { Brain, Loader2, Crown, Zap } from 'lucide-react';
 import { UpgradeCard } from './UpgradeCard';
 import { useAIUsage } from '@/contexts/AIUsageContext';
 import { useTranslation } from 'react-i18next';
@@ -150,10 +150,7 @@ export const AIActionButton: React.FC<AIActionButtonProps> = ({
             </div>
           ) : (
             <div className="flex items-center gap-2.5">
-              <div className="relative shrink-0">
-                <Icon className={`${isCompact ? 'w-3.5 h-3.5' : 'w-[18px] h-[18px]'}`} />
-                <Sparkles className={`absolute -top-1 -end-1.5 text-yellow-300 opacity-80 ${isCompact ? 'w-2 h-2' : 'w-2.5 h-2.5'}`} />
-              </div>
+              <Icon className={`shrink-0 ${isCompact ? 'w-3.5 h-3.5' : 'w-[18px] h-[18px]'}`} />
               <span className="min-w-0 whitespace-normal text-center leading-tight">{label}</span>
             </div>
           )}
