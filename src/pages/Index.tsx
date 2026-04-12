@@ -151,14 +151,13 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
   }, [config.key]);
 
   const categories = useMemo(() => getJourneyCategories(config.key), [config.key]);
-  const toolsByCategory = useMemo(() => {
-    return categories.map(catKey => ({
-      catKey,
-      tools: getToolsByCategory(catKey),
-    })).filter(g => g.tools.length > 0);
+  const allJourneyTools = useMemo(() => {
+    return categories
+      .flatMap(catKey => getToolsByCategory(catKey))
+      .sort((a, b) => a.priority - b.priority);
   }, [categories]);
 
-  const totalTools = useMemo(() => toolsByCategory.reduce((sum, g) => sum + g.tools.length, 0), [toolsByCategory]);
+  const totalTools = allJourneyTools.length;
   if (totalTools === 0) return null;
 
   
@@ -213,23 +212,19 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
             }}
             className="overflow-hidden"
           >
-            <div className="px-2 pb-2.5 pt-1.5 space-y-1.5">
-              {toolsByCategory.map(({ catKey, tools }) => (
-                <div key={catKey}>
-                  <div className="grid grid-cols-3 gap-1.5">
-                    {tools.map((tool, toolIdx) => (
-                      <motion.div
-                        key={tool.id}
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.25, delay: toolIdx * 0.03, ease: [0.25, 0.1, 0.25, 1] }}
-                      >
-                        <ToolRow tool={tool} isRTL={isRTL} isLocked={false} />
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
-              ))}
+            <div className="px-2 pb-2.5 pt-1.5">
+              <div className="grid grid-cols-3 gap-1.5">
+                {allJourneyTools.map((tool, toolIdx) => (
+                  <motion.div
+                    key={tool.id}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.25, delay: toolIdx * 0.03, ease: [0.25, 0.1, 0.25, 1] }}
+                  >
+                    <ToolRow tool={tool} isRTL={isRTL} isLocked={false} />
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </motion.div>
         )}
