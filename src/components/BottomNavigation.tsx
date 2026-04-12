@@ -140,7 +140,7 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
                     animate={{ rotate: [0, 5, -5, 0] }}
                     transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                   >
-                    <Sparkles className="w-4.5 h-4.5 text-primary" strokeWidth={2} />
+                    <Grid3X3 className="w-4.5 h-4.5 text-primary" strokeWidth={2} />
                   </motion.div>
                   <div>
                     <h3 className="text-base font-bold text-foreground leading-tight">
