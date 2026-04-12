@@ -14,6 +14,7 @@ import {
   type QuotaState,
 } from '@/services/smartEngine';
 import { getCouponRequestHeaders } from '@/lib/couponRequestHeaders';
+import { getBackendFunctionUrl, getBackendPublishableKey } from '@/lib/backendConfig';
 
 export type SubscriptionTier = 'free' | 'premium';
 
