@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Ticket, Loader2, CheckCircle2, Clock } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { useActiveCoupon } from '@/hooks/useActiveCoupon';
 import { useAIUsage } from '@/contexts/AIUsageContext';
@@ -20,62 +20,68 @@ export const CouponRedeemer: React.FC = () => {
     if (result.success) {
       toast.success(isRTL ? '🎉 تم تفعيل القسيمة بنجاح!' : '🎉 Coupon activated!');
       setCode('');
-      // Refresh quota so premium kicks in
       refresh();
     } else {
       const errors: Record<string, string> = {
-        INVALID_CODE: isRTL ? 'القسيمة غير صالحة' : 'Invalid coupon code',
-        COUPON_EXPIRED: isRTL ? 'القسيمة منتهية الصلاحية' : 'Coupon has expired',
-        COUPON_EXHAUSTED: isRTL ? 'تم استنفاد عدد الاستخدامات' : 'Coupon usage limit reached',
-        ALREADY_CLAIMED: isRTL ? 'تم استخدام هذه القسيمة على هذا الجهاز مسبقاً' : 'Already used on this device',
-        MISSING_CODE: isRTL ? 'أدخل رمز القسيمة' : 'Enter coupon code',
+        INVALID_CODE: isRTL ? 'رمز القسيمة غير صالح' : 'Invalid coupon code',
+        COUPON_EXPIRED: isRTL ? 'انتهت صلاحية القسيمة' : 'Coupon has expired',
+        COUPON_EXHAUSTED: isRTL ? 'تم استنفاد عدد الاستخدامات المتاحة' : 'Coupon usage limit reached',
+        ALREADY_CLAIMED: isRTL ? 'تم استخدام هذه القسيمة على هذا الجهاز من قبل' : 'Already used on this device',
+        MISSING_CODE: isRTL ? 'يرجى إدخال رمز القسيمة' : 'Enter coupon code',
       };
-      toast.error(errors[result.error || ''] || (isRTL ? 'حدث خطأ' : 'An error occurred'));
+      toast.error(errors[result.error || ''] || (isRTL ? 'حدث خطأ، يرجى المحاولة لاحقًا' : 'An error occurred'));
     }
   };
 
   const formatRemaining = (ms: number): string => {
     const hours = Math.floor(ms / (1000 * 60 * 60));
     const days = Math.floor(hours / 24);
-    if (days > 0) return isRTL ? `${days} يوم` : `${days}d`;
+    const remainingHours = hours % 24;
+    if (days > 0) return isRTL ? `${days} يوم و ${remainingHours} ساعة` : `${days}d ${remainingHours}h`;
     return isRTL ? `${hours} ساعة` : `${hours}h`;
   };
 
   return (
-    <div className="space-y-3">
-      {/* Active coupon banner */}
+    <div className="space-y-4">
+      {/* Active coupon */}
       {isActive && activeCoupon && (
-        <div className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
-          <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0" />
-          <div className="flex-1 min-w-0">
-            <p className="text-[12px] font-bold text-emerald-700 dark:text-emerald-400">
-              {isRTL ? 'قسيمة نشطة' : 'Active Coupon'}: {activeCoupon.code}
-            </p>
-            <div className="flex items-center gap-1 mt-0.5">
-              <Clock className="w-3 h-3 text-emerald-600/60" />
-              <span className="text-[10px] text-emerald-600/80">
-                {isRTL ? `تنتهي خلال ${formatRemaining(remainingTime)}` : `Expires in ${formatRemaining(remainingTime)}`}
-              </span>
-            </div>
-          </div>
+        <div className="relative overflow-hidden rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-50/80 to-emerald-100/40 dark:from-emerald-950/30 dark:to-emerald-900/20 p-4">
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-400 via-emerald-500 to-teal-500" />
+          <p className="text-[14px] font-bold text-emerald-700 dark:text-emerald-300">
+            {isRTL ? '✓ القسيمة مفعّلة' : '✓ Coupon Active'}
+          </p>
+          <p className="text-[15px] font-extrabold text-emerald-800 dark:text-emerald-200 mt-1 tracking-wider">
+            {activeCoupon.code}
+          </p>
+          <p className="text-[12px] text-emerald-600/80 dark:text-emerald-400/70 mt-2">
+            {isRTL
+              ? `تنتهي الصلاحية خلال ${formatRemaining(remainingTime)}`
+              : `Expires in ${formatRemaining(remainingTime)}`}
+          </p>
         </div>
       )}
 
-      {/* Redeem input */}
+      {/* Redeem form */}
       {!isActive && (
-        <div className="space-y-2">
-          <div className="flex items-center gap-2">
-            <Ticket className="w-4 h-4 text-primary" />
-            <span className="text-[13px] font-semibold text-foreground">
-              {isRTL ? 'استخدام قسيمة ترويجية' : 'Redeem Coupon'}
-            </span>
-          </div>
+        <div className="space-y-3">
+          <p className="text-[15px] font-bold text-foreground">
+            {isRTL ? 'تفعيل قسيمة ترويجية' : 'Redeem a Coupon'}
+          </p>
+          <p className="text-[12px] text-muted-foreground leading-relaxed -mt-1">
+            {isRTL
+              ? 'أدخلي رمز القسيمة للحصول على مميزات إضافية مجانًا.'
+              : 'Enter your coupon code to unlock extra features for free.'}
+          </p>
+
           <div className="flex gap-2">
             <Input
               value={code}
               onChange={e => setCode(e.target.value.toUpperCase())}
-              placeholder={isRTL ? 'أدخل رمز القسيمة' : 'Enter code'}
-              className={cn("flex-1 text-sm uppercase tracking-wider", isRTL && "text-right")}
+              placeholder={isRTL ? 'رمز القسيمة' : 'Coupon code'}
+              className={cn(
+                "flex-1 text-[14px] font-semibold uppercase tracking-widest h-11 rounded-xl border-border/60 bg-muted/30 placeholder:text-muted-foreground/50 placeholder:normal-case placeholder:tracking-normal placeholder:font-normal",
+                isRTL && "text-right"
+              )}
               dir="ltr"
               maxLength={30}
               disabled={redeeming}
@@ -84,15 +90,25 @@ export const CouponRedeemer: React.FC = () => {
             <button
               onClick={handleRedeem}
               disabled={redeeming || !code.trim()}
-              className="px-4 py-2 rounded-xl bg-primary text-primary-foreground text-[12px] font-bold disabled:opacity-50 hover:bg-primary/90 transition-colors active:scale-[0.97] flex items-center gap-1.5"
+              className="px-5 h-11 rounded-xl bg-primary text-primary-foreground text-[13px] font-bold disabled:opacity-40 hover:bg-primary/90 transition-all active:scale-[0.97] flex items-center gap-2 whitespace-nowrap"
             >
-              {redeeming ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : null}
+              {redeeming && <Loader2 className="w-4 h-4 animate-spin" />}
               {isRTL ? 'تفعيل' : 'Activate'}
             </button>
           </div>
-          <p className="text-[10px] text-muted-foreground">
-            {isRTL ? 'القسيمة تُستخدم مرة واحدة فقط لكل جهاز' : 'Each coupon can only be used once per device'}
-          </p>
+
+          {/* Terms */}
+          <div className="pt-1 space-y-1">
+            <p className="text-[11px] text-muted-foreground/70 leading-relaxed">
+              {isRTL ? '• تُستخدم القسيمة مرة واحدة فقط لكل جهاز.' : '• Each coupon can only be used once per device.'}
+            </p>
+            <p className="text-[11px] text-muted-foreground/70 leading-relaxed">
+              {isRTL ? '• لا يمكن استرداد القسيمة أو استبدالها بعد التفعيل.' : '• Coupons cannot be refunded or exchanged after activation.'}
+            </p>
+            <p className="text-[11px] text-muted-foreground/70 leading-relaxed">
+              {isRTL ? '• تنتهي صلاحية القسيمة تلقائيًا بحسب نوعها.' : '• Coupons expire automatically based on their type.'}
+            </p>
+          </div>
         </div>
       )}
     </div>
