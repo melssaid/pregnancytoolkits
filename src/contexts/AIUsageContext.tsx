@@ -9,6 +9,7 @@ import {
   getQuotaState,
   consumeQuota,
   syncFromServer as qmSyncFromServer,
+  setTier as qmSetTier,
   applyCouponTier,
   type QuotaState,
 } from '@/services/smartEngine';
