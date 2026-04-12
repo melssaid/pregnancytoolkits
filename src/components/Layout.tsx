@@ -262,34 +262,52 @@ export function Layout({ children, showBack = false }: LayoutProps) {
 
 
       {/* Footer */}
-      <footer className="border-t border-border border-b-4 border-b-primary/20 bg-card py-5 pb-24 md:pb-5 rounded-t-[2rem]">
-        <div className="container">
-          <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-            <div className="flex items-center gap-2.5">
-              <img src={logoImage} alt="Logo" width={32} height={32} loading="lazy" decoding="async" className="h-8 w-8 rounded-full object-cover grayscale opacity-60" />
-              <span className="text-sm font-bold text-muted-foreground/50">{t('app.name')}</span>
-            </div>
-            
-            {/* Styled Links Container */}
-            <div className="inline-flex items-center gap-1 px-4 py-2 rounded-full bg-gradient-to-r from-muted/50 via-muted/30 to-muted/50 border border-border/60 shadow-sm flex-wrap justify-center">
-              <Link to="/privacy" className="text-[10px] text-muted-foreground hover:text-primary transition-colors duration-200 px-2.5 py-1 rounded-full hover:bg-primary/10 active:scale-95">
-                {t('layout.footer.privacy', 'Privacy')}
-              </Link>
-              <span className="text-muted-foreground/40">•</span>
-              <Link to="/terms" className="text-[10px] text-muted-foreground hover:text-primary transition-colors duration-200 px-2.5 py-1 rounded-full hover:bg-primary/10 active:scale-95">
-                {t('layout.footer.terms', 'Terms')}
-              </Link>
-              <span className="text-muted-foreground/40">•</span>
-              <Link to="/contact" className="text-[10px] text-muted-foreground hover:text-primary transition-colors duration-200 px-2.5 py-1 rounded-full hover:bg-primary/10 active:scale-95">
-                {t('layout.footer.contact', 'Contact')}
-              </Link>
-              <span className="text-muted-foreground/40">•</span>
-              <Link to="/testimonials" className="text-[10px] text-muted-foreground hover:text-primary transition-colors duration-200 px-2.5 py-1 rounded-full hover:bg-primary/10 active:scale-95">
-                {t('layout.footer.testimonials', 'Reviews')}
-              </Link>
-            </div>
+      <footer className="border-t border-border/30 bg-gradient-to-b from-card to-muted/20 py-8 pb-28 md:pb-8">
+        <div className="container max-w-lg mx-auto px-4">
+          {/* Logo & Brand */}
+          <div className="flex flex-col items-center gap-3 mb-5">
+            <img src={logoImage} alt="Logo" width={36} height={36} loading="lazy" decoding="async" className="h-9 w-9 rounded-full object-cover shadow-sm" />
+            <span className="text-xs font-semibold text-muted-foreground/60">{t('app.name')}</span>
           </div>
-          <p className="text-xs text-muted-foreground text-center mt-4">
+          
+          {/* Navigation Links */}
+          <div className="grid grid-cols-4 gap-2 mb-5">
+            <Link to="/privacy" className="flex flex-col items-center gap-1.5 p-2.5 rounded-xl bg-card border border-border/20 hover:border-primary/20 hover:bg-primary/[0.04] transition-all duration-200 group">
+              <div className="w-8 h-8 rounded-lg bg-muted/50 group-hover:bg-primary/10 flex items-center justify-center transition-colors">
+                <Shield className="w-3.5 h-3.5 text-muted-foreground group-hover:text-primary transition-colors" strokeWidth={1.8} />
+              </div>
+              <span className="text-[9px] font-semibold text-muted-foreground group-hover:text-foreground transition-colors text-center leading-tight">
+                {t('layout.footer.privacy', 'Privacy')}
+              </span>
+            </Link>
+            <Link to="/terms" className="flex flex-col items-center gap-1.5 p-2.5 rounded-xl bg-card border border-border/20 hover:border-primary/20 hover:bg-primary/[0.04] transition-all duration-200 group">
+              <div className="w-8 h-8 rounded-lg bg-muted/50 group-hover:bg-primary/10 flex items-center justify-center transition-colors">
+                <svg className="w-3.5 h-3.5 text-muted-foreground group-hover:text-primary transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              </div>
+              <span className="text-[9px] font-semibold text-muted-foreground group-hover:text-foreground transition-colors text-center leading-tight">
+                {t('layout.footer.terms', 'Terms')}
+              </span>
+            </Link>
+            <Link to="/contact" className="flex flex-col items-center gap-1.5 p-2.5 rounded-xl bg-card border border-border/20 hover:border-primary/20 hover:bg-primary/[0.04] transition-all duration-200 group">
+              <div className="w-8 h-8 rounded-lg bg-muted/50 group-hover:bg-primary/10 flex items-center justify-center transition-colors">
+                <Heart className="w-3.5 h-3.5 text-muted-foreground group-hover:text-primary transition-colors" strokeWidth={1.8} />
+              </div>
+              <span className="text-[9px] font-semibold text-muted-foreground group-hover:text-foreground transition-colors text-center leading-tight">
+                {t('layout.footer.contact', 'Contact')}
+              </span>
+            </Link>
+            <Link to="/testimonials" className="flex flex-col items-center gap-1.5 p-2.5 rounded-xl bg-card border border-border/20 hover:border-primary/20 hover:bg-primary/[0.04] transition-all duration-200 group">
+              <div className="w-8 h-8 rounded-lg bg-muted/50 group-hover:bg-primary/10 flex items-center justify-center transition-colors">
+                <svg className="w-3.5 h-3.5 text-muted-foreground group-hover:text-primary transition-colors" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              </div>
+              <span className="text-[9px] font-semibold text-muted-foreground group-hover:text-foreground transition-colors text-center leading-tight">
+                {t('layout.footer.testimonials', 'Reviews')}
+              </span>
+            </Link>
+          </div>
+
+          {/* Copyright */}
+          <p className="text-[10px] text-muted-foreground/50 text-center font-medium">
             {t('app.footer')}
           </p>
         </div>
