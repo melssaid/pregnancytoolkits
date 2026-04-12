@@ -86,11 +86,52 @@ export function AIUsageProvider({ children }: { children: ReactNode }) {
       }
     } catch { /* ignore */ }
 
-    fetchServerQuota().then((server) => {
-      if (!server) return;
-      qmSyncFromServer(server.used, server.tier, server.limit);
+    // Fetch server quota AND check DB subscription in parallel
+    const syncAll = async () => {
+      // 1. Server quota sync (usage count + coupon-aware limit)
+      const serverPromise = fetchServerQuota();
+
+      // 2. DB subscription check (direct subscription status)
+      const dbPromise = (async () => {
+        try {
+          const { supabase } = await import('@/integrations/supabase/client');
+          const { data: { user } } = await supabase.auth.getUser();
+          if (!user?.id) return null;
+          const { data: sub } = await supabase
+            .from('subscriptions')
+            .select('status, subscription_type, subscription_end')
+            .eq('user_id', user.id)
+            .eq('status', 'active')
+            .order('created_at', { ascending: false })
+            .limit(1)
+            .maybeSingle();
+          if (sub && sub.subscription_type !== 'trial') {
+            const subEnd = sub.subscription_end ? new Date(sub.subscription_end) : null;
+            if (!subEnd || subEnd > new Date()) return 'premium' as const;
+          }
+          return null;
+        } catch { return null; }
+      })();
+
+      const [server, dbTier] = await Promise.all([serverPromise, dbPromise]);
+
+      // Apply DB subscription tier first (most authoritative for paid users)
+      if (dbTier === 'premium') {
+        qmSetTier('premium');
+      }
+
+      // Then apply server quota (usage count + coupon bonuses)
+      if (server) {
+        // If DB says premium, ensure server tier doesn't downgrade it
+        const effectiveTier = dbTier === 'premium' ? 'premium' : server.tier;
+        const effectiveLimit = dbTier === 'premium' ? Math.max(server.limit, 60) : server.limit;
+        qmSyncFromServer(server.used, effectiveTier, effectiveLimit);
+      }
+
       refresh();
-    });
+    };
+
+    syncAll();
   }, [refresh]);
 
   useEffect(() => {
@@ -98,11 +139,18 @@ export function AIUsageProvider({ children }: { children: ReactNode }) {
     const onStorage = (e: StorageEvent) => {
       if (e.key?.includes('smart_quota') || e.key?.includes('smart_admin')) refresh();
     };
+    // Listen for subscription-activated event to immediately sync premium tier
+    const onSubscriptionActivated = () => {
+      qmSetTier('premium');
+      refresh();
+    };
     window.addEventListener('storage', onStorage);
     window.addEventListener('focus', refresh);
+    window.addEventListener('subscription-activated', onSubscriptionActivated);
     return () => {
       window.removeEventListener('storage', onStorage);
       window.removeEventListener('focus', refresh);
+      window.removeEventListener('subscription-activated', onSubscriptionActivated);
     };
   }, [refresh]);
 
