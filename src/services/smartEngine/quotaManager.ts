@@ -21,7 +21,8 @@ interface StoredQuota {
   monthKey: string;
   used: number;
   tier: "free" | "premium";
-  bonusCredits?: number;
+  bonusCredits?: number;      // coupon-based override limit
+  promoBonusCredits?: number; // additive promo bonus (legacy)
 }
 
 // ── Storage helpers ──
@@ -57,9 +58,11 @@ export function getQuotaState(): QuotaState {
   const stored = readQuota();
   const bypass = isAdminBypass();
   const tierConfig = QUOTA_TIERS[stored.tier] || QUOTA_TIERS.free;
-  const bonus = stored.bonusCredits || 0;
-  // If bonusCredits is set (coupon), use it as the limit; otherwise use tier monthly
-  const limit = bypass ? 999 : (bonus > 0 ? bonus : tierConfig.monthly);
+  const couponPoints = stored.bonusCredits || 0;
+  const promoBonus = stored.promoBonusCredits || 0;
+  // Coupon overrides tier limit; promo bonus adds on top
+  const base = couponPoints > 0 ? couponPoints : tierConfig.monthly;
+  const limit = bypass ? 999 : base + promoBonus;
   const remaining = Math.max(0, limit - stored.used);
 
   return {
@@ -202,8 +205,7 @@ export function claimBonus(): { success: boolean; newState: QuotaState } {
     return { success: false, newState: getQuotaState() };
   }
   const stored = readQuota();
-  // Grant bonus by adding to effective limit (works even when used=0)
-  stored.bonusCredits = (stored.bonusCredits || 0) + BONUS_AMOUNT;
+  stored.promoBonusCredits = (stored.promoBonusCredits || 0) + BONUS_AMOUNT;
   stored.monthKey = getCurrentMonthKey();
   writeQuota(stored);
   // Mark as claimed
