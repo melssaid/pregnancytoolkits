@@ -10,8 +10,8 @@ import { useNavigate, Link } from "react-router-dom";
 import pricingLogo from "@/assets/pricing-logo.webp";
 import { supabase } from "@/integrations/supabase/client";
 import { useAIUsage } from "@/contexts/AIUsageContext";
-
 import { usePlayPrices } from "@/hooks/usePlayPrices";
+import { CouponRedeemer } from "@/components/settings/CouponRedeemer";
 
 const features = [
   { icon: Brain, key: "feature1" },
