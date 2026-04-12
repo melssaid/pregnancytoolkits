@@ -82,8 +82,9 @@ export default function AIUsageDashboard() {
         setError("Authentication required. Please sign in to view analytics.");
         return;
       }
+      const { getBackendFunctionUrl } = await import('@/lib/backendConfig');
       const res = await fetch(
-        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/ai-usage-stats`,
+        getBackendFunctionUrl('ai-usage-stats'),
         { headers: { Authorization: `Bearer ${session.access_token}`, "Content-Type": "application/json" } }
       );
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
