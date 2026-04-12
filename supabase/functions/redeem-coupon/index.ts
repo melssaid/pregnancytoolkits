@@ -81,10 +81,12 @@ Deno.serve(async (req) => {
       }
 
       // 1. Find coupon
+      const normalizedCode = String(code).trim().toUpperCase();
+
       const { data: coupon, error: couponErr } = await supabase
         .from("coupons")
         .select("*")
-        .eq("code", code)
+        .eq("code", normalizedCode)
         .eq("is_active", true)
         .single();
 
