@@ -1,7 +1,7 @@
 import { useMemo, memo, useState, useCallback, useEffect } from "react";
 import { useAIUsage } from "@/contexts/AIUsageContext";
 import { useSubscriptionStatus } from "@/hooks/useSubscriptionStatus";
-import { ChevronRight, ChevronLeft, ChevronDown, Lock, LockOpen, ShieldCheck, Clock, Sparkles, Brain, Gift, Crown, Share2, Zap, Check, Heart } from "lucide-react";
+import { ChevronRight, ChevronLeft, ChevronDown, Lock, LockOpen, ShieldCheck, Clock, Sparkles, Brain, Gift, Crown, Share2, Zap, Check } from "lucide-react";
 import PregnancyHeartIcon from "@/components/PregnancyHeartIcon";
 import BabyFootprintsIcon from "@/components/BabyFootprintsIcon";
 import RockingBabyIcon from "@/components/RockingBabyIcon";
@@ -515,43 +515,16 @@ const ShareAppButton = memo(function ShareAppButton() {
   const sub = subtitleMap[lang] || subtitleMap.en;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 12 }}
+    <motion.button
+      initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-      className="mt-3"
+      transition={{ duration: 0.3, delay: 0.3 }}
+      onClick={handleShare}
+      className="w-full mt-3 flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-muted/50 border border-border/30 hover:bg-muted/70 active:scale-[0.98] transition-all"
     >
-      <button
-        onClick={handleShare}
-        className="w-full relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary/90 via-primary to-primary/80 text-primary-foreground shadow-lg hover:shadow-xl active:scale-[0.98] transition-all duration-300 group"
-      >
-        {/* Decorative circles */}
-        <div className="absolute -top-6 -end-6 w-20 h-20 rounded-full bg-white/10" />
-        <div className="absolute -bottom-4 -start-4 w-16 h-16 rounded-full bg-white/[0.07]" />
-
-        <div className="relative px-5 py-4 flex items-center gap-4">
-          {/* Icon */}
-          <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-inner">
-            <Share2 className="w-6 h-6 text-white drop-shadow-sm" strokeWidth={2.2} />
-          </div>
-
-          {/* Text */}
-          <div className="flex-1 min-w-0 text-start">
-            <p className="text-sm font-extrabold leading-tight tracking-tight drop-shadow-sm">
-              {l.text}
-            </p>
-            <p className="text-xs font-medium opacity-80 mt-1 leading-snug">
-              {sub} 💕
-            </p>
-          </div>
-
-          {/* Arrow / Heart CTA */}
-          <div className="flex-shrink-0 w-10 h-10 rounded-full bg-white/20 group-hover:bg-white/30 flex items-center justify-center transition-colors shadow-sm">
-            <Heart className="w-5 h-5 text-white fill-white/40 group-hover:fill-white/60 transition-colors" />
-          </div>
-        </div>
-      </button>
-    </motion.div>
+      <Share2 className="w-4 h-4 text-primary flex-shrink-0" strokeWidth={2} />
+      <span className="text-xs font-semibold text-foreground/70">{l.text}</span>
+    </motion.button>
   );
 });
 
