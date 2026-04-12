@@ -83,7 +83,7 @@ const journeyConfigs: JourneyConfig[] = [
 ];
 
 // ── Tool row component ──────────────────────────────────────────────────
-const ToolRow = memo(function ToolRow({ tool, isRTL, isLocked = false }: { tool: Tool; isRTL: boolean; isLocked?: boolean }) {
+const ToolRow = memo(function ToolRow({ tool, isRTL, isLocked = false, journeyKey }: { tool: Tool; isRTL: boolean; isLocked?: boolean; journeyKey?: JourneyKey }) {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const ToolIconComp = tool.icon;
