@@ -320,18 +320,18 @@ export default function PricingDemo() {
           </Button>
 
           <p
-            className="text-center text-[10px] text-muted-foreground leading-snug"
+            className="text-center text-[11px] text-muted-foreground leading-snug"
             style={{ fontFamily: isAr ? "'Tajawal', sans-serif" : "'Montserrat', sans-serif" }}
           >
             {t("pricing.ctaSub", { price: priceDisplay, period })}
           </p>
 
-          <p className="text-center text-[9px] text-muted-foreground/50 leading-relaxed">
+          <p className="text-center text-[10px] text-muted-foreground/60 leading-relaxed">
             {t("pricing.autoRenew")}
           </p>
 
-          <div className="flex items-center justify-center gap-2 flex-wrap pt-0.5">
-            <span className="text-[9px] text-muted-foreground/50 text-center">
+          <div className="flex items-center justify-center gap-2 flex-wrap">
+            <span className="text-[10px] text-muted-foreground/60 text-center">
               {t("pricing.termsPrefix")}{" "}
               <Link to="/terms" className="underline hover:text-foreground transition-colors">
                 {t("layout.footer.terms")}
@@ -341,6 +341,11 @@ export default function PricingDemo() {
                 {t("layout.footer.privacy")}
               </Link>
             </span>
+          </div>
+
+          {/* Coupon Redeemer */}
+          <div className="pt-2 border-t border-border/20">
+            <CouponRedeemer />
           </div>
         </motion.div>
 
