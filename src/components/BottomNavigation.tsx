@@ -316,7 +316,7 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
                 ) : null;
 
                 const iconContent = (
-                  <div className={`relative p-2 rounded-xl transition-all duration-200 active:scale-[0.92] ${active ? 'bg-gradient-to-t from-[hsl(220,15%,82%)] to-[hsl(220,8%,92%)]' : ''}`}>
+                  <div className={`relative p-2 rounded-xl transition-all duration-200 active:scale-[0.92] ${active ? 'bg-gradient-to-t from-[hsl(340,25%,90%)] to-[hsl(340,15%,95%)]' : ''}`}>
                     {item.id === "more" && moreOpen ? (
                       <X className="w-5 h-5 relative z-10 text-primary transition-colors duration-200" strokeWidth={2.2} />
                     ) : item.id === "ai-tools" && aiToolsOpen ? (
@@ -324,8 +324,8 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
                     ) : (
                       <Icon 
                         className={`w-[18px] h-[18px] relative z-10 transition-colors duration-200 ${
-                          active ? "text-[hsl(220,20%,40%)]" : "text-foreground/50"
-                        }`} 
+                          active ? "text-[hsl(340,50%,45%)]" : "text-foreground/50"
+                        }`}
                         strokeWidth={active ? 2.2 : 1.8} 
                       />
                     )}
@@ -339,13 +339,13 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
 
                     {/* Active underline indicator */}
                     {active && (
-                      <div className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-5 h-[2px] bg-gradient-to-r from-transparent via-[hsl(220,20%,45%)] to-transparent rounded-full" />
+                      <div className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-5 h-[2px] bg-gradient-to-r from-transparent via-[hsl(340,50%,55%)] to-transparent rounded-full" />
                     )}
                   </div>
                 );
 
                 const labelClass = `text-[9px] font-medium tracking-wide transition-colors duration-200 mt-0.5 ${
-                  active ? "text-[hsl(220,20%,40%)]" : "text-foreground/50"
+                  active ? "text-[hsl(340,30%,35%)]" : "text-foreground/50"
                 }`;
 
                 let navElement: React.ReactNode;
