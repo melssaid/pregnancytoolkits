@@ -29,15 +29,17 @@ export const CouponRedeemer: React.FC = () => {
       setTimeout(() => setJustActivated(false), 3000);
     } else {
       const errors: Record<string, string> = {
-        INVALID_CODE: isRTL ? 'رمز القسيمة غير صالح.' : 'Invalid coupon code.',
-        COUPON_EXPIRED: isRTL ? 'انتهت صلاحية هذه القسيمة.' : 'This coupon has expired.',
-        COUPON_EXHAUSTED: isRTL ? 'تم استنفاد عدد الاستخدامات المتاحة.' : 'Coupon usage limit reached.',
+        INVALID_CODE: isRTL ? '❌ رمز القسيمة غير صالح. تأكدي من كتابته بشكل صحيح.' : '❌ Invalid coupon code. Please check and try again.',
+        COUPON_EXPIRED: isRTL ? '⏰ انتهت صلاحية هذه القسيمة ولم تعد متاحة للاستخدام.' : '⏰ This coupon has expired and is no longer available.',
+        COUPON_EXHAUSTED: isRTL ? '🚫 تم استنفاد عدد الاستخدامات المتاحة لهذه القسيمة.' : '🚫 This coupon has reached its usage limit.',
         ALREADY_CLAIMED: isRTL
-          ? 'تم استخدام هذه القسيمة على هذا الجهاز مسبقًا. كل قسيمة تُستخدم مرة واحدة فقط لكل جهاز.'
-          : 'This coupon was already used on this device. Each coupon can only be used once per device.',
-        MISSING_CODE: isRTL ? 'يرجى إدخال رمز القسيمة.' : 'Please enter a coupon code.',
+          ? '⚠️ لقد استخدمتِ هذه القسيمة مسبقًا على هذا الجهاز. كل قسيمة تُستخدم مرة واحدة فقط لكل جهاز.'
+          : '⚠️ You already used this coupon on this device. Each coupon can only be used once per device.',
+        MISSING_CODE: isRTL ? '📝 يرجى إدخال رمز القسيمة.' : '📝 Please enter a coupon code.',
+        CLAIM_FAILED: isRTL ? '❌ حدث خطأ أثناء تفعيل القسيمة. يرجى المحاولة مرة أخرى.' : '❌ Failed to activate coupon. Please try again.',
+        INTERNAL_ERROR: isRTL ? '❌ حدث خطأ في الخادم. يرجى المحاولة لاحقًا.' : '❌ Server error. Please try again later.',
       };
-      const msg = errors[result.error || ''] || (isRTL ? 'حدث خطأ، يرجى المحاولة لاحقًا.' : 'An error occurred.');
+      const msg = errors[result.error || ''] || (isRTL ? '❌ حدث خطأ، يرجى المحاولة لاحقًا.' : '❌ An error occurred. Please try again.');
       setErrorMsg(msg);
     }
   };
