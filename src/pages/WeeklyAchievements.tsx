@@ -2,7 +2,7 @@ import { Layout } from "@/components/Layout";
 import { SEOHead } from "@/components/SEOHead";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { Trophy, TrendingUp, Calendar, Baby, Heart, Droplets, Weight, Footprints, Share2 } from "lucide-react";
+import { Trophy, Share2 } from "lucide-react";
 import { useUserProfile } from "@/hooks/useUserProfile";
 import { safeParseLocalStorage } from "@/lib/safeStorage";
 import { useMemo } from "react";
