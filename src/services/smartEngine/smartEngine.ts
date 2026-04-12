@@ -6,6 +6,7 @@
 
 import { supabase } from "@/integrations/supabase/client";
 import { getCouponRequestHeaders } from "@/lib/couponRequestHeaders";
+import { getBackendFunctionUrl } from "@/lib/backendConfig";
 import {
   type SmartRequest,
   type SmartResponse,
@@ -173,7 +174,7 @@ export async function executeSmartRequest({
     const lang = request.context?.language || "en";
 
     const response = await fetch(
-      `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/pregnancy-ai-perplexity`,
+      getBackendFunctionUrl('pregnancy-ai-perplexity'),
       {
         method: "POST",
         headers,
@@ -206,7 +207,7 @@ export async function executeSmartRequest({
           const { data: { session } } = await supabase.auth.refreshSession();
           if (session?.access_token) {
             const retryResp = await fetch(
-              `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/pregnancy-ai-perplexity`,
+              getBackendFunctionUrl('pregnancy-ai-perplexity'),
               {
                 method: "POST",
                 headers: {
