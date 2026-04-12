@@ -216,7 +216,7 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
             <div className="px-2 pb-2.5 pt-1.5 space-y-1.5">
               {toolsByCategory.map(({ catKey, tools }) => (
                 <div key={catKey}>
-                  <div className="grid grid-cols-3 gap-2">
+                  <div className="grid grid-cols-3 gap-1.5">
                     {tools.map((tool, toolIdx) => (
                       <motion.div
                         key={tool.id}
