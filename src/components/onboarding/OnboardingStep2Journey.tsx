@@ -6,7 +6,6 @@ import { cn } from '@/lib/utils';
 import { formatLocalized } from '@/lib/dateLocale';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Calendar } from '@/components/ui/calendar';
-import { JourneyRecommendations } from './JourneyRecommendations';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Button } from '@/components/ui/button';
 import type { JourneyStage } from '@/hooks/useUserProfile';
@@ -32,10 +31,10 @@ export const OnboardingStep2Journey: React.FC<Props> = ({
   const BackIcon = isRtl ? ChevronRight : ChevronLeft;
   const [lmpOpen, setLmpOpen] = useState(false);
 
-  const stages: { key: JourneyStage; icon: React.ElementType; labelKey: string; descKey: string }[] = [
-    { key: 'fertility', icon: Flower2, labelKey: 'onboarding.step2.fertility', descKey: 'onboarding.step2.fertilityDesc' },
-    { key: 'pregnant', icon: Baby, labelKey: 'onboarding.step2.pregnant', descKey: 'onboarding.step2.pregnantDesc' },
-    { key: 'postpartum', icon: Heart, labelKey: 'onboarding.step2.postpartum', descKey: 'onboarding.step2.postpartumDesc' },
+  const stages: { key: JourneyStage; icon: React.ElementType; labelKey: string }[] = [
+    { key: 'fertility', icon: Flower2, labelKey: 'onboarding.step2.fertility' },
+    { key: 'pregnant', icon: Baby, labelKey: 'onboarding.step2.pregnant' },
+    { key: 'postpartum', icon: Heart, labelKey: 'onboarding.step2.postpartum' },
   ];
 
   return (
@@ -46,8 +45,8 @@ export const OnboardingStep2Journey: React.FC<Props> = ({
       exit={{ opacity: 0, x: isRtl ? 20 : -20 }}
       transition={{ duration: 0.2 }}
     >
-      <div className="px-5 pt-3 pb-2 text-center">
-        <h2 className="text-base font-extrabold text-foreground">
+      <div className="px-5 pt-4 pb-2 text-center">
+        <h2 className="text-lg font-black text-foreground">
           {t('onboarding.step2.title', 'Where are you in your journey?')}
         </h2>
       </div>
@@ -60,13 +59,13 @@ export const OnboardingStep2Journey: React.FC<Props> = ({
               key={key}
               onClick={() => onJourneyChange(key)}
               className={cn(
-                "w-full py-3.5 px-4 rounded-xl border-2 transition-all text-center",
+                "w-full py-3 px-4 rounded-xl border-2 transition-all text-center",
                 journeyStage === key
                   ? "bg-primary/10 border-primary shadow-sm"
                   : "bg-transparent border-border/30 hover:bg-muted/40 hover:border-border/50"
               )}
             >
-              <p className={cn("text-sm font-bold", journeyStage === key ? "text-primary" : "text-foreground")}>
+              <p className={cn("text-base font-bold", journeyStage === key ? "text-primary" : "text-foreground")}>
                 {t(labelKey)}
               </p>
             </button>
@@ -77,7 +76,7 @@ export const OnboardingStep2Journey: React.FC<Props> = ({
         {journeyStage === 'pregnant' && (
           <div className="space-y-2 pt-1">
             <div>
-              <label className="text-[11px] font-medium text-muted-foreground block mb-1">
+              <label className="text-xs font-semibold text-foreground/70 block mb-1">
                 {t('onboarding.pregnancyWeek', 'Week')} (1–42)
               </label>
               <input
@@ -90,7 +89,7 @@ export const OnboardingStep2Journey: React.FC<Props> = ({
               />
             </div>
             <div>
-              <label className="text-[11px] font-medium text-muted-foreground block mb-1">
+              <label className="text-xs font-semibold text-foreground/70 block mb-1">
                 <CalendarIcon className="w-3 h-3 inline me-1" />
                 {t('onboarding.lastPeriod', 'Last Period')} ({t('onboarding.optional', 'optional')})
               </label>
@@ -125,17 +124,14 @@ export const OnboardingStep2Journey: React.FC<Props> = ({
             </div>
           </div>
         )}
-
-        {/* Smart recommendations based on journey stage */}
-        <JourneyRecommendations stage={journeyStage} />
       </div>
 
       {/* Navigation */}
       <div className="px-4 pb-4 flex gap-2">
-        <button onClick={onBack} className="flex-1 py-2.5 rounded-xl border border-border text-xs font-medium flex items-center justify-center gap-1 hover:bg-muted/40 transition-colors">
+        <button onClick={onBack} className="flex-1 py-2.5 rounded-xl border border-border text-sm font-medium flex items-center justify-center gap-1 hover:bg-muted/40 transition-colors">
           <BackIcon className="w-3.5 h-3.5" /> {t('onboarding.back', 'Back')}
         </button>
-        <button onClick={onNext} className="flex-1 py-2.5 rounded-xl bg-primary text-primary-foreground text-xs font-semibold flex items-center justify-center gap-1.5 hover:opacity-90 transition-opacity">
+        <button onClick={onNext} className="flex-1 py-2.5 rounded-xl bg-primary text-primary-foreground text-sm font-semibold flex items-center justify-center gap-1.5 hover:opacity-90 transition-opacity">
           {t('onboarding.next', 'Continue')} <NextIcon className="w-3.5 h-3.5" />
         </button>
       </div>
