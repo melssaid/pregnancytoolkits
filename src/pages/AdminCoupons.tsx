@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Loader2, Lock, Ticket, Users, Clock } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
+import { getBackendFunctionUrl, getBackendPublishableKey } from "@/lib/backendConfig";
 
 const ADMIN_KEY_STORAGE = "pt_admin_notifications_key";
 
@@ -60,18 +61,15 @@ export default function AdminCoupons() {
       setCoupons((couponData as CouponRow[]) || []);
 
       // Claims need service_role — use edge function
-      const res = await fetch(
-        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/redeem-coupon`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
-            "X-Admin-Key": adminKey,
-          },
-          body: JSON.stringify({ action: "admin_stats" }),
-        }
-      );
+      const res = await fetch(getBackendFunctionUrl("redeem-coupon"), {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${getBackendPublishableKey()}`,
+          "X-Admin-Key": adminKey,
+        },
+        body: JSON.stringify({ action: "admin_stats" }),
+      });
       if (res.ok) {
         const data = await res.json();
         setClaims(data.claims || []);
