@@ -1323,6 +1323,7 @@
       "error": "Deletion Error",
       "errorDesc": "An error occurred while deleting data"
     },
+    "aiSection": "AI Tools",
     "aiReset": {
       "title": "Reset AI Attempts",
       "status": "Used: {{used}}/{{limit}} • Remaining: {{remaining}}",

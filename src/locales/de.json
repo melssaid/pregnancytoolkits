@@ -1268,6 +1268,7 @@
       "error": "Löschfehler",
       "errorDesc": "Beim Löschen der Daten ist ein Fehler aufgetreten"
     },
+    "aiSection": "KI-Werkzeuge",
     "aiReset": {
       "title": "KI-Versuche zurücksetzen",
       "status": "Verwendet: {{used}}/{{limit}} • Verbleibend: {{remaining}}",
