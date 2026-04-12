@@ -504,25 +504,28 @@ const ShareAppButton = memo(function ShareAppButton() {
     <motion.div
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.35, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-      className="mt-1.5"
+      transition={{ duration: 0.35, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+      className="mt-2"
     >
       <button
         onClick={handleShare}
-        className="w-full text-start rounded-xl overflow-hidden bg-card border border-border/30 hover:border-border/50 shadow-sm hover:shadow-md transition-all duration-300 group"
+        className="w-full rounded-2xl overflow-hidden border border-emerald-500/20 hover:border-emerald-500/40 bg-gradient-to-r from-emerald-500/[0.08] via-teal-500/[0.05] to-emerald-500/[0.08] hover:shadow-md transition-all duration-300 group active:scale-[0.98]"
       >
-        <div className="px-3 py-2.5 flex items-center gap-2.5">
-          <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center border border-emerald-500/15">
-            <Share2 className="w-3.5 h-3.5 text-emerald-500" strokeWidth={1.8} />
+        <div className="px-4 py-3.5 flex items-center gap-3">
+          <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-emerald-500/15 group-hover:bg-emerald-500/25 flex items-center justify-center transition-colors">
+            <Share2 className="w-5 h-5 text-emerald-600" strokeWidth={2} />
           </div>
-          <span className="flex-1 text-[11px] font-semibold text-muted-foreground group-hover:text-foreground transition-colors" style={{ fontFamily: "'Tajawal', sans-serif" }}>
-            {l.text}
-          </span>
-          {lang === 'ar' ? (
-            <ChevronLeft className="w-3 h-3 text-muted-foreground/30 group-hover:text-muted-foreground/60 transition-colors" />
-          ) : (
-            <ChevronRight className="w-3 h-3 text-muted-foreground/30 group-hover:text-muted-foreground/60 transition-colors" />
-          )}
+          <div className="flex-1 min-w-0 text-start">
+            <p className="text-sm font-bold text-foreground leading-tight" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+              {l.text}
+            </p>
+            <p className="text-[10px] text-muted-foreground font-medium mt-0.5">
+              {lang === 'ar' ? 'ساعدي أمهات أخريات في رحلتهن 💕' : 'Help other moms on their journey 💕'}
+            </p>
+          </div>
+          <div className="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-500/10 group-hover:bg-emerald-500/20 flex items-center justify-center transition-colors">
+            <Heart className="w-3.5 h-3.5 text-emerald-500" />
+          </div>
         </div>
       </button>
     </motion.div>
