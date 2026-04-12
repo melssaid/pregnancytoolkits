@@ -271,39 +271,8 @@ export function Layout({ children, showBack = false }: LayoutProps) {
             <span className="text-xs font-semibold text-muted-foreground/60">{t('app.name')}</span>
           </div>
 
-          {/* Share CTA — world-class invite style */}
-          <button
-            onClick={async () => {
-              const shareText = isRtl
-                ? '🤰 جربي "أدوات الحمل الذكية" — أكثر من 30 أداة مجانية لمتابعة الحمل وحاسبة الولادة ونصائح يومية!\n⭐ مجاني وخاص'
-                : '🤰 Try "Pregnancy Toolkits" — 30+ free smart tools for pregnancy tracking & daily tips!\n⭐ Free & Private';
-              const url = 'https://play.google.com/store/apps/details?id=app.pregnancytoolkits.android';
-              try {
-                if (navigator.share) {
-                  await navigator.share({ title: 'Pregnancy Toolkits', text: shareText, url });
-                } else {
-                  await navigator.clipboard.writeText(`${shareText}\n${url}`);
-                  toast.success(isRtl ? 'تم نسخ الرابط ✓' : 'Link copied ✓');
-                }
-              } catch (e: any) {
-                if (e?.name !== 'AbortError') {
-                  try {
-                    await navigator.clipboard.writeText(`${shareText}\n${url}`);
-                    toast.success(isRtl ? 'تم نسخ الرابط ✓' : 'Link copied ✓');
-                  } catch {}
-                }
-              }
-            }}
-            className="w-full mb-5 py-3 px-4 rounded-2xl bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-500/20 hover:border-emerald-500/40 flex items-center justify-center gap-2.5 transition-all duration-300 hover:shadow-md group active:scale-[0.98]"
-          >
-            <div className="w-9 h-9 rounded-xl bg-emerald-500/15 group-hover:bg-emerald-500/25 flex items-center justify-center transition-colors">
-              <Share2 className="w-4 h-4 text-emerald-600" strokeWidth={2} />
-            </div>
-            <span className="text-xs font-bold text-emerald-700 dark:text-emerald-400" style={{ fontFamily: "'Tajawal', sans-serif" }}>
-              {isRtl ? 'شاركي التطبيق مع صديقة 💚' : 'Share with a friend 💚'}
-            </span>
-          </button>
-          
+
+
           {/* Navigation Links */}
           <div className="grid grid-cols-4 gap-2 mb-5">
             <Link to="/privacy" className="flex flex-col items-center gap-1.5 p-2.5 rounded-xl bg-card border border-border/20 hover:border-primary/20 hover:bg-primary/[0.04] transition-all duration-200 group">
