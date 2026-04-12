@@ -2,7 +2,7 @@ import { Layout } from "@/components/Layout";
 import { SEOHead } from "@/components/SEOHead";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { Trophy, TrendingUp, Calendar, Baby, Heart, Droplets, Weight, Footprints, Share2 } from "lucide-react";
+import { Trophy, Share2 } from "lucide-react";
 import { useUserProfile } from "@/hooks/useUserProfile";
 import { safeParseLocalStorage } from "@/lib/safeStorage";
 import { useMemo } from "react";
@@ -54,10 +54,10 @@ export default function WeeklyAchievements() {
   const week = profile.pregnancyWeek || 0;
 
   const stats = [
-    { icon: Baby, value: data.toolsUsed, label: t('achievements.toolsUsed', 'Tools Used'), color: 'text-pink-500', bg: 'bg-pink-500/10' },
-    { icon: Calendar, value: data.daysActive, label: t('achievements.daysActive', 'Days Active'), color: 'text-violet-500', bg: 'bg-violet-500/10' },
-    { icon: Footprints, value: data.kicksLogged, label: t('achievements.kicksLogged', 'Kick Sessions'), color: 'text-emerald-500', bg: 'bg-emerald-500/10' },
-    { icon: Weight, value: data.weightEntries, label: t('achievements.weightEntries', 'Weight Entries'), color: 'text-amber-500', bg: 'bg-amber-500/10' },
+    { value: data.toolsUsed, label: t('achievements.toolsUsed', 'Tools Used'), color: 'text-pink-500' },
+    { value: data.daysActive, label: t('achievements.daysActive', 'Days Active'), color: 'text-violet-500' },
+    { value: data.kicksLogged, label: t('achievements.kicksLogged', 'Kick Sessions'), color: 'text-emerald-500' },
+    { value: data.weightEntries, label: t('achievements.weightEntries', 'Weight Entries'), color: 'text-amber-500' },
   ];
 
   const handleShare = () => {
@@ -127,11 +127,8 @@ ${week > 0 ? `\n🤰 ${t('achievements.weekProgress', { week, defaultValue: 'Wee
               transition={{ delay: 0.15 + i * 0.05 }}
               className="p-4 rounded-2xl bg-card border border-border/50 text-center"
             >
-              <div className={cn("w-10 h-10 mx-auto mb-2 rounded-xl flex items-center justify-center", stat.bg)}>
-                <stat.icon className={cn("w-5 h-5", stat.color)} />
-              </div>
-              <p className="text-xl font-black text-foreground">{stat.value}</p>
-              <p className="text-[10px] text-muted-foreground mt-0.5">{stat.label}</p>
+              <p className={cn("text-2xl font-black", stat.color)}>{stat.value}</p>
+              <p className="text-[11px] text-foreground/60 font-medium mt-1">{stat.label}</p>
             </motion.div>
           ))}
         </div>
