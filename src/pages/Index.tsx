@@ -398,7 +398,7 @@ const FooterCard = memo(function FooterCard() {
               </div>
             </div>
             <div className="flex-1 min-w-0">
-              <h4 className="text-sm font-extrabold text-foreground leading-tight" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+              <h4 className="text-base font-black text-foreground leading-tight tracking-tight" style={{ fontFamily: "'Tajawal', sans-serif", fontWeight: 800 }}>
                 {showExhausted ? l.exhaustedTitle : l.title}
               </h4>
             </div>
