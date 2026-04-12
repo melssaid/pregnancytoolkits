@@ -30,6 +30,13 @@ const categoryStyles: Record<string, { iconColor: string; iconBg: string; toolHo
   "categories.postpartum":    { iconColor: "text-[hsl(310,35%,52%)] dark:text-[hsl(310,30%,62%)]", iconBg: "bg-[hsl(310,30%,94%)] dark:bg-[hsl(310,22%,18%)]", toolHover: "hover:bg-[hsl(310,25%,96%)] dark:hover:bg-[hsl(310,20%,14%)]", hoverShadow: "hover:shadow-[0_2px_12px_-2px_hsl(310,30%,52%,0.15)]", hoverBorder: "hover:border-[hsl(310,22%,85%)] dark:hover:border-[hsl(310,18%,25%)]" },
 };
 
+// Journey-specific icon colors — match each section's header gradient
+const journeyIconStyles: Record<JourneyKey, { iconColor: string; iconBg: string }> = {
+  planning:   { iconColor: "text-[hsl(15,70%,55%)] dark:text-[hsl(15,65%,62%)]",   iconBg: "bg-[hsl(15,55%,94%)] dark:bg-[hsl(15,35%,18%)]" },
+  pregnant:   { iconColor: "text-[hsl(340,65%,52%)] dark:text-[hsl(340,60%,62%)]", iconBg: "bg-[hsl(340,50%,94%)] dark:bg-[hsl(340,35%,18%)]" },
+  postpartum: { iconColor: "text-[hsl(290,35%,52%)] dark:text-[hsl(290,30%,62%)]", iconBg: "bg-[hsl(290,30%,94%)] dark:bg-[hsl(290,22%,18%)]" },
+};
+
 // ── Journey card theming — emotionally resonant, brand-cohesive ─────────
 interface JourneyConfig {
   key: JourneyKey;
