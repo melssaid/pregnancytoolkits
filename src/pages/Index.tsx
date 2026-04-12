@@ -549,7 +549,6 @@ const Index = () => {
           ))}
           
           <FooterCard />
-          <ShareAppButton />
         </div>
       </section>
     </Layout>
