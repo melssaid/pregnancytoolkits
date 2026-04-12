@@ -81,10 +81,12 @@ Deno.serve(async (req) => {
       }
 
       // 1. Find coupon
+      const normalizedCode = String(code).trim().toUpperCase();
+
       const { data: coupon, error: couponErr } = await supabase
         .from("coupons")
         .select("*")
-        .eq("code", code)
+        .eq("code", normalizedCode)
         .eq("is_active", true)
         .single();
 
@@ -97,12 +99,7 @@ Deno.serve(async (req) => {
         return jsonResponse({ error: "COUPON_EXPIRED" }, 410);
       }
 
-      // 3. Check max claims
-      if (coupon.current_claims >= coupon.max_claims) {
-        return jsonResponse({ error: "COUPON_EXHAUSTED" }, 410);
-      }
-
-      // 4. Check if device already used this coupon
+      // 3. Check if this device or local user already used this coupon
       const { data: existingClaim } = await supabase
         .from("coupon_claims")
         .select("id")
@@ -114,7 +111,7 @@ Deno.serve(async (req) => {
         return jsonResponse({ error: "ALREADY_CLAIMED" }, 409);
       }
 
-      // 5. Create claim
+      // 4. Create claim
       const expiresAt = computeExpiresAt(coupon.duration_type);
 
       const { error: insertErr } = await supabase
@@ -130,12 +127,6 @@ Deno.serve(async (req) => {
         console.error("Insert claim error:", insertErr);
         return jsonResponse({ error: "CLAIM_FAILED" }, 500);
       }
-
-      // 6. Increment current_claims
-      await supabase
-        .from("coupons")
-        .update({ current_claims: coupon.current_claims + 1 })
-        .eq("id", coupon.id);
 
       return jsonResponse({
         success: true,
