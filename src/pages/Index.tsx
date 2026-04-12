@@ -363,14 +363,14 @@ const FooterCard = memo(function FooterCard() {
         className={`w-full cursor-pointer rounded-2xl overflow-hidden border shadow-lg hover:shadow-xl transition-all duration-300 ${
           showExhausted
             ? 'bg-gradient-to-br from-destructive/[0.06] via-card to-destructive/[0.03] border-destructive/25'
-            : 'bg-gradient-to-br from-primary/[0.06] via-card to-amber-500/[0.04] border-primary/20'
+            : 'bg-gradient-to-br from-[hsl(300,25%,97%)] via-card to-[hsl(340,20%,96%)] border-[hsl(340,25%,88%)] dark:from-[hsl(300,15%,12%)] dark:via-card dark:to-[hsl(340,15%,11%)] dark:border-[hsl(340,15%,20%)]'
         }`}
       >
         {/* Top accent */}
         <div className={`h-[3px] relative overflow-hidden ${
           showExhausted
             ? 'bg-gradient-to-r from-destructive/40 via-destructive to-destructive/40'
-            : 'bg-gradient-to-r from-primary/30 via-primary to-amber-500/60'
+            : 'bg-gradient-to-r from-[hsl(340,50%,65%)]/40 via-[hsl(340,60%,55%)] to-[hsl(300,35%,60%)]/50'
         }`}>
           <motion.div
             className="absolute h-full w-1/3 bg-gradient-to-r from-transparent via-white/50 to-transparent"
@@ -393,9 +393,9 @@ const FooterCard = memo(function FooterCard() {
               <div className={`relative w-12 h-12 rounded-xl flex items-center justify-center border ${
                 showExhausted
                   ? 'bg-gradient-to-br from-destructive/20 to-destructive/5 border-destructive/25'
-                  : 'bg-gradient-to-br from-amber-500/20 to-primary/10 border-amber-500/25'
+                  : 'bg-gradient-to-br from-[hsl(340,50%,90%)] to-[hsl(300,30%,92%)] border-[hsl(340,40%,85%)]'
               }`}>
-                <Crown className={`w-6 h-6 ${showExhausted ? 'text-destructive' : 'text-amber-500'}`} strokeWidth={1.8} />
+                <Crown className={`w-6 h-6 ${showExhausted ? 'text-destructive' : 'text-primary'}`} strokeWidth={1.8} />
               </div>
             </div>
             <div className="flex-1 min-w-0">
@@ -432,7 +432,7 @@ const FooterCard = memo(function FooterCard() {
               </div>
               <div className="h-[5px] rounded-full bg-muted/50 overflow-hidden">
                 <motion.div
-                  className={`h-full rounded-full ${isLimitReached ? 'bg-destructive' : 'bg-gradient-to-r from-primary to-amber-500/70'}`}
+                  className={`h-full rounded-full ${isLimitReached ? 'bg-destructive' : 'bg-gradient-to-r from-[hsl(340,60%,55%)] to-[hsl(300,35%,58%)]'}`}
                   initial={{ width: 0 }}
                   animate={{ width: `${usagePercent}%` }}
                   transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
@@ -447,7 +447,7 @@ const FooterCard = memo(function FooterCard() {
             className={`w-full h-11 rounded-xl flex items-center justify-center gap-2 font-bold text-sm text-white shadow-md ${
               showExhausted
                 ? 'bg-gradient-to-r from-destructive to-destructive/80'
-                : 'bg-gradient-to-r from-primary via-primary to-amber-500/80'
+                : 'bg-gradient-to-r from-[hsl(340,60%,50%)] via-primary to-[hsl(300,40%,55%)]'
             }`}
           >
             <Crown className="w-4 h-4" strokeWidth={2} />
@@ -506,9 +506,9 @@ const CouponAndShareRow = memo(function CouponAndShareRow() {
         {/* Coupon CTA */}
         <button
           onClick={() => setCouponOpen(true)}
-          className="flex-1 flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-amber-500/[0.08] border border-amber-500/20 hover:bg-amber-500/[0.12] active:scale-[0.98] transition-all"
+          className="flex-1 flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-gradient-to-r from-[hsl(340,30%,96%)] to-[hsl(35,40%,96%)] border border-[hsl(340,30%,88%)] hover:from-[hsl(340,35%,94%)] hover:to-[hsl(35,45%,94%)] active:scale-[0.98] transition-all dark:from-[hsl(340,20%,14%)] dark:to-[hsl(35,20%,14%)] dark:border-[hsl(340,15%,22%)]"
         >
-          <Gift className="w-4 h-4 text-amber-600 flex-shrink-0" strokeWidth={2} />
+          <Gift className="w-4 h-4 text-primary flex-shrink-0" strokeWidth={2} />
           <span className="text-xs font-semibold text-foreground/70">
             {isAr ? 'لديكِ قسيمة؟' : 'Have a coupon?'}
           </span>
@@ -517,7 +517,7 @@ const CouponAndShareRow = memo(function CouponAndShareRow() {
         {/* Share CTA */}
         <button
           onClick={handleShare}
-          className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-muted/50 border border-border/30 hover:bg-muted/70 active:scale-[0.98] transition-all"
+          className="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-gradient-to-r from-[hsl(290,20%,96%)] to-[hsl(310,25%,96%)] border border-[hsl(290,20%,88%)] hover:from-[hsl(290,25%,94%)] hover:to-[hsl(310,30%,94%)] active:scale-[0.98] transition-all dark:from-[hsl(290,15%,14%)] dark:to-[hsl(310,15%,14%)] dark:border-[hsl(290,10%,22%)]"
         >
           <Share2 className="w-4 h-4 text-primary flex-shrink-0" strokeWidth={2} />
           <span className="text-xs font-semibold text-foreground/70">
