@@ -49,7 +49,7 @@ export function CategorySection({
           <h2 className="text-2xl font-extrabold text-foreground group-hover:text-primary transition-colors">
             {t(categoryKey)}
           </h2>
-          <p className="text-sm text-muted-foreground mt-2">
+          <p className="text-sm text-muted-foreground mt-4">
             {t('searchDialog.toolsCount', { count: tools.length })}
           </p>
         </div>
