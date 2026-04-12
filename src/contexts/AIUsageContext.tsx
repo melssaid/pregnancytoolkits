@@ -44,11 +44,11 @@ async function fetchServerQuota(): Promise<{ used: number; limit: number; tier: 
   try {
     const { supabase } = await import('@/integrations/supabase/client');
     const { data: { session } } = await supabase.auth.getSession();
-    const token = session?.access_token || import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+    const token = session?.access_token || getBackendPublishableKey();
     const couponHeaders = await getCouponRequestHeaders();
 
     const res = await fetch(
-      `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/pregnancy-ai-perplexity`,
+      getBackendFunctionUrl('pregnancy-ai-perplexity'),
       {
         method: 'GET',
         headers: { Authorization: `Bearer ${token}`, ...couponHeaders },
