@@ -9,28 +9,36 @@ import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
 
 export const CouponRedeemer: React.FC = () => {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const isRTL = i18n.language === 'ar';
   const [code, setCode] = useState('');
+  const [justActivated, setJustActivated] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
   const { activeCoupon, isActive, redeeming, redeemCoupon, remainingTime } = useActiveCoupon();
   const { refresh } = useAIUsage();
 
   const handleRedeem = async () => {
     if (!code.trim()) return;
+    setErrorMsg('');
     const result = await redeemCoupon(code);
     if (result.success) {
-      toast.success(isRTL ? '🎉 تم تفعيل القسيمة بنجاح!' : '🎉 Coupon activated!');
+      setJustActivated(true);
       setCode('');
       refresh();
+      toast.success(isRTL ? '🎉 تم تفعيل القسيمة بنجاح!' : '🎉 Coupon activated!');
+      setTimeout(() => setJustActivated(false), 3000);
     } else {
       const errors: Record<string, string> = {
-        INVALID_CODE: isRTL ? 'رمز القسيمة غير صالح' : 'Invalid coupon code',
-        COUPON_EXPIRED: isRTL ? 'انتهت صلاحية القسيمة' : 'Coupon has expired',
-        COUPON_EXHAUSTED: isRTL ? 'تم استنفاد عدد الاستخدامات المتاحة' : 'Coupon usage limit reached',
-        ALREADY_CLAIMED: isRTL ? 'تم استخدام هذه القسيمة على هذا الجهاز من قبل' : 'Already used on this device',
-        MISSING_CODE: isRTL ? 'يرجى إدخال رمز القسيمة' : 'Enter coupon code',
+        INVALID_CODE: isRTL ? 'رمز القسيمة غير صالح.' : 'Invalid coupon code.',
+        COUPON_EXPIRED: isRTL ? 'انتهت صلاحية هذه القسيمة.' : 'This coupon has expired.',
+        COUPON_EXHAUSTED: isRTL ? 'تم استنفاد عدد الاستخدامات المتاحة.' : 'Coupon usage limit reached.',
+        ALREADY_CLAIMED: isRTL
+          ? 'تم استخدام هذه القسيمة على هذا الجهاز مسبقًا. كل قسيمة تُستخدم مرة واحدة فقط لكل جهاز.'
+          : 'This coupon was already used on this device. Each coupon can only be used once per device.',
+        MISSING_CODE: isRTL ? 'يرجى إدخال رمز القسيمة.' : 'Please enter a coupon code.',
       };
-      toast.error(errors[result.error || ''] || (isRTL ? 'حدث خطأ، يرجى المحاولة لاحقًا' : 'An error occurred'));
+      const msg = errors[result.error || ''] || (isRTL ? 'حدث خطأ، يرجى المحاولة لاحقًا.' : 'An error occurred.');
+      setErrorMsg(msg);
     }
   };
 
@@ -44,26 +52,58 @@ export const CouponRedeemer: React.FC = () => {
 
   return (
     <div className="space-y-4">
+      {/* Success animation */}
+      <AnimatePresence>
+        {justActivated && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: -5 }}
+            transition={{ type: 'spring', damping: 20, stiffness: 300 }}
+            className="relative overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/5 to-primary/10 p-5 text-center"
+          >
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ type: 'spring', damping: 12, delay: 0.1 }}
+              className="text-3xl mb-2"
+            >
+              🎉
+            </motion.div>
+            <p className="text-[15px] font-bold text-foreground">
+              {isRTL ? 'تم التفعيل بنجاح!' : 'Successfully Activated!'}
+            </p>
+            <p className="text-[12px] text-muted-foreground mt-1">
+              {isRTL ? 'استمتعي بالمميزات الإضافية الآن.' : 'Enjoy your extra features now.'}
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Active coupon */}
-      {isActive && activeCoupon && (
-        <div className="relative overflow-hidden rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-50/80 to-emerald-100/40 dark:from-emerald-950/30 dark:to-emerald-900/20 p-4">
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-400 via-emerald-500 to-teal-500" />
-          <p className="text-[14px] font-bold text-emerald-700 dark:text-emerald-300">
+      {isActive && activeCoupon && !justActivated && (
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="relative overflow-hidden rounded-2xl border border-primary/15 bg-gradient-to-br from-primary/5 to-accent/10 p-4"
+        >
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary/60 via-primary to-primary/60" />
+          <p className="text-[14px] font-bold text-foreground">
             {isRTL ? '✓ القسيمة مفعّلة' : '✓ Coupon Active'}
           </p>
-          <p className="text-[15px] font-extrabold text-emerald-800 dark:text-emerald-200 mt-1 tracking-wider">
+          <p className="text-[15px] font-extrabold text-foreground mt-1 tracking-wider">
             {activeCoupon.code}
           </p>
-          <p className="text-[12px] text-emerald-600/80 dark:text-emerald-400/70 mt-2">
+          <p className="text-[12px] text-muted-foreground mt-2">
             {isRTL
               ? `تنتهي الصلاحية خلال ${formatRemaining(remainingTime)}`
               : `Expires in ${formatRemaining(remainingTime)}`}
           </p>
-        </div>
+        </motion.div>
       )}
 
       {/* Redeem form */}
-      {!isActive && (
+      {!isActive && !justActivated && (
         <div className="space-y-3">
           <p className="text-[15px] font-bold text-foreground">
             {isRTL ? 'تفعيل قسيمة ترويجية' : 'Redeem a Coupon'}
@@ -77,11 +117,12 @@ export const CouponRedeemer: React.FC = () => {
           <div className="flex gap-2">
             <Input
               value={code}
-              onChange={e => setCode(e.target.value.toUpperCase())}
+              onChange={e => { setCode(e.target.value.toUpperCase()); setErrorMsg(''); }}
               placeholder={isRTL ? 'رمز القسيمة' : 'Coupon code'}
               className={cn(
                 "flex-1 text-[14px] font-semibold uppercase tracking-widest h-11 rounded-xl border-border/60 bg-muted/30 placeholder:text-muted-foreground/50 placeholder:normal-case placeholder:tracking-normal placeholder:font-normal",
-                isRTL && "text-right"
+                isRTL && "text-right",
+                errorMsg && "border-destructive/50"
               )}
               dir="ltr"
               maxLength={30}
@@ -97,6 +138,20 @@ export const CouponRedeemer: React.FC = () => {
               {isRTL ? 'تفعيل' : 'Activate'}
             </button>
           </div>
+
+          {/* Error message */}
+          <AnimatePresence>
+            {errorMsg && (
+              <motion.p
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                className="text-[12px] font-medium text-destructive leading-relaxed"
+              >
+                {errorMsg}
+              </motion.p>
+            )}
+          </AnimatePresence>
 
           {/* Terms */}
           <div className="pt-1 space-y-1">
