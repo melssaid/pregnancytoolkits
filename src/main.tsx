@@ -85,7 +85,7 @@ const clearStaleCaches = async () => {
 };
 
 // Run ASAP in development to prevent stale SW/HMR module cache from breaking dynamic imports
-clearDevelopmentCaches();
+clearStaleCaches();
 
 // ── Mount React immediately, i18n loads in background ──
 const root = createRoot(document.getElementById("root")!);
