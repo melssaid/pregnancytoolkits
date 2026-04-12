@@ -282,7 +282,7 @@ export const BottomNavigation = memo(forwardRef<HTMLDivElement, Record<string, n
             {/* Remaining analyses badge — centered top */}
             {!isPremium && (
               <Link
-                to="/pricing"
+                to="/pricing-demo"
                 className="absolute -top-4 z-20 flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-[hsl(45,85%,52%)] to-[hsl(35,80%,48%)] shadow-lg shadow-[hsl(40,70%,50%,0.3)] ring-2 ring-card"
                 style={{ left: '50%', transform: 'translateX(-50%)', fontFamily: 'Tajawal, sans-serif' }}
               >
