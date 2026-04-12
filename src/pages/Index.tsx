@@ -186,7 +186,7 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
             <h2 className={`text-[22px] sm:text-2xl font-black ${config.headerText} tracking-tight leading-tight break-words ar-heading`} style={{ overflowWrap: 'anywhere', textShadow: '0 1px 3px rgba(0,0,0,0.15)' }}>
               {t(`journeys.${config.key}`)}
             </h2>
-            <p className={`text-xs ${config.headerText} opacity-80 mt-1 leading-snug break-words font-medium`}>
+            <p className={`text-xs ${config.headerText} opacity-80 mt-2.5 leading-snug break-words font-medium`}>
               {t(`journeys.${config.key}Desc`)}
             </p>
           </div>
