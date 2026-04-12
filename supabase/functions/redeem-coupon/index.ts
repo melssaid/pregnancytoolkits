@@ -53,7 +53,7 @@ Deno.serve(async (req) => {
     if (action === "check") {
       const { data: claims } = await supabase
         .from("coupon_claims")
-        .select("id, coupon_id, expires_at, coupons(code, duration_type)")
+        .select("id, coupon_id, expires_at, coupons(code, duration_type, bonus_points)")
         .or(`device_fingerprint.eq.${device_fingerprint},user_id.eq.${user_id}`)
         .gt("expires_at", new Date().toISOString())
         .order("expires_at", { ascending: false })
@@ -67,6 +67,7 @@ Deno.serve(async (req) => {
             code: claim.coupons?.code || "",
             durationType: claim.coupons?.duration_type || "",
             expiresAt: claim.expires_at,
+            bonusPoints: claim.coupons?.bonus_points ?? 60,
           },
         });
       }
@@ -142,6 +143,7 @@ Deno.serve(async (req) => {
         code: coupon.code,
         duration_type: coupon.duration_type,
         expires_at: expiresAt,
+        bonus_points: coupon.bonus_points ?? 60,
       });
     }
 

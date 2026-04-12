@@ -14,6 +14,7 @@ interface ActiveCoupon {
   code: string;
   durationType: string;
   expiresAt: string;
+  bonusPoints: number;
 }
 
 interface CouponState {
@@ -108,6 +109,7 @@ export function useActiveCoupon() {
         code: data.code,
         durationType: data.duration_type,
         expiresAt: data.expires_at,
+        bonusPoints: data.bonus_points ?? 60,
       };
       setCache(coupon);
       setState(s => ({ ...s, activeCoupon: coupon, redeeming: false }));
