@@ -61,23 +61,26 @@ setTimeout(() => {
   dismissSplash();
 }, 5000);
 
-const clearDevelopmentCaches = () => {
-  if (!import.meta.env.DEV) return;
-
+const clearStaleCaches = async () => {
+  // Force SW update + clear old caches in ALL environments (not just dev)
   if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.getRegistrations().then((registrations) => {
-      registrations.forEach((registration) => registration.unregister());
-    });
+    const registrations = await navigator.serviceWorker.getRegistrations();
+    for (const registration of registrations) {
+      await registration.update(); // Force check for new SW version
+    }
   }
 
   if ("caches" in window) {
-    caches.keys().then((keys) => {
-      keys.forEach((key) => {
-        if (key.startsWith("pt-cache-v") || key.includes("vite") || key.includes("workbox")) {
-          caches.delete(key);
-        }
-      });
-    });
+    const keys = await caches.keys();
+    const currentVersion = 'pt-cache-v3.0.1';
+    for (const key of keys) {
+      if (key.startsWith("pt-cache-v") && key !== currentVersion) {
+        await caches.delete(key);
+      }
+      if (key.includes("vite") || key.includes("workbox")) {
+        await caches.delete(key);
+      }
+    }
   }
 };
 
