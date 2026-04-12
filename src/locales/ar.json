@@ -15,7 +15,8 @@
     "more": "المزيد",
     "alerts": "التنبيهات",
     "search": "بحث",
-    "settings": "الإعدادات"
+    "settings": "الإعدادات",
+    "freeRemaining": "التحليلات المجانية المتبقية: {{count}}"
   },
   "hubNav": {
     "meals": "الوجبات",
