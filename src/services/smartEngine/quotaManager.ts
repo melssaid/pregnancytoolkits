@@ -117,12 +117,15 @@ export function setTier(tier: "free" | "premium"): void {
 
 /**
  * Temporarily set tier to premium for an active coupon.
- * Checks expiry before applying.
+ * bonusPoints overrides the monthly limit directly.
  */
-export function applyCouponTier(expiresAt: string): void {
+export function applyCouponTier(expiresAt: string, bonusPoints?: number): void {
   if (new Date(expiresAt) <= new Date()) return;
   const stored = readQuota();
   stored.tier = "premium";
+  if (bonusPoints && bonusPoints > 0) {
+    stored.bonusCredits = bonusPoints;
+  }
   writeQuota(stored);
 }
 

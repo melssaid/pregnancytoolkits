@@ -78,7 +78,7 @@ export function AIUsageProvider({ children }: { children: ReactNode }) {
       if (raw) {
         const coupon = JSON.parse(raw);
         if (coupon?.expiresAt && new Date(coupon.expiresAt) > new Date()) {
-          applyCouponTier(coupon.expiresAt);
+          applyCouponTier(coupon.expiresAt, coupon.bonusPoints);
           refresh();
         }
       }
