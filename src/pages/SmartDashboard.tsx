@@ -54,6 +54,11 @@ const SmartDashboard = () => {
   const trimesterTheme = useTrimesterTheme();
   const bloodPressure = healthCheckin?.bloodPressure || "";
 
+  const { scrollY } = useScroll();
+  const roseY = useTransform(scrollY, [0, 300], [0, -40]);
+  const roseOpacity = useTransform(scrollY, [0, 250], [0.9, 0]);
+  const roseScale = useTransform(scrollY, [0, 300], [1, 0.85]);
+
   return (
     <Layout>
       <SEOHead
@@ -69,18 +74,13 @@ const SmartDashboard = () => {
             alt=""
             width={96}
             height={96}
-            initial={{ y: -30, opacity: 0, rotate: -25, scale: 0.6 }}
+            style={{ y: roseY, opacity: roseOpacity, scale: roseScale }}
+            initial={{ rotate: -25 }}
             animate={{
-              y: [0, -3, 0],
-              opacity: 0.9,
               rotate: [-8, -5, -8],
-              scale: [1, 1.05, 1],
             }}
             transition={{
-              y: { duration: 3, repeat: Infinity, ease: "easeInOut" },
               rotate: { duration: 4, repeat: Infinity, ease: "easeInOut" },
-              scale: { duration: 3.5, repeat: Infinity, ease: "easeInOut" },
-              opacity: { duration: 0.8, ease: "easeOut" },
             }}
             className="drop-shadow-lg"
           />
@@ -89,18 +89,13 @@ const SmartDashboard = () => {
             alt=""
             width={96}
             height={96}
-            initial={{ y: -30, opacity: 0, rotate: 25, scale: 0.6 }}
+            style={{ y: roseY, opacity: roseOpacity, scale: roseScale }}
+            initial={{ rotate: 25 }}
             animate={{
-              y: [0, -4, 0],
-              opacity: 0.9,
               rotate: [8, 5, 8],
-              scale: [1, 1.06, 1],
             }}
             transition={{
-              y: { duration: 3.2, repeat: Infinity, ease: "easeInOut", delay: 0.5 },
               rotate: { duration: 4.2, repeat: Infinity, ease: "easeInOut", delay: 0.3 },
-              scale: { duration: 3.8, repeat: Infinity, ease: "easeInOut", delay: 0.4 },
-              opacity: { duration: 0.8, ease: "easeOut", delay: 0.12 },
             }}
             className="drop-shadow-lg"
           />
