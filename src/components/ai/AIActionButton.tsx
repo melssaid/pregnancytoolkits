@@ -17,7 +17,7 @@ interface AIActionButtonProps {
   className?: string;
   variant?: 'default' | 'compact';
   /** Set false to hide the usage indicator below the button */
-  showUsage?: boolean;
+  showUsage?: boolean; // defaults to false
   /** Tool type to show point cost hint */
   toolType?: AIToolType;
   /** Section to resolve tool type from if toolType not provided */
@@ -47,7 +47,7 @@ export const AIActionButton: React.FC<AIActionButtonProps> = ({
   icon: CustomIcon,
   className = '',
   variant = 'default',
-  showUsage = true,
+  showUsage = false,
   toolType,
   section,
 }) => {
