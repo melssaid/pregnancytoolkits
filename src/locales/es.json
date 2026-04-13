@@ -8872,5 +8872,10 @@
   "smartResult": {
     "exploreAll": "Explorar todas las herramientas",
     "myDashboard": "Mi panel personal"
+  },
+  "installBanner": {
+    "title": "Instalar la app",
+    "desc": "Acceso rápido a todas las herramientas — ¡funciona sin conexión!",
+    "cta": "Instalar ahora"
   }
 }

@@ -8872,5 +8872,10 @@
   "smartResult": {
     "exploreAll": "Alle Tools entdecken",
     "myDashboard": "Mein persönliches Dashboard"
+  },
+  "installBanner": {
+    "title": "App installieren",
+    "desc": "Schneller Zugriff auf alle Tools — funktioniert auch offline!",
+    "cta": "Jetzt installieren"
   }
 }

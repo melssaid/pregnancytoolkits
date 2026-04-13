@@ -8872,5 +8872,10 @@
   "smartResult": {
     "exploreAll": "Tüm araçları keşfet",
     "myDashboard": "Kişisel panelim"
+  },
+  "installBanner": {
+    "title": "Uygulamayı yükle",
+    "desc": "Tüm araçlara hızlı erişim — çevrimdışı da çalışır!",
+    "cta": "Şimdi yükle"
   }
 }

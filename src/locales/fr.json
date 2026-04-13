@@ -8872,5 +8872,10 @@
   "smartResult": {
     "exploreAll": "Explorer tous les outils",
     "myDashboard": "Mon tableau de bord"
+  },
+  "installBanner": {
+    "title": "Installer l'appli",
+    "desc": "Accès rapide à tous les outils — fonctionne hors ligne!",
+    "cta": "Installer maintenant"
   }
 }
