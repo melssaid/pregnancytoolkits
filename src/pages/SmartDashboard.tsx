@@ -58,14 +58,25 @@ const SmartDashboard = () => {
         description="Your personalized pregnancy dashboard"
       />
 
-      <main className={`container py-4 space-y-3.5 pb-24 bg-gradient-to-b ${trimesterTheme.gradient}`}>
-        {/* Floral decoration below header */}
-        <div className="flex items-center justify-center gap-1 -mt-2 mb-1 opacity-80">
-          <span className="text-base">🌸</span>
-          <span className="text-sm">🌷</span>
-          <span className="text-xs">✿</span>
-          <span className="text-sm">🌺</span>
-          <span className="text-base">🌸</span>
+      <main className={`container py-4 space-y-3.5 pb-24 bg-gradient-to-b ${trimesterTheme.gradient} relative`}>
+        {/* Two large natural roses peeking from under the header */}
+        <div className="absolute -top-4 left-0 right-0 flex justify-between pointer-events-none px-2 z-0">
+          <motion.span
+            initial={{ y: -20, opacity: 0, rotate: -15 }}
+            animate={{ y: 0, opacity: 0.85, rotate: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="text-5xl drop-shadow-md"
+          >
+            🌹
+          </motion.span>
+          <motion.span
+            initial={{ y: -20, opacity: 0, rotate: 15 }}
+            animate={{ y: 0, opacity: 0.85, rotate: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.15 }}
+            className="text-5xl drop-shadow-md"
+          >
+            🌹
+          </motion.span>
         </div>
 
         {/* 1. Hero — Pregnancy Week */}
