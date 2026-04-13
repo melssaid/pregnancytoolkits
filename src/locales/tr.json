@@ -8868,5 +8868,9 @@
     "exportSuccess": "Rapor başarıyla dışa aktarıldı",
     "exportError": "Dışa aktarma başarısız",
     "symptomEntries": "Belirti kayıtları"
+  },
+  "smartResult": {
+    "exploreAll": "Tüm araçları keşfet",
+    "myDashboard": "Kişisel panelim"
   }
 }

@@ -8868,5 +8868,9 @@
     "exportSuccess": "Relatório exportado com sucesso",
     "exportError": "Falha ao exportar",
     "symptomEntries": "Registros de sintomas"
+  },
+  "smartResult": {
+    "exploreAll": "Explorar todas as ferramentas",
+    "myDashboard": "Meu painel pessoal"
   }
 }
