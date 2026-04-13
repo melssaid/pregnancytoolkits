@@ -68,7 +68,7 @@ export const DailyPriorities = memo(function DailyPriorities({
       className="rounded-2xl border border-border/20 bg-card p-3.5"
     >
       <div className="flex items-center justify-between mb-2.5">
-        <h3 className="text-xs font-bold text-foreground whitespace-normal leading-tight">{t("dailyDashboard.priorities.title")}</h3>
+        <h3 className="text-sm font-extrabold text-foreground whitespace-normal leading-tight">{t("dailyDashboard.priorities.title")}</h3>
         <span className="text-[10px] text-primary font-semibold bg-primary/10 px-2 py-0.5 rounded-full">
           {completedCount}/{items.length}
         </span>

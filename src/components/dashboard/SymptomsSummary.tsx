@@ -123,7 +123,7 @@ export const SymptomsSummary = memo(function SymptomsSummary() {
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-2 min-w-0">
             <Heart className="w-4 h-4 text-primary flex-shrink-0" />
-            <h3 className="text-xs font-bold text-foreground whitespace-normal leading-tight">{t("dailyDashboard.symptoms.title")}</h3>
+            <h3 className="text-sm font-extrabold text-foreground whitespace-normal leading-tight">{t("dailyDashboard.symptoms.title")}</h3>
           </div>
           <ArrowIcon className="w-3.5 h-3.5 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
         </div>

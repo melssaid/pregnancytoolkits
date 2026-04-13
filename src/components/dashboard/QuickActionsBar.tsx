@@ -24,7 +24,7 @@ export const QuickActionsBar = memo(function QuickActionsBar() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.12 }}
     >
-      <h3 className="text-xs font-bold text-foreground mb-2.5 whitespace-normal leading-tight">{t("dailyDashboard.quickActions.title")}</h3>
+      <h3 className="text-sm font-extrabold text-foreground mb-2.5 whitespace-normal leading-tight">{t("dailyDashboard.quickActions.title")}</h3>
       <div className="grid grid-cols-4 gap-1.5">
         {actions.map((action, i) => (
           <Link key={action.id} to={action.href}>

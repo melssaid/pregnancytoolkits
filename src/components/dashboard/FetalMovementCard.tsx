@@ -25,7 +25,7 @@ export const FetalMovementCard = memo(function FetalMovementCard({ todayKicks, g
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-2 min-w-0">
             <Hand className="w-4 h-4 text-primary flex-shrink-0" />
-            <h3 className="text-xs font-bold text-foreground whitespace-normal leading-tight">{t("dailyDashboard.fetalMovement.title")}</h3>
+            <h3 className="text-sm font-extrabold text-foreground whitespace-normal leading-tight">{t("dailyDashboard.fetalMovement.title")}</h3>
           </div>
           <ArrowRight className="w-3.5 h-3.5 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
         </div>
