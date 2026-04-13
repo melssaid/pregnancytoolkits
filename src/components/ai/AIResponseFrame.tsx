@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { SaveResultButton } from './SaveResultButton';
 import { AIFeedbackPrompt } from './AIFeedbackPrompt';
 import { useAIUsage } from '@/contexts/AIUsageContext';
+import { resolveWeight, type AIToolType, type SmartSection } from '@/services/smartEngine/types';
 
 interface AIResponseFrameProps {
   content: string;
@@ -21,6 +22,8 @@ interface AIResponseFrameProps {
   accentColor?: string;
   expectedLength?: number;
   toolId?: string;
+  toolType?: AIToolType;
+  section?: SmartSection;
 }
 
 export const AIResponseFrame = ({
@@ -33,11 +36,14 @@ export const AIResponseFrame = ({
   footer,
   expectedLength = 2000,
   toolId,
+  toolType,
+  section,
 }: AIResponseFrameProps) => {
   const { t, i18n } = useTranslation();
   const { isRTL } = useLanguage();
   const navigate = useNavigate();
-  const { remaining, limit, tier, isLimitReached } = useAIUsage();
+  const { remaining, used, limit, tier, isLimitReached } = useAIUsage();
+  const weight = resolveWeight(toolType, section);
 
   const rawProgress = useMemo(() => {
     if (!isLoading && content.length > 0) return 100;
@@ -54,14 +60,26 @@ export const AIResponseFrame = ({
 
   const showProgress = isLoading || (rawProgress > 0 && rawProgress < 100);
   const isFree = tier === 'free';
-  const pct = limit > 0 ? Math.round((remaining / limit) * 100) : 100;
+  const usedPct = limit > 0 ? Math.round((used / limit) * 100) : 0;
+  const isNearLimit = usedPct >= 70;
 
-  // Dynamic color for usage pill
-  const usageColor = isLimitReached
-    ? 'text-destructive'
-    : pct <= 20
-      ? 'text-amber-600 dark:text-amber-400'
-      : 'text-muted-foreground';
+  const getBarColor = () => {
+    if (isLimitReached) return 'hsl(0, 72%, 51%)';
+    if (usedPct >= 80) return 'hsl(38, 92%, 50%)';
+    return 'hsl(var(--primary))';
+  };
+
+  const usageExplanations: Record<string, { explanation: string; costHint0: string; costHint05: string; costHint1: string; costHint2: string }> = {
+    en: { explanation: 'Each smart analysis uses 1 point from your monthly balance', costHint0: 'Free ✨', costHint05: 'Uses ½ credit', costHint1: 'Uses 1 credit', costHint2: 'Uses 2 credits' },
+    ar: { explanation: 'كل تحليل ذكي يستهلك نقطة واحدة من رصيدك الشهري', costHint0: 'مجاني ✨', costHint05: 'تستهلك نصف نقطة', costHint1: 'تستهلك نقطة واحدة', costHint2: 'تستهلك نقطتين' },
+    de: { explanation: 'Jede Analyse verbraucht 1 Punkt Ihres monatlichen Guthabens', costHint0: 'Kostenlos ✨', costHint05: '½ Credit', costHint1: '1 Credit verbraucht', costHint2: '2 Credits verbraucht' },
+    fr: { explanation: 'Chaque analyse utilise 1 point de votre solde mensuel', costHint0: 'Gratuit ✨', costHint05: '½ crédit', costHint1: 'Utilise 1 crédit', costHint2: 'Utilise 2 crédits' },
+    es: { explanation: 'Cada análisis usa 1 punto de tu saldo mensual', costHint0: 'Gratis ✨', costHint05: '½ crédito', costHint1: 'Usa 1 crédito', costHint2: 'Usa 2 créditos' },
+    pt: { explanation: 'Cada análise usa 1 ponto do seu saldo mensal', costHint0: 'Grátis ✨', costHint05: '½ crédito', costHint1: 'Usa 1 crédito', costHint2: 'Usa 2 créditos' },
+    tr: { explanation: 'Her analiz aylık bakiyenizden 1 puan kullanır', costHint0: 'Ücretsiz ✨', costHint05: '½ kredi', costHint1: '1 kredi kullanır', costHint2: '2 kredi kullanır' },
+  };
+  const lang = i18n.language?.split('-')[0] || 'en';
+  const uLabels = usageExplanations[lang] || usageExplanations.en;
 
   return (
     <motion.div
@@ -143,22 +161,36 @@ export const AIResponseFrame = ({
 
         {footer}
 
-        {/* Single unified usage + Pro footer */}
-        <div className="mt-3 flex items-center justify-between gap-2 px-1">
-          <span className={`text-[11px] font-semibold tabular-nums ${usageColor}`}>
-            {remaining} <span className="text-foreground/50">/ {limit}</span>
-          </span>
-
-          {isFree && (
-            <button
-              onClick={() => navigate('/pricing-demo')}
-              className="flex items-center gap-1 text-[10px] font-semibold text-primary hover:text-primary/80 transition-colors"
-            >
-              <Crown className="w-3 h-3" />
-              <span>{t('aiUsage.subscribePro')}</span>
-            </button>
-          )}
-        </div>
+        {/* Professional usage bar — always after result */}
+        {!isLoading && content && (
+          <div className="mt-4 space-y-2 rounded-xl bg-muted/20 p-3 border border-border/50">
+            <div className="flex items-center gap-2.5">
+              <div className="flex-1 h-3 rounded-full bg-muted/40 overflow-hidden" style={{ boxShadow: 'inset 0 1px 3px hsl(0 0% 0% / 0.1)' }}>
+                <motion.div
+                  className="h-full rounded-full relative overflow-hidden"
+                  style={{ backgroundColor: getBarColor() }}
+                  initial={{ width: 0 }}
+                  animate={{ width: `${Math.min(usedPct, 100)}%` }}
+                  transition={{ duration: 0.8, ease: 'easeOut' }}
+                >
+                  {isNearLimit && !isLimitReached && (
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                      animate={{ x: ['-100%', '200%'] }}
+                      transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 3 }}
+                    />
+                  )}
+                </motion.div>
+              </div>
+              <span className="text-[12px] text-foreground/70 font-bold tabular-nums shrink-0">
+                {remaining}<span className="text-foreground/40 font-semibold">/{limit}</span>
+              </span>
+            </div>
+            <p className="text-[10px] text-muted-foreground text-center font-medium">
+              {weight === 0 ? uLabels.costHint0 : weight === 2 ? uLabels.costHint2 : weight === 0.5 ? uLabels.costHint05 : uLabels.explanation}
+            </p>
+          </div>
+        )}
 
         {/* Post-analysis upgrade nudge for free users */}
         {isFree && !isLoading && content && (
