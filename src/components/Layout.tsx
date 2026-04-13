@@ -17,8 +17,7 @@ import { useSubscriptionStatus } from "@/hooks/useSubscriptionStatus";
 import { useEngagementSignals } from "@/hooks/useEngagementSignals";
 
 const SmartInstallBanner = lazy(() => import("./SmartInstallBanner"));
-import { getTotalToolsCount } from "@/lib/tools-data";
-import { useSubscriptionStatus } from "@/hooks/useSubscriptionStatus";
+
 
 interface LayoutProps {
   children: React.ReactNode;
