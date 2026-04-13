@@ -53,7 +53,7 @@ export function ContextualSymptomsCard() {
 
   return (
     <Card className="p-4 bg-card border-border/50">
-      <h3 className="text-sm font-extrabold text-foreground mb-1">{t("contextSymptoms.title")}</h3>
+      <h3 className="text-base font-bold text-foreground mb-1">{t("contextSymptoms.title")}</h3>
       <p className="text-[10px] text-muted-foreground mb-3">{t("contextSymptoms.subtitle", { week })}</p>
       <div className="space-y-2">
         {symptoms.map((s, i) => (

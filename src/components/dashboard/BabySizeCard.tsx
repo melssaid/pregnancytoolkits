@@ -57,7 +57,7 @@ export function BabySizeCard() {
 
   return (
     <Card className="p-4 bg-card border-border/50 overflow-hidden">
-      <h3 className="text-sm font-extrabold text-foreground mb-2">{t("babySize.title")}</h3>
+      <h3 className="text-base font-bold text-foreground mb-2">{t("babySize.title")}</h3>
       <div className="flex items-center gap-4">
         <motion.div
           initial={{ scale: 0, rotate: -20 }}

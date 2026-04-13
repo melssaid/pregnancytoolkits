@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { Heart } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Card } from "@/components/ui/card";
 import { useTrackingStats } from "@/hooks/useTrackingStats";
@@ -32,7 +31,7 @@ export function HealthScoreRing() {
 
   return (
     <Card className="p-4 bg-card border-border/50">
-      <h3 className="text-sm font-extrabold text-foreground mb-3">{t("healthScore.title")}</h3>
+      <h3 className="text-base font-bold text-foreground mb-3">{t("healthScore.title")}</h3>
       <div className="flex items-center gap-4">
         {/* Ring */}
         <div className="relative w-24 h-24 flex-shrink-0">

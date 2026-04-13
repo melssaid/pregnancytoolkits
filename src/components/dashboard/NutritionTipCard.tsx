@@ -1,4 +1,3 @@
-import { Apple } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Card } from "@/components/ui/card";
 import { useUserProfile } from "@/hooks/useUserProfile";
@@ -23,9 +22,8 @@ export function NutritionTipCard() {
 
   return (
     <Card className="p-4 bg-card border-border/50">
-      <div className="flex items-center gap-2 mb-2">
-        <Apple className="w-4 h-4 text-green-500" />
-        <h3 className="text-sm font-extrabold text-foreground">{t("nutritionTip.title")}</h3>
+      <div className="mb-2">
+        <h3 className="text-base font-bold text-foreground">{t("nutritionTip.title")}</h3>
       </div>
       <motion.div
         initial={{ opacity: 0, y: 8 }}
