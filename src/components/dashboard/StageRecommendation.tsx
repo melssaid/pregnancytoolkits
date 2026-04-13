@@ -61,7 +61,7 @@ export const StageRecommendation = memo(function StageRecommendation() {
               {t('stageRec.suggested', { defaultValue: 'مقترح لك' })}
             </span>
           </div>
-          <p className="text-xs font-bold text-foreground mt-0.5 truncate">{t(rec.titleKey)}</p>
+          <p className="text-sm font-extrabold text-foreground mt-0.5 truncate">{t(rec.titleKey)}</p>
         </div>
         <ChevronIcon className="w-4 h-4 text-muted-foreground/30 group-hover:text-primary transition-colors" />
       </Link>

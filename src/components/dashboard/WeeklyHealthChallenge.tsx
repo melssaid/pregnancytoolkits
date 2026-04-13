@@ -62,7 +62,7 @@ export const WeeklyHealthChallenge = memo(function WeeklyHealthChallenge() {
               {progress}/{challenge.target}
             </span>
           </div>
-          <p className="text-xs font-bold text-foreground mt-0.5">
+          <p className="text-sm font-extrabold text-foreground mt-0.5">
             {t(challenge.titleKey, { target: challenge.target, defaultValue: challenge.id })}
           </p>
           <div className="mt-1.5 h-1.5 rounded-full bg-muted/40 overflow-hidden">
