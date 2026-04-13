@@ -8782,9 +8782,9 @@
         "source": "Bananas, avocado, chicken"
       },
       "ginger": {
-        "name": "Ginger",
-        "benefit": "Naturally relieves nausea and vomiting",
-        "source": "Ginger tea, fresh ginger"
+        "name": "Extracto natural de jengibre",
+        "benefit": "Ayuda a calmar el estómago y aliviar las náuseas matutinas durante el primer trimestre",
+        "source": "Té de jengibre caliente, rodajas de jengibre fresco, caramelos de jengibre"
       },
       "calcium": {
         "name": "Calcium",

@@ -8782,9 +8782,9 @@
         "source": "Bananas, avocado, chicken"
       },
       "ginger": {
-        "name": "Ginger",
-        "benefit": "Naturally relieves nausea and vomiting",
-        "source": "Ginger tea, fresh ginger"
+        "name": "Extrato natural de gengibre",
+        "benefit": "Ajuda a acalmar o estômago e aliviar enjoos matinais no início da gravidez",
+        "source": "Chá de gengibre quente, fatias de gengibre fresco, balas de gengibre"
       },
       "calcium": {
         "name": "Calcium",
