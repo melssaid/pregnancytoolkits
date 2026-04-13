@@ -68,9 +68,19 @@ const SmartDashboard = () => {
             alt=""
             width={72}
             height={72}
-            initial={{ y: -24, opacity: 0, rotate: -20 }}
-            animate={{ y: 0, opacity: 0.9, rotate: -8 }}
-            transition={{ duration: 0.9, ease: "easeOut" }}
+            initial={{ y: -30, opacity: 0, rotate: -25, scale: 0.6 }}
+            animate={{
+              y: [0, -3, 0],
+              opacity: 0.9,
+              rotate: [-8, -5, -8],
+              scale: [1, 1.05, 1],
+            }}
+            transition={{
+              y: { duration: 3, repeat: Infinity, ease: "easeInOut" },
+              rotate: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+              scale: { duration: 3.5, repeat: Infinity, ease: "easeInOut" },
+              opacity: { duration: 0.8, ease: "easeOut" },
+            }}
             className="drop-shadow-lg"
           />
           <motion.img
@@ -78,9 +88,19 @@ const SmartDashboard = () => {
             alt=""
             width={72}
             height={72}
-            initial={{ y: -24, opacity: 0, rotate: 20 }}
-            animate={{ y: 0, opacity: 0.9, rotate: 8 }}
-            transition={{ duration: 0.9, ease: "easeOut", delay: 0.12 }}
+            initial={{ y: -30, opacity: 0, rotate: 25, scale: 0.6 }}
+            animate={{
+              y: [0, -4, 0],
+              opacity: 0.9,
+              rotate: [8, 5, 8],
+              scale: [1, 1.06, 1],
+            }}
+            transition={{
+              y: { duration: 3.2, repeat: Infinity, ease: "easeInOut", delay: 0.5 },
+              rotate: { duration: 4.2, repeat: Infinity, ease: "easeInOut", delay: 0.3 },
+              scale: { duration: 3.8, repeat: Infinity, ease: "easeInOut", delay: 0.4 },
+              opacity: { duration: 0.8, ease: "easeOut", delay: 0.12 },
+            }}
             className="drop-shadow-lg"
           />
         </div>
