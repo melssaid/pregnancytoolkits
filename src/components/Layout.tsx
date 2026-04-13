@@ -28,6 +28,7 @@ export function Layout({ children, showBack = false }: LayoutProps) {
   const { t, i18n } = useTranslation();
   const { tier } = useSubscriptionStatus();
   const isPremium = tier === "premium";
+  useEngagementSignals();
   const isRtl = i18n.language === 'ar';
   const trustTextSize = isRtl ? 'text-[9.5px]' : 'text-[8px]';
 
