@@ -8907,9 +8907,12 @@
     "weightEntries": "سجلات الوزن",
     "totalKickSessions": "جلسات مراقبة الركلات",
     "bloodType": "فصيلة الدم",
-    "export": "تصدير التقرير",
+    "export": "تصدير التقرير PDF",
+    "exporting": "جارٍ التصدير...",
+    "exportSuccess": "تم تصدير التقرير بنجاح",
+    "exportError": "فشل تصدير التقرير",
     "reportTitle": "تقرير الحمل الطبي",
     "generatedAt": "تاريخ التقرير",
-    "weightHistory": "سجل الوزن:"
+    "weightHistory": "سجل الوزن"
   }
 }
