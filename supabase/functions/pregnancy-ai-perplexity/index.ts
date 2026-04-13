@@ -48,7 +48,7 @@ const MAX_MESSAGES = 20;
 const MAX_CONTENT_LENGTH = 10000;
 
 // ── Monthly usage limits by tier ──
-const FREE_MONTHLY_LIMIT = 5;
+const FREE_MONTHLY_LIMIT = 10;
 const PREMIUM_MONTHLY_LIMIT = 60;
 
 // ── Rate limiting (per-minute burst protection) ──

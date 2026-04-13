@@ -337,7 +337,7 @@ const FooterCard = memo(function FooterCard() {
             </span>
           </div>
           <div className="px-4 pb-3">
-            <div className="h-[5px] rounded-full bg-muted/50 overflow-hidden">
+            <div className="h-[6px] rounded-full bg-muted/50 overflow-hidden">
               <motion.div
                 className="h-full rounded-full bg-gradient-to-r from-amber-500 to-primary"
                 initial={{ width: 0 }}
@@ -435,13 +435,21 @@ const FooterCard = memo(function FooterCard() {
                   {remaining}<span className="text-[10px] text-foreground/60 font-semibold">/{limit}</span>
                 </span>
               </div>
-              <div className="h-[5px] rounded-full bg-muted/50 overflow-hidden">
+              <div className="h-[6px] rounded-full bg-muted/50 overflow-hidden">
                 <motion.div
-                  className={`h-full rounded-full ${isLimitReached ? 'bg-destructive' : 'bg-gradient-to-r from-[hsl(340,60%,55%)] to-[hsl(300,35%,58%)]'}`}
+                  className={`h-full rounded-full relative overflow-hidden ${isLimitReached ? 'bg-destructive' : 'bg-gradient-to-r from-[hsl(340,60%,55%)] to-[hsl(300,35%,58%)]'}`}
                   initial={{ width: 0 }}
                   animate={{ width: `${usagePercent}%` }}
                   transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                />
+                >
+                  {usagePercent >= 70 && !isLimitReached && (
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                      animate={{ x: ['-100%', '200%'] }}
+                      transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 3 }}
+                    />
+                  )}
+                </motion.div>
               </div>
             </div>
           )}
