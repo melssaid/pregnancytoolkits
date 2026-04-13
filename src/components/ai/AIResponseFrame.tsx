@@ -60,14 +60,26 @@ export const AIResponseFrame = ({
 
   const showProgress = isLoading || (rawProgress > 0 && rawProgress < 100);
   const isFree = tier === 'free';
-  const pct = limit > 0 ? Math.round((remaining / limit) * 100) : 100;
+  const usedPct = limit > 0 ? Math.round((used / limit) * 100) : 0;
+  const isNearLimit = usedPct >= 70;
 
-  // Dynamic color for usage pill
-  const usageColor = isLimitReached
-    ? 'text-destructive'
-    : pct <= 20
-      ? 'text-amber-600 dark:text-amber-400'
-      : 'text-muted-foreground';
+  const getBarColor = () => {
+    if (isLimitReached) return 'hsl(0, 72%, 51%)';
+    if (usedPct >= 80) return 'hsl(38, 92%, 50%)';
+    return 'hsl(var(--primary))';
+  };
+
+  const usageExplanations: Record<string, { explanation: string; costHint0: string; costHint05: string; costHint1: string; costHint2: string }> = {
+    en: { explanation: 'Each smart analysis uses 1 point from your monthly balance', costHint0: 'Free ✨', costHint05: 'Uses ½ credit', costHint1: 'Uses 1 credit', costHint2: 'Uses 2 credits' },
+    ar: { explanation: 'كل تحليل ذكي يستهلك نقطة واحدة من رصيدك الشهري', costHint0: 'مجاني ✨', costHint05: 'تستهلك نصف نقطة', costHint1: 'تستهلك نقطة واحدة', costHint2: 'تستهلك نقطتين' },
+    de: { explanation: 'Jede Analyse verbraucht 1 Punkt Ihres monatlichen Guthabens', costHint0: 'Kostenlos ✨', costHint05: '½ Credit', costHint1: '1 Credit verbraucht', costHint2: '2 Credits verbraucht' },
+    fr: { explanation: 'Chaque analyse utilise 1 point de votre solde mensuel', costHint0: 'Gratuit ✨', costHint05: '½ crédit', costHint1: 'Utilise 1 crédit', costHint2: 'Utilise 2 crédits' },
+    es: { explanation: 'Cada análisis usa 1 punto de tu saldo mensual', costHint0: 'Gratis ✨', costHint05: '½ crédito', costHint1: 'Usa 1 crédito', costHint2: 'Usa 2 créditos' },
+    pt: { explanation: 'Cada análise usa 1 ponto do seu saldo mensal', costHint0: 'Grátis ✨', costHint05: '½ crédito', costHint1: 'Usa 1 crédito', costHint2: 'Usa 2 créditos' },
+    tr: { explanation: 'Her analiz aylık bakiyenizden 1 puan kullanır', costHint0: 'Ücretsiz ✨', costHint05: '½ kredi', costHint1: '1 kredi kullanır', costHint2: '2 kredi kullanır' },
+  };
+  const lang = i18n.language?.split('-')[0] || 'en';
+  const uLabels = usageExplanations[lang] || usageExplanations.en;
 
   return (
     <motion.div
