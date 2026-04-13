@@ -560,11 +560,11 @@ function drawFooter(s: PDFState, language: string, color: RGB) {
   s.y += 5;
   s.doc.setFontSize(7);
   s.doc.setTextColor(148, 163, 184);
-  s.doc.text(formatDateForPDF(new Date(), language), PAGE_W / 2, s.y, { align: 'center' });
+  drawCenteredText(s.doc, formatDateForPDF(new Date(), language), s.y);
   s.y += 4;
   s.doc.setFontSize(7);
   s.doc.setTextColor(color.r, color.g, color.b);
-  s.doc.text(getBrandNameForPDF(language), PAGE_W / 2, s.y, { align: 'center' });
+  drawCenteredText(s.doc, getBrandNameForPDF(language), s.y);
   // Add page numbers to all pages at the end
   addPageNumbers(s);
 }
