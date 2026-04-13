@@ -8548,22 +8548,22 @@
   },
   "certificate": {
     "share": "Share your achievement",
-    "shareBody": "Every week is a new milestone in my motherhood journey",
-    "shareTitle": "Week {{week}} Complete! 🎉",
-    "subtitle": "A wonderful achievement in your pregnancy journey 💪",
-    "title": "Week {{week}} Certificate"
+    "shareBody": "Every week is a new achievement in the motherhood journey",
+    "shareTitle": "I completed week {{week}} of my pregnancy!",
+    "subtitle": "Amazing milestone in your journey 💪",
+    "title": "Week {{week}} complete!"
   },
   "challenge": {
-    "daily": "Today's Challenge",
+    "daily": "Daily Challenge",
     "water": "Drink {{target}} glasses of water",
-    "walk": "Walk for {{target}} minutes",
-    "exercise": "Complete a workout session",
+    "walk": "Walk {{target}} minutes",
+    "exercise": "Complete 1 exercise session",
     "glasses": "glasses",
-    "minutes": "min",
+    "minutes": "minutes",
     "session": "session"
   },
   "countdown": {
-    "complete": "Complete",
+    "complete": "complete",
     "days": "days",
     "daysLeft": "days left",
     "dueDate": "Expected due date",
@@ -8886,15 +8886,15 @@
   "dailyChallenge": {
     "title": "Today's Health Challenges",
     "challenges": {
-      "walk15min": "Walk for 15 minutes",
+      "walk15min": "Walk 15 minutes",
       "drink8glasses": "Drink 8 glasses of water",
-      "breathing5min": "5-minute breathing exercises",
-      "eatFruit": "Eat 3 servings of fruit",
-      "stretchMorning": "Morning stretching exercises",
-      "kegelExercise": "10 Kegel exercises",
-      "readBabyBook": "Read about baby's development",
-      "sleepEarly": "Sleep before 11 PM",
-      "prenatalVitamin": "Take your prenatal vitamin",
+      "breathing5min": "5-minute breathing exercise",
+      "eatFruit": "Eat a serving of fruit",
+      "stretchMorning": "Morning stretching",
+      "kegelExercise": "Kegel exercises",
+      "readBabyBook": "Read about your baby",
+      "sleepEarly": "Go to bed early",
+      "prenatalVitamin": "Take prenatal vitamins",
       "warmBath": "Relaxing warm bath",
       "journaling": "Write in your journal",
       "noScreen30min": "30 minutes screen-free"
@@ -8913,7 +8913,8 @@
     "weightHistory": "Weight History",
     "exporting": "Exporting...",
     "exportSuccess": "Report exported successfully",
-    "exportError": "Failed to export report"
+    "exportError": "Failed to export report",
+    "symptomEntries": "Symptom entries"
   },
   "smartResult": {
     "title": "✨ Your personalized journey is ready",

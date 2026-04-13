@@ -8427,26 +8427,26 @@
   },
   "certificate": {
     "share": "Comparte tu logro",
-    "shareBody": "Cada semana es un nuevo hito en mi viaje de maternidad",
-    "shareTitle": "¡Semana {{week}} completada! 🎉",
-    "subtitle": "Un logro maravilloso en tu embarazo 💪",
-    "title": "Certificado Semana {{week}}"
+    "shareBody": "Cada semana es un nuevo logro",
+    "shareTitle": "¡Completé la semana {{week}} de mi embarazo!",
+    "subtitle": "Un hito increíble 💪",
+    "title": "¡Semana {{week}} completada!"
   },
   "challenge": {
-    "daily": "Desafío del día",
-    "water": "Beber {{target}} vasos de agua",
-    "walk": "Caminar {{target}} minutos",
-    "exercise": "Completar una sesión",
+    "daily": "Reto diario",
+    "water": "Bebe {{target}} vasos de agua",
+    "walk": "Camina {{target}} minutos",
+    "exercise": "Completa 1 sesión de ejercicio",
     "glasses": "vasos",
-    "minutes": "min",
+    "minutes": "minutos",
     "session": "sesión"
   },
   "countdown": {
-    "complete": "Completo",
+    "complete": "completado",
     "days": "días",
     "daysLeft": "días restantes",
     "dueDate": "Fecha prevista de parto",
-    "title": "Cuenta regresiva del parto",
+    "title": "Cuenta regresiva",
     "weeks": "semanas"
   },
   "disclaimer": {
@@ -8470,7 +8470,7 @@
   },
   "rating": {
     "rateUs": "Califícanos ⭐",
-    "reviews": "opiniones"
+    "reviews": "reseñas"
   },
   "resultShare": {
     "share": "Compartir",
@@ -8487,7 +8487,7 @@
     "download": "Descargar gratis — Google Play"
   },
   "streak": {
-    "days": "días consecutivos"
+    "days": "días seguidos"
   },
   "testimonials": {
     "subtitle": "Historias reales de mamás reales de todo el mundo",
@@ -8560,7 +8560,8 @@
   },
   "usageNudge": {
     "title": "{{used}}/{{limit}} análisis usados",
-    "upgrade": "Mejora a 60/mes →"
+    "upgrade": "Mejora a 60/mes →",
+    "subscribe": "Suscribirse ahora"
   },
   "smartPrompt": {
     "nearLimit": "¡Has usado {{used}} de {{limit}} análisis! Suscríbete para 60/mes.",
@@ -8834,18 +8835,18 @@
   "dailyChallenge": {
     "title": "Today's Health Challenges",
     "challenges": {
-      "walk15min": "Walk for 15 minutes",
-      "drink8glasses": "Drink 8 glasses of water",
-      "breathing5min": "5-minute breathing exercises",
-      "eatFruit": "Eat 3 servings of fruit",
-      "stretchMorning": "Morning stretching exercises",
-      "kegelExercise": "10 Kegel exercises",
-      "readBabyBook": "Read about baby's development",
-      "sleepEarly": "Sleep before 11 PM",
-      "prenatalVitamin": "Take your prenatal vitamin",
-      "warmBath": "Relaxing warm bath",
-      "journaling": "Write in your journal",
-      "noScreen30min": "30 minutes screen-free"
+      "walk15min": "Caminar 15 minutos",
+      "drink8glasses": "Beber 8 vasos de agua",
+      "breathing5min": "5 minutos de respiración",
+      "eatFruit": "Comer una porción de fruta",
+      "stretchMorning": "Estiramientos matutinos",
+      "kegelExercise": "Ejercicios de Kegel",
+      "readBabyBook": "Leer sobre tu bebé",
+      "sleepEarly": "Dormir temprano",
+      "prenatalVitamin": "Tomar vitaminas prenatales",
+      "warmBath": "Baño caliente relajante",
+      "journaling": "Escribir en tu diario",
+      "noScreen30min": "30 minutos sin pantalla"
     }
   },
   "medicalSummary": {
@@ -8860,7 +8861,8 @@
     "generatedAt": "Report Date",
     "weightHistory": "Weight History",
     "exporting": "Exportando...",
-    "exportSuccess": "Informe exportado exitosamente",
-    "exportError": "Error al exportar"
+    "exportSuccess": "Informe exportado con éxito",
+    "exportError": "Error al exportar",
+    "symptomEntries": "Registros de síntomas"
   }
 }

@@ -8427,26 +8427,26 @@
   },
   "certificate": {
     "share": "Partagez votre réussite",
-    "shareBody": "Chaque semaine est une nouvelle étape dans mon parcours de maternité",
-    "shareTitle": "Semaine {{week}} terminée ! 🎉",
-    "subtitle": "Une belle réussite dans votre grossesse 💪",
-    "title": "Certificat Semaine {{week}}"
+    "shareBody": "Chaque semaine est une nouvelle réussite",
+    "shareTitle": "J'ai terminé la semaine {{week}} de ma grossesse !",
+    "subtitle": "Un jalon incroyable 💪",
+    "title": "Semaine {{week}} terminée !"
   },
   "challenge": {
     "daily": "Défi du jour",
-    "water": "Boire {{target}} verres d'eau",
-    "walk": "Marcher {{target}} minutes",
-    "exercise": "Compléter une séance",
+    "water": "Buvez {{target}} verres d'eau",
+    "walk": "Marchez {{target}} minutes",
+    "exercise": "Faites 1 séance d'exercice",
     "glasses": "verres",
-    "minutes": "min",
+    "minutes": "minutes",
     "session": "séance"
   },
   "countdown": {
-    "complete": "Terminé",
+    "complete": "terminé",
     "days": "jours",
     "daysLeft": "jours restants",
-    "dueDate": "Date prévue d'accouchement",
-    "title": "Compte à rebours naissance",
+    "dueDate": "Date prévue",
+    "title": "Compte à rebours",
     "weeks": "semaines"
   },
   "disclaimer": {
@@ -8560,7 +8560,8 @@
   },
   "usageNudge": {
     "title": "{{used}}/{{limit}} analyses utilisées",
-    "upgrade": "Passez à 60/mois →"
+    "upgrade": "Passez à 60/mois →",
+    "subscribe": "S'abonner maintenant"
   },
   "smartPrompt": {
     "nearLimit": "Vous avez utilisé {{used}} sur {{limit}} analyses ! Abonnez-vous pour 60/mois.",
@@ -8834,18 +8835,18 @@
   "dailyChallenge": {
     "title": "Today's Health Challenges",
     "challenges": {
-      "walk15min": "Walk for 15 minutes",
-      "drink8glasses": "Drink 8 glasses of water",
-      "breathing5min": "5-minute breathing exercises",
-      "eatFruit": "Eat 3 servings of fruit",
-      "stretchMorning": "Morning stretching exercises",
-      "kegelExercise": "10 Kegel exercises",
-      "readBabyBook": "Read about baby's development",
-      "sleepEarly": "Sleep before 11 PM",
-      "prenatalVitamin": "Take your prenatal vitamin",
-      "warmBath": "Relaxing warm bath",
-      "journaling": "Write in your journal",
-      "noScreen30min": "30 minutes screen-free"
+      "walk15min": "Marcher 15 minutes",
+      "drink8glasses": "Boire 8 verres d'eau",
+      "breathing5min": "5 minutes de respiration",
+      "eatFruit": "Manger une portion de fruits",
+      "stretchMorning": "Étirements matinaux",
+      "kegelExercise": "Exercices de Kegel",
+      "readBabyBook": "Lire sur votre bébé",
+      "sleepEarly": "Se coucher tôt",
+      "prenatalVitamin": "Prendre les vitamines prénatales",
+      "warmBath": "Bain chaud relaxant",
+      "journaling": "Écrire dans votre journal",
+      "noScreen30min": "30 minutes sans écran"
     }
   },
   "medicalSummary": {
@@ -8859,8 +8860,9 @@
     "reportTitle": "Pregnancy Medical Report",
     "generatedAt": "Report Date",
     "weightHistory": "Weight History",
-    "exporting": "Exportation...",
+    "exporting": "Exportation en cours...",
     "exportSuccess": "Rapport exporté avec succès",
-    "exportError": "Échec de l'exportation"
+    "exportError": "Échec de l'exportation",
+    "symptomEntries": "Entrées de symptômes"
   }
 }

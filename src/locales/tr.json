@@ -8426,23 +8426,23 @@
     "weight": "Ağırlık"
   },
   "certificate": {
-    "share": "Başarınızı paylaşın",
-    "shareBody": "Her hafta annelik yolculuğumda yeni bir kilometre taşı",
-    "shareTitle": "{{week}}. Hafta tamamlandı! 🎉",
-    "subtitle": "Hamilelik yolculuğunuzda harika bir başarı 💪",
-    "title": "{{week}}. Hafta Sertifikası"
+    "share": "Başarını paylaş",
+    "shareBody": "Her hafta annelik yolculuğunda yeni bir başarı",
+    "shareTitle": "Hamileliğimin {{week}}. haftasını tamamladım!",
+    "subtitle": "Harika bir dönüm noktası 💪",
+    "title": "{{week}}. hafta tamamlandı!"
   },
   "challenge": {
-    "daily": "Günün Mücadelesi",
-    "water": "{{target}} bardak su için",
-    "walk": "{{target}} dakika yürüyün",
-    "exercise": "Bir antrenman tamamlayın",
+    "daily": "Günlük Meydan Okuma",
+    "water": "{{target}} bardak su iç",
+    "walk": "{{target}} dakika yürü",
+    "exercise": "1 egzersiz seansı tamamla",
     "glasses": "bardak",
-    "minutes": "dk",
+    "minutes": "dakika",
     "session": "seans"
   },
   "countdown": {
-    "complete": "Tamamlandı",
+    "complete": "tamamlandı",
     "days": "gün",
     "daysLeft": "gün kaldı",
     "dueDate": "Tahmini doğum tarihi",
@@ -8469,8 +8469,8 @@
     "title": "Çevrimdışısınız"
   },
   "rating": {
-    "rateUs": "Bizi değerlendirin ⭐",
-    "reviews": "yorum"
+    "rateUs": "Bizi değerlendir ⭐",
+    "reviews": "değerlendirme"
   },
   "resultShare": {
     "share": "Paylaş",
@@ -8481,7 +8481,7 @@
     "subtitle": "Google Play'de ücretsiz • 33+ Araç"
   },
   "stageRec": {
-    "suggested": "Sizin için önerilen"
+    "suggested": "Senin için önerilen"
   },
   "stickyCta": {
     "download": "Ücretsiz İndir — Google Play"
@@ -8560,7 +8560,8 @@
   },
   "usageNudge": {
     "title": "{{used}}/{{limit}} analiz kullanıldı",
-    "upgrade": "Ayda 60'a yükseltin →"
+    "upgrade": "Ayda 60'a yükseltin →",
+    "subscribe": "Şimdi abone ol"
   },
   "smartPrompt": {
     "nearLimit": "{{limit}} analizden {{used}} tanesini kullandınız! Ayda 60 için abone olun.",
@@ -8834,18 +8835,18 @@
   "dailyChallenge": {
     "title": "Today's Health Challenges",
     "challenges": {
-      "walk15min": "Walk for 15 minutes",
-      "drink8glasses": "Drink 8 glasses of water",
-      "breathing5min": "5-minute breathing exercises",
-      "eatFruit": "Eat 3 servings of fruit",
-      "stretchMorning": "Morning stretching exercises",
-      "kegelExercise": "10 Kegel exercises",
-      "readBabyBook": "Read about baby's development",
-      "sleepEarly": "Sleep before 11 PM",
-      "prenatalVitamin": "Take your prenatal vitamin",
-      "warmBath": "Relaxing warm bath",
-      "journaling": "Write in your journal",
-      "noScreen30min": "30 minutes screen-free"
+      "walk15min": "15 dakika yürü",
+      "drink8glasses": "8 bardak su iç",
+      "breathing5min": "5 dakika nefes egzersizi",
+      "eatFruit": "Bir porsiyon meyve ye",
+      "stretchMorning": "Sabah esneme hareketleri",
+      "kegelExercise": "Kegel egzersizleri",
+      "readBabyBook": "Bebeğin hakkında oku",
+      "sleepEarly": "Erken yat",
+      "prenatalVitamin": "Doğum öncesi vitaminlerini al",
+      "warmBath": "Rahatlatıcı sıcak banyo",
+      "journaling": "Günlüğüne yaz",
+      "noScreen30min": "30 dakika ekransız"
     }
   },
   "medicalSummary": {
@@ -8861,6 +8862,7 @@
     "weightHistory": "Weight History",
     "exporting": "Dışa aktarılıyor...",
     "exportSuccess": "Rapor başarıyla dışa aktarıldı",
-    "exportError": "Rapor dışa aktarılamadı"
+    "exportError": "Dışa aktarma başarısız",
+    "symptomEntries": "Belirti kayıtları"
   }
 }

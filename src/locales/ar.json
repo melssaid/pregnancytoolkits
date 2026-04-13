@@ -8549,17 +8549,17 @@
   "certificate": {
     "share": "شاركي إنجازك",
     "shareBody": "كل أسبوع هو إنجاز جديد في رحلة الأمومة",
-    "shareTitle": "أكملتِ الأسبوع {{week}}! 🎉",
+    "shareTitle": "أكملت الأسبوع {{week}} من رحلة حملي!",
     "subtitle": "إنجاز رائع في رحلة حملك 💪",
-    "title": "شهادة الأسبوع {{week}}"
+    "title": "أكملتِ الأسبوع {{week}}!"
   },
   "challenge": {
     "daily": "تحدي اليوم",
     "water": "اشربي {{target}} أكواب ماء",
     "walk": "امشي {{target}} دقيقة",
-    "exercise": "أكملي جلسة تمرين",
+    "exercise": "أكملي تمريناً واحداً",
     "glasses": "أكواب",
-    "minutes": "دقيقة",
+    "minutes": "دقائق",
     "session": "جلسة"
   },
   "countdown": {
@@ -8889,15 +8889,15 @@
       "walk15min": "امشي 15 دقيقة",
       "drink8glasses": "اشربي 8 أكواب ماء",
       "breathing5min": "تمارين تنفس 5 دقائق",
-      "eatFruit": "تناولي 3 حصص فواكه",
+      "eatFruit": "تناولي حصة فواكه",
       "stretchMorning": "تمارين إطالة صباحية",
-      "kegelExercise": "تمارين كيجل 10 مرات",
-      "readBabyBook": "اقرئي عن تطور طفلك",
-      "sleepEarly": "نامي قبل الـ 11",
-      "prenatalVitamin": "تناولي فيتامين الحمل",
+      "kegelExercise": "تمارين كيجل",
+      "readBabyBook": "اقرئي عن طفلك",
+      "sleepEarly": "نامي مبكراً",
+      "prenatalVitamin": "تناولي فيتامينات الحمل",
       "warmBath": "حمام دافئ للاسترخاء",
-      "journaling": "اكتبي في دفتر يومياتك",
-      "noScreen30min": "30 دقيقة بدون شاشات"
+      "journaling": "اكتبي في يومياتك",
+      "noScreen30min": "30 دقيقة بدون شاشة"
     }
   },
   "medicalSummary": {
@@ -8913,7 +8913,8 @@
     "exportError": "فشل تصدير التقرير",
     "reportTitle": "تقرير الحمل الطبي",
     "generatedAt": "تاريخ التقرير",
-    "weightHistory": "سجل الوزن"
+    "weightHistory": "سجل الوزن",
+    "symptomEntries": "سجلات الأعراض"
   },
   "smartResult": {
     "title": "✨ رحلتكِ الشخصية جاهزة",

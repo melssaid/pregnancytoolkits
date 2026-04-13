@@ -8426,26 +8426,26 @@
     "weight": "Gewicht"
   },
   "certificate": {
-    "share": "Teilen Sie Ihre Leistung",
-    "shareBody": "Jede Woche ist ein neuer Meilenstein auf meiner Mutterschaftsreise",
-    "shareTitle": "Woche {{week}} geschafft! 🎉",
-    "subtitle": "Eine wunderbare Leistung in Ihrer Schwangerschaft 💪",
-    "title": "Zertifikat Woche {{week}}"
+    "share": "Teile deinen Erfolg",
+    "shareBody": "Jede Woche ist ein neuer Meilenstein",
+    "shareTitle": "Ich habe Woche {{week}} meiner Schwangerschaft geschafft!",
+    "subtitle": "Ein toller Meilenstein 💪",
+    "title": "Woche {{week}} geschafft!"
   },
   "challenge": {
     "daily": "Tages-Challenge",
     "water": "Trinke {{target}} Gläser Wasser",
     "walk": "{{target}} Minuten spazieren",
-    "exercise": "Trainingseinheit absolvieren",
+    "exercise": "Eine Trainingseinheit",
     "glasses": "Gläser",
-    "minutes": "Min.",
+    "minutes": "Minuten",
     "session": "Einheit"
   },
   "countdown": {
-    "complete": "Abgeschlossen",
+    "complete": "abgeschlossen",
     "days": "Tage",
-    "daysLeft": "Tage übrig",
-    "dueDate": "Voraussichtlicher Geburtstermin",
+    "daysLeft": "Tage verbleibend",
+    "dueDate": "Errechneter Geburtstermin",
     "title": "Geburts-Countdown",
     "weeks": "Wochen"
   },
@@ -8469,7 +8469,7 @@
     "title": "Sie sind offline"
   },
   "rating": {
-    "rateUs": "Bewerten Sie uns ⭐",
+    "rateUs": "Bewerte uns ⭐",
     "reviews": "Bewertungen"
   },
   "resultShare": {
@@ -8481,7 +8481,7 @@
     "subtitle": "Kostenlos bei Google Play • 33+ Tools"
   },
   "stageRec": {
-    "suggested": "Für Sie vorgeschlagen"
+    "suggested": "Für dich empfohlen"
   },
   "stickyCta": {
     "download": "Kostenlos herunterladen — Google Play"
@@ -8560,7 +8560,8 @@
   },
   "usageNudge": {
     "title": "{{used}}/{{limit}} Analysen verwendet",
-    "upgrade": "Auf 60/Monat upgraden →"
+    "upgrade": "Auf 60/Monat upgraden →",
+    "subscribe": "Jetzt abonnieren"
   },
   "smartPrompt": {
     "nearLimit": "Sie haben {{used}} von {{limit}} Analysen genutzt! Abonnieren Sie für 60/Monat.",
@@ -8834,18 +8835,18 @@
   "dailyChallenge": {
     "title": "Today's Health Challenges",
     "challenges": {
-      "walk15min": "Walk for 15 minutes",
-      "drink8glasses": "Drink 8 glasses of water",
-      "breathing5min": "5-minute breathing exercises",
-      "eatFruit": "Eat 3 servings of fruit",
-      "stretchMorning": "Morning stretching exercises",
-      "kegelExercise": "10 Kegel exercises",
-      "readBabyBook": "Read about baby's development",
-      "sleepEarly": "Sleep before 11 PM",
-      "prenatalVitamin": "Take your prenatal vitamin",
-      "warmBath": "Relaxing warm bath",
-      "journaling": "Write in your journal",
-      "noScreen30min": "30 minutes screen-free"
+      "walk15min": "15 Minuten spazieren",
+      "drink8glasses": "8 Gläser Wasser trinken",
+      "breathing5min": "5 Minuten Atemübung",
+      "eatFruit": "Eine Portion Obst essen",
+      "stretchMorning": "Morgen-Dehnübungen",
+      "kegelExercise": "Kegel-Übungen",
+      "readBabyBook": "Über dein Baby lesen",
+      "sleepEarly": "Früh ins Bett gehen",
+      "prenatalVitamin": "Pränatale Vitamine nehmen",
+      "warmBath": "Entspannendes warmes Bad",
+      "journaling": "Tagebuch schreiben",
+      "noScreen30min": "30 Minuten ohne Bildschirm"
     }
   },
   "medicalSummary": {
@@ -8859,8 +8860,9 @@
     "reportTitle": "Pregnancy Medical Report",
     "generatedAt": "Report Date",
     "weightHistory": "Weight History",
-    "exporting": "Exportiere...",
+    "exporting": "Wird exportiert...",
     "exportSuccess": "Bericht erfolgreich exportiert",
-    "exportError": "Fehler beim Exportieren"
+    "exportError": "Export fehlgeschlagen",
+    "symptomEntries": "Symptomeinträge"
   }
 }
