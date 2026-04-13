@@ -54,18 +54,26 @@ export const OnboardingStep2Journey: React.FC<Props> = ({
       <div className="px-4 pb-3 space-y-2">
         {/* Journey stage cards */}
         <div className="space-y-2">
-          {stages.map(({ key, labelKey }) => (
+          {stages.map(({ key, icon: Icon, labelKey, gradient, shadow }) => (
             <button
               key={key}
               onClick={() => onJourneyChange(key)}
               className={cn(
-                "w-full py-3 px-4 rounded-xl border-2 transition-all text-center",
+                "w-full py-3.5 px-4 rounded-2xl border-2 transition-all duration-300 flex items-center gap-3",
                 journeyStage === key
-                  ? "bg-primary/10 border-primary shadow-sm"
-                  : "bg-transparent border-border/30 hover:bg-muted/40 hover:border-border/50"
+                  ? `bg-gradient-to-r ${gradient} border-transparent ${shadow} scale-[1.02]`
+                  : "bg-card/80 border-border/20 hover:border-border/40 hover:shadow-md"
               )}
             >
-              <p className={cn("text-base font-bold", journeyStage === key ? "text-primary" : "text-foreground")}>
+              <div className={cn(
+                "w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-colors",
+                journeyStage === key
+                  ? "bg-white/25"
+                  : "bg-muted/60"
+              )}>
+                <Icon className={cn("w-5 h-5", journeyStage === key ? "text-white" : "text-foreground/60")} />
+              </div>
+              <p className={cn("text-base font-bold", journeyStage === key ? "text-white" : "text-foreground")}>
                 {t(labelKey)}
               </p>
             </button>
