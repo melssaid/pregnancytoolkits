@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Shield, Heart, Settings } from "lucide-react";
+import { Shield, Heart, Settings, Crown } from "lucide-react";
 import { toast } from "sonner";
 const logoImage = "/logo.webp";
 import { useTranslation } from "react-i18next";
@@ -13,6 +13,7 @@ import { SmartAppBanner } from "./SmartAppBanner";
 import { BreadcrumbSchema } from "./BreadcrumbSchema";
 import { useEffect } from "react";
 import { getTotalToolsCount } from "@/lib/tools-data";
+import { useSubscriptionStatus } from "@/hooks/useSubscriptionStatus";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -21,6 +22,8 @@ interface LayoutProps {
 
 export function Layout({ children, showBack = false }: LayoutProps) {
   const { t, i18n } = useTranslation();
+  const { tier } = useSubscriptionStatus();
+  const isPremium = tier === "premium";
   const isRtl = i18n.language === 'ar';
   const trustTextSize = isRtl ? 'text-[9.5px]' : 'text-[8px]';
 
@@ -224,6 +227,15 @@ export function Layout({ children, showBack = false }: LayoutProps) {
                 </div>
               </Link>
               <div className="absolute right-4 flex items-center gap-1.5">
+                {!isPremium && (
+                  <Link
+                    to="/pricing"
+                    className="flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-br from-amber-500/15 to-amber-600/10 border border-amber-500/20 hover:border-amber-500/40 transition-all"
+                    title={t('pricing.upgradeTitle', 'Upgrade to PRO')}
+                  >
+                    <Crown className="w-4 h-4 text-amber-500" />
+                  </Link>
+                )}
                 <div className="hidden md:flex">
                   <EncryptionIndicator />
                 </div>
