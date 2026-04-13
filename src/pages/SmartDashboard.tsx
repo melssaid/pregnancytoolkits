@@ -59,17 +59,25 @@ const SmartDashboard = () => {
       />
 
       <main className={`container py-4 space-y-3.5 pb-24 bg-gradient-to-b ${trimesterTheme.gradient}`}>
-        {/* Streak Badge */}
-        <div className="flex items-center justify-between">
-          <StreakBadge />
-          <span className="text-lg">{trimesterTheme.emoji}</span>
+        {/* Floral decoration below header */}
+        <div className="flex items-center justify-center gap-1 -mt-2 mb-1 opacity-80">
+          <span className="text-base">🌸</span>
+          <span className="text-sm">🌷</span>
+          <span className="text-xs">✿</span>
+          <span className="text-sm">🌺</span>
+          <span className="text-base">🌸</span>
         </div>
 
         {/* 1. Hero — Pregnancy Week */}
         <DailyHeroCard week={profile.pregnancyWeek} dueDate={profile.dueDate} />
 
-        {/* ★ Health Score Ring */}
-        <HealthScoreRing />
+        {/* ★ Health Score Ring + Streak Badge attached */}
+        <div className="relative">
+          <div className="absolute -top-3 start-3 z-10">
+            <StreakBadge />
+          </div>
+          <HealthScoreRing />
+        </div>
 
         {/* ★ Baby Size Visualization */}
         <BabySizeCard />
