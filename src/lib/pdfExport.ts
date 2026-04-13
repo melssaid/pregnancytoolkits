@@ -245,6 +245,15 @@ function rtlText(doc: jsPDF, text: string, x: number, y: number, options?: any) 
   }
 }
 
+/**
+ * Safe centered text helper. Uses doc.text with align:'center' — the centralized
+ * wrapper intercepts this for RTL and converts to manual positioning automatically.
+ */
+function drawCenteredText(doc: jsPDF, text: string, y: number, opts?: { fontSize?: number }) {
+  if (opts?.fontSize) doc.setFontSize(opts.fontSize);
+  doc.text(text, PAGE_W / 2, y, { align: 'center' });
+}
+
 // Create a pre-configured PDF document with Unicode font support
 async function createPDFDoc(language: string): Promise<{ doc: jsPDF }> {
   // Clear reshape cache between exports to prevent stale data
@@ -264,13 +273,25 @@ async function createPDFDoc(language: string): Promise<{ doc: jsPDF }> {
   
   // For Arabic: Amiri has the best Arabic glyph coverage (Presentation Forms B)
   // For other languages: Cairo supports Latin + Arabic well
-  if (_ctx.isRTL && amiriFontCache) {
-    _ctx.activeFont = 'Amiri';
+  if (_ctx.isRTL) {
+    if (amiriFontCache) {
+      _ctx.activeFont = 'Amiri';
+    } else if (cairoFontCache) {
+      _ctx.activeFont = 'Cairo';
+      console.warn('[PDF] Amiri font not available for Arabic, falling back to Cairo');
+    } else if (tajawalFontCache) {
+      _ctx.activeFont = 'Tajawal';
+      console.warn('[PDF] Amiri & Cairo fonts not available for Arabic, falling back to Tajawal');
+    } else {
+      console.error('[PDF] No Arabic font loaded! Arabic text will not render correctly.');
+    }
   } else if (cairoFontCache) {
     _ctx.activeFont = 'Cairo';
   } else if (tajawalFontCache) {
     _ctx.activeFont = 'Tajawal';
   }
+  
+  console.log(`[PDF] Using font: ${_ctx.activeFont}, RTL: ${_ctx.isRTL}, Language: ${language}`);
   doc.setFont(_ctx.activeFont, 'normal');
 
   // Centralized text pipeline to prevent per-call RTL mistakes
@@ -288,6 +309,32 @@ async function createPDFDoc(language: string): Promise<{ doc: jsPDF }> {
   };
 
   (doc as any).text = (text: any, ...args: any[]) => {
+    // For RTL, intercept align:'center' and convert to manual positioning
+    // This prevents jsPDF's internal alignment from conflicting with pre-reversed Arabic text
+    if (_ctx.isRTL && args.length >= 2) {
+      const x = args[0];
+      const y = args[1];
+      const opts = args[2] as any;
+      if (opts && opts.align === 'center') {
+        const processLine = (line: string) => {
+          const { text: unmarked, processed } = unmarkIfProcessed(line);
+          return processed ? unmarked : prepareText(unmarked);
+        };
+        
+        if (typeof text === 'string') {
+          const prepared = processLine(text);
+          const textW = rawGetTextWidth(prepared);
+          return rawText(prepared, x - textW / 2, y, { ...opts, align: undefined });
+        }
+        if (Array.isArray(text)) {
+          const processedLines = text.map((line) => processLine(String(line ?? '')));
+          // For multi-line, use the widest line to find center offset
+          const maxW = Math.max(...processedLines.map((l) => rawGetTextWidth(l)));
+          return rawText(processedLines, x - maxW / 2, y, { ...opts, align: undefined });
+        }
+      }
+    }
+
     if (typeof text === 'string') {
       const { text: unmarked, processed } = unmarkIfProcessed(text);
       return rawText(processed ? unmarked : prepareText(unmarked), ...args);
@@ -487,13 +534,14 @@ function addPageWithHeader(s: PDFState) {
   // Process entire header as one unit for correct RTL ordering via centralized doc.text wrapper
   const lang = _ctx.isRTL ? 'ar' : 'en';
   const rawHeader = _ctx.reportTitle ? `${getBrandName(lang)} — ${_ctx.reportTitle}` : getBrandName(lang);
-  s.doc.text(rawHeader, PAGE_W / 2, 5, { align: 'center' });
+  drawCenteredText(s.doc, rawHeader, 5);
   s.y = MARGIN_Y + 6;
 }
 
 function drawPageNumber(s: PDFState) {
   s.doc.setFontSize(7);
   s.doc.setTextColor(COLORS.muted.r, COLORS.muted.g, COLORS.muted.b);
+  // Page numbers are just digits, safe to center normally
   s.doc.text(String(s.pageNum), PAGE_W / 2, PAGE_H - 5, { align: 'center' });
 }
 
@@ -511,12 +559,12 @@ function drawLogo(s: PDFState, logoData: string | null) {
 function drawTitle(s: PDFState, title: string, subtitle?: string) {
   s.doc.setFontSize(18);
   s.doc.setTextColor(30, 41, 59);
-  s.doc.text(stripEmojis(title), PAGE_W / 2, s.y, { align: 'center' });
+  drawCenteredText(s.doc, stripEmojis(title), s.y);
   s.y += 7;
   if (subtitle) {
     s.doc.setFontSize(10);
     s.doc.setTextColor(100, 116, 139);
-    s.doc.text(stripEmojis(subtitle), PAGE_W / 2, s.y, { align: 'center' });
+    drawCenteredText(s.doc, stripEmojis(subtitle), s.y);
     s.y += 5;
   }
 }
@@ -524,7 +572,7 @@ function drawTitle(s: PDFState, title: string, subtitle?: string) {
 function drawBrand(s: PDFState, language: string, color: RGB) {
   s.doc.setFontSize(8);
   s.doc.setTextColor(color.r, color.g, color.b);
-  s.doc.text(getBrandNameForPDF(language), PAGE_W / 2, s.y, { align: 'center' });
+  drawCenteredText(s.doc, getBrandNameForPDF(language), s.y);
   s.y += 3;
 }
 
@@ -544,11 +592,11 @@ function drawFooter(s: PDFState, language: string, color: RGB) {
   s.y += 5;
   s.doc.setFontSize(7);
   s.doc.setTextColor(148, 163, 184);
-  s.doc.text(formatDateForPDF(new Date(), language), PAGE_W / 2, s.y, { align: 'center' });
+  drawCenteredText(s.doc, formatDateForPDF(new Date(), language), s.y);
   s.y += 4;
   s.doc.setFontSize(7);
   s.doc.setTextColor(color.r, color.g, color.b);
-  s.doc.text(getBrandNameForPDF(language), PAGE_W / 2, s.y, { align: 'center' });
+  drawCenteredText(s.doc, getBrandNameForPDF(language), s.y);
   // Add page numbers to all pages at the end
   addPageNumbers(s);
 }

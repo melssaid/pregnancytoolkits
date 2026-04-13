@@ -88,7 +88,7 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
   const handleDownload = useCallback(() => {
     const fullHTML = buildCleanHTML();
     if (!fullHTML) return;
-    downloadAsFile(fullHTML);
+    printViaIframe(fullHTML);
   }, [buildCleanHTML]);
 
   return (
@@ -114,16 +114,51 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
   );
 };
 
-function downloadAsFile(htmlContent: string) {
-  const blob = new Blob([htmlContent], { type: 'text/html; charset=utf-8' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `pregnancy-report-${new Date().toISOString().split('T')[0]}.html`;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  setTimeout(() => URL.revokeObjectURL(url), 10_000);
+/**
+ * Opens the browser's native Print dialog via a hidden iframe.
+ * The user can then "Save as PDF" with perfect Arabic/RTL rendering
+ * because the browser handles complex script shaping natively.
+ */
+function printViaIframe(htmlContent: string) {
+  const iframe = document.createElement('iframe');
+  iframe.style.position = 'fixed';
+  iframe.style.top = '-10000px';
+  iframe.style.left = '-10000px';
+  iframe.style.width = '210mm';
+  iframe.style.height = '297mm';
+  iframe.style.border = 'none';
+  document.body.appendChild(iframe);
+
+  const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+  if (!iframeDoc) {
+    document.body.removeChild(iframe);
+    return;
+  }
+
+  iframeDoc.open();
+  iframeDoc.write(htmlContent);
+  iframeDoc.close();
+
+  // Wait for fonts and images to load
+  iframe.onload = () => {
+    setTimeout(() => {
+      try {
+        iframe.contentWindow?.print();
+      } catch {
+        // Fallback: open in new tab for manual print
+        const win = window.open('', '_blank');
+        if (win) {
+          win.document.write(htmlContent);
+          win.document.close();
+          win.print();
+        }
+      }
+      // Remove iframe after printing
+      setTimeout(() => {
+        try { document.body.removeChild(iframe); } catch { /* already removed */ }
+      }, 2000);
+    }, 500);
+  };
 }
 
 export default PrintableReport;
