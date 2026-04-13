@@ -84,7 +84,7 @@ export function QuickStats({
                   {stat.value}
                   {stat.unit && <span className="text-[10px] font-medium text-muted-foreground ms-0.5">{stat.unit}</span>}
                 </p>
-                <p className="text-[11px] text-foreground/60 font-medium mt-1.5 leading-tight whitespace-normal break-words overflow-wrap-anywhere w-full">{t(stat.labelKey)}</p>
+                <p className="text-[11px] text-foreground/80 font-medium mt-1.5 leading-tight whitespace-normal break-words overflow-wrap-anywhere w-full">{t(stat.labelKey)}</p>
               </Link>
             </motion.div>
           );
@@ -105,7 +105,7 @@ export function QuickStats({
                 to="/settings"
                 className="flex flex-col p-3 rounded-xl bg-card border border-border/40 hover:border-primary/30 transition-all group"
               >
-                <p className="text-[10px] text-foreground/60 font-medium">{t("dashboard.quickStats.bmi", "BMI")}</p>
+                <p className="text-[10px] text-foreground/80 font-medium">{t("dashboard.quickStats.bmi", "BMI")}</p>
                 <p className="text-base font-bold text-foreground group-hover:text-primary transition-colors leading-none mt-1">
                   {bmi}
                   <span className={`text-[10px] font-medium ms-1 ${
@@ -138,7 +138,7 @@ export function QuickStats({
                 <p className="text-[11px] font-semibold text-foreground group-hover:text-primary transition-colors leading-tight whitespace-normal break-words">
                   {t("dashboard.quickStats.nextAppointment")}
                 </p>
-                <p className="text-[10px] text-foreground/60 font-medium whitespace-normal break-words mt-0.5">{nextAppointment}</p>
+                <p className="text-[10px] text-foreground/80 font-medium whitespace-normal break-words mt-0.5">{nextAppointment}</p>
               </Link>
             </motion.div>
           )}
