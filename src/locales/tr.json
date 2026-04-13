@@ -649,7 +649,11 @@
         "tips": "Hamilelik Sağlık İpuçları"
       }
     },
-    "checkAppointments": "Randevuları kontrol et"
+    "checkAppointments": "Randevuları kontrol et",
+    "backHome": {
+      "title": "Ana Sayfaya Dön",
+      "subtitle": "Tüm mevcut araçları keşfedin ve kullanın"
+    }
   },
   "layout": {
     "trustBar": {

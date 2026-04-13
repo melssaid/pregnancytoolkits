@@ -704,7 +704,11 @@
         "tips": "Pregnancy Health Tips"
       }
     },
-    "checkAppointments": "Check appointments"
+    "checkAppointments": "Check appointments",
+    "backHome": {
+      "title": "Back to Home",
+      "subtitle": "Explore and use all available tools"
+    }
   },
   "layout": {
     "trustBar": {

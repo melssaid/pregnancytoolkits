@@ -649,7 +649,11 @@
         "tips": "Conseils santé pour la grossesse"
       }
     },
-    "checkAppointments": "Vérifier les rendez-vous"
+    "checkAppointments": "Vérifier les rendez-vous",
+    "backHome": {
+      "title": "Retour à l'accueil",
+      "subtitle": "Explorez et utilisez tous les outils disponibles"
+    }
   },
   "layout": {
     "trustBar": {
