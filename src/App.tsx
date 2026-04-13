@@ -7,6 +7,7 @@ import { HelmetProvider } from "react-helmet-async";
 import { SmartScrollRestoration } from "@/components/SmartScrollRestoration";
 import { AnimatedRoutes } from "@/components/AnimatedRoutes";
 import { AIUsageProvider } from "@/contexts/AIUsageContext";
+import { SmartErrorBoundary } from "@/components/SmartErrorBoundary";
 import { useEffect, useState, lazy, Suspense } from "react";
 import { initializeAuth } from "@/lib/auth";
 import { toast } from "sonner";
@@ -113,6 +114,7 @@ const App = () => {
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <SmartErrorBoundary>
           <SmartScrollRestoration />
           <AnimatedRoutes />
           <Suspense fallback={null}><OnboardingDisclaimer /></Suspense>
@@ -125,6 +127,7 @@ const App = () => {
               onClose={() => setSuccessSheet({ open: false, plan: null })}
             />
           </Suspense>
+        </SmartErrorBoundary>
         </BrowserRouter>
       </TooltipProvider>
       </AIUsageProvider>
