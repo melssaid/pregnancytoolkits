@@ -31,10 +31,10 @@ export const OnboardingStep2Journey: React.FC<Props> = ({
   const BackIcon = isRtl ? ChevronRight : ChevronLeft;
   const [lmpOpen, setLmpOpen] = useState(false);
 
-  const stages: { key: JourneyStage; icon: React.ElementType; labelKey: string }[] = [
-    { key: 'fertility', icon: Flower2, labelKey: 'onboarding.step2.fertility' },
-    { key: 'pregnant', icon: Baby, labelKey: 'onboarding.step2.pregnant' },
-    { key: 'postpartum', icon: Heart, labelKey: 'onboarding.step2.postpartum' },
+  const stages: { key: JourneyStage; icon: React.ElementType; labelKey: string; gradient: string; shadow: string }[] = [
+    { key: 'fertility', icon: Flower2, labelKey: 'onboarding.step2.fertility', gradient: 'from-[hsl(15,70%,55%)] to-[hsl(30,80%,60%)]', shadow: 'shadow-[0_4px_20px_-4px_hsl(15,70%,55%,0.35)]' },
+    { key: 'pregnant', icon: Baby, labelKey: 'onboarding.step2.pregnant', gradient: 'from-[hsl(340,65%,52%)] to-[hsl(320,50%,58%)]', shadow: 'shadow-[0_4px_20px_-4px_hsl(340,65%,52%,0.35)]' },
+    { key: 'postpartum', icon: Heart, labelKey: 'onboarding.step2.postpartum', gradient: 'from-[hsl(290,35%,52%)] to-[hsl(270,40%,58%)]', shadow: 'shadow-[0_4px_20px_-4px_hsl(290,35%,52%,0.35)]' },
   ];
 
   return (
@@ -54,18 +54,26 @@ export const OnboardingStep2Journey: React.FC<Props> = ({
       <div className="px-4 pb-3 space-y-2">
         {/* Journey stage cards */}
         <div className="space-y-2">
-          {stages.map(({ key, labelKey }) => (
+          {stages.map(({ key, icon: Icon, labelKey, gradient, shadow }) => (
             <button
               key={key}
               onClick={() => onJourneyChange(key)}
               className={cn(
-                "w-full py-3 px-4 rounded-xl border-2 transition-all text-center",
+                "w-full py-3.5 px-4 rounded-2xl border-2 transition-all duration-300 flex items-center gap-3",
                 journeyStage === key
-                  ? "bg-primary/10 border-primary shadow-sm"
-                  : "bg-transparent border-border/30 hover:bg-muted/40 hover:border-border/50"
+                  ? `bg-gradient-to-r ${gradient} border-transparent ${shadow} scale-[1.02]`
+                  : "bg-card/80 border-border/20 hover:border-border/40 hover:shadow-md"
               )}
             >
-              <p className={cn("text-base font-bold", journeyStage === key ? "text-primary" : "text-foreground")}>
+              <div className={cn(
+                "w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-colors",
+                journeyStage === key
+                  ? "bg-white/25"
+                  : "bg-muted/60"
+              )}>
+                <Icon className={cn("w-5 h-5", journeyStage === key ? "text-white" : "text-foreground/60")} />
+              </div>
+              <p className={cn("text-base font-bold", journeyStage === key ? "text-white" : "text-foreground")}>
                 {t(labelKey)}
               </p>
             </button>
