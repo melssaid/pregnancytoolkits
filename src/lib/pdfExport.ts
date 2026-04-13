@@ -303,6 +303,32 @@ async function createPDFDoc(language: string): Promise<{ doc: jsPDF }> {
   };
 
   (doc as any).text = (text: any, ...args: any[]) => {
+    // For RTL, intercept align:'center' and convert to manual positioning
+    // This prevents jsPDF's internal alignment from conflicting with pre-reversed Arabic text
+    if (_ctx.isRTL && args.length >= 2) {
+      const x = args[0];
+      const y = args[1];
+      const opts = args[2] as any;
+      if (opts && opts.align === 'center') {
+        const processLine = (line: string) => {
+          const { text: unmarked, processed } = unmarkIfProcessed(line);
+          return processed ? unmarked : prepareText(unmarked);
+        };
+        
+        if (typeof text === 'string') {
+          const prepared = processLine(text);
+          const textW = rawGetTextWidth(prepared);
+          return rawText(prepared, x - textW / 2, y, { ...opts, align: undefined });
+        }
+        if (Array.isArray(text)) {
+          const processedLines = text.map((line) => processLine(String(line ?? '')));
+          // For multi-line, use the widest line to find center offset
+          const maxW = Math.max(...processedLines.map((l) => rawGetTextWidth(l)));
+          return rawText(processedLines, x - maxW / 2, y, { ...opts, align: undefined });
+        }
+      }
+    }
+
     if (typeof text === 'string') {
       const { text: unmarked, processed } = unmarkIfProcessed(text);
       return rawText(processed ? unmarked : prepareText(unmarked), ...args);
