@@ -276,6 +276,8 @@ export function Layout({ children, showBack = false }: LayoutProps) {
 
         {/* Bottom Navigation for Mobile */}
         <BottomNavigation />
+        {/* Smart Install Banner */}
+        <Suspense fallback={null}><SmartInstallBanner /></Suspense>
       </main>
 
 
