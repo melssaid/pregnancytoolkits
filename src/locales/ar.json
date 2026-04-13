@@ -8701,7 +8701,8 @@
     "thirdTrimester": "بداية الثلث الثالث",
     "babyPosition": "الطفل يتخذ وضعه",
     "fullTerm": "اكتمال النمو",
-    "dueDate": "موعد الولادة المتوقع"
+    "dueDate": "موعد الولادة المتوقع",
+    "weeksLeft": "{{count}} أسبوع"
   },
   "contextSymptoms": {
     "title": "أعراض متوقعة هذا الأسبوع",
