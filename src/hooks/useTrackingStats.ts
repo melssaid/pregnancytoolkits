@@ -153,7 +153,7 @@ export const useTrackingStats = () => {
       if (lastMeasurement) summaries['fetal-growth'] = lastMeasurement;
 
       // Baby growth
-      const babyGrowth = JSON.parse(localStorage.getItem(`baby_growth_${userId}`) || '[]');
+      const babyGrowth = JSON.parse(localStorage.getItem('baby-growth-entries') || '[]');
       if (babyGrowth.length > 0) summaries['baby-growth'] = `${babyGrowth.length}`;
 
       // Bump photos
