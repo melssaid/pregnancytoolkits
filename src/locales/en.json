@@ -8663,5 +8663,252 @@
     "subtitle": "See why mothers trust us worldwide",
     "title": "Why Choose Us",
     "us": "Us"
+  },
+  "healthScore": {
+    "title": "Your Health Score Today",
+    "great": "Excellent! Keep it up 💪",
+    "good": "Good, room to improve",
+    "needsWork": "Needs more activity",
+    "water": "Water",
+    "kicks": "Kicks",
+    "vitamins": "Vitamins",
+    "activity": "Activity"
+  },
+  "babySize": {
+    "title": "Baby's Size This Week",
+    "weekLabel": "Week {{week}}",
+    "weight": "Weight",
+    "length": "Length",
+    "sinceLastWeek": "since last week"
+  },
+  "weeklyComparison": {
+    "title": "Weekly Comparison",
+    "water": "Water",
+    "kicks": "Kicks",
+    "vitamins": "Vitamins",
+    "glasses": "glasses",
+    "days": "days"
+  },
+  "milestones": {
+    "title": "Pregnancy Milestones",
+    "week": "Week {{week}}",
+    "now": "You are here",
+    "heartbeat": "First heartbeat",
+    "firstTrimesterEnd": "End of first trimester",
+    "feelMovement": "First baby movement",
+    "halfwayThere": "Halfway there!",
+    "viability": "Viability milestone",
+    "thirdTrimester": "Third trimester begins",
+    "babyPosition": "Baby gets into position",
+    "fullTerm": "Full term",
+    "dueDate": "Expected due date"
+  },
+  "contextSymptoms": {
+    "title": "Expected Symptoms This Week",
+    "subtitle": "Common symptoms at week {{week}}",
+    "symptoms": {
+      "fatigue": "Fatigue and tiredness",
+      "nausea": "Nausea",
+      "breastTenderness": "Breast tenderness",
+      "frequentUrination": "Frequent urination",
+      "morningSickness": "Morning sickness",
+      "moodSwings": "Mood swings",
+      "foodAversions": "Food aversions",
+      "bloating": "Bloating",
+      "cramping": "Mild cramping",
+      "roundLigamentPain": "Round ligament pain",
+      "headaches": "Headaches",
+      "lessNausea": "Less nausea",
+      "increasedEnergy": "Increased energy",
+      "skinChanges": "Skin changes",
+      "increasedAppetite": "Increased appetite",
+      "nasal": "Nasal congestion",
+      "nosebleeds": "Light nosebleeds",
+      "bodyAches": "Body aches",
+      "backPain": "Back pain",
+      "constipation": "Constipation",
+      "growingBelly": "Growing belly",
+      "sciatic": "Sciatic nerve pain",
+      "balance": "Balance changes",
+      "stretchMarks": "Stretch marks",
+      "babyMovement": "Baby movement",
+      "legCramps": "Leg cramps",
+      "dizziness": "Dizziness",
+      "hipPain": "Hip pain",
+      "swelling": "Swelling",
+      "heartburn": "Heartburn",
+      "braxton": "Braxton Hicks contractions",
+      "braxtonHicks": "Braxton Hicks contractions",
+      "carpelTunnel": "Carpal tunnel syndrome",
+      "hemorrhoids": "Hemorrhoids",
+      "insomnia": "Insomnia",
+      "shortness": "Shortness of breath",
+      "leaking": "Light milk leaking",
+      "pressure": "Pelvic pressure",
+      "pelvicPressure": "Pelvic pressure",
+      "nesting": "Nesting instinct",
+      "mucusPlug": "Mucus plug release",
+      "cervicalChanges": "Cervical changes",
+      "anxiety": "Pre-birth anxiety",
+      "impatience": "Impatience"
+    },
+    "tips": {
+      "fatigue": "Rest whenever possible and stay hydrated",
+      "nausea": "Try ginger and small frequent meals",
+      "breastTenderness": "Wear a supportive, comfortable bra",
+      "frequentUrination": "Perfectly normal, don't reduce water intake",
+      "morningSickness": "Eat dry crackers before getting out of bed",
+      "moodSwings": "Normal due to hormones, talk to your partner",
+      "foodAversions": "Substitute with foods of similar nutritional value",
+      "bloating": "Avoid gas-causing foods",
+      "cramping": "Rest and consult your doctor if it increases",
+      "roundLigamentPain": "Change positions slowly, avoid sudden movements",
+      "headaches": "Drink water and rest in a quiet place",
+      "lessNausea": "Great news! Enjoy balanced eating",
+      "increasedEnergy": "Use this energy for light exercise",
+      "skinChanges": "Use sunscreen and moisturizer",
+      "increasedAppetite": "Choose protein and fiber-rich meals",
+      "nasal": "Use saline nasal spray",
+      "nosebleeds": "Normal, use a nasal moisturizer",
+      "bodyAches": "Try stretching and massage",
+      "backPain": "Practice back-strengthening exercises",
+      "constipation": "Increase fiber and water intake",
+      "growingBelly": "Start using moisturizing cream",
+      "sciatic": "Try comfortable sleeping positions",
+      "balance": "Wear flat, comfortable shoes",
+      "stretchMarks": "Moisturize your skin daily",
+      "babyMovement": "Beautiful moment! Note your observations",
+      "legCramps": "Stretch your legs before bed",
+      "dizziness": "Stand up slowly, avoid standing too long",
+      "hipPain": "Sleep on your side with a pillow between knees",
+      "swelling": "Elevate your feet and drink water",
+      "heartburn": "Avoid spicy and fatty foods",
+      "braxton": "Normal, rest and drink water",
+      "braxtonHicks": "Practice contractions, rest and hydrate",
+      "carpelTunnel": "Elevate your hands, try a wrist splint",
+      "hemorrhoids": "Increase fiber, avoid sitting too long",
+      "insomnia": "Try relaxation exercises before bed",
+      "shortness": "Normal with uterus growth, sit upright",
+      "leaking": "Normal, use breast pads",
+      "pressure": "Baby is moving down, almost there!",
+      "pelvicPressure": "Practice Kegel exercises",
+      "nesting": "Enjoy preparing baby items",
+      "mucusPlug": "Sign that labor is approaching",
+      "cervicalChanges": "Your body is preparing for birth",
+      "anxiety": "Talk to your partner and doctor",
+      "impatience": "Be patient! Your baby is coming soon"
+    }
+  },
+  "doctorPrep": {
+    "title": "Doctor Visit Prep",
+    "subtitle": "Suggested questions based on your data",
+    "questions": {
+      "weightProgress": "Is my weight gain rate normal?",
+      "reducedMovement": "I noticed reduced fetal movement, should I be concerned?",
+      "firstTrimesterScreening": "What screenings are needed in the first trimester?",
+      "prenatalVitamins": "Do I need to adjust my folic acid dose?",
+      "anatomyScan": "When is the anatomy scan scheduled?",
+      "glucoseTest": "Do I need a gestational diabetes test?",
+      "birthPlanDiscuss": "I'd like to discuss my birth plan",
+      "laborSigns": "What labor signs should I watch for?",
+      "supplements": "Do I need any additional supplements?"
+    }
+  },
+  "nutritionTip": {
+    "title": "Today's Nutrition Tip",
+    "nutrients": {
+      "folicAcid": {
+        "name": "Folic Acid",
+        "benefit": "Essential for neural tube development and preventing birth defects",
+        "source": "Spinach, lentils, broccoli, avocado"
+      },
+      "iron": {
+        "name": "Iron",
+        "benefit": "Supports increased blood volume and prevents anemia",
+        "source": "Red meat, spinach, beans"
+      },
+      "vitaminB6": {
+        "name": "Vitamin B6",
+        "benefit": "Helps reduce nausea and supports brain development",
+        "source": "Bananas, avocado, chicken"
+      },
+      "ginger": {
+        "name": "Ginger",
+        "benefit": "Naturally relieves nausea and vomiting",
+        "source": "Ginger tea, fresh ginger"
+      },
+      "calcium": {
+        "name": "Calcium",
+        "benefit": "Builds baby's bones and teeth, protects your bones",
+        "source": "Milk, yogurt, cheese, sardines"
+      },
+      "omega3": {
+        "name": "Omega-3",
+        "benefit": "Essential for baby's brain and eye development",
+        "source": "Salmon, walnuts, chia seeds"
+      },
+      "vitaminD": {
+        "name": "Vitamin D",
+        "benefit": "Helps calcium absorption and boosts immunity",
+        "source": "Sunlight, salmon, eggs"
+      },
+      "protein": {
+        "name": "Protein",
+        "benefit": "Essential for fetal tissue and placenta growth",
+        "source": "Chicken, eggs, legumes, nuts"
+      },
+      "fiber": {
+        "name": "Fiber",
+        "benefit": "Prevents constipation and regulates digestion",
+        "source": "Oats, fruits, vegetables, whole grains"
+      },
+      "magnesium": {
+        "name": "Magnesium",
+        "benefit": "Relieves leg cramps and improves sleep",
+        "source": "Nuts, bananas, dark chocolate"
+      },
+      "vitaminK": {
+        "name": "Vitamin K",
+        "benefit": "Essential for normal blood clotting during delivery",
+        "source": "Leafy greens, broccoli, cabbage"
+      }
+    }
+  },
+  "partnerSummary": {
+    "title": "Partner Summary",
+    "message": "I'm at week {{week}} (trimester {{trimester}}) of pregnancy 💕",
+    "kicks": "kicks",
+    "glasses": "glasses of water",
+    "share": "Share via WhatsApp",
+    "shareMessage": "👶 Pregnancy Update - Week {{week}}\n\n👣 Today's kicks: {{kicks}}\n💧 Glasses of water: {{water}}\n\n❤️ Sent from Pregnancy Toolkits"
+  },
+  "dailyChallenge": {
+    "title": "Today's Health Challenges",
+    "challenges": {
+      "walk15min": "Walk for 15 minutes",
+      "drink8glasses": "Drink 8 glasses of water",
+      "breathing5min": "5-minute breathing exercises",
+      "eatFruit": "Eat 3 servings of fruit",
+      "stretchMorning": "Morning stretching exercises",
+      "kegelExercise": "10 Kegel exercises",
+      "readBabyBook": "Read about baby's development",
+      "sleepEarly": "Sleep before 11 PM",
+      "prenatalVitamin": "Take your prenatal vitamin",
+      "warmBath": "Relaxing warm bath",
+      "journaling": "Write in your journal",
+      "noScreen30min": "30 minutes screen-free"
+    }
+  },
+  "medicalSummary": {
+    "title": "Your Medical Summary",
+    "currentWeek": "Current Week",
+    "weight": "Current Weight",
+    "weightEntries": "Weight Records",
+    "totalKickSessions": "Kick Monitoring Sessions",
+    "bloodType": "Blood Type",
+    "export": "Export Report",
+    "reportTitle": "Pregnancy Medical Report",
+    "generatedAt": "Report Date",
+    "weightHistory": "Weight History:"
   }
 }

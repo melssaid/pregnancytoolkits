@@ -28,6 +28,18 @@ import { WeeklyHealthChallenge } from "@/components/dashboard/WeeklyHealthChalle
 import { DynamicFAQ } from "@/components/DynamicFAQ";
 import { useTrimesterTheme } from "@/hooks/useTrimesterTheme";
 
+// New innovative features
+import { HealthScoreRing } from "@/components/dashboard/HealthScoreRing";
+import { BabySizeCard } from "@/components/dashboard/BabySizeCard";
+import { WeeklyComparisonCard } from "@/components/dashboard/WeeklyComparisonCard";
+import { MilestonesTimeline } from "@/components/dashboard/MilestonesTimeline";
+import { ContextualSymptomsCard } from "@/components/dashboard/ContextualSymptomsCard";
+import { DoctorVisitPrepCard } from "@/components/dashboard/DoctorVisitPrepCard";
+import { NutritionTipCard } from "@/components/dashboard/NutritionTipCard";
+import { PartnerSummaryCard } from "@/components/dashboard/PartnerSummaryCard";
+import { DailyHealthChallengeCard } from "@/components/dashboard/DailyHealthChallengeCard";
+import { MedicalSummaryCard } from "@/components/dashboard/MedicalSummaryCard";
+
 const SmartDashboard = () => {
   const { t } = useTranslation();
   const { profile } = useUserProfile();
@@ -55,6 +67,12 @@ const SmartDashboard = () => {
         {/* 1. Hero — Pregnancy Week */}
         <DailyHeroCard week={profile.pregnancyWeek} dueDate={profile.dueDate} />
 
+        {/* ★ Health Score Ring */}
+        <HealthScoreRing />
+
+        {/* ★ Baby Size Visualization */}
+        <BabySizeCard />
+
         {/* Birth Countdown */}
         <BirthCountdownCard />
 
@@ -77,8 +95,17 @@ const SmartDashboard = () => {
         {/* 2.5. Today's Insight Preview */}
         <TodaysInsightCard />
 
+        {/* ★ Contextual Symptoms */}
+        <ContextualSymptomsCard />
+
+        {/* ★ Nutrition Tip */}
+        <NutritionTipCard />
+
         {/* Weekly Health Challenge */}
         <WeeklyHealthChallenge />
+
+        {/* ★ Daily Health Challenges */}
+        <DailyHealthChallengeCard />
 
         {/* 3. Daily Priorities */}
         <DailyPriorities
@@ -102,6 +129,21 @@ const SmartDashboard = () => {
           <FetalMovementCard todayKicks={stats.dailyTracking.todayKicks} />
           <WeightTrendCard />
         </div>
+
+        {/* ★ Weekly Comparison */}
+        <WeeklyComparisonCard />
+
+        {/* ★ Milestones Timeline */}
+        <MilestonesTimeline />
+
+        {/* ★ Doctor Visit Prep */}
+        <DoctorVisitPrepCard />
+
+        {/* ★ Partner Summary */}
+        <PartnerSummaryCard />
+
+        {/* ★ Medical Summary */}
+        <MedicalSummaryCard />
 
         {/* App Rating */}
         <AppRatingCard />
