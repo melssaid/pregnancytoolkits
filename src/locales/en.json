@@ -8907,9 +8907,12 @@
     "weightEntries": "Weight Records",
     "totalKickSessions": "Kick Monitoring Sessions",
     "bloodType": "Blood Type",
-    "export": "Export Report",
+    "export": "Export Report PDF",
     "reportTitle": "Pregnancy Medical Report",
     "generatedAt": "Report Date",
-    "weightHistory": "Weight History:"
+    "weightHistory": "Weight History",
+    "exporting": "Exporting...",
+    "exportSuccess": "Report exported successfully",
+    "exportError": "Failed to export report"
   }
 }
