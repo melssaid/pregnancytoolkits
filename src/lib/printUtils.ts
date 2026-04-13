@@ -168,10 +168,20 @@ export function buildPrintHTML({ content, title, lang, isRTL, profile, logoDataU
     .print-content th, .print-content td { border: 1px solid #e2e8f0; padding: 6px 10px; text-align: ${isRTL ? 'right' : 'left'}; font-size: 13px; }
     .print-content th { background: #f8fafc; font-weight: 600; }
     
-    .print-footer { margin-top: 30px; padding-top: 15px; border-top: 2px solid #ec4899; text-align: center; color: #64748b; }
-    .print-footer .footer-message { font-size: 13px; margin-bottom: 6px; line-height: 1.6; }
-    .print-footer .footer-email { font-size: 13px; color: #ec4899; font-weight: 600; text-decoration: none; }
-    .print-footer .footer-brand { font-size: 10px; color: #94a3b8; margin-top: 10px; }
+    .print-footer { margin-top: 40px; padding-top: 20px; border-top: 1.5px solid #e2e8f0; }
+    .footer-signature {
+      display: flex; align-items: center; gap: 14px; margin-bottom: 16px;
+      padding: 14px 18px; background: #faf8f6; border-radius: 10px; border: 1px solid #f1eded;
+    }
+    .footer-signature img { width: 48px; height: 48px; object-fit: contain; border-radius: 50%; border: 2px solid #fce7f3; }
+    .footer-sig-info { flex: 1; }
+    .footer-sig-brand { font-size: 14px; font-weight: 700; color: #be185d; margin-bottom: 2px; }
+    .footer-sig-contact { font-size: 11px; color: #64748b; line-height: 1.6; }
+    .footer-sig-contact a { color: #be185d; text-decoration: none; font-weight: 600; }
+    .footer-sig-contact span { display: inline-block; margin: 0 4px; color: #cbd5e1; }
+    .footer-message { font-size: 12px; color: #64748b; text-align: center; line-height: 1.6; margin-bottom: 10px; }
+    .footer-disclaimer { font-size: 10px; color: #94a3b8; text-align: center; line-height: 1.5; padding: 8px 12px; background: #f8fafc; border-radius: 6px; margin-bottom: 10px; }
+    .footer-copyright { font-size: 9px; color: #cbd5e1; text-align: center; letter-spacing: 0.5px; }
 
     /* Hide interactive elements */
     button, .no-print, [data-no-print] { display: none !important; }
