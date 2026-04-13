@@ -74,6 +74,36 @@ interface GenericPDFOptions {
   onProgress?: PDFProgressCallback;
 }
 
+interface MedicalSummaryPDFOptions {
+  language?: 'en' | 'ar' | 'de' | 'fr' | 'es' | 'pt' | 'tr';
+  profile: {
+    isPregnant?: boolean;
+    pregnancyWeek: number;
+    dueDate?: string | null;
+    lastPeriodDate?: string | null;
+    bloodType?: string | null;
+    weight?: number | null;
+    prePregnancyWeight?: number | null;
+    height?: number | null;
+  };
+  summary: {
+    currentWeight: string;
+    todayKicks: number;
+    waterToday: number;
+    vitaminsToday: number;
+    upcomingAppointments: number;
+    weightEntriesCount: number;
+    symptomEntriesCount: number;
+  };
+  weightEntries: Array<{ week?: number; date?: string; weight: string | number }>;
+  waterDays: Array<{ date: string; amount: number }>;
+  vitaminDays: Array<{ date: string; taken: boolean }>;
+  kickSessions: Array<{ date?: string; total: number }>;
+  symptoms: Array<{ date?: string; symptom: string; severity?: string }>;
+  appointments: Array<{ date?: string; title?: string; doctor?: string }>;
+  onProgress?: PDFProgressCallback;
+}
+
 // Cache for logo image data
 let logoImageCache: string | null = null;
 
@@ -995,6 +1025,330 @@ export async function exportGenericPDF(options: GenericPDFOptions): Promise<void
 
   const fileName = `${title.toLowerCase().replace(/[^a-z0-9\u0600-\u06FF]/g, '-')}-${new Date().toISOString().split('T')[0]}.pdf`;
   s.doc.save(fileName);
+}
+
+export async function exportMedicalSummaryPDF(options: MedicalSummaryPDFOptions): Promise<void> {
+  const language = (options.language || 'en').split('-')[0] as 'en' | 'ar' | 'de' | 'fr' | 'es' | 'pt' | 'tr';
+  const logoData = await loadLogoImage();
+  const { doc } = await createPDFDoc(language);
+  const s: PDFState = { doc, y: MARGIN_Y, pageNum: 1 };
+
+  const labels = {
+    en: {
+      reportTitle: 'Pregnancy Medical Report',
+      reportSubtitle: 'Professional summary generated from your dashboard data',
+      overview: 'Overview',
+      profileInfo: 'Pregnancy profile',
+      dailySnapshot: 'Daily snapshot',
+      weightHistory: 'Weight history',
+      hydrationHistory: 'Hydration - last 7 days',
+      vitaminsHistory: 'Vitamins - last 7 days',
+      kickHistory: 'Kick monitoring sessions',
+      symptomHistory: 'Symptoms log',
+      appointmentHistory: 'Upcoming appointments',
+      currentWeek: 'Current week',
+      currentWeight: 'Current weight',
+      bloodType: 'Blood type',
+      dueDate: 'Due date',
+      lastPeriodDate: 'Last period date',
+      height: 'Height',
+      prePregnancyWeight: 'Pre-pregnancy weight',
+      todayKicks: 'Today kicks',
+      waterToday: 'Water today',
+      vitaminsToday: 'Vitamins today',
+      upcomingAppointments: 'Upcoming appointments',
+      weightEntries: 'Weight entries',
+      symptomEntries: 'Symptom entries',
+      status: 'Status',
+      pregnant: 'Pregnant',
+      planning: 'Planning',
+      noData: 'No data recorded',
+      taken: 'Recorded',
+      notRecorded: 'Not recorded',
+      date: 'Date',
+      amount: 'Amount',
+      severity: 'Severity',
+      doctor: 'Doctor',
+      fileName: 'pregnancy-medical-report',
+      disclaimer: 'This report is generated automatically from your dashboard data and is intended as a supportive summary only. Please consult your healthcare provider for medical decisions.',
+      kg: 'kg',
+      glasses: 'glasses',
+      kicks: 'kicks',
+    },
+    ar: {
+      reportTitle: 'التقرير الطبي للحمل',
+      reportSubtitle: 'ملخص احترافي شامل من بيانات لوحة التحكم',
+      overview: 'نظرة عامة',
+      profileInfo: 'بيانات الحمل',
+      dailySnapshot: 'المؤشرات اليومية',
+      weightHistory: 'سجل الوزن',
+      hydrationHistory: 'سجل شرب الماء - آخر 7 أيام',
+      vitaminsHistory: 'سجل الفيتامينات - آخر 7 أيام',
+      kickHistory: 'جلسات متابعة حركة الجنين',
+      symptomHistory: 'سجل الأعراض',
+      appointmentHistory: 'المواعيد القادمة',
+      currentWeek: 'الأسبوع الحالي',
+      currentWeight: 'الوزن الحالي',
+      bloodType: 'فصيلة الدم',
+      dueDate: 'تاريخ الولادة المتوقع',
+      lastPeriodDate: 'آخر دورة شهرية',
+      height: 'الطول',
+      prePregnancyWeight: 'الوزن قبل الحمل',
+      todayKicks: 'ركلات اليوم',
+      waterToday: 'ماء اليوم',
+      vitaminsToday: 'فيتامينات اليوم',
+      upcomingAppointments: 'المواعيد القادمة',
+      weightEntries: 'سجلات الوزن',
+      symptomEntries: 'سجلات الأعراض',
+      status: 'الحالة',
+      pregnant: 'حامل',
+      planning: 'تخطيط',
+      noData: 'لا توجد بيانات مسجلة',
+      taken: 'تم التسجيل',
+      notRecorded: 'غير مسجل',
+      date: 'التاريخ',
+      amount: 'القيمة',
+      severity: 'الشدة',
+      doctor: 'الطبيبة/الطبيب',
+      fileName: 'pregnancy-medical-report',
+      disclaimer: 'تم إنشاء هذا التقرير تلقائياً من بيانات لوحة التحكم، وهو مخصص كملخص مساعد فقط ولا يغني عن استشارة الطبيبة أو الطبيب لاتخاذ القرارات الطبية.',
+      kg: 'كغ',
+      glasses: 'أكواب',
+      kicks: 'ركلات',
+    },
+    de: {
+      reportTitle: 'Medizinischer Schwangerschaftsbericht',
+      reportSubtitle: 'Professional summary generated from your dashboard data',
+      overview: 'Overview', profileInfo: 'Pregnancy profile', dailySnapshot: 'Daily snapshot', weightHistory: 'Weight history', hydrationHistory: 'Hydration - last 7 days', vitaminsHistory: 'Vitamins - last 7 days', kickHistory: 'Kick monitoring sessions', symptomHistory: 'Symptoms log', appointmentHistory: 'Upcoming appointments', currentWeek: 'Current week', currentWeight: 'Current weight', bloodType: 'Blood type', dueDate: 'Due date', lastPeriodDate: 'Last period date', height: 'Height', prePregnancyWeight: 'Pre-pregnancy weight', todayKicks: 'Today kicks', waterToday: 'Water today', vitaminsToday: 'Vitamins today', upcomingAppointments: 'Upcoming appointments', weightEntries: 'Weight entries', symptomEntries: 'Symptom entries', status: 'Status', pregnant: 'Pregnant', planning: 'Planning', noData: 'No data recorded', taken: 'Recorded', notRecorded: 'Not recorded', date: 'Date', amount: 'Amount', severity: 'Severity', doctor: 'Doctor', fileName: 'pregnancy-medical-report', disclaimer: 'This report is generated automatically from your dashboard data and is intended as a supportive summary only. Please consult your healthcare provider for medical decisions.', kg: 'kg', glasses: 'glasses', kicks: 'kicks'
+    },
+    fr: {
+      reportTitle: 'Rapport médical de grossesse',
+      reportSubtitle: 'Professional summary generated from your dashboard data',
+      overview: 'Overview', profileInfo: 'Pregnancy profile', dailySnapshot: 'Daily snapshot', weightHistory: 'Weight history', hydrationHistory: 'Hydration - last 7 days', vitaminsHistory: 'Vitamins - last 7 days', kickHistory: 'Kick monitoring sessions', symptomHistory: 'Symptoms log', appointmentHistory: 'Upcoming appointments', currentWeek: 'Current week', currentWeight: 'Current weight', bloodType: 'Blood type', dueDate: 'Due date', lastPeriodDate: 'Last period date', height: 'Height', prePregnancyWeight: 'Pre-pregnancy weight', todayKicks: 'Today kicks', waterToday: 'Water today', vitaminsToday: 'Vitamins today', upcomingAppointments: 'Upcoming appointments', weightEntries: 'Weight entries', symptomEntries: 'Symptom entries', status: 'Status', pregnant: 'Pregnant', planning: 'Planning', noData: 'No data recorded', taken: 'Recorded', notRecorded: 'Not recorded', date: 'Date', amount: 'Amount', severity: 'Severity', doctor: 'Doctor', fileName: 'pregnancy-medical-report', disclaimer: 'This report is generated automatically from your dashboard data and is intended as a supportive summary only. Please consult your healthcare provider for medical decisions.', kg: 'kg', glasses: 'glasses', kicks: 'kicks'
+    },
+    es: {
+      reportTitle: 'Informe médico del embarazo',
+      reportSubtitle: 'Professional summary generated from your dashboard data',
+      overview: 'Overview', profileInfo: 'Pregnancy profile', dailySnapshot: 'Daily snapshot', weightHistory: 'Weight history', hydrationHistory: 'Hydration - last 7 days', vitaminsHistory: 'Vitamins - last 7 days', kickHistory: 'Kick monitoring sessions', symptomHistory: 'Symptoms log', appointmentHistory: 'Upcoming appointments', currentWeek: 'Current week', currentWeight: 'Current weight', bloodType: 'Blood type', dueDate: 'Due date', lastPeriodDate: 'Last period date', height: 'Height', prePregnancyWeight: 'Pre-pregnancy weight', todayKicks: 'Today kicks', waterToday: 'Water today', vitaminsToday: 'Vitamins today', upcomingAppointments: 'Upcoming appointments', weightEntries: 'Weight entries', symptomEntries: 'Symptom entries', status: 'Status', pregnant: 'Pregnant', planning: 'Planning', noData: 'No data recorded', taken: 'Recorded', notRecorded: 'Not recorded', date: 'Date', amount: 'Amount', severity: 'Severity', doctor: 'Doctor', fileName: 'pregnancy-medical-report', disclaimer: 'This report is generated automatically from your dashboard data and is intended as a supportive summary only. Please consult your healthcare provider for medical decisions.', kg: 'kg', glasses: 'glasses', kicks: 'kicks'
+    },
+    pt: {
+      reportTitle: 'Relatório médico da gravidez',
+      reportSubtitle: 'Professional summary generated from your dashboard data',
+      overview: 'Overview', profileInfo: 'Pregnancy profile', dailySnapshot: 'Daily snapshot', weightHistory: 'Weight history', hydrationHistory: 'Hydration - last 7 days', vitaminsHistory: 'Vitamins - last 7 days', kickHistory: 'Kick monitoring sessions', symptomHistory: 'Symptoms log', appointmentHistory: 'Upcoming appointments', currentWeek: 'Current week', currentWeight: 'Current weight', bloodType: 'Blood type', dueDate: 'Due date', lastPeriodDate: 'Last period date', height: 'Height', prePregnancyWeight: 'Pre-pregnancy weight', todayKicks: 'Today kicks', waterToday: 'Water today', vitaminsToday: 'Vitamins today', upcomingAppointments: 'Upcoming appointments', weightEntries: 'Weight entries', symptomEntries: 'Symptom entries', status: 'Status', pregnant: 'Pregnant', planning: 'Planning', noData: 'No data recorded', taken: 'Recorded', notRecorded: 'Not recorded', date: 'Date', amount: 'Amount', severity: 'Severity', doctor: 'Doctor', fileName: 'pregnancy-medical-report', disclaimer: 'This report is generated automatically from your dashboard data and is intended as a supportive summary only. Please consult your healthcare provider for medical decisions.', kg: 'kg', glasses: 'glasses', kicks: 'kicks'
+    },
+    tr: {
+      reportTitle: 'Gebelik tıbbi raporu',
+      reportSubtitle: 'Professional summary generated from your dashboard data',
+      overview: 'Overview', profileInfo: 'Pregnancy profile', dailySnapshot: 'Daily snapshot', weightHistory: 'Weight history', hydrationHistory: 'Hydration - last 7 days', vitaminsHistory: 'Vitamins - last 7 days', kickHistory: 'Kick monitoring sessions', symptomHistory: 'Symptoms log', appointmentHistory: 'Upcoming appointments', currentWeek: 'Current week', currentWeight: 'Current weight', bloodType: 'Blood type', dueDate: 'Due date', lastPeriodDate: 'Last period date', height: 'Height', prePregnancyWeight: 'Pre-pregnancy weight', todayKicks: 'Today kicks', waterToday: 'Water today', vitaminsToday: 'Vitamins today', upcomingAppointments: 'Upcoming appointments', weightEntries: 'Weight entries', symptomEntries: 'Symptom entries', status: 'Status', pregnant: 'Pregnant', planning: 'Planning', noData: 'No data recorded', taken: 'Recorded', notRecorded: 'Not recorded', date: 'Date', amount: 'Amount', severity: 'Severity', doctor: 'Doctor', fileName: 'pregnancy-medical-report', disclaimer: 'This report is generated automatically from your dashboard data and is intended as a supportive summary only. Please consult your healthcare provider for medical decisions.', kg: 'kg', glasses: 'glasses', kicks: 'kicks'
+    },
+  } as const;
+
+  const L = labels[language] || labels.en;
+  _ctx.reportTitle = L.reportTitle;
+
+  const formatLocalDate = (value?: string | null) => {
+    if (!value) return L.noData;
+    try {
+      return formatDateForPDF(new Date(value), language);
+    } catch {
+      return String(value);
+    }
+  };
+
+  const drawMetricGrid = (items: { label: string; value: string; color: RGB }[]) => {
+    const columns = 2;
+    const gap = 5;
+    const cardW = (CONTENT_W - gap) / columns;
+    const cardH = 18;
+    items.forEach((item, index) => {
+      if (index % columns === 0) {
+        ensureSpace(s, cardH + 4);
+      }
+      const row = Math.floor(index / columns);
+      const col = index % columns;
+      const x = MARGIN_X + col * (cardW + gap);
+      const y = s.y + row * (cardH + 4);
+      const fill = { r: Math.min(255, item.color.r + 205), g: Math.min(255, item.color.g + 205), b: Math.min(255, item.color.b + 205) };
+      s.doc.setFillColor(fill.r, fill.g, fill.b);
+      s.doc.roundedRect(x, y, cardW, cardH, 3, 3, 'F');
+      s.doc.setDrawColor(item.color.r, item.color.g, item.color.b);
+      s.doc.setLineWidth(0.2);
+      s.doc.roundedRect(x, y, cardW, cardH, 3, 3, 'S');
+      s.doc.setFontSize(14);
+      setFontBold(s.doc);
+      s.doc.setTextColor(item.color.r, item.color.g, item.color.b);
+      s.doc.text(stripEmojis(item.value), x + cardW / 2, y + 7, { align: 'center' });
+      s.doc.setFontSize(7);
+      setFontNormal(s.doc);
+      s.doc.setTextColor(COLORS.dark.r, COLORS.dark.g, COLORS.dark.b);
+      const labelLines = s.doc.splitTextToSize(stripEmojis(item.label), cardW - 8);
+      s.doc.text(labelLines, x + cardW / 2, y + 12, { align: 'center' });
+    });
+    s.y += Math.ceil(items.length / columns) * (cardH + 4);
+  };
+
+  const drawDetailCard = (label: string, value: string, color: RGB = COLORS.primary) => {
+    const safeValue = stripEmojis(value || L.noData);
+    s.doc.setFontSize(10);
+    const valueLines = s.doc.splitTextToSize(safeValue, CONTENT_W - 16);
+    const cardH = 10 + valueLines.length * 4.5;
+    ensureSpace(s, cardH + 3);
+    s.doc.setFillColor(255, 255, 255);
+    s.doc.setDrawColor(COLORS.tableBorder.r, COLORS.tableBorder.g, COLORS.tableBorder.b);
+    s.doc.setLineWidth(0.2);
+    s.doc.roundedRect(MARGIN_X, s.y, CONTENT_W, cardH, 3, 3, 'FD');
+    s.doc.setFillColor(color.r, color.g, color.b);
+    if (_ctx.isRTL) {
+      s.doc.rect(MARGIN_X + CONTENT_W - 2.5, s.y, 2.5, cardH, 'F');
+    } else {
+      s.doc.rect(MARGIN_X, s.y, 2.5, cardH, 'F');
+    }
+    s.doc.setFontSize(7);
+    setFontBold(s.doc);
+    s.doc.setTextColor(color.r, color.g, color.b);
+    if (_ctx.isRTL) {
+      s.doc.text(stripEmojis(label), MARGIN_X + CONTENT_W - 7, s.y + 4.5, { align: 'right' });
+    } else {
+      s.doc.text(stripEmojis(label), MARGIN_X + 7, s.y + 4.5);
+    }
+    s.doc.setFontSize(10);
+    setFontNormal(s.doc);
+    s.doc.setTextColor(COLORS.dark.r, COLORS.dark.g, COLORS.dark.b);
+    if (_ctx.isRTL) {
+      s.doc.text(valueLines, MARGIN_X + CONTENT_W - 7, s.y + 9.5, { align: 'right' });
+    } else {
+      s.doc.text(valueLines, MARGIN_X + 7, s.y + 9.5);
+    }
+    s.y += cardH + 3;
+  };
+
+  const drawRecordSection = (title: string, items: Array<{ label: string; value: string }>, color: RGB) => {
+    drawSectionHeader(s, title, color);
+    if (items.length === 0) {
+      drawDetailCard(title, L.noData, color);
+      s.y += 1;
+      return;
+    }
+    items.forEach((item) => drawDetailCard(item.label, item.value, color));
+    s.y += 1;
+  };
+
+  options.onProgress?.(10);
+  s.doc.setFillColor(252, 244, 248);
+  s.doc.rect(0, 0, PAGE_W, 50, 'F');
+  s.doc.setFillColor(248, 250, 252);
+  s.doc.roundedRect(MARGIN_X, 18, CONTENT_W, 24, 5, 5, 'F');
+  drawLogo(s, logoData);
+  drawTitle(s, L.reportTitle, `${L.reportSubtitle} • ${formatDateForPDF(new Date(), language)}`);
+  drawBrand(s, language, COLORS.primary);
+  drawDivider(s, COLORS.primary);
+
+  options.onProgress?.(20);
+  drawSectionHeader(s, L.overview, COLORS.primary);
+  drawMetricGrid([
+    { label: L.currentWeek, value: String(options.profile.pregnancyWeek || 0), color: COLORS.primary },
+    { label: L.currentWeight, value: stripEmojis(options.summary.currentWeight || L.noData), color: COLORS.secondary },
+    { label: L.todayKicks, value: `${options.summary.todayKicks} ${L.kicks}`, color: COLORS.info },
+    { label: L.waterToday, value: `${options.summary.waterToday} ${L.glasses}`, color: COLORS.success },
+    { label: L.vitaminsToday, value: String(options.summary.vitaminsToday || 0), color: COLORS.accent },
+    { label: L.upcomingAppointments, value: String(options.summary.upcomingAppointments || 0), color: COLORS.muted },
+  ]);
+  s.y += 2;
+
+  drawSectionHeader(s, L.profileInfo, COLORS.secondary);
+  const profileItems = [
+    { label: L.status, value: options.profile.isPregnant === false ? L.planning : L.pregnant },
+    { label: L.currentWeek, value: String(options.profile.pregnancyWeek || 0) },
+    { label: L.bloodType, value: options.profile.bloodType || L.noData },
+    { label: L.dueDate, value: formatLocalDate(options.profile.dueDate) },
+    { label: L.lastPeriodDate, value: formatLocalDate(options.profile.lastPeriodDate) },
+    { label: L.height, value: options.profile.height ? `${options.profile.height} ${L.kg === 'كغ' ? 'سم' : 'cm'}` : L.noData },
+    { label: L.prePregnancyWeight, value: options.profile.prePregnancyWeight ? `${options.profile.prePregnancyWeight} ${L.kg}` : L.noData },
+    { label: L.weightEntries, value: String(options.summary.weightEntriesCount || 0) },
+    { label: L.symptomEntries, value: String(options.summary.symptomEntriesCount || 0) },
+  ].filter((item) => item.value && item.value !== '0');
+  profileItems.forEach((item) => drawDetailCard(item.label, item.value, COLORS.secondary));
+  s.y += 1;
+
+  drawSectionHeader(s, L.dailySnapshot, COLORS.info);
+  [
+    { label: L.currentWeight, value: options.summary.currentWeight || L.noData },
+    { label: L.todayKicks, value: `${options.summary.todayKicks} ${L.kicks}` },
+    { label: L.waterToday, value: `${options.summary.waterToday} ${L.glasses}` },
+    { label: L.vitaminsToday, value: String(options.summary.vitaminsToday || 0) },
+  ].forEach((item) => drawDetailCard(item.label, item.value, COLORS.info));
+  s.y += 1;
+
+  drawRecordSection(
+    L.weightHistory,
+    options.weightEntries.map((entry) => ({
+      label: entry.week ? `${L.currentWeek} ${entry.week}` : formatLocalDate(entry.date),
+      value: `${entry.weight} ${L.kg}`,
+    })),
+    COLORS.primary,
+  );
+
+  drawRecordSection(
+    L.hydrationHistory,
+    options.waterDays.map((entry) => ({
+      label: formatLocalDate(entry.date),
+      value: `${entry.amount} ${L.glasses}`,
+    })),
+    COLORS.success,
+  );
+
+  drawRecordSection(
+    L.vitaminsHistory,
+    options.vitaminDays.map((entry) => ({
+      label: formatLocalDate(entry.date),
+      value: entry.taken ? L.taken : L.notRecorded,
+    })),
+    COLORS.accent,
+  );
+
+  drawRecordSection(
+    L.kickHistory,
+    options.kickSessions.map((entry, index) => ({
+      label: entry.date ? formatLocalDate(entry.date) : `${L.kickHistory} ${index + 1}`,
+      value: `${entry.total} ${L.kicks}`,
+    })),
+    COLORS.info,
+  );
+
+  drawRecordSection(
+    L.symptomHistory,
+    options.symptoms.map((entry) => ({
+      label: entry.symptom || L.noData,
+      value: [entry.date ? formatLocalDate(entry.date) : '', entry.severity || ''].filter(Boolean).join(' • ') || L.noData,
+    })),
+    COLORS.secondary,
+  );
+
+  drawRecordSection(
+    L.appointmentHistory,
+    options.appointments.map((entry) => ({
+      label: entry.title || formatLocalDate(entry.date),
+      value: [entry.date ? formatLocalDate(entry.date) : '', entry.doctor ? `${L.doctor}: ${entry.doctor}` : ''].filter(Boolean).join(' • ') || L.noData,
+    })),
+    COLORS.muted,
+  );
+
+  ensureSpace(s, 18);
+  s.doc.setFillColor(248, 250, 252);
+  s.doc.roundedRect(MARGIN_X, s.y, CONTENT_W, 16, 3, 3, 'F');
+  s.doc.setFontSize(7);
+  s.doc.setTextColor(COLORS.muted.r, COLORS.muted.g, COLORS.muted.b);
+  const disclaimerLines = s.doc.splitTextToSize(stripEmojis(L.disclaimer), CONTENT_W - 14);
+  if (_ctx.isRTL) {
+    s.doc.text(disclaimerLines, MARGIN_X + CONTENT_W - 7, s.y + 5, { align: 'right' });
+  } else {
+    s.doc.text(disclaimerLines, MARGIN_X + 7, s.y + 5);
+  }
+  s.y += 18;
+
+  drawFooter(s, language, COLORS.primary);
+  options.onProgress?.(100);
+  s.doc.save(`${L.fileName}-${new Date().toISOString().split('T')[0]}.pdf`);
 }
 
 
