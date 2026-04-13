@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { SEOHead } from "@/components/SEOHead";
 import { motion } from "framer-motion";
 // TodaysInsightCard removed — replaced by NutritionTipCard
@@ -198,6 +199,26 @@ const SmartDashboard = () => {
 
         {/* Dynamic FAQ */}
         <DynamicFAQ />
+
+        {/* Back to Home Banner */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+        >
+          <Link
+            to="/"
+            className="block rounded-2xl bg-gradient-to-br from-primary/10 via-card to-pink-100/30 dark:from-primary/15 dark:to-primary/5 border border-primary/15 p-5 text-center hover:shadow-lg hover:border-primary/30 transition-all group"
+          >
+            <span className="text-2xl mb-2 block">🏠</span>
+            <h3 className="text-base font-extrabold text-foreground mb-1">
+              {t("dashboard.backHome.title", "العودة للصفحة الرئيسية")}
+            </h3>
+            <p className="text-xs text-muted-foreground font-medium">
+              {t("dashboard.backHome.subtitle", "استكشفي واستخدمي كافة الأدوات المتاحة")}
+            </p>
+          </Link>
+        </motion.div>
       </main>
     </Layout>
   );
