@@ -273,13 +273,25 @@ async function createPDFDoc(language: string): Promise<{ doc: jsPDF }> {
   
   // For Arabic: Amiri has the best Arabic glyph coverage (Presentation Forms B)
   // For other languages: Cairo supports Latin + Arabic well
-  if (_ctx.isRTL && amiriFontCache) {
-    _ctx.activeFont = 'Amiri';
+  if (_ctx.isRTL) {
+    if (amiriFontCache) {
+      _ctx.activeFont = 'Amiri';
+    } else if (cairoFontCache) {
+      _ctx.activeFont = 'Cairo';
+      console.warn('[PDF] Amiri font not available for Arabic, falling back to Cairo');
+    } else if (tajawalFontCache) {
+      _ctx.activeFont = 'Tajawal';
+      console.warn('[PDF] Amiri & Cairo fonts not available for Arabic, falling back to Tajawal');
+    } else {
+      console.error('[PDF] No Arabic font loaded! Arabic text will not render correctly.');
+    }
   } else if (cairoFontCache) {
     _ctx.activeFont = 'Cairo';
   } else if (tajawalFontCache) {
     _ctx.activeFont = 'Tajawal';
   }
+  
+  console.log(`[PDF] Using font: ${_ctx.activeFont}, RTL: ${_ctx.isRTL}, Language: ${language}`);
   doc.setFont(_ctx.activeFont, 'normal');
 
   // Centralized text pipeline to prevent per-call RTL mistakes
