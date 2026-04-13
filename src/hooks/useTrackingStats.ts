@@ -49,8 +49,8 @@ export const useTrackingStats = () => {
       const todaySessions = kickSessions.filter((s: any) => s.started_at?.startsWith(today));
       const todayKicks = todaySessions.reduce((sum: number, s: any) => sum + (s.total_kicks || 0), 0);
 
-      // Weight: read from weightGainEntries (what the analyzer saves) + profile fallback
-      const weightEntries = JSON.parse(localStorage.getItem('weightGainEntries') || '[]');
+      // Weight: read from weight_gain_entries (what the analyzer saves) + profile fallback
+      const weightEntries = JSON.parse(localStorage.getItem('weight_gain_entries') || '[]');
       const profile = JSON.parse(localStorage.getItem('user_central_profile_v1') || '{}');
       let lastWeight = '';
       if (weightEntries.length > 0) {
@@ -60,9 +60,18 @@ export const useTrackingStats = () => {
         lastWeight = profile.weight + ' kg';
       }
 
-      const vitaminLogs = JSON.parse(localStorage.getItem(`vitamin_logs_${userId}`) || '[]');
-      const todayVitamins = vitaminLogs.filter((l: any) => l.taken_at?.startsWith(today));
-      const vitaminsTaken = todayVitamins.length;
+      // Vitamins: read from vitamin-tracker-logs (object keyed by date)
+      const vitaminLogsRaw = localStorage.getItem('vitamin-tracker-logs');
+      let vitaminsTaken = 0;
+      let vitaminLogCount = 0;
+      if (vitaminLogsRaw) {
+        try {
+          const vitaminObj = JSON.parse(vitaminLogsRaw);
+          const todayVitaminLog = vitaminObj[today] || {};
+          vitaminsTaken = Object.keys(todayVitaminLog).length;
+          vitaminLogCount = Object.keys(vitaminObj).length;
+        } catch { /* ignore */ }
+      }
 
       // Water intake (glasses today)
       const waterLogs = JSON.parse(localStorage.getItem(`water_logs_${userId}`) || '[]');
