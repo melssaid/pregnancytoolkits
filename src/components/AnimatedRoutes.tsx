@@ -141,6 +141,7 @@ const AdminUsageDashboardPage = lazy(() => import("@/pages/AdminUsageDashboard")
 const AdminNotifications = lazy(() => import("@/pages/AdminNotifications"));
 const AdminCoupons = lazy(() => import("@/pages/AdminCoupons"));
 const WeeklyAchievements = lazy(() => import("@/pages/WeeklyAchievements"));
+const SmartResultScreen = lazy(() => import("@/pages/SmartResultScreen"));
 
 export function AnimatedRoutes() {
   return (
@@ -243,6 +244,7 @@ export function AnimatedRoutes() {
         <Route path="/testimonials" element={<PageTransition><Testimonials /></PageTransition>} />
         <Route path="/discover" element={<PageTransition><DiscoverTools /></PageTransition>} />
         <Route path="/achievements" element={<PageTransition><WeeklyAchievements /></PageTransition>} />
+        <Route path="/welcome-result" element={<PageTransition><SmartResultScreen /></PageTransition>} />
 
         {/* ADMIN */}
         <Route path="/admin/ai-usage" element={<PageTransition><AIUsageDashboard /></PageTransition>} />
