@@ -71,12 +71,12 @@ export function useEngagementSignals() {
 async function logEvent(sessionId: string, toolId: string, actionType: string, metadata?: Record<string, unknown>) {
   try {
     const { supabase } = await import("@/integrations/supabase/client");
-    await supabase.from("tool_analytics").insert({
+    await supabase.from("tool_analytics").insert([{
       session_id: sessionId,
       tool_id: toolId,
       action_type: actionType,
       metadata: metadata || null,
-    });
+    }]);
   } catch {
     // Silent fail — analytics are non-critical
   }
