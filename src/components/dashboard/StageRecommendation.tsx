@@ -8,18 +8,18 @@ import { Link } from 'react-router-dom';
 interface ToolRec { href: string; titleKey: string; emoji: string }
 
 const weeklyRecommendations: Record<number, ToolRec> = {
-  4: { href: '/tools/due-date-calculator', titleKey: 'tools.dueDateCalc.title', emoji: '📅' },
+  4: { href: '/tools/due-date-calculator', titleKey: 'tools.dueDateCalculator.title', emoji: '📅' },
   6: { href: '/tools/wellness-diary', titleKey: 'tools.wellnessDiary.title', emoji: '📝' },
-  8: { href: '/tools/ai-meal-suggestion', titleKey: 'tools.mealSuggestion.title', emoji: '🥗' },
+  8: { href: '/tools/ai-meal-suggestion', titleKey: 'tools.aiMealSuggestion.title', emoji: '🥗' },
   10: { href: '/tools/vitamin-tracker', titleKey: 'tools.vitaminTracker.title', emoji: '💊' },
-  12: { href: '/tools/fetal-growth', titleKey: 'tools.fetalDevelopment.title', emoji: '👶' },
+  12: { href: '/tools/fetal-growth', titleKey: 'tools.fetalGrowth.title', emoji: '👶' },
   16: { href: '/tools/kick-counter', titleKey: 'tools.kickCounter.title', emoji: '🦶' },
-  20: { href: '/tools/ai-fitness-coach', titleKey: 'tools.fitnessCoach.title', emoji: '🏃‍♀️' },
+  20: { href: '/tools/ai-fitness-coach', titleKey: 'tools.aiFitnessCoach.title', emoji: '🏃‍♀️' },
   24: { href: '/tools/weight-gain', titleKey: 'tools.weightGain.title', emoji: '⚖️' },
-  28: { href: '/tools/ai-hospital-bag', titleKey: 'tools.hospitalBag.title', emoji: '🧳' },
-  32: { href: '/tools/ai-birth-plan', titleKey: 'tools.birthPlan.title', emoji: '📋' },
+  28: { href: '/tools/ai-hospital-bag', titleKey: 'tools.aiHospitalBag.title', emoji: '🧳' },
+  32: { href: '/tools/ai-birth-plan', titleKey: 'tools.aiBirthPlan.title', emoji: '📋' },
   36: { href: '/tools/contraction-timer', titleKey: 'tools.contractionTimer.title', emoji: '⏱️' },
-  38: { href: '/tools/ai-birth-position', titleKey: 'tools.birthPosition.title', emoji: '🤱' },
+  38: { href: '/tools/ai-birth-position', titleKey: 'tools.aiBirthPosition.title', emoji: '🤱' },
 };
 
 function getRecommendation(week: number): ToolRec | null {
