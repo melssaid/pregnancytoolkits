@@ -29,7 +29,7 @@ export const DailyHeroCard = memo(function DailyHeroCard({ week, dueDate }: Dail
     <motion.div
       initial={{ opacity: 0, y: -8 }}
       animate={{ opacity: 1, y: 0 }}
-      className="rounded-2xl bg-gradient-to-br from-primary/[0.08] via-card to-accent/[0.04] border border-border/20 p-4 relative overflow-hidden"
+      className="rounded-2xl bg-gradient-to-br from-primary/[0.04] via-card/80 to-accent/[0.02] border border-border/20 p-4 relative overflow-hidden backdrop-blur-sm"
     >
       <div className="absolute -top-10 -end-10 w-32 h-32 rounded-full bg-primary/8 blur-3xl pointer-events-none" />
 
