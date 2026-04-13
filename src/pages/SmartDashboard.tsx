@@ -55,9 +55,11 @@ const SmartDashboard = () => {
   const bloodPressure = healthCheckin?.bloodPressure || "";
 
   const { scrollY } = useScroll();
-  const roseY = useTransform(scrollY, [0, 300], [0, -40]);
-  const roseOpacity = useTransform(scrollY, [0, 250], [0.9, 0]);
-  const roseScale = useTransform(scrollY, [0, 300], [1, 0.85]);
+  const roseLeftY = useTransform(scrollY, [0, 400], [0, -60]);
+  const roseRightY = useTransform(scrollY, [0, 400], [0, -45]);
+  const roseOpacity = useTransform(scrollY, [0, 300], [0.92, 0]);
+  const roseLeftScale = useTransform(scrollY, [0, 400], [1, 0.7]);
+  const roseRightScale = useTransform(scrollY, [0, 400], [1, 0.75]);
 
   return (
     <Layout>
@@ -74,13 +76,19 @@ const SmartDashboard = () => {
             alt=""
             width={96}
             height={96}
-            style={{ y: roseY, opacity: roseOpacity, scale: roseScale }}
-            initial={{ rotate: -25 }}
+            style={{ y: roseLeftY, opacity: roseOpacity, scale: roseLeftScale }}
+            initial={{ y: -20, opacity: 0, rotate: -20, scale: 0.5 }}
             animate={{
-              rotate: [-8, -5, -8],
+              y: [0, -5, 0],
+              opacity: 0.92,
+              rotate: [-10, -4, -10],
+              scale: [1, 1.06, 1],
             }}
             transition={{
-              rotate: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+              y: { duration: 3.5, repeat: Infinity, ease: "easeInOut" },
+              rotate: { duration: 5, repeat: Infinity, ease: "easeInOut" },
+              scale: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+              opacity: { duration: 0.8, ease: "easeOut" },
             }}
             className="drop-shadow-lg"
           />
@@ -89,13 +97,19 @@ const SmartDashboard = () => {
             alt=""
             width={96}
             height={96}
-            style={{ y: roseY, opacity: roseOpacity, scale: roseScale }}
-            initial={{ rotate: 25 }}
+            style={{ y: roseRightY, opacity: roseOpacity, scale: roseRightScale }}
+            initial={{ y: -20, opacity: 0, rotate: 20, scale: 0.5 }}
             animate={{
-              rotate: [8, 5, 8],
+              y: [0, -6, 0],
+              opacity: 0.92,
+              rotate: [10, 4, 10],
+              scale: [1, 1.08, 1],
             }}
             transition={{
-              rotate: { duration: 4.2, repeat: Infinity, ease: "easeInOut", delay: 0.3 },
+              y: { duration: 3.8, repeat: Infinity, ease: "easeInOut", delay: 0.4 },
+              rotate: { duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 0.3 },
+              scale: { duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 },
+              opacity: { duration: 0.8, ease: "easeOut", delay: 0.15 },
             }}
             className="drop-shadow-lg"
           />
