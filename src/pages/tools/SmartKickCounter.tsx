@@ -15,7 +15,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 import { useUserProfile } from '@/hooks/useUserProfile';
 import { useInAppReview } from '@/hooks/useInAppReview';
-import { haptics } from '@/lib/haptics';
+import { haptic } from '@/lib/haptics';
 
 const SmartKickCounter: React.FC = () => {
   const { t } = useTranslation();
@@ -106,7 +106,7 @@ const SmartKickCounter: React.FC = () => {
     const newKicks = await KickService.addKick(sessionId, kicks, timestamp);
     setKicks(newKicks);
     
-    haptics.tap();
+    haptic('tap');
   };
 
   const endSession = async () => {

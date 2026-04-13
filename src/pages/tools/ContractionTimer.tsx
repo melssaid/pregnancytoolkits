@@ -8,7 +8,7 @@ import {
 import WhatsAppShareButton from "@/components/WhatsAppShareButton";
 import { formatStatsShare, openWhatsApp } from "@/lib/whatsappShare";
 import { ContextualWarningBanner, WhenToCallDoctorCard, EvidenceInfoBlock } from "@/components/safety";
-import { haptics } from "@/lib/haptics";
+import { haptic } from "@/lib/haptics";
 import { ToolFrame } from "@/components/ToolFrame";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -93,7 +93,7 @@ export default function ContractionTimer() {
     return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
   }, [isActive]);
 
-  const handleStart = useCallback(() => { haptics.tap(); setIsActive(true); }, []);
+  const handleStart = useCallback(() => { haptic('tap'); setIsActive(true); }, []);
 
   const handleStop = useCallback(() => {
     const duration = Math.floor((Date.now() - startTimeRef.current) / 1000);
@@ -104,7 +104,7 @@ export default function ContractionTimer() {
     setContractions(updated);
     saveContractions(updated);
     setIsActive(false);
-    haptics.success();
+    haptic('success');
   }, [contractions, intensity]);
 
   const handleClear = useCallback(() => {
