@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { Download, Loader2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Card } from "@/components/ui/card";
@@ -7,8 +7,8 @@ import { useUserProfile } from "@/hooks/useUserProfile";
 import { useTrackingStats } from "@/hooks/useTrackingStats";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
-import { exportMedicalSummaryPDF } from "@/lib/pdfExport";
 import { getUserId } from "@/hooks/useSupabase";
+import { buildPrintHTML, loadLogoBase64 } from "@/lib/printUtils";
 
 export function MedicalSummaryCard() {
   const { t, i18n } = useTranslation();
@@ -20,10 +20,6 @@ export function MedicalSummaryCard() {
   const weightEntries = JSON.parse(localStorage.getItem("weight_gain_entries") || "[]");
   const symptomLogs = JSON.parse(localStorage.getItem("symptom_logs") || "[]");
   const kickSessionsRaw = JSON.parse(localStorage.getItem(`kick_sessions_${userId}`) || "[]");
-  const waterLogs = JSON.parse(localStorage.getItem(`water_logs_${userId}`) || "[]");
-  const vitaminLogs = JSON.parse(localStorage.getItem("vitamin-tracker-logs") || "{}");
-  const allAppointments = JSON.parse(localStorage.getItem("appointments") || "[]");
-  const userAppointments = allAppointments.filter((a: any) => a.user_id === userId);
 
   const summaryItems = [
     { label: t("medicalSummary.currentWeek"), value: `${profile.pregnancyWeek}` },
@@ -33,78 +29,67 @@ export function MedicalSummaryCard() {
     { label: t("medicalSummary.bloodType"), value: profile.bloodType || "—" },
   ];
 
-  const handleExport = async () => {
+  const handleExport = useCallback(async () => {
     setExporting(true);
     try {
-      const language = (i18n.language?.split("-")[0] || "en") as "en" | "ar" | "de" | "fr" | "es" | "pt" | "tr";
-      const today = new Date();
-      const todayStr = today.toISOString().split("T")[0];
+      const lang = (i18n.language?.split("-")[0] || "en");
+      const isRTL = lang === "ar";
+      const logoDataUrl = await loadLogoBase64();
 
-      const waterDays = Array.from({ length: 7 }, (_, index) => {
-        const d = new Date(today);
-        d.setDate(d.getDate() - (6 - index));
-        const ds = d.toISOString().split("T")[0];
-        const amount = waterLogs
-          .filter((l: any) => l.date?.startsWith(ds))
-          .reduce((sum: number, l: any) => sum + (l.glasses || 1), 0);
-        return { date: ds, amount };
+      // Build summary content as HTML table
+      const rows = summaryItems
+        .map(item => `<tr><td style="padding:6px 12px;border:1px solid #e2e8f0;font-weight:600;color:#64748b">${item.label}</td><td style="padding:6px 12px;border:1px solid #e2e8f0;font-weight:700">${item.value}</td></tr>`)
+        .join("");
+
+      const content = `
+        <table style="width:100%;border-collapse:collapse;margin-bottom:16px">
+          <tbody>${rows}</tbody>
+        </table>
+        <p style="font-size:12px;color:#64748b;margin-top:12px">${t("medicalSummary.symptomEntries", "Symptom entries")}: ${symptomLogs.length}</p>
+        <p style="font-size:12px;color:#64748b">${t("medicalSummary.totalKickSessions")}: ${kickSessionsRaw.length}</p>
+      `;
+
+      const htmlContent = buildPrintHTML({
+        content,
+        title: t("medicalSummary.title"),
+        lang,
+        isRTL,
+        profile,
+        logoDataUrl,
       });
 
-      const vitaminDays = Array.from({ length: 7 }, (_, index) => {
-        const d = new Date(today);
-        d.setDate(d.getDate() - (6 - index));
-        const ds = d.toISOString().split("T")[0];
-        return { date: ds, taken: Boolean(vitaminLogs?.[ds] && Object.keys(vitaminLogs[ds]).length > 0) };
-      });
+      // Open browser print dialog via iframe
+      const iframe = document.createElement("iframe");
+      iframe.style.cssText = "position:fixed;top:-10000px;left:-10000px;width:210mm;height:297mm;border:none";
+      document.body.appendChild(iframe);
 
-      const kickSessions = kickSessionsRaw.slice(-12).map((entry: any) => ({
-        date: entry.started_at,
-        total: Number(entry.total_kicks || 0),
-      }));
+      const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+      if (!iframeDoc) {
+        document.body.removeChild(iframe);
+        throw new Error("Cannot access iframe document");
+      }
 
-      const symptoms = symptomLogs.slice(-12).map((entry: any) => ({
-        date: entry.date || entry.created_at || entry.timestamp,
-        symptom: entry.symptom || entry.name || entry.label || t("medicalSummary.unknownSymptom", "Symptom"),
-        severity: entry.severity || entry.intensity || entry.level || "",
-      }));
+      iframeDoc.open();
+      iframeDoc.write(htmlContent);
+      iframeDoc.close();
 
-      const appointments = userAppointments
-        .filter((a: any) => new Date(a.appointment_date || a.date) >= new Date(todayStr))
-        .slice(0, 8)
-        .map((entry: any) => ({
-          date: entry.appointment_date || entry.date,
-          title: entry.title || entry.reason || t("medicalSummary.upcomingVisit", "Upcoming appointment"),
-          doctor: entry.doctor || entry.provider || "",
-        }));
-
-      await exportMedicalSummaryPDF({
-        language,
-        profile: {
-          isPregnant: profile.isPregnant,
-          pregnancyWeek: profile.pregnancyWeek,
-          dueDate: profile.dueDate,
-          lastPeriodDate: profile.lastPeriodDate,
-          bloodType: profile.bloodType,
-          weight: profile.weight,
-          prePregnancyWeight: profile.prePregnancyWeight,
-          height: profile.height,
-        },
-        summary: {
-          currentWeight: stats.dailyTracking.lastWeight || "—",
-          todayKicks: stats.dailyTracking.todayKicks,
-          waterToday: stats.dailyTracking.waterGlasses,
-          vitaminsToday: stats.dailyTracking.vitaminsTaken,
-          upcomingAppointments: stats.planning.upcomingAppointments,
-          weightEntriesCount: weightEntries.length,
-          symptomEntriesCount: symptomLogs.length,
-        },
-        weightEntries: weightEntries.slice(-12),
-        waterDays,
-        vitaminDays,
-        kickSessions,
-        symptoms,
-        appointments,
-      });
+      iframe.onload = () => {
+        setTimeout(() => {
+          try {
+            iframe.contentWindow?.print();
+          } catch {
+            const win = window.open("", "_blank");
+            if (win) {
+              win.document.write(htmlContent);
+              win.document.close();
+              win.print();
+            }
+          }
+          setTimeout(() => {
+            try { document.body.removeChild(iframe); } catch { /* already removed */ }
+          }, 2000);
+        }, 500);
+      };
 
       toast.success(t("medicalSummary.exportSuccess", "تم تصدير التقرير بنجاح"));
     } catch (err) {
@@ -113,7 +98,7 @@ export function MedicalSummaryCard() {
     } finally {
       setExporting(false);
     }
-  };
+  }, [i18n.language, summaryItems, symptomLogs.length, kickSessionsRaw.length, profile, t]);
 
   return (
     <Card className="p-4 bg-card border-border/50">
