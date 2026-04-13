@@ -502,13 +502,14 @@ function addPageWithHeader(s: PDFState) {
   // Process entire header as one unit for correct RTL ordering via centralized doc.text wrapper
   const lang = _ctx.isRTL ? 'ar' : 'en';
   const rawHeader = _ctx.reportTitle ? `${getBrandName(lang)} — ${_ctx.reportTitle}` : getBrandName(lang);
-  s.doc.text(rawHeader, PAGE_W / 2, 5, { align: 'center' });
+  drawCenteredText(s.doc, rawHeader, 5);
   s.y = MARGIN_Y + 6;
 }
 
 function drawPageNumber(s: PDFState) {
   s.doc.setFontSize(7);
   s.doc.setTextColor(COLORS.muted.r, COLORS.muted.g, COLORS.muted.b);
+  // Page numbers are just digits, safe to center normally
   s.doc.text(String(s.pageNum), PAGE_W / 2, PAGE_H - 5, { align: 'center' });
 }
 
