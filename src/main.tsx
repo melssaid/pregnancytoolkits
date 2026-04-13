@@ -114,6 +114,16 @@ deferAfterPaint(() => {
   // Storage cleanup
   import("@/lib/storageCleanup").then((m) => m.maybeRunCleanup());
 
+  // Core Web Vitals measurement
+  import("@/lib/webVitals").then((m) => m.initWebVitals());
+
+  // Migrate large data to IndexedDB
+  import("@/lib/indexedDBStore").then((m) => {
+    ['kick_counter_sessions', 'contraction_entries', 'weight_gain_entries'].forEach(key => {
+      m.migrateFromLocalStorage(key);
+    });
+  });
+
   if (import.meta.env.DEV) return;
 
   // Service Worker + push notifications (production only)
