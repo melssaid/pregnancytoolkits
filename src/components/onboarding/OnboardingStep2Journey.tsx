@@ -31,10 +31,10 @@ export const OnboardingStep2Journey: React.FC<Props> = ({
   const BackIcon = isRtl ? ChevronRight : ChevronLeft;
   const [lmpOpen, setLmpOpen] = useState(false);
 
-  const stages: { key: JourneyStage; icon: React.ElementType; labelKey: string }[] = [
-    { key: 'fertility', icon: Flower2, labelKey: 'onboarding.step2.fertility' },
-    { key: 'pregnant', icon: Baby, labelKey: 'onboarding.step2.pregnant' },
-    { key: 'postpartum', icon: Heart, labelKey: 'onboarding.step2.postpartum' },
+  const stages: { key: JourneyStage; icon: React.ElementType; labelKey: string; gradient: string; shadow: string }[] = [
+    { key: 'fertility', icon: Flower2, labelKey: 'onboarding.step2.fertility', gradient: 'from-[hsl(15,70%,55%)] to-[hsl(30,80%,60%)]', shadow: 'shadow-[0_4px_20px_-4px_hsl(15,70%,55%,0.35)]' },
+    { key: 'pregnant', icon: Baby, labelKey: 'onboarding.step2.pregnant', gradient: 'from-[hsl(340,65%,52%)] to-[hsl(320,50%,58%)]', shadow: 'shadow-[0_4px_20px_-4px_hsl(340,65%,52%,0.35)]' },
+    { key: 'postpartum', icon: Heart, labelKey: 'onboarding.step2.postpartum', gradient: 'from-[hsl(290,35%,52%)] to-[hsl(270,40%,58%)]', shadow: 'shadow-[0_4px_20px_-4px_hsl(290,35%,52%,0.35)]' },
   ];
 
   return (
