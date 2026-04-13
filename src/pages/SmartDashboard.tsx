@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { SEOHead } from "@/components/SEOHead";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 // TodaysInsightCard removed — replaced by NutritionTipCard
 import { useTranslation } from "react-i18next";
 import { useUserProfile } from "@/hooks/useUserProfile";
