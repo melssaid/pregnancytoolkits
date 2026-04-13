@@ -38,12 +38,33 @@ export function prefetchRoute(path: string): void {
 
 /**
  * Prefetch top routes after initial page load
- * Called once from App to warm the cache
+ * Reads user journey to prefetch the most relevant tools
  */
 export function prefetchCriticalRoutes(): void {
-  const critical = ["/dashboard", "/tools/pregnancy-assistant", "/settings"];
   const schedule = window.requestIdleCallback || ((cb: () => void) => setTimeout(cb, 1000));
   schedule(() => {
-    critical.forEach(prefetchRoute);
+    // Always prefetch core pages
+    prefetchRoute("/dashboard");
+    prefetchRoute("/settings");
+
+    // Journey-aware prefetching
+    let journey = 'pregnant';
+    try {
+      const profile = localStorage.getItem('userProfile');
+      if (profile) {
+        const parsed = JSON.parse(profile);
+        journey = parsed.journey || parsed.selectedJourney || 'pregnant';
+      }
+    } catch {}
+
+    const journeyRoutes: Record<string, string[]> = {
+      pregnant: ["/tools/pregnancy-assistant", "/tools/kick-counter", "/tools/weekly-summary", "/tools/weight-gain"],
+      planning: ["/tools/cycle-tracker", "/tools/due-date-calculator", "/tools/fertility-academy"],
+      postpartum: ["/tools/baby-sleep-tracker", "/tools/diaper-tracker", "/tools/baby-growth", "/tools/postpartum-recovery"],
+      trying: ["/tools/cycle-tracker", "/tools/due-date-calculator", "/tools/preconception-checkup"],
+    };
+
+    const routes = journeyRoutes[journey] || journeyRoutes.pregnant;
+    routes.forEach(prefetchRoute);
   });
 }

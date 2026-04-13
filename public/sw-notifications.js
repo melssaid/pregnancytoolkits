@@ -108,7 +108,30 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Stale-while-revalidate for HTML/JS/CSS
+  // Stale-while-revalidate for HTML navigation requests
+  if (request.mode === 'navigate') {
+    event.respondWith(
+      fetch(request).then(response => {
+        if (response.ok) {
+          const clone = response.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(request, clone));
+        }
+        return response;
+      }).catch(() => {
+        return caches.match(request).then(cached => {
+          if (cached) return cached;
+          // Offline fallback — return a simple offline page
+          return new Response(
+            '<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Offline</title><style>body{font-family:system-ui;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;background:#faf6f2;color:#333;text-align:center}h1{font-size:1.5rem}p{color:#666}</style></head><body><div><h1>📱 No Internet</h1><p>Please check your connection and try again.</p><button onclick="location.reload()" style="margin-top:16px;padding:8px 24px;border-radius:8px;border:none;background:#d4608a;color:white;font-size:14px;cursor:pointer">Retry</button></div></body></html>',
+            { headers: { 'Content-Type': 'text/html' } }
+          );
+        });
+      })
+    );
+    return;
+  }
+
+  // Stale-while-revalidate for same-origin JS/CSS
   if (url.origin === self.location.origin) {
     event.respondWith(
       caches.match(request).then(cached => {
