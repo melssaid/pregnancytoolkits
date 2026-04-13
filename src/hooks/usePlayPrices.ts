@@ -22,7 +22,8 @@ const FALLBACK: PriceInfo = {
 
 function formatPrice(value: string, currency: string): string {
   try {
-    return new Intl.NumberFormat(navigator.language, {
+    // Always use 'en' locale for price formatting to ensure Western digits ($2.99 not ٢٫٩٩)
+    return new Intl.NumberFormat("en", {
       style: "currency",
       currency,
       minimumFractionDigits: 2,
