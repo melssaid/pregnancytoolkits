@@ -209,9 +209,20 @@ export function buildPrintHTML({ content, title, lang, isRTL, profile, logoDataU
   ${patientHTML}
   <div class="print-content">${content}</div>
   <div class="print-footer">
+    <div class="footer-signature">
+      <img src="${logoDataUrl || `${window.location.origin}/logo.png`}" alt="" onerror="this.style.display='none'" />
+      <div class="footer-sig-info">
+        <div class="footer-sig-brand">${escapeHtml(brand)}</div>
+        <div class="footer-sig-contact">
+          <a href="mailto:pregnancytoolkits@gmail.com">pregnancytoolkits@gmail.com</a>
+          <span>|</span>
+          ${websiteLabel[lang] || websiteLabel.en}: <a href="https://pregnancytoolkits.lovable.app">pregnancytoolkits.lovable.app</a>
+        </div>
+      </div>
+    </div>
     <div class="footer-message">${footerMessages[lang] || footerMessages.en}</div>
-    <a class="footer-email" href="mailto:pregnancytoolkits@gmail.com">pregnancytoolkits@gmail.com</a>
-    <div class="footer-brand">${escapeHtml(brand)} &mdash; ${new Date().getFullYear()}</div>
+    <div class="footer-disclaimer">${disclaimerMessages[lang] || disclaimerMessages.en}</div>
+    <div class="footer-copyright">${generatedByLabel[lang] || generatedByLabel.en} ${escapeHtml(brand)} &mdash; ${dateStr}</div>
   </div>
 </body>
 </html>`;
