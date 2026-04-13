@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { SaveResultButton } from './SaveResultButton';
 import { AIFeedbackPrompt } from './AIFeedbackPrompt';
 import { useAIUsage } from '@/contexts/AIUsageContext';
+import { resolveWeight, type AIToolType, type SmartSection } from '@/services/smartEngine/types';
 
 interface AIResponseFrameProps {
   content: string;
