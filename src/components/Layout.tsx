@@ -11,7 +11,12 @@ import { LanguageDropdown } from "./LanguageDropdown";
 import { TrialExpiryBanner } from "./TrialExpiryBanner";
 import { SmartAppBanner } from "./SmartAppBanner";
 import { BreadcrumbSchema } from "./BreadcrumbSchema";
-import { useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
+import { getTotalToolsCount } from "@/lib/tools-data";
+import { useSubscriptionStatus } from "@/hooks/useSubscriptionStatus";
+import { useEngagementSignals } from "@/hooks/useEngagementSignals";
+
+const SmartInstallBanner = lazy(() => import("./SmartInstallBanner"));
 import { getTotalToolsCount } from "@/lib/tools-data";
 import { useSubscriptionStatus } from "@/hooks/useSubscriptionStatus";
 
