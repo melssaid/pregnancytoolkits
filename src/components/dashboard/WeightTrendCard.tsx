@@ -10,7 +10,7 @@ export const WeightTrendCard = memo(function WeightTrendCard() {
 
   const { current, change, status } = useMemo(() => {
     // Read from weightGainEntries (what SmartWeightGainAnalyzer saves)
-    const entries = safeParseLocalStorage<any[]>("weightGainEntries", []);
+    const entries = safeParseLocalStorage<any[]>("weight_gain_entries", []);
     
     // Also check user profile for weight set during onboarding
     const profile = safeParseLocalStorage<any>("user_central_profile_v1", null);
