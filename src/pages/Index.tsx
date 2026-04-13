@@ -132,12 +132,34 @@ const ToolRow = memo(function ToolRow({ tool, isRTL, isLocked = false, journeyKe
 // ── Journey card ────────────────────────────────────────────────────────
 
 
-const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionActive, tier, isOpen, onToggle }: { config: JourneyConfig; index: number; isSubscriptionActive: boolean; tier?: import('@/hooks/useSubscriptionStatus').SubscriptionTier; isOpen: boolean; onToggle: () => void }) {
+const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionActive, tier }: { config: JourneyConfig; index: number; isSubscriptionActive: boolean; tier?: import('@/hooks/useSubscriptionStatus').SubscriptionTier }) {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === 'ar';
   const Icon = config.icon;
 
-  const toggle = onToggle;
+  const [isOpen, setIsOpen] = useState(() => {
+    try {
+      const saved = localStorage.getItem("journey-states");
+      if (saved) {
+        const states = JSON.parse(saved);
+        return !!states[config.key];
+      }
+    } catch {}
+    return false;
+  });
+
+  const toggle = useCallback(() => {
+    setIsOpen(prev => {
+      const next = !prev;
+      try {
+        const saved = localStorage.getItem("journey-states");
+        const states = saved ? JSON.parse(saved) : {};
+        states[config.key] = next;
+        localStorage.setItem("journey-states", JSON.stringify(states));
+      } catch {}
+      return next;
+    });
+  }, [config.key]);
 
   const categories = useMemo(() => getJourneyCategories(config.key), [config.key]);
   const allJourneyTools = useMemo(() => {
@@ -537,21 +559,6 @@ const Index = () => {
   const { t, i18n } = useTranslation();
   const { tier, isUnlocked, isLoading: subLoading } = useSubscriptionStatus();
   const lang = i18n.language?.split('-')[0] || 'en';
-  const [openJourney, setOpenJourney] = useState<JourneyKey | null>(() => {
-    try {
-      const saved = localStorage.getItem("journey-open");
-      if (saved && journeyConfigs.some(c => c.key === saved)) return saved as JourneyKey;
-    } catch {}
-    return null;
-  });
-
-  const handleJourneyToggle = useCallback((key: JourneyKey) => {
-    setOpenJourney(prev => {
-      const next = prev === key ? null : key;
-      try { localStorage.setItem("journey-open", next || ""); } catch {}
-      return next;
-    });
-  }, []);
 
   return (
     <Layout>
@@ -563,7 +570,7 @@ const Index = () => {
 
 
           {journeyConfigs.map((config, index) => (
-            <JourneyCard key={config.key} config={config} index={index} isSubscriptionActive={subLoading || isUnlocked} tier={subLoading ? undefined : tier} isOpen={openJourney === config.key} onToggle={() => handleJourneyToggle(config.key)} />
+            <JourneyCard key={config.key} config={config} index={index} isSubscriptionActive={subLoading || isUnlocked} tier={subLoading ? undefined : tier} />
           ))}
           
           <FooterCard />
