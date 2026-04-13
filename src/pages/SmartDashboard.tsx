@@ -8,7 +8,7 @@ import { useTrackingStats } from "@/hooks/useTrackingStats";
 import { Layout } from "@/components/Layout";
 import { safeParseLocalStorage } from "@/lib/safeStorage";
 import { useSmartConversionPrompt } from "@/hooks/useSmartConversionPrompt";
-import roseLeft from "@/assets/rose-left.png";
+import babyFootprints from "@/assets/baby-footprints.png";
 import roseRight from "@/assets/rose-right.png";
 
 // Dashboard components
@@ -72,25 +72,25 @@ const SmartDashboard = () => {
         {/* Two realistic roses peeking from under the header */}
         <div className="absolute -top-3 left-0 right-0 flex justify-between pointer-events-none px-1 z-0">
           <motion.img
-            src={roseLeft}
+            src={babyFootprints}
             alt=""
-            width={96}
-            height={96}
+            width={80}
+            height={80}
             style={{ y: roseLeftY, opacity: roseOpacity, scale: roseLeftScale }}
-            initial={{ y: -20, opacity: 0, rotate: -20, scale: 0.5 }}
+            initial={{ y: -20, opacity: 0, rotate: -25, scale: 0.5 }}
             animate={{
               y: [0, -5, 0],
-              opacity: 0.92,
-              rotate: [-10, -4, -10],
-              scale: [1, 1.06, 1],
+              opacity: 0.85,
+              rotate: [-25, -18, -25],
+              scale: [1, 1.08, 1],
             }}
             transition={{
               y: { duration: 3.5, repeat: Infinity, ease: "easeInOut" },
-              rotate: { duration: 5, repeat: Infinity, ease: "easeInOut" },
+              rotate: { duration: 6, repeat: Infinity, ease: "easeInOut" },
               scale: { duration: 4, repeat: Infinity, ease: "easeInOut" },
               opacity: { duration: 0.8, ease: "easeOut" },
             }}
-            className="drop-shadow-lg"
+            className="drop-shadow-md"
           />
           <motion.img
             src={roseRight}
