@@ -262,11 +262,12 @@ async function createPDFDoc(language: string): Promise<{ doc: jsPDF }> {
 
   setupFonts(doc);
   
-  // Use Cairo as the primary font for all languages (supports Arabic + Latin)
-  if (cairoFontCache) {
-    _ctx.activeFont = 'Cairo';
-  } else if (_ctx.isRTL && amiriFontCache) {
+  // For Arabic: Amiri has the best Arabic glyph coverage (Presentation Forms B)
+  // For other languages: Cairo supports Latin + Arabic well
+  if (_ctx.isRTL && amiriFontCache) {
     _ctx.activeFont = 'Amiri';
+  } else if (cairoFontCache) {
+    _ctx.activeFont = 'Cairo';
   } else if (tajawalFontCache) {
     _ctx.activeFont = 'Tajawal';
   }
