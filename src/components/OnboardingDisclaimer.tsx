@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -88,6 +89,8 @@ export function OnboardingDisclaimer() {
     localStorage.setItem(ONBOARDING_KEY, 'true');
     localStorage.setItem(FIRST_VISIT_KEY, 'true');
     setShow(false);
+    // Navigate to Smart Result Screen for WOW moment
+    try { window.location.href = '/welcome-result'; } catch { /* fallback */ }
   };
 
   // Auto-compute week from LMP

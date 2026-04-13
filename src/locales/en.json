@@ -8914,5 +8914,43 @@
     "exporting": "Exporting...",
     "exportSuccess": "Report exported successfully",
     "exportError": "Failed to export report"
+  },
+  "smartResult": {
+    "title": "✨ Your personalized journey is ready",
+    "subtitle": "We've created a smart experience tailored just for you and your baby",
+    "week": "Week",
+    "weekTitle": "Week {{week}}",
+    "babySize": "Your baby is the size of {{size}}",
+    "recTitle": "Recommended for you",
+    "rec": {
+      "nutrition": "Nutrition Guide",
+      "nutritionDesc": "Personalized diet for your stage",
+      "symptoms": "Symptom Checker",
+      "symptomsDesc": "Understand what you feel instantly",
+      "growth": "Baby Growth Tracker",
+      "growthDesc": "Track your baby's development",
+      "cycle": "Cycle Tracker",
+      "cycleDesc": "Track your fertility window",
+      "supplements": "Supplements Guide",
+      "supplementsDesc": "Essential nutrients for conception",
+      "fitness": "Fitness Coach",
+      "fitnessDesc": "Safe exercises for your body",
+      "lactation": "Lactation Support",
+      "lactationDesc": "Breastfeeding tips & guidance",
+      "babySleep": "Baby Sleep Tracker",
+      "babySleepDesc": "Track your baby's sleep patterns",
+      "mental": "Mental Wellness",
+      "mentalDesc": "Support for your emotional health"
+    },
+    "aiTitle": "🤖 Smart Recommendation for You",
+    "askAI": "Ask AI Doctor",
+    "goToDashboard": "Go to My Dashboard",
+    "ai": {
+      "fertilityMsg": "Based on your profile, we recommend tracking your cycle and optimizing nutrition for better fertility.",
+      "postpartumMsg": "Focus on recovery, bonding with your baby, and maintaining your mental wellness this week.",
+      "trimester1Msg": "First trimester is crucial! Focus on prenatal vitamins and managing morning sickness.",
+      "trimester2Msg": "Your baby is growing fast! Focus on balanced nutrition and staying active.",
+      "trimester3Msg": "Almost there! Focus on birth preparation and monitoring baby movements."
+    }
   }
 }
