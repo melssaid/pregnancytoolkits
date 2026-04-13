@@ -229,7 +229,7 @@ export function Layout({ children, showBack = false }: LayoutProps) {
               <div className="absolute right-4 flex items-center gap-1.5">
                 {!isPremium && (
                   <Link
-                    to="/pricing"
+                    to="/pricing-demo"
                     className="flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-br from-amber-500/15 to-amber-600/10 border border-amber-500/20 hover:border-amber-500/40 transition-all"
                     title={t('pricing.upgradeTitle', 'Upgrade to PRO')}
                   >
