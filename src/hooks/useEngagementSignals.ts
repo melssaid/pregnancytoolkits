@@ -68,7 +68,7 @@ export function useEngagementSignals() {
   }, []);
 }
 
-async function logEvent(sessionId: string, toolId: string, actionType: string, metadata?: Record<string, unknown>) {
+async function logEvent(sessionId: string, toolId: string, actionType: string, metadata?: Record<string, string | number>) {
   try {
     const { supabase } = await import("@/integrations/supabase/client");
     await supabase.from("tool_analytics").insert([{
