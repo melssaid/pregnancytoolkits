@@ -42,7 +42,8 @@ export const AIResponseFrame = ({
   const { t, i18n } = useTranslation();
   const { isRTL } = useLanguage();
   const navigate = useNavigate();
-  const { remaining, limit, tier, isLimitReached } = useAIUsage();
+  const { remaining, used, limit, tier, isLimitReached } = useAIUsage();
+  const weight = resolveWeight(toolType, section);
 
   const rawProgress = useMemo(() => {
     if (!isLoading && content.length > 0) return 100;
