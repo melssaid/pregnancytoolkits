@@ -67,8 +67,8 @@ const SmartDashboard = () => {
           <motion.img
             src={roseLeft}
             alt=""
-            width={72}
-            height={72}
+            width={96}
+            height={96}
             initial={{ y: -30, opacity: 0, rotate: -25, scale: 0.6 }}
             animate={{
               y: [0, -3, 0],
@@ -87,8 +87,8 @@ const SmartDashboard = () => {
           <motion.img
             src={roseRight}
             alt=""
-            width={72}
-            height={72}
+            width={96}
+            height={96}
             initial={{ y: -30, opacity: 0, rotate: 25, scale: 0.6 }}
             animate={{
               y: [0, -4, 0],
