@@ -36,6 +36,8 @@ export const AIResponseFrame = ({
   footer,
   expectedLength = 2000,
   toolId,
+  toolType,
+  section,
 }: AIResponseFrameProps) => {
   const { t, i18n } = useTranslation();
   const { isRTL } = useLanguage();
