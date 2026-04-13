@@ -102,11 +102,11 @@ export const useTrackingStats = () => {
         : '';
 
       // Postpartum Stats
-      const sleepLogs = JSON.parse(localStorage.getItem(`baby_sleep_${userId}`) || '[]');
+      const sleepLogs = JSON.parse(localStorage.getItem('baby-sleep-tracker-data') || '[]');
       const todaySleep = sleepLogs.filter((l: any) => l.date?.startsWith(today));
       const sleepHoursToday = todaySleep.reduce((sum: number, l: any) => sum + (l.duration || 0), 0) / 60;
 
-      const diaperLogs = JSON.parse(localStorage.getItem(`diaper_logs_${userId}`) || '[]');
+      const diaperLogs = JSON.parse(localStorage.getItem('diaperEntries') || '[]');
       const todayDiapers = diaperLogs.filter((l: any) => l.timestamp?.startsWith(today));
       const diapersToday = todayDiapers.length;
 
@@ -132,7 +132,7 @@ export const useTrackingStats = () => {
 
       // Vitamins
       if (vitaminsTaken > 0) summaries['vitamin-tracker'] = `${vitaminsTaken}`;
-      else if (vitaminLogs.length > 0) summaries['vitamin-tracker'] = `${vitaminLogs.length}`;
+      else if (vitaminLogCount > 0) summaries['vitamin-tracker'] = `${vitaminLogCount}`;
 
       // Appointments
       if (upcomingAppointments > 0) summaries['smart-appointment'] = `${upcomingAppointments}`;
