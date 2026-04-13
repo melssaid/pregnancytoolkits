@@ -92,11 +92,14 @@ function buildAlerts(
 
   // ── 6. No Vitamin Logged Today ──
   try {
-    const vitaminLogs = safeJSON<any[]>(`vitamin_logs_${userId}`, []);
-    const todayVitamins = vitaminLogs.filter((l: any) => l.taken_at?.startsWith(today));
-    const hour = new Date().getHours();
-    if (hour >= 12 && todayVitamins.length === 0 && vitaminLogs.length > 0) {
-      alerts.push({ level: "info", message: t("smartAlerts.noVitaminToday", "لم تسجلي تناول الفيتامينات اليوم — لا تنسي مكملاتك 💊") });
+    const vitaminLogsRaw = localStorage.getItem('vitamin-tracker-logs');
+    if (vitaminLogsRaw) {
+      const vitaminObj = JSON.parse(vitaminLogsRaw);
+      const todayVitamins = Object.keys(vitaminObj[today] || {});
+      const hour = new Date().getHours();
+      if (hour >= 12 && todayVitamins.length === 0 && Object.keys(vitaminObj).length > 0) {
+        alerts.push({ level: "info", message: t("smartAlerts.noVitaminToday", "لم تسجلي تناول الفيتامينات اليوم — لا تنسي مكملاتك 💊") });
+      }
     }
   } catch { /* ignore */ }
 
