@@ -649,7 +649,11 @@
         "tips": "Consejos de salud para el embarazo"
       }
     },
-    "checkAppointments": "Revisar citas"
+    "checkAppointments": "Revisar citas",
+    "backHome": {
+      "title": "Volver al inicio",
+      "subtitle": "Explora y usa todas las herramientas disponibles"
+    }
   },
   "layout": {
     "trustBar": {

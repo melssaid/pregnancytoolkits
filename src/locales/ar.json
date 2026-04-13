@@ -704,7 +704,11 @@
         "tips": "نصائح صحة الحمل"
       }
     },
-    "checkAppointments": "تحقق من المواعيد"
+    "checkAppointments": "تحقق من المواعيد",
+    "backHome": {
+      "title": "العودة للصفحة الرئيسية",
+      "subtitle": "استكشفي واستخدمي كافة الأدوات المتاحة"
+    }
   },
   "layout": {
     "trustBar": {

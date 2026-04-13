@@ -649,7 +649,11 @@
         "tips": "Gesundheitstipps für die Schwangerschaft"
       }
     },
-    "checkAppointments": "Termine überprüfen"
+    "checkAppointments": "Termine überprüfen",
+    "backHome": {
+      "title": "Zurück zur Startseite",
+      "subtitle": "Alle verfügbaren Tools entdecken und nutzen"
+    }
   },
   "layout": {
     "trustBar": {

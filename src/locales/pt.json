@@ -649,7 +649,11 @@
         "tips": "Dicas de saúde para gravidez"
       }
     },
-    "checkAppointments": "Verificar consultas"
+    "checkAppointments": "Verificar consultas",
+    "backHome": {
+      "title": "Voltar ao início",
+      "subtitle": "Explore e use todas as ferramentas disponíveis"
+    }
   },
   "layout": {
     "trustBar": {
