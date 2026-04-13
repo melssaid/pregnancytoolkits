@@ -161,22 +161,36 @@ export const AIResponseFrame = ({
 
         {footer}
 
-        {/* Single unified usage + Pro footer */}
-        <div className="mt-3 flex items-center justify-between gap-2 px-1">
-          <span className={`text-[11px] font-semibold tabular-nums ${usageColor}`}>
-            {remaining} <span className="text-foreground/50">/ {limit}</span>
-          </span>
-
-          {isFree && (
-            <button
-              onClick={() => navigate('/pricing-demo')}
-              className="flex items-center gap-1 text-[10px] font-semibold text-primary hover:text-primary/80 transition-colors"
-            >
-              <Crown className="w-3 h-3" />
-              <span>{t('aiUsage.subscribePro')}</span>
-            </button>
-          )}
-        </div>
+        {/* Professional usage bar — always after result */}
+        {!isLoading && content && (
+          <div className="mt-4 space-y-2 rounded-xl bg-muted/20 p-3 border border-border/50">
+            <div className="flex items-center gap-2.5">
+              <div className="flex-1 h-3 rounded-full bg-muted/40 overflow-hidden" style={{ boxShadow: 'inset 0 1px 3px hsl(0 0% 0% / 0.1)' }}>
+                <motion.div
+                  className="h-full rounded-full relative overflow-hidden"
+                  style={{ backgroundColor: getBarColor() }}
+                  initial={{ width: 0 }}
+                  animate={{ width: `${Math.min(usedPct, 100)}%` }}
+                  transition={{ duration: 0.8, ease: 'easeOut' }}
+                >
+                  {isNearLimit && !isLimitReached && (
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                      animate={{ x: ['-100%', '200%'] }}
+                      transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 3 }}
+                    />
+                  )}
+                </motion.div>
+              </div>
+              <span className="text-[12px] text-foreground/70 font-bold tabular-nums shrink-0">
+                {remaining}<span className="text-foreground/40 font-semibold">/{limit}</span>
+              </span>
+            </div>
+            <p className="text-[10px] text-muted-foreground text-center font-medium">
+              {weight === 0 ? uLabels.costHint0 : weight === 2 ? uLabels.costHint2 : weight === 0.5 ? uLabels.costHint05 : uLabels.explanation}
+            </p>
+          </div>
+        )}
 
         {/* Post-analysis upgrade nudge for free users */}
         {isFree && !isLoading && content && (
