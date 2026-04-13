@@ -22,6 +22,8 @@ interface AIResponseFrameProps {
   accentColor?: string;
   expectedLength?: number;
   toolId?: string;
+  toolType?: AIToolType;
+  section?: SmartSection;
 }
 
 export const AIResponseFrame = ({
