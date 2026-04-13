@@ -1,5 +1,6 @@
 import { SEOHead } from "@/components/SEOHead";
 import { motion } from "framer-motion";
+// TodaysInsightCard removed — replaced by NutritionTipCard
 import { useTranslation } from "react-i18next";
 import { useUserProfile } from "@/hooks/useUserProfile";
 import { useTrackingStats } from "@/hooks/useTrackingStats";
@@ -10,7 +11,7 @@ import { useSmartConversionPrompt } from "@/hooks/useSmartConversionPrompt";
 // Dashboard components
 import { DailyHeroCard } from "@/components/dashboard/DailyHeroCard";
 import { RiskAlertCard } from "@/components/dashboard/RiskAlertCard";
-import { TodaysInsightCard } from "@/components/dashboard/TodaysInsightCard";
+// TodaysInsightCard import removed
 import { DailyPriorities } from "@/components/dashboard/DailyPriorities";
 import { QuickActionsBar } from "@/components/dashboard/QuickActionsBar";
 import { HydrationTracker } from "@/components/dashboard/HydrationTracker";
@@ -92,8 +93,7 @@ const SmartDashboard = () => {
           week={profile.pregnancyWeek}
         />
 
-        {/* 2.5. Today's Insight Preview */}
-        <TodaysInsightCard />
+        {/* TodaysInsightCard removed — NutritionTipCard covers this */}
 
         {/* ★ Contextual Symptoms */}
         <ContextualSymptomsCard />

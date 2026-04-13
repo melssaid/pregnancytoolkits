@@ -8649,7 +8649,8 @@
     "thirdTrimester": "Third trimester begins",
     "babyPosition": "Baby gets into position",
     "fullTerm": "Full term",
-    "dueDate": "Expected due date"
+    "dueDate": "Expected due date",
+    "weeksLeft": "{{count}}w"
   },
   "contextSymptoms": {
     "title": "Expected Symptoms This Week",
