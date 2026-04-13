@@ -6,7 +6,7 @@
   <!-- Homepage -->
   <url>
     <loc>https://pregnancytoolkits.lovable.app/</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>1</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/"/>
@@ -22,7 +22,7 @@
   <!-- English SEO Landing Page -->
   <url>
     <loc>https://pregnancytoolkits.lovable.app/en</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://pregnancytoolkits.lovable.app/en"/>
@@ -31,7 +31,7 @@
   <!-- Dashboard -->
   <url>
     <loc>https://pregnancytoolkits.lovable.app/dashboard</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/dashboard"/>
@@ -47,7 +47,7 @@
   <!-- Settings -->
   <url>
     <loc>https://pregnancytoolkits.lovable.app/settings</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -57,7 +57,7 @@
   <!-- ═══════════════════════════════════════════════════════ -->
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tools/due-date-calculator</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tools/due-date-calculator"/>
@@ -71,7 +71,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tools/cycle-tracker</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tools/cycle-tracker"/>
@@ -85,7 +85,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tools/fertility-academy</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tools/fertility-academy"/>
@@ -99,7 +99,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tools/preconception-checkup</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tools/preconception-checkup"/>
@@ -113,7 +113,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tools/nutrition-supplements</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tools/nutrition-supplements"/>
@@ -127,7 +127,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tools/fetal-growth</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tools/fetal-growth"/>
@@ -141,7 +141,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tools/ai-birth-plan</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tools/ai-birth-plan"/>
@@ -155,7 +155,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tools/contraction-timer</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tools/contraction-timer"/>
@@ -169,7 +169,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tools/kick-counter</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tools/kick-counter"/>
@@ -183,7 +183,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tools/weight-gain</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tools/weight-gain"/>
@@ -197,7 +197,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tools/ai-bump-photos</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tools/ai-bump-photos"/>
@@ -211,7 +211,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tools/ai-meal-suggestion</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tools/ai-meal-suggestion"/>
@@ -225,7 +225,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tools/ai-craving-alternatives</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tools/ai-craving-alternatives"/>
@@ -239,7 +239,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tools/smart-grocery-list</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tools/smart-grocery-list"/>
@@ -253,7 +253,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tools/vitamin-tracker</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tools/vitamin-tracker"/>
@@ -267,7 +267,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tools/wellness-diary</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tools/wellness-diary"/>
@@ -281,7 +281,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tools/ai-fitness-coach</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tools/ai-fitness-coach"/>
@@ -295,7 +295,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tools/pregnancy-comfort</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tools/pregnancy-comfort"/>
@@ -309,7 +309,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tools/ai-skincare</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tools/ai-skincare"/>
@@ -323,7 +323,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tools/maternal-health</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tools/maternal-health"/>
@@ -337,7 +337,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tools/ai-hospital-bag</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tools/ai-hospital-bag"/>
@@ -351,7 +351,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tools/baby-gear-recommender</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tools/baby-gear-recommender"/>
@@ -365,7 +365,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tools/smart-appointment-reminder</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tools/smart-appointment-reminder"/>
@@ -379,7 +379,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tools/ai-partner-guide</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tools/ai-partner-guide"/>
@@ -393,7 +393,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tools/mental-health-coach</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tools/mental-health-coach"/>
@@ -407,7 +407,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tools/ai-lactation-prep</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tools/ai-lactation-prep"/>
@@ -421,7 +421,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tools/postpartum-recovery</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tools/postpartum-recovery"/>
@@ -435,7 +435,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tools/baby-cry-translator</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tools/baby-cry-translator"/>
@@ -449,7 +449,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tools/baby-sleep-tracker</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tools/baby-sleep-tracker"/>
@@ -463,7 +463,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tools/baby-growth</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tools/baby-growth"/>
@@ -477,7 +477,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tools/diaper-tracker</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tools/diaper-tracker"/>
@@ -491,7 +491,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tools/smart-plan</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tools/smart-plan"/>
@@ -505,7 +505,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tools/pregnancy-assistant</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tools/pregnancy-assistant"/>
@@ -519,7 +519,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tools/weekly-summary</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tools/weekly-summary"/>
@@ -537,7 +537,7 @@
   <!-- ═══════════════════════════════════════════════════════ -->
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tool/due-date-calculator</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tool/due-date-calculator"/>
@@ -551,7 +551,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tool/cycle-tracker</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tool/cycle-tracker"/>
@@ -565,7 +565,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tool/fertility-academy</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tool/fertility-academy"/>
@@ -579,7 +579,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tool/preconception-checkup</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tool/preconception-checkup"/>
@@ -593,7 +593,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tool/nutrition-supplements</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tool/nutrition-supplements"/>
@@ -607,7 +607,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tool/fetal-growth</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tool/fetal-growth"/>
@@ -621,7 +621,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tool/ai-birth-plan</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tool/ai-birth-plan"/>
@@ -635,7 +635,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tool/contraction-timer</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tool/contraction-timer"/>
@@ -649,7 +649,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tool/kick-counter</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tool/kick-counter"/>
@@ -663,7 +663,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tool/weight-gain</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tool/weight-gain"/>
@@ -677,7 +677,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tool/ai-bump-photos</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tool/ai-bump-photos"/>
@@ -691,7 +691,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tool/ai-meal-suggestion</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tool/ai-meal-suggestion"/>
@@ -705,7 +705,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tool/ai-craving-alternatives</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tool/ai-craving-alternatives"/>
@@ -719,7 +719,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tool/smart-grocery-list</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tool/smart-grocery-list"/>
@@ -733,7 +733,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tool/vitamin-tracker</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tool/vitamin-tracker"/>
@@ -747,7 +747,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tool/wellness-diary</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tool/wellness-diary"/>
@@ -761,7 +761,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tool/ai-fitness-coach</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tool/ai-fitness-coach"/>
@@ -775,7 +775,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tool/pregnancy-comfort</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tool/pregnancy-comfort"/>
@@ -789,7 +789,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tool/ai-skincare</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tool/ai-skincare"/>
@@ -803,7 +803,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tool/maternal-health</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tool/maternal-health"/>
@@ -817,7 +817,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tool/ai-hospital-bag</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tool/ai-hospital-bag"/>
@@ -831,7 +831,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tool/baby-gear-recommender</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tool/baby-gear-recommender"/>
@@ -845,7 +845,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tool/smart-appointment-reminder</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tool/smart-appointment-reminder"/>
@@ -859,7 +859,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tool/ai-partner-guide</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tool/ai-partner-guide"/>
@@ -873,7 +873,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tool/mental-health-coach</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tool/mental-health-coach"/>
@@ -887,7 +887,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tool/ai-lactation-prep</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tool/ai-lactation-prep"/>
@@ -901,7 +901,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tool/postpartum-recovery</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tool/postpartum-recovery"/>
@@ -915,7 +915,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tool/baby-cry-translator</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tool/baby-cry-translator"/>
@@ -929,7 +929,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tool/baby-sleep-tracker</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tool/baby-sleep-tracker"/>
@@ -943,7 +943,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tool/baby-growth</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tool/baby-growth"/>
@@ -957,7 +957,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tool/diaper-tracker</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tool/diaper-tracker"/>
@@ -971,7 +971,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tool/smart-plan</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tool/smart-plan"/>
@@ -985,7 +985,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tool/pregnancy-assistant</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tool/pregnancy-assistant"/>
@@ -999,7 +999,7 @@
   </url>
   <url>
     <loc>https://pregnancytoolkits.lovable.app/tool/weekly-summary</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.75</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/tool/weekly-summary"/>
@@ -1015,7 +1015,7 @@
   <!-- Static pages -->
   <url>
     <loc>https://pregnancytoolkits.lovable.app/privacy</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/privacy"/>
@@ -1030,7 +1030,7 @@
 
   <url>
     <loc>https://pregnancytoolkits.lovable.app/terms</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/terms"/>
@@ -1045,7 +1045,7 @@
 
   <url>
     <loc>https://pregnancytoolkits.lovable.app/contact</loc>
-    <lastmod>2026-04-08</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://pregnancytoolkits.lovable.app/contact"/>
