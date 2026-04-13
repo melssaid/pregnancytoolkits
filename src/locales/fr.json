@@ -8868,5 +8868,9 @@
     "exportSuccess": "Rapport exporté avec succès",
     "exportError": "Échec de l'exportation",
     "symptomEntries": "Entrées de symptômes"
+  },
+  "smartResult": {
+    "exploreAll": "Explorer tous les outils",
+    "myDashboard": "Mon tableau de bord"
   }
 }

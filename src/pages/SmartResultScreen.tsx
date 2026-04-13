@@ -207,14 +207,21 @@ export default function SmartResultScreen() {
           </button>
         </motion.div>
 
-        {/* ─── 5. Primary CTA ─── */}
-        <motion.div variants={fadeUp} className="pt-2">
+        {/* ─── 5. Dual CTA ─── */}
+        <motion.div variants={fadeUp} className="pt-2 space-y-3">
           <button
-            onClick={() => navigate("/dashboard")}
+            onClick={() => navigate("/")}
             className="w-full py-4 rounded-2xl bg-gradient-to-r from-pink-500 to-purple-500 text-white text-sm font-black shadow-xl shadow-pink-500/20 hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
           >
-            <Heart className="w-4 h-4" />
-            {t("smartResult.goToDashboard", "Go to My Dashboard")}
+            <Sparkles className="w-4 h-4" />
+            {t("smartResult.exploreAll", "Explore All Tools")}
+          </button>
+          <button
+            onClick={() => navigate("/dashboard")}
+            className="w-full py-3.5 rounded-2xl border border-border/50 bg-card text-foreground text-sm font-bold hover:bg-accent/50 transition-colors flex items-center justify-center gap-2"
+          >
+            <Heart className="w-4 h-4 text-pink-500" />
+            {t("smartResult.myDashboard", "My Personal Dashboard")}
           </button>
         </motion.div>
       </motion.div>
