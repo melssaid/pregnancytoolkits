@@ -245,6 +245,21 @@ function rtlText(doc: jsPDF, text: string, x: number, y: number, options?: any) 
   }
 }
 
+/**
+ * Safe centered text: for RTL pre-processed text, avoid jsPDF's align:center
+ * which can conflict with reversed character order. Instead, manually calculate x.
+ */
+function drawCenteredText(doc: jsPDF, text: string, y: number, opts?: { fontSize?: number }) {
+  if (opts?.fontSize) doc.setFontSize(opts.fontSize);
+  if (_ctx.isRTL) {
+    // For reversed Arabic text, calculate center position manually
+    const textW = doc.getTextWidth(text);
+    doc.text(text, (PAGE_W - textW) / 2, y);
+  } else {
+    doc.text(text, PAGE_W / 2, y, { align: 'center' });
+  }
+}
+
 // Create a pre-configured PDF document with Unicode font support
 async function createPDFDoc(language: string): Promise<{ doc: jsPDF }> {
   // Clear reshape cache between exports to prevent stale data
