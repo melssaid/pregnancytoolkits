@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { Shield, Globe, Lock, Sparkles, ChevronLeft, ChevronRight, Check, Baby, Activity, Brain, UtensilsCrossed } from 'lucide-react';
+import { Globe, ChevronLeft, ChevronRight, Check, Shield, Zap } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -17,6 +17,16 @@ const languages = [
   { code: 'pt', name: 'Português', flag: '🇵🇹' },
 ];
 
+const valueProps: Record<string, { v1: string; v2: string; v3: string }> = {
+  en: { v1: '10 free smart analyses/month', v2: 'Full privacy — data stays on your device', v3: '36+ professional tools' },
+  ar: { v1: '10 تحليلات ذكية مجانية/شهر', v2: 'خصوصية كاملة — بياناتك على جهازك فقط', v3: '36+ أداة احترافية' },
+  de: { v1: '10 kostenlose Analysen/Monat', v2: 'Volle Privatsphäre — Daten bleiben lokal', v3: '36+ professionelle Tools' },
+  tr: { v1: 'Ayda 10 ücretsiz analiz', v2: 'Tam gizlilik — veriler cihazınızda kalır', v3: '36+ profesyonel araç' },
+  fr: { v1: '10 analyses gratuites/mois', v2: 'Confidentialité totale — données locales', v3: '36+ outils professionnels' },
+  es: { v1: '10 análisis gratuitos/mes', v2: 'Privacidad total — datos en tu dispositivo', v3: '36+ herramientas profesionales' },
+  pt: { v1: '10 análises gratuitas/mês', v2: 'Privacidade total — dados no seu dispositivo', v3: '36+ ferramentas profissionais' },
+};
+
 interface Props {
   selectedLang: string;
   onSelectLang: (code: string) => void;
@@ -28,18 +38,13 @@ export const OnboardingStep1Welcome: React.FC<Props> = ({ selectedLang, onSelect
   const { changeLanguage } = useLanguage();
   const isRtl = i18n.language === 'ar';
   const NextIcon = isRtl ? ChevronLeft : ChevronRight;
+  const lang = i18n.language?.split('-')[0] || 'en';
+  const vp = valueProps[lang] || valueProps.en;
 
   const handleLangSelect = (code: string) => {
     onSelectLang(code);
     changeLanguage(code);
   };
-
-  const showcaseItems = [
-    { icon: Baby, colorClass: 'text-pink-500', bgClass: 'bg-pink-500/10' },
-    { icon: Activity, colorClass: 'text-emerald-500', bgClass: 'bg-emerald-500/10' },
-    { icon: Brain, colorClass: 'text-violet-500', bgClass: 'bg-violet-500/10' },
-    { icon: UtensilsCrossed, colorClass: 'text-amber-500', bgClass: 'bg-amber-500/10' },
-  ];
 
   return (
     <motion.div
@@ -49,10 +54,11 @@ export const OnboardingStep1Welcome: React.FC<Props> = ({ selectedLang, onSelect
       exit={{ opacity: 0, x: isRtl ? 20 : -20 }}
       transition={{ duration: 0.2 }}
     >
-      {/* Logo & Title — compact */}
-      <div className="px-5 pt-3 pb-2 flex items-center gap-3">
+      {/* Logo & Title — bold and clear */}
+      <div className="px-5 pt-4 pb-3 flex items-center gap-4">
         <motion.div
-          className="w-12 h-12 rounded-xl overflow-hidden shadow-md ring-2 ring-primary/20 flex-shrink-0"
+          className="w-16 h-16 rounded-2xl overflow-hidden flex-shrink-0"
+          style={{ boxShadow: '0 4px 20px -4px hsl(340 50% 55% / 0.25)' }}
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ type: 'spring', stiffness: 300, damping: 20 }}
@@ -60,13 +66,35 @@ export const OnboardingStep1Welcome: React.FC<Props> = ({ selectedLang, onSelect
           <img src={logoImage} alt="App Logo" className="w-full h-full object-cover" />
         </motion.div>
         <div className="min-w-0">
-          <h2 className="text-sm font-bold text-foreground leading-tight">
+          <h2 className="text-lg font-black text-foreground leading-tight" style={{ fontFamily: "'Tajawal', sans-serif", fontWeight: 800 }}>
             {t('onboarding.title', 'Welcome to Your Journey')}
           </h2>
-          <p className="text-[11px] text-muted-foreground mt-0.5 leading-snug">
+          <p className="text-xs text-muted-foreground mt-1 leading-snug font-medium">
             {t('onboarding.subtitle', 'Your lifestyle & educational companion')}
           </p>
         </div>
+      </div>
+
+      {/* Value propositions */}
+      <div className="px-5 pb-3 space-y-2">
+        {[
+          { icon: Zap, text: vp.v1 },
+          { icon: Shield, text: vp.v2 },
+          { icon: Check, text: vp.v3 },
+        ].map((item, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, x: isRtl ? 10 : -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.1 + i * 0.08 }}
+            className="flex items-center gap-2.5"
+          >
+            <div className="w-6 h-6 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+              <item.icon className="w-3.5 h-3.5 text-primary" strokeWidth={2.5} />
+            </div>
+            <span className="text-[12px] font-semibold text-foreground/80">{item.text}</span>
+          </motion.div>
+        ))}
       </div>
 
       {/* Language selector */}

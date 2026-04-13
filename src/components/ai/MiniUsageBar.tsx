@@ -6,14 +6,18 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { resolveWeight, type AIToolType, type SmartSection } from '@/services/smartEngine/types';
 
-const usageLabels: Record<string, { costHint0: string; costHint05: string; costHint1: string; costHint2: string; upgradeTitle: string; upgradeSub: string; upgradeCta: string }> = {
-  en: { costHint0: 'Free ✨', costHint05: 'Uses ½ credit', costHint1: 'Uses 1 credit', costHint2: 'Uses 2 credits', upgradeTitle: 'Want more analyses?', upgradeSub: 'Get 60 smart analyses every month', upgradeCta: 'View Plans' },
-  ar: { costHint0: 'مجاني ✨', costHint05: 'تستهلك نصف نقطة', costHint1: 'تستهلك نقطة واحدة', costHint2: 'تستهلك نقطتين', upgradeTitle: 'تريدين تحليلات أكثر؟', upgradeSub: '60 تحليل ذكي كل شهر', upgradeCta: 'عرض الباقات' },
-  de: { costHint0: 'Kostenlos ✨', costHint05: '½ Credit', costHint1: '1 Credit verbraucht', costHint2: '2 Credits verbraucht', upgradeTitle: 'Mehr Analysen gewünscht?', upgradeSub: '60 smarte Analysen pro Monat', upgradeCta: 'Pläne ansehen' },
-  fr: { costHint0: 'Gratuit ✨', costHint05: '½ crédit', costHint1: 'Utilise 1 crédit', costHint2: 'Utilise 2 crédits', upgradeTitle: 'Plus d\'analyses ?', upgradeSub: '60 analyses intelligentes par mois', upgradeCta: 'Voir les offres' },
-  es: { costHint0: 'Gratis ✨', costHint05: '½ crédito', costHint1: 'Usa 1 crédito', costHint2: 'Usa 2 créditos', upgradeTitle: '¿Más análisis?', upgradeSub: '60 análisis inteligentes al mes', upgradeCta: 'Ver planes' },
-  pt: { costHint0: 'Grátis ✨', costHint05: '½ crédito', costHint1: 'Usa 1 crédito', costHint2: 'Usa 2 créditos', upgradeTitle: 'Quer mais análises?', upgradeSub: '60 análises inteligentes por mês', upgradeCta: 'Ver planos' },
-  tr: { costHint0: 'Ücretsiz ✨', costHint05: '½ kredi', costHint1: '1 kredi kullanır', costHint2: '2 kredi kullanır', upgradeTitle: 'Daha fazla analiz?', upgradeSub: 'Ayda 60 akıllı analiz', upgradeCta: 'Planları gör' },
+const usageLabels: Record<string, {
+  costHint0: string; costHint05: string; costHint1: string; costHint2: string;
+  upgradeTitle: string; upgradeSub: string; upgradeCta: string;
+  explanation: string; nearLimitNudge: string;
+}> = {
+  en: { costHint0: 'Free ✨', costHint05: 'Uses ½ credit', costHint1: 'Uses 1 credit', costHint2: 'Uses 2 credits', upgradeTitle: 'Want more analyses?', upgradeSub: 'Get 60 smart analyses every month', upgradeCta: 'View Plans', explanation: 'Each smart analysis uses 1 point from your monthly balance', nearLimitNudge: 'Subscribe for 60 analyses/month' },
+  ar: { costHint0: 'مجاني ✨', costHint05: 'تستهلك نصف نقطة', costHint1: 'تستهلك نقطة واحدة', costHint2: 'تستهلك نقطتين', upgradeTitle: 'تريدين تحليلات أكثر؟', upgradeSub: '60 تحليل ذكي كل شهر', upgradeCta: 'عرض الباقات', explanation: 'كل تحليل ذكي يستهلك نقطة واحدة من رصيدك الشهري', nearLimitNudge: 'اشتركي للحصول على 60 تحليل/شهر' },
+  de: { costHint0: 'Kostenlos ✨', costHint05: '½ Credit', costHint1: '1 Credit verbraucht', costHint2: '2 Credits verbraucht', upgradeTitle: 'Mehr Analysen gewünscht?', upgradeSub: '60 smarte Analysen pro Monat', upgradeCta: 'Pläne ansehen', explanation: 'Jede Analyse verbraucht 1 Punkt Ihres monatlichen Guthabens', nearLimitNudge: 'Abonnieren für 60 Analysen/Monat' },
+  fr: { costHint0: 'Gratuit ✨', costHint05: '½ crédit', costHint1: 'Utilise 1 crédit', costHint2: 'Utilise 2 crédits', upgradeTitle: 'Plus d\'analyses ?', upgradeSub: '60 analyses intelligentes par mois', upgradeCta: 'Voir les offres', explanation: 'Chaque analyse utilise 1 point de votre solde mensuel', nearLimitNudge: 'Abonnez-vous pour 60 analyses/mois' },
+  es: { costHint0: 'Gratis ✨', costHint05: '½ crédito', costHint1: 'Usa 1 crédito', costHint2: 'Usa 2 créditos', upgradeTitle: '¿Más análisis?', upgradeSub: '60 análisis inteligentes al mes', upgradeCta: 'Ver planes', explanation: 'Cada análisis usa 1 punto de tu saldo mensual', nearLimitNudge: 'Suscríbete para 60 análisis/mes' },
+  pt: { costHint0: 'Grátis ✨', costHint05: '½ crédito', costHint1: 'Usa 1 crédito', costHint2: 'Usa 2 créditos', upgradeTitle: 'Quer mais análises?', upgradeSub: '60 análises inteligentes por mês', upgradeCta: 'Ver planos', explanation: 'Cada análise usa 1 ponto do seu saldo mensal', nearLimitNudge: 'Assine para 60 análises/mês' },
+  tr: { costHint0: 'Ücretsiz ✨', costHint05: '½ kredi', costHint1: '1 kredi kullanır', costHint2: '2 kredi kullanır', upgradeTitle: 'Daha fazla analiz?', upgradeSub: 'Ayda 60 akıllı analiz', upgradeCta: 'Planları gör', explanation: 'Her analiz aylık bakiyenizden 1 puan kullanır', nearLimitNudge: '60 analiz/ay için abone olun' },
 };
 
 interface MiniUsageBarProps {
@@ -32,44 +36,56 @@ export const MiniUsageBar: React.FC<MiniUsageBarProps> = ({ toolType, section, c
   const isFree = tier === 'free';
   const pct = limit > 0 ? Math.round((used / limit) * 100) : 0;
   const weight = resolveWeight(toolType, section);
+  const isNearLimit = pct >= 70;
 
-  const getBarGradient = () => {
-    if (isLimitReached) return 'linear-gradient(90deg, hsl(0 72% 51%), hsl(0 72% 40%))';
-    const remainPct = (remaining / limit) * 100;
-    if (remainPct <= 15) return 'linear-gradient(90deg, hsl(0 72% 51%), hsl(25 95% 53%))';
-    if (remainPct <= 40) return 'linear-gradient(90deg, hsl(38 92% 50%), hsl(25 95% 53%))';
-    return 'linear-gradient(90deg, hsl(var(--primary)), hsl(330 65% 50%))';
+  const getBarColor = () => {
+    if (isLimitReached) return 'hsl(0, 72%, 51%)';
+    if (pct >= 80) return 'hsl(38, 92%, 50%)';
+    return 'hsl(var(--primary))';
   };
 
   return (
     <div className={`space-y-2 ${className}`}>
-      {/* Usage bar */}
+      {/* Usage bar — thicker and clearer */}
       <div className="flex items-center gap-2.5 px-1">
-        
-        <div className="flex-1 h-2 rounded-full bg-muted/30 overflow-hidden" style={{ boxShadow: 'inset 0 1px 2px hsl(0 0% 0% / 0.08)' }}>
+        <div className="flex-1 h-3 rounded-full bg-muted/40 overflow-hidden" style={{ boxShadow: 'inset 0 1px 3px hsl(0 0% 0% / 0.1)' }}>
           <motion.div
-            className="h-full rounded-full"
-            style={{ background: getBarGradient() }}
+            className="h-full rounded-full relative overflow-hidden"
+            style={{ backgroundColor: getBarColor() }}
             initial={{ width: 0 }}
             animate={{ width: `${Math.min(pct, 100)}%` }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
-          />
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+          >
+            {/* Shimmer effect when near limit */}
+            {isNearLimit && !isLimitReached && (
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                animate={{ x: ['-100%', '200%'] }}
+                transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 3 }}
+              />
+            )}
+          </motion.div>
         </div>
-        <span className="text-[11px] text-muted-foreground font-semibold tabular-nums shrink-0">
-          {remaining} <span className="text-foreground/50 font-medium">/ {limit}</span>
+        <span className="text-[12px] text-foreground/70 font-bold tabular-nums shrink-0">
+          {remaining}<span className="text-foreground/40 font-semibold">/{limit}</span>
         </span>
       </div>
 
-      {/* Cost hint */}
-      {weight > 0 && (
-        <p className="text-[10px] text-muted-foreground/70 text-center font-medium px-1">
-          {weight === 2 ? labels.costHint2 : weight === 0.5 ? labels.costHint05 : labels.costHint1}
-        </p>
-      )}
-      {weight === 0 && (
-        <p className="text-[10px] text-muted-foreground/70 text-center font-medium px-1">
-          {labels.costHint0}
-        </p>
+      {/* Explanation text */}
+      <p className="text-[10px] text-muted-foreground/80 text-center font-medium px-1">
+        {weight === 2 ? labels.costHint2 : weight === 0.5 ? labels.costHint05 : weight === 0 ? labels.costHint0 : labels.explanation}
+      </p>
+
+      {/* Near-limit nudge */}
+      {isFree && isNearLimit && !isLimitReached && (
+        <motion.button
+          initial={{ opacity: 0, y: 4 }}
+          animate={{ opacity: 1, y: 0 }}
+          onClick={() => navigate('/pricing-demo')}
+          className="w-full py-2 rounded-lg bg-gradient-to-r from-[hsl(45,85%,55%)] to-[hsl(35,75%,45%)] text-white text-[11px] font-bold text-center shadow-sm"
+        >
+          {labels.nearLimitNudge}
+        </motion.button>
       )}
 
       {/* Upgrade CTA card for free users */}
