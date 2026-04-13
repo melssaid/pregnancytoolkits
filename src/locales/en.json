@@ -8959,5 +8959,10 @@
     },
     "exploreAll": "Explore All Tools",
     "myDashboard": "My Personal Dashboard"
+  },
+  "installBanner": {
+    "title": "Install the app",
+    "desc": "Quick access to all tools — works offline too!",
+    "cta": "Install Now"
   }
 }

@@ -11,9 +11,13 @@ import { LanguageDropdown } from "./LanguageDropdown";
 import { TrialExpiryBanner } from "./TrialExpiryBanner";
 import { SmartAppBanner } from "./SmartAppBanner";
 import { BreadcrumbSchema } from "./BreadcrumbSchema";
-import { useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { getTotalToolsCount } from "@/lib/tools-data";
 import { useSubscriptionStatus } from "@/hooks/useSubscriptionStatus";
+import { useEngagementSignals } from "@/hooks/useEngagementSignals";
+
+const SmartInstallBanner = lazy(() => import("./SmartInstallBanner"));
+
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -24,6 +28,7 @@ export function Layout({ children, showBack = false }: LayoutProps) {
   const { t, i18n } = useTranslation();
   const { tier } = useSubscriptionStatus();
   const isPremium = tier === "premium";
+  useEngagementSignals();
   const isRtl = i18n.language === 'ar';
   const trustTextSize = isRtl ? 'text-[9.5px]' : 'text-[8px]';
 
@@ -271,6 +276,8 @@ export function Layout({ children, showBack = false }: LayoutProps) {
 
         {/* Bottom Navigation for Mobile */}
         <BottomNavigation />
+        {/* Smart Install Banner */}
+        <Suspense fallback={null}><SmartInstallBanner /></Suspense>
       </main>
 
 
