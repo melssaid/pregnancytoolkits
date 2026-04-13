@@ -1,6 +1,5 @@
 import { memo } from 'react';
 import { motion } from 'framer-motion';
-import { Baby, Heart } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useUserProfile } from '@/hooks/useUserProfile';
 
@@ -70,9 +69,8 @@ export const BirthCountdownCard = memo(function BirthCountdownCard() {
 
         {/* Info */}
         <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-1.5 mb-1">
-            <Baby className="w-4 h-4 text-primary" />
-            <span className="text-xs font-bold text-primary">
+          <div className="mb-1">
+            <span className="text-base font-bold text-primary">
               {t('countdown.title', { defaultValue: 'العد التنازلي للولادة' })}
             </span>
           </div>
@@ -84,8 +82,7 @@ export const BirthCountdownCard = memo(function BirthCountdownCard() {
           <p className="text-[10px] text-muted-foreground mt-1">
             {t('countdown.dueDate', { defaultValue: 'موعد الولادة المتوقع' })}: {new Date(dueDate).toLocaleDateString()}
           </p>
-          <div className="mt-2 flex items-center gap-1">
-            <Heart className="w-3 h-3 text-pink-400" />
+          <div className="mt-2">
             <span className="text-[10px] font-medium text-muted-foreground">
               {Math.round(progress)}% {t('countdown.complete', { defaultValue: 'مكتمل' })}
             </span>

@@ -36,7 +36,7 @@ export function MilestonesTimeline() {
 
   return (
     <Card className="p-4 bg-card border-border/50">
-      <h3 className="text-sm font-extrabold text-foreground mb-4">{t("milestones.title")}</h3>
+      <h3 className="text-base font-bold text-foreground mb-4">{t("milestones.title")}</h3>
       <div className="space-y-0">
         {visible.map((m, i) => {
           const passed = currentWeek >= m.week;

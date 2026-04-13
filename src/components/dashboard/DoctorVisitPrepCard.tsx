@@ -1,4 +1,4 @@
-import { Stethoscope, ChevronLeft } from "lucide-react";
+import { ChevronLeft } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Card } from "@/components/ui/card";
 import { useUserProfile } from "@/hooks/useUserProfile";
@@ -44,9 +44,8 @@ export function DoctorVisitPrepCard() {
 
   return (
     <Card className="p-4 bg-card border-border/50">
-      <div className="flex items-center gap-2 mb-3">
-        <Stethoscope className="w-4 h-4 text-primary" />
-        <h3 className="text-sm font-extrabold text-foreground">{t("doctorPrep.title")}</h3>
+      <div className="mb-3">
+        <h3 className="text-base font-bold text-foreground">{t("doctorPrep.title")}</h3>
       </div>
       <p className="text-[10px] text-muted-foreground mb-2">{t("doctorPrep.subtitle")}</p>
       <div className="space-y-2">

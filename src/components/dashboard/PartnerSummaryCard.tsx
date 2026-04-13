@@ -1,4 +1,4 @@
-import { Share2, Heart } from "lucide-react";
+import { Share2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -31,11 +31,8 @@ export function PartnerSummaryCard() {
 
   return (
     <Card className="p-4 bg-card border-border/50">
-      <div className="flex items-center justify-between mb-2">
-        <div className="flex items-center gap-2">
-          <Heart className="w-4 h-4 text-pink-400" />
-          <h3 className="text-sm font-extrabold text-foreground">{t("partnerSummary.title")}</h3>
-        </div>
+      <div className="mb-2">
+        <h3 className="text-base font-bold text-foreground">{t("partnerSummary.title")}</h3>
       </div>
       <motion.div
         initial={{ opacity: 0 }}

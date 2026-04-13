@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FileText, Download, Loader2 } from "lucide-react";
+import { Download, Loader2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -117,9 +117,8 @@ export function MedicalSummaryCard() {
 
   return (
     <Card className="p-4 bg-card border-border/50">
-      <div className="flex items-center gap-2 mb-3">
-        <FileText className="w-4 h-4 text-primary" />
-        <h3 className="text-sm font-extrabold text-foreground">{t("medicalSummary.title")}</h3>
+      <div className="mb-3">
+        <h3 className="text-base font-bold text-foreground">{t("medicalSummary.title")}</h3>
       </div>
       <div className="space-y-1.5 mb-3">
         {summaryItems.map((item) => (

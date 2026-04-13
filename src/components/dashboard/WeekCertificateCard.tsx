@@ -1,6 +1,6 @@
 import { memo, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Award, Share2, X } from 'lucide-react';
+import { Share2, X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useUserProfile } from '@/hooks/useUserProfile';
 import { openWhatsApp } from '@/lib/whatsappShare';
@@ -59,9 +59,8 @@ export const WeekCertificateCard = memo(function WeekCertificateCard() {
             <span className="text-2xl">{milestoneEmoji}</span>
           </div>
           <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-1.5">
-              <Award className="w-4 h-4 text-amber-500" />
-              <span className="text-sm font-extrabold text-foreground">
+            <div>
+              <span className="text-base font-bold text-foreground">
                 {t('certificate.title', { week, defaultValue: `أكملتِ الأسبوع ${week}!` })}
               </span>
             </div>

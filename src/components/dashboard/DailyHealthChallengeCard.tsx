@@ -61,7 +61,7 @@ export function DailyHealthChallengeCard() {
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
           <Target className="w-4 h-4 text-orange-500" />
-          <h3 className="text-sm font-extrabold text-foreground">{t("dailyChallenge.title")}</h3>
+          <h3 className="text-base font-bold text-foreground">{t("dailyChallenge.title")}</h3>
         </div>
         <span className="text-[10px] font-bold text-primary">{completedCount}/3</span>
       </div>

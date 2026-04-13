@@ -1,7 +1,7 @@
 import { memo, useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { Droplets, Plus } from "lucide-react";
+import { Plus } from "lucide-react";
 import { getUserId } from "@/hooks/useSupabase";
 import { safeSaveToLocalStorage, safeParseLocalStorage } from "@/lib/safeStorage";
 
@@ -39,10 +39,7 @@ export const HydrationTracker = memo(function HydrationTracker() {
       className="rounded-2xl border border-border/20 bg-card p-3.5"
     >
       <div className="flex items-center justify-between mb-2.5">
-        <div className="flex items-center gap-2 min-w-0">
-          <Droplets className="w-4 h-4 text-primary flex-shrink-0" />
-          <h3 className="text-sm font-extrabold text-foreground whitespace-normal leading-tight">{t("dailyDashboard.hydration.title")}</h3>
-        </div>
+        <h3 className="text-base font-bold text-foreground whitespace-normal leading-tight">{t("dailyDashboard.hydration.title")}</h3>
         <span className="text-[10px] font-semibold text-primary">{glasses}/{GOAL}</span>
       </div>
 
