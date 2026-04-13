@@ -527,12 +527,12 @@ function drawLogo(s: PDFState, logoData: string | null) {
 function drawTitle(s: PDFState, title: string, subtitle?: string) {
   s.doc.setFontSize(18);
   s.doc.setTextColor(30, 41, 59);
-  s.doc.text(stripEmojis(title), PAGE_W / 2, s.y, { align: 'center' });
+  drawCenteredText(s.doc, stripEmojis(title), s.y);
   s.y += 7;
   if (subtitle) {
     s.doc.setFontSize(10);
     s.doc.setTextColor(100, 116, 139);
-    s.doc.text(stripEmojis(subtitle), PAGE_W / 2, s.y, { align: 'center' });
+    drawCenteredText(s.doc, stripEmojis(subtitle), s.y);
     s.y += 5;
   }
 }
@@ -540,7 +540,7 @@ function drawTitle(s: PDFState, title: string, subtitle?: string) {
 function drawBrand(s: PDFState, language: string, color: RGB) {
   s.doc.setFontSize(8);
   s.doc.setTextColor(color.r, color.g, color.b);
-  s.doc.text(getBrandNameForPDF(language), PAGE_W / 2, s.y, { align: 'center' });
+  drawCenteredText(s.doc, getBrandNameForPDF(language), s.y);
   s.y += 3;
 }
 
