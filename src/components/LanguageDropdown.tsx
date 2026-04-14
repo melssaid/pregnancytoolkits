@@ -3,6 +3,7 @@ import { Globe } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence, HTMLMotionProps } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { resetToBrowserLanguage } from '@/i18n';
 import {
   Popover,
   PopoverContent,
@@ -19,6 +20,7 @@ const MotionButton = forwardRef<HTMLButtonElement, HTMLMotionProps<"button"> & {
 );
 
 const languages = [
+  { code: 'auto', flag: '🌐', short: 'Auto', name: 'Auto' },
   { code: 'en', flag: '🇺🇸', short: 'EN', name: 'English' },
   { code: 'ar', flag: '🇸🇦', short: 'ع', name: 'العربية' },
   { code: 'de', flag: '🇩🇪', short: 'DE', name: 'Deutsch' },
@@ -38,10 +40,16 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
 }) => {
   const { currentLanguage, changeLanguage, isChanging } = useLanguage();
   const [open, setOpen] = React.useState(false);
-  const currentLang = languages.find(l => l.code === currentLanguage) || languages[0];
+  const isAutoMode = !localStorage.getItem('user_selected_language');
+  const activeLangCode = isAutoMode ? 'auto' : currentLanguage;
+  const currentLang = languages.find(l => l.code === activeLangCode) || languages[1];
 
   const handleLanguageChange = (langCode: string) => {
-    changeLanguage(langCode);
+    if (langCode === 'auto') {
+      resetToBrowserLanguage();
+    } else {
+      changeLanguage(langCode);
+    }
     setOpen(false);
   };
 
@@ -99,7 +107,7 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
                     "w-10 h-10 rounded-lg",
                     "transition-all duration-200",
                     "hover:bg-accent active:scale-95",
-                    currentLanguage === lang.code 
+                    activeLangCode === lang.code 
                       ? "bg-primary/15 ring-1.5 ring-primary/40 shadow-sm shadow-primary/20" 
                       : "hover:shadow-sm"
                   )}
@@ -107,7 +115,7 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
                   <span className="text-lg leading-none">{lang.flag}</span>
                   <span className={cn(
                     "text-[8px] font-bold mt-0.5 tracking-tight",
-                    currentLanguage === lang.code 
+                    activeLangCode === lang.code 
                       ? "text-primary" 
                       : "text-muted-foreground"
                   )}>
@@ -115,7 +123,7 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
                   </span>
                   
                   {/* Active indicator dot */}
-                  {currentLanguage === lang.code && (
+                  {activeLangCode === lang.code && (
                     <motion.div
                       layoutId="activeLanguage"
                       className="absolute -top-0.5 -right-0.5 h-2 w-2 bg-primary rounded-full ring-2 ring-popover"
