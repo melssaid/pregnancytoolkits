@@ -161,6 +161,12 @@ const SmartDashboard = () => {
         {/* ★ Nutrition Tip */}
         <NutritionTipCard />
 
+        {/* ★ Weekly Symptoms Summary */}
+        <WeeklySymptomsCard />
+
+        {/* ★ Mood Trend */}
+        <MoodTrendCard />
+
         {/* Weekly Health Challenge */}
         <WeeklyHealthChallenge />
 
