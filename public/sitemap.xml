@@ -19,13 +19,72 @@
     <xhtml:link rel="alternate" hreflang="pt" href="https://pregnancytoolkits.lovable.app/?lang=pt"/>
   </url>
 
-  <!-- English SEO Landing Page -->
+  <!-- SEO Landing Pages per Language -->
   <url>
     <loc>https://pregnancytoolkits.lovable.app/en</loc>
-    <lastmod>2026-04-13</lastmod>
+    <lastmod>2026-04-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://pregnancytoolkits.lovable.app/en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://pregnancytoolkits.lovable.app/ar"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://pregnancytoolkits.lovable.app/de"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pregnancytoolkits.lovable.app/fr"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pregnancytoolkits.lovable.app/es"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://pregnancytoolkits.lovable.app/tr"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://pregnancytoolkits.lovable.app/pt"/>
+  </url>
+  <url>
+    <loc>https://pregnancytoolkits.lovable.app/ar</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pregnancytoolkits.lovable.app/en"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://pregnancytoolkits.lovable.app/ar"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://pregnancytoolkits.lovable.app/de"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pregnancytoolkits.lovable.app/fr"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pregnancytoolkits.lovable.app/es"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://pregnancytoolkits.lovable.app/tr"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://pregnancytoolkits.lovable.app/pt"/>
+  </url>
+  <url>
+    <loc>https://pregnancytoolkits.lovable.app/de</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pregnancytoolkits.lovable.app/en"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://pregnancytoolkits.lovable.app/de"/>
+  </url>
+  <url>
+    <loc>https://pregnancytoolkits.lovable.app/fr</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pregnancytoolkits.lovable.app/en"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pregnancytoolkits.lovable.app/fr"/>
+  </url>
+  <url>
+    <loc>https://pregnancytoolkits.lovable.app/es</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pregnancytoolkits.lovable.app/en"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://pregnancytoolkits.lovable.app/es"/>
+  </url>
+  <url>
+    <loc>https://pregnancytoolkits.lovable.app/tr</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pregnancytoolkits.lovable.app/en"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://pregnancytoolkits.lovable.app/tr"/>
+  </url>
+  <url>
+    <loc>https://pregnancytoolkits.lovable.app/pt</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pregnancytoolkits.lovable.app/en"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://pregnancytoolkits.lovable.app/pt"/>
   </url>
 
   <!-- Dashboard -->
