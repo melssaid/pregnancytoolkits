@@ -58,6 +58,7 @@ const SmartDashboard = () => {
   const healthCheckin = safeParseLocalStorage<any>("dashboard_health_checkin_v1", null);
   useSmartConversionPrompt();
   const trimesterTheme = useTrimesterTheme();
+  const dataCheck = useDashboardDataCheck();
   const bloodPressure = healthCheckin?.bloodPressure || "";
 
   const { scrollY } = useScroll();
