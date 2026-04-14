@@ -5,7 +5,7 @@ const LoadingScreen = forwardRef<HTMLDivElement>((_, ref) => (
   <motion.div
     ref={ref}
     className="min-h-screen flex flex-col items-center justify-center gap-6"
-    style={{ background: "linear-gradient(to top, #fff5f7, #fce8ef, #f9d4e0, #f4c1d2, #f0b0c4)" }}
+    style={{ background: "linear-gradient(to top, #faf6f2, #fce8ef, #f9d4e0, #f4c1d2, #f0b0c4)" }}
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
     exit={{ opacity: 0 }}
