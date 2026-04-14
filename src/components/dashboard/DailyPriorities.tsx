@@ -1,8 +1,10 @@
-import { memo, useMemo, useCallback } from "react";
+import { memo, useMemo } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Check, Circle, Droplets, Hand, Dumbbell, Utensils } from "lucide-react";
 import { Link } from "react-router-dom";
+import { safeParseLocalStorage } from "@/lib/safeStorage";
+import type { SavedAIResult } from "@/hooks/useSavedResults";
 
 interface DailyPrioritiesProps {
   vitaminsTaken: number;
@@ -20,10 +22,19 @@ interface PriorityItem {
   detail?: string;
 }
 
+function hasSavedToday(toolId: string): boolean {
+  const all = safeParseLocalStorage<SavedAIResult[]>('ai-saved-results', [], (d): d is SavedAIResult[] => Array.isArray(d));
+  const today = new Date().toDateString();
+  return all.some(r => r.toolId === toolId && new Date(r.savedAt).toDateString() === today);
+}
+
 export const DailyPriorities = memo(function DailyPriorities({
   vitaminsTaken, todayKicks, waterGlasses, upcomingAppointments,
 }: DailyPrioritiesProps) {
   const { t } = useTranslation();
+
+  const mealDoneToday = useMemo(() => hasSavedToday('ai-meal-suggestion'), []);
+  const fitnessDoneToday = useMemo(() => hasSavedToday('ai-fitness-coach'), []);
 
   const items: PriorityItem[] = useMemo(() => [
     {
@@ -45,18 +56,18 @@ export const DailyPriorities = memo(function DailyPriorities({
     {
       id: "meals",
       labelKey: "dailyDashboard.priorities.meals",
-      done: false,
+      done: mealDoneToday,
       icon: Utensils,
       href: "/tools/ai-meal-suggestion",
     },
     {
       id: "fitness",
       labelKey: "dailyDashboard.priorities.fitness",
-      done: false,
+      done: fitnessDoneToday,
       icon: Dumbbell,
       href: "/tools/ai-fitness-coach",
     },
-  ], [todayKicks, waterGlasses]);
+  ], [todayKicks, waterGlasses, mealDoneToday, fitnessDoneToday]);
 
   const completedCount = items.filter(i => i.done).length;
 
