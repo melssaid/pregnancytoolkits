@@ -245,6 +245,20 @@ export function SEOHead({
         </script>
       )}
 
+      {/* WebSite Schema with SearchAction */}
+      {webSiteSchema && (
+        <script type="application/ld+json">
+          {JSON.stringify(webSiteSchema)}
+        </script>
+      )}
+
+      {/* Organization Schema */}
+      {orgSchema && (
+        <script type="application/ld+json">
+          {JSON.stringify(orgSchema)}
+        </script>
+      )}
+
       {/* FAQPage Schema */}
       {faqSchema && (
         <script type="application/ld+json">
