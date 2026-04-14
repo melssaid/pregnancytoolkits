@@ -122,10 +122,10 @@ const SmartDashboard = () => {
           />
         </div>
 
-        {/* 1. Hero — Pregnancy Week */}
+        {/* 1. Hero — always visible */}
         <DailyHeroCard week={profile.pregnancyWeek} dueDate={profile.dueDate} />
 
-        {/* ★ Health Score Ring + Streak Badge attached */}
+        {/* ★ Health Score Ring + Streak Badge — always visible */}
         <div className="relative">
           <div className="absolute -top-3 start-3 z-10">
             <StreakBadge />
@@ -133,49 +133,49 @@ const SmartDashboard = () => {
           <HealthScoreRing />
         </div>
 
-        {/* ★ Baby Size Visualization */}
+        {/* ★ Baby Size — always visible */}
         <BabySizeCard />
 
-        {/* Birth Countdown */}
+        {/* Birth Countdown — always visible */}
         <BirthCountdownCard />
 
-        {/* Week Certificate */}
-        <WeekCertificateCard />
-
-        {/* Stage Recommendation */}
-        <StageRecommendation />
-
-        {/* Usage Stats Nudge for free users */}
-        <UsageStatsNudge />
-
-        {/* 2. Risk Alerts (conditional) */}
+        {/* Risk Alerts — conditional */}
         <RiskAlertCard
           bloodPressure={bloodPressure}
           todayKicks={stats.dailyTracking.todayKicks}
           week={profile.pregnancyWeek}
         />
 
-        {/* TodaysInsightCard removed — NutritionTipCard covers this */}
+        {/* ═══ DATA-FIRST SECTION: cards that have user data appear here ═══ */}
 
-        {/* ★ Contextual Symptoms */}
+        {dataCheck.hasRecentActivity && <RecentMealFitnessSummary />}
+
+        {dataCheck.hasSymptomsData && <WeeklySymptomsCard />}
+
+        {dataCheck.hasMoodData && <MoodTrendCard />}
+
+        {dataCheck.hasContractions && <ContractionSummaryCard />}
+
+        {dataCheck.hasWeight && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+            <FetalMovementCard todayKicks={stats.dailyTracking.todayKicks} />
+            <WeightTrendCard />
+          </div>
+        )}
+
+        {dataCheck.hasSavedResults && <SavedResultsCountCard />}
+        {dataCheck.hasSavedResults && <RecentAIResults />}
+
+        {/* ═══ ALWAYS-VISIBLE SECTION ═══ */}
+
+        <WeekCertificateCard />
+        <StageRecommendation />
+        <UsageStatsNudge />
         <ContextualSymptomsCard />
-
-        {/* ★ Nutrition Tip */}
         <NutritionTipCard />
-
-        {/* ★ Weekly Symptoms Summary */}
-        <WeeklySymptomsCard />
-
-        {/* ★ Mood Trend */}
-        <MoodTrendCard />
-
-        {/* Weekly Health Challenge */}
         <WeeklyHealthChallenge />
-
-        {/* ★ Daily Health Challenges */}
         <DailyHealthChallengeCard />
 
-        {/* 3. Daily Priorities */}
         <DailyPriorities
           vitaminsTaken={stats.dailyTracking.vitaminsTaken}
           todayKicks={stats.dailyTracking.todayKicks}
@@ -183,52 +183,33 @@ const SmartDashboard = () => {
           upcomingAppointments={stats.planning.upcomingAppointments}
         />
 
-        {/* Recent Meal & Fitness Summary */}
-        <RecentMealFitnessSummary />
-
-        {/* 4. Quick Actions */}
         <QuickActionsBar />
-
-        {/* 5. Hydration */}
         <HydrationTracker />
-
-        {/* 6. Symptoms Summary */}
         <SymptomsSummary />
 
-        {/* ★ Contraction Summary */}
-        <ContractionSummaryCard />
+        {/* Data cards that weren't shown above (no data yet) */}
+        {!dataCheck.hasRecentActivity && <RecentMealFitnessSummary />}
+        {!dataCheck.hasSymptomsData && <WeeklySymptomsCard />}
+        {!dataCheck.hasMoodData && <MoodTrendCard />}
+        {!dataCheck.hasContractions && <ContractionSummaryCard />}
 
-        {/* 7 & 8. Baby Movement + Weight — side by side on wider screens */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-          <FetalMovementCard todayKicks={stats.dailyTracking.todayKicks} />
-          <WeightTrendCard />
-        </div>
+        {!dataCheck.hasWeight && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+            <FetalMovementCard todayKicks={stats.dailyTracking.todayKicks} />
+            <WeightTrendCard />
+          </div>
+        )}
 
-        {/* ★ Weekly Comparison */}
+        {!dataCheck.hasSavedResults && <SavedResultsCountCard />}
+        {!dataCheck.hasSavedResults && <RecentAIResults />}
+
+        {/* Bottom section — always visible */}
         <WeeklyComparisonCard />
-
-        {/* ★ Milestones Timeline */}
         <MilestonesTimeline />
-
-        {/* ★ Doctor Visit Prep */}
         <DoctorVisitPrepCard />
-
-        {/* ★ Partner Summary */}
         <PartnerSummaryCard />
-
-        {/* ★ Medical Summary */}
         <MedicalSummaryCard />
-
-        {/* App Rating */}
         <AppRatingCard />
-
-        {/* ★ Saved AI Results */}
-        <SavedResultsCountCard />
-
-        {/* 10. Recent AI Results */}
-        <RecentAIResults />
-
-        {/* Dynamic FAQ */}
         <DynamicFAQ />
 
         {/* Back to Home Banner */}
