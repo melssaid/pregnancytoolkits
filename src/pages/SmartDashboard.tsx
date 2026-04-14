@@ -125,13 +125,8 @@ const SmartDashboard = () => {
         {/* 1. Hero — always visible */}
         <DailyHeroCard week={profile.pregnancyWeek} dueDate={profile.dueDate} />
 
-        {/* ★ Health Score Ring + Streak Badge — always visible */}
-        <div className="relative">
-          <div className="absolute -top-3 start-3 z-10">
-            <StreakBadge />
-          </div>
-          <HealthScoreRing />
-        </div>
+        {/* ★ Health Score Ring — always visible */}
+        <HealthScoreRing />
 
         {/* ★ Baby Size — always visible */}
         <BabySizeCard />
