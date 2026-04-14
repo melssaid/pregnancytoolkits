@@ -48,6 +48,7 @@ import { WeeklySymptomsCard } from "@/components/dashboard/WeeklySymptomsCard";
 import { ContractionSummaryCard } from "@/components/dashboard/ContractionSummaryCard";
 import { MoodTrendCard } from "@/components/dashboard/MoodTrendCard";
 import { SavedResultsCountCard } from "@/components/dashboard/SavedResultsCountCard";
+import { useDashboardDataCheck } from "@/hooks/useDashboardDataCheck";
 
 const SmartDashboard = () => {
   const { t } = useTranslation();
