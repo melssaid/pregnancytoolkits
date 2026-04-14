@@ -254,6 +254,8 @@
         "highBloodPressure": "ضغط الدم المرتفع",
         "twinPregnancy": "حمل توأم",
         "thyroidDisorder": "اضطراب الغدة الدرقية",
+        "pcos": "تكيس المبايض",
+        "postpartumDepression": "اكتئاب ما بعد الولادة",
         "none": "لا شيء مما سبق"
       }
     },
