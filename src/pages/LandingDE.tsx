@@ -1,0 +1,67 @@
+import { Calendar, Activity, Baby, Brain, Apple, Heart } from "lucide-react";
+import { LandingPage } from "./LandingPage";
+
+const content = {
+  lang: "de",
+  seoTitle: "Kostenloser Schwangerschafts-Tracker — Geburtsterminrechner & 33+ Tools",
+  seoDesc: "Kostenlose Schwangerschafts-App mit 33+ intelligenten Tools: Geburtsterminrechner, Bewegungszähler, Wehentimer, Baby-Wachstumstracker, Ernährungsplaner und mehr. Ohne Registrierung.",
+  badge: "Kostenlos — Keine Registrierung nötig",
+  heroTitle: "Ihr kompletter",
+  heroHighlight: "Schwangerschafts-Begleiter",
+  heroSubtitle: "Verfolgen Sie Ihre Schwangerschaft Woche für Woche mit unserem kostenlosen Geburtsterminrechner, Bewegungszähler, Wehentimer und KI-Assistenten. In 7 Sprachen verfügbar.",
+  ctaPrimary: "Jetzt starten — Kostenlos",
+  ctaSecondary: "Alle Tools entdecken",
+  toolsSectionTitle: "Wichtige Schwangerschafts- & Fruchtbarkeits-Tools",
+  toolsSectionDesc: "Alles was Sie brauchen vom Kinderwunsch bis nach der Geburt — in einer kostenlosen App.",
+  tools: [
+    { icon: Calendar, title: "Geburtsterminrechner", desc: "Berechnen Sie Ihren voraussichtlichen Entbindungstermin basierend auf Ihrer letzten Periode.", link: "/tools/due-date-calculator" },
+    { icon: Activity, title: "Baby-Bewegungszähler", desc: "Verfolgen Sie die Bewegungen und Aktivitätsmuster Ihres Babys.", link: "/tools/kick-counter" },
+    { icon: Baby, title: "Baby-Wachstumstracker", desc: "Verfolgen Sie die wöchentliche Entwicklung mit Größenvergleichen und Meilensteinen.", link: "/tools/baby-growth" },
+    { icon: Brain, title: "KI-Schwangerschaftsassistent", desc: "Erhalten Sie sofortige, evidenzbasierte Antworten auf Ihre Schwangerschaftsfragen.", link: "/tools/pregnancy-assistant" },
+    { icon: Apple, title: "Ernährungsplaner", desc: "Personalisierte Ernährungspläne und sichere Lebensmittelführer für jedes Trimester.", link: "/tools/ai-meal-suggestion" },
+    { icon: Heart, title: "Geburtsplan-Generator", desc: "Erstellen Sie einen umfassenden, personalisierten Geburtsplan mit KI-Unterstützung.", link: "/tools/ai-birth-plan" },
+    { icon: Activity, title: "Gewichtszunahme-Tracker", desc: "Überwachen Sie die gesunde Gewichtszunahme in der Schwangerschaft nach medizinischen Richtlinien.", link: "/tools/weight-gain" },
+    { icon: Calendar, title: "Zyklus- & Eisprung-Tracker", desc: "Verfolgen Sie Ihren Menstruationszyklus und identifizieren Sie Ihr fruchtbares Fenster.", link: "/tools/cycle-tracker" },
+  ],
+  benefitsTitle: "Warum werdende Eltern Pregnancy Toolkits wählen",
+  benefits: [
+    "33+ kostenlose intelligente Schwangerschafts- und Fruchtbarkeits-Tools",
+    "Woche-für-Woche Baby-Entwicklungsführer",
+    "Evidenzbasierte Gesundheitsinformationen aus medizinischen Quellen",
+    "Verfügbar in 7 Sprachen inkl. Deutsch, Englisch, Französisch und Spanisch",
+    "Kein Konto erforderlich — Ihre Daten bleiben privat auf Ihrem Gerät",
+    "DSGVO- und CCPA-konform — Wir verkaufen niemals Ihre Daten",
+  ],
+  trimester1Title: "Erstes Trimester (Wochen 1–12)",
+  trimester1: "Das erste Trimester ist eine Zeit rasanter Entwicklung. In Woche 6 beginnt das Herz Ihres Babys zu schlagen. Häufige Symptome sind Übelkeit, Müdigkeit und Brustspannen. Unser Ernährungsplaner hilft Ihnen, die richtige Ernährung beizubehalten.",
+  trimester2Title: "Zweites Trimester (Wochen 13–26)",
+  trimester2: "Oft als 'goldenes Trimester' bezeichnet, fühlen sich viele Frauen in dieser Phase am besten. Um Woche 20 spüren Sie die ersten Tritte Ihres Babys. Nutzen Sie unseren Bewegungszähler. Ihr Baby wächst schnell und beginnt Ihre Stimme zu hören.",
+  trimester3Title: "Drittes Trimester (Wochen 27–40)",
+  trimester3: "Mit näherrückendem Geburtstermin wird die Vorbereitung entscheidend. Packen Sie Ihre Krankenhaustasche bis Woche 36. Erstellen Sie einen Geburtsplan mit Ihren Präferenzen für Schmerzmanagement und Stillen.",
+  fertilityTitle: "Fruchtbarkeits- & Empfängnisplanung",
+  fertilityContent: "Die Planung einer Schwangerschaft beginnt mit dem Verständnis Ihres Menstruationszyklus. Unser Zyklus-Tracker hilft Ihnen, Ihren Eisprung genau zu bestimmen.",
+  fertilityTips: "Tipps zur Fruchtbarkeitsförderung: Halten Sie ein gesundes Gewicht, essen Sie folat-, eisen- und zinkreiche Lebensmittel, bewegen Sie sich mäßig, vermeiden Sie Rauchen und übermäßiges Koffein.",
+  birthTitle: "Geburtsvorbereitung: Alles Wissenswerte",
+  birthContent: "Die Geburt erfordert körperliche und mentale Vorbereitung. Lernen Sie die Zeichen der Wehen kennen. Wählen Sie die Geburtsmethode, die zu Ihnen passt.",
+  birthBag: "Krankenhaustasche-Essentials: Packen Sie bis Woche 36. Bequeme Kleidung, Pflegeprodukte, wichtige Dokumente, gesunde Snacks und ein Ladegerät.",
+  postpartumTitle: "Wochenbett & Neugeborenen-Pflege",
+  postpartumContent: "Die Wochenbettzeit ist voller Herausforderungen und Freude. Achten Sie auf Ihre mentale und körperliche Gesundheit. Schlafen Sie wenn das Baby schläft.",
+  postpartumTips: "Tägliche Wellness-Tipps: Trinken Sie 8-10 Gläser Wasser, essen Sie kleine proteinreiche Mahlzeiten, gehen Sie 30 Minuten spazieren.",
+  faqTitle: "Häufig gestellte Fragen",
+  faqs: [
+    { q: "Ist diese Schwangerschafts-App wirklich kostenlos?", a: "Ja, Pregnancy Toolkits ist völlig kostenlos. Alle 33+ Tools sind ohne versteckte Kosten verfügbar." },
+    { q: "Wie genau ist der Geburtsterminrechner?", a: "Unser Rechner verwendet die Naegele-Regel, die auch von Ärzten verwendet wird. Nur 5% der Babys kommen am exakten Termin." },
+    { q: "Sind meine Daten sicher?", a: "Absolut. Ihre Gesundheitsdaten werden lokal auf Ihrem Gerät gespeichert. Wir sind DSGVO- und CCPA-konform." },
+    { q: "Kann ich die App auch zur Zyklusverfolgung nutzen?", a: "Ja. Unser Zyklustracker prognostiziert den Eisprung und identifiziert Ihr fruchtbares Fenster." },
+    { q: "Ersetzt diese App ärztliche Betreuung?", a: "Nein. Pregnancy Toolkits ist ein Bildungs- und Lifestyle-Begleiter. Konsultieren Sie immer Ihren Arzt." },
+  ],
+  ctaFinalTitle: "Starten Sie Ihre Schwangerschaftsreise heute",
+  ctaFinalDesc: "Schließen Sie sich tausenden werdenden Eltern an. Völlig kostenlos, kein Konto nötig.",
+  ctaFinalBtn: "Jetzt starten — Für immer kostenlos",
+  disclaimer: "Pregnancy Toolkits ist ein Bildungs- und Lifestyle-Begleiter, nur zu Bildungszwecken. Konsultieren Sie immer Ihren Arzt.",
+  viewAll: "Alle 33+ Tools anzeigen",
+};
+
+export default function LandingDE() {
+  return <LandingPage content={content} />;
+}

@@ -1,0 +1,67 @@
+import { Calendar, Activity, Baby, Brain, Apple, Heart } from "lucide-react";
+import { LandingPage } from "./LandingPage";
+
+const content = {
+  lang: "pt",
+  seoTitle: "Acompanhamento de Gravidez Grátis — Calculadora de Data de Parto & 33+ Ferramentas",
+  seoDesc: "App gratuito de acompanhamento de gravidez com 33+ ferramentas inteligentes: calculadora de data de parto, contador de chutes, temporizador de contrações, acompanhamento do crescimento do bebê e mais.",
+  badge: "Grátis — Sem cadastro",
+  heroTitle: "Seu companheiro completo para",
+  heroHighlight: "acompanhamento da gravidez",
+  heroSubtitle: "Acompanhe sua gravidez semana a semana com nossa calculadora gratuita, contador de chutes, temporizador de contrações e assistente de IA. Disponível em 7 idiomas.",
+  ctaPrimary: "Começar — É grátis",
+  ctaSecondary: "Explorar ferramentas",
+  toolsSectionTitle: "Ferramentas essenciais de gravidez e fertilidade",
+  toolsSectionDesc: "Tudo que você precisa da concepção ao pós-parto — em um único app gratuito.",
+  tools: [
+    { icon: Calendar, title: "Calculadora de data de parto", desc: "Calcule sua data prevista de parto baseada na sua última menstruação.", link: "/tools/due-date-calculator" },
+    { icon: Activity, title: "Contador de chutes", desc: "Acompanhe os movimentos e padrões de atividade do seu bebê.", link: "/tools/kick-counter" },
+    { icon: Baby, title: "Acompanhamento de crescimento", desc: "Acompanhe o desenvolvimento semana a semana com comparações de tamanho.", link: "/tools/baby-growth" },
+    { icon: Brain, title: "Assistente IA de gravidez", desc: "Receba respostas instantâneas baseadas em evidências para suas perguntas.", link: "/tools/pregnancy-assistant" },
+    { icon: Apple, title: "Planejador de refeições", desc: "Planos nutricionais personalizados e guia de alimentos seguros por trimestre.", link: "/tools/ai-meal-suggestion" },
+    { icon: Heart, title: "Gerador de plano de parto", desc: "Crie um plano de parto completo e personalizado com ajuda da IA.", link: "/tools/ai-birth-plan" },
+    { icon: Activity, title: "Acompanhamento de peso", desc: "Monitore seu ganho de peso saudável segundo as diretrizes médicas.", link: "/tools/weight-gain" },
+    { icon: Calendar, title: "Acompanhamento de ciclo e ovulação", desc: "Acompanhe seu ciclo menstrual e identifique sua janela fértil.", link: "/tools/cycle-tracker" },
+  ],
+  benefitsTitle: "Por que futuros pais escolhem o Pregnancy Toolkits?",
+  benefits: [
+    "33+ ferramentas inteligentes gratuitas para gravidez e fertilidade",
+    "Guia de desenvolvimento do bebê semana a semana",
+    "Informações de saúde baseadas em fontes médicas",
+    "Disponível em 7 idiomas incluindo português, inglês, espanhol e francês",
+    "Sem cadastro — seus dados permanecem privados no seu dispositivo",
+    "Em conformidade com LGPD, GDPR e CCPA — nunca vendemos seus dados",
+  ],
+  trimester1Title: "Primeiro trimestre (Semanas 1–12)",
+  trimester1: "O primeiro trimestre é um período de desenvolvimento rápido. Na semana 6, o coração do seu bebê começa a bater. Sintomas comuns incluem enjoo matinal, fadiga e sensibilidade nos seios.",
+  trimester2Title: "Segundo trimestre (Semanas 13–26)",
+  trimester2: "Frequentemente chamado de 'trimestre dourado', muitas mulheres se sentem melhor neste período. Você sentirá os primeiros chutes por volta da semana 20. Seu bebê cresce rapidamente e começa a ouvir sua voz.",
+  trimester3Title: "Terceiro trimestre (Semanas 27–40)",
+  trimester3: "À medida que a data do parto se aproxima, a preparação se torna essencial. Prepare sua mala da maternidade até a semana 36. Crie um plano de parto completo com suas preferências.",
+  fertilityTitle: "Guia de planejamento de fertilidade",
+  fertilityContent: "Planejar uma gravidez começa por entender seu ciclo menstrual. Nosso acompanhamento de ciclo ajuda a determinar sua ovulação com precisão.",
+  fertilityTips: "Dicas para melhorar a fertilidade: mantenha um peso saudável, coma alimentos ricos em folato, ferro e zinco, faça exercícios moderados.",
+  birthTitle: "Preparação para o parto",
+  birthContent: "O parto requer preparação física e mental. Aprenda os sinais do trabalho de parto como contrações regulares.",
+  birthBag: "Essenciais da mala da maternidade: prepare até a semana 36. Roupas confortáveis, itens de higiene, documentos importantes, lanches saudáveis.",
+  postpartumTitle: "Guia pós-parto e cuidados com o recém-nascido",
+  postpartumContent: "O período pós-parto é cheio de desafios e alegria. Cuide da sua saúde mental e física. Durma quando o bebê dormir.",
+  postpartumTips: "Dicas diárias: beba 8-10 copos de água, faça pequenas refeições ricas em proteínas, caminhe 30 minutos por dia.",
+  faqTitle: "Perguntas frequentes",
+  faqs: [
+    { q: "Este app de gravidez é realmente grátis?", a: "Sim, o Pregnancy Toolkits é totalmente gratuito. Todas as 33+ ferramentas estão disponíveis sem custos ocultos." },
+    { q: "Quão precisa é a calculadora de data?", a: "Nossa calculadora usa a regra de Naegele utilizada pelos médicos. Apenas 5% dos bebês nascem na data exata." },
+    { q: "Meus dados estão seguros?", a: "Absolutamente. Seus dados de saúde são armazenados localmente no seu dispositivo. Conformidade com LGPD, GDPR e CCPA." },
+    { q: "Posso acompanhar meu ciclo menstrual?", a: "Sim. Nosso acompanhamento prevê a ovulação e identifica sua janela fértil." },
+    { q: "Este app substitui acompanhamento médico?", a: "Não. Pregnancy Toolkits é um companheiro educacional. Sempre consulte seu médico." },
+  ],
+  ctaFinalTitle: "Comece sua jornada de maternidade hoje",
+  ctaFinalDesc: "Junte-se a milhares de futuros pais. Totalmente gratuito, sem cadastro.",
+  ctaFinalBtn: "Começar — Grátis para sempre",
+  disclaimer: "Pregnancy Toolkits é um companheiro educacional e de estilo de vida, apenas para fins educacionais. Sempre consulte seu médico.",
+  viewAll: "Ver todas as 33+ ferramentas",
+};
+
+export default function LandingPT() {
+  return <LandingPage content={content} />;
+}

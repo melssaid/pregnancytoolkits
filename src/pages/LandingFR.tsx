@@ -1,0 +1,67 @@
+import { Calendar, Activity, Baby, Brain, Apple, Heart } from "lucide-react";
+import { LandingPage } from "./LandingPage";
+
+const content = {
+  lang: "fr",
+  seoTitle: "Suivi de Grossesse Gratuit — Calculateur de Date d'Accouchement & 33+ Outils",
+  seoDesc: "Application gratuite de suivi de grossesse avec 33+ outils intelligents : calculateur de date d'accouchement, compteur de mouvements, minuteur de contractions, suivi de croissance du bébé et plus.",
+  badge: "Gratuit — Sans inscription",
+  heroTitle: "Votre compagnon complet pour",
+  heroHighlight: "le suivi de grossesse",
+  heroSubtitle: "Suivez votre grossesse semaine par semaine avec notre calculateur gratuit, compteur de mouvements, minuteur de contractions et assistant IA. Disponible en 7 langues.",
+  ctaPrimary: "Commencer — C'est gratuit",
+  ctaSecondary: "Explorer les outils",
+  toolsSectionTitle: "Outils essentiels de grossesse et fertilité",
+  toolsSectionDesc: "Tout ce dont vous avez besoin de la conception au post-partum — dans une seule app gratuite.",
+  tools: [
+    { icon: Calendar, title: "Calculateur de date d'accouchement", desc: "Calculez votre date prévue d'accouchement basée sur vos dernières règles.", link: "/tools/due-date-calculator" },
+    { icon: Activity, title: "Compteur de mouvements", desc: "Suivez les mouvements et les schémas d'activité de votre bébé.", link: "/tools/kick-counter" },
+    { icon: Baby, title: "Suivi de croissance du bébé", desc: "Suivez le développement semaine par semaine avec des comparaisons de taille.", link: "/tools/baby-growth" },
+    { icon: Brain, title: "Assistant IA grossesse", desc: "Obtenez des réponses instantanées et basées sur les preuves à vos questions.", link: "/tools/pregnancy-assistant" },
+    { icon: Apple, title: "Planificateur de repas", desc: "Plans nutritionnels personnalisés et guide des aliments sûrs pour chaque trimestre.", link: "/tools/ai-meal-suggestion" },
+    { icon: Heart, title: "Générateur de plan de naissance", desc: "Créez un plan de naissance complet et personnalisé avec l'aide de l'IA.", link: "/tools/ai-birth-plan" },
+    { icon: Activity, title: "Suivi de prise de poids", desc: "Surveillez votre prise de poids saine selon les recommandations médicales.", link: "/tools/weight-gain" },
+    { icon: Calendar, title: "Suivi de cycle et ovulation", desc: "Suivez votre cycle menstruel et identifiez votre fenêtre de fertilité.", link: "/tools/cycle-tracker" },
+  ],
+  benefitsTitle: "Pourquoi les futurs parents choisissent Pregnancy Toolkits",
+  benefits: [
+    "33+ outils intelligents gratuits pour la grossesse et la fertilité",
+    "Guide de développement du bébé semaine par semaine",
+    "Informations de santé basées sur des sources médicales",
+    "Disponible en 7 langues dont français, anglais, espagnol et allemand",
+    "Sans inscription — vos données restent privées sur votre appareil",
+    "Conforme au RGPD et CCPA — nous ne vendons jamais vos données",
+  ],
+  trimester1Title: "Premier trimestre (Semaines 1–12)",
+  trimester1: "Le premier trimestre est une période de développement rapide. À la semaine 6, le cœur de votre bébé commence à battre. Les symptômes courants incluent les nausées matinales, la fatigue et la sensibilité des seins.",
+  trimester2Title: "Deuxième trimestre (Semaines 13–26)",
+  trimester2: "Souvent appelé le 'trimestre doré', de nombreuses femmes se sentent au mieux. Vous sentirez les premiers coups vers la semaine 20. Votre bébé grandit rapidement et commence à entendre votre voix.",
+  trimester3Title: "Troisième trimestre (Semaines 27–40)",
+  trimester3: "À l'approche de la date prévue, la préparation devient essentielle. Préparez votre valise de maternité avant la semaine 36. Créez un plan de naissance complet incluant vos préférences.",
+  fertilityTitle: "Guide de planification de fertilité",
+  fertilityContent: "Planifier une grossesse commence par comprendre votre cycle menstruel. Notre suivi de cycle vous aide à déterminer précisément votre ovulation.",
+  fertilityTips: "Conseils pour améliorer la fertilité : maintenez un poids santé, mangez des aliments riches en folates, fer et zinc, faites de l'exercice modéré.",
+  birthTitle: "Préparation à l'accouchement",
+  birthContent: "L'accouchement nécessite une préparation physique et mentale. Apprenez les signes du travail comme les contractions régulières.",
+  birthBag: "Essentiels de la valise de maternité : préparez-la avant la semaine 36. Vêtements confortables, soins personnels, documents importants, collations saines.",
+  postpartumTitle: "Guide post-partum et soins du nouveau-né",
+  postpartumContent: "La période post-partum est remplie de défis et de joie. Prenez soin de votre santé mentale et physique. Dormez quand le bébé dort.",
+  postpartumTips: "Conseils quotidiens : buvez 8-10 verres d'eau, mangez de petits repas riches en protéines, marchez 30 minutes par jour.",
+  faqTitle: "Questions fréquentes",
+  faqs: [
+    { q: "Cette application de grossesse est-elle vraiment gratuite ?", a: "Oui, Pregnancy Toolkits est entièrement gratuit. Tous les 33+ outils sont disponibles sans frais cachés." },
+    { q: "Quelle est la précision du calculateur de date ?", a: "Notre calculateur utilise la règle de Naegele utilisée par les professionnels. Seulement 5% des bébés naissent à la date exacte." },
+    { q: "Mes données sont-elles sécurisées ?", a: "Absolument. Vos données de santé sont stockées localement sur votre appareil. Conforme au RGPD et CCPA." },
+    { q: "Puis-je suivre mon cycle menstruel ?", a: "Oui. Notre suivi prédit l'ovulation et identifie votre fenêtre de fertilité." },
+    { q: "Cette app remplace-t-elle un suivi médical ?", a: "Non. Pregnancy Toolkits est un compagnon éducatif. Consultez toujours votre médecin." },
+  ],
+  ctaFinalTitle: "Commencez votre parcours maternité aujourd'hui",
+  ctaFinalDesc: "Rejoignez des milliers de futurs parents. Entièrement gratuit, sans inscription.",
+  ctaFinalBtn: "Commencer — Gratuit pour toujours",
+  disclaimer: "Pregnancy Toolkits est un compagnon éducatif et de style de vie, à des fins éducatives uniquement. Consultez toujours votre médecin.",
+  viewAll: "Voir tous les 33+ outils",
+};
+
+export default function LandingFR() {
+  return <LandingPage content={content} />;
+}

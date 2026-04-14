@@ -129,6 +129,12 @@ const DiaperTracker = lazy(() => import("@/pages/tools/DiaperTracker"));
 // VIDEO LIBRARY
 const VideoLibraryPage = lazy(() => import("@/pages/VideoLibraryPage"));
 const LandingEN = lazy(() => import("@/pages/LandingEN"));
+const LandingAR = lazy(() => import("@/pages/LandingAR"));
+const LandingDE = lazy(() => import("@/pages/LandingDE"));
+const LandingFR = lazy(() => import("@/pages/LandingFR"));
+const LandingES = lazy(() => import("@/pages/LandingES"));
+const LandingTR = lazy(() => import("@/pages/LandingTR"));
+const LandingPT = lazy(() => import("@/pages/LandingPT"));
 const AIUsageDashboard = lazy(() => import("@/pages/AIUsageDashboard"));
 const KeywordLibrary = lazy(() => import("@/pages/KeywordLibrary"));
 const ASOGenerator = lazy(() => import("@/pages/ASOGenerator"));
@@ -150,6 +156,12 @@ export function AnimatedRoutes() {
         {/* Main Pages */}
         <Route path="/" element={<PageTransition><Index /></PageTransition>} />
         <Route path="/en" element={<PageTransition><LandingEN /></PageTransition>} />
+        <Route path="/ar" element={<PageTransition><LandingAR /></PageTransition>} />
+        <Route path="/de" element={<PageTransition><LandingDE /></PageTransition>} />
+        <Route path="/fr" element={<PageTransition><LandingFR /></PageTransition>} />
+        <Route path="/es" element={<PageTransition><LandingES /></PageTransition>} />
+        <Route path="/tr" element={<PageTransition><LandingTR /></PageTransition>} />
+        <Route path="/pt" element={<PageTransition><LandingPT /></PageTransition>} />
         {/* SEO Landing Pages per tool */}
         <Route path="/tool/:toolSlug" element={<PageTransition><ToolLanding /></PageTransition>} />
         <Route path="/dashboard" element={<PageTransition><SmartDashboard /></PageTransition>} />
