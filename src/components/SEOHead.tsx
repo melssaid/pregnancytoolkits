@@ -115,8 +115,35 @@ export function SEOHead({
     ],
   } : null;
 
-  // FAQPage schema from translations (ar, de, fr, es have localized FAQs)
-  const faqKeys = [1, 2, 3, 4, 5, 6];
+  // WebSite schema with SearchAction (sitelinks search box in Google)
+  const webSiteSchema = path === "/" || path === "/en" ? {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": brandName,
+    "url": BASE_URL,
+    "inLanguage": LANGUAGES,
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": `${BASE_URL}/discover?q={search_term_string}`,
+      "query-input": "required name=search_term_string",
+    },
+  } : null;
+
+  // Organization schema
+  const orgSchema = path === "/" || path === "/en" ? {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": brandName,
+    "url": BASE_URL,
+    "logo": "https://pregnancytoolkits.lovable.app/icons/icon-512x512.png",
+    "sameAs": [
+      "https://play.google.com/store/apps/details?id=app.pregnancytoolkits.android"
+    ],
+    "description": seoDesc,
+  } : null;
+
+  // FAQPage schema from translations
+  const faqKeys = Array.from({ length: 10 }, (_, i) => i + 1);
   const hasFaq = (path === "/" || path === "/en") && t("seo.faq.q1", "") !== "" && t("seo.faq.q1", "") !== "seo.faq.q1";
   const faqSchema = hasFaq ? {
     "@context": "https://schema.org",
@@ -215,6 +242,20 @@ export function SEOHead({
       {appSchema && (
         <script type="application/ld+json">
           {JSON.stringify(appSchema)}
+        </script>
+      )}
+
+      {/* WebSite Schema with SearchAction */}
+      {webSiteSchema && (
+        <script type="application/ld+json">
+          {JSON.stringify(webSiteSchema)}
+        </script>
+      )}
+
+      {/* Organization Schema */}
+      {orgSchema && (
+        <script type="application/ld+json">
+          {JSON.stringify(orgSchema)}
         </script>
       )}
 
