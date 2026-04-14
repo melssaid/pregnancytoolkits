@@ -44,6 +44,10 @@ import { NutritionTipCard } from "@/components/dashboard/NutritionTipCard";
 import { PartnerSummaryCard } from "@/components/dashboard/PartnerSummaryCard";
 import { DailyHealthChallengeCard } from "@/components/dashboard/DailyHealthChallengeCard";
 import { MedicalSummaryCard } from "@/components/dashboard/MedicalSummaryCard";
+import { WeeklySymptomsCard } from "@/components/dashboard/WeeklySymptomsCard";
+import { ContractionSummaryCard } from "@/components/dashboard/ContractionSummaryCard";
+import { MoodTrendCard } from "@/components/dashboard/MoodTrendCard";
+import { SavedResultsCountCard } from "@/components/dashboard/SavedResultsCountCard";
 
 const SmartDashboard = () => {
   const { t } = useTranslation();
