@@ -16,6 +16,7 @@ import { DailyHeroCard } from "@/components/dashboard/DailyHeroCard";
 import { RiskAlertCard } from "@/components/dashboard/RiskAlertCard";
 // TodaysInsightCard import removed
 import { DailyPriorities } from "@/components/dashboard/DailyPriorities";
+import { RecentMealFitnessSummary } from "@/components/dashboard/RecentMealFitnessSummary";
 import { QuickActionsBar } from "@/components/dashboard/QuickActionsBar";
 import { HydrationTracker } from "@/components/dashboard/HydrationTracker";
 import { SymptomsSummary } from "@/components/dashboard/SymptomsSummary";
