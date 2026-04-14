@@ -333,10 +333,18 @@
           if(done)return;
           done=true;
           localStorage.setItem(SPLASH_KEY,'true');
-          overlay.style.opacity='0';
+          // Smooth fade: first fade video to white/transparent, then fade overlay
+          vid.style.transition='opacity 0.5s ease';
+          vid.style.opacity='0';
           setTimeout(function(){
-            if(overlay.parentNode) overlay.parentNode.removeChild(overlay);
-          },400);
+            overlay.style.opacity='0';
+            setTimeout(function(){
+              if(overlay.parentNode) overlay.parentNode.removeChild(overlay);
+              // Restore body background for app
+              document.body.style.background='#faf6f2';
+              document.documentElement.style.background='#faf6f2';
+            }, 800);
+          }, 300);
           window.__htmlSplashVideoActive=false;
           window.__htmlSplashVideoEnded=true;
           window.dispatchEvent(new CustomEvent('html-splash-ended'));
