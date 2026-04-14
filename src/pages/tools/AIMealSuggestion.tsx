@@ -286,6 +286,12 @@ Provide an easy recipe with ingredients, preparation steps, and nutritional valu
 
             {/* Actions */}
             <div className="flex gap-2">
+              <SaveResultButton
+                toolId="ai-meal-suggestion"
+                title={t("toolsInternal.mealSuggestion.mealSuggestion")}
+                content={content}
+                meta={{ mealType, trimester }}
+              />
               <Button
                 onClick={reset}
                 variant="outline"
