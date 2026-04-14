@@ -8,7 +8,7 @@ import type { SavedAIResult } from "@/hooks/useSavedResults";
 import { formatDistanceToNow } from "date-fns";
 import { ar, de, fr, es, pt, tr } from "date-fns/locale";
 
-const localeMap: Record<string, Locale> = { ar, de, fr, es, pt, tr };
+const localeMap: Record<string, typeof ar> = { ar, de, fr, es, pt, tr };
 
 function getLatest(toolId: string): SavedAIResult | null {
   const all = safeParseLocalStorage<SavedAIResult[]>('ai-saved-results', [], (d): d is SavedAIResult[] => Array.isArray(d));
