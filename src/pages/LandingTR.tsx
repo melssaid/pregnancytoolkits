@@ -1,0 +1,67 @@
+import { Calendar, Activity, Baby, Brain, Apple, Heart } from "lucide-react";
+import { LandingPage } from "./LandingPage";
+
+const content = {
+  lang: "tr",
+  seoTitle: "Ücretsiz Hamilelik Takip Uygulaması — Doğum Tarihi Hesaplama & 33+ Araç",
+  seoDesc: "33+ akıllı araçla ücretsiz hamilelik takip uygulaması: doğum tarihi hesaplama, bebek tekme sayacı, kasılma zamanlayıcı, bebek büyüme takibi ve daha fazlası. Kayıt gerektirmez.",
+  badge: "Ücretsiz — Kayıt gerekmez",
+  heroTitle: "Tam kapsamlı",
+  heroHighlight: "hamilelik takip arkadaşınız",
+  heroSubtitle: "Hamileliğinizi hafta hafta ücretsiz doğum tarihi hesaplama, bebek tekme sayacı, kasılma zamanlayıcı ve yapay zeka asistanıyla takip edin. 7 dilde mevcut.",
+  ctaPrimary: "Başlayın — Ücretsiz",
+  ctaSecondary: "Araçları keşfedin",
+  toolsSectionTitle: "Temel hamilelik ve doğurganlık araçları",
+  toolsSectionDesc: "Gebe kalmaya çalışmaktan doğum sonrasına kadar ihtiyacınız olan her şey — tek bir ücretsiz uygulamada.",
+  tools: [
+    { icon: Calendar, title: "Doğum tarihi hesaplama", desc: "Son adet tarihinize göre tahmini doğum tarihinizi hesaplayın.", link: "/tools/due-date-calculator" },
+    { icon: Activity, title: "Bebek tekme sayacı", desc: "Bebeğinizin hareketlerini ve aktivite kalıplarını takip edin.", link: "/tools/kick-counter" },
+    { icon: Baby, title: "Bebek büyüme takibi", desc: "Haftalık gelişimi boyut karşılaştırmaları ve kilometre taşlarıyla izleyin.", link: "/tools/baby-growth" },
+    { icon: Brain, title: "Yapay zeka hamilelik asistanı", desc: "Hamilelik sorularınıza anında kanıta dayalı yanıtlar alın.", link: "/tools/pregnancy-assistant" },
+    { icon: Apple, title: "Yemek planlayıcı", desc: "Her trimester için kişiselleştirilmiş beslenme planları ve güvenli gıda rehberi.", link: "/tools/ai-meal-suggestion" },
+    { icon: Heart, title: "Doğum planı oluşturucu", desc: "Yapay zeka desteğiyle kapsamlı, kişiselleştirilmiş doğum planı oluşturun.", link: "/tools/ai-birth-plan" },
+    { icon: Activity, title: "Kilo takibi", desc: "Tıbbi kılavuzlara göre sağlıklı hamilelik kilo alımını izleyin.", link: "/tools/weight-gain" },
+    { icon: Calendar, title: "Döngü ve yumurtlama takibi", desc: "Adet döngünüzü takip edin ve doğurgan pencerenizi belirleyin.", link: "/tools/cycle-tracker" },
+  ],
+  benefitsTitle: "Beklenen ebeveynler neden Pregnancy Toolkits'i tercih ediyor?",
+  benefits: [
+    "33+ ücretsiz akıllı hamilelik ve doğurganlık aracı",
+    "Hafta hafta bebek gelişim rehberi",
+    "Tıbbi kaynaklara dayalı sağlık bilgileri",
+    "Türkçe, İngilizce, Almanca, Fransızca dahil 7 dilde mevcut",
+    "Hesap gerekmez — verileriniz cihazınızda gizli kalır",
+    "KVKK, GDPR ve CCPA uyumlu — verilerinizi asla satmayız",
+  ],
+  trimester1Title: "İlk trimester (Hafta 1–12)",
+  trimester1: "İlk trimester hızlı gelişim dönemidir. 6. haftada bebeğinizin kalbi atmaya başlar. Yaygın belirtiler arasında sabah bulantısı, yorgunluk ve göğüs hassasiyeti bulunur.",
+  trimester2Title: "İkinci trimester (Hafta 13–26)",
+  trimester2: "'Altın trimester' olarak da bilinen bu dönemde birçok kadın en iyi halini hisseder. 20. hafta civarında bebeğinizin ilk tekmelerini hissedersiniz. Bebeğiniz hızla büyür ve sesinizi duymaya başlar.",
+  trimester3Title: "Üçüncü trimester (Hafta 27–40)",
+  trimester3: "Doğum tarihi yaklaştıkça hazırlık önem kazanır. Hastane çantanızı 36. haftaya kadar hazırlayın. Ağrı yönetimi ve emzirme tercihlerinizi içeren bir doğum planı oluşturun.",
+  fertilityTitle: "Doğurganlık ve gebe kalma planlaması",
+  fertilityContent: "Hamilelik planlaması adet döngünüzü anlamakla başlar. Döngü takibimiz yumurtlama zamanınızı doğru bir şekilde belirlemenize yardımcı olur.",
+  fertilityTips: "Doğurganlığı artırma ipuçları: sağlıklı kilonuzu koruyun, folat, demir ve çinko açısından zengin gıdalar yiyin, ılımlı egzersiz yapın.",
+  birthTitle: "Doğuma hazırlık: bilmeniz gereken her şey",
+  birthContent: "Doğum fiziksel ve zihinsel hazırlık gerektirir. Düzenli kasılmalar gibi doğum belirtilerini öğrenin.",
+  birthBag: "Hastane çantası temelleri: 36. haftaya kadar hazırlayın. Rahat kıyafetler, kişisel bakım ürünleri, önemli belgeler, sağlıklı atıştırmalıklar.",
+  postpartumTitle: "Doğum sonrası rehberi ve yenidoğan bakımı",
+  postpartumContent: "Doğum sonrası dönem zorluklarla ve sevinçle doludur. Zihinsel ve fiziksel sağlığınıza dikkat edin. Bebek uyurken siz de uyuyun.",
+  postpartumTips: "Günlük sağlık ipuçları: günde 8-10 bardak su için, proteinden zengin küçük öğünler yiyin, günde 30 dakika yürüyüş yapın.",
+  faqTitle: "Sıkça sorulan sorular",
+  faqs: [
+    { q: "Bu hamilelik uygulaması gerçekten ücretsiz mi?", a: "Evet, Pregnancy Toolkits tamamen ücretsizdir. 33+ aracın tamamı gizli ücret olmadan kullanılabilir." },
+    { q: "Doğum tarihi hesaplama ne kadar doğru?", a: "Hesaplayıcımız doktorların kullandığı Naegele kuralını kullanır. Bebeklerin sadece %5'i tam tarihinde doğar." },
+    { q: "Verilerim güvende mi?", a: "Kesinlikle. Sağlık verileriniz cihazınızda yerel olarak depolanır. KVKK, GDPR ve CCPA uyumluyuz." },
+    { q: "Adet döngümü takip edebilir miyim?", a: "Evet. Döngü takibimiz yumurtlamayı tahmin eder ve doğurgan pencerenizi belirler." },
+    { q: "Bu uygulama tıbbi bakımın yerine geçer mi?", a: "Hayır. Pregnancy Toolkits eğitim amaçlı bir yaşam tarzı arkadaşıdır. Her zaman doktorunuza danışın." },
+  ],
+  ctaFinalTitle: "Annelik yolculuğunuza bugün başlayın",
+  ctaFinalDesc: "Binlerce beklenen ebeveyne katılın. Tamamen ücretsiz, kayıt gerekmez.",
+  ctaFinalBtn: "Başlayın — Sonsuza kadar ücretsiz",
+  disclaimer: "Pregnancy Toolkits eğitim amaçlı bir yaşam tarzı arkadaşıdır. Her zaman doktorunuza danışın.",
+  viewAll: "Tüm 33+ aracı görüntüle",
+};
+
+export default function LandingTR() {
+  return <LandingPage content={content} />;
+}
