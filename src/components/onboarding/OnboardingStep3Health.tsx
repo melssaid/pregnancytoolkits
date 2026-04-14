@@ -1,21 +1,21 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { Stethoscope, ChevronLeft, ChevronRight, Ruler, Weight, Droplets } from 'lucide-react';
+import { Stethoscope, ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import type { JourneyStage } from '@/hooks/useUserProfile';
 
 const BLOOD_TYPES = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
 
-const HEALTH_CONDITIONS = [
-  'gestationalDiabetes',
-  'highBloodPressure',
-  'twinPregnancy',
-  'thyroidDisorder',
-  'none',
-] as const;
+const CONDITIONS_BY_STAGE: Record<JourneyStage, string[]> = {
+  fertility: ['pcos', 'thyroidDisorder', 'highBloodPressure', 'none'],
+  pregnant: ['gestationalDiabetes', 'highBloodPressure', 'twinPregnancy', 'thyroidDisorder', 'none'],
+  postpartum: ['postpartumDepression', 'highBloodPressure', 'thyroidDisorder', 'none'],
+};
 
 interface Props {
+  journeyStage: JourneyStage;
   weight: string;
   onWeightChange: (w: string) => void;
   height: string;
@@ -29,7 +29,7 @@ interface Props {
 }
 
 export const OnboardingStep3Health: React.FC<Props> = ({
-  weight, onWeightChange, height, onHeightChange,
+  journeyStage, weight, onWeightChange, height, onHeightChange,
   bloodType, onBloodTypeChange,
   healthConditions, onHealthConditionsChange,
   onNext, onBack,
@@ -38,6 +38,8 @@ export const OnboardingStep3Health: React.FC<Props> = ({
   const isRtl = i18n.language === 'ar';
   const NextIcon = isRtl ? ChevronLeft : ChevronRight;
   const BackIcon = isRtl ? ChevronRight : ChevronLeft;
+
+  const conditions = CONDITIONS_BY_STAGE[journeyStage] || CONDITIONS_BY_STAGE.pregnant;
 
   const toggleCondition = (c: string) => {
     if (c === 'none') {
@@ -60,54 +62,54 @@ export const OnboardingStep3Health: React.FC<Props> = ({
       exit={{ opacity: 0, x: isRtl ? 20 : -20 }}
       transition={{ duration: 0.2 }}
     >
-      {/* Compact header */}
-      <div className="px-5 pt-2 pb-1.5 flex items-center gap-2.5">
-        <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-          <Stethoscope className="w-4 h-4 text-primary" />
+      {/* Header */}
+      <div className="px-5 pt-4 pb-2 flex items-center gap-3">
+        <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+          <Stethoscope className="w-5 h-5 text-primary" />
         </div>
         <div>
-          <h2 className="text-sm font-bold text-foreground leading-tight">
+          <h2 className="text-lg font-black text-foreground leading-tight">
             {t('onboarding.step3.title', 'Your Health Data')}
           </h2>
-          <p className="text-[10px] text-foreground/60 font-medium leading-snug">
+          <p className="text-sm text-foreground/60 font-medium leading-snug">
             {t('onboarding.step3.subtitle', 'Helps us give accurate recommendations')}
           </p>
         </div>
       </div>
 
-      <div className="px-4 pb-2.5 space-y-2">
-        {/* Weight, Height & Blood Type — 3 columns */}
-        <div className="grid grid-cols-3 gap-1.5">
+      <div className="px-4 pb-3 space-y-3">
+        {/* Weight, Height & Blood Type */}
+        <div className="grid grid-cols-3 gap-2">
           <div>
-            <label className="text-[10px] font-semibold text-foreground/70 block mb-0.5">
+            <label className="text-xs font-semibold text-foreground/70 block mb-1">
               {t('onboarding.weight', 'Weight')} (kg)
             </label>
             <input
               type="number" min={30} max={200} step={0.1}
               value={weight}
               onChange={e => onWeightChange(e.target.value)}
-              className="w-full h-8 rounded-lg border border-input bg-background px-2 text-xs focus:outline-none focus:ring-1 focus:ring-primary/30"
+              className="w-full h-11 rounded-xl border border-input bg-background px-3 text-sm focus:outline-none focus:ring-1 focus:ring-primary/30"
               placeholder="65"
             />
           </div>
           <div>
-            <label className="text-[10px] font-semibold text-foreground/70 block mb-0.5">
+            <label className="text-xs font-semibold text-foreground/70 block mb-1">
               {t('onboarding.height', 'Height')} (cm)
             </label>
             <input
               type="number" min={100} max={220}
               value={height}
               onChange={e => onHeightChange(e.target.value)}
-              className="w-full h-8 rounded-lg border border-input bg-background px-2 text-xs focus:outline-none focus:ring-1 focus:ring-primary/30"
+              className="w-full h-11 rounded-xl border border-input bg-background px-3 text-sm focus:outline-none focus:ring-1 focus:ring-primary/30"
               placeholder="165"
             />
           </div>
           <div>
-            <label className="text-[10px] font-semibold text-foreground/70 block mb-0.5">
+            <label className="text-xs font-semibold text-foreground/70 block mb-1">
               {t('onboarding.step3.bloodType', 'Blood Type')}
             </label>
             <Select value={bloodType} onValueChange={onBloodTypeChange}>
-              <SelectTrigger className="h-8 text-xs">
+              <SelectTrigger className="h-11 text-sm rounded-xl">
                 <SelectValue placeholder={t('onboarding.step3.selectBloodType', 'Select')} />
               </SelectTrigger>
               <SelectContent className="z-[400]">
@@ -120,30 +122,30 @@ export const OnboardingStep3Health: React.FC<Props> = ({
           </div>
         </div>
 
-        {/* Health Conditions — 2 columns */}
+        {/* Health Conditions */}
         <div>
-          <label className="text-[10px] font-semibold text-foreground/70 block mb-1">
+          <label className="text-sm font-semibold text-foreground/70 block mb-2">
             {t('onboarding.step3.healthConsiderations', 'Health Considerations')}
           </label>
-          <div className="grid grid-cols-2 gap-1">
-            {HEALTH_CONDITIONS.map((c) => {
+          <div className="grid grid-cols-2 gap-1.5">
+            {conditions.map((c) => {
               const isSelected = healthConditions.includes(c);
               return (
                 <button
                   key={c}
                   onClick={() => toggleCondition(c)}
                   className={cn(
-                    "flex items-center gap-1.5 px-2 py-1.5 rounded-lg border text-[10px] text-start transition-colors",
+                    "flex items-center gap-2 px-3 py-2.5 rounded-xl border text-sm text-start transition-colors",
                     isSelected
                       ? "bg-primary/8 border-primary/30 text-primary font-semibold"
                       : "bg-transparent border-border/40 text-foreground/70 hover:bg-muted/40"
                   )}
                 >
                   <div className={cn(
-                    "w-3.5 h-3.5 rounded border flex items-center justify-center flex-shrink-0 transition-colors",
+                    "w-4 h-4 rounded border flex items-center justify-center flex-shrink-0 transition-colors",
                     isSelected ? "bg-primary border-primary" : "border-muted-foreground/30"
                   )}>
-                    {isSelected && <span className="text-primary-foreground text-[8px] font-bold">✓</span>}
+                    {isSelected && <span className="text-primary-foreground text-[9px] font-bold">✓</span>}
                   </div>
                   <span className="leading-tight">{t(`onboarding.step3.condition.${c}`)}</span>
                 </button>
@@ -154,13 +156,13 @@ export const OnboardingStep3Health: React.FC<Props> = ({
       </div>
 
       {/* Navigation */}
-      <div className="px-4 pb-3 flex gap-2">
-        <button onClick={onBack} className="flex-1 py-2.5 rounded-xl border border-border text-xs font-medium flex items-center justify-center gap-1 hover:bg-muted/40 transition-colors">
-          <BackIcon className="w-3.5 h-3.5" /> {t('onboarding.back', 'Back')}
-        </button>
-        <button onClick={onNext} className="flex-1 py-2.5 rounded-xl bg-primary text-primary-foreground text-xs font-semibold flex items-center justify-center gap-1.5 hover:opacity-90 transition-opacity">
-          {t('onboarding.next', 'Continue')} <NextIcon className="w-3.5 h-3.5" />
-        </button>
+      <div className="px-4 pb-4 flex gap-2.5">
+        <motion.button whileTap={{ scale: 0.95 }} onClick={onBack} className="flex-1 py-3.5 rounded-2xl border border-border/40 bg-card text-sm font-semibold flex items-center justify-center gap-1.5 hover:bg-muted/40 transition-colors text-foreground/70 shadow-sm">
+          <BackIcon className="w-4 h-4" /> {t('onboarding.back', 'Back')}
+        </motion.button>
+        <motion.button whileTap={{ scale: 0.95 }} onClick={onNext} className="flex-1 py-3.5 rounded-2xl bg-primary text-primary-foreground text-sm font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity shadow-md shadow-primary/20">
+          {t('onboarding.next', 'Continue')} <NextIcon className="w-4 h-4" />
+        </motion.button>
       </div>
     </motion.div>
   );

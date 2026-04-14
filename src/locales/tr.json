@@ -206,6 +206,8 @@
         "highBloodPressure": "Yüksek tansiyon",
         "twinPregnancy": "İkiz gebelik",
         "thyroidDisorder": "Tiroid bozukluğu",
+        "pcos": "PKOS",
+        "postpartumDepression": "Doğum sonrası depresyon",
         "none": "Yukarıdakilerin hiçbiri"
       }
     },
