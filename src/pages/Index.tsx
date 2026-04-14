@@ -172,9 +172,6 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
             </p>
           </div>
           <div className="flex items-center gap-2 flex-shrink-0">
-            <span className={`text-xs font-bold ${config.headerText} bg-white/20 backdrop-blur-sm px-2 py-0.5 rounded-full`}>
-              {totalTools}
-            </span>
             <motion.div
               animate={{ rotate: isOpen ? 180 : 0 }}
               transition={{ duration: 0.25, ease: "easeInOut" }}
