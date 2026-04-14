@@ -24,7 +24,7 @@ import { FetalMovementCard } from "@/components/dashboard/FetalMovementCard";
 import { WeightTrendCard } from "@/components/dashboard/WeightTrendCard";
 import { RecentAIResults } from "@/components/dashboard/RecentAIResults";
 import { UsageStatsNudge } from "@/components/dashboard/UsageStatsNudge";
-import { StreakBadge } from "@/components/dashboard/StreakBadge";
+
 import { BirthCountdownCard } from "@/components/dashboard/BirthCountdownCard";
 import { AppRatingCard } from "@/components/dashboard/AppRatingCard";
 import { WeekCertificateCard } from "@/components/dashboard/WeekCertificateCard";
