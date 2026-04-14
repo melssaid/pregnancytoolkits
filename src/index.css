@@ -196,7 +196,7 @@ html[lang="ar"] .ar-heading {
     @apply text-foreground antialiased;
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     overflow-x: hidden;
-    background: hsl(0 0% 100%);
+    background: #faf6f2;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -204,7 +204,7 @@ html[lang="ar"] .ar-heading {
   html[dir="rtl"] body {
     font-family: 'Tajawal', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     font-weight: 500;
-    background: hsl(0 0% 100%);
+    background: #faf6f2;
   }
 
   /* RTL readability — boost content text weights without affecting branding */
