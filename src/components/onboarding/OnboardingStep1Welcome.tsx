@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { Globe, ChevronLeft, ChevronRight, Check, Shield, Zap, Smartphone } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Check, Shield, Zap, Smartphone } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -89,16 +89,16 @@ export const OnboardingStep1Welcome: React.FC<Props> = ({ selectedLang, onSelect
   return (
     <motion.div
       key="step1"
+      className="flex h-full flex-col"
       initial={{ opacity: 0, x: isRtl ? -20 : 20 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: isRtl ? 20 : -20 }}
       transition={{ duration: 0.2 }}
     >
       {/* Logo & Title */}
-      <div className="px-5 pt-5 pb-3 flex items-center gap-4">
+      <div className="px-5 pt-5 pb-2 flex items-center gap-3">
         <motion.div
-          className="w-16 h-16 rounded-2xl overflow-hidden flex-shrink-0"
-          style={{ boxShadow: '0 4px 20px -4px hsl(340 50% 55% / 0.25)' }}
+          className="w-14 h-14 rounded-2xl overflow-hidden flex-shrink-0"
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ type: 'spring', stiffness: 300, damping: 20 }}
@@ -109,91 +109,87 @@ export const OnboardingStep1Welcome: React.FC<Props> = ({ selectedLang, onSelect
           <h2 className="text-xl font-black text-foreground leading-tight" style={{ fontFamily: "'Tajawal', sans-serif", fontWeight: 800 }}>
             {t('onboarding.title', 'Welcome to Your Journey')}
           </h2>
-          <p className="text-sm text-muted-foreground mt-1 leading-snug font-medium">
-            {t('onboarding.subtitle', 'Your lifestyle & educational companion')}
-          </p>
         </div>
       </div>
 
-      {/* Value propositions */}
-      <div className="px-5 pb-3 space-y-2.5">
-        {[
-          { icon: Zap, text: vp.v1 },
-          { icon: Shield, text: vp.v2 },
-          { icon: Check, text: vp.v3 },
-        ].map((item, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, x: isRtl ? 10 : -10 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.1 + i * 0.08 }}
-            className="flex items-center gap-3"
-          >
-            <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-              <item.icon className="w-4 h-4 text-primary" strokeWidth={2.5} />
-            </div>
-            <span className="text-sm font-semibold text-foreground/80">{item.text}</span>
-          </motion.div>
-        ))}
-      </div>
-
-      {/* Device Language Button */}
-      <div className="px-4 pb-2">
-        <button
-          onClick={handleDeviceLang}
-          className={cn(
-            "w-full flex items-center gap-3 px-4 py-3 rounded-2xl border-2 transition-all duration-200",
-            isDeviceSelected
-              ? "bg-primary/8 border-primary/30 shadow-sm"
-              : "bg-muted/30 border-border/30 hover:bg-muted/50"
-          )}
-        >
-          <div className={cn(
-            "w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0",
-            isDeviceSelected ? "bg-primary/15" : "bg-muted/60"
-          )}>
-            <Smartphone className={cn("w-5 h-5", isDeviceSelected ? "text-primary" : "text-muted-foreground")} />
-          </div>
-          <div className="flex-1 text-start">
-            <p className={cn("text-sm font-bold", isDeviceSelected ? "text-primary" : "text-foreground")}>
-              {deviceLangLabel[lang] || deviceLangLabel.en}
-            </p>
-            <p className="text-xs text-muted-foreground">{getDeviceLanguageName()}</p>
-          </div>
-          {isDeviceSelected && <Check className="w-5 h-5 text-primary flex-shrink-0" />}
-        </button>
-      </div>
-
-      {/* Divider */}
-      <div className="px-6 py-2 flex items-center gap-3">
-        <div className="flex-1 h-px bg-border/40" />
-        <span className="text-xs text-muted-foreground font-medium whitespace-nowrap">
-          {orChooseLabel[lang] || orChooseLabel.en}
-        </span>
-        <div className="flex-1 h-px bg-border/40" />
-      </div>
-
-      {/* Language selector */}
-      <div className="px-4 pb-3">
-        <div className="grid grid-cols-2 gap-1">
-          {languages.map((l) => (
-            <button
-              key={l.code}
-              onClick={() => handleLangSelect(l.code)}
-              className={cn(
-                "flex items-center gap-2 px-3 py-2.5 rounded-xl border transition-colors text-start",
-                selectedLang === l.code
-                  ? "bg-primary/8 border-primary/30"
-                  : "bg-transparent border-transparent hover:bg-muted/60"
-              )}
+      <div className="flex-1 min-h-0 px-4 pb-2 space-y-2">
+        <div className="px-1 space-y-1.5">
+          {[
+            { icon: Zap, text: vp.v1 },
+            { icon: Shield, text: vp.v2 },
+            { icon: Check, text: vp.v3 },
+          ].map((item, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, x: isRtl ? 10 : -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.1 + i * 0.08 }}
+              className="flex items-center gap-2.5"
             >
-              <span className="text-base">{l.flag}</span>
-              <span className={cn("text-sm font-medium truncate", selectedLang === l.code ? "text-primary" : "text-foreground/70")}>
-                {l.name}
-              </span>
-              {selectedLang === l.code && <Check className="w-3.5 h-3.5 text-primary ms-auto flex-shrink-0" />}
-            </button>
+              <div className="w-6 h-6 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                <item.icon className="w-3.5 h-3.5 text-primary" strokeWidth={2.5} />
+              </div>
+              <span className="text-xs font-semibold text-foreground/80 leading-snug">{item.text}</span>
+            </motion.div>
           ))}
+        </div>
+
+        <div>
+          <button
+            onClick={handleDeviceLang}
+            style={{ background: 'linear-gradient(135deg, hsl(var(--background) / 0.18), hsl(var(--secondary) / 0.72), hsl(var(--primary) / 0.12))' }}
+            className={cn(
+              "w-full flex items-center gap-3 px-4 py-2.5 rounded-2xl border transition-all duration-200",
+              isDeviceSelected
+                ? "border-primary/30 shadow-sm"
+                : "border-border/30 hover:border-border/50"
+            )}
+          >
+            <div className={cn(
+              "w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0",
+              isDeviceSelected ? "bg-primary/15" : "bg-background/70"
+            )}>
+              <Smartphone className={cn("w-4.5 h-4.5", isDeviceSelected ? "text-primary" : "text-muted-foreground")} />
+            </div>
+            <div className="flex-1 text-start">
+              <p className={cn("text-sm font-bold leading-tight", isDeviceSelected ? "text-primary" : "text-foreground")}>
+                {deviceLangLabel[lang] || deviceLangLabel.en}
+              </p>
+              <p className="text-xs text-muted-foreground leading-tight">{getDeviceLanguageName()}</p>
+            </div>
+            {isDeviceSelected && <Check className="w-4.5 h-4.5 text-primary flex-shrink-0" />}
+          </button>
+        </div>
+
+        <div className="px-2 py-1 flex items-center gap-3">
+          <div className="flex-1 h-px bg-border/40" />
+          <span className="text-[11px] text-muted-foreground font-medium whitespace-nowrap">
+            {orChooseLabel[lang] || orChooseLabel.en}
+          </span>
+          <div className="flex-1 h-px bg-border/40" />
+        </div>
+
+        <div>
+          <div className="grid grid-cols-2 gap-1">
+            {languages.map((l) => (
+              <button
+                key={l.code}
+                onClick={() => handleLangSelect(l.code)}
+                className={cn(
+                  "flex items-center gap-2 px-3 py-2 rounded-xl border transition-colors text-start",
+                  selectedLang === l.code
+                    ? "bg-primary/8 border-primary/30"
+                    : "bg-transparent border-transparent hover:bg-muted/60"
+                )}
+              >
+                <span className="text-sm">{l.flag}</span>
+                <span className={cn("text-xs font-medium truncate", selectedLang === l.code ? "text-primary" : "text-foreground/70")}>
+                  {l.name}
+                </span>
+                {selectedLang === l.code && <Check className="w-3.5 h-3.5 text-primary ms-auto flex-shrink-0" />}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -201,7 +197,7 @@ export const OnboardingStep1Welcome: React.FC<Props> = ({ selectedLang, onSelect
         <motion.button
           whileTap={{ scale: 0.97 }}
           onClick={onNext}
-          className="w-full py-3.5 rounded-2xl bg-primary text-primary-foreground font-bold text-sm flex items-center justify-center gap-2 hover:opacity-90 transition-opacity shadow-md shadow-primary/20"
+          className="w-full py-3 rounded-2xl bg-primary text-primary-foreground font-bold text-sm flex items-center justify-center gap-2 hover:opacity-90 transition-opacity shadow-md shadow-primary/20"
         >
           {t('onboarding.next', 'Continue')} <NextIcon className="w-4 h-4" />
         </motion.button>

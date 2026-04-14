@@ -16,6 +16,7 @@ export const OnboardingStep5Privacy: React.FC<Props> = ({ onFinish, onBack }) =>
   return (
     <motion.div
       key="step5"
+      className="flex h-full flex-col"
       initial={{ opacity: 0, x: isRtl ? -20 : 20 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: isRtl ? 20 : -20 }}

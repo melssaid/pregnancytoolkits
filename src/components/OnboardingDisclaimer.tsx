@@ -87,7 +87,6 @@ export function OnboardingDisclaimer() {
     localStorage.setItem(ONBOARDING_KEY, 'true');
     localStorage.setItem(FIRST_VISIT_KEY, 'true');
     setShow(false);
-    try { window.location.href = '/'; } catch { /* fallback */ }
   };
 
   const handleLmpChange = (d: Date | undefined) => {
@@ -111,7 +110,7 @@ export function OnboardingDisclaimer() {
           transition={{ duration: 0.6, ease: 'easeOut' }}
         >
           <motion.div
-            className="w-full max-w-[360px] max-h-[88vh] rounded-2xl bg-card border border-border/40 shadow-xl overflow-y-auto"
+            className="w-full max-w-[360px] h-[min(88vh,32rem)] rounded-2xl bg-card border border-border/40 shadow-xl overflow-hidden flex flex-col"
             dir={isRtl ? 'rtl' : 'ltr'}
             initial={{ opacity: 0, scale: 0.92, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -135,62 +134,64 @@ export function OnboardingDisclaimer() {
               ))}
             </div>
 
-            <AnimatePresence mode="wait">
-              {step === 1 && (
-                <OnboardingStep1Welcome
-                  selectedLang={selectedLang}
-                  onSelectLang={setSelectedLang}
-                  onNext={() => setStep(2)}
-                />
-              )}
-              {step === 2 && (
-                <OnboardingStep2Journey
-                  journeyStage={journeyStage}
-                  onJourneyChange={setJourneyStage}
-                  week={week}
-                  onWeekChange={setWeek}
-                  lmpDate={lmpDate}
-                  onLmpChange={handleLmpChange}
-                  onNext={() => setStep(3)}
-                  onBack={() => setStep(1)}
-                />
-              )}
-              {step === 3 && (
-                <OnboardingStep3Health
-                  journeyStage={journeyStage}
-                  weight={weight}
-                  onWeightChange={setWeight}
-                  height={height}
-                  onHeightChange={setHeight}
-                  bloodType={bloodType}
-                  onBloodTypeChange={setBloodType}
-                  healthConditions={healthConditions}
-                  onHealthConditionsChange={setHealthConditions}
-                  onNext={() => setStep(4)}
-                  onBack={() => setStep(2)}
-                />
-              )}
-              {step === 4 && (
-                <OnboardingStep4Goals
-                  goals={goals}
-                  onGoalsChange={setGoals}
-                  notifVitamins={notifVitamins}
-                  onNotifVitaminsChange={setNotifVitamins}
-                  notifWater={notifWater}
-                  onNotifWaterChange={setNotifWater}
-                  notifAppointments={notifAppointments}
-                  onNotifAppointmentsChange={setNotifAppointments}
-                  onNext={() => setStep(5)}
-                  onBack={() => setStep(3)}
-                />
-              )}
-              {step === 5 && (
-                <OnboardingStep5Privacy
-                  onFinish={handleFinish}
-                  onBack={() => setStep(4)}
-                />
-              )}
-            </AnimatePresence>
+            <div className="flex-1 min-h-0">
+              <AnimatePresence mode="wait" initial={false}>
+                {step === 1 && (
+                  <OnboardingStep1Welcome
+                    selectedLang={selectedLang}
+                    onSelectLang={setSelectedLang}
+                    onNext={() => setStep(2)}
+                  />
+                )}
+                {step === 2 && (
+                  <OnboardingStep2Journey
+                    journeyStage={journeyStage}
+                    onJourneyChange={setJourneyStage}
+                    week={week}
+                    onWeekChange={setWeek}
+                    lmpDate={lmpDate}
+                    onLmpChange={handleLmpChange}
+                    onNext={() => setStep(3)}
+                    onBack={() => setStep(1)}
+                  />
+                )}
+                {step === 3 && (
+                  <OnboardingStep3Health
+                    journeyStage={journeyStage}
+                    weight={weight}
+                    onWeightChange={setWeight}
+                    height={height}
+                    onHeightChange={setHeight}
+                    bloodType={bloodType}
+                    onBloodTypeChange={setBloodType}
+                    healthConditions={healthConditions}
+                    onHealthConditionsChange={setHealthConditions}
+                    onNext={() => setStep(4)}
+                    onBack={() => setStep(2)}
+                  />
+                )}
+                {step === 4 && (
+                  <OnboardingStep4Goals
+                    goals={goals}
+                    onGoalsChange={setGoals}
+                    notifVitamins={notifVitamins}
+                    onNotifVitaminsChange={setNotifVitamins}
+                    notifWater={notifWater}
+                    onNotifWaterChange={setNotifWater}
+                    notifAppointments={notifAppointments}
+                    onNotifAppointmentsChange={setNotifAppointments}
+                    onNext={() => setStep(5)}
+                    onBack={() => setStep(3)}
+                  />
+                )}
+                {step === 5 && (
+                  <OnboardingStep5Privacy
+                    onFinish={handleFinish}
+                    onBack={() => setStep(4)}
+                  />
+                )}
+              </AnimatePresence>
+            </div>
           </motion.div>
         </motion.div>
       )}

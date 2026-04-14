@@ -57,6 +57,7 @@ export const OnboardingStep3Health: React.FC<Props> = ({
   return (
     <motion.div
       key="step3"
+      className="flex h-full flex-col"
       initial={{ opacity: 0, x: isRtl ? -20 : 20 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: isRtl ? 20 : -20 }}
@@ -77,11 +78,11 @@ export const OnboardingStep3Health: React.FC<Props> = ({
         </div>
       </div>
 
-      <div className="px-4 pb-3 space-y-3">
+      <div className="flex-1 min-h-0 px-4 pb-3 space-y-3">
         {/* Weight, Height & Blood Type */}
         <div className="grid grid-cols-3 gap-2">
           <div>
-            <label className="text-xs font-semibold text-foreground/70 block mb-1">
+            <label className="text-xs font-bold text-foreground block mb-1">
               {t('onboarding.weight', 'Weight')} (kg)
             </label>
             <input
@@ -93,7 +94,7 @@ export const OnboardingStep3Health: React.FC<Props> = ({
             />
           </div>
           <div>
-            <label className="text-xs font-semibold text-foreground/70 block mb-1">
+            <label className="text-xs font-bold text-foreground block mb-1">
               {t('onboarding.height', 'Height')} (cm)
             </label>
             <input
@@ -105,7 +106,7 @@ export const OnboardingStep3Health: React.FC<Props> = ({
             />
           </div>
           <div>
-            <label className="text-xs font-semibold text-foreground/70 block mb-1">
+            <label className="text-xs font-bold text-foreground block mb-1">
               {t('onboarding.step3.bloodType', 'Blood Type')}
             </label>
             <Select value={bloodType} onValueChange={onBloodTypeChange}>
@@ -124,7 +125,7 @@ export const OnboardingStep3Health: React.FC<Props> = ({
 
         {/* Health Conditions */}
         <div>
-          <label className="text-sm font-semibold text-foreground/70 block mb-2">
+          <label className="text-sm font-bold text-foreground block mb-2">
             {t('onboarding.step3.healthConsiderations', 'Health Considerations')}
           </label>
           <div className="grid grid-cols-2 gap-1.5">
@@ -135,7 +136,7 @@ export const OnboardingStep3Health: React.FC<Props> = ({
                   key={c}
                   onClick={() => toggleCondition(c)}
                   className={cn(
-                    "flex items-center gap-2 px-3 py-2.5 rounded-xl border text-sm text-start transition-colors",
+                    "flex items-center gap-2 px-3 py-2 rounded-xl border text-xs text-start transition-colors",
                     isSelected
                       ? "bg-primary/8 border-primary/30 text-primary font-semibold"
                       : "bg-transparent border-border/40 text-foreground/70 hover:bg-muted/40"
