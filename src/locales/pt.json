@@ -206,6 +206,8 @@
         "highBloodPressure": "Pressão alta",
         "twinPregnancy": "Gravidez gemelar",
         "thyroidDisorder": "Distúrbio da tireoide",
+        "pcos": "SOP",
+        "postpartumDepression": "Depressão pós-parto",
         "none": "Nenhuma das opções acima"
       }
     },

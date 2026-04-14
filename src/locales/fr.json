@@ -206,6 +206,8 @@
         "highBloodPressure": "Hypertension artérielle",
         "twinPregnancy": "Grossesse gémellaire",
         "thyroidDisorder": "Trouble thyroïdien",
+        "pcos": "SOPK",
+        "postpartumDepression": "Dépression post-partum",
         "none": "Aucun des éléments ci-dessus"
       }
     },

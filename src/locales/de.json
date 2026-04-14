@@ -206,6 +206,8 @@
         "highBloodPressure": "Hoher Blutdruck",
         "twinPregnancy": "Zwillingsschwangerschaft",
         "thyroidDisorder": "Schilddrüsenstörung",
+        "pcos": "PCOS",
+        "postpartumDepression": "Wochenbettdepression",
         "none": "Keines der oben genannten"
       }
     },
