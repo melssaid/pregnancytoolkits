@@ -324,6 +324,9 @@ Provide an easy recipe with ingredients, preparation steps, and nutritional valu
           </Card>
         )}
 
+        {/* Saved Results */}
+        <SavedResultsViewer toolId="ai-meal-suggestion" />
+
         {/* Tips */}
         <Card className="border-border/50 shadow-none">
           <CardContent className="p-3">
