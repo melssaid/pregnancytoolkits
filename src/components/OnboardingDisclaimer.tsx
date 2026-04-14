@@ -87,7 +87,7 @@ export function OnboardingDisclaimer() {
     localStorage.setItem(ONBOARDING_KEY, 'true');
     localStorage.setItem(FIRST_VISIT_KEY, 'true');
     setShow(false);
-    try { window.location.href = '/welcome-result'; } catch { /* fallback */ }
+    try { window.location.href = '/'; } catch { /* fallback */ }
   };
 
   const handleLmpChange = (d: Date | undefined) => {
