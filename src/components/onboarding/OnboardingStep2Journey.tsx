@@ -8,7 +8,6 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Calendar } from '@/components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Button } from '@/components/ui/button';
-import { JourneyRecommendations } from '@/components/onboarding/JourneyRecommendations';
 import type { JourneyStage } from '@/hooks/useUserProfile';
 
 interface Props {
@@ -41,18 +40,19 @@ export const OnboardingStep2Journey: React.FC<Props> = ({
   return (
     <motion.div
       key="step2"
+      className="flex h-full flex-col"
       initial={{ opacity: 0, x: isRtl ? -20 : 20 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: isRtl ? 20 : -20 }}
       transition={{ duration: 0.2 }}
     >
       <div className="px-5 pt-4 pb-2 text-center">
-        <h2 className="text-xl font-black text-foreground">
+        <h2 className="text-lg font-black text-foreground">
           {t('onboarding.step2.title', 'Where are you in your journey?')}
         </h2>
       </div>
 
-      <div className="px-4 pb-3 space-y-2">
+      <div className="flex-1 min-h-0 px-4 pb-3 space-y-2">
         {/* Journey stage cards */}
         <div className="space-y-2">
           {stages.map(({ key, icon: Icon, labelKey, gradient, shadow }) => (
@@ -60,27 +60,24 @@ export const OnboardingStep2Journey: React.FC<Props> = ({
               key={key}
               onClick={() => onJourneyChange(key)}
               className={cn(
-                "w-full py-3.5 px-4 rounded-2xl border-2 transition-all duration-300 flex items-center gap-3",
+                "w-full py-3 px-4 rounded-2xl border-2 transition-all duration-300 flex items-center gap-3",
                 journeyStage === key
                   ? `bg-gradient-to-r ${gradient} border-transparent ${shadow} scale-[1.02]`
                   : "bg-card/80 border-border/20 hover:border-border/40 hover:shadow-md"
               )}
             >
               <div className={cn(
-                "w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-colors",
+                "w-9 h-9 rounded-xl flex items-center justify-center shrink-0 transition-colors",
                 journeyStage === key ? "bg-white/25" : "bg-muted/60"
               )}>
-                <Icon className={cn("w-5 h-5", journeyStage === key ? "text-white" : "text-foreground/60")} />
+                <Icon className={cn("w-4.5 h-4.5", journeyStage === key ? "text-white" : "text-foreground/60")} />
               </div>
-              <p className={cn("text-base font-bold", journeyStage === key ? "text-white" : "text-foreground")}>
+              <p className={cn("text-sm font-bold", journeyStage === key ? "text-white" : "text-foreground")}>
                 {t(labelKey)}
               </p>
             </button>
           ))}
         </div>
-
-        {/* Journey Recommendations */}
-        <JourneyRecommendations stage={journeyStage} />
 
         {/* Pregnant-specific fields */}
         {journeyStage === 'pregnant' && (

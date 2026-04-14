@@ -47,34 +47,32 @@ export const OnboardingStep4Goals: React.FC<Props> = ({
   };
 
   const notifications = [
-    { icon: Pill, label: 'onboarding.step4.notifVitamins', value: notifVitamins, onChange: onNotifVitaminsChange, accent: 'from-emerald-500/15 to-emerald-500/5', iconColor: 'text-emerald-600 dark:text-emerald-400' },
-    { icon: Droplets, label: 'onboarding.step4.notifWater', value: notifWater, onChange: onNotifWaterChange, accent: 'from-blue-500/15 to-blue-500/5', iconColor: 'text-blue-600 dark:text-blue-400' },
-    { icon: CalendarCheck, label: 'onboarding.step4.notifAppointments', value: notifAppointments, onChange: onNotifAppointmentsChange, accent: 'from-amber-500/15 to-amber-500/5', iconColor: 'text-amber-600 dark:text-amber-400' },
+    { icon: Pill, label: 'onboarding.step4.notifVitamins', value: notifVitamins, onChange: onNotifVitaminsChange },
+    { icon: Droplets, label: 'onboarding.step4.notifWater', value: notifWater, onChange: onNotifWaterChange },
+    { icon: CalendarCheck, label: 'onboarding.step4.notifAppointments', value: notifAppointments, onChange: onNotifAppointmentsChange },
   ];
 
   return (
     <motion.div
       key="step4"
+      className="flex h-full flex-col"
       initial={{ opacity: 0, x: isRtl ? -20 : 20 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: isRtl ? 20 : -20 }}
       transition={{ duration: 0.2 }}
     >
       <div className="px-5 pt-4 pb-2 text-center">
-        <div className="w-12 h-12 mx-auto mb-2 rounded-xl bg-primary/10 flex items-center justify-center">
-          <Target className="w-6 h-6 text-primary" />
+        <div className="w-10 h-10 mx-auto mb-2 rounded-xl bg-primary/10 flex items-center justify-center">
+          <Target className="w-5 h-5 text-primary" />
         </div>
         <h2 className="text-lg font-black text-foreground">
           {t('onboarding.step4.title', 'What matters most to you?')}
         </h2>
-        <p className="text-sm text-muted-foreground mt-1">
-          {t('onboarding.step4.subtitle', 'Select your priorities')}
-        </p>
       </div>
 
-      <div className="px-4 pb-3 space-y-4">
+      <div className="flex-1 min-h-0 px-4 pb-2 space-y-3">
         {/* Goals chips */}
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-2 gap-1.5">
           {GOALS.map((g, i) => {
             const isSelected = goals.includes(g);
             return (
@@ -85,19 +83,19 @@ export const OnboardingStep4Goals: React.FC<Props> = ({
                 transition={{ delay: i * 0.04 }}
                 onClick={() => toggleGoal(g)}
                 className={cn(
-                  "relative flex items-center gap-2.5 px-3 py-3 rounded-xl border text-sm font-medium transition-all duration-200",
+                  "relative flex items-center gap-2 px-3 py-2.5 rounded-xl border text-xs font-bold transition-all duration-200",
                   isSelected
                     ? "bg-primary/10 border-primary/30 text-primary shadow-sm shadow-primary/10"
                     : "bg-card border-border/30 text-foreground/70 hover:bg-muted/40 hover:border-border/50"
                 )}
               >
                 <div className={cn(
-                  "w-5 h-5 rounded-md flex items-center justify-center flex-shrink-0 transition-all duration-200",
+                  "w-4.5 h-4.5 rounded-md flex items-center justify-center flex-shrink-0 transition-all duration-200",
                   isSelected
                     ? "bg-primary text-primary-foreground"
                     : "bg-muted/50 border border-border/40"
                 )}>
-                  {isSelected && <Check className="w-3.5 h-3.5" strokeWidth={3} />}
+                  {isSelected && <Check className="w-3 h-3" strokeWidth={3} />}
                 </div>
                 <span className="truncate">{t(`onboarding.step4.goal.${g}`)}</span>
               </motion.button>
@@ -107,7 +105,7 @@ export const OnboardingStep4Goals: React.FC<Props> = ({
 
         {/* Notification prefs */}
         <div className="space-y-1.5">
-          <div className="flex items-center gap-2 mb-2">
+          <div className="flex items-center gap-2 mb-1.5">
             <Bell className="w-4 h-4 text-primary" />
             <span className="text-sm font-bold text-foreground">
               {t('onboarding.step4.notifications', 'Reminders')}
@@ -122,21 +120,21 @@ export const OnboardingStep4Goals: React.FC<Props> = ({
               transition={{ delay: 0.15 + idx * 0.05 }}
               onClick={() => item.onChange(!item.value)}
               className={cn(
-                "w-full flex items-center justify-between px-4 py-3 rounded-xl border transition-all duration-200",
+                "w-full flex items-center justify-between px-3 py-2.5 rounded-xl border transition-all duration-200",
                 item.value
-                  ? `bg-gradient-to-r ${item.accent} border-primary/20 shadow-sm`
+                  ? "bg-primary/8 border-primary/20 shadow-sm"
                   : "bg-card border-border/20 hover:bg-muted/30"
               )}
             >
               <div className="flex items-center gap-3">
                 <div className={cn(
-                  "w-9 h-9 rounded-lg flex items-center justify-center transition-all",
+                  "w-8 h-8 rounded-lg flex items-center justify-center transition-all",
                   item.value ? "bg-background/80 shadow-sm" : "bg-muted/40"
                 )}>
-                  <item.icon className={cn("w-4.5 h-4.5", item.value ? item.iconColor : "text-muted-foreground")} strokeWidth={1.75} />
+                  <item.icon className={cn("w-4 h-4", item.value ? "text-primary" : "text-muted-foreground")} strokeWidth={1.75} />
                 </div>
                 <span className={cn(
-                  "text-sm font-medium transition-colors",
+                  "text-xs font-bold transition-colors",
                   item.value ? "text-foreground" : "text-foreground/60"
                 )}>
                   {t(item.label)}
@@ -144,12 +142,12 @@ export const OnboardingStep4Goals: React.FC<Props> = ({
               </div>
               
               <div className={cn(
-                "w-11 h-6 rounded-full p-[2px] transition-all duration-300",
+                "w-10 h-5.5 rounded-full p-[2px] transition-all duration-300",
                 item.value ? "bg-primary" : "bg-muted-foreground/20"
               )}>
                 <motion.div
-                  className="w-5 h-5 rounded-full bg-white shadow-sm"
-                  animate={{ x: item.value ? (isRtl ? 0 : 20) : (isRtl ? 20 : 0) }}
+                  className="w-4.5 h-4.5 rounded-full bg-white shadow-sm"
+                  animate={{ x: item.value ? (isRtl ? 0 : 18) : (isRtl ? 18 : 0) }}
                   transition={{ type: "spring", stiffness: 500, damping: 30 }}
                 />
               </div>
