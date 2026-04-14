@@ -220,6 +220,9 @@ const SmartDashboard = () => {
         {/* App Rating */}
         <AppRatingCard />
 
+        {/* ★ Saved AI Results */}
+        <SavedResultsCountCard />
+
         {/* 10. Recent AI Results */}
         <RecentAIResults />
 
