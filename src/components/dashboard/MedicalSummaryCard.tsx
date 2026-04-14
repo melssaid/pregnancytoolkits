@@ -204,7 +204,7 @@ export function MedicalSummaryCard() {
     try {
       const obj = JSON.parse(vitaminLogsRaw);
       vitaminDays = Object.keys(obj).length;
-      vitaminTotal = Object.values(obj).reduce((sum: number, day: any) => sum + Object.keys(day).length, 0);
+      vitaminTotal = Object.values(obj).reduce((sum: number, day: any) => sum + Object.keys(day as object).length, 0) as number;
     } catch { /* ignore */ }
   }
 
