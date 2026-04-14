@@ -1,7 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Check, RotateCcw } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Check } from 'lucide-react';
 import { resetToBrowserLanguage } from '@/i18n';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { cn } from '@/lib/utils';
