@@ -132,34 +132,10 @@ const ToolRow = memo(function ToolRow({ tool, isRTL, isLocked = false, journeyKe
 // ── Journey card ────────────────────────────────────────────────────────
 
 
-const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionActive, tier }: { config: JourneyConfig; index: number; isSubscriptionActive: boolean; tier?: import('@/hooks/useSubscriptionStatus').SubscriptionTier }) {
+const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionActive, tier, isOpen, onToggle }: { config: JourneyConfig; index: number; isSubscriptionActive: boolean; tier?: import('@/hooks/useSubscriptionStatus').SubscriptionTier; isOpen: boolean; onToggle: () => void }) {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === 'ar';
   const Icon = config.icon;
-
-  const [isOpen, setIsOpen] = useState(() => {
-    try {
-      const saved = localStorage.getItem("journey-states");
-      if (saved) {
-        const states = JSON.parse(saved);
-        return !!states[config.key];
-      }
-    } catch {}
-    return false;
-  });
-
-  const toggle = useCallback(() => {
-    setIsOpen(prev => {
-      const next = !prev;
-      try {
-        const saved = localStorage.getItem("journey-states");
-        const states = saved ? JSON.parse(saved) : {};
-        states[config.key] = next;
-        localStorage.setItem("journey-states", JSON.stringify(states));
-      } catch {}
-      return next;
-    });
-  }, [config.key]);
 
   const categories = useMemo(() => getJourneyCategories(config.key), [config.key]);
   const allJourneyTools = useMemo(() => {
@@ -180,7 +156,7 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
     >
       {/* Gradient Header — premium Pregnancy+ style */}
       <button
-        onClick={toggle}
+        onClick={onToggle}
         className={`${config.headerGradient} px-4 py-4 relative overflow-hidden w-full text-start min-h-[68px] flex items-center`}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent" />
@@ -567,6 +543,39 @@ const Index = () => {
   const { t, i18n } = useTranslation();
   const { tier, isUnlocked, isLoading: subLoading } = useSubscriptionStatus();
   const lang = i18n.language?.split('-')[0] || 'en';
+  const [openJourneyKey, setOpenJourneyKey] = useState<JourneyKey | null>(() => {
+    try {
+      const savedOpen = localStorage.getItem("journey-open");
+      if (savedOpen && journeyConfigs.some((config) => config.key === savedOpen)) {
+        return savedOpen as JourneyKey;
+      }
+
+      const savedStates = localStorage.getItem("journey-states");
+      if (savedStates) {
+        const states = JSON.parse(savedStates) as Partial<Record<JourneyKey, boolean>>;
+        return journeyConfigs.find((config) => states[config.key])?.key ?? null;
+      }
+    } catch {}
+
+    return null;
+  });
+
+  useEffect(() => {
+    try {
+      if (openJourneyKey) {
+        localStorage.setItem("journey-open", openJourneyKey);
+        localStorage.setItem("journey-states", JSON.stringify({ [openJourneyKey]: true }));
+        return;
+      }
+
+      localStorage.removeItem("journey-open");
+      localStorage.setItem("journey-states", JSON.stringify({}));
+    } catch {}
+  }, [openJourneyKey]);
+
+  const handleJourneyToggle = useCallback((journeyKey: JourneyKey) => {
+    setOpenJourneyKey((current) => (current === journeyKey ? null : journeyKey));
+  }, []);
 
   return (
     <Layout>
@@ -578,7 +587,15 @@ const Index = () => {
 
 
           {journeyConfigs.map((config, index) => (
-            <JourneyCard key={config.key} config={config} index={index} isSubscriptionActive={subLoading || isUnlocked} tier={subLoading ? undefined : tier} />
+            <JourneyCard
+              key={config.key}
+              config={config}
+              index={index}
+              isSubscriptionActive={subLoading || isUnlocked}
+              tier={subLoading ? undefined : tier}
+              isOpen={openJourneyKey === config.key}
+              onToggle={() => handleJourneyToggle(config.key)}
+            />
           ))}
           
           <FooterCard />
