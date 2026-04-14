@@ -2,8 +2,10 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Info, Dumbbell, PlayCircle, Sparkles, Settings2,
-  ChevronRight, Zap, Video, Heart, ArrowRight
+  ChevronRight, Zap, Video, Heart, ArrowRight, Bookmark
 } from 'lucide-react';
+import { useSavedResults } from '@/hooks/useSavedResults';
+import { SavedResultsViewer } from '@/components/ai/SavedResultsViewer';
 import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { VideoLibrary, Video as VideoType } from '@/components/VideoLibrary';
@@ -382,6 +384,19 @@ const AIFitnessCoach: React.FC = () => {
               {/* Cooldown tip */}
               <WarmupCooldownSection type="cooldown" />
 
+              {/* Save Workout Log */}
+              {completedExercises.size > 0 && (
+                <SaveWorkoutButton
+                  exercises={generatedWorkout}
+                  completed={completedExercises}
+                  caloriesBurned={caloriesBurned}
+                  totalTime={totalTimeSpent}
+                />
+              )}
+
+              {/* Saved Workout Logs */}
+              <SavedResultsViewer toolId="ai-fitness-coach" />
+
               {/* Regenerate */}
               <Button
                 variant="outline"
@@ -454,5 +469,48 @@ const AIFitnessCoach: React.FC = () => {
     </ToolFrame>
   );
 };
+
+function SaveWorkoutButton({ exercises, completed, caloriesBurned, totalTime }: {
+  exercises: Exercise[];
+  completed: Set<string>;
+  caloriesBurned: number;
+  totalTime: number;
+}) {
+  const { t } = useTranslation();
+  const { save, isSaved } = useSavedResults();
+
+  const summary = exercises
+    .filter(e => completed.has(e.id))
+    .map(e => `- ${t(`toolsInternal.fitnessCoach.exercises.${e.id}.name`, e.id)} (${e.duration}s)`)
+    .join('\n');
+
+  const content = `**${t('toolsInternal.fitnessCoach.sections.workout')}** — ${new Date().toLocaleDateString()}\n\n${summary}\n\n🔥 ${caloriesBurned} kcal | ⏱ ${Math.round(totalTime / 60)} min | ✅ ${completed.size}/${exercises.length}`;
+
+  const alreadySaved = isSaved(content);
+
+  const handleSave = () => {
+    save({
+      toolId: 'ai-fitness-coach',
+      title: `${t('toolsInternal.fitnessCoach.title')} — ${new Date().toLocaleDateString()}`,
+      content,
+      meta: { caloriesBurned, totalTime, completedCount: completed.size, totalCount: exercises.length },
+    });
+  };
+
+  return (
+    <Button
+      onClick={handleSave}
+      disabled={alreadySaved}
+      variant={alreadySaved ? "secondary" : "default"}
+      className="w-full gap-2 text-xs h-10 rounded-xl"
+    >
+      <Bookmark className="w-4 h-4" />
+      {alreadySaved
+        ? (t('toolsInternal.fitnessCoach.workoutSaved', 'Workout Saved ✓'))
+        : (t('toolsInternal.fitnessCoach.saveWorkout', 'Save Workout Log'))
+      }
+    </Button>
+  );
+}
 
 export default AIFitnessCoach;

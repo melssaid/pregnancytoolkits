@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { AIResponseFrame } from "@/components/ai/AIResponseFrame";
 import { PrintableReport } from '@/components/PrintableReport';
+import { SaveResultButton } from '@/components/ai/SaveResultButton';
+import { SavedResultsViewer } from '@/components/ai/SavedResultsViewer';
 import { useTranslation } from "react-i18next";
 import {
   Utensils,
@@ -284,6 +286,12 @@ Provide an easy recipe with ingredients, preparation steps, and nutritional valu
 
             {/* Actions */}
             <div className="flex gap-2">
+              <SaveResultButton
+                toolId="ai-meal-suggestion"
+                title={t("toolsInternal.mealSuggestion.mealSuggestion")}
+                content={content}
+                meta={{ mealType, trimester }}
+              />
               <Button
                 onClick={reset}
                 variant="outline"
@@ -315,6 +323,9 @@ Provide an easy recipe with ingredients, preparation steps, and nutritional valu
             </CardContent>
           </Card>
         )}
+
+        {/* Saved Results */}
+        <SavedResultsViewer toolId="ai-meal-suggestion" />
 
         {/* Tips */}
         <Card className="border-border/50 shadow-none">
