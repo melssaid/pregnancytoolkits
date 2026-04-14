@@ -2,8 +2,10 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Info, Dumbbell, PlayCircle, Sparkles, Settings2,
-  ChevronRight, Zap, Video, Heart, ArrowRight
+  ChevronRight, Zap, Video, Heart, ArrowRight, Bookmark
 } from 'lucide-react';
+import { useSavedResults } from '@/hooks/useSavedResults';
+import { SavedResultsViewer } from '@/components/ai/SavedResultsViewer';
 import { ToolFrame } from '@/components/ToolFrame';
 import { MedicalDisclaimer } from '@/components/compliance';
 import { VideoLibrary, Video as VideoType } from '@/components/VideoLibrary';
