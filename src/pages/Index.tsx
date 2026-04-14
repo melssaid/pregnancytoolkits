@@ -151,7 +151,7 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
 
   return (
     <div
-      className={`rounded-2xl bg-gradient-to-br ${config.bg} border ${config.border} overflow-hidden shadow-[0_4px_24px_-4px_hsl(340,40%,50%,0.08),0_1px_3px_hsl(0,0%,0%,0.04)] backdrop-blur-md bg-opacity-80 dark:bg-opacity-75 animate-fade-in journey-card-glow relative journey-card-shimmer`}
+      className={`rounded-2xl bg-gradient-to-br ${config.bg} border ${config.border} overflow-hidden className={`rounded-2xl bg-gradient-to-br ${config.bg} border ${config.border} overflow-hidden shadow-[0_6px_32px_-4px_hsl(340,40%,40%,0.18),0_2px_8px_hsl(0,0%,0%,0.08),inset_0_0_0_1px_hsl(340,30%,50%,0.06)] backdrop-blur-md bg-opacity-80 dark:bg-opacity-75 animate-fade-in journey-card-glow relative journey-card-shimmer`} backdrop-blur-md bg-opacity-80 dark:bg-opacity-75 animate-fade-in journey-card-glow relative journey-card-shimmer`}
       style={{ animationDelay: `${index * 120}ms` }}
     >
       {/* Gradient Header — premium Pregnancy+ style */}
