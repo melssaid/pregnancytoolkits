@@ -211,7 +211,15 @@ export function Layout({ children, showBack = false }: LayoutProps) {
                     />
                   </>
                   <div className="rounded-full overflow-hidden shadow-lg h-11 w-11">
-                    <img src={logoImage} alt="Pregnancy Toolkits" width={64} height={64} loading="eager" decoding="async" fetchPriority="high" className="w-full h-full object-cover" />
+                    <video
+                      src="/logo-video.mp4"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="w-full h-full object-cover"
+                      aria-label="Pregnancy Toolkits"
+                    />
                   </div>
                 </div>
                 <span className="text-[13px] font-extrabold text-foreground tracking-tight leading-snug break-words" style={{ fontFamily: "'Tajawal', 'Plus Jakarta Sans', system-ui, sans-serif", fontWeight: 700 }}>
@@ -228,7 +236,15 @@ export function Layout({ children, showBack = false }: LayoutProps) {
               </div>
               <Link to="/" className="flex items-center justify-center">
                 <div className="rounded-full overflow-hidden shadow-xl ring-2 ring-primary/10 h-14 w-14">
-                  <img src={logoImage} alt="Pregnancy Toolkits" width={56} height={56} loading="eager" decoding="async" fetchPriority="high" className="w-full h-full object-cover" />
+                  <video
+                    src="/logo-video.mp4"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover"
+                    aria-label="Pregnancy Toolkits"
+                  />
                 </div>
               </Link>
               <div className="absolute right-4 flex items-center gap-1.5">
