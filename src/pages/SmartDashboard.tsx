@@ -171,6 +171,9 @@ const SmartDashboard = () => {
           upcomingAppointments={stats.planning.upcomingAppointments}
         />
 
+        {/* Recent Meal & Fitness Summary */}
+        <RecentMealFitnessSummary />
+
         {/* 4. Quick Actions */}
         <QuickActionsBar />
 
