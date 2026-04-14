@@ -44,6 +44,10 @@ import { NutritionTipCard } from "@/components/dashboard/NutritionTipCard";
 import { PartnerSummaryCard } from "@/components/dashboard/PartnerSummaryCard";
 import { DailyHealthChallengeCard } from "@/components/dashboard/DailyHealthChallengeCard";
 import { MedicalSummaryCard } from "@/components/dashboard/MedicalSummaryCard";
+import { WeeklySymptomsCard } from "@/components/dashboard/WeeklySymptomsCard";
+import { ContractionSummaryCard } from "@/components/dashboard/ContractionSummaryCard";
+import { MoodTrendCard } from "@/components/dashboard/MoodTrendCard";
+import { SavedResultsCountCard } from "@/components/dashboard/SavedResultsCountCard";
 
 const SmartDashboard = () => {
   const { t } = useTranslation();
@@ -157,6 +161,12 @@ const SmartDashboard = () => {
         {/* ★ Nutrition Tip */}
         <NutritionTipCard />
 
+        {/* ★ Weekly Symptoms Summary */}
+        <WeeklySymptomsCard />
+
+        {/* ★ Mood Trend */}
+        <MoodTrendCard />
+
         {/* Weekly Health Challenge */}
         <WeeklyHealthChallenge />
 
@@ -183,6 +193,9 @@ const SmartDashboard = () => {
         {/* 6. Symptoms Summary */}
         <SymptomsSummary />
 
+        {/* ★ Contraction Summary */}
+        <ContractionSummaryCard />
+
         {/* 7 & 8. Baby Movement + Weight — side by side on wider screens */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
           <FetalMovementCard todayKicks={stats.dailyTracking.todayKicks} />
@@ -206,6 +219,9 @@ const SmartDashboard = () => {
 
         {/* App Rating */}
         <AppRatingCard />
+
+        {/* ★ Saved AI Results */}
+        <SavedResultsCountCard />
 
         {/* 10. Recent AI Results */}
         <RecentAIResults />
