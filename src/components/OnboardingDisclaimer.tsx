@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -13,11 +12,12 @@ import { safeSaveToLocalStorage } from '@/lib/safeStorage';
 import { OnboardingStep1Welcome } from '@/components/onboarding/OnboardingStep1Welcome';
 import { OnboardingStep2Journey } from '@/components/onboarding/OnboardingStep2Journey';
 import { OnboardingStep3Health } from '@/components/onboarding/OnboardingStep3Health';
+import { OnboardingStep4Goals } from '@/components/onboarding/OnboardingStep4Goals';
 import { OnboardingStep5Privacy } from '@/components/onboarding/OnboardingStep5Privacy';
 
 const ONBOARDING_KEY = 'onboarding_disclaimer_accepted';
 const FIRST_VISIT_KEY = 'language_selected_first_visit';
-const TOTAL_STEPS = 4;
+const TOTAL_STEPS = 5;
 
 export function OnboardingDisclaimer() {
   const [show, setShow] = useState(false);
@@ -27,7 +27,6 @@ export function OnboardingDisclaimer() {
   const { profile, updateProfile, setLastPeriodDate } = useUserProfile();
   const isRtl = i18n.language === 'ar';
 
-  // Local state for all fields
   const detectedLang = currentLanguage || navigator.language?.split('-')[0] || 'en';
   const [selectedLang, setSelectedLang] = useState(detectedLang);
   const [journeyStage, setJourneyStage] = useState<JourneyStage>(profile.journeyStage || 'pregnant');
@@ -80,7 +79,6 @@ export function OnboardingDisclaimer() {
 
     updateProfile(updates);
 
-    // Save notification prefs
     safeSaveToLocalStorage('notif_pref_vitamins', notifVitamins);
     safeSaveToLocalStorage('notif_pref_water', notifWater);
     safeSaveToLocalStorage('notif_pref_appointments', notifAppointments);
@@ -89,11 +87,9 @@ export function OnboardingDisclaimer() {
     localStorage.setItem(ONBOARDING_KEY, 'true');
     localStorage.setItem(FIRST_VISIT_KEY, 'true');
     setShow(false);
-    // Navigate to Smart Result Screen for WOW moment
     try { window.location.href = '/welcome-result'; } catch { /* fallback */ }
   };
 
-  // Auto-compute week from LMP
   const handleLmpChange = (d: Date | undefined) => {
     setLmpDate(d);
     if (d) {
@@ -161,6 +157,7 @@ export function OnboardingDisclaimer() {
               )}
               {step === 3 && (
                 <OnboardingStep3Health
+                  journeyStage={journeyStage}
                   weight={weight}
                   onWeightChange={setWeight}
                   height={height}
@@ -174,9 +171,23 @@ export function OnboardingDisclaimer() {
                 />
               )}
               {step === 4 && (
+                <OnboardingStep4Goals
+                  goals={goals}
+                  onGoalsChange={setGoals}
+                  notifVitamins={notifVitamins}
+                  onNotifVitaminsChange={setNotifVitamins}
+                  notifWater={notifWater}
+                  onNotifWaterChange={setNotifWater}
+                  notifAppointments={notifAppointments}
+                  onNotifAppointmentsChange={setNotifAppointments}
+                  onNext={() => setStep(5)}
+                  onBack={() => setStep(3)}
+                />
+              )}
+              {step === 5 && (
                 <OnboardingStep5Privacy
                   onFinish={handleFinish}
-                  onBack={() => setStep(3)}
+                  onBack={() => setStep(4)}
                 />
               )}
             </AnimatePresence>

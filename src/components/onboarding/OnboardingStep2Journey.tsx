@@ -8,6 +8,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Calendar } from '@/components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Button } from '@/components/ui/button';
+import { JourneyRecommendations } from '@/components/onboarding/JourneyRecommendations';
 import type { JourneyStage } from '@/hooks/useUserProfile';
 
 interface Props {
@@ -46,7 +47,7 @@ export const OnboardingStep2Journey: React.FC<Props> = ({
       transition={{ duration: 0.2 }}
     >
       <div className="px-5 pt-4 pb-2 text-center">
-        <h2 className="text-lg font-black text-foreground">
+        <h2 className="text-xl font-black text-foreground">
           {t('onboarding.step2.title', 'Where are you in your journey?')}
         </h2>
       </div>
@@ -67,9 +68,7 @@ export const OnboardingStep2Journey: React.FC<Props> = ({
             >
               <div className={cn(
                 "w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-colors",
-                journeyStage === key
-                  ? "bg-white/25"
-                  : "bg-muted/60"
+                journeyStage === key ? "bg-white/25" : "bg-muted/60"
               )}>
                 <Icon className={cn("w-5 h-5", journeyStage === key ? "text-white" : "text-foreground/60")} />
               </div>
@@ -80,11 +79,14 @@ export const OnboardingStep2Journey: React.FC<Props> = ({
           ))}
         </div>
 
+        {/* Journey Recommendations */}
+        <JourneyRecommendations stage={journeyStage} />
+
         {/* Pregnant-specific fields */}
         {journeyStage === 'pregnant' && (
           <div className="space-y-2 pt-1">
             <div>
-              <label className="text-xs font-semibold text-foreground/70 block mb-1">
+              <label className="text-sm font-semibold text-foreground/70 block mb-1">
                 {t('onboarding.pregnancyWeek', 'Week')} (1–42)
               </label>
               <input
@@ -92,13 +94,13 @@ export const OnboardingStep2Journey: React.FC<Props> = ({
                 min={1} max={42}
                 value={week}
                 onChange={e => onWeekChange(e.target.value)}
-                className="w-full h-9 rounded-lg border border-input bg-background px-3 text-sm focus:outline-none focus:ring-1 focus:ring-primary/30"
+                className="w-full h-11 rounded-xl border border-input bg-background px-3 text-sm focus:outline-none focus:ring-1 focus:ring-primary/30"
                 placeholder="20"
               />
             </div>
             <div>
-              <label className="text-xs font-semibold text-foreground/70 block mb-1">
-                <CalendarIcon className="w-3 h-3 inline me-1" />
+              <label className="text-sm font-semibold text-foreground/70 block mb-1">
+                <CalendarIcon className="w-3.5 h-3.5 inline me-1" />
                 {t('onboarding.lastPeriod', 'Last Period')} ({t('onboarding.optional', 'optional')})
               </label>
               <div className="flex gap-1.5">
@@ -106,9 +108,9 @@ export const OnboardingStep2Journey: React.FC<Props> = ({
                   <PopoverTrigger asChild>
                     <Button
                       variant="outline"
-                      className={cn("flex-1 justify-start text-left font-normal h-9 text-sm", !lmpDate && "text-muted-foreground")}
+                      className={cn("flex-1 justify-start text-left font-normal h-11 text-sm rounded-xl", !lmpDate && "text-muted-foreground")}
                     >
-                      <CalendarIcon className="me-2 h-3.5 w-3.5 text-primary shrink-0" />
+                      <CalendarIcon className="me-2 h-4 w-4 text-primary shrink-0" />
                       {lmpDate ? formatLocalized(lmpDate, "PPP", currentLanguage) : t('onboarding.selectDate', 'Pick a date')}
                     </Button>
                   </PopoverTrigger>
@@ -124,8 +126,8 @@ export const OnboardingStep2Journey: React.FC<Props> = ({
                   </PopoverContent>
                 </Popover>
                 {lmpDate && (
-                  <Button variant="ghost" size="icon" className="h-9 w-9 shrink-0 text-muted-foreground hover:text-destructive" onClick={() => onLmpChange(undefined)}>
-                    <X className="h-3.5 w-3.5" />
+                  <Button variant="ghost" size="icon" className="h-11 w-11 shrink-0 text-muted-foreground hover:text-destructive" onClick={() => onLmpChange(undefined)}>
+                    <X className="h-4 w-4" />
                   </Button>
                 )}
               </div>
@@ -135,13 +137,13 @@ export const OnboardingStep2Journey: React.FC<Props> = ({
       </div>
 
       {/* Navigation */}
-      <div className="px-4 pb-4 flex gap-2">
-        <button onClick={onBack} className="flex-1 py-2.5 rounded-xl border border-border text-sm font-medium flex items-center justify-center gap-1 hover:bg-muted/40 transition-colors">
-          <BackIcon className="w-3.5 h-3.5" /> {t('onboarding.back', 'Back')}
-        </button>
-        <button onClick={onNext} className="flex-1 py-2.5 rounded-xl bg-primary text-primary-foreground text-sm font-semibold flex items-center justify-center gap-1.5 hover:opacity-90 transition-opacity">
-          {t('onboarding.next', 'Continue')} <NextIcon className="w-3.5 h-3.5" />
-        </button>
+      <div className="px-4 pb-4 flex gap-2.5">
+        <motion.button whileTap={{ scale: 0.95 }} onClick={onBack} className="flex-1 py-3.5 rounded-2xl border border-border/40 bg-card text-sm font-semibold flex items-center justify-center gap-1.5 hover:bg-muted/40 transition-colors text-foreground/70 shadow-sm">
+          <BackIcon className="w-4 h-4" /> {t('onboarding.back', 'Back')}
+        </motion.button>
+        <motion.button whileTap={{ scale: 0.95 }} onClick={onNext} className="flex-1 py-3.5 rounded-2xl bg-primary text-primary-foreground text-sm font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity shadow-md shadow-primary/20">
+          {t('onboarding.next', 'Continue')} <NextIcon className="w-4 h-4" />
+        </motion.button>
       </div>
     </motion.div>
   );
