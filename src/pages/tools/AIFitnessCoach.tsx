@@ -384,6 +384,19 @@ const AIFitnessCoach: React.FC = () => {
               {/* Cooldown tip */}
               <WarmupCooldownSection type="cooldown" />
 
+              {/* Save Workout Log */}
+              {completedExercises.size > 0 && (
+                <SaveWorkoutButton
+                  exercises={generatedWorkout}
+                  completed={completedExercises}
+                  caloriesBurned={caloriesBurned}
+                  totalTime={totalTimeSpent}
+                />
+              )}
+
+              {/* Saved Workout Logs */}
+              <SavedResultsViewer toolId="ai-fitness-coach" />
+
               {/* Regenerate */}
               <Button
                 variant="outline"
