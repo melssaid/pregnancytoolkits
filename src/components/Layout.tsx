@@ -251,10 +251,16 @@ export function Layout({ children, showBack = false }: LayoutProps) {
                 {!isPremium && (
                   <Link
                     to="/pricing-demo"
-                    className="flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-br from-amber-500/15 to-amber-600/10 border border-amber-500/20 hover:border-amber-500/40 transition-all"
+                    className="relative flex items-center justify-center w-9 h-9 rounded-full bg-gradient-to-br from-amber-400/20 via-rose-400/15 to-pink-500/10 border border-amber-400/30 hover:border-amber-400/50 shadow-[0_2px_12px_-2px_hsl(340,50%,55%/0.2)] hover:shadow-[0_4px_16px_-2px_hsl(340,50%,55%/0.3)] transition-all duration-300 group"
                     title={t('pricing.upgradeTitle', 'Upgrade to PRO')}
                   >
-                    <Crown className="w-4 h-4 text-amber-500" />
+                    <motion.div
+                      animate={{ scale: [1, 1.12, 1], rotate: [0, -6, 6, 0] }}
+                      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                    >
+                      <Crown className="w-[18px] h-[18px] text-amber-500 drop-shadow-[0_1px_2px_rgba(245,158,11,0.4)] group-hover:text-amber-400 transition-colors" strokeWidth={2.2} />
+                    </motion.div>
+                    <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-gradient-to-br from-rose-400 to-pink-500 border-2 border-background animate-pulse" />
                   </Link>
                 )}
                 <div className="hidden md:flex">
