@@ -1,11 +1,7 @@
 /**
  * Google Play Billing Webhook (RTDN)
- * 
  * Receives Real-Time Developer Notifications from Google Cloud Pub/Sub
- * and updates the subscriptions table accordingly.
- * 
- * Pub/Sub sends POST with JSON: { message: { data: "<base64>", messageId: "..." }, subscription: "..." }
- * The base64-decoded data contains a DeveloperNotification with subscriptionNotification.
+ * and updates subscriptions + logs every event for auditing.
  */
 
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
@@ -16,7 +12,6 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type, x-webhook-secret",
 };
 
-// Google Play subscription notification types
 const NOTIFICATION_TYPES: Record<number, string> = {
   1: "SUBSCRIPTION_RECOVERED",
   2: "SUBSCRIPTION_RENEWED",
@@ -33,8 +28,174 @@ const NOTIFICATION_TYPES: Record<number, string> = {
   13: "SUBSCRIPTION_EXPIRED",
 };
 
+// Active statuses that grant premium access
+const ACTIVE_STATUSES = new Set([1, 2, 4, 7]); // recovered, renewed, purchased, restarted
+// Statuses that revoke premium access
+const INACTIVE_STATUSES = new Set([12, 13]); // revoked, expired
+// Statuses that put subscription on hold
+const HOLD_STATUSES = new Set([5, 6, 10]); // on_hold, grace_period, paused
+
+function getSupabaseClient() {
+  return createClient(
+    Deno.env.get("SUPABASE_URL")!,
+    Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
+  );
+}
+
+function calcEndDate(from: Date, type: string): string {
+  const end = new Date(from);
+  if (type === "yearly") {
+    end.setFullYear(end.getFullYear() + 1);
+  } else {
+    end.setMonth(end.getMonth() + 1);
+  }
+  return end.toISOString();
+}
+
+async function logWebhookEvent(
+  supabase: ReturnType<typeof createClient>,
+  eventType: string,
+  notificationType: string | null,
+  purchaseToken: string | null,
+  subscriptionId: string | null,
+  rawPayload: unknown,
+  status: string,
+  errorMessage: string | null = null
+) {
+  try {
+    await supabase.from("webhook_logs").insert({
+      event_type: eventType,
+      notification_type: notificationType,
+      purchase_token: purchaseToken?.substring(0, 50) || null,
+      subscription_id: subscriptionId,
+      raw_payload: rawPayload,
+      processing_status: status,
+      error_message: errorMessage,
+    });
+  } catch (e) {
+    console.error("Failed to log webhook event:", e);
+  }
+}
+
+async function handleSubscriptionNotification(
+  supabase: ReturnType<typeof createClient>,
+  notificationType: number,
+  purchaseToken: string,
+  subscriptionId: string,
+  notification: Record<string, unknown>
+) {
+  const typeName = NOTIFICATION_TYPES[notificationType] || `UNKNOWN_${notificationType}`;
+  const now = new Date().toISOString();
+  const subType = subscriptionId === "premium_yearly" ? "yearly" : "monthly";
+
+  // Find subscription by google_play_token
+  const { data: existingSub, error: findError } = await supabase
+    .from("subscriptions")
+    .select("*")
+    .eq("google_play_token", purchaseToken)
+    .maybeSingle();
+
+  if (findError) {
+    console.error("Error finding subscription:", findError.message);
+    return { success: false, error: findError.message };
+  }
+
+  if (!existingSub && notificationType !== 4) {
+    console.warn(`No subscription found for token. Type: ${typeName}`);
+    return { success: false, error: "Subscription not found" };
+  }
+
+  // PURCHASED
+  if (notificationType === 4) {
+    if (existingSub) {
+      const { error } = await supabase
+        .from("subscriptions")
+        .update({
+          status: "active",
+          subscription_type: subType,
+          subscription_start: now,
+          subscription_end: calcEndDate(new Date(), subType),
+          google_play_order_id: (notification as Record<string, string>).orderId || null,
+          updated_at: now,
+        })
+        .eq("id", existingSub.id);
+
+      if (error) return { success: false, error: error.message };
+      console.log(`Activated subscription ${existingSub.id} — ${subType}`);
+    } else {
+      console.warn("No subscription record with this purchaseToken for PURCHASED event.");
+      return { success: false, error: "No matching subscription record" };
+    }
+  }
+
+  // RENEWED / RECOVERED / RESTARTED
+  else if (ACTIVE_STATUSES.has(notificationType) && existingSub) {
+    const baseDate = existingSub.subscription_end
+      ? new Date(existingSub.subscription_end)
+      : new Date();
+    const newEnd = calcEndDate(baseDate, existingSub.subscription_type === "yearly" ? "yearly" : "monthly");
+
+    const { error } = await supabase
+      .from("subscriptions")
+      .update({ status: "active", subscription_end: newEnd, updated_at: now })
+      .eq("id", existingSub.id);
+
+    if (error) return { success: false, error: error.message };
+    console.log(`Renewed ${existingSub.id} until ${newEnd}`);
+  }
+
+  // CANCELED (user chose not to renew — stays active until period ends)
+  else if (notificationType === 3 && existingSub) {
+    const { error } = await supabase
+      .from("subscriptions")
+      .update({ status: "canceled", updated_at: now })
+      .eq("id", existingSub.id);
+
+    if (error) return { success: false, error: error.message };
+    console.log(`Canceled ${existingSub.id} — active until ${existingSub.subscription_end}`);
+  }
+
+  // REVOKED (refund — immediate loss of access)
+  else if (notificationType === 12 && existingSub) {
+    const { error } = await supabase
+      .from("subscriptions")
+      .update({ status: "revoked", subscription_end: now, updated_at: now })
+      .eq("id", existingSub.id);
+
+    if (error) return { success: false, error: error.message };
+    console.log(`REVOKED (refund) ${existingSub.id} — access removed immediately`);
+  }
+
+  // EXPIRED
+  else if (notificationType === 13 && existingSub) {
+    const { error } = await supabase
+      .from("subscriptions")
+      .update({ status: "expired", updated_at: now })
+      .eq("id", existingSub.id);
+
+    if (error) return { success: false, error: error.message };
+    console.log(`Expired ${existingSub.id}`);
+  }
+
+  // ON_HOLD / GRACE_PERIOD / PAUSED
+  else if (HOLD_STATUSES.has(notificationType) && existingSub) {
+    const { error } = await supabase
+      .from("subscriptions")
+      .update({ status: "on_hold", updated_at: now })
+      .eq("id", existingSub.id);
+
+    if (error) return { success: false, error: error.message };
+    console.log(`Set ${existingSub.id} to on_hold (${typeName})`);
+  }
+
+  else {
+    console.log(`Unhandled: ${typeName}`);
+  }
+
+  return { success: true };
+}
+
 Deno.serve(async (req) => {
-  // Handle CORS preflight
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
@@ -46,18 +207,22 @@ Deno.serve(async (req) => {
     });
   }
 
+  const supabase = getSupabaseClient();
+
   try {
-    // Verify webhook secret (MANDATORY) — check query param or header
+    // Verify webhook secret
     const webhookSecret = Deno.env.get("GOOGLE_PLAY_WEBHOOK_SECRET");
     if (!webhookSecret) {
-      console.error("GOOGLE_PLAY_WEBHOOK_SECRET is not configured");
       return new Response(JSON.stringify({ error: "Server misconfiguration" }), {
         status: 500,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
+
     const url = new URL(req.url);
-    const providedSecret = url.searchParams.get("secret") || req.headers.get("x-webhook-secret");
+    const providedSecret =
+      url.searchParams.get("secret") || req.headers.get("x-webhook-secret");
+
     if (providedSecret !== webhookSecret) {
       console.error("Invalid webhook secret");
       return new Response(JSON.stringify({ error: "Unauthorized" }), {
@@ -67,12 +232,10 @@ Deno.serve(async (req) => {
     }
 
     const body = await req.json();
-    console.log("Received Pub/Sub message:", JSON.stringify(body));
-
-    // Decode Pub/Sub message data
     const messageData = body?.message?.data;
+
     if (!messageData) {
-      console.error("No message data in request");
+      await logWebhookEvent(supabase, "missing_data", null, null, null, body, "error", "No message data");
       return new Response(JSON.stringify({ error: "No message data" }), {
         status: 400,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -81,181 +244,58 @@ Deno.serve(async (req) => {
 
     const decoded = atob(messageData);
     const notification = JSON.parse(decoded);
-    console.log("Decoded notification:", JSON.stringify(notification));
+
+    // Test notification
+    if (notification?.testNotification) {
+      await logWebhookEvent(supabase, "test_ping", null, null, null, notification, "success");
+      return new Response(JSON.stringify({ ok: true, type: "test_ping" }), {
+        status: 200,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
 
     const subNotification = notification?.subscriptionNotification;
     if (!subNotification) {
-      // Could be a test notification or one-time product notification
-      console.log("No subscriptionNotification — possibly a test ping");
+      await logWebhookEvent(supabase, "non_subscription", null, null, null, notification, "success");
       return new Response(JSON.stringify({ ok: true, type: "non-subscription" }), {
         status: 200,
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
     }
 
-    const {
+    const { notificationType, purchaseToken, subscriptionId } = subNotification;
+    const typeName = NOTIFICATION_TYPES[notificationType] || `UNKNOWN_${notificationType}`;
+
+    console.log(`Processing: ${typeName} | product: ${subscriptionId}`);
+
+    const result = await handleSubscriptionNotification(
+      supabase,
       notificationType,
       purchaseToken,
       subscriptionId,
-    } = subNotification;
+      notification
+    );
 
-    const typeName = NOTIFICATION_TYPES[notificationType] || `UNKNOWN_${notificationType}`;
-    console.log(`Processing: ${typeName} for product ${subscriptionId}, token: ${purchaseToken?.substring(0, 20)}...`);
-
-    // Initialize Supabase with service_role to bypass RLS
-    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
-    const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-    const supabase = createClient(supabaseUrl, serviceRoleKey);
-
-    // Find subscription by google_play_token
-    const { data: existingSub, error: findError } = await supabase
-      .from("subscriptions")
-      .select("*")
-      .eq("google_play_token", purchaseToken)
-      .maybeSingle();
-
-    if (findError) {
-      console.error("Error finding subscription:", findError.message);
-    }
-
-    // Determine subscription type from product ID
-    const subType = subscriptionId === "premium_yearly" ? "yearly" : "monthly";
-    const now = new Date().toISOString();
-
-    // Calculate subscription end based on type
-    const calcEndDate = (from: Date, type: string): string => {
-      const end = new Date(from);
-      if (type === "yearly") {
-        end.setFullYear(end.getFullYear() + 1);
-      } else {
-        end.setMonth(end.getMonth() + 1);
-      }
-      return end.toISOString();
-    };
-
-    switch (notificationType) {
-      // PURCHASED
-      case 4: {
-        if (existingSub) {
-          // Update existing record
-          const { error } = await supabase
-            .from("subscriptions")
-            .update({
-              status: "active",
-              subscription_type: subType,
-              subscription_start: now,
-              subscription_end: calcEndDate(new Date(), subType),
-              google_play_order_id: notification.orderId || null,
-              updated_at: now,
-            })
-            .eq("id", existingSub.id);
-
-          if (error) console.error("Update error (PURCHASED):", error.message);
-          else console.log(`Updated subscription ${existingSub.id} to active/${subType}`);
-        } else {
-          // No existing record with this token — try to find by most recent trial user
-          // In practice, the app should set google_play_token before purchase completes
-          console.warn("No subscription found with this purchaseToken. Cannot update.");
-        }
-        break;
-      }
-
-      // RENEWED / RECOVERED / RESTARTED
-      case 1:
-      case 2:
-      case 7: {
-        if (existingSub) {
-          const newEnd = calcEndDate(
-            existingSub.subscription_end ? new Date(existingSub.subscription_end) : new Date(),
-            existingSub.subscription_type === "yearly" ? "yearly" : "monthly"
-          );
-          const { error } = await supabase
-            .from("subscriptions")
-            .update({
-              status: "active",
-              subscription_end: newEnd,
-              updated_at: now,
-            })
-            .eq("id", existingSub.id);
-
-          if (error) console.error(`Update error (${typeName}):`, error.message);
-          else console.log(`Renewed subscription ${existingSub.id} until ${newEnd}`);
-        }
-        break;
-      }
-
-      // CANCELED
-      case 3: {
-        if (existingSub) {
-          const { error } = await supabase
-            .from("subscriptions")
-            .update({ status: "canceled", updated_at: now })
-            .eq("id", existingSub.id);
-
-          if (error) console.error("Update error (CANCELED):", error.message);
-          else console.log(`Canceled subscription ${existingSub.id}`);
-        }
-        break;
-      }
-
-      // EXPIRED
-      case 13: {
-        if (existingSub) {
-          const { error } = await supabase
-            .from("subscriptions")
-            .update({ status: "expired", updated_at: now })
-            .eq("id", existingSub.id);
-
-          if (error) console.error("Update error (EXPIRED):", error.message);
-          else console.log(`Expired subscription ${existingSub.id}`);
-        }
-        break;
-      }
-
-      // REVOKED (immediate cancellation)
-      case 12: {
-        if (existingSub) {
-          const { error } = await supabase
-            .from("subscriptions")
-            .update({
-              status: "revoked",
-              subscription_end: now,
-              updated_at: now,
-            })
-            .eq("id", existingSub.id);
-
-          if (error) console.error("Update error (REVOKED):", error.message);
-          else console.log(`Revoked subscription ${existingSub.id}`);
-        }
-        break;
-      }
-
-      // ON_HOLD / IN_GRACE_PERIOD / PAUSED
-      case 5:
-      case 6:
-      case 10: {
-        if (existingSub) {
-          const { error } = await supabase
-            .from("subscriptions")
-            .update({ status: "on_hold", updated_at: now })
-            .eq("id", existingSub.id);
-
-          if (error) console.error(`Update error (${typeName}):`, error.message);
-          else console.log(`Set subscription ${existingSub.id} to on_hold`);
-        }
-        break;
-      }
-
-      default:
-        console.log(`Unhandled notification type: ${typeName}`);
-    }
+    await logWebhookEvent(
+      supabase,
+      "subscription",
+      typeName,
+      purchaseToken,
+      subscriptionId,
+      notification,
+      result.success ? "success" : "error",
+      result.error || null
+    );
 
     return new Response(JSON.stringify({ ok: true, type: typeName }), {
       status: 200,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   } catch (err) {
-    console.error("Webhook processing error:", err);
+    const errorMsg = err instanceof Error ? err.message : String(err);
+    console.error("Webhook error:", errorMsg);
+    await logWebhookEvent(supabase, "crash", null, null, null, { error: errorMsg }, "error", errorMsg);
+
     return new Response(JSON.stringify({ error: "Internal server error" }), {
       status: 500,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
