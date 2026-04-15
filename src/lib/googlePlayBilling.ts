@@ -536,13 +536,23 @@ export async function requestPurchase(
       return false;
     }
 
-    // Acknowledge purchase — 'repeatable' for subscriptions (auto-renewing)
-    try {
-      await svc.service.acknowledge(purchaseToken, 'repeatable');
-      console.log('[Billing] ✅ Purchase acknowledged');
-    } catch (ackErr: any) {
-      console.warn('[Billing] Acknowledge failed (non-fatal):', ackErr?.message);
-      // Continue — some implementations auto-acknowledge
+    // Acknowledge purchase — CRITICAL: Google refunds after 3 days if not acknowledged
+    let acknowledged = false;
+    for (let ackAttempt = 0; ackAttempt < 3; ackAttempt++) {
+      try {
+        await svc.service.acknowledge(purchaseToken, 'repeatable');
+        console.log('[Billing] ✅ Purchase acknowledged (attempt', ackAttempt + 1, ')');
+        acknowledged = true;
+        break;
+      } catch (ackErr: any) {
+        console.warn(`[Billing] Acknowledge attempt ${ackAttempt + 1}/3 failed:`, ackErr?.message);
+        if (ackAttempt < 2) await new Promise(r => setTimeout(r, 1500));
+      }
+    }
+    if (!acknowledged) {
+      console.error('[Billing] ⚠️ Client-side acknowledge FAILED after 3 attempts — relying on server-side acknowledge');
+      // Schedule a background retry
+      scheduleAcknowledgeRetry(purchaseToken);
     }
 
     // Activate on server BEFORE completing the PaymentRequest
