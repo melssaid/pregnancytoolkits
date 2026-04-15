@@ -117,6 +117,9 @@ deferAfterPaint(() => {
   // Core Web Vitals measurement
   import("@/lib/webVitals").then((m) => m.initWebVitals());
 
+  // Retry any pending purchase acknowledges
+  import("@/lib/googlePlayBilling").then((m) => m.retryPendingAcknowledges());
+
   // Migrate large data to IndexedDB
   import("@/lib/indexedDBStore").then((m) => {
     ['kick_counter_sessions', 'contraction_entries', 'weight_gain_entries'].forEach(key => {
