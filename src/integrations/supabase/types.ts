@@ -408,6 +408,42 @@ export type Database = {
         }
         Relationships: []
       }
+      webhook_logs: {
+        Row: {
+          created_at: string
+          error_message: string | null
+          event_type: string
+          id: string
+          notification_type: string | null
+          processing_status: string
+          purchase_token: string | null
+          raw_payload: Json
+          subscription_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          error_message?: string | null
+          event_type: string
+          id?: string
+          notification_type?: string | null
+          processing_status?: string
+          purchase_token?: string | null
+          raw_payload?: Json
+          subscription_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          error_message?: string | null
+          event_type?: string
+          id?: string
+          notification_type?: string | null
+          processing_status?: string
+          purchase_token?: string | null
+          raw_payload?: Json
+          subscription_id?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
