@@ -3,7 +3,8 @@
  * 
  * Called from the client after a successful Google Play purchase.
  * Uses service_role to UPSERT the subscriptions table.
- * Supports anonymous users (no login system).
+ * Also acknowledges the purchase via Google Play Developer API
+ * to prevent automatic refunds after 3 days.
  */
 
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
@@ -20,6 +21,102 @@ function jsonResponse(data: unknown, status = 200) {
     headers: { ...corsHeaders, "Content-Type": "application/json" },
   });
 }
+
+// ─── Google Play API Acknowledgment ───
+
+interface ServiceAccountKey {
+  client_email: string;
+  private_key: string;
+  token_uri: string;
+}
+
+async function getAccessToken(sa: ServiceAccountKey): Promise<string> {
+  const now = Math.floor(Date.now() / 1000);
+  const header = btoa(JSON.stringify({ alg: "RS256", typ: "JWT" }));
+  const payload = btoa(JSON.stringify({
+    iss: sa.client_email,
+    scope: "https://www.googleapis.com/auth/androidpublisher",
+    aud: sa.token_uri,
+    iat: now,
+    exp: now + 3600,
+  }));
+
+  // Import the private key for signing
+  const pemContents = sa.private_key
+    .replace(/-----BEGIN PRIVATE KEY-----/, "")
+    .replace(/-----END PRIVATE KEY-----/, "")
+    .replace(/\n/g, "");
+  const keyData = Uint8Array.from(atob(pemContents), c => c.charCodeAt(0));
+
+  const key = await crypto.subtle.importKey(
+    "pkcs8",
+    keyData,
+    { name: "RSASSA-PKCS1-v1_5", hash: "SHA-256" },
+    false,
+    ["sign"],
+  );
+
+  const signInput = new TextEncoder().encode(`${header}.${payload}`);
+  const signature = await crypto.subtle.sign("RSASSA-PKCS1-v1_5", key, signInput);
+  const sig = btoa(String.fromCharCode(...new Uint8Array(signature)))
+    .replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+
+  const jwt = `${header}.${payload}.${sig}`;
+
+  const res = await fetch(sa.token_uri, {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: `grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer&assertion=${jwt}`,
+  });
+
+  if (!res.ok) {
+    const errText = await res.text();
+    throw new Error(`Token exchange failed: ${res.status} ${errText}`);
+  }
+
+  const tokenData = await res.json();
+  return tokenData.access_token;
+}
+
+async function acknowledgeSubscription(
+  packageName: string,
+  subscriptionId: string,
+  purchaseToken: string,
+  accessToken: string,
+): Promise<boolean> {
+  const url = `https://androidpublisher.googleapis.com/androidpublisher/v3/applications/${packageName}/purchases/subscriptions/${subscriptionId}/tokens/${purchaseToken}:acknowledge`;
+  
+  const res = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({}),
+  });
+
+  if (res.ok || res.status === 204) {
+    console.log(`✅ Server-side acknowledge succeeded for ${subscriptionId}`);
+    return true;
+  }
+
+  // 400 might mean already acknowledged — that's fine
+  if (res.status === 400) {
+    const body = await res.text();
+    if (body.includes("alreadyAcknowledged") || body.includes("The subscription purchase has already been acknowledged")) {
+      console.log(`ℹ️ Already acknowledged for ${subscriptionId}`);
+      return true;
+    }
+    console.warn(`⚠️ Acknowledge returned 400: ${body}`);
+    return false;
+  }
+
+  const errBody = await res.text();
+  console.error(`❌ Acknowledge failed: ${res.status} ${errBody}`);
+  return false;
+}
+
+// ─── Main Handler ───
 
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
@@ -62,6 +159,26 @@ Deno.serve(async (req) => {
       return jsonResponse({ error: "Invalid productId" }, 400);
     }
 
+    // ── Server-side Acknowledge via Google Play API ──
+    let serverAcknowledged = false;
+    const saKeyJson = Deno.env.get("GOOGLE_SERVICE_ACCOUNT_KEY");
+    if (saKeyJson) {
+      try {
+        const saKey: ServiceAccountKey = JSON.parse(saKeyJson);
+        const accessToken = await getAccessToken(saKey);
+        serverAcknowledged = await acknowledgeSubscription(
+          "app.pregnancytoolkits.android",
+          productId,
+          purchaseToken,
+          accessToken,
+        );
+      } catch (ackErr) {
+        console.error("Server-side acknowledge error:", ackErr);
+      }
+    } else {
+      console.warn("⚠️ GOOGLE_SERVICE_ACCOUNT_KEY not configured — skipping server-side acknowledge");
+    }
+
     const serviceClient = createClient(supabaseUrl, serviceRoleKey);
     const subType = productId === "premium_yearly" ? "yearly" : "monthly";
     const now = new Date();
@@ -82,7 +199,6 @@ Deno.serve(async (req) => {
       .maybeSingle();
 
     if (existing) {
-      // Update existing subscription
       const { error: updateError } = await serviceClient
         .from("subscriptions")
         .update({
@@ -101,7 +217,6 @@ Deno.serve(async (req) => {
         return jsonResponse({ error: "Update failed" }, 500);
       }
     } else {
-      // Create new subscription for this anonymous user
       const { error: insertError } = await serviceClient
         .from("subscriptions")
         .insert({
@@ -115,7 +230,6 @@ Deno.serve(async (req) => {
         });
 
       if (insertError) {
-        // Handle unique constraint — try update as fallback
         if (insertError.code === "23505") {
           console.log("Insert conflict — falling back to update for user:", user.id);
           const { error: fallbackErr } = await serviceClient
@@ -142,8 +256,8 @@ Deno.serve(async (req) => {
       }
     }
 
-    console.log(`✅ Subscription activated: user=${user.id}, type=${subType}, product=${productId}`);
-    return jsonResponse({ ok: true, type: subType });
+    console.log(`✅ Subscription activated: user=${user.id}, type=${subType}, product=${productId}, serverAck=${serverAcknowledged}`);
+    return jsonResponse({ ok: true, type: subType, acknowledged: serverAcknowledged });
   } catch (err) {
     console.error("Activation error:", err);
     return jsonResponse({ error: "Internal server error" }, 500);
