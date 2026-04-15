@@ -586,6 +586,65 @@ export async function requestPurchase(
   }
 }
 
+// ─── Background Acknowledge Retry ───
+
+function scheduleAcknowledgeRetry(purchaseToken: string): void {
+  const RETRY_KEY = 'pending_acknowledge';
+  try {
+    const pending = JSON.parse(localStorage.getItem(RETRY_KEY) || '[]') as string[];
+    if (!pending.includes(purchaseToken)) {
+      pending.push(purchaseToken);
+      localStorage.setItem(RETRY_KEY, JSON.stringify(pending));
+    }
+  } catch { /* ignore */ }
+
+  // Retry in background after 30s, 2min, 5min
+  const delays = [30_000, 120_000, 300_000];
+  delays.forEach((delay, i) => {
+    setTimeout(async () => {
+      try {
+        const svc = await getService();
+        if (!svc) return;
+        await svc.service.acknowledge(purchaseToken, 'repeatable');
+        console.log(`[Billing] ✅ Background acknowledge succeeded (retry ${i + 1})`);
+        // Remove from pending
+        try {
+          const pending = JSON.parse(localStorage.getItem(RETRY_KEY) || '[]') as string[];
+          localStorage.setItem(RETRY_KEY, JSON.stringify(pending.filter(t => t !== purchaseToken)));
+        } catch { /* ignore */ }
+      } catch (err: any) {
+        console.warn(`[Billing] Background acknowledge retry ${i + 1} failed:`, err?.message);
+      }
+    }, delay);
+  });
+}
+
+/**
+ * Retry any pending acknowledges from previous sessions.
+ * Call this on app startup.
+ */
+export async function retryPendingAcknowledges(): Promise<void> {
+  const RETRY_KEY = 'pending_acknowledge';
+  try {
+    const pending = JSON.parse(localStorage.getItem(RETRY_KEY) || '[]') as string[];
+    if (!pending.length) return;
+
+    const svc = await getService();
+    if (!svc) return;
+
+    const remaining: string[] = [];
+    for (const token of pending) {
+      try {
+        await svc.service.acknowledge(token, 'repeatable');
+        console.log('[Billing] ✅ Retried pending acknowledge successfully');
+      } catch {
+        remaining.push(token);
+      }
+    }
+    localStorage.setItem(RETRY_KEY, JSON.stringify(remaining));
+  } catch { /* ignore */ }
+}
+
 // ─── Server Activation ───
 
 async function activateOnServer(
