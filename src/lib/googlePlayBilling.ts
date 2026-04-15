@@ -536,13 +536,23 @@ export async function requestPurchase(
       return false;
     }
 
-    // Acknowledge purchase — 'repeatable' for subscriptions (auto-renewing)
-    try {
-      await svc.service.acknowledge(purchaseToken, 'repeatable');
-      console.log('[Billing] ✅ Purchase acknowledged');
-    } catch (ackErr: any) {
-      console.warn('[Billing] Acknowledge failed (non-fatal):', ackErr?.message);
-      // Continue — some implementations auto-acknowledge
+    // Acknowledge purchase — CRITICAL: Google refunds after 3 days if not acknowledged
+    let acknowledged = false;
+    for (let ackAttempt = 0; ackAttempt < 3; ackAttempt++) {
+      try {
+        await svc.service.acknowledge(purchaseToken, 'repeatable');
+        console.log('[Billing] ✅ Purchase acknowledged (attempt', ackAttempt + 1, ')');
+        acknowledged = true;
+        break;
+      } catch (ackErr: any) {
+        console.warn(`[Billing] Acknowledge attempt ${ackAttempt + 1}/3 failed:`, ackErr?.message);
+        if (ackAttempt < 2) await new Promise(r => setTimeout(r, 1500));
+      }
+    }
+    if (!acknowledged) {
+      console.error('[Billing] ⚠️ Client-side acknowledge FAILED after 3 attempts — relying on server-side acknowledge');
+      // Schedule a background retry
+      scheduleAcknowledgeRetry(purchaseToken);
     }
 
     // Activate on server BEFORE completing the PaymentRequest
@@ -574,6 +584,65 @@ export async function requestPurchase(
     }
     return false;
   }
+}
+
+// ─── Background Acknowledge Retry ───
+
+function scheduleAcknowledgeRetry(purchaseToken: string): void {
+  const RETRY_KEY = 'pending_acknowledge';
+  try {
+    const pending = JSON.parse(localStorage.getItem(RETRY_KEY) || '[]') as string[];
+    if (!pending.includes(purchaseToken)) {
+      pending.push(purchaseToken);
+      localStorage.setItem(RETRY_KEY, JSON.stringify(pending));
+    }
+  } catch { /* ignore */ }
+
+  // Retry in background after 30s, 2min, 5min
+  const delays = [30_000, 120_000, 300_000];
+  delays.forEach((delay, i) => {
+    setTimeout(async () => {
+      try {
+        const svc = await getService();
+        if (!svc) return;
+        await svc.service.acknowledge(purchaseToken, 'repeatable');
+        console.log(`[Billing] ✅ Background acknowledge succeeded (retry ${i + 1})`);
+        // Remove from pending
+        try {
+          const pending = JSON.parse(localStorage.getItem(RETRY_KEY) || '[]') as string[];
+          localStorage.setItem(RETRY_KEY, JSON.stringify(pending.filter(t => t !== purchaseToken)));
+        } catch { /* ignore */ }
+      } catch (err: any) {
+        console.warn(`[Billing] Background acknowledge retry ${i + 1} failed:`, err?.message);
+      }
+    }, delay);
+  });
+}
+
+/**
+ * Retry any pending acknowledges from previous sessions.
+ * Call this on app startup.
+ */
+export async function retryPendingAcknowledges(): Promise<void> {
+  const RETRY_KEY = 'pending_acknowledge';
+  try {
+    const pending = JSON.parse(localStorage.getItem(RETRY_KEY) || '[]') as string[];
+    if (!pending.length) return;
+
+    const svc = await getService();
+    if (!svc) return;
+
+    const remaining: string[] = [];
+    for (const token of pending) {
+      try {
+        await svc.service.acknowledge(token, 'repeatable');
+        console.log('[Billing] ✅ Retried pending acknowledge successfully');
+      } catch {
+        remaining.push(token);
+      }
+    }
+    localStorage.setItem(RETRY_KEY, JSON.stringify(remaining));
+  } catch { /* ignore */ }
 }
 
 // ─── Server Activation ───
