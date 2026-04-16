@@ -126,28 +126,28 @@ export default function PricingDemo() {
       </div>
 
       {/* Close */}
-      <div className="sticky top-0 z-30 px-4 py-3 flex justify-end">
+      <div className="sticky top-0 z-30 px-4 pt-2 pb-1 flex justify-end">
         <motion.button
           onClick={() => navigate("/")}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          className="w-9 h-9 rounded-full bg-card/80 backdrop-blur-md border border-border/40 shadow-sm flex items-center justify-center hover:bg-muted transition-colors"
+          className="w-8 h-8 rounded-full bg-card/80 backdrop-blur-md border border-border/40 shadow-sm flex items-center justify-center hover:bg-muted transition-colors"
         >
-          <X className="w-4 h-4 text-muted-foreground" />
+          <X className="w-3.5 h-3.5 text-muted-foreground" />
         </motion.button>
       </div>
 
-      <div className="flex-1 px-5 pb-6 max-w-md mx-auto w-full flex flex-col justify-between relative z-10">
+      <div className="flex-1 px-5 pb-4 max-w-md mx-auto w-full flex flex-col justify-between relative z-10">
         <div>
           {/* Hero — Logo + Title */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-            className="text-center mb-4"
+            className="text-center mb-2 -mt-1"
           >
             <motion.div
-              className="relative w-28 h-28 mx-auto mb-3 flex items-center justify-center"
+              className="relative w-20 h-20 mx-auto mb-1.5 flex items-center justify-center"
               initial={{ scale: 0.8 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.5, delay: 0.1, type: "spring", stiffness: 200 }}
