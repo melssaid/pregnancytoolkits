@@ -32,6 +32,8 @@ interface ToolFrameProps {
   toolId?: string;
   showRelated?: boolean;
   noCard?: boolean;
+  /** HowTo schema steps for SEO rich snippets */
+  howToSteps?: { name: string; text: string }[];
 }
 
 const moodStyles = {
@@ -79,6 +81,7 @@ export function ToolFrame({
   toolId,
   showRelated = true,
   noCard = false,
+  howToSteps,
 }: ToolFrameProps) {
   const { t, i18n } = useTranslation();
   const styles = moodStyles[mood];
@@ -95,7 +98,7 @@ export function ToolFrame({
 
   return (
     <div className={`min-h-screen bg-gradient-to-br ${styles.gradient} overflow-x-hidden overflow-y-auto`}>
-      <SEOHead title={title} description={subtitle} />
+      <SEOHead title={title} description={subtitle} howToSteps={howToSteps} />
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         <div className={`absolute -top-32 -right-32 w-72 md:w-96 h-72 md:h-96 bg-gradient-to-br ${styles.glow} to-transparent rounded-full blur-3xl opacity-60`} />
         <div className={`absolute -bottom-32 -left-32 w-72 md:w-96 h-72 md:h-96 bg-gradient-to-tr ${styles.glow} to-transparent rounded-full blur-3xl opacity-40`} />
