@@ -193,6 +193,11 @@ const SmartKickCounter: React.FC = () => {
       customIcon="baby-growth"
       mood="nurturing"
       toolId="smart-kick-counter"
+      howToSteps={[
+        { name: "Start a kick counting session", text: "Sit comfortably or lie on your side. Tap the large kick button each time you feel your baby move." },
+        { name: "Count 10 movements", text: "Continue tapping for each kick, roll, or flutter. Most healthy babies reach 10 movements within 1-2 hours." },
+        { name: "Review your daily pattern", text: "Save the session to build a personal movement chart. Compare daily patterns and discuss any concerns with your healthcare provider." },
+      ]}
     >
       <div className="space-y-4">
         {/* Movement Score + Quick Stats — unified strip */}

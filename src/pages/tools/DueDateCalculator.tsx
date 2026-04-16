@@ -150,6 +150,11 @@ export default function DueDateCalculator() {
       customIcon="calendar"
       mood="nurturing"
       toolId="due-date-calculator"
+      howToSteps={[
+        { name: "Enter your last menstrual period (LMP)", text: "Tap the date field and select the first day of your last menstrual period from the calendar." },
+        { name: "Calculate your due date", text: "The app instantly calculates your estimated due date using Naegele's rule (LMP + 280 days) and shows your current pregnancy week." },
+        { name: "Save and get reminders", text: "Save your result to track your pregnancy progress week by week and enable optional reminders for important milestones." },
+      ]}
     >
         <motion.div
         initial={{ opacity: 0, y: 20 }}
