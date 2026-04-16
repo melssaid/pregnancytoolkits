@@ -304,7 +304,7 @@ export default function PricingDemo() {
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45, delay: 0.28 }}
-          className="mt-5 space-y-2"
+          className="mt-3 space-y-1.5"
         >
           <Button
             onClick={handleSubscribe}
