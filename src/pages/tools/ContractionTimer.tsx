@@ -220,6 +220,11 @@ export default function ContractionTimer() {
       customIcon="contraction-timer"
       mood="calm"
       toolId="contraction-timer"
+      howToSteps={[
+        { name: "Tap Start when a contraction begins", text: "When you feel a contraction starting, tap the large Start button to begin timing its duration." },
+        { name: "Tap Stop when it ends", text: "Tap Stop the moment the contraction fades. The app records duration and the interval since the previous contraction." },
+        { name: "Watch for the 5-1-1 pattern", text: "When contractions are 5 minutes apart, 1 minute long, for 1 hour straight, contact your healthcare provider — active labor may have begun." },
+      ]}
     >
       <div className="space-y-4">
 
