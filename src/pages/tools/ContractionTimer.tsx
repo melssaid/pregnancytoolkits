@@ -17,6 +17,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { ContractionChart } from "@/components/contraction/ContractionChart";
 import { ContractionHistory } from "@/components/contraction/ContractionHistory";
 import { AIInsightCard } from "@/components/ai/AIInsightCard";
+import { useInAppReview } from "@/hooks/useInAppReview";
 
 interface Contraction {
   id: string;
@@ -95,6 +96,8 @@ export default function ContractionTimer() {
 
   const handleStart = useCallback(() => { haptic('tap'); setIsActive(true); }, []);
 
+  const { maybePromptReview } = useInAppReview();
+
   const handleStop = useCallback(() => {
     const duration = Math.floor((Date.now() - startTimeRef.current) / 1000);
     const newContraction: Contraction = {
@@ -105,7 +108,11 @@ export default function ContractionTimer() {
     saveContractions(updated);
     setIsActive(false);
     haptic('success');
-  }, [contractions, intensity]);
+    // Prompt for review after 5+ tracked contractions (engaged user, positive moment)
+    if (updated.length >= 5) {
+      maybePromptReview('contraction_timer_used');
+    }
+  }, [contractions, intensity, maybePromptReview]);
 
   const handleClear = useCallback(() => {
     setContractions([]);
