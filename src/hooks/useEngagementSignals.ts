@@ -62,20 +62,15 @@ export function useEngagementSignals() {
   const lastPath = useRef("");
   const sessionStartLogged = useRef(false);
 
-  // Log session_start once per session
+  // Track page views + log session_start on first render (single effect)
   useEffect(() => {
-    if (sessionStartLogged.current) return;
-    sessionStartLogged.current = true;
-    const isReturning = !!sessionStorage.getItem(SESSION_KEY);
-    logEvent(sessionId.current, "_session", "session_start", {
-      platform: /wv|Android.*Version\//i.test(navigator.userAgent) ? "twa" : "web",
-      lang: navigator.language?.slice(0, 5) || "unknown",
-      returning: isReturning ? 1 : 0,
-    });
-  }, []);
-
-  // Track ALL page views (not just /tools/*)
-  useEffect(() => {
+    if (!sessionStartLogged.current) {
+      sessionStartLogged.current = true;
+      logEvent(sessionId.current, "_session", "session_start", {
+        platform: /wv|Android.*Version\//i.test(navigator.userAgent) ? "twa" : "web",
+        lang: navigator.language?.slice(0, 5) || "unknown",
+      });
+    }
     const path = location.pathname;
     if (path === lastPath.current) return;
     lastPath.current = path;
