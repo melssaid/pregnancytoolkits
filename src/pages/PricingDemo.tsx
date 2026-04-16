@@ -162,19 +162,19 @@ export default function PricingDemo() {
                 />
               ))}
               <motion.div
-                className="absolute w-20 h-20 rounded-full bg-primary/10 blur-xl"
+                className="absolute w-16 h-16 rounded-full bg-primary/10 blur-xl"
                 animate={{ scale: [1, 1.4, 1], opacity: [0.3, 0.6, 0.3] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
               />
-              <div className="relative z-0 rounded-full overflow-hidden shadow-xl shadow-primary/20 ring-[3px] ring-primary/15 bg-white" style={{ width: 88, height: 88 }}>
-                <img src={pricingLogo} alt="Pregnancy Toolkits" className="w-full h-full object-cover" loading="eager" width={88} height={88} />
+              <div className="relative z-0 rounded-full overflow-hidden shadow-xl shadow-primary/20 ring-[3px] ring-primary/15 bg-white" style={{ width: 64, height: 64 }}>
+                <img src={pricingLogo} alt="Pregnancy Toolkits" className="w-full h-full object-cover" loading="eager" width={64} height={64} />
               </div>
               {[
-                { angle: 0, radius: 52, size: 17, emoji: '🌸', dur: 7, delay: 0 },
-                { angle: 72, radius: 48, size: 14, emoji: '🌸', dur: 9, delay: 0.6 },
-                { angle: 144, radius: 54, size: 16, emoji: '🌸', dur: 8, delay: 1.2 },
-                { angle: 216, radius: 50, size: 13, emoji: '🌸', dur: 10, delay: 0.3 },
-                { angle: 288, radius: 53, size: 15, emoji: '🌸', dur: 8.5, delay: 0.9 },
+                { angle: 0, radius: 38, size: 13, emoji: '🌸', dur: 7, delay: 0 },
+                { angle: 72, radius: 36, size: 11, emoji: '🌸', dur: 9, delay: 0.6 },
+                { angle: 144, radius: 40, size: 12, emoji: '🌸', dur: 8, delay: 1.2 },
+                { angle: 216, radius: 37, size: 10, emoji: '🌸', dur: 10, delay: 0.3 },
+                { angle: 288, radius: 39, size: 12, emoji: '🌸', dur: 8.5, delay: 0.9 },
               ].map((f, i) => (
                 <motion.span
                   key={`flower-${i}`}
@@ -196,14 +196,14 @@ export default function PricingDemo() {
             </motion.div>
 
             <h1
-              className="text-lg font-extrabold text-foreground tracking-tight mb-1 leading-tight select-none"
+              className="text-base font-extrabold text-foreground tracking-tight mb-0.5 leading-tight select-none"
               style={{ fontFamily: isAr ? "'Almarai', 'Tajawal', sans-serif" : "'Montserrat', sans-serif" }}
               onClick={() => setDevTaps(p => p + 1)}
             >
               {t("pricing.title")}
             </h1>
             <p
-              className="text-xs text-muted-foreground leading-relaxed max-w-[240px] mx-auto"
+              className="text-[11px] text-muted-foreground leading-snug max-w-[240px] mx-auto"
               style={{ fontFamily: isAr ? "'Tajawal', sans-serif" : "'Montserrat', sans-serif" }}
             >
               {t("pricing.subtitle")}
@@ -215,7 +215,7 @@ export default function PricingDemo() {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35, delay: 0.12 }}
-            className="flex flex-wrap justify-center gap-1.5 mb-4"
+            className="flex flex-wrap justify-center gap-1 mb-2.5"
           >
             {features.map(({ icon: Icon, key }, idx) => (
               <motion.div
