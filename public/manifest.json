@@ -1,65 +1,87 @@
 {
-  "name": "Pregnancy Toolkits",
+  "name": "Pregnancy Toolkits — Free Pregnancy Tracker, Due Date & Kick Counter",
   "short_name": "Pregnancy Toolkits",
   "version": "1.0.16",
-  "description": "Free pregnancy tracker & lifestyle companion with 33+ smart tools: due date calculator, kick counter, baby growth tracker, cycle tracker, meal planner & more. For educational purposes only.",
-  "start_url": "/",
+  "description": "Free pregnancy tracker & lifestyle companion with 33+ smart tools: due date calculator, baby kick counter, contraction timer, week-by-week baby growth, cycle & ovulation tracker, AI meal planner, hospital bag checklist, birth plan generator, weight gain tracker and more. Works offline. For educational purposes only — not a medical device.",
+  "start_url": "/?utm_source=pwa",
+  "id": "/?source=pwa",
   "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui", "browser"],
   "background_color": "#faf6f2",
   "theme_color": "#d4608a",
   "orientation": "portrait-primary",
   "scope": "/",
   "lang": "en",
   "dir": "auto",
-  "categories": ["lifestyle", "health", "education", "pregnancy", "wellness", "journal"],
+  "categories": ["lifestyle", "health", "education", "medical", "productivity"],
+  "iarc_rating_id": "e84b072d-71b3-4d3e-86ae-31a8ce4e53b7",
+  "handle_links": "preferred",
+  "launch_handler": {
+    "client_mode": ["navigate-existing", "auto"]
+  },
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
   "icons": [
     {
       "src": "/icons/icon-72x72.png",
       "sizes": "72x72",
       "type": "image/png",
-      "purpose": "maskable any"
+      "purpose": "any"
     },
     {
       "src": "/icons/icon-96x96.png",
       "sizes": "96x96",
       "type": "image/png",
-      "purpose": "maskable any"
+      "purpose": "any"
     },
     {
       "src": "/icons/icon-128x128.png",
       "sizes": "128x128",
       "type": "image/png",
-      "purpose": "maskable any"
+      "purpose": "any"
     },
     {
       "src": "/icons/icon-144x144.png",
       "sizes": "144x144",
       "type": "image/png",
-      "purpose": "maskable any"
+      "purpose": "any"
     },
     {
       "src": "/icons/icon-152x152.png",
       "sizes": "152x152",
       "type": "image/png",
-      "purpose": "maskable any"
+      "purpose": "any"
     },
     {
       "src": "/icons/icon-192x192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "maskable any"
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
     },
     {
       "src": "/icons/icon-384x384.png",
       "sizes": "384x384",
       "type": "image/png",
-      "purpose": "maskable any"
+      "purpose": "any"
     },
     {
       "src": "/icons/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "maskable any"
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
   "screenshots": [
@@ -68,37 +90,66 @@
       "sizes": "1080x1920",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "Home - 33+ Pregnancy Wellness & Lifestyle Tools"
+      "label": "Home — 33+ Pregnancy Wellness & Lifestyle Tools"
+    },
+    {
+      "src": "/screenshots/home.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Track your pregnancy week by week with smart tools"
+    },
+    {
+      "src": "/screenshots/desktop-home.png",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Desktop dashboard — Track your pregnancy journey"
     }
   ],
   "shortcuts": [
     {
       "name": "Due Date Calculator",
       "short_name": "Due Date",
-      "description": "Calculate your estimated due date",
-      "url": "/tools/due-date-calculator",
+      "description": "Calculate your estimated due date instantly",
+      "url": "/tools/due-date-calculator?utm_source=pwa_shortcut",
       "icons": [{ "src": "/icons/icon-96x96.png", "sizes": "96x96" }]
     },
     {
       "name": "Baby Kick Counter",
       "short_name": "Kick Counter",
       "description": "Track your baby's daily movements",
-      "url": "/tools/kick-counter",
+      "url": "/tools/kick-counter?utm_source=pwa_shortcut",
       "icons": [{ "src": "/icons/icon-96x96.png", "sizes": "96x96" }]
     },
     {
       "name": "Contraction Timer",
       "short_name": "Contractions",
       "description": "Time and log your contraction patterns",
-      "url": "/tools/contraction-timer",
+      "url": "/tools/contraction-timer?utm_source=pwa_shortcut",
       "icons": [{ "src": "/icons/icon-96x96.png", "sizes": "96x96" }]
     },
     {
       "name": "Baby Growth Tracker",
       "short_name": "Baby Growth",
       "description": "Track your baby's weekly development milestones",
-      "url": "/tools/baby-growth",
+      "url": "/tools/baby-growth?utm_source=pwa_shortcut",
       "icons": [{ "src": "/icons/icon-96x96.png", "sizes": "96x96" }]
+    }
+  ],
+  "share_target": {
+    "action": "/share-target",
+    "method": "GET",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  },
+  "protocol_handlers": [
+    {
+      "protocol": "web+pregnancy",
+      "url": "/?action=%s"
     }
   ],
   "related_applications": [
@@ -108,5 +159,5 @@
       "id": "app.pregnancytoolkits.android"
     }
   ],
-  "prefer_related_applications": true
+  "prefer_related_applications": false
 }
