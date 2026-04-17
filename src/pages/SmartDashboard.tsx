@@ -134,30 +134,26 @@ const SmartDashboard = () => {
         {/* Birth Countdown — always visible */}
         <BirthCountdownCard />
 
-        {/* Risk Alerts — conditional */}
-        <RiskAlertCard
+        {/* ⚠️ Medical/clinical cards temporarily hidden per user request.
+            Restore by uncommenting the blocks below. */}
+        {/* <RiskAlertCard
           bloodPressure={bloodPressure}
           todayKicks={stats.dailyTracking.todayKicks}
           week={profile.pregnancyWeek}
-        />
+        /> */}
 
-        {/* ═══ DATA-FIRST SECTION: cards that have user data appear here ═══ */}
+        {/* ═══ DATA-FIRST SECTION ═══ */}
 
         {dataCheck.hasRecentActivity && <RecentMealFitnessSummary />}
-
-        {dataCheck.hasSymptomsData && <WeeklySymptomsCard />}
-
+        {/* {dataCheck.hasSymptomsData && <WeeklySymptomsCard />} */}
         {dataCheck.hasMoodData && <MoodTrendCard />}
-
-        {dataCheck.hasContractions && <ContractionSummaryCard />}
-
-        {dataCheck.hasWeight && (
+        {/* {dataCheck.hasContractions && <ContractionSummaryCard />} */}
+        {/* {dataCheck.hasWeight && (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
             <FetalMovementCard todayKicks={stats.dailyTracking.todayKicks} />
             <WeightTrendCard />
           </div>
-        )}
-
+        )} */}
         {dataCheck.hasSavedResults && <SavedResultsCountCard />}
         {dataCheck.hasSavedResults && <RecentAIResults />}
 
@@ -166,10 +162,10 @@ const SmartDashboard = () => {
         <WeekCertificateCard />
         <StageRecommendation />
         <UsageStatsNudge />
-        <ContextualSymptomsCard />
+        {/* <ContextualSymptomsCard /> */}
         <NutritionTipCard />
-        <WeeklyHealthChallenge />
-        <DailyHealthChallengeCard />
+        {/* <WeeklyHealthChallenge /> */}
+        {/* <DailyHealthChallengeCard /> */}
 
         <DailyPriorities
           vitaminsTaken={stats.dailyTracking.vitaminsTaken}
@@ -180,30 +176,28 @@ const SmartDashboard = () => {
 
         <QuickActionsBar />
         <HydrationTracker />
-        <SymptomsSummary />
+        {/* <SymptomsSummary /> */}
 
         {/* Data cards that weren't shown above (no data yet) */}
         {!dataCheck.hasRecentActivity && <RecentMealFitnessSummary />}
-        {!dataCheck.hasSymptomsData && <WeeklySymptomsCard />}
+        {/* {!dataCheck.hasSymptomsData && <WeeklySymptomsCard />} */}
         {!dataCheck.hasMoodData && <MoodTrendCard />}
-        {!dataCheck.hasContractions && <ContractionSummaryCard />}
-
-        {!dataCheck.hasWeight && (
+        {/* {!dataCheck.hasContractions && <ContractionSummaryCard />} */}
+        {/* {!dataCheck.hasWeight && (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
             <FetalMovementCard todayKicks={stats.dailyTracking.todayKicks} />
             <WeightTrendCard />
           </div>
-        )}
-
+        )} */}
         {!dataCheck.hasSavedResults && <SavedResultsCountCard />}
         {!dataCheck.hasSavedResults && <RecentAIResults />}
 
-        {/* Bottom section — always visible */}
+        {/* Bottom section */}
         <WeeklyComparisonCard />
         <MilestonesTimeline />
-        <DoctorVisitPrepCard />
+        {/* <DoctorVisitPrepCard /> */}
         <PartnerSummaryCard />
-        <MedicalSummaryCard />
+        {/* <MedicalSummaryCard /> */}
         <AppRatingCard />
         <DynamicFAQ />
 
