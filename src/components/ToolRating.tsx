@@ -1,8 +1,10 @@
 import { Star } from "lucide-react";
 import { useToolRating } from '@/hooks/useToolRating';
+import { useInAppReview } from '@/hooks/useInAppReview';
 import { useTranslation } from 'react-i18next';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
+import { haptic } from '@/lib/haptics';
 
 interface ToolRatingProps {
   toolId: string;
@@ -11,7 +13,17 @@ interface ToolRatingProps {
 
 export function ToolRating({ toolId, compact = false }: ToolRatingProps) {
   const { averageRating, totalRatings, userRating, rateTool } = useToolRating(toolId);
+  const { maybePromptReview } = useInAppReview();
   const { t } = useTranslation();
+
+  const handleRate = (stars: number) => {
+    rateTool(stars);
+    try { haptic(stars === 5 ? 'celebration' : 'tap'); } catch {}
+    // 5★ → trigger Google Play In-App Review
+    if (stars === 5) {
+      setTimeout(() => maybePromptReview('ai_result_positive'), 800);
+    }
+  };
 
   if (compact) {
     return (
@@ -37,7 +49,7 @@ export function ToolRating({ toolId, compact = false }: ToolRatingProps) {
           <motion.button
             key={star}
             whileTap={{ scale: 1.3 }}
-            onClick={() => rateTool(star)}
+            onClick={() => handleRate(star)}
             className="p-0.5"
           >
             <Star
