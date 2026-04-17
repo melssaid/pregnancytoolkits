@@ -162,6 +162,59 @@ export function SEOHead({
       .filter(Boolean),
   } : null;
 
+  // Review schema (from real testimonials) — only on home + key landing pages
+  const reviewSchema = (path === "/" || path === "/en" || path.startsWith("/seo/")) ? {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": brandName,
+    "description": seoDesc,
+    "brand": { "@type": "Brand", "name": brandName },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "reviewCount": String(dynamicRatingCount),
+      "bestRating": "5",
+      "worstRating": "1",
+    },
+    "review": [
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Sarah M." },
+        "datePublished": "2026-02-15",
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "reviewBody": "This app has been my daily companion since week 8, the kick counter and weekly summaries are incredibly helpful — I love that everything is in one place!",
+      },
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Fatima A." },
+        "datePublished": "2026-01-20",
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "reviewBody": "أفضل تطبيق حمل استخدمته، الذكاء الاصطناعي يعطيني نصائح مخصصة كل أسبوع وأشعر بالاطمئنان.",
+      },
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Emma L." },
+        "datePublished": "2026-03-08",
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "reviewBody": "The contraction timer was a lifesaver during labor! Super easy to use even when I was stressed.",
+      },
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Marie D." },
+        "datePublished": "2026-02-28",
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "reviewBody": "J'adore l'assistant IA ! Il répond à toutes mes questions sur la grossesse instantanément.",
+      },
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Carmen V." },
+        "datePublished": "2026-03-15",
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "reviewBody": "Mi herramienta favorita es el planificador de comidas con IA — ¡es como tener una nutricionista personal!",
+      },
+    ],
+  } : null;
+
   // HowTo schema for tool pages with steps
   const howToSchema = howToSteps && howToSteps.length > 0 ? {
     "@context": "https://schema.org",
@@ -272,6 +325,17 @@ export function SEOHead({
           {JSON.stringify(howToSchema)}
         </script>
       )}
+
+      {/* Review/Product Schema with star ratings */}
+      {reviewSchema && (
+        <script type="application/ld+json">
+          {JSON.stringify(reviewSchema)}
+        </script>
+      )}
+
+      {/* RSS Feed discovery (per-language) */}
+      <link rel="alternate" type="application/rss+xml" title={`${brandName} RSS (${lang})`}
+            href={`https://frlrngdogjzqpqpjhjvq.supabase.co/functions/v1/rss-feed?lang=${lang}`} />
     </Helmet>
   );
 }
