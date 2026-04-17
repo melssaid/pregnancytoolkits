@@ -142,6 +142,7 @@
     "downloadFromPlay": "To subscribe, please download the app from Google Play Store",
     "ctaSub": "{{price}}/{{period}}",
     "bestValue": "Best Value",
+    "localCurrencyHint": "💡 Prices show in your local currency inside the app",
     "autoRenew": "Auto-renews. Cancel anytime in Google Play.",
     "trialDaysLeft": "{{count}} days left in your free trial",
     "trialBadge": "{{count}} Days",

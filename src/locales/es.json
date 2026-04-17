@@ -140,6 +140,7 @@
     "downloadFromPlay": "Para suscribirte, descarga la aplicación desde Google Play Store",
     "ctaSub": "{{price}}/{{period}}",
     "bestValue": "Mejor valor",
+    "localCurrencyHint": "💡 Los precios se muestran en tu moneda local dentro de la app",
     "autoRenew": "Se renueva automáticamente. Cancela en cualquier momento en Google Play.",
     "trialDaysLeft": "{{count}} días restantes de prueba gratuita",
     "trialBadge": "{{count}} Días",
