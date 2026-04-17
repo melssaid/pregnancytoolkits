@@ -319,12 +319,14 @@ export default function PricingDemo() {
             {t("pricing.cta")}
           </Button>
 
-          <p
-            className="text-center text-[11px] text-muted-foreground leading-snug"
-            style={{ fontFamily: isAr ? "'Tajawal', sans-serif" : "'Montserrat', sans-serif" }}
-          >
-            {t("pricing.ctaSub", { price: priceDisplay, period })}
-          </p>
+          {prices.isLocal && (
+            <p
+              className="text-center text-[11px] text-muted-foreground leading-snug"
+              style={{ fontFamily: isAr ? "'Tajawal', sans-serif" : "'Montserrat', sans-serif" }}
+            >
+              {t("pricing.ctaSub", { price: priceDisplay, period })}
+            </p>
+          )}
 
           <p className="text-center text-[10px] text-muted-foreground/60 leading-relaxed">
             {t("pricing.autoRenew")}
