@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 import { haptic } from '@/lib/haptics';
+import { toast } from 'sonner';
 
 interface ToolRatingProps {
   toolId: string;
