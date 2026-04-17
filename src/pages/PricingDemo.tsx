@@ -310,6 +310,12 @@ export default function PricingDemo() {
               <span className="text-[11px] text-muted-foreground mt-0.5">/{t("pricing.mo")}</span>
             </button>
           </motion.div>
+
+          {!prices.isLocal && !prices.loading && (
+            <p className="text-center text-[10px] text-muted-foreground/70 mt-2 leading-snug px-2">
+              {t("pricing.localCurrencyHint", "💡 الأسعار تظهر بعملتك المحلية داخل التطبيق")}
+            </p>
+          )}
         </div>
 
         {/* Bottom CTA — Direct purchase on click */}
