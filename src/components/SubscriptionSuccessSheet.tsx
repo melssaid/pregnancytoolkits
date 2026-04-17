@@ -12,14 +12,16 @@ interface SubscriptionSuccessSheetProps {
   planType: 'monthly' | 'yearly' | null;
 }
 
+// Period suffixes are localized; actual prices come from Google Play (Digital Goods API)
+// in the user's local currency to comply with Play Subscriptions Policy.
 const i18nLabels: Record<string, {
   title: string;
   subtitle: string;
   plan: string;
   monthly: string;
   yearly: string;
-  monthlyPrice: string;
-  yearlyPrice: string;
+  monthlyPeriod: string;
+  yearlyPeriod: string;
   creditsBadge: string;
   perks: string[];
   cta: string;
@@ -31,8 +33,8 @@ const i18nLabels: Record<string, {
     plan: 'Your Plan',
     monthly: 'Monthly Premium',
     yearly: 'Yearly Premium',
-    monthlyPrice: '$2.99/month',
-    yearlyPrice: '$19.99/year',
+    monthlyPeriod: 'month',
+    yearlyPeriod: 'year',
     creditsBadge: '60 credits granted',
     perks: [
       '60 AI analyses every month',
@@ -49,8 +51,8 @@ const i18nLabels: Record<string, {
     plan: 'خطتكِ',
     monthly: 'الاشتراك الشهري',
     yearly: 'الاشتراك السنوي',
-    monthlyPrice: '$2.99/شهر',
-    yearlyPrice: '$19.99/سنة',
+    monthlyPeriod: 'شهر',
+    yearlyPeriod: 'سنة',
     creditsBadge: 'تم منحكِ 60 نقطة',
     perks: [
       '60 تحليل ذكاء اصطناعي شهرياً',
@@ -67,8 +69,8 @@ const i18nLabels: Record<string, {
     plan: 'Dein Plan',
     monthly: 'Monatliches Premium',
     yearly: 'Jährliches Premium',
-    monthlyPrice: '2,99 $/Monat',
-    yearlyPrice: '19,99 $/Jahr',
+    monthlyPeriod: 'Monat',
+    yearlyPeriod: 'Jahr',
     creditsBadge: '60 Credits erhalten',
     perks: [
       '60 KI-Analysen pro Monat',
@@ -85,8 +87,8 @@ const i18nLabels: Record<string, {
     plan: 'Votre forfait',
     monthly: 'Premium mensuel',
     yearly: 'Premium annuel',
-    monthlyPrice: '2,99 $/mois',
-    yearlyPrice: '19,99 $/an',
+    monthlyPeriod: 'mois',
+    yearlyPeriod: 'an',
     creditsBadge: '60 crédits accordés',
     perks: [
       '60 analyses IA par mois',
@@ -103,8 +105,8 @@ const i18nLabels: Record<string, {
     plan: 'Tu plan',
     monthly: 'Premium mensual',
     yearly: 'Premium anual',
-    monthlyPrice: '$2.99/mes',
-    yearlyPrice: '$19.99/año',
+    monthlyPeriod: 'mes',
+    yearlyPeriod: 'año',
     creditsBadge: '60 créditos otorgados',
     perks: [
       '60 análisis IA por mes',
@@ -121,8 +123,8 @@ const i18nLabels: Record<string, {
     plan: 'Seu plano',
     monthly: 'Premium mensal',
     yearly: 'Premium anual',
-    monthlyPrice: '$2.99/mês',
-    yearlyPrice: '$19.99/ano',
+    monthlyPeriod: 'mês',
+    yearlyPeriod: 'ano',
     creditsBadge: '60 créditos concedidos',
     perks: [
       '60 análises IA por mês',
@@ -139,8 +141,8 @@ const i18nLabels: Record<string, {
     plan: 'Planınız',
     monthly: 'Aylık Premium',
     yearly: 'Yıllık Premium',
-    monthlyPrice: '$2.99/ay',
-    yearlyPrice: '$19.99/yıl',
+    monthlyPeriod: 'ay',
+    yearlyPeriod: 'yıl',
     creditsBadge: '60 kredi verildi',
     perks: [
       'Ayda 60 AI analizi',
@@ -167,11 +169,10 @@ export const SubscriptionSuccessSheet: React.FC<SubscriptionSuccessSheetProps> =
   const isYearly = planType === 'yearly';
   const prices = usePlayPrices();
 
-  // ⚠️ Use REAL local-currency prices from Google Play (matches checkout currency).
-  // Falls back to localized period suffix only when prices haven't loaded yet.
-  const periodSuffix = isYearly
-    ? (labels.yearlyPrice.split('/')[1] || '')
-    : (labels.monthlyPrice.split('/')[1] || '');
+  // ⚠️ Prices ALWAYS come from Google Play Digital Goods API in the user's local
+  // currency (SAR, EGP, EUR, USD…) to match the checkout currency exactly and
+  // comply with Google Play Subscriptions Policy ("currency mismatch").
+  const periodSuffix = isYearly ? labels.yearlyPeriod : labels.monthlyPeriod;
   const livePriceDisplay = isYearly ? prices.yearly.display : prices.monthly.display;
 
   // Haptic feedback on open (if available)
