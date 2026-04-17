@@ -19,7 +19,7 @@ export const RelatedTools = forwardRef<HTMLDivElement, RelatedToolsProps>(
     const ArrowIcon = isRTL ? ArrowLeft : ArrowRight;
 
     // Use smart contextual tools when week is available, fallback to related
-    const week = profile?.currentWeek;
+    const week = profile?.pregnancyWeek;
     const relatedTools = week
       ? getContextualTools(currentToolId, week, maxItems)
       : getRelatedTools(currentToolId, maxItems);
