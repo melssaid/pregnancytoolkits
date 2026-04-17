@@ -15,6 +15,19 @@ import {
 } from '@/services/smartEngine';
 import { getCouponRequestHeaders } from '@/lib/couponRequestHeaders';
 import { getBackendFunctionUrl, getBackendPublishableKey } from '@/lib/backendConfig';
+import { getDeviceFingerprint } from '@/lib/deviceFingerprint';
+
+const FINGERPRINT_STORAGE_KEY = 'ai_client_id_v2';
+
+/** Get a stable client ID derived from device fingerprint (survives data clearing) */
+async function getStableClientId(): Promise<{ clientId: string; fingerprint: string }> {
+  const fingerprint = await getDeviceFingerprint();
+  // Use the fingerprint itself as the client_id for deterministic server lookups
+  try {
+    localStorage.setItem(FINGERPRINT_STORAGE_KEY, fingerprint);
+  } catch { /* ignore */ }
+  return { clientId: fingerprint, fingerprint };
+}
 
 export type SubscriptionTier = 'free' | 'premium';
 
@@ -39,23 +52,38 @@ function readState(): QuotaState {
   return getQuotaState();
 }
 
-/** Fetch real usage from server to prevent localStorage clearing exploit */
-async function fetchServerQuota(): Promise<{ used: number; limit: number; tier: 'free' | 'premium' } | null> {
+/** Fetch real usage from server using device fingerprint (survives data clearing) */
+async function fetchServerQuota(currentTier: 'free' | 'premium' = 'free'): Promise<{ used: number; limit: number; tier: 'free' | 'premium' } | null> {
   try {
     const { supabase } = await import('@/integrations/supabase/client');
     const { data: { session } } = await supabase.auth.getSession();
     const token = session?.access_token || getBackendPublishableKey();
+    const { clientId, fingerprint } = await getStableClientId();
     const couponHeaders = await getCouponRequestHeaders();
 
     const res = await fetch(
-      getBackendFunctionUrl('pregnancy-ai-perplexity'),
+      getBackendFunctionUrl('check-quota'),
       {
-        method: 'GET',
-        headers: { Authorization: `Bearer ${token}`, ...couponHeaders },
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+          ...couponHeaders,
+        },
+        body: JSON.stringify({
+          device_fingerprint: fingerprint,
+          client_id: clientId,
+          tier: currentTier,
+        }),
       }
     );
     if (!res.ok) return null;
-    return await res.json();
+    const data = await res.json();
+    return {
+      used: data.used ?? 0,
+      limit: data.limit ?? 10,
+      tier: data.tier ?? currentTier,
+    };
   } catch {
     return null;
   }
