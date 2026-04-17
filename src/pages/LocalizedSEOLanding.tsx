@@ -17,6 +17,7 @@ export default function LocalizedSEOLanding() {
   const locale = getSEOLocale(lang);
   const rtl = isRTLSEO(lang);
   const url = `${BASE}/seo/${lang}`;
+  const ogImage = `https://frlrngdogjzqpqpjhjvq.supabase.co/functions/v1/og-image?lang=${lang}`;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -53,7 +54,15 @@ export default function LocalizedSEOLanding() {
         <meta property="og:url" content={url} />
         <meta property="og:locale" content={locale.code.replace("-", "_")} />
         <meta property="og:type" content="website" />
+        <meta property="og:image" content={ogImage} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:type" content="image/svg+xml" />
+        <meta property="og:image:alt" content={locale.h1} />
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content={ogImage} />
+        <meta name="twitter:title" content={locale.metaTitle} />
+        <meta name="twitter:description" content={locale.metaDescription} />
         {Object.values(SEO_LOCALES).map((l) => (
           <link key={l.code} rel="alternate" hrefLang={l.code} href={`${BASE}/seo/${l.code}`} />
         ))}
