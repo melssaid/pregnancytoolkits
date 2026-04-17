@@ -223,12 +223,21 @@ const FooterCard = memo(function FooterCard() {
   const navigate = useNavigate();
   const lang = i18n.language?.split('-')[0] || 'en';
   const { remaining, limit, isLimitReached, tier, refresh } = useAIUsage();
+  const prices = usePlayPrices();
 
   useEffect(() => { refresh(); }, [refresh]);
   const isAr = lang === 'ar';
   const isFree = tier === 'free';
   const usagePercent = limit > 0 ? (remaining / limit) * 100 : 0;
   const isPremium = tier === 'premium';
+
+  // ⚠️ Google Play Subscriptions Policy: displayed price MUST match checkout currency.
+  // We pull the REAL local-currency price from Digital Goods API. If unavailable
+  // (web preview), we omit the price entirely to avoid USD/local-currency mismatch.
+  const monthlyPriceLabel = prices.isLocal
+    ? `${prices.monthly.display}/${isAr ? 'شهر' : lang === 'de' ? 'Monat' : lang === 'fr' ? 'mois' : lang === 'es' ? 'mes' : lang === 'pt' ? 'mês' : lang === 'tr' ? 'ay' : 'month'}`
+    : '';
+
 
   const labels: Record<string, {
     title: string; cta: string; ctaPrice: string; trust: string;
