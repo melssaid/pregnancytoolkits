@@ -197,5 +197,4 @@ export function OnboardingDisclaimer() {
       )}
     </AnimatePresence>
   );
-});
-OnboardingDisclaimer.displayName = "OnboardingDisclaimer";
+}
