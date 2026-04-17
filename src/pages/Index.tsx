@@ -17,6 +17,7 @@ import WelcomeCard from "@/components/home/WelcomeCard";
 import QuickActions from "@/components/home/QuickActions";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { CouponRedeemer } from "@/components/settings/CouponRedeemer";
+import { usePlayPrices } from "@/hooks/usePlayPrices";
 
 
 
