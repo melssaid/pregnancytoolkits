@@ -4,7 +4,7 @@ import { useInAppReview } from '@/hooks/useInAppReview';
 import { useTranslation } from 'react-i18next';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
-import { haptics } from '@/lib/haptics';
+import { haptic } from '@/lib/haptics';
 
 interface ToolRatingProps {
   toolId: string;
