@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Crown, Check, Sparkles, X, Brain, Shield, Heart, Zap, Gift, Star } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { usePlayPrices } from '@/hooks/usePlayPrices';
 import pricingLogo from '@/assets/pricing-logo.webp';
 
 interface SubscriptionSuccessSheetProps {
@@ -164,6 +165,14 @@ export const SubscriptionSuccessSheet: React.FC<SubscriptionSuccessSheetProps> =
   const lang = i18n.language?.split('-')[0] || 'en';
   const labels = i18nLabels[lang] || i18nLabels.en;
   const isYearly = planType === 'yearly';
+  const prices = usePlayPrices();
+
+  // ⚠️ Use REAL local-currency prices from Google Play (matches checkout currency).
+  // Falls back to localized period suffix only when prices haven't loaded yet.
+  const periodSuffix = isYearly
+    ? (labels.yearlyPrice.split('/')[1] || '')
+    : (labels.monthlyPrice.split('/')[1] || '');
+  const livePriceDisplay = isYearly ? prices.yearly.display : prices.monthly.display;
 
   // Haptic feedback on open (if available)
   useEffect(() => {
@@ -329,10 +338,10 @@ export const SubscriptionSuccessSheet: React.FC<SubscriptionSuccessSheetProps> =
                     </div>
                     <div className="text-end">
                       <p className="text-lg font-extrabold text-foreground tabular-nums" style={{ fontFamily: "'Cairo', sans-serif" }}>
-                        {isYearly ? '$19.99' : '$2.99'}
+                        {prices.isLocal ? livePriceDisplay : '—'}
                       </p>
                       <p className="text-[10px] text-muted-foreground">
-                        {isYearly ? labels.yearlyPrice.split('/')[1] : labels.monthlyPrice.split('/')[1]}
+                        {periodSuffix}
                       </p>
                     </div>
                   </div>
