@@ -12,7 +12,6 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAIUsage } from "@/contexts/AIUsageContext";
 import { usePlayPrices } from "@/hooks/usePlayPrices";
 import { CouponRedeemer } from "@/components/settings/CouponRedeemer";
-import { PriceSkeleton } from "@/components/billing/PriceSkeleton";
 
 const features = [
   { icon: Brain, key: "feature1" },
