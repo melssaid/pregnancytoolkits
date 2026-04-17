@@ -10,6 +10,7 @@ import { requestPurchase, isDigitalGoodsAvailable, type PlanType } from "@/lib/g
 import { useAIUsage } from "@/contexts/AIUsageContext";
 import { setTier as qmSetTier } from "@/services/smartEngine/quotaManager";
 import { usePlayPrices } from "@/hooks/usePlayPrices";
+import { PriceSkeleton } from "@/components/billing/PriceSkeleton";
 
 interface PaywallSheetProps {
   open: boolean;
