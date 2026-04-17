@@ -13,7 +13,17 @@ interface ToolRatingProps {
 
 export function ToolRating({ toolId, compact = false }: ToolRatingProps) {
   const { averageRating, totalRatings, userRating, rateTool } = useToolRating(toolId);
+  const { maybePromptReview } = useInAppReview();
   const { t } = useTranslation();
+
+  const handleRate = (stars: number) => {
+    rateTool(stars);
+    try { haptic('light'); } catch {}
+    // 5★ → trigger Google Play In-App Review
+    if (stars === 5) {
+      setTimeout(() => maybePromptReview('ai_result_positive'), 800);
+    }
+  };
 
   if (compact) {
     return (
