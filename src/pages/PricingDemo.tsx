@@ -12,7 +12,6 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAIUsage } from "@/contexts/AIUsageContext";
 import { usePlayPrices } from "@/hooks/usePlayPrices";
 import { CouponRedeemer } from "@/components/settings/CouponRedeemer";
-import { PriceSkeleton } from "@/components/billing/PriceSkeleton";
 
 const features = [
   { icon: Brain, key: "feature1" },
@@ -261,20 +260,12 @@ export default function PricingDemo() {
                 {selected === "yearly" && <Check className="w-2.5 h-2.5 text-primary-foreground" strokeWidth={3} />}
               </div>
               <span className="text-xs font-bold text-foreground mb-0.5">{t("pricing.yearly")}</span>
-              {prices.loading ? (
-                <PriceSkeleton width={72} height={22} />
-              ) : (
-                <span className="text-xl font-extrabold text-foreground tabular-nums leading-none" style={{ fontFamily: "'Cairo', sans-serif" }}>
-                  {prices.yearly.display}
-                </span>
-              )}
+              <span className="text-xl font-extrabold text-foreground tabular-nums leading-none" style={{ fontFamily: "'Cairo', sans-serif" }}>
+                {prices.yearly.display}
+              </span>
               <span className="text-[11px] text-muted-foreground mt-0.5">/{t("pricing.yr")}</span>
               <div className="mt-1.5 flex flex-col items-center gap-0.5">
-                {prices.loading ? (
-                  <PriceSkeleton width={56} height={11} />
-                ) : (
-                  <span className="text-[10px] text-muted-foreground">{prices.monthlyEquivalent}/{t("pricing.mo")}</span>
-                )}
+                <span className="text-[10px] text-muted-foreground">{prices.monthlyEquivalent}/{t("pricing.mo")}</span>
                 <motion.span
                   className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
                   animate={{ scale: [1, 1.08, 1] }}
@@ -300,22 +291,13 @@ export default function PricingDemo() {
                 {selected === "monthly" && <Check className="w-2.5 h-2.5 text-primary-foreground" strokeWidth={3} />}
               </div>
               <span className="text-xs font-bold text-foreground mb-0.5">{t("pricing.monthly")}</span>
-              {prices.loading ? (
-                <PriceSkeleton width={64} height={22} />
-              ) : (
-                <span className="text-xl font-extrabold text-foreground tabular-nums leading-none" style={{ fontFamily: "'Cairo', sans-serif" }}>
-                  {prices.monthly.display}
-                </span>
-              )}
+              <span className="text-xl font-extrabold text-foreground tabular-nums leading-none" style={{ fontFamily: "'Cairo', sans-serif" }}>
+                {prices.monthly.display}
+              </span>
               <span className="text-[11px] text-muted-foreground mt-0.5">/{t("pricing.mo")}</span>
             </button>
           </motion.div>
 
-          {!prices.isLocal && !prices.loading && (
-            <p className="text-center text-[10px] text-muted-foreground/70 mt-2 leading-snug px-2">
-              {t("pricing.localCurrencyHint", "💡 الأسعار تظهر بعملتك المحلية داخل التطبيق")}
-            </p>
-          )}
         </div>
 
         {/* Bottom CTA — Direct purchase on click */}
