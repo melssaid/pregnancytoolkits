@@ -15,9 +15,12 @@ Deno.serve(async (req) => {
 
   try {
     const body = await req.json();
+    const SEO_LANGS = ["en","ar","de","fr","es","pt","tr","it","nl","pl","ru","ja","ko","zh-CN","zh-TW","hi","id","th","vi","ms","fa","ur","he","bn","sv","da","no","fi","cs","el","hu","ro","uk","bg","hr","sk","sr","ca","fil","sw","ta","te","mr","gu","kn","ml","pa","af"];
+    const seoUrls = SEO_LANGS.map(l => `/seo/${l}`);
     const urls: string[] = body.urls || [
       "/",
       "/en", "/ar", "/de", "/fr", "/es", "/tr", "/pt",
+      ...seoUrls,
       "/tools/due-date-calculator",
       "/tools/kick-counter",
       "/tools/baby-growth",
