@@ -49,7 +49,7 @@ export function ToolRating({ toolId, compact = false }: ToolRatingProps) {
           <motion.button
             key={star}
             whileTap={{ scale: 1.3 }}
-            onClick={() => rateTool(star)}
+            onClick={() => handleRate(star)}
             className="p-0.5"
           >
             <Star
