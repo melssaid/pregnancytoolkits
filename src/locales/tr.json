@@ -140,6 +140,7 @@
     "downloadFromPlay": "Abone olmak için lütfen uygulamayı Google Play Store'dan indirin",
     "ctaSub": "{{price}}/{{period}}",
     "bestValue": "En İyi Değer",
+    "localCurrencyHint": "💡 Fiyatlar uygulama içinde yerel para biriminizde gösterilir",
     "autoRenew": "Otomatik yenilenir. Google Play'dan istediğiniz zaman iptal edin.",
     "trialDaysLeft": "Ücretsiz denemenizden {{count}} gün kaldı",
     "trialBadge": "{{count}} Gün",

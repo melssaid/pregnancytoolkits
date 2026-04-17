@@ -142,6 +142,7 @@
     "downloadFromPlay": "للاشتراك، يرجى تحميل التطبيق من متجر Google Play",
     "ctaSub": "{{price}}/{{period}}",
     "bestValue": "الأفضل قيمة",
+    "localCurrencyHint": "💡 الأسعار تظهر بعملتكِ المحلية داخل التطبيق",
     "autoRenew": "يتجدد تلقائياً. إلغاء في أي وقت عبر Google Play.",
     "trialDaysLeft": "متبقي {{count}} أيام من التجربة المجانية",
     "trialBadge": "{{count}} أيام",
