@@ -988,8 +988,10 @@ Deno.serve(async (req) => {
 
         if (response.ok) {
           // Log successful AI usage (fire-and-forget)
+          // Use deviceFingerprint as client_id when available — survives data clearing
           const elapsed = Date.now() - requestStartTime;
-          logAIUsage(type, lang, ipClientId, userId, tuning.max_tokens, true, elapsed).catch(() => {});
+          const stableClientId = deviceFingerprint || ipClientId;
+          logAIUsage(type, lang, stableClientId, userId, tuning.max_tokens, true, elapsed).catch(() => {});
 
           return new Response(response.body, {
             headers: { ...corsHeaders, ...usageHeaders, "Content-Type": "text/event-stream" },
