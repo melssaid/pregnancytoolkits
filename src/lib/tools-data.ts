@@ -54,29 +54,7 @@ export interface Tool {
 // HIDDEN TOOLS — No tools are currently hidden. All 14 previously hidden
 // tools have been restored. To hide again: add IDs to this set.
 // ═══════════════════════════════════════════════════════════════════════════
-const HIDDEN_TOOL_IDS = new Set<string>([
-  // ⚠️ Temporarily hidden — medical/clinical tools (per user request, restore on demand)
-  "weight-gain",
-  "kick-counter",
-  "contraction-timer",
-  "fetal-growth",
-  "maternal-health-awareness",
-  "preconception-checkup",
-  "postpartum-mental-health",
-  "postpartum-recovery",
-  "ai-pregnancy-skincare",
-  "ai-bump-photos",
-  "nutrition-supplements",
-  "vitamin-tracker",
-  "ai-lactation-prep",
-  "pregnancy-comfort",
-  "ai-birth-plan",
-  "ai-hospital-bag",
-  "smart-appointment-reminder",
-  "fertility-academy",
-  "ai-fitness-coach",
-  "baby-growth",
-]);
+const HIDDEN_TOOL_IDS = new Set<string>([]);
 
 const allTools: Tool[] = [
   // ═══════════════════════════════════════════════════════════════

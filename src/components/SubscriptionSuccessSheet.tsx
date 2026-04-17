@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Crown, Check, Sparkles, X, Brain, Shield, Heart, Zap, Gift, Star } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { usePlayPrices } from '@/hooks/usePlayPrices';
 import pricingLogo from '@/assets/pricing-logo.webp';
 
 interface SubscriptionSuccessSheetProps {
@@ -12,16 +11,14 @@ interface SubscriptionSuccessSheetProps {
   planType: 'monthly' | 'yearly' | null;
 }
 
-// Period suffixes are localized; actual prices come from Google Play (Digital Goods API)
-// in the user's local currency to comply with Play Subscriptions Policy.
 const i18nLabels: Record<string, {
   title: string;
   subtitle: string;
   plan: string;
   monthly: string;
   yearly: string;
-  monthlyPeriod: string;
-  yearlyPeriod: string;
+  monthlyPrice: string;
+  yearlyPrice: string;
   creditsBadge: string;
   perks: string[];
   cta: string;
@@ -33,8 +30,8 @@ const i18nLabels: Record<string, {
     plan: 'Your Plan',
     monthly: 'Monthly Premium',
     yearly: 'Yearly Premium',
-    monthlyPeriod: 'month',
-    yearlyPeriod: 'year',
+    monthlyPrice: '$2.99/month',
+    yearlyPrice: '$19.99/year',
     creditsBadge: '60 credits granted',
     perks: [
       '60 AI analyses every month',
@@ -51,8 +48,8 @@ const i18nLabels: Record<string, {
     plan: 'خطتكِ',
     monthly: 'الاشتراك الشهري',
     yearly: 'الاشتراك السنوي',
-    monthlyPeriod: 'شهر',
-    yearlyPeriod: 'سنة',
+    monthlyPrice: '$2.99/شهر',
+    yearlyPrice: '$19.99/سنة',
     creditsBadge: 'تم منحكِ 60 نقطة',
     perks: [
       '60 تحليل ذكاء اصطناعي شهرياً',
@@ -69,8 +66,8 @@ const i18nLabels: Record<string, {
     plan: 'Dein Plan',
     monthly: 'Monatliches Premium',
     yearly: 'Jährliches Premium',
-    monthlyPeriod: 'Monat',
-    yearlyPeriod: 'Jahr',
+    monthlyPrice: '2,99 $/Monat',
+    yearlyPrice: '19,99 $/Jahr',
     creditsBadge: '60 Credits erhalten',
     perks: [
       '60 KI-Analysen pro Monat',
@@ -87,8 +84,8 @@ const i18nLabels: Record<string, {
     plan: 'Votre forfait',
     monthly: 'Premium mensuel',
     yearly: 'Premium annuel',
-    monthlyPeriod: 'mois',
-    yearlyPeriod: 'an',
+    monthlyPrice: '2,99 $/mois',
+    yearlyPrice: '19,99 $/an',
     creditsBadge: '60 crédits accordés',
     perks: [
       '60 analyses IA par mois',
@@ -105,8 +102,8 @@ const i18nLabels: Record<string, {
     plan: 'Tu plan',
     monthly: 'Premium mensual',
     yearly: 'Premium anual',
-    monthlyPeriod: 'mes',
-    yearlyPeriod: 'año',
+    monthlyPrice: '$2.99/mes',
+    yearlyPrice: '$19.99/año',
     creditsBadge: '60 créditos otorgados',
     perks: [
       '60 análisis IA por mes',
@@ -123,8 +120,8 @@ const i18nLabels: Record<string, {
     plan: 'Seu plano',
     monthly: 'Premium mensal',
     yearly: 'Premium anual',
-    monthlyPeriod: 'mês',
-    yearlyPeriod: 'ano',
+    monthlyPrice: '$2.99/mês',
+    yearlyPrice: '$19.99/ano',
     creditsBadge: '60 créditos concedidos',
     perks: [
       '60 análises IA por mês',
@@ -141,8 +138,8 @@ const i18nLabels: Record<string, {
     plan: 'Planınız',
     monthly: 'Aylık Premium',
     yearly: 'Yıllık Premium',
-    monthlyPeriod: 'ay',
-    yearlyPeriod: 'yıl',
+    monthlyPrice: '$2.99/ay',
+    yearlyPrice: '$19.99/yıl',
     creditsBadge: '60 kredi verildi',
     perks: [
       'Ayda 60 AI analizi',
@@ -167,13 +164,6 @@ export const SubscriptionSuccessSheet: React.FC<SubscriptionSuccessSheetProps> =
   const lang = i18n.language?.split('-')[0] || 'en';
   const labels = i18nLabels[lang] || i18nLabels.en;
   const isYearly = planType === 'yearly';
-  const prices = usePlayPrices();
-
-  // ⚠️ Prices ALWAYS come from Google Play Digital Goods API in the user's local
-  // currency (SAR, EGP, EUR, USD…) to match the checkout currency exactly and
-  // comply with Google Play Subscriptions Policy ("currency mismatch").
-  const periodSuffix = isYearly ? labels.yearlyPeriod : labels.monthlyPeriod;
-  const livePriceDisplay = isYearly ? prices.yearly.display : prices.monthly.display;
 
   // Haptic feedback on open (if available)
   useEffect(() => {
@@ -339,10 +329,10 @@ export const SubscriptionSuccessSheet: React.FC<SubscriptionSuccessSheetProps> =
                     </div>
                     <div className="text-end">
                       <p className="text-lg font-extrabold text-foreground tabular-nums" style={{ fontFamily: "'Cairo', sans-serif" }}>
-                        {prices.isLocal ? livePriceDisplay : '—'}
+                        {isYearly ? '$19.99' : '$2.99'}
                       </p>
                       <p className="text-[10px] text-muted-foreground">
-                        {periodSuffix}
+                        {isYearly ? labels.yearlyPrice.split('/')[1] : labels.monthlyPrice.split('/')[1]}
                       </p>
                     </div>
                   </div>
