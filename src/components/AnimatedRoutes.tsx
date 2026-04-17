@@ -135,6 +135,7 @@ const LandingFR = lazy(() => import("@/pages/LandingFR"));
 const LandingES = lazy(() => import("@/pages/LandingES"));
 const LandingTR = lazy(() => import("@/pages/LandingTR"));
 const LandingPT = lazy(() => import("@/pages/LandingPT"));
+const LocalizedSEOLanding = lazy(() => import("@/pages/LocalizedSEOLanding"));
 const AIUsageDashboard = lazy(() => import("@/pages/AIUsageDashboard"));
 const KeywordLibrary = lazy(() => import("@/pages/KeywordLibrary"));
 const ASOGenerator = lazy(() => import("@/pages/ASOGenerator"));
@@ -164,6 +165,8 @@ export function AnimatedRoutes() {
         <Route path="/pt" element={<PageTransition><LandingPT /></PageTransition>} />
         {/* SEO Landing Pages per tool */}
         <Route path="/tool/:toolSlug" element={<PageTransition><ToolLanding /></PageTransition>} />
+        {/* Multilingual SEO Landing (44 languages, indexable, not in nav) */}
+        <Route path="/seo/:lang" element={<PageTransition><LocalizedSEOLanding /></PageTransition>} />
         <Route path="/dashboard" element={<PageTransition><SmartDashboard /></PageTransition>} />
         <Route path="/daily-insights" element={<PageTransition><DailyInsights /></PageTransition>} />
         <Route path="/settings" element={<PageTransition><Settings /></PageTransition>} />
