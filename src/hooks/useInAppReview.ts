@@ -125,9 +125,11 @@ function markDismissed() {
 }
 
 /**
- * Try native Google Play In-App Review API, fall back to Play Store link
+ * Try native Google Play In-App Review API only.
+ * Returns true if a native bridge handled the request, false otherwise.
+ * NEVER opens the Play Store as a fallback (poor UX inside TWA).
  */
-function triggerReview() {
+function triggerReview(): boolean {
   // Native bridge (Android WebView wrapper)
   if ((window as any).Android?.requestReview) {
     (window as any).Android.requestReview();
@@ -142,14 +144,8 @@ function triggerReview() {
     markReviewed();
     return true;
   }
-  // Fallback: open Play Store page
-  const packageName = 'app.pregnancytoolkits.android';
-  window.open(
-    `https://play.google.com/store/apps/details?id=${packageName}`,
-    '_blank'
-  );
-  markReviewed();
-  return true;
+  // No native bridge available — do nothing (caller shows in-app thank-you)
+  return false;
 }
 
 export type ReviewTrigger =

@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 import { haptic } from '@/lib/haptics';
+import { toast } from 'sonner';
 
 interface ToolRatingProps {
   toolId: string;
@@ -19,9 +20,20 @@ export function ToolRating({ toolId, compact = false }: ToolRatingProps) {
   const handleRate = (stars: number) => {
     rateTool(stars);
     try { haptic(stars === 5 ? 'celebration' : 'tap'); } catch {}
-    // 5★ → trigger Google Play In-App Review
     if (stars === 5) {
-      setTimeout(() => maybePromptReview('ai_result_positive'), 800);
+      // Try native Play In-App Review; if no native bridge, show in-app thank-you
+      const launched = maybePromptReview('ai_result_positive');
+      if (!launched) {
+        toast.success(
+          t('toolRating.thankYou5', { defaultValue: 'شكراً لتقييمك الرائع! 💖 سعادتك تُسعدنا.' }),
+          { duration: 3500 }
+        );
+      }
+    } else if (stars >= 1) {
+      toast(
+        t('toolRating.thanks', { defaultValue: 'شكراً لتقييمك 🌸' }),
+        { duration: 2000 }
+      );
     }
   };
 
