@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, forwardRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -19,7 +19,7 @@ const ONBOARDING_KEY = 'onboarding_disclaimer_accepted';
 const FIRST_VISIT_KEY = 'language_selected_first_visit';
 const TOTAL_STEPS = 5;
 
-export function OnboardingDisclaimer() {
+export const OnboardingDisclaimer = forwardRef<HTMLDivElement>((_props, ref) => {
   const [show, setShow] = useState(false);
   const [step, setStep] = useState(1);
   const { i18n } = useTranslation();
@@ -104,6 +104,7 @@ export function OnboardingDisclaimer() {
     <AnimatePresence>
       {show && (
         <motion.div
+          ref={ref}
           className="fixed inset-0 z-[300] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -197,4 +198,5 @@ export function OnboardingDisclaimer() {
       )}
     </AnimatePresence>
   );
-}
+});
+OnboardingDisclaimer.displayName = "OnboardingDisclaimer";
