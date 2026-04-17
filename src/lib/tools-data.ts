@@ -219,40 +219,83 @@ const toolRelationships: Record<string, string[]> = {
   "diaper-tracker": ["baby-sleep-tracker", "baby-growth", "baby-cry-translator"],
 };
 
-// Get related tools based on logical relationships
+// Get related tools based on logical relationships + journey context
 export const getRelatedTools = (currentToolId: string, maxItems: number = 3) => {
   const currentTool = getToolById(currentToolId);
   if (!currentTool) return [];
-  
+
   const relatedIds = toolRelationships[currentToolId];
+  const related: Tool[] = [];
+
+  // 1. Explicit relationships first
   if (relatedIds && relatedIds.length > 0) {
-    const relatedTools = relatedIds
-      .map(id => getToolById(id))
-      .filter((t): t is Tool => t !== undefined)
-      .slice(0, maxItems);
-    
-    if (relatedTools.length >= maxItems) {
-      return relatedTools;
-    }
-    
-    const sameCategoryTools = toolsData.filter(
-      t => t.categoryKey === currentTool.categoryKey && 
-           t.id !== currentToolId && 
-           !relatedIds.includes(t.id)
-    );
-    
-    return [...relatedTools, ...sameCategoryTools].slice(0, maxItems);
+    relatedIds.forEach(id => {
+      const t = getToolById(id);
+      if (t && !related.find(r => r.id === t.id)) related.push(t);
+    });
   }
-  
-  const sameCategoryTools = toolsData.filter(
-    t => t.categoryKey === currentTool.categoryKey && t.id !== currentToolId
-  );
-  
-  const aiTools = toolsData.filter(
-    t => t.hasAI && t.id !== currentToolId && !sameCategoryTools.includes(t)
-  );
-  
-  return [...sameCategoryTools, ...aiTools].slice(0, maxItems);
+
+  // 2. Same category (journey context)
+  if (related.length < maxItems) {
+    const sameCategoryTools = toolsData.filter(
+      t => t.categoryKey === currentTool.categoryKey &&
+           t.id !== currentToolId &&
+           !related.find(r => r.id === t.id)
+    );
+    sameCategoryTools.forEach(t => {
+      if (related.length < maxItems) related.push(t);
+    });
+  }
+
+  // 3. AI tools fallback (smart suggestion)
+  if (related.length < maxItems) {
+    const aiFallback = toolsData.filter(
+      t => t.hasAI &&
+           t.id !== currentToolId &&
+           !related.find(r => r.id === t.id)
+    );
+    aiFallback.forEach(t => {
+      if (related.length < maxItems) related.push(t);
+    });
+  }
+
+  return related.slice(0, maxItems);
+};
+
+// Smart contextual suggestions: prioritize tools by user journey stage (week)
+export const getContextualTools = (currentToolId: string, week?: number, maxItems: number = 3): Tool[] => {
+  if (!week) return getRelatedTools(currentToolId, maxItems);
+
+  const trimester = week <= 13 ? 1 : week <= 27 ? 2 : 3;
+
+  // Trimester-specific tool prioritization
+  const trimesterTools: Record<number, string[]> = {
+    1: ["due-date-calculator", "ai-meal-suggestion", "vitamin-tracker", "weekly-summary", "pregnancy-comfort"],
+    2: ["weekly-summary", "kick-counter", "weight-gain", "ai-bump-photos", "ai-fitness-coach", "baby-growth"],
+    3: ["contraction-timer", "ai-hospital-bag", "ai-birth-plan", "ai-partner-guide", "ai-lactation-prep", "kick-counter"],
+  };
+
+  const priority = trimesterTools[trimester] || [];
+  const result: Tool[] = [];
+
+  priority.forEach(id => {
+    if (id !== currentToolId && result.length < maxItems) {
+      const t = getToolById(id);
+      if (t) result.push(t);
+    }
+  });
+
+  // Fill remaining with normal related tools
+  if (result.length < maxItems) {
+    const fallback = getRelatedTools(currentToolId, maxItems);
+    fallback.forEach(t => {
+      if (!result.find(r => r.id === t.id) && result.length < maxItems) {
+        result.push(t);
+      }
+    });
+  }
+
+  return result.slice(0, maxItems);
 };
 
 // ═══════════════════════════════════════════════════════════════════════════
