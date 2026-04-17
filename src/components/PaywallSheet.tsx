@@ -246,9 +246,11 @@ export function PaywallSheet({ open, onClose, toolName }: PaywallSheetProps) {
                     )}
                     {showTrialOffer ? t('paywall.startTrial') : t('paywall.subscribeButton')}
                   </Button>
-                  <p className="text-center text-[10px] text-muted-foreground">
-                    {t("pricing.ctaSub", { price: priceDisplay, period })}
-                  </p>
+                  {prices.isLocal && (
+                    <p className="text-center text-[10px] text-muted-foreground">
+                      {t("pricing.ctaSub", { price: priceDisplay, period })}
+                    </p>
+                  )}
                   <button
                     onClick={onClose}
                     className="w-full text-xs text-muted-foreground hover:text-foreground transition-colors py-1"

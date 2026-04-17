@@ -10,19 +10,31 @@ interface PriceInfo {
   monthly: { value: string; currency: string; display: string };
   yearly: { value: string; currency: string; display: string };
   monthlyEquivalent: string; // yearly price / 12
-  isLocal: boolean; // true if fetched from Play, false if fallback
+  isLocal: boolean; // true if fetched from Play (real local currency), false if generic placeholder
 }
 
-const FALLBACK: PriceInfo = {
-  monthly: { value: "2.99", currency: "USD", display: "$2.99" },
-  yearly: { value: "19.99", currency: "USD", display: "$19.99" },
-  monthlyEquivalent: "$1.67",
+/**
+ * Generic placeholder shown ONLY when Digital Goods API is unavailable (web preview).
+ * We avoid showing a hard-coded "$" price because Play Store will charge the user's
+ * local currency (EUR, SAR, EGP, etc.). Showing USD on web while Play shows EUR
+ * violates Google Play Subscriptions Policy ("Pricing currency mismatch").
+ *
+ * Solution: show a neutral "—" placeholder until real Play prices arrive.
+ * Real prices ALWAYS come from Digital Goods API inside the TWA, formatted with
+ * the currency code Play returns, so checkout currency matches displayed currency.
+ */
+const PLACEHOLDER: PriceInfo = {
+  monthly: { value: "", currency: "", display: "—" },
+  yearly: { value: "", currency: "", display: "—" },
+  monthlyEquivalent: "—",
   isLocal: false,
 };
 
 function formatPrice(value: string, currency: string): string {
   try {
-    // Always use 'en' locale for price formatting to ensure Western digits ($2.99 not ٢٫٩٩)
+    // Use 'en' numbering (Western digits) but keep the REAL currency code returned
+    // by Google Play. This guarantees the symbol/code shown to the user matches
+    // what Play will charge at checkout (e.g. "€2.99", "SAR 11.99", "EGP 149").
     return new Intl.NumberFormat("en", {
       style: "currency",
       currency,
@@ -34,7 +46,7 @@ function formatPrice(value: string, currency: string): string {
 }
 
 export function usePlayPrices(): PriceInfo & { loading: boolean } {
-  const [prices, setPrices] = useState<PriceInfo>(FALLBACK);
+  const [prices, setPrices] = useState<PriceInfo>(PLACEHOLDER);
   const [loading, setLoading] = useState(isDigitalGoodsAvailable());
 
   useEffect(() => {
