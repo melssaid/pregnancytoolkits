@@ -209,9 +209,13 @@ export function PaywallSheet({ open, onClose, toolName }: PaywallSheetProps) {
                       {selectedPlan === "monthly" && <Check className="w-2.5 h-2.5 text-primary-foreground" strokeWidth={3} />}
                     </div>
                     <span className="text-[10px] font-bold text-foreground mb-0.5">{t("pricing.monthly")}</span>
-                    <span className="text-lg font-extrabold text-foreground tabular-nums leading-none">
-                      {prices.monthly.display}
-                    </span>
+                    {prices.loading ? (
+                      <PriceSkeleton width={56} height={18} />
+                    ) : (
+                      <span className="text-lg font-extrabold text-foreground tabular-nums leading-none">
+                        {prices.monthly.display}
+                      </span>
+                    )}
                     <span className="text-[9px] text-muted-foreground mt-0.5">/{t("pricing.mo")}</span>
                   </button>
                 </motion.div>
