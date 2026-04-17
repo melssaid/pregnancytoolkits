@@ -14,6 +14,39 @@ export type Database = {
   }
   public: {
     Tables: {
+      ai_quota_state: {
+        Row: {
+          client_id: string
+          created_at: string
+          device_fingerprint: string
+          id: string
+          last_seen: string
+          period_start: string
+          points_used: number
+          updated_at: string
+        }
+        Insert: {
+          client_id: string
+          created_at?: string
+          device_fingerprint: string
+          id?: string
+          last_seen?: string
+          period_start?: string
+          points_used?: number
+          updated_at?: string
+        }
+        Update: {
+          client_id?: string
+          created_at?: string
+          device_fingerprint?: string
+          id?: string
+          last_seen?: string
+          period_start?: string
+          points_used?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
       ai_usage_logs: {
         Row: {
           ai_type: string
@@ -451,6 +484,18 @@ export type Database = {
     Functions: {
       cleanup_old_ai_logs: { Args: never; Returns: number }
       cleanup_old_analytics: { Args: never; Returns: number }
+      get_quota_usage: {
+        Args: {
+          _client_id: string
+          _device_fingerprint: string
+          _window_days?: number
+        }
+        Returns: {
+          call_count: number
+          period_start: string
+          points_used: number
+        }[]
+      }
     }
     Enums: {
       [_ in never]: never
