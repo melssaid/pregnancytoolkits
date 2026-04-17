@@ -169,20 +169,12 @@ export function PaywallSheet({ open, onClose, toolName }: PaywallSheetProps) {
                       {selectedPlan === "yearly" && <Check className="w-2.5 h-2.5 text-primary-foreground" strokeWidth={3} />}
                     </div>
                     <span className="text-[10px] font-bold text-foreground mb-0.5">{t("pricing.yearly")}</span>
-                    {prices.loading ? (
-                      <PriceSkeleton width={60} height={18} />
-                    ) : (
-                      <span className="text-lg font-extrabold text-foreground tabular-nums leading-none">
-                        {prices.yearly.display}
-                      </span>
-                    )}
+                    <span className="text-lg font-extrabold text-foreground tabular-nums leading-none">
+                      {prices.yearly.display}
+                    </span>
                     <span className="text-[9px] text-muted-foreground mt-0.5">/{t("pricing.yr")}</span>
                     <div className="mt-1.5 flex flex-col items-center gap-0.5">
-                      {prices.loading ? (
-                        <PriceSkeleton width={48} height={9} />
-                      ) : (
-                        <span className="text-[8px] text-muted-foreground">{prices.monthlyEquivalent}/{t("pricing.mo")}</span>
-                      )}
+                      <span className="text-[8px] text-muted-foreground">{prices.monthlyEquivalent}/{t("pricing.mo")}</span>
                       <motion.span
                         className="text-[7px] font-bold px-1.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
                         animate={{ scale: [1, 1.06, 1] }}
