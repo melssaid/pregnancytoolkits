@@ -18,7 +18,7 @@ export function ToolRating({ toolId, compact = false }: ToolRatingProps) {
 
   const handleRate = (stars: number) => {
     rateTool(stars);
-    try { haptic('light'); } catch {}
+    try { haptic('selection'); } catch {}
     // 5★ → trigger Google Play In-App Review
     if (stars === 5) {
       setTimeout(() => maybePromptReview('ai_result_positive'), 800);
