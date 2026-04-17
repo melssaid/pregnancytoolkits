@@ -247,43 +247,43 @@ const FooterCard = memo(function FooterCard() {
     premiumTitle: string; premiumDesc: string;
   }> = {
     en: {
-      title: 'Get Premium', cta: 'Subscribe Now', ctaPrice: '$2.99/month', trust: 'Free trial · Cancel anytime',
+      title: 'Get Premium', cta: 'Subscribe Now', ctaPrice: monthlyPriceLabel, trust: 'Free trial · Cancel anytime',
       feat1: '60 smart analyses/month', feat2: 'All 36+ tools unlocked', feat3: 'Personalized tips for your journey',
       exhaustedTitle: 'Your analyses are used up!', exhaustedCta: 'Subscribe Now',
       premiumTitle: 'Premium Member', premiumDesc: 'You have 60 monthly AI analyses',
     },
     ar: {
-      title: 'احصلي على Premium', cta: 'اشتركي الآن', ctaPrice: '$2.99/شهر', trust: 'تجربة مجانية · إلغاء أي وقت',
+      title: 'احصلي على Premium', cta: 'اشتركي الآن', ctaPrice: monthlyPriceLabel, trust: 'تجربة مجانية · إلغاء أي وقت',
       feat1: '60 تحليل ذكي شهرياً', feat2: 'جميع الأدوات مفتوحة (36+)', feat3: 'نصائح مخصصة لرحلتك',
       exhaustedTitle: 'نفدت تحليلاتك!', exhaustedCta: 'اشتركي الآن',
       premiumTitle: 'عضوة مميزة', premiumDesc: 'لديكِ 60 تحليل ذكاء اصطناعي شهرياً',
     },
     de: {
-      title: 'Premium holen', cta: 'Jetzt abonnieren', ctaPrice: '$2.99/Monat', trust: 'Kostenlose Testversion · Jederzeit kündbar',
+      title: 'Premium holen', cta: 'Jetzt abonnieren', ctaPrice: monthlyPriceLabel, trust: 'Kostenlose Testversion · Jederzeit kündbar',
       feat1: '60 smarte Analysen/Monat', feat2: 'Alle 36+ Tools freigeschaltet', feat3: 'Personalisierte Tipps',
       exhaustedTitle: 'Analysen aufgebraucht!', exhaustedCta: 'Jetzt abonnieren',
       premiumTitle: 'Premium-Mitglied', premiumDesc: 'Sie haben 60 monatliche KI-Analysen',
     },
     fr: {
-      title: 'Obtenir Premium', cta: "S'abonner maintenant", ctaPrice: '$2.99/mois', trust: 'Essai gratuit · Annulation à tout moment',
+      title: 'Obtenir Premium', cta: "S'abonner maintenant", ctaPrice: monthlyPriceLabel, trust: 'Essai gratuit · Annulation à tout moment',
       feat1: '60 analyses intelligentes/mois', feat2: 'Tous les 36+ outils débloqués', feat3: 'Conseils personnalisés',
       exhaustedTitle: 'Analyses épuisées!', exhaustedCta: "S'abonner",
       premiumTitle: 'Membre Premium', premiumDesc: 'Vous avez 60 analyses IA mensuelles',
     },
     es: {
-      title: 'Obtener Premium', cta: 'Suscríbete ahora', ctaPrice: '$2.99/mes', trust: 'Prueba gratis · Cancela cuando quieras',
+      title: 'Obtener Premium', cta: 'Suscríbete ahora', ctaPrice: monthlyPriceLabel, trust: 'Prueba gratis · Cancela cuando quieras',
       feat1: '60 análisis inteligentes/mes', feat2: 'Todas las 36+ herramientas', feat3: 'Consejos personalizados',
       exhaustedTitle: '¡Análisis agotados!', exhaustedCta: 'Suscríbete',
       premiumTitle: 'Miembro Premium', premiumDesc: 'Tienes 60 análisis IA mensuales',
     },
     pt: {
-      title: 'Obter Premium', cta: 'Assine agora', ctaPrice: '$2.99/mês', trust: 'Teste grátis · Cancele a qualquer momento',
+      title: 'Obter Premium', cta: 'Assine agora', ctaPrice: monthlyPriceLabel, trust: 'Teste grátis · Cancele a qualquer momento',
       feat1: '60 análises inteligentes/mês', feat2: 'Todas as 36+ ferramentas', feat3: 'Dicas personalizadas',
       exhaustedTitle: 'Análises esgotadas!', exhaustedCta: 'Assine agora',
       premiumTitle: 'Membro Premium', premiumDesc: 'Você tem 60 análises IA mensais',
     },
     tr: {
-      title: 'Premium Al', cta: 'Şimdi Abone Ol', ctaPrice: '$2.99/ay', trust: 'Ücretsiz deneme · İstediğin zaman iptal et',
+      title: 'Premium Al', cta: 'Şimdi Abone Ol', ctaPrice: monthlyPriceLabel, trust: 'Ücretsiz deneme · İstediğin zaman iptal et',
       feat1: '60 akıllı analiz/ay', feat2: 'Tüm 36+ araç açık', feat3: 'Kişiselleştirilmiş ipuçları',
       exhaustedTitle: 'Analizler tükendi!', exhaustedCta: 'Şimdi Abone Ol',
       premiumTitle: 'Premium Üye', premiumDesc: 'Aylık 60 AI analiziniz var',
