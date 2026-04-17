@@ -448,7 +448,9 @@ const FooterCard = memo(function FooterCard() {
           >
             <Crown className="w-4 h-4" strokeWidth={2} />
             <span>{showExhausted ? l.exhaustedCta : l.cta}</span>
-            <span className="text-white/70 text-xs font-normal">— {l.ctaPrice}</span>
+            {l.ctaPrice && (
+              <span className="text-white/70 text-xs font-normal">— {l.ctaPrice}</span>
+            )}
           </motion.div>
 
           {/* Trust line */}
