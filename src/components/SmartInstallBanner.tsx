@@ -1,4 +1,3 @@
-import { forwardRef } from "react";
 import { Download, X } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
@@ -8,7 +7,7 @@ import { useSmartInstallPrompt } from "@/hooks/useSmartInstallPrompt";
  * Smart Install Banner — appears after user engages with 2+ tools.
  * Uses the native `beforeinstallprompt` for higher install conversion.
  */
-export const SmartInstallBanner = forwardRef<HTMLDivElement>((_props, ref) => {
+export function SmartInstallBanner() {
   const { t } = useTranslation();
   const { canPrompt, showPrompt, dismiss } = useSmartInstallPrompt();
 
@@ -16,7 +15,6 @@ export const SmartInstallBanner = forwardRef<HTMLDivElement>((_props, ref) => {
     <AnimatePresence>
       {canPrompt && (
         <motion.div
-          ref={ref}
           initial={{ y: 100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0 }}
@@ -53,7 +51,6 @@ export const SmartInstallBanner = forwardRef<HTMLDivElement>((_props, ref) => {
       )}
     </AnimatePresence>
   );
-});
-SmartInstallBanner.displayName = "SmartInstallBanner";
+}
 
 export default SmartInstallBanner;
