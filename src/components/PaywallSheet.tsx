@@ -220,6 +220,12 @@ export function PaywallSheet({ open, onClose, toolName }: PaywallSheetProps) {
                   </button>
                 </motion.div>
 
+                {!prices.isLocal && !prices.loading && (
+                  <p className="text-center text-[9px] text-muted-foreground/70 leading-snug px-2 -mt-1">
+                    {t("pricing.localCurrencyHint", "💡 الأسعار تظهر بعملتك المحلية داخل التطبيق")}
+                  </p>
+                )}
+
                 {/* Benefits */}
                 <div className="space-y-2">
                   {benefits.map((benefit, i) => (
