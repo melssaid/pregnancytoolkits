@@ -300,9 +300,13 @@ export default function PricingDemo() {
                 {selected === "monthly" && <Check className="w-2.5 h-2.5 text-primary-foreground" strokeWidth={3} />}
               </div>
               <span className="text-xs font-bold text-foreground mb-0.5">{t("pricing.monthly")}</span>
-              <span className="text-xl font-extrabold text-foreground tabular-nums leading-none" style={{ fontFamily: "'Cairo', sans-serif" }}>
-                {prices.monthly.display}
-              </span>
+              {prices.loading ? (
+                <PriceSkeleton width={64} height={22} />
+              ) : (
+                <span className="text-xl font-extrabold text-foreground tabular-nums leading-none" style={{ fontFamily: "'Cairo', sans-serif" }}>
+                  {prices.monthly.display}
+                </span>
+              )}
               <span className="text-[11px] text-muted-foreground mt-0.5">/{t("pricing.mo")}</span>
             </button>
           </motion.div>
