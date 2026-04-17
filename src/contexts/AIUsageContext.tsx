@@ -117,8 +117,9 @@ export function AIUsageProvider({ children }: { children: ReactNode }) {
 
     // Fetch server quota AND check DB subscription in parallel
     const syncAll = async () => {
-      // 1. Server quota sync (usage count + coupon-aware limit)
-      const serverPromise = fetchServerQuota();
+      // 1. Server quota sync (usage count + tier-aware limit) — uses device fingerprint
+      const currentTier = readState().tier;
+      const serverPromise = fetchServerQuota(currentTier);
 
       // 2. DB subscription check (direct subscription status)
       const dbPromise = (async () => {
