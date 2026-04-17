@@ -14,19 +14,13 @@ interface PriceInfo {
 }
 
 /**
- * Generic placeholder shown ONLY when Digital Goods API is unavailable (web preview).
- * We avoid showing a hard-coded "$" price because Play Store will charge the user's
- * local currency (EUR, SAR, EGP, etc.). Showing USD on web while Play shows EUR
- * violates Google Play Subscriptions Policy ("Pricing currency mismatch").
- *
- * Solution: show a neutral "—" placeholder until real Play prices arrive.
- * Real prices ALWAYS come from Digital Goods API inside the TWA, formatted with
- * the currency code Play returns, so checkout currency matches displayed currency.
+ * Default USD fallback shown when Digital Goods API is unavailable (web preview).
+ * Inside the Android TWA, real local-currency prices from Play override these.
  */
-const PLACEHOLDER: PriceInfo = {
-  monthly: { value: "", currency: "", display: "—" },
-  yearly: { value: "", currency: "", display: "—" },
-  monthlyEquivalent: "—",
+const FALLBACK: PriceInfo = {
+  monthly: { value: "2.99", currency: "USD", display: "$2.99" },
+  yearly: { value: "19.99", currency: "USD", display: "$19.99" },
+  monthlyEquivalent: "$1.67",
   isLocal: false,
 };
 
@@ -46,7 +40,7 @@ function formatPrice(value: string, currency: string): string {
 }
 
 export function usePlayPrices(): PriceInfo & { loading: boolean } {
-  const [prices, setPrices] = useState<PriceInfo>(PLACEHOLDER);
+  const [prices, setPrices] = useState<PriceInfo>(FALLBACK);
   const [loading, setLoading] = useState(isDigitalGoodsAvailable());
 
   useEffect(() => {
