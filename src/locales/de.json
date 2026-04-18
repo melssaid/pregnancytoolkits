@@ -8888,5 +8888,10 @@
     "title": "App installieren",
     "desc": "Schneller Zugriff auf alle Tools — funktioniert auch offline!",
     "cta": "Jetzt installieren"
+  },
+  "update": {
+    "available": "Neues Update verfügbar",
+    "description": "Tippen, um zu aktualisieren und Cache zu leeren",
+    "refresh": "Aktualisieren"
   }
 }

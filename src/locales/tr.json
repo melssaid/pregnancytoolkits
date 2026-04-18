@@ -8888,5 +8888,10 @@
     "title": "Uygulamayı yükle",
     "desc": "Tüm araçlara hızlı erişim — çevrimdışı da çalışır!",
     "cta": "Şimdi yükle"
+  },
+  "update": {
+    "available": "Yeni güncelleme mevcut",
+    "description": "Güncellemek ve önbelleği temizlemek için dokunun",
+    "refresh": "Güncelle"
   }
 }
