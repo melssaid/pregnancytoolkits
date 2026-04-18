@@ -90,12 +90,17 @@ export function usePlayPrices(): PriceInfo & { loading: boolean } {
 
     (async () => {
       try {
-        const [monthly, yearly] = await Promise.all([
-          getProductDetails("premium_monthly"),
-          getProductDetails("premium_yearly"),
-        ]);
+        const details = await getProductDetails();
 
         if (cancelled) return;
+
+        if (!details || details.length === 0) {
+          setLoading(false);
+          return;
+        }
+
+        const monthly = details.find((d) => d.itemId === "premium_monthly");
+        const yearly = details.find((d) => d.itemId === "premium_yearly");
 
         if (!monthly || !yearly) {
           setLoading(false);
