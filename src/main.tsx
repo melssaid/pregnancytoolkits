@@ -61,12 +61,29 @@ setTimeout(() => {
   dismissSplash();
 }, 5000);
 
+const isInIframe = (() => {
+  try { return window.self !== window.top; } catch { return true; }
+})();
+const isPreviewHost =
+  window.location.hostname.includes("id-preview--") ||
+  window.location.hostname.includes("lovableproject.com") ||
+  window.location.hostname.includes("lovable.app");
+
 const clearStaleCaches = async () => {
-  // Force SW update + clear old caches in ALL environments (not just dev)
+  // In preview/iframe: unregister any SW to avoid stale-cache + eval errors
   if ("serviceWorker" in navigator) {
-    const registrations = await navigator.serviceWorker.getRegistrations();
-    for (const registration of registrations) {
-      await registration.update(); // Force check for new SW version
+    if (isPreviewHost || isInIframe) {
+      try {
+        const regs = await navigator.serviceWorker.getRegistrations();
+        for (const r of regs) await r.unregister();
+      } catch {}
+    } else {
+      try {
+        const registrations = await navigator.serviceWorker.getRegistrations();
+        for (const registration of registrations) {
+          await registration.update();
+        }
+      } catch {}
     }
   }
 
@@ -127,7 +144,7 @@ deferAfterPaint(() => {
     });
   });
 
-  if (import.meta.env.DEV) return;
+  if (import.meta.env.DEV || isPreviewHost || isInIframe) return;
 
   // Service Worker + push notifications (production only)
   import("@/lib/pushNotifications")
