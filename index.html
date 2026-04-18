@@ -394,8 +394,8 @@
           }
         }catch(e){ setTimeout(endSplash, 1500); }
 
-        // Hard cap: end splash after 2s for faster app open
-        setTimeout(endSplash, 2000);
+        // Safety cap only — let the video finish its natural cycle via 'ended' event
+        setTimeout(endSplash, 8000);
       })();
     </script>
 
