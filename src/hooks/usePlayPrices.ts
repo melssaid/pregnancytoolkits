@@ -53,6 +53,17 @@ export function usePlayPrices(): PriceInfo & { loading: boolean } {
     if (!isDigitalGoodsAvailable()) return;
 
     let cancelled = false;
+
+    // Safety timeout: if Play prices don't arrive within 5s, stop loading
+    // and keep showing the USD fallback so the UI never gets stuck.
+    const timeoutId = setTimeout(() => {
+      if (!cancelled) {
+        console.warn("[usePlayPrices] Timeout (5s) — falling back to default USD prices");
+        cancelled = true;
+        setLoading(false);
+      }
+    }, 5000);
+
     (async () => {
       try {
         const details = await getProductDetails();
@@ -87,9 +98,13 @@ export function usePlayPrices(): PriceInfo & { loading: boolean } {
         console.warn("[usePlayPrices] Failed to fetch:", e);
       } finally {
         if (!cancelled) setLoading(false);
+        clearTimeout(timeoutId);
       }
     })();
-    return () => { cancelled = true; };
+    return () => {
+      cancelled = true;
+      clearTimeout(timeoutId);
+    };
   }, [locale]);
 
   return { ...prices, loading };
