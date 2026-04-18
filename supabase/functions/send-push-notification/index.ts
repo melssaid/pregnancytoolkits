@@ -145,7 +145,7 @@ Deno.serve(async (req) => {
       return jsonResponse({ error: "Unauthorized — invalid admin key" }, 401);
     }
 
-    const { action, title, body, language } = await req.json();
+    const { action, title, body, language, image, url: clickUrl } = await req.json();
 
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
     const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
@@ -181,7 +181,23 @@ Deno.serve(async (req) => {
       const { data: subs, error } = await query;
       if (error) throw error;
 
-      const payload = JSON.stringify({ title, body, url: "/" });
+      // Validate image URL (must be HTTPS, reasonable size)
+      let safeImage: string | undefined;
+      if (image && typeof image === "string") {
+        try {
+          const imgUrl = new URL(image);
+          if (imgUrl.protocol === "https:" && image.length < 2048) {
+            safeImage = image;
+          }
+        } catch { /* invalid URL → skip */ }
+      }
+
+      const payload = JSON.stringify({
+        title,
+        body,
+        url: clickUrl || "/",
+        ...(safeImage ? { image: safeImage } : {}),
+      });
 
       let sent = 0;
       let failed = 0;
