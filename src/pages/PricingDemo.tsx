@@ -28,7 +28,7 @@ export default function PricingDemo() {
   const [selected, setSelected] = useState<PlanType>("yearly");
   const [purchasing, setPurchasing] = useState(false);
   const [devTaps, setDevTaps] = useState(0);
-  const devMode = devTaps >= 5;
+  const devMode = true; // Diagnostics always visible for debugging
   const isAr = i18n.language === "ar";
   const canPurchase = isDigitalGoodsAvailable();
   const { refresh: refreshAIUsage } = useAIUsage();
@@ -359,7 +359,7 @@ export default function PricingDemo() {
 }
 
 function BillingDiagnosticsPanel({ isAr }: { isAr: boolean }) {
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
   const [diag, setDiag] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const [autoRefresh, setAutoRefresh] = useState(false);
@@ -378,6 +378,12 @@ function BillingDiagnosticsPanel({ isAr }: { isAr: boolean }) {
     }
     setLoading(false);
   };
+
+  // Auto-run diagnostics on first mount
+  useEffect(() => {
+    runDiag();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (!autoRefresh || !visible) return;
