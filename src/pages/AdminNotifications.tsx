@@ -297,6 +297,62 @@ export default function AdminNotifications() {
               <p className="text-[10px] text-muted-foreground text-end mt-1">{body.length}/300</p>
             </div>
 
+            {/* Image URL with live preview */}
+            <div>
+              <label className="text-xs font-medium text-muted-foreground mb-1 flex items-center gap-1.5">
+                <ImageIcon className="w-3.5 h-3.5" />
+                صورة الإشعار <span className="text-[10px] text-muted-foreground/70">(اختياري — يُفضّل 1024×512)</span>
+              </label>
+              <div className="relative">
+                <Input
+                  value={imageUrl}
+                  onChange={(e) => { setImageUrl(e.target.value); setImageError(false); }}
+                  placeholder="https://example.com/image.jpg"
+                  className="h-9 text-sm pr-8"
+                  dir="ltr"
+                  type="url"
+                />
+                {imageUrl && (
+                  <button
+                    type="button"
+                    onClick={() => { setImageUrl(""); setImageError(false); }}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                    aria-label="مسح الرابط"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                )}
+              </div>
+
+              {/* Live preview — exact mobile notification proportions (2:1 image + caption below) */}
+              {imageUrl && !imageError && (
+                <div className="mt-3 rounded-2xl overflow-hidden border border-border bg-card shadow-sm" dir="auto">
+                  <div className="aspect-[2/1] bg-muted overflow-hidden">
+                    <img
+                      src={imageUrl}
+                      alt="معاينة"
+                      className="w-full h-full object-cover"
+                      onError={() => setImageError(true)}
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="p-2.5 bg-card">
+                    <p className="text-[13px] font-bold text-foreground leading-tight line-clamp-1">
+                      {title || "عنوان الإشعار"}
+                    </p>
+                    <p className="text-[11px] text-muted-foreground leading-snug mt-0.5 line-clamp-2">
+                      {body || "محتوى الإشعار سيظهر هنا..."}
+                    </p>
+                  </div>
+                </div>
+              )}
+              {imageUrl && imageError && (
+                <p className="text-[10px] text-red-500 mt-1.5 flex items-center gap-1">
+                  <AlertCircle className="w-3 h-3" /> فشل تحميل الصورة — تأكد من الرابط (HTTPS)
+                </p>
+              )}
+            </div>
+
             <Button
               onClick={handleSend}
               disabled={sending || !title.trim() || !body.trim()}
