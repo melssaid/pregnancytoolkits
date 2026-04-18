@@ -10,9 +10,6 @@ import { LanguageProvider } from "@/contexts/LanguageContext";
 // Sync: set document direction (instant, no I/O)
 updateDocumentDirection(i18n.language);
 
-// Native app feel — disable text selection, double-tap zoom, add haptics, etc.
-import("./lib/nativeFeel").then((m) => m.initNativeFeel());
-
 // ── Splash dismiss logic ──────────────────────────────────
 declare global {
   interface Window {
