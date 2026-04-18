@@ -107,16 +107,39 @@ clearStaleCaches();
 // ── Mount React immediately, i18n loads in background ──
 const root = createRoot(document.getElementById("root")!);
 
-i18nReady.then(() => {
-  updateDocumentDirection(i18n.language);
-  root.render(
-    <SettingsProvider>
-      <LanguageProvider>
-        <App />
-      </LanguageProvider>
-    </SettingsProvider>
-  );
-});
+const signalFirstRender = () => {
+  // Wait two RAFs to ensure React's first paint is committed to the screen
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      window.dispatchEvent(new CustomEvent("app:first-render"));
+    });
+  });
+};
+
+i18nReady
+  .then(() => {
+    updateDocumentDirection(i18n.language);
+    root.render(
+      <SettingsProvider>
+        <LanguageProvider>
+          <App />
+        </LanguageProvider>
+      </SettingsProvider>
+    );
+    signalFirstRender();
+  })
+  .catch((err) => {
+    // Fallback: even if i18n fails, render the app so the splash can dismiss
+    console.error("[i18n] init failed, rendering app anyway", err);
+    root.render(
+      <SettingsProvider>
+        <LanguageProvider>
+          <App />
+        </LanguageProvider>
+      </SettingsProvider>
+    );
+    signalFirstRender();
+  });
 
 // ── Deferred work (after first paint) ──────────────────────
 const deferAfterPaint = (fn: () => void) => {
