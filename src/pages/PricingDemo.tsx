@@ -333,19 +333,6 @@ export default function PricingDemo() {
             {t("pricing.autoRenew")}
           </p>
 
-          <div className="flex items-center justify-center gap-2 flex-wrap">
-            <span className="text-[10px] text-muted-foreground/60 text-center">
-              {t("pricing.termsPrefix")}{" "}
-              <Link to="/terms" className="underline hover:text-foreground transition-colors">
-                {t("layout.footer.terms")}
-              </Link>{" "}
-              {t("pricing.and")}{" "}
-              <Link to="/privacy" className="underline hover:text-foreground transition-colors">
-                {t("layout.footer.privacy")}
-              </Link>
-            </span>
-          </div>
-
           {/* Coupon Redeemer */}
           <div className="pt-2 border-t border-border/20">
             <CouponRedeemer />
