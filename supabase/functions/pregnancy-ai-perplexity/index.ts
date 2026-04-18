@@ -260,7 +260,15 @@ COMPLIANCE RULES (MUST FOLLOW):
 6. Be warm, reassuring, and culturally sensitive
 7. Treat all health data with confidentiality
 
+RESPONSE ORDERING RULE (CRITICAL — APPLIES TO ALL TOOLS):
+• ALWAYS present the analysis, observations, and findings FIRST
+• ALL tips, advice, recommendations, and actionable suggestions MUST appear LAST in a single dedicated section at the very END of the response
+• Use a clear heading for the final tips section (e.g. "## 💡 Tips & Recommendations" or the localized equivalent)
+• Do NOT scatter tips throughout the response — consolidate them into the final section only
+• If the section template below already places tips at the end, follow it; if it places tips earlier, MOVE them to the end
+
 `;
+
 
 // ── System prompt builder ──
 function buildSystemPrompt(type: AIType, context: AIRequest["context"], lang: string): string {
