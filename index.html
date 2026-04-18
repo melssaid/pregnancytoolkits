@@ -340,26 +340,37 @@
         window.__htmlSplashVideoEnded=false;
 
         var done=false;
+        var appReady=false;
+        window.addEventListener('app:first-render', function(){ appReady=true; }, {once:true});
+
+        function fadeOverlay(){
+          // Gentle crossfade: app is already painted underneath. Just fade the overlay.
+          document.body.style.background='#faf6f2';
+          document.documentElement.style.background='#faf6f2';
+          overlay.style.opacity='0';
+          setTimeout(function(){
+            if(overlay.parentNode) overlay.parentNode.removeChild(overlay);
+          }, 700);
+        }
+
         function endSplash(){
           if(done)return;
           done=true;
           localStorage.setItem(SPLASH_KEY,'true');
-          // Cinematic crossfade: scale-up + fade video, then fade overlay revealing app
-          vid.style.transform='scale(1.08)';
-          vid.style.opacity='0';
-          // Pre-warm app background just before overlay fades
-          setTimeout(function(){
-            document.body.style.transition='background 0.5s ease';
-            document.body.style.background='#faf6f2';
-            document.documentElement.style.background='#faf6f2';
-            overlay.style.opacity='0';
-            setTimeout(function(){
-              if(overlay.parentNode) overlay.parentNode.removeChild(overlay);
-            }, 650);
-          }, 250);
           window.__htmlSplashVideoActive=false;
           window.__htmlSplashVideoEnded=true;
           window.dispatchEvent(new CustomEvent('html-splash-ended'));
+
+          // Wait for React to render before fading — prevents any intermediate flash
+          var waited=0;
+          (function waitForApp(){
+            if(appReady || waited>=3000){
+              fadeOverlay();
+            } else {
+              waited+=80;
+              setTimeout(waitForApp, 80);
+            }
+          })();
         }
 
         vid.addEventListener('ended', endSplash, {once:true});
