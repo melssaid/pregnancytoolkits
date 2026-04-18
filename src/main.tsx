@@ -10,6 +10,13 @@ import { LanguageProvider } from "@/contexts/LanguageContext";
 // Sync: set document direction (instant, no I/O)
 updateDocumentDirection(i18n.language);
 
+// Always open the app from the top — disable browser scroll restoration
+// so reloads / cold starts never land mid-page.
+if ("scrollRestoration" in history) {
+  try { history.scrollRestoration = "manual"; } catch {}
+}
+window.scrollTo(0, 0);
+
 // ── Splash dismiss logic ──────────────────────────────────
 declare global {
   interface Window {

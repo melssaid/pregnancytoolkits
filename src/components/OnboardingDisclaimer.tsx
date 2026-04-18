@@ -87,6 +87,11 @@ export function OnboardingDisclaimer() {
     localStorage.setItem(ONBOARDING_KEY, 'true');
     localStorage.setItem(FIRST_VISIT_KEY, 'true');
     setShow(false);
+
+    // Open the app cleanly from the top after onboarding finishes
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' as ScrollBehavior });
+    });
   };
 
   const handleLmpChange = (d: Date | undefined) => {
