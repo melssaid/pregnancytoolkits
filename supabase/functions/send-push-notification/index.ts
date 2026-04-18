@@ -134,6 +134,96 @@ function authenticateAdmin(req: Request): boolean {
   return providedKey === adminKey;
 }
 
+// Languages we ship in the app
+const SUPPORTED_LANGS = ["ar", "en", "fr", "es", "de", "tr", "pt"];
+
+const LANG_NAMES: Record<string, string> = {
+  ar: "Arabic",
+  en: "English",
+  fr: "French",
+  es: "Spanish",
+  de: "German",
+  tr: "Turkish",
+  pt: "Portuguese",
+};
+
+interface Translation { title: string; body: string }
+
+/**
+ * Translate the source notification (title + body) into every supported language
+ * in a single Lovable AI call. Returns a map { lang: { title, body } }.
+ * Source language is auto-detected. If translation fails, all langs fall back
+ * to the original text so the send never blocks.
+ */
+async function translateNotification(srcTitle: string, srcBody: string): Promise<Record<string, Translation>> {
+  const fallback: Record<string, Translation> = {};
+  for (const l of SUPPORTED_LANGS) fallback[l] = { title: srcTitle, body: srcBody };
+
+  const apiKey = Deno.env.get("LOVABLE_API_KEY");
+  if (!apiKey) {
+    console.warn("[push] LOVABLE_API_KEY missing — skipping translation");
+    return fallback;
+  }
+
+  const targetList = SUPPORTED_LANGS.map((l) => `"${l}" (${LANG_NAMES[l]})`).join(", ");
+  const prompt = `You translate a single push notification into multiple languages.
+
+Source title: ${srcTitle}
+Source body: ${srcBody}
+
+Auto-detect the source language. Translate into these target languages: ${targetList}.
+
+Rules:
+- Keep tone warm, supportive, and concise (suitable for a pregnancy & wellness companion app).
+- Preserve emojis exactly as-is.
+- Do NOT add greetings or extra words.
+- Title must stay short (under 60 chars). Body under 200 chars.
+- For the source language itself, return the original text unchanged.
+
+Return ONLY a JSON object with this exact shape (no markdown, no commentary):
+{"ar":{"title":"...","body":"..."},"en":{"title":"...","body":"..."},"fr":{"title":"...","body":"..."},"es":{"title":"...","body":"..."},"de":{"title":"...","body":"..."},"tr":{"title":"...","body":"..."},"pt":{"title":"...","body":"..."}}`;
+
+  try {
+    const res = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        model: "google/gemini-2.5-flash",
+        messages: [
+          { role: "system", content: "You are a precise multilingual translator. Output ONLY valid JSON." },
+          { role: "user", content: prompt },
+        ],
+      }),
+    });
+
+    if (!res.ok) {
+      console.error("[push] AI translate failed:", res.status, await res.text().catch(() => ""));
+      return fallback;
+    }
+
+    const json = await res.json();
+    const text: string = json?.choices?.[0]?.message?.content || "";
+    // Strip code fences if any
+    const cleaned = text.replace(/```json\s*/gi, "").replace(/```\s*/g, "").trim();
+    const parsed = JSON.parse(cleaned);
+
+    const out: Record<string, Translation> = {};
+    for (const l of SUPPORTED_LANGS) {
+      const t = parsed?.[l];
+      out[l] = (t && typeof t.title === "string" && typeof t.body === "string")
+        ? { title: t.title, body: t.body }
+        : fallback[l];
+    }
+    return out;
+  } catch (e) {
+    console.error("[push] translate exception:", e);
+    return fallback;
+  }
+}
+
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response("ok", { headers: corsHeaders });
@@ -145,7 +235,7 @@ Deno.serve(async (req) => {
       return jsonResponse({ error: "Unauthorized — invalid admin key" }, 401);
     }
 
-    const { action, title, body, language, image, url: clickUrl } = await req.json();
+    const { action, title, body, language, image, url: clickUrl, autoTranslate } = await req.json();
 
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
     const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
@@ -173,6 +263,14 @@ Deno.serve(async (req) => {
         return jsonResponse({ error: `Rate limit: max ${MAX_DAILY_SENDS} notifications per day` }, 429);
       }
 
+      // ── Auto-translate (default ON) ──
+      // shouldTranslate = true unless caller explicitly opts out OR a single
+      // language is targeted (in which case the caller wrote it in that language).
+      const shouldTranslate = autoTranslate !== false && !language;
+      const translations = shouldTranslate
+        ? await translateNotification(title, body)
+        : null;
+
       let query = sb.from("push_subscriptions").select("*");
       if (language) {
         query = query.eq("user_language", language);
@@ -192,19 +290,26 @@ Deno.serve(async (req) => {
         } catch { /* invalid URL → skip */ }
       }
 
-      const payload = JSON.stringify({
-        title,
-        body,
-        url: clickUrl || "/",
-        ...(safeImage ? { image: safeImage } : {}),
-      });
-
       let sent = 0;
       let failed = 0;
       const expired: string[] = [];
 
       for (const sub of subs || []) {
         try {
+          // Pick translation matching this subscriber's saved UI language
+          const subLang = (sub.user_language || "en").toLowerCase();
+          const t = translations?.[subLang] ?? translations?.["en"];
+          const finalTitle = t?.title ?? title;
+          const finalBody = t?.body ?? body;
+
+          const payload = JSON.stringify({
+            title: finalTitle,
+            body: finalBody,
+            url: clickUrl || "/",
+            lang: subLang,
+            ...(safeImage ? { image: safeImage } : {}),
+          });
+
           const ok = await sendWebPush(
             { endpoint: sub.endpoint, p256dh: sub.p256dh, auth: sub.auth },
             payload
@@ -229,13 +334,18 @@ Deno.serve(async (req) => {
       await sb.from("notification_logs").insert({
         title,
         body,
-        language: language || null,
+        language: language || (shouldTranslate ? "auto" : null),
         total_sent: sent,
         total_failed: failed,
         total_subscribers: (subs || []).length,
       });
 
-      return jsonResponse({ sent, failed, total: (subs || []).length });
+      return jsonResponse({
+        sent,
+        failed,
+        total: (subs || []).length,
+        translated: !!translations,
+      });
     }
 
     return jsonResponse({ error: "Invalid action" }, 400);
