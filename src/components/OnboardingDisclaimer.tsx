@@ -116,21 +116,20 @@ export function OnboardingDisclaimer() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           >
-            {/* Progress bar */}
-            <div className="h-0.5 w-full bg-muted">
-              <div
-                className="h-full bg-primary transition-all duration-300"
-                style={{ width: `${(step / TOTAL_STEPS) * 100}%` }}
-              />
-            </div>
-
-            {/* Step dots */}
-            <div className="flex justify-center gap-2 pt-2 pb-1">
+            {/* Step dots — clean, consistent, no broken bar */}
+            <div className="flex justify-center items-center gap-1.5 pt-4 pb-2">
               {Array.from({ length: TOTAL_STEPS }, (_, i) => i + 1).map(i => (
-                <div key={i} className={cn(
-                  "h-1.5 rounded-full transition-all duration-200",
-                  i === step ? "bg-primary w-5" : i < step ? "bg-primary/40 w-1.5" : "bg-muted-foreground/20 w-1.5"
-                )} />
+                <div
+                  key={i}
+                  className={cn(
+                    "h-1.5 rounded-full transition-all duration-300 ease-out",
+                    i === step
+                      ? "bg-primary w-6"
+                      : i < step
+                        ? "bg-primary/50 w-1.5"
+                        : "bg-muted-foreground/20 w-1.5"
+                  )}
+                />
               ))}
             </div>
 
