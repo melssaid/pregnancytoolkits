@@ -339,7 +339,7 @@ export default function PricingDemo() {
           </div>
         </motion.div>
 
-        {devMode && <BillingDiagnosticsPanel isAr={isAr} />}
+        {devMode && devTaps >= 7 && <BillingDiagnosticsPanel isAr={isAr} />}
       </div>
     </div>
   );
