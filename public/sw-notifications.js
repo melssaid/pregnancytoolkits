@@ -225,7 +225,11 @@ function scheduleNotification(reminder, delayMs) {
 self.addEventListener('message', (event) => {
   const { type, payload } = event.data || {};
 
-  if (type === 'SHOW_NOTIFICATION') {
+  if (type === 'SKIP_WAITING') {
+    self.skipWaiting();
+    return;
+  }
+
     const { title, body, icon, tag, url, badge } = payload;
     event.waitUntil(
       self.registration.showNotification(title, {
