@@ -25,24 +25,29 @@ const FALLBACK: PriceInfo = {
   isLocal: false,
 };
 
-function formatPrice(value: string, currency: string): string {
+function formatPrice(value: string, currency: string, locale: string): string {
   try {
-    // Use 'en' numbering (Western digits) but keep the REAL currency code returned
-    // by Google Play. This guarantees the symbol/code shown to the user matches
-    // what Play will charge at checkout (e.g. "€2.99", "SAR 11.99", "EGP 149").
-    return new Intl.NumberFormat("en", {
+    // Use the user's UI locale so that the currency symbol/format matches
+    // their language (e.g. "11.25 ر.س" in Arabic, "SAR 11.25" in English,
+    // "11,25 €" in French). The currency code itself always comes from
+    // Google Play, guaranteeing it matches what Play will charge at checkout.
+    return new Intl.NumberFormat(locale, {
       style: "currency",
       currency,
       minimumFractionDigits: 2,
-    }).format(parseFloat(value));
+      // Force Western digits even for Arabic locale (matches our pricing standard)
+      numberingSystem: "latn",
+    } as Intl.NumberFormatOptions).format(parseFloat(value));
   } catch {
     return `${value} ${currency}`;
   }
 }
 
 export function usePlayPrices(): PriceInfo & { loading: boolean } {
+  const { i18n } = useTranslation();
   const [prices, setPrices] = useState<PriceInfo>(FALLBACK);
   const [loading, setLoading] = useState(isDigitalGoodsAvailable());
+  const locale = i18n.language || "en";
 
   useEffect(() => {
     if (!isDigitalGoodsAvailable()) return;
@@ -67,14 +72,14 @@ export function usePlayPrices(): PriceInfo & { loading: boolean } {
             monthly: {
               value: monthlyItem.price.value,
               currency: monthlyItem.price.currency,
-              display: formatPrice(monthlyItem.price.value, monthlyItem.price.currency),
+              display: formatPrice(monthlyItem.price.value, monthlyItem.price.currency, locale),
             },
             yearly: {
               value: yearlyItem.price.value,
               currency: yearlyItem.price.currency,
-              display: formatPrice(yearlyItem.price.value, yearlyItem.price.currency),
+              display: formatPrice(yearlyItem.price.value, yearlyItem.price.currency, locale),
             },
-            monthlyEquivalent: formatPrice(monthlyEq, yearlyItem.price.currency),
+            monthlyEquivalent: formatPrice(monthlyEq, yearlyItem.price.currency, locale),
             isLocal: true,
           });
         }
@@ -85,7 +90,7 @@ export function usePlayPrices(): PriceInfo & { loading: boolean } {
       }
     })();
     return () => { cancelled = true; };
-  }, []);
+  }, [locale]);
 
   return { ...prices, loading };
 }
