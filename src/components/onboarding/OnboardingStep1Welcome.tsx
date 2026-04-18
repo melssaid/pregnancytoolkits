@@ -112,7 +112,7 @@ export const OnboardingStep1Welcome: React.FC<Props> = ({ selectedLang, onSelect
         </div>
       </div>
 
-      <div className="flex-1 min-h-0 px-4 pb-2 space-y-2 overflow-y-auto">
+      <div className="flex-1 min-h-0 px-4 pb-2 space-y-2 overflow-y-auto scrollbar-hide [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         <div className="px-1 space-y-1.5">
           {[
             { icon: Zap, text: vp.v1 },
