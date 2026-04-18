@@ -158,6 +158,36 @@ if (!nextManifest.includes('com.google.android.gms.permission.AD_ID')) {
   console.log('[patch-twa-project] Replaced AD_ID with removal directive');
 }
 
+// Ensure POST_NOTIFICATIONS permission (Android 13+) for reliable push notifications
+const postNotifPermission = '<uses-permission android:name="android.permission.POST_NOTIFICATIONS" />';
+if (!nextManifest.includes('android.permission.POST_NOTIFICATIONS')) {
+  nextManifest = nextManifest.replace(
+    /<manifest\b[^>]*>/,
+    `$&\n    ${postNotifPermission}`
+  );
+  console.log('[patch-twa-project] Added POST_NOTIFICATIONS permission');
+}
+
+// Ensure WAKE_LOCK so background push can wake the device briefly
+const wakeLockPermission = '<uses-permission android:name="android.permission.WAKE_LOCK" />';
+if (!nextManifest.includes('android.permission.WAKE_LOCK')) {
+  nextManifest = nextManifest.replace(
+    /<manifest\b[^>]*>/,
+    `$&\n    ${wakeLockPermission}`
+  );
+  console.log('[patch-twa-project] Added WAKE_LOCK permission');
+}
+
+// Ensure RECEIVE_BOOT_COMPLETED so scheduled notifications survive reboot
+const bootPermission = '<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />';
+if (!nextManifest.includes('android.permission.RECEIVE_BOOT_COMPLETED')) {
+  nextManifest = nextManifest.replace(
+    /<manifest\b[^>]*>/,
+    `$&\n    ${bootPermission}`
+  );
+  console.log('[patch-twa-project] Added RECEIVE_BOOT_COMPLETED permission');
+}
+
 nextManifest = normalizeDelegationService(nextManifest, packageName);
 const delegationServiceSource = buildDelegationServiceSource(packageName);
 
