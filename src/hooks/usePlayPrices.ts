@@ -98,9 +98,13 @@ export function usePlayPrices(): PriceInfo & { loading: boolean } {
         console.warn("[usePlayPrices] Failed to fetch:", e);
       } finally {
         if (!cancelled) setLoading(false);
+        clearTimeout(timeoutId);
       }
     })();
-    return () => { cancelled = true; };
+    return () => {
+      cancelled = true;
+      clearTimeout(timeoutId);
+    };
   }, [locale]);
 
   return { ...prices, loading };
