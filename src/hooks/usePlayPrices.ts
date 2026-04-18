@@ -4,6 +4,7 @@
  * Falls back to hardcoded USD prices when not in TWA.
  */
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { getProductDetails, PRODUCT_IDS, isDigitalGoodsAvailable } from "@/lib/googlePlayBilling";
 
 interface PriceInfo {
