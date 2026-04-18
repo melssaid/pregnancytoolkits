@@ -150,11 +150,23 @@ export default function AdminNotifications() {
     }
   };
 
+  // Build absolute URL for template images (push notifications need absolute https URL)
+  const origin = typeof window !== "undefined" ? window.location.origin : "";
+
+  const imageTemplates = [
+    { id: "nutrition", label: "🍎 تغذية", src: `${origin}/notification-templates/nutrition.jpg` },
+    { id: "exercise", label: "🧘 تمارين", src: `${origin}/notification-templates/exercise.jpg` },
+    { id: "fetal", label: "👶 تطور الجنين", src: `${origin}/notification-templates/fetal-development.jpg` },
+    { id: "wellness", label: "🌸 عافية", src: `${origin}/notification-templates/wellness.jpg` },
+    { id: "hydration", label: "💧 ترطيب", src: `${origin}/notification-templates/hydration.jpg` },
+    { id: "appointment", label: "🩺 موعد طبي", src: `${origin}/notification-templates/appointment.jpg` },
+  ];
+
   const templates = [
-    { label: "📖 ملخص أسبوعي", title: "ملخصك الأسبوعي جاهز!", body: "اكتشفي تطورات طفلك هذا الأسبوع ونصائح مهمة لصحتك 💕" },
-    { label: "💪 تحفيز", title: "أنتِ رائعة! 🌟", body: "تذكري أن كل يوم يقربك من لقاء طفلك. استمري بالاهتمام بصحتك!" },
-    { label: "🍎 تغذية", title: "نصيحة غذائية مهمة", body: "اكتشفي أفضل الأطعمة لهذا الأسبوع من الحمل وفوائدها لك ولطفلك." },
-    { label: "🏃 حركة", title: "وقت التمارين! 🧘", body: "تمارين خفيفة مناسبة لمرحلتك جاهزة في التطبيق. ابدئي الآن!" },
+    { label: "📖 ملخص أسبوعي", title: "ملخصك الأسبوعي جاهز!", body: "اكتشفي تطورات طفلك هذا الأسبوع ونصائح مهمة لصحتك 💕", image: "" },
+    { label: "💪 تحفيز", title: "أنتِ رائعة! 🌟", body: "تذكري أن كل يوم يقربك من لقاء طفلك. استمري بالاهتمام بصحتك!", image: `${origin}/notification-templates/wellness.jpg` },
+    { label: "🍎 تغذية", title: "نصيحة غذائية مهمة", body: "اكتشفي أفضل الأطعمة لهذا الأسبوع من الحمل وفوائدها لك ولطفلك.", image: `${origin}/notification-templates/nutrition.jpg` },
+    { label: "🏃 حركة", title: "وقت التمارين! 🧘", body: "تمارين خفيفة مناسبة لمرحلتك جاهزة في التطبيق. ابدئي الآن!", image: `${origin}/notification-templates/exercise.jpg` },
   ];
 
   // Login screen
