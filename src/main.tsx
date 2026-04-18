@@ -144,7 +144,7 @@ deferAfterPaint(() => {
     });
   });
 
-  if (import.meta.env.DEV) return;
+  if (import.meta.env.DEV || isPreviewHost || isInIframe) return;
 
   // Service Worker + push notifications (production only)
   import("@/lib/pushNotifications")
