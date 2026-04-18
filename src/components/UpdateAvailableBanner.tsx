@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import { RefreshCw, Sparkles } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { playNotificationSound } from '@/lib/notificationSound';
-import { haptics } from '@/lib/haptics';
+import { haptic } from '@/lib/haptics';
 
 const DISMISS_KEY = 'pt_update_dismissed_at';
 const DISMISS_DURATION_MS = 30 * 60 * 1000; // 30 minutes
