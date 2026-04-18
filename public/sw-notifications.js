@@ -3,7 +3,7 @@
  * Handles notifications in background + caches static assets for performance
  */
 
-const SW_VERSION = '3.0.1';
+const SW_VERSION = '3.1.0';
 const CACHE_NAME = `pt-cache-v${SW_VERSION}`;
 const IS_PREVIEW_HOST =
   self.location.hostname.endsWith('.lovableproject.com') ||
@@ -149,7 +149,7 @@ self.addEventListener('fetch', (event) => {
   }
 });
 
-// ── Web Push event (from server) ──
+// ── Web Push event (from server) — works even when app is fully closed ──
 self.addEventListener('push', (event) => {
   let data = { title: 'Pregnancy Toolkits', body: 'You have a new update!', url: '/' };
   try {
@@ -158,24 +158,44 @@ self.addEventListener('push', (event) => {
       if (parsed.title) data.title = parsed.title;
       if (parsed.body) data.body = parsed.body;
       if (parsed.url) data.url = parsed.url;
+      if (parsed.image) data.image = parsed.image;
+      if (parsed.actions) data.actions = parsed.actions;
     }
   } catch {
-    // If not JSON, use text
     try { if (event.data) data.body = event.data.text(); } catch {}
   }
 
+  // CRITICAL: waitUntil keeps SW alive until notification is shown,
+  // even if browser/app is closed. Required by Push API spec.
   event.waitUntil(
     self.registration.showNotification(data.title, {
       body: data.body,
-      icon: '/favicon.png',
-      badge: '/favicon.png',
+      icon: '/icons/icon-192x192.png',
+      badge: '/icons/icon-96x96.png',
+      image: data.image,
       tag: 'server-push-' + Date.now(),
-      data: { url: data.url },
-      vibrate: [100, 50, 100],
+      data: { url: data.url, timestamp: Date.now() },
+      vibrate: [200, 100, 200, 100, 200],
       requireInteraction: false,
+      renotify: true,
       silent: false,
+      actions: data.actions || [
+        { action: 'open', title: 'Open' },
+        { action: 'dismiss', title: 'Dismiss' }
+      ],
     })
   );
+});
+
+// ── Background Sync — retry failed network operations when back online ──
+self.addEventListener('sync', (event) => {
+  if (event.tag === 'sync-pending-data') {
+    event.waitUntil(
+      self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then(clients => {
+        clients.forEach(client => client.postMessage({ type: 'SYNC_PENDING' }));
+      })
+    );
+  }
 });
 
 // ── Notification handlers ──
@@ -266,6 +286,9 @@ self.addEventListener('periodicsync', (event) => {
 
 self.addEventListener('notificationclick', (event) => {
   event.notification.close();
+  // Handle dismiss action — just close
+  if (event.action === 'dismiss') return;
+
   const url = event.notification.data?.url || '/';
   event.waitUntil(
     self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then((clientList) => {
