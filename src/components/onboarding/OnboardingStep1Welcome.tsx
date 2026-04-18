@@ -112,7 +112,7 @@ export const OnboardingStep1Welcome: React.FC<Props> = ({ selectedLang, onSelect
         </div>
       </div>
 
-      <div className="flex-1 min-h-0 px-4 pb-2 space-y-2">
+      <div className="flex-1 min-h-0 px-4 pb-2 space-y-2 overflow-y-auto">
         <div className="px-1 space-y-1.5">
           {[
             { icon: Zap, text: vp.v1 },
@@ -169,7 +169,7 @@ export const OnboardingStep1Welcome: React.FC<Props> = ({ selectedLang, onSelect
           <div className="flex-1 h-px bg-border/40" />
         </div>
 
-        <div>
+        <div className="pb-1">
           <div className="grid grid-cols-2 gap-1">
             {languages.map((l) => (
               <button
