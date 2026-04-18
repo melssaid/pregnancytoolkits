@@ -95,6 +95,17 @@ export const UpdateAvailableBanner = () => {
     setUpdateReady(false);
   };
 
+  // Play gentle chime + light haptic when banner appears
+  useEffect(() => {
+    if (!updateReady) return;
+    try {
+      playNotificationSound('success');
+      haptic('tap');
+    } catch {
+      /* ignore */
+    }
+  }, [updateReady]);
+
   if (!updateReady) return null;
 
   return (
