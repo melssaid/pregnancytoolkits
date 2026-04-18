@@ -379,6 +379,12 @@ function BillingDiagnosticsPanel({ isAr }: { isAr: boolean }) {
     setLoading(false);
   };
 
+  // Auto-run diagnostics on first mount
+  useEffect(() => {
+    runDiag();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   useEffect(() => {
     if (!autoRefresh || !visible) return;
     const interval = setInterval(() => { runDiag(); }, 30000);
