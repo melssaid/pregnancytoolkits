@@ -344,13 +344,15 @@
         window.addEventListener('app:first-render', function(){ appReady=true; }, {once:true});
 
         function fadeOverlay(){
-          // Gentle crossfade: app is already painted underneath. Just fade the overlay.
-          document.body.style.background='#faf6f2';
-          document.documentElement.style.background='#faf6f2';
+          // Freeze video on last frame to prevent any flash
+          try { vid.pause(); } catch(e){}
+          // Crossfade overlay out — app/onboarding is already rendered underneath
           overlay.style.opacity='0';
           setTimeout(function(){
             if(overlay.parentNode) overlay.parentNode.removeChild(overlay);
-          }, 700);
+            document.body.style.background='#faf6f2';
+            document.documentElement.style.background='#faf6f2';
+          }, 600);
         }
 
         function endSplash(){
@@ -361,14 +363,18 @@
           window.__htmlSplashVideoEnded=true;
           window.dispatchEvent(new CustomEvent('html-splash-ended'));
 
-          // Wait for React to render before fading — prevents any intermediate flash
+          // Freeze immediately on last frame (no white frame after video ends)
+          try { vid.pause(); } catch(e){}
+
+          // Wait for React + onboarding modal to be ready before fading overlay
           var waited=0;
           (function waitForApp(){
-            if(appReady || waited>=3000){
-              fadeOverlay();
+            if(appReady || waited>=2500){
+              // Tiny grace so onboarding modal can paint underneath
+              setTimeout(fadeOverlay, 80);
             } else {
-              waited+=80;
-              setTimeout(waitForApp, 80);
+              waited+=60;
+              setTimeout(waitForApp, 60);
             }
           })();
         }
