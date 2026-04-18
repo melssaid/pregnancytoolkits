@@ -9,7 +9,6 @@ import { BottomNavigation } from "./BottomNavigation";
 import { EncryptionIndicator } from "./EncryptionIndicator";
 import { LanguageDropdown } from "./LanguageDropdown";
 import { TrialExpiryBanner } from "./TrialExpiryBanner";
-import { SmartAppBanner } from "./SmartAppBanner";
 import { BreadcrumbSchema } from "./BreadcrumbSchema";
 import { lazy, Suspense, useEffect } from "react";
 import { getTotalToolsCount } from "@/lib/tools-data";
@@ -39,8 +38,6 @@ export function Layout({ children, showBack = false }: LayoutProps) {
   return (
     <div className="min-h-screen bg-background flex flex-col overflow-x-hidden">
       <BreadcrumbSchema />
-      {/* Smart App Banner — web only, not inside TWA */}
-      <SmartAppBanner />
       {/* Trial Expiry Banner */}
       <TrialExpiryBanner />
       {/* Trust Bar - Above header */}
