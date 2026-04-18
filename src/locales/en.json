@@ -8975,5 +8975,10 @@
     "title": "Install the app",
     "desc": "Quick access to all tools — works offline too!",
     "cta": "Install Now"
+  },
+  "update": {
+    "available": "New update available",
+    "description": "Tap to refresh and clear old cache",
+    "refresh": "Update"
   }
 }

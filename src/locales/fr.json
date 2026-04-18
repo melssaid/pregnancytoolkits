@@ -8888,5 +8888,10 @@
     "title": "Installer l'appli",
     "desc": "Accès rapide à tous les outils — fonctionne hors ligne!",
     "cta": "Installer maintenant"
+  },
+  "update": {
+    "available": "Nouvelle mise à jour disponible",
+    "description": "Appuyez pour actualiser et vider le cache",
+    "refresh": "Actualiser"
   }
 }
