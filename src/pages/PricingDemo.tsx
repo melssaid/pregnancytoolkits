@@ -359,7 +359,7 @@ export default function PricingDemo() {
 }
 
 function BillingDiagnosticsPanel({ isAr }: { isAr: boolean }) {
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
   const [diag, setDiag] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const [autoRefresh, setAutoRefresh] = useState(false);
