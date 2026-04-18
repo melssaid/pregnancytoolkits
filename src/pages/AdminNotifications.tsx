@@ -8,7 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
-import { Bell, Send, Users, CheckCircle, AlertCircle, Loader2, Lock } from "lucide-react";
+import { Bell, Send, Users, CheckCircle, AlertCircle, Loader2, Lock, Image as ImageIcon, X } from "lucide-react";
 
 interface NotificationLog {
   id: string;
@@ -26,6 +26,8 @@ const ADMIN_KEY_STORAGE = "pt_admin_notifications_key";
 export default function AdminNotifications() {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+  const [imageError, setImageError] = useState(false);
   const [language, setLanguage] = useState("all");
   const [sending, setSending] = useState(false);
   const [subscriberCount, setSubscriberCount] = useState<number | null>(null);
@@ -113,6 +115,7 @@ export default function AdminNotifications() {
             title: title.trim(),
             body: body.trim(),
             language: language === "all" ? undefined : language,
+            image: imageUrl.trim() || undefined,
           }),
         }
       );
@@ -138,6 +141,8 @@ export default function AdminNotifications() {
       toast.success(`✅ تم إرسال ${data.sent} إشعار بنجاح`);
       setTitle("");
       setBody("");
+      setImageUrl("");
+      setImageError(false);
     } catch (err: any) {
       toast.error(`فشل الإرسال: ${err.message}`);
     } finally {
