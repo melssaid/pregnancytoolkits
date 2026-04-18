@@ -72,7 +72,7 @@ const clearStaleCaches = async () => {
 
   if ("caches" in window) {
     const keys = await caches.keys();
-    const currentVersion = 'pt-cache-v3.0.1';
+    const currentVersion = 'pt-cache-v3.1.0';
     for (const key of keys) {
       if (key.startsWith("pt-cache-v") && key !== currentVersion) {
         await caches.delete(key);
