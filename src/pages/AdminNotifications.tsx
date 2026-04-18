@@ -331,16 +331,22 @@ export default function AdminNotifications() {
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">🌍 جميع اللغات</SelectItem>
-                  <SelectItem value="ar">🇸🇦 العربية</SelectItem>
-                  <SelectItem value="en">🇺🇸 English</SelectItem>
-                  <SelectItem value="fr">🇫🇷 Français</SelectItem>
-                  <SelectItem value="es">🇪🇸 Español</SelectItem>
-                  <SelectItem value="de">🇩🇪 Deutsch</SelectItem>
-                  <SelectItem value="tr">🇹🇷 Türkçe</SelectItem>
-                  <SelectItem value="pt">🇧🇷 Português</SelectItem>
+                  <SelectItem value="all">🌍 الجميع (ترجمة تلقائية لكل لغة)</SelectItem>
+                  <SelectItem value="ar">🇸🇦 العربية فقط</SelectItem>
+                  <SelectItem value="en">🇺🇸 English فقط</SelectItem>
+                  <SelectItem value="fr">🇫🇷 Français فقط</SelectItem>
+                  <SelectItem value="es">🇪🇸 Español فقط</SelectItem>
+                  <SelectItem value="de">🇩🇪 Deutsch فقط</SelectItem>
+                  <SelectItem value="tr">🇹🇷 Türkçe فقط</SelectItem>
+                  <SelectItem value="pt">🇧🇷 Português فقط</SelectItem>
                 </SelectContent>
               </Select>
+              {language === "all" && (
+                <p className="text-[10px] text-emerald-600 dark:text-emerald-400 mt-1.5 flex items-start gap-1 leading-snug">
+                  <CheckCircle className="w-3 h-3 mt-0.5 shrink-0" />
+                  اكتب الإشعار بأي لغة — سيُترجم تلقائياً لكل مستخدم بلغته (7 لغات).
+                </p>
+              )}
             </div>
 
             <div>
