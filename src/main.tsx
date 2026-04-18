@@ -54,12 +54,12 @@ if (!document.getElementById("splash-overlay")) {
   htmlSplashEnded = true;
 }
 
-// Hard safety: dismiss after 5s no matter what
+// Hard safety: dismiss after 7s no matter what (video ~3-4s + app load buffer)
 setTimeout(() => {
   appFirstRenderReady = true;
   htmlSplashEnded = true;
   dismissSplash();
-}, 5000);
+}, 7000);
 
 const isInIframe = (() => {
   try { return window.self !== window.top; } catch { return true; }
