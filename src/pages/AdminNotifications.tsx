@@ -150,11 +150,23 @@ export default function AdminNotifications() {
     }
   };
 
+  // Build absolute URL for template images (push notifications need absolute https URL)
+  const origin = typeof window !== "undefined" ? window.location.origin : "";
+
+  const imageTemplates = [
+    { id: "nutrition", label: "🍎 تغذية", src: `${origin}/notification-templates/nutrition.jpg` },
+    { id: "exercise", label: "🧘 تمارين", src: `${origin}/notification-templates/exercise.jpg` },
+    { id: "fetal", label: "👶 تطور الجنين", src: `${origin}/notification-templates/fetal-development.jpg` },
+    { id: "wellness", label: "🌸 عافية", src: `${origin}/notification-templates/wellness.jpg` },
+    { id: "hydration", label: "💧 ترطيب", src: `${origin}/notification-templates/hydration.jpg` },
+    { id: "appointment", label: "🩺 موعد طبي", src: `${origin}/notification-templates/appointment.jpg` },
+  ];
+
   const templates = [
-    { label: "📖 ملخص أسبوعي", title: "ملخصك الأسبوعي جاهز!", body: "اكتشفي تطورات طفلك هذا الأسبوع ونصائح مهمة لصحتك 💕" },
-    { label: "💪 تحفيز", title: "أنتِ رائعة! 🌟", body: "تذكري أن كل يوم يقربك من لقاء طفلك. استمري بالاهتمام بصحتك!" },
-    { label: "🍎 تغذية", title: "نصيحة غذائية مهمة", body: "اكتشفي أفضل الأطعمة لهذا الأسبوع من الحمل وفوائدها لك ولطفلك." },
-    { label: "🏃 حركة", title: "وقت التمارين! 🧘", body: "تمارين خفيفة مناسبة لمرحلتك جاهزة في التطبيق. ابدئي الآن!" },
+    { label: "📖 ملخص أسبوعي", title: "ملخصك الأسبوعي جاهز!", body: "اكتشفي تطورات طفلك هذا الأسبوع ونصائح مهمة لصحتك 💕", image: "" },
+    { label: "💪 تحفيز", title: "أنتِ رائعة! 🌟", body: "تذكري أن كل يوم يقربك من لقاء طفلك. استمري بالاهتمام بصحتك!", image: `${origin}/notification-templates/wellness.jpg` },
+    { label: "🍎 تغذية", title: "نصيحة غذائية مهمة", body: "اكتشفي أفضل الأطعمة لهذا الأسبوع من الحمل وفوائدها لك ولطفلك.", image: `${origin}/notification-templates/nutrition.jpg` },
+    { label: "🏃 حركة", title: "وقت التمارين! 🧘", body: "تمارين خفيفة مناسبة لمرحلتك جاهزة في التطبيق. ابدئي الآن!", image: `${origin}/notification-templates/exercise.jpg` },
   ];
 
   // Login screen
@@ -225,7 +237,7 @@ export default function AdminNotifications() {
           </Card>
         </div>
 
-        {/* Quick Templates */}
+        {/* Quick Templates (text + image bundle) */}
         <Card>
           <CardHeader className="pb-2">
             <CardTitle className="text-sm">قوالب جاهزة</CardTitle>
@@ -238,12 +250,71 @@ export default function AdminNotifications() {
                   variant="outline"
                   size="sm"
                   className="text-xs"
-                  onClick={() => { setTitle(t.title); setBody(t.body); }}
+                  onClick={() => {
+                    setTitle(t.title);
+                    setBody(t.body);
+                    setImageUrl(t.image || "");
+                    setImageError(false);
+                  }}
                 >
                   {t.label}
                 </Button>
               ))}
             </div>
+          </CardContent>
+        </Card>
+
+        {/* Image Library — visual one-tap selection */}
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm flex items-center gap-1.5">
+              <ImageIcon className="w-4 h-4" /> مكتبة صور الإشعارات
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-3 gap-2">
+              {imageTemplates.map((tpl) => {
+                const selected = imageUrl === tpl.src;
+                return (
+                  <button
+                    key={tpl.id}
+                    type="button"
+                    onClick={() => {
+                      setImageUrl(selected ? "" : tpl.src);
+                      setImageError(false);
+                    }}
+                    className={`relative rounded-xl overflow-hidden border-2 transition-all active:scale-95 ${
+                      selected ? "border-primary ring-2 ring-primary/30" : "border-border hover:border-primary/50"
+                    }`}
+                    aria-label={tpl.label}
+                  >
+                    <div className="aspect-[2/1] bg-muted">
+                      <img
+                        src={tpl.src}
+                        alt={tpl.label}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                        width={1024}
+                        height={512}
+                      />
+                    </div>
+                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-1">
+                      <p className="text-[9px] font-semibold text-white text-center leading-tight">
+                        {tpl.label}
+                      </p>
+                    </div>
+                    {selected && (
+                      <div className="absolute top-1 right-1 w-5 h-5 rounded-full bg-primary flex items-center justify-center shadow-md">
+                        <CheckCircle className="w-3.5 h-3.5 text-primary-foreground" />
+                      </div>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+            <p className="text-[10px] text-muted-foreground mt-2 text-center">
+              اضغطي على أي صورة لإضافتها للإشعار · اضغطي مجدداً للإلغاء
+            </p>
           </CardContent>
         </Card>
 
