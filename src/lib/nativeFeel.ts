@@ -3,7 +3,7 @@
  * Adds tactile + native-like behaviors that CSS can't do alone.
  */
 
-import { triggerHaptic } from "./haptics";
+import { haptic } from "./haptics";
 
 let initialized = false;
 
@@ -21,7 +21,7 @@ export function initNativeFeel() {
         'button, a, [role="button"], [data-haptic]'
       );
       if (tappable && !tappable.hasAttribute("data-no-haptic")) {
-        triggerHaptic("light");
+        haptic("tick");
       }
     },
     { passive: true }
