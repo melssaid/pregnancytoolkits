@@ -315,14 +315,18 @@
         var vid=document.getElementById('splash-video');
         if(!overlay||!vid){return;}
 
-        var splashSeen=localStorage.getItem(SPLASH_KEY);
+        var SESSION_SPLASH_KEY='pt_video_splash_session';
+        var splashSeenPersistent=localStorage.getItem(SPLASH_KEY);
         var onboardingDone=localStorage.getItem(ONBOARDING_KEY);
+        var splashSeenSession=sessionStorage.getItem(SESSION_SPLASH_KEY);
         // Keep root black until app mounts to prevent any pink flash
         document.body.style.background='#000';
         document.documentElement.style.background='#000';
 
-        if(splashSeen && onboardingDone){
-          // Returning user — skip splash, fade body to app bg
+        // Skip splash if: already shown this session (internal nav/refresh)
+        // OR returning user who finished onboarding
+        if(splashSeenSession || (splashSeenPersistent && onboardingDone)){
+          sessionStorage.setItem(SESSION_SPLASH_KEY,'1');
           overlay.parentNode.removeChild(overlay);
           requestAnimationFrame(function(){
             document.body.style.transition='background 0.4s ease';
@@ -332,9 +336,13 @@
           return;
         }
 
-        if(splashSeen && !onboardingDone){
+        if(splashSeenPersistent && !onboardingDone){
           localStorage.removeItem(SPLASH_KEY);
         }
+
+        // Mark splash as shown for THIS session immediately so any
+        // re-execution of this script (deep-link refresh) skips it
+        sessionStorage.setItem(SESSION_SPLASH_KEY,'1');
 
         window.__htmlSplashVideoActive=true;
         window.__htmlSplashVideoEnded=false;
