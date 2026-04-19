@@ -160,10 +160,15 @@ export const setManualLanguage = async (language: string) => {
   }
 };
 
-export const resetToBrowserLanguage = () => {
+export const resetToBrowserLanguage = async () => {
   localStorage.removeItem(MANUAL_LANGUAGE_KEY);
+  // Also clear i18next's cached language so true auto-detection persists across launches
+  localStorage.removeItem('i18nextLng');
   const browserLang = getBrowserLanguage();
-  i18n.changeLanguage(browserLang);
+  // Pre-load the bundle BEFORE switching so the UI updates instantly & completely
+  await loadLanguage(browserLang);
+  await i18n.changeLanguage(browserLang);
+  updateDocumentDirection(browserLang);
 };
 
 // Set initial direction synchronously
