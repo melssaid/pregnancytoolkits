@@ -10,12 +10,19 @@ interface BackButtonProps {
   fallbackPath?: string;
 }
 
+// RTL language codes (ISO 639-1)
+const RTL_LANGS = new Set(["ar", "he", "fa", "ur", "ps", "sd", "yi", "ckb"]);
+
 export const BackButton = forwardRef<HTMLButtonElement, BackButtonProps>(
   ({ className = "", fallbackPath }, ref) => {
     const { i18n, t } = useTranslation();
     const navigate = useNavigate();
-    const isRTL = i18n.language === "ar";
-    // Semantic "back": in RTL the back-arrow visually points right
+
+    // Dynamic RTL detection — supports any RTL language, not just Arabic
+    const langCode = (i18n.language || "en").split("-")[0].toLowerCase();
+    const isRTL = RTL_LANGS.has(langCode);
+
+    // Semantic "back": in RTL it points right (toward the start of reading), in LTR it points left
     const Icon = isRTL ? ChevronRight : ChevronLeft;
 
     const handleBack = useCallback(() => {
@@ -30,14 +37,40 @@ export const BackButton = forwardRef<HTMLButtonElement, BackButtonProps>(
       <motion.button
         ref={ref}
         onClick={handleBack}
-        className={`group relative inline-flex items-center justify-center h-10 w-10 rounded-full bg-card border border-border/60 shadow-[0_2px_8px_-2px_hsl(340_30%_25%/0.12)] hover:border-primary/40 hover:bg-primary/5 hover:shadow-[0_4px_14px_-2px_hsl(340_50%_55%/0.25)] active:scale-95 transition-all duration-200 ${className}`}
-        aria-label={t('common.back', 'Back')}
+        aria-label={t("common.back", "Back")}
         type="button"
-        whileTap={{ scale: 0.92 }}
+        whileTap={{ scale: 0.9 }}
+        whileHover={{ y: -1 }}
+        transition={{ type: "spring", stiffness: 400, damping: 22 }}
+        className={`group relative inline-flex items-center justify-center h-10 w-10 rounded-full overflow-hidden
+          bg-gradient-to-br from-card via-card to-primary/[0.04]
+          border border-border/70
+          shadow-[0_1px_2px_hsl(340_30%_20%/0.06),0_4px_12px_-4px_hsl(340_40%_45%/0.18)]
+          hover:border-primary/50
+          hover:shadow-[0_2px_4px_hsl(340_30%_20%/0.08),0_8px_22px_-4px_hsl(340_60%_55%/0.32)]
+          active:shadow-[0_1px_2px_hsl(340_30%_20%/0.08)]
+          transition-all duration-300 ease-out ${className}`}
       >
+        {/* Inner highlight ring */}
+        <span
+          className="pointer-events-none absolute inset-0 rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle at 30% 25%, hsl(0 0% 100% / 0.6), transparent 55%)",
+          }}
+        />
+        {/* Subtle gradient sweep on hover */}
+        <span
+          className="pointer-events-none absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          style={{
+            background:
+              "linear-gradient(135deg, hsl(var(--primary) / 0.08), transparent 60%)",
+          }}
+        />
+        {/* Icon */}
         <Icon
-          className="h-[19px] w-[19px] text-foreground/75 group-hover:text-primary transition-colors"
-          strokeWidth={2.4}
+          className="relative h-[19px] w-[19px] text-foreground/80 group-hover:text-primary transition-colors duration-200"
+          strokeWidth={2.5}
         />
       </motion.button>
     );
