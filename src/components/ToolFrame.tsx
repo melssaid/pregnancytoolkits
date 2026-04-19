@@ -111,7 +111,7 @@ export function ToolFrame({
           {/* Subtle top accent line */}
           <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
           
-          <div className="px-4 sm:px-6 h-14 flex items-center justify-between">
+          <div dir="ltr" className="px-4 sm:px-6 h-14 flex items-center justify-between">
             <div className="flex items-center min-w-0">
               <BackButton />
             </div>
