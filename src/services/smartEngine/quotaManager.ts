@@ -129,17 +129,19 @@ export function setTier(tier: "free" | "premium"): void {
 
 /**
  * Temporarily set tier to premium for an active coupon.
- * bonusPoints overrides the monthly limit directly.
+ * ✅ bonusPoints يُضاف تراكمياً فوق الحد الأساسي ويتراكم مع قسائم أخرى.
  */
 export function applyCouponTier(expiresAt: string, bonusPoints?: number): void {
   if (new Date(expiresAt) <= new Date()) return;
   const stored = readQuota();
   stored.tier = "premium";
   if (bonusPoints && bonusPoints > 0) {
-    stored.bonusCredits = bonusPoints;
+    // تراكمي: نضيف على الرصيد الموجود بدل استبداله
+    stored.bonusCredits = (stored.bonusCredits || 0) + bonusPoints;
   }
   writeQuota(stored);
 }
+
 
 /**
  * Admin reset for testing. ONLY available in development.
