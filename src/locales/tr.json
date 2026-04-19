@@ -121,7 +121,7 @@
     "postpartumDesc": "Bebek bakımı ve iyileşme desteği"
   },
   "pricing": {
-    "title": "Premium Erişim",
+    "title": "Yolculuğunu Aç 👑",
     "badge": "Daha fazla günlük kullanım + özel yapay zeka araçları",
     "subtitle": "Tüm yapay zeka araçlarını ve premium özellikleri açın",
     "monthly": "Aylık",
@@ -135,7 +135,7 @@
     "feature4": "Öncelikli istek işleme",
     "feature5": "Gelişmiş analizle 7 dil desteği",
     "trialNote": "Şimdi abone ol · İstediğin zaman iptal et",
-    "cta": "Premium Erişimi Başlat",
+    "cta": "Premium Yolculuğunu Başlat",
     "downloadApp": "Google Play'den İndir",
     "downloadFromPlay": "Abone olmak için lütfen uygulamayı Google Play Store'dan indirin",
     "ctaSub": "{{price}}/{{period}}",

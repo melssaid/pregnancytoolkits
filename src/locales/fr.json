@@ -121,7 +121,7 @@
     "postpartumDesc": "Soins bébé et récupération"
   },
   "pricing": {
-    "title": "Accès Premium",
+    "title": "Débloque ton parcours 👑",
     "badge": "Plus d'utilisations quotidiennes + outils IA exclusifs",
     "subtitle": "Débloquez tous les outils IA et fonctionnalités premium",
     "monthly": "Mensuel",
@@ -135,7 +135,7 @@
     "feature4": "Traitement prioritaire des requêtes",
     "feature5": "7 langues avec analyse avancée",
     "trialNote": "Abonnez-vous maintenant · Annulation à tout moment",
-    "cta": "Commencer l'accès Premium",
+    "cta": "Commence ton parcours Premium",
     "downloadApp": "Télécharger depuis Google Play",
     "downloadFromPlay": "Pour vous abonner, veuillez télécharger l'application depuis Google Play Store",
     "ctaSub": "{{price}}/{{period}}",
