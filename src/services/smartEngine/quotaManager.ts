@@ -105,17 +105,20 @@ export function syncFromServer(serverUsed: number, serverTier?: "free" | "premiu
   const stored = readQuota();
   if (serverTier) stored.tier = serverTier;
   stored.used = serverUsed;
+  // ✅ لا نلمس bonusCredits المحلية — القسائم تُدار محلياً بشكل تراكمي
+  // فقط نحدّث الحد إذا أرسل السيرفر قيمة أعلى من المتوقع (قسيمة سيرفرية)
   if (typeof serverLimit === "number" && Number.isFinite(serverLimit)) {
     const tierConfig = QUOTA_TIERS[stored.tier] || QUOTA_TIERS.free;
-    if (serverLimit !== tierConfig.monthly) {
-      stored.bonusCredits = serverLimit;
-    } else {
-      delete stored.bonusCredits;
+    const localTotal = tierConfig.monthly + (stored.bonusCredits || 0) + (stored.promoBonusCredits || 0);
+    if (serverLimit > localTotal) {
+      // السيرفر يعرف عن نقاط إضافية لا نعرفها محلياً
+      stored.bonusCredits = (stored.bonusCredits || 0) + (serverLimit - localTotal);
     }
   }
   stored.monthKey = getCurrentMonthKey();
   writeQuota(stored);
 }
+
 
 /**
  * Update subscription tier.
