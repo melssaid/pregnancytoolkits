@@ -64,7 +64,7 @@ export const RecentMealFitnessSummary = memo(function RecentMealFitnessSummary()
                 <item.icon className={`w-4 h-4 ${item.color}`} />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-xs font-medium text-foreground truncate">{item.title}</p>
+                <p className="text-xs font-medium text-foreground leading-tight whitespace-normal break-words line-clamp-2" style={{ overflowWrap: 'anywhere' }}>{item.title}</p>
                 <div className="flex items-center gap-1 mt-0.5">
                   <Clock className="w-2.5 h-2.5 text-muted-foreground" />
                   <span className="text-[10px] text-muted-foreground">

@@ -75,7 +75,7 @@ export const AppointmentsCard = memo(function AppointmentsCard() {
                 <Calendar className="w-3 h-3 text-primary" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-[11px] font-medium text-foreground truncate">
+                <p className="text-[11px] font-medium text-foreground leading-tight whitespace-normal break-words line-clamp-2" style={{ overflowWrap: 'anywhere' }}>
                   {apt.title || t("dailyDashboard.appointments.checkup")}
                 </p>
                 <div className="flex items-center gap-2 text-[9px] text-muted-foreground">

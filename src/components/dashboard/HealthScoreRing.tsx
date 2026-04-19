@@ -68,7 +68,7 @@ export function HealthScoreRing() {
           <p className={`text-xs font-bold ${scoreColor}`}>{scoreLabel}</p>
           {pillars.map((p) => (
             <div key={p.label} className="flex items-center gap-2">
-              <span className="text-[10px] text-muted-foreground w-14 truncate">{p.label}</span>
+              <span className="text-[10px] text-muted-foreground w-20 leading-tight whitespace-normal break-words" style={{ overflowWrap: 'anywhere' }}>{p.label}</span>
               <div className="flex-1 h-1.5 bg-muted/30 rounded-full overflow-hidden">
                 <motion.div
                   className={`h-full rounded-full ${p.color}`}
