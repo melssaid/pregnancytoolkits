@@ -165,16 +165,22 @@ const Preg10PromoBanner = memo(function Preg10PromoBanner({ lang }: Props) {
         transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
         className="relative"
       >
-        {/* Premium gradient card */}
+        {/* Premium gradient card — deep royal contrast */}
         <div
-          className="relative rounded-2xl overflow-hidden border border-amber-300/30 dark:border-amber-500/20"
+          className="relative rounded-2xl overflow-hidden border border-amber-300/25"
           style={{
-            background: 'linear-gradient(135deg, hsl(35 85% 96%) 0%, hsl(20 80% 95%) 50%, hsl(340 60% 96%) 100%)',
-            boxShadow: '0 8px 32px -8px hsl(25 70% 50% / 0.25), 0 2px 8px -2px hsl(340 50% 50% / 0.12), inset 0 1px 0 hsl(0 0% 100% / 0.6)',
+            background: 'linear-gradient(135deg, hsl(248 55% 18%) 0%, hsl(258 50% 22%) 45%, hsl(280 45% 26%) 100%)',
+            boxShadow: '0 12px 36px -10px hsl(250 60% 15% / 0.55), 0 2px 10px -2px hsl(280 40% 20% / 0.35), inset 0 1px 0 hsl(45 90% 70% / 0.18)',
           }}
         >
-          {/* Animated shimmer top bar */}
-          <div className="h-[3px] bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 relative overflow-hidden">
+          {/* Subtle radial glow */}
+          <div
+            className="absolute inset-0 pointer-events-none opacity-60"
+            style={{ background: 'radial-gradient(circle at 85% 0%, hsl(45 95% 60% / 0.18) 0%, transparent 55%)' }}
+          />
+
+          {/* Animated shimmer top bar — gold */}
+          <div className="h-[3px] bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-300 relative overflow-hidden">
             <motion.div
               className="absolute h-full w-1/2 bg-gradient-to-r from-transparent via-white/80 to-transparent"
               animate={{ x: ["-100%", "300%"] }}
