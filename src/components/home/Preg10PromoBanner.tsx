@@ -1,9 +1,11 @@
 import { memo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, Copy, Check, X, Gift, Zap } from "lucide-react";
+import { Sparkles, Copy, Check, X, Gift, Zap, Plus, TrendingUp } from "lucide-react";
 import { toast } from "sonner";
 import { useActiveCoupon } from "@/hooks/useActiveCoupon";
 import { useAIUsage } from "@/contexts/AIUsageContext";
+import { getQuotaState } from "@/services/smartEngine";
+
 
 const PROMO_CODE = "PREG10";
 const DISMISS_KEY = "preg10_banner_dismissed_v1";
@@ -20,7 +22,12 @@ const labels: Record<string, {
   claimedDesc: string;
   applying: string;
   errorPrefix: string;
+  added: string;        // "+10 added"
+  newBalance: string;   // "New balance"
+  points: string;       // "points"
+  bonusLabel: string;   // "Bonus"
 }> = {
+
   ar: {
     badge: "هدية حصرية",
     title: "١٠ نقاط ذكاء اصطناعي مجاناً 🎁",
@@ -32,6 +39,10 @@ const labels: Record<string, {
     claimedDesc: "أُضيفت ١٠ نقاط إلى رصيدكِ — استمتعي بالتحليلات الذكية",
     applying: "جارٍ التفعيل...",
     errorPrefix: "تعذّر التفعيل",
+    added: "تمت إضافة ١٠ نقاط",
+    newBalance: "رصيدكِ الجديد",
+    points: "نقطة",
+    bonusLabel: "مكافأة",
   },
   en: {
     badge: "Exclusive Gift",
@@ -44,6 +55,10 @@ const labels: Record<string, {
     claimedDesc: "10 credits added to your balance — enjoy smart insights",
     applying: "Activating...",
     errorPrefix: "Could not activate",
+    added: "10 credits added",
+    newBalance: "New balance",
+    points: "credits",
+    bonusLabel: "Bonus",
   },
   de: {
     badge: "Exklusives Geschenk",
@@ -56,6 +71,10 @@ const labels: Record<string, {
     claimedDesc: "10 Credits hinzugefügt — viel Spaß",
     applying: "Aktiviere...",
     errorPrefix: "Aktivierung fehlgeschlagen",
+    added: "10 Credits hinzugefügt",
+    newBalance: "Neuer Saldo",
+    points: "Credits",
+    bonusLabel: "Bonus",
   },
   fr: {
     badge: "Cadeau exclusif",
@@ -68,6 +87,10 @@ const labels: Record<string, {
     claimedDesc: "10 crédits ajoutés à votre solde",
     applying: "Activation...",
     errorPrefix: "Échec de l'activation",
+    added: "10 crédits ajoutés",
+    newBalance: "Nouveau solde",
+    points: "crédits",
+    bonusLabel: "Bonus",
   },
   es: {
     badge: "Regalo exclusivo",
@@ -80,6 +103,10 @@ const labels: Record<string, {
     claimedDesc: "10 créditos añadidos a tu saldo",
     applying: "Activando...",
     errorPrefix: "No se pudo activar",
+    added: "10 créditos añadidos",
+    newBalance: "Nuevo saldo",
+    points: "créditos",
+    bonusLabel: "Bono",
   },
   pt: {
     badge: "Presente exclusivo",
@@ -92,6 +119,10 @@ const labels: Record<string, {
     claimedDesc: "10 créditos adicionados ao seu saldo",
     applying: "Ativando...",
     errorPrefix: "Falha na ativação",
+    added: "10 créditos adicionados",
+    newBalance: "Novo saldo",
+    points: "créditos",
+    bonusLabel: "Bônus",
   },
   tr: {
     badge: "Özel Hediye",
@@ -104,8 +135,13 @@ const labels: Record<string, {
     claimedDesc: "Bakiyene 10 kredi eklendi",
     applying: "Etkinleştiriliyor...",
     errorPrefix: "Etkinleştirilemedi",
+    added: "10 kredi eklendi",
+    newBalance: "Yeni bakiye",
+    points: "kredi",
+    bonusLabel: "Bonus",
   },
 };
+
 
 interface Props {
   lang: string;
@@ -124,6 +160,7 @@ const Preg10PromoBanner = memo(function Preg10PromoBanner({ lang }: Props) {
     try { return localStorage.getItem(CLAIMED_KEY) === "1"; } catch { return false; }
   });
   const [copied, setCopied] = useState(false);
+  const [newBalance, setNewBalance] = useState<number | null>(null);
 
   if (dismissed) return null;
 
@@ -150,11 +187,21 @@ const Preg10PromoBanner = memo(function Preg10PromoBanner({ lang }: Props) {
       setClaimed(true);
       try { localStorage.setItem(CLAIMED_KEY, "1"); } catch {}
       refresh();
-      toast.success(l.claimed);
+      // التقاط الرصيد الجديد بعد التطبيق لإظهار الإيماءة الاحترافية
+      setTimeout(() => {
+        const state = getQuotaState();
+        setNewBalance(state.remaining);
+      }, 200);
+      // إيماءة منبثقة احترافية
+      toast.success(`✨ ${l.added}`, {
+        description: l.claimedDesc,
+        duration: 5000,
+      });
     } else {
       toast.error(`${l.errorPrefix}: ${result.error || ""}`);
     }
   };
+
 
   return (
     <AnimatePresence>
@@ -225,6 +272,81 @@ const Preg10PromoBanner = memo(function Preg10PromoBanner({ lang }: Props) {
               {claimed ? l.claimedDesc : l.desc}
             </p>
 
+            {/* ✨ Success gesture card — appears after activation */}
+            {claimed && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.85, y: 8 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+                className="relative rounded-xl overflow-hidden p-3 backdrop-blur-sm border border-emerald-300/30"
+                style={{
+                  background: 'linear-gradient(135deg, hsl(155 60% 22% / 0.55) 0%, hsl(165 55% 28% / 0.45) 100%)',
+                  boxShadow: 'inset 0 1px 0 hsl(155 80% 60% / 0.25), 0 4px 14px -4px hsl(155 80% 20% / 0.5)',
+                }}
+              >
+                {/* Pulsing glow */}
+                <motion.div
+                  className="absolute inset-0 pointer-events-none"
+                  animate={{ opacity: [0.3, 0.6, 0.3] }}
+                  transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+                  style={{ background: 'radial-gradient(circle at 20% 50%, hsl(155 90% 60% / 0.18) 0%, transparent 60%)' }}
+                />
+
+                <div className="relative flex items-center gap-3">
+                  {/* +10 badge */}
+                  <motion.div
+                    initial={{ rotate: -12, scale: 0.7 }}
+                    animate={{ rotate: 0, scale: 1 }}
+                    transition={{ delay: 0.25, type: "spring", stiffness: 320, damping: 14 }}
+                    className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center shadow-lg"
+                    style={{
+                      background: 'linear-gradient(135deg, hsl(45 95% 60%) 0%, hsl(38 92% 50%) 100%)',
+                      boxShadow: '0 4px 14px -2px hsl(45 90% 45% / 0.6), inset 0 1px 0 hsl(50 100% 80% / 0.5)',
+                    }}
+                  >
+                    <div className="flex items-center font-black text-[15px]" style={{ color: 'hsl(250 60% 18%)' }}>
+                      <Plus className="w-3 h-3" strokeWidth={4} />
+                      <span>10</span>
+                    </div>
+                  </motion.div>
+
+                  {/* Balance breakdown */}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-1 mb-0.5">
+                      <TrendingUp className="w-3 h-3 text-emerald-300" strokeWidth={2.5} />
+                      <span className="text-[9px] font-bold text-emerald-200/90 uppercase tracking-wider">
+                        {l.added}
+                      </span>
+                    </div>
+                    <div className="flex items-baseline gap-1.5">
+                      <span className="text-[10px] text-white/70">{l.newBalance}:</span>
+                      <motion.span
+                        key={newBalance ?? 'pending'}
+                        initial={{ opacity: 0, y: 4 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.45, duration: 0.4 }}
+                        className="font-black text-[18px] text-white tabular-nums"
+                        style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}
+                      >
+                        {newBalance !== null ? newBalance : "..."}
+                      </motion.span>
+                      <span className="text-[10px] text-white/60 font-medium">{l.points}</span>
+                    </div>
+                  </div>
+
+                  {/* Animated check */}
+                  <motion.div
+                    initial={{ scale: 0, rotate: -90 }}
+                    animate={{ scale: 1, rotate: 0 }}
+                    transition={{ delay: 0.55, type: "spring", stiffness: 280, damping: 12 }}
+                    className="flex-shrink-0 w-7 h-7 rounded-full bg-emerald-400/25 flex items-center justify-center border border-emerald-300/50"
+                  >
+                    <Check className="w-4 h-4 text-emerald-200" strokeWidth={3} />
+                  </motion.div>
+                </div>
+              </motion.div>
+            )}
+
             {!claimed && (
               <>
                 {/* Code display row */}
@@ -277,6 +399,7 @@ const Preg10PromoBanner = memo(function Preg10PromoBanner({ lang }: Props) {
                 </motion.button>
               </>
             )}
+
           </div>
         </div>
       </motion.div>
