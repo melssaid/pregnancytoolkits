@@ -347,10 +347,7 @@
       "title": "Bebek Varış Geri Sayımı",
       "description": "Küçüğünüzün ne zaman geleceğini öğrenin."
     },
-    "kickCounter": {
-      "title": "Bebek Tekme Takibi",
-      "description": "Günlük bebek aktivite analizi ile akıllı tekme sayacı."
-    },
+    "kickCounter": "Fetal Tekme Sayacı",
     "weightGain": {
       "title": "Kilo Sağlığı Rehberi",
       "description": "Hamilelik sürecinde kilo değişimlerinizi takip edin.",
@@ -951,8 +948,8 @@
     "info": "Bebeklerin sadece yaklaşık %5'i tam doğum tarihinde doğar. Çoğu 2 hafta önce veya sonra doğar. Sağlık uzmanınız ultrason ölçümlerine göre tarihi ayarlayabilir."
   },
   "kickCounterPage": {
-    "title": "Bebek Hareket Günlüğü",
-    "subtitle": "Gün boyunca bebeğinizin hareketlerini kaydedin",
+    "title": "Fetal Tekme Sayacı",
+    "subtitle": "Gün boyunca fetal tekmeleri kaydedin",
     "timeElapsed": "Geçen Süre",
     "startCounting": "Saymaya Başla",
     "kicks": "tekme",
@@ -1360,8 +1357,8 @@
       "differentWeek": "Haftayı Değiştir",
       "refresh": "Yenile",
       "trackTip": "Bebeğinizin büyümesi ve vücudunuzdaki değişiklikler hakkında kişiselleştirilmiş bilgi almak için haftanızı takip edin",
-      "kickCounterLink": "Kick Counter",
-      "kickCounterLinkDesc": "Track and journal your baby's movements",
+      "kickCounterLink": "Fetal Tekme Sayacı",
+      "kickCounterLinkDesc": "Fetal tekmeleri takip et",
       "approximatelyRemaining": "Yaklaşık {{days}} gün kaldı",
       "noSummariesYet": "Henüz özet yok",
       "generateFirstHint": "İlk haftalık özetinizi oluşturun",
@@ -3344,8 +3341,8 @@
       "yourWeight": "Kilonuz",
       "weekAxis": "Hafta",
       "weightGainKg": "Kilo Artışı (kg)",
-      "kickCounterLink": "Tekme sayacı",
-      "kickCounterLinkDesc": "Bebek hareketlerini takip edin",
+      "kickCounterLink": "Fetal Tekme Sayacı",
+      "kickCounterLinkDesc": "Fetal tekmeleri takip et",
       "mealSuggestionLink": "Yemek önerileri",
       "mealSuggestionLinkDesc": "Sağlıklı yemek fikirleri",
       "aiAnalysisTitle": "Yapay Zeka Kilo Analizi",
@@ -5007,8 +5004,8 @@
         "week38": "Could arrive any day!",
         "week40": "Due date!"
       },
-      "kickCounterLink": "Kick Counter",
-      "kickCounterLinkDesc": "Log your baby's movements and activity patterns",
+      "kickCounterLink": "Fetal Tekme Sayacı",
+      "kickCounterLinkDesc": "Fetal tekmeleri takip et",
       "dueDateLink": "Due Date Calculator",
       "dueDateLinkDesc": "Calculate your expected delivery date",
       "weightGainLink": "Weight Gain Guide",

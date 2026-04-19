@@ -347,10 +347,7 @@
       "title": "Cuenta regresiva del bebé",
       "description": "Descubre cuándo llegará tu bebé."
     },
-    "kickCounter": {
-      "title": "Seguimiento de patadas del bebées",
-      "description": "Contador inteligente de patadas con análisis diario de actividad del bebé."
-    },
+    "kickCounter": "Contador de patadas fetales",
     "weightGain": {
       "title": "Guía de Bienestar del Peso",
       "description": "Registra los cambios de peso durante el embarazo.",
@@ -951,8 +948,8 @@
     "info": "Solo alrededor del 5% de los bebés nacen en la fecha exacta. La mayoría nace dentro de 2 semanas antes o después. Tu médico puede ajustar la fecha según la ecografía."
   },
   "kickCounterPage": {
-    "title": "Diario de movimientos del bebé",
-    "subtitle": "Registra los movimientos de tu bebé durante el día",
+    "title": "Contador de patadas fetales",
+    "subtitle": "Registra las patadas fetales durante el día",
     "timeElapsed": "Tiempo transcurrido",
     "startCounting": "Empezar a contar",
     "kicks": "patadas",
@@ -1360,8 +1357,8 @@
       "differentWeek": "Cambiar Semana",
       "refresh": "Actualizar",
       "trackTip": "Rastrea tu semana para obtener información personalizada sobre el crecimiento de tu bebé y los cambios de tu cuerpo",
-      "kickCounterLink": "Kick Counter",
-      "kickCounterLinkDesc": "Track and journal your baby's movements",
+      "kickCounterLink": "Contador de patadas fetales",
+      "kickCounterLinkDesc": "Seguir patadas fetales",
       "approximatelyRemaining": "Aproximadamente {{days}} días restantes",
       "noSummariesYet": "Aún sin resúmenes",
       "generateFirstHint": "Genere su primer resumen semanal",
@@ -3344,8 +3341,8 @@
       "yourWeight": "Tu Peso",
       "weekAxis": "Semana",
       "weightGainKg": "Aumento de Peso (kg)",
-      "kickCounterLink": "Contador de patadas",
-      "kickCounterLinkDesc": "Seguir movimientos del bebé",
+      "kickCounterLink": "Contador de patadas fetales",
+      "kickCounterLinkDesc": "Seguir patadas fetales",
       "mealSuggestionLink": "Sugerencias de comidas",
       "mealSuggestionLinkDesc": "Ideas de comidas saludables",
       "aiAnalysisTitle": "Análisis IA del peso",
@@ -5007,8 +5004,8 @@
         "week38": "Could arrive any day!",
         "week40": "Due date!"
       },
-      "kickCounterLink": "Kick Counter",
-      "kickCounterLinkDesc": "Log your baby's movements and activity patterns",
+      "kickCounterLink": "Contador de patadas fetales",
+      "kickCounterLinkDesc": "Seguir patadas fetales",
       "dueDateLink": "Due Date Calculator",
       "dueDateLinkDesc": "Calculate your expected delivery date",
       "weightGainLink": "Weight Gain Guide",

@@ -414,10 +414,7 @@
       "title": "Baby Growth Tracker",
       "description": "Track growth with WHO charts."
     },
-    "kickCounter": {
-      "title": "Kick Counter",
-      "description": "Smart kick counter with daily baby activity analysis."
-    },
+    "kickCounter": "Fetal Kick Counter",
     "weightGain": {
       "title": "Weight Gain Tracker",
       "description": "Track your pregnancy weight with smart wellness insights.",
@@ -1006,8 +1003,8 @@
     "info": "Only about 5% of babies are born on their exact due date. Most are born within 2 weeks before or after. Your care provider may adjust your due date based on early scan measurements."
   },
   "kickCounterPage": {
-    "title": "Baby Movement Diary",
-    "subtitle": "Journal your baby's movements throughout the day",
+    "title": "Fetal Kick Counter",
+    "subtitle": "Log your baby's kicks throughout the day",
     "timeElapsed": "Time Elapsed",
     "startCounting": "Start Journaling",
     "kicks": "movements",
@@ -1437,8 +1434,8 @@
       "trackTip": "Track your week to get personalized information about your baby's growth and your body changes",
       "babyDevLink": "Baby Development",
       "babyDevLinkDesc": "See your baby's size and development this week",
-      "kickCounterLink": "Kick Counter",
-      "kickCounterLinkDesc": "Track and journal your baby's movements",
+      "kickCounterLink": "Fetal Kick Counter",
+      "kickCounterLinkDesc": "Track fetal kicks",
       "approximatelyRemaining": "Approximately {{days}} days remaining",
       "noSummariesYet": "No summaries yet",
       "generateFirstHint": "Tap the button above to generate your first weekly summary",
@@ -3680,8 +3677,8 @@
       "weightGainKg": "Weight Gain (kg)",
       "babyDevLink": "Baby Development",
       "babyDevLinkDesc": "Log your baby's growth week by week",
-      "kickCounterLink": "Kick Counter",
-      "kickCounterLinkDesc": "Log your baby's movements",
+      "kickCounterLink": "Fetal Kick Counter",
+      "kickCounterLinkDesc": "Track fetal kicks",
       "mealSuggestionLink": "Meal Suggestions",
       "mealSuggestionLinkDesc": "Get healthy meal ideas",
       "aiAnalysisTitle": "AI Weight Analysis",
@@ -3869,8 +3866,8 @@
         "week38": "Could arrive any day!",
         "week40": "Due date!"
       },
-      "kickCounterLink": "Kick Counter",
-      "kickCounterLinkDesc": "Log your baby's movements and activity patterns",
+      "kickCounterLink": "Fetal Kick Counter",
+      "kickCounterLinkDesc": "Track fetal kicks",
       "dueDateLink": "Due Date Calculator",
       "dueDateLinkDesc": "Calculate your expected delivery date",
       "weightGainLink": "Weight Gain Guide",

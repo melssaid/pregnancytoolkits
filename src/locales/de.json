@@ -351,10 +351,7 @@
       "title": "Intelligentes Baby-Wachstum",
       "description": "Verfolgen Sie das Wachstum mit WHO-Diagrammen."
     },
-    "kickCounter": {
-      "title": "Baby- Tritte verfolgen",
-      "description": "Intelligenter Trittzähler mit täglicher Aktivitätsanalyse."
-    },
+    "kickCounter": "Fetaler Tritt-Zähler",
     "weightGain": {
       "title": "Gewichts-Wellness-Guide",
       "description": "Begleiten Sie Ihre Gewichtsentwicklung in der Schwangerschaft.",
@@ -951,8 +948,8 @@
     "info": "Nur etwa 5% der Babys werden am genauen Geburtstermin geboren. Die meisten kommen innerhalb von 2 Wochen davor oder danach. Ihr Arzt kann den Termin basierend auf Ultraschallmessungen anpassen."
   },
   "kickCounterPage": {
-    "title": "Baby-Bewegungstagebuch",
-    "subtitle": "Halten Sie die Bewegungen Ihres Babys den ganzen Tag fest",
+    "title": "Fetaler Tritt-Zähler",
+    "subtitle": "Erfasse die Tritte deines Babys",
     "timeElapsed": "Verstrichene Zeit",
     "startCounting": "Zählung starten",
     "kicks": "Tritte",
@@ -1362,8 +1359,8 @@
       "trackTip": "Verfolgen Sie Ihre Woche, um personalisierte Informationen über das Wachstum Ihres Babys und Ihre Körperveränderungen zu erhalten",
       "babyDevLink": "Baby- Entwicklung",
       "babyDevLinkDesc": "3D-Ansicht der Entwicklung Ihres Babys",
-      "kickCounterLink": "Bewegungstagebuch",
-      "kickCounterLinkDesc": "Zeichnen Sie die Bewegungen Ihres Babys auf",
+      "kickCounterLink": "Fetaler Tritt-Zähler",
+      "kickCounterLinkDesc": "Fetale Tritte verfolgen",
       "approximatelyRemaining": "Ungefähr {{days}} Tage verbleibend",
       "noSummariesYet": "Noch keine Zusammenfassungen",
       "generateFirstHint": "Generieren Sie Ihre erste wöchentliche Zusammenfassung",
@@ -3346,8 +3343,8 @@
       "weightGainKg": "Gewichtszunahme (kg)",
       "babyDevLink": "Babyentwicklung",
       "babyDevLinkDesc": "Verfolgen Sie das Wachstum und die Entwicklung Ihres Babys Woche für Woche",
-      "kickCounterLink": "Tritt-Zähler",
-      "kickCounterLinkDesc": "Babybewegungen verfolgen",
+      "kickCounterLink": "Fetaler Tritt-Zähler",
+      "kickCounterLinkDesc": "Fetale Tritte verfolgen",
       "mealSuggestionLink": "Mahlzeitenvorschläge",
       "mealSuggestionLinkDesc": "Gesunde Mahlzeitenideen",
       "aiAnalysisTitle": "KI-Gewichtsanalyse",
@@ -3535,8 +3532,8 @@
         "week38": "Könnte jeden Tag kommen!",
         "week40": "Geburtstermin!"
       },
-      "kickCounterLink": "Trittezähler",
-      "kickCounterLinkDesc": "Verfolgen Sie die Bewegungen und Aktivitätsmuster Ihres Babys",
+      "kickCounterLink": "Fetaler Tritt-Zähler",
+      "kickCounterLinkDesc": "Fetale Tritte verfolgen",
       "dueDateLink": "Geburtstermin-Rechner",
       "dueDateLinkDesc": "Berechnen Sie Ihren voraussichtlichen Entbindungstermin",
       "weightGainLink": "Gewichtszunahme-Analyse",

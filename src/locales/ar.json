@@ -418,10 +418,7 @@
       "title": "متابعة نمو الطفل",
       "description": "تتبع النمو بمخططات WHO"
     },
-    "kickCounter": {
-      "title": "عدّاد حركة الجنين",
-      "description": "عدّاد ذكي للركلات مع تحليل يومي لنشاط الطفل"
-    },
+    "kickCounter": "عداد ركلات الجنين",
     "weightGain": {
       "title": "متتبع زيادة الوزن",
       "description": "تابعي وزن حملك مع رؤى ذكية للعافية.",
@@ -1006,8 +1003,8 @@
     "info": "حوالي 5% فقط من الأطفال يولدون في موعدهم المتوقع بالضبط. معظمهم يولدون خلال أسبوعين قبل أو بعد الموعد."
   },
   "kickCounterPage": {
-    "title": "يوميات حركة الطفل",
-    "subtitle": "سجّلي حركات طفلك خلال اليوم",
+    "title": "عداد ركلات الجنين",
+    "subtitle": "سجّلي ركلات جنينكِ خلال اليوم",
     "timeElapsed": "الوقت المنقضي",
     "startCounting": "ابدئي التسجيل",
     "kicks": "حركات",
@@ -1437,8 +1434,8 @@
       "trackTip": "تتبعي أسبوعك للحصول على معلومات مخصصة عن نمو طفلك وتغيرات جسمك",
       "babyDevLink": "تطور الطفل",
       "babyDevLinkDesc": "شاهدي حجم طفلك وتطوره هذا الأسبوع",
-      "kickCounterLink": "تتبع ركلات الطفل",
-      "kickCounterLinkDesc": "تتبعي وسجلي حركات طفلك",
+      "kickCounterLink": "عداد ركلات الجنين",
+      "kickCounterLinkDesc": "تتبّعي ركلات جنينكِ",
       "approximatelyRemaining": "حوالي {{days}} يوم متبقي",
       "noSummariesYet": "لا توجد ملخصات بعد",
       "generateFirstHint": "اضغطي على الزر أعلاه لإنشاء أول ملخص أسبوعي",
@@ -3680,8 +3677,8 @@
       "weightGainKg": "زيادة الوزن (كغ)",
       "babyDevLink": "تطور الطفل",
       "babyDevLinkDesc": "تابعي نمو طفلك وتطوره أسبوعاً بأسبوع",
-      "kickCounterLink": "تتبع ركلات الطفل",
-      "kickCounterLinkDesc": "تتبعي حركات طفلك وأنماط نشاطه",
+      "kickCounterLink": "عداد ركلات الجنين",
+      "kickCounterLinkDesc": "تتبّعي ركلات جنينكِ",
       "mealSuggestionLink": "اقتراحات الوجبات",
       "mealSuggestionLinkDesc": "احصلي على أفكار وجبات صحية",
       "aiAnalysisTitle": "تحليل الوزن بالذكاء الاصطناعي",
@@ -3869,8 +3866,8 @@
         "week38": "قد يصل في أي يوم!",
         "week40": "موعد الولادة!"
       },
-      "kickCounterLink": "تتبع ركلات الطفل",
-      "kickCounterLinkDesc": "تتبعي حركات طفلك وأنماط نشاطه",
+      "kickCounterLink": "عداد ركلات الجنين",
+      "kickCounterLinkDesc": "تتبّعي ركلات جنينكِ",
       "dueDateLink": "العد التنازلي لوصول الطفل",
       "dueDateLinkDesc": "احسبي موعد ولادتك المتوقع",
       "weightGainLink": "دليل زيادة الوزن",
