@@ -133,7 +133,7 @@ export function Layout({ children, showBack = false }: LayoutProps) {
             <path d="M0,0 L0,5 C200,90 400,90 720,90 C1040,90 1240,90 1440,5 L1440,0 Z" className="fill-card" />
           </svg>
         </div>
-        <div className={`flex h-16 items-center ${showBack ? 'justify-between' : 'justify-center'} px-4`}>
+        <div dir={showBack ? 'ltr' : undefined} className={`flex h-16 items-center ${showBack ? 'justify-between' : 'justify-center'} px-4`}>
           {showBack ? (
             /* Sub-pages: back button + logo + name on left */
             <div className="flex items-center gap-2.5">
