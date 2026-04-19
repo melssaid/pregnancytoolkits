@@ -1,14 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
-import { Check, X, Sparkles, Brain, Shield, Zap, Heart, Crown, Loader2, Ticket } from "lucide-react";
+import { Check, Sparkles, Brain, Shield, Zap, Heart, Crown, Loader2, Ticket } from "lucide-react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
-import { requestPurchase, isDigitalGoodsAvailable, runBillingDiagnostics, clearBillingCache, type PlanType } from "@/lib/googlePlayBilling";
-import { useNavigate, Link } from "react-router-dom";
+import { requestPurchase, isDigitalGoodsAvailable, type PlanType } from "@/lib/googlePlayBilling";
+import { useNavigate } from "react-router-dom";
 import pricingLogo from "@/assets/pricing-logo.webp";
-import { supabase } from "@/integrations/supabase/client";
 import { useAIUsage } from "@/contexts/AIUsageContext";
 import { usePlayPrices } from "@/hooks/usePlayPrices";
 import { CouponRedeemer } from "@/components/settings/CouponRedeemer";
