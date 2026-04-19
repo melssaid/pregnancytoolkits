@@ -90,7 +90,7 @@ export function SavedFavorites() {
                   <div className="flex items-center gap-2 mb-0.5">
                     <span className="text-[10px] font-bold text-primary bg-primary/10 px-1.5 py-0.5 rounded-md">{getToolName(result.toolId)}</span>
                   </div>
-                  <p className="text-xs font-medium truncate text-foreground">{result.title}</p>
+                  <p className="text-xs font-medium text-foreground leading-tight whitespace-normal break-words line-clamp-2" style={{ overflowWrap: 'anywhere' }}>{result.title}</p>
                   <div className="flex items-center gap-1 text-[9px] text-muted-foreground mt-0.5">
                     <Clock className="w-2.5 h-2.5" />
                     {formatDate(result.savedAt, lang)}
