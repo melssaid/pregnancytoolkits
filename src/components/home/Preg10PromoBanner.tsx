@@ -160,6 +160,7 @@ const Preg10PromoBanner = memo(function Preg10PromoBanner({ lang }: Props) {
     try { return localStorage.getItem(CLAIMED_KEY) === "1"; } catch { return false; }
   });
   const [copied, setCopied] = useState(false);
+  const [newBalance, setNewBalance] = useState<number | null>(null);
 
   if (dismissed) return null;
 
@@ -186,11 +187,21 @@ const Preg10PromoBanner = memo(function Preg10PromoBanner({ lang }: Props) {
       setClaimed(true);
       try { localStorage.setItem(CLAIMED_KEY, "1"); } catch {}
       refresh();
-      toast.success(l.claimed);
+      // التقاط الرصيد الجديد بعد التطبيق لإظهار الإيماءة الاحترافية
+      setTimeout(() => {
+        const state = getQuotaState();
+        setNewBalance(state.remaining);
+      }, 200);
+      // إيماءة منبثقة احترافية
+      toast.success(`✨ ${l.added}`, {
+        description: l.claimedDesc,
+        duration: 5000,
+      });
     } else {
       toast.error(`${l.errorPrefix}: ${result.error || ""}`);
     }
   };
+
 
   return (
     <AnimatePresence>
