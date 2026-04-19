@@ -38,28 +38,31 @@ export const SmartPlanResultView = forwardRef<HTMLDivElement, SmartPlanResultVie
       <motion.div
         initial={{ opacity: 0, scale: 0.97 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="py-10 text-center space-y-5 rounded-2xl border border-dashed border-primary/20 bg-gradient-to-b from-primary/[0.04] to-transparent"
+        className="relative py-8 px-5 text-center space-y-4 rounded-2xl overflow-hidden border border-primary/15"
+        style={{ background: 'linear-gradient(135deg, hsl(var(--primary) / 0.06), hsl(330 70% 55% / 0.04) 50%, hsl(280 60% 55% / 0.05))' }}
       >
-        <div className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto" style={{ background: 'linear-gradient(135deg, hsl(var(--primary) / 0.15), hsl(330 70% 55% / 0.1))' }}>
-          <Sparkles className="h-8 w-8 text-primary" />
-        </div>
-        <div className="space-y-2">
-          <h3 className="text-sm font-bold text-foreground">{t("smartPlan.title")}</h3>
-          <p className="text-xs text-muted-foreground max-w-[280px] mx-auto leading-relaxed">
-            {t("smartPlan.aiPlanHintEnhanced", "Get a personalized AI plan enhanced with the latest medical research")}
+        <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+        <div className="absolute -top-12 -right-12 w-32 h-32 rounded-full blur-2xl opacity-40" style={{ background: 'hsl(330 70% 55% / 0.3)' }} />
+        <div className="absolute -bottom-12 -left-12 w-32 h-32 rounded-full blur-2xl opacity-40" style={{ background: 'hsl(280 60% 55% / 0.3)' }} />
+
+        <div className="relative space-y-1.5">
+          <h3 className="text-base font-bold text-foreground tracking-tight">
+            {t("smartPlan.emptyTitle", "خطتكِ الذكية")}
+          </h3>
+          <p className="text-[11px] text-muted-foreground max-w-[240px] mx-auto leading-relaxed">
+            {t("smartPlan.emptyHint", "توصيات مخصصة بلمسة طبية حديثة")}
           </p>
         </div>
-        <div className="flex items-center justify-center gap-1.5 text-[10px] text-emerald-600">
-          <Globe className="w-3 h-3" />
-          <span>{t("smartPlan.poweredByResearch", "Powered by real-time medical research")}</span>
+
+        <div className="relative">
+          <AIActionButton
+            onClick={onGenerate}
+            isLoading={isLoading}
+            label={t("smartPlan.getAIPlan", "ابدئي الآن")}
+            toolType="pregnancy-plan"
+            section="pregnancy-plan"
+          />
         </div>
-        <AIActionButton
-          onClick={onGenerate}
-          isLoading={isLoading}
-          label={t("smartPlan.getAIPlan", "Get Smart Plan")}
-          toolType="pregnancy-plan"
-          section="pregnancy-plan"
-        />
       </motion.div>
     );
   }
