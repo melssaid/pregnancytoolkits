@@ -195,7 +195,6 @@ export default function PricingDemo() {
             <h1
               className="text-base font-extrabold text-foreground tracking-tight mb-0.5 leading-tight select-none"
               style={{ fontFamily: isAr ? "'Almarai', 'Tajawal', sans-serif" : "'Montserrat', sans-serif" }}
-              onClick={() => setDevTaps(p => p + 1)}
             >
               {t("pricing.title")}
             </h1>
