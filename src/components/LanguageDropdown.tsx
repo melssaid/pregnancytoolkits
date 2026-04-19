@@ -4,11 +4,35 @@ import { cn } from '@/lib/utils';
 import { motion, AnimatePresence, HTMLMotionProps } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { resetToBrowserLanguage } from '@/i18n';
+import { toast } from 'sonner';
+import i18n from '@/i18n';
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
+
+// Native language names — used for the auto-detect toast
+const NATIVE_NAMES: Record<string, string> = {
+  en: 'English',
+  ar: 'العربية',
+  de: 'Deutsch',
+  tr: 'Türkçe',
+  fr: 'Français',
+  es: 'Español',
+  pt: 'Português',
+};
+
+// Localized "Switched automatically to {lang}" message per UI language
+const AUTO_SWITCH_MESSAGES: Record<string, (lang: string) => string> = {
+  ar: (l) => `تم التبديل تلقائياً إلى ${l}`,
+  en: (l) => `Switched automatically to ${l}`,
+  de: (l) => `Automatisch zu ${l} gewechselt`,
+  tr: (l) => `Otomatik olarak ${l} diline geçildi`,
+  fr: (l) => `Basculé automatiquement vers ${l}`,
+  es: (l) => `Cambiado automáticamente a ${l}`,
+  pt: (l) => `Alterado automaticamente para ${l}`,
+};
 
 // Create a forwardRef motion button to work with Radix's asChild
 const MotionButton = forwardRef<HTMLButtonElement, HTMLMotionProps<"button"> & { className?: string }>(
@@ -44,9 +68,13 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
   const activeLangCode = isAutoMode ? 'auto' : currentLanguage;
   const currentLang = languages.find(l => l.code === activeLangCode) || languages[1];
 
-  const handleLanguageChange = (langCode: string) => {
+  const handleLanguageChange = async (langCode: string) => {
     if (langCode === 'auto') {
-      resetToBrowserLanguage();
+      await resetToBrowserLanguage();
+      const detected = i18n.language?.split('-')[0] || 'en';
+      const nativeName = NATIVE_NAMES[detected] || detected.toUpperCase();
+      const builder = AUTO_SWITCH_MESSAGES[detected] || AUTO_SWITCH_MESSAGES.en;
+      toast.success(builder(nativeName), { duration: 2500 });
     } else {
       changeLanguage(langCode);
     }
