@@ -60,9 +60,8 @@ export function getQuotaState(): QuotaState {
   const tierConfig = QUOTA_TIERS[stored.tier] || QUOTA_TIERS.free;
   const couponPoints = stored.bonusCredits || 0;
   const promoBonus = stored.promoBonusCredits || 0;
-  // Coupon overrides tier limit; promo bonus adds on top
-  const base = couponPoints > 0 ? couponPoints : tierConfig.monthly;
-  const limit = bypass ? 999 : base + promoBonus;
+  // ✅ نقاط القسيمة + الترويج تُضاف فوق حد الباقة الافتراضية (تراكمية)
+  const limit = bypass ? 999 : tierConfig.monthly + couponPoints + promoBonus;
   const remaining = Math.max(0, limit - stored.used);
 
   return {
@@ -76,6 +75,7 @@ export function getQuotaState(): QuotaState {
     adminBypass: bypass,
   };
 }
+
 
 /**
  * Check if user can afford a request with the given weight.
@@ -105,17 +105,20 @@ export function syncFromServer(serverUsed: number, serverTier?: "free" | "premiu
   const stored = readQuota();
   if (serverTier) stored.tier = serverTier;
   stored.used = serverUsed;
+  // ✅ لا نلمس bonusCredits المحلية — القسائم تُدار محلياً بشكل تراكمي
+  // فقط نحدّث الحد إذا أرسل السيرفر قيمة أعلى من المتوقع (قسيمة سيرفرية)
   if (typeof serverLimit === "number" && Number.isFinite(serverLimit)) {
     const tierConfig = QUOTA_TIERS[stored.tier] || QUOTA_TIERS.free;
-    if (serverLimit !== tierConfig.monthly) {
-      stored.bonusCredits = serverLimit;
-    } else {
-      delete stored.bonusCredits;
+    const localTotal = tierConfig.monthly + (stored.bonusCredits || 0) + (stored.promoBonusCredits || 0);
+    if (serverLimit > localTotal) {
+      // السيرفر يعرف عن نقاط إضافية لا نعرفها محلياً
+      stored.bonusCredits = (stored.bonusCredits || 0) + (serverLimit - localTotal);
     }
   }
   stored.monthKey = getCurrentMonthKey();
   writeQuota(stored);
 }
+
 
 /**
  * Update subscription tier.
@@ -129,17 +132,19 @@ export function setTier(tier: "free" | "premium"): void {
 
 /**
  * Temporarily set tier to premium for an active coupon.
- * bonusPoints overrides the monthly limit directly.
+ * ✅ bonusPoints يُضاف تراكمياً فوق الحد الأساسي ويتراكم مع قسائم أخرى.
  */
 export function applyCouponTier(expiresAt: string, bonusPoints?: number): void {
   if (new Date(expiresAt) <= new Date()) return;
   const stored = readQuota();
   stored.tier = "premium";
   if (bonusPoints && bonusPoints > 0) {
-    stored.bonusCredits = bonusPoints;
+    // تراكمي: نضيف على الرصيد الموجود بدل استبداله
+    stored.bonusCredits = (stored.bonusCredits || 0) + bonusPoints;
   }
   writeQuota(stored);
 }
+
 
 /**
  * Admin reset for testing. ONLY available in development.
