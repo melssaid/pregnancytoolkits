@@ -347,10 +347,7 @@
       "title": "Contagem regressiva do bebê",
       "description": "Descubra quando seu bebê chegará."
     },
-    "kickCounter": {
-      "title": "Rastreamento de chutes fetais",
-      "description": "Contador inteligente de chutes com análise diária da atividade do bebé."
-    },
+    "kickCounter": "Contador de chutes fetais",
     "weightGain": {
       "title": "Guia de Bem-estar do Peso",
       "description": "Acompanhe as mudanças de peso durante a gravidez.",
@@ -951,8 +948,8 @@
     "info": "Apenas cerca de 5% dos bebês nascem na data prevista. A maioria nasce dentro de 2 semanas antes ou depois. Seu médico pode ajustar a data com base no ultrassom."
   },
   "kickCounterPage": {
-    "title": "Diário de movimentos do bebê",
-    "subtitle": "Registre os movimentos do seu bebê ao longo do dia",
+    "title": "Contador de chutes fetais",
+    "subtitle": "Registre os chutes fetais ao longo do dia",
     "timeElapsed": "Tempo decorrido",
     "startCounting": "Começar a contar",
     "kicks": "chutes",
@@ -1360,8 +1357,8 @@
       "differentWeek": "Mudar Semana",
       "refresh": "Atualizar",
       "trackTip": "Acompanhe sua semana para obter informações personalizadas sobre o crescimento do seu bebê e as mudanças do seu corpo",
-      "kickCounterLink": "Kick Counter",
-      "kickCounterLinkDesc": "Track and journal your baby's movements",
+      "kickCounterLink": "Contador de chutes fetais",
+      "kickCounterLinkDesc": "Acompanhar chutes fetais",
       "approximatelyRemaining": "Aproximadamente {{days}} dias restantes",
       "noSummariesYet": "Ainda sem resumos",
       "generateFirstHint": "Gere seu primeiro resumo semanal",
@@ -3344,8 +3341,8 @@
       "yourWeight": "Seu Peso",
       "weekAxis": "Semana",
       "weightGainKg": "Ganho de Peso (kg)",
-      "kickCounterLink": "Contador de chutes",
-      "kickCounterLinkDesc": "Acompanhar movimentos do bebê",
+      "kickCounterLink": "Contador de chutes fetais",
+      "kickCounterLinkDesc": "Acompanhar chutes fetais",
       "mealSuggestionLink": "Sugestões de refeições",
       "mealSuggestionLinkDesc": "Ideias de refeições saudáveis",
       "aiAnalysisTitle": "Análise IA do peso",
@@ -5007,8 +5004,8 @@
         "week38": "Could arrive any day!",
         "week40": "Due date!"
       },
-      "kickCounterLink": "Kick Counter",
-      "kickCounterLinkDesc": "Log your baby's movements and activity patterns",
+      "kickCounterLink": "Contador de chutes fetais",
+      "kickCounterLinkDesc": "Acompanhar chutes fetais",
       "dueDateLink": "Due Date Calculator",
       "dueDateLinkDesc": "Calculate your expected delivery date",
       "weightGainLink": "Weight Gain Guide",

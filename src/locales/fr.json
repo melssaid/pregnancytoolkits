@@ -351,10 +351,7 @@
       "title": "Croissance intelligente du bébé",
       "description": "Suivez la croissance avec les courbes OMS."
     },
-    "kickCounter": {
-      "title": "Suivi des coups de pied fœtaux",
-      "description": "Compteur intelligent avec analyse quotidienne de l'activité du bébée."
-    },
+    "kickCounter": "Compteur de coups fœtaux",
     "weightGain": {
       "title": "Guide Bien-être du Poids",
       "description": "Suivez l'évolution de votre poids pendant la grossesse.",
@@ -951,8 +948,8 @@
     "info": "Seulement environ 5% des bébés naissent à la date prévue. La plupart naissent dans les 2 semaines avant ou après. Votre médecin peut ajuster la date selon l'échographie."
   },
   "kickCounterPage": {
-    "title": "Journal des mouvements bébé",
-    "subtitle": "Consignez les mouvements de votre bébé tout au long de la journée",
+    "title": "Compteur de coups fœtaux",
+    "subtitle": "Enregistrez les coups du fœtus",
     "timeElapsed": "Temps écoulé",
     "startCounting": "Commencer à compter",
     "kicks": "coups",
@@ -1362,8 +1359,8 @@
       "trackTip": "Suivez votre semaine pour obtenir des informations personnalisées sur la croissance de votre bébé et les changements de votre corps",
       "babyDevLink": "Bébé Development",
       "babyDevLinkDesc": "See your baby's size and development this week",
-      "kickCounterLink": "Kick Counter",
-      "kickCounterLinkDesc": "Track and journal your baby's movements",
+      "kickCounterLink": "Compteur de coups fœtaux",
+      "kickCounterLinkDesc": "Suivre les coups du fœtus",
       "approximatelyRemaining": "Environ {{days}} jours restants",
       "noSummariesYet": "Pas encore de résumés",
       "generateFirstHint": "Générez votre premier résumé hebdomadaire",
@@ -3346,8 +3343,8 @@
       "weightGainKg": "Prise de poids (kg)",
       "babyDevLink": "Développement du bébé",
       "babyDevLinkDesc": "Suivez la croissance et le développement de votre bébé semaine par semaine",
-      "kickCounterLink": "Compteur de coups",
-      "kickCounterLinkDesc": "Suivre les mouvements du bébé",
+      "kickCounterLink": "Compteur de coups fœtaux",
+      "kickCounterLinkDesc": "Suivre les coups du fœtus",
       "mealSuggestionLink": "Suggestions de repas",
       "mealSuggestionLinkDesc": "Idées de repas sains",
       "aiAnalysisTitle": "Analyse IA du poids",
@@ -3535,8 +3532,8 @@
         "week38": "Pourrait arriver n'importe quel jour !",
         "week40": "Date prévue d'accouchement !"
       },
-      "kickCounterLink": "Compteur de coups",
-      "kickCounterLinkDesc": "Suivez les mouvements et les schémas d'activité de votre bébé",
+      "kickCounterLink": "Compteur de coups fœtaux",
+      "kickCounterLinkDesc": "Suivre les coups du fœtus",
       "dueDateLink": "Calculateur de date prévue",
       "dueDateLinkDesc": "Calculez votre date d'accouchement prévue",
       "weightGainLink": "Guide de prise de poids",
