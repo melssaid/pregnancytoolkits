@@ -60,9 +60,8 @@ export function getQuotaState(): QuotaState {
   const tierConfig = QUOTA_TIERS[stored.tier] || QUOTA_TIERS.free;
   const couponPoints = stored.bonusCredits || 0;
   const promoBonus = stored.promoBonusCredits || 0;
-  // Coupon overrides tier limit; promo bonus adds on top
-  const base = couponPoints > 0 ? couponPoints : tierConfig.monthly;
-  const limit = bypass ? 999 : base + promoBonus;
+  // ✅ نقاط القسيمة + الترويج تُضاف فوق حد الباقة الافتراضية (تراكمية)
+  const limit = bypass ? 999 : tierConfig.monthly + couponPoints + promoBonus;
   const remaining = Math.max(0, limit - stored.used);
 
   return {
@@ -76,6 +75,7 @@ export function getQuotaState(): QuotaState {
     adminBypass: bypass,
   };
 }
+
 
 /**
  * Check if user can afford a request with the given weight.
