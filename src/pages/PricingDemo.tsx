@@ -28,7 +28,7 @@ export default function PricingDemo() {
   const [selected, setSelected] = useState<PlanType>("yearly");
   const [purchasing, setPurchasing] = useState(false);
   const [devTaps, setDevTaps] = useState(0);
-  const devMode = true; // Diagnostics always visible for debugging
+  const devMode = devTaps >= 7; // Hidden by default; 7 taps on title to reveal
   const isAr = i18n.language === "ar";
   const canPurchase = isDigitalGoodsAvailable();
   const { refresh: refreshAIUsage } = useAIUsage();
