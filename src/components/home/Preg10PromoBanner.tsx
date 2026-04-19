@@ -188,14 +188,6 @@ const Preg10PromoBanner = memo(function Preg10PromoBanner({ lang }: Props) {
             />
           </div>
 
-          {/* Floating sparkles decoration */}
-          <motion.div
-            className="absolute top-2 end-10 text-amber-300/70"
-            animate={{ rotate: [0, 15, -10, 0], scale: [1, 1.15, 1] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <Sparkles className="w-4 h-4" strokeWidth={2.5} />
-          </motion.div>
 
           {/* Dismiss */}
           <button
