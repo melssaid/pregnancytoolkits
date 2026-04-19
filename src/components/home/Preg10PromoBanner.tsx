@@ -22,7 +22,12 @@ const labels: Record<string, {
   claimedDesc: string;
   applying: string;
   errorPrefix: string;
+  added: string;        // "+10 added"
+  newBalance: string;   // "New balance"
+  points: string;       // "points"
+  bonusLabel: string;   // "Bonus"
 }> = {
+
   ar: {
     badge: "هدية حصرية",
     title: "١٠ نقاط ذكاء اصطناعي مجاناً 🎁",
