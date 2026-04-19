@@ -1,7 +1,7 @@
 import { useState, useMemo, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import { ChevronDown, ChevronUp, Info, Baby } from "lucide-react";
+import { ChevronDown, ChevronUp, Info, Plus } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -87,14 +87,14 @@ export function HealthInputForm({ health, onUpdate, lang }: HealthInputFormProps
 
   const getLabel = (option: Record<string, string>) => option[lang] || option.en;
 
-  const kickLabels: Record<string, { title: string; noData: string; kicks: string; lastSession: string; goTrack: string }> = {
-    ar: { title: 'حركات الطفل', noData: 'لا توجد بيانات — سجّلي حركات طفلك', kicks: 'ركلة', lastSession: 'آخر جلسة', goTrack: 'تتبع الحركات' },
-    en: { title: 'Baby Movements', noData: 'No data — track your baby\'s kicks', kicks: 'kicks', lastSession: 'Last session', goTrack: 'Track Kicks' },
-    de: { title: 'Babybewegungen', noData: 'Keine Daten — erfasse die Tritte', kicks: 'Tritte', lastSession: 'Letzte Sitzung', goTrack: 'Tritte erfassen' },
-    fr: { title: 'Mouvements du bébé', noData: 'Aucune donnée — suivez les coups', kicks: 'coups', lastSession: 'Dernière session', goTrack: 'Suivre les coups' },
-    es: { title: 'Movimientos del bebé', noData: 'Sin datos — registra las patadas', kicks: 'patadas', lastSession: 'Última sesión', goTrack: 'Registrar patadas' },
-    pt: { title: 'Movimentos do bebê', noData: 'Sem dados — registre os chutes', kicks: 'chutes', lastSession: 'Última sessão', goTrack: 'Registrar chutes' },
-    tr: { title: 'Bebek Hareketleri', noData: 'Veri yok — bebek tekmelerini kaydet', kicks: 'tekme', lastSession: 'Son oturum', goTrack: 'Tekmeleri kaydet' },
+  const kickLabels: Record<string, { title: string; noData: string; kicks: string; lastSession: string; addAria: string; hint: string }> = {
+    ar: { title: 'ركلات الجنين', noData: 'لم تُسجَّل أي ركلة بعد', kicks: 'ركلة', lastSession: 'آخر جلسة', addAria: 'إضافة ركلات إلى التقرير', hint: 'تُضاف الركلات تلقائياً إلى تقرير الذكاء الاصطناعي' },
+    en: { title: 'Fetal Kicks', noData: 'No kicks recorded yet', kicks: 'kicks', lastSession: 'Last session', addAria: 'Add kicks to AI report', hint: 'Kicks are automatically included in the AI report' },
+    de: { title: 'Fötale Tritte', noData: 'Noch keine Tritte erfasst', kicks: 'Tritte', lastSession: 'Letzte Sitzung', addAria: 'Tritte zum KI-Bericht hinzufügen', hint: 'Tritte werden automatisch in den KI-Bericht aufgenommen' },
+    fr: { title: 'Coups du fœtus', noData: 'Aucun coup enregistré', kicks: 'coups', lastSession: 'Dernière session', addAria: 'Ajouter au rapport IA', hint: 'Les coups sont automatiquement inclus dans le rapport IA' },
+    es: { title: 'Patadas fetales', noData: 'Sin patadas registradas', kicks: 'patadas', lastSession: 'Última sesión', addAria: 'Añadir al informe de IA', hint: 'Las patadas se incluyen automáticamente en el informe de IA' },
+    pt: { title: 'Chutes fetais', noData: 'Sem chutes registrados', kicks: 'chutes', lastSession: 'Última sessão', addAria: 'Adicionar ao relatório de IA', hint: 'Os chutes são incluídos automaticamente no relatório de IA' },
+    tr: { title: 'Fetal Tekmeler', noData: 'Henüz tekme kaydı yok', kicks: 'tekme', lastSession: 'Son oturum', addAria: 'AI raporuna ekle', hint: 'Tekmeler AI raporuna otomatik eklenir' },
   };
   const kl = kickLabels[lang] || kickLabels.en;
 
@@ -116,31 +116,37 @@ export function HealthInputForm({ health, onUpdate, lang }: HealthInputFormProps
         </div>
       </div>
 
-      {/* Baby Kick Stats — linked from Kick Counter */}
-      <div className="rounded-xl border border-primary/15 bg-primary/[0.03] p-2.5">
-        <div className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-            <Baby className="w-3.5 h-3.5 text-primary" />
-          </div>
+      {/* Fetal Kicks — linked from Kick Counter */}
+      <div className="relative rounded-2xl overflow-hidden border border-primary/15 bg-gradient-to-br from-primary/[0.05] via-card to-primary/[0.02] p-3.5 shadow-[0_1px_3px_hsl(340_30%_25%/0.04)]">
+        <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+
+        <div className="flex items-center justify-between gap-3">
           <div className="flex-1 min-w-0">
-            <p className="text-[11px] font-semibold text-foreground">{kl.title}</p>
+            <h4 className="text-[15px] font-extrabold text-foreground tracking-tight leading-tight whitespace-normal break-words" style={{ overflowWrap: 'anywhere' }}>
+              {kl.title}
+            </h4>
             {kickStats.totalKicks > 0 ? (
-              <p className="text-[10px] text-muted-foreground">
-                {kickStats.totalKicks} {kl.kicks} · {kl.lastSession}
-              </p>
+              <div className="flex items-baseline gap-1.5 mt-1">
+                <span className="text-2xl font-black text-primary leading-none tabular-nums">{kickStats.totalKicks}</span>
+                <span className="text-[11px] font-medium text-muted-foreground">{kl.kicks} · {kl.lastSession}</span>
+              </div>
             ) : (
-              <p className="text-[10px] text-muted-foreground">{kl.noData}</p>
+              <p className="text-[11px] text-muted-foreground mt-1">{kl.noData}</p>
             )}
           </div>
+
           <Link
             to="/tools/kick-counter"
-            className="text-[9px] font-bold text-primary px-2 py-1 rounded-md bg-primary/10 hover:bg-primary/15 transition-colors shrink-0"
+            aria-label={kl.addAria}
+            className="group relative shrink-0 w-11 h-11 rounded-full flex items-center justify-center bg-gradient-to-br from-primary to-primary/80 text-primary-foreground shadow-[0_4px_12px_-2px_hsl(var(--primary)/0.45)] hover:shadow-[0_6px_18px_-2px_hsl(var(--primary)/0.55)] active:scale-95 transition-all duration-200"
           >
-            {kl.goTrack}
+            <Plus className="w-5 h-5" strokeWidth={3} />
+            <span className="absolute inset-0 rounded-full ring-2 ring-primary/20 animate-ping opacity-0 group-hover:opacity-100" />
           </Link>
         </div>
-        <p className="text-[9px] text-muted-foreground/70 mt-1.5 ps-9 leading-relaxed">
-          {t("smartPlan.kickHint", "يعرض هذا الشريط عدد الركلات المسجّلة تلقائياً من عدّاد الركلات لتحليلها ضمن خطتك")}
+
+        <p className="text-[10px] text-muted-foreground/75 mt-2.5 leading-relaxed">
+          {kl.hint}
         </p>
       </div>
 
