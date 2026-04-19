@@ -68,9 +68,13 @@ export const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
   const activeLangCode = isAutoMode ? 'auto' : currentLanguage;
   const currentLang = languages.find(l => l.code === activeLangCode) || languages[1];
 
-  const handleLanguageChange = (langCode: string) => {
+  const handleLanguageChange = async (langCode: string) => {
     if (langCode === 'auto') {
-      resetToBrowserLanguage();
+      await resetToBrowserLanguage();
+      const detected = i18n.language?.split('-')[0] || 'en';
+      const nativeName = NATIVE_NAMES[detected] || detected.toUpperCase();
+      const builder = AUTO_SWITCH_MESSAGES[detected] || AUTO_SWITCH_MESSAGES.en;
+      toast.success(builder(nativeName), { duration: 2500 });
     } else {
       changeLanguage(langCode);
     }
