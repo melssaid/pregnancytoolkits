@@ -1,9 +1,11 @@
 import { memo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, Copy, Check, X, Gift, Zap } from "lucide-react";
+import { Sparkles, Copy, Check, X, Gift, Zap, Plus, TrendingUp } from "lucide-react";
 import { toast } from "sonner";
 import { useActiveCoupon } from "@/hooks/useActiveCoupon";
 import { useAIUsage } from "@/contexts/AIUsageContext";
+import { getQuotaState } from "@/services/smartEngine";
+
 
 const PROMO_CODE = "PREG10";
 const DISMISS_KEY = "preg10_banner_dismissed_v1";
