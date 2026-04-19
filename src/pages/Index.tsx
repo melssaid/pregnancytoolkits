@@ -17,6 +17,7 @@ import WelcomeCard from "@/components/home/WelcomeCard";
 import QuickActions from "@/components/home/QuickActions";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { CouponRedeemer } from "@/components/settings/CouponRedeemer";
+import Preg10PromoBanner from "@/components/home/Preg10PromoBanner";
 
 
 
@@ -582,6 +583,8 @@ const Index = () => {
       <section className="pt-4 pb-0 relative z-10">
         <div className="px-2.5 sm:px-4 md:px-6 lg:px-8 max-w-4xl mx-auto space-y-3 pb-6">
 
+          {/* PREG10 promo banner — high-conversion coupon CTA */}
+          <Preg10PromoBanner lang={lang} />
 
           {journeyConfigs.map((config, index) => (
             <JourneyCard
