@@ -39,6 +39,10 @@ const labels: Record<string, {
     claimedDesc: "أُضيفت ١٠ نقاط إلى رصيدكِ — استمتعي بالتحليلات الذكية",
     applying: "جارٍ التفعيل...",
     errorPrefix: "تعذّر التفعيل",
+    added: "تمت إضافة ١٠ نقاط",
+    newBalance: "رصيدكِ الجديد",
+    points: "نقطة",
+    bonusLabel: "مكافأة",
   },
   en: {
     badge: "Exclusive Gift",
@@ -51,6 +55,10 @@ const labels: Record<string, {
     claimedDesc: "10 credits added to your balance — enjoy smart insights",
     applying: "Activating...",
     errorPrefix: "Could not activate",
+    added: "10 credits added",
+    newBalance: "New balance",
+    points: "credits",
+    bonusLabel: "Bonus",
   },
   de: {
     badge: "Exklusives Geschenk",
@@ -63,6 +71,10 @@ const labels: Record<string, {
     claimedDesc: "10 Credits hinzugefügt — viel Spaß",
     applying: "Aktiviere...",
     errorPrefix: "Aktivierung fehlgeschlagen",
+    added: "10 Credits hinzugefügt",
+    newBalance: "Neuer Saldo",
+    points: "Credits",
+    bonusLabel: "Bonus",
   },
   fr: {
     badge: "Cadeau exclusif",
@@ -75,6 +87,10 @@ const labels: Record<string, {
     claimedDesc: "10 crédits ajoutés à votre solde",
     applying: "Activation...",
     errorPrefix: "Échec de l'activation",
+    added: "10 crédits ajoutés",
+    newBalance: "Nouveau solde",
+    points: "crédits",
+    bonusLabel: "Bonus",
   },
   es: {
     badge: "Regalo exclusivo",
@@ -87,6 +103,10 @@ const labels: Record<string, {
     claimedDesc: "10 créditos añadidos a tu saldo",
     applying: "Activando...",
     errorPrefix: "No se pudo activar",
+    added: "10 créditos añadidos",
+    newBalance: "Nuevo saldo",
+    points: "créditos",
+    bonusLabel: "Bono",
   },
   pt: {
     badge: "Presente exclusivo",
@@ -99,6 +119,10 @@ const labels: Record<string, {
     claimedDesc: "10 créditos adicionados ao seu saldo",
     applying: "Ativando...",
     errorPrefix: "Falha na ativação",
+    added: "10 créditos adicionados",
+    newBalance: "Novo saldo",
+    points: "créditos",
+    bonusLabel: "Bônus",
   },
   tr: {
     badge: "Özel Hediye",
@@ -111,8 +135,13 @@ const labels: Record<string, {
     claimedDesc: "Bakiyene 10 kredi eklendi",
     applying: "Etkinleştiriliyor...",
     errorPrefix: "Etkinleştirilemedi",
+    added: "10 kredi eklendi",
+    newBalance: "Yeni bakiye",
+    points: "kredi",
+    bonusLabel: "Bonus",
   },
 };
+
 
 interface Props {
   lang: string;
