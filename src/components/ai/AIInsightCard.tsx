@@ -11,6 +11,7 @@ import { AIErrorBanner } from '@/components/ai/AIErrorBanner';
 import { useNavigate } from 'react-router-dom';
 import { PrintableReport } from '@/components/PrintableReport';
 import { MiniUsageBar } from '@/components/ai/MiniUsageBar';
+import { UsagePulseFooter } from '@/components/ai/UsagePulseFooter';
 
 
 interface AIInsightCardProps {
