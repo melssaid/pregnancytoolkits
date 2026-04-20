@@ -159,6 +159,17 @@ export function AIUsageProvider({ children }: { children: ReactNode }) {
 
       // Then apply server quota (usage count + coupon bonuses)
       if (server) {
+        // Sync server-known active coupons into local quota + active_coupon cache
+        if (server.activeCoupons.length > 0) {
+          syncCouponBonuses(server.activeCoupons);
+          // Cache the longest-lasting coupon for useActiveCoupon hook
+          const sorted = [...server.activeCoupons].sort(
+            (a, b) => new Date(b.expiresAt).getTime() - new Date(a.expiresAt).getTime()
+          );
+          try {
+            localStorage.setItem('active_coupon_v1', JSON.stringify(sorted[0]));
+          } catch { /* ignore */ }
+        }
         // If DB says premium, ensure server tier doesn't downgrade it
         const effectiveTier = dbTier === 'premium' ? 'premium' : server.tier;
         const effectiveLimit = dbTier === 'premium' ? Math.max(server.limit, 60) : server.limit;
