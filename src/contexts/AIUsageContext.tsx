@@ -54,7 +54,12 @@ function readState(): QuotaState {
 }
 
 /** Fetch real usage from server using device fingerprint (survives data clearing) */
-async function fetchServerQuota(currentTier: 'free' | 'premium' = 'free'): Promise<{ used: number; limit: number; tier: 'free' | 'premium' } | null> {
+async function fetchServerQuota(currentTier: 'free' | 'premium' = 'free'): Promise<{
+  used: number;
+  limit: number;
+  tier: 'free' | 'premium';
+  activeCoupons: Array<{ couponId: string; code: string; durationType: string; expiresAt: string; bonusPoints: number }>;
+} | null> {
   try {
     const { supabase } = await import('@/integrations/supabase/client');
     const { data: { session } } = await supabase.auth.getSession();
@@ -84,6 +89,7 @@ async function fetchServerQuota(currentTier: 'free' | 'premium' = 'free'): Promi
       used: data.used ?? 0,
       limit: data.limit ?? 10,
       tier: data.tier ?? currentTier,
+      activeCoupons: Array.isArray(data.active_coupons) ? data.active_coupons : [],
     };
   } catch {
     return null;
