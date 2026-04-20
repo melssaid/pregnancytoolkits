@@ -11,6 +11,7 @@ import {
   syncFromServer as qmSyncFromServer,
   setTier as qmSetTier,
   applyCouponTier,
+  syncCouponBonuses,
   type QuotaState,
 } from '@/services/smartEngine';
 import { getCouponRequestHeaders } from '@/lib/couponRequestHeaders';
@@ -53,7 +54,12 @@ function readState(): QuotaState {
 }
 
 /** Fetch real usage from server using device fingerprint (survives data clearing) */
-async function fetchServerQuota(currentTier: 'free' | 'premium' = 'free'): Promise<{ used: number; limit: number; tier: 'free' | 'premium' } | null> {
+async function fetchServerQuota(currentTier: 'free' | 'premium' = 'free'): Promise<{
+  used: number;
+  limit: number;
+  tier: 'free' | 'premium';
+  activeCoupons: Array<{ couponId: string; code: string; durationType: string; expiresAt: string; bonusPoints: number }>;
+} | null> {
   try {
     const { supabase } = await import('@/integrations/supabase/client');
     const { data: { session } } = await supabase.auth.getSession();
@@ -83,6 +89,7 @@ async function fetchServerQuota(currentTier: 'free' | 'premium' = 'free'): Promi
       used: data.used ?? 0,
       limit: data.limit ?? 10,
       tier: data.tier ?? currentTier,
+      activeCoupons: Array.isArray(data.active_coupons) ? data.active_coupons : [],
     };
   } catch {
     return null;
@@ -109,7 +116,7 @@ export function AIUsageProvider({ children }: { children: ReactNode }) {
       if (raw) {
         const coupon = JSON.parse(raw);
         if (coupon?.expiresAt && new Date(coupon.expiresAt) > new Date()) {
-          applyCouponTier(coupon.expiresAt, coupon.bonusPoints);
+          applyCouponTier(coupon.expiresAt, coupon.bonusPoints, coupon.couponId);
           refresh();
         }
       }
@@ -152,6 +159,17 @@ export function AIUsageProvider({ children }: { children: ReactNode }) {
 
       // Then apply server quota (usage count + coupon bonuses)
       if (server) {
+        // Sync server-known active coupons into local quota + active_coupon cache
+        if (server.activeCoupons.length > 0) {
+          syncCouponBonuses(server.activeCoupons);
+          // Cache the longest-lasting coupon for useActiveCoupon hook
+          const sorted = [...server.activeCoupons].sort(
+            (a, b) => new Date(b.expiresAt).getTime() - new Date(a.expiresAt).getTime()
+          );
+          try {
+            localStorage.setItem('active_coupon_v1', JSON.stringify(sorted[0]));
+          } catch { /* ignore */ }
+        }
         // If DB says premium, ensure server tier doesn't downgrade it
         const effectiveTier = dbTier === 'premium' ? 'premium' : server.tier;
         const effectiveLimit = dbTier === 'premium' ? Math.max(server.limit, 60) : server.limit;
