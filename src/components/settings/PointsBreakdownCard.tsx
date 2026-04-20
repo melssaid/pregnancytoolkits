@@ -13,6 +13,7 @@ interface StoredQuota {
   tier: 'free' | 'premium';
   bonusCredits?: number;
   promoBonusCredits?: number;
+  couponCreditsById?: Record<string, number>;
 }
 
 function readStored(): StoredQuota {
@@ -21,6 +22,13 @@ function readStored(): StoredQuota {
     if (raw) return JSON.parse(raw);
   } catch { /* noop */ }
   return { monthKey: '', used: 0, tier: 'free' };
+}
+
+function sumCouponCredits(stored: StoredQuota): number {
+  const map = stored.couponCreditsById || {};
+  const fromMap = Object.values(map).reduce((sum, v) => sum + (Number(v) > 0 ? Number(v) : 0), 0);
+  if (fromMap > 0) return fromMap;
+  return stored.bonusCredits || 0;
 }
 
 export const PointsBreakdownCard: React.FC = () => {
@@ -36,7 +44,7 @@ export const PointsBreakdownCard: React.FC = () => {
 
   const tierConfig = QUOTA_TIERS[stored.tier] || QUOTA_TIERS.free;
   const basePoints = tierConfig.monthly;
-  const couponPoints = stored.bonusCredits || 0;
+  const couponPoints = sumCouponCredits(stored);
   const promoPoints = stored.promoBonusCredits || 0;
   const total = basePoints + couponPoints + promoPoints;
 
