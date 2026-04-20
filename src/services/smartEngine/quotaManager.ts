@@ -23,9 +23,21 @@ interface StoredQuota {
   tier: "free" | "premium";
   bonusCredits?: number;      // coupon-based override limit
   promoBonusCredits?: number; // additive promo bonus (legacy)
+  couponCreditsById?: Record<string, number>;
 }
 
 // ── Storage helpers ──
+function normalizeCouponCredits(stored: StoredQuota): Record<string, number> {
+  const entries = Object.entries(stored.couponCreditsById || {}).filter(([, value]) => Number.isFinite(value) && value > 0);
+  if (entries.length > 0) return Object.fromEntries(entries);
+  if ((stored.bonusCredits || 0) > 0) return { legacy: stored.bonusCredits || 0 };
+  return {};
+}
+
+function calculateCouponBonus(stored: StoredQuota): number {
+  return Object.values(normalizeCouponCredits(stored)).reduce((sum, value) => sum + value, 0);
+}
+
 function readQuota(): StoredQuota {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
@@ -58,7 +70,7 @@ export function getQuotaState(): QuotaState {
   const stored = readQuota();
   const bypass = isAdminBypass();
   const tierConfig = QUOTA_TIERS[stored.tier] || QUOTA_TIERS.free;
-  const couponPoints = stored.bonusCredits || 0;
+  const couponPoints = calculateCouponBonus(stored);
   const promoBonus = stored.promoBonusCredits || 0;
   // ✅ نقاط القسيمة + الترويج تُضاف فوق حد الباقة الافتراضية (تراكمية)
   const limit = bypass ? 999 : tierConfig.monthly + couponPoints + promoBonus;
@@ -105,15 +117,12 @@ export function syncFromServer(serverUsed: number, serverTier?: "free" | "premiu
   const stored = readQuota();
   if (serverTier) stored.tier = serverTier;
   stored.used = serverUsed;
-  // ✅ لا نلمس bonusCredits المحلية — القسائم تُدار محلياً بشكل تراكمي
-  // فقط نحدّث الحد إذا أرسل السيرفر قيمة أعلى من المتوقع (قسيمة سيرفرية)
   if (typeof serverLimit === "number" && Number.isFinite(serverLimit)) {
     const tierConfig = QUOTA_TIERS[stored.tier] || QUOTA_TIERS.free;
-    const localTotal = tierConfig.monthly + (stored.bonusCredits || 0) + (stored.promoBonusCredits || 0);
-    if (serverLimit > localTotal) {
-      // السيرفر يعرف عن نقاط إضافية لا نعرفها محلياً
-      stored.bonusCredits = (stored.bonusCredits || 0) + (serverLimit - localTotal);
-    }
+    const promoBonus = stored.promoBonusCredits || 0;
+    const reconciledCouponBonus = Math.max(0, serverLimit - tierConfig.monthly - promoBonus);
+    stored.bonusCredits = reconciledCouponBonus;
+    stored.couponCreditsById = reconciledCouponBonus > 0 ? { server_sync: reconciledCouponBonus } : {};
   }
   stored.monthKey = getCurrentMonthKey();
   writeQuota(stored);
@@ -134,14 +143,30 @@ export function setTier(tier: "free" | "premium"): void {
  * Temporarily set tier to premium for an active coupon.
  * ✅ bonusPoints يُضاف تراكمياً فوق الحد الأساسي ويتراكم مع قسائم أخرى.
  */
-export function applyCouponTier(expiresAt: string, bonusPoints?: number): void {
+export function applyCouponTier(expiresAt: string, bonusPoints?: number, couponKey?: string): void {
   if (new Date(expiresAt) <= new Date()) return;
   const stored = readQuota();
   stored.tier = "premium";
   if (bonusPoints && bonusPoints > 0) {
-    // تراكمي: نضيف على الرصيد الموجود بدل استبداله
-    stored.bonusCredits = (stored.bonusCredits || 0) + bonusPoints;
+    const key = couponKey || `${expiresAt}:${bonusPoints}`;
+    const couponCredits = normalizeCouponCredits(stored);
+    couponCredits[key] = bonusPoints;
+    stored.couponCreditsById = couponCredits;
+    stored.bonusCredits = Object.values(couponCredits).reduce((sum, value) => sum + value, 0);
   }
+  writeQuota(stored);
+}
+
+export function syncCouponBonuses(coupons: Array<{ couponId?: string; expiresAt: string; bonusPoints: number }>): void {
+  const stored = readQuota();
+  const activeCoupons = coupons.filter((coupon) => coupon?.bonusPoints > 0 && new Date(coupon.expiresAt) > new Date());
+  const couponCreditsById = Object.fromEntries(
+    activeCoupons.map((coupon) => [coupon.couponId || `${coupon.expiresAt}:${coupon.bonusPoints}`, coupon.bonusPoints])
+  );
+
+  stored.couponCreditsById = couponCreditsById;
+  stored.bonusCredits = Object.values(couponCreditsById).reduce((sum, value) => sum + value, 0);
+  if (stored.bonusCredits > 0) stored.tier = "premium";
   writeQuota(stored);
 }
 

@@ -129,11 +129,11 @@ async function getMonthlyUsageCount(clientId: string, userId: string | null): Pr
   }
 }
 
-async function getActiveCouponBonus(deviceFingerprint: string | null, localUserId: string | null): Promise<number | null> {
+async function getActiveCouponBonus(deviceFingerprint: string | null, localUserId: string | null): Promise<number> {
   const filters: string[] = [];
   if (deviceFingerprint) filters.push(`device_fingerprint.eq.${deviceFingerprint}`);
   if (localUserId) filters.push(`user_id.eq.${localUserId}`);
-  if (filters.length === 0) return null;
+  if (filters.length === 0) return 0;
 
   try {
     const { createClient } = await import("https://esm.sh/@supabase/supabase-js@2");
@@ -147,20 +147,20 @@ async function getActiveCouponBonus(deviceFingerprint: string | null, localUserI
       .select("expires_at, coupons(bonus_points)")
       .or(filters.join(","))
       .gt("expires_at", new Date().toISOString())
-      .order("expires_at", { ascending: false })
-      .limit(1);
+      .order("expires_at", { ascending: false });
 
     if (error) {
       console.error("[AI] coupon lookup failed:", error.message);
-      return null;
+      return 0;
     }
 
-    const claim = claims?.[0] as { coupons?: { bonus_points?: number } } | undefined;
-    const bonusPoints = claim?.coupons?.bonus_points;
-    return typeof bonusPoints === "number" && bonusPoints > 0 ? bonusPoints : null;
+    return (claims || []).reduce((sum, claim) => {
+      const bonusPoints = (claim as { coupons?: { bonus_points?: number } })?.coupons?.bonus_points;
+      return sum + (typeof bonusPoints === "number" && bonusPoints > 0 ? bonusPoints : 0);
+    }, 0);
   } catch (e) {
     console.error("[AI] coupon lookup error:", String(e).substring(0, 120));
-    return null;
+    return 0;
   }
 }
 
@@ -815,9 +815,8 @@ Deno.serve(async (req) => {
 
       const couponBonus = await getActiveCouponBonus(deviceFingerprint, localUserId);
       const monthlyUsed = await getMonthlyUsageCount(clientId, userId);
-      const limit = couponBonus
-        ? Math.max(isPremium ? PREMIUM_MONTHLY_LIMIT : FREE_MONTHLY_LIMIT, couponBonus)
-        : (isPremium ? PREMIUM_MONTHLY_LIMIT : FREE_MONTHLY_LIMIT);
+      const baseLimit = isPremium ? PREMIUM_MONTHLY_LIMIT : FREE_MONTHLY_LIMIT;
+      const limit = baseLimit + couponBonus;
       const tier = isPremium || !!couponBonus ? "premium" : "free";
 
       return new Response(JSON.stringify({ used: monthlyUsed, limit, tier }), {
@@ -906,9 +905,7 @@ Deno.serve(async (req) => {
       subscriptionTier = "premium";
     }
 
-    const MONTHLY_LIMIT = couponBonus
-      ? Math.max(isPremium ? PREMIUM_MONTHLY_LIMIT : FREE_MONTHLY_LIMIT, couponBonus)
-      : (isPremium ? PREMIUM_MONTHLY_LIMIT : FREE_MONTHLY_LIMIT);
+    const MONTHLY_LIMIT = (isPremium ? PREMIUM_MONTHLY_LIMIT : FREE_MONTHLY_LIMIT) + couponBonus;
 
     // ── Admin bypass check (dev/testing only) ──
     const adminBypass = req.headers.get("X-Admin-Bypass") === "true";
