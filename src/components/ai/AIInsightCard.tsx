@@ -127,22 +127,17 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
       ? 'text-amber-600 dark:text-amber-400'
       : 'text-muted-foreground';
 
+  // Track first-render-of-result to play consumption pulse exactly once
+  const [pulseKey, setPulseKey] = useState(0);
+  const prevInsightRef = useRef<string | null>(null);
+
   const UsageFooter = () => (
     hasGenerated && !isLoading && insight ? (
-      <div className="mt-3 flex items-center justify-between gap-2 px-1">
-        <span className={`text-[11px] font-semibold tabular-nums ${usageColor}`}>
-          {remaining} <span className="text-foreground/50">/ {limit}</span>
-        </span>
-        {isFree && (
-          <button
-            onClick={() => navigate('/pricing-demo')}
-            className="flex items-center gap-1 text-[10px] font-semibold text-primary hover:text-primary/80 transition-colors"
-          >
-            <Crown className="w-3 h-3" />
-            <span>{t('aiUsage.subscribePro')}</span>
-          </button>
-        )}
-      </div>
+      <UsagePulseFooter
+        toolType={resolvedToolType}
+        section={resolvedSection}
+        justConsumed={pulseKey > 0}
+      />
     ) : null
   );
   const [isExpanded, setIsExpanded] = useState(autoExpand);
