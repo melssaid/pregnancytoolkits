@@ -32,6 +32,7 @@ export {
   syncFromServer,
   setTier,
   applyCouponTier,
+  syncCouponBonuses,
   canClaimBonus,
   claimBonus,
   isPromoActive,
