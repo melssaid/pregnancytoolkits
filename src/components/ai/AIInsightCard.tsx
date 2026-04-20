@@ -155,6 +155,15 @@ export const AIInsightCard: React.FC<AIInsightCardProps> = ({
     }
   }, [currentLanguage, hasGenerated, clearError]);
 
+  // Trigger consumption pulse when a NEW insight finishes generating
+  useEffect(() => {
+    if (insight && !isLoading && prevInsightRef.current !== insight) {
+      prevInsightRef.current = insight;
+      setPulseKey(k => k + 1);
+    }
+    if (!insight) prevInsightRef.current = null;
+  }, [insight, isLoading]);
+
   const displayTitle = title || t('toolsInternal.aiInsights.title');
   const displayButtonText = buttonText || t('toolsInternal.aiInsights.getInsights');
 
