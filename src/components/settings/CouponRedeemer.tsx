@@ -24,7 +24,7 @@ export const CouponRedeemer: React.FC = () => {
     const result = await redeemCoupon(code);
     if (result.success) {
       if (result.coupon) {
-        applyCouponTier(result.coupon.expiresAt, result.coupon.bonusPoints);
+        applyCouponTier(result.coupon.expiresAt, result.coupon.bonusPoints, result.coupon.couponId);
       }
       setJustActivated(true);
       setCode('');
