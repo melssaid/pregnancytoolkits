@@ -11,6 +11,7 @@ import {
   syncFromServer as qmSyncFromServer,
   setTier as qmSetTier,
   applyCouponTier,
+  syncCouponBonuses,
   type QuotaState,
 } from '@/services/smartEngine';
 import { getCouponRequestHeaders } from '@/lib/couponRequestHeaders';
