@@ -48,7 +48,7 @@ export const MiniUsageBar: React.FC<MiniUsageBarProps> = ({ toolType, section, c
     <div className={`space-y-2 ${className}`}>
       {/* Usage bar — thicker and clearer */}
       <div className="flex items-center gap-2.5 px-1">
-        <div className="flex-1 h-3 rounded-full bg-muted/40 overflow-hidden" style={{ boxShadow: 'inset 0 1px 3px hsl(0 0% 0% / 0.1)' }}>
+        <div className="flex-1 h-3.5 rounded-full bg-muted/40 overflow-hidden" style={{ boxShadow: 'inset 0 1px 3px hsl(0 0% 0% / 0.12)' }}>
           <motion.div
             className="h-full rounded-full relative overflow-hidden"
             style={{ backgroundColor: getBarColor() }}
