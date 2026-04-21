@@ -157,9 +157,71 @@ export function applyCouponTier(expiresAt: string, bonusPoints?: number, couponK
   writeQuota(stored);
 }
 
-export function syncCouponBonuses(coupons: Array<{ couponId?: string; expiresAt: string; bonusPoints: number }>): void {
-  const stored = readQuota();
+// ── Idempotency guard for coupon sync ──
+// Prevents the same check-quota response from being applied twice (e.g. when
+// AIUsageContext re-mounts or multiple tabs broadcast the same payload).
+const COUPON_SYNC_GUARD_KEY = "smart_coupon_sync_guard_v1";
+const COUPON_SYNC_TTL_MS = 60_000; // 60s — safety window; older payloads can re-apply
+
+interface CouponSyncGuard {
+  hash: string;          // fingerprint of the coupon set
+  version: string;       // server response version (period_start or explicit version)
+  appliedAt: number;     // epoch ms
+}
+
+function fingerprintCoupons(coupons: Array<{ couponId?: string; expiresAt: string; bonusPoints: number }>): string {
+  const normalized = coupons
+    .map((c) => `${c.couponId || ""}|${c.expiresAt}|${c.bonusPoints}`)
+    .sort()
+    .join(";");
+  // Lightweight non-crypto hash (FNV-1a 32-bit) — sufficient for dedupe.
+  let h = 0x811c9dc5;
+  for (let i = 0; i < normalized.length; i++) {
+    h ^= normalized.charCodeAt(i);
+    h = (h + ((h << 1) + (h << 4) + (h << 7) + (h << 8) + (h << 24))) >>> 0;
+  }
+  return h.toString(16).padStart(8, "0");
+}
+
+function readCouponSyncGuard(): CouponSyncGuard | null {
+  try {
+    const raw = localStorage.getItem(COUPON_SYNC_GUARD_KEY);
+    if (!raw) return null;
+    return JSON.parse(raw) as CouponSyncGuard;
+  } catch { return null; }
+}
+
+function writeCouponSyncGuard(guard: CouponSyncGuard): void {
+  try { localStorage.setItem(COUPON_SYNC_GUARD_KEY, JSON.stringify(guard)); } catch { /* full */ }
+}
+
+/**
+ * Sync active coupon bonuses from server.
+ * Idempotent: skips re-application when (hash, version) matches the last apply
+ * within COUPON_SYNC_TTL_MS — prevents double-counting on re-mount/multi-tab.
+ *
+ * @param coupons       active coupons returned by check-quota
+ * @param responseVersion optional version tag (e.g. period_start ISO string)
+ *                      from the same check-quota response — pairs with hash to
+ *                      uniquely identify the payload.
+ * @returns true if applied, false if skipped as duplicate
+ */
+export function syncCouponBonuses(
+  coupons: Array<{ couponId?: string; expiresAt: string; bonusPoints: number }>,
+  responseVersion?: string
+): boolean {
   const activeCoupons = coupons.filter((coupon) => coupon?.bonusPoints > 0 && new Date(coupon.expiresAt) > new Date());
+  const hash = fingerprintCoupons(activeCoupons);
+  const version = responseVersion || "v0";
+
+  const prev = readCouponSyncGuard();
+  const now = Date.now();
+  if (prev && prev.hash === hash && prev.version === version && (now - prev.appliedAt) < COUPON_SYNC_TTL_MS) {
+    // Same payload, same version, within TTL → already applied; skip.
+    return false;
+  }
+
+  const stored = readQuota();
   const couponCreditsById = Object.fromEntries(
     activeCoupons.map((coupon) => [coupon.couponId || `${coupon.expiresAt}:${coupon.bonusPoints}`, coupon.bonusPoints])
   );
@@ -168,6 +230,9 @@ export function syncCouponBonuses(coupons: Array<{ couponId?: string; expiresAt:
   stored.bonusCredits = Object.values(couponCreditsById).reduce((sum, value) => sum + value, 0);
   if (stored.bonusCredits > 0) stored.tier = "premium";
   writeQuota(stored);
+
+  writeCouponSyncGuard({ hash, version, appliedAt: now });
+  return true;
 }
 
 
