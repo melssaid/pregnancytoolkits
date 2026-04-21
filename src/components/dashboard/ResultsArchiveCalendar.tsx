@@ -24,6 +24,10 @@ import {
   Camera,
   ListChecks,
   Filter,
+  CalendarClock,
+  CalendarHeart,
+  Briefcase,
+  Bone,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { safeParseLocalStorage, safeSaveToLocalStorage } from "@/lib/safeStorage";
