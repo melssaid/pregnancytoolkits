@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import {
   CalendarDays,
   ChevronDown,
@@ -11,6 +12,18 @@ import {
   ChevronRight,
   FileText,
   Trash2,
+  Sparkles,
+  Heart,
+  Baby,
+  Stethoscope,
+  Droplet,
+  Activity,
+  Scale,
+  Pill,
+  ShoppingBag,
+  Camera,
+  ListChecks,
+  Filter,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { safeParseLocalStorage, safeSaveToLocalStorage } from "@/lib/safeStorage";
@@ -18,13 +31,30 @@ import { formatLocalized } from "@/lib/dateLocale";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 
 /**
- * ResultsArchiveCalendar
+ * ResultsArchiveCalendar — v2 (Professional Calendar)
  * --------------------------------------------------------------
- * يجمع كل نتائج المستخدم المحفوظة (من جميع الأقسام والأدوات)
- * من localStorage ويصنّفها حسب الشهر، لتكوين أرشيف زمني قابل
- * للتصفح بضغطة زر مع إمكانية عرض التفاصيل والحذف.
+ * يجمع كل بيانات المستخدم من 12 مصدراً عبر التطبيق، يصنّفها حسب
+ * الشهر، ويعرض:
+ *   • شبكة أيام شهرية بنقاط نشاط (heatmap-lite)
+ *   • فلترة حسب نوع المصدر
+ *   • إحصائيات شهرية موجزة
+ *   • عرض/حذف لكل سجل
  * --------------------------------------------------------------
  */
+
+type Source =
+  | "saved"
+  | "weekly"
+  | "birthPlan"
+  | "wellness"
+  | "babyGrowth"
+  | "kicks"
+  | "contractions"
+  | "weight"
+  | "vitamins"
+  | "diaper"
+  | "symptoms"
+  | "groceries";
 
 interface ArchivedResult {
   id: string;
@@ -34,120 +64,187 @@ interface ArchivedResult {
   preview: string;
   content: string;
   href: string;
-  source: "saved" | "weekly" | "birthPlan" | "wellness" | "babyGrowth";
+  source: Source;
 }
 
-const labelsForTool = (
-  source: ArchivedResult["source"],
-  t: (k: string, d?: string) => string,
-): { name: string; href: string } => {
-  switch (source) {
-    case "weekly":
-      return { name: t("dashboard.recentResults.weeklySummary", "Weekly Summary"), href: "/tools/weekly-summary" };
-    case "birthPlan":
-      return { name: t("dashboard.recentResults.birthPlan", "Birth Plan"), href: "/tools/ai-birth-plan" };
-    case "wellness":
-      return { name: t("dashboard.recentResults.wellnessDiary", "Wellness Diary"), href: "/tools/wellness-diary" };
-    case "babyGrowth":
-      return { name: t("dashboard.recentResults.babyGrowth", "Baby Growth"), href: "/tools/baby-growth" };
-    default:
-      return { name: t("dashboard.archive.savedResult", "Saved Result"), href: "/dashboard" };
-  }
+const SOURCE_META: Record<Source, { icon: any; color: string; tone: string }> = {
+  saved: { icon: Sparkles, color: "text-primary", tone: "bg-primary/10" },
+  weekly: { icon: FileText, color: "text-violet-500", tone: "bg-violet-500/10" },
+  birthPlan: { icon: Heart, color: "text-rose-500", tone: "bg-rose-500/10" },
+  wellness: { icon: Stethoscope, color: "text-emerald-500", tone: "bg-emerald-500/10" },
+  babyGrowth: { icon: Baby, color: "text-amber-500", tone: "bg-amber-500/10" },
+  kicks: { icon: Activity, color: "text-pink-500", tone: "bg-pink-500/10" },
+  contractions: { icon: Activity, color: "text-red-500", tone: "bg-red-500/10" },
+  weight: { icon: Scale, color: "text-blue-500", tone: "bg-blue-500/10" },
+  vitamins: { icon: Pill, color: "text-orange-500", tone: "bg-orange-500/10" },
+  diaper: { icon: Baby, color: "text-cyan-500", tone: "bg-cyan-500/10" },
+  symptoms: { icon: Stethoscope, color: "text-fuchsia-500", tone: "bg-fuchsia-500/10" },
+  groceries: { icon: ShoppingBag, color: "text-lime-500", tone: "bg-lime-500/10" },
+};
+
+const sourceLabel = (s: Source, t: (k: string, d?: string) => string): string => {
+  const map: Record<Source, [string, string]> = {
+    saved: ["dashboard.archive.src.saved", "محفوظات AI"],
+    weekly: ["dashboard.archive.src.weekly", "ملخص أسبوعي"],
+    birthPlan: ["dashboard.archive.src.birthPlan", "خطة ولادة"],
+    wellness: ["dashboard.archive.src.wellness", "يوميات عافية"],
+    babyGrowth: ["dashboard.archive.src.babyGrowth", "نمو الطفل"],
+    kicks: ["dashboard.archive.src.kicks", "حركات الجنين"],
+    contractions: ["dashboard.archive.src.contractions", "انقباضات"],
+    weight: ["dashboard.archive.src.weight", "الوزن"],
+    vitamins: ["dashboard.archive.src.vitamins", "فيتامينات"],
+    diaper: ["dashboard.archive.src.diaper", "حفاضات"],
+    symptoms: ["dashboard.archive.src.symptoms", "أعراض"],
+    groceries: ["dashboard.archive.src.groceries", "قائمة تسوق"],
+  };
+  const [k, d] = map[s];
+  return t(k, d);
+};
+
+const hrefFor: Record<Source, string> = {
+  saved: "/dashboard",
+  weekly: "/tools/weekly-summary",
+  birthPlan: "/tools/ai-birth-plan",
+  wellness: "/tools/wellness-diary",
+  babyGrowth: "/tools/baby-growth",
+  kicks: "/tools/kick-counter",
+  contractions: "/tools/contraction-timer",
+  weight: "/tools/weight-gain",
+  vitamins: "/tools/vitamin-tracker",
+  diaper: "/tools/diaper-tracker",
+  symptoms: "/tools/wellness-diary",
+  groceries: "/tools/smart-grocery-list",
 };
 
 function collectAllResults(t: (k: string, d?: string) => string): ArchivedResult[] {
   const out: ArchivedResult[] = [];
+  const safe = (key: string) => safeParseLocalStorage<any[]>(key, [], (d): d is any[] => Array.isArray(d));
 
-  // 1) Unified saved (SaveResultButton across all AI tools)
-  try {
-    const saved = safeParseLocalStorage<any[]>("ai-saved-results", [], (d): d is any[] => Array.isArray(d));
-    saved.forEach((r) => {
-      out.push({
-        id: r.id,
-        toolId: r.toolId || "saved",
-        toolName: r.title || t("dashboard.archive.savedResult", "Saved Result"),
-        date: r.savedAt,
-        preview: (r.content || "").replace(/[#*_\n]/g, " ").slice(0, 120),
-        content: r.content || "",
-        href: "/dashboard",
-        source: "saved",
-      });
+  // 1) Unified saved
+  safe("ai-saved-results").forEach((r) => {
+    out.push({
+      id: r.id, toolId: r.toolId || "saved",
+      toolName: r.title || sourceLabel("saved", t),
+      date: r.savedAt,
+      preview: (r.content || "").replace(/[#*_\n]/g, " ").slice(0, 120),
+      content: r.content || "", href: hrefFor.saved, source: "saved",
     });
-  } catch {}
+  });
 
   // 2) Weekly summaries
-  try {
-    const weekly = safeParseLocalStorage<any[]>("weekly-summary-data", [], (d): d is any[] => Array.isArray(d));
-    weekly.forEach((w) => {
-      const meta = labelsForTool("weekly", t);
-      out.push({
-        id: "weekly-" + w.generatedAt,
-        toolId: "weekly-summary",
-        toolName: `${meta.name} — ${t("dashboard.recentResults.week", "Week")} ${w.week}`,
-        date: w.generatedAt,
-        preview: (w.content || "").replace(/[#*_\n]/g, " ").slice(0, 120),
-        content: w.content || "",
-        href: meta.href,
-        source: "weekly",
-      });
+  safe("weekly-summary-data").forEach((w) => {
+    out.push({
+      id: "weekly-" + w.generatedAt, toolId: "weekly-summary",
+      toolName: `${sourceLabel("weekly", t)} — ${t("dashboard.recentResults.week", "Week")} ${w.week}`,
+      date: w.generatedAt,
+      preview: (w.content || "").replace(/[#*_\n]/g, " ").slice(0, 120),
+      content: w.content || "", href: hrefFor.weekly, source: "weekly",
     });
-  } catch {}
+  });
 
   // 3) Birth plans
-  try {
-    const plans = safeParseLocalStorage<any[]>("birthPlans", [], (d): d is any[] => Array.isArray(d));
-    plans.forEach((p) => {
-      const meta = labelsForTool("birthPlan", t);
-      out.push({
-        id: "plan-" + p.id,
-        toolId: "ai-birth-plan",
-        toolName: meta.name,
-        date: p.date,
-        preview: (p.generatedPlan || "").replace(/[#*_\n]/g, " ").slice(0, 120),
-        content: p.generatedPlan || "",
-        href: meta.href,
-        source: "birthPlan",
-      });
+  safe("birthPlans").forEach((p) => {
+    out.push({
+      id: "plan-" + p.id, toolId: "ai-birth-plan", toolName: sourceLabel("birthPlan", t),
+      date: p.date,
+      preview: (p.generatedPlan || "").replace(/[#*_\n]/g, " ").slice(0, 120),
+      content: p.generatedPlan || "", href: hrefFor.birthPlan, source: "birthPlan",
     });
-  } catch {}
+  });
 
   // 4) Wellness diary
-  try {
-    const entries = safeParseLocalStorage<any[]>("wellness-diary-entries", [], (d): d is any[] => Array.isArray(d));
-    entries
-      .filter((e) => e.aiInsight && e.aiInsight.length > 10)
-      .forEach((e) => {
-        const meta = labelsForTool("wellness", t);
-        out.push({
-          id: "wellness-" + e.id,
-          toolId: "wellness-diary",
-          toolName: meta.name,
-          date: e.date,
-          preview: (e.aiInsight || "").replace(/[#*_\n]/g, " ").slice(0, 120),
-          content: e.aiInsight || "",
-          href: meta.href,
-          source: "wellness",
-        });
-      });
-  } catch {}
-
-  // 5) Baby growth entries
-  try {
-    const grow = safeParseLocalStorage<any[]>("baby-growth-entries", [], (d): d is any[] => Array.isArray(d));
-    grow.forEach((g) => {
-      const meta = labelsForTool("babyGrowth", t);
+  safe("wellness-diary-entries")
+    .filter((e) => e.aiInsight && e.aiInsight.length > 10)
+    .forEach((e) => {
       out.push({
-        id: "grow-" + g.id,
-        toolId: "baby-growth",
-        toolName: meta.name,
-        date: g.date,
-        preview: `${g.weight}kg / ${g.height}cm — ${t("dashboard.recentResults.month", "Month")} ${g.ageMonths}`,
-        content: `Weight: ${g.weight}kg\nHeight: ${g.height}cm\nAge: ${g.ageMonths} months`,
-        href: meta.href,
-        source: "babyGrowth",
+        id: "wellness-" + e.id, toolId: "wellness-diary", toolName: sourceLabel("wellness", t),
+        date: e.date,
+        preview: (e.aiInsight || "").replace(/[#*_\n]/g, " ").slice(0, 120),
+        content: e.aiInsight || "", href: hrefFor.wellness, source: "wellness",
       });
     });
-  } catch {}
+
+  // 5) Baby growth
+  safe("baby-growth-entries").forEach((g) => {
+    out.push({
+      id: "grow-" + g.id, toolId: "baby-growth", toolName: sourceLabel("babyGrowth", t),
+      date: g.date,
+      preview: `${g.weight}kg / ${g.height}cm — ${t("dashboard.recentResults.month", "Month")} ${g.ageMonths}`,
+      content: `Weight: ${g.weight}kg\nHeight: ${g.height}cm\nAge: ${g.ageMonths} months`,
+      href: hrefFor.babyGrowth, source: "babyGrowth",
+    });
+  });
+
+  // 6) Kick sessions (user-scoped key)
+  const userId = (() => {
+    try { return localStorage.getItem("pregnancy_user_id"); } catch { return null; }
+  })();
+  if (userId) {
+    safe(`kick_sessions_${userId}`).filter((k) => k.ended_at).forEach((k) => {
+      out.push({
+        id: "kick-" + k.id, toolId: "kick-counter", toolName: sourceLabel("kicks", t),
+        date: k.started_at,
+        preview: `${k.total_kicks} ${t("dashboard.archive.kicks", "حركة")} • ${k.duration_minutes ?? 0} min`,
+        content: `Total: ${k.total_kicks}\nDuration: ${k.duration_minutes ?? 0} min\nNotes: ${k.notes || "-"}`,
+        href: hrefFor.kicks, source: "kicks",
+      });
+    });
+    safe(`vitamin_logs_${userId}`).forEach((v) => {
+      out.push({
+        id: "vit-" + v.id, toolId: "vitamin-tracker", toolName: sourceLabel("vitamins", t),
+        date: v.taken_at,
+        preview: `${v.vitamin_name}${v.dosage ? " — " + v.dosage : ""}`,
+        content: `${v.vitamin_name}\n${v.dosage || ""}`,
+        href: hrefFor.vitamins, source: "vitamins",
+      });
+    });
+  }
+
+  // 7) Contractions
+  safe("contraction_timer_data").forEach((c, i) => {
+    if (!c.startTime) return;
+    out.push({
+      id: "ctn-" + (c.id || i + "-" + c.startTime), toolId: "contraction-timer", toolName: sourceLabel("contractions", t),
+      date: new Date(c.startTime).toISOString(),
+      preview: `${t("dashboard.archive.duration", "مدة")}: ${c.duration ?? "-"}s`,
+      content: `Start: ${c.startTime}\nDuration: ${c.duration ?? "-"}s\nIntensity: ${c.intensity ?? "-"}`,
+      href: hrefFor.contractions, source: "contractions",
+    });
+  });
+
+  // 8) Weight entries
+  safe("weight_gain_entries").forEach((w, i) => {
+    out.push({
+      id: "w-" + (w.id || i), toolId: "weight-gain", toolName: sourceLabel("weight", t),
+      date: w.date || new Date().toISOString(),
+      preview: `${w.weight}kg • ${t("dashboard.recentResults.week", "Week")} ${w.week ?? "-"}`,
+      content: `Weight: ${w.weight}kg\nWeek: ${w.week ?? "-"}`,
+      href: hrefFor.weight, source: "weight",
+    });
+  });
+
+  // 9) Diaper entries
+  safe("diaperEntries").forEach((d, i) => {
+    out.push({
+      id: "dp-" + (d.id || i), toolId: "diaper-tracker", toolName: sourceLabel("diaper", t),
+      date: d.timestamp || d.date || new Date().toISOString(),
+      preview: `${d.type || "-"}${d.notes ? " • " + d.notes.slice(0, 40) : ""}`,
+      content: `Type: ${d.type || "-"}\nNotes: ${d.notes || "-"}`,
+      href: hrefFor.diaper, source: "diaper",
+    });
+  });
+
+  // 10) Symptom logs
+  safe("quick_symptom_logs").forEach((s, i) => {
+    const sym = Array.isArray(s.symptoms) ? s.symptoms.join(", ") : (s.symptom || "-");
+    out.push({
+      id: "sym-" + (s.id || i + "-" + s.date), toolId: "symptoms", toolName: sourceLabel("symptoms", t),
+      date: s.date || s.loggedAt || new Date().toISOString(),
+      preview: sym.slice(0, 100),
+      content: sym,
+      href: hrefFor.symptoms, source: "symptoms",
+    });
+  });
 
   return out
     .filter((r) => r.date && !isNaN(new Date(r.date).getTime()))
@@ -156,21 +253,23 @@ function collectAllResults(t: (k: string, d?: string) => string): ArchivedResult
 
 function deleteResult(item: ArchivedResult) {
   try {
-    if (item.source === "saved") {
-      const arr = safeParseLocalStorage<any[]>("ai-saved-results", [], (d): d is any[] => Array.isArray(d));
-      safeSaveToLocalStorage("ai-saved-results", arr.filter((r) => r.id !== item.id));
-    } else if (item.source === "weekly") {
-      const arr = safeParseLocalStorage<any[]>("weekly-summary-data", [], (d): d is any[] => Array.isArray(d));
-      safeSaveToLocalStorage("weekly-summary-data", arr.filter((r) => "weekly-" + r.generatedAt !== item.id));
-    } else if (item.source === "birthPlan") {
-      const arr = safeParseLocalStorage<any[]>("birthPlans", [], (d): d is any[] => Array.isArray(d));
-      safeSaveToLocalStorage("birthPlans", arr.filter((r) => "plan-" + r.id !== item.id));
-    } else if (item.source === "wellness") {
-      const arr = safeParseLocalStorage<any[]>("wellness-diary-entries", [], (d): d is any[] => Array.isArray(d));
-      safeSaveToLocalStorage("wellness-diary-entries", arr.filter((r) => "wellness-" + r.id !== item.id));
-    } else if (item.source === "babyGrowth") {
-      const arr = safeParseLocalStorage<any[]>("baby-growth-entries", [], (d): d is any[] => Array.isArray(d));
-      safeSaveToLocalStorage("baby-growth-entries", arr.filter((r) => "grow-" + r.id !== item.id));
+    const userId = localStorage.getItem("pregnancy_user_id");
+    const filter = (key: string, predicate: (r: any) => boolean) => {
+      const arr = safeParseLocalStorage<any[]>(key, [], (d): d is any[] => Array.isArray(d));
+      safeSaveToLocalStorage(key, arr.filter((r) => !predicate(r)));
+    };
+    switch (item.source) {
+      case "saved": filter("ai-saved-results", (r) => r.id === item.id); break;
+      case "weekly": filter("weekly-summary-data", (r) => "weekly-" + r.generatedAt === item.id); break;
+      case "birthPlan": filter("birthPlans", (r) => "plan-" + r.id === item.id); break;
+      case "wellness": filter("wellness-diary-entries", (r) => "wellness-" + r.id === item.id); break;
+      case "babyGrowth": filter("baby-growth-entries", (r) => "grow-" + r.id === item.id); break;
+      case "kicks": if (userId) filter(`kick_sessions_${userId}`, (r) => "kick-" + r.id === item.id); break;
+      case "vitamins": if (userId) filter(`vitamin_logs_${userId}`, (r) => "vit-" + r.id === item.id); break;
+      case "weight": filter("weight_gain_entries", (r) => "w-" + r.id === item.id); break;
+      case "diaper": filter("diaperEntries", (r) => "dp-" + r.id === item.id); break;
+      case "symptoms": filter("quick_symptom_logs", (r) => "sym-" + r.id === item.id); break;
+      case "contractions": filter("contraction_timer_data", (r) => "ctn-" + r.id === item.id); break;
     }
   } catch {}
 }
@@ -179,14 +278,15 @@ export function ResultsArchiveCalendar() {
   const { t, i18n } = useTranslation();
   const isRtl = i18n.language === "ar";
   const [expanded, setExpanded] = useState(false);
-  const [monthOffset, setMonthOffset] = useState(0); // 0 = current month
+  const [monthOffset, setMonthOffset] = useState(0);
   const [openId, setOpenId] = useState<string | null>(null);
-  const [tick, setTick] = useState(0); // force refresh after deletion
+  const [filter, setFilter] = useState<Source | "all">("all");
+  const [activeDay, setActiveDay] = useState<number | null>(null);
+  const [tick, setTick] = useState(0);
 
   const tHelper = (k: string, d?: string) => t(k, d ?? k) as string;
   const all = useMemo(() => collectAllResults(tHelper), [t, tick]);
 
-  // Group by year-month key
   const monthGroups = useMemo(() => {
     const map = new Map<string, ArchivedResult[]>();
     all.forEach((r) => {
@@ -198,8 +298,10 @@ export function ResultsArchiveCalendar() {
     return map;
   }, [all]);
 
-  // Build month list (descending) — only months that have results
-  const availableMonths = useMemo(() => Array.from(monthGroups.keys()).sort((a, b) => b.localeCompare(a)), [monthGroups]);
+  const availableMonths = useMemo(
+    () => Array.from(monthGroups.keys()).sort((a, b) => b.localeCompare(a)),
+    [monthGroups]
+  );
 
   if (availableMonths.length === 0) return null;
 
@@ -208,13 +310,38 @@ export function ResultsArchiveCalendar() {
   const [year, month] = activeMonthKey.split("-").map(Number);
   const activeDate = new Date(year, month, 1);
   const monthLabel = formatLocalized(activeDate, "MMMM yyyy", i18n.language);
-  const monthResults = monthGroups.get(activeMonthKey) || [];
+  const allMonthResults = monthGroups.get(activeMonthKey) || [];
+
+  // Filter & day-filter
+  const filteredResults = allMonthResults
+    .filter((r) => filter === "all" || r.source === filter)
+    .filter((r) => activeDay === null || new Date(r.date).getDate() === activeDay);
+
+  // Build day grid for the month
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const firstDayOfWeek = new Date(year, month, 1).getDay(); // 0=Sun
+  const dayActivity = new Map<number, number>();
+  allMonthResults.forEach((r) => {
+    const d = new Date(r.date).getDate();
+    dayActivity.set(d, (dayActivity.get(d) || 0) + 1);
+  });
+
+  // Per-source counts (for filter chips)
+  const sourceCounts = new Map<Source, number>();
+  allMonthResults.forEach((r) => sourceCounts.set(r.source, (sourceCounts.get(r.source) || 0) + 1));
+  const activeSources = Array.from(sourceCounts.keys());
 
   const PrevIcon = isRtl ? ChevronRight : ChevronLeft;
   const NextIcon = isRtl ? ChevronLeft : ChevronRight;
+  const today = new Date();
+  const isCurrentMonth = today.getFullYear() === year && today.getMonth() === month;
+
+  const weekdayLabels = isRtl
+    ? ["أحد", "إثن", "ثلا", "أرب", "خمي", "جمع", "سبت"]
+    : ["S", "M", "T", "W", "T", "F", "S"];
 
   return (
-    <Card className="overflow-hidden border-primary/15 bg-gradient-to-br from-card via-card to-primary/[0.03]">
+    <Card className="overflow-hidden border-primary/20 bg-gradient-to-br from-card via-card to-primary/[0.04] shadow-sm">
       <CardContent className="p-4">
         <button
           onClick={() => setExpanded((v) => !v)}
@@ -222,12 +349,13 @@ export function ResultsArchiveCalendar() {
           aria-expanded={expanded}
         >
           <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center">
-              <CalendarDays className="w-4.5 h-4.5 text-primary" />
+            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center shadow-inner">
+              <CalendarDays className="w-5 h-5 text-primary" />
             </div>
             <div className="text-start">
-              <h3 className="text-sm font-bold text-foreground">
+              <h3 className="text-sm font-bold text-foreground flex items-center gap-1.5">
                 {t("dashboard.archive.title", "أرشيف نتائجي")}
+                <Badge variant="secondary" className="text-[9px] px-1.5 py-0 h-4">{all.length}</Badge>
               </h3>
               <p className="text-[10px] text-muted-foreground">
                 {t("dashboard.archive.subtitle", "{{count}} نتيجة عبر {{months}} شهراً", {
@@ -253,28 +381,24 @@ export function ResultsArchiveCalendar() {
               className="overflow-hidden"
             >
               {/* Month selector */}
-              <div className="mt-4 flex items-center justify-between bg-muted/40 rounded-xl p-2">
+              <div className="mt-4 flex items-center justify-between bg-gradient-to-r from-primary/5 via-primary/[0.08] to-primary/5 rounded-2xl p-2.5">
                 <Button
-                  variant="ghost"
-                  size="sm"
-                  className="h-8 w-8 p-0"
-                  onClick={() => setMonthOffset((o) => Math.min(availableMonths.length - 1, o + 1))}
+                  variant="ghost" size="sm" className="h-8 w-8 p-0 rounded-xl"
+                  onClick={() => { setMonthOffset((o) => Math.min(availableMonths.length - 1, o + 1)); setActiveDay(null); }}
                   disabled={safeOffset >= availableMonths.length - 1}
                   aria-label={t("dashboard.archive.prev", "Previous month")}
                 >
                   <PrevIcon className="w-4 h-4" />
                 </Button>
                 <div className="text-center">
-                  <p className="text-sm font-bold text-foreground">{monthLabel}</p>
+                  <p className="text-sm font-extrabold text-foreground tracking-tight">{monthLabel}</p>
                   <p className="text-[10px] text-muted-foreground">
-                    {t("dashboard.archive.entriesCount", "{{count}} نتيجة", { count: monthResults.length })}
+                    {t("dashboard.archive.entriesCount", "{{count}} نتيجة", { count: allMonthResults.length })}
                   </p>
                 </div>
                 <Button
-                  variant="ghost"
-                  size="sm"
-                  className="h-8 w-8 p-0"
-                  onClick={() => setMonthOffset((o) => Math.max(0, o - 1))}
+                  variant="ghost" size="sm" className="h-8 w-8 p-0 rounded-xl"
+                  onClick={() => { setMonthOffset((o) => Math.max(0, o - 1)); setActiveDay(null); }}
                   disabled={safeOffset <= 0}
                   aria-label={t("dashboard.archive.next", "Next month")}
                 >
@@ -282,75 +406,154 @@ export function ResultsArchiveCalendar() {
                 </Button>
               </div>
 
+              {/* Day grid heatmap */}
+              <div className="mt-3 p-2 rounded-2xl bg-muted/30">
+                <div className="grid grid-cols-7 gap-1 mb-1">
+                  {weekdayLabels.map((d, i) => (
+                    <div key={i} className="text-center text-[9px] font-semibold text-muted-foreground">{d}</div>
+                  ))}
+                </div>
+                <div className="grid grid-cols-7 gap-1">
+                  {Array.from({ length: firstDayOfWeek }).map((_, i) => (
+                    <div key={"pad-" + i} className="aspect-square" />
+                  ))}
+                  {Array.from({ length: daysInMonth }).map((_, i) => {
+                    const day = i + 1;
+                    const count = dayActivity.get(day) || 0;
+                    const isToday = isCurrentMonth && today.getDate() === day;
+                    const selected = activeDay === day;
+                    const intensity = count === 0 ? "bg-background/40 text-muted-foreground/40"
+                      : count === 1 ? "bg-primary/20 text-primary"
+                      : count < 4 ? "bg-primary/40 text-primary-foreground"
+                      : "bg-primary text-primary-foreground";
+                    return (
+                      <button
+                        key={day}
+                        onClick={() => setActiveDay(selected ? null : count > 0 ? day : null)}
+                        disabled={count === 0}
+                        className={`aspect-square rounded-lg text-[10px] font-bold flex items-center justify-center transition-all ${intensity} ${
+                          selected ? "ring-2 ring-primary ring-offset-1 ring-offset-background scale-110" : ""
+                        } ${isToday ? "outline outline-1 outline-primary/60" : ""} ${count > 0 ? "hover:scale-110 cursor-pointer" : "cursor-default"}`}
+                        aria-label={`${day} — ${count} entries`}
+                      >
+                        {day}
+                      </button>
+                    );
+                  })}
+                </div>
+                {activeDay && (
+                  <button
+                    onClick={() => setActiveDay(null)}
+                    className="mt-2 text-[10px] text-primary font-semibold hover:underline w-full text-center"
+                  >
+                    × {t("dashboard.archive.clearDay", "إظهار كل أيام الشهر")}
+                  </button>
+                )}
+              </div>
+
+              {/* Source filter chips */}
+              {activeSources.length > 1 && (
+                <div className="mt-3 flex items-center gap-1.5 overflow-x-auto pb-1 -mx-1 px-1 scrollbar-thin">
+                  <Filter className="w-3 h-3 text-muted-foreground shrink-0" />
+                  <button
+                    onClick={() => setFilter("all")}
+                    className={`shrink-0 px-2 py-1 rounded-full text-[10px] font-semibold transition-colors ${
+                      filter === "all" ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground hover:bg-muted/80"
+                    }`}
+                  >
+                    {t("dashboard.archive.all", "الكل")} ({allMonthResults.length})
+                  </button>
+                  {activeSources.map((s) => {
+                    const meta = SOURCE_META[s];
+                    const Icon = meta.icon;
+                    const active = filter === s;
+                    return (
+                      <button
+                        key={s}
+                        onClick={() => setFilter(active ? "all" : s)}
+                        className={`shrink-0 px-2 py-1 rounded-full text-[10px] font-semibold transition-colors flex items-center gap-1 ${
+                          active ? "bg-primary text-primary-foreground" : `${meta.tone} ${meta.color} hover:opacity-80`
+                        }`}
+                      >
+                        <Icon className="w-2.5 h-2.5" />
+                        {sourceLabel(s, tHelper)} ({sourceCounts.get(s)})
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+
               {/* Results list */}
-              <div className="mt-3 space-y-2 max-h-[420px] overflow-y-auto">
-                {monthResults.length === 0 ? (
-                  <p className="text-xs text-muted-foreground text-center py-6">
-                    {t("dashboard.archive.empty", "لا توجد نتائج هذا الشهر")}
+              <div className="mt-3 space-y-2 max-h-[420px] overflow-y-auto pr-1">
+                {filteredResults.length === 0 ? (
+                  <p className="text-xs text-muted-foreground text-center py-8">
+                    {activeDay
+                      ? t("dashboard.archive.emptyDay", "لا توجد نتائج في هذا اليوم")
+                      : t("dashboard.archive.empty", "لا توجد نتائج هذا الشهر")}
                   </p>
                 ) : (
-                  monthResults.map((r) => (
-                    <div key={r.id} className="rounded-xl bg-muted/30 border border-border/30 overflow-hidden">
-                      <div className="flex items-start gap-2 p-2.5">
-                        <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                          <FileText className="w-4 h-4 text-primary" />
+                  filteredResults.map((r) => {
+                    const meta = SOURCE_META[r.source];
+                    const Icon = meta.icon;
+                    return (
+                      <div key={r.id} className="rounded-xl bg-muted/30 border border-border/30 overflow-hidden hover:border-primary/30 transition-colors">
+                        <div className="flex items-start gap-2 p-2.5">
+                          <div className={`w-8 h-8 rounded-lg ${meta.tone} flex items-center justify-center shrink-0`}>
+                            <Icon className={`w-4 h-4 ${meta.color}`} />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-xs font-semibold text-foreground truncate">{r.toolName}</p>
+                            <p className="text-[10px] text-muted-foreground">
+                              {formatLocalized(r.date, "d MMM • HH:mm", i18n.language)}
+                            </p>
+                            <p className="text-[10px] text-muted-foreground/80 line-clamp-2 mt-0.5">{r.preview}</p>
+                          </div>
+                          <div className="flex flex-col gap-1 shrink-0">
+                            <Button
+                              size="sm" variant="ghost" className="h-6 text-[10px] px-2"
+                              onClick={() => setOpenId(openId === r.id ? null : r.id)}
+                            >
+                              {openId === r.id
+                                ? t("dashboard.archive.hide", "إخفاء")
+                                : t("dashboard.archive.view", "عرض")}
+                            </Button>
+                            <Button
+                              size="sm" variant="ghost" className="h-6 px-2"
+                              onClick={() => {
+                                deleteResult(r);
+                                setTick((n) => n + 1);
+                                if (openId === r.id) setOpenId(null);
+                              }}
+                              aria-label={t("dashboard.archive.delete", "Delete")}
+                            >
+                              <Trash2 className="w-3 h-3 text-destructive" />
+                            </Button>
+                          </div>
                         </div>
-                        <div className="flex-1 min-w-0">
-                          <p className="text-xs font-semibold text-foreground truncate">{r.toolName}</p>
-                          <p className="text-[10px] text-muted-foreground">
-                            {formatLocalized(r.date, "d MMM yyyy", i18n.language)}
-                          </p>
-                          <p className="text-[10px] text-muted-foreground/80 line-clamp-2 mt-0.5">{r.preview}</p>
-                        </div>
-                        <div className="flex flex-col gap-1 shrink-0">
-                          <Button
-                            size="sm"
-                            variant="ghost"
-                            className="h-6 text-[10px] px-2"
-                            onClick={() => setOpenId(openId === r.id ? null : r.id)}
-                          >
-                            {openId === r.id
-                              ? t("dashboard.archive.hide", "إخفاء")
-                              : t("dashboard.archive.view", "عرض")}
-                          </Button>
-                          <Button
-                            size="sm"
-                            variant="ghost"
-                            className="h-6 px-2"
-                            onClick={() => {
-                              deleteResult(r);
-                              setTick((n) => n + 1);
-                              if (openId === r.id) setOpenId(null);
-                            }}
-                            aria-label={t("dashboard.archive.delete", "Delete")}
-                          >
-                            <Trash2 className="w-3 h-3 text-destructive" />
-                          </Button>
-                        </div>
-                      </div>
 
-                      <AnimatePresence>
-                        {openId === r.id && (
-                          <motion.div
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: "auto" }}
-                            exit={{ opacity: 0, height: 0 }}
-                            className="overflow-hidden"
-                          >
-                            <div className="px-3 pb-3 pt-1 max-h-[260px] overflow-y-auto border-t border-border/30 bg-background/60">
-                              <MarkdownRenderer content={r.content} />
-                              <Link
-                                to={r.href}
-                                className="block text-center text-[11px] text-primary font-semibold mt-2 hover:underline"
-                              >
-                                {t("dashboard.archive.openTool", "فتح الأداة")} →
-                              </Link>
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  ))
+                        <AnimatePresence>
+                          {openId === r.id && (
+                            <motion.div
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: "auto" }}
+                              exit={{ opacity: 0, height: 0 }}
+                              className="overflow-hidden"
+                            >
+                              <div className="px-3 pb-3 pt-1 max-h-[260px] overflow-y-auto border-t border-border/30 bg-background/60">
+                                <MarkdownRenderer content={r.content} />
+                                <Link
+                                  to={r.href}
+                                  className="block text-center text-[11px] text-primary font-semibold mt-2 hover:underline"
+                                >
+                                  {t("dashboard.archive.openTool", "فتح الأداة")} →
+                                </Link>
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    );
+                  })
                 )}
               </div>
             </motion.div>
