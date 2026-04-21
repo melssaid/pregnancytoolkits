@@ -108,6 +108,10 @@ const sourceLabel = (s: Source, t: (k: string, d?: string) => string): string =>
     diaper: ["dashboard.archive.src.diaper", "حفاضات"],
     symptoms: ["dashboard.archive.src.symptoms", "أعراض"],
     groceries: ["dashboard.archive.src.groceries", "قائمة تسوق"],
+    appointments: ["dashboard.archive.src.appointments", "مواعيد"],
+    dueDates: ["dashboard.archive.src.dueDates", "موعد الولادة"],
+    hospitalBag: ["dashboard.archive.src.hospitalBag", "حقيبة المستشفى"],
+    backPain: ["dashboard.archive.src.backPain", "تمارين الظهر"],
   };
   const [k, d] = map[s];
   return t(k, d);
