@@ -359,8 +359,8 @@
       "description": "Plan baby expenses smartly."
     },
     "aiBumpPhotos": {
-      "title": "Bump Photo Album",
-      "description": "Save and view your bump photos with optional AI educational notes."
+      "title": "Smart Ultrasound Analysis",
+      "description": "Upload your ultrasound scans and get educational AI insights about your baby's development."
     },
     "aiFitnessCoach": {
       "title": "Pregnancy Fitness Coach",
@@ -2514,8 +2514,8 @@
       }
     },
     "bumpPhotos": {
-      "title": "My Bump Gallery",
-      "subtitle": "Save & explore your bump photos with educational insights",
+      "title": "Smart Ultrasound Analysis",
+      "subtitle": "Upload your ultrasound scans and get smart educational insights",
       "currentWeek": "Current Week",
       "takePhoto": "Take Photo",
       "uploadPhoto": "Upload Photo",

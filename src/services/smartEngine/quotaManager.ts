@@ -1,10 +1,11 @@
 /**
  * Unified Quota Manager
  * Tracks monthly AI usage with weighted costs.
- * Local-first with server sync capability.
- * 
- * FREE: 5 attempts/month | PREMIUM: 60 attempts/month
- * Weights: standard=1, bump photo=2, lightweight=0.5
+ * Local-first with server sync capability via check-quota.
+ *
+ * FREE: 10 points/month | PREMIUM: 60 points/month
+ * Coupon bonuses ACCUMULATE on top of base limit (server is source of truth).
+ * Weights: standard=1, heavy/photo=2, lightweight=0.5, free=0
  */
 
 import { QUOTA_TIERS, type InsightWeight, type QuotaState } from "./types";
