@@ -10,11 +10,11 @@ beforeEach(() => {
 });
 
 describe('quotaManager', () => {
-  it('defaults to free tier with 5 limit', () => {
+  it('defaults to free tier with 10 limit', () => {
     const state = getQuotaState();
     expect(state.tier).toBe('free');
-    expect(state.limit).toBe(5);
-    expect(state.remaining).toBe(5);
+    expect(state.limit).toBe(10);
+    expect(state.remaining).toBe(10);
     expect(state.used).toBe(0);
     expect(state.isExhausted).toBe(false);
   });
@@ -23,18 +23,18 @@ describe('quotaManager', () => {
     consumeQuota(1);
     const state = getQuotaState();
     expect(state.used).toBe(1);
-    expect(state.remaining).toBe(4);
+    expect(state.remaining).toBe(9);
   });
 
   it('consumes quota with weight 2 (bump-photos)', () => {
     consumeQuota(2);
     const state = getQuotaState();
     expect(state.used).toBe(2);
-    expect(state.remaining).toBe(3);
+    expect(state.remaining).toBe(8);
   });
 
-  it('exhausts free quota at 5', () => {
-    for (let i = 0; i < 5; i++) consumeQuota(1);
+  it('exhausts free quota at 10', () => {
+    for (let i = 0; i < 10; i++) consumeQuota(1);
     const state = getQuotaState();
     expect(state.isExhausted).toBe(true);
     expect(state.remaining).toBe(0);
@@ -42,7 +42,7 @@ describe('quotaManager', () => {
   });
 
   it('free user cannot afford weight-2 when only 1 remaining', () => {
-    for (let i = 0; i < 4; i++) consumeQuota(1);
+    for (let i = 0; i < 9; i++) consumeQuota(1);
     expect(canAfford(1)).toBe(true);
     expect(canAfford(2)).toBe(false);
   });
@@ -64,7 +64,7 @@ describe('quotaManager', () => {
   });
 
   it('isNearLimit triggers when remaining <= 2', () => {
-    for (let i = 0; i < 3; i++) consumeQuota(1);
+    for (let i = 0; i < 8; i++) consumeQuota(1);
     const state = getQuotaState();
     expect(state.isNearLimit).toBe(true);
     expect(state.remaining).toBe(2);
@@ -88,27 +88,28 @@ describe('quotaManager', () => {
     }));
     const state = getQuotaState();
     expect(state.used).toBe(0);
-    expect(state.remaining).toBe(5);
+    expect(state.remaining).toBe(10);
   });
 
   it('does not double-deduct on sequential calls', () => {
     consumeQuota(1);
     consumeQuota(1);
     const state = getQuotaState();
-    expect(state.used).toBe(2); // exactly 2, not more
+    expect(state.used).toBe(2);
   });
 
   it('syncs coupon-backed server limit into local quota state', () => {
-    syncFromServer(3, 'premium', 20);
+    // Server returns: tier=premium, limit=120 (60 base + 60 coupon)
+    syncFromServer(3, 'premium', 120);
     const state = getQuotaState();
     expect(state.used).toBe(3);
     expect(state.tier).toBe('premium');
-    expect(state.limit).toBe(20);
-    expect(state.remaining).toBe(17);
+    expect(state.limit).toBe(120);
+    expect(state.remaining).toBe(117);
   });
 
   it('removes coupon override when server returns default premium limit', () => {
-    syncFromServer(1, 'premium', 20);
+    syncFromServer(1, 'premium', 120);
     syncFromServer(2, 'premium', 60);
     const state = getQuotaState();
     expect(state.limit).toBe(60);
@@ -116,11 +117,10 @@ describe('quotaManager', () => {
   });
 
   it('weight-2 tool exhausts free quota faster', () => {
-    consumeQuota(2); // 2 used
-    consumeQuota(2); // 4 used
-    expect(canAfford(2)).toBe(false); // only 1 remaining
-    expect(canAfford(1)).toBe(true);
-    consumeQuota(1); // 5 used
+    for (let i = 0; i < 4; i++) consumeQuota(2); // 8 used
+    expect(canAfford(2)).toBe(true); // 2 remaining → can still afford weight 2
+    consumeQuota(2); // 10 used
+    expect(canAfford(1)).toBe(false);
     expect(getQuotaState().isExhausted).toBe(true);
   });
 });
