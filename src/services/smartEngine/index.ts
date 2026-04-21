@@ -33,6 +33,8 @@ export {
   setTier,
   applyCouponTier,
   syncCouponBonuses,
+  recordServerSnapshot,
+  getDriftLog,
   canClaimBonus,
   claimBonus,
   isPromoActive,

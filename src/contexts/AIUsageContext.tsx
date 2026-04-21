@@ -12,6 +12,7 @@ import {
   setTier as qmSetTier,
   applyCouponTier,
   syncCouponBonuses,
+  recordServerSnapshot,
   type QuotaState,
 } from '@/services/smartEngine';
 import { getCouponRequestHeaders } from '@/lib/couponRequestHeaders';
@@ -59,6 +60,9 @@ async function fetchServerQuota(currentTier: 'free' | 'premium' = 'free'): Promi
   limit: number;
   tier: 'free' | 'premium';
   activeCoupons: Array<{ couponId: string; code: string; durationType: string; expiresAt: string; bonusPoints: number }>;
+  baseLimit: number;
+  couponBonus: number;
+  periodStart: string;
 } | null> {
   try {
     const { supabase } = await import('@/integrations/supabase/client');
@@ -90,6 +94,9 @@ async function fetchServerQuota(currentTier: 'free' | 'premium' = 'free'): Promi
       limit: data.limit ?? 10,
       tier: data.tier ?? currentTier,
       activeCoupons: Array.isArray(data.active_coupons) ? data.active_coupons : [],
+      baseLimit: data.base_limit ?? 10,
+      couponBonus: data.coupon_bonus ?? 0,
+      periodStart: data.period_start ?? new Date().toISOString(),
     };
   } catch {
     return null;
@@ -162,7 +169,7 @@ export function AIUsageProvider({ children }: { children: ReactNode }) {
         // Sync server-known active coupons into local quota + active_coupon cache
         if (server.activeCoupons.length > 0) {
           // Idempotent: pair coupon set with server response version (period_start)
-          syncCouponBonuses(server.activeCoupons, (server as any).period_start || (server as any).periodStart);
+          syncCouponBonuses(server.activeCoupons, server.periodStart);
           // Cache the longest-lasting coupon for useActiveCoupon hook
           const sorted = [...server.activeCoupons].sort(
             (a, b) => new Date(b.expiresAt).getTime() - new Date(a.expiresAt).getTime()
@@ -175,6 +182,17 @@ export function AIUsageProvider({ children }: { children: ReactNode }) {
         const effectiveTier = dbTier === 'premium' ? 'premium' : server.tier;
         const effectiveLimit = dbTier === 'premium' ? Math.max(server.limit, 60) : server.limit;
         qmSyncFromServer(server.used, effectiveTier, effectiveLimit);
+
+        // ✅ Authoritative snapshot: getQuotaState now reads from this until TTL expires.
+        // Drift between local computation and server is auto-logged via console + localStorage.
+        recordServerSnapshot({
+          used: server.used,
+          limit: effectiveLimit,
+          tier: effectiveTier,
+          baseLimit: server.baseLimit,
+          couponBonus: server.couponBonus,
+          periodStart: server.periodStart,
+        });
       }
 
       refresh();
