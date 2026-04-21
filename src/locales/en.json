@@ -720,7 +720,40 @@
       "prev": "Previous month",
       "next": "Next month",
       "openTool": "Open tool",
-      "savedResult": "Saved result"
+      "savedResult": "Saved result",
+      "kicks": "kicks",
+      "duration": "Duration",
+      "clearDay": "Show all days",
+      "emptyDay": "No entries on this day",
+      "all": "All",
+      "src": {
+        "saved": "AI Saves",
+        "weekly": "Weekly Summary",
+        "birthPlan": "Birth Plan",
+        "wellness": "Wellness Diary",
+        "babyGrowth": "Baby Growth",
+        "kicks": "Kicks",
+        "contractions": "Contractions",
+        "weight": "Weight",
+        "vitamins": "Vitamins",
+        "diaper": "Diaper",
+        "symptoms": "Symptoms",
+        "groceries": "Grocery"
+      }
+    },
+    "myTools": {
+      "title": "My Tools",
+      "subtitle": "Tap to track your data",
+      "archiveHint": "All data is saved daily to My Archive below",
+      "kicks": "Fetal Kicks",
+      "contractions": "Contractions",
+      "weight": "Weight",
+      "vitamins": "Vitamins",
+      "diaper": "Baby Diaper",
+      "symptoms": "Wellness Diary",
+      "grocery": "Grocery List",
+      "hospitalBag": "Hospital Bag",
+      "birthPlan": "Birth Plan"
     }
   },
   "layout": {

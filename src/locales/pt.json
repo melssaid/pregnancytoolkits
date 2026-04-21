@@ -665,7 +665,40 @@
       "prev": "Mês anterior",
       "next": "Próximo mês",
       "openTool": "Abrir ferramenta",
-      "savedResult": "Resultado salvo"
+      "savedResult": "Resultado salvo",
+      "kicks": "chutes",
+      "duration": "Duracao",
+      "clearDay": "Mostrar todos os dias",
+      "emptyDay": "Sem entradas neste dia",
+      "all": "Tudo",
+      "src": {
+        "saved": "Salvos IA",
+        "weekly": "Resumo semanal",
+        "birthPlan": "Plano de parto",
+        "wellness": "Diario bem-estar",
+        "babyGrowth": "Crescimento bebe",
+        "kicks": "Chutes",
+        "contractions": "Contracoes",
+        "weight": "Peso",
+        "vitamins": "Vitaminas",
+        "diaper": "Fralda",
+        "symptoms": "Sintomas",
+        "groceries": "Compras"
+      }
+    },
+    "myTools": {
+      "title": "Minhas ferramentas",
+      "subtitle": "Toque para acompanhar seus dados",
+      "archiveHint": "Todos os dados sao salvos diariamente em Meu arquivo abaixo",
+      "kicks": "Chutes do bebe",
+      "contractions": "Contracoes",
+      "weight": "Peso",
+      "vitamins": "Vitaminas",
+      "diaper": "Fralda do bebe",
+      "symptoms": "Diario de bem-estar",
+      "grocery": "Lista de compras",
+      "hospitalBag": "Mala maternidade",
+      "birthPlan": "Plano de parto"
     }
   },
   "layout": {

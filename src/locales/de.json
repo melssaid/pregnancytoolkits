@@ -665,7 +665,40 @@
       "prev": "Vorheriger Monat",
       "next": "Nächster Monat",
       "openTool": "Tool öffnen",
-      "savedResult": "Gespeichertes Ergebnis"
+      "savedResult": "Gespeichertes Ergebnis",
+      "kicks": "Tritte",
+      "duration": "Dauer",
+      "clearDay": "Alle Tage anzeigen",
+      "emptyDay": "Keine Eintraege an diesem Tag",
+      "all": "Alle",
+      "src": {
+        "saved": "KI-Speicher",
+        "weekly": "Wochenuebersicht",
+        "birthPlan": "Geburtsplan",
+        "wellness": "Wohlfuehl-Tagebuch",
+        "babyGrowth": "Babywachstum",
+        "kicks": "Tritte",
+        "contractions": "Wehen",
+        "weight": "Gewicht",
+        "vitamins": "Vitamine",
+        "diaper": "Windel",
+        "symptoms": "Symptome",
+        "groceries": "Einkauf"
+      }
+    },
+    "myTools": {
+      "title": "Meine Tools",
+      "subtitle": "Tippen, um deine Daten zu verfolgen",
+      "archiveHint": "Alle Daten werden taeglich im Mein Archiv unten gespeichert",
+      "kicks": "Babytritte",
+      "contractions": "Wehen",
+      "weight": "Gewicht",
+      "vitamins": "Vitamine",
+      "diaper": "Babywindel",
+      "symptoms": "Wohlfuehl-Tagebuch",
+      "grocery": "Einkaufsliste",
+      "hospitalBag": "Klinik-Tasche",
+      "birthPlan": "Geburtsplan"
     }
   },
   "layout": {
