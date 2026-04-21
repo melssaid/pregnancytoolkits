@@ -163,12 +163,13 @@ function collectAllResults(t: (k: string, d?: string) => string): ArchivedResult
 
   // 1) Unified saved
   safe("ai-saved-results").forEach((r) => {
+    const toolId = r.toolId || "saved";
     out.push({
-      id: r.id, toolId: r.toolId || "saved",
+      id: r.id, toolId,
       toolName: r.title || sourceLabel("saved", t),
       date: r.savedAt,
       preview: (r.content || "").replace(/[#*_\n]/g, " ").slice(0, 120),
-      content: r.content || "", href: hrefFor.saved, source: "saved",
+      content: r.content || "", href: resolveSavedHref(r.toolId), source: "saved",
     });
   });
 
