@@ -183,7 +183,8 @@ export function ResultsArchiveCalendar() {
   const [openId, setOpenId] = useState<string | null>(null);
   const [tick, setTick] = useState(0); // force refresh after deletion
 
-  const all = useMemo(() => collectAllResults(t), [t, tick]);
+  const tHelper = (k: string, d?: string) => t(k, d ?? k) as string;
+  const all = useMemo(() => collectAllResults(tHelper), [t, tick]);
 
   // Group by year-month key
   const monthGroups = useMemo(() => {
