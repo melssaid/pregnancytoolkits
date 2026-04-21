@@ -158,17 +158,51 @@ export function getQuotaState(): QuotaState {
   const tierConfig = QUOTA_TIERS[stored.tier] || QUOTA_TIERS.free;
   const couponPoints = calculateCouponBonus(stored);
   const promoBonus = stored.promoBonusCredits || 0;
-  // ✅ نقاط القسيمة + الترويج تُضاف فوق حد الباقة الافتراضية (تراكمية)
-  const limit = bypass ? 999 : tierConfig.monthly + couponPoints + promoBonus;
-  const remaining = Math.max(0, limit - stored.used);
+
+  // Local-computed values (kept for fallback + drift detection)
+  const localLimit = bypass ? 999 : tierConfig.monthly + couponPoints + promoBonus;
+  const localUsed = stored.used;
+  const localTier = stored.tier;
+
+  // ── Prefer authoritative server snapshot when available & fresh ──
+  const snap = bypass ? null : readServerSnapshot();
+
+  let used = localUsed;
+  let limit = localLimit;
+  let tier = localTier;
+
+  if (snap) {
+    // Server is the source of truth — adopt its values
+    used = snap.used;
+    limit = snap.limit;
+    tier = snap.tier;
+
+    // Log any drift between local computation and server truth
+    const drifts: DriftEntry[] = [];
+    if (snap.limit !== localLimit) {
+      drifts.push({ at: Date.now(), field: "limit", server: snap.limit, client: localLimit, delta: snap.limit - localLimit });
+    }
+    if (snap.used !== localUsed) {
+      drifts.push({ at: Date.now(), field: "used", server: snap.used, client: localUsed, delta: snap.used - localUsed });
+    }
+    if (snap.tier !== localTier) {
+      drifts.push({ at: Date.now(), field: "tier", server: snap.tier, client: localTier });
+    }
+    if (snap.couponBonus !== couponPoints) {
+      drifts.push({ at: Date.now(), field: "couponBonus", server: snap.couponBonus, client: couponPoints, delta: snap.couponBonus - couponPoints });
+    }
+    if (drifts.length > 0) logDrift(drifts);
+  }
+
+  const remaining = Math.max(0, limit - used);
 
   return {
-    used: stored.used,
+    used,
     limit,
     remaining,
-    tier: stored.tier,
+    tier,
     monthKey: stored.monthKey,
-    isExhausted: stored.used >= limit && !bypass,
+    isExhausted: used >= limit && !bypass,
     isNearLimit: remaining <= 2 && remaining > 0 && !bypass,
     adminBypass: bypass,
   };
