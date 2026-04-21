@@ -161,49 +161,49 @@ function jsonError(msg: string, status: number): Response {
   });
 }
 
-// ── Perplexity: fetch latest medical research ──
+// ── Gemini: synthesize research-style evidence-based summary ──
+// Replaced Perplexity (sonar) with Lovable AI Gateway (Gemini) — unified provider, single key, no external dependency.
 async function fetchResearch(week: number, conditions: string[], lang: string): Promise<string> {
-  const PERPLEXITY_API_KEY = Deno.env.get("PERPLEXITY_API_KEY");
-  if (!PERPLEXITY_API_KEY) {
-    console.warn("[Enhanced] PERPLEXITY_API_KEY not configured, skipping research");
+  const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
+  if (!LOVABLE_API_KEY) {
+    console.warn("[Enhanced] LOVABLE_API_KEY not configured, skipping research");
     return "";
   }
 
   const conditionsQuery = conditions.length > 0 ? ` with ${conditions.slice(0, 5).join(", ")}` : "";
-  const query = `Latest evidence-based medical guidelines and research for pregnancy week ${week}${conditionsQuery}. Include: recommended tests, nutrition, exercise safety, warning signs, and new studies from 2025-2026. Focus on peer-reviewed sources.`;
+  const query = `Provide an evidence-based summary of current medical guidelines and well-established research for pregnancy week ${week}${conditionsQuery}. Cover: recommended screenings, nutrition (folate, iron, omega-3), exercise safety, common warning signs, and sleep/mental wellness. Cite organisations such as ACOG, WHO, NICE where relevant. Keep response under 700 words. Do NOT invent statistics or fake citations.`;
 
   try {
-    const response = await fetch("https://api.perplexity.ai/chat/completions", {
+    const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${PERPLEXITY_API_KEY}`,
+        Authorization: `Bearer ${LOVABLE_API_KEY}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "sonar",
+        // Pro model for higher factual accuracy on the research synthesis pass.
+        model: "google/gemini-2.5-pro",
         messages: [
-          { role: "system", content: "You are a medical research assistant. Provide concise, evidence-based summaries of the latest pregnancy research. Include citations where possible. Keep response under 800 words." },
+          { role: "system", content: "You are a careful evidence-synthesis assistant for prenatal wellness. Summarize well-established clinical guidelines (ACOG, WHO, NICE, RCOG) without inventing data, statistics, or citations. Prefer cautious, neutral wording." },
           { role: "user", content: query },
         ],
-        search_recency_filter: "year",
-        temperature: 0.1,
+        temperature: 0.2,
+        max_tokens: 1200,
       }),
     });
 
     if (!response.ok) {
       const errText = await response.text();
-      console.error(`[Enhanced] Perplexity error ${response.status}:`, errText.substring(0, 200));
+      console.error(`[Enhanced] Gemini research error ${response.status}:`, errText.substring(0, 200));
       return "";
     }
 
     const data = await response.json();
     const content = data.choices?.[0]?.message?.content || "";
-    const citations = data.citations?.map((c: string, i: number) => `[${i + 1}] ${c}`).join("\n") || "";
-
-    console.log(`[Enhanced] Perplexity returned ${content.length} chars, ${data.citations?.length || 0} citations`);
-    return citations ? `${content}\n\nSources:\n${citations}` : content;
+    console.log(`[Enhanced] Gemini research returned ${content.length} chars`);
+    return content;
   } catch (e) {
-    console.error("[Enhanced] Perplexity fetch failed:", String(e).substring(0, 200));
+    console.error("[Enhanced] Gemini research fetch failed:", String(e).substring(0, 200));
     return "";
   }
 }
