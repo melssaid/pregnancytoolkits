@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { getQuotaState, canAfford, consumeQuota, setTier, clearAdminBypass, syncFromServer } from '../quotaManager';
+import { getQuotaState, canAfford, consumeQuota, setTier, clearAdminBypass, syncFromServer, syncCouponBonuses, applyCouponTier } from '../quotaManager';
 import { resolveWeight, TOOL_WEIGHT_REGISTRY } from '../types';
 
 const STORAGE_KEY = 'smart_quota_v2';
