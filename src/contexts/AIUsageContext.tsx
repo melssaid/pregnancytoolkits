@@ -12,6 +12,7 @@ import {
   setTier as qmSetTier,
   applyCouponTier,
   syncCouponBonuses,
+  recordServerSnapshot,
   type QuotaState,
 } from '@/services/smartEngine';
 import { getCouponRequestHeaders } from '@/lib/couponRequestHeaders';
