@@ -60,6 +60,9 @@ async function fetchServerQuota(currentTier: 'free' | 'premium' = 'free'): Promi
   limit: number;
   tier: 'free' | 'premium';
   activeCoupons: Array<{ couponId: string; code: string; durationType: string; expiresAt: string; bonusPoints: number }>;
+  baseLimit: number;
+  couponBonus: number;
+  periodStart: string;
 } | null> {
   try {
     const { supabase } = await import('@/integrations/supabase/client');
@@ -91,6 +94,9 @@ async function fetchServerQuota(currentTier: 'free' | 'premium' = 'free'): Promi
       limit: data.limit ?? 10,
       tier: data.tier ?? currentTier,
       activeCoupons: Array.isArray(data.active_coupons) ? data.active_coupons : [],
+      baseLimit: data.base_limit ?? 10,
+      couponBonus: data.coupon_bonus ?? 0,
+      periodStart: data.period_start ?? new Date().toISOString(),
     };
   } catch {
     return null;
