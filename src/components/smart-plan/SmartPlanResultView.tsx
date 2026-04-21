@@ -34,6 +34,16 @@ export const SmartPlanResultView = forwardRef<HTMLDivElement, SmartPlanResultVie
 }, ref) => {
   const { t } = useTranslation();
 
+  // Pulse trigger when new content arrives
+  const [pulseKey, setPulseKey] = useState(0);
+  const prevRef = useRef<string>('');
+  useEffect(() => {
+    if (content && !isLoading && prevRef.current !== content) {
+      prevRef.current = content;
+      setPulseKey(k => k + 1);
+    }
+  }, [content, isLoading]);
+
   if (!content) {
     return (
       <motion.div
