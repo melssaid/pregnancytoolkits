@@ -330,15 +330,21 @@ function fingerprintCoupons(coupons: Array<{ couponId?: string; expiresAt: strin
 }
 
 function readCouponSyncGuard(): CouponSyncGuard | null {
+  if (inMemoryGuard) return inMemoryGuard;
   try {
     const raw = localStorage.getItem(COUPON_SYNC_GUARD_KEY);
     if (!raw) return null;
-    return JSON.parse(raw) as CouponSyncGuard;
+    const parsed = JSON.parse(raw) as CouponSyncGuard;
+    inMemoryGuard = parsed;
+    return parsed;
   } catch { return null; }
 }
 
 function writeCouponSyncGuard(guard: CouponSyncGuard): void {
+  inMemoryGuard = guard;
   try { localStorage.setItem(COUPON_SYNC_GUARD_KEY, JSON.stringify(guard)); } catch { /* full */ }
+  // Notify other tabs so they skip re-applying the same payload.
+  try { getBroadcastChannel()?.postMessage(guard); } catch { /* ignore */ }
 }
 
 /**
@@ -356,6 +362,9 @@ export function syncCouponBonuses(
   coupons: Array<{ couponId?: string; expiresAt: string; bonusPoints: number }>,
   responseVersion?: string
 ): boolean {
+  // Ensure cross-tab listener is wired before first dedupe check.
+  getBroadcastChannel();
+
   const activeCoupons = coupons.filter((coupon) => coupon?.bonusPoints > 0 && new Date(coupon.expiresAt) > new Date());
   const hash = fingerprintCoupons(activeCoupons);
   const version = responseVersion || "v0";
@@ -363,7 +372,7 @@ export function syncCouponBonuses(
   const prev = readCouponSyncGuard();
   const now = Date.now();
   if (prev && prev.hash === hash && prev.version === version && (now - prev.appliedAt) < COUPON_SYNC_TTL_MS) {
-    // Same payload, same version, within TTL → already applied; skip.
+    // Same payload, same version, within TTL → already applied; skip writes entirely.
     return false;
   }
 
