@@ -177,7 +177,7 @@ export const UsagePulseFooter: React.FC<UsagePulseFooterProps> = ({
       {/* Sub-line: nudge or reset hint */}
       <div className="flex items-center justify-between gap-2 mt-2 px-1">
         <span className="text-[10px] text-muted-foreground/80 font-medium">
-          {isLimitReached ? L.nearLimit : L.resetsMonthly}
+          {resetHint}
         </span>
         {isFree && (isNearLimit || isLimitReached) && (
           <button
