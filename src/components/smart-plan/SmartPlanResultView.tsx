@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { forwardRef, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Brain, Globe, Loader2, RefreshCw, Sparkles } from "lucide-react";
@@ -9,6 +9,7 @@ import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { HealthStatsGrid } from "./HealthStatsGrid";
 import { PrintableReport } from "@/components/PrintableReport";
 import { AIActionButton } from "@/components/ai/AIActionButton";
+import { UsagePulseFooter } from "@/components/ai/UsagePulseFooter";
 
 interface SmartPlanResultViewProps {
   content: string;
