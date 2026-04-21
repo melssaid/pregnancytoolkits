@@ -40,6 +40,14 @@ export const DiaperAIAnalysis = ({ entries, todayStats }: DiaperAIAnalysisProps)
     toolType: 'baby-cry-analysis', // closest postpartum tool type
   });
   const [showAiInsight, setShowAiInsight] = useState(false);
+  const [pulseKey, setPulseKey] = useState(0);
+  const prevRef = useRef<string>('');
+  useEffect(() => {
+    if (aiInsight && !aiLoading && prevRef.current !== aiInsight) {
+      prevRef.current = aiInsight;
+      setPulseKey(k => k + 1);
+    }
+  }, [aiInsight, aiLoading]);
 
   const analyzeWithAI = async () => {
     const last24h = entries.filter(e => differenceInHours(new Date(), new Date(e.time)) <= 24);
