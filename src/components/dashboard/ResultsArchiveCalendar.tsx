@@ -101,8 +101,49 @@ const sourceLabel = (s: Source, t: (k: string, d?: string) => string): string =>
   return t(k, d);
 };
 
+// Map a saved-result toolId to its actual tool route.
+const SAVED_TOOL_ROUTES: Record<string, string> = {
+  "weekly-summary": "/tools/weekly-summary",
+  "ai-birth-plan": "/tools/ai-birth-plan",
+  "wellness-diary": "/tools/wellness-diary",
+  "baby-growth": "/tools/baby-growth",
+  "kick-counter": "/tools/kick-counter",
+  "contraction-timer": "/tools/contraction-timer",
+  "weight-gain": "/tools/weight-gain",
+  "vitamin-tracker": "/tools/vitamin-tracker",
+  "diaper-tracker": "/tools/diaper-tracker",
+  "smart-grocery-list": "/tools/smart-grocery-list",
+  "ai-hospital-bag": "/tools/ai-hospital-bag",
+  "ai-meal-suggestion": "/tools/ai-meal-suggestion",
+  "ai-fitness-coach": "/tools/ai-fitness-coach",
+  "ai-symptom-analyzer": "/tools/ai-symptom-analyzer",
+  "ai-back-pain-relief": "/tools/ai-back-pain-relief",
+  "ai-craving-alternatives": "/tools/ai-craving-alternatives",
+  "ai-lactation-prep": "/tools/ai-lactation-prep",
+  "ai-partner-guide": "/tools/ai-partner-guide",
+  "ai-birth-position": "/tools/ai-birth-position",
+  "ai-pregnancy-skincare": "/tools/ai-pregnancy-skincare",
+  "ai-bump-photos": "/tools/ai-bump-photos",
+  "smart-pregnancy-plan": "/tools/smart-pregnancy-plan",
+  "smart-kick-counter": "/tools/kick-counter",
+  "smart-weight-gain": "/tools/weight-gain",
+  "smart-appointment-reminder": "/tools/smart-appointment-reminder",
+  "pregnancy-assistant": "/tools/pregnancy-assistant",
+  "pregnancy-comfort": "/tools/pregnancy-comfort",
+  "postpartum-mental-health": "/tools/postpartum-mental-health-coach",
+  "due-date-calculator": "/tools/due-date-calculator",
+  "cycle-tracker": "/tools/cycle-tracker",
+};
+
+const resolveSavedHref = (toolId?: string): string => {
+  if (!toolId) return "/dashboard";
+  if (SAVED_TOOL_ROUTES[toolId]) return SAVED_TOOL_ROUTES[toolId];
+  // Fallback: try the conventional /tools/<toolId> path.
+  return `/tools/${toolId}`;
+};
+
 const hrefFor: Record<Source, string> = {
-  saved: "/dashboard",
+  saved: "/dashboard", // fallback; per-record href is computed in collectAllResults
   weekly: "/tools/weekly-summary",
   birthPlan: "/tools/ai-birth-plan",
   wellness: "/tools/wellness-diary",
@@ -122,12 +163,13 @@ function collectAllResults(t: (k: string, d?: string) => string): ArchivedResult
 
   // 1) Unified saved
   safe("ai-saved-results").forEach((r) => {
+    const toolId = r.toolId || "saved";
     out.push({
-      id: r.id, toolId: r.toolId || "saved",
+      id: r.id, toolId,
       toolName: r.title || sourceLabel("saved", t),
       date: r.savedAt,
       preview: (r.content || "").replace(/[#*_\n]/g, " ").slice(0, 120),
-      content: r.content || "", href: hrefFor.saved, source: "saved",
+      content: r.content || "", href: resolveSavedHref(r.toolId), source: "saved",
     });
   });
 
