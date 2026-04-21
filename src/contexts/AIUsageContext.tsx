@@ -166,10 +166,26 @@ export function AIUsageProvider({ children }: { children: ReactNode }) {
 
       // Then apply server quota (usage count + coupon bonuses)
       if (server) {
+        // Normalize responseVersion → stable ISO string. Accepts ISO, epoch ms,
+        // or arbitrary date-parsable input; falls back to "v0" if invalid.
+        const normalizeVersion = (raw: unknown): string => {
+          if (raw == null) return "v0";
+          if (typeof raw === "number" && Number.isFinite(raw)) {
+            const d = new Date(raw);
+            return isNaN(d.getTime()) ? "v0" : d.toISOString();
+          }
+          if (typeof raw === "string" && raw.trim()) {
+            const d = new Date(raw);
+            return isNaN(d.getTime()) ? raw.trim() : d.toISOString();
+          }
+          return "v0";
+        };
+        const responseVersion = normalizeVersion(server.periodStart);
+
         // Sync server-known active coupons into local quota + active_coupon cache
         if (server.activeCoupons.length > 0) {
-          // Idempotent: pair coupon set with server response version (period_start)
-          syncCouponBonuses(server.activeCoupons, server.periodStart);
+          // Idempotent: pair coupon set with stable server response version
+          syncCouponBonuses(server.activeCoupons, responseVersion);
           // Cache the longest-lasting coupon for useActiveCoupon hook
           const sorted = [...server.activeCoupons].sort(
             (a, b) => new Date(b.expiresAt).getTime() - new Date(a.expiresAt).getTime()
@@ -191,7 +207,7 @@ export function AIUsageProvider({ children }: { children: ReactNode }) {
           tier: effectiveTier,
           baseLimit: server.baseLimit,
           couponBonus: server.couponBonus,
-          periodStart: server.periodStart,
+          periodStart: responseVersion,
         });
       }
 
