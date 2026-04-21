@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
@@ -10,6 +10,7 @@ import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { AILoadingDots } from "@/components/ai/AILoadingDots";
 import { AIActionButton } from "@/components/ai/AIActionButton";
 import { AIErrorBanner } from "@/components/ai/AIErrorBanner";
+import { UsagePulseFooter } from "@/components/ai/UsagePulseFooter";
 import { differenceInHours } from "date-fns";
 
 interface DiaperEntry {
@@ -39,6 +40,14 @@ export const DiaperAIAnalysis = ({ entries, todayStats }: DiaperAIAnalysisProps)
     toolType: 'baby-cry-analysis', // closest postpartum tool type
   });
   const [showAiInsight, setShowAiInsight] = useState(false);
+  const [pulseKey, setPulseKey] = useState(0);
+  const prevRef = useRef<string>('');
+  useEffect(() => {
+    if (aiInsight && !aiLoading && prevRef.current !== aiInsight) {
+      prevRef.current = aiInsight;
+      setPulseKey(k => k + 1);
+    }
+  }, [aiInsight, aiLoading]);
 
   const analyzeWithAI = async () => {
     const last24h = entries.filter(e => differenceInHours(new Date(), new Date(e.time)) <= 24);
@@ -121,20 +130,12 @@ Helpful tips for diaper changes and tracking`,
                 </div>
               )}
               {aiInsight && !aiLoading && (
-                <div className="mt-3 flex items-center justify-between gap-2 px-1">
-                  <span className={`text-[11px] font-semibold tabular-nums ${usageColor}`}>
-                    {remaining} <span className="text-foreground/50">/ {limit}</span>
-                  </span>
-                  {isFree && (
-                    <button
-                      onClick={() => navigate('/pricing-demo')}
-                      className="flex items-center gap-1 text-[10px] font-semibold text-primary hover:text-primary/80 transition-colors"
-                    >
-                      <Crown className="w-3 h-3" />
-                      <span>{t('aiUsage.subscribePro')}</span>
-                    </button>
-                  )}
-                </div>
+                <UsagePulseFooter
+                  toolType="baby-cry-analysis"
+                  section="postpartum"
+                  justConsumed={pulseKey > 0}
+                  key={pulseKey}
+                />
               )}
             </div>
           </CardContent>

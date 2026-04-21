@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { forwardRef, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Brain, Globe, Loader2, RefreshCw, Sparkles } from "lucide-react";
@@ -9,6 +9,7 @@ import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { HealthStatsGrid } from "./HealthStatsGrid";
 import { PrintableReport } from "@/components/PrintableReport";
 import { AIActionButton } from "@/components/ai/AIActionButton";
+import { UsagePulseFooter } from "@/components/ai/UsagePulseFooter";
 
 interface SmartPlanResultViewProps {
   content: string;
@@ -32,6 +33,16 @@ export const SmartPlanResultView = forwardRef<HTMLDivElement, SmartPlanResultVie
   bmi, calories, bloodPressure, researchEnhanced, isLoading, isRTL, lang, onGenerate,
 }, ref) => {
   const { t } = useTranslation();
+
+  // Pulse trigger when new content arrives
+  const [pulseKey, setPulseKey] = useState(0);
+  const prevRef = useRef<string>('');
+  useEffect(() => {
+    if (content && !isLoading && prevRef.current !== content) {
+      prevRef.current = content;
+      setPulseKey(k => k + 1);
+    }
+  }, [content, isLoading]);
 
   if (!content) {
     return (
@@ -128,6 +139,14 @@ export const SmartPlanResultView = forwardRef<HTMLDivElement, SmartPlanResultVie
           <div className="rounded-xl bg-gradient-to-b from-primary/[0.04] to-transparent p-3">
             <MarkdownRenderer content={content} isLoading={isLoading} />
           </div>
+          {!isLoading && content && (
+            <UsagePulseFooter
+              toolType="pregnancy-plan"
+              section="pregnancy-plan"
+              justConsumed={pulseKey > 0}
+              key={pulseKey}
+            />
+          )}
         </div>
 
         {/* Loading indicator */}
