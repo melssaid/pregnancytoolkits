@@ -11,6 +11,92 @@ import { QUOTA_TIERS, type InsightWeight, type QuotaState } from "./types";
 
 const STORAGE_KEY = "smart_quota_v2";
 const ADMIN_BYPASS_KEY = "smart_admin_bypass";
+const SERVER_SNAPSHOT_KEY = "smart_quota_server_snapshot_v1";
+const DRIFT_LOG_KEY = "smart_quota_drift_log_v1";
+const SERVER_SNAPSHOT_TTL_MS = 5 * 60_000; // 5 min — after this, fall back to local
+const MAX_DRIFT_LOG_ENTRIES = 20;
+
+// ── Server snapshot: authoritative state from check-quota ──
+interface ServerSnapshot {
+  used: number;
+  limit: number;
+  tier: "free" | "premium";
+  baseLimit: number;
+  couponBonus: number;
+  periodStart: string;
+  receivedAt: number;       // local epoch ms when snapshot was stored
+  responseVersion: string;  // = periodStart, used as version tag
+}
+
+interface DriftEntry {
+  at: number;
+  field: "limit" | "used" | "tier" | "couponBonus";
+  server: number | string;
+  client: number | string;
+  delta?: number;
+}
+
+function readServerSnapshot(): ServerSnapshot | null {
+  try {
+    const raw = localStorage.getItem(SERVER_SNAPSHOT_KEY);
+    if (!raw) return null;
+    const snap = JSON.parse(raw) as ServerSnapshot;
+    if (Date.now() - snap.receivedAt > SERVER_SNAPSHOT_TTL_MS) return null; // stale
+    return snap;
+  } catch { return null; }
+}
+
+function writeServerSnapshot(snap: ServerSnapshot): void {
+  try { localStorage.setItem(SERVER_SNAPSHOT_KEY, JSON.stringify(snap)); } catch { /* full */ }
+}
+
+function logDrift(entries: DriftEntry[]): void {
+  if (entries.length === 0) return;
+  // Console-visible warning
+  console.warn("[quotaManager] Server↔Client drift detected:", entries);
+  // Persist for diagnostics (ring buffer)
+  try {
+    const raw = localStorage.getItem(DRIFT_LOG_KEY);
+    const existing: DriftEntry[] = raw ? JSON.parse(raw) : [];
+    const merged = [...existing, ...entries].slice(-MAX_DRIFT_LOG_ENTRIES);
+    localStorage.setItem(DRIFT_LOG_KEY, JSON.stringify(merged));
+  } catch { /* ignore */ }
+}
+
+/**
+ * Read the most recent drift log entries (diagnostic helper for admin dashboards).
+ */
+export function getDriftLog(): DriftEntry[] {
+  try {
+    const raw = localStorage.getItem(DRIFT_LOG_KEY);
+    return raw ? (JSON.parse(raw) as DriftEntry[]) : [];
+  } catch { return []; }
+}
+
+/**
+ * Record an authoritative snapshot from check-quota. This becomes the source
+ * of truth for getQuotaState() until it expires (5 min) or is overwritten.
+ */
+export function recordServerSnapshot(payload: {
+  used: number;
+  limit: number;
+  tier: "free" | "premium";
+  baseLimit?: number;
+  couponBonus?: number;
+  periodStart?: string;
+}): void {
+  const snap: ServerSnapshot = {
+    used: payload.used,
+    limit: payload.limit,
+    tier: payload.tier,
+    baseLimit: payload.baseLimit ?? (QUOTA_TIERS[payload.tier]?.monthly ?? 10),
+    couponBonus: payload.couponBonus ?? Math.max(0, payload.limit - (QUOTA_TIERS[payload.tier]?.monthly ?? 10)),
+    periodStart: payload.periodStart ?? new Date().toISOString(),
+    receivedAt: Date.now(),
+    responseVersion: payload.periodStart ?? new Date().toISOString(),
+  };
+  writeServerSnapshot(snap);
+}
 
 function getCurrentMonthKey(): string {
   const now = new Date();
