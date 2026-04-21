@@ -139,6 +139,14 @@ export const SmartPlanResultView = forwardRef<HTMLDivElement, SmartPlanResultVie
           <div className="rounded-xl bg-gradient-to-b from-primary/[0.04] to-transparent p-3">
             <MarkdownRenderer content={content} isLoading={isLoading} />
           </div>
+          {!isLoading && content && (
+            <UsagePulseFooter
+              toolType="pregnancy-plan"
+              section="pregnancy-plan"
+              justConsumed={pulseKey > 0}
+              key={pulseKey}
+            />
+          )}
         </div>
 
         {/* Loading indicator */}
