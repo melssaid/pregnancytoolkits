@@ -708,6 +708,19 @@
     "backHome": {
       "title": "Back to Home",
       "subtitle": "Explore and use all available tools"
+    },
+    "archive": {
+      "title": "My Results Archive",
+      "subtitle": "{{count}} results across {{months}} months",
+      "entriesCount": "{{count}} results",
+      "empty": "No results this month",
+      "view": "View",
+      "hide": "Hide",
+      "delete": "Delete",
+      "prev": "Previous month",
+      "next": "Next month",
+      "openTool": "Open tool",
+      "savedResult": "Saved result"
     }
   },
   "layout": {

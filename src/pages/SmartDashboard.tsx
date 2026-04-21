@@ -48,6 +48,7 @@ import { WeeklySymptomsCard } from "@/components/dashboard/WeeklySymptomsCard";
 import { ContractionSummaryCard } from "@/components/dashboard/ContractionSummaryCard";
 import { MoodTrendCard } from "@/components/dashboard/MoodTrendCard";
 import { SavedResultsCountCard } from "@/components/dashboard/SavedResultsCountCard";
+import { ResultsArchiveCalendar } from "@/components/dashboard/ResultsArchiveCalendar";
 import { useDashboardDataCheck } from "@/hooks/useDashboardDataCheck";
 
 const SmartDashboard = () => {
@@ -159,6 +160,7 @@ const SmartDashboard = () => {
         )}
 
         {dataCheck.hasSavedResults && <SavedResultsCountCard />}
+        <ResultsArchiveCalendar />
         {dataCheck.hasSavedResults && <RecentAIResults />}
 
         {/* ═══ ALWAYS-VISIBLE SECTION ═══ */}

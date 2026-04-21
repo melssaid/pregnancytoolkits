@@ -653,6 +653,19 @@
     "backHome": {
       "title": "Ana Sayfaya Dön",
       "subtitle": "Tüm mevcut araçları keşfedin ve kullanın"
+    },
+    "archive": {
+      "title": "Sonuç Arşivim",
+      "subtitle": "{{months}} ay boyunca {{count}} sonuç",
+      "entriesCount": "{{count}} sonuç",
+      "empty": "Bu ay sonuç yok",
+      "view": "Görüntüle",
+      "hide": "Gizle",
+      "delete": "Sil",
+      "prev": "Önceki ay",
+      "next": "Sonraki ay",
+      "openTool": "Aracı aç",
+      "savedResult": "Kaydedilen sonuç"
     }
   },
   "layout": {
