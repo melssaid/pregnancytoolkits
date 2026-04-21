@@ -11,46 +11,38 @@ import { useSmartConversionPrompt } from "@/hooks/useSmartConversionPrompt";
 import roseLeft from "@/assets/rose-left.png";
 import roseRight from "@/assets/rose-right.png";
 
-// Dashboard components
+// Dashboard components — curated set (duplicates removed)
 import { DailyHeroCard } from "@/components/dashboard/DailyHeroCard";
 import { RiskAlertCard } from "@/components/dashboard/RiskAlertCard";
-// TodaysInsightCard import removed
 import { DailyPriorities } from "@/components/dashboard/DailyPriorities";
 import { RecentMealFitnessSummary } from "@/components/dashboard/RecentMealFitnessSummary";
 import { QuickActionsBar } from "@/components/dashboard/QuickActionsBar";
 import { HydrationTracker } from "@/components/dashboard/HydrationTracker";
-import { SymptomsSummary } from "@/components/dashboard/SymptomsSummary";
 import { FetalMovementCard } from "@/components/dashboard/FetalMovementCard";
 import { WeightTrendCard } from "@/components/dashboard/WeightTrendCard";
-import { RecentAIResults } from "@/components/dashboard/RecentAIResults";
 import { UsageStatsNudge } from "@/components/dashboard/UsageStatsNudge";
 
 import { BirthCountdownCard } from "@/components/dashboard/BirthCountdownCard";
 import { AppRatingCard } from "@/components/dashboard/AppRatingCard";
 import { WeekCertificateCard } from "@/components/dashboard/WeekCertificateCard";
 import { StageRecommendation } from "@/components/dashboard/StageRecommendation";
-import { WeeklyHealthChallenge } from "@/components/dashboard/WeeklyHealthChallenge";
+import { DailyHealthChallengeCard } from "@/components/dashboard/DailyHealthChallengeCard";
 import { DynamicFAQ } from "@/components/DynamicFAQ";
 import { useTrimesterTheme } from "@/hooks/useTrimesterTheme";
 
-// New innovative features
+// Hero & insight features
 import { HealthScoreRing } from "@/components/dashboard/HealthScoreRing";
 import { BabySizeCard } from "@/components/dashboard/BabySizeCard";
 import { WeeklyComparisonCard } from "@/components/dashboard/WeeklyComparisonCard";
 import { MilestonesTimeline } from "@/components/dashboard/MilestonesTimeline";
-import { ContextualSymptomsCard } from "@/components/dashboard/ContextualSymptomsCard";
 import { DoctorVisitPrepCard } from "@/components/dashboard/DoctorVisitPrepCard";
 import { NutritionTipCard } from "@/components/dashboard/NutritionTipCard";
 import { PartnerSummaryCard } from "@/components/dashboard/PartnerSummaryCard";
-import { DailyHealthChallengeCard } from "@/components/dashboard/DailyHealthChallengeCard";
-import { MedicalSummaryCard } from "@/components/dashboard/MedicalSummaryCard";
 import { WeeklySymptomsCard } from "@/components/dashboard/WeeklySymptomsCard";
 import { ContractionSummaryCard } from "@/components/dashboard/ContractionSummaryCard";
 import { MoodTrendCard } from "@/components/dashboard/MoodTrendCard";
-import { SavedResultsCountCard } from "@/components/dashboard/SavedResultsCountCard";
 import { ResultsArchiveCalendar } from "@/components/dashboard/ResultsArchiveCalendar";
 import { MyToolsQuickGrid } from "@/components/dashboard/MyToolsQuickGrid";
-import { useDashboardDataCheck } from "@/hooks/useDashboardDataCheck";
 
 const SmartDashboard = () => {
   const { t } = useTranslation();
@@ -60,7 +52,6 @@ const SmartDashboard = () => {
   const healthCheckin = safeParseLocalStorage<any>("dashboard_health_checkin_v1", null);
   useSmartConversionPrompt();
   const trimesterTheme = useTrimesterTheme();
-  const dataCheck = useDashboardDataCheck();
   const bloodPressure = healthCheckin?.bloodPressure || "";
 
   const { scrollY } = useScroll();
@@ -143,71 +134,42 @@ const SmartDashboard = () => {
           week={profile.pregnancyWeek}
         />
 
-        {/* ═══ DATA-FIRST SECTION: cards that have user data appear here ═══ */}
-
-        {dataCheck.hasRecentActivity && <RecentMealFitnessSummary />}
-
-        {dataCheck.hasSymptomsData && <WeeklySymptomsCard />}
-
-        {dataCheck.hasMoodData && <MoodTrendCard />}
-
-        {dataCheck.hasContractions && <ContractionSummaryCard />}
-
-        {dataCheck.hasWeight && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-            <FetalMovementCard todayKicks={stats.dailyTracking.todayKicks} />
-            <WeightTrendCard />
-          </div>
-        )}
-
-        {dataCheck.hasSavedResults && <SavedResultsCountCard />}
-        <MyToolsQuickGrid />
-        <ResultsArchiveCalendar />
-        {dataCheck.hasSavedResults && <RecentAIResults />}
-
-        {/* ═══ ALWAYS-VISIBLE SECTION ═══ */}
-
-        <WeekCertificateCard />
-        <StageRecommendation />
-        <UsageStatsNudge />
-        <ContextualSymptomsCard />
-        <NutritionTipCard />
-        <WeeklyHealthChallenge />
-        <DailyHealthChallengeCard />
-
+        {/* ═══ DAILY ACTIONS — focus on today ═══ */}
         <DailyPriorities
           vitaminsTaken={stats.dailyTracking.vitaminsTaken}
           todayKicks={stats.dailyTracking.todayKicks}
           waterGlasses={stats.dailyTracking.waterGlasses}
           upcomingAppointments={stats.planning.upcomingAppointments}
         />
-
         <QuickActionsBar />
+        <DailyHealthChallengeCard />
+        <NutritionTipCard />
         <HydrationTracker />
-        <SymptomsSummary />
 
-        {/* Data cards that weren't shown above (no data yet) */}
-        {!dataCheck.hasRecentActivity && <RecentMealFitnessSummary />}
-        {!dataCheck.hasSymptomsData && <WeeklySymptomsCard />}
-        {!dataCheck.hasMoodData && <MoodTrendCard />}
-        {!dataCheck.hasContractions && <ContractionSummaryCard />}
+        {/* ═══ TRACKING SUMMARIES — single source per topic ═══ */}
+        <RecentMealFitnessSummary />
+        <WeeklySymptomsCard />
+        <MoodTrendCard />
+        <ContractionSummaryCard />
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+          <FetalMovementCard todayKicks={stats.dailyTracking.todayKicks} />
+          <WeightTrendCard />
+        </div>
 
-        {!dataCheck.hasWeight && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-            <FetalMovementCard todayKicks={stats.dailyTracking.todayKicks} />
-            <WeightTrendCard />
-          </div>
-        )}
+        {/* ═══ MY TOOLS & ARCHIVE — unified history ═══ */}
+        <MyToolsQuickGrid />
+        <ResultsArchiveCalendar />
 
-        {!dataCheck.hasSavedResults && <SavedResultsCountCard />}
-        {!dataCheck.hasSavedResults && <RecentAIResults />}
-
-        {/* Bottom section — always visible */}
+        {/* ═══ MILESTONES & GUIDANCE ═══ */}
+        <WeekCertificateCard />
+        <StageRecommendation />
         <WeeklyComparisonCard />
         <MilestonesTimeline />
         <DoctorVisitPrepCard />
         <PartnerSummaryCard />
-        <MedicalSummaryCard />
+
+        {/* ═══ ENGAGEMENT ═══ */}
+        <UsageStatsNudge />
         <AppRatingCard />
         <DynamicFAQ />
 
