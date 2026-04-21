@@ -283,11 +283,36 @@ export function applyCouponTier(expiresAt: string, bonusPoints?: number, couponK
 // AIUsageContext re-mounts or multiple tabs broadcast the same payload).
 const COUPON_SYNC_GUARD_KEY = "smart_coupon_sync_guard_v1";
 const COUPON_SYNC_TTL_MS = 60_000; // 60s — safety window; older payloads can re-apply
+const COUPON_SYNC_CHANNEL = "smart_coupon_sync_v1";
 
 interface CouponSyncGuard {
   hash: string;          // fingerprint of the coupon set
   version: string;       // server response version (period_start or explicit version)
   appliedAt: number;     // epoch ms
+}
+
+// In-memory mirror of the last guard — avoids repeated localStorage reads/writes
+// when syncCouponBonuses is called many times with the same payload.
+let inMemoryGuard: CouponSyncGuard | null = null;
+
+// Cross-tab dedupe channel. Created lazily; gracefully no-op when unsupported.
+let bcInstance: BroadcastChannel | null = null;
+function getBroadcastChannel(): BroadcastChannel | null {
+  if (typeof BroadcastChannel === "undefined") return null;
+  if (bcInstance) return bcInstance;
+  try {
+    bcInstance = new BroadcastChannel(COUPON_SYNC_CHANNEL);
+    bcInstance.onmessage = (ev: MessageEvent) => {
+      const msg = ev?.data as CouponSyncGuard | undefined;
+      if (!msg || typeof msg.hash !== "string" || typeof msg.version !== "string") return;
+      // Adopt the remote guard if newer — prevents this tab from re-applying.
+      if (!inMemoryGuard || msg.appliedAt > inMemoryGuard.appliedAt) {
+        inMemoryGuard = msg;
+        try { localStorage.setItem(COUPON_SYNC_GUARD_KEY, JSON.stringify(msg)); } catch { /* full */ }
+      }
+    };
+  } catch { bcInstance = null; }
+  return bcInstance;
 }
 
 function fingerprintCoupons(coupons: Array<{ couponId?: string; expiresAt: string; bonusPoints: number }>): string {
