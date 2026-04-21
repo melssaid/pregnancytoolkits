@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
@@ -10,6 +10,7 @@ import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { AILoadingDots } from "@/components/ai/AILoadingDots";
 import { AIActionButton } from "@/components/ai/AIActionButton";
 import { AIErrorBanner } from "@/components/ai/AIErrorBanner";
+import { UsagePulseFooter } from "@/components/ai/UsagePulseFooter";
 import { differenceInHours } from "date-fns";
 
 interface DiaperEntry {
