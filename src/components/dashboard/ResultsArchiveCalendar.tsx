@@ -54,7 +54,11 @@ type Source =
   | "vitamins"
   | "diaper"
   | "symptoms"
-  | "groceries";
+  | "groceries"
+  | "appointments"
+  | "dueDates"
+  | "hospitalBag"
+  | "backPain";
 
 interface ArchivedResult {
   id: string;
