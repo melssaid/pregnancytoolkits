@@ -183,3 +183,108 @@ describe('resolveWeight', () => {
     expect(resolveWeight(undefined, undefined)).toBe(1);
   });
 });
+
+// ── Coupon additivity: client-side mirror of check-quota math ──
+// Server formula: limit = baseLimit (free=10/premium=60) + sum(active coupon bonus_points)
+// Client must match: limit = QUOTA_TIERS[tier].monthly + couponPoints + promoBonus
+describe('coupon additivity (client ↔ server parity)', () => {
+  const PREMIUM_BASE = 60;
+
+  it('adds a single coupon bonus on top of premium base limit', () => {
+    syncCouponBonuses([
+      { couponId: 'SAHAR60', expiresAt: new Date(Date.now() + 86_400_000).toISOString(), bonusPoints: 60 },
+    ]);
+    const state = getQuotaState();
+    // Coupon presence forces premium tier client-side (matches server)
+    expect(state.tier).toBe('premium');
+    expect(state.limit).toBe(PREMIUM_BASE + 60); // 120
+    expect(state.remaining).toBe(120);
+  });
+
+  it('sums multiple active coupons additively above the base', () => {
+    syncCouponBonuses([
+      { couponId: 'A', expiresAt: new Date(Date.now() + 86_400_000).toISOString(), bonusPoints: 60 },
+      { couponId: 'B', expiresAt: new Date(Date.now() + 86_400_000).toISOString(), bonusPoints: 30 },
+      { couponId: 'C', expiresAt: new Date(Date.now() + 86_400_000).toISOString(), bonusPoints: 10 },
+    ]);
+    expect(getQuotaState().limit).toBe(PREMIUM_BASE + 60 + 30 + 10); // 160
+  });
+
+  it('coupon points remain spendable AFTER base premium quota is exhausted', () => {
+    syncCouponBonuses([
+      { couponId: 'BARAKAT60', expiresAt: new Date(Date.now() + 86_400_000).toISOString(), bonusPoints: 60 },
+    ]);
+    // Consume the entire base premium quota
+    for (let i = 0; i < PREMIUM_BASE; i++) consumeQuota(1);
+    const mid = getQuotaState();
+    expect(mid.used).toBe(60);
+    expect(mid.isExhausted).toBe(false); // ✅ coupon bonus keeps user above the line
+    expect(mid.remaining).toBe(60);
+
+    // Continue consuming into coupon credits
+    for (let i = 0; i < 60; i++) consumeQuota(1);
+    const final = getQuotaState();
+    expect(final.used).toBe(120);
+    expect(final.remaining).toBe(0);
+    expect(final.isExhausted).toBe(true); // exhausted only after coupon depleted
+  });
+
+  it('ignores expired coupons in the active set', () => {
+    syncCouponBonuses([
+      { couponId: 'EXPIRED', expiresAt: new Date(Date.now() - 1000).toISOString(), bonusPoints: 60 },
+      { couponId: 'LIVE', expiresAt: new Date(Date.now() + 86_400_000).toISOString(), bonusPoints: 30 },
+    ]);
+    expect(getQuotaState().limit).toBe(PREMIUM_BASE + 30); // expired one excluded
+  });
+
+  it('replaces previous coupon set on next sync (no double count across syncs)', () => {
+    syncCouponBonuses(
+      [{ couponId: 'A', expiresAt: new Date(Date.now() + 86_400_000).toISOString(), bonusPoints: 60 }],
+      'period-1'
+    );
+    expect(getQuotaState().limit).toBe(PREMIUM_BASE + 60);
+
+    // Server returns updated set — A removed, B active. Must not stack with previous A.
+    syncCouponBonuses(
+      [{ couponId: 'B', expiresAt: new Date(Date.now() + 86_400_000).toISOString(), bonusPoints: 30 }],
+      'period-2'
+    );
+    expect(getQuotaState().limit).toBe(PREMIUM_BASE + 30);
+  });
+
+  it('idempotency guard: re-applying same payload+version does NOT re-add', () => {
+    const coupons = [
+      { couponId: 'X', expiresAt: new Date(Date.now() + 86_400_000).toISOString(), bonusPoints: 60 },
+    ];
+    const applied1 = syncCouponBonuses(coupons, 'v-2026-04');
+    const applied2 = syncCouponBonuses(coupons, 'v-2026-04');
+    expect(applied1).toBe(true);
+    expect(applied2).toBe(false); // skipped as duplicate
+    expect(getQuotaState().limit).toBe(PREMIUM_BASE + 60); // still 120, not 180
+  });
+
+  it('applyCouponTier accumulates additively across distinct coupon keys', () => {
+    const future = new Date(Date.now() + 86_400_000).toISOString();
+    applyCouponTier(future, 60, 'COUPON_A');
+    applyCouponTier(future, 30, 'COUPON_B');
+    const state = getQuotaState();
+    expect(state.tier).toBe('premium');
+    expect(state.limit).toBe(PREMIUM_BASE + 60 + 30); // 150
+  });
+
+  it('mirrors server formula: limit = baseLimit + couponBonus (parity check)', () => {
+    // Server-side math (check-quota/index.ts):
+    //   effectiveTier = couponBonus > 0 ? 'premium' : tier
+    //   baseLimit = TIER_LIMITS[effectiveTier]  // 60
+    //   limit = baseLimit + couponBonus         // 60 + 90 = 150
+    const baseLimit = PREMIUM_BASE;
+    const couponBonus = 60 + 30;
+    const serverLimit = baseLimit + couponBonus; // 150
+
+    syncCouponBonuses([
+      { couponId: 'A', expiresAt: new Date(Date.now() + 86_400_000).toISOString(), bonusPoints: 60 },
+      { couponId: 'B', expiresAt: new Date(Date.now() + 86_400_000).toISOString(), bonusPoints: 30 },
+    ]);
+    expect(getQuotaState().limit).toBe(serverLimit); // ✅ client === server
+  });
+});
