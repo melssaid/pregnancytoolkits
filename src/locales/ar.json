@@ -720,7 +720,40 @@
       "prev": "الشهر السابق",
       "next": "الشهر التالي",
       "openTool": "فتح الأداة",
-      "savedResult": "نتيجة محفوظة"
+      "savedResult": "نتيجة محفوظة",
+      "kicks": "حركة",
+      "duration": "مدة",
+      "clearDay": "إظهار كل أيام الشهر",
+      "emptyDay": "لا توجد نتائج في هذا اليوم",
+      "all": "الكل",
+      "src": {
+        "saved": "محفوظات AI",
+        "weekly": "ملخص أسبوعي",
+        "birthPlan": "خطة ولادة",
+        "wellness": "يوميات عافية",
+        "babyGrowth": "نمو الطفل",
+        "kicks": "حركات الجنين",
+        "contractions": "انقباضات",
+        "weight": "الوزن",
+        "vitamins": "فيتامينات",
+        "diaper": "حفاضات",
+        "symptoms": "أعراض",
+        "groceries": "قائمة تسوق"
+      }
+    },
+    "myTools": {
+      "title": "أدواتي",
+      "subtitle": "اضغطي لمتابعة بياناتك",
+      "archiveHint": "💡 جميع البيانات تُحفظ يومياً في «أرشيف نتائجي» أدناه",
+      "kicks": "حركات الجنين",
+      "contractions": "انقباضات",
+      "weight": "الوزن",
+      "vitamins": "فيتامينات",
+      "diaper": "حفاضات الطفل",
+      "symptoms": "يوميات العافية",
+      "grocery": "قائمة التسوق",
+      "hospitalBag": "حقيبة المستشفى",
+      "birthPlan": "خطة الولادة"
     }
   },
   "layout": {

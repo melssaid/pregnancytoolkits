@@ -665,7 +665,40 @@
       "prev": "Önceki ay",
       "next": "Sonraki ay",
       "openTool": "Aracı aç",
-      "savedResult": "Kaydedilen sonuç"
+      "savedResult": "Kaydedilen sonuç",
+      "kicks": "tekme",
+      "duration": "Sure",
+      "clearDay": "Tum gunleri goster",
+      "emptyDay": "Bu gun icin kayit yok",
+      "all": "Tumu",
+      "src": {
+        "saved": "AI Kayitlari",
+        "weekly": "Haftalik ozet",
+        "birthPlan": "Dogum plani",
+        "wellness": "Saglik gunlugu",
+        "babyGrowth": "Bebek buyumesi",
+        "kicks": "Tekmeler",
+        "contractions": "Kasilmalar",
+        "weight": "Kilo",
+        "vitamins": "Vitaminler",
+        "diaper": "Bez",
+        "symptoms": "Belirtiler",
+        "groceries": "Market"
+      }
+    },
+    "myTools": {
+      "title": "Araclarim",
+      "subtitle": "Verilerinizi takip etmek icin dokunun",
+      "archiveHint": "Tum veriler gunluk olarak alttaki Arsivim bolumune kaydedilir",
+      "kicks": "Bebek tekmeleri",
+      "contractions": "Kasilmalar",
+      "weight": "Kilo",
+      "vitamins": "Vitaminler",
+      "diaper": "Bebek bezi",
+      "symptoms": "Saglik gunlugu",
+      "grocery": "Market listesi",
+      "hospitalBag": "Hastane cantasi",
+      "birthPlan": "Dogum plani"
     }
   },
   "layout": {
