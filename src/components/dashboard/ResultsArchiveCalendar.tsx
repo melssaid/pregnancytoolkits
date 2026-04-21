@@ -308,6 +308,99 @@ function collectAllResults(t: (k: string, d?: string) => string): ArchivedResult
     });
   });
 
+  // 11) Appointments (per-user key written by supabaseServices)
+  if (userId) {
+    safe(`appointments_${userId}`).forEach((a, i) => {
+      const when = a.appointment_date || a.date || a.scheduled_for || a.created_at;
+      if (!when) return;
+      const title = a.title || a.doctor_name || a.type || t("dashboard.archive.src.appointments", "موعد");
+      const note = a.notes || a.location || "";
+      out.push({
+        id: "appt-" + (a.id || i + "-" + when),
+        toolId: "smart-appointment-reminder",
+        toolName: sourceLabel("appointments", t),
+        date: new Date(when).toISOString(),
+        preview: `${title}${note ? " • " + String(note).slice(0, 60) : ""}`,
+        content: `${title}\n${note}`,
+        href: hrefFor.appointments,
+        source: "appointments",
+      });
+    });
+  }
+  // Legacy non-scoped appointments key (used by MedicalSummaryCard reads)
+  safe("appointments").forEach((a, i) => {
+    const when = a.appointment_date || a.date || a.scheduled_for || a.created_at;
+    if (!when) return;
+    const title = a.title || a.doctor_name || a.type || t("dashboard.archive.src.appointments", "موعد");
+    out.push({
+      id: "appt-legacy-" + (a.id || i + "-" + when),
+      toolId: "smart-appointment-reminder",
+      toolName: sourceLabel("appointments", t),
+      date: new Date(when).toISOString(),
+      preview: `${title}${a.notes ? " • " + String(a.notes).slice(0, 60) : ""}`,
+      content: `${title}\n${a.notes || ""}`,
+      href: hrefFor.appointments,
+      source: "appointments",
+    });
+  });
+
+  // 12) Saved due-date calculations
+  safe("savedDueDates").forEach((d, i) => {
+    const when = d.savedAt || d.date || d.createdAt;
+    if (!when) return;
+    out.push({
+      id: "due-" + (d.id || i + "-" + when),
+      toolId: "due-date-calculator",
+      toolName: sourceLabel("dueDates", t),
+      date: new Date(when).toISOString(),
+      preview: `${t("dashboard.archive.dueDate", "موعد متوقع")}: ${
+        d.dueDate ? new Date(d.dueDate).toLocaleDateString() : "-"
+      }`,
+      content: `Method: ${d.method || "-"}\nLMP: ${d.lmp || "-"}\nDue: ${d.dueDate || "-"}`,
+      href: hrefFor.dueDates,
+      source: "dueDates",
+    });
+  });
+
+  // 13) Hospital bag items (snapshot per checked item)
+  safe("hospital-bag-items")
+    .filter((b) => b && (b.checked || b.packed) && (b.checkedAt || b.updatedAt || b.addedAt))
+    .forEach((b, i) => {
+      const when = b.checkedAt || b.updatedAt || b.addedAt;
+      out.push({
+        id: "bag-" + (b.id || i + "-" + when),
+        toolId: "ai-hospital-bag",
+        toolName: sourceLabel("hospitalBag", t),
+        date: new Date(when).toISOString(),
+        preview: `✓ ${b.name || b.label || b.item || "item"}`,
+        content: `${b.name || b.label || b.item}\n${b.category || ""}`,
+        href: hrefFor.hospitalBag,
+        source: "hospitalBag",
+      });
+    });
+
+  // 14) Back-pain exercises completed today (snapshot)
+  try {
+    const lastDate = localStorage.getItem("backPainLastDate");
+    const completed = safeParseLocalStorage<string[]>(
+      "backPainCompletedToday",
+      [],
+      (d): d is string[] => Array.isArray(d)
+    );
+    if (lastDate && completed.length > 0) {
+      out.push({
+        id: "backpain-" + lastDate,
+        toolId: "ai-back-pain-relief",
+        toolName: sourceLabel("backPain", t),
+        date: new Date(lastDate).toISOString(),
+        preview: `✓ ${completed.length} ${t("dashboard.archive.exercises", "تمرين")}`,
+        content: completed.join("\n"),
+        href: hrefFor.backPain,
+        source: "backPain",
+      });
+    }
+  } catch {}
+
   return out
     .filter((r) => r.date && !isNaN(new Date(r.date).getTime()))
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
@@ -332,6 +425,25 @@ function deleteResult(item: ArchivedResult) {
       case "diaper": filter("diaperEntries", (r) => "dp-" + r.id === item.id); break;
       case "symptoms": filter("quick_symptom_logs", (r) => "sym-" + r.id === item.id); break;
       case "contractions": filter("contraction_timer_data", (r) => "ctn-" + r.id === item.id); break;
+      case "appointments":
+        if (item.id.startsWith("appt-legacy-")) {
+          filter("appointments", (r) => "appt-legacy-" + (r.id || "") === item.id || ("appt-legacy-" + r.id + "-" + (r.appointment_date || r.date || r.scheduled_for || r.created_at)) === item.id);
+        } else if (userId) {
+          filter(`appointments_${userId}`, (r) => "appt-" + (r.id || "") === item.id || ("appt-" + r.id + "-" + (r.appointment_date || r.date || r.scheduled_for || r.created_at)) === item.id);
+        }
+        break;
+      case "dueDates":
+        filter("savedDueDates", (r) => "due-" + (r.id || "") === item.id || ("due-" + r.id + "-" + (r.savedAt || r.date || r.createdAt)) === item.id);
+        break;
+      case "hospitalBag":
+        filter("hospital-bag-items", (r) => "bag-" + (r.id || "") === item.id || ("bag-" + r.id + "-" + (r.checkedAt || r.updatedAt || r.addedAt)) === item.id);
+        break;
+      case "backPain":
+        try {
+          localStorage.removeItem("backPainCompletedToday");
+          localStorage.removeItem("backPainLastDate");
+        } catch {}
+        break;
     }
   } catch {}
 }
