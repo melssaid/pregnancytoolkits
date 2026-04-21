@@ -171,6 +171,10 @@ const hrefFor: Record<Source, string> = {
   diaper: "/tools/diaper-tracker",
   symptoms: "/tools/wellness-diary",
   groceries: "/tools/smart-grocery-list",
+  appointments: "/tools/smart-appointment-reminder",
+  dueDates: "/tools/due-date-calculator",
+  hospitalBag: "/tools/ai-hospital-bag",
+  backPain: "/tools/ai-back-pain-relief",
 };
 
 function collectAllResults(t: (k: string, d?: string) => string): ArchivedResult[] {
