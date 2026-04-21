@@ -136,71 +136,42 @@ const SmartDashboard = () => {
           week={profile.pregnancyWeek}
         />
 
-        {/* ═══ DATA-FIRST SECTION: cards that have user data appear here ═══ */}
-
-        {dataCheck.hasRecentActivity && <RecentMealFitnessSummary />}
-
-        {dataCheck.hasSymptomsData && <WeeklySymptomsCard />}
-
-        {dataCheck.hasMoodData && <MoodTrendCard />}
-
-        {dataCheck.hasContractions && <ContractionSummaryCard />}
-
-        {dataCheck.hasWeight && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-            <FetalMovementCard todayKicks={stats.dailyTracking.todayKicks} />
-            <WeightTrendCard />
-          </div>
-        )}
-
-        {dataCheck.hasSavedResults && <SavedResultsCountCard />}
-        <MyToolsQuickGrid />
-        <ResultsArchiveCalendar />
-        {dataCheck.hasSavedResults && <RecentAIResults />}
-
-        {/* ═══ ALWAYS-VISIBLE SECTION ═══ */}
-
-        <WeekCertificateCard />
-        <StageRecommendation />
-        <UsageStatsNudge />
-        <ContextualSymptomsCard />
-        <NutritionTipCard />
-        <WeeklyHealthChallenge />
-        <DailyHealthChallengeCard />
-
+        {/* ═══ DAILY ACTIONS — focus on today ═══ */}
         <DailyPriorities
           vitaminsTaken={stats.dailyTracking.vitaminsTaken}
           todayKicks={stats.dailyTracking.todayKicks}
           waterGlasses={stats.dailyTracking.waterGlasses}
           upcomingAppointments={stats.planning.upcomingAppointments}
         />
-
         <QuickActionsBar />
+        <DailyHealthChallengeCard />
+        <NutritionTipCard />
         <HydrationTracker />
-        <SymptomsSummary />
 
-        {/* Data cards that weren't shown above (no data yet) */}
-        {!dataCheck.hasRecentActivity && <RecentMealFitnessSummary />}
-        {!dataCheck.hasSymptomsData && <WeeklySymptomsCard />}
-        {!dataCheck.hasMoodData && <MoodTrendCard />}
-        {!dataCheck.hasContractions && <ContractionSummaryCard />}
+        {/* ═══ TRACKING SUMMARIES — single source per topic ═══ */}
+        <RecentMealFitnessSummary />
+        <WeeklySymptomsCard />
+        <MoodTrendCard />
+        <ContractionSummaryCard />
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+          <FetalMovementCard todayKicks={stats.dailyTracking.todayKicks} />
+          <WeightTrendCard />
+        </div>
 
-        {!dataCheck.hasWeight && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-            <FetalMovementCard todayKicks={stats.dailyTracking.todayKicks} />
-            <WeightTrendCard />
-          </div>
-        )}
+        {/* ═══ MY TOOLS & ARCHIVE — unified history ═══ */}
+        <MyToolsQuickGrid />
+        <ResultsArchiveCalendar />
 
-        {!dataCheck.hasSavedResults && <SavedResultsCountCard />}
-        {!dataCheck.hasSavedResults && <RecentAIResults />}
-
-        {/* Bottom section — always visible */}
+        {/* ═══ MILESTONES & GUIDANCE ═══ */}
+        <WeekCertificateCard />
+        <StageRecommendation />
         <WeeklyComparisonCard />
         <MilestonesTimeline />
         <DoctorVisitPrepCard />
         <PartnerSummaryCard />
-        <MedicalSummaryCard />
+
+        {/* ═══ ENGAGEMENT ═══ */}
+        <UsageStatsNudge />
         <AppRatingCard />
         <DynamicFAQ />
 
