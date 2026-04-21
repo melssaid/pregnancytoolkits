@@ -4,34 +4,42 @@ import { Sparkles, Crown, Zap } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAIUsage } from '@/contexts/AIUsageContext';
+import { useActiveCoupon } from '@/hooks/useActiveCoupon';
 import { resolveWeight, type AIToolType, type SmartSection } from '@/services/smartEngine/types';
 
 const labels: Record<string, {
   consumed: string; remaining: string; of: string; thisAction: string;
   point: string; points: string; halfPoint: string; freeAction: string;
-  upgradeCta: string; resetsMonthly: string; nearLimit: string;
+  upgradeCta: string; resetsMonthly: string; nearLimit: string; couponOneTime: string;
 }> = {
   ar: { consumed: 'استهلكتِ', remaining: 'المتبقي', of: 'من', thisAction: 'هذا التحليل',
         point: 'نقطة', points: 'نقاط', halfPoint: 'نصف نقطة', freeAction: 'تحليل مجاني ✨',
-        upgradeCta: 'احصلي على 60 نقطة شهرياً', resetsMonthly: 'يتجدد شهرياً', nearLimit: 'اقتربتِ من نهاية الرصيد' },
+        upgradeCta: 'احصلي على 60 نقطة شهرياً', resetsMonthly: 'يتجدد شهرياً', nearLimit: 'اقتربتِ من نهاية الرصيد',
+        couponOneTime: 'نقاط الكوبون لمرة واحدة' },
   en: { consumed: 'Used', remaining: 'Remaining', of: 'of', thisAction: 'this analysis',
         point: 'point', points: 'points', halfPoint: '½ point', freeAction: 'Free analysis ✨',
-        upgradeCta: 'Get 60 points monthly', resetsMonthly: 'Resets monthly', nearLimit: 'Almost out of credits' },
+        upgradeCta: 'Get 60 points monthly', resetsMonthly: 'Resets monthly', nearLimit: 'Almost out of credits',
+        couponOneTime: 'Coupon points · one-time' },
   de: { consumed: 'Verbraucht', remaining: 'Übrig', of: 'von', thisAction: 'diese Analyse',
         point: 'Punkt', points: 'Punkte', halfPoint: '½ Punkt', freeAction: 'Kostenlos ✨',
-        upgradeCta: '60 Punkte monatlich', resetsMonthly: 'Monatlich', nearLimit: 'Limit fast erreicht' },
+        upgradeCta: '60 Punkte monatlich', resetsMonthly: 'Monatlich', nearLimit: 'Limit fast erreicht',
+        couponOneTime: 'Gutschein · einmalig' },
   fr: { consumed: 'Utilisé', remaining: 'Restant', of: 'sur', thisAction: 'cette analyse',
         point: 'point', points: 'points', halfPoint: '½ point', freeAction: 'Gratuit ✨',
-        upgradeCta: '60 points par mois', resetsMonthly: 'Mensuel', nearLimit: 'Presque épuisé' },
+        upgradeCta: '60 points par mois', resetsMonthly: 'Mensuel', nearLimit: 'Presque épuisé',
+        couponOneTime: 'Points coupon · unique' },
   es: { consumed: 'Usado', remaining: 'Restante', of: 'de', thisAction: 'este análisis',
         point: 'punto', points: 'puntos', halfPoint: '½ punto', freeAction: 'Gratis ✨',
-        upgradeCta: '60 puntos al mes', resetsMonthly: 'Mensual', nearLimit: 'Casi sin créditos' },
+        upgradeCta: '60 puntos al mes', resetsMonthly: 'Mensual', nearLimit: 'Casi sin créditos',
+        couponOneTime: 'Cupón · un solo uso' },
   pt: { consumed: 'Usado', remaining: 'Restante', of: 'de', thisAction: 'esta análise',
         point: 'ponto', points: 'pontos', halfPoint: '½ ponto', freeAction: 'Grátis ✨',
-        upgradeCta: '60 pontos por mês', resetsMonthly: 'Mensal', nearLimit: 'Quase sem créditos' },
+        upgradeCta: '60 pontos por mês', resetsMonthly: 'Mensal', nearLimit: 'Quase sem créditos',
+        couponOneTime: 'Cupom · uso único' },
   tr: { consumed: 'Kullanıldı', remaining: 'Kalan', of: '/', thisAction: 'bu analiz',
         point: 'puan', points: 'puan', halfPoint: '½ puan', freeAction: 'Ücretsiz ✨',
-        upgradeCta: 'Aylık 60 puan al', resetsMonthly: 'Aylık', nearLimit: 'Limit dolmak üzere' },
+        upgradeCta: 'Aylık 60 puan al', resetsMonthly: 'Aylık', nearLimit: 'Limit dolmak üzere',
+        couponOneTime: 'Kupon · tek seferlik' },
 };
 
 interface UsagePulseFooterProps {
