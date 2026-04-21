@@ -62,6 +62,7 @@ export const UsagePulseFooter: React.FC<UsagePulseFooterProps> = ({
   className = '',
 }) => {
   const { remaining, used, limit, isLimitReached, tier } = useAIUsage();
+  const { activeCoupon } = useActiveCoupon();
   const { i18n } = useTranslation();
   const navigate = useNavigate();
   const lang = i18n.language?.split('-')[0] || 'en';
@@ -72,6 +73,9 @@ export const UsagePulseFooter: React.FC<UsagePulseFooterProps> = ({
   const remainPct = limit > 0 ? (remaining / limit) * 100 : 0;
   const isFree = tier === 'free';
   const isNearLimit = remainPct <= 20 && !isLimitReached;
+  // Coupon bonus is one-time only (not auto-renewed). Show clear hint when free user has an active coupon.
+  const hasOneTimeCoupon = isFree && !!activeCoupon;
+  const resetHint = isLimitReached ? L.nearLimit : (hasOneTimeCoupon ? L.couponOneTime : L.resetsMonthly);
 
   // Cost label
   const costLabel = weight === 0
