@@ -53,7 +53,7 @@ export const UpgradeCard: React.FC<UpgradeCardProps> = ({ className = '' }) => {
         {/* Text */}
         <div className="flex-1 min-w-0 text-start">
           <p className="text-xs font-bold leading-tight">{l.title}</p>
-          <p className="text-[11px] opacity-75 mt-px leading-tight">{l.sub}</p>
+          <p className="text-[11px] opacity-75 mt-px leading-tight">{subtitle}</p>
         </div>
 
         {/* CTA */}
