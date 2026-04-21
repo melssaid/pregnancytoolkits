@@ -161,7 +161,8 @@ export function AIUsageProvider({ children }: { children: ReactNode }) {
       if (server) {
         // Sync server-known active coupons into local quota + active_coupon cache
         if (server.activeCoupons.length > 0) {
-          syncCouponBonuses(server.activeCoupons);
+          // Idempotent: pair coupon set with server response version (period_start)
+          syncCouponBonuses(server.activeCoupons, (server as any).period_start || (server as any).periodStart);
           // Cache the longest-lasting coupon for useActiveCoupon hook
           const sorted = [...server.activeCoupons].sort(
             (a, b) => new Date(b.expiresAt).getTime() - new Date(a.expiresAt).getTime()
