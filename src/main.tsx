@@ -158,17 +158,28 @@ const deferAfterPaint = (fn: () => void) => {
 };
 
 deferAfterPaint(() => {
+  // Helper: swallow stale-bundle import failures (common after redeploys)
+  const safeImport = <T,>(loader: () => Promise<T>, label: string): Promise<T | null> =>
+    loader().catch((err) => {
+      console.warn(`[deferred-import] ${label} failed:`, err?.message || err);
+      return null;
+    });
+
   // Storage cleanup
-  import("@/lib/storageCleanup").then((m) => m.maybeRunCleanup());
+  safeImport(() => import("@/lib/storageCleanup"), "storageCleanup")
+    .then((m) => m?.maybeRunCleanup());
 
   // Core Web Vitals measurement
-  import("@/lib/webVitals").then((m) => m.initWebVitals());
+  safeImport(() => import("@/lib/webVitals"), "webVitals")
+    .then((m) => m?.initWebVitals());
 
   // Retry any pending purchase acknowledges
-  import("@/lib/googlePlayBilling").then((m) => m.retryPendingAcknowledges());
+  safeImport(() => import("@/lib/googlePlayBilling"), "googlePlayBilling")
+    .then((m) => m?.retryPendingAcknowledges());
 
   // Migrate large data to IndexedDB
-  import("@/lib/indexedDBStore").then((m) => {
+  safeImport(() => import("@/lib/indexedDBStore"), "indexedDBStore").then((m) => {
+    if (!m) return;
     ['kick_counter_sessions', 'contraction_entries', 'weight_gain_entries'].forEach(key => {
       m.migrateFromLocalStorage(key);
     });
@@ -177,11 +188,12 @@ deferAfterPaint(() => {
   if (import.meta.env.DEV || isPreviewHost || isInIframe) return;
 
   // Service Worker + push notifications (production only)
-  import("@/lib/pushNotifications")
-    .then((m) => m.registerServiceWorker())
+  safeImport(() => import("@/lib/pushNotifications"), "pushNotifications")
+    .then((m) => m?.registerServiceWorker())
     .then(() => {
       setTimeout(() => {
-        import("@/lib/scheduleNotifications").then((m) => m.sendDailyScheduleToSW());
+        safeImport(() => import("@/lib/scheduleNotifications"), "scheduleNotifications")
+          .then((m) => m?.sendDailyScheduleToSW());
       }, 2000);
     });
 });
