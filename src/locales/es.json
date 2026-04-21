@@ -653,6 +653,19 @@
     "backHome": {
       "title": "Volver al inicio",
       "subtitle": "Explora y usa todas las herramientas disponibles"
+    },
+    "archive": {
+      "title": "Mi archivo de resultados",
+      "subtitle": "{{count}} resultados en {{months}} meses",
+      "entriesCount": "{{count}} resultados",
+      "empty": "No hay resultados este mes",
+      "view": "Ver",
+      "hide": "Ocultar",
+      "delete": "Eliminar",
+      "prev": "Mes anterior",
+      "next": "Mes siguiente",
+      "openTool": "Abrir herramienta",
+      "savedResult": "Resultado guardado"
     }
   },
   "layout": {
