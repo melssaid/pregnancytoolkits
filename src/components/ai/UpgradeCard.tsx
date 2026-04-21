@@ -3,15 +3,21 @@ import { motion } from 'framer-motion';
 import { Crown, ChevronRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useAIUsage } from '@/contexts/AIUsageContext';
+import { useActiveCoupon } from '@/hooks/useActiveCoupon';
 
-const labels: Record<string, { title: string; sub: string; cta: string }> = {
-  en: { title: 'Unlock Premium', sub: '60 analyses/month + all tools', cta: 'View Plans' },
-  ar: { title: 'اشتركي في بريميوم', sub: '60 تحليل شهرياً + جميع الأدوات', cta: 'عرض الباقات' },
-  de: { title: 'Premium freischalten', sub: '60 Analysen/Monat + alle Tools', cta: 'Pläne' },
-  fr: { title: 'Passer au Premium', sub: '60 analyses/mois + tous les outils', cta: 'Voir offres' },
-  es: { title: 'Desbloquear Premium', sub: '60 análisis/mes + todas las herramientas', cta: 'Ver planes' },
-  pt: { title: 'Desbloquear Premium', sub: '60 análises/mês + todas as ferramentas', cta: 'Ver planos' },
-  tr: { title: 'Premium\'a Geç', sub: 'Ayda 60 analiz + tüm araçlar', cta: 'Planlar' },
+// `sub` is the default subtitle (paid premium · monthly renewal).
+// `couponSub` is shown to free users with an active one-time coupon
+// to avoid implying an automatic monthly renewal. Wording is aligned
+// with UsagePulseFooter ("Coupon points · one-time" / "نقاط الكوبون لمرة واحدة").
+const labels: Record<string, { title: string; sub: string; couponSub: string; cta: string }> = {
+  en: { title: 'Unlock Premium', sub: '60 analyses/month + all tools', couponSub: 'Coupon points · one-time. Subscribe for monthly renewal', cta: 'View Plans' },
+  ar: { title: 'اشتركي في بريميوم', sub: '60 تحليل شهرياً + جميع الأدوات', couponSub: 'نقاط الكوبون لمرة واحدة · اشتركي للتجديد الشهري', cta: 'عرض الباقات' },
+  de: { title: 'Premium freischalten', sub: '60 Analysen/Monat + alle Tools', couponSub: 'Gutschein · einmalig. Abonniere für monatliche Erneuerung', cta: 'Pläne' },
+  fr: { title: 'Passer au Premium', sub: '60 analyses/mois + tous les outils', couponSub: 'Points coupon · unique. Abonnez-vous pour le renouvellement mensuel', cta: 'Voir offres' },
+  es: { title: 'Desbloquear Premium', sub: '60 análisis/mes + todas las herramientas', couponSub: 'Cupón · un solo uso. Suscríbete para renovación mensual', cta: 'Ver planes' },
+  pt: { title: 'Desbloquear Premium', sub: '60 análises/mês + todas as ferramentas', couponSub: 'Cupom · uso único. Assine para renovação mensal', cta: 'Ver planos' },
+  tr: { title: 'Premium\'a Geç', sub: 'Ayda 60 analiz + tüm araçlar', couponSub: 'Kupon · tek seferlik. Aylık yenileme için abone ol', cta: 'Planlar' },
 };
 
 interface UpgradeCardProps {
@@ -21,8 +27,13 @@ interface UpgradeCardProps {
 export const UpgradeCard: React.FC<UpgradeCardProps> = ({ className = '' }) => {
   const navigate = useNavigate();
   const { i18n } = useTranslation();
+  const { tier } = useAIUsage();
+  const { activeCoupon } = useActiveCoupon();
   const lang = i18n.language?.split('-')[0] || 'en';
   const l = labels[lang] || labels.en;
+  // Free user with an active coupon → bonus is one-time, not auto-renewed.
+  const hasOneTimeCoupon = tier === 'free' && !!activeCoupon;
+  const subtitle = hasOneTimeCoupon ? l.couponSub : l.sub;
 
   return (
     <motion.button
@@ -42,7 +53,7 @@ export const UpgradeCard: React.FC<UpgradeCardProps> = ({ className = '' }) => {
         {/* Text */}
         <div className="flex-1 min-w-0 text-start">
           <p className="text-xs font-bold leading-tight">{l.title}</p>
-          <p className="text-[11px] opacity-75 mt-px leading-tight">{l.sub}</p>
+          <p className="text-[11px] opacity-75 mt-px leading-tight">{subtitle}</p>
         </div>
 
         {/* CTA */}
