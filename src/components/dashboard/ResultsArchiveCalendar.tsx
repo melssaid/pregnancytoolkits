@@ -88,6 +88,10 @@ const SOURCE_META: Record<Source, { icon: any; color: string; tone: string }> = 
   diaper: { icon: Baby, color: "text-cyan-500", tone: "bg-cyan-500/10" },
   symptoms: { icon: Stethoscope, color: "text-fuchsia-500", tone: "bg-fuchsia-500/10" },
   groceries: { icon: ShoppingBag, color: "text-lime-500", tone: "bg-lime-500/10" },
+  appointments: { icon: CalendarClock, color: "text-indigo-500", tone: "bg-indigo-500/10" },
+  dueDates: { icon: CalendarHeart, color: "text-rose-400", tone: "bg-rose-400/10" },
+  hospitalBag: { icon: Briefcase, color: "text-violet-500", tone: "bg-violet-500/10" },
+  backPain: { icon: Bone, color: "text-teal-500", tone: "bg-teal-500/10" },
 };
 
 const sourceLabel = (s: Source, t: (k: string, d?: string) => string): string => {
