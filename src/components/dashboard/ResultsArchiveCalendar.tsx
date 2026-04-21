@@ -24,6 +24,10 @@ import {
   Camera,
   ListChecks,
   Filter,
+  CalendarClock,
+  CalendarHeart,
+  Briefcase,
+  Bone,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { safeParseLocalStorage, safeSaveToLocalStorage } from "@/lib/safeStorage";
@@ -54,7 +58,11 @@ type Source =
   | "vitamins"
   | "diaper"
   | "symptoms"
-  | "groceries";
+  | "groceries"
+  | "appointments"
+  | "dueDates"
+  | "hospitalBag"
+  | "backPain";
 
 interface ArchivedResult {
   id: string;
@@ -80,6 +88,10 @@ const SOURCE_META: Record<Source, { icon: any; color: string; tone: string }> = 
   diaper: { icon: Baby, color: "text-cyan-500", tone: "bg-cyan-500/10" },
   symptoms: { icon: Stethoscope, color: "text-fuchsia-500", tone: "bg-fuchsia-500/10" },
   groceries: { icon: ShoppingBag, color: "text-lime-500", tone: "bg-lime-500/10" },
+  appointments: { icon: CalendarClock, color: "text-indigo-500", tone: "bg-indigo-500/10" },
+  dueDates: { icon: CalendarHeart, color: "text-rose-400", tone: "bg-rose-400/10" },
+  hospitalBag: { icon: Briefcase, color: "text-violet-500", tone: "bg-violet-500/10" },
+  backPain: { icon: Bone, color: "text-teal-500", tone: "bg-teal-500/10" },
 };
 
 const sourceLabel = (s: Source, t: (k: string, d?: string) => string): string => {
@@ -96,6 +108,10 @@ const sourceLabel = (s: Source, t: (k: string, d?: string) => string): string =>
     diaper: ["dashboard.archive.src.diaper", "حفاضات"],
     symptoms: ["dashboard.archive.src.symptoms", "أعراض"],
     groceries: ["dashboard.archive.src.groceries", "قائمة تسوق"],
+    appointments: ["dashboard.archive.src.appointments", "مواعيد"],
+    dueDates: ["dashboard.archive.src.dueDates", "موعد الولادة"],
+    hospitalBag: ["dashboard.archive.src.hospitalBag", "حقيبة المستشفى"],
+    backPain: ["dashboard.archive.src.backPain", "تمارين الظهر"],
   };
   const [k, d] = map[s];
   return t(k, d);
@@ -155,6 +171,10 @@ const hrefFor: Record<Source, string> = {
   diaper: "/tools/diaper-tracker",
   symptoms: "/tools/wellness-diary",
   groceries: "/tools/smart-grocery-list",
+  appointments: "/tools/smart-appointment-reminder",
+  dueDates: "/tools/due-date-calculator",
+  hospitalBag: "/tools/ai-hospital-bag",
+  backPain: "/tools/ai-back-pain-relief",
 };
 
 function collectAllResults(t: (k: string, d?: string) => string): ArchivedResult[] {
@@ -288,6 +308,99 @@ function collectAllResults(t: (k: string, d?: string) => string): ArchivedResult
     });
   });
 
+  // 11) Appointments (per-user key written by supabaseServices)
+  if (userId) {
+    safe(`appointments_${userId}`).forEach((a, i) => {
+      const when = a.appointment_date || a.date || a.scheduled_for || a.created_at;
+      if (!when) return;
+      const title = a.title || a.doctor_name || a.type || t("dashboard.archive.src.appointments", "موعد");
+      const note = a.notes || a.location || "";
+      out.push({
+        id: "appt-" + (a.id || i + "-" + when),
+        toolId: "smart-appointment-reminder",
+        toolName: sourceLabel("appointments", t),
+        date: new Date(when).toISOString(),
+        preview: `${title}${note ? " • " + String(note).slice(0, 60) : ""}`,
+        content: `${title}\n${note}`,
+        href: hrefFor.appointments,
+        source: "appointments",
+      });
+    });
+  }
+  // Legacy non-scoped appointments key (used by MedicalSummaryCard reads)
+  safe("appointments").forEach((a, i) => {
+    const when = a.appointment_date || a.date || a.scheduled_for || a.created_at;
+    if (!when) return;
+    const title = a.title || a.doctor_name || a.type || t("dashboard.archive.src.appointments", "موعد");
+    out.push({
+      id: "appt-legacy-" + (a.id || i + "-" + when),
+      toolId: "smart-appointment-reminder",
+      toolName: sourceLabel("appointments", t),
+      date: new Date(when).toISOString(),
+      preview: `${title}${a.notes ? " • " + String(a.notes).slice(0, 60) : ""}`,
+      content: `${title}\n${a.notes || ""}`,
+      href: hrefFor.appointments,
+      source: "appointments",
+    });
+  });
+
+  // 12) Saved due-date calculations
+  safe("savedDueDates").forEach((d, i) => {
+    const when = d.savedAt || d.date || d.createdAt;
+    if (!when) return;
+    out.push({
+      id: "due-" + (d.id || i + "-" + when),
+      toolId: "due-date-calculator",
+      toolName: sourceLabel("dueDates", t),
+      date: new Date(when).toISOString(),
+      preview: `${t("dashboard.archive.dueDate", "موعد متوقع")}: ${
+        d.dueDate ? new Date(d.dueDate).toLocaleDateString() : "-"
+      }`,
+      content: `Method: ${d.method || "-"}\nLMP: ${d.lmp || "-"}\nDue: ${d.dueDate || "-"}`,
+      href: hrefFor.dueDates,
+      source: "dueDates",
+    });
+  });
+
+  // 13) Hospital bag items (snapshot per checked item)
+  safe("hospital-bag-items")
+    .filter((b) => b && (b.checked || b.packed) && (b.checkedAt || b.updatedAt || b.addedAt))
+    .forEach((b, i) => {
+      const when = b.checkedAt || b.updatedAt || b.addedAt;
+      out.push({
+        id: "bag-" + (b.id || i + "-" + when),
+        toolId: "ai-hospital-bag",
+        toolName: sourceLabel("hospitalBag", t),
+        date: new Date(when).toISOString(),
+        preview: `✓ ${b.name || b.label || b.item || "item"}`,
+        content: `${b.name || b.label || b.item}\n${b.category || ""}`,
+        href: hrefFor.hospitalBag,
+        source: "hospitalBag",
+      });
+    });
+
+  // 14) Back-pain exercises completed today (snapshot)
+  try {
+    const lastDate = localStorage.getItem("backPainLastDate");
+    const completed = safeParseLocalStorage<string[]>(
+      "backPainCompletedToday",
+      [],
+      (d): d is string[] => Array.isArray(d)
+    );
+    if (lastDate && completed.length > 0) {
+      out.push({
+        id: "backpain-" + lastDate,
+        toolId: "ai-back-pain-relief",
+        toolName: sourceLabel("backPain", t),
+        date: new Date(lastDate).toISOString(),
+        preview: `✓ ${completed.length} ${t("dashboard.archive.exercises", "تمرين")}`,
+        content: completed.join("\n"),
+        href: hrefFor.backPain,
+        source: "backPain",
+      });
+    }
+  } catch {}
+
   return out
     .filter((r) => r.date && !isNaN(new Date(r.date).getTime()))
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
@@ -312,6 +425,25 @@ function deleteResult(item: ArchivedResult) {
       case "diaper": filter("diaperEntries", (r) => "dp-" + r.id === item.id); break;
       case "symptoms": filter("quick_symptom_logs", (r) => "sym-" + r.id === item.id); break;
       case "contractions": filter("contraction_timer_data", (r) => "ctn-" + r.id === item.id); break;
+      case "appointments":
+        if (item.id.startsWith("appt-legacy-")) {
+          filter("appointments", (r) => "appt-legacy-" + (r.id || "") === item.id || ("appt-legacy-" + r.id + "-" + (r.appointment_date || r.date || r.scheduled_for || r.created_at)) === item.id);
+        } else if (userId) {
+          filter(`appointments_${userId}`, (r) => "appt-" + (r.id || "") === item.id || ("appt-" + r.id + "-" + (r.appointment_date || r.date || r.scheduled_for || r.created_at)) === item.id);
+        }
+        break;
+      case "dueDates":
+        filter("savedDueDates", (r) => "due-" + (r.id || "") === item.id || ("due-" + r.id + "-" + (r.savedAt || r.date || r.createdAt)) === item.id);
+        break;
+      case "hospitalBag":
+        filter("hospital-bag-items", (r) => "bag-" + (r.id || "") === item.id || ("bag-" + r.id + "-" + (r.checkedAt || r.updatedAt || r.addedAt)) === item.id);
+        break;
+      case "backPain":
+        try {
+          localStorage.removeItem("backPainCompletedToday");
+          localStorage.removeItem("backPainLastDate");
+        } catch {}
+        break;
     }
   } catch {}
 }

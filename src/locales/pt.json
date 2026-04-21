@@ -683,8 +683,14 @@
         "vitamins": "Vitaminas",
         "diaper": "Fralda",
         "symptoms": "Sintomas",
-        "groceries": "Compras"
-      }
+        "groceries": "Compras",
+        "appointments": "Consultas",
+        "dueDates": "Data prevista",
+        "hospitalBag": "Mala maternidade",
+        "backPain": "Costas"
+      },
+      "dueDate": "Data prevista",
+      "exercises": "exercicios"
     },
     "myTools": {
       "title": "Minhas ferramentas",

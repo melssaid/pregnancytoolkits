@@ -738,8 +738,14 @@
         "vitamins": "Vitamins",
         "diaper": "Diaper",
         "symptoms": "Symptoms",
-        "groceries": "Grocery"
-      }
+        "groceries": "Grocery",
+        "appointments": "Appointments",
+        "dueDates": "Due Date",
+        "hospitalBag": "Hospital Bag",
+        "backPain": "Back Pain"
+      },
+      "dueDate": "Due date",
+      "exercises": "exercises"
     },
     "myTools": {
       "title": "My Tools",

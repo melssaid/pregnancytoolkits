@@ -683,8 +683,14 @@
         "vitamins": "Vitamine",
         "diaper": "Windel",
         "symptoms": "Symptome",
-        "groceries": "Einkauf"
-      }
+        "groceries": "Einkauf",
+        "appointments": "Termine",
+        "dueDates": "Geburtstermin",
+        "hospitalBag": "Klinik-Tasche",
+        "backPain": "Rueckenuebungen"
+      },
+      "dueDate": "Termin",
+      "exercises": "Uebungen"
     },
     "myTools": {
       "title": "Meine Tools",
