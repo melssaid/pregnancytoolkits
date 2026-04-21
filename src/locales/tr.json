@@ -683,8 +683,14 @@
         "vitamins": "Vitaminler",
         "diaper": "Bez",
         "symptoms": "Belirtiler",
-        "groceries": "Market"
-      }
+        "groceries": "Market",
+        "appointments": "Randevular",
+        "dueDates": "Tahmini dogum",
+        "hospitalBag": "Hastane cantasi",
+        "backPain": "Sirt agrisi"
+      },
+      "dueDate": "Tahmini tarih",
+      "exercises": "egzersiz"
     },
     "myTools": {
       "title": "Araclarim",

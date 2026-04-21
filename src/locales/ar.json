@@ -738,8 +738,14 @@
         "vitamins": "فيتامينات",
         "diaper": "حفاضات",
         "symptoms": "أعراض",
-        "groceries": "قائمة تسوق"
-      }
+        "groceries": "قائمة تسوق",
+        "appointments": "مواعيد",
+        "dueDates": "موعد الولادة",
+        "hospitalBag": "حقيبة المستشفى",
+        "backPain": "تمارين الظهر"
+      },
+      "dueDate": "موعد متوقع",
+      "exercises": "تمرين"
     },
     "myTools": {
       "title": "أدواتي",

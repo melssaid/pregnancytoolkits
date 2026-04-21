@@ -683,8 +683,14 @@
         "vitamins": "Vitaminas",
         "diaper": "Panal",
         "symptoms": "Sintomas",
-        "groceries": "Compras"
-      }
+        "groceries": "Compras",
+        "appointments": "Citas",
+        "dueDates": "Fecha de parto",
+        "hospitalBag": "Maleta hospital",
+        "backPain": "Espalda"
+      },
+      "dueDate": "Fecha prevista",
+      "exercises": "ejercicios"
     },
     "myTools": {
       "title": "Mis herramientas",

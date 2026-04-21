@@ -683,8 +683,14 @@
         "vitamins": "Vitamines",
         "diaper": "Couches",
         "symptoms": "Symptomes",
-        "groceries": "Epicerie"
-      }
+        "groceries": "Epicerie",
+        "appointments": "Rendez-vous",
+        "dueDates": "Date prevue",
+        "hospitalBag": "Valise maternite",
+        "backPain": "Exercices dos"
+      },
+      "dueDate": "Date prevue",
+      "exercises": "exercices"
     },
     "myTools": {
       "title": "Mes outils",
