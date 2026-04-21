@@ -43,7 +43,6 @@ import { ContractionSummaryCard } from "@/components/dashboard/ContractionSummar
 import { MoodTrendCard } from "@/components/dashboard/MoodTrendCard";
 import { ResultsArchiveCalendar } from "@/components/dashboard/ResultsArchiveCalendar";
 import { MyToolsQuickGrid } from "@/components/dashboard/MyToolsQuickGrid";
-import { useDashboardDataCheck } from "@/hooks/useDashboardDataCheck";
 
 const SmartDashboard = () => {
   const { t } = useTranslation();
