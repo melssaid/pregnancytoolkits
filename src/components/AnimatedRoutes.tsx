@@ -64,6 +64,7 @@ const PrivacyPolicy = lazy(() => import("@/pages/PrivacyPolicy"));
 const TermsOfService = lazy(() => import("@/pages/TermsOfService"));
 const Contact = lazy(() => import("@/pages/Contact"));
 const PricingDemo = lazy(() => import("@/pages/PricingDemo"));
+const ArticlePage = lazy(() => import("@/pages/ArticlePage"));
 
 // AI-POWERED CORE TOOLS
 const PregnancyAssistant = lazy(() => import("@/pages/tools/PregnancyAssistant"));
@@ -177,6 +178,7 @@ export function AnimatedRoutes() {
         <Route path="/privacy" element={<PageTransition><PrivacyPolicy /></PageTransition>} />
         <Route path="/terms" element={<PageTransition><TermsOfService /></PageTransition>} />
         <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
+        <Route path="/articles/:slug" element={<PageTransition><ArticlePage /></PageTransition>} />
         
         {/* AI-POWERED CORE TOOLS */}
         <Route path="/tools/pregnancy-assistant" element={<PageTransition variant="tool"><PregnancyAssistant /></PageTransition>} />
