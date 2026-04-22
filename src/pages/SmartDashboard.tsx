@@ -115,26 +115,25 @@ const SmartDashboard = () => {
           />
         </div>
 
-        {/* 1. Hero — always visible */}
+        {/* ═══ 1. HERO & STATUS — always visible ═══ */}
         <DailyHeroCard week={profile.pregnancyWeek} dueDate={profile.dueDate} />
-
-        {/* ★ Health Score Ring — always visible */}
         <HealthScoreRing />
-
-        {/* ★ Baby Size — always visible */}
         <BabySizeCard />
-
-        {/* Birth Countdown — always visible */}
         <BirthCountdownCard />
 
-        {/* Risk Alerts — conditional */}
+        {/* Risk Alerts — conditional, high priority */}
         <RiskAlertCard
           bloodPressure={bloodPressure}
           todayKicks={stats.dailyTracking.todayKicks}
           week={profile.pregnancyWeek}
         />
 
-        {/* ═══ DAILY ACTIONS — focus on today ═══ */}
+        {/* ═══ 2. WEEKLY INSIGHTS — context for the week ═══ */}
+        <WeekCertificateCard />
+        <StageRecommendation />
+        <WeeklyComparisonCard />
+
+        {/* ═══ 3. DAILY MANAGEMENT — focus on today ═══ */}
         <DailyPriorities
           vitaminsTaken={stats.dailyTracking.vitaminsTaken}
           todayKicks={stats.dailyTracking.todayKicks}
@@ -146,29 +145,26 @@ const SmartDashboard = () => {
         <NutritionTipCard />
         <HydrationTracker />
 
-        {/* ═══ TRACKING SUMMARIES — single source per topic ═══ */}
+        {/* ═══ 4. TRACKING LOGS — single source per topic ═══ */}
         <RecentMealFitnessSummary />
         <WeeklySymptomsCard />
         <MoodTrendCard />
-        <ContractionSummaryCard />
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
           <FetalMovementCard todayKicks={stats.dailyTracking.todayKicks} />
           <WeightTrendCard />
         </div>
 
-        {/* ═══ MY TOOLS & ARCHIVE — unified history ═══ */}
-        <MyToolsQuickGrid />
-        <ResultsArchiveCalendar />
-
-        {/* ═══ MILESTONES & GUIDANCE ═══ */}
-        <WeekCertificateCard />
-        <StageRecommendation />
-        <WeeklyComparisonCard />
-        <MilestonesTimeline />
+        {/* ═══ 5. PREPARATION — doctor, partner, labor ═══ */}
         <DoctorVisitPrepCard />
         <PartnerSummaryCard />
+        {profile.pregnancyWeek >= 32 && <ContractionSummaryCard />}
 
-        {/* ═══ ENGAGEMENT ═══ */}
+        {/* ═══ 6. ARCHIVE & TOOLS — history & quick access ═══ */}
+        <MyToolsQuickGrid />
+        <ResultsArchiveCalendar />
+        <MilestonesTimeline />
+
+        {/* ═══ 7. ENGAGEMENT ═══ */}
         <UsageStatsNudge />
         <AppRatingCard />
         <DynamicFAQ />
