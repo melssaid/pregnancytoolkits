@@ -125,8 +125,13 @@ const uiCopy = {
     mostReadDesc: "اختيارات تحريرية مرتبطة بما تبحث عنه المستخدمات داخل التطبيق.",
     relatedArticles: "مقالات مرتبطة بالسياق",
     relatedArticlesDesc: "تنقّل ذكي بين المقالات المتقاربة وبين الأدوات الأنسب لهذه الخطوة.",
+    readNext: "الخطوة التالية في القراءة",
+    readNextDesc: "مقالة تكمّل الفكرة الحالية وتدفعكِ بسلاسة إلى الخطوة التالية.",
+    similarArticles: "مقالات مشابهة",
+    similarArticlesDesc: "اختيارات قريبة من نفس المرحلة أو نفس الموضوع لقراءة أعمق.",
     relatedTools: "أدوات مرتبطة بهذه القراءة",
     relatedToolsDesc: "ابدئي من الأداة التي تكمل هذه الفكرة مباشرة داخل التطبيق.",
+    suggestedTool: "أداة مرتبطة",
     keyPoints: "محاور سريعة",
     readArticle: "اقرئي المقال",
     continueReading: "تابعي القراءة",
@@ -155,8 +160,13 @@ const uiCopy = {
     mostReadDesc: "Editorial picks aligned with what users explore most inside the app.",
     relatedArticles: "Related reads",
     relatedArticlesDesc: "Move naturally between connected articles and the most relevant tools.",
+    readNext: "Read next",
+    readNextDesc: "A follow-up piece that extends the idea and keeps the journey moving.",
+    similarArticles: "Similar articles",
+    similarArticlesDesc: "More reads from the same stage or topic for deeper discovery.",
     relatedTools: "Tools linked to this read",
     relatedToolsDesc: "Jump into the tool that best complements this idea right now.",
+    suggestedTool: "Related tool",
     keyPoints: "Quick focus points",
     readArticle: "Read article",
     continueReading: "Continue reading",
@@ -185,8 +195,13 @@ const uiCopy = {
     mostReadDesc: "Redaktionelle Empfehlungen passend zu den beliebtesten Themen in der App.",
     relatedArticles: "Verwandte Artikel",
     relatedArticlesDesc: "Wechsle fließend zwischen passenden Artikeln und hilfreichen Tools.",
+    readNext: "Als Nächstes lesen",
+    readNextDesc: "Ein Anschlussartikel, der die aktuelle Idee sinnvoll erweitert.",
+    similarArticles: "Ähnliche Artikel",
+    similarArticlesDesc: "Weitere passende Texte aus derselben Phase oder demselben Thema.",
     relatedTools: "Passende Tools zu diesem Artikel",
     relatedToolsDesc: "Starte direkt mit dem Tool, das diese Idee am besten ergänzt.",
+    suggestedTool: "Passendes Tool",
     keyPoints: "Wichtige Punkte",
     readArticle: "Artikel lesen",
     continueReading: "Weiterlesen",
@@ -215,8 +230,13 @@ const uiCopy = {
     mostReadDesc: "Des choix éditoriaux alignés sur ce que les utilisatrices explorent le plus dans l’app.",
     relatedArticles: "Articles liés",
     relatedArticlesDesc: "Passe naturellement entre les lectures proches et les outils les plus utiles.",
+    readNext: "Lire ensuite",
+    readNextDesc: "Une lecture qui prolonge naturellement l’idée actuelle.",
+    similarArticles: "Articles similaires",
+    similarArticlesDesc: "D’autres contenus proches de la même étape ou du même sujet.",
     relatedTools: "Outils liés à cette lecture",
     relatedToolsDesc: "Ouvre l’outil qui complète le mieux cette idée dès maintenant.",
+    suggestedTool: "Outil lié",
     keyPoints: "Points clés",
     readArticle: "Lire l’article",
     continueReading: "Continuer la lecture",
@@ -245,8 +265,13 @@ const uiCopy = {
     mostReadDesc: "Selecciones editoriales alineadas con lo que más exploran las usuarias en la app.",
     relatedArticles: "Artículos relacionados",
     relatedArticlesDesc: "Muévete de forma natural entre artículos conectados y herramientas útiles.",
+    readNext: "Sigue con esto",
+    readNextDesc: "Una lectura que amplía esta idea y te lleva al siguiente paso.",
+    similarArticles: "Artículos similares",
+    similarArticlesDesc: "Más lecturas de la misma etapa o del mismo tema para profundizar.",
     relatedTools: "Herramientas ligadas a esta lectura",
     relatedToolsDesc: "Abre la herramienta que mejor complementa esta idea ahora mismo.",
+    suggestedTool: "Herramienta ligada",
     keyPoints: "Puntos clave",
     readArticle: "Leer artículo",
     continueReading: "Seguir leyendo",
@@ -275,8 +300,13 @@ const uiCopy = {
     mostReadDesc: "Uygulamada en çok keşfedilen konularla uyumlu editoryal seçimler.",
     relatedArticles: "İlgili yazılar",
     relatedArticlesDesc: "Bağlantılı yazılar ve uygun araçlar arasında doğal şekilde ilerle.",
+    readNext: "Sıradaki okuma",
+    readNextDesc: "Mevcut fikri doğal biçimde devam ettiren bir yazı.",
+    similarArticles: "Benzer yazılar",
+    similarArticlesDesc: "Aynı dönemden veya konudan daha fazla okuma önerisi.",
     relatedTools: "Bu yazıyla bağlantılı araçlar",
     relatedToolsDesc: "Bu fikri en iyi tamamlayan araca hemen geç.",
+    suggestedTool: "İlgili araç",
     keyPoints: "Hızlı odak noktaları",
     readArticle: "Yazıyı oku",
     continueReading: "Okumaya devam et",
@@ -305,8 +335,13 @@ const uiCopy = {
     mostReadDesc: "Escolhas editoriais alinhadas ao que as usuárias mais exploram no app.",
     relatedArticles: "Artigos relacionados",
     relatedArticlesDesc: "Passe com naturalidade entre leituras conectadas e ferramentas úteis.",
+    readNext: "Leia a seguir",
+    readNextDesc: "Uma leitura que amplia a ideia atual e conduz ao próximo passo.",
+    similarArticles: "Artigos semelhantes",
+    similarArticlesDesc: "Mais conteúdos da mesma fase ou do mesmo tema para aprofundar.",
     relatedTools: "Ferramentas ligadas a esta leitura",
     relatedToolsDesc: "Abra a ferramenta que melhor complementa esta ideia agora.",
+    suggestedTool: "Ferramenta relacionada",
     keyPoints: "Pontos-chave",
     readArticle: "Ler artigo",
     continueReading: "Continuar leitura",
@@ -2047,6 +2082,49 @@ export const getRelatedArticles = (slug: string, lang?: string, maxItems: number
 
   const unique: ArticleSeed[] = [];
   relatedSeedPool.forEach((seed) => {
+    if (!unique.find((item) => item.slug === seed.slug) && seed.slug !== slug) {
+      unique.push(seed);
+    }
+  });
+
+  return unique.slice(0, maxItems).map((seed) => mapSeedToArticle(seed, resolved));
+};
+
+export const getNextArticle = (slug: string, lang?: string, date: Date = new Date()) => {
+  const resolved = resolveLang(lang);
+  const visible = getVisibleArticleSeeds(date);
+  const current = visible.find((seed) => seed.slug === slug);
+  if (!current) return null;
+
+  const nextSeed = current.relatedArticleIds
+    .map((relatedSlug) => visible.find((seed) => seed.slug === relatedSlug))
+    .find(Boolean)
+    || visible
+      .filter((seed) => seed.sectionKey === current.sectionKey && seed.slug !== slug)
+      .sort((a, b) => Math.abs(a.order - current.order) - Math.abs(b.order - current.order) || b.popularityWeight - a.popularityWeight)[0]
+    || visible.find((seed) => seed.slug !== slug)
+    || null;
+
+  return nextSeed ? mapSeedToArticle(nextSeed, resolved) : null;
+};
+
+export const getSimilarArticles = (slug: string, lang?: string, maxItems: number = 2, date: Date = new Date()) => {
+  const resolved = resolveLang(lang);
+  const visible = getVisibleArticleSeeds(date);
+  const current = visible.find((seed) => seed.slug === slug);
+  if (!current) return [] as ArticleRecord[];
+
+  const similarPool = [
+    ...current.relatedArticleIds
+      .slice(1)
+      .map((relatedSlug) => visible.find((seed) => seed.slug === relatedSlug))
+      .filter(Boolean) as ArticleSeed[],
+    ...visible.filter((seed) => seed.sectionKey === current.sectionKey && seed.slug !== slug && !current.relatedArticleIds.includes(seed.slug)),
+    ...visible.filter((seed) => seed.slug !== slug && seed.sectionKey !== current.sectionKey),
+  ];
+
+  const unique: ArticleSeed[] = [];
+  similarPool.forEach((seed) => {
     if (!unique.find((item) => item.slug === seed.slug) && seed.slug !== slug) {
       unique.push(seed);
     }
