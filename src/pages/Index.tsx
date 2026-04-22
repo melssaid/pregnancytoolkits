@@ -177,35 +177,33 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
             <motion.div
               animate={{
                 rotate: isOpen ? 180 : 0,
-                scale: isOpen ? 1 : [1, 1.08, 1],
+                x: isOpen ? 0 : [0, isRTL ? -2 : 2, 0],
               }}
               transition={{
                 rotate: { duration: 0.45, ease: [0.34, 1.56, 0.64, 1] },
-                scale: isOpen
-                  ? { duration: 0.3 }
-                  : { duration: 2.2, repeat: Infinity, ease: "easeInOut" },
+                x: isOpen
+                  ? { duration: 0.25 }
+                  : { duration: 2.8, repeat: Infinity, ease: "easeInOut" },
               }}
-              className="relative w-9 h-9 rounded-full flex items-center justify-center"
+              className="relative flex h-9 min-w-[3.4rem] items-center justify-center overflow-hidden rounded-full px-3"
               style={{
                 background: isOpen
-                  ? 'linear-gradient(135deg, hsl(0 0% 100% / 0.35), hsl(0 0% 100% / 0.15))'
-                  : 'linear-gradient(135deg, hsl(45 90% 70% / 0.28), hsl(0 0% 100% / 0.12))',
+                  ? 'linear-gradient(135deg, hsl(0 0% 100% / 0.26), hsl(0 0% 100% / 0.12))'
+                  : 'linear-gradient(135deg, hsl(0 0% 100% / 0.18), hsl(0 0% 100% / 0.08))',
                 boxShadow: isOpen
-                  ? 'inset 0 0 0 1px hsl(0 0% 100% / 0.4), 0 2px 8px hsl(0 0% 0% / 0.12)'
-                  : 'inset 0 0 0 1px hsl(45 90% 80% / 0.5), 0 0 14px hsl(45 95% 65% / 0.35), 0 2px 6px hsl(0 0% 0% / 0.1)',
+                  ? 'inset 0 0 0 1px hsl(0 0% 100% / 0.28), 0 4px 12px hsl(0 0% 0% / 0.10)'
+                  : 'inset 0 0 0 1px hsl(0 0% 100% / 0.22), 0 6px 18px hsl(340 40% 30% / 0.16)',
                 backdropFilter: 'blur(8px)',
               }}
             >
-              {/* Pulsing glow ring when closed */}
+              <motion.span
+                aria-hidden="true"
+                className="absolute inset-y-0 -left-1/3 w-1/2 rounded-full bg-white/20 blur-md"
+                animate={{ x: [0, 56, 0], opacity: isOpen ? 0.18 : [0.08, 0.3, 0.08] }}
+                transition={{ duration: isOpen ? 1.6 : 2.6, repeat: Infinity, ease: "easeInOut" }}
+              />
               {!isOpen && (
-                <motion.span
-                  className="absolute inset-0 rounded-full"
-                  animate={{ opacity: [0.4, 0.9, 0.4], scale: [1, 1.18, 1] }}
-                  transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
-                  style={{
-                    boxShadow: '0 0 0 2px hsl(45 95% 70% / 0.45)',
-                  }}
-                />
+                <span className="absolute start-2 h-1.5 w-1.5 rounded-full bg-white/65" />
               )}
               <ChevronDown
                 className={`w-5 h-5 ${config.headerText} relative z-10 drop-shadow-sm`}
