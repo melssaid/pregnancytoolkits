@@ -18,6 +18,7 @@ import QuickActions from "@/components/home/QuickActions";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { CouponRedeemer } from "@/components/settings/CouponRedeemer";
 import Preg10PromoBanner from "@/components/home/Preg10PromoBanner";
+import { SectionFeaturedArticles } from "@/components/articles/SectionFeaturedArticles";
 
 
 
@@ -242,6 +243,7 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
                   </motion.div>
                 ))}
               </div>
+              <SectionFeaturedArticles sectionKey={config.key} />
             </div>
           </motion.div>
         )}
