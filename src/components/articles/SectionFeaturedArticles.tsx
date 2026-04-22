@@ -2,7 +2,7 @@
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { articleUiCopy, getFeaturedSectionBundle, type ArticleSectionKey } from "@/data/articles";
-import { ArticleCompactLink, ArticleFeatureCard } from "@/components/articles/ArticleCards";
+import { ArticleFeatureCard, ArticleTitleLink } from "@/components/articles/ArticleCards";
 
 export function SectionFeaturedArticles({ sectionKey }: { sectionKey: ArticleSectionKey }) {
   const { i18n } = useTranslation();
@@ -24,7 +24,7 @@ export function SectionFeaturedArticles({ sectionKey }: { sectionKey: ArticleSec
         <ArticleFeatureCard article={bundle.main} isRTL={isRTL} label={copy.featuredLabel} />
         <div className="space-y-2">
           {bundle.secondary.map((article, index) => (
-            <ArticleCompactLink
+            <ArticleTitleLink
               key={article.slug}
               article={article}
               isRTL={isRTL}

@@ -2,7 +2,7 @@
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { articleUiCopy, getNextArticle, getRelatedArticles, getSimilarArticles } from "@/data/articles";
-import { ArticleCompactLink } from "@/components/articles/ArticleCards";
+import { ArticleTitleLink } from "@/components/articles/ArticleCards";
 
 export function RelatedArticles({ slug, limit = 3 }: { slug: string; limit?: number }) {
   const { i18n } = useTranslation();
@@ -23,7 +23,7 @@ export function RelatedArticles({ slug, limit = 3 }: { slug: string; limit?: num
             <h2 className="text-lg font-extrabold text-foreground ar-heading">{copy.readNext}</h2>
             <p className="mt-1 text-xs leading-5 text-muted-foreground">{copy.readNextDesc}</p>
           </div>
-          <ArticleCompactLink article={nextArticle} isRTL={isRTL} label={copy.continueReading} />
+          <ArticleTitleLink article={nextArticle} isRTL={isRTL} label={copy.continueReading} />
         </div>
       )}
 
@@ -35,7 +35,7 @@ export function RelatedArticles({ slug, limit = 3 }: { slug: string; limit?: num
           </div>
           <div className="space-y-2">
             {articles.map((article, index) => (
-              <ArticleCompactLink key={article.slug} article={article} isRTL={isRTL} label={index === 0 ? copy.readAlso : copy.suggested} />
+              <ArticleTitleLink key={article.slug} article={article} isRTL={isRTL} label={index === 0 ? copy.readAlso : copy.suggested} />
             ))}
           </div>
         </div>
@@ -49,7 +49,7 @@ export function RelatedArticles({ slug, limit = 3 }: { slug: string; limit?: num
           </div>
           <div className="space-y-2">
             {similarArticles.map((article) => (
-              <ArticleCompactLink key={article.slug} article={article} isRTL={isRTL} label={copy.suggested} />
+              <ArticleTitleLink key={article.slug} article={article} isRTL={isRTL} label={copy.suggested} />
             ))}
           </div>
         </div>
