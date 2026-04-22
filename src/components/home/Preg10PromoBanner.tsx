@@ -1,6 +1,6 @@
-import { memo, useState } from "react";
+import { memo, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, Copy, Check, X, Gift, Zap, Plus, TrendingUp } from "lucide-react";
+import { Sparkles, Copy, Check, X, Gift, Zap } from "lucide-react";
 import { toast } from "sonner";
 import { useActiveCoupon } from "@/hooks/useActiveCoupon";
 import { useAIUsage } from "@/contexts/AIUsageContext";
@@ -150,7 +150,7 @@ interface Props {
 const Preg10PromoBanner = memo(function Preg10PromoBanner({ lang }: Props) {
   const l = labels[lang] || labels.en;
   const isAr = lang === "ar";
-  const { redeemCoupon, redeeming } = useActiveCoupon();
+  const { activeCoupon, isActive, redeemCoupon, redeeming } = useActiveCoupon();
   const { refresh } = useAIUsage();
 
   const [dismissed, setDismissed] = useState(() => {
@@ -162,7 +162,12 @@ const Preg10PromoBanner = memo(function Preg10PromoBanner({ lang }: Props) {
   const [copied, setCopied] = useState(false);
   const [newBalance, setNewBalance] = useState<number | null>(null);
 
-  if (dismissed) return null;
+  const hasClaimedPromo = useMemo(
+    () => claimed || (isActive && activeCoupon?.code === PROMO_CODE),
+    [activeCoupon?.code, claimed, isActive]
+  );
+
+  if (dismissed && !hasClaimedPromo) return null;
 
   const handleDismiss = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -212,7 +217,51 @@ const Preg10PromoBanner = memo(function Preg10PromoBanner({ lang }: Props) {
         transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
         className="relative"
       >
-        {/* Premium gradient card — deep royal contrast */}
+        {hasClaimedPromo ? (
+          <div
+            className="relative overflow-hidden rounded-2xl border border-emerald-300/25 px-3.5 py-3"
+            style={{
+              background: 'linear-gradient(135deg, hsl(156 42% 18%) 0%, hsl(164 36% 22%) 55%, hsl(178 30% 24%) 100%)',
+              boxShadow: '0 10px 28px -12px hsl(160 70% 12% / 0.55), inset 0 1px 0 hsl(155 80% 65% / 0.18)',
+            }}
+          >
+            <div
+              className="absolute inset-0 pointer-events-none opacity-70"
+              style={{ background: 'radial-gradient(circle at 15% 50%, hsl(150 90% 65% / 0.16) 0%, transparent 48%)' }}
+            />
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-200/70 to-transparent" />
+
+            <div className="relative flex items-center gap-3">
+              <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border border-emerald-200/25 bg-emerald-300/10">
+                <Check className="w-4.5 h-4.5 text-emerald-200" strokeWidth={3} />
+              </div>
+
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center gap-1.5 mb-0.5">
+                  <span className="inline-flex items-center rounded-full bg-emerald-300/14 px-2 py-0.5 text-[9px] font-extrabold tracking-[0.18em] text-emerald-100/95">
+                    {isAr ? 'تم الاستخدام' : 'USED'}
+                  </span>
+                  <span className="text-[10px] font-bold text-emerald-100/70">
+                    {PROMO_CODE}
+                  </span>
+                </div>
+                <p className="text-[13px] font-extrabold text-white leading-tight" style={{ fontFamily: isAr ? "'Tajawal', sans-serif" : undefined }}>
+                  {l.claimed}
+                </p>
+                <p className="text-[11px] text-emerald-50/74 leading-snug mt-0.5">
+                  {newBalance !== null
+                    ? `${l.newBalance}: ${newBalance} ${l.points}`
+                    : l.claimedDesc}
+                </p>
+              </div>
+
+              <div className="flex-shrink-0 rounded-xl border border-emerald-200/15 bg-white/5 px-2.5 py-1.5 text-center backdrop-blur-sm">
+                <div className="text-[9px] font-bold text-emerald-100/70">{l.bonusLabel}</div>
+                <div className="text-[14px] font-black text-white">+10</div>
+              </div>
+            </div>
+          </div>
+        ) : (
         <div
           className="relative rounded-2xl overflow-hidden border border-amber-300/25"
           style={{
@@ -266,142 +315,66 @@ const Preg10PromoBanner = memo(function Preg10PromoBanner({ lang }: Props) {
               className="text-[15px] font-extrabold text-white leading-tight mb-1"
               style={{ fontFamily: isAr ? "'Tajawal', sans-serif" : undefined }}
             >
-              {claimed ? l.claimed : l.title}
+              {l.title}
             </h3>
             <p className="text-[11px] text-white/70 leading-snug mb-3">
-              {claimed ? l.claimedDesc : l.desc}
+              {l.desc}
             </p>
 
-            {/* ✨ Success gesture card — appears after activation */}
-            {claimed && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.85, y: 8 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-                className="relative rounded-xl overflow-hidden p-3 backdrop-blur-sm border border-emerald-300/30"
-                style={{
-                  background: 'linear-gradient(135deg, hsl(155 60% 22% / 0.55) 0%, hsl(165 55% 28% / 0.45) 100%)',
-                  boxShadow: 'inset 0 1px 0 hsl(155 80% 60% / 0.25), 0 4px 14px -4px hsl(155 80% 20% / 0.5)',
-                }}
+            <>
+              {/* Code display row */}
+              <div
+                className="flex items-center gap-2 p-2.5 rounded-xl bg-white/8 border border-amber-300/30 mb-2.5 backdrop-blur-sm"
+                style={{ boxShadow: 'inset 0 1px 2px hsl(0 0% 0% / 0.25)' }}
               >
-                {/* Pulsing glow */}
-                <motion.div
-                  className="absolute inset-0 pointer-events-none"
-                  animate={{ opacity: [0.3, 0.6, 0.3] }}
-                  transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
-                  style={{ background: 'radial-gradient(circle at 20% 50%, hsl(155 90% 60% / 0.18) 0%, transparent 60%)' }}
-                />
-
-                <div className="relative flex items-center gap-3">
-                  {/* +10 badge */}
-                  <motion.div
-                    initial={{ rotate: -12, scale: 0.7 }}
-                    animate={{ rotate: 0, scale: 1 }}
-                    transition={{ delay: 0.25, type: "spring", stiffness: 320, damping: 14 }}
-                    className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center shadow-lg"
-                    style={{
-                      background: 'linear-gradient(135deg, hsl(45 95% 60%) 0%, hsl(38 92% 50%) 100%)',
-                      boxShadow: '0 4px 14px -2px hsl(45 90% 45% / 0.6), inset 0 1px 0 hsl(50 100% 80% / 0.5)',
-                    }}
-                  >
-                    <div className="flex items-center font-black text-[15px]" style={{ color: 'hsl(250 60% 18%)' }}>
-                      <Plus className="w-3 h-3" strokeWidth={4} />
-                      <span>10</span>
-                    </div>
-                  </motion.div>
-
-                  {/* Balance breakdown */}
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-1 mb-0.5">
-                      <TrendingUp className="w-3 h-3 text-emerald-300" strokeWidth={2.5} />
-                      <span className="text-[9px] font-bold text-emerald-200/90 uppercase tracking-wider">
-                        {l.added}
-                      </span>
-                    </div>
-                    <div className="flex items-baseline gap-1.5">
-                      <span className="text-[10px] text-white/70">{l.newBalance}:</span>
-                      <motion.span
-                        key={newBalance ?? 'pending'}
-                        initial={{ opacity: 0, y: 4 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.45, duration: 0.4 }}
-                        className="font-black text-[18px] text-white tabular-nums"
-                        style={{ fontFamily: "'IBM Plex Sans Arabic', system-ui, sans-serif" }}
-                      >
-                        {newBalance !== null ? newBalance : "..."}
-                      </motion.span>
-                      <span className="text-[10px] text-white/60 font-medium">{l.points}</span>
-                    </div>
-                  </div>
-
-                  {/* Animated check */}
-                  <motion.div
-                    initial={{ scale: 0, rotate: -90 }}
-                    animate={{ scale: 1, rotate: 0 }}
-                    transition={{ delay: 0.55, type: "spring", stiffness: 280, damping: 12 }}
-                    className="flex-shrink-0 w-7 h-7 rounded-full bg-emerald-400/25 flex items-center justify-center border border-emerald-300/50"
-                  >
-                    <Check className="w-4 h-4 text-emerald-200" strokeWidth={3} />
-                  </motion.div>
-                </div>
-              </motion.div>
-            )}
-
-            {!claimed && (
-              <>
-                {/* Code display row */}
-                <div
-                  className="flex items-center gap-2 p-2.5 rounded-xl bg-white/8 border border-amber-300/30 mb-2.5 backdrop-blur-sm"
-                  style={{ boxShadow: 'inset 0 1px 2px hsl(0 0% 0% / 0.25)' }}
-                >
-                  <Gift className="w-4 h-4 text-amber-300 flex-shrink-0" strokeWidth={2.2} />
-                  <span
-                    className="flex-1 font-mono font-black text-[18px] tracking-[0.2em] select-all"
-                    style={{
-                      background: 'linear-gradient(90deg, hsl(45 95% 70%), hsl(38 92% 60%))',
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
-                      backgroundClip: 'text',
-                    }}
-                  >
-                    {PROMO_CODE}
-                  </span>
-                  <button
-                    onClick={handleCopy}
-                    className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-white/10 hover:bg-white/15 active:scale-95 transition-all"
-                    aria-label={l.copyHint}
-                  >
-                    {copied ? (
-                      <Check className="w-3.5 h-3.5 text-emerald-300" strokeWidth={2.5} />
-                    ) : (
-                      <Copy className="w-3.5 h-3.5 text-white/80" strokeWidth={2.2} />
-                    )}
-                    <span className="text-[10px] font-bold text-white/85">
-                      {copied ? l.copied : l.copyHint}
-                    </span>
-                  </button>
-                </div>
-
-                {/* Activate CTA — gold for max contrast */}
-                <motion.button
-                  onClick={handleActivate}
-                  disabled={redeeming}
-                  whileTap={{ scale: 0.97 }}
-                  className="w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-xl text-[13px] font-extrabold shadow-lg disabled:opacity-70 transition-all"
+                <Gift className="w-4 h-4 text-amber-300 flex-shrink-0" strokeWidth={2.2} />
+                <span
+                  className="flex-1 font-mono font-black text-[18px] tracking-[0.2em] select-all"
                   style={{
-                    background: 'linear-gradient(90deg, hsl(45 95% 60%) 0%, hsl(38 92% 55%) 100%)',
-                    color: 'hsl(250 60% 18%)',
-                    boxShadow: '0 8px 20px -6px hsl(45 90% 45% / 0.55), 0 2px 6px -1px hsl(38 80% 45% / 0.35)',
+                    background: 'linear-gradient(90deg, hsl(45 95% 70%), hsl(38 92% 60%))',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
                   }}
                 >
-                  <Sparkles className="w-3.5 h-3.5" strokeWidth={2.8} />
-                  {redeeming ? l.applying : l.cta}
-                </motion.button>
-              </>
-            )}
+                  {PROMO_CODE}
+                </span>
+                <button
+                  onClick={handleCopy}
+                  className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-white/10 hover:bg-white/15 active:scale-95 transition-all"
+                  aria-label={l.copyHint}
+                >
+                  {copied ? (
+                    <Check className="w-3.5 h-3.5 text-emerald-300" strokeWidth={2.5} />
+                  ) : (
+                    <Copy className="w-3.5 h-3.5 text-white/80" strokeWidth={2.2} />
+                  )}
+                  <span className="text-[10px] font-bold text-white/85">
+                    {copied ? l.copied : l.copyHint}
+                  </span>
+                </button>
+              </div>
+
+              {/* Activate CTA — gold for max contrast */}
+              <motion.button
+                onClick={handleActivate}
+                disabled={redeeming}
+                whileTap={{ scale: 0.97 }}
+                className="w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-xl text-[13px] font-extrabold shadow-lg disabled:opacity-70 transition-all"
+                style={{
+                  background: 'linear-gradient(90deg, hsl(45 95% 60%) 0%, hsl(38 92% 55%) 100%)',
+                  color: 'hsl(250 60% 18%)',
+                  boxShadow: '0 8px 20px -6px hsl(45 90% 45% / 0.55), 0 2px 6px -1px hsl(38 80% 45% / 0.35)',
+                }}
+              >
+                <Sparkles className="w-3.5 h-3.5" strokeWidth={2.8} />
+                {redeeming ? l.applying : l.cta}
+              </motion.button>
+            </>
 
           </div>
         </div>
+        )}
       </motion.div>
     </AnimatePresence>
   );
