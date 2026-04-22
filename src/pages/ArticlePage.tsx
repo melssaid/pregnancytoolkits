@@ -86,7 +86,9 @@ const ArticlePage = () => {
           </div>
         </header>
 
-        <section className="rounded-[1.6rem] border border-primary/10 bg-gradient-to-b from-card via-card to-secondary/20 px-4 py-4" style={{ boxShadow: "var(--shadow-card)" }}>
+        <section className="relative overflow-hidden rounded-[1.6rem] border border-primary/10 bg-gradient-to-l from-background via-background to-secondary/20 px-4 py-4" style={{ boxShadow: "var(--shadow-card)" }}>
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-2/3 bg-gradient-to-l from-background/95 via-background/75 to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-secondary/10 to-transparent" />
           <div className="flex flex-wrap gap-2">
             {article.tagLabels.map((tag) => (
               <span key={tag} className="rounded-full bg-secondary px-3 py-1 text-[11px] font-semibold text-secondary-foreground">
@@ -94,8 +96,8 @@ const ArticlePage = () => {
               </span>
             ))}
           </div>
-          <div className="mt-4 space-y-3">
-            <div className="rounded-[1.35rem] border border-primary/10 bg-background/85 px-4 py-4">
+          <div className="relative mt-4 space-y-3">
+            <div className="rounded-[1.35rem] border border-primary/10 bg-background/90 px-4 py-4 backdrop-blur-sm">
               <div className="mb-3 h-[3px] w-16 rounded-full bg-gradient-to-r from-primary via-primary/35 to-transparent" />
               <div className="space-y-3 text-[15px] leading-8 text-foreground/95">
                 {article.intro.split("\n\n").map((paragraph) => (
@@ -105,7 +107,7 @@ const ArticlePage = () => {
             </div>
 
             {article.sections.slice(1).map((section) => (
-              <section key={section.heading} className="rounded-[1.15rem] border border-border/70 bg-background/75 px-4 py-3.5">
+              <section key={section.heading} className="rounded-[1.15rem] border border-primary/10 bg-background/80 px-4 py-3.5 backdrop-blur-sm">
                 <h2 className="text-[14px] font-bold leading-6 text-primary ar-heading">{section.heading}</h2>
                 <div className="mt-2 space-y-3 text-[14px] leading-8 text-foreground/90">
                   {section.body.split("\n\n").map((paragraph) => (
@@ -124,15 +126,15 @@ const ArticlePage = () => {
         </section>
 
         {!!relatedTools.length && (
-          <section className="space-y-3 rounded-[1.5rem] border border-primary/10 bg-gradient-to-br from-card via-background to-secondary/25 px-3 py-3.5" style={{ boxShadow: "var(--shadow-card)" }}>
+          <section className="space-y-3 rounded-[1.5rem] border border-primary/15 bg-gradient-to-br from-primary/10 via-secondary/60 to-background px-3 py-3.5" style={{ boxShadow: "var(--shadow-card)" }}>
             <div>
-              <h2 className="text-base font-extrabold text-primary ar-heading">أدوات مفيدة</h2>
+              <h2 className="text-sm font-extrabold text-primary ar-heading">أدوات مفيدة</h2>
             </div>
             <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
               {relatedTools.map((tool) => (
-                <Link key={tool.id} to={tool.href} className="rounded-2xl border border-primary/10 bg-background/90 px-3 py-3 transition-colors hover:border-primary/35 hover:bg-secondary/30">
-                  <div className="text-sm font-bold text-foreground ar-heading">{t(tool.titleKey)}</div>
-                  <div className="mt-1 line-clamp-2 text-[11px] leading-5 text-muted-foreground">{t(tool.descriptionKey)}</div>
+                <Link key={tool.id} to={tool.href} className="rounded-2xl border border-primary/15 bg-background/80 px-3 py-2.5 transition-colors hover:border-primary/35 hover:bg-background/95">
+                  <div className="text-[12px] font-bold text-foreground ar-heading">{t(tool.titleKey)}</div>
+                  <div className="mt-1 line-clamp-2 text-[10px] leading-4 text-muted-foreground">{t(tool.descriptionKey)}</div>
                 </Link>
               ))}
             </div>
