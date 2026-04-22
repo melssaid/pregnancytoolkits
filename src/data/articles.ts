@@ -73,6 +73,7 @@ export type ArticleTag =
   | "comfort"
   | "movement"
   | "fitness"
+  | "partner"
   | "energy"
   | "weight"
   | "birth-prep"
