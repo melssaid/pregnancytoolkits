@@ -459,6 +459,7 @@ const tagLabels: Record<ArticleTag, LocalizedMap> = {
   comfort: { ar: "راحة", en: "Comfort", de: "Wohlbefinden", fr: "Confort", es: "Comodidad", tr: "Rahatlık", pt: "Conforto" },
   movement: { ar: "حركة", en: "Movement", de: "Bewegung", fr: "Mouvement", es: "Movimiento", tr: "Hareket", pt: "Movimento" },
   fitness: { ar: "لياقة", en: "Fitness", de: "Fitness", fr: "Forme", es: "Actividad", tr: "Egzersiz", pt: "Atividade" },
+  partner: { ar: "الشريك", en: "Partner", de: "Partner", fr: "Partenaire", es: "Pareja", tr: "Partner", pt: "Parceiro" },
   energy: { ar: "طاقة", en: "Energy", de: "Energie", fr: "Énergie", es: "Energía", tr: "Enerji", pt: "Energia" },
   weight: { ar: "وزن", en: "Weight", de: "Gewicht", fr: "Poids", es: "Peso", tr: "Kilo", pt: "Peso" },
   "birth-prep": { ar: "تجهيز للولادة", en: "Birth prep", de: "Geburtsvorbereitung", fr: "Préparation à la naissance", es: "Preparación al parto", tr: "Doğum hazırlığı", pt: "Preparação para o parto" },
