@@ -29,6 +29,7 @@ interface ArticleCardSharedProps {
   isRTL?: boolean;
   label?: string;
   eager?: boolean;
+  hideLabel?: boolean;
 }
 
 interface ArticleTitleLinkProps {
@@ -37,7 +38,7 @@ interface ArticleTitleLinkProps {
   label?: string;
 }
 
-export function ArticleFeatureCard({ article, isRTL = false, label, eager = false }: ArticleCardSharedProps) {
+export function ArticleFeatureCard({ article, isRTL = false, label, eager = false, hideLabel = false }: ArticleCardSharedProps) {
   const tone = toneMap[article.sectionKey];
   const ArrowIcon = isRTL ? ArrowLeft : ArrowRight;
 
@@ -57,9 +58,11 @@ export function ArticleFeatureCard({ article, isRTL = false, label, eager = fals
           </AspectRatio>
           <div className={cn("pointer-events-none absolute inset-x-0 top-0 h-full rounded-[1.15rem] bg-gradient-to-t opacity-80", tone.overlay)} />
           <div className="absolute inset-x-3 top-3 flex items-center justify-between gap-2">
-            <span className={cn("inline-flex items-center rounded-full border px-2.5 py-1 text-[11px] font-semibold backdrop-blur-sm", tone.badge)}>
-              {label || article.typeLabel}
-            </span>
+            {!hideLabel ? (
+              <span className={cn("inline-flex items-center rounded-full border px-2.5 py-1 text-[11px] font-semibold backdrop-blur-sm", tone.badge)}>
+                {label || article.typeLabel}
+              </span>
+            ) : <span />}
             <span className="inline-flex items-center gap-1 rounded-full bg-background/85 px-2.5 py-1 text-[11px] font-medium text-muted-foreground backdrop-blur-sm">
               <Clock3 className="h-3.5 w-3.5" />
               {article.readTimeLabel}
@@ -67,7 +70,8 @@ export function ArticleFeatureCard({ article, isRTL = false, label, eager = fals
           </div>
           <div className="flex items-start justify-between gap-3 px-1">
             <div className="min-w-0 flex-1">
-              <h3 className="line-clamp-2 text-[15px] font-extrabold leading-snug text-foreground ar-heading">{article.title}</h3>
+              <div className="mb-2 h-[3px] w-14 rounded-full bg-gradient-to-r from-primary/90 via-primary/35 to-transparent" />
+              <h3 className="line-clamp-2 text-[16px] font-black leading-snug text-foreground ar-heading">{article.title}</h3>
               <p className="mt-1 line-clamp-2 text-[12px] leading-5 text-muted-foreground">{article.excerpt}</p>
             </div>
             <ArrowIcon className="mt-1 h-4 w-4 flex-shrink-0 text-primary transition-transform duration-300 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5" />
@@ -107,8 +111,8 @@ export function ArticleTitleLink({ article, isRTL = false, label }: ArticleTitle
     <Link to={`/articles/${article.slug}`} className="block">
       <div className="group flex items-start gap-3 rounded-[1rem] border border-border/60 bg-background/70 px-3 py-2.5 transition-all duration-300 hover:border-primary/35 hover:bg-secondary/20">
         <div className="min-w-0 flex-1">
-          {label && <div className="text-[10px] font-semibold text-primary">{label}</div>}
-          <h4 className="mt-1 line-clamp-2 text-[13px] font-bold leading-6 text-foreground ar-heading">{article.title}</h4>
+          {label && <div className="sr-only">{label}</div>}
+          <h4 className="line-clamp-2 text-[13px] font-bold leading-6 text-foreground ar-heading">{article.title}</h4>
         </div>
         <ArrowIcon className="mt-1 h-4 w-4 flex-shrink-0 text-primary transition-transform duration-300 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5" />
       </div>
