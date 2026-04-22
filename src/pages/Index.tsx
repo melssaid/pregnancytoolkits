@@ -174,10 +174,42 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
           </div>
           <div className="flex items-center gap-2 flex-shrink-0">
             <motion.div
-              animate={{ rotate: isOpen ? 180 : 0 }}
-              transition={{ duration: 0.25, ease: "easeInOut" }}
+              animate={{
+                rotate: isOpen ? 180 : 0,
+                scale: isOpen ? 1 : [1, 1.08, 1],
+              }}
+              transition={{
+                rotate: { duration: 0.45, ease: [0.34, 1.56, 0.64, 1] },
+                scale: isOpen
+                  ? { duration: 0.3 }
+                  : { duration: 2.2, repeat: Infinity, ease: "easeInOut" },
+              }}
+              className="relative w-9 h-9 rounded-full flex items-center justify-center"
+              style={{
+                background: isOpen
+                  ? 'linear-gradient(135deg, hsl(0 0% 100% / 0.35), hsl(0 0% 100% / 0.15))'
+                  : 'linear-gradient(135deg, hsl(45 90% 70% / 0.28), hsl(0 0% 100% / 0.12))',
+                boxShadow: isOpen
+                  ? 'inset 0 0 0 1px hsl(0 0% 100% / 0.4), 0 2px 8px hsl(0 0% 0% / 0.12)'
+                  : 'inset 0 0 0 1px hsl(45 90% 80% / 0.5), 0 0 14px hsl(45 95% 65% / 0.35), 0 2px 6px hsl(0 0% 0% / 0.1)',
+                backdropFilter: 'blur(8px)',
+              }}
             >
-              <ChevronDown className={`w-5 h-5 ${config.headerText} opacity-70`} strokeWidth={2.5} />
+              {/* Pulsing glow ring when closed */}
+              {!isOpen && (
+                <motion.span
+                  className="absolute inset-0 rounded-full"
+                  animate={{ opacity: [0.4, 0.9, 0.4], scale: [1, 1.18, 1] }}
+                  transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+                  style={{
+                    boxShadow: '0 0 0 2px hsl(45 95% 70% / 0.45)',
+                  }}
+                />
+              )}
+              <ChevronDown
+                className={`w-5 h-5 ${config.headerText} relative z-10 drop-shadow-sm`}
+                strokeWidth={2.75}
+              />
             </motion.div>
           </div>
         </div>
