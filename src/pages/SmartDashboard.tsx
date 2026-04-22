@@ -9,7 +9,6 @@ import { Layout } from "@/components/Layout";
 import { safeParseLocalStorage } from "@/lib/safeStorage";
 import { useSmartConversionPrompt } from "@/hooks/useSmartConversionPrompt";
 import roseLeft from "@/assets/rose-left.png";
-import roseRight from "@/assets/rose-right.png";
 
 // Dashboard components — curated set (duplicates removed)
 import { DailyHeroCard } from "@/components/dashboard/DailyHeroCard";
@@ -56,10 +55,8 @@ const SmartDashboard = () => {
 
   const { scrollY } = useScroll();
   const roseLeftY = useTransform(scrollY, [0, 400], [0, -60]);
-  const roseRightY = useTransform(scrollY, [0, 400], [0, -45]);
   const roseOpacity = useTransform(scrollY, [0, 300], [0.92, 0]);
   const roseLeftScale = useTransform(scrollY, [0, 400], [1, 0.7]);
-  const roseRightScale = useTransform(scrollY, [0, 400], [1, 0.75]);
 
   return (
     <Layout>
@@ -69,8 +66,7 @@ const SmartDashboard = () => {
       />
 
       <main className={`container py-4 pb-24 bg-gradient-to-b ${trimesterTheme.gradient} relative`}>
-        {/* Two realistic roses peeking from under the header */}
-        <div className="absolute -top-3 left-0 right-0 flex justify-between pointer-events-none px-1 z-0">
+        <div className="absolute -top-3 left-0 right-0 flex pointer-events-none px-1 z-0">
           <motion.img
             src={roseLeft}
             alt=""
@@ -89,27 +85,6 @@ const SmartDashboard = () => {
               rotate: { duration: 5, repeat: Infinity, ease: "easeInOut" },
               scale: { duration: 4, repeat: Infinity, ease: "easeInOut" },
               opacity: { duration: 0.8, ease: "easeOut" },
-            }}
-            className="drop-shadow-lg"
-          />
-          <motion.img
-            src={roseRight}
-            alt=""
-            width={96}
-            height={96}
-            style={{ y: roseRightY, opacity: roseOpacity, scale: roseRightScale }}
-            initial={{ y: -20, opacity: 0, rotate: 20, scale: 0.5 }}
-            animate={{
-              y: [0, -6, 0],
-              opacity: 0.92,
-              rotate: [10, 4, 10],
-              scale: [1, 1.08, 1],
-            }}
-            transition={{
-              y: { duration: 3.8, repeat: Infinity, ease: "easeInOut", delay: 0.4 },
-              rotate: { duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 0.3 },
-              scale: { duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 },
-              opacity: { duration: 0.8, ease: "easeOut", delay: 0.15 },
             }}
             className="drop-shadow-lg"
           />
