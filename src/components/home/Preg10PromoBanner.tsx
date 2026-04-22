@@ -1,6 +1,6 @@
 import { memo, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, Copy, Check, X, Gift, Zap, Plus, TrendingUp } from "lucide-react";
+import { Sparkles, Copy, Check, X, Gift, Zap } from "lucide-react";
 import { toast } from "sonner";
 import { useActiveCoupon } from "@/hooks/useActiveCoupon";
 import { useAIUsage } from "@/contexts/AIUsageContext";
@@ -262,7 +262,6 @@ const Preg10PromoBanner = memo(function Preg10PromoBanner({ lang }: Props) {
             </div>
           </div>
         ) : (
-        {/* Premium gradient card — deep royal contrast */}
         <div
           className="relative rounded-2xl overflow-hidden border border-amber-300/25"
           style={{
@@ -322,58 +321,56 @@ const Preg10PromoBanner = memo(function Preg10PromoBanner({ lang }: Props) {
               {l.desc}
             </p>
 
-            {
-              <>
-                {/* Code display row */}
-                <div
-                  className="flex items-center gap-2 p-2.5 rounded-xl bg-white/8 border border-amber-300/30 mb-2.5 backdrop-blur-sm"
-                  style={{ boxShadow: 'inset 0 1px 2px hsl(0 0% 0% / 0.25)' }}
-                >
-                  <Gift className="w-4 h-4 text-amber-300 flex-shrink-0" strokeWidth={2.2} />
-                  <span
-                    className="flex-1 font-mono font-black text-[18px] tracking-[0.2em] select-all"
-                    style={{
-                      background: 'linear-gradient(90deg, hsl(45 95% 70%), hsl(38 92% 60%))',
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
-                      backgroundClip: 'text',
-                    }}
-                  >
-                    {PROMO_CODE}
-                  </span>
-                  <button
-                    onClick={handleCopy}
-                    className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-white/10 hover:bg-white/15 active:scale-95 transition-all"
-                    aria-label={l.copyHint}
-                  >
-                    {copied ? (
-                      <Check className="w-3.5 h-3.5 text-emerald-300" strokeWidth={2.5} />
-                    ) : (
-                      <Copy className="w-3.5 h-3.5 text-white/80" strokeWidth={2.2} />
-                    )}
-                    <span className="text-[10px] font-bold text-white/85">
-                      {copied ? l.copied : l.copyHint}
-                    </span>
-                  </button>
-                </div>
-
-                {/* Activate CTA — gold for max contrast */}
-                <motion.button
-                  onClick={handleActivate}
-                  disabled={redeeming}
-                  whileTap={{ scale: 0.97 }}
-                  className="w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-xl text-[13px] font-extrabold shadow-lg disabled:opacity-70 transition-all"
+            <>
+              {/* Code display row */}
+              <div
+                className="flex items-center gap-2 p-2.5 rounded-xl bg-white/8 border border-amber-300/30 mb-2.5 backdrop-blur-sm"
+                style={{ boxShadow: 'inset 0 1px 2px hsl(0 0% 0% / 0.25)' }}
+              >
+                <Gift className="w-4 h-4 text-amber-300 flex-shrink-0" strokeWidth={2.2} />
+                <span
+                  className="flex-1 font-mono font-black text-[18px] tracking-[0.2em] select-all"
                   style={{
-                    background: 'linear-gradient(90deg, hsl(45 95% 60%) 0%, hsl(38 92% 55%) 100%)',
-                    color: 'hsl(250 60% 18%)',
-                    boxShadow: '0 8px 20px -6px hsl(45 90% 45% / 0.55), 0 2px 6px -1px hsl(38 80% 45% / 0.35)',
+                    background: 'linear-gradient(90deg, hsl(45 95% 70%), hsl(38 92% 60%))',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
                   }}
                 >
-                  <Sparkles className="w-3.5 h-3.5" strokeWidth={2.8} />
-                  {redeeming ? l.applying : l.cta}
-                </motion.button>
-              </>
-            }
+                  {PROMO_CODE}
+                </span>
+                <button
+                  onClick={handleCopy}
+                  className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-white/10 hover:bg-white/15 active:scale-95 transition-all"
+                  aria-label={l.copyHint}
+                >
+                  {copied ? (
+                    <Check className="w-3.5 h-3.5 text-emerald-300" strokeWidth={2.5} />
+                  ) : (
+                    <Copy className="w-3.5 h-3.5 text-white/80" strokeWidth={2.2} />
+                  )}
+                  <span className="text-[10px] font-bold text-white/85">
+                    {copied ? l.copied : l.copyHint}
+                  </span>
+                </button>
+              </div>
+
+              {/* Activate CTA — gold for max contrast */}
+              <motion.button
+                onClick={handleActivate}
+                disabled={redeeming}
+                whileTap={{ scale: 0.97 }}
+                className="w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-xl text-[13px] font-extrabold shadow-lg disabled:opacity-70 transition-all"
+                style={{
+                  background: 'linear-gradient(90deg, hsl(45 95% 60%) 0%, hsl(38 92% 55%) 100%)',
+                  color: 'hsl(250 60% 18%)',
+                  boxShadow: '0 8px 20px -6px hsl(45 90% 45% / 0.55), 0 2px 6px -1px hsl(38 80% 45% / 0.35)',
+                }}
+              >
+                <Sparkles className="w-3.5 h-3.5" strokeWidth={2.8} />
+                {redeeming ? l.applying : l.cta}
+              </motion.button>
+            </>
 
           </div>
         </div>
