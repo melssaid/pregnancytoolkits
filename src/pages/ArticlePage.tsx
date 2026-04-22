@@ -94,16 +94,24 @@ const ArticlePage = () => {
               </span>
             ))}
           </div>
-          <div className="mt-4 space-y-4">
+          <div className="mt-4 space-y-3">
             <div className="rounded-[1.35rem] border border-primary/10 bg-background/85 px-4 py-4">
               <div className="mb-3 h-[3px] w-16 rounded-full bg-gradient-to-r from-primary via-primary/35 to-transparent" />
-              <p className="text-[15px] leading-8 text-foreground/95">{article.intro}</p>
+              <div className="space-y-3 text-[15px] leading-8 text-foreground/95">
+                {article.intro.split("\n\n").map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
             </div>
 
             {article.sections.slice(1).map((section) => (
-              <section key={section.heading} className="rounded-[1.25rem] border border-border/70 bg-background/75 px-4 py-4">
-                <h2 className="text-[15px] font-extrabold leading-7 text-primary ar-heading">{section.heading}</h2>
-                <p className="mt-2 text-[14px] leading-8 text-foreground/90">{section.body}</p>
+              <section key={section.heading} className="rounded-[1.15rem] border border-border/70 bg-background/75 px-4 py-3.5">
+                <h2 className="text-[14px] font-bold leading-6 text-primary ar-heading">{section.heading}</h2>
+                <div className="mt-2 space-y-3 text-[14px] leading-8 text-foreground/90">
+                  {section.body.split("\n\n").map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
+                  ))}
+                </div>
               </section>
             ))}
 
