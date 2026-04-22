@@ -467,85 +467,85 @@ const bodyTemplates = {
   },
   de: {
     article: [
-      "Dieser Artikel gibt dir einen klareren Blick auf "{{title}}" in der Phase {{section}} und ordnet die wichtigsten Punkte in einer ruhigen, praktischen Weise.",
+      'Dieser Artikel gibt dir einen klareren Blick auf "{{title}}" in der Phase {{section}} und ordnet die wichtigsten Punkte in einer ruhigen, praktischen Weise.',
       "Statt lose Tipps aneinanderzureihen, verbindet er Alltag, Beobachtung und die passenden Tools in der App zu einem klaren nächsten Schritt.",
       "Nach dem Lesen fällt der Übergang zum nächsten Artikel oder zum passenden Tool deutlich leichter.",
     ],
     research: [
-      "Diese Forschungsnotiz zu "{{title}}" macht das Thema verständlich, damit du erkennst, warum es in Empfehlungen für {{section}} so oft auftaucht.",
+      'Diese Forschungsnotiz zu "{{title}}" macht das Thema verständlich, damit du erkennst, warum es in Empfehlungen für {{section}} so oft auftaucht.',
       "Es geht nicht um zu viele Details, sondern um leichtere Entscheidungen: worauf du achten kannst, was du strukturierst und womit du beginnst.",
       "Nutze den Text als klare Orientierung und wechsle danach in ein passendes Tool oder einen verbundenen Artikel.",
     ],
     discovery: [
-      "Diese Entdeckung zu "{{title}}" zeigt eine kleine, aber wirksame Idee, die im Alltag von {{section}} überraschend viel verändern kann.",
+      'Diese Entdeckung zu "{{title}}" zeigt eine kleine, aber wirksame Idee, die im Alltag von {{section}} überraschend viel verändern kann.',
       "Die Perspektive verbindet sanfte Beobachtung, Tagesrhythmus und einen praktischen nächsten Schritt.",
       "Wenn dir gerade vieles gleichzeitig begegnet, hilft diese kompakte Sicht dabei, Artikel, Tool und nächsten Impuls wieder zusammenzubringen.",
     ],
   },
   fr: {
     article: [
-      "Cet article t’offre une vision plus nette de "{{title}}" dans la phase {{section}}, avec une approche pratique qui remet les priorités dans le bon ordre.",
+      'Cet article t’offre une vision plus nette de "{{title}}" dans la phase {{section}}, avec une approche pratique qui remet les priorités dans le bon ordre.',
       "Au lieu d’une information isolée, tu y trouves une lecture courte qui relie rythme quotidien, observation calme et bon outil dans l’application.",
       "Une fois la lecture terminée, le passage vers l’article suivant ou l’outil associé devient plus fluide.",
     ],
     research: [
-      "Cette note de recherche sur "{{title}}" garde l’essentiel clair et accessible, pour comprendre pourquoi ce sujet revient souvent dans les repères liés à {{section}}.",
+      'Cette note de recherche sur "{{title}}" garde l’essentiel clair et accessible, pour comprendre pourquoi ce sujet revient souvent dans les repères liés à {{section}}.',
       "L’idée n’est pas d’ajouter de la complexité, mais de transformer l’essentiel en décisions plus légères et plus concrètes.",
       "Lis-la comme un repère rapide, puis poursuis vers un outil lié ou un autre article quand tu veux une suite plus pratique.",
     ],
     discovery: [
-      "Cette découverte éditoriale autour de "{{title}}" met en lumière une idée discrète mais très utile dans la qualité du quotidien pendant {{section}}.",
+      'Cette découverte éditoriale autour de "{{title}}" met en lumière une idée discrète mais très utile dans la qualité du quotidien pendant {{section}}.',
       "Elle relie douceur, observation et action simple à répéter sans surcharger la lecture.",
       "Quand tout semble dense, ce format plus court aide à reconnecter la lecture, l’outil et la suite logique.",
     ],
   },
   es: {
     article: [
-      "Este artículo te da una mirada más clara sobre "{{title}}" en la etapa de {{section}}, con un enfoque práctico que ordena lo importante.",
+      'Este artículo te da una mirada más clara sobre "{{title}}" en la etapa de {{section}}, con un enfoque práctico que ordena lo importante.',
       "En lugar de consejos sueltos, convierte la idea en una lectura breve conectada con el ritmo diario y con la herramienta adecuada dentro de la app.",
       "Al terminar, pasar al siguiente artículo o a la herramienta relacionada se siente mucho más natural.",
     ],
     research: [
-      "Este resumen de investigación sobre "{{title}}" mantiene la información accesible, para que entiendas por qué el tema aparece tanto dentro de {{section}}.",
+      'Este resumen de investigación sobre "{{title}}" mantiene la información accesible, para que entiendas por qué el tema aparece tanto dentro de {{section}}.',
       "No busca cargarte de detalles, sino convertir la evidencia en decisiones más ligeras: qué notar, qué organizar y por dónde empezar.",
       "Úsalo como una guía breve y luego continúa con la herramienta o la lectura que mejor complemente tu momento.",
     ],
     discovery: [
-      "Este descubrimiento editorial sobre "{{title}}" resalta una idea pequeña pero muy influyente en la calidad del día durante {{section}}.",
+      'Este descubrimiento editorial sobre "{{title}}" resalta una idea pequeña pero muy influyente en la calidad del día durante {{section}}.',
       "La perspectiva une ritmo cotidiano, observación tranquila y una acción sencilla que puedes repetir.",
       "Cuando sientas que hay demasiadas cosas a la vez, esta pieza corta te ayuda a volver a conectar lectura, herramienta y siguiente paso.",
     ],
   },
   tr: {
     article: [
-      "Bu yazı, {{section}} döneminde "{{title}}" konusuna daha net bakmanı sağlar ve önemli noktaları pratik bir sıraya yerleştirir.",
+      'Bu yazı, {{section}} döneminde "{{title}}" konusuna daha net bakmanı sağlar ve önemli noktaları pratik bir sıraya yerleştirir.',
       "Dağınık tavsiyeler yerine, günlük ritim ile uygulamadaki doğru araç arasında bağ kuran kısa ve kullanışlı bir perspektif sunar.",
       "Okumayı bitirdiğinde ilgili araca ya da sonraki yazıya geçmek daha doğal hissettirir.",
     ],
     research: [
-      ""{{title}}" hakkındaki bu araştırma özeti, konuyu anlaşılır tutar ve neden {{section}} döneminde sık vurgulandığını açıklar.",
+      '"{{title}}" hakkındaki bu araştırma özeti, konuyu anlaşılır tutar ve neden {{section}} döneminde sık vurgulandığını açıklar.',
       "Amaç seni ayrıntıya boğmak değil; neyi fark edeceğin, neyi düzenleyeceğin ve nereden başlayacağın konusunda daha hafif kararlar sunmaktır.",
       "Bunu hızlı bir bakış olarak kullan, sonra istersen ilgili araca ya da bir sonraki yazıya geç.",
     ],
     discovery: [
-      ""{{title}}" üzerine bu keşif yazısı, {{section}} döneminde günün kalitesini beklenenden fazla etkileyen küçük ama güçlü bir fikri öne çıkarır.",
+      '"{{title}}" üzerine bu keşif yazısı, {{section}} döneminde günün kalitesini beklenenden fazla etkileyen küçük ama güçlü bir fikri öne çıkarır.',
       "Yumuşak gözlem, günlük ritim ve sonraki faydalı adım arasında zarif bir bağ kurar.",
       "Her şey aynı anda yoğun geldiğinde, bu kısa format yazı, araç ve sonraki öneri arasındaki bağı yeniden kurmaya yardım eder.",
     ],
   },
   pt: {
     article: [
-      "Este artigo oferece uma visão mais clara sobre "{{title}}" na fase de {{section}}, com um olhar prático que organiza o que realmente importa.",
+      'Este artigo oferece uma visão mais clara sobre "{{title}}" na fase de {{section}}, com um olhar prático que organiza o que realmente importa.',
       "Em vez de dicas soltas, ele transforma a ideia em uma leitura breve conectada ao ritmo diário e à ferramenta certa dentro do app.",
       "Depois da leitura, avançar para o próximo artigo ou para a ferramenta relacionada fica mais natural.",
     ],
     research: [
-      "Este resumo de pesquisa sobre "{{title}}" mantém o tema acessível, para mostrar por que ele aparece com tanta frequência em {{section}}.",
+      'Este resumo de pesquisa sobre "{{title}}" mantém o tema acessível, para mostrar por que ele aparece com tanta frequência em {{section}}.',
       "A proposta não é sobrecarregar você, mas transformar a evidência em decisões mais leves: o que observar, o que organizar e por onde começar.",
       "Use o texto como uma lente rápida e depois siga para a ferramenta ou leitura que melhor complemente este momento.",
     ],
     discovery: [
-      "Esta descoberta editorial sobre "{{title}}" destaca uma ideia pequena, mas muito influente, na qualidade do dia durante {{section}}.",
+      'Esta descoberta editorial sobre "{{title}}" destaca uma ideia pequena, mas muito influente, na qualidade do dia durante {{section}}.',
       "Ela conecta ritmo diário, observação calma e uma ação simples que pode ser repetida com leveza.",
       "Quando parecer que há informação demais ao mesmo tempo, esta peça curta ajuda a reconectar artigo, ferramenta e próximo passo.",
     ],
