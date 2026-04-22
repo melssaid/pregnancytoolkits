@@ -155,9 +155,9 @@ const uiCopy = {
     backToHome: "العودة للرئيسية",
     articleNotFound: "المقال غير متاح حالياً",
     articleNotFoundDesc: "قد يكون هذا المقال ضمن دفعة نشر لاحقة أو تم نقله إلى قسم آخر.",
-    whyNow: "لماذا يهمكِ الآن؟",
-    practicalView: "زاوية عملية",
-    nextStep: "ما الخطوة التالية؟",
+    whyNow: "الآن",
+    practicalView: "عملياً",
+    nextStep: "بعد ذلك",
     publishedOn: "تاريخ النشر",
     updatedOn: "آخر تحديث",
     professionalDesk: "فريق Pregnancy Toolkits التحريري",
@@ -1952,6 +1952,20 @@ const interpolate = (template: string, values: Record<string, string>) =>
 
 const getTagLabels = (tags: ArticleTag[], lang: SupportedArticleLanguage) => tags.map((tag) => getLocalized(tagLabels[tag], lang));
 
+const joinTagList = (tags: string[], lang: SupportedArticleLanguage) => {
+  if (!tags.length) return "";
+  const separatorMap: Record<SupportedArticleLanguage, string> = {
+    ar: "، ",
+    en: ", ",
+    de: ", ",
+    fr: ", ",
+    es: ", ",
+    tr: ", ",
+    pt: ", ",
+  };
+  return tags.join(separatorMap[lang]);
+};
+
 const getExcerpt = (seed: ArticleSeed, lang: SupportedArticleLanguage) => {
   const title = getLocalized(seed.titles, lang);
   const section = getLocalized(sectionLabels[seed.sectionKey], lang);
@@ -1975,11 +1989,51 @@ const buildSections = (seed: ArticleSeed, lang: SupportedArticleLanguage) => {
   const section = getLocalized(sectionLabels[seed.sectionKey], lang);
   const templates = bodyTemplates[lang][seed.type];
   const copy = uiCopy[lang];
+  const localizedTags = getTagLabels(seed.tags.slice(0, 3), lang);
+  const tagList = joinTagList(localizedTags, lang);
+
+  const expansions: Record<SupportedArticleLanguage, [string, string, string]> = {
+    ar: [
+      `عندما تبحثين عن قراءة تستغرق نحو ${seed.readTime} دقائق، فأنتِ غالباً تريدين فهماً سريعاً لكن واضحاً، وليس مجرد سطور تمهيدية. لهذا صيغ هذا الجزء ليضع الفكرة الأساسية أمامكِ مباشرة، ثم يشرح كيف ترتبط بحياتكِ اليومية بدون تعقيد. ${tagList ? `كما يربط الموضوع بمحاور مثل ${tagList} حتى تصبح الصورة مترابطة وليست مجزأة.` : ""}`,
+      `الجانب العملي هنا مهم، لأن كثيراً من المقالات تتوقف عند الوصف ولا تنتقل إلى ما يمكن فعله فعلاً. في هذا المقال نحاول تحويل الفكرة إلى سلوك بسيط: ما الذي تلاحظينه أولاً، ما الذي يمكنكِ ترتيبه بهدوء، وكيف تفرّقين بين ما يحتاج انتباهاً الآن وما يمكن تأجيله. ${tagList ? `هذا الربط بين ${tagList} يمنحكِ قراءة أقرب للواقع اليومي.` : ""}`,
+      `بعد إنهاء هذا المقال، يفترض أن تكون لديكِ خلاصة قابلة للاستخدام لا مجرد معلومة عابرة. الفكرة ليست أن تقرئي أكثر فقط، بل أن تخرجي بصورة أهدأ، وخطوة أوضح، وقدرة أفضل على الانتقال إلى الأداة المناسبة أو المقال التالي عندما تحتاجين التوسع.`
+    ],
+    en: [
+      `If you are opening a ${seed.readTime}-minute read, you likely want something genuinely useful, not a placeholder summary. This section is written to surface the core idea quickly, then connect it to everyday decisions in a calm and readable way. ${tagList ? `It also ties the topic back to themes like ${tagList} so the article feels coherent rather than fragmented.` : ""}`,
+      `The practical angle matters because many short reads stop at description and never help with action. Here, the goal is to translate the idea into something usable: what to notice first, what to organize next, and how to separate what matters now from what can wait a little longer. ${tagList ? `That is where ${tagList} becomes more than labels and starts to feel relevant.` : ""}`,
+      `By the end of the article, you should have a clearer takeaway rather than a loose impression. The point is not only to read more, but to leave with a steadier understanding, a lighter next step, and a more natural path into the related tool or follow-up article.`
+    ],
+    de: [
+      `Wenn du einen Text mit etwa ${seed.readTime} Minuten Lesezeit öffnest, erwartest du meist mehr als nur eine kurze Einleitung. Dieser Abschnitt bringt die Hauptidee direkt auf den Punkt und verbindet sie mit alltagsnahen Entscheidungen. ${tagList ? `Themen wie ${tagList} sorgen dabei für einen klaren Zusammenhang.` : ""}`,
+      `Der praktische Nutzen ist entscheidend, denn viele kurze Beiträge bleiben rein beschreibend. Hier wird die Idee in konkrete Orientierung übersetzt: worauf du zuerst achten kannst, was du ruhig ordnest und was noch warten darf. ${tagList ? `So wirken auch ${tagList} nicht zufällig, sondern sinnvoll eingebettet.` : ""}`,
+      `Am Ende soll nicht nur ein Eindruck bleiben, sondern eine verwendbare Erkenntnis. Du gehst idealerweise mit mehr Klarheit, einem ruhigeren Gefühl und einem logischen nächsten Schritt weiter.`
+    ],
+    fr: [
+      `Quand tu ouvres une lecture d’environ ${seed.readTime} minutes, tu attends en général plus qu’un simple résumé. Cette partie pose donc l’idée centrale rapidement, puis la relie à des choix concrets du quotidien. ${tagList ? `Les thèmes comme ${tagList} renforcent cette cohérence.` : ""}`,
+      `L’intérêt pratique compte beaucoup, car de nombreux textes courts restent descriptifs. Ici, l’objectif est de transformer l’idée en repères utilisables: quoi observer d’abord, quoi organiser ensuite, et ce qui peut attendre un peu. ${tagList ? `Ainsi, ${tagList} prend une vraie place dans la lecture.` : ""}`,
+      `À la fin, tu dois repartir avec quelque chose de clair et réutilisable, pas avec une impression vague. L’article veut t’aider à lire avec sérénité puis à passer naturellement vers l’outil ou la suite.`
+    ],
+    es: [
+      `Cuando abres una lectura de unos ${seed.readTime} minutos, normalmente esperas algo más que una introducción breve. Por eso esta parte presenta la idea central con claridad y la conecta con decisiones reales del día a día. ${tagList ? `También enlaza temas como ${tagList} para que todo tenga continuidad.` : ""}`,
+      `La parte práctica importa porque muchos textos cortos se quedan solo en la descripción. Aquí la intención es convertir la idea en algo útil: qué observar primero, qué ordenar después y qué puede esperar un poco más. ${tagList ? `Así, ${tagList} deja de ser una etiqueta y gana sentido.` : ""}`,
+      `Al terminar, la idea es que te quedes con una conclusión clara y aprovechable. No se trata solo de leer más, sino de salir con más calma y con un siguiente paso lógico.`
+    ],
+    tr: [
+      `Yaklaşık ${seed.readTime} dakikalık bir yazı açtığında, çoğu zaman sadece giriş cümleleri değil gerçekten işe yarayan bir içerik beklersin. Bu bölüm ana fikri hızlıca verir ve onu günlük kararlarla ilişkilendirir. ${tagList ? `${tagList} gibi başlıklar da bu bütünlüğü destekler.` : ""}`,
+      `Pratik taraf önemlidir; çünkü birçok kısa yazı sadece anlatır ama yön vermez. Burada amaç fikri kullanılabilir hale getirmektir: önce neyi fark edeceğin, sonra neyi düzenleyeceğin ve neyin biraz bekleyebileceği. ${tagList ? `Böylece ${tagList} daha anlamlı hale gelir.` : ""}`,
+      `Yazının sonunda akılda dağınık bir izlenim değil, daha net bir sonuç kalmalıdır. Böylece sonraki adıma ya da ilgili araca daha doğal biçimde geçebilirsin.`
+    ],
+    pt: [
+      `Quando você abre uma leitura de cerca de ${seed.readTime} minutos, normalmente espera mais do que um resumo rápido. Esta parte apresenta a ideia central com clareza e a conecta a decisões reais do cotidiano. ${tagList ? `Temas como ${tagList} ajudam a manter essa coerência.` : ""}`,
+      `O lado prático importa porque muitos textos curtos param na explicação. Aqui, a proposta é transformar a ideia em algo útil: o que observar primeiro, o que organizar depois e o que pode esperar um pouco mais. ${tagList ? `Assim, ${tagList} deixa de ser apenas rótulo e ganha contexto.` : ""}`,
+      `Ao terminar, você deve sair com uma conclusão mais clara e utilizável. O objetivo não é apenas ler mais, mas seguir com mais calma e com um próximo passo natural.`
+    ],
+  };
 
   return [
-    { heading: copy.whyNow, body: interpolate(templates[0], { title, section }) },
-    { heading: copy.practicalView, body: interpolate(templates[1], { title, section }) },
-    { heading: copy.nextStep, body: interpolate(templates[2], { title, section }) },
+    { heading: copy.whyNow, body: `${interpolate(templates[0], { title, section })}\n\n${expansions[lang][0]}` },
+    { heading: copy.practicalView, body: `${interpolate(templates[1], { title, section })}\n\n${expansions[lang][1]}` },
+    { heading: copy.nextStep, body: `${interpolate(templates[2], { title, section })}\n\n${expansions[lang][2]}` },
   ];
 };
 
