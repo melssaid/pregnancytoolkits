@@ -16,12 +16,11 @@ export function RelatedArticles({ slug, limit = 3 }: { slug: string; limit?: num
   if (!nextArticle && !articles.length && !similarArticles.length) return null;
 
   return (
-    <section className="space-y-3 rounded-[1.5rem] border border-border/80 bg-card/85 px-3 py-3.5" style={{ boxShadow: "var(--shadow-card)" }}>
+    <section className="space-y-3 rounded-[1.5rem] border border-primary/10 bg-gradient-to-br from-card via-background to-secondary/20 px-3 py-3.5" style={{ boxShadow: "var(--shadow-card)" }}>
       {nextArticle && (
-        <div className="space-y-2 rounded-[1.2rem] border border-border/70 bg-background/75 p-3">
+        <div className="space-y-2 rounded-[1.2rem] border border-primary/10 bg-background/85 p-3">
           <div>
-            <h2 className="text-lg font-extrabold text-foreground ar-heading">{copy.readNext}</h2>
-            <p className="mt-1 text-xs leading-5 text-muted-foreground">{copy.readNextDesc}</p>
+            <h2 className="text-base font-extrabold text-primary ar-heading">{copy.readNext}</h2>
           </div>
           <ArticleTitleLink article={nextArticle} isRTL={isRTL} label={copy.continueReading} />
         </div>
@@ -30,8 +29,7 @@ export function RelatedArticles({ slug, limit = 3 }: { slug: string; limit?: num
       {!!articles.length && (
         <div className="space-y-2">
           <div>
-            <h2 className="text-lg font-extrabold text-foreground ar-heading">{copy.relatedArticles}</h2>
-            <p className="mt-1 text-xs leading-5 text-muted-foreground">{copy.relatedArticlesDesc}</p>
+            <h2 className="text-base font-extrabold text-primary ar-heading">مقالات قريبة</h2>
           </div>
           <div className="space-y-2">
             {articles.map((article, index) => (
@@ -42,10 +40,9 @@ export function RelatedArticles({ slug, limit = 3 }: { slug: string; limit?: num
       )}
 
       {!!similarArticles.length && (
-        <div className="space-y-2 rounded-[1.2rem] border border-border/70 bg-background/60 p-3">
+        <div className="space-y-2 rounded-[1.2rem] border border-primary/10 bg-background/75 p-3">
           <div>
-            <h2 className="text-lg font-extrabold text-foreground ar-heading">{copy.similarArticles}</h2>
-            <p className="mt-1 text-xs leading-5 text-muted-foreground">{copy.similarArticlesDesc}</p>
+            <h2 className="text-base font-extrabold text-primary ar-heading">مقالات مشابهة</h2>
           </div>
           <div className="space-y-2">
             {similarArticles.map((article) => (

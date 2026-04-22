@@ -109,10 +109,10 @@ export function ArticleTitleLink({ article, isRTL = false, label }: ArticleTitle
 
   return (
     <Link to={`/articles/${article.slug}`} className="block">
-      <div className="group flex items-start gap-3 rounded-[1rem] border border-border/60 bg-background/70 px-3 py-2.5 transition-all duration-300 hover:border-primary/35 hover:bg-secondary/20">
+      <div className="group flex items-start gap-3 rounded-[1rem] border border-primary/10 bg-background/85 px-3 py-3 transition-all duration-300 hover:border-primary/35 hover:bg-secondary/20">
         <div className="min-w-0 flex-1">
           {label && <div className="sr-only">{label}</div>}
-          <h4 className="line-clamp-2 text-[13px] font-bold leading-6 text-foreground ar-heading">{article.title}</h4>
+          <h4 className="line-clamp-2 text-[13px] font-extrabold leading-6 text-foreground ar-heading">{article.title}</h4>
         </div>
         <ArrowIcon className="mt-1 h-4 w-4 flex-shrink-0 text-primary transition-transform duration-300 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5" />
       </div>
