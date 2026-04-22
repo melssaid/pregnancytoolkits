@@ -2,7 +2,7 @@
 import { ArrowLeft, ArrowRight, Clock3 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import type { ArticleRecord, ArticleSectionKey } from "@/data/articles";
 
