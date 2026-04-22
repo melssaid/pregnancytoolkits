@@ -68,7 +68,7 @@ const SmartDashboard = () => {
         description="Your personalized pregnancy dashboard"
       />
 
-      <main className={`container py-4 space-y-3.5 pb-24 bg-gradient-to-b ${trimesterTheme.gradient} relative`}>
+      <main className={`container py-4 pb-24 bg-gradient-to-b ${trimesterTheme.gradient} relative`}>
         {/* Two realistic roses peeking from under the header */}
         <div className="absolute -top-3 left-0 right-0 flex justify-between pointer-events-none px-1 z-0">
           <motion.img
@@ -115,79 +115,81 @@ const SmartDashboard = () => {
           />
         </div>
 
-        {/* ═══ 1. HERO & STATUS — always visible ═══ */}
-        <DailyHeroCard week={profile.pregnancyWeek} dueDate={profile.dueDate} />
-        <HealthScoreRing />
-        <BabySizeCard />
-        <BirthCountdownCard />
+        <div className="relative z-10 space-y-3.5">
+          {/* ═══ 1. HERO & STATUS — always visible ═══ */}
+          <DailyHeroCard week={profile.pregnancyWeek} dueDate={profile.dueDate} />
+          <HealthScoreRing />
+          <BabySizeCard />
+          <BirthCountdownCard />
 
-        {/* Risk Alerts — conditional, high priority */}
-        <RiskAlertCard
-          bloodPressure={bloodPressure}
-          todayKicks={stats.dailyTracking.todayKicks}
-          week={profile.pregnancyWeek}
-        />
+          {/* Risk Alerts — conditional, high priority */}
+          <RiskAlertCard
+            bloodPressure={bloodPressure}
+            todayKicks={stats.dailyTracking.todayKicks}
+            week={profile.pregnancyWeek}
+          />
 
-        {/* ═══ 2. WEEKLY INSIGHTS — context for the week ═══ */}
-        <WeekCertificateCard />
-        <StageRecommendation />
-        <WeeklyComparisonCard />
+          {/* ═══ 2. WEEKLY INSIGHTS — context for the week ═══ */}
+          <WeekCertificateCard />
+          <StageRecommendation />
+          <WeeklyComparisonCard />
 
-        {/* ═══ 3. DAILY MANAGEMENT — focus on today ═══ */}
-        <DailyPriorities
-          vitaminsTaken={stats.dailyTracking.vitaminsTaken}
-          todayKicks={stats.dailyTracking.todayKicks}
-          waterGlasses={stats.dailyTracking.waterGlasses}
-          upcomingAppointments={stats.planning.upcomingAppointments}
-        />
-        <QuickActionsBar />
-        <DailyHealthChallengeCard />
-        <NutritionTipCard />
-        <HydrationTracker />
+          {/* ═══ 3. DAILY MANAGEMENT — focus on today ═══ */}
+          <DailyPriorities
+            vitaminsTaken={stats.dailyTracking.vitaminsTaken}
+            todayKicks={stats.dailyTracking.todayKicks}
+            waterGlasses={stats.dailyTracking.waterGlasses}
+            upcomingAppointments={stats.planning.upcomingAppointments}
+          />
+          <QuickActionsBar />
+          <DailyHealthChallengeCard />
+          <NutritionTipCard />
+          <HydrationTracker />
 
-        {/* ═══ 4. TRACKING LOGS — single source per topic ═══ */}
-        <RecentMealFitnessSummary />
-        <WeeklySymptomsCard />
-        <MoodTrendCard />
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-          <FetalMovementCard todayKicks={stats.dailyTracking.todayKicks} />
-          <WeightTrendCard />
-        </div>
+          {/* ═══ 4. TRACKING LOGS — single source per topic ═══ */}
+          <RecentMealFitnessSummary />
+          <WeeklySymptomsCard />
+          <MoodTrendCard />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+            <FetalMovementCard todayKicks={stats.dailyTracking.todayKicks} />
+            <WeightTrendCard />
+          </div>
 
-        {/* ═══ 5. PREPARATION — doctor, partner, labor ═══ */}
-        <DoctorVisitPrepCard />
-        <PartnerSummaryCard />
-        {profile.pregnancyWeek >= 32 && <ContractionSummaryCard />}
+          {/* ═══ 5. PREPARATION — doctor, partner, labor ═══ */}
+          <DoctorVisitPrepCard />
+          <PartnerSummaryCard />
+          {profile.pregnancyWeek >= 32 && <ContractionSummaryCard />}
 
-        {/* ═══ 6. ARCHIVE & TOOLS — history & quick access ═══ */}
-        <MyToolsQuickGrid />
-        <ResultsArchiveCalendar />
-        <MilestonesTimeline />
+          {/* ═══ 6. ARCHIVE & TOOLS — history & quick access ═══ */}
+          <MyToolsQuickGrid />
+          <ResultsArchiveCalendar />
+          <MilestonesTimeline />
 
-        {/* ═══ 7. ENGAGEMENT ═══ */}
-        <UsageStatsNudge />
-        <AppRatingCard />
-        <DynamicFAQ />
+          {/* ═══ 7. ENGAGEMENT ═══ */}
+          <UsageStatsNudge />
+          <AppRatingCard />
+          <DynamicFAQ />
 
-        {/* Back to Home Banner */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-        >
-          <Link
-            to="/"
-            className="block rounded-2xl bg-gradient-to-br from-primary/10 via-card to-pink-100/30 dark:from-primary/15 dark:to-primary/5 border border-primary/15 p-5 text-center hover:shadow-lg hover:border-primary/30 transition-all group"
+          {/* Back to Home Banner */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
           >
-            <span className="text-2xl mb-2 block">🏠</span>
-            <h3 className="text-base font-extrabold text-foreground mb-1">
-              {t("dashboard.backHome.title", "العودة للصفحة الرئيسية")}
-            </h3>
-            <p className="text-xs text-muted-foreground font-medium">
-              {t("dashboard.backHome.subtitle", "استكشفي واستخدمي كافة الأدوات المتاحة")}
-            </p>
-          </Link>
-        </motion.div>
+            <Link
+              to="/"
+              className="block rounded-2xl bg-gradient-to-br from-primary/10 via-card to-pink-100/30 dark:from-primary/15 dark:to-primary/5 border border-primary/15 p-5 text-center hover:shadow-lg hover:border-primary/30 transition-all group"
+            >
+              <span className="text-2xl mb-2 block">🏠</span>
+              <h3 className="text-base font-extrabold text-foreground mb-1">
+                {t("dashboard.backHome.title", "العودة للصفحة الرئيسية")}
+              </h3>
+              <p className="text-xs text-muted-foreground font-medium">
+                {t("dashboard.backHome.subtitle", "استكشفي واستخدمي كافة الأدوات المتاحة")}
+              </p>
+            </Link>
+          </motion.div>
+        </div>
       </main>
     </Layout>
   );
