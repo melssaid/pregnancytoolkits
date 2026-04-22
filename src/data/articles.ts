@@ -8,6 +8,7 @@ import pregnancyKicksImage from "@/assets/articles/pregnancy-kicks.jpg";
 import postpartumRecoveryImage from "@/assets/articles/postpartum-recovery-clean.jpg";
 import postpartumBondingImage from "@/assets/articles/postpartum-bonding-clean.jpg";
 import postpartumSleepImage from "@/assets/articles/postpartum-sleep-clean.jpg";
+import { estimateArabicReadTime, getArabicArticleContent, getArabicArticleExcerpt } from "@/content/articles-ar";
 
 const articleImageRegistry = {
   planningCycleImage,
@@ -2197,6 +2198,14 @@ const arabicTagGuidance: Record<ArticleTag, { focus: string; action: string; cau
 };
 
 const buildArabicArticleText = (seed: ArticleSeed) => {
+  const customContent = getArabicArticleContent(seed.slug);
+  if (customContent) {
+    return [
+      { heading: "", body: customContent.intro },
+      ...customContent.sections,
+    ];
+  }
+
   const title = getLocalized(seed.titles, "ar");
   const section = getLocalized(sectionLabels[seed.sectionKey], "ar");
   const tags = seed.tags.map((tag) => arabicTagGuidance[tag]).filter(Boolean);
@@ -2244,6 +2253,8 @@ const getExcerpt = (seed: ArticleSeed, lang: SupportedArticleLanguage) => {
   const tagList = getTagLabels(seed.tags.slice(0, 3), lang).join(" • ");
 
   if (lang === "ar") {
+    const customExcerpt = getArabicArticleExcerpt(seed.slug);
+    if (customExcerpt) return customExcerpt;
     return `${title} مقال عملي لمدة ${seed.readTime} دقائق يشرح الموضوع نفسه بوضوح داخل ${section} مع خطوات قابلة للتطبيق فوراً.`;
   }
 
@@ -2322,6 +2333,8 @@ const mapSeedToArticle = (seed: ArticleSeed, lang: SupportedArticleLanguage): Ar
   const updatedAt = createUpdatedAt(publishedAt);
   const title = getLocalized(seed.titles, lang);
   const sections = buildSections(seed, lang);
+  const arabicContent = lang === "ar" ? getArabicArticleContent(seed.slug) : null;
+  const resolvedReadTime = arabicContent ? estimateArabicReadTime(arabicContent) : seed.readTime;
   const resolvedImage = articleImageRegistry[seed.image as keyof typeof articleImageRegistry] || sectionFallbackImage[seed.sectionKey];
 
   return {
@@ -2336,8 +2349,8 @@ const mapSeedToArticle = (seed: ArticleSeed, lang: SupportedArticleLanguage): Ar
     intro: sections[0].body,
     heroAlt: title,
     image: resolvedImage,
-    readTime: seed.readTime,
-    readTimeLabel: formatReadTime(seed.readTime, lang),
+    readTime: resolvedReadTime,
+    readTimeLabel: formatReadTime(resolvedReadTime, lang),
     tags: seed.tags,
     tagLabels: getTagLabels(seed.tags, lang),
     sections,
