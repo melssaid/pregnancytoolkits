@@ -31,6 +31,12 @@ interface ArticleCardSharedProps {
   eager?: boolean;
 }
 
+interface ArticleTitleLinkProps {
+  article: ArticleRecord;
+  isRTL?: boolean;
+  label?: string;
+}
+
 export function ArticleFeatureCard({ article, isRTL = false, label, eager = false }: ArticleCardSharedProps) {
   const tone = toneMap[article.sectionKey];
   const ArrowIcon = isRTL ? ArrowLeft : ArrowRight;
@@ -89,6 +95,22 @@ export function ArticleCompactLink({ article, isRTL = false, label }: ArticleCar
           <h4 className="mt-1 line-clamp-2 text-[13px] font-bold leading-snug text-foreground ar-heading">{article.title}</h4>
         </div>
         <ArrowIcon className="h-4 w-4 flex-shrink-0 text-primary transition-transform duration-300 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5" />
+      </div>
+    </Link>
+  );
+}
+
+export function ArticleTitleLink({ article, isRTL = false, label }: ArticleTitleLinkProps) {
+  const ArrowIcon = isRTL ? ArrowLeft : ArrowRight;
+
+  return (
+    <Link to={`/articles/${article.slug}`} className="block">
+      <div className="group flex items-start gap-3 rounded-[1rem] border border-border/60 bg-background/70 px-3 py-2.5 transition-all duration-300 hover:border-primary/35 hover:bg-secondary/20">
+        <div className="min-w-0 flex-1">
+          {label && <div className="text-[10px] font-semibold text-primary">{label}</div>}
+          <h4 className="mt-1 line-clamp-2 text-[13px] font-bold leading-6 text-foreground ar-heading">{article.title}</h4>
+        </div>
+        <ArrowIcon className="mt-1 h-4 w-4 flex-shrink-0 text-primary transition-transform duration-300 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5" />
       </div>
     </Link>
   );
