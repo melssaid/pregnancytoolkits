@@ -58,12 +58,12 @@ const ArticlePage = () => {
       />
 
       <article className="container max-w-3xl py-5 pb-24 space-y-5">
-        <header className="space-y-4 rounded-[1.75rem] border border-border/80 bg-gradient-to-br from-card via-background to-secondary/40 p-3" style={{ boxShadow: "var(--shadow-card)" }}>
-          <AspectRatio ratio={16 / 9}>
+        <header className="overflow-hidden rounded-[1.75rem] border border-border/80 bg-gradient-to-br from-card via-background to-secondary/35" style={{ boxShadow: "var(--shadow-card)" }}>
+          <AspectRatio ratio={16 / 8.8}>
             <img src={article.image} alt={article.heroAlt} width={1280} height={720} loading="eager" className="h-full w-full rounded-[1.2rem] object-cover" />
           </AspectRatio>
 
-          <div className="space-y-3 px-1 pb-1">
+          <div className="space-y-3 px-4 py-4">
             <div className="flex flex-wrap items-center gap-2">
               <span className="rounded-full bg-secondary px-2.5 py-1 text-[11px] font-semibold text-secondary-foreground">{article.typeLabel}</span>
               <span className="rounded-full bg-muted px-2.5 py-1 text-[11px] font-medium text-muted-foreground">{article.sectionLabel}</span>
@@ -103,12 +103,14 @@ const ArticlePage = () => {
               </span>
             ))}
           </div>
-          <div className="mt-4 space-y-4 text-sm leading-7 text-foreground/90">
-            {article.sections.map((section) => (
-              <section key={section.heading} className="space-y-2">
-                <AspectRatio ratio={16 / 8.5}>
-                  <img src={article.image} alt={article.heroAlt} loading="lazy" width={1280} height={680} className="h-full w-full rounded-[1rem] object-cover" />
-                </AspectRatio>
+          <div className="mt-4 space-y-5 text-sm leading-7 text-foreground/90">
+            {article.sections.map((section, index) => (
+              <section key={section.heading} className="space-y-3">
+                {index === 1 && (
+                  <AspectRatio ratio={16 / 8.8}>
+                    <img src={article.image} alt={article.heroAlt} loading="lazy" width={1280} height={680} className="h-full w-full rounded-[1rem] object-cover" />
+                  </AspectRatio>
+                )}
                 <h2 className="text-lg font-extrabold text-foreground ar-heading">{section.heading}</h2>
                 <p>{section.body}</p>
               </section>
