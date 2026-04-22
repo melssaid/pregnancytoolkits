@@ -1,7 +1,7 @@
 
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { articleUiCopy, getArticleCountBySection, getFeaturedSectionBundle, type ArticleSectionKey } from "@/data/articles";
+import { articleUiCopy, getFeaturedSectionBundle, type ArticleSectionKey } from "@/data/articles";
 import { ArticleCompactLink, ArticleFeatureCard } from "@/components/articles/ArticleCards";
 
 export function SectionFeaturedArticles({ sectionKey }: { sectionKey: ArticleSectionKey }) {
@@ -10,18 +10,14 @@ export function SectionFeaturedArticles({ sectionKey }: { sectionKey: ArticleSec
   const isRTL = lang === "ar";
   const copy = articleUiCopy(lang);
   const bundle = useMemo(() => getFeaturedSectionBundle(sectionKey, lang), [lang, sectionKey]);
-  const counts = useMemo(() => getArticleCountBySection(), []);
 
   if (!bundle.main) return null;
 
   return (
-    <div className="mt-3 rounded-[1.35rem] border border-border/70 bg-background/70 p-2.5 backdrop-blur-sm">
+    <div className="mt-3 px-0.5">
       <div className="mb-2.5 px-1">
         <p className="text-[11px] font-semibold text-primary">{copy.sectionIntro}</p>
-        <div className="mt-1 flex items-center justify-between gap-2">
-          <h3 className="text-sm font-extrabold text-foreground ar-heading">{copy.sectionTitles[sectionKey]}</h3>
-          <span className="rounded-full bg-secondary px-2 py-1 text-[10px] font-semibold text-secondary-foreground">{counts[sectionKey]}</span>
-        </div>
+        <h3 className="mt-1 text-sm font-extrabold text-foreground ar-heading">{copy.sectionTitles[sectionKey]}</h3>
       </div>
 
       <div className="space-y-2.5">
