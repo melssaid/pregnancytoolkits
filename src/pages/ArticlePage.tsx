@@ -1,5 +1,5 @@
 
-import { CalendarDays, Clock3, Home, Sparkles } from "lucide-react";
+import { Clock3, Home, Sparkles } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
@@ -9,7 +9,7 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Button } from "@/components/ui/button";
 import { FeaturedArticlesRail } from "@/components/articles/FeaturedArticlesRail";
 import { RelatedArticles } from "@/components/articles/RelatedArticles";
-import { articleUiCopy, getArticleDateLabel, getLocalizedArticleBySlug, getRelatedToolRecords } from "@/data/articles";
+import { articleUiCopy, getLocalizedArticleBySlug, getRelatedToolRecords } from "@/data/articles";
 
 const ArticlePage = () => {
   const { slug = "" } = useParams();
@@ -57,7 +57,7 @@ const ArticlePage = () => {
         keywords={article.tagLabels.join(", ")}
       />
 
-      <article className="container max-w-3xl py-5 pb-24 space-y-5">
+      <article className="container max-w-3xl space-y-5 py-5 pb-24">
         <header className="overflow-hidden rounded-[1.75rem] border border-border/80 bg-gradient-to-br from-card via-background to-secondary/35" style={{ boxShadow: "var(--shadow-card)" }}>
           <AspectRatio ratio={16 / 8.8}>
             <img src={article.image} alt={article.heroAlt} width={1280} height={720} loading="eager" className="h-full w-full rounded-[1.2rem] object-cover" />
@@ -66,36 +66,27 @@ const ArticlePage = () => {
           <div className="space-y-3 px-4 py-4">
             <div className="flex flex-wrap items-center gap-2">
               <span className="rounded-full bg-secondary px-2.5 py-1 text-[11px] font-semibold text-secondary-foreground">{article.typeLabel}</span>
-              <span className="rounded-full bg-muted px-2.5 py-1 text-[11px] font-medium text-muted-foreground">{article.sectionLabel}</span>
+              <span className="rounded-full border border-primary/15 bg-primary/10 px-2.5 py-1 text-[11px] font-semibold text-primary">{article.sectionLabel}</span>
             </div>
 
             <h1 className="text-[1.7rem] font-black leading-tight text-foreground ar-heading">{article.title}</h1>
-            <p className="text-sm leading-6 text-muted-foreground">{article.excerpt}</p>
+            <p className="text-sm leading-7 text-foreground/75">{article.excerpt}</p>
 
-            <div className="grid grid-cols-2 gap-2 text-xs text-muted-foreground sm:grid-cols-4">
-              <div className="rounded-2xl bg-background px-3 py-2">
+            <div className="grid grid-cols-1 gap-2 text-xs text-muted-foreground sm:grid-cols-2">
+              <div className="rounded-2xl border border-primary/10 bg-background/90 px-3 py-2.5">
                 <div className="flex items-center gap-1.5 font-semibold text-foreground">
                   <Clock3 className="h-3.5 w-3.5 text-primary" />
                   {article.readTimeLabel}
                 </div>
               </div>
-              <div className="rounded-2xl bg-background px-3 py-2 col-span-1 sm:col-span-1">
-                <div className="font-semibold text-foreground">{copy.publishedOn}</div>
-                <div className="mt-1">{getArticleDateLabel(article.publishedAt, lang)}</div>
-              </div>
-              <div className="rounded-2xl bg-background px-3 py-2 col-span-1 sm:col-span-1">
-                <div className="font-semibold text-foreground">{copy.updatedOn}</div>
-                <div className="mt-1">{getArticleDateLabel(article.updatedAt, lang)}</div>
-              </div>
-              <div className="rounded-2xl bg-background px-3 py-2 col-span-2 sm:col-span-1">
-                <div className="font-semibold text-foreground">{copy.professionalDesk}</div>
-                <div className="mt-1">Pregnancy Toolkits</div>
+              <div className="rounded-2xl border border-primary/10 bg-primary/10 px-3 py-2.5">
+                <div className="font-semibold text-primary">{article.tagLabels.slice(0, 3).join(" • ")}</div>
               </div>
             </div>
           </div>
         </header>
 
-        <section className="rounded-[1.6rem] border border-border/80 bg-card px-4 py-4" style={{ boxShadow: "var(--shadow-card)" }}>
+        <section className="rounded-[1.6rem] border border-primary/10 bg-gradient-to-b from-card via-card to-secondary/20 px-4 py-4" style={{ boxShadow: "var(--shadow-card)" }}>
           <div className="flex flex-wrap gap-2">
             {article.tagLabels.map((tag) => (
               <span key={tag} className="rounded-full bg-secondary px-3 py-1 text-[11px] font-semibold text-secondary-foreground">
@@ -103,32 +94,37 @@ const ArticlePage = () => {
               </span>
             ))}
           </div>
-          <div className="mt-4 space-y-5 text-sm leading-7 text-foreground/90">
-            {article.sections.map((section, index) => (
-              <section key={section.heading} className="space-y-3">
-                {index === 1 && (
-                  <AspectRatio ratio={16 / 8.8}>
-                    <img src={article.image} alt={article.heroAlt} loading="lazy" width={1280} height={680} className="h-full w-full rounded-[1rem] object-cover" />
-                  </AspectRatio>
-                )}
-                <h2 className="text-lg font-extrabold text-foreground ar-heading">{section.heading}</h2>
-                <p>{section.body}</p>
+          <div className="mt-4 space-y-4">
+            <div className="rounded-[1.35rem] border border-primary/10 bg-background/85 px-4 py-4">
+              <div className="mb-3 h-[3px] w-16 rounded-full bg-gradient-to-r from-primary via-primary/35 to-transparent" />
+              <p className="text-[15px] leading-8 text-foreground/95">{article.intro}</p>
+            </div>
+
+            {article.sections.slice(1).map((section) => (
+              <section key={section.heading} className="rounded-[1.25rem] border border-border/70 bg-background/75 px-4 py-4">
+                <h2 className="text-[15px] font-extrabold leading-7 text-primary ar-heading">{section.heading}</h2>
+                <p className="mt-2 text-[14px] leading-8 text-foreground/90">{section.body}</p>
               </section>
             ))}
+
+            <div className="border-t border-primary/10 pt-4 text-center text-[12px] font-medium text-muted-foreground">
+              <span className="text-primary">Pregnancy Toolkits</span>
+              <span className="mx-2 text-border">•</span>
+              <span>{copy.professionalDesk}</span>
+            </div>
           </div>
         </section>
 
         {!!relatedTools.length && (
-          <section className="space-y-3 rounded-[1.5rem] border border-border/80 bg-card px-3 py-3.5" style={{ boxShadow: "var(--shadow-card)" }}>
+          <section className="space-y-3 rounded-[1.5rem] border border-primary/10 bg-gradient-to-br from-card via-background to-secondary/25 px-3 py-3.5" style={{ boxShadow: "var(--shadow-card)" }}>
             <div>
-              <h2 className="text-lg font-extrabold text-foreground ar-heading">{copy.relatedTools}</h2>
-              <p className="mt-1 text-xs leading-5 text-muted-foreground">{copy.relatedToolsDesc}</p>
+              <h2 className="text-base font-extrabold text-primary ar-heading">أدوات مفيدة</h2>
             </div>
             <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
               {relatedTools.map((tool) => (
-                <Link key={tool.id} to={tool.href} className="rounded-2xl border border-border/80 bg-background px-3 py-3 transition-colors hover:border-primary/35 hover:bg-secondary/30">
+                <Link key={tool.id} to={tool.href} className="rounded-2xl border border-primary/10 bg-background/90 px-3 py-3 transition-colors hover:border-primary/35 hover:bg-secondary/30">
                   <div className="text-sm font-bold text-foreground ar-heading">{t(tool.titleKey)}</div>
-                  <div className="mt-1 text-xs leading-5 text-muted-foreground">{t(tool.descriptionKey)}</div>
+                  <div className="mt-1 line-clamp-2 text-[11px] leading-5 text-muted-foreground">{t(tool.descriptionKey)}</div>
                 </Link>
               ))}
             </div>
