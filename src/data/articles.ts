@@ -9,6 +9,23 @@ import postpartumRecoveryImage from "@/assets/articles/postpartum-recovery-clean
 import postpartumBondingImage from "@/assets/articles/postpartum-bonding-clean.jpg";
 import postpartumSleepImage from "@/assets/articles/postpartum-sleep-clean.jpg";
 
+const articleImageRegistry = {
+  planningCycleImage,
+  planningNutritionImage,
+  pregnancyWeeklyImage,
+  pregnancyBirthImage,
+  pregnancyKicksImage,
+  postpartumRecoveryImage,
+  postpartumBondingImage,
+  postpartumSleepImage,
+} as const;
+
+const sectionFallbackImage: Record<ArticleSectionKey, string> = {
+  planning: planningCycleImage,
+  pregnant: pregnancyWeeklyImage,
+  postpartum: postpartumRecoveryImage,
+};
+
 export type ArticleSectionKey = "planning" | "pregnant" | "postpartum";
 export type ArticleType = "article" | "research" | "discovery";
 export type SupportedArticleLanguage = "ar" | "en" | "de" | "fr" | "es" | "tr" | "pt";
@@ -1971,6 +1988,7 @@ const mapSeedToArticle = (seed: ArticleSeed, lang: SupportedArticleLanguage): Ar
   const updatedAt = createUpdatedAt(publishedAt);
   const title = getLocalized(seed.titles, lang);
   const sections = buildSections(seed, lang);
+  const resolvedImage = articleImageRegistry[seed.image as keyof typeof articleImageRegistry] || sectionFallbackImage[seed.sectionKey];
 
   return {
     id: seed.id,
@@ -1983,7 +2001,7 @@ const mapSeedToArticle = (seed: ArticleSeed, lang: SupportedArticleLanguage): Ar
     excerpt: getExcerpt(seed, lang),
     intro: sections[0].body,
     heroAlt: title,
-    image: seed.image,
+    image: resolvedImage,
     readTime: seed.readTime,
     readTimeLabel: formatReadTime(seed.readTime, lang),
     tags: seed.tags,
