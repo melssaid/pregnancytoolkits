@@ -16,6 +16,12 @@ interface SEOHeadProps {
   type?: "website" | "article";
   noindex?: boolean;
   keywords?: string;
+  image?: string;
+  publishedTime?: string;
+  modifiedTime?: string;
+  author?: string;
+  articleSection?: string;
+  articleTags?: string[];
   /** HowTo steps for rich snippets */
   howToSteps?: { name: string; text: string }[];
 }
@@ -32,6 +38,12 @@ export function SEOHead({
   type = "website",
   noindex = false,
   keywords,
+  image,
+  publishedTime,
+  modifiedTime,
+  author,
+  articleSection,
+  articleTags,
   howToSteps,
 }: SEOHeadProps = {}) {
   const { t, i18n } = useTranslation();
@@ -63,6 +75,23 @@ export function SEOHead({
 
   // Enhanced keywords targeting high-volume pregnancy searches + ASO strategy keywords
   const seoKeywords = keywords || "pregnancy tracker, due date calculator, baby kick counter, contraction timer, baby growth tracker, pregnancy app free, pregnancy week by week, ovulation tracker, cycle tracker, fertility tracker, pregnancy planner, pregnancy journal, hospital bag checklist, birth plan, pregnancy nutrition, pregnancy exercises, postpartum recovery, baby sleep tracker, pregnancy AI assistant, pregnancy meal planner, pregnancy weight gain, baby development, pregnancy calendar, pregnancy countdown, smart pregnancy tools, pregnancy toolkit app, all in one pregnancy app, pregnancy calculator accurate, best pregnancy app 2026, pregnancy app with AI, pregnancy app no account needed, pregnancy tools free, pregnancy companion, baby size by week, pregnancy symptoms tracker, pregnancy calculator, pregnancy app for first time moms, pregnancy week calculator, prenatal care app, maternity app, expecting mother app, baby bump tracker, pregnancy to-do list, pregnancy milestone tracker, pregnancy health tips, pregnancy yoga, kegel exercises pregnancy, postpartum mental health, baby feeding tracker, diaper tracker app, morning sickness remedies, pregnancy sleep tips, prenatal vitamins, pregnancy weight gain calculator, baby development week by week, pregnancy checklist, pregnancy nutrition plan, first trimester guide, second trimester tips, third trimester preparation, labor preparation, newborn essentials, pregnancy workout safe, gestational diabetes, preeclampsia symptoms, baby names generator, fetal development tracker, baby heartbeat monitor, pregnancy mood tracker, prenatal care guide, حاسبة الحمل, متابعة الحمل, أدوات الحمل, تطبيق الحمل, الحمل أسبوع بأسبوع, حاسبة موعد الولادة, حاسبة الحمل بالأسابيع, تطبيق حمل ذكي, متابعة الحمل مجاناً, عداد ركلات الجنين, مؤقت الانقباضات, تغذية الحامل, أعراض الحمل, تمارين الحامل, حقيبة الولادة, خطة الولادة, وزن الحامل, فيتامينات الحمل, نصائح الحمل اليومية, حاسبة الولادة, جدول الحمل, مراحل نمو الجنين, تطور الجنين بالأسابيع, أعراض الحمل المبكرة, غثيان الحمل, الولادة الطبيعية, الولادة القيصرية, تمارين كيجل للحامل, يوغا الحمل, سكر الحمل, أفضل تطبيق حمل, تطبيق حمل عربي";
+  const ogImage = image || OG_IMAGE;
+
+  const articleSchema = type === "article" ? {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": seoTitle,
+    "description": seoDesc,
+    "image": [ogImage],
+    "datePublished": publishedTime,
+    "dateModified": modifiedTime || publishedTime,
+    "author": author ? { "@type": "Organization", "name": author } : undefined,
+    "publisher": { "@type": "Organization", "name": brandName },
+    "mainEntityOfPage": canonical,
+    "articleSection": articleSection,
+    "keywords": articleTags?.join(", ") || seoKeywords,
+    "inLanguage": lang,
+  } : null;
 
   // Breadcrumb schema for tool pages
   const breadcrumbSchema = path.startsWith("/tools/") ? {
@@ -263,7 +292,7 @@ export function SEOHead({
       <meta property="og:description" content={seoDesc} />
       <meta property="og:type" content={type} />
       <meta property="og:url" content={canonical} />
-      <meta property="og:image" content={OG_IMAGE} />
+      <meta property="og:image" content={ogImage} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="og:image:alt" content={seoTitle} />
@@ -274,7 +303,12 @@ export function SEOHead({
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={seoTitle} />
       <meta name="twitter:description" content={seoDesc} />
-      <meta name="twitter:image" content={OG_IMAGE} />
+      <meta name="twitter:image" content={ogImage} />
+      {publishedTime && <meta property="article:published_time" content={publishedTime} />}
+      {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
+      {author && <meta property="article:author" content={author} />}
+      {articleSection && <meta property="article:section" content={articleSection} />}
+      {articleTags?.map((tag) => <meta key={tag} property="article:tag" content={tag} />)}
       <meta name="twitter:image:alt" content={seoTitle} />
 
       {/* Android App Links - Deep Links for Google Search */}
@@ -330,6 +364,12 @@ export function SEOHead({
       {reviewSchema && (
         <script type="application/ld+json">
           {JSON.stringify(reviewSchema)}
+        </script>
+      )}
+
+      {articleSchema && (
+        <script type="application/ld+json">
+          {JSON.stringify(articleSchema)}
         </script>
       )}
 
