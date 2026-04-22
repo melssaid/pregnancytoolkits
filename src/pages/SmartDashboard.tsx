@@ -70,7 +70,7 @@ const SmartDashboard = () => {
 
       <main className={`container py-4 space-y-3.5 pb-24 bg-gradient-to-b ${trimesterTheme.gradient} relative`}>
         {/* Two realistic roses peeking from under the header */}
-        <div className="absolute -top-3 left-0 right-0 flex justify-between pointer-events-none px-1 z-0 -z-10">
+        <div className="absolute -top-3 left-0 right-0 flex justify-between pointer-events-none px-1 z-0">
           <motion.img
             src={roseLeft}
             alt=""
