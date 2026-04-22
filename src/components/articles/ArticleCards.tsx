@@ -37,19 +37,19 @@ export function ArticleFeatureCard({ article, isRTL = false, label, eager = fals
 
   return (
     <Link to={`/articles/${article.slug}`} className="block">
-      <Card className={cn("group overflow-hidden rounded-2xl border transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40", tone.shell)} style={{ boxShadow: "var(--shadow-card)" }}>
-        <div className="relative">
-          <AspectRatio ratio={16 / 9}>
+      <Card className={cn("group overflow-hidden rounded-[1.15rem] border-0 bg-transparent shadow-none transition-all duration-300", tone.shell)}>
+        <div className="relative space-y-2.5">
+          <AspectRatio ratio={16 / 8.2}>
             <img
               src={article.image}
               alt={article.heroAlt}
               loading={eager ? "eager" : "lazy"}
               width={1280}
               height={720}
-              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+              className="h-full w-full rounded-[1.15rem] object-cover transition-transform duration-500 group-hover:scale-[1.02]"
             />
           </AspectRatio>
-          <div className={cn("pointer-events-none absolute inset-0 bg-gradient-to-t opacity-90", tone.overlay)} />
+          <div className={cn("pointer-events-none absolute inset-x-0 top-0 h-full rounded-[1.15rem] bg-gradient-to-t opacity-80", tone.overlay)} />
           <div className="absolute inset-x-3 top-3 flex items-center justify-between gap-2">
             <span className={cn("inline-flex items-center rounded-full border px-2.5 py-1 text-[11px] font-semibold backdrop-blur-sm", tone.badge)}>
               {label || article.typeLabel}
@@ -59,21 +59,12 @@ export function ArticleFeatureCard({ article, isRTL = false, label, eager = fals
               {article.readTimeLabel}
             </span>
           </div>
-          <div className="absolute inset-x-0 bottom-0 p-4">
-            <div className="rounded-2xl border border-background/60 bg-background/80 p-3.5 backdrop-blur-sm">
+          <div className="flex items-start justify-between gap-3 px-1">
+            <div className="min-w-0 flex-1">
               <h3 className="line-clamp-2 text-[15px] font-extrabold leading-snug text-foreground ar-heading">{article.title}</h3>
-              <p className="mt-1.5 line-clamp-2 text-xs leading-5 text-muted-foreground">{article.excerpt}</p>
-              <div className="mt-3 flex items-center justify-between gap-3">
-                <div className="flex flex-wrap gap-1.5">
-                  {article.tagLabels.slice(0, 2).map((tag) => (
-                    <span key={tag} className="rounded-full bg-secondary px-2 py-1 text-[10px] font-medium text-secondary-foreground">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                <ArrowIcon className="h-4 w-4 flex-shrink-0 text-primary transition-transform duration-300 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5" />
-              </div>
+              <p className="mt-1 line-clamp-2 text-[12px] leading-5 text-muted-foreground">{article.excerpt}</p>
             </div>
+            <ArrowIcon className="mt-1 h-4 w-4 flex-shrink-0 text-primary transition-transform duration-300 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5" />
           </div>
         </div>
       </Card>
