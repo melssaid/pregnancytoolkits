@@ -18,6 +18,15 @@ const ArticlePage = () => {
   const copy = articleUiCopy(lang);
   const article = useMemo(() => getLocalizedArticleBySlug(slug, lang), [lang, slug]);
   const relatedTools = useMemo(() => (article ? getRelatedToolRecords(article) : []), [article]);
+  const contentFallback = lang === "ar"
+    ? {
+        title: "المحتوى النصي لهذه المقالة غير متاح حالياً",
+        body: "نعمل على استكمال نص هذه المقالة. يمكنكِ العودة لاحقاً أو متابعة أداة مرتبطة أو مقال آخر من نفس القسم.",
+      }
+    : {
+        title: "This article body is not available right now",
+        body: "We’re still preparing the full text for this article. Please check back soon or continue with a related tool or another article from this section.",
+      };
 
   if (!article) {
     return (
@@ -41,6 +50,16 @@ const ArticlePage = () => {
       </Layout>
     );
   }
+
+  const introParagraphs = article.intro.split("\n\n").map((paragraph) => paragraph.trim()).filter(Boolean);
+  const contentSections = article.sections
+    .slice(1)
+    .map((section) => ({
+      ...section,
+      paragraphs: section.body.split("\n\n").map((paragraph) => paragraph.trim()).filter(Boolean),
+    }))
+    .filter((section) => section.heading.trim() || section.paragraphs.length > 0);
+  const hasRenderableContent = introParagraphs.length > 0 || contentSections.some((section) => section.paragraphs.length > 0);
 
   return (
     <Layout showBack>
@@ -96,26 +115,38 @@ const ArticlePage = () => {
               </span>
             ))}
           </div>
-          <div className="relative mt-4 space-y-3">
-            <div className="rounded-[1.35rem] border border-primary/10 bg-background/90 px-4 py-4 backdrop-blur-sm">
-              <div className="mb-3 h-[3px] w-16 rounded-full bg-gradient-to-r from-primary via-primary/35 to-transparent" />
-              <div className="space-y-3 text-[15px] leading-8 text-foreground/95">
-                {article.intro.split("\n\n").map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
-                ))}
-              </div>
-            </div>
+          <div className="relative mt-4 space-y-3" data-testid="article-body">
+            {hasRenderableContent ? (
+              <>
+                {!!introParagraphs.length && (
+                  <div className="rounded-[1.35rem] border border-primary/10 bg-background/90 px-4 py-4 backdrop-blur-sm">
+                    <div className="mb-3 h-[3px] w-16 rounded-full bg-gradient-to-r from-primary via-primary/35 to-transparent" />
+                    <div className="space-y-3 text-[15px] leading-8 text-foreground/95">
+                      {introParagraphs.map((paragraph) => (
+                        <p key={paragraph}>{paragraph}</p>
+                      ))}
+                    </div>
+                  </div>
+                )}
 
-            {article.sections.slice(1).map((section) => (
-              <section key={section.heading} className="rounded-[1.15rem] border border-primary/10 bg-background/80 px-4 py-3.5 backdrop-blur-sm">
-                <h2 className="text-[14px] font-bold leading-6 text-primary ar-heading">{section.heading}</h2>
-                <div className="mt-2 space-y-3 text-[14px] leading-8 text-foreground/90">
-                  {section.body.split("\n\n").map((paragraph) => (
-                    <p key={paragraph}>{paragraph}</p>
-                  ))}
-                </div>
-              </section>
-            ))}
+                {contentSections.map((section) => (
+                  <section key={`${section.heading}-${section.paragraphs[0] || "content"}`} className="rounded-[1.15rem] border border-primary/10 bg-background/80 px-4 py-3.5 backdrop-blur-sm">
+                    {!!section.heading.trim() && <h2 className="text-[14px] font-bold leading-6 text-primary ar-heading">{section.heading}</h2>}
+                    <div className="mt-2 space-y-3 text-[14px] leading-8 text-foreground/90">
+                      {section.paragraphs.map((paragraph) => (
+                        <p key={paragraph}>{paragraph}</p>
+                      ))}
+                    </div>
+                  </section>
+                ))}
+              </>
+            ) : (
+              <div data-testid="article-body-fallback" className="rounded-[1.35rem] border border-primary/15 bg-background/90 px-4 py-5 text-center backdrop-blur-sm">
+                <div className="mx-auto mb-3 h-[3px] w-16 rounded-full bg-gradient-to-r from-primary via-primary/35 to-transparent" />
+                <h2 className="text-[15px] font-extrabold text-primary ar-heading">{contentFallback.title}</h2>
+                <p className="mt-2 text-[14px] leading-7 text-muted-foreground">{contentFallback.body}</p>
+              </div>
+            )}
 
             <div className="border-t border-primary/10 pt-4 text-center text-[12px] font-medium text-muted-foreground">
               <span className="text-primary">Pregnancy Toolkits</span>
