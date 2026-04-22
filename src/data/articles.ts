@@ -1,0 +1,2069 @@
+
+import { getToolById } from "@/lib/tools-data";
+import planningCycleImage from "@/assets/articles/planning-cycle-clean.jpg";
+import planningNutritionImage from "@/assets/articles/planning-nutrition-clean.jpg";
+import pregnancyWeeklyImage from "@/assets/articles/pregnancy-weekly-clean.jpg";
+import pregnancyBirthImage from "@/assets/articles/pregnancy-birth-clean.jpg";
+import pregnancyKicksImage from "@/assets/articles/pregnancy-kicks.jpg";
+import postpartumRecoveryImage from "@/assets/articles/postpartum-recovery-clean.jpg";
+import postpartumBondingImage from "@/assets/articles/postpartum-bonding-clean.jpg";
+import postpartumSleepImage from "@/assets/articles/postpartum-sleep-clean.jpg";
+
+export type ArticleSectionKey = "planning" | "pregnant" | "postpartum";
+export type ArticleType = "article" | "research" | "discovery";
+export type SupportedArticleLanguage = "ar" | "en" | "de" | "fr" | "es" | "tr" | "pt";
+
+type LocalizedMap = Record<SupportedArticleLanguage, string>;
+
+type ArticleSeed = {
+  id: string;
+  slug: string;
+  sectionKey: ArticleSectionKey;
+  type: ArticleType;
+  image: string;
+  readTime: number;
+  tags: ArticleTag[];
+  relatedToolIds: string[];
+  relatedArticleIds: string[];
+  featuredInSection: boolean;
+  featuredGlobal: boolean;
+  popularityWeight: number;
+  order: number;
+  titles: LocalizedMap;
+};
+
+export type ArticleTag =
+  | "fertility"
+  | "timing"
+  | "cycle-awareness"
+  | "patterns"
+  | "readiness"
+  | "nutrition"
+  | "vitamins"
+  | "sleep"
+  | "routine"
+  | "tracking"
+  | "planning"
+  | "ovulation"
+  | "mindset"
+  | "support"
+  | "mistakes"
+  | "research"
+  | "decision-making"
+  | "weekly-guide"
+  | "growth"
+  | "body-changes"
+  | "comfort"
+  | "movement"
+  | "fitness"
+  | "energy"
+  | "weight"
+  | "birth-prep"
+  | "hospital-bag"
+  | "essentials"
+  | "birth-plan"
+  | "baby-movements"
+  | "awareness"
+  | "contractions"
+  | "wellbeing"
+  | "attention"
+  | "recovery"
+  | "rest"
+  | "feeding"
+  | "bonding"
+  | "newborn"
+  | "crying"
+  | "organization"
+  | "balance"
+  | "first-weeks"
+  | "discovery";
+
+export interface ArticleRecord {
+  id: string;
+  slug: string;
+  sectionKey: ArticleSectionKey;
+  sectionLabel: string;
+  type: ArticleType;
+  typeLabel: string;
+  title: string;
+  excerpt: string;
+  intro: string;
+  heroAlt: string;
+  image: string;
+  readTime: number;
+  readTimeLabel: string;
+  tags: ArticleTag[];
+  tagLabels: string[];
+  sections: { heading: string; body: string }[];
+  publishedAt: string;
+  updatedAt: string;
+  relatedToolIds: string[];
+  relatedArticleIds: string[];
+  featuredInSection: boolean;
+  featuredGlobal: boolean;
+  popularityWeight: number;
+  order: number;
+}
+
+const SUPPORTED_LANGUAGES: SupportedArticleLanguage[] = ["ar", "en", "de", "fr", "es", "tr", "pt"];
+const ARTICLE_RELEASE_START = Date.UTC(2025, 0, 1);
+const TWO_WEEKS_IN_MS = 14 * 24 * 60 * 60 * 1000;
+const DAY_IN_MS = 24 * 60 * 60 * 1000;
+
+const uiCopy = {
+  ar: {
+    sectionIntro: "محتوى مختار بعناية لهذه المرحلة",
+    sectionTitles: {
+      planning: "مقالات التخطيط والخصوبة",
+      pregnant: "مقالات رحلتكِ الحالية",
+      postpartum: "مقالات ما بعد الولادة والعناية",
+    },
+    featuredLabel: "مقال بارز",
+    readAlso: "اقرئي أيضًا",
+    suggested: "مقترح لكِ",
+    mostRead: "الأكثر قراءة هذا الأسبوع",
+    mostReadDesc: "اختيارات تحريرية مرتبطة بما تبحث عنه المستخدمات داخل التطبيق.",
+    relatedArticles: "مقالات مرتبطة بالسياق",
+    relatedArticlesDesc: "تنقّل ذكي بين المقالات المتقاربة وبين الأدوات الأنسب لهذه الخطوة.",
+    relatedTools: "أدوات مرتبطة بهذه القراءة",
+    relatedToolsDesc: "ابدئي من الأداة التي تكمل هذه الفكرة مباشرة داخل التطبيق.",
+    keyPoints: "محاور سريعة",
+    readArticle: "اقرئي المقال",
+    continueReading: "تابعي القراءة",
+    backToHome: "العودة للرئيسية",
+    articleNotFound: "المقال غير متاح حالياً",
+    articleNotFoundDesc: "قد يكون هذا المقال ضمن دفعة نشر لاحقة أو تم نقله إلى قسم آخر.",
+    whyNow: "لماذا يهمكِ الآن؟",
+    practicalView: "زاوية عملية",
+    nextStep: "ما الخطوة التالية؟",
+    publishedOn: "تاريخ النشر",
+    updatedOn: "آخر تحديث",
+    professionalDesk: "فريق Pregnancy Toolkits التحريري",
+    discoverMore: "اكتشفي المزيد",
+  },
+  en: {
+    sectionIntro: "Curated reading for this stage",
+    sectionTitles: {
+      planning: "Planning & fertility reads",
+      pregnant: "Pregnancy editorial picks",
+      postpartum: "Postpartum & baby reads",
+    },
+    featuredLabel: "Featured read",
+    readAlso: "Read also",
+    suggested: "Suggested next",
+    mostRead: "Most read this week",
+    mostReadDesc: "Editorial picks aligned with what users explore most inside the app.",
+    relatedArticles: "Related reads",
+    relatedArticlesDesc: "Move naturally between connected articles and the most relevant tools.",
+    relatedTools: "Tools linked to this read",
+    relatedToolsDesc: "Jump into the tool that best complements this idea right now.",
+    keyPoints: "Quick focus points",
+    readArticle: "Read article",
+    continueReading: "Continue reading",
+    backToHome: "Back to home",
+    articleNotFound: "Article not available yet",
+    articleNotFoundDesc: "This article may be scheduled for a later release wave or moved to another section.",
+    whyNow: "Why it matters now",
+    practicalView: "Practical perspective",
+    nextStep: "What to do next",
+    publishedOn: "Published",
+    updatedOn: "Updated",
+    professionalDesk: "Pregnancy Toolkits Editorial Desk",
+    discoverMore: "Discover more",
+  },
+  de: {
+    sectionIntro: "Kuratiertes Lesen für diese Phase",
+    sectionTitles: {
+      planning: "Planung & Fruchtbarkeit",
+      pregnant: "Redaktionelle Auswahl zur Schwangerschaft",
+      postpartum: "Lesestoff für Wochenbett & Baby",
+    },
+    featuredLabel: "Empfohlen",
+    readAlso: "Weiterlesen",
+    suggested: "Als Nächstes",
+    mostRead: "Meistgelesen diese Woche",
+    mostReadDesc: "Redaktionelle Empfehlungen passend zu den beliebtesten Themen in der App.",
+    relatedArticles: "Verwandte Artikel",
+    relatedArticlesDesc: "Wechsle fließend zwischen passenden Artikeln und hilfreichen Tools.",
+    relatedTools: "Passende Tools zu diesem Artikel",
+    relatedToolsDesc: "Starte direkt mit dem Tool, das diese Idee am besten ergänzt.",
+    keyPoints: "Wichtige Punkte",
+    readArticle: "Artikel lesen",
+    continueReading: "Weiterlesen",
+    backToHome: "Zur Startseite",
+    articleNotFound: "Artikel derzeit nicht verfügbar",
+    articleNotFoundDesc: "Dieser Artikel erscheint möglicherweise in einer späteren Veröffentlichungswelle.",
+    whyNow: "Warum das jetzt wichtig ist",
+    practicalView: "Praktischer Blick",
+    nextStep: "Nächster Schritt",
+    publishedOn: "Veröffentlicht",
+    updatedOn: "Aktualisiert",
+    professionalDesk: "Pregnancy Toolkits Redaktion",
+    discoverMore: "Mehr entdecken",
+  },
+  fr: {
+    sectionIntro: "Une lecture choisie pour cette étape",
+    sectionTitles: {
+      planning: "Articles planification & fertilité",
+      pregnant: "Sélection éditoriale grossesse",
+      postpartum: "Lectures post-partum & bébé",
+    },
+    featuredLabel: "À la une",
+    readAlso: "À lire aussi",
+    suggested: "Suggestion suivante",
+    mostRead: "Les plus lus cette semaine",
+    mostReadDesc: "Des choix éditoriaux alignés sur ce que les utilisatrices explorent le plus dans l’app.",
+    relatedArticles: "Articles liés",
+    relatedArticlesDesc: "Passe naturellement entre les lectures proches et les outils les plus utiles.",
+    relatedTools: "Outils liés à cette lecture",
+    relatedToolsDesc: "Ouvre l’outil qui complète le mieux cette idée dès maintenant.",
+    keyPoints: "Points clés",
+    readArticle: "Lire l’article",
+    continueReading: "Continuer la lecture",
+    backToHome: "Retour à l’accueil",
+    articleNotFound: "Article indisponible pour le moment",
+    articleNotFoundDesc: "Cet article peut être prévu pour une vague de publication ultérieure.",
+    whyNow: "Pourquoi c’est utile maintenant",
+    practicalView: "Point de vue pratique",
+    nextStep: "Prochaine étape",
+    publishedOn: "Publié le",
+    updatedOn: "Mis à jour le",
+    professionalDesk: "Rédaction Pregnancy Toolkits",
+    discoverMore: "Découvrir plus",
+  },
+  es: {
+    sectionIntro: "Lecturas seleccionadas para esta etapa",
+    sectionTitles: {
+      planning: "Lecturas de planificación y fertilidad",
+      pregnant: "Selección editorial del embarazo",
+      postpartum: "Lecturas de posparto y bebé",
+    },
+    featuredLabel: "Destacado",
+    readAlso: "Lee también",
+    suggested: "Siguiente sugerencia",
+    mostRead: "Lo más leído esta semana",
+    mostReadDesc: "Selecciones editoriales alineadas con lo que más exploran las usuarias en la app.",
+    relatedArticles: "Artículos relacionados",
+    relatedArticlesDesc: "Muévete de forma natural entre artículos conectados y herramientas útiles.",
+    relatedTools: "Herramientas ligadas a esta lectura",
+    relatedToolsDesc: "Abre la herramienta que mejor complementa esta idea ahora mismo.",
+    keyPoints: "Puntos clave",
+    readArticle: "Leer artículo",
+    continueReading: "Seguir leyendo",
+    backToHome: "Volver al inicio",
+    articleNotFound: "Artículo aún no disponible",
+    articleNotFoundDesc: "Este artículo puede estar programado para una próxima tanda de publicación.",
+    whyNow: "Por qué importa ahora",
+    practicalView: "Enfoque práctico",
+    nextStep: "Qué hacer después",
+    publishedOn: "Publicado",
+    updatedOn: "Actualizado",
+    professionalDesk: "Equipo editorial de Pregnancy Toolkits",
+    discoverMore: "Descubrir más",
+  },
+  tr: {
+    sectionIntro: "Bu dönem için özenle seçilmiş içerik",
+    sectionTitles: {
+      planning: "Planlama ve doğurganlık yazıları",
+      pregnant: "Gebelik editör seçimleri",
+      postpartum: "Doğum sonrası ve bebek içerikleri",
+    },
+    featuredLabel: "Öne çıkan",
+    readAlso: "Bunu da oku",
+    suggested: "Sıradaki öneri",
+    mostRead: "Bu haftanın en çok okunanları",
+    mostReadDesc: "Uygulamada en çok keşfedilen konularla uyumlu editoryal seçimler.",
+    relatedArticles: "İlgili yazılar",
+    relatedArticlesDesc: "Bağlantılı yazılar ve uygun araçlar arasında doğal şekilde ilerle.",
+    relatedTools: "Bu yazıyla bağlantılı araçlar",
+    relatedToolsDesc: "Bu fikri en iyi tamamlayan araca hemen geç.",
+    keyPoints: "Hızlı odak noktaları",
+    readArticle: "Yazıyı oku",
+    continueReading: "Okumaya devam et",
+    backToHome: "Ana sayfaya dön",
+    articleNotFound: "Yazı şu anda mevcut değil",
+    articleNotFoundDesc: "Bu yazı daha sonraki bir yayın dalgası için planlanmış olabilir.",
+    whyNow: "Neden şimdi önemli",
+    practicalView: "Pratik bakış",
+    nextStep: "Sonraki adım",
+    publishedOn: "Yayınlandı",
+    updatedOn: "Güncellendi",
+    professionalDesk: "Pregnancy Toolkits Editör Masası",
+    discoverMore: "Daha fazlasını keşfet",
+  },
+  pt: {
+    sectionIntro: "Leitura selecionada para esta fase",
+    sectionTitles: {
+      planning: "Leituras de planejamento e fertilidade",
+      pregnant: "Seleção editorial da gravidez",
+      postpartum: "Leituras de pós-parto e bebê",
+    },
+    featuredLabel: "Em destaque",
+    readAlso: "Leia também",
+    suggested: "Próxima sugestão",
+    mostRead: "Mais lidos da semana",
+    mostReadDesc: "Escolhas editoriais alinhadas ao que as usuárias mais exploram no app.",
+    relatedArticles: "Artigos relacionados",
+    relatedArticlesDesc: "Passe com naturalidade entre leituras conectadas e ferramentas úteis.",
+    relatedTools: "Ferramentas ligadas a esta leitura",
+    relatedToolsDesc: "Abra a ferramenta que melhor complementa esta ideia agora.",
+    keyPoints: "Pontos-chave",
+    readArticle: "Ler artigo",
+    continueReading: "Continuar leitura",
+    backToHome: "Voltar ao início",
+    articleNotFound: "Artigo ainda não disponível",
+    articleNotFoundDesc: "Este artigo pode estar programado para uma próxima onda de publicação.",
+    whyNow: "Por que isso importa agora",
+    practicalView: "Visão prática",
+    nextStep: "Próximo passo",
+    publishedOn: "Publicado",
+    updatedOn: "Atualizado",
+    professionalDesk: "Equipe editorial Pregnancy Toolkits",
+    discoverMore: "Descobrir mais",
+  },
+} as const;
+
+const typeLabels: Record<ArticleType, LocalizedMap> = {
+  article: {
+    ar: "مقال",
+    en: "Article",
+    de: "Artikel",
+    fr: "Article",
+    es: "Artículo",
+    tr: "Makale",
+    pt: "Artigo",
+  },
+  research: {
+    ar: "بحث مبسط",
+    en: "Research brief",
+    de: "Forschungsnotiz",
+    fr: "Recherche simple",
+    es: "Investigación breve",
+    tr: "Araştırma özeti",
+    pt: "Pesquisa breve",
+  },
+  discovery: {
+    ar: "اكتشاف",
+    en: "Discovery",
+    de: "Entdeckung",
+    fr: "Découverte",
+    es: "Descubrimiento",
+    tr: "Keşif",
+    pt: "Descoberta",
+  },
+};
+
+const sectionLabels: Record<ArticleSectionKey, LocalizedMap> = {
+  planning: {
+    ar: "التخطيط والخصوبة",
+    en: "Planning & fertility",
+    de: "Planung & Fruchtbarkeit",
+    fr: "Planification & fertilité",
+    es: "Planificación y fertilidad",
+    tr: "Planlama ve doğurganlık",
+    pt: "Planejamento e fertilidade",
+  },
+  pregnant: {
+    ar: "الحمل",
+    en: "Pregnancy",
+    de: "Schwangerschaft",
+    fr: "Grossesse",
+    es: "Embarazo",
+    tr: "Gebelik",
+    pt: "Gravidez",
+  },
+  postpartum: {
+    ar: "ما بعد الولادة والطفل",
+    en: "Postpartum & baby",
+    de: "Wochenbett & Baby",
+    fr: "Post-partum & bébé",
+    es: "Posparto y bebé",
+    tr: "Doğum sonrası ve bebek",
+    pt: "Pós-parto e bebê",
+  },
+};
+
+const tagLabels: Record<ArticleTag, LocalizedMap> = {
+  fertility: { ar: "خصوبة", en: "Fertility", de: "Fruchtbarkeit", fr: "Fertilité", es: "Fertilidad", tr: "Doğurganlık", pt: "Fertilidade" },
+  timing: { ar: "توقيت", en: "Timing", de: "Timing", fr: "Timing", es: "Tiempo", tr: "Zamanlama", pt: "Momento" },
+  cycle-awareness: { ar: "وعي بالدورة", en: "Cycle awareness", de: "Zyklusbewusstsein", fr: "Cycle", es: "Ciclo", tr: "Döngü farkındalığı", pt: "Ciclo" },
+  patterns: { ar: "أنماط", en: "Patterns", de: "Muster", fr: "Repères", es: "Patrones", tr: "Örüntüler", pt: "Padrões" },
+  readiness: { ar: "جاهزية", en: "Readiness", de: "Bereitschaft", fr: "Préparation", es: "Preparación", tr: "Hazırlık", pt: "Preparação" },
+  nutrition: { ar: "تغذية", en: "Nutrition", de: "Ernährung", fr: "Nutrition", es: "Nutrición", tr: "Beslenme", pt: "Nutrição" },
+  vitamins: { ar: "فيتامينات", en: "Vitamins", de: "Vitamine", fr: "Vitamines", es: "Vitaminas", tr: "Vitaminler", pt: "Vitaminas" },
+  sleep: { ar: "نوم", en: "Sleep", de: "Schlaf", fr: "Sommeil", es: "Sueño", tr: "Uyku", pt: "Sono" },
+  routine: { ar: "روتين", en: "Routine", de: "Routine", fr: "Routine", es: "Rutina", tr: "Rutin", pt: "Rotina" },
+  tracking: { ar: "تتبع", en: "Tracking", de: "Tracking", fr: "Suivi", es: "Seguimiento", tr: "Takip", pt: "Acompanhamento" },
+  planning: { ar: "تخطيط", en: "Planning", de: "Planung", fr: "Planification", es: "Planificación", tr: "Planlama", pt: "Planejamento" },
+  ovulation: { ar: "إباضة", en: "Ovulation", de: "Ovulation", fr: "Ovulation", es: "Ovulación", tr: "Yumurtlama", pt: "Ovulação" },
+  mindset: { ar: "تهيئة نفسية", en: "Mindset", de: "Mentalität", fr: "État d’esprit", es: "Mentalidad", tr: "Zihniyet", pt: "Mentalidade" },
+  support: { ar: "دعم", en: "Support", de: "Unterstützung", fr: "Soutien", es: "Apoyo", tr: "Destek", pt: "Apoio" },
+  mistakes: { ar: "أخطاء شائعة", en: "Common mistakes", de: "Häufige Fehler", fr: "Erreurs fréquentes", es: "Errores comunes", tr: "Yaygın hatalar", pt: "Erros comuns" },
+  research: { ar: "رؤية بحثية", en: "Research lens", de: "Forschung", fr: "Recherche", es: "Investigación", tr: "Araştırma", pt: "Pesquisa" },
+  decision-making: { ar: "قرار", en: "Decision-making", de: "Entscheidung", fr: "Décision", es: "Decisión", tr: "Karar", pt: "Decisão" },
+  weekly-guide: { ar: "دليل أسبوعي", en: "Weekly guide", de: "Wochenguide", fr: "Guide hebdomadaire", es: "Guía semanal", tr: "Haftalık rehber", pt: "Guia semanal" },
+  growth: { ar: "نمو", en: "Growth", de: "Wachstum", fr: "Croissance", es: "Crecimiento", tr: "Gelişim", pt: "Crescimento" },
+  body-changes: { ar: "تغيّرات الجسم", en: "Body changes", de: "Körperveränderungen", fr: "Changements du corps", es: "Cambios del cuerpo", tr: "Vücut değişimleri", pt: "Mudanças no corpo" },
+  comfort: { ar: "راحة", en: "Comfort", de: "Wohlbefinden", fr: "Confort", es: "Comodidad", tr: "Rahatlık", pt: "Conforto" },
+  movement: { ar: "حركة", en: "Movement", de: "Bewegung", fr: "Mouvement", es: "Movimiento", tr: "Hareket", pt: "Movimento" },
+  fitness: { ar: "لياقة", en: "Fitness", de: "Fitness", fr: "Forme", es: "Actividad", tr: "Egzersiz", pt: "Atividade" },
+  energy: { ar: "طاقة", en: "Energy", de: "Energie", fr: "Énergie", es: "Energía", tr: "Enerji", pt: "Energia" },
+  weight: { ar: "وزن", en: "Weight", de: "Gewicht", fr: "Poids", es: "Peso", tr: "Kilo", pt: "Peso" },
+  birth-prep: { ar: "تجهيز للولادة", en: "Birth prep", de: "Geburtsvorbereitung", fr: "Préparation à la naissance", es: "Preparación al parto", tr: "Doğum hazırlığı", pt: "Preparação para o parto" },
+  hospital-bag: { ar: "حقيبة الولادة", en: "Hospital bag", de: "Kliniktasche", fr: "Sac maternité", es: "Bolsa del hospital", tr: "Hastane çantası", pt: "Mala da maternidade" },
+  essentials: { ar: "أساسيات", en: "Essentials", de: "Essentials", fr: "Essentiels", es: "Esenciales", tr: "Temeller", pt: "Essenciais" },
+  birth-plan: { ar: "خطة ولادة", en: "Birth plan", de: "Geburtsplan", fr: "Projet de naissance", es: "Plan de parto", tr: "Doğum planı", pt: "Plano de parto" },
+  baby-movements: { ar: "حركات الطفل", en: "Baby movements", de: "Kindsbewegungen", fr: "Mouvements du bébé", es: "Movimientos del bebé", tr: "Bebek hareketleri", pt: "Movimentos do bebê" },
+  awareness: { ar: "انتباه", en: "Awareness", de: "Achtsamkeit", fr: "Attention", es: "Atención", tr: "Farkındalık", pt: "Atenção" },
+  contractions: { ar: "انقباضات", en: "Contractions", de: "Wehen", fr: "Contractions", es: "Contracciones", tr: "Kasılmalar", pt: "Contrações" },
+  wellbeing: { ar: "رفاه", en: "Wellbeing", de: "Wohlbefinden", fr: "Bien-être", es: "Bienestar", tr: "İyi oluş", pt: "Bem-estar" },
+  attention: { ar: "ملاحظة هادئة", en: "Calm attention", de: "Ruhe & Aufmerksamkeit", fr: "Observation calme", es: "Atención tranquila", tr: "Sakin dikkat", pt: "Atenção tranquila" },
+  recovery: { ar: "تعافٍ", en: "Recovery", de: "Erholung", fr: "Récupération", es: "Recuperación", tr: "Toparlanma", pt: "Recuperação" },
+  rest: { ar: "راحة", en: "Rest", de: "Ruhe", fr: "Repos", es: "Descanso", tr: "Dinlenme", pt: "Descanso" },
+  feeding: { ar: "تغذية الطفل", en: "Feeding", de: "Füttern", fr: "Alimentation", es: "Alimentación", tr: "Besleme", pt: "Alimentação" },
+  bonding: { ar: "ارتباط", en: "Bonding", de: "Bindung", fr: "Lien", es: "Vínculo", tr: "Bağ kurma", pt: "Vínculo" },
+  newborn: { ar: "مولود جديد", en: "Newborn", de: "Neugeborenes", fr: "Nouveau-né", es: "Recién nacido", tr: "Yenidoğan", pt: "Recém-nascido" },
+  crying: { ar: "بكاء", en: "Crying", de: "Weinen", fr: "Pleurs", es: "Llanto", tr: "Ağlama", pt: "Choro" },
+  organization: { ar: "تنظيم", en: "Organization", de: "Organisation", fr: "Organisation", es: "Organización", tr: "Düzen", pt: "Organização" },
+  balance: { ar: "توازن", en: "Balance", de: "Balance", fr: "Équilibre", es: "Equilibrio", tr: "Denge", pt: "Equilíbrio" },
+  first-weeks: { ar: "الأسابيع الأولى", en: "First weeks", de: "Erste Wochen", fr: "Premières semaines", es: "Primeras semanas", tr: "İlk haftalar", pt: "Primeiras semanas" },
+  discovery: { ar: "اكتشاف", en: "Discovery", de: "Entdeckung", fr: "Découverte", es: "Descubrimiento", tr: "Keşif", pt: "Descoberta" },
+};
+
+const bodyTemplates = {
+  ar: {
+    article: [
+      "يأتي هذا المقال ليمنحكِ صورة أوضح حول "{{title}}" داخل مرحلة {{section}}، مع تركيز عملي يساعدكِ على ترتيب التفاصيل بدل التشوش بينها.",
+      "بدلاً من المعلومة المبعثرة، ستجدين هنا قراءة مختصرة تجمع بين الإيقاع اليومي، والخيارات الأبسط، وما يمكن تطبيقه بهدوء مع الأدوات المرتبطة داخل التطبيق.",
+      "بعد هذه القراءة، يصبح الانتقال إلى الأداة المناسبة أو المقال التالي أكثر سلاسة، لأن السياق هنا مبني على ما تبحث عنه المستخدمات بالفعل في هذه المرحلة.",
+    ],
+    research: [
+      "هذا الملخص البحثي حول "{{title}}" يقدّم لكِ فكرة واضحة بلغة مبسطة، حتى تفهمي لماذا تكرّر هذا الموضوع في توصيات العناية اليومية ضمن {{section}}.",
+      "الهدف ليس إغراقكِ بالتفاصيل، بل تحويل الخلاصة إلى قرارات أخف: ماذا تراقبين، وما الذي يستحق التنظيم، وأين تبدأين أولاً.",
+      "استخدمي هذه القراءة كبوصلة سريعة، ثم انتقلي إلى الأداة المرتبطة أو المقال التالي عندما تحتاجين خطوة أكثر عملية.",
+    ],
+    discovery: [
+      "في هذا الاكتشاف التحريري حول "{{title}}" نلتقط فكرة صغيرة لكنها مؤثرة، وغالباً ما تغيّر جودة اليوم أكثر مما نتوقع داخل {{section}}.",
+      "اللمسة هنا جمالية وعملية معًا: ربط الإيقاع اليومي بالملاحظة الهادئة، ثم تحويل ذلك إلى قرار أبسط يمكن تكراره.",
+      "عندما تشعرين أن التفاصيل كثيرة، فهذه الزاوية المختصرة تساعدكِ على رؤية الرابط بين القراءة والأداة والمقال التالي.",
+    ],
+  },
+  en: {
+    article: [
+      "This article gives you a clearer view of "{{title}}" within {{section}}, with a practical angle that helps you organize the details instead of feeling scattered.",
+      "Rather than another loose tip, it turns the idea into a calm, usable perspective you can connect with the right tool inside the app.",
+      "Once you finish this read, moving into the next article or companion tool should feel more natural and more relevant to your current stage.",
+    ],
+    research: [
+      "This research brief on "{{title}}" keeps the science approachable, so you can understand why the topic appears so often in day-to-day guidance for {{section}}.",
+      "The goal is not to overload you with detail, but to turn the evidence into lighter decisions: what to notice, what to organize, and where to begin.",
+      "Use it as a smart lens, then continue into a related tool or the next article when you want a more actionable step.",
+    ],
+    discovery: [
+      "This discovery piece on "{{title}}" highlights a small but influential idea that often changes the quality of the day more than expected during {{section}}.",
+      "It blends editorial warmth with practical value, linking daily rhythm, gentle observation, and the next helpful action.",
+      "If everything feels like too much at once, this shorter angle helps reconnect the article, the tool, and the next recommended read.",
+    ],
+  },
+  de: {
+    article: [
+      "Dieser Artikel gibt dir einen klareren Blick auf "{{title}}" in der Phase {{section}} und ordnet die wichtigsten Punkte in einer ruhigen, praktischen Weise.",
+      "Statt lose Tipps aneinanderzureihen, verbindet er Alltag, Beobachtung und die passenden Tools in der App zu einem klaren nächsten Schritt.",
+      "Nach dem Lesen fällt der Übergang zum nächsten Artikel oder zum passenden Tool deutlich leichter.",
+    ],
+    research: [
+      "Diese Forschungsnotiz zu "{{title}}" macht das Thema verständlich, damit du erkennst, warum es in Empfehlungen für {{section}} so oft auftaucht.",
+      "Es geht nicht um zu viele Details, sondern um leichtere Entscheidungen: worauf du achten kannst, was du strukturierst und womit du beginnst.",
+      "Nutze den Text als klare Orientierung und wechsle danach in ein passendes Tool oder einen verbundenen Artikel.",
+    ],
+    discovery: [
+      "Diese Entdeckung zu "{{title}}" zeigt eine kleine, aber wirksame Idee, die im Alltag von {{section}} überraschend viel verändern kann.",
+      "Die Perspektive verbindet sanfte Beobachtung, Tagesrhythmus und einen praktischen nächsten Schritt.",
+      "Wenn dir gerade vieles gleichzeitig begegnet, hilft diese kompakte Sicht dabei, Artikel, Tool und nächsten Impuls wieder zusammenzubringen.",
+    ],
+  },
+  fr: {
+    article: [
+      "Cet article t’offre une vision plus nette de "{{title}}" dans la phase {{section}}, avec une approche pratique qui remet les priorités dans le bon ordre.",
+      "Au lieu d’une information isolée, tu y trouves une lecture courte qui relie rythme quotidien, observation calme et bon outil dans l’application.",
+      "Une fois la lecture terminée, le passage vers l’article suivant ou l’outil associé devient plus fluide.",
+    ],
+    research: [
+      "Cette note de recherche sur "{{title}}" garde l’essentiel clair et accessible, pour comprendre pourquoi ce sujet revient souvent dans les repères liés à {{section}}.",
+      "L’idée n’est pas d’ajouter de la complexité, mais de transformer l’essentiel en décisions plus légères et plus concrètes.",
+      "Lis-la comme un repère rapide, puis poursuis vers un outil lié ou un autre article quand tu veux une suite plus pratique.",
+    ],
+    discovery: [
+      "Cette découverte éditoriale autour de "{{title}}" met en lumière une idée discrète mais très utile dans la qualité du quotidien pendant {{section}}.",
+      "Elle relie douceur, observation et action simple à répéter sans surcharger la lecture.",
+      "Quand tout semble dense, ce format plus court aide à reconnecter la lecture, l’outil et la suite logique.",
+    ],
+  },
+  es: {
+    article: [
+      "Este artículo te da una mirada más clara sobre "{{title}}" en la etapa de {{section}}, con un enfoque práctico que ordena lo importante.",
+      "En lugar de consejos sueltos, convierte la idea en una lectura breve conectada con el ritmo diario y con la herramienta adecuada dentro de la app.",
+      "Al terminar, pasar al siguiente artículo o a la herramienta relacionada se siente mucho más natural.",
+    ],
+    research: [
+      "Este resumen de investigación sobre "{{title}}" mantiene la información accesible, para que entiendas por qué el tema aparece tanto dentro de {{section}}.",
+      "No busca cargarte de detalles, sino convertir la evidencia en decisiones más ligeras: qué notar, qué organizar y por dónde empezar.",
+      "Úsalo como una guía breve y luego continúa con la herramienta o la lectura que mejor complemente tu momento.",
+    ],
+    discovery: [
+      "Este descubrimiento editorial sobre "{{title}}" resalta una idea pequeña pero muy influyente en la calidad del día durante {{section}}.",
+      "La perspectiva une ritmo cotidiano, observación tranquila y una acción sencilla que puedes repetir.",
+      "Cuando sientas que hay demasiadas cosas a la vez, esta pieza corta te ayuda a volver a conectar lectura, herramienta y siguiente paso.",
+    ],
+  },
+  tr: {
+    article: [
+      "Bu yazı, {{section}} döneminde "{{title}}" konusuna daha net bakmanı sağlar ve önemli noktaları pratik bir sıraya yerleştirir.",
+      "Dağınık tavsiyeler yerine, günlük ritim ile uygulamadaki doğru araç arasında bağ kuran kısa ve kullanışlı bir perspektif sunar.",
+      "Okumayı bitirdiğinde ilgili araca ya da sonraki yazıya geçmek daha doğal hissettirir.",
+    ],
+    research: [
+      ""{{title}}" hakkındaki bu araştırma özeti, konuyu anlaşılır tutar ve neden {{section}} döneminde sık vurgulandığını açıklar.",
+      "Amaç seni ayrıntıya boğmak değil; neyi fark edeceğin, neyi düzenleyeceğin ve nereden başlayacağın konusunda daha hafif kararlar sunmaktır.",
+      "Bunu hızlı bir bakış olarak kullan, sonra istersen ilgili araca ya da bir sonraki yazıya geç.",
+    ],
+    discovery: [
+      ""{{title}}" üzerine bu keşif yazısı, {{section}} döneminde günün kalitesini beklenenden fazla etkileyen küçük ama güçlü bir fikri öne çıkarır.",
+      "Yumuşak gözlem, günlük ritim ve sonraki faydalı adım arasında zarif bir bağ kurar.",
+      "Her şey aynı anda yoğun geldiğinde, bu kısa format yazı, araç ve sonraki öneri arasındaki bağı yeniden kurmaya yardım eder.",
+    ],
+  },
+  pt: {
+    article: [
+      "Este artigo oferece uma visão mais clara sobre "{{title}}" na fase de {{section}}, com um olhar prático que organiza o que realmente importa.",
+      "Em vez de dicas soltas, ele transforma a ideia em uma leitura breve conectada ao ritmo diário e à ferramenta certa dentro do app.",
+      "Depois da leitura, avançar para o próximo artigo ou para a ferramenta relacionada fica mais natural.",
+    ],
+    research: [
+      "Este resumo de pesquisa sobre "{{title}}" mantém o tema acessível, para mostrar por que ele aparece com tanta frequência em {{section}}.",
+      "A proposta não é sobrecarregar você, mas transformar a evidência em decisões mais leves: o que observar, o que organizar e por onde começar.",
+      "Use o texto como uma lente rápida e depois siga para a ferramenta ou leitura que melhor complemente este momento.",
+    ],
+    discovery: [
+      "Esta descoberta editorial sobre "{{title}}" destaca uma ideia pequena, mas muito influente, na qualidade do dia durante {{section}}.",
+      "Ela conecta ritmo diário, observação calma e uma ação simples que pode ser repetida com leveza.",
+      "Quando parecer que há informação demais ao mesmo tempo, esta peça curta ajuda a reconectar artigo, ferramenta e próximo passo.",
+    ],
+  },
+} as const;
+
+const articleSeeds: ArticleSeed[] = [
+  {
+    "id": "planning-01",
+    "slug": "fertility-window-guide",
+    "sectionKey": "planning",
+    "type": "article",
+    "image": "planningCycleImage",
+    "readTime": 4,
+    "tags": [
+      "fertility",
+      "timing",
+      "cycle-awareness"
+    ],
+    "relatedToolIds": [
+      "cycle-tracker",
+      "fertility-academy",
+      "due-date-calculator"
+    ],
+    "relatedArticleIds": [
+      "ovulation-practical-guide",
+      "when-to-use-cycle-tracking"
+    ],
+    "featuredInSection": true,
+    "featuredGlobal": true,
+    "popularityWeight": 96,
+    "titles": {
+      "ar": "نافذة الخصوبة بوضوح",
+      "en": "Understanding your fertility window",
+      "de": "Das Fruchtbarkeitsfenster verstehen",
+      "fr": "Comprendre la fenêtre de fertilité",
+      "es": "Entender la ventana fértil",
+      "tr": "Doğurganlık dönemini anlamak",
+      "pt": "Entender a janela fértil"
+    },
+    "order": 0
+  },
+  {
+    "id": "planning-02",
+    "slug": "cycle-quality-signals",
+    "sectionKey": "planning",
+    "type": "research",
+    "image": "planningCycleImage",
+    "readTime": 5,
+    "tags": [
+      "cycle-awareness",
+      "patterns",
+      "readiness"
+    ],
+    "relatedToolIds": [
+      "cycle-tracker",
+      "preconception-checkup",
+      "fertility-academy"
+    ],
+    "relatedArticleIds": [
+      "fertility-window-guide",
+      "sleep-and-fertility"
+    ],
+    "featuredInSection": false,
+    "featuredGlobal": false,
+    "popularityWeight": 84,
+    "titles": {
+      "ar": "إشارات جودة الدورة",
+      "en": "Cycle quality signals to notice",
+      "de": "Wichtige Signale der Zyklusqualität",
+      "fr": "Signaux à repérer dans le cycle",
+      "es": "Señales clave de la calidad del ciclo",
+      "tr": "Döngü kalitesinde dikkat edilmesi gereken sinyaller",
+      "pt": "Sinais importantes da qualidade do ciclo"
+    },
+    "order": 1
+  },
+  {
+    "id": "planning-03",
+    "slug": "preconception-nutrition-readiness",
+    "sectionKey": "planning",
+    "type": "article",
+    "image": "planningNutritionImage",
+    "readTime": 4,
+    "tags": [
+      "nutrition",
+      "vitamins",
+      "readiness"
+    ],
+    "relatedToolIds": [
+      "nutrition-supplements",
+      "preconception-checkup",
+      "smart-grocery-list"
+    ],
+    "relatedArticleIds": [
+      "micronutrients-for-conception",
+      "sleep-and-fertility"
+    ],
+    "featuredInSection": true,
+    "featuredGlobal": true,
+    "popularityWeight": 92,
+    "titles": {
+      "ar": "الاستعداد الغذائي قبل الحمل",
+      "en": "Nutrition readiness before pregnancy",
+      "de": "Ernährungsstart vor der Schwangerschaft",
+      "fr": "Préparer la nutrition avant la grossesse",
+      "es": "Preparación nutricional antes del embarazo",
+      "tr": "Hamilelik öncesi beslenme hazırlığı",
+      "pt": "Preparação nutricional antes da gravidez"
+    },
+    "order": 2
+  },
+  {
+    "id": "planning-04",
+    "slug": "sleep-and-fertility",
+    "sectionKey": "planning",
+    "type": "research",
+    "image": "planningNutritionImage",
+    "readTime": 4,
+    "tags": [
+      "sleep",
+      "fertility",
+      "routine"
+    ],
+    "relatedToolIds": [
+      "wellness-diary",
+      "cycle-tracker",
+      "preconception-checkup"
+    ],
+    "relatedArticleIds": [
+      "daily-routine-discovery",
+      "cycle-quality-signals"
+    ],
+    "featuredInSection": false,
+    "featuredGlobal": false,
+    "popularityWeight": 83,
+    "titles": {
+      "ar": "النوم ودوره في الخصوبة",
+      "en": "Sleep and fertility balance",
+      "de": "Schlaf und Fruchtbarkeit im Gleichgewicht",
+      "fr": "Sommeil et équilibre de fertilité",
+      "es": "Sueño y equilibrio de la fertilidad",
+      "tr": "Uyku ve doğurganlık dengesi",
+      "pt": "Sono e equilíbrio da fertilidade"
+    },
+    "order": 3
+  },
+  {
+    "id": "planning-05",
+    "slug": "when-to-use-cycle-tracking",
+    "sectionKey": "planning",
+    "type": "article",
+    "image": "planningCycleImage",
+    "readTime": 3,
+    "tags": [
+      "tracking",
+      "cycle-awareness",
+      "planning"
+    ],
+    "relatedToolIds": [
+      "cycle-tracker",
+      "fertility-academy",
+      "preconception-checkup"
+    ],
+    "relatedArticleIds": [
+      "fertility-window-guide",
+      "decision-from-tracking-to-plan"
+    ],
+    "featuredInSection": false,
+    "featuredGlobal": false,
+    "popularityWeight": 79,
+    "titles": {
+      "ar": "متى يفيد تتبع الدورة فعلاً؟",
+      "en": "When cycle tracking helps most",
+      "de": "Wann Zyklustracking am meisten hilft",
+      "fr": "Quand le suivi du cycle aide le plus",
+      "es": "Cuándo ayuda más seguir el ciclo",
+      "tr": "Döngü takibi en çok ne zaman fayda sağlar",
+      "pt": "Quando o acompanhamento do ciclo ajuda mais"
+    },
+    "order": 4
+  },
+  {
+    "id": "planning-06",
+    "slug": "ovulation-practical-guide",
+    "sectionKey": "planning",
+    "type": "article",
+    "image": "planningCycleImage",
+    "readTime": 4,
+    "tags": [
+      "ovulation",
+      "timing",
+      "planning"
+    ],
+    "relatedToolIds": [
+      "cycle-tracker",
+      "fertility-academy",
+      "due-date-calculator"
+    ],
+    "relatedArticleIds": [
+      "fertility-window-guide",
+      "common-trying-to-conceive-mistakes"
+    ],
+    "featuredInSection": false,
+    "featuredGlobal": false,
+    "popularityWeight": 88,
+    "titles": {
+      "ar": "فهم الإباضة بشكل عملي",
+      "en": "A practical guide to ovulation",
+      "de": "Ovulation praktisch verstehen",
+      "fr": "Comprendre l’ovulation de façon pratique",
+      "es": "Entender la ovulación de forma práctica",
+      "tr": "Yumurtlamayı pratik şekilde anlamak",
+      "pt": "Entender a ovulação de forma prática"
+    },
+    "order": 5
+  },
+  {
+    "id": "planning-07",
+    "slug": "emotional-planning-before-pregnancy",
+    "sectionKey": "planning",
+    "type": "article",
+    "image": "planningCycleImage",
+    "readTime": 4,
+    "tags": [
+      "mindset",
+      "planning",
+      "support"
+    ],
+    "relatedToolIds": [
+      "pregnancy-assistant",
+      "preconception-checkup",
+      "wellness-diary"
+    ],
+    "relatedArticleIds": [
+      "daily-routine-discovery",
+      "decision-from-tracking-to-plan"
+    ],
+    "featuredInSection": false,
+    "featuredGlobal": false,
+    "popularityWeight": 75,
+    "titles": {
+      "ar": "الاستعداد النفسي قبل الحمل",
+      "en": "Emotional planning before pregnancy",
+      "de": "Mentale Vorbereitung vor der Schwangerschaft",
+      "fr": "Préparation émotionnelle avant la grossesse",
+      "es": "Preparación emocional antes del embarazo",
+      "tr": "Hamilelik öncesi duygusal hazırlık",
+      "pt": "Planejamento emocional antes da gravidez"
+    },
+    "order": 6
+  },
+  {
+    "id": "planning-08",
+    "slug": "common-trying-to-conceive-mistakes",
+    "sectionKey": "planning",
+    "type": "article",
+    "image": "planningNutritionImage",
+    "readTime": 5,
+    "tags": [
+      "mistakes",
+      "planning",
+      "fertility"
+    ],
+    "relatedToolIds": [
+      "fertility-academy",
+      "preconception-checkup",
+      "cycle-tracker"
+    ],
+    "relatedArticleIds": [
+      "ovulation-practical-guide",
+      "fertility-window-guide"
+    ],
+    "featuredInSection": false,
+    "featuredGlobal": false,
+    "popularityWeight": 81,
+    "titles": {
+      "ar": "أخطاء شائعة عند محاولة الحمل",
+      "en": "Common mistakes while trying to conceive",
+      "de": "Häufige Fehler beim Kinderwunsch",
+      "fr": "Erreurs fréquentes quand on essaie de concevoir",
+      "es": "Errores comunes al intentar concebir",
+      "tr": "Hamile kalmaya çalışırken yapılan yaygın hatalar",
+      "pt": "Erros comuns ao tentar engravidar"
+    },
+    "order": 7
+  },
+  {
+    "id": "planning-09",
+    "slug": "daily-routine-discovery",
+    "sectionKey": "planning",
+    "type": "discovery",
+    "image": "planningNutritionImage",
+    "readTime": 3,
+    "tags": [
+      "routine",
+      "sleep",
+      "readiness"
+    ],
+    "relatedToolIds": [
+      "wellness-diary",
+      "cycle-tracker",
+      "smart-pregnancy-plan"
+    ],
+    "relatedArticleIds": [
+      "sleep-and-fertility",
+      "emotional-planning-before-pregnancy"
+    ],
+    "featuredInSection": false,
+    "featuredGlobal": true,
+    "popularityWeight": 86,
+    "titles": {
+      "ar": "اكتشاف: الروتين اليومي يصنع فرقاً",
+      "en": "Discovery: daily routine matters more",
+      "de": "Entdeckung: Die tägliche Routine zählt",
+      "fr": "Découverte : la routine quotidienne compte",
+      "es": "Descubrimiento: la rutina diaria sí importa",
+      "tr": "Keşif: günlük rutin gerçekten etkili",
+      "pt": "Descoberta: a rotina diária faz diferença"
+    },
+    "order": 8
+  },
+  {
+    "id": "planning-10",
+    "slug": "micronutrients-for-conception",
+    "sectionKey": "planning",
+    "type": "research",
+    "image": "planningNutritionImage",
+    "readTime": 5,
+    "tags": [
+      "nutrition",
+      "vitamins",
+      "research"
+    ],
+    "relatedToolIds": [
+      "nutrition-supplements",
+      "smart-grocery-list",
+      "preconception-checkup"
+    ],
+    "relatedArticleIds": [
+      "preconception-nutrition-readiness",
+      "daily-routine-discovery"
+    ],
+    "featuredInSection": false,
+    "featuredGlobal": false,
+    "popularityWeight": 77,
+    "titles": {
+      "ar": "بحث مبسط: المغذيات الدقيقة",
+      "en": "Research brief: micronutrients for conception",
+      "de": "Kurz erklärt: Mikronährstoffe bei Kinderwunsch",
+      "fr": "Recherche simple : micronutriments et conception",
+      "es": "Investigación simple: micronutrientes y concepción",
+      "tr": "Kısa araştırma: gebe kalma için mikro besinler",
+      "pt": "Pesquisa simples: micronutrientes para concepção"
+    },
+    "order": 9
+  },
+  {
+    "id": "planning-11",
+    "slug": "decision-from-tracking-to-plan",
+    "sectionKey": "planning",
+    "type": "article",
+    "image": "planningCycleImage",
+    "readTime": 4,
+    "tags": [
+      "decision-making",
+      "tracking",
+      "planning"
+    ],
+    "relatedToolIds": [
+      "cycle-tracker",
+      "smart-pregnancy-plan",
+      "preconception-checkup"
+    ],
+    "relatedArticleIds": [
+      "when-to-use-cycle-tracking",
+      "emotional-planning-before-pregnancy"
+    ],
+    "featuredInSection": true,
+    "featuredGlobal": false,
+    "popularityWeight": 80,
+    "titles": {
+      "ar": "متى تنتقلين من التتبع إلى الخطة؟",
+      "en": "When to move from tracking to a plan",
+      "de": "Wann aus Tracking ein Plan werden sollte",
+      "fr": "Quand passer du suivi au vrai plan",
+      "es": "Cuándo pasar del seguimiento al plan",
+      "tr": "Takipten plana ne zaman geçmeli",
+      "pt": "Quando sair do acompanhamento para um plano"
+    },
+    "order": 10
+  },
+  {
+    "id": "pregnant-01",
+    "slug": "pregnancy-week-by-week-guide",
+    "sectionKey": "pregnant",
+    "type": "article",
+    "image": "pregnancyWeeklyImage",
+    "readTime": 5,
+    "tags": [
+      "weekly-guide",
+      "growth",
+      "planning"
+    ],
+    "relatedToolIds": [
+      "weekly-summary",
+      "fetal-growth",
+      "pregnancy-assistant"
+    ],
+    "relatedArticleIds": [
+      "body-changes-during-pregnancy",
+      "daily-movement-during-pregnancy"
+    ],
+    "featuredInSection": true,
+    "featuredGlobal": true,
+    "popularityWeight": 99,
+    "titles": {
+      "ar": "دليلكِ أسبوعاً بأسبوع",
+      "en": "Your week-by-week pregnancy guide",
+      "de": "Dein Schwangerschaftsleitfaden Woche für Woche",
+      "fr": "Ton guide grossesse semaine après semaine",
+      "es": "Tu guía de embarazo semana a semana",
+      "tr": "Hafta hafta gebelik rehberin",
+      "pt": "Seu guia de gravidez semana a semana"
+    },
+    "order": 11
+  },
+  {
+    "id": "pregnant-02",
+    "slug": "body-changes-during-pregnancy",
+    "sectionKey": "pregnant",
+    "type": "article",
+    "image": "pregnancyWeeklyImage",
+    "readTime": 4,
+    "tags": [
+      "body-changes",
+      "comfort",
+      "weekly-guide"
+    ],
+    "relatedToolIds": [
+      "pregnancy-comfort",
+      "weekly-summary",
+      "wellness-diary"
+    ],
+    "relatedArticleIds": [
+      "pregnancy-week-by-week-guide",
+      "sleep-during-pregnancy"
+    ],
+    "featuredInSection": false,
+    "featuredGlobal": false,
+    "popularityWeight": 90,
+    "titles": {
+      "ar": "فهم تغيرات الجسم أثناء الحمل",
+      "en": "Understanding body changes in pregnancy",
+      "de": "Körperveränderungen in der Schwangerschaft verstehen",
+      "fr": "Comprendre les changements du corps pendant la grossesse",
+      "es": "Entender los cambios del cuerpo en el embarazo",
+      "tr": "Gebelikte vücut değişimlerini anlamak",
+      "pt": "Entender as mudanças do corpo na gravidez"
+    },
+    "order": 12
+  },
+  {
+    "id": "pregnant-03",
+    "slug": "daily-movement-during-pregnancy",
+    "sectionKey": "pregnant",
+    "type": "article",
+    "image": "pregnancyWeeklyImage",
+    "readTime": 4,
+    "tags": [
+      "movement",
+      "fitness",
+      "energy"
+    ],
+    "relatedToolIds": [
+      "ai-fitness-coach",
+      "wellness-diary",
+      "smart-pregnancy-plan"
+    ],
+    "relatedArticleIds": [
+      "light-activity-research",
+      "sleep-during-pregnancy"
+    ],
+    "featuredInSection": false,
+    "featuredGlobal": false,
+    "popularityWeight": 82,
+    "titles": {
+      "ar": "الحركة اليومية للحامل",
+      "en": "Daily movement during pregnancy",
+      "de": "Tägliche Bewegung in der Schwangerschaft",
+      "fr": "Le mouvement au quotidien pendant la grossesse",
+      "es": "Movimiento diario durante el embarazo",
+      "tr": "Gebelikte günlük hareket",
+      "pt": "Movimento diário durante a gravidez"
+    },
+    "order": 13
+  },
+  {
+    "id": "pregnant-04",
+    "slug": "sleep-during-pregnancy",
+    "sectionKey": "pregnant",
+    "type": "article",
+    "image": "pregnancyWeeklyImage",
+    "readTime": 4,
+    "tags": [
+      "sleep",
+      "comfort",
+      "routine"
+    ],
+    "relatedToolIds": [
+      "pregnancy-comfort",
+      "wellness-diary",
+      "weekly-summary"
+    ],
+    "relatedArticleIds": [
+      "sleep-wellbeing-discovery",
+      "body-changes-during-pregnancy"
+    ],
+    "featuredInSection": false,
+    "featuredGlobal": false,
+    "popularityWeight": 87,
+    "titles": {
+      "ar": "النوم أثناء الحمل",
+      "en": "Sleeping better during pregnancy",
+      "de": "Besser schlafen in der Schwangerschaft",
+      "fr": "Mieux dormir pendant la grossesse",
+      "es": "Dormir mejor durante el embarazo",
+      "tr": "Gebelikte daha iyi uyumak",
+      "pt": "Dormir melhor durante a gravidez"
+    },
+    "order": 14
+  },
+  {
+    "id": "pregnant-05",
+    "slug": "smart-pregnancy-nutrition",
+    "sectionKey": "pregnant",
+    "type": "article",
+    "image": "planningNutritionImage",
+    "readTime": 4,
+    "tags": [
+      "nutrition",
+      "energy",
+      "routine"
+    ],
+    "relatedToolIds": [
+      "ai-meal-suggestion",
+      "smart-grocery-list",
+      "vitamin-tracker"
+    ],
+    "relatedArticleIds": [
+      "weight-gain-with-balance",
+      "light-activity-research"
+    ],
+    "featuredInSection": false,
+    "featuredGlobal": true,
+    "popularityWeight": 89,
+    "titles": {
+      "ar": "التغذية الذكية خلال الحمل",
+      "en": "Smart nutrition during pregnancy",
+      "de": "Smarte Ernährung in der Schwangerschaft",
+      "fr": "Nutrition intelligente pendant la grossesse",
+      "es": "Nutrición inteligente durante el embarazo",
+      "tr": "Gebelikte akıllı beslenme",
+      "pt": "Nutrição inteligente durante a gravidez"
+    },
+    "order": 15
+  },
+  {
+    "id": "pregnant-06",
+    "slug": "weight-gain-with-balance",
+    "sectionKey": "pregnant",
+    "type": "article",
+    "image": "planningNutritionImage",
+    "readTime": 4,
+    "tags": [
+      "weight",
+      "nutrition",
+      "tracking"
+    ],
+    "relatedToolIds": [
+      "weight-gain",
+      "ai-meal-suggestion",
+      "weekly-summary"
+    ],
+    "relatedArticleIds": [
+      "smart-pregnancy-nutrition",
+      "light-activity-research"
+    ],
+    "featuredInSection": false,
+    "featuredGlobal": false,
+    "popularityWeight": 84,
+    "titles": {
+      "ar": "زيادة الوزن بتوازن",
+      "en": "Balanced weight gain through pregnancy",
+      "de": "Ausgewogene Gewichtszunahme in der Schwangerschaft",
+      "fr": "Une prise de poids équilibrée pendant la grossesse",
+      "es": "Aumento de peso equilibrado en el embarazo",
+      "tr": "Gebelikte dengeli kilo artışı",
+      "pt": "Ganho de peso equilibrado na gravidez"
+    },
+    "order": 16
+  },
+  {
+    "id": "pregnant-07",
+    "slug": "physical-comfort-routines",
+    "sectionKey": "pregnant",
+    "type": "article",
+    "image": "pregnancyWeeklyImage",
+    "readTime": 3,
+    "tags": [
+      "comfort",
+      "rest",
+      "movement"
+    ],
+    "relatedToolIds": [
+      "pregnancy-comfort",
+      "ai-fitness-coach",
+      "wellness-diary"
+    ],
+    "relatedArticleIds": [
+      "body-changes-during-pregnancy",
+      "sleep-during-pregnancy"
+    ],
+    "featuredInSection": false,
+    "featuredGlobal": false,
+    "popularityWeight": 78,
+    "titles": {
+      "ar": "روتين الراحة الجسدية",
+      "en": "Physical comfort routines that help",
+      "de": "Routinen für mehr körperliches Wohlbefinden",
+      "fr": "Des routines pour plus de confort physique",
+      "es": "Rutinas que aportan comodidad física",
+      "tr": "Fiziksel rahatlık sağlayan rutinler",
+      "pt": "Rotinas que melhoram o conforto físico"
+    },
+    "order": 17
+  },
+  {
+    "id": "pregnant-08",
+    "slug": "birth-preparation-checklist",
+    "sectionKey": "pregnant",
+    "type": "article",
+    "image": "pregnancyBirthImage",
+    "readTime": 5,
+    "tags": [
+      "birth-prep",
+      "planning",
+      "hospital-bag"
+    ],
+    "relatedToolIds": [
+      "ai-hospital-bag",
+      "ai-birth-plan",
+      "smart-appointment-reminder"
+    ],
+    "relatedArticleIds": [
+      "hospital-bag-essentials",
+      "birth-plan-that-feels-real"
+    ],
+    "featuredInSection": true,
+    "featuredGlobal": true,
+    "popularityWeight": 93,
+    "titles": {
+      "ar": "تجهيز الولادة بثقة",
+      "en": "Birth preparation with more confidence",
+      "de": "Geburtsvorbereitung mit mehr Sicherheit",
+      "fr": "Préparer l’accouchement avec confiance",
+      "es": "Prepararte para el parto con confianza",
+      "tr": "Doğuma güvenle hazırlanmak",
+      "pt": "Preparar o parto com mais confiança"
+    },
+    "order": 18
+  },
+  {
+    "id": "pregnant-09",
+    "slug": "hospital-bag-essentials",
+    "sectionKey": "pregnant",
+    "type": "article",
+    "image": "pregnancyBirthImage",
+    "readTime": 3,
+    "tags": [
+      "hospital-bag",
+      "essentials",
+      "birth-prep"
+    ],
+    "relatedToolIds": [
+      "ai-hospital-bag",
+      "baby-gear-recommender",
+      "smart-appointment-reminder"
+    ],
+    "relatedArticleIds": [
+      "birth-preparation-checklist",
+      "birth-plan-that-feels-real"
+    ],
+    "featuredInSection": false,
+    "featuredGlobal": false,
+    "popularityWeight": 88,
+    "titles": {
+      "ar": "ماذا تضعين في حقيبة المستشفى؟",
+      "en": "Hospital bag essentials that matter",
+      "de": "Was wirklich in die Kliniktasche gehört",
+      "fr": "Les essentiels du sac pour la maternité",
+      "es": "Lo esencial para la bolsa del hospital",
+      "tr": "Hastane çantasında gerçekten gerekli olanlar",
+      "pt": "O essencial para a mala da maternidade"
+    },
+    "order": 19
+  },
+  {
+    "id": "pregnant-10",
+    "slug": "birth-plan-that-feels-real",
+    "sectionKey": "pregnant",
+    "type": "article",
+    "image": "pregnancyBirthImage",
+    "readTime": 4,
+    "tags": [
+      "birth-plan",
+      "planning",
+      "support"
+    ],
+    "relatedToolIds": [
+      "ai-birth-plan",
+      "ai-partner-guide",
+      "ai-hospital-bag"
+    ],
+    "relatedArticleIds": [
+      "birth-preparation-checklist",
+      "partner-support-before-birth"
+    ],
+    "featuredInSection": true,
+    "featuredGlobal": false,
+    "popularityWeight": 91,
+    "titles": {
+      "ar": "خطة ولادة واقعية ومرنة",
+      "en": "A birth plan that feels realistic",
+      "de": "Ein Geburtsplan, der realistisch bleibt",
+      "fr": "Un projet de naissance réaliste et souple",
+      "es": "Un plan de parto realista y flexible",
+      "tr": "Gerçekçi ve esnek bir doğum planı",
+      "pt": "Um plano de parto realista e flexível"
+    },
+    "order": 20
+  },
+  {
+    "id": "pregnant-11",
+    "slug": "baby-movements-explained",
+    "sectionKey": "pregnant",
+    "type": "article",
+    "image": "pregnancyKicksImage",
+    "readTime": 4,
+    "tags": [
+      "baby-movements",
+      "tracking",
+      "awareness"
+    ],
+    "relatedToolIds": [
+      "kick-counter",
+      "weekly-summary",
+      "pregnancy-assistant"
+    ],
+    "relatedArticleIds": [
+      "movement-patterns-that-feel-reassuring",
+      "pregnancy-week-by-week-guide"
+    ],
+    "featuredInSection": false,
+    "featuredGlobal": true,
+    "popularityWeight": 90,
+    "titles": {
+      "ar": "فهم ركلات الطفل",
+      "en": "Understanding baby movements",
+      "de": "Kindsbewegungen besser verstehen",
+      "fr": "Mieux comprendre les mouvements du bébé",
+      "es": "Entender los movimientos del bebé",
+      "tr": "Bebeğin hareketlerini anlamak",
+      "pt": "Entender os movimentos do bebê"
+    },
+    "order": 21
+  },
+  {
+    "id": "pregnant-12",
+    "slug": "contraction-timer-confidence",
+    "sectionKey": "pregnant",
+    "type": "article",
+    "image": "pregnancyBirthImage",
+    "readTime": 3,
+    "tags": [
+      "contractions",
+      "timing",
+      "birth-prep"
+    ],
+    "relatedToolIds": [
+      "contraction-timer",
+      "ai-birth-plan",
+      "smart-appointment-reminder"
+    ],
+    "relatedArticleIds": [
+      "birth-preparation-checklist",
+      "signs-that-deserve-attention"
+    ],
+    "featuredInSection": false,
+    "featuredGlobal": false,
+    "popularityWeight": 83,
+    "titles": {
+      "ar": "متى يفيدكِ مؤقت الانقباضات؟",
+      "en": "When a contraction timer helps",
+      "de": "Wann ein Wehen-Timer wirklich hilft",
+      "fr": "Quand le minuteur de contractions aide vraiment",
+      "es": "Cuándo ayuda un temporizador de contracciones",
+      "tr": "Kasılma sayacı ne zaman işe yarar",
+      "pt": "Quando o contador de contrações ajuda"
+    },
+    "order": 22
+  },
+  {
+    "id": "pregnant-13",
+    "slug": "sleep-wellbeing-discovery",
+    "sectionKey": "pregnant",
+    "type": "discovery",
+    "image": "pregnancyWeeklyImage",
+    "readTime": 3,
+    "tags": [
+      "sleep",
+      "wellbeing",
+      "discovery"
+    ],
+    "relatedToolIds": [
+      "pregnancy-comfort",
+      "wellness-diary",
+      "weekly-summary"
+    ],
+    "relatedArticleIds": [
+      "sleep-during-pregnancy",
+      "physical-comfort-routines"
+    ],
+    "featuredInSection": false,
+    "featuredGlobal": false,
+    "popularityWeight": 80,
+    "titles": {
+      "ar": "اكتشاف: النوم يغيّر يومكِ بالكامل",
+      "en": "Discovery: sleep shapes your whole day",
+      "de": "Entdeckung: Schlaf verändert den ganzen Tag",
+      "fr": "Découverte : le sommeil change toute la journée",
+      "es": "Descubrimiento: el sueño cambia todo tu día",
+      "tr": "Keşif: uyku tüm gününü etkiler",
+      "pt": "Descoberta: o sono muda o seu dia inteiro"
+    },
+    "order": 23
+  },
+  {
+    "id": "pregnant-14",
+    "slug": "light-activity-research",
+    "sectionKey": "pregnant",
+    "type": "research",
+    "image": "pregnancyWeeklyImage",
+    "readTime": 4,
+    "tags": [
+      "movement",
+      "research",
+      "energy"
+    ],
+    "relatedToolIds": [
+      "ai-fitness-coach",
+      "weight-gain",
+      "wellness-diary"
+    ],
+    "relatedArticleIds": [
+      "daily-movement-during-pregnancy",
+      "smart-pregnancy-nutrition"
+    ],
+    "featuredInSection": false,
+    "featuredGlobal": false,
+    "popularityWeight": 76,
+    "titles": {
+      "ar": "بحث مبسط: النشاط الخفيف مفيد",
+      "en": "Research brief: the value of light activity",
+      "de": "Kurz erklärt: Warum leichte Aktivität zählt",
+      "fr": "Recherche simple : l’intérêt de l’activité légère",
+      "es": "Investigación simple: valor de la actividad ligera",
+      "tr": "Kısa araştırma: hafif aktivitenin değeri",
+      "pt": "Pesquisa simples: o valor da atividade leve"
+    },
+    "order": 24
+  },
+  {
+    "id": "pregnant-15",
+    "slug": "signs-that-deserve-attention",
+    "sectionKey": "pregnant",
+    "type": "article",
+    "image": "pregnancyBirthImage",
+    "readTime": 4,
+    "tags": [
+      "attention",
+      "awareness",
+      "support"
+    ],
+    "relatedToolIds": [
+      "pregnancy-assistant",
+      "smart-appointment-reminder",
+      "maternal-health-awareness"
+    ],
+    "relatedArticleIds": [
+      "contraction-timer-confidence",
+      "birth-preparation-checklist"
+    ],
+    "featuredInSection": false,
+    "featuredGlobal": false,
+    "popularityWeight": 85,
+    "titles": {
+      "ar": "علامات تستحق الانتباه بهدوء",
+      "en": "Signs that deserve calm attention",
+      "de": "Signale, denen du ruhig Aufmerksamkeit schenken solltest",
+      "fr": "Signes à observer avec calme",
+      "es": "Señales que merecen atención tranquila",
+      "tr": "Sakin şekilde dikkat etmeye değer işaretler",
+      "pt": "Sinais que merecem atenção tranquila"
+    },
+    "order": 25
+  },
+  {
+    "id": "pregnant-16",
+    "slug": "partner-support-before-birth",
+    "sectionKey": "pregnant",
+    "type": "article",
+    "image": "pregnancyBirthImage",
+    "readTime": 4,
+    "tags": [
+      "partner",
+      "support",
+      "birth-prep"
+    ],
+    "relatedToolIds": [
+      "ai-partner-guide",
+      "ai-birth-plan",
+      "ai-hospital-bag"
+    ],
+    "relatedArticleIds": [
+      "birth-plan-that-feels-real",
+      "birth-preparation-checklist"
+    ],
+    "featuredInSection": false,
+    "featuredGlobal": false,
+    "popularityWeight": 79,
+    "titles": {
+      "ar": "كيف يقدّم الشريك دعماً فعلياً؟",
+      "en": "How a partner can support well",
+      "de": "Wie Partner wirklich gut unterstützen können",
+      "fr": "Comment le partenaire peut aider concrètement",
+      "es": "Cómo puede apoyar mejor la pareja",
+      "tr": "Partner nasıl gerçekten iyi destek olur",
+      "pt": "Como o parceiro pode apoiar de verdade"
+    },
+    "order": 26
+  },
+  {
+    "id": "postpartum-01",
+    "slug": "early-postpartum-recovery",
+    "sectionKey": "postpartum",
+    "type": "article",
+    "image": "postpartumRecoveryImage",
+    "readTime": 5,
+    "tags": [
+      "recovery",
+      "rest",
+      "routine"
+    ],
+    "relatedToolIds": [
+      "postpartum-recovery",
+      "postpartum-mental-health",
+      "wellness-diary"
+    ],
+    "relatedArticleIds": [
+      "first-weeks-guide",
+      "balance-after-birth"
+    ],
+    "featuredInSection": true,
+    "featuredGlobal": true,
+    "popularityWeight": 95,
+    "titles": {
+      "ar": "التعافي المبكر بعد الولادة",
+      "en": "Early postpartum recovery",
+      "de": "Frühe Erholung nach der Geburt",
+      "fr": "Le rétablissement au début du post-partum",
+      "es": "Recuperación temprana en el posparto",
+      "tr": "Doğum sonrası erken toparlanma",
+      "pt": "Recuperação inicial no pós-parto"
+    },
+    "order": 27
+  },
+  {
+    "id": "postpartum-02",
+    "slug": "feeding-preparation-and-confidence",
+    "sectionKey": "postpartum",
+    "type": "article",
+    "image": "postpartumBondingImage",
+    "readTime": 4,
+    "tags": [
+      "feeding",
+      "bonding",
+      "routine"
+    ],
+    "relatedToolIds": [
+      "ai-lactation-prep",
+      "baby-growth",
+      "postpartum-recovery"
+    ],
+    "relatedArticleIds": [
+      "feeding-and-bonding-rhythm",
+      "first-weeks-guide"
+    ],
+    "featuredInSection": true,
+    "featuredGlobal": false,
+    "popularityWeight": 90,
+    "titles": {
+      "ar": "الرضاعة والاستعداد بثقة",
+      "en": "Feeding preparation with confidence",
+      "de": "Still- und Fütterungsstart mit Sicherheit",
+      "fr": "Bien préparer l’alimentation du bébé",
+      "es": "Preparar la alimentación con confianza",
+      "tr": "Beslenmeye güvenle hazırlanmak",
+      "pt": "Preparar a alimentação com confiança"
+    },
+    "order": 28
+  },
+  {
+    "id": "postpartum-03",
+    "slug": "newborn-sleep-rhythm",
+    "sectionKey": "postpartum",
+    "type": "article",
+    "image": "postpartumSleepImage",
+    "readTime": 4,
+    "tags": [
+      "sleep",
+      "newborn",
+      "routine"
+    ],
+    "relatedToolIds": [
+      "baby-sleep-tracker",
+      "baby-cry-translator",
+      "diaper-tracker"
+    ],
+    "relatedArticleIds": [
+      "fragmented-sleep-research",
+      "routine-and-reassurance-discovery"
+    ],
+    "featuredInSection": true,
+    "featuredGlobal": true,
+    "popularityWeight": 94,
+    "titles": {
+      "ar": "بدايات نوم الطفل",
+      "en": "Understanding newborn sleep rhythm",
+      "de": "Den Schlafrhythmus des Neugeborenen verstehen",
+      "fr": "Comprendre le rythme de sommeil du nouveau-né",
+      "es": "Entender el ritmo de sueño del recién nacido",
+      "tr": "Yenidoğanın uyku ritmini anlamak",
+      "pt": "Entender o ritmo de sono do recém-nascido"
+    },
+    "order": 29
+  },
+  {
+    "id": "postpartum-04",
+    "slug": "why-babies-cry",
+    "sectionKey": "postpartum",
+    "type": "article",
+    "image": "postpartumBondingImage",
+    "readTime": 3,
+    "tags": [
+      "crying",
+      "patterns",
+      "comfort"
+    ],
+    "relatedToolIds": [
+      "baby-cry-translator",
+      "baby-sleep-tracker",
+      "diaper-tracker"
+    ],
+    "relatedArticleIds": [
+      "newborn-sleep-rhythm",
+      "first-day-organization"
+    ],
+    "featuredInSection": false,
+    "featuredGlobal": false,
+    "popularityWeight": 86,
+    "titles": {
+      "ar": "لماذا يبكي الطفل؟",
+      "en": "Why babies cry and what to notice",
+      "de": "Warum Babys weinen und was auffällt",
+      "fr": "Pourquoi les bébés pleurent et quoi observer",
+      "es": "Por qué lloran los bebés y qué notar",
+      "tr": "Bebekler neden ağlar ve neye dikkat edilmeli",
+      "pt": "Por que os bebês choram e o que observar"
+    },
+    "order": 30
+  },
+  {
+    "id": "postpartum-05",
+    "slug": "baby-growth-tracking-basics",
+    "sectionKey": "postpartum",
+    "type": "article",
+    "image": "postpartumBondingImage",
+    "readTime": 4,
+    "tags": [
+      "growth",
+      "tracking",
+      "feeding"
+    ],
+    "relatedToolIds": [
+      "baby-growth",
+      "diaper-tracker",
+      "baby-sleep-tracker"
+    ],
+    "relatedArticleIds": [
+      "feeding-preparation-and-confidence",
+      "first-weeks-guide"
+    ],
+    "featuredInSection": false,
+    "featuredGlobal": false,
+    "popularityWeight": 82,
+    "titles": {
+      "ar": "أساسيات تتبع نمو الطفل",
+      "en": "Baby growth tracking basics",
+      "de": "Grundlagen zum Verfolgen des Babywachstums",
+      "fr": "Les bases du suivi de la croissance du bébé",
+      "es": "Bases para seguir el crecimiento del bebé",
+      "tr": "Bebek gelişimini takip etmenin temelleri",
+      "pt": "Noções básicas para acompanhar o crescimento do bebê"
+    },
+    "order": 31
+  },
+  {
+    "id": "postpartum-06",
+    "slug": "first-day-organization",
+    "sectionKey": "postpartum",
+    "type": "article",
+    "image": "postpartumRecoveryImage",
+    "readTime": 3,
+    "tags": [
+      "routine",
+      "organization",
+      "support"
+    ],
+    "relatedToolIds": [
+      "diaper-tracker",
+      "baby-sleep-tracker",
+      "postpartum-recovery"
+    ],
+    "relatedArticleIds": [
+      "why-babies-cry",
+      "balance-after-birth"
+    ],
+    "featuredInSection": false,
+    "featuredGlobal": false,
+    "popularityWeight": 75,
+    "titles": {
+      "ar": "تنظيم اليوم الأول مع المولود",
+      "en": "Organizing the first days with baby",
+      "de": "Die ersten Tage mit Baby gut organisieren",
+      "fr": "Organiser les premiers jours avec bébé",
+      "es": "Organizar los primeros días con el bebé",
+      "tr": "Bebekle ilk günleri düzenlemek",
+      "pt": "Organizar os primeiros dias com o bebê"
+    },
+    "order": 32
+  },
+  {
+    "id": "postpartum-07",
+    "slug": "balance-after-birth",
+    "sectionKey": "postpartum",
+    "type": "article",
+    "image": "postpartumRecoveryImage",
+    "readTime": 4,
+    "tags": [
+      "balance",
+      "rest",
+      "mindset"
+    ],
+    "relatedToolIds": [
+      "postpartum-mental-health",
+      "postpartum-recovery",
+      "wellness-diary"
+    ],
+    "relatedArticleIds": [
+      "early-postpartum-recovery",
+      "fragmented-sleep-research"
+    ],
+    "featuredInSection": false,
+    "featuredGlobal": false,
+    "popularityWeight": 81,
+    "titles": {
+      "ar": "استعادة التوازن بعد الولادة",
+      "en": "Finding balance after birth",
+      "de": "Nach der Geburt wieder ins Gleichgewicht finden",
+      "fr": "Retrouver son équilibre après la naissance",
+      "es": "Recuperar el equilibrio después del parto",
+      "tr": "Doğumdan sonra dengeyi yeniden bulmak",
+      "pt": "Recuperar o equilíbrio após o parto"
+    },
+    "order": 33
+  },
+  {
+    "id": "postpartum-08",
+    "slug": "fragmented-sleep-research",
+    "sectionKey": "postpartum",
+    "type": "research",
+    "image": "postpartumSleepImage",
+    "readTime": 4,
+    "tags": [
+      "sleep",
+      "research",
+      "recovery"
+    ],
+    "relatedToolIds": [
+      "baby-sleep-tracker",
+      "postpartum-mental-health",
+      "wellness-diary"
+    ],
+    "relatedArticleIds": [
+      "newborn-sleep-rhythm",
+      "balance-after-birth"
+    ],
+    "featuredInSection": false,
+    "featuredGlobal": false,
+    "popularityWeight": 74,
+    "titles": {
+      "ar": "بحث مبسط: النوم المتقطع",
+      "en": "Research brief: fragmented sleep",
+      "de": "Kurz erklärt: zerstückelter Schlaf im Alltag",
+      "fr": "Recherche simple : le sommeil fractionné",
+      "es": "Investigación simple: el sueño fragmentado",
+      "tr": "Kısa araştırma: bölünmüş uyku",
+      "pt": "Pesquisa simples: sono fragmentado"
+    },
+    "order": 34
+  },
+  {
+    "id": "postpartum-09",
+    "slug": "routine-and-reassurance-discovery",
+    "sectionKey": "postpartum",
+    "type": "discovery",
+    "image": "postpartumSleepImage",
+    "readTime": 3,
+    "tags": [
+      "routine",
+      "comfort",
+      "discovery"
+    ],
+    "relatedToolIds": [
+      "baby-sleep-tracker",
+      "diaper-tracker",
+      "baby-cry-translator"
+    ],
+    "relatedArticleIds": [
+      "newborn-sleep-rhythm",
+      "why-babies-cry"
+    ],
+    "featuredInSection": false,
+    "featuredGlobal": true,
+    "popularityWeight": 88,
+    "titles": {
+      "ar": "اكتشاف: الروتين يصنع طمأنينة",
+      "en": "Discovery: routine builds reassurance",
+      "de": "Entdeckung: Routine schafft Sicherheit",
+      "fr": "Découverte : la routine apporte de l’apaisement",
+      "es": "Descubrimiento: la rutina crea calma",
+      "tr": "Keşif: rutin güven hissi oluşturur",
+      "pt": "Descoberta: a rotina traz tranquilidade"
+    },
+    "order": 35
+  },
+  {
+    "id": "postpartum-10",
+    "slug": "first-weeks-guide",
+    "sectionKey": "postpartum",
+    "type": "article",
+    "image": "postpartumBondingImage",
+    "readTime": 5,
+    "tags": [
+      "first-weeks",
+      "support",
+      "feeding"
+    ],
+    "relatedToolIds": [
+      "postpartum-recovery",
+      "ai-lactation-prep",
+      "baby-growth"
+    ],
+    "relatedArticleIds": [
+      "early-postpartum-recovery",
+      "feeding-preparation-and-confidence"
+    ],
+    "featuredInSection": true,
+    "featuredGlobal": false,
+    "popularityWeight": 89,
+    "titles": {
+      "ar": "دليل الأسابيع الأولى",
+      "en": "A guide for the first weeks",
+      "de": "Ein Leitfaden für die ersten Wochen",
+      "fr": "Guide des premières semaines",
+      "es": "Guía para las primeras semanas",
+      "tr": "İlk haftalar için rehber",
+      "pt": "Guia para as primeiras semanas"
+    },
+    "order": 36
+  }
+] as ArticleSeed[];
+
+const resolveLang = (lang?: string): SupportedArticleLanguage => {
+  const base = (lang || "en").split("-")[0] as SupportedArticleLanguage;
+  return SUPPORTED_LANGUAGES.includes(base) ? base : "en";
+};
+
+const getLocalized = (map: LocalizedMap, lang: SupportedArticleLanguage) => map[lang] || map.en;
+
+const formatReadTime = (minutes: number, lang: SupportedArticleLanguage) => {
+  const labels: Record<SupportedArticleLanguage, string> = {
+    ar: `${minutes} دقائق`,
+    en: `${minutes} min read`,
+    de: `${minutes} Min.`,
+    fr: `${minutes} min`,
+    es: `${minutes} min`,
+    tr: `${minutes} dk`,
+    pt: `${minutes} min`,
+  };
+  return labels[lang];
+};
+
+const formatDateLabel = (isoDate: string, lang: SupportedArticleLanguage) => {
+  const localeMap: Record<SupportedArticleLanguage, string> = {
+    ar: "ar-EG",
+    en: "en-US",
+    de: "de-DE",
+    fr: "fr-FR",
+    es: "es-ES",
+    tr: "tr-TR",
+    pt: "pt-PT",
+  };
+
+  return new Intl.DateTimeFormat(localeMap[lang], {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  }).format(new Date(isoDate));
+};
+
+const createPublishedAt = (order: number) => {
+  const waveIndex = Math.floor(order / 2);
+  return new Date(ARTICLE_RELEASE_START + waveIndex * TWO_WEEKS_IN_MS).toISOString();
+};
+
+const createUpdatedAt = (publishedAt: string) => new Date(new Date(publishedAt).getTime() + 7 * DAY_IN_MS).toISOString();
+
+const interpolate = (template: string, values: Record<string, string>) =>
+  template.replace(/{{(.*?)}}/g, (_, key) => values[key.trim()] ?? "");
+
+const getTagLabels = (tags: ArticleTag[], lang: SupportedArticleLanguage) => tags.map((tag) => getLocalized(tagLabels[tag], lang));
+
+const getExcerpt = (seed: ArticleSeed, lang: SupportedArticleLanguage) => {
+  const title = getLocalized(seed.titles, lang);
+  const section = getLocalized(sectionLabels[seed.sectionKey], lang);
+  const tagList = getTagLabels(seed.tags.slice(0, 3), lang).join(" • ");
+
+  const templates: Record<SupportedArticleLanguage, string> = {
+    ar: `${title} قراءة مختصرة تساعدكِ على فهم ${section} بطريقة عملية، مع تركيز على ${tagList}.`,
+    en: `${title} is a concise, practical read built around ${section.toLowerCase()} with a focus on ${tagList.toLowerCase()}.`,
+    de: `${title} ist eine kompakte, praktische Lektüre zu ${section} mit Fokus auf ${tagList}.`,
+    fr: `${title} est une lecture courte et pratique autour de ${section.toLowerCase()} avec un accent sur ${tagList.toLowerCase()}.`,
+    es: `${title} es una lectura breve y práctica sobre ${section.toLowerCase()} con foco en ${tagList.toLowerCase()}.`,
+    tr: `${title}, ${section.toLowerCase()} için ${tagList.toLowerCase()} odağında kısa ve pratik bir okuma sunar.`,
+    pt: `${title} é uma leitura breve e prática sobre ${section.toLowerCase()}, com foco em ${tagList.toLowerCase()}.`,
+  };
+
+  return templates[lang];
+};
+
+const buildSections = (seed: ArticleSeed, lang: SupportedArticleLanguage) => {
+  const title = getLocalized(seed.titles, lang);
+  const section = getLocalized(sectionLabels[seed.sectionKey], lang);
+  const templates = bodyTemplates[lang][seed.type];
+  const copy = uiCopy[lang];
+
+  return [
+    { heading: copy.whyNow, body: interpolate(templates[0], { title, section }) },
+    { heading: copy.practicalView, body: interpolate(templates[1], { title, section }) },
+    { heading: copy.nextStep, body: interpolate(templates[2], { title, section }) },
+  ];
+};
+
+const mapSeedToArticle = (seed: ArticleSeed, lang: SupportedArticleLanguage): ArticleRecord => {
+  const publishedAt = createPublishedAt(seed.order);
+  const updatedAt = createUpdatedAt(publishedAt);
+  const title = getLocalized(seed.titles, lang);
+  const sections = buildSections(seed, lang);
+
+  return {
+    id: seed.id,
+    slug: seed.slug,
+    sectionKey: seed.sectionKey,
+    sectionLabel: getLocalized(sectionLabels[seed.sectionKey], lang),
+    type: seed.type,
+    typeLabel: getLocalized(typeLabels[seed.type], lang),
+    title,
+    excerpt: getExcerpt(seed, lang),
+    intro: sections[0].body,
+    heroAlt: title,
+    image: seed.image,
+    readTime: seed.readTime,
+    readTimeLabel: formatReadTime(seed.readTime, lang),
+    tags: seed.tags,
+    tagLabels: getTagLabels(seed.tags, lang),
+    sections,
+    publishedAt,
+    updatedAt,
+    relatedToolIds: seed.relatedToolIds,
+    relatedArticleIds: seed.relatedArticleIds,
+    featuredInSection: seed.featuredInSection,
+    featuredGlobal: seed.featuredGlobal,
+    popularityWeight: seed.popularityWeight,
+    order: seed.order,
+  };
+};
+
+export const articleUiCopy = (lang?: string) => uiCopy[resolveLang(lang)];
+
+export const getVisibleArticleSeeds = (date: Date = new Date()) => {
+  const now = date.getTime();
+  return articleSeeds.filter((seed) => new Date(createPublishedAt(seed.order)).getTime() <= now);
+};
+
+export const getLocalizedArticles = (lang?: string, date: Date = new Date()) => {
+  const resolved = resolveLang(lang);
+  return getVisibleArticleSeeds(date)
+    .map((seed) => mapSeedToArticle(seed, resolved))
+    .sort((a, b) => b.popularityWeight - a.popularityWeight || a.order - b.order);
+};
+
+export const getLocalizedArticleBySlug = (slug: string, lang?: string, date: Date = new Date()) => {
+  const resolved = resolveLang(lang);
+  const seed = getVisibleArticleSeeds(date).find((item) => item.slug === slug);
+  return seed ? mapSeedToArticle(seed, resolved) : null;
+};
+
+const getDaySeed = (date: Date = new Date()) => Math.floor(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()) / DAY_IN_MS);
+
+export const getFeaturedSectionBundle = (sectionKey: ArticleSectionKey, lang?: string, date: Date = new Date()) => {
+  const resolved = resolveLang(lang);
+  const daySeed = getDaySeed(date);
+  const pool = getVisibleArticleSeeds(date)
+    .filter((seed) => seed.sectionKey === sectionKey)
+    .sort((a, b) => Number(b.featuredInSection) - Number(a.featuredInSection) || b.popularityWeight - a.popularityWeight || a.order - b.order);
+
+  if (pool.length === 0) {
+    return { main: null as ArticleRecord | null, secondary: [] as ArticleRecord[] };
+  }
+
+  const featuredPool = pool.filter((seed) => seed.featuredInSection);
+  const mainSeed = (featuredPool.length ? featuredPool : pool)[daySeed % (featuredPool.length || pool.length)];
+  const related = [
+    ...mainSeed.relatedArticleIds
+      .map((slug) => pool.find((candidate) => candidate.slug === slug))
+      .filter(Boolean) as ArticleSeed[],
+    ...pool.filter((seed) => seed.slug !== mainSeed.slug && !mainSeed.relatedArticleIds.includes(seed.slug)),
+  ];
+
+  const uniqueSecondary: ArticleSeed[] = [];
+  related.forEach((seed) => {
+    if (!uniqueSecondary.find((item) => item.slug === seed.slug) && seed.slug !== mainSeed.slug) {
+      uniqueSecondary.push(seed);
+    }
+  });
+
+  return {
+    main: mapSeedToArticle(mainSeed, resolved),
+    secondary: uniqueSecondary.slice(0, 2).map((seed) => mapSeedToArticle(seed, resolved)),
+  };
+};
+
+export const getGlobalFeaturedArticles = (lang?: string, maxItems: number = 4, date: Date = new Date()) => {
+  const resolved = resolveLang(lang);
+  const daySeed = getDaySeed(date);
+  const pool = getVisibleArticleSeeds(date)
+    .filter((seed) => seed.featuredGlobal)
+    .sort((a, b) => b.popularityWeight - a.popularityWeight || a.order - b.order);
+
+  if (pool.length === 0) return [] as ArticleRecord[];
+
+  const rotated = pool.map((_, index) => pool[(index + (daySeed % pool.length)) % pool.length]);
+  return rotated.slice(0, maxItems).map((seed) => mapSeedToArticle(seed, resolved));
+};
+
+export const getRelatedArticles = (slug: string, lang?: string, maxItems: number = 3, date: Date = new Date()) => {
+  const resolved = resolveLang(lang);
+  const visible = getVisibleArticleSeeds(date);
+  const current = visible.find((seed) => seed.slug === slug);
+  if (!current) return [] as ArticleRecord[];
+
+  const relatedSeedPool = [
+    ...current.relatedArticleIds.map((relatedSlug) => visible.find((seed) => seed.slug === relatedSlug)).filter(Boolean) as ArticleSeed[],
+    ...visible.filter((seed) => seed.sectionKey === current.sectionKey && seed.slug !== slug && !current.relatedArticleIds.includes(seed.slug)),
+    ...visible.filter((seed) => seed.slug !== slug && seed.sectionKey !== current.sectionKey),
+  ];
+
+  const unique: ArticleSeed[] = [];
+  relatedSeedPool.forEach((seed) => {
+    if (!unique.find((item) => item.slug === seed.slug) && seed.slug !== slug) {
+      unique.push(seed);
+    }
+  });
+
+  return unique.slice(0, maxItems).map((seed) => mapSeedToArticle(seed, resolved));
+};
+
+export const getArticleCountBySection = (date: Date = new Date()) => {
+  const visible = getVisibleArticleSeeds(date);
+  return {
+    planning: visible.filter((item) => item.sectionKey === "planning").length,
+    pregnant: visible.filter((item) => item.sectionKey === "pregnant").length,
+    postpartum: visible.filter((item) => item.sectionKey === "postpartum").length,
+  };
+};
+
+export const getRelatedToolRecords = (article: Pick<ArticleRecord, "relatedToolIds">) => article.relatedToolIds.map((id) => getToolById(id)).filter(Boolean);
+
+export const getArticleDateLabel = (isoDate: string, lang?: string) => formatDateLabel(isoDate, resolveLang(lang));
