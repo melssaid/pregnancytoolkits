@@ -1,6 +1,6 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
-import { ARTICLE_SEED_REGISTRY } from "../../../src/content/article-seed-registry.ts";
+import { ARTICLE_SEED_REGISTRY } from "./article-seed-registry.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
