@@ -8,19 +8,19 @@ import type { ArticleRecord, ArticleSectionKey } from "@/data/articles";
 
 const toneMap: Record<ArticleSectionKey, { shell: string; badge: string; overlay: string }> = {
   planning: {
-    shell: "bg-gradient-to-br from-primary/10 via-background to-background border-border/80",
+    shell: "border border-border/80 bg-gradient-to-br from-card via-card to-secondary/20 shadow-[var(--shadow-card)]",
     badge: "bg-background/90 text-foreground border-border/60",
-    overlay: "from-background via-background/35 to-transparent",
+    overlay: "from-background/90 via-background/30 to-transparent",
   },
   pregnant: {
-    shell: "bg-gradient-to-br from-primary/10 via-secondary/50 to-background border-border/80",
+    shell: "border border-border/80 bg-gradient-to-br from-card via-card to-secondary/25 shadow-[var(--shadow-card)]",
     badge: "bg-background/90 text-foreground border-border/60",
-    overlay: "from-background via-background/30 to-transparent",
+    overlay: "from-background/90 via-background/30 to-transparent",
   },
   postpartum: {
-    shell: "bg-gradient-to-br from-secondary via-muted/40 to-background border-border/80",
+    shell: "border border-border/80 bg-gradient-to-br from-card via-card to-muted/35 shadow-[var(--shadow-card)]",
     badge: "bg-background/90 text-foreground border-border/60",
-    overlay: "from-background via-background/35 to-transparent",
+    overlay: "from-background/90 via-background/30 to-transparent",
   },
 };
 
@@ -44,7 +44,7 @@ export function ArticleFeatureCard({ article, isRTL = false, label, eager = fals
 
   return (
     <Link to={`/articles/${article.slug}`} className="block">
-      <Card className={cn("group overflow-hidden rounded-[1.15rem] border-0 bg-transparent shadow-none transition-all duration-300", tone.shell)}>
+      <Card className={cn("group overflow-hidden rounded-[1.15rem] transition-all duration-300", tone.shell)}>
         <div className="relative space-y-2.5">
           <AspectRatio ratio={16 / 8.2}>
             <img
@@ -68,13 +68,15 @@ export function ArticleFeatureCard({ article, isRTL = false, label, eager = fals
               {article.readTimeLabel}
             </span>
           </div>
-          <div className="flex items-start justify-between gap-3 px-1">
-            <div className="min-w-0 flex-1">
+          <div className="mx-1 rounded-[1rem] border border-border/70 bg-card px-3 py-3">
+            <div className="flex items-start justify-between gap-3">
+              <div className="min-w-0 flex-1">
               <div className="mb-2 h-[3px] w-14 rounded-full bg-gradient-to-r from-primary/90 via-primary/35 to-transparent" />
-              <h3 className="line-clamp-2 text-[16px] font-black leading-snug text-foreground ar-heading">{article.title}</h3>
-              <p className="mt-1 line-clamp-2 text-[12px] leading-5 text-muted-foreground">{article.excerpt}</p>
+                <h3 className="line-clamp-2 text-[16px] font-black leading-snug text-foreground ar-heading">{article.title}</h3>
+                <p className="mt-1 line-clamp-2 text-[12px] leading-5 text-foreground/75">{article.excerpt}</p>
+              </div>
+              <ArrowIcon className="mt-1 h-4 w-4 flex-shrink-0 text-primary transition-transform duration-300 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5" />
             </div>
-            <ArrowIcon className="mt-1 h-4 w-4 flex-shrink-0 text-primary transition-transform duration-300 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5" />
           </div>
         </div>
       </Card>
