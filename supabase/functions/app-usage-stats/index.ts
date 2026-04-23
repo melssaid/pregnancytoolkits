@@ -29,8 +29,8 @@ function isAppSession(row: ToolRow) {
   return APP_PLATFORM_RE.test(platform) || APP_HOST_RE.test(host);
 }
 
-function bucketOf(row: ToolRow): "app" | "web" {
-  return isAppSession(row) ? "app" : "web";
+function bucketOf(row: ToolRow, sessionBuckets: Map<string, "app" | "web">): "app" | "web" {
+  return sessionBuckets.get(row.session_id) || (isAppSession(row) ? "app" : "web");
 }
 
 function extractLang(row: ToolRow) {
@@ -93,9 +93,16 @@ Deno.serve(async (req) => {
     if (error) throw error;
 
     const rows = (data || []) as ToolRow[];
+    const sessionBuckets = new Map<string, "app" | "web">();
+    for (const row of rows) {
+      if (!sessionBuckets.has(row.session_id) || row.action_type === "session_start") {
+        sessionBuckets.set(row.session_id, isAppSession(row) ? "app" : "web");
+      }
+    }
+
     const rowsByBucket = {
-      app: rows.filter((row) => bucketOf(row) === "app"),
-      web: rows.filter((row) => bucketOf(row) === "web"),
+      app: rows.filter((row) => bucketOf(row, sessionBuckets) === "app"),
+      web: rows.filter((row) => bucketOf(row, sessionBuckets) === "web"),
     };
 
     const summarize = (subset: ToolRow[]) => {
