@@ -15,11 +15,11 @@ export function FeaturedArticlesRail({ limit = 4 }: { limit?: number }) {
   if (!articles.length) return null;
 
   return (
-    <section className="rounded-[1.6rem] border border-border/80 bg-gradient-to-br from-card via-background to-secondary/35 px-3 py-3.5" style={{ boxShadow: "var(--shadow-card)" }} dir={locale.dir}>
+    <section className="rounded-[1.6rem] border border-border bg-card px-3 py-3.5" style={{ boxShadow: "var(--shadow-card)" }} dir={locale.dir}>
       <div className="mb-3 px-1">
         <p className="text-[11px] font-semibold text-primary">{copy.discoverMore}</p>
-        <h2 className={`mt-1 text-lg font-extrabold text-foreground ${locale.headingClass}`}>{copy.mostRead}</h2>
-        <p className="mt-1 text-xs leading-5 text-muted-foreground" style={{ textAlign: locale.textAlign }}>{copy.mostReadDesc}</p>
+        <h2 className={`mt-1 text-[1.35rem] font-black text-foreground ${locale.headingClass}`}>{copy.mostRead}</h2>
+        <p className="mt-1 text-xs leading-5 text-foreground/80" style={{ textAlign: locale.textAlign }}>{copy.mostReadDesc}</p>
       </div>
 
       <div className="space-y-3">

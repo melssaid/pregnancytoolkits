@@ -17,22 +17,22 @@ export function RelatedArticles({ slug, limit = 3 }: { slug: string; limit?: num
   if (!nextArticle && !articles.length && !similarArticles.length) return null;
 
   return (
-    <section className="space-y-2 rounded-[1.5rem] border border-primary/10 bg-gradient-to-br from-card via-background to-secondary/20 px-3 py-3" style={{ boxShadow: "var(--shadow-card)" }} dir={locale.dir}>
+    <section className="space-y-3 rounded-[1.5rem] border border-border bg-card px-3 py-3" style={{ boxShadow: "var(--shadow-card)" }} dir={locale.dir}>
       {nextArticle && (
-        <div className="space-y-2 rounded-[1.2rem] border border-primary/10 bg-card p-3">
+        <div className="space-y-2 rounded-[1.2rem] border border-border bg-background p-3">
           <div>
-            <h2 className={`text-base font-extrabold text-primary ${locale.headingClass}`}>{copy.readNext}</h2>
+            <h2 className={`text-[1.3rem] font-black text-foreground ${locale.headingClass}`}>{copy.readNext}</h2>
           </div>
           <ArticleTitleLink article={nextArticle} isRTL={locale.isRTL} label={copy.continueReading} />
         </div>
       )}
 
       {(!!articles.length || !!similarArticles.length) && (
-        <div className="overflow-hidden rounded-[1.2rem] border border-primary/10 bg-card">
+        <div className="overflow-hidden rounded-[1.2rem] border border-border bg-background">
           {!!articles.length && (
             <div className="space-y-2 px-3 py-3">
               <div>
-                <h2 className={`text-[15px] font-extrabold text-primary ${locale.headingClass}`}>{copy.relatedArticles}</h2>
+                <h2 className={`text-[1.3rem] font-black text-foreground ${locale.headingClass}`}>{copy.relatedArticles}</h2>
               </div>
               <div className="space-y-2">
                 {articles.map((article, index) => (
@@ -45,7 +45,7 @@ export function RelatedArticles({ slug, limit = 3 }: { slug: string; limit?: num
           {!!similarArticles.length && (
             <div className="space-y-2 border-t border-primary/10 px-3 py-3">
               <div>
-                <h2 className={`text-[15px] font-extrabold text-primary ${locale.headingClass}`}>{copy.similarArticles}</h2>
+                <h2 className={`text-[1.3rem] font-black text-foreground ${locale.headingClass}`}>{copy.similarArticles}</h2>
               </div>
               <div className="space-y-2">
                 {similarArticles.map((article) => (
