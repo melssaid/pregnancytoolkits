@@ -110,9 +110,9 @@ const ArticlePage = () => {
               <span className="rounded-full border border-primary/15 bg-primary/10 px-2.5 py-1 text-[11px] font-semibold text-primary">{article.sectionLabel}</span>
             </div>
 
-            <div className="space-y-3 rounded-[1.25rem] border border-border bg-background px-4 py-4">
-              <h1 className={`text-[1.9rem] font-black leading-tight text-foreground ${locale.headingClass}`}>{resolvedTitle}</h1>
-              <p className="text-[15px] leading-8 text-foreground/90" style={{ textAlign: locale.textAlign }}>{resolvedExcerpt}</p>
+            <div className="relative isolate space-y-3 rounded-[1.25rem] border border-border bg-card px-4 py-4 shadow-sm">
+              <h1 className={`relative z-10 text-[1.9rem] font-black leading-tight text-foreground ${locale.headingClass}`}>{resolvedTitle}</h1>
+              <p className="relative z-10 text-[15px] leading-8 text-foreground" style={{ textAlign: locale.textAlign }}>{resolvedExcerpt}</p>
             </div>
 
             <div className="grid grid-cols-1 gap-2 text-xs text-muted-foreground sm:grid-cols-2">
