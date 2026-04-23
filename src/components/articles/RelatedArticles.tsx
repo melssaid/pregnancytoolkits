@@ -16,9 +16,9 @@ export function RelatedArticles({ slug, limit = 3 }: { slug: string; limit?: num
   if (!nextArticle && !articles.length && !similarArticles.length) return null;
 
   return (
-    <section className="space-y-3 rounded-[1.5rem] border border-primary/10 bg-gradient-to-br from-card via-background to-secondary/20 px-3 py-3.5" style={{ boxShadow: "var(--shadow-card)" }}>
+    <section className="space-y-2 rounded-[1.5rem] border border-primary/10 bg-gradient-to-br from-card via-background to-secondary/20 px-3 py-3" style={{ boxShadow: "var(--shadow-card)" }}>
       {nextArticle && (
-        <div className="space-y-2 rounded-[1.2rem] border border-primary/10 bg-background/85 p-3">
+        <div className="space-y-2 rounded-[1.2rem] border border-primary/10 bg-card p-3">
           <div>
             <h2 className="text-base font-extrabold text-primary ar-heading">{copy.readNext}</h2>
           </div>
@@ -26,29 +26,33 @@ export function RelatedArticles({ slug, limit = 3 }: { slug: string; limit?: num
         </div>
       )}
 
-      {!!articles.length && (
-        <div className="space-y-2">
-          <div>
-            <h2 className="text-base font-extrabold text-primary ar-heading">مقالات قريبة</h2>
-          </div>
-          <div className="space-y-2">
-            {articles.map((article, index) => (
-              <ArticleTitleLink key={article.slug} article={article} isRTL={isRTL} label={index === 0 ? copy.readAlso : copy.suggested} />
-            ))}
-          </div>
-        </div>
-      )}
+      {(!!articles.length || !!similarArticles.length) && (
+        <div className="overflow-hidden rounded-[1.2rem] border border-primary/10 bg-card">
+          {!!articles.length && (
+            <div className="space-y-2 px-3 py-3">
+              <div>
+                <h2 className="text-[15px] font-extrabold text-primary ar-heading">مقالات قريبة</h2>
+              </div>
+              <div className="space-y-2">
+                {articles.map((article, index) => (
+                  <ArticleTitleLink key={article.slug} article={article} isRTL={isRTL} label={index === 0 ? copy.readAlso : copy.suggested} />
+                ))}
+              </div>
+            </div>
+          )}
 
-      {!!similarArticles.length && (
-        <div className="space-y-2 rounded-[1.2rem] border border-primary/10 bg-background/75 p-3">
-          <div>
-            <h2 className="text-base font-extrabold text-primary ar-heading">مقالات مشابهة</h2>
-          </div>
-          <div className="space-y-2">
-            {similarArticles.map((article) => (
-              <ArticleTitleLink key={article.slug} article={article} isRTL={isRTL} label={copy.suggested} />
-            ))}
-          </div>
+          {!!similarArticles.length && (
+            <div className="space-y-2 border-t border-primary/10 px-3 py-3">
+              <div>
+                <h2 className="text-[15px] font-extrabold text-primary ar-heading">مقالات مشابهة</h2>
+              </div>
+              <div className="space-y-2">
+                {similarArticles.map((article) => (
+                  <ArticleTitleLink key={article.slug} article={article} isRTL={isRTL} label={copy.suggested} />
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       )}
     </section>
