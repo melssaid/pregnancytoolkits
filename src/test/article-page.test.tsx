@@ -43,17 +43,33 @@ afterEach(() => {
 describe("ArticlePage body rendering", () => {
   it("renders body content for every article slug or shows a clear fallback", () => {
     const articles = articleData.getLocalizedArticles("ar", new Date("2030-01-01T00:00:00.000Z"));
+    const bannedPhrases = ["ما الذي تفعلينه", "ما الذي تنتبهين له", "الفكرة الأساسية"];
 
     for (const article of articles) {
       const { unmount } = renderArticleRoute(article.slug);
       const bodyContainer = screen.getByTestId("article-body");
       const fallback = screen.queryByTestId("article-body-fallback");
       const paragraphCount = bodyContainer.querySelectorAll("p").length;
+      const bodyText = bodyContainer.textContent?.trim() ?? "";
 
       expect(
         paragraphCount > 0 || !!fallback,
         `Expected article slug "${article.slug}" to render body content or a fallback message.`,
       ).toBe(true);
+
+      if (!fallback) {
+        expect(
+          bodyText.length,
+          `Expected article slug "${article.slug}" to contain substantial article text, but it was too short.`,
+        ).toBeGreaterThan(350);
+
+        for (const phrase of bannedPhrases) {
+          expect(
+            bodyText.includes(phrase),
+            `Expected article slug "${article.slug}" to avoid legacy filler phrase "${phrase}".`,
+          ).toBe(false);
+        }
+      }
 
       unmount();
     }
