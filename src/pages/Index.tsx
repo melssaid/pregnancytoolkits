@@ -204,9 +204,6 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
                 animate={{ x: [0, 56, 0], opacity: isOpen ? 0.18 : [0.08, 0.3, 0.08] }}
                 transition={{ duration: isOpen ? 1.6 : 2.6, repeat: Infinity, ease: "easeInOut" }}
               />
-              {!isOpen && (
-                <span className="absolute start-2 h-1.5 w-1.5 rounded-full bg-white/65" />
-              )}
               <ChevronDown
                 className={`w-5 h-5 ${config.headerText} relative z-10 drop-shadow-sm`}
                 strokeWidth={2.75}
