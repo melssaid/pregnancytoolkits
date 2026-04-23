@@ -57,6 +57,10 @@ Deno.serve(async (req) => {
 
   try {
     const authHeader = req.headers.get("Authorization");
+    if (!authHeader?.startsWith("Bearer ")) {
+      return json({ error: "Unauthorized" }, 401);
+    }
+
     const url = new URL(req.url);
     const hours = Math.min(Math.max(Number(url.searchParams.get("hours") || 48), 1), 168);
     const liveMinutes = Math.min(Math.max(Number(url.searchParams.get("liveMinutes") || 5), 1), 30);
@@ -67,10 +71,8 @@ Deno.serve(async (req) => {
       authHeader ? { global: { headers: { Authorization: authHeader } } } : undefined,
     );
 
-    if (authHeader?.startsWith("Bearer ")) {
-      const { data: { user } } = await userClient.auth.getUser();
-      if (!user) return json({ error: "Unauthorized" }, 401);
-    }
+    const { data: { user } } = await userClient.auth.getUser();
+    if (!user) return json({ error: "Unauthorized" }, 401);
 
     const adminClient = createClient(
       Deno.env.get("SUPABASE_URL") ?? "",
