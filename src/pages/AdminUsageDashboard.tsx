@@ -1,129 +1,257 @@
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { Activity, Globe, RefreshCw, Smartphone, Users, Eye, TimerReset } from "lucide-react";
 import { Layout } from "@/components/Layout";
 import { SEOHead } from "@/components/SEOHead";
-import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { getBackendFunctionUrl } from "@/lib/backendConfig";
+import { ensureAuthenticated } from "@/lib/auth";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
+import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { BarChart, Bar, ResponsiveContainer, Tooltip, XAxis, YAxis, CartesianGrid } from "recharts";
 
-interface ToolStat { tool_id: string; count: number }
-interface DayStat { day: string; count: number }
+type SegmentKey = "combined" | "app" | "web";
 
-const COLORS = ["hsl(340,60%,55%)", "hsl(350,55%,60%)", "hsl(15,60%,55%)", "hsl(160,40%,45%)", "hsl(310,35%,52%)", "hsl(170,35%,45%)", "hsl(25,50%,55%)", "hsl(200,50%,50%)"];
+interface SegmentStats {
+  totalEvents: number;
+  totalViews: number;
+  pageViews: number;
+  toolViews: number;
+  uniqueSessions: number;
+  sessionStarts: number;
+  liveSessions: number;
+  avgDurationSeconds: number | null;
+  topPages: { tool_id: string; path: string; views: number }[];
+  hourly: { hour: string; views: number; sessions: number }[];
+  languages: { lang: string; count: number }[];
+}
+
+interface UsageResponse {
+  generatedAt: string;
+  rangeHours: number;
+  liveWindowMinutes: number;
+  combined: SegmentStats;
+  app: SegmentStats;
+  web: SegmentStats;
+}
+
+const segmentMeta: Record<SegmentKey, { label: string; icon: typeof Activity }> = {
+  combined: { label: "الإجمالي", icon: Activity },
+  app: { label: "التطبيق", icon: Smartphone },
+  web: { label: "الويب", icon: Globe },
+};
+
+function formatDuration(seconds: number | null) {
+  if (!seconds) return "—";
+  if (seconds < 60) return `${seconds} ث`;
+  const minutes = Math.floor(seconds / 60);
+  const remainder = seconds % 60;
+  return remainder ? `${minutes}د ${remainder}ث` : `${minutes}د`;
+}
 
 export default function AdminUsageDashboard() {
-  const [topTools, setTopTools] = useState<ToolStat[]>([]);
-  const [dailyViews, setDailyViews] = useState<DayStat[]>([]);
-  const [totalSessions, setTotalSessions] = useState(0);
-  const [totalViews, setTotalViews] = useState(0);
+  const [stats, setStats] = useState<UsageResponse | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [segment, setSegment] = useState<SegmentKey>("combined");
 
-  useEffect(() => {
-    async function fetchStats() {
-      try {
-        // Top tools by views
-        const { data: toolData } = await supabase
-          .rpc("cleanup_old_analytics") // Just to check connectivity - we'll use direct queries
-          .throwOnError();
-      } catch {}
+  const fetchStats = useCallback(async () => {
+    setLoading(true);
+    setError(null);
 
-      // We'll query tool_analytics via edge function or direct read
-      // Since RLS blocks direct reads, we use aggregated localStorage data instead
-      try {
-        // Aggregate from localStorage analytics cache
-        const keys = Object.keys(localStorage).filter(k => k.startsWith("tool_visited_"));
-        const toolCounts: Record<string, number> = {};
-        keys.forEach(k => {
-          const toolId = k.replace("tool_visited_", "");
-          const count = parseInt(localStorage.getItem(k) || "1", 10);
-          toolCounts[toolId] = count;
-        });
+    try {
+      await ensureAuthenticated();
+      const { data: { session } } = await supabase.auth.getSession();
+      const token = session?.access_token;
 
-        const sorted = Object.entries(toolCounts)
-          .map(([tool_id, count]) => ({ tool_id, count }))
-          .sort((a, b) => b.count - a.count)
-          .slice(0, 15);
+      if (!token) {
+        throw new Error("تعذر إنشاء جلسة للوصول إلى التقرير.");
+      }
 
-        setTopTools(sorted);
-        setTotalViews(sorted.reduce((sum, t) => sum + t.count, 0));
-        setTotalSessions(keys.length);
+      const res = await fetch(`${getBackendFunctionUrl("app-usage-stats")}?hours=48&liveMinutes=5`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
 
-        // Daily views from session
-        const sessionKey = localStorage.getItem("pregnancy_toolkits_session_id") || "";
-        setDailyViews([
-          { day: "Today", count: sorted.reduce((s, t) => s + t.count, 0) },
-        ]);
-      } catch {}
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      setStats(await res.json());
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "تعذر تحميل التقرير.");
+    } finally {
       setLoading(false);
     }
-    fetchStats();
   }, []);
+
+  useEffect(() => {
+    fetchStats();
+  }, [fetchStats]);
+
+  const activeStats = useMemo(() => stats?.[segment] ?? null, [segment, stats]);
+  const segmentCards = useMemo(() => {
+    if (!stats) return [];
+    return (["combined", "app", "web"] as SegmentKey[]).map((key) => ({
+      key,
+      label: segmentMeta[key].label,
+      views: stats[key].totalViews,
+      sessions: stats[key].uniqueSessions,
+      live: stats[key].liveSessions,
+    }));
+  }, [stats]);
 
   return (
     <Layout showBack>
-      <SEOHead title="Usage Dashboard" noindex />
-      <div className="container max-w-3xl pb-20">
-        <h1 className="text-xl font-bold text-foreground py-6">📊 Usage Dashboard</h1>
-
-        {/* Summary Cards */}
-        <div className="grid grid-cols-3 gap-3 mb-6">
-          <Card>
-            <CardContent className="p-4 text-center">
-              <div className="text-2xl font-bold text-primary">{totalSessions}</div>
-              <div className="text-[10px] text-muted-foreground">Tools Used</div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="p-4 text-center">
-              <div className="text-2xl font-bold text-primary">{totalViews}</div>
-              <div className="text-[10px] text-muted-foreground">Total Views</div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent className="p-4 text-center">
-              <div className="text-2xl font-bold text-primary">{topTools[0]?.tool_id?.replace(/-/g, " ") || "—"}</div>
-              <div className="text-[10px] text-muted-foreground">Most Popular</div>
-            </CardContent>
-          </Card>
+      <SEOHead title="تقرير الزيارات الحية" description="لوحة شاملة للمشاهدات والجلسات الحية مع فصل التطبيق عن الويب" noindex />
+      <div className="container max-w-5xl space-y-5 pb-24 pt-5">
+        <div className="flex items-center justify-between gap-3">
+          <div>
+            <h1 className="text-[1.35rem] font-black text-foreground ar-heading">تقرير الزيارات الحية</h1>
+            <p className="mt-1 text-sm text-muted-foreground">المشاهدات والجلسات الفعلية خلال آخر 48 ساعة مع فصل التطبيق عن الويب.</p>
+          </div>
+          <Button variant="outline" size="icon" onClick={fetchStats} disabled={loading}>
+            <RefreshCw className={`h-4 w-4 ${loading ? "animate-spin" : ""}`} />
+          </Button>
         </div>
 
-        {/* Top Tools Chart */}
-        {topTools.length > 0 && (
-          <Card className="mb-6">
-            <CardHeader><CardTitle className="text-sm">Top Tools by Views</CardTitle></CardHeader>
-            <CardContent>
-              <ResponsiveContainer width="100%" height={300}>
-                <BarChart data={topTools.slice(0, 10)} layout="vertical">
-                  <XAxis type="number" />
-                  <YAxis dataKey="tool_id" type="category" width={120} tick={{ fontSize: 10 }} />
-                  <Tooltip />
-                  <Bar dataKey="count" fill="hsl(340,60%,55%)" radius={[0, 4, 4, 0]} />
-                </BarChart>
-              </ResponsiveContainer>
-            </CardContent>
+        {error && (
+          <Card className="border-destructive">
+            <CardContent className="p-4 text-sm text-destructive">{error}</CardContent>
           </Card>
         )}
 
-        {/* Tool Distribution Pie */}
-        {topTools.length > 0 && (
-          <Card>
-            <CardHeader><CardTitle className="text-sm">Tool Distribution</CardTitle></CardHeader>
-            <CardContent>
-              <ResponsiveContainer width="100%" height={250}>
-                <PieChart>
-                  <Pie data={topTools.slice(0, 8)} dataKey="count" nameKey="tool_id" cx="50%" cy="50%" outerRadius={80}>
-                    {topTools.slice(0, 8).map((_, i) => (
-                      <Cell key={i} fill={COLORS[i % COLORS.length]} />
-                    ))}
-                  </Pie>
-                  <Tooltip />
-                </PieChart>
-              </ResponsiveContainer>
-            </CardContent>
-          </Card>
+        {stats && (
+          <>
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+              {segmentCards.map((item) => {
+                const Icon = segmentMeta[item.key].icon;
+                const active = segment === item.key;
+                return (
+                  <button
+                    key={item.key}
+                    type="button"
+                    onClick={() => setSegment(item.key)}
+                    className={`rounded-2xl border px-4 py-4 text-start transition-colors ${active ? "border-primary bg-secondary" : "border-border bg-card"}`}
+                  >
+                    <div className="flex items-center gap-2 text-sm font-bold text-foreground">
+                      <Icon className="h-4 w-4 text-primary" />
+                      {item.label}
+                    </div>
+                    <div className="mt-3 text-[1.5rem] font-black text-foreground">{item.views}</div>
+                    <div className="mt-1 text-xs text-muted-foreground">{item.sessions} جلسة • {item.live} حي الآن</div>
+                  </button>
+                );
+              })}
+            </div>
+
+            {activeStats && (
+              <>
+                <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+                  <StatCard icon={<Eye className="h-4 w-4" />} label="المشاهدات" value={activeStats.totalViews} sub={`${activeStats.pageViews} صفحات`} />
+                  <StatCard icon={<Users className="h-4 w-4" />} label="الجلسات" value={activeStats.uniqueSessions} sub={`${activeStats.sessionStarts} بداية جلسة`} />
+                  <StatCard icon={<Activity className="h-4 w-4" />} label="الحي الآن" value={activeStats.liveSessions} sub={`آخر ${stats.liveWindowMinutes} دقائق`} />
+                  <StatCard icon={<TimerReset className="h-4 w-4" />} label="متوسط الجلسة" value={formatDuration(activeStats.avgDurationSeconds)} sub="تقريبي" />
+                </div>
+
+                <Tabs defaultValue="chart" className="w-full">
+                  <TabsList className="grid w-full grid-cols-3">
+                    <TabsTrigger value="chart">النشاط</TabsTrigger>
+                    <TabsTrigger value="pages">الصفحات</TabsTrigger>
+                    <TabsTrigger value="langs">اللغات</TabsTrigger>
+                  </TabsList>
+
+                  <TabsContent value="chart">
+                    <Card>
+                      <CardHeader className="pb-2">
+                        <CardTitle className="text-sm font-bold text-foreground">المشاهدات والجلسات حسب الساعة</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <ResponsiveContainer width="100%" height={280}>
+                          <BarChart data={activeStats.hourly}>
+                            <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--muted))" />
+                            <XAxis dataKey="hour" tick={{ fontSize: 10 }} tickFormatter={(value) => value.slice(11)} />
+                            <YAxis tick={{ fontSize: 10 }} />
+                            <Tooltip />
+                            <Bar dataKey="views" name="المشاهدات" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
+                            <Bar dataKey="sessions" name="الجلسات" fill="hsl(var(--accent))" radius={[4, 4, 0, 0]} />
+                          </BarChart>
+                        </ResponsiveContainer>
+                      </CardContent>
+                    </Card>
+                  </TabsContent>
+
+                  <TabsContent value="pages">
+                    <Card>
+                      <CardHeader className="pb-2">
+                        <CardTitle className="text-sm font-bold text-foreground">أكثر الصفحات زيارة</CardTitle>
+                      </CardHeader>
+                      <CardContent className="p-0">
+                        <Table>
+                          <TableHeader>
+                            <TableRow>
+                              <TableHead>الصفحة</TableHead>
+                              <TableHead className="text-right">المشاهدات</TableHead>
+                            </TableRow>
+                          </TableHeader>
+                          <TableBody>
+                            {activeStats.topPages.map((page) => (
+                              <TableRow key={`${segment}-${page.tool_id}`}>
+                                <TableCell className="text-xs font-medium text-foreground">{page.path}</TableCell>
+                                <TableCell className="text-right text-xs font-bold text-primary">{page.views}</TableCell>
+                              </TableRow>
+                            ))}
+                          </TableBody>
+                        </Table>
+                      </CardContent>
+                    </Card>
+                  </TabsContent>
+
+                  <TabsContent value="langs">
+                    <Card>
+                      <CardHeader className="pb-2">
+                        <CardTitle className="text-sm font-bold text-foreground">اللغات النشطة</CardTitle>
+                      </CardHeader>
+                      <CardContent className="space-y-3">
+                        {activeStats.languages.map((item) => (
+                          <div key={`${segment}-${item.lang}`} className="flex items-center justify-between rounded-xl border border-border bg-card px-3 py-3">
+                            <span className="text-sm font-semibold text-foreground">{item.lang}</span>
+                            <span className="text-sm font-black text-primary">{item.count}</span>
+                          </div>
+                        ))}
+                      </CardContent>
+                    </Card>
+                  </TabsContent>
+                </Tabs>
+
+                <Card>
+                  <CardContent className="flex flex-wrap items-center justify-between gap-2 p-4 text-xs text-muted-foreground">
+                    <span>آخر تحديث: {new Date(stats.generatedAt).toLocaleString()}</span>
+                    <span>المدى: {stats.rangeHours} ساعة</span>
+                  </CardContent>
+                </Card>
+              </>
+            )}
+          </>
         )}
 
-        {loading && <div className="text-center py-10 text-muted-foreground">Loading...</div>}
+        {loading && <div className="py-10 text-center text-sm text-muted-foreground">جاري تحميل التقرير...</div>}
       </div>
     </Layout>
+  );
+}
+
+function StatCard({ icon, label, value, sub }: { icon: React.ReactNode; label: string; value: string | number; sub: string }) {
+  return (
+    <Card>
+      <CardContent className="p-4">
+        <div className="flex items-center gap-2 text-xs font-semibold text-muted-foreground">
+          <span className="text-primary">{icon}</span>
+          {label}
+        </div>
+        <div className="mt-3 text-[1.45rem] font-black text-foreground">{value}</div>
+        <div className="mt-1 text-[11px] text-muted-foreground">{sub}</div>
+      </CardContent>
+    </Card>
   );
 }
