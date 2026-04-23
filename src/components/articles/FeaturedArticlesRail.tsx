@@ -19,7 +19,7 @@ export function FeaturedArticlesRail({ limit = 4 }: { limit?: number }) {
       <div className="mb-3 px-1">
         <p className="text-[11px] font-semibold text-primary">{copy.discoverMore}</p>
         <h2 className={`mt-1 text-[1.35rem] font-black text-foreground ${locale.headingClass}`}>{copy.mostRead}</h2>
-        <p className="mt-1 text-xs leading-5 text-foreground/80" style={{ textAlign: locale.textAlign }}>{copy.mostReadDesc}</p>
+        <p className="mt-1 text-xs leading-5 text-foreground" style={{ textAlign: locale.textAlign }}>{copy.mostReadDesc}</p>
       </div>
 
       <div className="space-y-3">

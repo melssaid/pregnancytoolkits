@@ -28,7 +28,7 @@ export function RelatedArticles({ slug, limit = 3 }: { slug: string; limit?: num
       )}
 
       {(!!articles.length || !!similarArticles.length) && (
-        <div className="overflow-hidden rounded-[1.2rem] border border-border bg-background">
+        <div className="overflow-hidden rounded-[1.2rem] border border-border bg-card">
           {!!articles.length && (
             <div className="space-y-2 px-3 py-3">
               <div>
@@ -43,7 +43,7 @@ export function RelatedArticles({ slug, limit = 3 }: { slug: string; limit?: num
           )}
 
           {!!similarArticles.length && (
-            <div className="space-y-2 border-t border-primary/10 px-3 py-3">
+            <div className="space-y-2 border-t border-border px-3 py-3">
               <div>
                 <h2 className={`text-[1.3rem] font-black text-foreground ${locale.headingClass}`}>{copy.similarArticles}</h2>
               </div>
