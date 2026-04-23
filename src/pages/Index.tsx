@@ -217,9 +217,9 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ 
-              height: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] },
-              opacity: { duration: 0.3, delay: 0.05, ease: "easeOut" }
+            transition={{
+              height: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] },
+              opacity: { duration: 0.4, ease: "easeInOut" }
             }}
             className="overflow-hidden"
           >
@@ -228,9 +228,14 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
                 {allJourneyTools.map((tool, toolIdx) => (
                   <motion.div
                     key={tool.id}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.25, delay: toolIdx * 0.03, ease: [0.25, 0.1, 0.25, 1] }}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 6 }}
+                    transition={{
+                      duration: 0.4,
+                      delay: toolIdx * 0.05,
+                      ease: [0.25, 0.1, 0.25, 1],
+                    }}
                   >
                     <ToolRow tool={tool} isRTL={isRTL} isLocked={false} journeyKey={config.key} />
                   </motion.div>
