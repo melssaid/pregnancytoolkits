@@ -12,13 +12,17 @@ import { Button } from "@/components/ui/button";
 import { FeaturedArticlesRail } from "@/components/articles/FeaturedArticlesRail";
 import { RelatedArticles } from "@/components/articles/RelatedArticles";
 import { articleUiCopy, getLocalizedArticleBySlug, getRelatedToolRecords } from "@/data/articles";
+import { resolveArticleLocale } from "@/lib/articleLocale";
+import { useDailyArticleContent } from "@/hooks/useDailyArticleContent";
 
 const ArticlePage = () => {
   const { slug = "" } = useParams();
   const { t, i18n } = useTranslation();
   const lang = i18n.language?.split("-")[0] || "en";
+  const locale = resolveArticleLocale(lang);
   const copy = articleUiCopy(lang);
   const article = useMemo(() => getLocalizedArticleBySlug(slug, lang), [lang, slug]);
+  const dailyContent = useDailyArticleContent(slug, lang);
   const relatedTools = useMemo(() => (article ? getRelatedToolRecords(article) : []), [article]);
   const contentFallback = lang === "ar"
     ? {
@@ -53,8 +57,19 @@ const ArticlePage = () => {
     );
   }
 
+  const resolvedSections = useMemo(() => {
+    if (!article) return [] as { heading: string; body: string }[];
+    return dailyContent.sections.length ? dailyContent.sections : article.sections;
+  }, [article, dailyContent.sections]);
+
+  const resolvedTitle = dailyContent.data?.title_override?.trim() || article.title;
+  const resolvedExcerpt = dailyContent.data?.excerpt_override?.trim() || dailyContent.data?.intro_override?.trim() || article.excerpt;
+  const resolvedReadTimeLabel = dailyContent.data?.reading_minutes
+    ? (lang === "ar" ? `${dailyContent.data.reading_minutes} دقائق` : `${dailyContent.data.reading_minutes} min read`)
+    : article.readTimeLabel;
+
   const markdownBody = useMemo(() => {
-    const blocks = article.sections.flatMap((section, index) => {
+    const blocks = resolvedSections.flatMap((section, index) => {
       const body = section.body.trim();
       if (!body) return [];
       if (index === 0 && !section.heading.trim()) return [body];
@@ -62,15 +77,15 @@ const ArticlePage = () => {
     });
 
     return blocks.join("\n\n").trim();
-  }, [article.sections]);
+  }, [resolvedSections]);
 
   const hasRenderableContent = markdownBody.length > 0;
 
   return (
     <Layout showBack compactBackHeader>
       <SEOHead
-        title={article.title}
-        description={article.excerpt}
+        title={resolvedTitle}
+        description={dailyContent.data?.seo_description || resolvedExcerpt}
         type="article"
         image={article.image}
         publishedTime={article.publishedAt}
@@ -81,7 +96,7 @@ const ArticlePage = () => {
         keywords={article.tagLabels.join(", ")}
       />
 
-      <article className="container max-w-3xl space-y-5 py-5 pb-24">
+      <article className="container max-w-3xl space-y-5 py-5 pb-24" dir={locale.dir}>
         <header className="overflow-hidden rounded-[1.75rem] border border-border/80 bg-gradient-to-br from-card via-background to-secondary/35" style={{ boxShadow: "var(--shadow-card)" }}>
           <AspectRatio ratio={16 / 8.8}>
             <img src={article.image} alt={article.heroAlt} width={1280} height={720} loading="eager" className="h-full w-full rounded-[1.2rem] object-cover" />
@@ -93,14 +108,14 @@ const ArticlePage = () => {
               <span className="rounded-full border border-primary/15 bg-primary/10 px-2.5 py-1 text-[11px] font-semibold text-primary">{article.sectionLabel}</span>
             </div>
 
-            <h1 className="text-[1.7rem] font-black leading-tight text-foreground ar-heading">{article.title}</h1>
-            <p className="text-sm leading-7 text-foreground/75">{article.excerpt}</p>
+            <h1 className={`text-[1.7rem] font-black leading-tight text-foreground ${locale.headingClass}`}>{resolvedTitle}</h1>
+            <p className="text-sm leading-7 text-foreground/75" style={{ textAlign: locale.textAlign }}>{resolvedExcerpt}</p>
 
             <div className="grid grid-cols-1 gap-2 text-xs text-muted-foreground sm:grid-cols-2">
               <div className="rounded-2xl border border-primary/10 bg-background/90 px-3 py-2.5">
                 <div className="flex items-center gap-1.5 font-semibold text-foreground">
                   <Clock3 className="h-3.5 w-3.5 text-primary" />
-                  {article.readTimeLabel}
+                  {resolvedReadTimeLabel}
                 </div>
               </div>
               <div className="rounded-2xl border border-primary/10 bg-primary/10 px-3 py-2.5">
@@ -111,7 +126,7 @@ const ArticlePage = () => {
         </header>
 
         <section className="rounded-[1.6rem] border border-primary/10 bg-card px-4 py-4" style={{ boxShadow: "var(--shadow-card)" }}>
-          <div className="flex flex-wrap gap-1.5">
+          <div className="flex flex-wrap gap-1.5" style={{ justifyContent: locale.isRTL ? "flex-start" : "flex-start" }}>
             {article.tagLabels.map((tag, index) => (
               <span key={`${tag}-${index}`} className="rounded-full bg-secondary px-2.5 py-1 text-[10px] font-semibold text-secondary-foreground">
                 {tag}
@@ -122,7 +137,8 @@ const ArticlePage = () => {
             {hasRenderableContent ? (
               <div className="rounded-[1.35rem] border border-primary/10 bg-background px-4 py-4">
                 <div className="mb-4 h-[3px] w-16 rounded-full bg-gradient-to-r from-primary via-primary/35 to-transparent" />
-                <div className="article-markdown prose prose-sm max-w-none prose-headings:ar-heading prose-headings:text-foreground prose-p:text-foreground prose-p:leading-8 prose-p:text-[15px] prose-h2:mt-8 prose-h2:mb-3 prose-h2:border-b prose-h2:border-primary/10 prose-h2:pb-2 prose-h2:text-[1.02rem] prose-h2:font-extrabold prose-ul:my-3 prose-ul:space-y-2 prose-ul:ps-5 prose-li:text-[14px] prose-li:leading-7 prose-strong:text-foreground dark:prose-invert">
+                <div className={`article-markdown prose prose-sm max-w-none prose-headings:text-foreground prose-p:text-foreground prose-p:leading-8 prose-p:text-[15px] prose-h2:mt-8 prose-h2:mb-3 prose-h2:border-b prose-h2:border-primary/10 prose-h2:pb-2 prose-h2:text-[1.02rem] prose-h2:font-extrabold prose-ul:my-3 prose-ul:space-y-2 prose-li:text-[14px] prose-li:leading-7 prose-strong:text-foreground dark:prose-invert ${locale.isRTL ? "prose-headings:ar-heading prose-ul:ps-5" : "prose-ul:pl-5"}`}
+                  style={{ textAlign: locale.textAlign }}>
                   <ReactMarkdown remarkPlugins={[remarkGfm]}>
                     {markdownBody}
                   </ReactMarkdown>
@@ -145,14 +161,14 @@ const ArticlePage = () => {
         </section>
 
         {!!relatedTools.length && (
-          <section className="space-y-2 rounded-[1.35rem] border border-primary/15 bg-gradient-to-br from-primary/10 via-primary/5 to-background px-3 py-3" style={{ boxShadow: "var(--shadow-card)" }}>
+          <section className="space-y-2 rounded-[1.35rem] border border-primary/15 bg-gradient-to-br from-primary/10 via-primary/5 to-background px-3 py-3" style={{ boxShadow: "var(--shadow-card)" }} dir={locale.dir}>
             <div>
-              <h2 className="text-[13px] font-extrabold text-primary ar-heading">أدوات مرتبطة</h2>
+              <h2 className={`text-[13px] font-extrabold text-primary ${locale.headingClass}`}>{copy.relatedTools}</h2>
             </div>
             <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
               {relatedTools.map((tool) => (
                 <Link key={tool.id} to={tool.href} className="rounded-[1rem] border border-primary/15 bg-background/85 px-3 py-2 transition-colors hover:border-primary/35 hover:bg-background/95">
-                  <div className="text-[11px] font-bold text-foreground ar-heading">{t(tool.titleKey)}</div>
+                  <div className={`text-[11px] font-bold text-foreground ${locale.headingClass}`}>{t(tool.titleKey)}</div>
                   <div className="mt-1 line-clamp-2 text-[9px] leading-4 text-muted-foreground">{t(tool.descriptionKey)}</div>
                 </Link>
               ))}
