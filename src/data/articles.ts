@@ -2206,45 +2206,7 @@ const buildArabicArticleText = (seed: ArticleSeed) => {
     ];
   }
 
-  const title = getLocalized(seed.titles, "ar");
-  const section = getLocalized(sectionLabels[seed.sectionKey], "ar");
-  const tags = seed.tags.map((tag) => arabicTagGuidance[tag]).filter(Boolean);
-  const [first, second, third] = tags;
-  const leadByType: Record<ArticleType, string> = {
-    article: `في ${title} ستجدين لبّ الموضوع مباشرة خلال نحو ${seed.readTime} دقائق، مع تركيز على ما يفيدك عملياً داخل مرحلة ${section}.`,
-    research: `هذا المقال البحثي المبسط يختصر ${title} في نقاط واضحة تساعدك على فهم المعنى العملي للمعلومة خلال ${seed.readTime} دقائق.`,
-    discovery: `هذا الاكتشاف حول ${title} لا يقدّم مقدمة طويلة، بل يوضح الفكرة الصغيرة المؤثرة التي قد تغيّر يومك فعلاً داخل ${section}.`,
-  };
-
-  return [
-    {
-      heading: "الفكرة الأساسية",
-      body: [
-        leadByType[seed.type],
-        first?.focus,
-        second?.focus,
-        third?.focus,
-      ].filter(Boolean).join(" "),
-    },
-    {
-      heading: "ما الذي تفعلينه؟",
-      body: [
-        `إذا أردتِ الاستفادة من ${title} بسرعة، فابدئي بالخطوات التي يمكن تنفيذها هذا الأسبوع بدل الانتظار أو جمع نصائح كثيرة مرة واحدة.`,
-        first?.action,
-        second?.action,
-        third?.action,
-      ].filter(Boolean).join(" "),
-    },
-    {
-      heading: "ما الذي تنتبهين له؟",
-      body: [
-        `القيمة الحقيقية لهذا الموضوع لا تأتي من القراءة فقط، بل من معرفة ما يجب تجنبه وما الذي يستحق المتابعة أو استخدام أداة مساندة داخل التطبيق.`,
-        first?.caution,
-        second?.caution,
-        third?.caution,
-      ].filter(Boolean).join(" "),
-    },
-  ];
+  return [];
 };
 
 const getExcerpt = (seed: ArticleSeed, lang: SupportedArticleLanguage) => {
