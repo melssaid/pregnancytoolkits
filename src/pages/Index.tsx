@@ -15,6 +15,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { SEOHead } from "@/components/SEOHead";
 import WelcomeCard from "@/components/home/WelcomeCard";
 import QuickActions from "@/components/home/QuickActions";
+import { getToolTitle } from "@/lib/toolCopy";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { CouponRedeemer } from "@/components/settings/CouponRedeemer";
 import Preg10PromoBanner from "@/components/home/Preg10PromoBanner";
@@ -121,7 +122,7 @@ const ToolRow = memo(function ToolRow({ tool, isRTL, isLocked = false, journeyKe
           )}
         </div>
         <span className="text-[9px] font-semibold text-foreground/75 leading-tight text-center line-clamp-2 min-h-[24px] flex items-center" style={{ fontFamily: "'Tajawal', sans-serif", overflowWrap: 'anywhere' }}>
-          {t(tool.titleKey)}
+          {getToolTitle(tool, t, i18n.language?.split('-')[0] || 'en')}
         </span>
       </div>
     </Link>
