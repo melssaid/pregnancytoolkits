@@ -17,3 +17,6 @@ verify_jwt = false
 
 [functions.rss-feed]
 verify_jwt = false
+
+[functions.daily-article-refresh]
+verify_jwt = false
