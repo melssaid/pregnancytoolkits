@@ -32,7 +32,7 @@ const ArticlePage = () => {
 
   if (!article) {
     return (
-      <Layout showBack>
+      <Layout showBack compactBackHeader>
         <SEOHead title={copy.articleNotFound} description={copy.articleNotFoundDesc} noindex />
         <div className="container max-w-3xl py-8 pb-24">
           <div className="rounded-[1.75rem] border border-border bg-card px-5 py-8 text-center" style={{ boxShadow: "var(--shadow-card)" }}>
@@ -67,7 +67,7 @@ const ArticlePage = () => {
   const hasRenderableContent = markdownBody.length > 0;
 
   return (
-    <Layout showBack>
+    <Layout showBack compactBackHeader>
       <SEOHead
         title={article.title}
         description={article.excerpt}
