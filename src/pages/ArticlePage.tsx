@@ -114,8 +114,8 @@ const ArticlePage = () => {
           <div className="pointer-events-none absolute inset-y-0 right-0 w-3/4 bg-gradient-to-l from-background via-background/90 to-transparent" />
           <div className="pointer-events-none absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-secondary/12 to-transparent" />
           <div className="flex flex-wrap gap-1.5">
-            {article.tagLabels.map((tag) => (
-              <span key={tag} className="rounded-full bg-secondary px-2.5 py-1 text-[10px] font-semibold text-secondary-foreground">
+            {article.tagLabels.map((tag, index) => (
+              <span key={`${tag}-${index}`} className="rounded-full bg-secondary px-2.5 py-1 text-[10px] font-semibold text-secondary-foreground">
                 {tag}
               </span>
             ))}
