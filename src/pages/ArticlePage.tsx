@@ -102,7 +102,7 @@ const ArticlePage = () => {
           <div className="space-y-4 px-4 py-4">
             <div className="flex flex-wrap items-center gap-2">
               <span className="rounded-full bg-secondary px-2.5 py-1 text-[11px] font-semibold text-secondary-foreground">{article.typeLabel}</span>
-              <span className="rounded-full border border-primary/15 bg-primary/10 px-2.5 py-1 text-[11px] font-semibold text-primary">{article.sectionLabel}</span>
+              <span className="rounded-full border border-border bg-secondary px-2.5 py-1 text-[11px] font-semibold text-secondary-foreground">{article.sectionLabel}</span>
             </div>
 
             <div className="relative isolate space-y-3 rounded-[1.25rem] border border-border bg-card px-4 py-4 shadow-sm">
@@ -111,7 +111,7 @@ const ArticlePage = () => {
             </div>
 
             <div className="grid grid-cols-1 gap-2 text-xs text-muted-foreground">
-              <div className="rounded-2xl border border-primary/20 bg-secondary px-3 py-2.5">
+              <div className="rounded-2xl border border-border bg-secondary px-3 py-2.5">
                 <div className="font-semibold text-primary">{article.tagLabels.slice(0, 3).join(" • ")}</div>
               </div>
             </div>
@@ -121,8 +121,8 @@ const ArticlePage = () => {
         <section className="rounded-[1.6rem] border border-border bg-card px-4 py-4" style={{ boxShadow: "var(--shadow-card)" }}>
           <div className="relative space-y-3" data-testid="article-body">
             {hasRenderableContent ? (
-              <div className="rounded-[1.35rem] border border-border bg-background px-4 py-5">
-                <div className={`article-markdown prose prose-sm max-w-none prose-headings:text-foreground prose-p:my-0 prose-p:text-foreground prose-p:leading-8 prose-p:text-[15px] prose-h2:mt-10 prose-h2:mb-4 prose-h2:border-b prose-h2:border-primary/15 prose-h2:pb-3 prose-h2:text-[1.45rem] prose-h2:font-black prose-ul:my-4 prose-ul:space-y-2 prose-li:text-[14px] prose-li:leading-7 prose-strong:text-foreground dark:prose-invert ${locale.isRTL ? "prose-headings:ar-heading prose-ul:ps-5" : "prose-ul:pl-5"}`}
+              <div className="rounded-[1.35rem] border border-border bg-card px-4 py-5">
+                <div className={`article-markdown prose prose-sm max-w-none prose-headings:text-foreground prose-p:my-0 prose-p:text-foreground prose-p:leading-8 prose-p:text-[15px] prose-h2:mt-10 prose-h2:mb-4 prose-h2:border-b prose-h2:border-border prose-h2:pb-3 prose-h2:text-[1.45rem] prose-h2:font-black prose-ul:my-4 prose-ul:space-y-2 prose-li:text-[14px] prose-li:leading-7 prose-strong:text-foreground dark:prose-invert ${locale.isRTL ? "prose-headings:ar-heading prose-ul:ps-5" : "prose-ul:pl-5"}`}
                   style={{ textAlign: locale.textAlign }}>
                   <ReactMarkdown
                     remarkPlugins={[remarkGfm]}
@@ -132,7 +132,7 @@ const ArticlePage = () => {
                           {children}
                         </h2>
                       ),
-                      p: ({ children }) => <p className="text-[15px] leading-8 text-foreground/90">{children}</p>,
+                      p: ({ children }) => <p className="text-[15px] leading-8 text-foreground">{children}</p>,
                     }}
                   >
                     {markdownBody}
@@ -140,13 +140,13 @@ const ArticlePage = () => {
                 </div>
               </div>
             ) : (
-              <div data-testid="article-body-fallback" className="rounded-[1.35rem] border border-border bg-background px-4 py-5 text-center">
+              <div data-testid="article-body-fallback" className="rounded-[1.35rem] border border-border bg-card px-4 py-5 text-center">
                 <h2 className="text-[15px] font-extrabold text-primary ar-heading">{contentFallback.title}</h2>
                 <p className="mt-2 text-[14px] leading-7 text-muted-foreground">{contentFallback.body}</p>
               </div>
             )}
 
-            <div className="border-t border-primary/10 pt-4 text-center text-[12px] font-medium text-muted-foreground">
+            <div className="border-t border-border pt-4 text-center text-[12px] font-medium text-muted-foreground">
               <span className="text-primary">Pregnancy Toolkits</span>
               <span className="mx-2 text-border">•</span>
               <span>{copy.professionalDesk}</span>
@@ -155,13 +155,13 @@ const ArticlePage = () => {
         </section>
 
         {!!relatedTools.length && (
-          <section className="space-y-2 rounded-[1.35rem] border border-primary/15 bg-gradient-to-br from-primary/10 via-primary/5 to-background px-3 py-3" style={{ boxShadow: "var(--shadow-card)" }} dir={locale.dir}>
+          <section className="space-y-2 rounded-[1.35rem] border border-border bg-card px-3 py-3" style={{ boxShadow: "var(--shadow-card)" }} dir={locale.dir}>
             <div>
               <h2 className={`text-[13px] font-extrabold text-primary ${locale.headingClass}`}>{copy.relatedTools}</h2>
             </div>
             <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
               {relatedTools.map((tool) => (
-                <Link key={tool.id} to={tool.href} className="rounded-[1rem] border border-primary/15 bg-background/85 px-3 py-2 transition-colors hover:border-primary/35 hover:bg-background/95">
+                <Link key={tool.id} to={tool.href} className="rounded-[1rem] border border-border bg-card px-3 py-2 transition-colors hover:border-primary/35 hover:bg-secondary">
                   <div className={`text-[11px] font-bold text-foreground ${locale.headingClass}`}>{t(tool.titleKey)}</div>
                   <div className="mt-1 line-clamp-2 text-[9px] leading-4 text-muted-foreground">{t(tool.descriptionKey)}</div>
                 </Link>
