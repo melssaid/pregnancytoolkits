@@ -21,9 +21,10 @@ const SmartInstallBanner = lazy(() => import("./SmartInstallBanner"));
 interface LayoutProps {
   children: React.ReactNode;
   showBack?: boolean;
+  compactBackHeader?: boolean;
 }
 
-export function Layout({ children, showBack = false }: LayoutProps) {
+export function Layout({ children, showBack = false, compactBackHeader = false }: LayoutProps) {
   const { t, i18n } = useTranslation();
   const { tier } = useSubscriptionStatus();
   const isPremium = tier === "premium";
@@ -219,9 +220,11 @@ export function Layout({ children, showBack = false }: LayoutProps) {
                     />
                   </div>
                 </div>
-                <span className="text-[13px] font-extrabold text-foreground tracking-tight leading-snug break-words" style={{ fontFamily: "'Tajawal', 'Plus Jakarta Sans', system-ui, sans-serif", fontWeight: 700 }}>
-                  {t('app.name')}
-                </span>
+                {!compactBackHeader && (
+                  <span className="text-[13px] font-extrabold text-foreground tracking-tight leading-snug break-words" style={{ fontFamily: "'Tajawal', 'Plus Jakarta Sans', system-ui, sans-serif", fontWeight: 700 }}>
+                    {t('app.name')}
+                  </span>
+                )}
               </Link>
             </div>
           ) : (
