@@ -321,3 +321,12 @@ function StatCard({ icon, label, value, sub }: { icon: React.ReactNode; label: s
     </Card>
   );
 }
+
+function DebugField({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-xl border border-border bg-secondary/40 px-3 py-2">
+      <div className="text-[11px] font-semibold text-muted-foreground">{label}</div>
+      <div className="mt-1 break-words text-[11px] text-foreground">{value || "—"}</div>
+    </div>
+  );
+}
