@@ -7,6 +7,7 @@ import { toolsData } from "@/lib/tools-data";
 import { Sparkles, ArrowRight, ArrowLeft, Star, Trophy } from "lucide-react";
 import { useMemo } from "react";
 import { useToolRating } from "@/hooks/useToolRating";
+import { getToolDescription, getToolTitle } from "@/lib/toolCopy";
 
 /**
  * Recommends tools based on pregnancy week stored in localStorage.
@@ -67,6 +68,7 @@ function getRecommendedTools(week: number | null) {
 
 export default function DiscoverTools() {
   const { t, i18n } = useTranslation();
+  const lang = i18n.language?.split('-')[0] || 'en';
   const isRTL = i18n.language === "ar";
   const ArrowIcon = isRTL ? ArrowLeft : ArrowRight;
 
