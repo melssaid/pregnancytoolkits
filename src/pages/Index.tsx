@@ -179,13 +179,9 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
             <motion.div
               animate={{
                 rotate: isOpen ? 180 : 0,
-                x: isOpen ? 0 : [0, isRTL ? -2 : 2, 0],
               }}
               transition={{
-                rotate: { duration: 0.45, ease: [0.34, 1.56, 0.64, 1] },
-                x: isOpen
-                  ? { duration: 0.25 }
-                  : { duration: 2.8, repeat: Infinity, ease: "easeInOut" },
+                rotate: { duration: 0.55, ease: [0.4, 0, 0.2, 1] },
               }}
               className="relative flex h-9 min-w-[3.4rem] items-center justify-center overflow-hidden rounded-full px-3"
               style={{
@@ -221,9 +217,9 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ 
-              height: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] },
-              opacity: { duration: 0.3, delay: 0.05, ease: "easeOut" }
+            transition={{
+              height: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] },
+              opacity: { duration: 0.4, ease: "easeInOut" }
             }}
             className="overflow-hidden"
           >
@@ -232,9 +228,14 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
                 {allJourneyTools.map((tool, toolIdx) => (
                   <motion.div
                     key={tool.id}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.25, delay: toolIdx * 0.03, ease: [0.25, 0.1, 0.25, 1] }}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 6 }}
+                    transition={{
+                      duration: 0.4,
+                      delay: toolIdx * 0.05,
+                      ease: [0.25, 0.1, 0.25, 1],
+                    }}
                   >
                     <ToolRow tool={tool} isRTL={isRTL} isLocked={false} journeyKey={config.key} />
                   </motion.div>
