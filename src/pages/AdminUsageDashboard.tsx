@@ -34,6 +34,24 @@ interface UsageResponse {
   combined: SegmentStats;
   app: SegmentStats;
   web: SegmentStats;
+  sessionDebug: {
+    sessionId: string;
+    bucket: Exclude<SegmentKey, "combined">;
+    reason: string;
+    matchedRules: string[];
+    matchedActionType: string;
+    matchedAt: string;
+    firstSeen: string;
+    lastSeen: string;
+    events: number;
+    inspected: {
+      platform: string;
+      host: string;
+      userAgent: string;
+      source: string;
+      runtime: string;
+    };
+  }[];
 }
 
 const segmentMeta: Record<SegmentKey, { label: string; icon: typeof Activity }> = {
@@ -90,6 +108,11 @@ export default function AdminUsageDashboard() {
   }, [fetchStats]);
 
   const activeStats = useMemo(() => stats?.[segment] ?? null, [segment, stats]);
+  const debugSessions = useMemo(() => {
+    if (!stats) return [];
+    if (segment === "combined") return stats.sessionDebug;
+    return stats.sessionDebug.filter((item) => item.bucket === segment);
+  }, [segment, stats]);
   const segmentCards = useMemo(() => {
     if (!stats) return [];
     return (["combined", "app", "web"] as SegmentKey[]).map((key) => ({
@@ -155,10 +178,11 @@ export default function AdminUsageDashboard() {
                 </div>
 
                 <Tabs defaultValue="chart" className="w-full">
-                  <TabsList className="grid w-full grid-cols-3">
+                  <TabsList className="grid w-full grid-cols-4">
                     <TabsTrigger value="chart">النشاط</TabsTrigger>
                     <TabsTrigger value="pages">الصفحات</TabsTrigger>
                     <TabsTrigger value="langs">اللغات</TabsTrigger>
+                    <TabsTrigger value="debug">Debug</TabsTrigger>
                   </TabsList>
 
                   <TabsContent value="chart">
@@ -222,6 +246,48 @@ export default function AdminUsageDashboard() {
                       </CardContent>
                     </Card>
                   </TabsContent>
+
+                  <TabsContent value="debug">
+                    <Card>
+                      <CardHeader className="pb-2">
+                        <CardTitle className="text-sm font-bold text-foreground">Debug تصنيف الجلسات</CardTitle>
+                      </CardHeader>
+                      <CardContent className="space-y-3">
+                        <div className="text-xs text-muted-foreground">
+                          يعرض سبب تصنيف كل جلسة كـ app أو web مع القيم الفعلية القادمة من metadata.
+                        </div>
+                        <div className="space-y-3">
+                          {debugSessions.length === 0 ? (
+                            <div className="rounded-xl border border-border bg-card px-3 py-4 text-xs text-muted-foreground">
+                              لا توجد جلسات مطابقة لهذا القسم في آخر {stats.rangeHours} ساعة.
+                            </div>
+                          ) : (
+                            debugSessions.map((item) => (
+                              <div key={item.sessionId} className="rounded-2xl border border-border bg-card px-3 py-3">
+                                <div className="flex flex-wrap items-center justify-between gap-2">
+                                  <div className="text-sm font-bold text-foreground">{item.bucket === "app" ? "App" : "Web"}</div>
+                                  <div className="text-[11px] text-muted-foreground">{item.events} events • {item.matchedActionType}</div>
+                                </div>
+                                <div className="mt-2 break-all text-[11px] text-muted-foreground">{item.sessionId}</div>
+                                <div className="mt-2 text-xs font-medium text-foreground">{item.reason}</div>
+                                <div className="mt-3 grid grid-cols-1 gap-2 md:grid-cols-2">
+                                  <DebugField label="platform" value={item.inspected.platform} />
+                                  <DebugField label="host" value={item.inspected.host} />
+                                  <DebugField label="userAgent" value={item.inspected.userAgent} />
+                                  <DebugField label="source" value={item.inspected.source} />
+                                  <DebugField label="runtime" value={item.inspected.runtime} />
+                                  <DebugField label="matchedAt" value={new Date(item.matchedAt).toLocaleString()} />
+                                </div>
+                                {!!item.matchedRules.length && (
+                                  <div className="mt-3 text-[11px] text-primary">Regex: {item.matchedRules.join(" • ")}</div>
+                                )}
+                              </div>
+                            ))
+                          )}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </TabsContent>
                 </Tabs>
 
                 <Card>
@@ -253,5 +319,14 @@ function StatCard({ icon, label, value, sub }: { icon: React.ReactNode; label: s
         <div className="mt-1 text-[11px] text-muted-foreground">{sub}</div>
       </CardContent>
     </Card>
+  );
+}
+
+function DebugField({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-xl border border-border bg-secondary/40 px-3 py-2">
+      <div className="text-[11px] font-semibold text-muted-foreground">{label}</div>
+      <div className="mt-1 break-words text-[11px] text-foreground">{value || "—"}</div>
+    </div>
   );
 }

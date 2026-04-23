@@ -13,8 +13,32 @@ type ToolRow = {
   created_at: string;
 };
 
+type SessionBucket = "app" | "web";
+
+type SessionDebugEntry = {
+  sessionId: string;
+  bucket: SessionBucket;
+  reason: string;
+  matchedRules: string[];
+  matchedActionType: string;
+  matchedAt: string;
+  firstSeen: string;
+  lastSeen: string;
+  events: number;
+  inspected: {
+    platform: string;
+    host: string;
+    userAgent: string;
+    source: string;
+    runtime: string;
+  };
+};
+
 const APP_PLATFORM_RE = /wv|android.*version\//i;
 const APP_HOST_RE = /(android|app|twa|webview)/i;
+const APP_USER_AGENT_RE = /;\s*wv\)|\bwv\b|android.+version\/|webview|twa/i;
+const APP_RUNTIME_RE = /(capacitor|cordova|reactnative|twa|webview)/i;
+const APP_SOURCE_RE = /(android|app|native|twa|webview)/i;
 
 function json(data: unknown, status = 200) {
   return new Response(JSON.stringify(data), {
@@ -23,14 +47,54 @@ function json(data: unknown, status = 200) {
   });
 }
 
-function isAppSession(row: ToolRow) {
-  const platform = typeof row.metadata?.platform === "string" ? row.metadata.platform : "";
-  const host = typeof row.metadata?.host === "string" ? row.metadata.host : "";
-  return APP_PLATFORM_RE.test(platform) || APP_HOST_RE.test(host);
+function pickString(metadata: Record<string, unknown> | null | undefined, keys: string[]) {
+  for (const key of keys) {
+    const value = metadata?.[key];
+    if (typeof value === "string" && value.trim()) return value.trim();
+  }
+  return "";
 }
 
-function bucketOf(row: ToolRow, sessionBuckets: Map<string, "app" | "web">): "app" | "web" {
-  return sessionBuckets.get(row.session_id) || (isAppSession(row) ? "app" : "web");
+function inspectMetadata(row: ToolRow) {
+  return {
+    platform: pickString(row.metadata, ["platform"]),
+    host: pickString(row.metadata, ["host", "hostname"]),
+    userAgent: pickString(row.metadata, ["user_agent", "userAgent", "ua"]),
+    source: pickString(row.metadata, ["source", "channel", "client"]),
+    runtime: pickString(row.metadata, ["runtime", "environment"]),
+  };
+}
+
+function classifyRow(row: ToolRow) {
+  const inspected = inspectMetadata(row);
+  const matchedRules: string[] = [];
+
+  if (inspected.platform && APP_PLATFORM_RE.test(inspected.platform)) {
+    matchedRules.push(`platform:${inspected.platform}`);
+  }
+  if (inspected.host && APP_HOST_RE.test(inspected.host)) {
+    matchedRules.push(`host:${inspected.host}`);
+  }
+  if (inspected.userAgent && APP_USER_AGENT_RE.test(inspected.userAgent)) {
+    matchedRules.push(`ua:${inspected.userAgent}`);
+  }
+  if (inspected.source && APP_SOURCE_RE.test(inspected.source)) {
+    matchedRules.push(`source:${inspected.source}`);
+  }
+  if (inspected.runtime && APP_RUNTIME_RE.test(inspected.runtime)) {
+    matchedRules.push(`runtime:${inspected.runtime}`);
+  }
+
+  return {
+    bucket: (matchedRules.length ? "app" : "web") as SessionBucket,
+    reason: matchedRules.length ? `Matched ${matchedRules.join(" • ")}` : "No app markers matched in platform/host/userAgent/source/runtime",
+    matchedRules,
+    inspected,
+  };
+}
+
+function bucketOf(row: ToolRow, sessionBuckets: Map<string, SessionBucket>): SessionBucket {
+  return sessionBuckets.get(row.session_id) || classifyRow(row).bucket;
 }
 
 function extractLang(row: ToolRow) {
@@ -93,12 +157,36 @@ Deno.serve(async (req) => {
     if (error) throw error;
 
     const rows = (data || []) as ToolRow[];
-    const sessionBuckets = new Map<string, "app" | "web">();
+    const sessionGroups = new Map<string, ToolRow[]>();
     for (const row of rows) {
-      if (!sessionBuckets.has(row.session_id) || row.action_type === "session_start") {
-        sessionBuckets.set(row.session_id, isAppSession(row) ? "app" : "web");
-      }
+      const existing = sessionGroups.get(row.session_id) || [];
+      existing.push(row);
+      sessionGroups.set(row.session_id, existing);
     }
+
+    const sessionBuckets = new Map<string, SessionBucket>();
+    const sessionDebug: SessionDebugEntry[] = Array.from(sessionGroups.entries()).map(([sessionId, sessionRows]) => {
+      const chronological = [...sessionRows].sort((a, b) => a.created_at.localeCompare(b.created_at));
+      const sessionStartRow = chronological.find((row) => row.action_type === "session_start");
+      const firstMatchedRow = chronological.find((row) => classifyRow(row).bucket === "app");
+      const classificationRow = firstMatchedRow || sessionStartRow || chronological[0];
+      const classification = classifyRow(classificationRow);
+
+      sessionBuckets.set(sessionId, classification.bucket);
+
+      return {
+        sessionId,
+        bucket: classification.bucket,
+        reason: classification.reason,
+        matchedRules: classification.matchedRules,
+        matchedActionType: classificationRow.action_type,
+        matchedAt: classificationRow.created_at,
+        firstSeen: chronological[0]?.created_at ?? "",
+        lastSeen: chronological[chronological.length - 1]?.created_at ?? "",
+        events: chronological.length,
+        inspected: classification.inspected,
+      };
+    }).sort((a, b) => b.lastSeen.localeCompare(a.lastSeen));
 
     const rowsByBucket = {
       app: rows.filter((row) => bucketOf(row, sessionBuckets) === "app"),
@@ -180,6 +268,7 @@ Deno.serve(async (req) => {
       app: summarize(rowsByBucket.app),
       web: summarize(rowsByBucket.web),
       combined: summarize(rows),
+      sessionDebug: sessionDebug.slice(0, 150),
     });
   } catch (error) {
     console.error("[app-usage-stats]", error);
