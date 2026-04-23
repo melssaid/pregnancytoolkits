@@ -7,6 +7,7 @@ import { toolsData } from "@/lib/tools-data";
 import { Sparkles, ArrowRight, ArrowLeft, Star, Trophy } from "lucide-react";
 import { useMemo } from "react";
 import { useToolRating } from "@/hooks/useToolRating";
+import { getToolDescription, getToolTitle } from "@/lib/toolCopy";
 
 /**
  * Recommends tools based on pregnancy week stored in localStorage.
@@ -67,6 +68,7 @@ function getRecommendedTools(week: number | null) {
 
 export default function DiscoverTools() {
   const { t, i18n } = useTranslation();
+  const lang = i18n.language?.split('-')[0] || 'en';
   const isRTL = i18n.language === "ar";
   const ArrowIcon = isRTL ? ArrowLeft : ArrowRight;
 
@@ -132,8 +134,8 @@ export default function DiscoverTools() {
                         <Icon className="h-4 w-4 text-primary" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">{t(tool.titleKey)}</div>
-                        <div className="text-[10px] text-muted-foreground truncate">{t(tool.descriptionKey)}</div>
+                        <div className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">{getToolTitle(tool, t, lang)}</div>
+                        <div className="text-[10px] text-muted-foreground truncate">{getToolDescription(tool, t, lang)}</div>
                       </div>
                       {tool.hasAI && <span className="text-[9px] px-1.5 py-0.5 rounded-full bg-primary/10 text-primary font-bold">AI</span>}
                       <ArrowIcon className="h-3.5 w-3.5 text-muted-foreground group-hover:text-primary" />
@@ -157,7 +159,7 @@ export default function DiscoverTools() {
                 return (
                   <Link key={tool.id} to={tool.href} className="flex items-center gap-3 p-2.5 rounded-lg hover:bg-muted/50 transition-colors">
                     <Icon className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-xs text-muted-foreground">{t(tool.titleKey)}</span>
+                    <span className="text-xs text-muted-foreground">{getToolTitle(tool, t, lang)}</span>
                   </Link>
                 );
               })}

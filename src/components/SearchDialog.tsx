@@ -5,6 +5,7 @@ import { Search, X, ArrowRight, LayoutDashboard, Heart, Utensils, Dumbbell, Sett
 import { useTranslation } from "react-i18next";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { getSortedTools } from "@/lib/tools-data";
+import { getToolDescription, getToolTitle } from "@/lib/toolCopy";
 import { cn } from "@/lib/utils";
 
 interface SearchDialogProps {
@@ -13,7 +14,8 @@ interface SearchDialogProps {
 }
 
 export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
+    const lang = i18n.language?.split('-')[0] || 'en';
     const navigate = useNavigate();
     const [search, setSearch] = useState("");
     const tools = getSortedTools();
@@ -30,8 +32,8 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
       if (!search.trim()) return tools;
       
       return tools.filter((tool) => {
-        const title = t(tool.titleKey).toLowerCase();
-        const description = t(tool.descriptionKey).toLowerCase();
+        const title = getToolTitle(tool, t, lang).toLowerCase();
+        const description = getToolDescription(tool, t, lang).toLowerCase();
         return (
           title.includes(search.toLowerCase()) ||
           description.includes(search.toLowerCase())
@@ -148,10 +150,10 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
                         
                         <div className="flex-1 min-w-0">
                           <span className="font-medium text-foreground text-sm truncate block">
-                            {t(tool.titleKey)}
+                            {getToolTitle(tool, t, lang)}
                           </span>
                           <p className="text-xs text-muted-foreground truncate mt-0.5">
-                            {t(tool.descriptionKey)}
+                            {getToolDescription(tool, t, lang)}
                           </p>
                         </div>
                         
