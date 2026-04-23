@@ -179,13 +179,9 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
             <motion.div
               animate={{
                 rotate: isOpen ? 180 : 0,
-                x: isOpen ? 0 : [0, isRTL ? -2 : 2, 0],
               }}
               transition={{
-                rotate: { duration: 0.45, ease: [0.34, 1.56, 0.64, 1] },
-                x: isOpen
-                  ? { duration: 0.25 }
-                  : { duration: 2.8, repeat: Infinity, ease: "easeInOut" },
+                rotate: { duration: 0.55, ease: [0.4, 0, 0.2, 1] },
               }}
               className="relative flex h-9 min-w-[3.4rem] items-center justify-center overflow-hidden rounded-full px-3"
               style={{
