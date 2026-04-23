@@ -272,43 +272,43 @@ const FooterCard = memo(function FooterCard() {
       title: 'Unlock Your Full Journey', cta: 'Start Your Premium Journey', ctaPrice: '$2.99/mo', trust: '✨ Free trial · Cancel anytime',
       feat1: '60 smart analyses every month', feat2: 'All 36+ premium tools unlocked', feat3: 'Tailored guidance just for you',
       exhaustedTitle: 'You’ve used all your analyses', exhaustedCta: 'Continue with Premium',
-      premiumTitle: '👑 Premium Member', premiumDesc: '60 monthly AI analyses ready',
+      premiumTitle: 'Premium Member', premiumDesc: '60 monthly AI analyses ready',
     },
     ar: {
       title: 'افتحي رحلتكِ الكاملة', cta: 'ابدئي رحلتكِ المميزة', ctaPrice: '$2.99/شهر', trust: '✨ تجربة مجانية · إلغاء في أي وقت',
       feat1: '٦٠ تحليلاً ذكياً كل شهر', feat2: 'كل الأدوات المميزة (٣٦+)', feat3: 'إرشادات مخصصة لرحلتكِ',
       exhaustedTitle: 'انتهت تحليلاتكِ المجانية', exhaustedCta: 'تابعي مع Premium',
-      premiumTitle: '👑 عضوة مميزة', premiumDesc: 'لديكِ ٦٠ تحليلاً شهرياً جاهزاً',
+      premiumTitle: 'عضوة مميزة', premiumDesc: 'لديكِ ٦٠ تحليلاً شهرياً جاهزاً',
     },
     de: {
       title: 'Entfalte deine Reise', cta: 'Premium-Reise starten', ctaPrice: '$2.99/Monat', trust: '✨ Gratis testen · Jederzeit kündbar',
       feat1: '60 smarte Analysen / Monat', feat2: 'Alle 36+ Premium-Tools', feat3: 'Persönlich auf dich zugeschnitten',
       exhaustedTitle: 'Analysen aufgebraucht', exhaustedCta: 'Mit Premium fortfahren',
-      premiumTitle: '👑 Premium-Mitglied', premiumDesc: '60 KI-Analysen pro Monat verfügbar',
+      premiumTitle: 'Premium-Mitglied', premiumDesc: '60 KI-Analysen pro Monat verfügbar',
     },
     fr: {
       title: 'Libère ton parcours', cta: 'Lancer mon parcours Premium', ctaPrice: '$2.99/mois', trust: '✨ Essai gratuit · Annulation à tout moment',
       feat1: '60 analyses intelligentes / mois', feat2: 'Tous les 36+ outils Premium', feat3: 'Conseils sur mesure pour toi',
       exhaustedTitle: 'Analyses épuisées', exhaustedCta: 'Continuer avec Premium',
-      premiumTitle: '👑 Membre Premium', premiumDesc: '60 analyses IA mensuelles prêtes',
+      premiumTitle: 'Membre Premium', premiumDesc: '60 analyses IA mensuelles prêtes',
     },
     es: {
       title: 'Desbloquea tu viaje', cta: 'Comienza tu viaje Premium', ctaPrice: '$2.99/mes', trust: '✨ Prueba gratis · Cancela cuando quieras',
       feat1: '60 análisis inteligentes al mes', feat2: 'Todas las 36+ herramientas Premium', feat3: 'Consejos personalizados para ti',
       exhaustedTitle: 'Análisis agotados', exhaustedCta: 'Continuar con Premium',
-      premiumTitle: '👑 Miembro Premium', premiumDesc: '60 análisis IA mensuales listos',
+      premiumTitle: 'Miembro Premium', premiumDesc: '60 análisis IA mensuales listos',
     },
     pt: {
       title: 'Desbloqueie sua jornada', cta: 'Começar jornada Premium', ctaPrice: '$2.99/mês', trust: '✨ Teste grátis · Cancele quando quiser',
       feat1: '60 análises inteligentes / mês', feat2: 'Todas as 36+ ferramentas Premium', feat3: 'Dicas feitas para você',
       exhaustedTitle: 'Análises esgotadas', exhaustedCta: 'Continuar com Premium',
-      premiumTitle: '👑 Membro Premium', premiumDesc: '60 análises IA mensais prontas',
+      premiumTitle: 'Membro Premium', premiumDesc: '60 análises IA mensais prontas',
     },
     tr: {
       title: 'Yolculuğunu Aç', cta: 'Premium Yolculuğa Başla', ctaPrice: '$2.99/ay', trust: '✨ Ücretsiz deneme · Her an iptal',
       feat1: 'Ayda 60 akıllı analiz', feat2: 'Tüm 36+ Premium araç açık', feat3: 'Sana özel rehberlik',
       exhaustedTitle: 'Analizlerin tükendi', exhaustedCta: 'Premium ile Devam Et',
-      premiumTitle: '👑 Premium Üye', premiumDesc: 'Aylık 60 AI analiz hazır',
+      premiumTitle: 'Premium Üye', premiumDesc: 'Aylık 60 AI analiz hazır',
     },
   };
   const l = labels[lang] || labels.en;
@@ -323,28 +323,31 @@ const FooterCard = memo(function FooterCard() {
         transition={{ duration: 0.4, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
         className="mt-3"
       >
-        <div className="w-full text-start rounded-2xl overflow-hidden bg-gradient-to-br from-amber-500/[0.08] via-card to-primary/[0.04] border border-amber-500/20 shadow-sm">
-          <div className="h-[2px] bg-gradient-to-r from-amber-500/30 via-amber-500 to-amber-500/30" />
-          <div className="px-4 py-3.5 flex items-center gap-3">
-            <div className="relative w-11 h-11 rounded-xl bg-gradient-to-br from-amber-500/25 to-amber-500/10 flex items-center justify-center border border-amber-500/25 flex-shrink-0">
-              <Crown className="w-5 h-5 text-amber-500" strokeWidth={1.8} />
-            </div>
+        <div className="w-full overflow-hidden rounded-2xl border border-border bg-card text-start shadow-[var(--shadow-card)]">
+          <div className="h-[3px] bg-gradient-to-r from-primary/15 via-primary/45 to-primary/15" />
+          <div className="flex items-center gap-3 px-4 py-3.5">
             <div className="flex-1 min-w-0">
-              <h4 className="text-sm font-extrabold text-foreground leading-tight" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+              <div className="mb-1 inline-flex items-center rounded-full border border-border bg-secondary px-2.5 py-1 text-[10px] font-semibold text-secondary-foreground">
+                Premium
+              </div>
+              <h4 className="text-sm font-extrabold leading-tight text-foreground" style={{ fontFamily: "'Tajawal', sans-serif" }}>
                 {l.premiumTitle}
               </h4>
-              <p className="text-xs text-muted-foreground mt-0.5 font-medium leading-snug">
+              <p className="mt-1 text-xs font-medium leading-snug text-muted-foreground">
                 {l.premiumDesc}
               </p>
             </div>
-            <span className="text-base font-extrabold text-primary tabular-nums" style={{ fontFamily: "'Cairo', sans-serif" }}>
-              {remaining}<span className="text-[10px] opacity-40 font-normal">/{limit}</span>
-            </span>
+            <div className="min-w-[4.75rem] rounded-xl border border-border bg-secondary px-2.5 py-2 text-center">
+              <span className="text-base font-extrabold tabular-nums text-foreground" style={{ fontFamily: "'Cairo', sans-serif" }}>
+                {remaining}
+              </span>
+              <div className="text-[10px] font-medium text-muted-foreground">/ {limit}</div>
+            </div>
           </div>
-          <div className="px-4 pb-3">
-            <div className="h-[6px] rounded-full bg-muted/50 overflow-hidden">
+          <div className="px-4 pb-4">
+            <div className="h-[6px] overflow-hidden rounded-full bg-secondary">
               <motion.div
-                className="h-full rounded-full bg-gradient-to-r from-amber-500 to-primary"
+                className="h-full rounded-full bg-primary"
                 initial={{ width: 0 }}
                 animate={{ width: `${usagePercent}%` }}
                 transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
