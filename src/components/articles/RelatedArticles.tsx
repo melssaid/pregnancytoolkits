@@ -5,7 +5,7 @@ import { articleUiCopy, getNextArticle, getRelatedArticles, getSimilarArticles }
 import { ArticleTitleLink } from "@/components/articles/ArticleCards";
 import { resolveArticleLocale } from "@/lib/articleLocale";
 
-export function RelatedArticles({ slug, limit = 3 }: { slug: string; limit?: number }) {
+export function RelatedArticles({ slug, limit = 3, embedded = false }: { slug: string; limit?: number; embedded?: boolean }) {
   const { i18n } = useTranslation();
   const lang = i18n.language?.split("-")[0] || "en";
   const locale = resolveArticleLocale(lang);
@@ -17,9 +17,9 @@ export function RelatedArticles({ slug, limit = 3 }: { slug: string; limit?: num
   if (!nextArticle && !articles.length && !similarArticles.length) return null;
 
   return (
-    <section className="space-y-3 rounded-[1.5rem] border border-border bg-card px-3 py-3" style={{ boxShadow: "var(--shadow-card)" }} dir={locale.dir}>
+    <section className={embedded ? "space-y-3" : "space-y-3 rounded-[1.5rem] border border-border bg-card px-3 py-3"} style={embedded ? undefined : { boxShadow: "var(--shadow-card)" }} dir={locale.dir}>
       {nextArticle && (
-        <div className="space-y-2 rounded-[1.2rem] border border-border bg-background p-3">
+        <div className="space-y-2 rounded-[1.2rem] border border-border bg-card p-3">
           <div>
             <h2 className={`text-[1.3rem] font-black text-foreground ${locale.headingClass}`}>{copy.readNext}</h2>
           </div>
