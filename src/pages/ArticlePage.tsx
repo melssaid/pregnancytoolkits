@@ -3,6 +3,8 @@ import { Clock3, Home, Sparkles } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { Layout } from "@/components/Layout";
 import { SEOHead } from "@/components/SEOHead";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
@@ -51,15 +53,18 @@ const ArticlePage = () => {
     );
   }
 
-  const introParagraphs = article.intro.split("\n\n").map((paragraph) => paragraph.trim()).filter(Boolean);
-  const contentSections = article.sections
-    .slice(1)
-    .map((section) => ({
-      ...section,
-      paragraphs: section.body.split("\n\n").map((paragraph) => paragraph.trim()).filter(Boolean),
-    }))
-    .filter((section) => section.heading.trim() || section.paragraphs.length > 0);
-  const hasRenderableContent = introParagraphs.length > 0 || contentSections.some((section) => section.paragraphs.length > 0);
+  const markdownBody = useMemo(() => {
+    const blocks = article.sections.flatMap((section, index) => {
+      const body = section.body.trim();
+      if (!body) return [];
+      if (index === 0 && !section.heading.trim()) return [body];
+      return [`## ${section.heading.trim()}`, body];
+    });
+
+    return blocks.join("\n\n").trim();
+  }, [article.sections]);
+
+  const hasRenderableContent = markdownBody.length > 0;
 
   return (
     <Layout showBack>
@@ -105,41 +110,26 @@ const ArticlePage = () => {
           </div>
         </header>
 
-        <section className="relative overflow-hidden rounded-[1.6rem] border border-primary/10 bg-gradient-to-l from-background via-background to-secondary/20 px-4 py-4" style={{ boxShadow: "var(--shadow-card)" }}>
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-2/3 bg-gradient-to-l from-background/95 via-background/75 to-transparent" />
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-secondary/10 to-transparent" />
-          <div className="flex flex-wrap gap-2">
-            {article.tagLabels.map((tag) => (
-              <span key={tag} className="rounded-full bg-secondary px-3 py-1 text-[11px] font-semibold text-secondary-foreground">
+        <section className="relative overflow-hidden rounded-[1.6rem] border border-primary/10 bg-gradient-to-l from-background via-background to-card px-4 py-4" style={{ boxShadow: "var(--shadow-card)" }}>
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-3/4 bg-gradient-to-l from-background via-background/90 to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-secondary/12 to-transparent" />
+          <div className="flex flex-wrap gap-1.5">
+            {article.tagLabels.map((tag, index) => (
+              <span key={`${tag}-${index}`} className="rounded-full bg-secondary px-2.5 py-1 text-[10px] font-semibold text-secondary-foreground">
                 {tag}
               </span>
             ))}
           </div>
           <div className="relative mt-4 space-y-3" data-testid="article-body">
             {hasRenderableContent ? (
-              <>
-                {!!introParagraphs.length && (
-                  <div className="rounded-[1.35rem] border border-primary/10 bg-background/90 px-4 py-4 backdrop-blur-sm">
-                    <div className="mb-3 h-[3px] w-16 rounded-full bg-gradient-to-r from-primary via-primary/35 to-transparent" />
-                    <div className="space-y-3 text-[15px] leading-8 text-foreground/95">
-                      {introParagraphs.map((paragraph) => (
-                        <p key={paragraph}>{paragraph}</p>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {contentSections.map((section) => (
-                  <section key={`${section.heading}-${section.paragraphs[0] || "content"}`} className="rounded-[1.15rem] border border-primary/10 bg-background/80 px-4 py-3.5 backdrop-blur-sm">
-                    {!!section.heading.trim() && <h2 className="text-[14px] font-bold leading-6 text-primary ar-heading">{section.heading}</h2>}
-                    <div className="mt-2 space-y-3 text-[14px] leading-8 text-foreground/90">
-                      {section.paragraphs.map((paragraph) => (
-                        <p key={paragraph}>{paragraph}</p>
-                      ))}
-                    </div>
-                  </section>
-                ))}
-              </>
+              <div className="rounded-[1.35rem] border border-primary/10 bg-background/90 px-4 py-4 backdrop-blur-sm">
+                <div className="mb-4 h-[3px] w-16 rounded-full bg-gradient-to-r from-primary via-primary/35 to-transparent" />
+                <div className="article-markdown prose prose-sm max-w-none prose-headings:ar-heading prose-headings:text-foreground prose-p:text-foreground/90 prose-p:leading-8 prose-p:text-[15px] prose-h2:mt-8 prose-h2:mb-3 prose-h2:border-b prose-h2:border-primary/10 prose-h2:pb-2 prose-h2:text-[1.02rem] prose-h2:font-extrabold prose-ul:my-3 prose-ul:space-y-2 prose-ul:ps-5 prose-li:text-[14px] prose-li:leading-7 prose-strong:text-foreground dark:prose-invert">
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    {markdownBody}
+                  </ReactMarkdown>
+                </div>
+              </div>
             ) : (
               <div data-testid="article-body-fallback" className="rounded-[1.35rem] border border-primary/15 bg-background/90 px-4 py-5 text-center backdrop-blur-sm">
                 <div className="mx-auto mb-3 h-[3px] w-16 rounded-full bg-gradient-to-r from-primary via-primary/35 to-transparent" />
@@ -157,15 +147,15 @@ const ArticlePage = () => {
         </section>
 
         {!!relatedTools.length && (
-          <section className="space-y-3 rounded-[1.5rem] border border-primary/15 bg-gradient-to-br from-primary/10 via-secondary/60 to-background px-3 py-3.5" style={{ boxShadow: "var(--shadow-card)" }}>
+          <section className="space-y-2 rounded-[1.35rem] border border-primary/15 bg-gradient-to-br from-primary/10 via-primary/5 to-background px-3 py-3" style={{ boxShadow: "var(--shadow-card)" }}>
             <div>
-              <h2 className="text-sm font-extrabold text-primary ar-heading">أدوات مفيدة</h2>
+              <h2 className="text-[13px] font-extrabold text-primary ar-heading">أدوات مرتبطة</h2>
             </div>
             <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
               {relatedTools.map((tool) => (
-                <Link key={tool.id} to={tool.href} className="rounded-2xl border border-primary/15 bg-background/80 px-3 py-2.5 transition-colors hover:border-primary/35 hover:bg-background/95">
-                  <div className="text-[12px] font-bold text-foreground ar-heading">{t(tool.titleKey)}</div>
-                  <div className="mt-1 line-clamp-2 text-[10px] leading-4 text-muted-foreground">{t(tool.descriptionKey)}</div>
+                <Link key={tool.id} to={tool.href} className="rounded-[1rem] border border-primary/15 bg-background/85 px-3 py-2 transition-colors hover:border-primary/35 hover:bg-background/95">
+                  <div className="text-[11px] font-bold text-foreground ar-heading">{t(tool.titleKey)}</div>
+                  <div className="mt-1 line-clamp-2 text-[9px] leading-4 text-muted-foreground">{t(tool.descriptionKey)}</div>
                 </Link>
               ))}
             </div>
