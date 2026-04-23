@@ -9,15 +9,15 @@ import type { ArticleRecord, ArticleSectionKey } from "@/data/articles";
 const toneMap: Record<ArticleSectionKey, { shell: string; badge: string }> = {
   planning: {
     shell: "border border-border bg-card shadow-[var(--shadow-card)]",
-    badge: "bg-background/90 text-foreground border-border/60",
+    badge: "bg-card text-foreground border-border",
   },
   pregnant: {
     shell: "border border-border bg-card shadow-[var(--shadow-card)]",
-    badge: "bg-background/90 text-foreground border-border/60",
+    badge: "bg-card text-foreground border-border",
   },
   postpartum: {
     shell: "border border-border bg-card shadow-[var(--shadow-card)]",
-    badge: "bg-background/90 text-foreground border-border/60",
+    badge: "bg-card text-foreground border-border",
   },
 };
 
@@ -55,7 +55,7 @@ export function ArticleFeatureCard({ article, isRTL = false, label, eager = fals
           </AspectRatio>
           <div className="absolute inset-x-3 top-3 flex items-center justify-between gap-2">
             {!hideLabel ? (
-              <span className={cn("inline-flex items-center rounded-full border px-2.5 py-1 text-[11px] font-semibold backdrop-blur-sm", tone.badge)}>
+              <span className={cn("inline-flex items-center rounded-full border px-2.5 py-1 text-[11px] font-semibold", tone.badge)}>
                 {label || article.typeLabel}
               </span>
             ) : <span />}
@@ -81,8 +81,8 @@ export function ArticleCompactLink({ article, isRTL = false, label }: ArticleCar
 
   return (
     <Link to={`/articles/${article.slug}`} className="block">
-      <div className="group flex items-center gap-3 rounded-2xl border border-border bg-card px-3 py-3 transition-all duration-300 hover:border-primary/35 hover:bg-background" style={{ boxShadow: "var(--shadow-card)" }}>
-        <div className="h-14 w-14 flex-shrink-0 overflow-hidden rounded-xl border border-border/70 bg-muted">
+      <div className="group flex items-center gap-3 rounded-2xl border border-border bg-card px-3 py-3 transition-all duration-300 hover:border-primary/35 hover:bg-secondary" style={{ boxShadow: "var(--shadow-card)" }}>
+        <div className="h-14 w-14 flex-shrink-0 overflow-hidden rounded-xl border border-border bg-muted">
           <img src={article.image} alt={article.heroAlt} loading="lazy" width={112} height={112} className="h-full w-full object-cover" />
         </div>
         <div className="min-w-0 flex-1">
@@ -102,7 +102,7 @@ export function ArticleTitleLink({ article, isRTL = false, label }: ArticleTitle
 
   return (
     <Link to={`/articles/${article.slug}`} className="block">
-      <div className="group flex items-start gap-3 rounded-[1rem] border border-border/80 bg-card px-3 py-3 transition-all duration-300 hover:border-primary/35 hover:bg-secondary/10" style={{ boxShadow: "var(--shadow-card)" }}>
+      <div className="group flex items-start gap-3 rounded-[1rem] border border-border bg-card px-3 py-3 transition-all duration-300 hover:border-primary/35 hover:bg-secondary" style={{ boxShadow: "var(--shadow-card)" }}>
         <div className="min-w-0 flex-1">
           {label && <div className="sr-only">{label}</div>}
           <h4 className="line-clamp-2 text-[13px] font-black leading-6 text-foreground ar-heading">{article.title}</h4>
