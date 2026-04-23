@@ -30,7 +30,11 @@ export function Layout({ children, showBack = false, compactBackHeader = false }
   const isPremium = tier === "premium";
   useEngagementSignals();
   const isRtl = i18n.language === 'ar';
-  const trustTextSize = isRtl ? 'text-[9.5px]' : 'text-[8px]';
+  const trustItems = [
+    t('layout.trustBar.scienceBacked', 'Science-Backed'),
+    t('layout.trustBar.aiTools', { count: getTotalToolsCount(), defaultValue: '{{count}}+ Smart Tools' }),
+    t('layout.trustBar.premium'),
+  ];
 
   useEffect(() => {
     window.dispatchEvent(new CustomEvent("app:first-render"));
@@ -43,75 +47,39 @@ export function Layout({ children, showBack = false, compactBackHeader = false }
       <TrialExpiryBanner />
       {/* Trust Bar - Above header */}
       <motion.div 
-        className="relative overflow-hidden bg-primary text-primary-foreground"
+        className="relative overflow-hidden border-b border-border/40 bg-primary text-primary-foreground"
         style={{ paddingTop: 'env(safe-area-inset-top)' }}
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       >
-        {/* Dark edge gradient overlay — under content */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/20 pointer-events-none" />
-        {/* Animated shimmer overlay — brighter */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/15 via-transparent to-black/15 pointer-events-none" />
         <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent"
+          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent"
           initial={{ x: '-100%' }}
           animate={{ x: '200%' }}
-          transition={{ duration: 2.5, repeat: Infinity, repeatDelay: 3, ease: 'linear' }}
+          transition={{ duration: 3.4, repeat: Infinity, repeatDelay: 4.5, ease: 'linear' }}
         />
-        {/* Secondary subtle shimmer for extra glow */}
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
-          initial={{ x: '200%' }}
-          animate={{ x: '-100%' }}
-          transition={{ duration: 3.5, repeat: Infinity, repeatDelay: 2, ease: 'linear' }}
-        />
-        
-        <div className="relative flex items-center justify-center gap-4 sm:gap-6 pt-2 pb-2 px-4">
-          <motion.span 
-            className={`${trustTextSize} font-extrabold tracking-widest uppercase drop-shadow-lg text-primary-foreground`}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.5, ease: 'easeOut' }}
-          >
-            {t('layout.trustBar.scienceBacked', 'Science-Backed')}
-          </motion.span>
-          
-          <motion.span 
-            className="w-1.5 h-1.5 rounded-full bg-primary-foreground/70 flex-shrink-0 shadow-[0_0_6px_2px_rgba(255,255,255,0.4)]"
-            initial={{ scale: 0 }}
-            animate={{ scale: [1, 1.3, 1] }}
-            transition={{ delay: 0.5, duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-          />
-          
-          <motion.span 
-            className={`${trustTextSize} font-extrabold tracking-widest uppercase drop-shadow-lg text-primary-foreground`}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.45, duration: 0.5, ease: 'easeOut' }}
-          >
-            {t('layout.trustBar.aiTools', { count: getTotalToolsCount(), defaultValue: '{{count}}+ Smart Tools' })}
-          </motion.span>
-          
-          <motion.span 
-            className="hidden sm:block w-1.5 h-1.5 rounded-full bg-primary-foreground/70 flex-shrink-0 shadow-[0_0_6px_2px_rgba(255,255,255,0.4)]"
-            initial={{ scale: 0 }}
-            animate={{ scale: [1, 1.3, 1] }}
-            transition={{ delay: 0.65, duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-          />
-          
-          <motion.span 
-            className={`hidden sm:inline ${trustTextSize} font-extrabold tracking-widest uppercase drop-shadow-lg text-primary-foreground`}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.5, ease: 'easeOut' }}
-          >
-            {t('layout.trustBar.premium')}
-          </motion.span>
+        <div className="relative px-3 pb-2 pt-2">
+          <div className="mx-auto flex max-w-4xl items-center justify-center gap-2 rounded-full border border-primary-foreground/15 bg-primary-foreground/10 px-3 py-1.5 backdrop-blur-sm">
+            {trustItems.map((item, index) => (
+              <div key={item} className="flex min-w-0 items-center gap-2">
+                {index > 0 && <span className="h-1 w-1 rounded-full bg-primary-foreground/55" aria-hidden="true" />}
+                <motion.span
+                  className={`min-w-0 truncate ${isRtl ? 'text-[10px]' : 'text-[9px]'} font-extrabold tracking-[0.08em] text-primary-foreground/95 ${index === 2 ? 'hidden sm:inline' : ''}`}
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.24 + index * 0.08, duration: 0.45, ease: 'easeOut' }}
+                >
+                  {item}
+                </motion.span>
+              </div>
+            ))}
+          </div>
         </div>
-        {/* Animated glowing bottom line — brighter */}
-        <div className="relative h-[3px] overflow-hidden">
+        <div className="relative h-[2px] overflow-hidden">
           <motion.div
-            className="absolute inset-0 bg-gradient-to-r from-primary-foreground/20 via-primary-foreground/70 to-primary-foreground/20"
+            className="absolute inset-0 bg-gradient-to-r from-primary-foreground/15 via-primary-foreground/55 to-primary-foreground/15"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6, duration: 0.5 }}
@@ -127,14 +95,14 @@ export function Layout({ children, showBack = false, compactBackHeader = false }
 
 
       {/* Header - flush with trust bar */}
-      <header className="sticky top-0 z-50 bg-card backdrop-blur-md border-b-0" style={{ boxShadow: '0 6px 30px -2px hsl(340 40% 25% / 0.25), 0 3px 12px -2px hsl(0 0% 0% / 0.15)' }}>
+      <header className="sticky top-0 z-50 border-b border-border/50 bg-card/95 backdrop-blur-md" style={{ boxShadow: '0 10px 24px -18px hsl(var(--foreground) / 0.35)' }}>
         {/* Curved bottom edge */}
         <div className="absolute -bottom-[14px] left-0 right-0 h-[14px] overflow-hidden pointer-events-none z-10">
           <svg viewBox="0 0 1440 90" fill="none" className="w-full h-full" preserveAspectRatio="none">
             <path d="M0,0 L0,5 C200,90 400,90 720,90 C1040,90 1240,90 1440,5 L1440,0 Z" className="fill-card" />
           </svg>
         </div>
-        <div dir={showBack ? 'ltr' : undefined} className={`flex h-16 items-center ${showBack ? 'justify-between' : 'justify-center'} px-4`}>
+        <div dir={showBack ? 'ltr' : undefined} className={`mx-auto flex h-[4.5rem] max-w-4xl items-center ${showBack ? 'justify-between' : 'justify-center'} px-3 sm:px-4`}>
           {showBack ? (
             /* Sub-pages: back button + logo + name on left */
             <div className="flex items-center gap-2.5">
@@ -231,11 +199,11 @@ export function Layout({ children, showBack = false, compactBackHeader = false }
             /* Homepage: centered logo only, no title */
             <>
               {/* Left spacer for centering */}
-              <div className="absolute left-4 flex items-center gap-1.5">
+              <div className="absolute left-3 flex items-center gap-2 sm:left-4">
                 <LanguageDropdown variant="compact" />
               </div>
               <Link to="/" className="flex items-center justify-center">
-                <div className="rounded-full overflow-hidden shadow-xl ring-2 ring-primary/10 h-14 w-14">
+                <div className="rounded-full overflow-hidden border border-border/60 bg-card shadow-[0_10px_22px_-18px_hsl(var(--foreground)/0.45)] ring-1 ring-primary/10 h-14 w-14">
                   <video
                     src="/logo-video.mp4"
                     autoPlay
@@ -247,20 +215,20 @@ export function Layout({ children, showBack = false, compactBackHeader = false }
                   />
                 </div>
               </Link>
-              <div className="absolute right-4 flex items-center gap-1.5">
+              <div className="absolute right-3 flex items-center gap-2 sm:right-4">
                 {!isPremium && (
                   <Link
                     to="/pricing-demo"
-                    className="relative flex items-center justify-center w-9 h-9 rounded-full bg-gradient-to-br from-amber-400/20 via-rose-400/15 to-pink-500/10 border border-amber-400/30 hover:border-amber-400/50 shadow-[0_2px_12px_-2px_hsl(340,50%,55%/0.2)] hover:shadow-[0_4px_16px_-2px_hsl(340,50%,55%/0.3)] transition-all duration-300 group"
+                    className="relative flex h-10 w-10 items-center justify-center rounded-full border border-border bg-secondary text-secondary-foreground shadow-sm transition-all duration-300 hover:border-primary/25 hover:bg-secondary/90 hover:text-foreground"
                     title={t('pricing.upgradeTitle', 'Upgrade to PRO')}
                   >
                     <motion.div
-                      animate={{ scale: [1, 1.12, 1], rotate: [0, -6, 6, 0] }}
-                      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                      animate={{ scale: [1, 1.05, 1] }}
+                      transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
                     >
-                      <Crown className="w-[18px] h-[18px] text-amber-500 drop-shadow-[0_1px_2px_rgba(245,158,11,0.4)] group-hover:text-amber-400 transition-colors" strokeWidth={2.2} />
+                      <Crown className="h-[17px] w-[17px]" strokeWidth={2} />
                     </motion.div>
-                    <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-gradient-to-br from-rose-400 to-pink-500 border-2 border-background animate-pulse" />
+                    <span className="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full border border-card bg-primary" />
                   </Link>
                 )}
                 <div className="hidden md:flex">
