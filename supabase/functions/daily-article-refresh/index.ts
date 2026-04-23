@@ -21,6 +21,7 @@ const corsHeaders = {
 };
 
 const SUPPORTED_LANGS = ["ar", "en", "de", "fr", "es", "tr", "pt"] as const;
+const CONTENT_MODEL = "google/gemini-2.5-flash";
 
 const buildPrompt = (seed: (typeof ARTICLE_SEED_REGISTRY)[number], lang: string) => {
   const title = seed.titles[lang as keyof typeof seed.titles] || seed.titles.en;
@@ -59,7 +60,7 @@ serve(async (req) => {
   const runInsert = await admin.from("article_refresh_runs").insert({
     run_date: effectiveDate,
     status: "started",
-    source_model: "google/gemini-2.5-pro",
+    source_model: CONTENT_MODEL,
     languages,
   }).select("id").single();
 
@@ -70,7 +71,7 @@ serve(async (req) => {
     const targets = ARTICLE_SEED_REGISTRY.filter((seed) => !slugs || slugs.has(seed.slug));
 
     for (const seed of targets) {
-      for (const lang of languages) {
+      await Promise.all(languages.map(async (lang) => {
         const prompt = buildPrompt(seed, lang);
         const aiRes = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
           method: "POST",
@@ -79,9 +80,9 @@ serve(async (req) => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            model: "google/gemini-2.5-pro",
+            model: CONTENT_MODEL,
             temperature: 0.3,
-            max_tokens: 2200,
+            max_tokens: 1800,
             response_format: { type: "json_object" },
             messages: [
               { role: "system", content: "You are a multilingual health editorial writer. Respond only with JSON." },
@@ -90,10 +91,18 @@ serve(async (req) => {
           }),
         });
 
-        if (!aiRes.ok) throw new Error(`AI generation failed for ${seed.slug}/${lang}`);
+        if (!aiRes.ok) {
+          const details = await aiRes.text();
+          throw new Error(`AI generation failed for ${seed.slug}/${lang}: ${details}`);
+        }
         const aiData = await aiRes.json();
         const raw = aiData.choices?.[0]?.message?.content ?? "{}";
         const parsed = JSON.parse(raw);
+        const markdownBody = typeof parsed.markdown_body === "string" ? parsed.markdown_body.trim() : "";
+
+        if (!markdownBody) {
+          throw new Error(`Missing markdown_body for ${seed.slug}/${lang}`);
+        }
 
         await admin.from("article_daily_content").upsert({
           slug: seed.slug,
@@ -101,7 +110,7 @@ serve(async (req) => {
           title_override: parsed.title_override ?? null,
           excerpt_override: parsed.excerpt_override ?? null,
           intro_override: parsed.intro_override ?? null,
-          markdown_body: parsed.markdown_body,
+          markdown_body: markdownBody,
           seo_description: parsed.seo_description ?? null,
           reading_minutes: parsed.reading_minutes ?? null,
           effective_date: effectiveDate,
@@ -109,7 +118,7 @@ serve(async (req) => {
         }, { onConflict: "slug,language,effective_date" });
 
         processedCount += 1;
-      }
+      }));
     }
 
     if (runId) {
