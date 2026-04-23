@@ -323,28 +323,31 @@ const FooterCard = memo(function FooterCard() {
         transition={{ duration: 0.4, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
         className="mt-3"
       >
-        <div className="w-full text-start rounded-2xl overflow-hidden bg-gradient-to-br from-amber-500/[0.08] via-card to-primary/[0.04] border border-amber-500/20 shadow-sm">
-          <div className="h-[2px] bg-gradient-to-r from-amber-500/30 via-amber-500 to-amber-500/30" />
-          <div className="px-4 py-3.5 flex items-center gap-3">
-            <div className="relative w-11 h-11 rounded-xl bg-gradient-to-br from-amber-500/25 to-amber-500/10 flex items-center justify-center border border-amber-500/25 flex-shrink-0">
-              <Crown className="w-5 h-5 text-amber-500" strokeWidth={1.8} />
-            </div>
+        <div className="w-full overflow-hidden rounded-2xl border border-border bg-card text-start shadow-[var(--shadow-card)]">
+          <div className="h-[3px] bg-gradient-to-r from-primary/15 via-primary/45 to-primary/15" />
+          <div className="flex items-center gap-3 px-4 py-3.5">
             <div className="flex-1 min-w-0">
-              <h4 className="text-sm font-extrabold text-foreground leading-tight" style={{ fontFamily: "'Tajawal', sans-serif" }}>
+              <div className="mb-1 inline-flex items-center rounded-full border border-border bg-secondary px-2.5 py-1 text-[10px] font-semibold text-secondary-foreground">
+                Premium
+              </div>
+              <h4 className="text-sm font-extrabold leading-tight text-foreground" style={{ fontFamily: "'Tajawal', sans-serif" }}>
                 {l.premiumTitle}
               </h4>
-              <p className="text-xs text-muted-foreground mt-0.5 font-medium leading-snug">
+              <p className="mt-1 text-xs font-medium leading-snug text-muted-foreground">
                 {l.premiumDesc}
               </p>
             </div>
-            <span className="text-base font-extrabold text-primary tabular-nums" style={{ fontFamily: "'Cairo', sans-serif" }}>
-              {remaining}<span className="text-[10px] opacity-40 font-normal">/{limit}</span>
-            </span>
+            <div className="min-w-[4.75rem] rounded-xl border border-border bg-secondary px-2.5 py-2 text-center">
+              <span className="text-base font-extrabold tabular-nums text-foreground" style={{ fontFamily: "'Cairo', sans-serif" }}>
+                {remaining}
+              </span>
+              <div className="text-[10px] font-medium text-muted-foreground">/ {limit}</div>
+            </div>
           </div>
-          <div className="px-4 pb-3">
-            <div className="h-[6px] rounded-full bg-muted/50 overflow-hidden">
+          <div className="px-4 pb-4">
+            <div className="h-[6px] overflow-hidden rounded-full bg-secondary">
               <motion.div
-                className="h-full rounded-full bg-gradient-to-r from-amber-500 to-primary"
+                className="h-full rounded-full bg-primary"
                 initial={{ width: 0 }}
                 animate={{ width: `${usagePercent}%` }}
                 transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
