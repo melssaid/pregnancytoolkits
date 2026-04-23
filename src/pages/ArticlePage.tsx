@@ -110,9 +110,7 @@ const ArticlePage = () => {
           </div>
         </header>
 
-        <section className="relative overflow-hidden rounded-[1.6rem] border border-primary/10 bg-gradient-to-l from-background via-background to-card px-4 py-4" style={{ boxShadow: "var(--shadow-card)" }}>
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-3/4 bg-gradient-to-l from-background via-background/90 to-transparent" />
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-secondary/12 to-transparent" />
+        <section className="rounded-[1.6rem] border border-primary/10 bg-card px-4 py-4" style={{ boxShadow: "var(--shadow-card)" }}>
           <div className="flex flex-wrap gap-1.5">
             {article.tagLabels.map((tag, index) => (
               <span key={`${tag}-${index}`} className="rounded-full bg-secondary px-2.5 py-1 text-[10px] font-semibold text-secondary-foreground">
@@ -122,9 +120,9 @@ const ArticlePage = () => {
           </div>
           <div className="relative mt-4 space-y-3" data-testid="article-body">
             {hasRenderableContent ? (
-              <div className="rounded-[1.35rem] border border-primary/10 bg-background/90 px-4 py-4 backdrop-blur-sm">
+              <div className="rounded-[1.35rem] border border-primary/10 bg-background px-4 py-4">
                 <div className="mb-4 h-[3px] w-16 rounded-full bg-gradient-to-r from-primary via-primary/35 to-transparent" />
-                <div className="article-markdown prose prose-sm max-w-none prose-headings:ar-heading prose-headings:text-foreground prose-p:text-foreground/90 prose-p:leading-8 prose-p:text-[15px] prose-h2:mt-8 prose-h2:mb-3 prose-h2:border-b prose-h2:border-primary/10 prose-h2:pb-2 prose-h2:text-[1.02rem] prose-h2:font-extrabold prose-ul:my-3 prose-ul:space-y-2 prose-ul:ps-5 prose-li:text-[14px] prose-li:leading-7 prose-strong:text-foreground dark:prose-invert">
+                <div className="article-markdown prose prose-sm max-w-none prose-headings:ar-heading prose-headings:text-foreground prose-p:text-foreground prose-p:leading-8 prose-p:text-[15px] prose-h2:mt-8 prose-h2:mb-3 prose-h2:border-b prose-h2:border-primary/10 prose-h2:pb-2 prose-h2:text-[1.02rem] prose-h2:font-extrabold prose-ul:my-3 prose-ul:space-y-2 prose-ul:ps-5 prose-li:text-[14px] prose-li:leading-7 prose-strong:text-foreground dark:prose-invert">
                   <ReactMarkdown remarkPlugins={[remarkGfm]}>
                     {markdownBody}
                   </ReactMarkdown>

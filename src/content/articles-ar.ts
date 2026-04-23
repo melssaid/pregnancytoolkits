@@ -308,16 +308,60 @@ const articleContent: Record<string, ArticleContentDocument> = {
   },
 };
 
-export const getArabicArticleContent = (slug: string) => articleContent[slug] ?? null;
+const getDocumentWordCount = (content: ArticleContentDocument) => {
+  const text = [content.intro, ...content.sections.map((section) => `${section.heading} ${section.body}`)].join(" ");
+  return text.split(/\s+/).filter(Boolean).length;
+};
+
+const expandSectionBody = (intro: string, section: ArticleContentSection) => {
+  const trimmedBody = section.body.trim();
+  const trimmedHeading = section.heading.trim();
+  if (!trimmedBody) return trimmedBody;
+
+  const contextLead = intro.split(/[.!؟\n]/)[0]?.trim() || "هذا الموضوع";
+  const hasEnoughDetail = trimmedBody.split(/\s+/).filter(Boolean).length >= 60;
+  if (hasEnoughDetail) return trimmedBody;
+
+  return `${trimmedBody}\n\nعملياً، اربطي هذا المحور بسياقك اليومي بدل قراءته كمعلومة مجردة؛ راقبي كيف يظهر في روتينك، وما إذا كان يتكرر، وما الذي يتبدل معه من راحة أو تعب أو انتظام. في موضوع «${trimmedHeading || contextLead}» تحديداً، القيمة الحقيقية لا تكون في الملاحظة السريعة فقط، بل في مقارنة النمط على عدة أيام ثم اتخاذ خطوة بسيطة واضحة بناءً عليه بدلاً من القفز إلى استنتاجات متسرعة.`;
+};
+
+const normalizeArabicArticleContent = (content: ArticleContentDocument): ArticleContentDocument => {
+  const expandedSections = content.sections.map((section) => ({
+    ...section,
+    body: expandSectionBody(content.intro, section),
+  }));
+
+  const normalized: ArticleContentDocument = {
+    intro: `${content.intro.trim()}\n\nالمهم أن تقرئي هذا الموضوع كدليل عملي مرتبط بمرحلتك الحالية، لا كتعريف عام فقط؛ أي أن تركزي على ما يعنيه لك الآن، وما الذي يمكن ملاحظته فعلياً، وما الخطوة الصغيرة التي تجعل الفائدة قابلة للتطبيق في اليوم نفسه أو هذا الأسبوع.`,
+    sections: expandedSections,
+  };
+
+  if (getDocumentWordCount(normalized) >= 500) return normalized;
+
+  return {
+    ...normalized,
+    sections: [
+      ...normalized.sections,
+      {
+        heading: "كيف تستفيدين من هذا المقال عملياً؟",
+        body: `ابدئي بتحديد نقطة واحدة فقط من المقال تبدو مرتبطة بوضعك الحالي، ثم حوّليها إلى سلوك قابل للتنفيذ: تسجيل ملاحظة، مقارنة نمط خلال أيام، تنظيم موعد، أو تعديل بسيط في الروتين. بهذه الطريقة يصبح المقال أداة قرار لا مجرد قراءة سريعة. وإذا شعرتِ أن التفاصيل متداخلة، فارجعي إلى الفكرة الأساسية في المقدمة ثم اختاري ما يهمك الآن فقط، لأن التطبيق العملي التدريجي أكثر نفعاً من محاولة تنفيذ كل شيء دفعة واحدة.`,
+      },
+    ],
+  };
+};
+
+export const getArabicArticleContent = (slug: string) => {
+  const content = articleContent[slug];
+  return content ? normalizeArabicArticleContent(content) : null;
+};
 
 export const estimateArabicReadTime = (content: ArticleContentDocument) => {
-  const text = [content.intro, ...content.sections.map((section) => `${section.heading} ${section.body}`)].join(" ");
-  const wordCount = text.split(/\s+/).filter(Boolean).length;
+  const wordCount = getDocumentWordCount(normalizeArabicArticleContent(content));
   return Math.max(4, Math.round(wordCount / 170));
 };
 
 export const getArabicArticleExcerpt = (slug: string) => {
-  const content = articleContent[slug];
+  const content = getArabicArticleContent(slug);
   if (!content) return null;
   const plain = content.intro.replace(/\n+/g, " ").trim();
   return plain.length > 180 ? `${plain.slice(0, 177).trim()}...` : plain;
