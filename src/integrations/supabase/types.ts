@@ -83,6 +83,102 @@ export type Database = {
         }
         Relationships: []
       }
+      article_daily_content: {
+        Row: {
+          created_at: string
+          effective_date: string
+          excerpt_override: string | null
+          expires_at: string | null
+          id: string
+          intro_override: string | null
+          is_published: boolean
+          language: string
+          markdown_body: string
+          reading_minutes: number | null
+          seo_description: string | null
+          slug: string
+          title_override: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          effective_date?: string
+          excerpt_override?: string | null
+          expires_at?: string | null
+          id?: string
+          intro_override?: string | null
+          is_published?: boolean
+          language: string
+          markdown_body: string
+          reading_minutes?: number | null
+          seo_description?: string | null
+          slug: string
+          title_override?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          effective_date?: string
+          excerpt_override?: string | null
+          expires_at?: string | null
+          id?: string
+          intro_override?: string | null
+          is_published?: boolean
+          language?: string
+          markdown_body?: string
+          reading_minutes?: number | null
+          seo_description?: string | null
+          slug?: string
+          title_override?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      article_refresh_runs: {
+        Row: {
+          created_at: string
+          error_message: string | null
+          finished_at: string | null
+          id: string
+          languages: string[]
+          notes: string | null
+          processed_count: number
+          run_date: string
+          source_model: string | null
+          started_at: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          error_message?: string | null
+          finished_at?: string | null
+          id?: string
+          languages?: string[]
+          notes?: string | null
+          processed_count?: number
+          run_date?: string
+          source_model?: string | null
+          started_at?: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          error_message?: string | null
+          finished_at?: string | null
+          id?: string
+          languages?: string[]
+          notes?: string | null
+          processed_count?: number
+          run_date?: string
+          source_model?: string | null
+          started_at?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       billing_diagnostics: {
         Row: {
           catalog_ready: boolean
