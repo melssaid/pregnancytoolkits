@@ -108,7 +108,10 @@ export function Layout({ children, showBack = false, compactBackHeader = false }
 
 
       {/* Header - flush with trust bar, refined curved bottom with soft side shadow */}
-      <header className="relative sticky top-0 z-50 border-b border-border/40 bg-card/96 backdrop-blur-md shadow-header">
+      <motion.header
+        className="relative sticky top-0 z-50 border-b border-border/40 backdrop-blur-md will-change-transform"
+        style={{ backgroundColor: rawBg, boxShadow: rawShadow }}
+      >
         {/* Curved bottom edge — refined half-circle with subtle ambient shadow */}
         <div className="absolute -bottom-[20px] left-0 right-0 h-[26px] overflow-visible pointer-events-none z-10">
           <svg viewBox="0 0 1440 120" fill="none" className="w-full h-full" preserveAspectRatio="none">
@@ -126,7 +129,7 @@ export function Layout({ children, showBack = false, compactBackHeader = false }
             />
           </svg>
         </div>
-        <div dir={showBack ? 'ltr' : undefined} className={`mx-auto flex h-[5.25rem] max-w-4xl items-center ${showBack ? 'justify-between' : 'justify-center'} px-3 sm:px-4`}>
+        <motion.div dir={showBack ? 'ltr' : undefined} style={{ height: headerHeight }} className={`mx-auto flex max-w-4xl items-center ${showBack ? 'justify-between' : 'justify-center'} px-3 sm:px-4`}>
           {showBack ? (
             /* Sub-pages: back button + logo + name on left */
             <div className="flex items-center gap-2.5">
