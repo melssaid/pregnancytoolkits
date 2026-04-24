@@ -31,9 +31,13 @@ interface UsageResponse {
   generatedAt: string;
   rangeHours: number;
   liveWindowMinutes: number;
+  dailyDays: number;
   combined: SegmentStats;
   app: SegmentStats;
   web: SegmentStats;
+  daily: { date: string; dau: number; pageViews: number; pwaInstalls: number; appOpens: number }[];
+  dailyTotals: { dau: number; pageViews: number; pwaInstalls: number; appOpens: number };
+  pushSubscriptions: { total: number; byLanguage: { lang: string; count: number }[] };
   sessionDebug: {
     sessionId: string;
     bucket: Exclude<SegmentKey, "combined">;
