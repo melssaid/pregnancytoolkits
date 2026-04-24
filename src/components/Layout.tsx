@@ -234,7 +234,10 @@ export function Layout({ children, showBack = false, compactBackHeader = false }
                   aria-hidden="true"
                   className="absolute inset-1 rounded-full bg-primary/10 blur-md"
                 />
-                <div className="relative h-[68px] w-[68px] overflow-hidden rounded-full border border-border/70 bg-card ring-4 ring-background shadow-[0_14px_28px_-18px_hsl(var(--foreground)/0.35)]">
+                <motion.div
+                  style={{ width: logoSize, height: logoSize }}
+                  className="relative overflow-hidden rounded-full border border-border/70 bg-card ring-4 ring-background shadow-[0_14px_28px_-18px_hsl(var(--foreground)/0.35)]"
+                >
                   <img
                     src={logoImage}
                     alt="Pregnancy Toolkits"
@@ -244,7 +247,7 @@ export function Layout({ children, showBack = false, compactBackHeader = false }
                     loading="eager"
                     decoding="async"
                   />
-                </div>
+                </motion.div>
               </Link>
               <div className="absolute right-3 flex items-center gap-2 sm:right-4">
                 {!isPremium && (
