@@ -633,7 +633,10 @@ const Index = () => {
               onToggle={() => handleJourneyToggle(config.key)}
             />
           ))}
-          
+
+          {/* Compact gift banner — above footer */}
+          <BonusPromoBanner lang={lang} />
+
           <FooterCard />
 
           {/* Coupon + Share row */}
