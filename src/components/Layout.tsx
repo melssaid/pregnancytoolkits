@@ -214,16 +214,83 @@ export function Layout({ children, showBack = false, compactBackHeader = false }
                 <LanguageDropdown variant="compact" />
               </div>
               <Link to="/" className="flex items-center justify-center">
-                <div className="rounded-full overflow-hidden border border-border/60 bg-card shadow-[0_10px_22px_-18px_hsl(var(--foreground)/0.45)] ring-1 ring-primary/10 h-14 w-14">
-                  <video
-                    src="/logo-video.mp4"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="w-full h-full object-cover"
-                    aria-label="Pregnancy Toolkits"
+                <div className="relative flex items-center justify-center flex-shrink-0" style={{ width: 80, height: 80 }}>
+                  {/* Rotating ring with floating hearts */}
+                  <motion.div
+                    className="absolute rounded-full border border-primary/15"
+                    style={{ width: 76, height: 76 }}
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                   />
+                  {[0, 1, 2, 3, 4, 5].map((i) => {
+                    const angle = (i / 6) * 360;
+                    const radius = 34;
+                    const isPink = i % 2 === 1;
+                    return (
+                      <motion.span
+                        key={i}
+                        className={`absolute ${isPink ? 'text-pink-400 drop-shadow-[0_0_8px_rgba(244,114,182,0.6)]' : 'text-primary drop-shadow-[0_0_6px_hsl(var(--primary)/0.5)]'}`}
+                        style={{ fontSize: isPink ? 11 : 10 }}
+                        animate={isPink ? {
+                          x: [
+                            Math.cos((angle * Math.PI) / 180) * radius,
+                            Math.cos(((angle + 180) * Math.PI) / 180) * (radius * 0.7),
+                            Math.cos(((angle + 360) * Math.PI) / 180) * radius,
+                          ],
+                          y: [
+                            Math.sin((angle * Math.PI) / 180) * radius,
+                            Math.sin(((angle + 180) * Math.PI) / 180) * (radius * 0.7),
+                            Math.sin(((angle + 360) * Math.PI) / 180) * radius,
+                          ],
+                          scale: [0.6, 1.5, 0.6],
+                          opacity: [0.3, 0.9, 0.3],
+                          rotate: [0, 20, -20, 0],
+                        } : {
+                          x: [
+                            Math.cos((angle * Math.PI) / 180) * radius,
+                            Math.cos(((angle + 360) * Math.PI) / 180) * radius,
+                          ],
+                          y: [
+                            Math.sin((angle * Math.PI) / 180) * radius,
+                            Math.sin(((angle + 360) * Math.PI) / 180) * radius,
+                          ],
+                          scale: [0.8, 1.3, 0.8],
+                          opacity: [0.5, 1, 0.5],
+                        }}
+                        transition={isPink ? {
+                          x: { duration: 12, repeat: Infinity, ease: "easeInOut" },
+                          y: { duration: 12, repeat: Infinity, ease: "easeInOut" },
+                          scale: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: i * 0.5 },
+                          opacity: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: i * 0.5 },
+                          rotate: { duration: 6, repeat: Infinity, ease: "easeInOut" },
+                        } : {
+                          x: { duration: 8, repeat: Infinity, ease: "linear" },
+                          y: { duration: 8, repeat: Infinity, ease: "linear" },
+                          scale: { duration: 2, repeat: Infinity, ease: "easeInOut", delay: i * 0.3 },
+                          opacity: { duration: 2, repeat: Infinity, ease: "easeInOut", delay: i * 0.3 },
+                        }}
+                      >
+                        ♥
+                      </motion.span>
+                    );
+                  })}
+                  <motion.div
+                    className="absolute rounded-full bg-primary/8 blur-lg"
+                    style={{ width: 68, height: 68 }}
+                    animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.6, 0.3] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                  />
+                  <div className="rounded-full overflow-hidden shadow-lg h-11 w-11">
+                    <video
+                      src="/logo-video.mp4"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="w-full h-full object-cover"
+                      aria-label="Pregnancy Toolkits"
+                    />
+                  </div>
                 </div>
               </Link>
               <div className="absolute right-3 flex items-center gap-2 sm:right-4">
