@@ -280,15 +280,15 @@ export function Layout({ children, showBack = false, compactBackHeader = false }
                     animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.6, 0.3] }}
                     transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                   />
-                  <div className="rounded-full overflow-hidden shadow-lg h-11 w-11">
-                    <video
-                      src="/logo-video.mp4"
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
+                  <div className="rounded-full overflow-hidden shadow-lg h-11 w-11 bg-card">
+                    <img
+                      src={logoImage}
+                      alt="Pregnancy Toolkits"
+                      width={44}
+                      height={44}
                       className="w-full h-full object-cover"
-                      aria-label="Pregnancy Toolkits"
+                      loading="eager"
+                      decoding="async"
                     />
                   </div>
                 </div>
