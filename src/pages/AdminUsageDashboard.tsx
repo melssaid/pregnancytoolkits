@@ -91,7 +91,7 @@ export default function AdminUsageDashboard() {
         throw new Error("تعذر إنشاء جلسة للوصول إلى التقرير.");
       }
 
-      const res = await fetch(`${getBackendFunctionUrl("app-usage-stats")}?hours=48&liveMinutes=5`, {
+      const res = await fetch(`${getBackendFunctionUrl("app-usage-stats")}?hours=48&liveMinutes=5&days=7`, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
