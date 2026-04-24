@@ -42,8 +42,8 @@ export function Layout({ children, showBack = false, compactBackHeader = false }
 
   // Smooth sticky header transition on scroll
   const { scrollY } = useScroll();
-  const rawHeight = useTransform(scrollY, [0, 80], [84, 60]);
-  const rawLogo = useTransform(scrollY, [0, 80], [68, 44]);
+  const rawHeight = useTransform(scrollY, [0, 80], [72, 56]);
+  const rawLogo = useTransform(scrollY, [0, 80], [54, 40]);
   const rawShadow = useTransform(
     scrollY,
     [0, 80],
