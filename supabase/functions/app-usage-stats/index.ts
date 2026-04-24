@@ -128,6 +128,7 @@ Deno.serve(async (req) => {
     const url = new URL(req.url);
     const hours = Math.min(Math.max(Number(url.searchParams.get("hours") || 48), 1), 168);
     const liveMinutes = Math.min(Math.max(Number(url.searchParams.get("liveMinutes") || 5), 1), 30);
+    const dailyDays = Math.min(Math.max(Number(url.searchParams.get("days") || 7), 1), 30);
 
     const userClient = createClient(
       Deno.env.get("SUPABASE_URL") ?? "",
@@ -146,6 +147,7 @@ Deno.serve(async (req) => {
     const now = new Date();
     const from = new Date(now.getTime() - hours * 60 * 60 * 1000).toISOString();
     const liveFrom = new Date(now.getTime() - liveMinutes * 60 * 1000).toISOString();
+    const dailyFrom = new Date(now.getTime() - dailyDays * 24 * 60 * 60 * 1000).toISOString();
 
     const { data, error } = await adminClient
       .from("tool_analytics")
@@ -155,6 +157,20 @@ Deno.serve(async (req) => {
       .limit(5000);
 
     if (error) throw error;
+
+    // Daily aggregates (last N days) — DAU + PWA installs + app opens
+    const { data: dailyData } = await adminClient
+      .from("tool_analytics")
+      .select("session_id, action_type, tool_id, created_at")
+      .gte("created_at", dailyFrom)
+      .order("created_at", { ascending: false })
+      .limit(20000);
+
+    // Push subscriptions distribution (live snapshot)
+    const { data: pushData } = await adminClient
+      .from("push_subscriptions")
+      .select("user_language");
+
 
     const rows = (data || []) as ToolRow[];
     const sessionGroups = new Map<string, ToolRow[]>();
