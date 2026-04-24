@@ -632,8 +632,8 @@ const Index = () => {
             />
           ))}
 
-          {/* Compact gift banner — above footer */}
-          <BonusPromoBanner lang={lang} />
+          {/* Exclusive gift banner — below journeys, above footer */}
+          <Preg10PromoBanner lang={lang} />
 
           <FooterCard />
 
