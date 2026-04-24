@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { Shield, Heart, Settings, Crown } from "lucide-react";
 import { toast } from "sonner";
 const logoImage = "/logo.webp";
