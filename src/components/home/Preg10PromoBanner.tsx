@@ -192,12 +192,10 @@ const Preg10PromoBanner = memo(function Preg10PromoBanner({ lang }: Props) {
       setClaimed(true);
       try { localStorage.setItem(CLAIMED_KEY, "1"); } catch {}
       refresh();
-      // التقاط الرصيد الجديد بعد التطبيق لإظهار الإيماءة الاحترافية
       setTimeout(() => {
         const state = getQuotaState();
         setNewBalance(state.remaining);
       }, 200);
-      // إيماءة منبثقة احترافية
       toast.success(`✨ ${l.added}`, {
         description: l.claimedDesc,
         duration: 5000,
@@ -207,122 +205,79 @@ const Preg10PromoBanner = memo(function Preg10PromoBanner({ lang }: Props) {
     }
   };
 
-
   return (
     <AnimatePresence>
       <motion.div
-        initial={{ opacity: 0, y: 8, scale: 0.98 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        exit={{ opacity: 0, y: -6, scale: 0.96 }}
-        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+        initial={{ opacity: 0, y: 6 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -4 }}
+        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
         className="relative"
       >
         {hasClaimedPromo ? (
-          <div className="relative overflow-hidden rounded-xl border border-primary/15 bg-secondary/60 px-3 py-2.5 shadow-sm">
-            {/* subtle top accent line */}
-            <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
-
-            <div className="relative flex items-center gap-2.5">
-              <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border border-primary/20 bg-primary/10">
-                <Check className="w-4 h-4 text-primary" strokeWidth={2.5} />
-              </div>
-
-              <div className="min-w-0 flex-1">
-                <div className="flex items-center gap-1.5">
-                  <span className="inline-flex items-center rounded-full bg-primary/10 px-1.5 py-0.5 text-[10px] font-extrabold tracking-wider text-primary">
-                    {isAr ? 'تم الاستخدام' : 'USED'}
-                  </span>
-                  <span className="text-[11px] font-bold text-muted-foreground">
-                    {PROMO_CODE}
-                  </span>
-                </div>
-                <p
-                  className="text-[12px] font-extrabold text-foreground leading-tight mt-0.5"
-                  style={{ fontFamily: isAr ? "'Tajawal', sans-serif" : undefined }}
-                >
-                  {l.claimed}
-                </p>
-              </div>
-
-              <div className="flex-shrink-0 rounded-lg border border-primary/10 bg-primary/5 px-2 py-1 text-center">
-                <div className="text-[10px] font-bold text-primary">{l.bonusLabel}</div>
-                <div className="text-[13px] font-black text-primary">+10</div>
-              </div>
+          <div className="relative flex items-center gap-2.5 rounded-xl border border-primary/15 bg-secondary/60 px-3 py-2 shadow-sm">
+            <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+            <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-primary/15 bg-primary/10">
+              <Check className="h-3.5 w-3.5 text-primary" strokeWidth={2.5} />
             </div>
-
-            {newBalance !== null && (
-              <p className="text-[11px] text-muted-foreground mt-1.5 leading-snug">
-                {l.newBalance}: {newBalance} {l.points}
-              </p>
-            )}
+            <p className="text-[11px] font-bold text-foreground">
+              {l.claimed}
+            </p>
+            <div className="ms-auto shrink-0 rounded-md border border-primary/10 bg-primary/5 px-2 py-0.5 text-center">
+              <span className="text-[11px] font-black text-primary">+10</span>
+            </div>
           </div>
         ) : (
-          <div className="relative overflow-hidden rounded-xl border border-primary/15 bg-secondary/40 shadow-sm">
-            {/* Primary accent top bar */}
-            <div className="h-[2px] bg-gradient-to-r from-transparent via-primary/60 to-transparent" />
-
+          <div className="relative flex items-center gap-2.5 rounded-xl border border-border/60 bg-card/80 px-3 py-2 shadow-[var(--shadow-card)] backdrop-blur-sm">
             {/* Dismiss */}
             <button
               onClick={handleDismiss}
               aria-label="dismiss"
-              className="absolute top-1.5 end-1.5 z-10 w-5 h-5 rounded-full bg-muted/60 flex items-center justify-center hover:bg-muted transition-colors"
+              className="absolute top-1 end-1 z-10 flex h-5 w-5 items-center justify-center rounded-full bg-muted/60 hover:bg-muted transition-colors"
             >
-              <X className="w-3 h-3 text-muted-foreground" />
+              <X className="h-2.5 w-2.5 text-muted-foreground" />
             </button>
 
-            <div className="relative px-3 pt-2 pb-2.5">
-              {/* Header row: badge + title inline */}
-              <div className="flex items-center gap-2 mb-1.5">
-                <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-primary/10 text-[10px] font-extrabold text-primary">
-                  <Zap className="w-3 h-3" strokeWidth={2.5} />
-                  {l.badge}
-                </span>
-                <h3
-                  className="text-[13px] font-extrabold text-foreground leading-tight"
-                  style={{ fontFamily: isAr ? "'Tajawal', sans-serif" : undefined }}
-                >
+            {/* Compact icon */}
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-secondary">
+              <Gift className="h-4 w-4 text-primary" />
+            </div>
+
+            {/* Compact text + CTA inline */}
+            <div className="flex flex-1 items-center gap-2 min-w-0">
+              <div className="min-w-0 flex-1">
+                <p className="text-[11px] font-extrabold text-foreground leading-tight truncate">
                   {l.title}
-                </h3>
+                </p>
+                <p className="text-[10px] text-muted-foreground leading-tight truncate">
+                  {l.desc}
+                </p>
               </div>
 
-              <p className="text-[11px] text-muted-foreground leading-snug mb-2">
-                {l.desc}
-              </p>
-
-              {/* Code + CTA in one compact row */}
-              <div className="flex items-center gap-2">
-                <div
-                  className="flex items-center gap-1.5 px-2 py-1.5 rounded-lg bg-background border border-border flex-1 min-w-0"
+              {/* Inline code + activate */}
+              <div className="flex items-center gap-1.5 shrink-0">
+                <button
+                  onClick={handleCopy}
+                  className="flex items-center gap-1 rounded-md border border-border bg-muted/40 px-1.5 py-0.5 hover:bg-muted transition-all active:scale-95"
+                  aria-label={l.copyHint}
                 >
-                  <Gift className="w-3.5 h-3.5 text-primary flex-shrink-0" strokeWidth={2} />
-                  <span
-                    className="font-mono font-black text-[15px] tracking-[0.15em] select-all text-primary"
-                  >
+                  <span className="font-mono text-[11px] font-bold tracking-wider text-primary">
                     {PROMO_CODE}
                   </span>
-                  <button
-                    onClick={handleCopy}
-                    className="flex items-center gap-0.5 px-1.5 py-0.5 rounded-md bg-muted/60 hover:bg-muted transition-all active:scale-95"
-                    aria-label={l.copyHint}
-                  >
-                    {copied ? (
-                      <Check className="w-3 h-3 text-success" strokeWidth={2.5} />
-                    ) : (
-                      <Copy className="w-3 h-3 text-muted-foreground" strokeWidth={2} />
-                    )}
-                    <span className="text-[10px] font-bold text-muted-foreground">
-                      {copied ? l.copied : l.copyHint}
-                    </span>
-                  </button>
-                </div>
+                  {copied ? (
+                    <Check className="h-3 w-3 text-success" strokeWidth={2.5} />
+                  ) : (
+                    <Copy className="h-3 w-3 text-muted-foreground" strokeWidth={2} />
+                  )}
+                </button>
 
                 <motion.button
                   onClick={handleActivate}
                   disabled={redeeming}
-                  whileTap={{ scale: 0.97 }}
-                  className="inline-flex items-center justify-center gap-1 px-3 py-1.5 rounded-lg text-[11px] font-extrabold shadow-sm disabled:opacity-70 transition-all whitespace-nowrap bg-primary text-primary-foreground hover:opacity-90"
+                  whileTap={{ scale: 0.96 }}
+                  className="inline-flex items-center gap-0.5 rounded-lg bg-primary px-2 py-1 text-[10px] font-extrabold text-primary-foreground hover:bg-primary/90 disabled:opacity-70 transition-colors whitespace-nowrap"
                 >
-                  <Sparkles className="w-3 h-3" strokeWidth={2.5} />
+                  <Sparkles className="h-3 w-3" strokeWidth={2.5} />
                   {redeeming ? l.applying : l.cta}
                 </motion.button>
               </div>
