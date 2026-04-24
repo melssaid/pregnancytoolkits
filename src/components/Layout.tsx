@@ -113,7 +113,7 @@ export function Layout({ children, showBack = false, compactBackHeader = false }
             />
           </svg>
         </div>
-        <div dir={showBack ? 'ltr' : undefined} className={`mx-auto flex h-[5rem] max-w-4xl items-center ${showBack ? 'justify-between' : 'justify-center'} px-3 sm:px-4`}>
+        <div dir={showBack ? 'ltr' : undefined} className={`mx-auto flex h-[4.5rem] max-w-4xl items-center ${showBack ? 'justify-between' : 'justify-center'} px-3 sm:px-4`}>
           {showBack ? (
             /* Sub-pages: back button + logo + name on left */
             <div className="flex items-center gap-2.5">
@@ -213,7 +213,7 @@ export function Layout({ children, showBack = false, compactBackHeader = false }
               <div className="absolute left-3 flex items-center gap-2 sm:left-4">
                 <LanguageDropdown variant="compact" />
               </div>
-              <Link to="/" className="flex items-center justify-center">
+              <Link to="/" className="flex items-center justify-center translate-y-1">
                 <div className="rounded-full overflow-hidden bg-card ring-1 ring-primary/15 shadow-[0_8px_20px_-12px_hsl(var(--primary)/0.35)] h-16 w-16">
                   <img
                     src={logoImage}
