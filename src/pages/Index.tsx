@@ -19,7 +19,6 @@ import { getToolTitle } from "@/lib/toolCopy";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { CouponRedeemer } from "@/components/settings/CouponRedeemer";
 import Preg10PromoBanner from "@/components/home/Preg10PromoBanner";
-import BonusPromoBanner from "@/components/home/BonusPromoBanner";
 import { SectionFeaturedArticles } from "@/components/articles/SectionFeaturedArticles";
 
 
