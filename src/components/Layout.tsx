@@ -40,6 +40,19 @@ export function Layout({ children, showBack = false, compactBackHeader = false }
     window.dispatchEvent(new CustomEvent("app:first-render"));
   }, []);
 
+  // Smooth sticky header transition on scroll
+  const { scrollY } = useScroll();
+  const rawHeight = useTransform(scrollY, [0, 80], [84, 60]);
+  const rawLogo = useTransform(scrollY, [0, 80], [68, 44]);
+  const rawShadow = useTransform(
+    scrollY,
+    [0, 80],
+    ["0 1px 2px hsl(340 40% 30% / 0.04)", "0 8px 24px -12px hsl(340 50% 35% / 0.18)"]
+  );
+  const rawBg = useTransform(scrollY, [0, 80], ["hsl(var(--card) / 0.96)", "hsl(var(--card) / 0.88)"]);
+  const headerHeight = useSpring(rawHeight, { stiffness: 180, damping: 26, mass: 0.4 });
+  const logoSize = useSpring(rawLogo, { stiffness: 180, damping: 26, mass: 0.4 });
+
   return (
     <div className="min-h-screen bg-background flex flex-col overflow-x-hidden">
       <BreadcrumbSchema />
