@@ -97,7 +97,7 @@ export function Layout({ children, showBack = false, compactBackHeader = false }
       {/* Header - flush with trust bar, refined curved bottom with soft side shadow */}
       <header className="relative sticky top-0 z-50 border-b border-border/40 bg-card/96 backdrop-blur-md shadow-header">
         {/* Curved bottom edge — refined half-circle with subtle ambient shadow */}
-        <div className="absolute -bottom-[30px] left-0 right-0 h-[36px] overflow-visible pointer-events-none z-10">
+        <div className="absolute -bottom-[20px] left-0 right-0 h-[26px] overflow-visible pointer-events-none z-10">
           <svg viewBox="0 0 1440 120" fill="none" className="w-full h-full" preserveAspectRatio="none">
             <defs>
               <filter id="header-curve-shadow" x="-8%" y="-20%" width="116%" height="180%">
