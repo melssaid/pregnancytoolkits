@@ -91,17 +91,17 @@ export function Layout({ children, showBack = false, compactBackHeader = false }
             transition={{ delay: 0.8, duration: 1.5, repeat: Infinity, repeatDelay: 1.5, ease: 'easeInOut' }}
           />
         </div>
-        {/* Curved bottom edge — half-circle reveal of header beneath */}
-        <div className="absolute -bottom-px left-0 right-0 h-[18px] overflow-hidden pointer-events-none z-10">
-          <svg viewBox="0 0 1440 90" fill="none" className="w-full h-full" preserveAspectRatio="none">
-            <path d="M0,90 L0,0 C240,80 480,90 720,90 C960,90 1200,80 1440,0 L1440,90 Z" className="fill-card" />
-          </svg>
-        </div>
       </motion.div>
 
 
-      {/* Header - flush with trust bar */}
-      <header className="sticky top-0 z-50 border-b border-border/50 bg-card/95 backdrop-blur-md shadow-header">
+      {/* Header - flush with trust bar, curved bottom reveals page */}
+      <header className="relative sticky top-0 z-50 border-b border-border/50 bg-card/95 backdrop-blur-md shadow-header">
+        {/* Curved bottom edge — half-circle */}
+        <div className="absolute -bottom-[18px] left-0 right-0 h-[20px] overflow-hidden pointer-events-none z-10">
+          <svg viewBox="0 0 1440 90" fill="none" className="w-full h-full" preserveAspectRatio="none">
+            <path d="M0,0 L0,10 C240,90 480,90 720,90 C960,90 1200,90 1440,10 L1440,0 Z" className="fill-card" />
+          </svg>
+        </div>
         <div dir={showBack ? 'ltr' : undefined} className={`mx-auto flex h-[4.5rem] max-w-4xl items-center ${showBack ? 'justify-between' : 'justify-center'} px-3 sm:px-4`}>
           {showBack ? (
             /* Sub-pages: back button + logo + name on left */
