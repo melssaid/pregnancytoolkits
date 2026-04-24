@@ -98,7 +98,7 @@ export function Layout({ children, showBack = false, compactBackHeader = false }
 
 
       {/* Header - flush with trust bar */}
-      <header className="sticky top-0 z-50 border-b border-border/50 bg-card/95 backdrop-blur-md" style={{ boxShadow: '0 10px 24px -18px hsl(var(--foreground) / 0.35)' }}>
+      <header className="sticky top-0 z-50 border-b border-border/50 bg-card/95 backdrop-blur-md" style={{ boxShadow: '0 8px 28px -16px hsl(var(--foreground) / 0.18)' }}>
         {/* Curved bottom edge */}
         <div className="absolute -bottom-[14px] left-0 right-0 h-[14px] overflow-hidden pointer-events-none z-10">
           <svg viewBox="0 0 1440 90" fill="none" className="w-full h-full" preserveAspectRatio="none">
