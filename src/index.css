@@ -313,6 +313,14 @@ html[lang="ar"] .ar-heading {
   .shadow-elevated {
     box-shadow: var(--shadow-elevated);
   }
+
+  .shadow-banner {
+    box-shadow: var(--shadow-banner);
+  }
+
+  .shadow-header {
+    box-shadow: var(--shadow-header);
+  }
   
   .text-balance {
     text-wrap: balance;
