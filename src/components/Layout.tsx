@@ -48,7 +48,10 @@ export function Layout({ children, showBack = false, compactBackHeader = false }
       {/* Trust Bar - Above header */}
       <motion.div 
         className="relative overflow-hidden border-b border-border/40 bg-primary text-primary-foreground"
-        style={{ paddingTop: 'env(safe-area-inset-top)' }}
+        style={{ 
+          paddingTop: 'env(safe-area-inset-top)',
+          boxShadow: '0 6px 24px -10px hsl(var(--primary) / 0.22)'
+        }}
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
