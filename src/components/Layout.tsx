@@ -97,7 +97,7 @@ export function Layout({ children, showBack = false, compactBackHeader = false }
       {/* Header - flush with trust bar, refined curved bottom with soft side shadow */}
       <header className="relative sticky top-0 z-50 border-b border-border/40 bg-card/96 backdrop-blur-md shadow-header">
         {/* Curved bottom edge — refined half-circle with subtle ambient shadow */}
-        <div className="absolute -bottom-[30px] left-0 right-0 h-[36px] overflow-visible pointer-events-none z-10">
+        <div className="absolute -bottom-[16px] left-0 right-0 h-[22px] overflow-visible pointer-events-none z-10">
           <svg viewBox="0 0 1440 120" fill="none" className="w-full h-full" preserveAspectRatio="none">
             <defs>
               <filter id="header-curve-shadow" x="-8%" y="-20%" width="116%" height="180%">
@@ -113,7 +113,7 @@ export function Layout({ children, showBack = false, compactBackHeader = false }
             />
           </svg>
         </div>
-        <div dir={showBack ? 'ltr' : undefined} className={`mx-auto flex h-[5.25rem] max-w-4xl items-center ${showBack ? 'justify-between' : 'justify-center'} px-3 sm:px-4`}>
+        <div dir={showBack ? 'ltr' : undefined} className={`mx-auto flex h-[4.25rem] max-w-4xl items-center ${showBack ? 'justify-between' : 'justify-center'} px-3 sm:px-4`}>
           {showBack ? (
             /* Sub-pages: back button + logo + name on left */
             <div className="flex items-center gap-2.5">
