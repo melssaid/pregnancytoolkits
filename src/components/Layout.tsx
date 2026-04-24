@@ -229,7 +229,7 @@ export function Layout({ children, showBack = false, compactBackHeader = false }
               <div className="absolute left-3 flex items-center gap-2 sm:left-4">
                 <LanguageDropdown variant="compact" />
               </div>
-              <Link to="/" className="relative z-20 flex items-center justify-center -translate-y-[14px]">
+              <Link to="/" className="relative z-20 flex items-center justify-center -translate-y-[8px]">
                 <span
                   aria-hidden="true"
                   className="absolute inset-1 rounded-full bg-primary/10 blur-md"
