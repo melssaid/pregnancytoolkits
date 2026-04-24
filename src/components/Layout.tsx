@@ -94,14 +94,16 @@ export function Layout({ children, showBack = false, compactBackHeader = false }
       </motion.div>
 
 
-      {/* Header - flush with trust bar, deep curved bottom with side shadow */}
+      {/* Header - flush with trust bar, deep curved bottom with rich side shadow */}
       <header className="relative sticky top-0 z-50 bg-card/95 backdrop-blur-md shadow-header">
-        {/* Curved bottom edge — pronounced half-circle */}
-        <div className="absolute -bottom-[28px] left-0 right-0 h-[32px] overflow-visible pointer-events-none z-10">
+        {/* Curved bottom edge — pronounced half-circle with stronger ambient shadow */}
+        <div className="absolute -bottom-[34px] left-0 right-0 h-[38px] overflow-visible pointer-events-none z-10">
           <svg viewBox="0 0 1440 120" fill="none" className="w-full h-full" preserveAspectRatio="none">
             <defs>
-              <filter id="header-curve-shadow" x="-5%" y="-20%" width="110%" height="160%">
-                <feDropShadow dx="0" dy="6" stdDeviation="8" floodColor="hsl(340 65% 52%)" floodOpacity="0.18" />
+              <filter id="header-curve-shadow" x="-10%" y="-30%" width="120%" height="200%">
+                <feDropShadow dx="-6" dy="10" stdDeviation="12" floodColor="hsl(340 65% 52%)" floodOpacity="0.22" />
+                <feDropShadow dx="6" dy="10" stdDeviation="12" floodColor="hsl(340 65% 52%)" floodOpacity="0.22" />
+                <feDropShadow dx="0" dy="14" stdDeviation="16" floodColor="hsl(25 20% 18%)" floodOpacity="0.10" />
               </filter>
             </defs>
             <path
@@ -111,7 +113,7 @@ export function Layout({ children, showBack = false, compactBackHeader = false }
             />
           </svg>
         </div>
-        <div dir={showBack ? 'ltr' : undefined} className={`mx-auto flex h-[4.5rem] max-w-4xl items-center ${showBack ? 'justify-between' : 'justify-center'} px-3 sm:px-4`}>
+        <div dir={showBack ? 'ltr' : undefined} className={`mx-auto flex h-[4rem] max-w-4xl items-center ${showBack ? 'justify-between' : 'justify-center'} px-3 sm:px-4`}>
           {showBack ? (
             /* Sub-pages: back button + logo + name on left */
             <div className="flex items-center gap-2.5">
