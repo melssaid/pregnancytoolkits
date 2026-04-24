@@ -113,7 +113,7 @@ export function Layout({ children, showBack = false, compactBackHeader = false }
             />
           </svg>
         </div>
-        <div dir={showBack ? 'ltr' : undefined} className={`mx-auto flex h-[4.25rem] max-w-4xl items-center ${showBack ? 'justify-between' : 'justify-center'} px-3 sm:px-4`}>
+        <div dir={showBack ? 'ltr' : undefined} className={`mx-auto flex h-[5.25rem] max-w-4xl items-center ${showBack ? 'justify-between' : 'justify-center'} px-3 sm:px-4`}>
           {showBack ? (
             /* Sub-pages: back button + logo + name on left */
             <div className="flex items-center gap-2.5">
@@ -213,17 +213,17 @@ export function Layout({ children, showBack = false, compactBackHeader = false }
               <div className="absolute left-3 flex items-center gap-2 sm:left-4">
                 <LanguageDropdown variant="compact" />
               </div>
-              <Link to="/" className="relative flex items-center justify-center translate-y-[8px]">
+              <Link to="/" className="relative flex items-center justify-center translate-y-[2px]">
                 <span
                   aria-hidden="true"
                   className="absolute inset-1 rounded-full bg-primary/10 blur-md"
                 />
-                <div className="relative h-14 w-14 overflow-hidden rounded-full border border-border/70 bg-card ring-4 ring-background shadow-[0_14px_28px_-18px_hsl(var(--foreground)/0.35)]">
+                <div className="relative h-[68px] w-[68px] overflow-hidden rounded-full border border-border/70 bg-card ring-4 ring-background shadow-[0_14px_28px_-18px_hsl(var(--foreground)/0.35)]">
                   <img
                     src={logoImage}
                     alt="Pregnancy Toolkits"
-                    width={56}
-                    height={56}
+                    width={68}
+                    height={68}
                     className="w-full h-full object-cover"
                     loading="eager"
                     decoding="async"
