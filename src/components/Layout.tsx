@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { Shield, Heart, Settings, Crown } from "lucide-react";
 import { toast } from "sonner";
 const logoImage = "/logo.webp";
@@ -39,6 +39,19 @@ export function Layout({ children, showBack = false, compactBackHeader = false }
   useEffect(() => {
     window.dispatchEvent(new CustomEvent("app:first-render"));
   }, []);
+
+  // Smooth sticky header transition on scroll
+  const { scrollY } = useScroll();
+  const rawHeight = useTransform(scrollY, [0, 80], [84, 60]);
+  const rawLogo = useTransform(scrollY, [0, 80], [68, 44]);
+  const rawShadow = useTransform(
+    scrollY,
+    [0, 80],
+    ["0 1px 2px hsl(340 40% 30% / 0.04)", "0 8px 24px -12px hsl(340 50% 35% / 0.18)"]
+  );
+  const rawBg = useTransform(scrollY, [0, 80], ["hsl(var(--card) / 0.96)", "hsl(var(--card) / 0.88)"]);
+  const headerHeight = useSpring(rawHeight, { stiffness: 180, damping: 26, mass: 0.4 });
+  const logoSize = useSpring(rawLogo, { stiffness: 180, damping: 26, mass: 0.4 });
 
   return (
     <div className="min-h-screen bg-background flex flex-col overflow-x-hidden">
@@ -95,7 +108,10 @@ export function Layout({ children, showBack = false, compactBackHeader = false }
 
 
       {/* Header - flush with trust bar, refined curved bottom with soft side shadow */}
-      <header className="relative sticky top-0 z-50 border-b border-border/40 bg-card/96 backdrop-blur-md shadow-header">
+      <motion.header
+        className="relative sticky top-0 z-50 border-b border-border/40 backdrop-blur-md will-change-transform"
+        style={{ backgroundColor: rawBg, boxShadow: rawShadow }}
+      >
         {/* Curved bottom edge — refined half-circle with subtle ambient shadow */}
         <div className="absolute -bottom-[20px] left-0 right-0 h-[26px] overflow-visible pointer-events-none z-10">
           <svg viewBox="0 0 1440 120" fill="none" className="w-full h-full" preserveAspectRatio="none">
@@ -113,7 +129,7 @@ export function Layout({ children, showBack = false, compactBackHeader = false }
             />
           </svg>
         </div>
-        <div dir={showBack ? 'ltr' : undefined} className={`mx-auto flex h-[5.25rem] max-w-4xl items-center ${showBack ? 'justify-between' : 'justify-center'} px-3 sm:px-4`}>
+        <motion.div dir={showBack ? 'ltr' : undefined} style={{ height: headerHeight }} className={`mx-auto flex max-w-4xl items-center ${showBack ? 'justify-between' : 'justify-center'} px-3 sm:px-4`}>
           {showBack ? (
             /* Sub-pages: back button + logo + name on left */
             <div className="flex items-center gap-2.5">
@@ -218,7 +234,10 @@ export function Layout({ children, showBack = false, compactBackHeader = false }
                   aria-hidden="true"
                   className="absolute inset-1 rounded-full bg-primary/10 blur-md"
                 />
-                <div className="relative h-[68px] w-[68px] overflow-hidden rounded-full border border-border/70 bg-card ring-4 ring-background shadow-[0_14px_28px_-18px_hsl(var(--foreground)/0.35)]">
+                <motion.div
+                  style={{ width: logoSize, height: logoSize }}
+                  className="relative overflow-hidden rounded-full border border-border/70 bg-card ring-4 ring-background shadow-[0_14px_28px_-18px_hsl(var(--foreground)/0.35)]"
+                >
                   <img
                     src={logoImage}
                     alt="Pregnancy Toolkits"
@@ -228,7 +247,7 @@ export function Layout({ children, showBack = false, compactBackHeader = false }
                     loading="eager"
                     decoding="async"
                   />
-                </div>
+                </motion.div>
               </Link>
               <div className="absolute right-3 flex items-center gap-2 sm:right-4">
                 {!isPremium && (
@@ -282,8 +301,8 @@ export function Layout({ children, showBack = false, compactBackHeader = false }
               </Link>
             </div>
           )}
-        </div>
-      </header>
+        </motion.div>
+      </motion.header>
 
 
       {/* Decorative Side Borders */}
