@@ -298,8 +298,8 @@ export function Layout({ children, showBack = false, compactBackHeader = false }
               </Link>
             </div>
           )}
-        </div>
-      </header>
+        </motion.div>
+      </motion.header>
 
 
       {/* Decorative Side Borders */}
