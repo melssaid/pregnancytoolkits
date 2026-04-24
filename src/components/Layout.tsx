@@ -42,8 +42,8 @@ export function Layout({ children, showBack = false, compactBackHeader = false }
 
   // Smooth sticky header transition on scroll
   const { scrollY } = useScroll();
-  const rawHeight = useTransform(scrollY, [0, 80], [84, 60]);
-  const rawLogo = useTransform(scrollY, [0, 80], [68, 44]);
+  const rawHeight = useTransform(scrollY, [0, 80], [72, 56]);
+  const rawLogo = useTransform(scrollY, [0, 80], [54, 40]);
   const rawShadow = useTransform(
     scrollY,
     [0, 80],
@@ -113,7 +113,7 @@ export function Layout({ children, showBack = false, compactBackHeader = false }
         style={{ backgroundColor: rawBg, boxShadow: rawShadow }}
       >
         {/* Curved bottom edge — refined half-circle with subtle ambient shadow */}
-        <div className="absolute -bottom-[20px] left-0 right-0 h-[26px] overflow-visible pointer-events-none z-10">
+        <div className="absolute -bottom-[14px] left-0 right-0 h-[20px] overflow-visible pointer-events-none z-10">
           <svg viewBox="0 0 1440 120" fill="none" className="w-full h-full" preserveAspectRatio="none">
             <defs>
               <filter id="header-curve-shadow" x="-8%" y="-20%" width="116%" height="180%">
@@ -229,7 +229,7 @@ export function Layout({ children, showBack = false, compactBackHeader = false }
               <div className="absolute left-3 flex items-center gap-2 sm:left-4">
                 <LanguageDropdown variant="compact" />
               </div>
-              <Link to="/" className="relative z-20 flex items-center justify-center -translate-y-[14px]">
+              <Link to="/" className="relative z-20 flex items-center justify-center -translate-y-[8px]">
                 <span
                   aria-hidden="true"
                   className="absolute inset-1 rounded-full bg-primary/10 blur-md"
