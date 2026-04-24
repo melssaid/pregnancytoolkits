@@ -277,14 +277,74 @@ Deno.serve(async (req) => {
       };
     };
 
+    // ===== Daily aggregates: DAU + PWA installs + app opens =====
+    const dailyRows = (dailyData || []) as Array<{ session_id: string; action_type: string; tool_id: string; created_at: string }>;
+    const dailyMap = new Map<string, { date: string; sessions: Set<string>; pageViews: number; pwaInstalls: number; appOpens: number }>();
+
+    // seed last N days with zeros
+    for (let i = dailyDays - 1; i >= 0; i--) {
+      const d = new Date(now.getTime() - i * 24 * 60 * 60 * 1000);
+      const key = `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, "0")}-${String(d.getUTCDate()).padStart(2, "0")}`;
+      dailyMap.set(key, { date: key, sessions: new Set(), pageViews: 0, pwaInstalls: 0, appOpens: 0 });
+    }
+
+    for (const row of dailyRows) {
+      const d = new Date(row.created_at);
+      const key = `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, "0")}-${String(d.getUTCDate()).padStart(2, "0")}`;
+      const bucket = dailyMap.get(key);
+      if (!bucket) continue;
+      bucket.sessions.add(row.session_id);
+      if (row.action_type === "page_view" || row.action_type === "view" || row.action_type === "tool_view") bucket.pageViews += 1;
+      if (row.action_type === "pwa_install" || row.tool_id === "pwa_install") bucket.pwaInstalls += 1;
+      if (row.action_type === "app_open" || row.action_type === "session_start") bucket.appOpens += 1;
+    }
+
+    const daily = Array.from(dailyMap.values())
+      .sort((a, b) => a.date.localeCompare(b.date))
+      .map((d) => ({
+        date: d.date,
+        dau: d.sessions.size,
+        pageViews: d.pageViews,
+        pwaInstalls: d.pwaInstalls,
+        appOpens: d.appOpens,
+      }));
+
+    const totals = daily.reduce(
+      (acc, d) => ({
+        dau: acc.dau + d.dau,
+        pageViews: acc.pageViews + d.pageViews,
+        pwaInstalls: acc.pwaInstalls + d.pwaInstalls,
+        appOpens: acc.appOpens + d.appOpens,
+      }),
+      { dau: 0, pageViews: 0, pwaInstalls: 0, appOpens: 0 },
+    );
+
+    // ===== Push subscriptions distribution =====
+    const pushRows = (pushData || []) as Array<{ user_language: string }>;
+    const pushByLang: Record<string, number> = {};
+    for (const row of pushRows) {
+      const lang = (row.user_language || "unknown").slice(0, 5);
+      pushByLang[lang] = (pushByLang[lang] || 0) + 1;
+    }
+    const pushSubscriptions = {
+      total: pushRows.length,
+      byLanguage: Object.entries(pushByLang)
+        .map(([lang, count]) => ({ lang, count }))
+        .sort((a, b) => b.count - a.count),
+    };
+
     return json({
       generatedAt: now.toISOString(),
       rangeHours: hours,
       liveWindowMinutes: liveMinutes,
+      dailyDays,
       app: summarize(rowsByBucket.app),
       web: summarize(rowsByBucket.web),
       combined: summarize(rows),
       sessionDebug: sessionDebug.slice(0, 150),
+      daily,
+      dailyTotals: totals,
+      pushSubscriptions,
     });
   } catch (error) {
     console.error("[app-usage-stats]", error);
