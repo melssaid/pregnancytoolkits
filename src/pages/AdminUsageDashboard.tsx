@@ -181,13 +181,89 @@ export default function AdminUsageDashboard() {
                   <StatCard icon={<TimerReset className="h-4 w-4" />} label="متوسط الجلسة" value={formatDuration(activeStats.avgDurationSeconds)} sub="تقريبي" />
                 </div>
 
-                <Tabs defaultValue="chart" className="w-full">
-                  <TabsList className="grid w-full grid-cols-4">
+                <Tabs defaultValue="daily" className="w-full">
+                  <TabsList className="grid w-full grid-cols-5 text-[11px]">
+                    <TabsTrigger value="daily">اليومي</TabsTrigger>
                     <TabsTrigger value="chart">النشاط</TabsTrigger>
                     <TabsTrigger value="pages">الصفحات</TabsTrigger>
                     <TabsTrigger value="langs">اللغات</TabsTrigger>
                     <TabsTrigger value="debug">Debug</TabsTrigger>
                   </TabsList>
+
+                  <TabsContent value="daily" className="space-y-3">
+                    <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+                      <StatCard icon={<TrendingUp className="h-4 w-4" />} label={`زوار ${stats.dailyDays} أيام`} value={stats.dailyTotals.dau} sub="DAU مجموع" />
+                      <StatCard icon={<Eye className="h-4 w-4" />} label="مشاهدات الصفحات" value={stats.dailyTotals.pageViews} sub="آخر أسبوع" />
+                      <StatCard icon={<Download className="h-4 w-4" />} label="تثبيتات PWA" value={stats.dailyTotals.pwaInstalls} sub="مجموع الأسبوع" />
+                      <StatCard icon={<Bell className="h-4 w-4" />} label="مشتركو الإشعارات" value={stats.pushSubscriptions.total} sub="حالياً" />
+                    </div>
+
+                    <Card>
+                      <CardHeader className="pb-2">
+                        <CardTitle className="text-sm font-bold text-foreground">الزوار اليوميون (DAU) — آخر {stats.dailyDays} أيام</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <ResponsiveContainer width="100%" height={260}>
+                          <LineChart data={stats.daily}>
+                            <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--muted))" />
+                            <XAxis dataKey="date" tick={{ fontSize: 10 }} tickFormatter={(v) => v.slice(5)} />
+                            <YAxis tick={{ fontSize: 10 }} />
+                            <Tooltip />
+                            <Legend wrapperStyle={{ fontSize: 11 }} />
+                            <Line type="monotone" dataKey="dau" name="زوار" stroke="hsl(var(--primary))" strokeWidth={2.5} dot={{ r: 3 }} />
+                            <Line type="monotone" dataKey="appOpens" name="فتحات" stroke="hsl(var(--accent))" strokeWidth={2} dot={{ r: 2 }} />
+                            <Line type="monotone" dataKey="pwaInstalls" name="تثبيتات" stroke="hsl(140 60% 45%)" strokeWidth={2} dot={{ r: 2 }} />
+                          </LineChart>
+                        </ResponsiveContainer>
+                      </CardContent>
+                    </Card>
+
+                    <Card>
+                      <CardHeader className="pb-2">
+                        <CardTitle className="text-sm font-bold text-foreground">مشتركو الإشعارات حسب اللغة</CardTitle>
+                      </CardHeader>
+                      <CardContent className="space-y-2">
+                        {stats.pushSubscriptions.byLanguage.length === 0 ? (
+                          <div className="text-xs text-muted-foreground">لا توجد اشتراكات إشعارات بعد.</div>
+                        ) : (
+                          stats.pushSubscriptions.byLanguage.map((item) => (
+                            <div key={item.lang} className="flex items-center justify-between rounded-xl border border-border bg-card px-3 py-2.5">
+                              <span className="text-xs font-semibold text-foreground">{item.lang}</span>
+                              <span className="text-sm font-black text-primary">{item.count}</span>
+                            </div>
+                          ))
+                        )}
+                      </CardContent>
+                    </Card>
+
+                    <Card>
+                      <CardHeader className="pb-2">
+                        <CardTitle className="text-sm font-bold text-foreground">تفصيل يومي</CardTitle>
+                      </CardHeader>
+                      <CardContent className="p-0">
+                        <Table>
+                          <TableHeader>
+                            <TableRow>
+                              <TableHead>التاريخ</TableHead>
+                              <TableHead className="text-right">زوار</TableHead>
+                              <TableHead className="text-right">فتحات</TableHead>
+                              <TableHead className="text-right">PWA</TableHead>
+                            </TableRow>
+                          </TableHeader>
+                          <TableBody>
+                            {[...stats.daily].reverse().map((d) => (
+                              <TableRow key={d.date}>
+                                <TableCell className="text-xs font-medium text-foreground">{d.date}</TableCell>
+                                <TableCell className="text-right text-xs font-bold text-primary">{d.dau}</TableCell>
+                                <TableCell className="text-right text-xs text-muted-foreground">{d.appOpens}</TableCell>
+                                <TableCell className="text-right text-xs text-muted-foreground">{d.pwaInstalls}</TableCell>
+                              </TableRow>
+                            ))}
+                          </TableBody>
+                        </Table>
+                      </CardContent>
+                    </Card>
+                  </TabsContent>
 
                   <TabsContent value="chart">
                     <Card>
