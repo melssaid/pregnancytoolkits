@@ -47,11 +47,8 @@ export function Layout({ children, showBack = false, compactBackHeader = false }
       <TrialExpiryBanner />
       {/* Trust Bar - Above header */}
       <motion.div 
-        className="relative overflow-hidden border-b border-border/40 bg-primary text-primary-foreground"
-        style={{ 
-          paddingTop: 'env(safe-area-inset-top)',
-          boxShadow: '0 6px 24px -10px hsl(var(--primary) / 0.22)'
-        }}
+        className="relative overflow-hidden border-b border-border/40 bg-primary text-primary-foreground shadow-banner"
+        style={{ paddingTop: 'env(safe-area-inset-top)' }}
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
@@ -98,7 +95,7 @@ export function Layout({ children, showBack = false, compactBackHeader = false }
 
 
       {/* Header - flush with trust bar */}
-      <header className="sticky top-0 z-50 border-b border-border/50 bg-card/95 backdrop-blur-md" style={{ boxShadow: '0 8px 28px -16px hsl(var(--foreground) / 0.18)' }}>
+      <header className="sticky top-0 z-50 border-b border-border/50 bg-card/95 backdrop-blur-md shadow-header">
         {/* Curved bottom edge */}
         <div className="absolute -bottom-[14px] left-0 right-0 h-[14px] overflow-hidden pointer-events-none z-10">
           <svg viewBox="0 0 1440 90" fill="none" className="w-full h-full" preserveAspectRatio="none">
