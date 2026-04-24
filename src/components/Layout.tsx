@@ -113,7 +113,7 @@ export function Layout({ children, showBack = false, compactBackHeader = false }
             />
           </svg>
         </div>
-        <div dir={showBack ? 'ltr' : undefined} className={`mx-auto flex h-[4.5rem] max-w-4xl items-center ${showBack ? 'justify-between' : 'justify-center'} px-3 sm:px-4`}>
+        <div dir={showBack ? 'ltr' : undefined} className={`mx-auto flex h-[3.5rem] max-w-4xl items-center ${showBack ? 'justify-between' : 'justify-center'} px-3 sm:px-4`}>
           {showBack ? (
             /* Sub-pages: back button + logo + name on left */
             <div className="flex items-center gap-2.5">
