@@ -9142,6 +9142,25 @@
       "totalSaved": "{{count}} refeições salvas",
       "savedMeal": "Refeição salva",
       "tip": "Priorize proteína, ferro e cálcio em cada refeição."
+    },
+    "dataSources": {
+      "title": "Fontes de dados",
+      "subtitle": "{{active}} de {{total}} fontes ativas para a análise.",
+      "minWarning": "Ative pelo menos {{min}} fontes para a análise holística.",
+      "active": "Ativo",
+      "inactive": "Tocar para iniciar",
+      "items": {
+        "mood": "Humor",
+        "symptoms": "Sintomas",
+        "weight": "Peso",
+        "hydration": "Hidratação",
+        "vitamins": "Vitaminas",
+        "kicks": "Movimentos",
+        "contractions": "Contrações",
+        "appointments": "Consultas",
+        "meals": "Refeições",
+        "fitness": "Fitness"
+      }
     }
   },
   "reset": {

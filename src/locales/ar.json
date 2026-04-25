@@ -9229,6 +9229,25 @@
       "totalSaved": "{{count}} وجبات محفوظة",
       "savedMeal": "وجبة محفوظة",
       "tip": "ركّزي على البروتين والحديد والكالسيوم في كل وجبة."
+    },
+    "dataSources": {
+      "title": "مصادر البيانات",
+      "subtitle": "{{active}} من {{total}} مصادر نشطة تُغذّي التحليل.",
+      "minWarning": "فعّلي {{min}} مصادر على الأقل لفتح التحليل الشامل.",
+      "active": "نشط",
+      "inactive": "اضغطي للبدء",
+      "items": {
+        "mood": "المزاج",
+        "symptoms": "الأعراض",
+        "weight": "الوزن",
+        "hydration": "الترطيب",
+        "vitamins": "الفيتامينات",
+        "kicks": "الحركات",
+        "contractions": "الانقباضات",
+        "appointments": "المواعيد",
+        "meals": "الوجبات",
+        "fitness": "اللياقة"
+      }
     }
   },
   "reset": {

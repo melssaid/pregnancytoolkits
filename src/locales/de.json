@@ -9142,6 +9142,25 @@
       "totalSaved": "{{count}} gespeicherte Mahlzeiten",
       "savedMeal": "Gespeicherte Mahlzeit",
       "tip": "Konzentriere dich auf Eiweiß, Eisen und Kalzium in jeder Mahlzeit."
+    },
+    "dataSources": {
+      "title": "Datenquellen",
+      "subtitle": "{{active}} von {{total}} aktiven Quellen für die Analyse.",
+      "minWarning": "Aktiviere mindestens {{min}} Quellen für die Gesamtanalyse.",
+      "active": "Aktiv",
+      "inactive": "Zum Starten tippen",
+      "items": {
+        "mood": "Stimmung",
+        "symptoms": "Symptome",
+        "weight": "Gewicht",
+        "hydration": "Hydration",
+        "vitamins": "Vitamine",
+        "kicks": "Bewegungen",
+        "contractions": "Wehen",
+        "appointments": "Termine",
+        "meals": "Mahlzeiten",
+        "fitness": "Fitness"
+      }
     }
   },
   "reset": {

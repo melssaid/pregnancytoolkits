@@ -9142,6 +9142,25 @@
       "totalSaved": "{{count}} repas enregistrés",
       "savedMeal": "Repas enregistré",
       "tip": "Privilégiez protéines, fer et calcium à chaque repas."
+    },
+    "dataSources": {
+      "title": "Sources de données",
+      "subtitle": "{{active}} sur {{total}} sources actives pour l'analyse.",
+      "minWarning": "Activez au moins {{min}} sources pour l'analyse globale.",
+      "active": "Actif",
+      "inactive": "Toucher pour démarrer",
+      "items": {
+        "mood": "Humeur",
+        "symptoms": "Symptômes",
+        "weight": "Poids",
+        "hydration": "Hydratation",
+        "vitamins": "Vitamines",
+        "kicks": "Mouvements",
+        "contractions": "Contractions",
+        "appointments": "Rendez-vous",
+        "meals": "Repas",
+        "fitness": "Fitness"
+      }
     }
   },
   "reset": {

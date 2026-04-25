@@ -9142,6 +9142,25 @@
       "totalSaved": "{{count}} kayıtlı öğün",
       "savedMeal": "Kayıtlı öğün",
       "tip": "Her öğünde protein, demir ve kalsiyuma odaklanın."
+    },
+    "dataSources": {
+      "title": "Veri Kaynakları",
+      "subtitle": "{{total}} kaynaktan {{active}} tanesi analizi besliyor.",
+      "minWarning": "Bütüncül analizi açmak için en az {{min}} kaynak etkinleştirin.",
+      "active": "Etkin",
+      "inactive": "Başlamak için dokun",
+      "items": {
+        "mood": "Ruh hali",
+        "symptoms": "Belirtiler",
+        "weight": "Kilo",
+        "hydration": "Sıvı alımı",
+        "vitamins": "Vitaminler",
+        "kicks": "Hareketler",
+        "contractions": "Kasılmalar",
+        "appointments": "Randevular",
+        "meals": "Öğünler",
+        "fitness": "Fitness"
+      }
     }
   },
   "reset": {
