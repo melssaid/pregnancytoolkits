@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { haptics } from "@/lib/haptics";
+import { haptic } from "@/lib/haptics";
 import {
   clearKeys,
   restoreSnapshot,
