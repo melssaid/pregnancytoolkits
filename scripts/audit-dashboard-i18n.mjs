@@ -4,20 +4,28 @@
  * (SmartDashboard + TodayStoryHero + UnifiedToolsGrid + 3 tabs)
  * against every locale file. Reports missing/empty/placeholder issues.
  */
-import { readFileSync, readdirSync } from "node:fs";
+import { readFileSync, readdirSync, statSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
 
+function walk(dir) {
+  const out = [];
+  for (const entry of readdirSync(dir)) {
+    const p = join(dir, entry);
+    const s = statSync(p);
+    if (s.isDirectory()) out.push(...walk(p));
+    else if (/\.(tsx|ts)$/.test(entry)) out.push(p);
+  }
+  return out;
+}
+
 const FILES = [
   "src/pages/SmartDashboard.tsx",
-  "src/components/dashboard/TodayStoryHero.tsx",
-  "src/components/dashboard/UnifiedToolsGrid.tsx",
-  "src/components/dashboard/tabs/InsightsTab.tsx",
-  "src/components/dashboard/tabs/ArchiveTab.tsx",
-  "src/components/dashboard/tabs/MoreTab.tsx",
+  ...walk(join(ROOT, "src/components/dashboard")).map(p => p.replace(ROOT + "/", "")),
+  ...walk(join(ROOT, "src/components/charts")).map(p => p.replace(ROOT + "/", "")),
 ];
 
 const LOCALES = ["en", "ar", "fr", "es", "de", "pt", "tr"];
