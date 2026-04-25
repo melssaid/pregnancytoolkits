@@ -242,32 +242,42 @@ const SmartDashboard = () => {
                   <TabsTrigger
                     key={tab.key}
                     value={tab.key}
-                    className="relative flex h-12 sm:h-14 flex-col items-center justify-center gap-0.5
+                    className={`relative flex h-12 sm:h-14 flex-col items-center justify-center gap-0.5
                                rounded-xl border-0 bg-transparent
                                text-[10px] font-bold transition-all duration-300
-                               data-[state=active]:text-primary data-[state=active]:shadow-none
-                               data-[state=inactive]:text-muted-foreground
-                               data-[state=inactive]:hover:bg-white/30 dark:data-[state=inactive]:hover:bg-white/5"
+                               data-[state=active]:shadow-none
+                               ${isActive ? tab.activeIcon : "text-muted-foreground"}
+                               data-[state=inactive]:hover:bg-white/30 dark:data-[state=inactive]:hover:bg-white/5`}
                   >
-                    {/* Glass pill behind active tab */}
                     {isActive && (
                       <motion.span
                         layoutId="dashboard-tab-glass"
                         className="absolute inset-0 rounded-xl
-                                   bg-gradient-to-b from-white/80 to-white/50
+                                   bg-gradient-to-b from-white/85 to-white/55
                                    dark:from-white/15 dark:to-white/5
                                    backdrop-blur-md
-                                   border border-white/60 dark:border-white/15
-                                   shadow-[inset_0_1px_0_0_hsl(0_0%_100%/0.9),0_4px_12px_-4px_hsl(var(--primary)/0.25)]"
+                                   border border-white/70 dark:border-white/15
+                                   shadow-[inset_0_1px_0_0_hsl(0_0%_100%/0.95),0_4px_12px_-4px_hsl(var(--primary)/0.25)]"
                         transition={{ type: "spring", stiffness: 380, damping: 30 }}
                       />
                     )}
-                    <Icon
-                      className={`relative z-10 h-[17px] w-[17px] sm:h-[18px] sm:w-[18px] transition-transform ${
-                        isActive ? "scale-110 drop-shadow-[0_1px_2px_hsl(var(--primary)/0.35)]" : ""
+                    {/* Per-tab icon medallion: vivid gradient swatch when active */}
+                    <span
+                      className={`relative z-10 flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-lg transition-all duration-300 ${
+                        isActive
+                          ? `bg-gradient-to-br ${tab.grad} shadow-[inset_0_1px_0_0_hsl(0_0%_100%/0.5)]`
+                          : "bg-transparent"
                       }`}
-                      strokeWidth={isActive ? 2.4 : 2}
-                    />
+                    >
+                      <Icon
+                        className={`transition-all duration-300 ${
+                          isActive
+                            ? `h-[15px] w-[15px] sm:h-4 sm:w-4 text-white ${tab.iconShadow}`
+                            : "h-[17px] w-[17px] sm:h-[18px] sm:w-[18px]"
+                        }`}
+                        strokeWidth={isActive ? 2.4 : 2}
+                      />
+                    </span>
                     <span className="relative z-10 leading-tight mt-0.5 text-[9px] sm:text-[10px] text-center px-0.5">
                       {t(tab.tKey)}
                     </span>
