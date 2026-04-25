@@ -9,6 +9,7 @@ import { formatChecklistShare, openWhatsApp } from '@/lib/whatsappShare';
 import { useToast } from '@/hooks/use-toast';
 import { useUserProfile } from '@/hooks/useUserProfile';
 import { loadFromLocalStorage, saveToLocalStorage } from '@/services/localStorageServices';
+import { emitDataChange } from '@/lib/dataBus';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface DailyLog {
