@@ -49,6 +49,7 @@ function loadEntries(): WeightEntry[] {
 
 function saveEntries(entries: WeightEntry[]) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
+  emitDataChange(STORAGE_KEY);
 }
 
 // ═══════════════════════════════════════════════════════════════

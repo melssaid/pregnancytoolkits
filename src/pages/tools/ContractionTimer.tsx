@@ -39,6 +39,7 @@ function loadContractions(): Contraction[] {
 
 function saveContractions(data: Contraction[]) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(data.slice(-50)));
+  emitDataChange(STORAGE_KEY);
 }
 
 function formatDuration(seconds: number): string {
