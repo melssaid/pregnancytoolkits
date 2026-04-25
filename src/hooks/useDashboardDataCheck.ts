@@ -1,3 +1,4 @@
+import { readKickSessions } from "@/lib/kickSessionsStore";
 import { useEffect, useState } from "react";
 import { safeParseLocalStorage } from "@/lib/safeStorage";
 import { subscribeToData, STORAGE_KEYS } from "@/lib/dataBus";

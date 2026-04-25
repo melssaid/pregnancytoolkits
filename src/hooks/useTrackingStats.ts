@@ -1,3 +1,4 @@
+import { readKickSessions } from "@/lib/kickSessionsStore";
 import { useState, useEffect, useCallback } from 'react';
 import { getUserId } from '@/hooks/useSupabase';
 import { subscribeToData } from '@/lib/dataBus';
