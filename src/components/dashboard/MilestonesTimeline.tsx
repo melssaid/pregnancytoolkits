@@ -3,6 +3,7 @@ import { Heart, Baby, Eye, Target, Star, Footprints, ArrowDown, Gift, Stethoscop
 import { useTranslation } from "react-i18next";
 import { Card } from "@/components/ui/card";
 import { useUserProfile } from "@/hooks/useUserProfile";
+import { useOptimizedMotion } from "@/hooks/useOptimizedMotion";
 
 interface Milestone {
   week: number;
@@ -27,6 +28,7 @@ export function MilestonesTimeline() {
   const { t } = useTranslation();
   const { profile } = useUserProfile();
   const currentWeek = profile.pregnancyWeek;
+  const mo = useOptimizedMotion();
 
   // Show 2 past + current zone + 2 future
   const currentIdx = MILESTONES.findIndex(m => m.week > currentWeek);
@@ -50,9 +52,8 @@ export function MilestonesTimeline() {
           return (
             <div key={m.key}>
               <motion.div
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.1 }}
+                {...mo.slideIn(i)}
+                style={{ willChange: mo.disabled ? "auto" : "transform, opacity" }}
                 className={`flex items-center gap-3 rounded-xl px-3 py-2.5 transition-all ${
                   isCurrent ? "bg-primary/5 ring-1 ring-primary/20" : ""
                 }`}
