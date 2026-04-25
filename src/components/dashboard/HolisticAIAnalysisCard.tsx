@@ -230,8 +230,10 @@ export const HolisticAIAnalysisCard = memo(function HolisticAIAnalysisCard() {
               transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
               className="overflow-hidden"
             >
-              <div className="pt-3 mt-1 border-t border-primary/15">
-                {/* Toggle */}
+              <div className="pt-3 mt-1 border-t border-primary/15 space-y-3">
+                {/* Compact 7/30-day timeline (weight, mood, hydration, symptoms) */}
+                <HolisticTimelineChart />
+
                 {content && (
                   <button
                     onClick={() => setIsExpanded((v) => !v)}
