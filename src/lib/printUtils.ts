@@ -25,6 +25,8 @@ export async function loadLogoBase64(): Promise<string> {
   }
 }
 
+export type PrintOrientation = 'portrait' | 'landscape';
+
 interface BuildPrintHTMLOptions {
   content: string;
   title?: string;
@@ -32,6 +34,7 @@ interface BuildPrintHTMLOptions {
   isRTL: boolean;
   profile: any;
   logoDataUrl?: string;
+  orientation?: PrintOrientation;
 }
 
 const brandNames: Record<string, string> = {
