@@ -9142,6 +9142,25 @@
       "totalSaved": "{{count}} comidas guardadas",
       "savedMeal": "Comida guardada",
       "tip": "Prioriza proteínas, hierro y calcio en cada comida."
+    },
+    "dataSources": {
+      "title": "Fuentes de datos",
+      "subtitle": "{{active}} de {{total}} fuentes activas para el análisis.",
+      "minWarning": "Activa al menos {{min}} fuentes para el análisis holístico.",
+      "active": "Activo",
+      "inactive": "Tocar para iniciar",
+      "items": {
+        "mood": "Ánimo",
+        "symptoms": "Síntomas",
+        "weight": "Peso",
+        "hydration": "Hidratación",
+        "vitamins": "Vitaminas",
+        "kicks": "Movimientos",
+        "contractions": "Contracciones",
+        "appointments": "Citas",
+        "meals": "Comidas",
+        "fitness": "Ejercicio"
+      }
     }
   },
   "reset": {

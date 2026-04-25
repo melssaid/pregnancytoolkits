@@ -9229,6 +9229,25 @@
       "totalSaved": "{{count}} saved meals",
       "savedMeal": "Saved meal",
       "tip": "Focus on protein, iron and calcium in every meal."
+    },
+    "dataSources": {
+      "title": "Data Sources",
+      "subtitle": "{{active}} of {{total}} active sources feeding the analysis.",
+      "minWarning": "Activate at least {{min}} sources to unlock the holistic analysis.",
+      "active": "Active",
+      "inactive": "Tap to start",
+      "items": {
+        "mood": "Mood",
+        "symptoms": "Symptoms",
+        "weight": "Weight",
+        "hydration": "Hydration",
+        "vitamins": "Vitamins",
+        "kicks": "Movements",
+        "contractions": "Contractions",
+        "appointments": "Appointments",
+        "meals": "Meals",
+        "fitness": "Fitness"
+      }
     }
   },
   "reset": {
