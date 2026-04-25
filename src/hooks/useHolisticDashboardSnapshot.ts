@@ -486,6 +486,16 @@ export function useHolisticDashboardSnapshot(): Result {
       lines.push(`**Recent Fitness (saved)**: ${fitness.length} sessions tracked`);
     }
 
+    if (bumpPhotos.length > 0) {
+      lines.push(
+        `**Ultrasound Journal**: ${bumpPhotos.length} photo(s)` +
+          (latestPhoto?.week ? `, latest at week ${latestPhoto.week}` : "") +
+          (latestAnalysisExcerpt
+            ? `. Latest AI reading excerpt: "${latestAnalysisExcerpt}"`
+            : ""),
+      );
+    }
+
     const contextSummary = lines.join("\n");
 
     return {
