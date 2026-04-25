@@ -353,6 +353,11 @@ export function useHolisticDashboardSnapshot(): Result {
     }
     if (engagementScore >= 60) positiveSignals.push("high_tracking_engagement");
 
+    // ── Ultrasound signals ──
+    const hasRecentUltrasoundAnalysis = !!latestAnalysisExcerpt;
+    if (bumpPhotos.length >= 3) positiveSignals.push("ultrasound_journal_consistent");
+    if (hasRecentUltrasoundAnalysis) positiveSignals.push("recent_ultrasound_ai_reading_available");
+
     const derivedInsights: DerivedInsights = {
       weekContext: { currentWeek: week, trimester, weeksToBirth },
       weight: {
@@ -386,6 +391,11 @@ export function useHolisticDashboardSnapshot(): Result {
       },
       contractions: { count: contractions.length },
       appointments: { nextDateISO, daysUntilNext },
+      ultrasound: {
+        count: bumpPhotos.length,
+        latestWeek: latestPhoto?.week,
+        hasRecentAnalysis: hasRecentUltrasoundAnalysis,
+      },
       engagementScore,
       riskFlags,
       positiveSignals,
