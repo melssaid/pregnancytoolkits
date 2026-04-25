@@ -76,6 +76,39 @@ const SmartDashboard = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, [activeTab]);
 
+  // ── Toast on any tracked tool save ────────────────────────────────────────
+  // Subscribe once. Throttle to 1.5s so rapid writes (e.g. kick counter)
+  // collapse into a single toast. Auto-dismisses after 2s; sonner inherits
+  // page direction from <html dir="…"> so RTL works without extra config,
+  // but we pass `dir` explicitly to be safe.
+  const lastToastAtRef = useRef(0);
+  useEffect(() => {
+    const unsubscribe = subscribeToData((payload) => {
+      // Only react to saves originating from this tab — cross-tab "storage"
+      // events would create noise on the dashboard while another tab is open.
+      if (payload.source !== "self") return;
+
+      const now = Date.now();
+      if (now - lastToastAtRef.current < 1500) return;
+      lastToastAtRef.current = now;
+
+      const labelKey = TOOL_KEY_LABELS[payload.key];
+      const message = labelKey
+        ? t("dashboardV2.toasts.toolUpdated", "تم تحديث {{tool}}", {
+            tool: t(labelKey),
+          })
+        : t("dashboardV2.toasts.dashboardUpdated", "تم تحديث لوحة التحكم");
+
+      toast(message, {
+        duration: 2000,
+        dir: isRTL ? "rtl" : "ltr",
+        className: "text-sm rounded-2xl",
+      });
+    }, TRACKED_KEYS);
+
+    return unsubscribe;
+  }, [t, isRTL]);
+
   const handleTabChange = useCallback((value: string) => {
     haptic("tap");
     const next = value as TabKey;
