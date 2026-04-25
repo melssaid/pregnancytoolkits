@@ -24,10 +24,11 @@ interface MiniUsageBarProps {
   toolType?: AIToolType;
   section?: SmartSection;
   className?: string;
+  hideHint?: boolean;
 }
 
 /** Reusable usage bar with cost hints — for tools that don't use AIActionButton */
-export const MiniUsageBar: React.FC<MiniUsageBarProps> = ({ toolType, section, className = '' }) => {
+export const MiniUsageBar: React.FC<MiniUsageBarProps> = ({ toolType, section, className = '', hideHint = false }) => {
   const { remaining, used, limit, isLimitReached, tier } = useAIUsage();
   const navigate = useNavigate();
   const { i18n } = useTranslation();
