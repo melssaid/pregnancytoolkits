@@ -270,33 +270,37 @@ export const VitaminLogService = {
   }
 };
 
+// Kick sessions live in a single canonical bucket — see src/lib/kickSessionsStore.ts.
+// We import lazily inside each method so this module stays tree-shake friendly.
+import { readKickSessions, writeKickSessions } from "@/lib/kickSessionsStore";
+
 export const KickSessionService = {
   async save(session: Omit<KickSession, 'id' | 'user_id'>): Promise<KickSession> {
     const entry: KickSession = {
       ...session,
       id: generateId(),
-      user_id: getUserId()
+      user_id: getUserId(),
     };
-    const sessions = loadData<KickSession>('kick_sessions');
+    const sessions = readKickSessions() as KickSession[];
     sessions.push(entry);
-    saveData('kick_sessions', sessions);
+    writeKickSessions(sessions);
     return entry;
   },
 
   async getAll(): Promise<KickSession[]> {
-    return loadData<KickSession>('kick_sessions');
+    return readKickSessions() as KickSession[];
   },
 
   async getActiveSession(): Promise<KickSession | null> {
-    const sessions = loadData<KickSession>('kick_sessions');
-    return sessions.find(s => !s.ended_at) || null;
+    const sessions = readKickSessions() as KickSession[];
+    return sessions.find((s) => !s.ended_at) || null;
   },
 
   async getHistory(limit = 10): Promise<KickSession[]> {
-    const sessions = loadData<KickSession>('kick_sessions')
-      .filter(s => s.ended_at)
-      .sort((a, b) => new Date(b.started_at).getTime() - new Date(a.started_at).getTime());
-    return sessions.slice(0, limit);
+    return (readKickSessions() as KickSession[])
+      .filter((s) => s.ended_at)
+      .sort((a, b) => new Date(b.started_at).getTime() - new Date(a.started_at).getTime())
+      .slice(0, limit);
   },
 
   async startSession(week: number): Promise<KickSession> {
@@ -309,35 +313,35 @@ export const KickSessionService = {
       started_at: new Date().toISOString(),
       ended_at: null,
       duration_minutes: null,
-      notes: null
+      notes: null,
     };
-    const sessions = loadData<KickSession>('kick_sessions');
+    const sessions = readKickSessions() as KickSession[];
     sessions.push(session);
-    saveData('kick_sessions', sessions);
+    writeKickSessions(sessions);
     return session;
   },
 
   async addKick(sessionId: string, currentKicks: Kick[], timestamp: string): Promise<Kick[]> {
-    const sessions = loadData<KickSession>('kick_sessions');
-    const idx = sessions.findIndex(s => s.id === sessionId);
+    const sessions = readKickSessions() as KickSession[];
+    const idx = sessions.findIndex((s) => s.id === sessionId);
     if (idx === -1) return currentKicks;
     const newKick: Kick = { time: timestamp };
     const updatedKicks = [...currentKicks, newKick];
     sessions[idx].kicks = updatedKicks;
     sessions[idx].total_kicks = updatedKicks.length;
-    saveData('kick_sessions', sessions);
+    writeKickSessions(sessions);
     return updatedKicks;
   },
 
   async endSession(sessionId: string, durationMinutes: number, notes?: string): Promise<void> {
-    const sessions = loadData<KickSession>('kick_sessions');
-    const idx = sessions.findIndex(s => s.id === sessionId);
+    const sessions = readKickSessions() as KickSession[];
+    const idx = sessions.findIndex((s) => s.id === sessionId);
     if (idx === -1) return;
     sessions[idx].ended_at = new Date().toISOString();
     sessions[idx].duration_minutes = durationMinutes;
     sessions[idx].notes = notes || null;
-    saveData('kick_sessions', sessions);
-  }
+    writeKickSessions(sessions);
+  },
 };
 
 export const KickService = KickSessionService;
