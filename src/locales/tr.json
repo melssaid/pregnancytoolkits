@@ -9088,7 +9088,11 @@
       "cta": "Bütünsel Analizi Başlat",
       "cost": "7 puan",
       "dataRichness": "Veri kalitesi: %{{value}}",
-      "minDataNeeded": "Bütünsel analizi açmak için en az 3 araçta veri kaydedin."
+      "minDataNeeded": "Bütünsel analizi açmak için en az 3 araçta veri kaydedin.",
+      "preview": {
+        "positive": "{{count}} olumlu sinyal",
+        "watchouts": "{{count}} dikkat noktası"
+      }
     }
   },
   "reset": {

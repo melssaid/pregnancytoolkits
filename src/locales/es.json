@@ -9088,7 +9088,11 @@
       "cta": "Iniciar análisis integral",
       "cost": "7 puntos",
       "dataRichness": "Calidad de datos: {{value}}%",
-      "minDataNeeded": "Registra datos en al menos 3 herramientas para activar el análisis integral."
+      "minDataNeeded": "Registra datos en al menos 3 herramientas para activar el análisis integral.",
+      "preview": {
+        "positive": "{{count}} señales positivas",
+        "watchouts": "{{count}} puntos a vigilar"
+      }
     }
   },
   "reset": {

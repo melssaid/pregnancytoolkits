@@ -9088,7 +9088,11 @@
       "cta": "Ganzheitliche Analyse starten",
       "cost": "7 Punkte",
       "dataRichness": "Datenqualität: {{value}}%",
-      "minDataNeeded": "Erfassen Sie Daten in mindestens 3 Tools, um die ganzheitliche Analyse freizuschalten."
+      "minDataNeeded": "Erfassen Sie Daten in mindestens 3 Tools, um die ganzheitliche Analyse freizuschalten.",
+      "preview": {
+        "positive": "{{count}} positive Signale",
+        "watchouts": "{{count}} Beobachtungspunkte"
+      }
     }
   },
   "reset": {

@@ -18,7 +18,8 @@ import { useHolisticDashboardSnapshot } from "@/hooks/useHolisticDashboardSnapsh
 export const HolisticAIAnalysisCard = memo(function HolisticAIAnalysisCard() {
   const { t, i18n } = useTranslation();
   const lang = i18n.language?.split("-")[0] || "en";
-  const { snapshot, dataRichness, hasMinimumData, sourcesCount } = useHolisticDashboardSnapshot();
+  const { snapshot, derivedInsights, contextSummary, dataRichness, hasMinimumData, sourcesCount } =
+    useHolisticDashboardSnapshot();
   const { isLimitReached } = useAIUsage();
 
   const { generate, isLoading, content, error, errorType, clearError } = useSmartInsight({
@@ -45,9 +46,22 @@ export const HolisticAIAnalysisCard = memo(function HolisticAIAnalysisCard() {
     setHasGenerated(true);
     setIsExpanded(true);
     const prompt =
-      `Please analyse the following complete dashboard snapshot and produce my holistic wellness brief. ` +
-      `Snapshot JSON:\n\`\`\`json\n${JSON.stringify(snapshot, null, 2)}\n\`\`\``;
-    await generate({ prompt, context: { language: lang }, skipCache: hasGenerated });
+      `Below is a pre-computed holistic wellness brief of my dashboard tracking data. ` +
+      `It already includes derived trends, averages, risk flags, and positive signals — ` +
+      `please ANALYSE and synthesise it (do not just restate the numbers). ` +
+      `Connect related signals where meaningful.\n\n` +
+      `${contextSummary}`;
+    await generate({
+      prompt,
+      context: {
+        language: lang,
+        weekNumber: snapshot.profile.pregnancyWeek,
+        riskFlagsCount: derivedInsights.riskFlags.length,
+        positiveSignalsCount: derivedInsights.positiveSignals.length,
+        engagementScore: derivedInsights.engagementScore,
+      },
+      skipCache: hasGenerated,
+    });
   };
 
   return (
@@ -135,6 +149,27 @@ export const HolisticAIAnalysisCard = memo(function HolisticAIAnalysisCard() {
           <p className="text-[12px] text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/30 rounded-lg px-3 py-2 leading-relaxed">
             {t("dashboardV2.holistic.minDataNeeded")}
           </p>
+        )}
+
+        {/* Preview chip — shows derived insights count BEFORE consuming points */}
+        {hasMinimumData && !hasGenerated && (derivedInsights.positiveSignals.length > 0 || derivedInsights.riskFlags.length > 0) && (
+          <div className="flex items-center justify-center gap-2 text-[11px] text-foreground/70 bg-white/40 rounded-lg px-2.5 py-1.5">
+            {derivedInsights.positiveSignals.length > 0 && (
+              <span className="flex items-center gap-1 font-medium">
+                <span className="text-emerald-600">●</span>
+                {t("dashboardV2.holistic.preview.positive", { count: derivedInsights.positiveSignals.length })}
+              </span>
+            )}
+            {derivedInsights.positiveSignals.length > 0 && derivedInsights.riskFlags.length > 0 && (
+              <span className="text-foreground/30">•</span>
+            )}
+            {derivedInsights.riskFlags.length > 0 && (
+              <span className="flex items-center gap-1 font-medium">
+                <span className="text-amber-600">●</span>
+                {t("dashboardV2.holistic.preview.watchouts", { count: derivedInsights.riskFlags.length })}
+              </span>
+            )}
+          </div>
         )}
 
         {/* CTA */}

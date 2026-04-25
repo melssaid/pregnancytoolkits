@@ -9175,7 +9175,11 @@
       "cta": "Run Holistic Analysis",
       "cost": "7 points",
       "dataRichness": "Data quality: {{value}}%",
-      "minDataNeeded": "Log data in at least 3 tools to unlock the holistic analysis."
+      "minDataNeeded": "Log data in at least 3 tools to unlock the holistic analysis.",
+      "preview": {
+        "positive": "{{count}} positive signals",
+        "watchouts": "{{count}} watch-outs"
+      }
     }
   },
   "reset": {
