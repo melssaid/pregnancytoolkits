@@ -144,12 +144,13 @@ function buildPatientInfoHTML(profile: any, lang: string, isRTL: boolean): strin
   </div>`;
 }
 
-export function buildPrintHTML({ content, title, lang, isRTL, profile, logoDataUrl }: BuildPrintHTMLOptions): string {
+export function buildPrintHTML({ content, title, lang, isRTL, profile, logoDataUrl, orientation = 'portrait' }: BuildPrintHTMLOptions): string {
   const brand = brandNames[lang] || brandNames.en;
   const patientHTML = buildPatientInfoHTML(profile, lang, isRTL);
   const locale = getLocaleString(lang, isRTL);
   const dateStr = new Date().toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric' });
   const pad = isRTL ? 'right' : 'left';
+  const isLandscape = orientation === 'landscape';
 
   return `<!DOCTYPE html>
 <html dir="${isRTL ? 'rtl' : 'ltr'}" lang="${lang}">
