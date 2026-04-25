@@ -399,6 +399,5 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
         })()}
       </div>
     </motion.div>
-    </motion.div>
   );
 });
