@@ -248,21 +248,27 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
           >
             <div className="px-2 pb-2.5 pt-1.5">
               <div className="grid grid-cols-3 gap-1.5">
-                {allJourneyTools.map((tool, toolIdx) => (
-                  <motion.div
-                    key={tool.id}
-                    initial={{ opacity: 0, y: 12, scale: 0.96 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 4, scale: 0.98 }}
-                    transition={{
-                      duration: 0.35,
-                      delay: 0.08 + toolIdx * 0.035,
-                      ease: [0.22, 1, 0.36, 1],
-                    }}
-                  >
-                    <ToolRow tool={tool} isRTL={isRTL} isLocked={false} journeyKey={config.key} />
-                  </motion.div>
-                ))}
+                {allJourneyTools.map((tool, toolIdx) => {
+                  // Wave-pattern stagger: row-based delay creates a cascading reveal
+                  const row = Math.floor(toolIdx / 3);
+                  const col = toolIdx % 3;
+                  const waveDelay = 0.06 + row * 0.07 + col * 0.04;
+                  return (
+                    <motion.div
+                      key={tool.id}
+                      initial={{ opacity: 0, y: 14, scale: 0.92, filter: "blur(4px)" }}
+                      animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+                      exit={{ opacity: 0, y: 6, scale: 0.96, filter: "blur(2px)" }}
+                      transition={{
+                        duration: 0.45,
+                        delay: waveDelay,
+                        ease: [0.22, 1, 0.36, 1],
+                      }}
+                    >
+                      <ToolRow tool={tool} isRTL={isRTL} isLocked={false} journeyKey={config.key} />
+                    </motion.div>
+                  );
+                })}
               </div>
               <SectionFeaturedArticles sectionKey={config.key} />
             </div>
