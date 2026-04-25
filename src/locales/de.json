@@ -9239,6 +9239,24 @@
         "ultrasoundCount": "{{count}} Fotos",
         "weekTag": "SSW {{week}}"
       }
+    },
+    "sonarHistory": {
+      "title": "Sonar-Verlauf & Trends",
+      "subtitle": "{{count}} Auswertungen in den letzten {{days}} Tagen.",
+      "empty": "Starte oben deine erste ganzheitliche Analyse, um deinen Sonar-Verlauf aufzubauen.",
+      "engagementOverRuns": "Engagement im Verlauf",
+      "avgShort": "Ø {{value}}%",
+      "lastRunShort": "letzte Auswertung",
+      "runs": "{{count}} Auswertungen",
+      "weekShort": "SSW {{week}}",
+      "recentRuns": "Letzte Auswertungen",
+      "manageSources": "Quellen verwalten",
+      "stats": {
+        "positiveSignals": "Positive Signale",
+        "watchOuts": "Hinweise",
+        "engagement": "Tracking-Engagement",
+        "pointsSpent": "Verbrauchte Punkte"
+      }
     }
   },
   "reset": {

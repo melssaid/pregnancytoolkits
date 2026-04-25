@@ -9239,6 +9239,24 @@
         "ultrasoundCount": "{{count}} fotoğraf",
         "weekTag": "Hafta {{week}}"
       }
+    },
+    "sonarHistory": {
+      "title": "Sonar Geçmişi ve Trendler",
+      "subtitle": "Son {{days}} günde {{count}} analiz.",
+      "empty": "Sonar geçmişinizi oluşturmaya başlamak için yukarıdaki ilk Bütünsel Analizi çalıştırın.",
+      "engagementOverRuns": "Analizler boyunca etkileşim",
+      "avgShort": "ort {{value}}%",
+      "lastRunShort": "son analiz",
+      "runs": "{{count}} analiz",
+      "weekShort": "Hf {{week}}",
+      "recentRuns": "Son analizler",
+      "manageSources": "Kaynakları yönet",
+      "stats": {
+        "positiveSignals": "Pozitif sinyaller",
+        "watchOuts": "Dikkat noktaları",
+        "engagement": "Takip etkileşimi",
+        "pointsSpent": "Harcanan puan"
+      }
     }
   },
   "reset": {

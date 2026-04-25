@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { HealthScoreRing } from "@/components/dashboard/HealthScoreRing";
 import { HolisticAIAnalysisCard } from "@/components/dashboard/HolisticAIAnalysisCard";
 import { SavedHolisticReports } from "@/components/dashboard/SavedHolisticReports";
+import { SonarHistoryTrendsCard } from "@/components/dashboard/SonarHistoryTrendsCard";
 import { DataSourcesPanel } from "@/components/dashboard/DataSourcesPanel";
 import { SignalsPreviewPanel } from "@/components/dashboard/SignalsPreviewPanel";
 import { WeeklyComparisonCard } from "@/components/dashboard/WeeklyComparisonCard";
@@ -37,6 +38,9 @@ export const InsightsTab = memo(function InsightsTab() {
     <div className="space-y-4 pb-6">
       {/* Premium holistic AI analysis (7 points) — synthesises all tracked data */}
       <HolisticAIAnalysisCard />
+
+      {/* Sonar history & trends across previous holistic runs */}
+      <SonarHistoryTrendsCard />
 
       {/* Transparent breakdown of which data sources fed the snapshot */}
       <DataSourcesPanel />
