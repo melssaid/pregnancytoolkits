@@ -5,6 +5,7 @@ import { HealthScoreRing } from "@/components/dashboard/HealthScoreRing";
 import { HolisticAIAnalysisCard } from "@/components/dashboard/HolisticAIAnalysisCard";
 import { SavedHolisticReports } from "@/components/dashboard/SavedHolisticReports";
 import { DataSourcesPanel } from "@/components/dashboard/DataSourcesPanel";
+import { SignalsPreviewPanel } from "@/components/dashboard/SignalsPreviewPanel";
 import { WeeklyComparisonCard } from "@/components/dashboard/WeeklyComparisonCard";
 import { MoodTrendCard } from "@/components/dashboard/MoodTrendCard";
 import { WeeklySymptomsCard } from "@/components/dashboard/WeeklySymptomsCard";
