@@ -78,7 +78,7 @@ async function logWebhookEvent(
 }
 
 async function handleSubscriptionNotification(
-  supabase: ReturnType<typeof createClient>,
+  supabase: any,
   notificationType: number,
   purchaseToken: string,
   subscriptionId: string,
