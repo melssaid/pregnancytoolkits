@@ -35,7 +35,7 @@ const INACTIVE_STATUSES = new Set([12, 13]); // revoked, expired
 // Statuses that put subscription on hold
 const HOLD_STATUSES = new Set([5, 6, 10]); // on_hold, grace_period, paused
 
-function getSupabaseClient() {
+function getSupabaseClient(): any {
   return createClient(
     Deno.env.get("SUPABASE_URL")!,
     Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
@@ -53,7 +53,7 @@ function calcEndDate(from: Date, type: string): string {
 }
 
 async function logWebhookEvent(
-  supabase: ReturnType<typeof createClient>,
+  supabase: any,
   eventType: string,
   notificationType: string | null,
   purchaseToken: string | null,
