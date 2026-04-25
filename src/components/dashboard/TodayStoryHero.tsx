@@ -393,8 +393,12 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
               )}
             </AnimatePresence>
           </div>
+          </div>
         </div>
+          );
+        })()}
       </div>
+    </motion.div>
     </motion.div>
   );
 });
