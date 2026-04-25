@@ -9047,6 +9047,10 @@
     "moreTab": {
       "backHome": "Retour à l'accueil",
       "backHomeDesc": "Explorez tous les outils disponibles"
+    },
+    "seo": {
+      "title": "Votre tableau de bord de grossesse",
+      "description": "Suivez votre grossesse semaine par semaine avec des analyses personnalisées et des outils bien-être."
     }
   },
   "reset": {

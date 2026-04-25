@@ -54,10 +54,10 @@ export const MoreTab = memo(function MoreTab() {
       {dataCheck.hasAnyData && (
         <div className="rounded-2xl border border-destructive/20 bg-destructive/[0.03] p-4 space-y-2">
           <p className="text-sm font-bold text-foreground">
-            {t("reset.dangerZone", "Danger zone")}
+            {t("reset.dangerZone")}
           </p>
           <p className="text-xs text-muted-foreground">
-            {t("reset.dangerZoneDesc", "Clear all trackers and saved results. Profile and language settings stay intact.")}
+            {t("reset.dangerZoneDesc")}
           </p>
           <ResetDataButton variant="outline" />
         </div>
