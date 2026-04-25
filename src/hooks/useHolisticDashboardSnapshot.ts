@@ -20,6 +20,9 @@ import { STORAGE_KEYS } from "@/lib/dataBus";
 import { readKickSessions } from "@/lib/kickSessionsStore";
 import { getUserId } from "@/hooks/useSupabase";
 
+// Storage key used by BumpPhotoService — read directly to avoid async in useMemo.
+const BUMP_PHOTOS_STORAGE_KEY = (uid: string) => `bump_photos_${uid}`;
+
 export interface HolisticSnapshot {
   generatedAt: string;
   profile: {
@@ -39,6 +42,12 @@ export interface HolisticSnapshot {
   appointments: { upcoming: Array<{ date: string; title: string }>; count: number };
   meals: { recentTitles: string[]; count: number };
   fitness: { recentTitles: string[]; count: number };
+  ultrasound: {
+    count: number;
+    latestWeek?: number;
+    latestAnalysisExcerpt?: string;
+    latestCapturedAt?: string;
+  };
 }
 
 export type Trend = "rising" | "stable" | "falling" | "unknown";
@@ -84,6 +93,11 @@ export interface DerivedInsights {
   appointments: {
     nextDateISO?: string;
     daysUntilNext?: number;
+  };
+  ultrasound: {
+    count: number;
+    latestWeek?: number;
+    hasRecentAnalysis: boolean;
   };
   engagementScore: number; // 0–100 — based on active sources
   riskFlags: string[];
