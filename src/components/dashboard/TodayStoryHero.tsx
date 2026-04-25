@@ -1,5 +1,5 @@
 import { memo, useState, useCallback, useMemo, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Sun, Coffee, Moon, Sparkles, Check } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
@@ -305,6 +305,54 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
                 </Tooltip>
               );
             })}
+          </div>
+
+          {/* Animated selected-mood label */}
+          <div className="relative mt-2.5 h-9 flex items-center justify-center overflow-hidden">
+            <AnimatePresence mode="wait" initial={false}>
+              {selectedMood > 0 ? (
+                (() => {
+                  const sel = moods.find(x => x.value === selectedMood)!;
+                  const selLabel = t(`dashboardV2.mood.${sel.key}`);
+                  const selDesc = t(`dashboardV2.mood.desc.${sel.key}`, { defaultValue: "" });
+                  return (
+                    <motion.div
+                      key={sel.key}
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -8 }}
+                      transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                      className="absolute inset-0 flex items-center justify-center gap-2 px-3"
+                    >
+                      <span
+                        aria-hidden
+                        className="inline-block h-1.5 w-1.5 rounded-full shrink-0"
+                        style={{ backgroundColor: sel.color, boxShadow: `0 0 8px ${sel.color}99` }}
+                      />
+                      <span className="text-[12px] font-extrabold text-foreground tracking-tight">
+                        {selLabel}
+                      </span>
+                      {selDesc && (
+                        <span className="text-[11px] text-muted-foreground line-clamp-1 leading-snug">
+                          — {selDesc}
+                        </span>
+                      )}
+                    </motion.div>
+                  );
+                })()
+              ) : (
+                <motion.p
+                  key="placeholder"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="text-[11px] font-medium text-muted-foreground/70 italic"
+                >
+                  {t("dashboardV2.mood.tapToSelect", { defaultValue: t("dashboardV2.mood.title") })}
+                </motion.p>
+              )}
+            </AnimatePresence>
           </div>
         </div>
       </div>

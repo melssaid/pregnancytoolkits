@@ -9123,7 +9123,8 @@
         "neutral": "A balanced day — neither up nor down.",
         "good": "Feeling good — keep up your positive habits.",
         "excellent": "Wonderful energy — your day is thriving."
-      }
+      },
+      "tapToSelect": "Tap to log your mood"
     },
     "tools": {
       "title": "Tools",
