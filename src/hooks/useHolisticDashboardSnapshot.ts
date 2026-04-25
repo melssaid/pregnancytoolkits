@@ -20,7 +20,6 @@ import { getUserId } from "@/hooks/useSupabase";
 export interface HolisticSnapshot {
   generatedAt: string;
   profile: {
-    name?: string;
     pregnancyWeek?: number;
     trimester?: number;
     journeyStage?: string;
