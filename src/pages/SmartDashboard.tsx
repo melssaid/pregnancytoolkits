@@ -150,7 +150,7 @@ const SmartDashboard = () => {
                              data-[state=inactive]:text-muted-foreground"
                 >
                   <Icon className={`h-[17px] w-[17px] sm:h-[18px] sm:w-[18px] transition-transform ${isActive ? "scale-110" : ""}`} strokeWidth={isActive ? 2.4 : 2} />
-                  <span className="leading-none mt-0.5 text-[9px] sm:text-[10px]">{t(tab.tKey)}</span>
+                  <span className="leading-tight mt-0.5 text-[9px] sm:text-[10px] text-center px-0.5">{t(tab.tKey)}</span>
                   {isActive && (
                     <motion.span
                       layoutId="dashboard-tab-indicator"
