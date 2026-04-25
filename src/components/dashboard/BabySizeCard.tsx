@@ -50,10 +50,12 @@ export function BabySizeCard() {
   const { profile } = useUserProfile();
   const week = profile.pregnancyWeek;
 
-  const data = BABY_SIZE_DATA[week] || BABY_SIZE_DATA[20];
+  // Hide the card unless the user has set their actual pregnancy week.
+  // No synthetic fallback to week 20.
+  if (!week || week < 4) return null;
+  const data = BABY_SIZE_DATA[week];
+  if (!data) return null;
   const prevData = BABY_SIZE_DATA[Math.max(4, week - 1)];
-
-  if (week < 4) return null;
 
   return (
     <Card className="p-5 bg-card border-border/40 rounded-3xl shadow-lg shadow-primary/5 overflow-hidden">

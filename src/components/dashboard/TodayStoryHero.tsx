@@ -60,14 +60,15 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
     };
   }, [timeSlot, t]);
 
-  // Pregnancy progress
-  const progress = isPregnant ? Math.min(100, (week / 40) * 100) : 0;
+  // Pregnancy progress — only real data, no synthetic fallback
+  const hasRealWeek = isPregnant && week > 0;
+  const progress = hasRealWeek ? Math.min(100, (week / 40) * 100) : 0;
   const trimester = week <= 13 ? 1 : week <= 26 ? 2 : 3;
+  // Days remaining — ONLY computed from a real dueDate set by the user.
+  // No (40 - week) fallback to avoid synthetic numbers.
   const daysRemaining = profile.dueDate
     ? Math.max(0, Math.ceil((new Date(profile.dueDate).getTime() - Date.now()) / 86400000))
-    : isPregnant
-    ? (40 - week) * 7
-    : 0;
+    : null;
 
   // Ring math (compact 116px → fits 320px viewports without crushing stats)
   const ringSize = 116;
@@ -135,8 +136,8 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
           </div>
         </div>
 
-        {/* Pregnancy section */}
-        {isPregnant ? (
+        {/* Pregnancy section — only render with real user data */}
+        {hasRealWeek ? (
           <div className="flex items-center gap-3 sm:gap-4 mb-5">
             {/* Compact Progress Ring */}
             <div className="relative flex-shrink-0" style={{ width: ringSize, height: ringSize }}>
@@ -182,14 +183,16 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
               </p>
 
               <div className="space-y-1.5">
-                <div className="flex items-baseline justify-between gap-2 rounded-xl border border-border/40 bg-background/60 px-3 py-2 backdrop-blur-sm">
-                  <span className="text-[11px] font-semibold text-muted-foreground truncate">
-                    {t("dashboardV2.progress.daysLeft")}
-                  </span>
-                  <span className="text-xl font-black leading-none text-foreground tabular-nums shrink-0">
-                    {daysRemaining}
-                  </span>
-                </div>
+                {daysRemaining !== null && (
+                  <div className="flex items-baseline justify-between gap-2 rounded-xl border border-border/40 bg-background/60 px-3 py-2 backdrop-blur-sm">
+                    <span className="text-[11px] font-semibold text-muted-foreground truncate">
+                      {t("dashboardV2.progress.daysLeft")}
+                    </span>
+                    <span className="text-xl font-black leading-none text-foreground tabular-nums shrink-0">
+                      {daysRemaining}
+                    </span>
+                  </div>
+                )}
                 <div className="flex items-baseline justify-between gap-2 rounded-xl border border-border/40 bg-background/60 px-3 py-2 backdrop-blur-sm">
                   <span className="text-[11px] font-semibold text-muted-foreground truncate">
                     {t("dashboardV2.progress.complete")}
