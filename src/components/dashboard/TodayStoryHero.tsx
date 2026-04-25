@@ -69,9 +69,9 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
     ? (40 - week) * 7
     : 0;
 
-  // Ring math (140px)
-  const ringSize = 140;
-  const ringRadius = 60;
+  // Ring math (compact 116px → fits 320px viewports without crushing stats)
+  const ringSize = 116;
+  const ringRadius = 50;
   const circumference = 2 * Math.PI * ringRadius;
   const strokeDash = (progress / 100) * circumference;
 
