@@ -1,7 +1,7 @@
 import { memo, useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, Crown, Loader2, ChevronDown, ChevronUp } from "lucide-react";
+import { Sparkles, Crown, Loader2, ChevronDown, ChevronUp, Bookmark, BookmarkCheck } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { AIErrorBanner } from "@/components/ai/AIErrorBanner";
@@ -11,6 +11,7 @@ import { useSmartInsight } from "@/hooks/useSmartInsight";
 import { useAIUsage } from "@/contexts/AIUsageContext";
 import { useHolisticDashboardSnapshot } from "@/hooks/useHolisticDashboardSnapshot";
 import { HolisticTimelineChart } from "@/components/dashboard/HolisticTimelineChart";
+import { useSavedResults } from "@/hooks/useSavedResults";
 
 /**
  * Premium "Holistic AI Analysis" card — synthesises ALL tracked dashboard
