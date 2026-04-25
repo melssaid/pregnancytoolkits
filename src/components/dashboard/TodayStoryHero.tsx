@@ -2,7 +2,7 @@ import { memo, useState, useCallback, useMemo, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Sun, Coffee, Moon, Sparkles, Check } from "lucide-react";
-import { haptics } from "@/lib/haptics";
+import { haptic } from "@/lib/haptics";
 import { safeParseLocalStorage, safeSaveToLocalStorage } from "@/lib/safeStorage";
 import { useDashboardData } from "@/hooks/useDashboardData";
 
@@ -97,7 +97,7 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
 
   const handleMoodTap = useCallback(
     (value: number) => {
-      haptics.selection();
+      haptic("tap");
       setSelectedMood(value);
 
       const newLog: DailyLog = {
