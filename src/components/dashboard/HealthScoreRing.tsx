@@ -2,10 +2,12 @@ import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Card } from "@/components/ui/card";
 import { useTrackingStats } from "@/hooks/useTrackingStats";
+import { useOptimizedMotion } from "@/hooks/useOptimizedMotion";
 
 export function HealthScoreRing() {
   const { t } = useTranslation();
   const { stats } = useTrackingStats();
+  const m = useOptimizedMotion();
 
   // Calculate score from 4 pillars (each 25 points max)
   const waterScore = Math.min(stats.dailyTracking.waterGlasses / 8, 1) * 25;
@@ -46,9 +48,9 @@ export function HealthScoreRing() {
               cx="48" cy="48" r="42" fill="none"
               stroke="url(#healthGrad)" strokeWidth="7" strokeLinecap="round"
               strokeDasharray={circumference}
-              initial={{ strokeDashoffset: circumference }}
+              initial={{ strokeDashoffset: m.disabled ? strokeDashoffset : circumference }}
               animate={{ strokeDashoffset }}
-              transition={{ duration: 1.4, ease: "easeOut" }}
+              transition={m.longTransition}
             />
             <defs>
               <linearGradient id="healthGrad" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -59,8 +61,7 @@ export function HealthScoreRing() {
           </svg>
           <div className="absolute inset-0 flex flex-col items-center justify-center">
             <motion.span
-              initial={{ scale: 0 }} animate={{ scale: 1 }}
-              transition={{ type: "spring", stiffness: 200, delay: 0.3 }}
+              {...m.pop}
               className={`text-3xl font-black tabular-nums leading-none ${scoreColor}`}
             >
               {totalScore}
@@ -76,10 +77,11 @@ export function HealthScoreRing() {
               <span className="text-[11px] font-medium text-muted-foreground w-20 leading-tight whitespace-normal break-words" style={{ overflowWrap: 'anywhere' }}>{p.label}</span>
               <div className="flex-1 h-2 bg-muted/30 rounded-full overflow-hidden">
                 <motion.div
-                  className={`h-full rounded-full ${p.color}`}
-                  initial={{ width: 0 }}
-                  animate={{ width: `${(p.value / p.max) * 100}%` }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className={`h-full rounded-full ${p.color} origin-left rtl:origin-right`}
+                  style={{ width: `${(p.value / p.max) * 100}%`, willChange: m.disabled ? "auto" : "transform" }}
+                  initial={{ scaleX: m.disabled ? 1 : 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={m.longTransition}
                 />
               </div>
               <span className="text-[10px] font-bold text-foreground tabular-nums w-7 text-end">{p.value}</span>
