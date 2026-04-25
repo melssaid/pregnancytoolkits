@@ -252,7 +252,7 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
                     }}
                   />
                   <span
-                    className={`text-[9px] font-semibold leading-none ${
+                    className={`text-[9px] font-semibold leading-tight text-center break-words px-0.5 ${
                       active ? "text-foreground" : "text-muted-foreground"
                     }`}
                   >
