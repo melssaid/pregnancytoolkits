@@ -9088,7 +9088,11 @@
       "cta": "Iniciar análise holística",
       "cost": "7 pontos",
       "dataRichness": "Qualidade dos dados: {{value}}%",
-      "minDataNeeded": "Registre dados em pelo menos 3 ferramentas para ativar a análise holística."
+      "minDataNeeded": "Registre dados em pelo menos 3 ferramentas para ativar a análise holística.",
+      "preview": {
+        "positive": "{{count}} sinais positivos",
+        "watchouts": "{{count}} pontos de atenção"
+      }
     }
   },
   "reset": {

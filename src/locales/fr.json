@@ -9088,7 +9088,11 @@
       "cta": "Lancer l'analyse globale",
       "cost": "7 points",
       "dataRichness": "Qualité des données : {{value}}%",
-      "minDataNeeded": "Enregistrez des données dans au moins 3 outils pour activer l'analyse globale."
+      "minDataNeeded": "Enregistrez des données dans au moins 3 outils pour activer l'analyse globale.",
+      "preview": {
+        "positive": "{{count}} signaux positifs",
+        "watchouts": "{{count}} points de vigilance"
+      }
     }
   },
   "reset": {
