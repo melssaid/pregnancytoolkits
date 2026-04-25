@@ -30,18 +30,16 @@ export const ArchiveTab = memo(function ArchiveTab() {
           <Calendar className="h-7 w-7 text-primary" />
         </div>
         <h3 className="text-lg font-bold text-foreground mb-1">
-          {isAr ? "أرشيفكِ فارغ" : "Your archive is empty"}
+          {t("dashboardV2.archiveEmpty.title")}
         </h3>
         <p className="text-sm text-muted-foreground mb-4 max-w-xs mx-auto">
-          {isAr
-            ? "ستظهر هنا نتائجكِ المحفوظة، شهاداتكِ الأسبوعية، ومحطاتكِ المهمة"
-            : "Your saved results, weekly certificates, and milestones will appear here"}
+          {t("dashboardV2.archiveEmpty.desc")}
         </p>
         <Link
           to="/discover"
           className="inline-flex items-center gap-1.5 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-colors"
         >
-          {isAr ? "استكشفي الأدوات" : "Explore tools"}
+          {t("dashboardV2.archiveEmpty.cta")}
         </Link>
       </motion.div>
     );

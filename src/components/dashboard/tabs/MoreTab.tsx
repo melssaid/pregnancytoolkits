@@ -15,8 +15,7 @@ import { useDashboardData } from "@/hooks/useDashboardData";
  * "More" tab — preparation, partner, FAQ, app actions.
  */
 export const MoreTab = memo(function MoreTab() {
-  const { t, i18n } = useTranslation();
-  const isAr = i18n.language === "ar";
+  const { t } = useTranslation();
   const { profile, isPregnant } = useDashboardData();
 
   return (
@@ -40,10 +39,10 @@ export const MoreTab = memo(function MoreTab() {
           </div>
           <div className="flex-1 min-w-0">
             <p className="text-sm font-bold text-foreground">
-              {isAr ? "العودة للصفحة الرئيسية" : "Back to home"}
+              {t("dashboardV2.moreTab.backHome")}
             </p>
             <p className="text-xs text-muted-foreground">
-              {isAr ? "استكشفي جميع الأدوات المتاحة" : "Explore all available tools"}
+              {t("dashboardV2.moreTab.backHomeDesc")}
             </p>
           </div>
         </Link>
