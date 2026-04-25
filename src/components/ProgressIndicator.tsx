@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Baby, Heart, Sparkles, Star } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface ProgressIndicatorProps {
   currentWeek: number;
