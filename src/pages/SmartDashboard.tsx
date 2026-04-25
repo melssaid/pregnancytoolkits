@@ -188,37 +188,62 @@ const SmartDashboard = () => {
 
         <Tabs value={activeTab} onValueChange={handleTabChange} dir={isRTL ? "rtl" : "ltr"} className="relative z-10">
           {/* Sticky tab bar — pro Apple-style */}
-          <TabsList
-            className="sticky top-[3.25rem] sm:top-[4rem] z-30 grid h-auto w-full
-                       grid-cols-4 gap-0 rounded-none border-b border-border/40
-                       bg-background/92 p-0 backdrop-blur-xl shadow-[0_4px_12px_-6px_hsl(var(--primary)/0.12)]"
-            aria-label={t("dashboardV2.header.sectionsAria")}
+          {/* Sticky glass tab bar — frosted with subtle inner highlight */}
+          <div
+            className="sticky top-[3.25rem] sm:top-[4rem] z-30 px-3 sm:px-4 pt-2 pb-2
+                       bg-gradient-to-b from-background/80 to-background/40 backdrop-blur-2xl
+                       border-b border-white/20 dark:border-white/5
+                       shadow-[0_8px_24px_-12px_hsl(var(--primary)/0.18)]"
           >
-            {tabs.map((tab) => {
-              const Icon = tab.icon;
-              const isActive = activeTab === tab.key;
-              return (
-                <TabsTrigger
-                  key={tab.key}
-                  value={tab.key}
-                  className="relative flex h-12 sm:h-14 flex-col items-center justify-center gap-0.5 rounded-none border-0 bg-transparent
-                             text-[10px] font-bold transition-colors
-                             data-[state=active]:bg-transparent data-[state=active]:text-primary data-[state=active]:shadow-none
-                             data-[state=inactive]:text-muted-foreground"
-                >
-                  <Icon className={`h-[17px] w-[17px] sm:h-[18px] sm:w-[18px] transition-transform ${isActive ? "scale-110" : ""}`} strokeWidth={isActive ? 2.4 : 2} />
-                  <span className="leading-tight mt-0.5 text-[9px] sm:text-[10px] text-center px-0.5">{t(tab.tKey)}</span>
-                  {isActive && (
-                    <motion.span
-                      layoutId="dashboard-tab-indicator"
-                      className="absolute bottom-0 left-1/4 right-1/4 h-[3px] rounded-full bg-primary"
-                      transition={{ type: "spring", stiffness: 320, damping: 28 }}
+            <TabsList
+              className="grid h-auto w-full grid-cols-4 gap-1 rounded-2xl p-1
+                         bg-white/40 dark:bg-white/5
+                         backdrop-blur-xl
+                         border border-white/40 dark:border-white/10
+                         shadow-[inset_0_1px_0_0_hsl(0_0%_100%/0.6),0_2px_8px_-2px_hsl(var(--primary)/0.08)]"
+              aria-label={t("dashboardV2.header.sectionsAria")}
+            >
+              {tabs.map((tab) => {
+                const Icon = tab.icon;
+                const isActive = activeTab === tab.key;
+                return (
+                  <TabsTrigger
+                    key={tab.key}
+                    value={tab.key}
+                    className="relative flex h-12 sm:h-14 flex-col items-center justify-center gap-0.5
+                               rounded-xl border-0 bg-transparent
+                               text-[10px] font-bold transition-all duration-300
+                               data-[state=active]:text-primary data-[state=active]:shadow-none
+                               data-[state=inactive]:text-muted-foreground
+                               data-[state=inactive]:hover:bg-white/30 dark:data-[state=inactive]:hover:bg-white/5"
+                  >
+                    {/* Glass pill behind active tab */}
+                    {isActive && (
+                      <motion.span
+                        layoutId="dashboard-tab-glass"
+                        className="absolute inset-0 rounded-xl
+                                   bg-gradient-to-b from-white/80 to-white/50
+                                   dark:from-white/15 dark:to-white/5
+                                   backdrop-blur-md
+                                   border border-white/60 dark:border-white/15
+                                   shadow-[inset_0_1px_0_0_hsl(0_0%_100%/0.9),0_4px_12px_-4px_hsl(var(--primary)/0.25)]"
+                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                    <Icon
+                      className={`relative z-10 h-[17px] w-[17px] sm:h-[18px] sm:w-[18px] transition-transform ${
+                        isActive ? "scale-110 drop-shadow-[0_1px_2px_hsl(var(--primary)/0.35)]" : ""
+                      }`}
+                      strokeWidth={isActive ? 2.4 : 2}
                     />
-                  )}
-                </TabsTrigger>
-              );
-            })}
-          </TabsList>
+                    <span className="relative z-10 leading-tight mt-0.5 text-[9px] sm:text-[10px] text-center px-0.5">
+                      {t(tab.tKey)}
+                    </span>
+                  </TabsTrigger>
+                );
+              })}
+            </TabsList>
+          </div>
 
           {/* Tab contents */}
           <div className="container px-3 sm:px-4 pt-4">
