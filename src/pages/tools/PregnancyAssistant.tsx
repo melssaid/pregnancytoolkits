@@ -1,13 +1,19 @@
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { motion, AnimatePresence } from "framer-motion";
-import { Send, Bot, User, Loader2, Heart, Baby, Coffee, Apple, Stethoscope, Moon, Dumbbell, UtensilsCrossed, SmilePlus, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
+import {
+  Send, Bot, Loader2, Heart, Baby, Coffee, Apple, Stethoscope,
+  Moon, Dumbbell, UtensilsCrossed, SmilePlus, Sparkles, RotateCcw,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { ToolFrame } from "@/components/ToolFrame";
 import { useSmartChat, type ChatMessage } from "@/hooks/useSmartChat";
-import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
+import { useResetOnLanguageChange } from "@/hooks/useResetOnLanguageChange";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
+import { useUserProfile } from "@/hooks/useUserProfile";
+import { safeParseLocalStorage } from "@/lib/safeStorage";
+import { STORAGE_KEYS, subscribeToData } from "@/lib/dataBus";
 
 interface Message {
   role: "user" | "assistant";
@@ -15,73 +21,149 @@ interface Message {
 }
 
 const quickQuestions = [
-  { icon: Baby, textKey: "pregnancyAssistant.quickQuestions.symptoms", gradient: "from-pink-500 to-rose-400", bg: "bg-pink-50" },
-  { icon: Coffee, textKey: "pregnancyAssistant.quickQuestions.coffee", gradient: "from-amber-500 to-orange-400", bg: "bg-amber-50" },
-  { icon: Stethoscope, textKey: "pregnancyAssistant.quickQuestions.labor", gradient: "from-blue-500 to-indigo-400", bg: "bg-blue-50" },
-  { icon: Apple, textKey: "pregnancyAssistant.quickQuestions.vitamins", gradient: "from-emerald-500 to-green-400", bg: "bg-emerald-50" },
-  { icon: Moon, textKey: "pregnancyAssistant.quickQuestions.sleep", gradient: "from-indigo-500 to-violet-400", bg: "bg-indigo-50" },
-  { icon: Dumbbell, textKey: "pregnancyAssistant.quickQuestions.exercise", gradient: "from-teal-500 to-cyan-400", bg: "bg-teal-50" },
-  { icon: UtensilsCrossed, textKey: "pregnancyAssistant.quickQuestions.nutrition", gradient: "from-lime-500 to-green-400", bg: "bg-lime-50" },
-  { icon: SmilePlus, textKey: "pregnancyAssistant.quickQuestions.emotions", gradient: "from-purple-500 to-fuchsia-400", bg: "bg-purple-50" },
+  { icon: Baby,             textKey: "pregnancyAssistant.quickQuestions.symptoms",   gradient: "from-pink-500 to-rose-400",       bg: "bg-pink-50" },
+  { icon: Coffee,           textKey: "pregnancyAssistant.quickQuestions.coffee",     gradient: "from-amber-500 to-orange-400",    bg: "bg-amber-50" },
+  { icon: Stethoscope,      textKey: "pregnancyAssistant.quickQuestions.labor",      gradient: "from-blue-500 to-indigo-400",     bg: "bg-blue-50" },
+  { icon: Apple,            textKey: "pregnancyAssistant.quickQuestions.vitamins",   gradient: "from-emerald-500 to-green-400",   bg: "bg-emerald-50" },
+  { icon: Moon,             textKey: "pregnancyAssistant.quickQuestions.sleep",      gradient: "from-indigo-500 to-violet-400",   bg: "bg-indigo-50" },
+  { icon: Dumbbell,         textKey: "pregnancyAssistant.quickQuestions.exercise",   gradient: "from-teal-500 to-cyan-400",       bg: "bg-teal-50" },
+  { icon: UtensilsCrossed,  textKey: "pregnancyAssistant.quickQuestions.nutrition", gradient: "from-lime-500 to-green-400",      bg: "bg-lime-50" },
+  { icon: SmilePlus,        textKey: "pregnancyAssistant.quickQuestions.emotions",   gradient: "from-purple-500 to-fuchsia-400",  bg: "bg-purple-50" },
 ];
+
+// Send only the last 8 turns to AI to keep context tight & cost low.
+const MAX_CONTEXT_TURNS = 8;
+
+/** Build a compact dashboard snapshot the AI can use for personalized answers. */
+function useDashboardContext() {
+  const { profile } = useUserProfile();
+  const [tick, setTick] = useState(0);
+
+  // Re-read snapshot whenever any tracked tool publishes a change.
+  useEffect(() => {
+    const trackedKeys = [
+      STORAGE_KEYS.KICK_SESSIONS,
+      STORAGE_KEYS.CONTRACTIONS,
+      STORAGE_KEYS.WEIGHT_ENTRIES,
+      STORAGE_KEYS.SYMPTOM_LOGS,
+      STORAGE_KEYS.VITAMIN_LOGS,
+    ];
+    return subscribeToData(() => setTick((n) => n + 1), trackedKeys);
+  }, []);
+
+  return useMemo(() => {
+    const symptomsRaw = safeParseLocalStorage<Array<{ symptom?: string; date?: string }>>(
+      STORAGE_KEYS.SYMPTOM_LOGS,
+      []
+    );
+    const weightRaw = safeParseLocalStorage<Array<{ weight?: number; date?: string }>>(
+      STORAGE_KEYS.WEIGHT_ENTRIES,
+      []
+    );
+    const kicksRaw = safeParseLocalStorage<Array<{ count?: number; date?: string }>>(
+      STORAGE_KEYS.KICK_SESSIONS,
+      []
+    );
+
+    const recentSymptoms = symptomsRaw.slice(-5).map((s) => s.symptom).filter(Boolean);
+    const lastWeight = weightRaw.length ? weightRaw[weightRaw.length - 1].weight : null;
+    const recentKickCount = kicksRaw.slice(-3).reduce((sum, k) => sum + (k.count || 0), 0);
+
+    return {
+      pregnancyWeek: profile.pregnancyWeek || null,
+      journeyStage: profile.journeyStage,
+      mood: profile.mood || null,
+      currentWeight: profile.weight ?? lastWeight ?? null,
+      height: profile.height ?? null,
+      healthConditions: profile.healthConditions?.length ? profile.healthConditions : null,
+      recentSymptoms: recentSymptoms.length ? recentSymptoms : null,
+      recentKicks72h: recentKickCount || null,
+    };
+  }, [profile, tick]);
+}
 
 export default function PregnancyAssistant() {
   const { t } = useTranslation();
+  const dashboardContext = useDashboardContext();
   const { sendChat, isLoading, error } = useSmartChat({
     section: "pregnancy-plan",
     toolType: "pregnancy-assistant",
   });
 
-  useResetOnLanguageChange(() => {
-    setMessages([]);
-  });
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // Auto-scroll to bottom of page when new messages arrive
+  useResetOnLanguageChange(() => setMessages([]));
+
+  // Auto-scroll only when a new message is added (not on every token tick).
+  const lastMessageCountRef = useRef(0);
   useEffect(() => {
-    if (messagesEndRef.current) {
-      messagesEndRef.current.scrollIntoView({ behavior: "smooth", block: "end" });
+    if (messages.length > lastMessageCountRef.current) {
+      messagesEndRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+      lastMessageCountRef.current = messages.length;
     }
-  }, [messages]);
+  }, [messages.length]);
 
-  const sendMessage = async (text: string) => {
-    if (!text.trim() || isLoading) return;
+  const sendMessage = useCallback(
+    async (text: string) => {
+      const trimmed = text.trim();
+      if (!trimmed || isLoading) return;
 
-    const userMessage: Message = { role: "user", content: text };
-    const updatedMessages = [...messages, userMessage];
-    setMessages(updatedMessages);
+      const userMessage: Message = { role: "user", content: trimmed };
+      const updatedMessages = [...messages, userMessage];
+      setMessages(updatedMessages);
+      setInput("");
+
+      // Keep only the most recent turns to control token cost / latency.
+      const trimmedHistory = updatedMessages.slice(-MAX_CONTEXT_TURNS);
+      const chatHistory: ChatMessage[] = trimmedHistory.map((m) => ({
+        role: m.role,
+        content: m.content,
+      }));
+
+      let assistantContent = "";
+      await sendChat({
+        messages: chatHistory,
+        context: { dashboard: dashboardContext },
+        onDelta: (chunk) => {
+          assistantContent += chunk;
+          setMessages((prev) => {
+            const last = prev[prev.length - 1];
+            if (last?.role === "assistant") {
+              return prev.map((m, i) =>
+                i === prev.length - 1 ? { ...m, content: assistantContent } : m
+              );
+            }
+            return [...prev, { role: "assistant", content: assistantContent }];
+          });
+        },
+        onDone: () => {},
+      });
+    },
+    [messages, isLoading, sendChat, dashboardContext]
+  );
+
+  const resetChat = useCallback(() => {
+    setMessages([]);
     setInput("");
+  }, []);
 
-    let assistantContent = "";
-
-    const chatHistory: ChatMessage[] = updatedMessages.map((m) => ({
-      role: m.role,
-      content: m.content,
-    }));
-
-    await sendChat({
-      messages: chatHistory,
-      onDelta: (chunk) => {
-        assistantContent += chunk;
-        setMessages((prev) => {
-          const last = prev[prev.length - 1];
-          if (last?.role === "assistant") {
-            return prev.map((m, i) =>
-              i === prev.length - 1 ? { ...m, content: assistantContent } : m
-            );
-          }
-          return [...prev, { role: "assistant", content: assistantContent }];
-        });
-      },
-      onDone: () => {},
-    });
-  };
+  const headerAction =
+    messages.length > 0 ? (
+      <button
+        type="button"
+        onClick={resetChat}
+        className="flex items-center gap-1 text-[11px] font-semibold text-muted-foreground hover:text-primary transition-colors"
+      >
+        <RotateCcw className="w-3 h-3" />
+        {t("pregnancyAssistant.newChat", "محادثة جديدة")}
+      </button>
+    ) : null;
 
   return (
-    <ToolFrame 
-      title={t("tools.pregnancyAssistant.title")} 
+    <ToolFrame
+      title={t("tools.pregnancyAssistant.title")}
       subtitle={t("pregnancyAssistant.subtitle")}
       customIcon="chat-assistant"
       mood="nurturing"
@@ -89,34 +171,53 @@ export default function PregnancyAssistant() {
       noCard
     >
       <div className="space-y-3">
-        {/* Messages flow naturally in page */}
         {messages.length === 0 ? (
-          <WelcomeView onSend={sendMessage} />
+          <WelcomeView
+            onSend={sendMessage}
+            week={dashboardContext.pregnancyWeek}
+          />
         ) : (
           <div className="space-y-4 px-1">
+            {/* Reset action above messages */}
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] text-muted-foreground/70">
+                {t("pregnancyAssistant.contextNote", "الردود مبنية على بياناتكِ في لوحة التحكم")}
+              </span>
+              {headerAction}
+            </div>
+
             {messages.map((msg, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 15, scale: 0.97 }}
+                initial={{ opacity: 0, y: 10, scale: 0.98 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 0.25 }}
+                transition={{ duration: 0.22 }}
                 className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
               >
                 {msg.role === "user" ? (
-                  <div className="max-w-[85%] rounded-2xl px-3.5 py-2.5 shadow-sm bg-gradient-to-br from-primary to-pink-500 text-primary-foreground rounded-te-sm" dir="auto">
+                  <div
+                    className="max-w-[85%] rounded-2xl px-3.5 py-2.5 shadow-sm bg-gradient-to-br from-primary to-pink-500 text-primary-foreground rounded-te-sm"
+                    dir="auto"
+                  >
                     <p className="text-sm whitespace-pre-wrap leading-relaxed text-start">
                       {msg.content}
                     </p>
                   </div>
                 ) : (
                   <div className="w-full rounded-2xl overflow-hidden shadow-sm border border-primary/15">
-                    <div className="h-1 w-full" style={{ background: 'linear-gradient(90deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))' }} />
+                    <div
+                      className="h-1 w-full"
+                      style={{
+                        background:
+                          "linear-gradient(90deg, hsl(var(--primary)), hsl(330 70% 55%), hsl(280 60% 55%))",
+                      }}
+                    />
                     <div className="px-3.5 py-3 bg-card" dir="auto">
                       <div className="prose prose-sm max-w-none text-sm text-start">
                         <MarkdownRenderer content={msg.content} accentColor="primary" />
                       </div>
                       <p className="text-[7px] text-muted-foreground/30 text-end mt-2">
-                        {t('ai.resultDisclaimer')}
+                        {t("ai.resultDisclaimer")}
                       </p>
                     </div>
                   </div>
@@ -145,12 +246,10 @@ export default function PregnancyAssistant() {
               </motion.div>
             )}
 
-            {/* Scroll anchor */}
             <div ref={messagesEndRef} />
           </div>
         )}
 
-        {/* Error */}
         {error && (
           <div className="flex items-center gap-2 p-2.5 rounded-lg bg-destructive/10 border border-destructive/20">
             <Heart className="w-3.5 h-3.5 text-destructive shrink-0" />
@@ -158,8 +257,8 @@ export default function PregnancyAssistant() {
           </div>
         )}
 
-        {/* Sticky input at bottom */}
-        <div className="sticky bottom-[4.5rem] z-30 mt-14 mb-3 bg-background/95 backdrop-blur-sm rounded-2xl border border-border/40 shadow-lg">
+        {/* Sticky input */}
+        <div className="sticky bottom-[4.5rem] z-30 mt-10 mb-3 bg-background/95 backdrop-blur-md rounded-2xl border border-border/40 shadow-lg">
           <InputArea
             input={input}
             setInput={setInput}
@@ -177,7 +276,13 @@ export default function PregnancyAssistant() {
 }
 
 /* ─── Welcome View ─── */
-function WelcomeView({ onSend }: { onSend: (text: string) => void }) {
+function WelcomeView({
+  onSend,
+  week,
+}: {
+  onSend: (text: string) => void;
+  week: number | null;
+}) {
   const { t } = useTranslation();
 
   return (
@@ -185,9 +290,8 @@ function WelcomeView({ onSend }: { onSend: (text: string) => void }) {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="flex flex-col items-center text-center space-y-5"
+        className="flex flex-col items-center text-center space-y-4"
       >
-        {/* Animated AI Avatar */}
         <motion.div
           initial={{ scale: 0, rotate: -30 }}
           animate={{ scale: 1, rotate: 0 }}
@@ -213,7 +317,6 @@ function WelcomeView({ onSend }: { onSend: (text: string) => void }) {
           />
         </motion.div>
 
-        {/* Welcome Text */}
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
@@ -226,21 +329,21 @@ function WelcomeView({ onSend }: { onSend: (text: string) => void }) {
           <p className="text-muted-foreground text-xs leading-relaxed">
             {t("pregnancyAssistant.askAnything")}
           </p>
+          {week ? (
+            <span className="inline-flex items-center gap-1 mt-1 px-2 py-0.5 rounded-full bg-primary/10 border border-primary/20 text-[10px] font-bold text-primary">
+              <Sparkles className="w-2.5 h-2.5" />
+              {t("pregnancyAssistant.weekBadge", "الأسبوع {{week}}", { week })}
+            </span>
+          ) : null}
         </motion.div>
 
-        {/* Quick Questions Grid */}
         <div className="grid grid-cols-2 gap-2 w-full max-w-sm">
           {quickQuestions.map((q, i) => (
             <motion.button
               key={i}
-              initial={{ opacity: 0, y: 20, scale: 0.9 }}
+              initial={{ opacity: 0, y: 16, scale: 0.92 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{
-                delay: 0.3 + i * 0.07,
-                type: "spring",
-                stiffness: 200,
-                damping: 15,
-              }}
+              transition={{ delay: 0.3 + i * 0.06, type: "spring", stiffness: 200, damping: 15 }}
               whileTap={{ scale: 0.97 }}
               onClick={() => onSend(t(q.textKey))}
               className={`group relative flex items-center gap-2 p-2.5 rounded-xl ${q.bg} border border-border/30 hover:border-primary/30 hover:shadow-md transition-shadow duration-200 text-start overflow-hidden min-w-0`}
@@ -274,13 +377,13 @@ function InputArea({
   const { t } = useTranslation();
 
   return (
-    <div className="p-3">
-      <div className="flex gap-2">
+    <div className="p-2.5">
+      <div className="flex gap-2 items-end">
         <Textarea
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder={t("pregnancyAssistant.placeholder")}
-          className="min-h-[44px] max-h-[100px] resize-none rounded-xl border-0 bg-transparent shadow-none text-sm flex-1 focus-visible:ring-0 text-start"
+          className="min-h-[44px] max-h-[120px] resize-none rounded-xl border-0 bg-transparent shadow-none text-sm flex-1 focus-visible:ring-0 text-start py-2.5"
           dir="auto"
           onKeyDown={(e) => {
             if (e.key === "Enter" && !e.shiftKey) {
@@ -293,7 +396,8 @@ function InputArea({
           onClick={() => onSend(input)}
           disabled={!input.trim() || isLoading}
           size="icon"
-          className="h-[44px] w-[44px] rounded-xl bg-gradient-to-br from-primary to-pink-500 hover:from-primary/90 hover:to-pink-500/90 shadow-lg shadow-primary/20 transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:hover:scale-100 shrink-0"
+          aria-label={t("pregnancyAssistant.send", "إرسال")}
+          className="h-11 w-11 rounded-xl bg-gradient-to-br from-primary to-pink-500 hover:from-primary/90 hover:to-pink-500/90 shadow-lg shadow-primary/20 transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:hover:scale-100 shrink-0"
         >
           {isLoading ? (
             <Loader2 className="w-4 h-4 animate-spin" />
@@ -309,7 +413,6 @@ function InputArea({
 /* ─── Trust Indicators ─── */
 function TrustIndicators() {
   const { t } = useTranslation();
-
   return (
     <div className="flex flex-wrap justify-center gap-3 text-[10px] sm:text-xs text-muted-foreground pb-2">
       <div className="flex items-center gap-1">
