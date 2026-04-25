@@ -207,7 +207,6 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
         ) : (
           /* Non-pregnant: simple welcome panel */
           <div className="flex items-center gap-3 mb-5 rounded-2xl border border-border/40 bg-background/60 p-4">
-            <Sparkles className="h-7 w-7 text-primary flex-shrink-0" />
             <p className="text-sm font-semibold text-foreground leading-snug">
               {t("dashboardV2.progress.welcomeWellness")}
             </p>
