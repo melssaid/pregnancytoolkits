@@ -232,32 +232,62 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
             )}
           </div>
 
-          <div className="flex items-center justify-between gap-1.5">
+          <div className="flex items-stretch justify-between gap-1.5">
             {moods.map(m => {
               const active = selectedMood === m.value;
               const label = t(`dashboardV2.mood.${m.key}`);
               return (
                 <motion.button
                   key={m.value}
-                  whileTap={{ scale: 0.92 }}
+                  whileTap={{ scale: 0.94 }}
+                  whileHover={{ y: -1 }}
+                  transition={{ type: "spring", stiffness: 380, damping: 22 }}
                   onClick={() => handleMoodTap(m.value)}
-                  className={`flex-1 flex flex-col items-center gap-1 py-2 rounded-xl transition-all duration-200 ${
+                  className={`relative flex-1 flex flex-col items-center justify-center gap-1.5 py-2.5 rounded-2xl overflow-hidden transition-all duration-300 border ${
                     active
-                      ? "bg-primary/12 ring-1 ring-primary/40 shadow-sm"
-                      : "bg-muted/30 hover:bg-muted/50"
+                      ? "border-primary/35 shadow-[0_4px_14px_-4px_hsl(var(--primary)/0.35),inset_0_1px_0_0_hsl(0_0%_100%/0.6)]"
+                      : "border-border/30 hover:border-border/60 shadow-[inset_0_1px_0_0_hsl(0_0%_100%/0.4)]"
                   }`}
+                  style={{
+                    background: active
+                      ? `linear-gradient(160deg, ${m.color}22 0%, ${m.color}10 55%, hsl(var(--background)) 100%)`
+                      : "linear-gradient(160deg, hsl(var(--muted)/0.55) 0%, hsl(var(--background)/0.85) 100%)",
+                  }}
                   aria-label={label}
+                  aria-pressed={active}
                 >
+                  {/* Top inner highlight */}
                   <span
-                    className="block w-2.5 h-2.5 rounded-full transition-all"
+                    aria-hidden
+                    className="pointer-events-none absolute inset-x-0 top-0 h-1/2 opacity-70"
                     style={{
-                      backgroundColor: m.color,
-                      opacity: active ? 1 : 0.55,
-                      transform: active ? "scale(1.4)" : "scale(1)",
+                      background:
+                        "linear-gradient(to bottom, hsl(0 0% 100% / 0.35), transparent)",
+                    }}
+                  />
+                  {/* Soft color glow when active */}
+                  {active && (
+                    <motion.span
+                      aria-hidden
+                      layoutId="mood-glow"
+                      className="pointer-events-none absolute -bottom-3 left-1/2 -translate-x-1/2 h-8 w-10 rounded-full blur-xl"
+                      style={{ backgroundColor: m.color, opacity: 0.45 }}
+                    />
+                  )}
+                  <span
+                    className="relative z-10 block rounded-full transition-all duration-300"
+                    style={{
+                      width: active ? 12 : 10,
+                      height: active ? 12 : 10,
+                      background: `radial-gradient(circle at 30% 25%, hsl(0 0% 100% / 0.85), ${m.color} 65%)`,
+                      boxShadow: active
+                        ? `0 2px 6px ${m.color}66, inset 0 -1px 2px hsl(0 0% 0% / 0.18)`
+                        : `inset 0 -1px 2px hsl(0 0% 0% / 0.12)`,
+                      opacity: active ? 1 : 0.7,
                     }}
                   />
                   <span
-                    className={`text-[9px] font-semibold leading-tight text-center break-words px-0.5 ${
+                    className={`relative z-10 text-[9px] font-bold leading-tight text-center break-words px-0.5 transition-colors ${
                       active ? "text-foreground" : "text-muted-foreground"
                     }`}
                   >
