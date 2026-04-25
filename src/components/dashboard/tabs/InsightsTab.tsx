@@ -8,7 +8,7 @@ import { WeeklySymptomsCard } from "@/components/dashboard/WeeklySymptomsCard";
 import { WeightTrendCard } from "@/components/dashboard/WeightTrendCard";
 import { FetalMovementCard } from "@/components/dashboard/FetalMovementCard";
 import { RecentMealFitnessSummary } from "@/components/dashboard/RecentMealFitnessSummary";
-import { WeeklyMoodTrendChart } from "@/components/charts/WeeklyMoodTrendChart";
+import { WeeklyKickFrequencyChart } from "@/components/charts/WeeklyKickFrequencyChart";
 import { WeeklyHydrationChart } from "@/components/charts/WeeklyHydrationChart";
 import { WeeklyContractionFrequencyChart } from "@/components/charts/WeeklyContractionFrequencyChart";
 import { EmptyStateCard } from "@/components/dashboard/EmptyStateCard";
@@ -34,8 +34,10 @@ export const InsightsTab = memo(function InsightsTab() {
 
       {isPregnant && <WeeklyComparisonCard />}
 
-      {/* Weekly trend charts */}
-      {dataCheck.hasMoodData && <WeeklyMoodTrendChart />}
+      {/* Weekly trend charts — all read from the unified storage keys
+          (kick_sessions / water_logs_<uid> / contraction_timer_data) and
+          re-render live via subscribeToData when the underlying tool saves. */}
+      {dataCheck.hasKickSessions && <WeeklyKickFrequencyChart />}
       {dataCheck.hasHydration && <WeeklyHydrationChart />}
       {dataCheck.hasContractions && <WeeklyContractionFrequencyChart />}
 

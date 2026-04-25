@@ -1,4 +1,4 @@
-import { memo, useMemo } from "react";
+import { memo, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Droplet, TrendingUp, TrendingDown, Minus } from "lucide-react";
 import {
@@ -16,6 +16,7 @@ import { format, subDays, eachDayOfInterval } from "date-fns";
 import { safeParseLocalStorage } from "@/lib/safeStorage";
 import { getDateLocale } from "@/lib/dateLocale";
 import { getUserId } from "@/hooks/useSupabase";
+import { subscribeToData, STORAGE_KEYS } from "@/lib/dataBus";
 
 const GOAL = 8;
 
@@ -28,10 +29,15 @@ interface WaterLog {
 export const WeeklyHydrationChart = memo(function WeeklyHydrationChart() {
   const { t, i18n } = useTranslation();
   const locale = getDateLocale(i18n.language);
+  const userId = getUserId();
+  const waterKey = STORAGE_KEYS.WATER_LOGS(userId);
+
+  // Live updates whenever the user logs / removes a glass anywhere in the app.
+  const [tick, setTick] = useState(0);
+  useEffect(() => subscribeToData(() => setTick((n) => n + 1), [waterKey]), [waterKey]);
 
   const { chartData, stats } = useMemo(() => {
-    const userId = getUserId();
-    const logs = safeParseLocalStorage<WaterLog[]>(`water_logs_${userId}`, [], (d): d is WaterLog[] =>
+    const logs = safeParseLocalStorage<WaterLog[]>(waterKey, [], (d): d is WaterLog[] =>
       Array.isArray(d)
     );
     const days = eachDayOfInterval({ start: subDays(new Date(), 6), end: new Date() });
@@ -56,7 +62,9 @@ export const WeeklyHydrationChart = memo(function WeeklyHydrationChart() {
     if (b > a + 1) trend = "up";
     else if (b < a - 1) trend = "down";
     return { chartData: data, stats: { avg, total, goalMet, trend } };
-  }, [locale]);
+    // `tick` is the live-data signal — must invalidate the memo.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [locale, waterKey, tick]);
 
   if (stats.total === 0) return null;
 
