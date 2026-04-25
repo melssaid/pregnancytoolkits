@@ -994,6 +994,83 @@ Deno.serve(async (req) => {
       "X-Subscription-Tier": subscriptionTier,
     };
 
+    // ── Branch A: Live Search via Perplexity Sonar (citations grounded) ──
+    if (type === "live-search") {
+      const PERPLEXITY_API_KEY = Deno.env.get("PERPLEXITY_API_KEY");
+      if (!PERPLEXITY_API_KEY) {
+        console.error("[AI] PERPLEXITY_API_KEY not configured for live-search");
+        return jsonError("Live search service is not configured", 503);
+      }
+
+      try {
+        const perpResp = await fetch("https://api.perplexity.ai/chat/completions", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${PERPLEXITY_API_KEY}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            model: "sonar",
+            messages: [
+              { role: "system", content: systemPrompt },
+              ...(messages || []),
+            ],
+            temperature: tuning.temperature,
+            max_tokens: tuning.max_tokens,
+            search_recency_filter: "year",
+            return_citations: true,
+            stream: false,
+          }),
+        });
+
+        if (!perpResp.ok) {
+          const errText = await perpResp.text();
+          console.error(`[Perplexity] ${perpResp.status}`, errText.substring(0, 200));
+          if (perpResp.status === 429) return jsonError("Rate limit exceeded, please try again later", 429);
+          if (perpResp.status === 402) return jsonError("Live search quota exhausted. Please contact support.", 402);
+          return jsonError("Live search service unavailable. Please try again.", 503);
+        }
+
+        const perpData = await perpResp.json();
+        const answer: string = perpData?.choices?.[0]?.message?.content || "";
+        const citations: string[] = Array.isArray(perpData?.citations) ? perpData.citations : [];
+
+        // Build a final answer + citations block
+        let finalContent = answer.trim();
+        if (citations.length > 0) {
+          const citationsHeader = lang === "ar" ? "## 📎 المصادر" : "## 📎 Sources";
+          finalContent += `\n\n${citationsHeader}\n` +
+            citations.map((url, i) => `${i + 1}. ${url}`).join("\n");
+        }
+
+        // Wrap as SSE stream so the client streaming pipeline works unchanged
+        const encoder = new TextEncoder();
+        const sseStream = new ReadableStream({
+          start(controller) {
+            const chunkSize = 80;
+            for (let i = 0; i < finalContent.length; i += chunkSize) {
+              const piece = finalContent.slice(i, i + chunkSize);
+              const event = `data: ${JSON.stringify({ choices: [{ delta: { content: piece } }] })}\n\n`;
+              controller.enqueue(encoder.encode(event));
+            }
+            controller.enqueue(encoder.encode("data: [DONE]\n\n"));
+            controller.close();
+          },
+        });
+
+        const elapsed = Date.now() - requestStartTime;
+        const stableClientId = deviceFingerprint || ipClientId;
+        logAIUsage(type, lang, stableClientId, userId, tuning.max_tokens, true, elapsed).catch(() => {});
+
+        return new Response(sseStream, {
+          headers: { ...corsHeaders, ...usageHeaders, "Content-Type": "text/event-stream" },
+        });
+      } catch (e) {
+        console.error("[Perplexity] crash:", String(e).substring(0, 200));
+        return jsonError("Live search failed. Please try again.", 503);
+      }
+    }
+
     for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
       try {
         const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
