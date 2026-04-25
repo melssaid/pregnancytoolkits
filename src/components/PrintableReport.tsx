@@ -1,9 +1,10 @@
 import React, { useRef, useCallback, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
-import { Download, Loader2, RectangleVertical, RectangleHorizontal } from 'lucide-react';
+import { Download, Loader2, RectangleVertical, RectangleHorizontal, History, Trash2, FileText } from 'lucide-react';
 import { useUserProfile } from '@/hooks/useUserProfile';
 import { buildPrintHTML, loadLogoBase64, type PrintOrientation } from '@/lib/printUtils';
+import { usePdfHistory } from '@/hooks/usePdfHistory';
 import { cn } from '@/lib/utils';
 
 interface PrintableReportProps {
@@ -12,6 +13,8 @@ interface PrintableReportProps {
   isLoading?: boolean;
   downloadLabel?: string;
   downloadHint?: string;
+  /** Enables local PDF history. Pass a stable bucket name (e.g. "sonar"). */
+  historyBucket?: string;
 }
 
 const downloadLabels: Record<string, string> = {
