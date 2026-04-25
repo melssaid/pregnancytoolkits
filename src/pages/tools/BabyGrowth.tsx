@@ -138,6 +138,7 @@ const BabyGrowth = () => {
     const updated = entries.filter((e) => e.id !== id);
     setEntries(updated);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+    emitDataChange(STORAGE_KEYS.BABY_GROWTH);
     toast.success(t('toolsInternal.babyGrowth.deleted'));
   };
 
