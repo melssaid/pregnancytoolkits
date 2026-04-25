@@ -60,9 +60,9 @@ export function AIFeedbackPrompt({ toolId, onFeedback }: AIFeedbackPromptProps) 
       initial={{ opacity: 0, y: 5 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.5 }}
-      className="flex flex-col xs:flex-row items-stretch xs:items-center gap-2 py-2.5 px-3 rounded-xl bg-muted/30 border border-border/30"
+      className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 py-2.5 px-3 rounded-xl bg-muted/30 border border-border/30"
     >
-      <span className="flex-1 min-w-0 text-xs font-semibold text-muted-foreground leading-snug text-center xs:text-start break-words">
+      <span className="flex-1 min-w-0 text-xs font-semibold text-muted-foreground leading-snug text-center sm:text-start break-words">
         {t('aiFeedback.question', { defaultValue: 'هل أفادتك هذه النتيجة؟' })}
       </span>
       <div className="flex items-center justify-center gap-2 shrink-0">
