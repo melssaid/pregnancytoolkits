@@ -1,4 +1,4 @@
-import { memo, useMemo } from "react";
+import { memo, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Activity, TrendingUp, TrendingDown, Minus } from "lucide-react";
 import {
@@ -13,6 +13,7 @@ import {
 import { format, subDays, eachDayOfInterval } from "date-fns";
 import { safeParseLocalStorage } from "@/lib/safeStorage";
 import { getDateLocale } from "@/lib/dateLocale";
+import { subscribeToData, STORAGE_KEYS } from "@/lib/dataBus";
 
 interface Contraction {
   id: string;
@@ -26,9 +27,16 @@ export const WeeklyContractionFrequencyChart = memo(function WeeklyContractionFr
   const { t, i18n } = useTranslation();
   const locale = getDateLocale(i18n.language);
 
+  // Live updates as the user starts / stops contractions in the timer tool.
+  const [tick, setTick] = useState(0);
+  useEffect(
+    () => subscribeToData(() => setTick((n) => n + 1), [STORAGE_KEYS.CONTRACTIONS]),
+    [],
+  );
+
   const { chartData, stats } = useMemo(() => {
     const list = safeParseLocalStorage<Contraction[]>(
-      "contraction_timer_data",
+      STORAGE_KEYS.CONTRACTIONS,
       [],
       (d): d is Contraction[] => Array.isArray(d)
     );
@@ -50,14 +58,15 @@ export const WeeklyContractionFrequencyChart = memo(function WeeklyContractionFr
     });
     const total = data.reduce((s, d) => s + d.count, 0);
     const activeDays = data.filter((d) => d.count > 0).length;
-    const peak = Math.max(...data.map((d) => d.count));
+    const peak = Math.max(0, ...data.map((d) => d.count));
     let trend: "up" | "down" | "neutral" = "neutral";
     const a = data.slice(0, 3).reduce((s, d) => s + d.count, 0);
     const b = data.slice(4).reduce((s, d) => s + d.count, 0);
     if (b > a + 1) trend = "up";
     else if (b < a - 1) trend = "down";
     return { chartData: data, stats: { total, activeDays, peak, trend } };
-  }, [locale]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [locale, tick]);
 
   if (stats.total === 0) return null;
 
