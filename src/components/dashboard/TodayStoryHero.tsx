@@ -48,32 +48,19 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
     return () => window.removeEventListener("storage", onStorage);
   }, [today]);
 
-  // Time-based greeting
+  // Time-based greeting (translated via i18n in 7 languages)
   const greeting = useMemo(() => {
     const slot = timeSlot;
     return {
       icon: slot === "morning" ? Sun : slot === "afternoon" ? Coffee : Moon,
-      titleAr: slot === "morning" ? "صباح الخير" : slot === "afternoon" ? "مساء النور" : "مساء الخير",
-      titleEn: slot === "morning" ? "Good Morning" : slot === "afternoon" ? "Good Afternoon" : "Good Evening",
-      tipAr:
-        slot === "morning"
-          ? "ابدئي يومكِ بكوب ماء وتنفّس عميق"
-          : slot === "afternoon"
-          ? "وقتٌ مناسب لتناول الفيتامينات اليومية"
-          : "خصّصي وقتاً للراحة وتسجيل مشاعركِ",
-      tipEn:
-        slot === "morning"
-          ? "Start your day with water and deep breathing"
-          : slot === "afternoon"
-          ? "A good time for your daily vitamins"
-          : "Wind down and log how you feel today",
+      title: t(`dashboardV2.greeting.${slot}`),
+      tip: t(`dashboardV2.greeting.${slot}Tip`),
     };
-  }, [timeSlot]);
+  }, [timeSlot, t]);
 
   // Pregnancy progress
   const progress = isPregnant ? Math.min(100, (week / 40) * 100) : 0;
   const trimester = week <= 13 ? 1 : week <= 26 ? 2 : 3;
-  const trimesterKey = trimester === 1 ? "first" : trimester === 2 ? "second" : "third";
   const daysRemaining = profile.dueDate
     ? Math.max(0, Math.ceil((new Date(profile.dueDate).getTime() - Date.now()) / 86400000))
     : isPregnant
@@ -86,13 +73,13 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
   const circumference = 2 * Math.PI * ringRadius;
   const strokeDash = (progress / 100) * circumference;
 
-  // Formal mood scale — icons + labels, no playful emojis
+  // Formal mood scale — translated, no emojis
   const moods = [
-    { value: 1, labelAr: "متعبة", labelEn: "Difficult", color: "hsl(0,55%,55%)" },
-    { value: 2, labelAr: "منخفض", labelEn: "Low", color: "hsl(25,65%,55%)" },
-    { value: 3, labelAr: "عادي", labelEn: "Neutral", color: "hsl(45,60%,50%)" },
-    { value: 4, labelAr: "جيد", labelEn: "Good", color: "hsl(160,45%,45%)" },
-    { value: 5, labelAr: "ممتاز", labelEn: "Excellent", color: "hsl(180,50%,40%)" },
+    { value: 1, key: "difficult",  color: "hsl(0,55%,55%)" },
+    { value: 2, key: "low",        color: "hsl(25,65%,55%)" },
+    { value: 3, key: "neutral",    color: "hsl(45,60%,50%)" },
+    { value: 4, key: "good",       color: "hsl(160,45%,45%)" },
+    { value: 5, key: "excellent",  color: "hsl(180,50%,40%)" },
   ];
 
   const handleMoodTap = useCallback(
