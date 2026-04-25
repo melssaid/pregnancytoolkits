@@ -124,6 +124,7 @@ const BabyGrowth = () => {
     const updated = [newEntry, ...entries].sort((a, b) => a.ageMonths - b.ageMonths);
     setEntries(updated);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+    emitDataChange(STORAGE_KEYS.BABY_GROWTH);
 
     setAgeMonths("");
     setWeight("");
