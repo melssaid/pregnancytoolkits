@@ -1,4 +1,5 @@
 import { memo, useState, useCallback, useMemo } from "react";
+import { emitDataChange } from "@/lib/dataBus";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";

@@ -1,4 +1,5 @@
 import React, { useMemo, useState, useCallback, useEffect } from 'react';
+import { emitDataChange } from "@/lib/dataBus";
 import { useTranslation } from 'react-i18next';
 import { Gauge, Plus, Trash2, TrendingUp, Check } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
