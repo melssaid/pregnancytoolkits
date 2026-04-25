@@ -23,6 +23,7 @@ export function ProgressIndicator({
   showMilestones = true 
 }: ProgressIndicatorProps) {
   const { t } = useTranslation();
+  const { isRTL } = useLanguage();
   const progress = Math.min((currentWeek / totalWeeks) * 100, 100);
   const daysRemaining = Math.max((totalWeeks - currentWeek) * 7, 0);
 
