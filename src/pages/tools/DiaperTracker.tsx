@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { emitDataChange } from "@/lib/dataBus";
 import { useTranslation } from "react-i18next";
 import { ToolFrame } from "@/components/ToolFrame";
 import { Card, CardContent } from "@/components/ui/card";
