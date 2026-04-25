@@ -1,12 +1,13 @@
 import { memo, useState, useCallback, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { Sun, Coffee, Moon, Sparkles, Check } from "lucide-react";
+import { Quote, Check } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { haptic } from "@/lib/haptics";
 import { safeParseLocalStorage, safeSaveToLocalStorage } from "@/lib/safeStorage";
 import { useDashboardData } from "@/hooks/useDashboardData";
 import { useOptimizedMotion } from "@/hooks/useOptimizedMotion";
+import roseDecor from "@/assets/rose-right.png";
 
 interface DailyLog {
   date: string;
