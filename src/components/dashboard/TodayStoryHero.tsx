@@ -69,9 +69,9 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
     ? (40 - week) * 7
     : 0;
 
-  // Ring math (140px)
-  const ringSize = 140;
-  const ringRadius = 60;
+  // Ring math (compact 116px → fits 320px viewports without crushing stats)
+  const ringSize = 116;
+  const ringRadius = 50;
   const circumference = 2 * Math.PI * ringRadius;
   const strokeDash = (progress / 100) * circumference;
 
@@ -137,13 +137,13 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
 
         {/* Pregnancy section */}
         {isPregnant ? (
-          <div className="flex items-center gap-5 mb-5">
-            {/* Large Progress Ring */}
+          <div className="flex items-center gap-3 sm:gap-4 mb-5">
+            {/* Compact Progress Ring */}
             <div className="relative flex-shrink-0" style={{ width: ringSize, height: ringSize }}>
-              <svg viewBox="0 0 140 140" className="w-full h-full -rotate-90">
-                <circle cx="70" cy="70" r={ringRadius} fill="none" stroke="hsl(var(--muted))" strokeWidth="6" opacity={0.2} />
+              <svg viewBox="0 0 116 116" className="w-full h-full -rotate-90">
+                <circle cx="58" cy="58" r={ringRadius} fill="none" stroke="hsl(var(--muted))" strokeWidth="6" opacity={0.2} />
                 <motion.circle
-                  cx="70" cy="70" r={ringRadius}
+                  cx="58" cy="58" r={ringRadius}
                   fill="none"
                   stroke="url(#heroProgressGrad)"
                   strokeWidth="7"
@@ -164,37 +164,39 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
               <div className="absolute inset-0 flex flex-col items-center justify-center">
                 <motion.span
                   {...m.pop}
-                  className="text-5xl font-black leading-none text-foreground tabular-nums"
+                  className="text-[2.5rem] font-black leading-none text-foreground tabular-nums"
                   style={{ fontFamily: isAr ? "'Tajawal', sans-serif" : undefined }}
                 >
                   {week}
                 </motion.span>
-                <span className="mt-0.5 text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+                <span className="mt-0.5 text-[9px] font-bold uppercase tracking-wider text-muted-foreground">
                   {t("dashboardV2.progress.week")}
                 </span>
               </div>
             </div>
 
-            {/* Stats column */}
+            {/* Stats column — horizontal rows for full label visibility */}
             <div className="flex-1 min-w-0 space-y-2">
-              <div>
-                <p className="text-[10px] font-bold uppercase tracking-[0.1em] text-primary/80">
-                  {t(`dashboardV2.progress.trimester${trimester}`)}
-                </p>
-              </div>
+              <p className="text-[10px] font-bold uppercase tracking-[0.1em] text-primary/80">
+                {t(`dashboardV2.progress.trimester${trimester}`)}
+              </p>
 
-              <div className="grid grid-cols-2 gap-2.5">
-                <div className="rounded-2xl border border-border/40 bg-background/60 px-2.5 py-2 backdrop-blur-sm min-w-0">
-                  <p className="text-2xl font-black leading-tight text-foreground tabular-nums">{daysRemaining}</p>
-                  <p className="mt-1 text-[9px] font-semibold leading-snug text-muted-foreground break-words">
+              <div className="space-y-1.5">
+                <div className="flex items-baseline justify-between gap-2 rounded-xl border border-border/40 bg-background/60 px-3 py-2 backdrop-blur-sm">
+                  <span className="text-[11px] font-semibold text-muted-foreground truncate">
                     {t("dashboardV2.progress.daysLeft")}
-                  </p>
+                  </span>
+                  <span className="text-xl font-black leading-none text-foreground tabular-nums shrink-0">
+                    {daysRemaining}
+                  </span>
                 </div>
-                <div className="rounded-2xl border border-border/40 bg-background/60 px-2.5 py-2 backdrop-blur-sm min-w-0">
-                  <p className="text-2xl font-black leading-tight text-foreground tabular-nums whitespace-nowrap">{Math.round(progress)}<span className="text-sm">%</span></p>
-                  <p className="mt-1 text-[9px] font-semibold leading-snug text-muted-foreground break-words">
+                <div className="flex items-baseline justify-between gap-2 rounded-xl border border-border/40 bg-background/60 px-3 py-2 backdrop-blur-sm">
+                  <span className="text-[11px] font-semibold text-muted-foreground truncate">
                     {t("dashboardV2.progress.complete")}
-                  </p>
+                  </span>
+                  <span className="text-xl font-black leading-none text-foreground tabular-nums shrink-0 whitespace-nowrap">
+                    {Math.round(progress)}<span className="text-xs">%</span>
+                  </span>
                 </div>
               </div>
             </div>
