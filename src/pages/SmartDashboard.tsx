@@ -85,8 +85,8 @@ const SmartDashboard = () => {
       />
 
       <main dir={isRTL ? "rtl" : "ltr"} className={`relative pb-24 bg-gradient-to-b ${trimesterTheme.gradient}`}>
-        {/* Decorative rose — anchored to the visual left in both LTR and RTL */}
-        <div className="pointer-events-none absolute -top-3 left-0 z-0 flex px-1" dir="ltr">
+        {/* Decorative rose — always anchored to the visual LEFT side of the screen */}
+        <div className="pointer-events-none absolute -top-3 left-0 z-0 flex px-1" dir="ltr" aria-hidden="true">
           <motion.img
             src={roseLeft}
             alt=""

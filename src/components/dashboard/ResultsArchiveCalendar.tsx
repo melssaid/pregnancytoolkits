@@ -658,7 +658,7 @@ export function ResultsArchiveCalendar() {
               )}
 
               {/* Results list */}
-              <div className="mt-3 space-y-2 max-h-[420px] overflow-y-auto pr-1">
+              <div className="mt-3 space-y-2 max-h-[420px] overflow-y-auto pe-1">
                 {filteredResults.length === 0 ? (
                   <p className="text-xs text-muted-foreground text-center py-8">
                     {activeDay
