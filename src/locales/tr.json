@@ -9093,6 +9093,25 @@
         "positive": "{{count}} olumlu sinyal",
         "watchouts": "{{count}} dikkat noktası"
       }
+    },
+    "ultrasound": {
+      "title": "Ultrason Günlüğü",
+      "emptyDesc": "Anında eğitici yapay zeka görsel okuması için bir ultrason fotoğrafı yükleyin.",
+      "uploadCta": "İlk taramanızı yükleyin",
+      "openCta": "Ultrason aracını aç",
+      "noAnalysisYet": "Henüz analiz yok. Yapay zeka okuması için Aç'a dokunun.",
+      "aiReading": "Son YZ okuması",
+      "weekTag": "Hafta {{week}}",
+      "totalCount": "{{count}} kayıtlı fotoğraf"
+    },
+    "nutrition": {
+      "title": "Günlük Beslenme",
+      "emptyDesc": "Aşamanıza uygun akıllı yemek önerileri alın.",
+      "startCta": "Yemek planlayıcıyı başlat",
+      "openCta": "Planlayıcıyı aç",
+      "totalSaved": "{{count}} kayıtlı öğün",
+      "savedMeal": "Kayıtlı öğün",
+      "tip": "Her öğünde protein, demir ve kalsiyuma odaklanın."
     }
   },
   "reset": {
