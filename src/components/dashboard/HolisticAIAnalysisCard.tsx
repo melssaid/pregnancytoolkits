@@ -196,6 +196,24 @@ export const HolisticAIAnalysisCard = memo(function HolisticAIAnalysisCard() {
           </div>
         </div>
 
+        {/* Sonar source chip + settings link */}
+        <Link
+          to="/settings"
+          className="flex items-center justify-between gap-2 rounded-lg px-2.5 py-1.5 text-[11px] hover:bg-white/50 transition-colors"
+          style={{ background: "hsl(0 0% 100% / 0.4)", border: "1px solid hsl(330 30% 90% / 0.5)" }}
+        >
+          <span className="flex items-center gap-1.5 text-foreground/75 font-medium min-w-0 truncate">
+            <Settings2 className="w-3 h-3 shrink-0" />
+            <span className="truncate">
+              {t(`settings.sonar.scope.${sonar.scope}.label`)}
+              {(sonar.scope === "timeline" || sonar.scope === "both") && ` · ${sonar.timelineWindow}d`}
+            </span>
+          </span>
+          <span className="text-primary font-semibold shrink-0">
+            {t("settings.sonar.changeShort")}
+          </span>
+        </Link>
+
         {/* Min data warning */}
         {!hasMinimumData && (
           <p className="text-[12px] text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/30 rounded-lg px-3 py-2 leading-relaxed">
