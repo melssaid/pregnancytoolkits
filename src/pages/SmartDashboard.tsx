@@ -8,10 +8,9 @@ import { useSmartConversionPrompt } from "@/hooks/useSmartConversionPrompt";
 import { useTrimesterTheme } from "@/hooks/useTrimesterTheme";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Sun, BarChart3, Calendar, LayoutGrid } from "lucide-react";
+import { Sun, BarChart3, Calendar, LayoutGrid, Sunrise, Moon, Sparkles } from "lucide-react";
 import { haptic } from "@/lib/haptics";
 import { subscribeToData, STORAGE_KEYS } from "@/lib/dataBus";
-import roseLeft from "@/assets/rose-left.png";
 
 // Maps a canonical storage key to the i18n key used in the toast title.
 // Anything unmapped falls back to a generic "dashboard updated" message.
@@ -117,17 +116,41 @@ const SmartDashboard = () => {
     setActiveTab(next);
   }, []);
 
-  // Decorative parallax
+  // Decorative parallax for the time-aware emblem
   const { scrollY } = useScroll();
-  const roseLeftY = useTransform(scrollY, [0, 400], [0, -60]);
-  const roseOpacity = useTransform(scrollY, [0, 300], [0.85, 0]);
-  const roseLeftScale = useTransform(scrollY, [0, 400], [1, 0.7]);
+  const emblemY = useTransform(scrollY, [0, 400], [0, -40]);
+  const emblemOpacity = useTransform(scrollY, [0, 300], [0.9, 0]);
+  const emblemScale = useTransform(scrollY, [0, 400], [1, 0.75]);
 
-  const tabs: Array<{ key: TabKey; icon: typeof Sun; tKey: string }> = [
-    { key: "today",    icon: Sun,        tKey: "dashboardV2.tabs.today" },
-    { key: "insights", icon: BarChart3,  tKey: "dashboardV2.tabs.insights" },
-    { key: "archive",  icon: Calendar,   tKey: "dashboardV2.tabs.archive" },
-    { key: "more",     icon: LayoutGrid, tKey: "dashboardV2.tabs.more" },
+  // Time-aware emblem: morning sunrise → afternoon sun → evening moon → night sparkles
+  const hour = new Date().getHours();
+  const TimeEmblem =
+    hour < 6  ? Moon :
+    hour < 11 ? Sunrise :
+    hour < 17 ? Sun :
+    hour < 21 ? Sunrise :
+                Moon;
+  // Per-time gradient + glow color
+  const emblemTone =
+    hour < 6  ? { from: "from-indigo-400/30",  to: "to-violet-500/15", ring: "shadow-indigo-400/30",  icon: "text-indigo-400" } :
+    hour < 11 ? { from: "from-amber-300/40",   to: "to-rose-300/15",   ring: "shadow-amber-300/40",   icon: "text-amber-500" } :
+    hour < 17 ? { from: "from-yellow-300/40",  to: "to-orange-300/15", ring: "shadow-yellow-300/40",  icon: "text-amber-500" } :
+    hour < 21 ? { from: "from-rose-400/35",    to: "to-purple-400/15", ring: "shadow-rose-400/30",    icon: "text-rose-500" } :
+                { from: "from-violet-500/35",  to: "to-indigo-500/15", ring: "shadow-violet-500/30",  icon: "text-violet-400" };
+
+  // Each tab gets its own gradient + accent for the active glass pill icon
+  const tabs: Array<{
+    key: TabKey; icon: typeof Sun; tKey: string;
+    grad: string; activeIcon: string; iconShadow: string;
+  }> = [
+    { key: "today",    icon: Sun,        tKey: "dashboardV2.tabs.today",
+      grad: "from-amber-400/90 to-orange-500/90",   activeIcon: "text-amber-500",  iconShadow: "drop-shadow-[0_1px_3px_hsl(35_95%_55%/0.55)]" },
+    { key: "insights", icon: BarChart3,  tKey: "dashboardV2.tabs.insights",
+      grad: "from-sky-400/90 to-cyan-500/90",       activeIcon: "text-sky-500",    iconShadow: "drop-shadow-[0_1px_3px_hsl(200_95%_55%/0.55)]" },
+    { key: "archive",  icon: Calendar,   tKey: "dashboardV2.tabs.archive",
+      grad: "from-emerald-400/90 to-teal-500/90",   activeIcon: "text-emerald-500",iconShadow: "drop-shadow-[0_1px_3px_hsl(160_85%_45%/0.55)]" },
+    { key: "more",     icon: LayoutGrid, tKey: "dashboardV2.tabs.more",
+      grad: "from-fuchsia-400/90 to-purple-500/90", activeIcon: "text-fuchsia-500",iconShadow: "drop-shadow-[0_1px_3px_hsl(290_85%_60%/0.55)]" },
   ];
 
   return (
@@ -138,33 +161,42 @@ const SmartDashboard = () => {
       />
 
       <main dir={isRTL ? "rtl" : "ltr"} className={`relative pb-24 bg-gradient-to-b ${trimesterTheme.gradient}`}>
-        {/* Decorative rose — larger, centered, slightly lower */}
+        {/* Time-aware decorative emblem — replaces side rose. Smaller, glass-pill,
+            shifts icon (sunrise/sun/moon) and accent gradient with the hour. */}
         <div
-          className="pointer-events-none absolute top-6 sm:top-8 left-1/2 -translate-x-1/2 z-0 flex"
+          className="pointer-events-none absolute top-5 sm:top-7 right-3 sm:right-5 z-0"
           dir="ltr"
           aria-hidden="true"
         >
-          <motion.img
-            src={roseLeft}
-            alt=""
-            width={88}
-            height={88}
-            style={{ y: roseLeftY, opacity: roseOpacity, scale: roseLeftScale }}
-            initial={{ y: -20, opacity: 0, rotate: -20, scale: 0.5 }}
-            animate={{
-              y: [0, -5, 0],
-              opacity: 0.85,
-              rotate: [-10, -4, -10],
-              scale: [1, 1.06, 1],
-            }}
+          <motion.div
+            style={{ y: emblemY, opacity: emblemOpacity, scale: emblemScale }}
+            initial={{ opacity: 0, scale: 0.6, rotate: -8 }}
+            animate={{ opacity: 0.9, scale: 1, rotate: [0, 4, 0] }}
             transition={{
-              y: { duration: 3.5, repeat: Infinity, ease: "easeInOut" },
-              rotate: { duration: 5, repeat: Infinity, ease: "easeInOut" },
-              scale: { duration: 4, repeat: Infinity, ease: "easeInOut" },
-              opacity: { duration: 0.8, ease: "easeOut" },
+              opacity: { duration: 0.7, ease: "easeOut" },
+              scale: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+              rotate: { duration: 6, repeat: Infinity, ease: "easeInOut" },
             }}
-            className="drop-shadow-md"
-          />
+            className={`relative h-12 w-12 sm:h-14 sm:w-14 rounded-2xl
+                        bg-gradient-to-br ${emblemTone.from} ${emblemTone.to}
+                        backdrop-blur-md
+                        border border-white/40 dark:border-white/10
+                        shadow-lg ${emblemTone.ring}
+                        flex items-center justify-center`}
+          >
+            {/* Soft inner highlight */}
+            <span className="absolute inset-0 rounded-2xl bg-gradient-to-b from-white/40 to-transparent dark:from-white/10" />
+            <TimeEmblem
+              className={`relative h-5 w-5 sm:h-6 sm:w-6 ${emblemTone.icon}`}
+              strokeWidth={2.2}
+            />
+            {/* Subtle shimmer dot */}
+            <motion.span
+              className="absolute -top-1 -right-1 h-2 w-2 rounded-full bg-white/90 shadow"
+              animate={{ opacity: [0.5, 1, 0.5], scale: [0.85, 1.1, 0.85] }}
+              transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+            />
+          </motion.div>
         </div>
 
         {/* Premium page header — title only, no eyebrow */}
@@ -210,32 +242,42 @@ const SmartDashboard = () => {
                   <TabsTrigger
                     key={tab.key}
                     value={tab.key}
-                    className="relative flex h-12 sm:h-14 flex-col items-center justify-center gap-0.5
+                    className={`relative flex h-12 sm:h-14 flex-col items-center justify-center gap-0.5
                                rounded-xl border-0 bg-transparent
                                text-[10px] font-bold transition-all duration-300
-                               data-[state=active]:text-primary data-[state=active]:shadow-none
-                               data-[state=inactive]:text-muted-foreground
-                               data-[state=inactive]:hover:bg-white/30 dark:data-[state=inactive]:hover:bg-white/5"
+                               data-[state=active]:shadow-none
+                               ${isActive ? tab.activeIcon : "text-muted-foreground"}
+                               data-[state=inactive]:hover:bg-white/30 dark:data-[state=inactive]:hover:bg-white/5`}
                   >
-                    {/* Glass pill behind active tab */}
                     {isActive && (
                       <motion.span
                         layoutId="dashboard-tab-glass"
                         className="absolute inset-0 rounded-xl
-                                   bg-gradient-to-b from-white/80 to-white/50
+                                   bg-gradient-to-b from-white/85 to-white/55
                                    dark:from-white/15 dark:to-white/5
                                    backdrop-blur-md
-                                   border border-white/60 dark:border-white/15
-                                   shadow-[inset_0_1px_0_0_hsl(0_0%_100%/0.9),0_4px_12px_-4px_hsl(var(--primary)/0.25)]"
+                                   border border-white/70 dark:border-white/15
+                                   shadow-[inset_0_1px_0_0_hsl(0_0%_100%/0.95),0_4px_12px_-4px_hsl(var(--primary)/0.25)]"
                         transition={{ type: "spring", stiffness: 380, damping: 30 }}
                       />
                     )}
-                    <Icon
-                      className={`relative z-10 h-[17px] w-[17px] sm:h-[18px] sm:w-[18px] transition-transform ${
-                        isActive ? "scale-110 drop-shadow-[0_1px_2px_hsl(var(--primary)/0.35)]" : ""
+                    {/* Per-tab icon medallion: vivid gradient swatch when active */}
+                    <span
+                      className={`relative z-10 flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-lg transition-all duration-300 ${
+                        isActive
+                          ? `bg-gradient-to-br ${tab.grad} shadow-[inset_0_1px_0_0_hsl(0_0%_100%/0.5)]`
+                          : "bg-transparent"
                       }`}
-                      strokeWidth={isActive ? 2.4 : 2}
-                    />
+                    >
+                      <Icon
+                        className={`transition-all duration-300 ${
+                          isActive
+                            ? `h-[15px] w-[15px] sm:h-4 sm:w-4 text-white ${tab.iconShadow}`
+                            : "h-[17px] w-[17px] sm:h-[18px] sm:w-[18px]"
+                        }`}
+                        strokeWidth={isActive ? 2.4 : 2}
+                      />
+                    </span>
                     <span className="relative z-10 leading-tight mt-0.5 text-[9px] sm:text-[10px] text-center px-0.5">
                       {t(tab.tKey)}
                     </span>

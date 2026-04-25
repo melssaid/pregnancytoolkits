@@ -708,6 +708,16 @@
     },
     "weeklySymptoms": {
       "title": "Symptômes de cette semaine"
+    },
+    "moodTrend": {
+      "title": "Tendance d'humeur",
+      "last7days": "7 derniers jours"
+    },
+    "contractions": {
+      "title": "Résumé des contractions",
+      "total": "contractions",
+      "avgDuration": "Durée moy.",
+      "avgInterval": "Intervalle moy."
     }
   },
   "layout": {
@@ -6826,7 +6836,8 @@
       "empty": "Aucun coup enregistré aujourd'hui",
       "goal": "Objectif : 10 coups/jour",
       "title": "Mouvements fœtaux"
-    }
+    },
+    "recentActivity": "Activité récente"
   },
   "weeklyJourney": {
     "subtitle": "Votre parcours hebdomadaire avec votre bébé",

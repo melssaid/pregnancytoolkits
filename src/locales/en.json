@@ -763,6 +763,16 @@
     },
     "weeklySymptoms": {
       "title": "This week's symptoms"
+    },
+    "moodTrend": {
+      "title": "Mood Trend",
+      "last7days": "Last 7 days"
+    },
+    "contractions": {
+      "title": "Contractions Summary",
+      "total": "contractions",
+      "avgDuration": "Avg duration",
+      "avgInterval": "Avg interval"
     }
   },
   "layout": {
@@ -6947,7 +6957,8 @@
       "empty": "No kicks logged yet today",
       "goal": "Goal: 10 kicks/day",
       "title": "Fetal Movement"
-    }
+    },
+    "recentActivity": "Recent Activity"
   },
   "weeklyJourney": {
     "subtitle": "Your weekly journey with your baby",

@@ -708,6 +708,16 @@
     },
     "weeklySymptoms": {
       "title": "Sintomas desta semana"
+    },
+    "moodTrend": {
+      "title": "Tendência de humor",
+      "last7days": "Últimos 7 dias"
+    },
+    "contractions": {
+      "title": "Resumo das contrações",
+      "total": "contrações",
+      "avgDuration": "Duração média",
+      "avgInterval": "Intervalo médio"
     }
   },
   "layout": {
@@ -6826,7 +6836,8 @@
       "title": "Baby Movement",
       "goal": "goal",
       "empty": "Start tracking your baby's movements today"
-    }
+    },
+    "recentActivity": "Atividade recente"
   },
   "weeklyJourney": {
     "subtitle": "Sua jornada semanal com seu bebê",

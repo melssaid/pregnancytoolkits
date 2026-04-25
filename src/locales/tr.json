@@ -708,6 +708,16 @@
     },
     "weeklySymptoms": {
       "title": "Bu haftanın belirtileri"
+    },
+    "moodTrend": {
+      "title": "Ruh Hali Eğilimi",
+      "last7days": "Son 7 gün"
+    },
+    "contractions": {
+      "title": "Kasılma Özeti",
+      "total": "kasılma",
+      "avgDuration": "Ort. süre",
+      "avgInterval": "Ort. aralık"
     }
   },
   "layout": {
@@ -6826,7 +6836,8 @@
       "title": "Baby Movement",
       "goal": "goal",
       "empty": "Start tracking your baby's movements today"
-    }
+    },
+    "recentActivity": "Son Etkinlik"
   },
   "weeklyJourney": {
     "subtitle": "Bebeğinizle haftalık yolculuğunuz",

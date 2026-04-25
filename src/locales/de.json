@@ -708,6 +708,16 @@
     },
     "weeklySymptoms": {
       "title": "Symptome dieser Woche"
+    },
+    "moodTrend": {
+      "title": "Stimmungsverlauf",
+      "last7days": "Letzte 7 Tage"
+    },
+    "contractions": {
+      "title": "Wehen-Zusammenfassung",
+      "total": "Wehen",
+      "avgDuration": "Ø Dauer",
+      "avgInterval": "Ø Abstand"
     }
   },
   "layout": {
@@ -6826,7 +6836,8 @@
       "empty": "Heute noch keine Tritte erfasst",
       "goal": "Ziel: 10 Tritte/Tag",
       "title": "Kindsbewegungen"
-    }
+    },
+    "recentActivity": "Letzte Aktivität"
   },
   "weeklyJourney": {
     "subtitle": "Ihre wöchentliche Reise mit Ihrem Baby",
