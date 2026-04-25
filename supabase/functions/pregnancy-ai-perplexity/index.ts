@@ -14,7 +14,8 @@ type AIType =
   | "bump-photos" | "baby-cry-analysis" | "postpartum-recovery"
   | "hospital-bag" | "birth-position" | "partner-guide" | "lactation-prep"
   | "nausea-relief" | "skincare-advice" | "birth-plan" | "mental-health" | "pregnancy-plan" | "baby-growth-analysis"
-  | "weight-analysis" | "contraction-analysis" | "craving-alternatives";
+  | "weight-analysis" | "contraction-analysis" | "craving-alternatives"
+  | "live-search"; // Perplexity Sonar live web search with citations (cost: 5 points)
 
 interface AIRequest {
   type: AIType;
@@ -41,6 +42,7 @@ const VALID_TYPES: AIType[] = [
   "hospital-bag", "birth-position", "partner-guide", "lactation-prep",
   "nausea-relief", "skincare-advice", "birth-plan", "mental-health", "pregnancy-plan", "baby-growth-analysis",
   "weight-analysis", "contraction-analysis", "craving-alternatives",
+  "live-search",
 ];
 
 // ── Validation constants ──
@@ -205,6 +207,7 @@ const MODEL_TUNING: Record<AIType, { temperature: number; max_tokens: number }> 
   "weight-analysis":      { temperature: 0.3, max_tokens: 2500 },
   "contraction-analysis": { temperature: 0.2, max_tokens: 3000 },
   "craving-alternatives": { temperature: 0.7, max_tokens: 2000 },
+  "live-search":          { temperature: 0.2, max_tokens: 2500 },
 };
 
 // ── Language configuration ──
@@ -684,6 +687,26 @@ For each: name, emoji, why it satisfies the craving, nutritional benefits, quick
 
 Keep it practical, delicious, and encouraging.`;
 
+    case "live-search":
+      return persona + `You are a real-time pregnancy & maternal health research assistant with web search capability. Provide an evidence-based answer grounded in current, reputable sources.
+
+Structure your response:
+
+## 🔍 Research Summary
+- 2-3 sentence direct answer to the question
+
+## 📚 Key Findings
+- 3-5 evidence-based bullet points with the most important information
+- Reference the source inline using [1], [2], etc. that match the citation list at the end
+
+## ✅ Practical Implications
+- 2-3 actionable bullets for the user
+
+## ⚠️ Important Caveats
+- Note any conflicting evidence, recency limitations, or when to consult a clinician
+
+End with the citations list (the system will append it automatically — DO NOT invent URLs or fabricate sources). Keep the response under 500 words.`;
+
     default:
       return persona + "Provide helpful, well-organized pregnancy guidance.";
   }
@@ -970,6 +993,83 @@ Deno.serve(async (req) => {
       "X-Daily-Remaining": String(Math.max(0, monthlyRemaining - 1)),
       "X-Subscription-Tier": subscriptionTier,
     };
+
+    // ── Branch A: Live Search via Perplexity Sonar (citations grounded) ──
+    if (type === "live-search") {
+      const PERPLEXITY_API_KEY = Deno.env.get("PERPLEXITY_API_KEY");
+      if (!PERPLEXITY_API_KEY) {
+        console.error("[AI] PERPLEXITY_API_KEY not configured for live-search");
+        return jsonError("Live search service is not configured", 503);
+      }
+
+      try {
+        const perpResp = await fetch("https://api.perplexity.ai/chat/completions", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${PERPLEXITY_API_KEY}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            model: "sonar",
+            messages: [
+              { role: "system", content: systemPrompt },
+              ...(messages || []),
+            ],
+            temperature: tuning.temperature,
+            max_tokens: tuning.max_tokens,
+            search_recency_filter: "year",
+            return_citations: true,
+            stream: false,
+          }),
+        });
+
+        if (!perpResp.ok) {
+          const errText = await perpResp.text();
+          console.error(`[Perplexity] ${perpResp.status}`, errText.substring(0, 200));
+          if (perpResp.status === 429) return jsonError("Rate limit exceeded, please try again later", 429);
+          if (perpResp.status === 402) return jsonError("Live search quota exhausted. Please contact support.", 402);
+          return jsonError("Live search service unavailable. Please try again.", 503);
+        }
+
+        const perpData = await perpResp.json();
+        const answer: string = perpData?.choices?.[0]?.message?.content || "";
+        const citations: string[] = Array.isArray(perpData?.citations) ? perpData.citations : [];
+
+        // Build a final answer + citations block
+        let finalContent = answer.trim();
+        if (citations.length > 0) {
+          const citationsHeader = lang === "ar" ? "## 📎 المصادر" : "## 📎 Sources";
+          finalContent += `\n\n${citationsHeader}\n` +
+            citations.map((url, i) => `${i + 1}. ${url}`).join("\n");
+        }
+
+        // Wrap as SSE stream so the client streaming pipeline works unchanged
+        const encoder = new TextEncoder();
+        const sseStream = new ReadableStream({
+          start(controller) {
+            const chunkSize = 80;
+            for (let i = 0; i < finalContent.length; i += chunkSize) {
+              const piece = finalContent.slice(i, i + chunkSize);
+              const event = `data: ${JSON.stringify({ choices: [{ delta: { content: piece } }] })}\n\n`;
+              controller.enqueue(encoder.encode(event));
+            }
+            controller.enqueue(encoder.encode("data: [DONE]\n\n"));
+            controller.close();
+          },
+        });
+
+        const elapsed = Date.now() - requestStartTime;
+        const stableClientId = deviceFingerprint || ipClientId;
+        logAIUsage(type, lang, stableClientId, userId, tuning.max_tokens, true, elapsed).catch(() => {});
+
+        return new Response(sseStream, {
+          headers: { ...corsHeaders, ...usageHeaders, "Content-Type": "text/event-stream" },
+        });
+      } catch (e) {
+        console.error("[Perplexity] crash:", String(e).substring(0, 200));
+        return jsonError("Live search failed. Please try again.", 503);
+      }
+    }
 
     for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
       try {

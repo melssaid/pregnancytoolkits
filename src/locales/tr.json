@@ -5512,6 +5512,12 @@
       "exercise": "Güvenli egzersizler?",
       "nutrition": "Bebek için en iyi gıdalar?",
       "emotions": "Duygu değişimleri normal mi?"
+    },
+    "liveSearch": {
+      "title": "Atıflarla Canlı Arama",
+      "onHint": "Arama başına 5 puan",
+      "offHint": "Güvenilir web kaynakları tarafından desteklenir",
+      "placeholder": "En son kaynaklarda arama yapmak için soru sorun..."
     }
   },
   "lactationPrep": {

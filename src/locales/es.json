@@ -5512,6 +5512,12 @@
       "exercise": "¿Ejercicios seguros?",
       "nutrition": "¿Mejores alimentos para el bebé?",
       "emotions": "¿Cambios de humor normales?"
+    },
+    "liveSearch": {
+      "title": "Búsqueda en vivo con citas",
+      "onHint": "Cuesta 5 puntos por búsqueda",
+      "offHint": "Impulsado por fuentes web confiables",
+      "placeholder": "Haz una pregunta para buscar en las últimas fuentes..."
     }
   },
   "lactationPrep": {

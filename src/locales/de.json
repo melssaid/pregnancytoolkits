@@ -5512,6 +5512,12 @@
       "exercise": "Sichere Übungen?",
       "nutrition": "Beste Ernährung fürs Baby?",
       "emotions": "Sind Stimmungsschwankungen normal?"
+    },
+    "liveSearch": {
+      "title": "Live-Suche mit Quellenangaben",
+      "onHint": "Kostet 5 Punkte pro Suche",
+      "offHint": "Unterstützt durch vertrauenswürdige Quellen",
+      "placeholder": "Stellen Sie eine Frage, um aktuelle Quellen zu durchsuchen..."
     }
   },
   "lactationPrep": {

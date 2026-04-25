@@ -5512,6 +5512,12 @@
       "exercise": "Exercícios seguros?",
       "nutrition": "Melhores alimentos para o bebê?",
       "emotions": "Mudanças de humor são normais?"
+    },
+    "liveSearch": {
+      "title": "Pesquisa ao vivo com citações",
+      "onHint": "Custa 5 pontos por pesquisa",
+      "offHint": "Alimentado por fontes web confiáveis",
+      "placeholder": "Faça uma pergunta para pesquisar nas fontes mais recentes..."
     }
   },
   "lactationPrep": {

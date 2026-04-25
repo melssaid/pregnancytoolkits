@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import {
   Send, Bot, Loader2, Heart, Baby, Coffee, Apple, Stethoscope,
-  Moon, Dumbbell, UtensilsCrossed, SmilePlus, Sparkles, RotateCcw,
+  Moon, Dumbbell, UtensilsCrossed, SmilePlus, Sparkles, RotateCcw, Globe,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -85,9 +85,10 @@ function useDashboardContext() {
 export default function PregnancyAssistant() {
   const { t } = useTranslation();
   const dashboardContext = useDashboardContext();
+  const [liveSearch, setLiveSearch] = useState(false);
   const { sendChat, isLoading, error } = useSmartChat({
     section: "pregnancy-plan",
-    toolType: "pregnancy-assistant",
+    toolType: liveSearch ? "live-search" : "pregnancy-assistant",
   });
 
   const [messages, setMessages] = useState<Message[]>([]);
@@ -259,11 +260,13 @@ export default function PregnancyAssistant() {
 
         {/* Sticky input */}
         <div className="sticky bottom-[4.5rem] z-30 mt-10 mb-3 bg-background/95 backdrop-blur-md rounded-2xl border border-border/40 shadow-lg">
+          <LiveSearchToggle enabled={liveSearch} onToggle={setLiveSearch} />
           <InputArea
             input={input}
             setInput={setInput}
             isLoading={isLoading}
             onSend={sendMessage}
+            liveSearch={liveSearch}
           />
         </div>
 
@@ -362,17 +365,75 @@ function WelcomeView({
   );
 }
 
+/* ─── Live Search Toggle ─── */
+function LiveSearchToggle({
+  enabled,
+  onToggle,
+}: {
+  enabled: boolean;
+  onToggle: (v: boolean) => void;
+}) {
+  const { t } = useTranslation();
+  return (
+    <button
+      type="button"
+      onClick={() => onToggle(!enabled)}
+      className={`w-full flex items-center justify-between gap-2 px-3 py-2 border-b border-border/40 transition-colors rounded-t-2xl ${
+        enabled
+          ? "bg-gradient-to-r from-primary/10 via-pink-500/10 to-purple-500/10"
+          : "bg-transparent hover:bg-muted/40"
+      }`}
+      aria-pressed={enabled}
+    >
+      <div className="flex items-center gap-2 min-w-0">
+        <div
+          className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 ${
+            enabled
+              ? "bg-gradient-to-br from-primary to-pink-500 shadow-md shadow-primary/30"
+              : "bg-muted"
+          }`}
+        >
+          <Globe className={`w-3.5 h-3.5 ${enabled ? "text-primary-foreground" : "text-muted-foreground"}`} />
+        </div>
+        <div className="flex flex-col items-start min-w-0">
+          <span className={`text-[12px] font-bold leading-tight ${enabled ? "text-primary" : "text-foreground"}`}>
+            {t("pregnancyAssistant.liveSearch.title", "البحث الحي بالاستشهادات")}
+          </span>
+          <span className="text-[10px] text-muted-foreground leading-tight">
+            {enabled
+              ? t("pregnancyAssistant.liveSearch.onHint", "تكلفة 5 نقاط لكل بحث")
+              : t("pregnancyAssistant.liveSearch.offHint", "اعتمد على مصادر الويب الموثوقة")}
+          </span>
+        </div>
+      </div>
+      <div
+        className={`relative w-9 h-5 rounded-full transition-colors shrink-0 ${
+          enabled ? "bg-primary" : "bg-muted-foreground/30"
+        }`}
+      >
+        <span
+          className={`absolute top-0.5 w-4 h-4 rounded-full bg-background shadow-sm transition-transform ${
+            enabled ? "translate-x-4" : "translate-x-0.5"
+          }`}
+        />
+      </div>
+    </button>
+  );
+}
+
 /* ─── Input Area ─── */
 function InputArea({
   input,
   setInput,
   isLoading,
   onSend,
+  liveSearch,
 }: {
   input: string;
   setInput: (v: string) => void;
   isLoading: boolean;
   onSend: (text: string) => void;
+  liveSearch: boolean;
 }) {
   const { t } = useTranslation();
 
@@ -382,7 +443,11 @@ function InputArea({
         <Textarea
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder={t("pregnancyAssistant.placeholder")}
+          placeholder={
+            liveSearch
+              ? t("pregnancyAssistant.liveSearch.placeholder", "اطرحي سؤالاً للبحث في أحدث المصادر...")
+              : t("pregnancyAssistant.placeholder")
+          }
           className="min-h-[44px] max-h-[120px] resize-none rounded-xl border-0 bg-transparent shadow-none text-sm flex-1 focus-visible:ring-0 text-start py-2.5"
           dir="auto"
           onKeyDown={(e) => {
@@ -397,7 +462,11 @@ function InputArea({
           disabled={!input.trim() || isLoading}
           size="icon"
           aria-label={t("pregnancyAssistant.send", "إرسال")}
-          className="h-11 w-11 rounded-xl bg-gradient-to-br from-primary to-pink-500 hover:from-primary/90 hover:to-pink-500/90 shadow-lg shadow-primary/20 transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:hover:scale-100 shrink-0"
+          className={`h-11 w-11 rounded-xl shadow-lg transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:hover:scale-100 shrink-0 ${
+            liveSearch
+              ? "bg-gradient-to-br from-purple-500 to-pink-500 hover:from-purple-500/90 hover:to-pink-500/90 shadow-purple-500/20"
+              : "bg-gradient-to-br from-primary to-pink-500 hover:from-primary/90 hover:to-pink-500/90 shadow-primary/20"
+          }`}
         >
           {isLoading ? (
             <Loader2 className="w-4 h-4 animate-spin" />

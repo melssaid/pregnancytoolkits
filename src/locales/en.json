@@ -5587,6 +5587,12 @@
       "exercise": "Safe exercises?",
       "nutrition": "Best foods for baby?",
       "emotions": "Mood swings normal?"
+    },
+    "liveSearch": {
+      "title": "Live Search with Citations",
+      "onHint": "Costs 5 points per search",
+      "offHint": "Powered by trusted web sources",
+      "placeholder": "Ask a question to search the latest sources..."
     }
   },
   "lactationPrep": {

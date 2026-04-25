@@ -5512,6 +5512,12 @@
       "exercise": "Exercices sans risque?",
       "nutrition": "Meilleurs aliments pour bébé?",
       "emotions": "Sautes d'humeur normales?"
+    },
+    "liveSearch": {
+      "title": "Recherche en direct avec citations",
+      "onHint": "Coûte 5 points par recherche",
+      "offHint": "Alimenté par des sources web fiables",
+      "placeholder": "Posez une question pour chercher dans les dernières sources..."
     }
   },
   "lactationPrep": {
