@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useOptimizedMotion } from "@/hooks/useOptimizedMotion";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Activity,
@@ -60,6 +61,7 @@ export function MyToolsQuickGrid() {
   const { t, i18n } = useTranslation();
   const isRtl = i18n.language === "ar";
   const Chevron = isRtl ? ChevronLeft : ChevronRight;
+  const m = useOptimizedMotion();
 
   const items = useMemo<ToolItem[]>(() => {
     const uid = getUserId();
