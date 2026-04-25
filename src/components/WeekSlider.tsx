@@ -134,10 +134,12 @@ export const WeekSlider = memo(function WeekSlider({
           <div className="absolute inset-x-0 h-2 rounded-full bg-secondary/60 overflow-hidden">
             {/* Filled portion */}
             <motion.div
+              key={`fill-${isRTL ? 'rtl' : 'ltr'}`}
               className="absolute top-0 h-full rounded-full"
               style={{
                 background: `linear-gradient(${isRTL ? '270deg' : '90deg'}, hsl(var(--primary)), ${getTrackColor(week)})`,
-                [isRTL ? 'right' : 'left']: 0,
+                left: isRTL ? 'auto' : 0,
+                right: isRTL ? 0 : 'auto',
               }}
               animate={{ width: `${progress}%` }}
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
@@ -149,23 +151,31 @@ export const WeekSlider = memo(function WeekSlider({
             const pos = ((m - min) / (max - min)) * 100;
             return (
               <div
-                key={m}
+                key={`${m}-${isRTL ? 'rtl' : 'ltr'}`}
                 className="absolute top-1/2 -translate-y-1/2 w-1 h-3 rounded-full bg-border/60"
-                style={{ [isRTL ? 'right' : 'left']: `${pos}%` }}
+                style={{
+                  left: isRTL ? 'auto' : `${pos}%`,
+                  right: isRTL ? `${pos}%` : 'auto',
+                }}
               />
             );
           })}
 
           {/* Thumb */}
           <motion.div
+            key={`thumb-${isRTL ? 'rtl' : 'ltr'}`}
             className="absolute top-1/2 z-10"
             style={{
               translateX: isRTL ? '50%' : '-50%',
               translateY: '-50%',
+              left: isRTL ? 'auto' : undefined,
+              right: isRTL ? undefined : 'auto',
             }}
-            animate={{
-              [isRTL ? 'right' : 'left']: `${progress}%`,
-            }}
+            animate={
+              isRTL
+                ? { right: `${progress}%` }
+                : { left: `${progress}%` }
+            }
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
             onPointerDown={handleDrag}
           >
