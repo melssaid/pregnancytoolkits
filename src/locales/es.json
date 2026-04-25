@@ -718,6 +718,9 @@
       "total": "contracciones",
       "avgDuration": "Duración media",
       "avgInterval": "Intervalo medio"
+    },
+    "savedResults": {
+      "label": "Resultado de IA guardado"
     }
   },
   "layout": {
@@ -1478,6 +1481,20 @@
       "trend": {
         "up": "Subiendo",
         "down": "Bajando",
+        "neutral": "Estable"
+      }
+    },
+    "weeklyKicks": {
+      "title": "Movimientos fetales semanales",
+      "aria": "Gráfico de frecuencia de movimientos fetales semanales",
+      "sessions": "sesiones",
+      "kicks": "movimientos",
+      "total": "Total",
+      "activeDays": "Días activos",
+      "peak": "Pico",
+      "trend": {
+        "up": "Mejorando",
+        "down": "Disminuyendo",
         "neutral": "Estable"
       }
     }

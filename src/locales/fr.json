@@ -718,6 +718,9 @@
       "total": "contractions",
       "avgDuration": "Durée moy.",
       "avgInterval": "Intervalle moy."
+    },
+    "savedResults": {
+      "label": "Résultat IA enregistré"
     }
   },
   "layout": {
@@ -1477,6 +1480,20 @@
       "peak": "Pic",
       "trend": {
         "up": "En hausse",
+        "down": "En baisse",
+        "neutral": "Stable"
+      }
+    },
+    "weeklyKicks": {
+      "title": "Mouvements fœtaux hebdomadaires",
+      "aria": "Graphique de fréquence des mouvements fœtaux hebdomadaires",
+      "sessions": "sessions",
+      "kicks": "mouvements",
+      "total": "Total",
+      "activeDays": "Jours actifs",
+      "peak": "Pic",
+      "trend": {
+        "up": "En amélioration",
         "down": "En baisse",
         "neutral": "Stable"
       }

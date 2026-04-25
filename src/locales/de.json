@@ -718,6 +718,9 @@
       "total": "Wehen",
       "avgDuration": "Ø Dauer",
       "avgInterval": "Ø Abstand"
+    },
+    "savedResults": {
+      "label": "KI-Ergebnis gespeichert"
     }
   },
   "layout": {
@@ -1472,6 +1475,20 @@
       "aria": "Wehen-Häufigkeit Diagramm",
       "count": "Anzahl",
       "avg": "Ø",
+      "total": "Gesamt",
+      "activeDays": "Aktive Tage",
+      "peak": "Spitze",
+      "trend": {
+        "up": "Steigend",
+        "down": "Fallend",
+        "neutral": "Stabil"
+      }
+    },
+    "weeklyKicks": {
+      "title": "Wöchentliche Kindsbewegungen",
+      "aria": "Diagramm der wöchentlichen Bewegungshäufigkeit",
+      "sessions": "Sitzungen",
+      "kicks": "Bewegungen",
       "total": "Gesamt",
       "activeDays": "Aktive Tage",
       "peak": "Spitze",
