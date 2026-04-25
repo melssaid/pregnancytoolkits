@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { Plus } from "lucide-react";
 import { getUserId } from "@/hooks/useSupabase";
 import { safeSaveToLocalStorage, safeParseLocalStorage } from "@/lib/safeStorage";
+import { emitDataChange } from "@/lib/dataBus";
 
 const GOAL = 8;
 
