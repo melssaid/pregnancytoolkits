@@ -9081,6 +9081,14 @@
       "growth": "Bebek gelişimi",
       "appointments": "Randevular",
       "saved": "Kayıtlı sonuçlar"
+    },
+    "holistic": {
+      "title": "Bütünsel YZ Analizi",
+      "subtitle": "Tüm izlenen verilerinizi tek bir premium raporda birleştiren yönetici özeti.",
+      "cta": "Bütünsel Analizi Başlat",
+      "cost": "7 puan",
+      "dataRichness": "Veri kalitesi: %{{value}}",
+      "minDataNeeded": "Bütünsel analizi açmak için en az 3 araçta veri kaydedin."
     }
   },
   "reset": {

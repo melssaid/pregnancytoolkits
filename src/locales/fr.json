@@ -9081,6 +9081,14 @@
       "growth": "Croissance de bébé",
       "appointments": "Rendez-vous",
       "saved": "Résultats enregistrés"
+    },
+    "holistic": {
+      "title": "Analyse IA Globale",
+      "subtitle": "Une synthèse exécutive qui réunit toutes vos données suivies en un seul rapport premium.",
+      "cta": "Lancer l'analyse globale",
+      "cost": "7 points",
+      "dataRichness": "Qualité des données : {{value}}%",
+      "minDataNeeded": "Enregistrez des données dans au moins 3 outils pour activer l'analyse globale."
     }
   },
   "reset": {

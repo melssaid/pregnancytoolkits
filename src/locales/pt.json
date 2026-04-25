@@ -9081,6 +9081,14 @@
       "growth": "Crescimento do bebê",
       "appointments": "Consultas",
       "saved": "Resultados salvos"
+    },
+    "holistic": {
+      "title": "Análise Holística com IA",
+      "subtitle": "Um resumo executivo que sintetiza todos os seus dados em um único relatório premium.",
+      "cta": "Iniciar análise holística",
+      "cost": "7 pontos",
+      "dataRichness": "Qualidade dos dados: {{value}}%",
+      "minDataNeeded": "Registre dados em pelo menos 3 ferramentas para ativar a análise holística."
     }
   },
   "reset": {
