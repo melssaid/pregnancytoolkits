@@ -32,7 +32,8 @@ export type AIToolType =
   | "pregnancy-plan" | "baby-growth-analysis"
   | "weight-analysis" | "contraction-analysis"
   | "craving-alternatives" | "grocery-list"
-  | "live-search"; // Perplexity Sonar — real-time web search with citations
+  | "live-search" // Perplexity Sonar — real-time web search with citations
+  | "holistic-dashboard"; // Holistic dashboard-wide AI analysis (premium 7-point tool)
 
 // ── Section → AI Tool Type mapping ──
 export const SECTION_TOOL_MAP: Record<SmartSection, AIToolType> = {
