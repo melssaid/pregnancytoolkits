@@ -260,11 +260,13 @@ export default function PregnancyAssistant() {
 
         {/* Sticky input */}
         <div className="sticky bottom-[4.5rem] z-30 mt-10 mb-3 bg-background/95 backdrop-blur-md rounded-2xl border border-border/40 shadow-lg">
+          <LiveSearchToggle enabled={liveSearch} onToggle={setLiveSearch} />
           <InputArea
             input={input}
             setInput={setInput}
             isLoading={isLoading}
             onSend={sendMessage}
+            liveSearch={liveSearch}
           />
         </div>
 
