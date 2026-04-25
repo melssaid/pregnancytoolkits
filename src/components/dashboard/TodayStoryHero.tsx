@@ -127,10 +127,10 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
             <GreetingIcon className="h-5 w-5" strokeWidth={2} />
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-primary/70">
+            <p className="text-[12px] font-extrabold uppercase tracking-[0.1em] text-primary">
               {greeting.title}
             </p>
-            <p className="mt-0.5 text-xs font-medium leading-tight text-muted-foreground line-clamp-2">
+            <p className="mt-1 text-[14px] font-medium leading-snug text-foreground/85 line-clamp-2">
               {greeting.tip}
             </p>
           </div>
@@ -170,7 +170,7 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
                 >
                   {week}
                 </motion.span>
-                <span className="mt-0.5 text-[9px] font-bold uppercase tracking-wider text-muted-foreground">
+                <span className="mt-0.5 text-[11px] font-extrabold uppercase tracking-wider text-muted-foreground">
                   {t("dashboardV2.progress.week")}
                 </span>
               </div>
@@ -178,27 +178,27 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
 
             {/* Stats column — horizontal rows for full label visibility */}
             <div className="flex-1 min-w-0 space-y-2">
-              <p className="text-[10px] font-bold uppercase tracking-[0.1em] text-primary/80">
+              <p className="text-[12px] font-extrabold uppercase tracking-[0.08em] text-primary">
                 {t(`dashboardV2.progress.trimester${trimester}`)}
               </p>
 
               <div className="space-y-1.5">
                 {daysRemaining !== null && (
-                  <div className="flex items-baseline justify-between gap-2 rounded-xl border border-border/40 bg-background/60 px-3 py-2 backdrop-blur-sm">
-                    <span className="text-[11px] font-semibold text-muted-foreground truncate">
+                  <div className="flex items-baseline justify-between gap-2 rounded-xl border border-border/40 bg-background/60 px-3 py-2.5 backdrop-blur-sm">
+                    <span className="text-[13px] font-bold text-foreground/85 truncate">
                       {t("dashboardV2.progress.daysLeft")}
                     </span>
-                    <span className="text-xl font-black leading-none text-foreground tabular-nums shrink-0">
+                    <span className="text-2xl font-black leading-none text-foreground tabular-nums shrink-0">
                       {daysRemaining}
                     </span>
                   </div>
                 )}
-                <div className="flex items-baseline justify-between gap-2 rounded-xl border border-border/40 bg-background/60 px-3 py-2 backdrop-blur-sm">
-                  <span className="text-[11px] font-semibold text-muted-foreground truncate">
+                <div className="flex items-baseline justify-between gap-2 rounded-xl border border-border/40 bg-background/60 px-3 py-2.5 backdrop-blur-sm">
+                  <span className="text-[13px] font-bold text-foreground/85 truncate">
                     {t("dashboardV2.progress.complete")}
                   </span>
-                  <span className="text-xl font-black leading-none text-foreground tabular-nums shrink-0 whitespace-nowrap">
-                    {Math.round(progress)}<span className="text-xs">%</span>
+                  <span className="text-2xl font-black leading-none text-foreground tabular-nums shrink-0 whitespace-nowrap">
+                    {Math.round(progress)}<span className="text-sm">%</span>
                   </span>
                 </div>
               </div>
@@ -215,9 +215,9 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
         )}
 
         {/* Mood Quick-Tap — formal scale */}
-        <div className="rounded-2xl border border-border/30 bg-background/40 p-3 backdrop-blur-sm">
-          <div className="flex items-center justify-between mb-2">
-            <p className="text-[11px] font-bold text-foreground">
+        <div className="rounded-2xl border border-border/30 bg-background/40 p-3.5 backdrop-blur-sm">
+          <div className="flex items-center justify-between mb-2.5">
+            <p className="text-[14px] font-extrabold text-foreground tracking-tight">
               {t("dashboardV2.mood.title")}
             </p>
             {justSaved && (
@@ -225,9 +225,9 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}
-                className="inline-flex items-center gap-0.5 text-[10px] font-bold text-emerald-600 dark:text-emerald-400"
+                className="inline-flex items-center gap-1 text-[12px] font-bold text-emerald-600 dark:text-emerald-400"
               >
-                <Check className="h-3 w-3" strokeWidth={3} />
+                <Check className="h-3.5 w-3.5" strokeWidth={3} />
                 {t("dashboardV2.mood.saved")}
               </motion.span>
             )}
