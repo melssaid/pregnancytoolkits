@@ -138,17 +138,17 @@ const SmartDashboard = () => {
       />
 
       <main dir={isRTL ? "rtl" : "ltr"} className={`relative pb-24 bg-gradient-to-b ${trimesterTheme.gradient}`}>
-        {/* Decorative rose — small, centered above the header */}
+        {/* Decorative rose — larger, centered, slightly lower */}
         <div
-          className="pointer-events-none absolute -top-2 left-1/2 -translate-x-1/2 z-0 flex"
+          className="pointer-events-none absolute top-6 sm:top-8 left-1/2 -translate-x-1/2 z-0 flex"
           dir="ltr"
           aria-hidden="true"
         >
           <motion.img
             src={roseLeft}
             alt=""
-            width={52}
-            height={52}
+            width={88}
+            height={88}
             style={{ y: roseLeftY, opacity: roseOpacity, scale: roseLeftScale }}
             initial={{ y: -20, opacity: 0, rotate: -20, scale: 0.5 }}
             animate={{
