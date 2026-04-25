@@ -167,20 +167,24 @@ export function MyToolsQuickGrid() {
               >
                 <Link
                   to={it.href}
-                  className={`group relative flex items-center gap-3 rounded-2xl px-3.5 py-3.5 bg-gradient-to-br ${it.ring} border border-border/40 hover:border-primary/40 hover:shadow-md transition-all min-w-0`}
+                  className={`tool-card-pro group relative flex items-center gap-3 overflow-hidden rounded-2xl px-3.5 py-3.5 bg-gradient-to-br ${it.ring} border border-border/40 hover:border-primary/40 active:scale-[0.98] min-w-0`}
                 >
-                  <div className={`w-11 h-11 rounded-2xl bg-background/70 backdrop-blur flex items-center justify-center flex-shrink-0 ${it.color}`}>
+                  {/* Sheen on hover */}
+                  <span aria-hidden className="pointer-events-none absolute -top-1/2 -end-1/2 h-[140%] w-[60%] rotate-12 bg-gradient-to-b from-white/30 via-white/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                  <div className={`tool-icon-halo w-11 h-11 rounded-2xl bg-background/80 backdrop-blur flex items-center justify-center flex-shrink-0 ${it.color}`}>
                     <Icon className="w-5 h-5" />
                   </div>
                   <p className="flex-1 min-w-0 text-[15px] font-bold text-foreground leading-snug break-words" style={{ overflowWrap: "anywhere" }}>
                     {t(it.labelKey, it.labelDefault)}
                   </p>
                   {it.count > 0 && (
-                    <span className={`flex-shrink-0 text-[13px] font-extrabold ${it.color} bg-background/70 rounded-full px-2.5 py-1 min-w-[28px] text-center tabular-nums`}>
+                    <span className={`flex-shrink-0 inline-flex items-center gap-1 text-[13px] font-extrabold ${it.color} bg-background/80 rounded-full ps-1.5 pe-2.5 py-1 min-w-[34px] justify-center tabular-nums shadow-sm border border-border/30`}>
+                      <span className="tool-active-dot h-1.5 w-1.5 rounded-full bg-current" />
                       {it.count}
                     </span>
                   )}
-                  <Chevron className="flex-shrink-0 w-4 h-4 text-muted-foreground/50 group-hover:text-primary/70 transition-colors" />
+                  <Chevron className="flex-shrink-0 w-4 h-4 text-muted-foreground/50 group-hover:text-primary group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5 transition-all" />
                 </Link>
               </motion.div>
             );
