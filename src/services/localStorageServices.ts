@@ -2,6 +2,8 @@
    Typed local storage replacement for Supabase services
 */
 
+import { emitDataChange } from "@/lib/dataBus";
+
 const getUserId = (): string => {
   let userId = localStorage.getItem('pregnancy_user_id');
   if (!userId) {
@@ -23,7 +25,12 @@ const loadData = <T>(key: string): T[] => {
 };
 
 const saveData = <T>(key: string, data: T[]) => {
-  localStorage.setItem(getKey(key), JSON.stringify(data));
+  const fullKey = getKey(key);
+  localStorage.setItem(fullKey, JSON.stringify(data));
+  // Also notify subscribers using the canonical (non-suffixed) key for
+  // cross-component compatibility (dashboard reads multiple key shapes).
+  emitDataChange(fullKey);
+  emitDataChange(key);
 };
 
 const generateId = (): string => `${Date.now()}_${Math.random().toString(36).slice(2, 11)}`;
@@ -88,6 +95,8 @@ export const UserProfileService = {
       updated_at: new Date().toISOString()
     };
     localStorage.setItem(getKey('profile'), JSON.stringify(data));
+    emitDataChange(getKey('profile'));
+    emitDataChange('profile');
     return data;
   },
 

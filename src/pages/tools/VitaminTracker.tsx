@@ -173,6 +173,7 @@ const VitaminTracker: React.FC = () => {
     };
     setAllLogs(updated);
     saveToLocalStorage(STORAGE_KEY, updated);
+    emitDataChange(STORAGE_KEY);
 
     const newTakenCount = Object.keys(updated[today]).length;
 

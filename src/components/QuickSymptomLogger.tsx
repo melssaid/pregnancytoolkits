@@ -1,4 +1,5 @@
 import { memo, useState, useCallback, useMemo } from "react";
+import { emitDataChange } from "@/lib/dataBus";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
@@ -45,6 +46,7 @@ function getLogs(): DailyLog[] {
 
 function saveLogs(logs: DailyLog[]) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(logs.slice(-30))); // keep 30 days
+  emitDataChange(STORAGE_KEY);
 }
 
 const QuickSymptomLogger = memo(function QuickSymptomLogger() {

@@ -1,4 +1,5 @@
 import { useState, useCallback, useMemo, useRef, useEffect } from "react";
+import { emitDataChange } from "@/lib/dataBus";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -39,6 +40,7 @@ function loadContractions(): Contraction[] {
 
 function saveContractions(data: Contraction[]) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(data.slice(-50)));
+  emitDataChange(STORAGE_KEY);
 }
 
 function formatDuration(seconds: number): string {
