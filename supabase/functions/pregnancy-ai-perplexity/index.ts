@@ -191,7 +191,7 @@ const MODEL_TUNING: Record<AIType, { temperature: number; max_tokens: number }> 
   "sleep-meditation":     { temperature: 0.6, max_tokens: 2500 },
   "sleep-routine":        { temperature: 0.5, max_tokens: 2500 },
   "vitamin-advice":       { temperature: 0.3, max_tokens: 2500 },
-  "bump-photos":          { temperature: 0.5, max_tokens: 2500 },
+  "bump-photos":          { temperature: 0.4, max_tokens: 3500 },
   "baby-cry-analysis":    { temperature: 0.3, max_tokens: 2500 },
   "postpartum-recovery":  { temperature: 0.3, max_tokens: 3000 },
   "hospital-bag":         { temperature: 0.5, max_tokens: 3000 },
