@@ -1,7 +1,8 @@
-import { lazy, Suspense, useState, useEffect, useCallback } from "react";
+import { lazy, Suspense, useState, useEffect, useCallback, useRef } from "react";
 import { SEOHead } from "@/components/SEOHead";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { toast } from "sonner";
 import { Layout } from "@/components/Layout";
 import { useSmartConversionPrompt } from "@/hooks/useSmartConversionPrompt";
 import { useTrimesterTheme } from "@/hooks/useTrimesterTheme";
@@ -9,7 +10,25 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Sun, BarChart3, Calendar, LayoutGrid } from "lucide-react";
 import { haptic } from "@/lib/haptics";
+import { subscribeToData, STORAGE_KEYS } from "@/lib/dataBus";
 import roseLeft from "@/assets/rose-left.png";
+
+// Maps a canonical storage key to the i18n key used in the toast title.
+// Anything unmapped falls back to a generic "dashboard updated" message.
+const TOOL_KEY_LABELS: Record<string, string> = {
+  [STORAGE_KEYS.KICK_SESSIONS]:  "dashboardV2.toolNames.kicks",
+  [STORAGE_KEYS.CONTRACTIONS]:   "dashboardV2.toolNames.contractions",
+  [STORAGE_KEYS.WEIGHT_ENTRIES]: "dashboardV2.toolNames.weight",
+  [STORAGE_KEYS.SYMPTOM_LOGS]:   "dashboardV2.toolNames.symptoms",
+  [STORAGE_KEYS.VITAMIN_LOGS]:   "dashboardV2.toolNames.vitamins",
+  [STORAGE_KEYS.DIAPER_ENTRIES]: "dashboardV2.toolNames.diapers",
+  [STORAGE_KEYS.BABY_SLEEP]:     "dashboardV2.toolNames.sleep",
+  [STORAGE_KEYS.BABY_GROWTH]:    "dashboardV2.toolNames.growth",
+  [STORAGE_KEYS.APPOINTMENTS]:   "dashboardV2.toolNames.appointments",
+  [STORAGE_KEYS.SAVED_RESULTS]:  "dashboardV2.toolNames.saved",
+};
+
+const TRACKED_KEYS = Object.keys(TOOL_KEY_LABELS);
 
 // Today tab is eager — first paint
 import { TodayTab } from "@/components/dashboard/tabs/TodayTab";
