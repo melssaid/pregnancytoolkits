@@ -20,6 +20,7 @@ import { useResetOnLanguageChange } from '@/hooks/useResetOnLanguageChange';
 import { MarkdownRenderer } from '@/components/MarkdownRenderer';
 import { PrintableReport } from '@/components/PrintableReport';
 import { ToolFrame } from '@/components/ToolFrame';
+import { UltrasoundAbbreviationsGuide } from '@/components/UltrasoundAbbreviationsGuide';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { compressImage, estimateDataUrlSize, formatBytes } from '@/lib/imageCompression';
 
@@ -770,6 +771,9 @@ const AIBumpPhotos: React.FC = () => {
                     <>
                       <div className="bg-background/50 rounded-xl p-4">
                         <MarkdownRenderer content={aiAnalysis} />
+                      </div>
+                      <div className="mt-4">
+                        <UltrasoundAbbreviationsGuide />
                       </div>
                       <PrintableReport title={t('toolsInternal.bumpPhotos.aiAnalysisWeek', { week: selectedPhoto.week })}>
                         <MarkdownRenderer content={aiAnalysis} />
