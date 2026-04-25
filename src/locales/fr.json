@@ -9103,6 +9103,17 @@
       "preview": {
         "positive": "{{count}} signaux positifs",
         "watchouts": "{{count}} points de vigilance"
+      },
+      "timeline": {
+        "title": "Tendances récentes",
+        "range": "{{count}} j",
+        "empty": "Enregistrez des données pour voir la chronologie.",
+        "metrics": {
+          "weight": "Poids",
+          "mood": "Humeur",
+          "hydration": "Hydratation",
+          "symptoms": "Symptômes"
+        }
       }
     },
     "ultrasound": {

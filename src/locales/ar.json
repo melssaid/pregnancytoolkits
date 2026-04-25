@@ -9190,6 +9190,17 @@
       "preview": {
         "positive": "{{count}} مؤشرات إيجابية",
         "watchouts": "{{count}} نقاط للمتابعة"
+      },
+      "timeline": {
+        "title": "الاتجاهات الأخيرة",
+        "range": "{{count}} يوم",
+        "empty": "سجّلي بياناتكِ لعرض الخط الزمني.",
+        "metrics": {
+          "weight": "الوزن",
+          "mood": "المزاج",
+          "hydration": "الترطيب",
+          "symptoms": "الأعراض"
+        }
       }
     },
     "ultrasound": {
