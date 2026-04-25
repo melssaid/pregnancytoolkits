@@ -237,20 +237,20 @@ function collectAllResults(t: (k: string, d?: string) => string): ArchivedResult
     });
   });
 
-  // 6) Kick sessions (user-scoped key)
+  // 6) Kick sessions — unified canonical store
   const userId = (() => {
     try { return localStorage.getItem("pregnancy_user_id"); } catch { return null; }
   })();
-  if (userId) {
-    safe(`kick_sessions_${userId}`).filter((k) => k.ended_at).forEach((k) => {
-      out.push({
-        id: "kick-" + k.id, toolId: "kick-counter", toolName: sourceLabel("kicks", t),
-        date: k.started_at,
-        preview: `${k.total_kicks} ${t("dashboard.archive.kicks", "حركة")} • ${k.duration_minutes ?? 0} min`,
-        content: `Total: ${k.total_kicks}\nDuration: ${k.duration_minutes ?? 0} min\nNotes: ${k.notes || "-"}`,
-        href: hrefFor.kicks, source: "kicks",
-      });
+  readKickSessions().filter((k: any) => k.ended_at).forEach((k: any) => {
+    out.push({
+      id: "kick-" + k.id, toolId: "kick-counter", toolName: sourceLabel("kicks", t),
+      date: k.started_at,
+      preview: `${k.total_kicks} ${t("dashboard.archive.kicks", "حركة")} • ${k.duration_minutes ?? 0} min`,
+      content: `Total: ${k.total_kicks}\nDuration: ${k.duration_minutes ?? 0} min\nNotes: ${k.notes || "-"}`,
+      href: hrefFor.kicks, source: "kicks",
     });
+  });
+  if (userId) {
     safe(`vitamin_logs_${userId}`).forEach((v) => {
       out.push({
         id: "vit-" + v.id, toolId: "vitamin-tracker", toolName: sourceLabel("vitamins", t),
@@ -419,7 +419,11 @@ function deleteResult(item: ArchivedResult) {
       case "birthPlan": filter("birthPlans", (r) => "plan-" + r.id === item.id); break;
       case "wellness": filter("wellness-diary-entries", (r) => "wellness-" + r.id === item.id); break;
       case "babyGrowth": filter("baby-growth-entries", (r) => "grow-" + r.id === item.id); break;
-      case "kicks": if (userId) filter(`kick_sessions_${userId}`, (r) => "kick-" + r.id === item.id); break;
+      case "kicks": {
+        const remaining = readKickSessions().filter((r: any) => "kick-" + r.id !== item.id);
+        writeKickSessions(remaining);
+        break;
+      }
       case "vitamins": if (userId) filter(`vitamin_logs_${userId}`, (r) => "vit-" + r.id === item.id); break;
       case "weight": filter("weight_gain_entries", (r) => "w-" + r.id === item.id); break;
       case "diaper": filter("diaperEntries", (r) => "dp-" + r.id === item.id); break;
