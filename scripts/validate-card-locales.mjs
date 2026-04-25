@@ -42,10 +42,6 @@ const KEYS = {
     "charts.babyGrowth.kg",
     "charts.babyGrowth.weightKg",
     "toolsInternal.weightGain.kgPerWeek",
-    // Generic unit blocks the cards reference indirectly:
-    "units.kg",
-    "units.g",
-    "units.cm",
   ],
   badgeAndTrimester: [
     "dashboardV2.progress.trimester1",
@@ -65,11 +61,7 @@ const KEYS = {
 
 // Optional keys: present in some namespaces but truly optional. We only
 // warn (not fail) when these are missing — they may not be used everywhere.
-const OPTIONAL = new Set([
-  "units.kg",
-  "units.g",
-  "units.cm",
-]);
+const OPTIONAL = new Set([]);
 
 function loadLocale(lang) {
   const p = join(ROOT, "src", "locales", `${lang}.json`);
