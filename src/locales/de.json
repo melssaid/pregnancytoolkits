@@ -1385,6 +1385,47 @@
       "prePregnancyWeight": "Gewicht vor der Schwangerschaft",
       "yourActualWeight": "Ihr tatsächliches Gewicht",
       "recommendedRange": "Empfohlener Bereich"
+    },
+    "weeklyMood": {
+      "title": "Wöchentlicher Stimmungsverlauf",
+      "aria": "Stimmungs-Diagramm 7 Tage",
+      "mood": "Stimmung",
+      "noEntry": "Kein Eintrag",
+      "average": "Durchschnitt",
+      "entries": "Einträge",
+      "range": "Bereich",
+      "trend": {
+        "up": "Steigend",
+        "down": "Fallend",
+        "neutral": "Stabil"
+      }
+    },
+    "weeklyHydration": {
+      "title": "Wöchentliche Hydration",
+      "aria": "Hydrations-Diagramm",
+      "glasses": "Gläser",
+      "average": "Ø/Tag",
+      "total": "Gesamt",
+      "goalsMet": "Ziele erreicht",
+      "trend": {
+        "up": "Steigend",
+        "down": "Fallend",
+        "neutral": "Stabil"
+      }
+    },
+    "weeklyContractions": {
+      "title": "Wehen-Häufigkeit",
+      "aria": "Wehen-Häufigkeit Diagramm",
+      "count": "Anzahl",
+      "avg": "Ø",
+      "total": "Gesamt",
+      "activeDays": "Aktive Tage",
+      "peak": "Spitze",
+      "trend": {
+        "up": "Steigend",
+        "down": "Fallend",
+        "neutral": "Stabil"
+      }
     }
   },
   "appUpdated": {

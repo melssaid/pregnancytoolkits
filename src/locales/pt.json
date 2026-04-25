@@ -1385,6 +1385,47 @@
       "prePregnancyWeight": "Peso pré-gravidez",
       "yourActualWeight": "Seu peso real",
       "recommendedRange": "Faixa recomendada"
+    },
+    "weeklyMood": {
+      "title": "Tendência de humor semanal",
+      "aria": "Gráfico de humor de 7 dias",
+      "mood": "Humor",
+      "noEntry": "Sem entrada",
+      "average": "Média",
+      "entries": "Entradas",
+      "range": "Faixa",
+      "trend": {
+        "up": "Melhorando",
+        "down": "Caindo",
+        "neutral": "Estável"
+      }
+    },
+    "weeklyHydration": {
+      "title": "Hidratação semanal",
+      "aria": "Gráfico de hidratação",
+      "glasses": "Copos",
+      "average": "Méd/dia",
+      "total": "Total",
+      "goalsMet": "Metas atingidas",
+      "trend": {
+        "up": "Melhorando",
+        "down": "Caindo",
+        "neutral": "Estável"
+      }
+    },
+    "weeklyContractions": {
+      "title": "Frequência de contrações",
+      "aria": "Gráfico de contrações",
+      "count": "Contagem",
+      "avg": "méd",
+      "total": "Total",
+      "activeDays": "Dias ativos",
+      "peak": "Pico",
+      "trend": {
+        "up": "Subindo",
+        "down": "Caindo",
+        "neutral": "Estável"
+      }
     }
   },
   "appUpdated": {

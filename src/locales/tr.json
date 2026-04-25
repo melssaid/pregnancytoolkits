@@ -1385,6 +1385,47 @@
       "prePregnancyWeight": "Hamilelik öncesi ağırlık",
       "yourActualWeight": "Gerçek ağırlığınız",
       "recommendedRange": "Önerilen aralık"
+    },
+    "weeklyMood": {
+      "title": "Haftalık Ruh Hali",
+      "aria": "7 günlük ruh hali grafiği",
+      "mood": "Ruh hali",
+      "noEntry": "Kayıt yok",
+      "average": "Ortalama",
+      "entries": "Kayıtlar",
+      "range": "Aralık",
+      "trend": {
+        "up": "Yükseliyor",
+        "down": "Düşüyor",
+        "neutral": "Sabit"
+      }
+    },
+    "weeklyHydration": {
+      "title": "Haftalık Su Alımı",
+      "aria": "Haftalık su alımı grafiği",
+      "glasses": "Bardak",
+      "average": "Ort/gün",
+      "total": "Toplam",
+      "goalsMet": "Hedefler",
+      "trend": {
+        "up": "Yükseliyor",
+        "down": "Düşüyor",
+        "neutral": "Sabit"
+      }
+    },
+    "weeklyContractions": {
+      "title": "Haftalık Kasılma Sıklığı",
+      "aria": "Kasılma sıklığı grafiği",
+      "count": "Sayı",
+      "avg": "ort",
+      "total": "Toplam",
+      "activeDays": "Aktif gün",
+      "peak": "Tepe",
+      "trend": {
+        "up": "Artıyor",
+        "down": "Azalıyor",
+        "neutral": "Sabit"
+      }
     }
   },
   "appUpdated": {
