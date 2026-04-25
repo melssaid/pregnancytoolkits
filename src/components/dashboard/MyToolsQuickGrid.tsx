@@ -155,7 +155,8 @@ export function MyToolsQuickGrid() {
           </span>
         </div>
 
-        <div className="grid grid-cols-3 gap-2">
+        {/* Row layout — full label always visible, scales to 2 cols at 380px+ */}
+        <div className="grid grid-cols-1 min-[380px]:grid-cols-2 gap-2">
           {items.map((it, i) => {
             const Icon = it.icon;
             return (
@@ -166,20 +167,20 @@ export function MyToolsQuickGrid() {
               >
                 <Link
                   to={it.href}
-                  className={`group relative block rounded-2xl p-2.5 bg-gradient-to-br ${it.ring} border border-border/40 hover:border-primary/40 hover:shadow-md transition-all`}
+                  className={`group relative flex items-center gap-2.5 rounded-2xl px-3 py-2.5 bg-gradient-to-br ${it.ring} border border-border/40 hover:border-primary/40 hover:shadow-md transition-all min-w-0`}
                 >
-                  <div className="flex items-start justify-between mb-1.5">
-                    <div className={`w-7 h-7 rounded-xl bg-background/70 backdrop-blur flex items-center justify-center ${it.color}`}>
-                      <Icon className="w-3.5 h-3.5" />
-                    </div>
-                    {it.count > 0 && (
-                      <span className={`text-[10px] font-extrabold ${it.color}`}>{it.count}</span>
-                    )}
+                  <div className={`w-8 h-8 rounded-xl bg-background/70 backdrop-blur flex items-center justify-center flex-shrink-0 ${it.color}`}>
+                    <Icon className="w-4 h-4" />
                   </div>
-                  <p className="text-[10px] font-semibold text-foreground leading-tight line-clamp-2">
+                  <p className="flex-1 min-w-0 text-[12px] font-semibold text-foreground leading-snug break-words" style={{ overflowWrap: "anywhere" }}>
                     {t(it.labelKey, it.labelDefault)}
                   </p>
-                  <Chevron className="absolute bottom-1.5 end-1.5 w-2.5 h-2.5 text-muted-foreground/40 group-hover:text-primary/60 transition-colors" />
+                  {it.count > 0 && (
+                    <span className={`flex-shrink-0 text-[11px] font-extrabold ${it.color} bg-background/60 rounded-full px-2 py-0.5 min-w-[24px] text-center tabular-nums`}>
+                      {it.count}
+                    </span>
+                  )}
+                  <Chevron className="flex-shrink-0 w-3 h-3 text-muted-foreground/50 group-hover:text-primary/70 transition-colors" />
                 </Link>
               </motion.div>
             );

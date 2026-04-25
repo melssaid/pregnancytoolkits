@@ -131,32 +131,35 @@ export const UnifiedToolsGrid = memo(function UnifiedToolsGrid() {
         </Link>
       </div>
 
-      <div className="grid grid-cols-3 gap-2">
+      {/* Professional row layout — guarantees full label visibility on 320px screens.
+          Single column under 380px, 2 columns from 380px+. No more cramped 3-col grid. */}
+      <div className="grid grid-cols-1 min-[380px]:grid-cols-2 gap-2">
         {sorted.map((tool, i) => {
           const Icon = tool.icon;
           const hasData = tool.count > 0;
           return (
             <motion.div
               key={tool.id}
-              initial={{ opacity: 0, scale: 0.94 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.02 * i, duration: 0.25 }}
+              initial={{ opacity: 0, x: -6 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.02 * i, duration: 0.22 }}
             >
               <Link
                 to={tool.href}
-                className={`group relative flex h-full flex-col items-center justify-center gap-1.5 rounded-2xl border border-border/30 bg-gradient-to-br ${tool.accent} p-2.5 transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-md active:scale-[0.97]`}
+                className={`group relative flex h-full items-center gap-2.5 rounded-2xl border border-border/30 bg-gradient-to-br ${tool.accent} px-3 py-2.5 transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-md active:scale-[0.98] min-w-0`}
               >
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-border/40 bg-background/70 backdrop-blur-sm shadow-sm flex-shrink-0">
+                  <Icon className={`h-4.5 w-4.5 ${tool.iconColor}`} strokeWidth={1.85} />
+                </div>
+                <span className="flex-1 min-w-0 text-[12px] font-semibold leading-snug text-foreground/90 break-words" style={{ overflowWrap: "anywhere" }}>
+                  {t(tool.labelKey, tool.labelEn)}
+                </span>
                 {hasData && (
-                  <span className={`absolute top-1.5 end-1.5 text-[9px] font-black tabular-nums ${tool.iconColor}`}>
+                  <span className={`flex-shrink-0 text-[11px] font-black tabular-nums ${tool.iconColor} bg-background/60 rounded-full px-2 py-0.5 min-w-[24px] text-center`}>
                     {tool.count}
                   </span>
                 )}
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-border/40 bg-background/70 backdrop-blur-sm shadow-sm">
-                  <Icon className={`h-5 w-5 ${tool.iconColor}`} strokeWidth={1.85} />
-                </div>
-                <span className="text-[10px] font-semibold leading-tight text-foreground/85 text-center line-clamp-2">
-                  {t(tool.labelKey, tool.labelEn)}
-                </span>
+                <Chevron className="flex-shrink-0 h-3.5 w-3.5 text-muted-foreground/40 group-hover:text-primary/60 transition-colors" />
               </Link>
             </motion.div>
           );
