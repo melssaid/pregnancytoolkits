@@ -9047,6 +9047,10 @@
     "moreTab": {
       "backHome": "Volver al inicio",
       "backHomeDesc": "Explora todas las herramientas disponibles"
+    },
+    "seo": {
+      "title": "Tu panel de embarazo",
+      "description": "Sigue tu embarazo semana a semana con análisis personalizados y herramientas de bienestar."
     }
   },
   "reset": {

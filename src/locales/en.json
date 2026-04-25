@@ -9134,6 +9134,10 @@
     "moreTab": {
       "backHome": "Back to home",
       "backHomeDesc": "Explore all available tools"
+    },
+    "seo": {
+      "title": "Your Pregnancy Dashboard",
+      "description": "Track your pregnancy week by week with personalized insights, mood, weight and wellness tools."
     }
   },
   "reset": {

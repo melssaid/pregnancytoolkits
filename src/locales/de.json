@@ -9047,6 +9047,10 @@
     "moreTab": {
       "backHome": "Zurück zur Startseite",
       "backHomeDesc": "Entdecke alle verfügbaren Werkzeuge"
+    },
+    "seo": {
+      "title": "Ihr Schwangerschafts-Dashboard",
+      "description": "Begleiten Sie Ihre Schwangerschaft Woche für Woche mit personalisierten Einblicken und Wellness-Tools."
     }
   },
   "reset": {

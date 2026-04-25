@@ -9047,6 +9047,10 @@
     "moreTab": {
       "backHome": "Voltar ao início",
       "backHomeDesc": "Explore todas as ferramentas disponíveis"
+    },
+    "seo": {
+      "title": "Seu painel de gravidez",
+      "description": "Acompanhe sua gravidez semana a semana com análises personalizadas e ferramentas de bem-estar."
     }
   },
   "reset": {

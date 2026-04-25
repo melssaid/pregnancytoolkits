@@ -9047,6 +9047,10 @@
     "moreTab": {
       "backHome": "Ana sayfaya dön",
       "backHomeDesc": "Mevcut tüm araçları keşfet"
+    },
+    "seo": {
+      "title": "Hamilelik Panonuz",
+      "description": "Hamileliğinizi haftalık olarak kişisel öneriler ve sağlık araçlarıyla takip edin."
     }
   },
   "reset": {
