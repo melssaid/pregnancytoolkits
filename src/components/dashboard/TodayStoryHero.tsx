@@ -215,7 +215,46 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
         )}
 
         {/* Mood Quick-Tap — formal scale */}
-        <div className="rounded-2xl border border-border/30 bg-background/40 p-3.5 backdrop-blur-sm">
+        {(() => {
+          const activeMood = moods.find(x => x.value === selectedMood);
+          const tint = activeMood?.color ?? "hsl(var(--primary))";
+          // SVG dot pattern — encoded once, tinted via currentColor
+          const dotPattern =
+            "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'><circle cx='1.5' cy='1.5' r='0.9' fill='%23000' fill-opacity='0.18'/></svg>\")";
+          return (
+        <div className="relative rounded-2xl border border-border/40 p-3.5 backdrop-blur-sm overflow-hidden transition-colors duration-500"
+             style={{ borderColor: activeMood ? `${tint}55` : undefined }}>
+          {/* Tinted base gradient (animates with active mood) */}
+          <motion.div
+            aria-hidden
+            className="absolute inset-0 pointer-events-none"
+            initial={false}
+            animate={{
+              background: activeMood
+                ? `linear-gradient(135deg, ${tint}1f 0%, ${tint}10 45%, hsl(var(--background)/0.75) 100%)`
+                : `linear-gradient(135deg, hsl(var(--muted)/0.55) 0%, hsl(var(--background)/0.85) 100%)`,
+            }}
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          />
+          {/* Subtle dot-grid texture overlay */}
+          <div
+            aria-hidden
+            className="absolute inset-0 pointer-events-none opacity-[0.35] mix-blend-overlay"
+            style={{ backgroundImage: dotPattern, backgroundSize: "14px 14px" }}
+          />
+          {/* Soft radial glow following active color */}
+          {activeMood && (
+            <motion.div
+              aria-hidden
+              key={activeMood.key}
+              initial={{ opacity: 0, scale: 0.6 }}
+              animate={{ opacity: 0.55, scale: 1 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="absolute -top-8 left-1/2 -translate-x-1/2 h-24 w-40 rounded-full blur-2xl pointer-events-none"
+              style={{ backgroundColor: tint }}
+            />
+          )}
+          <div className="relative z-10">
           <div className="flex items-center justify-between mb-2.5">
             <p className="text-[14px] font-extrabold text-foreground tracking-tight">
               {t("dashboardV2.mood.title")}
