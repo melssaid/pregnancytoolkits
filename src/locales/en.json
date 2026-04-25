@@ -9248,6 +9248,43 @@
         "meals": "Meals",
         "fitness": "Fitness"
       }
+    },
+    "signals": {
+      "title": "Live Signals",
+      "subtitle": "{{positive}} positive · {{risks}} watch-outs (live from your data)",
+      "empty": "No signals yet — log more data to see live insights.",
+      "labels": {
+        "low_mood_3plus_days_last_week": "Low-mood days in the last week",
+        "avg_mood_below_threshold": "Average mood below the comfort threshold",
+        "hydration_below_target": "Hydration below daily target",
+        "vitamin_adherence_low": "Low vitamin adherence this week",
+        "low_kick_tracking_third_trimester": "Few kick sessions in third trimester",
+        "no_kick_session_48h_third_trimester": "No kick session logged in 48h+",
+        "recurring_symptom_pattern": "Recurring symptom pattern",
+        "strong_vitamin_streak": "Strong vitamin streak",
+        "hydration_on_target": "Hydration on target",
+        "positive_mood_trend": "Positive mood trend",
+        "consistent_kick_tracking": "Consistent kick tracking",
+        "weight_gain_within_healthy_range": "Weight gain in healthy weekly range",
+        "upcoming_care_appointment_scheduled": "Upcoming care appointment scheduled",
+        "high_tracking_engagement": "High tracking engagement",
+        "ultrasound_journal_consistent": "Consistent ultrasound journal",
+        "recent_ultrasound_ai_reading_available": "Recent ultrasound AI reading available"
+      },
+      "values": {
+        "lowMoodDays": "{{count}} day(s) ≤ 2/5",
+        "avgMood": "Avg {{value}}/5",
+        "hydrationPct": "{{pct}}% (~{{ml}} ml/day)",
+        "vitaminDays": "{{days}}/7 days ({{pct}}%)",
+        "kickSessions": "{{count}} sessions in 7d",
+        "lastKickHours": "Last session {{hours}}h ago",
+        "topSymptom": "{{name}} ×{{count}}",
+        "weeklyGain": "{{value}} kg/week",
+        "daysUntil": "In {{days}} day(s)",
+        "engagement": "{{pct}}% engagement",
+        "ultrasoundCount": "{{count}} photos",
+        "weekTag": "Week {{week}}"
+      }
     }
   },
   "reset": {

@@ -9161,6 +9161,43 @@
         "meals": "Refeições",
         "fitness": "Fitness"
       }
+    },
+    "signals": {
+      "title": "Sinais ao vivo",
+      "subtitle": "{{positive}} positivos · {{risks}} alertas (ao vivo)",
+      "empty": "Sem sinais ainda — registe mais dados.",
+      "labels": {
+        "low_mood_3plus_days_last_week": "Dias de humor baixo na última semana",
+        "avg_mood_below_threshold": "Humor médio abaixo do limite",
+        "hydration_below_target": "Hidratação abaixo da meta",
+        "vitamin_adherence_low": "Baixa adesão às vitaminas",
+        "low_kick_tracking_third_trimester": "Poucas sessões de movimento no T3",
+        "no_kick_session_48h_third_trimester": "Sem sessão registada há 48h+",
+        "recurring_symptom_pattern": "Padrão de sintomas recorrente",
+        "strong_vitamin_streak": "Sequência forte de vitaminas",
+        "hydration_on_target": "Hidratação na meta",
+        "positive_mood_trend": "Tendência de humor positiva",
+        "consistent_kick_tracking": "Acompanhamento consistente de movimentos",
+        "weight_gain_within_healthy_range": "Ganho de peso na faixa saudável",
+        "upcoming_care_appointment_scheduled": "Próxima consulta agendada",
+        "high_tracking_engagement": "Alto engajamento de acompanhamento",
+        "ultrasound_journal_consistent": "Diário de ecografia consistente",
+        "recent_ultrasound_ai_reading_available": "Leitura IA recente disponível"
+      },
+      "values": {
+        "lowMoodDays": "{{count}} dia(s) ≤ 2/5",
+        "avgMood": "Méd {{value}}/5",
+        "hydrationPct": "{{pct}}% (~{{ml}} ml/dia)",
+        "vitaminDays": "{{days}}/7 dias ({{pct}}%)",
+        "kickSessions": "{{count}} sessões em 7d",
+        "lastKickHours": "Há {{hours}}h",
+        "topSymptom": "{{name}} ×{{count}}",
+        "weeklyGain": "{{value}} kg/sem",
+        "daysUntil": "Em {{days}} dia(s)",
+        "engagement": "{{pct}}% de engajamento",
+        "ultrasoundCount": "{{count}} fotos",
+        "weekTag": "Sem {{week}}"
+      }
     }
   },
   "reset": {

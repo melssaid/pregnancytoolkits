@@ -9161,6 +9161,43 @@
         "meals": "Mahlzeiten",
         "fitness": "Fitness"
       }
+    },
+    "signals": {
+      "title": "Live-Signale",
+      "subtitle": "{{positive}} positiv · {{risks}} Hinweise (live aus deinen Daten)",
+      "empty": "Noch keine Signale — erfasse mehr Daten.",
+      "labels": {
+        "low_mood_3plus_days_last_week": "Tage mit niedriger Stimmung letzte Woche",
+        "avg_mood_below_threshold": "Durchschnittsstimmung unter Wohlfühlschwelle",
+        "hydration_below_target": "Hydration unter Tagesziel",
+        "vitamin_adherence_low": "Niedrige Vitamin-Einnahme",
+        "low_kick_tracking_third_trimester": "Wenige Bewegungssitzungen im 3. Trimester",
+        "no_kick_session_48h_third_trimester": "Keine Sitzung seit 48h+",
+        "recurring_symptom_pattern": "Wiederkehrendes Symptommuster",
+        "strong_vitamin_streak": "Starke Vitamin-Serie",
+        "hydration_on_target": "Hydration im Ziel",
+        "positive_mood_trend": "Positive Stimmungstendenz",
+        "consistent_kick_tracking": "Konstante Bewegungserfassung",
+        "weight_gain_within_healthy_range": "Gewichtszunahme im gesunden Bereich",
+        "upcoming_care_appointment_scheduled": "Anstehender Termin geplant",
+        "high_tracking_engagement": "Hohes Tracking-Engagement",
+        "ultrasound_journal_consistent": "Regelmäßiges Ultraschall-Journal",
+        "recent_ultrasound_ai_reading_available": "Aktuelle KI-Auswertung verfügbar"
+      },
+      "values": {
+        "lowMoodDays": "{{count}} Tage ≤ 2/5",
+        "avgMood": "Ø {{value}}/5",
+        "hydrationPct": "{{pct}}% (~{{ml}} ml/Tag)",
+        "vitaminDays": "{{days}}/7 Tage ({{pct}}%)",
+        "kickSessions": "{{count}} Sitzungen in 7T",
+        "lastKickHours": "Zuletzt vor {{hours}}h",
+        "topSymptom": "{{name}} ×{{count}}",
+        "weeklyGain": "{{value}} kg/Wo",
+        "daysUntil": "In {{days}} Tagen",
+        "engagement": "{{pct}}% Engagement",
+        "ultrasoundCount": "{{count}} Fotos",
+        "weekTag": "SSW {{week}}"
+      }
     }
   },
   "reset": {
