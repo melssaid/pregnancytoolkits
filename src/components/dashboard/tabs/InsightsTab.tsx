@@ -41,6 +41,9 @@ export const InsightsTab = memo(function InsightsTab() {
       {/* Transparent breakdown of which data sources fed the snapshot */}
       <DataSourcesPanel />
 
+      {/* Live preview of derived risk flags & positive signals with exact values */}
+      <SignalsPreviewPanel />
+
       {/* Saved holistic reports archive — shows date + points + content */}
       <SavedHolisticReports />
 
