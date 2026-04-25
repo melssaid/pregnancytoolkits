@@ -9201,6 +9201,14 @@
           "hydration": "الترطيب",
           "symptoms": "الأعراض"
         }
+      },
+      "save": "حفظ",
+      "saved": "محفوظ",
+      "savedList": {
+        "title": "التقارير المحفوظة",
+        "points": "{{count}} نقاط",
+        "week": "أسبوع {{week}}",
+        "delete": "حذف"
       }
     },
     "ultrasound": {
