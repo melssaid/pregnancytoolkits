@@ -78,14 +78,14 @@ export function QuickStats({
             >
               <Link
                 to={stat.href}
-                className="flex items-center justify-between gap-2 px-3 py-2.5 rounded-xl bg-card border border-border/40 hover:border-primary/30 transition-all group min-w-0"
+                className="flex items-center justify-between gap-3 px-3.5 py-3 rounded-2xl bg-card border border-border/40 hover:border-primary/30 transition-all group min-w-0"
               >
-                <p className="text-[12px] text-foreground/85 font-semibold leading-tight flex-1 min-w-0 break-words" style={{ overflowWrap: "anywhere" }}>
+                <p className="text-[14px] text-foreground font-bold leading-snug flex-1 min-w-0 break-words" style={{ overflowWrap: "anywhere" }}>
                   {t(stat.labelKey)}
                 </p>
-                <p className={`text-base font-extrabold leading-none tabular-nums flex-shrink-0 group-hover:text-primary transition-colors ${stat.color}`}>
+                <p className={`text-lg font-extrabold leading-none tabular-nums flex-shrink-0 group-hover:text-primary transition-colors ${stat.color}`}>
                   {stat.value}
-                  {stat.unit && <span className="text-[10px] font-medium text-muted-foreground ms-0.5">{stat.unit}</span>}
+                  {stat.unit && <span className="text-[11px] font-medium text-muted-foreground ms-0.5">{stat.unit}</span>}
                 </p>
               </Link>
             </motion.div>
