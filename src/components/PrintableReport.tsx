@@ -97,8 +97,8 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
       }
     });
 
-    return buildPrintHTML({ content: tempDiv.innerHTML, title, lang, isRTL, profile, logoDataUrl });
-  }, [lang, isRTL, title, profile, logoDataUrl]);
+    return buildPrintHTML({ content: tempDiv.innerHTML, title, lang, isRTL, profile, logoDataUrl, orientation });
+  }, [lang, isRTL, title, profile, logoDataUrl, orientation]);
 
   const handleDownload = useCallback(() => {
     const fullHTML = buildCleanHTML();
@@ -112,6 +112,36 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
         {children}
       </div>
       <div className="mt-3 space-y-2" data-no-print>
+        {/* Orientation toggle */}
+        <div
+          role="radiogroup"
+          aria-label={oLabels.layout}
+          className="grid grid-cols-2 gap-1 p-1 rounded-xl bg-muted/40 border border-border/40"
+        >
+          {(['portrait', 'landscape'] as const).map(opt => {
+            const active = orientation === opt;
+            const Icon = opt === 'portrait' ? RectangleVertical : RectangleHorizontal;
+            return (
+              <button
+                key={opt}
+                type="button"
+                role="radio"
+                aria-checked={active}
+                onClick={() => setOrientation(opt)}
+                className={cn(
+                  'flex items-center justify-center gap-1.5 py-1.5 px-2 rounded-lg text-xs font-semibold transition-all',
+                  active
+                    ? 'bg-background text-foreground shadow-sm border border-border/60'
+                    : 'text-muted-foreground hover:text-foreground'
+                )}
+              >
+                <Icon className="w-3.5 h-3.5" />
+                {oLabels[opt]}
+              </button>
+            );
+          })}
+        </div>
+
         <Button
           variant="outline"
           onClick={handleDownload}
