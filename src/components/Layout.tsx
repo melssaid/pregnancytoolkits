@@ -112,8 +112,8 @@ export function Layout({ children, showBack = false, compactBackHeader = false }
         className="relative sticky top-0 z-50 border-b border-border/40 backdrop-blur-md will-change-transform"
         style={{ backgroundColor: rawBg, boxShadow: rawShadow }}
       >
-        {/* Curved bottom edge — refined half-circle with subtle ambient shadow */}
-        <div className="absolute -bottom-[14px] left-0 right-0 h-[20px] overflow-visible pointer-events-none z-10">
+        {/* Curved bottom edge — responsive: subtler on mobile, deeper on tablets+ */}
+        <div className="absolute -bottom-[10px] sm:-bottom-[14px] md:-bottom-[18px] left-0 right-0 h-[14px] sm:h-[20px] md:h-[26px] overflow-visible pointer-events-none z-10">
           <svg viewBox="0 0 1440 120" fill="none" className="w-full h-full" preserveAspectRatio="none">
             <defs>
               <filter id="header-curve-shadow" x="-8%" y="-20%" width="116%" height="180%">
@@ -310,7 +310,7 @@ export function Layout({ children, showBack = false, compactBackHeader = false }
       <div className="hidden lg:block fixed right-0 top-0 bottom-0 w-1 bg-gradient-to-b from-primary/30 via-primary/50 to-primary/30 z-40" />
 
       {/* Main Content */}
-      <main className="pt-3">
+      <main className="pt-2 sm:pt-3 md:pt-5">
         {children}
 
         {/* Bottom Navigation for Mobile */}
