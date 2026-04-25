@@ -158,9 +158,8 @@ export function MyToolsQuickGrid() {
             return (
               <motion.div
                 key={it.id}
-                initial={{ opacity: 0, y: 6 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.04 }}
+                {...m.fadeUp(i)}
+                style={{ willChange: m.disabled ? "auto" : "transform, opacity" }}
               >
                 <Link
                   to={it.href}
