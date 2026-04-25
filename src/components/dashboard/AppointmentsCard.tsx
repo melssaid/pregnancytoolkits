@@ -1,7 +1,7 @@
 import { memo, useMemo } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { Calendar, ArrowRight, CalendarPlus, Clock, User } from "lucide-react";
+import { Calendar, ArrowRight, ArrowLeft, CalendarPlus, Clock, User } from "lucide-react";
 import { Link } from "react-router-dom";
 
 /**
@@ -29,7 +29,9 @@ const getUpcomingAppointments = (userId: string) => {
 };
 
 export const AppointmentsCard = memo(function AppointmentsCard() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.dir() === "rtl";
+  const Arrow = isRTL ? ArrowLeft : ArrowRight;
   const userId = getLocalUserId();
 
   const upcoming = useMemo(() => getUpcomingAppointments(userId), [userId]);
@@ -63,7 +65,7 @@ export const AppointmentsCard = memo(function AppointmentsCard() {
           <h3 className="text-sm font-extrabold text-foreground whitespace-normal leading-tight">{t("dailyDashboard.appointments.title")}</h3>
         </div>
         <Link to="/tools/smart-appointment-reminder">
-          <ArrowRight className="w-3.5 h-3.5 text-muted-foreground hover:text-primary transition-colors" />
+          <Arrow className="w-3.5 h-3.5 text-muted-foreground hover:text-primary transition-colors" />
         </Link>
       </div>
 
