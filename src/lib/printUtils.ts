@@ -225,9 +225,15 @@ export function buildPrintHTML({ content, title, lang, isRTL, profile, logoDataU
     /* Force all elements visible (override framer-motion, hidden states, etc.) */
     .print-content * { opacity: 1 !important; transform: none !important; visibility: visible !important; }
 
+    /* Patient grid: wider in landscape */
+    ${isLandscape ? '.patient-grid { grid-template-columns: 1fr 1fr 1fr; }' : ''}
+    /* Images & tables benefit from extra width in landscape */
+    .print-content img { max-width: 100%; height: auto; ${isLandscape ? 'max-height: 140mm;' : 'max-height: 110mm;'} display: block; margin: 10px auto; border-radius: 6px; }
+    .print-content table { font-size: ${isLandscape ? '12.5px' : '13px'}; }
+
     @media print {
-      body { padding: 10mm; }
-      @page { margin: 10mm; size: A4; }
+      body { padding: ${isLandscape ? '8mm 10mm' : '10mm'}; }
+      @page { margin: ${isLandscape ? '8mm' : '10mm'}; size: A4 ${orientation}; }
     }
   </style>
 </head>
