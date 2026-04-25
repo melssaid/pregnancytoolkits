@@ -8942,5 +8942,62 @@
     "available": "Neues Update verfügbar",
     "description": "Tippen, um zu aktualisieren und Cache zu leeren",
     "refresh": "Aktualisieren"
+  },
+  "dashboardV2": {
+    "header": {
+      "kicker": "Dashboard",
+      "title": "Deine Reise",
+      "sectionsAria": "Dashboard-Bereiche"
+    },
+    "tabs": {
+      "today": "Heute",
+      "insights": "Einblicke",
+      "archive": "Archiv",
+      "more": "Mehr"
+    },
+    "greeting": {
+      "morning": "Guten Morgen",
+      "afternoon": "Guten Tag",
+      "evening": "Guten Abend",
+      "morningTip": "Starte den Tag mit Wasser und tiefer Atmung",
+      "afternoonTip": "Eine gute Zeit für deine täglichen Vitamine",
+      "eveningTip": "Komm zur Ruhe und halte fest, wie du dich fühlst"
+    },
+    "progress": {
+      "week": "Woche",
+      "daysLeft": "Tage übrig",
+      "complete": "Abgeschlossen",
+      "trimester1": "Erstes Trimester",
+      "trimester2": "Zweites Trimester",
+      "trimester3": "Drittes Trimester",
+      "welcomeWellness": "Willkommen auf deiner Wellness-Reise"
+    },
+    "mood": {
+      "title": "Wie fühlst du dich heute?",
+      "saved": "Gespeichert",
+      "difficult": "Schwierig",
+      "low": "Niedrig",
+      "neutral": "Neutral",
+      "good": "Gut",
+      "excellent": "Ausgezeichnet"
+    },
+    "tools": {
+      "title": "Werkzeuge",
+      "viewAll": "Alle anzeigen"
+    },
+    "insightsEmpty": {
+      "title": "Noch keine Einblicke",
+      "desc": "Erfasse deine täglichen Daten, um Trends und Analysen hier zu sehen",
+      "cta": "Tracking starten"
+    },
+    "archiveEmpty": {
+      "title": "Dein Archiv ist leer",
+      "desc": "Hier erscheinen deine gespeicherten Ergebnisse, Wochenzertifikate und Meilensteine",
+      "cta": "Werkzeuge entdecken"
+    },
+    "moreTab": {
+      "backHome": "Zurück zur Startseite",
+      "backHomeDesc": "Entdecke alle verfügbaren Werkzeuge"
+    }
   }
 }

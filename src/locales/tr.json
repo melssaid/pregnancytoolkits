@@ -8942,5 +8942,62 @@
     "available": "Yeni güncelleme mevcut",
     "description": "Güncellemek ve önbelleği temizlemek için dokunun",
     "refresh": "Güncelle"
+  },
+  "dashboardV2": {
+    "header": {
+      "kicker": "Pano",
+      "title": "Yolculuğun",
+      "sectionsAria": "Pano bölümleri"
+    },
+    "tabs": {
+      "today": "Bugün",
+      "insights": "İçgörüler",
+      "archive": "Arşiv",
+      "more": "Daha"
+    },
+    "greeting": {
+      "morning": "Günaydın",
+      "afternoon": "İyi öğleden sonra",
+      "evening": "İyi akşamlar",
+      "morningTip": "Güne suyla ve derin nefesle başla",
+      "afternoonTip": "Günlük vitaminlerin için uygun bir zaman",
+      "eveningTip": "Sakinleş ve bugün nasıl hissettiğini kaydet"
+    },
+    "progress": {
+      "week": "Hafta",
+      "daysLeft": "Kalan gün",
+      "complete": "Tamamlandı",
+      "trimester1": "Birinci Trimester",
+      "trimester2": "İkinci Trimester",
+      "trimester3": "Üçüncü Trimester",
+      "welcomeWellness": "Sağlık yolculuğuna hoş geldin"
+    },
+    "mood": {
+      "title": "Bugün nasıl hissediyorsun?",
+      "saved": "Kaydedildi",
+      "difficult": "Zor",
+      "low": "Düşük",
+      "neutral": "Nötr",
+      "good": "İyi",
+      "excellent": "Mükemmel"
+    },
+    "tools": {
+      "title": "Araçlar",
+      "viewAll": "Tümünü gör"
+    },
+    "insightsEmpty": {
+      "title": "Henüz içgörü yok",
+      "desc": "Trendleri ve analizleri burada görmek için günlük verilerini kaydetmeye başla",
+      "cta": "Takibe başla"
+    },
+    "archiveEmpty": {
+      "title": "Arşivin boş",
+      "desc": "Kaydedilen sonuçların, haftalık sertifikaların ve dönüm noktaların burada görünecek",
+      "cta": "Araçları keşfet"
+    },
+    "moreTab": {
+      "backHome": "Ana sayfaya dön",
+      "backHomeDesc": "Mevcut tüm araçları keşfet"
+    }
   }
 }

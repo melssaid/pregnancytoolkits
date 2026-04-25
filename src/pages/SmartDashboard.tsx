@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
 import { useSmartConversionPrompt } from "@/hooks/useSmartConversionPrompt";
 import { useTrimesterTheme } from "@/hooks/useTrimesterTheme";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Sun, BarChart3, Calendar, LayoutGrid } from "lucide-react";
 import { haptic } from "@/lib/haptics";
@@ -23,8 +24,8 @@ const TAB_KEY = "dashboard_active_tab";
 type TabKey = "today" | "insights" | "archive" | "more";
 
 const SmartDashboard = () => {
-  const { t, i18n } = useTranslation();
-  const isAr = i18n.language === "ar";
+  const { t } = useTranslation();
+  const { isRTL } = useLanguage();
   useSmartConversionPrompt();
   const trimesterTheme = useTrimesterTheme();
 
@@ -69,11 +70,11 @@ const SmartDashboard = () => {
   const roseOpacity = useTransform(scrollY, [0, 300], [0.85, 0]);
   const roseLeftScale = useTransform(scrollY, [0, 400], [1, 0.7]);
 
-  const tabs: Array<{ key: TabKey; icon: typeof Sun; labelAr: string; labelEn: string }> = [
-    { key: "today",    icon: Sun,        labelAr: "اليوم",  labelEn: "Today" },
-    { key: "insights", icon: BarChart3,  labelAr: "الرؤى",  labelEn: "Insights" },
-    { key: "archive",  icon: Calendar,   labelAr: "الأرشيف", labelEn: "Archive" },
-    { key: "more",     icon: LayoutGrid, labelAr: "المزيد", labelEn: "More" },
+  const tabs: Array<{ key: TabKey; icon: typeof Sun; tKey: string }> = [
+    { key: "today",    icon: Sun,        tKey: "dashboardV2.tabs.today" },
+    { key: "insights", icon: BarChart3,  tKey: "dashboardV2.tabs.insights" },
+    { key: "archive",  icon: Calendar,   tKey: "dashboardV2.tabs.archive" },
+    { key: "more",     icon: LayoutGrid, tKey: "dashboardV2.tabs.more" },
   ];
 
   return (
@@ -83,7 +84,7 @@ const SmartDashboard = () => {
         description="Your personalized pregnancy dashboard"
       />
 
-      <main className={`relative pb-24 bg-gradient-to-b ${trimesterTheme.gradient}`}>
+      <main dir={isRTL ? "rtl" : "ltr"} className={`relative pb-24 bg-gradient-to-b ${trimesterTheme.gradient}`}>
         {/* Decorative rose */}
         <div className="pointer-events-none absolute -top-3 left-0 right-0 z-0 flex px-1">
           <motion.img
@@ -119,10 +120,10 @@ const SmartDashboard = () => {
           >
             <div className="min-w-0">
               <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-primary/70">
-                {isAr ? "لوحة التحكم" : "Dashboard"}
+                {t("dashboardV2.header.kicker")}
               </p>
               <h1 className="mt-0.5 text-2xl sm:text-3xl font-black leading-tight tracking-tight text-foreground">
-                {isAr ? "رحلتكِ اليوم" : "Your Journey"}
+                {t("dashboardV2.header.title")}
               </h1>
             </div>
             <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/15 to-primary/5 border border-primary/20 shadow-sm">
@@ -137,7 +138,7 @@ const SmartDashboard = () => {
             className="sticky top-[3.25rem] sm:top-[4rem] z-30 grid h-auto w-full
                        grid-cols-4 gap-0 rounded-none border-b border-border/40
                        bg-background/92 p-0 backdrop-blur-xl shadow-[0_4px_12px_-6px_hsl(var(--primary)/0.12)]"
-            aria-label={isAr ? "أقسام لوحة التحكم" : "Dashboard sections"}
+            aria-label={t("dashboardV2.header.sectionsAria")}
           >
             {tabs.map((tab) => {
               const Icon = tab.icon;
@@ -152,7 +153,7 @@ const SmartDashboard = () => {
                              data-[state=inactive]:text-muted-foreground"
                 >
                   <Icon className={`h-[17px] w-[17px] sm:h-[18px] sm:w-[18px] transition-transform ${isActive ? "scale-110" : ""}`} strokeWidth={isActive ? 2.4 : 2} />
-                  <span className="leading-none mt-0.5 text-[9px] sm:text-[10px]">{isAr ? tab.labelAr : tab.labelEn}</span>
+                  <span className="leading-none mt-0.5 text-[9px] sm:text-[10px]">{t(tab.tKey)}</span>
                   {isActive && (
                     <motion.span
                       layoutId="dashboard-tab-indicator"

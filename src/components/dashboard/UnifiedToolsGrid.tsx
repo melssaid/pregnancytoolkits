@@ -36,8 +36,8 @@ function getUserId(): string | null {
  */
 export const UnifiedToolsGrid = memo(function UnifiedToolsGrid() {
   const { t, i18n } = useTranslation();
-  const isAr = i18n.language === "ar";
-  const Chevron = isAr ? ChevronLeft : ChevronRight;
+  const isRTL = i18n.dir() === "rtl";
+  const Chevron = isRTL ? ChevronLeft : ChevronRight;
 
   const tools = useMemo<ToolItem[]>(() => {
     const uid = getUserId();
@@ -119,13 +119,13 @@ export const UnifiedToolsGrid = memo(function UnifiedToolsGrid() {
           id="dashboard-tools-heading"
           className="text-lg font-extrabold text-foreground tracking-tight"
         >
-          {t("dashboard.tools.title", isAr ? "الأدوات" : "Tools")}
+          {t("dashboardV2.tools.title")}
         </h2>
         <Link
           to="/discover"
           className="inline-flex items-center gap-0.5 rounded-full bg-secondary px-2.5 py-1 text-[11px] font-semibold text-secondary-foreground hover:bg-secondary/80 transition-colors"
         >
-          {isAr ? "عرض الكل" : "View all"}
+          {t("dashboardV2.tools.viewAll")}
           <Chevron className="h-3 w-3" />
         </Link>
       </div>
@@ -154,7 +154,7 @@ export const UnifiedToolsGrid = memo(function UnifiedToolsGrid() {
                   <Icon className={`h-5 w-5 ${tool.iconColor}`} strokeWidth={1.85} />
                 </div>
                 <span className="text-[10px] font-semibold leading-tight text-foreground/85 text-center line-clamp-2">
-                  {isAr ? tool.labelAr : tool.labelEn}
+                  {t(tool.labelKey, tool.labelEn)}
                 </span>
               </Link>
             </motion.div>

@@ -48,32 +48,19 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
     return () => window.removeEventListener("storage", onStorage);
   }, [today]);
 
-  // Time-based greeting
+  // Time-based greeting (translated via i18n in 7 languages)
   const greeting = useMemo(() => {
     const slot = timeSlot;
     return {
       icon: slot === "morning" ? Sun : slot === "afternoon" ? Coffee : Moon,
-      titleAr: slot === "morning" ? "صباح الخير" : slot === "afternoon" ? "مساء النور" : "مساء الخير",
-      titleEn: slot === "morning" ? "Good Morning" : slot === "afternoon" ? "Good Afternoon" : "Good Evening",
-      tipAr:
-        slot === "morning"
-          ? "ابدئي يومكِ بكوب ماء وتنفّس عميق"
-          : slot === "afternoon"
-          ? "وقتٌ مناسب لتناول الفيتامينات اليومية"
-          : "خصّصي وقتاً للراحة وتسجيل مشاعركِ",
-      tipEn:
-        slot === "morning"
-          ? "Start your day with water and deep breathing"
-          : slot === "afternoon"
-          ? "A good time for your daily vitamins"
-          : "Wind down and log how you feel today",
+      title: t(`dashboardV2.greeting.${slot}`),
+      tip: t(`dashboardV2.greeting.${slot}Tip`),
     };
-  }, [timeSlot]);
+  }, [timeSlot, t]);
 
   // Pregnancy progress
   const progress = isPregnant ? Math.min(100, (week / 40) * 100) : 0;
   const trimester = week <= 13 ? 1 : week <= 26 ? 2 : 3;
-  const trimesterKey = trimester === 1 ? "first" : trimester === 2 ? "second" : "third";
   const daysRemaining = profile.dueDate
     ? Math.max(0, Math.ceil((new Date(profile.dueDate).getTime() - Date.now()) / 86400000))
     : isPregnant
@@ -86,13 +73,13 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
   const circumference = 2 * Math.PI * ringRadius;
   const strokeDash = (progress / 100) * circumference;
 
-  // Formal mood scale — icons + labels, no playful emojis
+  // Formal mood scale — translated, no emojis
   const moods = [
-    { value: 1, labelAr: "متعبة", labelEn: "Difficult", color: "hsl(0,55%,55%)" },
-    { value: 2, labelAr: "منخفض", labelEn: "Low", color: "hsl(25,65%,55%)" },
-    { value: 3, labelAr: "عادي", labelEn: "Neutral", color: "hsl(45,60%,50%)" },
-    { value: 4, labelAr: "جيد", labelEn: "Good", color: "hsl(160,45%,45%)" },
-    { value: 5, labelAr: "ممتاز", labelEn: "Excellent", color: "hsl(180,50%,40%)" },
+    { value: 1, key: "difficult",  color: "hsl(0,55%,55%)" },
+    { value: 2, key: "low",        color: "hsl(25,65%,55%)" },
+    { value: 3, key: "neutral",    color: "hsl(45,60%,50%)" },
+    { value: 4, key: "good",       color: "hsl(160,45%,45%)" },
+    { value: 5, key: "excellent",  color: "hsl(180,50%,40%)" },
   ];
 
   const handleMoodTap = useCallback(
@@ -137,10 +124,10 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
           </div>
           <div className="flex-1 min-w-0">
             <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-primary/70">
-              {isAr ? greeting.titleAr : greeting.titleEn}
+              {greeting.title}
             </p>
             <p className="mt-0.5 text-xs font-medium leading-tight text-muted-foreground line-clamp-2">
-              {isAr ? greeting.tipAr : greeting.tipEn}
+              {greeting.tip}
             </p>
           </div>
         </div>
@@ -182,7 +169,7 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
                   {week}
                 </motion.span>
                 <span className="mt-0.5 text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
-                  {t("dailyDashboard.week", isAr ? "أسبوع" : "Week")}
+                  {t("dashboardV2.progress.week")}
                 </span>
               </div>
             </div>
@@ -191,10 +178,7 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
             <div className="flex-1 min-w-0 space-y-2">
               <div>
                 <p className="text-[10px] font-bold uppercase tracking-[0.1em] text-primary/80">
-                  {t(`dailyDashboard.trimester.${trimesterKey}`, isAr
-                    ? trimester === 1 ? "الثلث الأول" : trimester === 2 ? "الثلث الثاني" : "الثلث الثالث"
-                    : trimester === 1 ? "First Trimester" : trimester === 2 ? "Second Trimester" : "Third Trimester"
-                  )}
+                  {t(`dashboardV2.progress.trimester${trimester}`)}
                 </p>
               </div>
 
@@ -202,13 +186,13 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
                 <div className="rounded-2xl border border-border/40 bg-background/60 px-2.5 py-2 backdrop-blur-sm">
                   <p className="text-2xl font-black leading-none text-foreground tabular-nums">{daysRemaining}</p>
                   <p className="mt-1 text-[9px] font-semibold leading-tight text-muted-foreground">
-                    {t("dailyDashboard.daysLeft", isAr ? "أيام متبقية" : "Days left")}
+                    {t("dashboardV2.progress.daysLeft")}
                   </p>
                 </div>
                 <div className="rounded-2xl border border-border/40 bg-background/60 px-2.5 py-2 backdrop-blur-sm">
                   <p className="text-2xl font-black leading-none text-foreground tabular-nums">{Math.round(progress)}<span className="text-sm">%</span></p>
                   <p className="mt-1 text-[9px] font-semibold leading-tight text-muted-foreground">
-                    {t("dailyDashboard.complete", isAr ? "مكتمل" : "Complete")}
+                    {t("dashboardV2.progress.complete")}
                   </p>
                 </div>
               </div>
@@ -219,7 +203,7 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
           <div className="flex items-center gap-3 mb-5 rounded-2xl border border-border/40 bg-background/60 p-4">
             <Sparkles className="h-7 w-7 text-primary flex-shrink-0" />
             <p className="text-sm font-semibold text-foreground leading-snug">
-              {isAr ? "مرحباً بكِ في رحلتكِ الصحية" : "Welcome to your wellness journey"}
+              {t("dashboardV2.progress.welcomeWellness")}
             </p>
           </div>
         )}
@@ -228,7 +212,7 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
         <div className="rounded-2xl border border-border/30 bg-background/40 p-3 backdrop-blur-sm">
           <div className="flex items-center justify-between mb-2">
             <p className="text-[11px] font-bold text-foreground">
-              {isAr ? "كيف تشعرين الآن؟" : "How do you feel today?"}
+              {t("dashboardV2.mood.title")}
             </p>
             {justSaved && (
               <motion.span
@@ -238,7 +222,7 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
                 className="inline-flex items-center gap-0.5 text-[10px] font-bold text-emerald-600 dark:text-emerald-400"
               >
                 <Check className="h-3 w-3" strokeWidth={3} />
-                {isAr ? "حُفظ" : "Saved"}
+                {t("dashboardV2.mood.saved")}
               </motion.span>
             )}
           </div>
@@ -246,6 +230,7 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
           <div className="flex items-center justify-between gap-1.5">
             {moods.map(m => {
               const active = selectedMood === m.value;
+              const label = t(`dashboardV2.mood.${m.key}`);
               return (
                 <motion.button
                   key={m.value}
@@ -256,7 +241,7 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
                       ? "bg-primary/12 ring-1 ring-primary/40 shadow-sm"
                       : "bg-muted/30 hover:bg-muted/50"
                   }`}
-                  aria-label={isAr ? m.labelAr : m.labelEn}
+                  aria-label={label}
                 >
                   <span
                     className="block w-2.5 h-2.5 rounded-full transition-all"
@@ -271,7 +256,7 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
                       active ? "text-foreground" : "text-muted-foreground"
                     }`}
                   >
-                    {isAr ? m.labelAr : m.labelEn}
+                    {label}
                   </span>
                 </motion.button>
               );

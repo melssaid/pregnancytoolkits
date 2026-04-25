@@ -8942,5 +8942,62 @@
     "available": "Nova atualização disponível",
     "description": "Toque para atualizar e limpar o cache",
     "refresh": "Atualizar"
+  },
+  "dashboardV2": {
+    "header": {
+      "kicker": "Painel",
+      "title": "Sua jornada",
+      "sectionsAria": "Seções do painel"
+    },
+    "tabs": {
+      "today": "Hoje",
+      "insights": "Insights",
+      "archive": "Arquivo",
+      "more": "Mais"
+    },
+    "greeting": {
+      "morning": "Bom dia",
+      "afternoon": "Boa tarde",
+      "evening": "Boa noite",
+      "morningTip": "Comece o dia com água e respiração profunda",
+      "afternoonTip": "Um bom momento para suas vitaminas diárias",
+      "eveningTip": "Relaxe e registre como você se sente hoje"
+    },
+    "progress": {
+      "week": "Semana",
+      "daysLeft": "Dias restantes",
+      "complete": "Completo",
+      "trimester1": "Primeiro trimestre",
+      "trimester2": "Segundo trimestre",
+      "trimester3": "Terceiro trimestre",
+      "welcomeWellness": "Bem-vinda à sua jornada de bem-estar"
+    },
+    "mood": {
+      "title": "Como você se sente hoje?",
+      "saved": "Salvo",
+      "difficult": "Difícil",
+      "low": "Baixo",
+      "neutral": "Neutro",
+      "good": "Bom",
+      "excellent": "Excelente"
+    },
+    "tools": {
+      "title": "Ferramentas",
+      "viewAll": "Ver tudo"
+    },
+    "insightsEmpty": {
+      "title": "Ainda sem insights",
+      "desc": "Comece a registrar seus dados diários para ver tendências aqui",
+      "cta": "Começar rastreamento"
+    },
+    "archiveEmpty": {
+      "title": "Seu arquivo está vazio",
+      "desc": "Seus resultados salvos, certificados semanais e marcos aparecerão aqui",
+      "cta": "Explorar ferramentas"
+    },
+    "moreTab": {
+      "backHome": "Voltar ao início",
+      "backHomeDesc": "Explore todas as ferramentas disponíveis"
+    }
   }
 }

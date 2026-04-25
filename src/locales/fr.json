@@ -8942,5 +8942,62 @@
     "available": "Nouvelle mise à jour disponible",
     "description": "Appuyez pour actualiser et vider le cache",
     "refresh": "Actualiser"
+  },
+  "dashboardV2": {
+    "header": {
+      "kicker": "Tableau de bord",
+      "title": "Votre parcours",
+      "sectionsAria": "Sections du tableau de bord"
+    },
+    "tabs": {
+      "today": "Aujourd'hui",
+      "insights": "Analyses",
+      "archive": "Archive",
+      "more": "Plus"
+    },
+    "greeting": {
+      "morning": "Bonjour",
+      "afternoon": "Bon après-midi",
+      "evening": "Bonsoir",
+      "morningTip": "Commencez la journée avec de l'eau et une respiration profonde",
+      "afternoonTip": "Un bon moment pour vos vitamines quotidiennes",
+      "eveningTip": "Détendez-vous et notez comment vous vous sentez"
+    },
+    "progress": {
+      "week": "Semaine",
+      "daysLeft": "Jours restants",
+      "complete": "Complété",
+      "trimester1": "Premier trimestre",
+      "trimester2": "Deuxième trimestre",
+      "trimester3": "Troisième trimestre",
+      "welcomeWellness": "Bienvenue dans votre parcours bien-être"
+    },
+    "mood": {
+      "title": "Comment vous sentez-vous ?",
+      "saved": "Enregistré",
+      "difficult": "Difficile",
+      "low": "Bas",
+      "neutral": "Neutre",
+      "good": "Bien",
+      "excellent": "Excellent"
+    },
+    "tools": {
+      "title": "Outils",
+      "viewAll": "Voir tout"
+    },
+    "insightsEmpty": {
+      "title": "Pas encore d'analyses",
+      "desc": "Commencez à enregistrer vos données pour voir les tendances ici",
+      "cta": "Commencer le suivi"
+    },
+    "archiveEmpty": {
+      "title": "Votre archive est vide",
+      "desc": "Vos résultats enregistrés, certificats hebdomadaires et étapes apparaîtront ici",
+      "cta": "Explorer les outils"
+    },
+    "moreTab": {
+      "backHome": "Retour à l'accueil",
+      "backHomeDesc": "Explorez tous les outils disponibles"
+    }
   }
 }

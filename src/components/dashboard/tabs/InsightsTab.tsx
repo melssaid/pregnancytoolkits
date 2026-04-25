@@ -17,8 +17,7 @@ import { useDashboardData } from "@/hooks/useDashboardData";
  * Empty cards are hidden via dataCheck for clean professional UX.
  */
 export const InsightsTab = memo(function InsightsTab() {
-  const { t, i18n } = useTranslation();
-  const isAr = i18n.language === "ar";
+  const { t } = useTranslation();
   const { stats, dataCheck, isPregnant } = useDashboardData();
 
   const hasAnyInsight =
@@ -51,18 +50,16 @@ export const InsightsTab = memo(function InsightsTab() {
             <Sparkles className="h-6 w-6 text-primary" />
           </div>
           <h3 className="text-lg font-bold text-foreground mb-1">
-            {isAr ? "لا توجد رؤى بعد" : "No insights yet"}
+            {t("dashboardV2.insightsEmpty.title")}
           </h3>
           <p className="text-sm text-muted-foreground mb-4 max-w-xs mx-auto">
-            {isAr
-              ? "ابدئي بتسجيل بياناتكِ اليومية لرؤية اتجاهاتكِ وتحليلاتكِ هنا"
-              : "Start logging your daily data to see trends and analyses here"}
+            {t("dashboardV2.insightsEmpty.desc")}
           </p>
           <Link
             to="/tools/wellness-diary"
             className="inline-flex items-center gap-1.5 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-colors"
           >
-            {isAr ? "ابدئي التتبع" : "Start tracking"}
+            {t("dashboardV2.insightsEmpty.cta")}
           </Link>
         </motion.div>
       )}
