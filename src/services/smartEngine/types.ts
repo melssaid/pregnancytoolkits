@@ -53,7 +53,7 @@ export const SECTION_TOOL_MAP: Record<SmartSection, AIToolType> = {
 };
 
 // ── Quota cost weights ──
-export type InsightWeight = 0 | 0.5 | 1 | 2;
+export type InsightWeight = 0 | 0.5 | 1 | 2 | 5;
 
 /**
  * TOOL_WEIGHT_REGISTRY — THE SINGLE SOURCE OF TRUTH for AI request costs.
