@@ -74,17 +74,22 @@ export function BabySizeCard() {
         </motion.div>
         <div className="flex-1 min-w-0">
           <div className="grid grid-cols-2 gap-3">
-            <div className="rounded-2xl border border-border/40 bg-background/60 px-3 py-2.5">
-              <p className="text-2xl font-black text-foreground tabular-nums leading-none">{data.weightG >= 1000 ? `${(data.weightG / 1000).toFixed(1)}` : data.weightG}<span className="text-sm font-bold text-muted-foreground ms-1">{data.weightG >= 1000 ? "kg" : "g"}</span></p>
-              <p className="text-[10px] font-semibold text-muted-foreground mt-1">{t("babySize.weight")}</p>
+            <div className="rounded-2xl border border-border/40 bg-background/60 px-3 py-2.5 min-w-0">
+              <p className="text-2xl font-black text-foreground tabular-nums leading-tight whitespace-nowrap">
+                {data.weightG >= 1000 ? `${(data.weightG / 1000).toFixed(1)}` : data.weightG}
+                <span className="text-sm font-bold text-muted-foreground ms-1">{data.weightG >= 1000 ? "kg" : "g"}</span>
+              </p>
+              <p className="text-[10px] font-semibold text-muted-foreground mt-1 truncate">{t("babySize.weight")}</p>
             </div>
-            <div className="rounded-2xl border border-border/40 bg-background/60 px-3 py-2.5">
-              <p className="text-2xl font-black text-foreground tabular-nums leading-none">{data.lengthCm}<span className="text-sm font-bold text-muted-foreground ms-1">cm</span></p>
-              <p className="text-[10px] font-semibold text-muted-foreground mt-1">{t("babySize.length")}</p>
+            <div className="rounded-2xl border border-border/40 bg-background/60 px-3 py-2.5 min-w-0">
+              <p className="text-2xl font-black text-foreground tabular-nums leading-tight whitespace-nowrap">
+                {data.lengthCm}<span className="text-sm font-bold text-muted-foreground ms-1">cm</span>
+              </p>
+              <p className="text-[10px] font-semibold text-muted-foreground mt-1 truncate">{t("babySize.length")}</p>
             </div>
           </div>
           {prevData && data.weightG > prevData.weightG && (
-            <p className="text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold mt-2">
+            <p className="text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold mt-2 break-words">
               +{data.weightG - prevData.weightG}g {t("babySize.sinceLastWeek")}
             </p>
           )}

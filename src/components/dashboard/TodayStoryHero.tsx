@@ -183,15 +183,15 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
               </div>
 
               <div className="grid grid-cols-2 gap-2.5">
-                <div className="rounded-2xl border border-border/40 bg-background/60 px-2.5 py-2 backdrop-blur-sm">
-                  <p className="text-2xl font-black leading-none text-foreground tabular-nums">{daysRemaining}</p>
-                  <p className="mt-1 text-[9px] font-semibold leading-tight text-muted-foreground">
+                <div className="rounded-2xl border border-border/40 bg-background/60 px-2.5 py-2 backdrop-blur-sm min-w-0">
+                  <p className="text-2xl font-black leading-tight text-foreground tabular-nums">{daysRemaining}</p>
+                  <p className="mt-1 text-[9px] font-semibold leading-snug text-muted-foreground break-words">
                     {t("dashboardV2.progress.daysLeft")}
                   </p>
                 </div>
-                <div className="rounded-2xl border border-border/40 bg-background/60 px-2.5 py-2 backdrop-blur-sm">
-                  <p className="text-2xl font-black leading-none text-foreground tabular-nums">{Math.round(progress)}<span className="text-sm">%</span></p>
-                  <p className="mt-1 text-[9px] font-semibold leading-tight text-muted-foreground">
+                <div className="rounded-2xl border border-border/40 bg-background/60 px-2.5 py-2 backdrop-blur-sm min-w-0">
+                  <p className="text-2xl font-black leading-tight text-foreground tabular-nums whitespace-nowrap">{Math.round(progress)}<span className="text-sm">%</span></p>
+                  <p className="mt-1 text-[9px] font-semibold leading-snug text-muted-foreground break-words">
                     {t("dashboardV2.progress.complete")}
                   </p>
                 </div>
@@ -252,7 +252,7 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
                     }}
                   />
                   <span
-                    className={`text-[9px] font-semibold leading-none ${
+                    className={`text-[9px] font-semibold leading-tight text-center break-words px-0.5 ${
                       active ? "text-foreground" : "text-muted-foreground"
                     }`}
                   >

@@ -85,8 +85,8 @@ const SmartDashboard = () => {
       />
 
       <main dir={isRTL ? "rtl" : "ltr"} className={`relative pb-24 bg-gradient-to-b ${trimesterTheme.gradient}`}>
-        {/* Decorative rose — anchored to the visual left in both LTR and RTL */}
-        <div className="pointer-events-none absolute -top-3 left-0 z-0 flex px-1" dir="ltr">
+        {/* Decorative rose — always anchored to the visual LEFT side of the screen */}
+        <div className="pointer-events-none absolute -top-3 left-0 z-0 flex px-1" dir="ltr" aria-hidden="true">
           <motion.img
             src={roseLeft}
             alt=""
@@ -129,7 +129,7 @@ const SmartDashboard = () => {
           </motion.div>
         </header>
 
-        <Tabs value={activeTab} onValueChange={handleTabChange} className="relative z-10">
+        <Tabs value={activeTab} onValueChange={handleTabChange} dir={isRTL ? "rtl" : "ltr"} className="relative z-10">
           {/* Sticky tab bar — pro Apple-style */}
           <TabsList
             className="sticky top-[3.25rem] sm:top-[4rem] z-30 grid h-auto w-full
@@ -150,7 +150,7 @@ const SmartDashboard = () => {
                              data-[state=inactive]:text-muted-foreground"
                 >
                   <Icon className={`h-[17px] w-[17px] sm:h-[18px] sm:w-[18px] transition-transform ${isActive ? "scale-110" : ""}`} strokeWidth={isActive ? 2.4 : 2} />
-                  <span className="leading-none mt-0.5 text-[9px] sm:text-[10px]">{t(tab.tKey)}</span>
+                  <span className="leading-tight mt-0.5 text-[9px] sm:text-[10px] text-center px-0.5">{t(tab.tKey)}</span>
                   {isActive && (
                     <motion.span
                       layoutId="dashboard-tab-indicator"
