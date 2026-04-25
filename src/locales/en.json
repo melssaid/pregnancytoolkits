@@ -9029,5 +9029,62 @@
     "available": "New update available",
     "description": "Tap to refresh and clear old cache",
     "refresh": "Update"
+  },
+  "dashboardV2": {
+    "header": {
+      "kicker": "Dashboard",
+      "title": "Your Journey",
+      "sectionsAria": "Dashboard sections"
+    },
+    "tabs": {
+      "today": "Today",
+      "insights": "Insights",
+      "archive": "Archive",
+      "more": "More"
+    },
+    "greeting": {
+      "morning": "Good Morning",
+      "afternoon": "Good Afternoon",
+      "evening": "Good Evening",
+      "morningTip": "Start your day with water and deep breathing",
+      "afternoonTip": "A good time for your daily vitamins",
+      "eveningTip": "Wind down and log how you feel today"
+    },
+    "progress": {
+      "week": "Week",
+      "daysLeft": "Days left",
+      "complete": "Complete",
+      "trimester1": "First Trimester",
+      "trimester2": "Second Trimester",
+      "trimester3": "Third Trimester",
+      "welcomeWellness": "Welcome to your wellness journey"
+    },
+    "mood": {
+      "title": "How do you feel today?",
+      "saved": "Saved",
+      "difficult": "Difficult",
+      "low": "Low",
+      "neutral": "Neutral",
+      "good": "Good",
+      "excellent": "Excellent"
+    },
+    "tools": {
+      "title": "Tools",
+      "viewAll": "View all"
+    },
+    "insightsEmpty": {
+      "title": "No insights yet",
+      "desc": "Start logging your daily data to see trends and analyses here",
+      "cta": "Start tracking"
+    },
+    "archiveEmpty": {
+      "title": "Your archive is empty",
+      "desc": "Your saved results, weekly certificates, and milestones will appear here",
+      "cta": "Explore tools"
+    },
+    "moreTab": {
+      "backHome": "Back to home",
+      "backHomeDesc": "Explore all available tools"
+    }
   }
 }

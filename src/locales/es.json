@@ -8942,5 +8942,62 @@
     "available": "Nueva actualización disponible",
     "description": "Toca para actualizar y borrar la caché",
     "refresh": "Actualizar"
+  },
+  "dashboardV2": {
+    "header": {
+      "kicker": "Panel",
+      "title": "Tu camino",
+      "sectionsAria": "Secciones del panel"
+    },
+    "tabs": {
+      "today": "Hoy",
+      "insights": "Análisis",
+      "archive": "Archivo",
+      "more": "Más"
+    },
+    "greeting": {
+      "morning": "Buenos días",
+      "afternoon": "Buenas tardes",
+      "evening": "Buenas noches",
+      "morningTip": "Comienza el día con agua y respiración profunda",
+      "afternoonTip": "Un buen momento para tus vitaminas diarias",
+      "eveningTip": "Relájate y registra cómo te sientes hoy"
+    },
+    "progress": {
+      "week": "Semana",
+      "daysLeft": "Días restantes",
+      "complete": "Completado",
+      "trimester1": "Primer trimestre",
+      "trimester2": "Segundo trimestre",
+      "trimester3": "Tercer trimestre",
+      "welcomeWellness": "Bienvenida a tu viaje de bienestar"
+    },
+    "mood": {
+      "title": "¿Cómo te sientes hoy?",
+      "saved": "Guardado",
+      "difficult": "Difícil",
+      "low": "Bajo",
+      "neutral": "Neutral",
+      "good": "Bien",
+      "excellent": "Excelente"
+    },
+    "tools": {
+      "title": "Herramientas",
+      "viewAll": "Ver todo"
+    },
+    "insightsEmpty": {
+      "title": "Aún no hay análisis",
+      "desc": "Comienza a registrar tus datos diarios para ver tendencias aquí",
+      "cta": "Comenzar seguimiento"
+    },
+    "archiveEmpty": {
+      "title": "Tu archivo está vacío",
+      "desc": "Tus resultados guardados, certificados semanales e hitos aparecerán aquí",
+      "cta": "Explorar herramientas"
+    },
+    "moreTab": {
+      "backHome": "Volver al inicio",
+      "backHomeDesc": "Explora todas las herramientas disponibles"
+    }
   }
 }
