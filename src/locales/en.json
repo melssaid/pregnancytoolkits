@@ -9168,6 +9168,14 @@
       "growth": "Baby growth",
       "appointments": "Appointments",
       "saved": "Saved results"
+    },
+    "holistic": {
+      "title": "Holistic AI Analysis",
+      "subtitle": "An executive brief that synthesises all your tracked data into one premium report.",
+      "cta": "Run Holistic Analysis",
+      "cost": "7 points",
+      "dataRichness": "Data quality: {{value}}%",
+      "minDataNeeded": "Log data in at least 3 tools to unlock the holistic analysis."
     }
   },
   "reset": {

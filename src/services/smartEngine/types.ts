@@ -32,7 +32,8 @@ export type AIToolType =
   | "pregnancy-plan" | "baby-growth-analysis"
   | "weight-analysis" | "contraction-analysis"
   | "craving-alternatives" | "grocery-list"
-  | "live-search"; // Perplexity Sonar — real-time web search with citations
+  | "live-search" // Perplexity Sonar — real-time web search with citations
+  | "holistic-dashboard"; // Holistic dashboard-wide AI analysis (premium 7-point tool)
 
 // ── Section → AI Tool Type mapping ──
 export const SECTION_TOOL_MAP: Record<SmartSection, AIToolType> = {
@@ -53,7 +54,7 @@ export const SECTION_TOOL_MAP: Record<SmartSection, AIToolType> = {
 };
 
 // ── Quota cost weights ──
-export type InsightWeight = 0 | 0.5 | 1 | 2 | 5;
+export type InsightWeight = 0 | 0.5 | 1 | 2 | 5 | 7;
 
 /**
  * TOOL_WEIGHT_REGISTRY — THE SINGLE SOURCE OF TRUTH for AI request costs.
@@ -99,6 +100,7 @@ export const TOOL_WEIGHT_REGISTRY: Record<AIToolType, InsightWeight> = {
   "craving-alternatives": 0.5,  // lightweight craving swap suggestions
   "grocery-list": 0.5,          // quick grocery nutrition tips
   "live-search": 5,             // Perplexity Sonar — real-time web search with citations
+  "holistic-dashboard": 7,      // Premium dashboard-wide cross-data analysis (Pro model)
 };
 
 /**
