@@ -95,6 +95,8 @@ export const UserProfileService = {
       updated_at: new Date().toISOString()
     };
     localStorage.setItem(getKey('profile'), JSON.stringify(data));
+    emitDataChange(getKey('profile'));
+    emitDataChange('profile');
     return data;
   },
 

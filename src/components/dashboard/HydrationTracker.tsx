@@ -25,8 +25,8 @@ export const HydrationTracker = memo(function HydrationTracker() {
     if (logs.length > 240) logs = logs.slice(-240); // 8 glasses × 30 days
     safeSaveToLocalStorage(storageKey, logs);
     setGlasses(prev => prev + 1);
-    // Notify other tabs/components
-    window.dispatchEvent(new Event("storage"));
+    // Notify dashboard listeners (same-tab + cross-tab)
+    emitDataChange(storageKey);
   }, [storageKey, today]);
 
   const pct = Math.min(100, (glasses / GOAL) * 100);
