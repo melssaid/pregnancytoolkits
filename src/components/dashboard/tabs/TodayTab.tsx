@@ -22,23 +22,26 @@ export const TodayTab = memo(function TodayTab() {
   const { t } = useTranslation();
   const { profile, stats, bloodPressure, timeSlot, isPregnant, dataCheck } = useDashboardData();
 
+  // Only show pregnancy-tied content when the user has set a real week
+  const hasRealWeek = isPregnant && profile.pregnancyWeek >= 4;
+
   // Time-based card ordering — only mount cards that are relevant
   const morningOrder = [
-    <NutritionTipCard key="nut" />,
+    hasRealWeek ? <NutritionTipCard key="nut" /> : null,
     <HydrationTracker key="hyd" />,
-    isPregnant && profile.pregnancyWeek >= 4 ? <BabySizeCard key="baby" /> : null,
+    hasRealWeek ? <BabySizeCard key="baby" /> : null,
   ].filter(Boolean);
 
   const afternoonOrder = [
     <HydrationTracker key="hyd" />,
-    <NutritionTipCard key="nut" />,
-    isPregnant && profile.pregnancyWeek >= 4 ? <BabySizeCard key="baby" /> : null,
+    hasRealWeek ? <NutritionTipCard key="nut" /> : null,
+    hasRealWeek ? <BabySizeCard key="baby" /> : null,
   ].filter(Boolean);
 
   const eveningOrder = [
     <DailyHealthChallengeCard key="ch" />,
-    <NutritionTipCard key="nut" />,
-    isPregnant && profile.pregnancyWeek >= 4 ? <BabySizeCard key="baby" /> : null,
+    hasRealWeek ? <NutritionTipCard key="nut" /> : null,
+    hasRealWeek ? <BabySizeCard key="baby" /> : null,
   ].filter(Boolean);
 
   const dynamicCards =
