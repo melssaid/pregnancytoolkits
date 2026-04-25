@@ -792,44 +792,41 @@ const AIBumpPhotos: React.FC = () => {
                             : 'Professionally formatted report with the image and full analysis'
                         }
                       >
-                        {/* Doctor visit header context */}
-                        <div className="mb-4 pb-3 border-b border-border/40">
-                          <div className="grid grid-cols-2 gap-2 text-sm">
-                            <div>
-                              <strong>{isRTL ? 'الأسبوع:' : 'Week:'}</strong>{' '}
-                              {selectedPhoto.week}
-                            </div>
-                            <div>
-                              <strong>{isRTL ? 'التاريخ:' : 'Date:'}</strong>{' '}
-                              {new Date(selectedPhoto.created_at).toLocaleDateString(
-                                isRTL ? 'ar' : 'en-US'
-                              )}
-                            </div>
+                        <div className="markdown-content">
+                          {/* Doctor visit header context */}
+                          <div style={{ marginBottom: '16px', paddingBottom: '12px', borderBottom: '1px solid #e5e7eb' }}>
+                            <table style={{ width: '100%', fontSize: '14px' }}>
+                              <tbody>
+                                <tr>
+                                  <td><strong>{isRTL ? 'الأسبوع:' : 'Week:'}</strong> {selectedPhoto.week}</td>
+                                  <td><strong>{isRTL ? 'التاريخ:' : 'Date:'}</strong> {new Date(selectedPhoto.created_at).toLocaleDateString(isRTL ? 'ar' : 'en-US')}</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            {selectedPhoto.caption && (
+                              <p style={{ marginTop: '8px', fontSize: '14px' }}>
+                                <strong>{isRTL ? 'ملاحظات:' : 'Notes:'}</strong> {selectedPhoto.caption}
+                              </p>
+                            )}
                           </div>
-                          {selectedPhoto.caption && (
-                            <p className="mt-2 text-sm">
-                              <strong>{isRTL ? 'ملاحظات:' : 'Notes:'}</strong>{' '}
-                              {selectedPhoto.caption}
-                            </p>
-                          )}
-                        </div>
 
-                        {/* Ultrasound image */}
-                        <div className="mb-4 text-center">
-                          <img
-                            src={selectedPhoto.image_ref}
-                            alt={`Ultrasound week ${selectedPhoto.week}`}
-                            style={{
-                              maxWidth: '100%',
-                              maxHeight: '400px',
-                              borderRadius: '8px',
-                              display: 'inline-block',
-                            }}
-                          />
-                        </div>
+                          {/* Ultrasound image */}
+                          <div style={{ textAlign: 'center', marginBottom: '16px' }}>
+                            <img
+                              src={selectedPhoto.image_ref}
+                              alt={`Ultrasound week ${selectedPhoto.week}`}
+                              style={{
+                                maxWidth: '100%',
+                                maxHeight: '380px',
+                                borderRadius: '8px',
+                                display: 'inline-block',
+                              }}
+                            />
+                          </div>
 
-                        {/* AI analysis */}
-                        <MarkdownRenderer content={aiAnalysis} />
+                          {/* AI analysis */}
+                          <MarkdownRenderer content={aiAnalysis} />
+                        </div>
                       </PrintableReport>
                     </>
                   ) : (
