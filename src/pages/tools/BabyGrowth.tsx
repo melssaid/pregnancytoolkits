@@ -14,6 +14,7 @@ import { toast } from "sonner";
 import { useSmartInsight } from "@/hooks/useSmartInsight";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { AIActionButton } from "@/components/ai/AIActionButton";
+import { emitDataChange, STORAGE_KEYS } from "@/lib/dataBus";
 
 interface GrowthEntry {
   id: string;
