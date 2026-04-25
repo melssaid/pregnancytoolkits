@@ -151,6 +151,27 @@ export const HolisticAIAnalysisCard = memo(function HolisticAIAnalysisCard() {
           </p>
         )}
 
+        {/* Preview chip — shows derived insights count BEFORE consuming points */}
+        {hasMinimumData && !hasGenerated && (derivedInsights.positiveSignals.length > 0 || derivedInsights.riskFlags.length > 0) && (
+          <div className="flex items-center justify-center gap-2 text-[11px] text-foreground/70 bg-white/40 rounded-lg px-2.5 py-1.5">
+            {derivedInsights.positiveSignals.length > 0 && (
+              <span className="flex items-center gap-1 font-medium">
+                <span className="text-emerald-600">●</span>
+                {t("dashboardV2.holistic.preview.positive", { count: derivedInsights.positiveSignals.length })}
+              </span>
+            )}
+            {derivedInsights.positiveSignals.length > 0 && derivedInsights.riskFlags.length > 0 && (
+              <span className="text-foreground/30">•</span>
+            )}
+            {derivedInsights.riskFlags.length > 0 && (
+              <span className="flex items-center gap-1 font-medium">
+                <span className="text-amber-600">●</span>
+                {t("dashboardV2.holistic.preview.watchouts", { count: derivedInsights.riskFlags.length })}
+              </span>
+            )}
+          </div>
+        )}
+
         {/* CTA */}
         {!hasGenerated && (
           <motion.button
