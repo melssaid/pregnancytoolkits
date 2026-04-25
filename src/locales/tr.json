@@ -9026,6 +9026,11 @@
       "title": "Araçlar",
       "viewAll": "Tümünü gör"
     },
+    "todayEmpty": {
+      "title": "Hoş geldin",
+      "desc": "Kişiselleştirilmiş içgörüler, akıllı hatırlatıcılar ve haftalık ilerleme için yolculuğundan bahset.",
+      "cta": "Profili oluştur"
+    },
     "insightsEmpty": {
       "title": "Henüz içgörü yok",
       "desc": "Trendleri ve analizleri burada görmek için günlük verilerini kaydetmeye başla",

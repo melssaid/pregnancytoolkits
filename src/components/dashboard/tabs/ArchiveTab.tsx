@@ -1,12 +1,11 @@
 import { memo } from "react";
-import { motion } from "framer-motion";
 import { Calendar } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
 import { ResultsArchiveCalendar } from "@/components/dashboard/ResultsArchiveCalendar";
 import { MilestonesTimeline } from "@/components/dashboard/MilestonesTimeline";
 import { WeekCertificateCard } from "@/components/dashboard/WeekCertificateCard";
 import { StageRecommendation } from "@/components/dashboard/StageRecommendation";
+import { EmptyStateCard } from "@/components/dashboard/EmptyStateCard";
 import { useDashboardData } from "@/hooks/useDashboardData";
 
 /**
@@ -21,27 +20,15 @@ export const ArchiveTab = memo(function ArchiveTab() {
 
   if (isCompletelyEmpty) {
     return (
-      <motion.div
-        initial={{ opacity: 0, y: 6 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="rounded-3xl border border-dashed border-border/60 bg-card/50 p-8 text-center mt-4"
-      >
-        <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10">
-          <Calendar className="h-7 w-7 text-primary" />
-        </div>
-        <h3 className="text-lg font-bold text-foreground mb-1">
-          {t("dashboardV2.archiveEmpty.title")}
-        </h3>
-        <p className="text-sm text-muted-foreground mb-4 max-w-xs mx-auto">
-          {t("dashboardV2.archiveEmpty.desc")}
-        </p>
-        <Link
-          to="/discover"
-          className="inline-flex items-center gap-1.5 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-colors"
-        >
-          {t("dashboardV2.archiveEmpty.cta")}
-        </Link>
-      </motion.div>
+      <div className="mt-4">
+        <EmptyStateCard
+          icon={Calendar}
+          title={t("dashboardV2.archiveEmpty.title")}
+          description={t("dashboardV2.archiveEmpty.desc")}
+          ctaLabel={t("dashboardV2.archiveEmpty.cta")}
+          ctaHref="/discover"
+        />
+      </div>
     );
   }
 

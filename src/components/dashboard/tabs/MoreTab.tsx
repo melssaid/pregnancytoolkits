@@ -13,16 +13,17 @@ import { useDashboardData } from "@/hooks/useDashboardData";
 
 /**
  * "More" tab — preparation, partner, FAQ, app actions.
+ * Pregnancy-only and contraction-dependent cards self-hide.
  */
 export const MoreTab = memo(function MoreTab() {
   const { t } = useTranslation();
-  const { profile, isPregnant } = useDashboardData();
+  const { profile, isPregnant, dataCheck } = useDashboardData();
 
   return (
     <div className="space-y-4 pb-6">
       {isPregnant && <DoctorVisitPrepCard />}
       {isPregnant && <PartnerSummaryCard />}
-      {isPregnant && profile.pregnancyWeek >= 32 && <ContractionSummaryCard />}
+      {isPregnant && profile.pregnancyWeek >= 32 && dataCheck.hasContractions && <ContractionSummaryCard />}
 
       <UsageStatsNudge />
       <AppRatingCard />

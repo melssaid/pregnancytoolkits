@@ -9026,6 +9026,11 @@
       "title": "Ferramentas",
       "viewAll": "Ver tudo"
     },
+    "todayEmpty": {
+      "title": "Bem-vinda",
+      "desc": "Conte-nos sobre sua jornada para desbloquear insights personalizados, lembretes inteligentes e progresso semanal.",
+      "cta": "Configurar perfil"
+    },
     "insightsEmpty": {
       "title": "Ainda sem insights",
       "desc": "Comece a registrar seus dados diários para ver tendências aqui",
