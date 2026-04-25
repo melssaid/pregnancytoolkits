@@ -155,9 +155,32 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
 
   return (
     <div
-      className={`rounded-2xl bg-gradient-to-br ${config.bg} border ${config.border} overflow-hidden backdrop-blur-md bg-opacity-80 dark:bg-opacity-75 animate-fade-in journey-card-glow relative journey-card-shimmer`}
-      style={{ animationDelay: `${index * 120}ms`, boxShadow: '0 6px 32px -4px hsl(340 40% 40% / 0.18), 0 2px 8px hsl(0 0% 0% / 0.08), inset 0 0 0 1px hsl(340 30% 50% / 0.06)' }}
+      className={`rounded-2xl bg-gradient-to-br ${config.bg} border ${config.border} overflow-hidden backdrop-blur-md bg-opacity-80 dark:bg-opacity-75 animate-fade-in journey-card-glow relative journey-card-shimmer transition-all duration-500`}
+      style={{
+        animationDelay: `${index * 120}ms`,
+        boxShadow: isOpen
+          ? '0 10px 40px -6px hsl(340 50% 40% / 0.22), 0 2px 10px hsl(0 0% 0% / 0.08), inset 0 0 0 1px hsl(340 40% 55% / 0.10), inset 0 0 50px hsl(340 70% 60% / 0.05)'
+          : '0 6px 32px -4px hsl(340 40% 40% / 0.18), 0 2px 8px hsl(0 0% 0% / 0.08), inset 0 0 0 1px hsl(340 30% 50% / 0.06)',
+      }}
     >
+      {/* Active section indicator — vertical accent bar (RTL-aware) */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.span
+            aria-hidden="true"
+            initial={{ opacity: 0, scaleY: 0.4 }}
+            animate={{ opacity: 1, scaleY: 1 }}
+            exit={{ opacity: 0, scaleY: 0.4 }}
+            transition={{ duration: 0.45, ease: [0.25, 0.1, 0.25, 1] }}
+            className={`absolute top-[68px] bottom-2 w-[3px] rounded-full pointer-events-none z-10 ${isRTL ? 'right-0' : 'left-0'}`}
+            style={{
+              background: `linear-gradient(180deg, transparent 0%, hsl(340 70% 60% / 0.55) 20%, hsl(320 60% 55% / 0.55) 80%, transparent 100%)`,
+              boxShadow: '0 0 8px hsl(340 70% 60% / 0.35)',
+              transformOrigin: 'center',
+            }}
+          />
+        )}
+      </AnimatePresence>
       {/* Gradient Header — premium Pregnancy+ style */}
       <button
         onClick={onToggle}
@@ -228,13 +251,13 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
                 {allJourneyTools.map((tool, toolIdx) => (
                   <motion.div
                     key={tool.id}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 6 }}
+                    initial={{ opacity: 0, y: 12, scale: 0.96 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 4, scale: 0.98 }}
                     transition={{
-                      duration: 0.4,
-                      delay: toolIdx * 0.05,
-                      ease: [0.25, 0.1, 0.25, 1],
+                      duration: 0.35,
+                      delay: 0.08 + toolIdx * 0.035,
+                      ease: [0.22, 1, 0.36, 1],
                     }}
                   >
                     <ToolRow tool={tool} isRTL={isRTL} isLocked={false} journeyKey={config.key} />
