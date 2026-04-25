@@ -1343,6 +1343,47 @@
       "status": "Usado: {{used}}/{{limit}} • Restante: {{remaining}}",
       "success": "Redefinido! 30 tentativas disponíveis",
       "button": "Redefinir tentativas (Premium)"
+    },
+    "sonar": {
+      "title": "Fontes Sonar de IA",
+      "subtitle": "Escolha quais dados alimentam a análise holística.",
+      "recommended": "Recomendado",
+      "changeShort": "Alterar",
+      "reset": "Restaurar padrões",
+      "resetSuccess": "Ajustes Sonar restaurados",
+      "footer": "Seus dados ficam neste dispositivo. As opções afetam apenas o resumo da IA.",
+      "scope": {
+        "title": "Escopo dos dados",
+        "snapshot": {
+          "label": "Instantâneo atual",
+          "desc": "Usar apenas o resumo atual do painel."
+        },
+        "timeline": {
+          "label": "Tendências recentes",
+          "desc": "Usar apenas as tendências dos últimos dias."
+        },
+        "both": {
+          "label": "Ambos (instantâneo + tendências)",
+          "desc": "Combinar instantâneo com tendências recentes para a análise mais completa."
+        }
+      },
+      "window": {
+        "title": "Janela temporal",
+        "days": "dias"
+      },
+      "extras": {
+        "title": "Fontes opcionais"
+      },
+      "toggles": {
+        "savedReport": {
+          "label": "Último relatório salvo",
+          "desc": "Permite que a IA continue a partir do seu relatório mais recente."
+        },
+        "nutrition": {
+          "label": "Cartão diário de nutrição",
+          "desc": "Inclui sugestões de refeições recentes no resumo."
+        }
+      }
     }
   },
   "charts": {

@@ -1343,6 +1343,47 @@
       "status": "Verwendet: {{used}}/{{limit}} • Verbleibend: {{remaining}}",
       "success": "Zurückgesetzt! 30 Versuche verfügbar",
       "button": "Versuche zurücksetzen (Premium)"
+    },
+    "sonar": {
+      "title": "Sonar-KI-Quellen",
+      "subtitle": "Wähle, welche Daten die ganzheitliche Analyse speisen.",
+      "recommended": "Empfohlen",
+      "changeShort": "Ändern",
+      "reset": "Auf Standard zurücksetzen",
+      "resetSuccess": "Sonar-Einstellungen zurückgesetzt",
+      "footer": "Deine Daten bleiben auf diesem Gerät. Die Auswahl beeinflusst nur die KI-Auswertung.",
+      "scope": {
+        "title": "Datenumfang",
+        "snapshot": {
+          "label": "Live-Momentaufnahme",
+          "desc": "Nur die aktuelle Dashboard-Zusammenfassung verwenden."
+        },
+        "timeline": {
+          "label": "Zeitliche Trends",
+          "desc": "Nur die täglichen Trends der letzten Zeit verwenden."
+        },
+        "both": {
+          "label": "Beides (Snapshot + Trends)",
+          "desc": "Snapshot mit aktuellen Trends für die umfassendste Analyse kombinieren."
+        }
+      },
+      "window": {
+        "title": "Zeitfenster",
+        "days": "Tage"
+      },
+      "extras": {
+        "title": "Optionale Quellen"
+      },
+      "toggles": {
+        "savedReport": {
+          "label": "Letzter gespeicherter Bericht",
+          "desc": "Lässt die KI auf deinem zuletzt gespeicherten Bericht aufbauen."
+        },
+        "nutrition": {
+          "label": "Tägliche Ernährungskarte",
+          "desc": "Bezieht aktuelle Mahlzeitvorschläge in die Auswertung ein."
+        }
+      }
     }
   },
   "charts": {

@@ -1343,6 +1343,47 @@
       "status": "Kullanılan: {{used}}/{{limit}} • Kalan: {{remaining}}",
       "success": "Sıfırlandı! 30 deneme kullanılabilir",
       "button": "Denemeleri Sıfırla (Premium)"
+    },
+    "sonar": {
+      "title": "Sonar Yapay Zekâ Kaynakları",
+      "subtitle": "Bütünsel analizi besleyecek verileri seçin.",
+      "recommended": "Önerilen",
+      "changeShort": "Değiştir",
+      "reset": "Varsayılana sıfırla",
+      "resetSuccess": "Sonar ayarları sıfırlandı",
+      "footer": "Verileriniz bu cihazda kalır. Seçimler yalnızca yapay zekâ özetini etkiler.",
+      "scope": {
+        "title": "Veri kapsamı",
+        "snapshot": {
+          "label": "Anlık görüntü",
+          "desc": "Yalnızca mevcut panel özetini kullan."
+        },
+        "timeline": {
+          "label": "Zaman çizelgesi trendleri",
+          "desc": "Yalnızca son günlerdeki trendleri kullan."
+        },
+        "both": {
+          "label": "Her ikisi (anlık + trendler)",
+          "desc": "En zengin analiz için anlık görüntüyü güncel trendlerle birleştir."
+        }
+      },
+      "window": {
+        "title": "Zaman penceresi",
+        "days": "gün"
+      },
+      "extras": {
+        "title": "İsteğe bağlı kaynaklar"
+      },
+      "toggles": {
+        "savedReport": {
+          "label": "Son kaydedilen rapor",
+          "desc": "Yapay zekânın en son kayıtlı analizinizden devam etmesini sağlar."
+        },
+        "nutrition": {
+          "label": "Günlük beslenme kartı",
+          "desc": "Son öğün önerilerini özete dahil eder."
+        }
+      }
     }
   },
   "charts": {

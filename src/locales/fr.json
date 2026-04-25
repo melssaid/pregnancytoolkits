@@ -1343,6 +1343,47 @@
       "status": "Utilisé: {{used}}/{{limit}} • Restant: {{remaining}}",
       "success": "Réinitialisé ! 30 essais disponibles",
       "button": "Réinitialiser les essais (Premium)"
+    },
+    "sonar": {
+      "title": "Sources Sonar IA",
+      "subtitle": "Choisis les données qui alimentent l’analyse holistique.",
+      "recommended": "Recommandé",
+      "changeShort": "Modifier",
+      "reset": "Réinitialiser",
+      "resetSuccess": "Paramètres Sonar réinitialisés",
+      "footer": "Tes données restent sur cet appareil. Les choix n’affectent que la synthèse IA.",
+      "scope": {
+        "title": "Portée des données",
+        "snapshot": {
+          "label": "Instantané actuel",
+          "desc": "Utiliser uniquement le résumé actuel du tableau de bord."
+        },
+        "timeline": {
+          "label": "Tendances récentes",
+          "desc": "Utiliser uniquement les tendances quotidiennes récentes."
+        },
+        "both": {
+          "label": "Les deux (instantané + tendances)",
+          "desc": "Combiner l’instantané et les tendances pour l’analyse la plus riche."
+        }
+      },
+      "window": {
+        "title": "Fenêtre temporelle",
+        "days": "jours"
+      },
+      "extras": {
+        "title": "Sources optionnelles"
+      },
+      "toggles": {
+        "savedReport": {
+          "label": "Dernier rapport sauvegardé",
+          "desc": "Permet à l’IA de s’appuyer sur ton rapport le plus récent."
+        },
+        "nutrition": {
+          "label": "Carte nutrition quotidienne",
+          "desc": "Intègre les suggestions de repas récentes à la synthèse."
+        }
+      }
     }
   },
   "charts": {
