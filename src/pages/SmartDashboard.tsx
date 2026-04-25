@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
 import { useSmartConversionPrompt } from "@/hooks/useSmartConversionPrompt";
 import { useTrimesterTheme } from "@/hooks/useTrimesterTheme";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Sun, BarChart3, Calendar, LayoutGrid } from "lucide-react";
 import { haptic } from "@/lib/haptics";
@@ -23,8 +24,8 @@ const TAB_KEY = "dashboard_active_tab";
 type TabKey = "today" | "insights" | "archive" | "more";
 
 const SmartDashboard = () => {
-  const { t, i18n } = useTranslation();
-  const isAr = i18n.language === "ar";
+  const { t } = useTranslation();
+  const { isRTL } = useLanguage();
   useSmartConversionPrompt();
   const trimesterTheme = useTrimesterTheme();
 
@@ -69,11 +70,11 @@ const SmartDashboard = () => {
   const roseOpacity = useTransform(scrollY, [0, 300], [0.85, 0]);
   const roseLeftScale = useTransform(scrollY, [0, 400], [1, 0.7]);
 
-  const tabs: Array<{ key: TabKey; icon: typeof Sun; labelAr: string; labelEn: string }> = [
-    { key: "today",    icon: Sun,        labelAr: "اليوم",  labelEn: "Today" },
-    { key: "insights", icon: BarChart3,  labelAr: "الرؤى",  labelEn: "Insights" },
-    { key: "archive",  icon: Calendar,   labelAr: "الأرشيف", labelEn: "Archive" },
-    { key: "more",     icon: LayoutGrid, labelAr: "المزيد", labelEn: "More" },
+  const tabs: Array<{ key: TabKey; icon: typeof Sun; tKey: string }> = [
+    { key: "today",    icon: Sun,        tKey: "dashboardV2.tabs.today" },
+    { key: "insights", icon: BarChart3,  tKey: "dashboardV2.tabs.insights" },
+    { key: "archive",  icon: Calendar,   tKey: "dashboardV2.tabs.archive" },
+    { key: "more",     icon: LayoutGrid, tKey: "dashboardV2.tabs.more" },
   ];
 
   return (
