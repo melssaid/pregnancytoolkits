@@ -9103,6 +9103,17 @@
       "preview": {
         "positive": "{{count}} olumlu sinyal",
         "watchouts": "{{count}} dikkat noktası"
+      },
+      "timeline": {
+        "title": "Son Eğilimler",
+        "range": "{{count}} g",
+        "empty": "Zaman çizelgesini görmek için veri girin.",
+        "metrics": {
+          "weight": "Kilo",
+          "mood": "Ruh hali",
+          "hydration": "Sıvı alımı",
+          "symptoms": "Belirtiler"
+        }
       }
     },
     "ultrasound": {

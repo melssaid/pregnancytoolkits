@@ -9190,6 +9190,17 @@
       "preview": {
         "positive": "{{count}} positive signals",
         "watchouts": "{{count}} watch-outs"
+      },
+      "timeline": {
+        "title": "Recent Trends",
+        "range": "{{count}}d",
+        "empty": "Log data to see your timeline.",
+        "metrics": {
+          "weight": "Weight",
+          "mood": "Mood",
+          "hydration": "Hydration",
+          "symptoms": "Symptoms"
+        }
       }
     },
     "ultrasound": {
