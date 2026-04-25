@@ -1343,6 +1343,47 @@
       "status": "Usado: {{used}}/{{limit}} • Restante: {{remaining}}",
       "success": "¡Restablecido! 30 intentos disponibles",
       "button": "Restablecer intentos (Premium)"
+    },
+    "sonar": {
+      "title": "Fuentes Sonar de IA",
+      "subtitle": "Elige qué datos alimentan el análisis holístico.",
+      "recommended": "Recomendado",
+      "changeShort": "Cambiar",
+      "reset": "Restablecer valores",
+      "resetSuccess": "Ajustes Sonar restablecidos",
+      "footer": "Tus datos permanecen en este dispositivo. Las opciones solo afectan al informe de IA.",
+      "scope": {
+        "title": "Alcance de datos",
+        "snapshot": {
+          "label": "Instantánea actual",
+          "desc": "Usar solo el resumen actual del panel."
+        },
+        "timeline": {
+          "label": "Tendencias temporales",
+          "desc": "Usar solo las tendencias de los últimos días."
+        },
+        "both": {
+          "label": "Ambos (instantánea + tendencias)",
+          "desc": "Combinar instantánea y tendencias para el análisis más completo."
+        }
+      },
+      "window": {
+        "title": "Ventana temporal",
+        "days": "días"
+      },
+      "extras": {
+        "title": "Fuentes opcionales"
+      },
+      "toggles": {
+        "savedReport": {
+          "label": "Último informe guardado",
+          "desc": "Permite que la IA continúe desde tu informe guardado más reciente."
+        },
+        "nutrition": {
+          "label": "Tarjeta diaria de nutrición",
+          "desc": "Incluye sugerencias de comidas recientes en el informe."
+        }
+      }
     }
   },
   "charts": {

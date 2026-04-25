@@ -1418,7 +1418,48 @@
     "generalSection": "General",
     "dataSection": "Data & Privacy",
     "supportSection": "Support",
-    "contactSupport": "Contact Support"
+    "contactSupport": "Contact Support",
+    "sonar": {
+      "title": "Sonar AI Sources",
+      "subtitle": "Choose which data feeds the holistic analyzer.",
+      "recommended": "Recommended",
+      "changeShort": "Change",
+      "reset": "Reset to defaults",
+      "resetSuccess": "Sonar settings reset",
+      "footer": "Your data stays on this device. Selections only affect the AI brief.",
+      "scope": {
+        "title": "Data scope",
+        "snapshot": {
+          "label": "Live snapshot",
+          "desc": "Use the current dashboard summary only."
+        },
+        "timeline": {
+          "label": "Timeline trends",
+          "desc": "Use the recent day-by-day trends only."
+        },
+        "both": {
+          "label": "Both (snapshot + timeline)",
+          "desc": "Combine the snapshot with recent trends for the richest analysis."
+        }
+      },
+      "window": {
+        "title": "Timeline window",
+        "days": "days"
+      },
+      "extras": {
+        "title": "Optional sources"
+      },
+      "toggles": {
+        "savedReport": {
+          "label": "Last saved holistic report",
+          "desc": "Lets the AI build on your most recent saved analysis."
+        },
+        "nutrition": {
+          "label": "Daily nutrition card",
+          "desc": "Includes recent meal suggestions in the brief."
+        }
+      }
+    }
   },
   "charts": {
     "babyGrowth": {
