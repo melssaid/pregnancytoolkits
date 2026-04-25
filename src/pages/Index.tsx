@@ -251,13 +251,13 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
                 {allJourneyTools.map((tool, toolIdx) => (
                   <motion.div
                     key={tool.id}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 6 }}
+                    initial={{ opacity: 0, y: 12, scale: 0.96 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 4, scale: 0.98 }}
                     transition={{
-                      duration: 0.4,
-                      delay: toolIdx * 0.05,
-                      ease: [0.25, 0.1, 0.25, 1],
+                      duration: 0.35,
+                      delay: 0.08 + toolIdx * 0.035,
+                      ease: [0.22, 1, 0.36, 1],
                     }}
                   >
                     <ToolRow tool={tool} isRTL={isRTL} isLocked={false} journeyKey={config.key} />
