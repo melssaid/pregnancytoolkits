@@ -1094,7 +1094,9 @@ Deno.serve(async (req) => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            model: "google/gemini-2.5-flash",
+            // Holistic dashboard analysis uses the strongest reasoning model (Pro)
+            // because it must synthesize a large multi-source data snapshot.
+            model: type === "holistic-dashboard" ? "google/gemini-2.5-pro" : "google/gemini-2.5-flash",
             messages: [
               { role: "system", content: systemPrompt },
               ...(messages || []),
