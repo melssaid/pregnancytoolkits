@@ -283,7 +283,9 @@ export const HolisticAIAnalysisCard = memo(function HolisticAIAnalysisCard() {
             >
               <div className="pt-3 mt-1 border-t border-primary/15 space-y-3">
                 {/* Compact 7/30-day timeline (weight, mood, hydration, symptoms) */}
-                <HolisticTimelineChart />
+                {(sonar.scope === "timeline" || sonar.scope === "both") && (
+                  <HolisticTimelineChart initialRange={sonar.timelineWindow} />
+                )}
 
                 {content && (
                   <div className="flex items-center justify-between gap-2 mb-2">
