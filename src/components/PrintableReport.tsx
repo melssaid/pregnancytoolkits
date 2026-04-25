@@ -106,10 +106,10 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
           className="w-full gap-2"
         >
           {contentLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4" />}
-          {downloadLabels[lang] || downloadLabels.en}
+          {downloadLabel || downloadLabels[lang] || downloadLabels.en}
         </Button>
         <p className="text-[10px] text-muted-foreground/50 text-center tracking-wide">
-          {downloadHints[lang] || downloadHints.en}
+          {downloadHint || downloadHints[lang] || downloadHints.en}
         </p>
       </div>
     </div>
