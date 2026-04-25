@@ -229,14 +229,14 @@ export function Layout({ children, showBack = false, compactBackHeader = false }
               <div className="absolute left-3 flex items-center gap-2 sm:left-4">
                 <LanguageDropdown variant="compact" />
               </div>
-              <Link to="/" className="relative z-20 flex items-center justify-center -translate-y-[8px]">
+              <Link to="/" className="relative z-30 flex items-center justify-center -translate-y-[4px] sm:-translate-y-[6px] md:-translate-y-[8px]">
                 <span
                   aria-hidden="true"
-                  className="absolute inset-1 rounded-full bg-primary/10 blur-md"
+                  className="absolute inset-1 rounded-full bg-primary/15 blur-md opacity-70"
                 />
                 <motion.div
                   style={{ width: logoSize, height: logoSize }}
-                  className="relative overflow-hidden rounded-full border border-border/70 bg-card ring-4 ring-background shadow-[0_14px_28px_-18px_hsl(var(--foreground)/0.35)]"
+                  className="relative z-10 overflow-hidden rounded-full border border-border/60 bg-card/95 ring-[3px] sm:ring-4 ring-background/95 shadow-[0_10px_22px_-14px_hsl(var(--foreground)/0.4)]"
                 >
                   <img
                     src={logoImage}
