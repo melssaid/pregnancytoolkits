@@ -18,7 +18,8 @@ import { useHolisticDashboardSnapshot } from "@/hooks/useHolisticDashboardSnapsh
 export const HolisticAIAnalysisCard = memo(function HolisticAIAnalysisCard() {
   const { t, i18n } = useTranslation();
   const lang = i18n.language?.split("-")[0] || "en";
-  const { snapshot, dataRichness, hasMinimumData, sourcesCount } = useHolisticDashboardSnapshot();
+  const { snapshot, derivedInsights, contextSummary, dataRichness, hasMinimumData, sourcesCount } =
+    useHolisticDashboardSnapshot();
   const { isLimitReached } = useAIUsage();
 
   const { generate, isLoading, content, error, errorType, clearError } = useSmartInsight({
