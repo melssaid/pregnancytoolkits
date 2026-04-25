@@ -14,8 +14,7 @@ import { useDashboardData } from "@/hooks/useDashboardData";
  * Shows a polished empty state when nothing exists yet.
  */
 export const ArchiveTab = memo(function ArchiveTab() {
-  const { t, i18n } = useTranslation();
-  const isAr = i18n.language === "ar";
+  const { t } = useTranslation();
   const { isPregnant, dataCheck } = useDashboardData();
 
   const isCompletelyEmpty = !isPregnant && !dataCheck.hasSavedResults;
