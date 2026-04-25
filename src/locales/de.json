@@ -704,7 +704,15 @@
       "symptoms": "Wohlfuehl-Tagebuch",
       "grocery": "Einkaufsliste",
       "hospitalBag": "Klinik-Tasche",
-      "birthPlan": "Geburtsplan"
+      "birthPlan": "Geburtsplan",
+      "cycle": "Zyklus",
+      "fertilityAcademy": "Fruchtbarkeits-Akademie",
+      "preconception": "Pränatale Untersuchung",
+      "babyGrowth": "Babywachstum",
+      "babySleep": "Babyschlaf",
+      "cryTranslator": "Schrei-Übersetzer",
+      "lactation": "Stillen",
+      "mentalHealth": "Mentales Wohlbefinden"
     },
     "weeklySymptoms": {
       "title": "Symptome dieser Woche"
@@ -8642,7 +8650,21 @@
     "seoTitle": "Neue Tools entdecken",
     "title": "Entdecken Sie passende Tools",
     "viewAchievements": "Meine Erfolge anzeigen",
-    "weekContext": "Empfohlen für Woche {{week}} Ihrer Reise"
+    "weekContext": "Empfohlen für Woche {{week}} Ihrer Reise",
+    "stage": {
+      "fertility": {
+        "title": "Tools zur Planung Ihrer Reise",
+        "context": "Kuratiert für die Phase vor der Schwangerschaft"
+      },
+      "pregnant": {
+        "title": "Entdecken Sie passende Tools",
+        "context": "Basierend auf beliebten Tools"
+      },
+      "postpartum": {
+        "title": "Tools für Sie und Ihr Baby",
+        "context": "Kuratiert für die Wochenbettphase"
+      }
+    }
   },
   "faq": {
     "title": "Häufige Fragen für Ihre Woche"

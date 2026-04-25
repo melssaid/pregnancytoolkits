@@ -704,7 +704,15 @@
       "symptoms": "Saglik gunlugu",
       "grocery": "Market listesi",
       "hospitalBag": "Hastane cantasi",
-      "birthPlan": "Dogum plani"
+      "birthPlan": "Dogum plani",
+      "cycle": "Döngü",
+      "fertilityAcademy": "Doğurganlık Akademisi",
+      "preconception": "Hamilelik Öncesi Kontrol",
+      "babyGrowth": "Bebek Gelişimi",
+      "babySleep": "Bebek Uykusu",
+      "cryTranslator": "Ağlama Tercümanı",
+      "lactation": "Emzirme",
+      "mentalHealth": "Zihinsel İyi Oluş"
     },
     "weeklySymptoms": {
       "title": "Bu haftanın belirtileri"
@@ -8642,7 +8650,21 @@
     "seoTitle": "Yeni Araçları Keşfet",
     "title": "Size Uygun Araçları Keşfedin",
     "viewAchievements": "Başarılarımı Gör",
-    "weekContext": "Yolculuğunuzun {{week}}. haftası için önerilen"
+    "weekContext": "Yolculuğunuzun {{week}}. haftası için önerilen",
+    "stage": {
+      "fertility": {
+        "title": "Yolculuğunuzu Planlamak İçin Araçlar",
+        "context": "Hamilelik öncesi için seçilmiş"
+      },
+      "pregnant": {
+        "title": "Size Uygun Araçları Keşfedin",
+        "context": "Popüler araçlara göre"
+      },
+      "postpartum": {
+        "title": "Sizin ve Bebeğiniz İçin Araçlar",
+        "context": "Doğum sonrası için seçilmiş"
+      }
+    }
   },
   "faq": {
     "title": "Haftanız için Sık Sorulan Sorular"

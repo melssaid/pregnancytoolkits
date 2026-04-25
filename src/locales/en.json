@@ -759,7 +759,15 @@
       "symptoms": "Wellness Diary",
       "grocery": "Grocery List",
       "hospitalBag": "Hospital Bag",
-      "birthPlan": "Birth Plan"
+      "birthPlan": "Birth Plan",
+      "cycle": "Cycle",
+      "fertilityAcademy": "Fertility Academy",
+      "preconception": "Preconception Check",
+      "babyGrowth": "Baby Growth",
+      "babySleep": "Baby Sleep",
+      "cryTranslator": "Cry Translator",
+      "lactation": "Lactation",
+      "mentalHealth": "Mental Wellness"
     },
     "weeklySymptoms": {
       "title": "This week's symptoms"
@@ -8763,7 +8771,21 @@
     "seoTitle": "Discover New Tools",
     "title": "Discover Tools for You",
     "viewAchievements": "View My Achievements",
-    "weekContext": "Recommended for week {{week}} of your journey"
+    "weekContext": "Recommended for week {{week}} of your journey",
+    "stage": {
+      "fertility": {
+        "title": "Tools to Plan Your Journey",
+        "context": "Curated for your pre-pregnancy stage"
+      },
+      "pregnant": {
+        "title": "Discover Tools for You",
+        "context": "Based on popular tools"
+      },
+      "postpartum": {
+        "title": "Tools for You and Your Baby",
+        "context": "Curated for your postpartum stage"
+      }
+    }
   },
   "faq": {
     "title": "Common Questions for Your Week"
