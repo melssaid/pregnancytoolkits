@@ -188,10 +188,13 @@ export const useTrackingStats = () => {
 
   useEffect(() => {
     loadStats();
-    
-    // Listen for storage changes
+
+    // Cross-tab native storage event
     const handleStorage = () => loadStats();
     window.addEventListener('storage', handleStorage);
+
+    // Same-tab dataBus event (fired by tools after writes)
+    const unsubBus = subscribeToData(() => loadStats());
 
     // Refresh when user returns to the tab
     const handleVisibility = () => {
@@ -202,6 +205,7 @@ export const useTrackingStats = () => {
     return () => {
       window.removeEventListener('storage', handleStorage);
       document.removeEventListener('visibilitychange', handleVisibility);
+      unsubBus();
     };
   }, [loadStats]);
 
