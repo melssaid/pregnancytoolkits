@@ -776,6 +776,7 @@ const AIBumpPhotos: React.FC = () => {
                         <UltrasoundAbbreviationsGuide />
                       </div>
                       <PrintableReport
+                        historyBucket="sonar"
                         title={
                           isRTL
                             ? `تقرير تحليل السونار — الأسبوع ${selectedPhoto.week}`
