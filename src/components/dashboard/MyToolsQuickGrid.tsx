@@ -145,12 +145,12 @@ export function MyToolsQuickGrid() {
   return (
     <Card className="overflow-hidden border-primary/15 bg-gradient-to-br from-card via-card to-primary/[0.03]">
       <CardContent className="p-4">
-        <div className="flex items-center justify-between mb-3">
-          <h3 className="text-sm font-bold text-foreground flex items-center gap-1.5">
-            <Sparkles className="w-4 h-4 text-primary" />
-            {t("dashboard.myTools.title", "أدواتي")}
+        <div className="flex items-center justify-between mb-4 gap-2">
+          <h3 className="text-lg font-extrabold text-foreground flex items-center gap-2 tracking-tight">
+            <Sparkles className="w-5 h-5 text-primary flex-shrink-0" />
+            <span className="truncate">{t("dashboard.myTools.title", "أدواتي")}</span>
           </h3>
-          <span className="text-[10px] text-muted-foreground">
+          <span className="text-[12px] font-medium text-muted-foreground truncate max-w-[55%] text-end">
             {t("dashboard.myTools.subtitle", "اضغطي لمتابعة بياناتك")}
           </span>
         </div>
@@ -167,20 +167,20 @@ export function MyToolsQuickGrid() {
               >
                 <Link
                   to={it.href}
-                  className={`group relative flex items-center gap-2.5 rounded-2xl px-3 py-2.5 bg-gradient-to-br ${it.ring} border border-border/40 hover:border-primary/40 hover:shadow-md transition-all min-w-0`}
+                  className={`group relative flex items-center gap-3 rounded-2xl px-3.5 py-3.5 bg-gradient-to-br ${it.ring} border border-border/40 hover:border-primary/40 hover:shadow-md transition-all min-w-0`}
                 >
-                  <div className={`w-8 h-8 rounded-xl bg-background/70 backdrop-blur flex items-center justify-center flex-shrink-0 ${it.color}`}>
-                    <Icon className="w-4 h-4" />
+                  <div className={`w-11 h-11 rounded-2xl bg-background/70 backdrop-blur flex items-center justify-center flex-shrink-0 ${it.color}`}>
+                    <Icon className="w-5 h-5" />
                   </div>
-                  <p className="flex-1 min-w-0 text-[12px] font-semibold text-foreground leading-snug break-words" style={{ overflowWrap: "anywhere" }}>
+                  <p className="flex-1 min-w-0 text-[15px] font-bold text-foreground leading-snug break-words" style={{ overflowWrap: "anywhere" }}>
                     {t(it.labelKey, it.labelDefault)}
                   </p>
                   {it.count > 0 && (
-                    <span className={`flex-shrink-0 text-[11px] font-extrabold ${it.color} bg-background/60 rounded-full px-2 py-0.5 min-w-[24px] text-center tabular-nums`}>
+                    <span className={`flex-shrink-0 text-[13px] font-extrabold ${it.color} bg-background/70 rounded-full px-2.5 py-1 min-w-[28px] text-center tabular-nums`}>
                       {it.count}
                     </span>
                   )}
-                  <Chevron className="flex-shrink-0 w-3 h-3 text-muted-foreground/50 group-hover:text-primary/70 transition-colors" />
+                  <Chevron className="flex-shrink-0 w-4 h-4 text-muted-foreground/50 group-hover:text-primary/70 transition-colors" />
                 </Link>
               </motion.div>
             );

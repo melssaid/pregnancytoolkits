@@ -118,16 +118,16 @@ export const UnifiedToolsGrid = memo(function UnifiedToolsGrid() {
       <div className="flex items-center justify-between mb-3">
         <h2
           id="dashboard-tools-heading"
-          className="text-lg font-extrabold text-foreground tracking-tight"
+          className="text-xl font-extrabold text-foreground tracking-tight"
         >
           {t("dashboardV2.tools.title")}
         </h2>
         <Link
           to="/discover"
-          className="inline-flex items-center gap-0.5 rounded-full bg-secondary px-2.5 py-1 text-[11px] font-semibold text-secondary-foreground hover:bg-secondary/80 transition-colors"
+          className="inline-flex items-center gap-1 rounded-full bg-secondary px-3 py-1.5 text-[13px] font-semibold text-secondary-foreground hover:bg-secondary/80 transition-colors"
         >
           {t("dashboardV2.tools.viewAll")}
-          <Chevron className="h-3 w-3" />
+          <Chevron className="h-3.5 w-3.5" />
         </Link>
       </div>
 
@@ -146,20 +146,20 @@ export const UnifiedToolsGrid = memo(function UnifiedToolsGrid() {
             >
               <Link
                 to={tool.href}
-                className={`group relative flex h-full items-center gap-2.5 rounded-2xl border border-border/30 bg-gradient-to-br ${tool.accent} px-3 py-2.5 transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-md active:scale-[0.98] min-w-0`}
+                className={`group relative flex h-full items-center gap-3 rounded-2xl border border-border/30 bg-gradient-to-br ${tool.accent} px-3.5 py-3.5 transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-md active:scale-[0.98] min-w-0`}
               >
-                <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-border/40 bg-background/70 backdrop-blur-sm shadow-sm flex-shrink-0">
-                  <Icon className={`h-4.5 w-4.5 ${tool.iconColor}`} strokeWidth={1.85} />
+                <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-border/40 bg-background/70 backdrop-blur-sm shadow-sm flex-shrink-0">
+                  <Icon className={`h-5 w-5 ${tool.iconColor}`} strokeWidth={1.85} />
                 </div>
-                <span className="flex-1 min-w-0 text-[12px] font-semibold leading-snug text-foreground/90 break-words" style={{ overflowWrap: "anywhere" }}>
+                <span className="flex-1 min-w-0 text-[15px] font-bold leading-snug text-foreground break-words" style={{ overflowWrap: "anywhere" }}>
                   {t(tool.labelKey, tool.labelEn)}
                 </span>
                 {hasData && (
-                  <span className={`flex-shrink-0 text-[11px] font-black tabular-nums ${tool.iconColor} bg-background/60 rounded-full px-2 py-0.5 min-w-[24px] text-center`}>
+                  <span className={`flex-shrink-0 text-[13px] font-black tabular-nums ${tool.iconColor} bg-background/70 rounded-full px-2.5 py-1 min-w-[28px] text-center`}>
                     {tool.count}
                   </span>
                 )}
-                <Chevron className="flex-shrink-0 h-3.5 w-3.5 text-muted-foreground/40 group-hover:text-primary/60 transition-colors" />
+                <Chevron className="flex-shrink-0 h-4 w-4 text-muted-foreground/50 group-hover:text-primary/70 transition-colors" />
               </Link>
             </motion.div>
           );
