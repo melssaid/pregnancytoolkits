@@ -31,7 +31,8 @@ export type AIToolType =
   | "nausea-relief" | "skincare-advice" | "birth-plan" | "mental-health"
   | "pregnancy-plan" | "baby-growth-analysis"
   | "weight-analysis" | "contraction-analysis"
-  | "craving-alternatives" | "grocery-list";
+  | "craving-alternatives" | "grocery-list"
+  | "live-search"; // Perplexity Sonar — real-time web search with citations
 
 // ── Section → AI Tool Type mapping ──
 export const SECTION_TOOL_MAP: Record<SmartSection, AIToolType> = {
