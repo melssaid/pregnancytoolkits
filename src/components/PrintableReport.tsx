@@ -28,7 +28,7 @@ const downloadHints: Record<string, string> = {
   tr: 'Doktorunuzla paylaşmak için bir kopya kaydedin',
 };
 
-export const PrintableReport: React.FC<PrintableReportProps> = ({ children, title, isLoading: contentLoading }) => {
+export const PrintableReport: React.FC<PrintableReportProps> = ({ children, title, isLoading: contentLoading, downloadLabel, downloadHint }) => {
   const { i18n } = useTranslation();
   const { profile } = useUserProfile();
   const reportRef = useRef<HTMLDivElement>(null);
