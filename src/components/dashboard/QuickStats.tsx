@@ -66,8 +66,8 @@ export function QuickStats({
 
   return (
     <div className="space-y-2">
-      {/* 4 compact stat cards in 2x2 grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
+      {/* Row layout — value + label on one line, no breakage on 320px */}
+      <div className="grid grid-cols-1 min-[380px]:grid-cols-2 gap-1.5">
         {stats.map((stat, i) => {
           return (
             <motion.div
@@ -78,13 +78,15 @@ export function QuickStats({
             >
               <Link
                 to={stat.href}
-                className="flex flex-col items-center p-3 rounded-xl bg-card border border-border/40 hover:border-primary/30 transition-all group text-center min-h-[68px] justify-center"
+                className="flex items-center justify-between gap-2 px-3 py-2.5 rounded-xl bg-card border border-border/40 hover:border-primary/30 transition-all group min-w-0"
               >
-                <p className={`text-base font-bold leading-none group-hover:text-primary transition-colors ${stat.color}`}>
+                <p className="text-[12px] text-foreground/85 font-semibold leading-tight flex-1 min-w-0 break-words" style={{ overflowWrap: "anywhere" }}>
+                  {t(stat.labelKey)}
+                </p>
+                <p className={`text-base font-extrabold leading-none tabular-nums flex-shrink-0 group-hover:text-primary transition-colors ${stat.color}`}>
                   {stat.value}
                   {stat.unit && <span className="text-[10px] font-medium text-muted-foreground ms-0.5">{stat.unit}</span>}
                 </p>
-                <p className="text-[11px] text-foreground/80 font-medium mt-1.5 leading-tight whitespace-normal break-words overflow-wrap-anywhere w-full">{t(stat.labelKey)}</p>
               </Link>
             </motion.div>
           );
