@@ -9248,6 +9248,43 @@
         "meals": "الوجبات",
         "fitness": "اللياقة"
       }
+    },
+    "signals": {
+      "title": "الإشارات الحية",
+      "subtitle": "{{positive}} إيجابية · {{risks}} تنبيهات (مباشر من بياناتكِ)",
+      "empty": "لا توجد إشارات بعد — سجّلي مزيداً من البيانات.",
+      "labels": {
+        "low_mood_3plus_days_last_week": "أيام مزاج منخفض في الأسبوع الأخير",
+        "avg_mood_below_threshold": "متوسط المزاج تحت عتبة الراحة",
+        "hydration_below_target": "ترطيب أقل من الهدف اليومي",
+        "vitamin_adherence_low": "التزام منخفض بالفيتامينات",
+        "low_kick_tracking_third_trimester": "جلسات حركات قليلة في الثلث الثالث",
+        "no_kick_session_48h_third_trimester": "لا توجد جلسة حركات منذ 48 ساعة",
+        "recurring_symptom_pattern": "نمط أعراض متكرر",
+        "strong_vitamin_streak": "التزام قوي بالفيتامينات",
+        "hydration_on_target": "الترطيب ضمن الهدف",
+        "positive_mood_trend": "اتجاه إيجابي للمزاج",
+        "consistent_kick_tracking": "متابعة منتظمة للحركات",
+        "weight_gain_within_healthy_range": "زيادة الوزن ضمن المعدل الصحي",
+        "upcoming_care_appointment_scheduled": "موعد متابعة قادم مجدول",
+        "high_tracking_engagement": "تفاعل مرتفع مع المتابعة",
+        "ultrasound_journal_consistent": "سجل سونار منتظم",
+        "recent_ultrasound_ai_reading_available": "قراءة ذكية حديثة للسونار متاحة"
+      },
+      "values": {
+        "lowMoodDays": "{{count}} يوم ≤ 2/5",
+        "avgMood": "المتوسط {{value}}/5",
+        "hydrationPct": "{{pct}}% (~{{ml}} مل/يوم)",
+        "vitaminDays": "{{days}}/7 أيام ({{pct}}%)",
+        "kickSessions": "{{count}} جلسات في 7 أيام",
+        "lastKickHours": "آخر جلسة قبل {{hours}} ساعة",
+        "topSymptom": "{{name}} ×{{count}}",
+        "weeklyGain": "{{value}} كجم/أسبوع",
+        "daysUntil": "خلال {{days}} يوم",
+        "engagement": "تفاعل {{pct}}%",
+        "ultrasoundCount": "{{count}} صور",
+        "weekTag": "أسبوع {{week}}"
+      }
     }
   },
   "reset": {

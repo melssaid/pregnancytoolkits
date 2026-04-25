@@ -9161,6 +9161,43 @@
         "meals": "Öğünler",
         "fitness": "Fitness"
       }
+    },
+    "signals": {
+      "title": "Canlı Sinyaller",
+      "subtitle": "{{positive}} olumlu · {{risks}} uyarı (canlı)",
+      "empty": "Henüz sinyal yok — daha fazla veri girin.",
+      "labels": {
+        "low_mood_3plus_days_last_week": "Son haftada düşük ruh hali günleri",
+        "avg_mood_below_threshold": "Ortalama ruh hali eşiğin altında",
+        "hydration_below_target": "Sıvı alımı hedefin altında",
+        "vitamin_adherence_low": "Düşük vitamin uyumu",
+        "low_kick_tracking_third_trimester": "3. trimesterde az hareket seansı",
+        "no_kick_session_48h_third_trimester": "48s+ hareket seansı yok",
+        "recurring_symptom_pattern": "Tekrarlayan belirti örüntüsü",
+        "strong_vitamin_streak": "Güçlü vitamin serisi",
+        "hydration_on_target": "Sıvı alımı hedefte",
+        "positive_mood_trend": "Olumlu ruh hali eğilimi",
+        "consistent_kick_tracking": "Tutarlı hareket takibi",
+        "weight_gain_within_healthy_range": "Kilo artışı sağlıklı aralıkta",
+        "upcoming_care_appointment_scheduled": "Yaklaşan randevu planlandı",
+        "high_tracking_engagement": "Yüksek takip katılımı",
+        "ultrasound_journal_consistent": "Tutarlı ultrason günlüğü",
+        "recent_ultrasound_ai_reading_available": "Yakın tarihli AI okuması mevcut"
+      },
+      "values": {
+        "lowMoodDays": "{{count}} gün ≤ 2/5",
+        "avgMood": "Ort {{value}}/5",
+        "hydrationPct": "%{{pct}} (~{{ml}} ml/gün)",
+        "vitaminDays": "{{days}}/7 gün (%{{pct}})",
+        "kickSessions": "7 günde {{count}} seans",
+        "lastKickHours": "{{hours}}s önce",
+        "topSymptom": "{{name}} ×{{count}}",
+        "weeklyGain": "{{value}} kg/hafta",
+        "daysUntil": "{{days}} gün içinde",
+        "engagement": "%{{pct}} katılım",
+        "ultrasoundCount": "{{count}} fotoğraf",
+        "weekTag": "Hafta {{week}}"
+      }
     }
   },
   "reset": {

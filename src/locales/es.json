@@ -9161,6 +9161,43 @@
         "meals": "Comidas",
         "fitness": "Ejercicio"
       }
+    },
+    "signals": {
+      "title": "Señales en vivo",
+      "subtitle": "{{positive}} positivas · {{risks}} alertas (en vivo)",
+      "empty": "Sin señales aún — registra más datos.",
+      "labels": {
+        "low_mood_3plus_days_last_week": "Días de ánimo bajo la última semana",
+        "avg_mood_below_threshold": "Ánimo promedio bajo el umbral",
+        "hydration_below_target": "Hidratación bajo el objetivo",
+        "vitamin_adherence_low": "Baja adherencia a vitaminas",
+        "low_kick_tracking_third_trimester": "Pocas sesiones de movimiento en T3",
+        "no_kick_session_48h_third_trimester": "Sin sesión registrada en 48h+",
+        "recurring_symptom_pattern": "Patrón de síntomas recurrente",
+        "strong_vitamin_streak": "Racha fuerte de vitaminas",
+        "hydration_on_target": "Hidratación en objetivo",
+        "positive_mood_trend": "Tendencia de ánimo positiva",
+        "consistent_kick_tracking": "Seguimiento de movimientos constante",
+        "weight_gain_within_healthy_range": "Aumento de peso en rango saludable",
+        "upcoming_care_appointment_scheduled": "Próxima cita programada",
+        "high_tracking_engagement": "Alto compromiso de seguimiento",
+        "ultrasound_journal_consistent": "Diario de ecografías constante",
+        "recent_ultrasound_ai_reading_available": "Lectura IA reciente disponible"
+      },
+      "values": {
+        "lowMoodDays": "{{count}} día(s) ≤ 2/5",
+        "avgMood": "Prom. {{value}}/5",
+        "hydrationPct": "{{pct}}% (~{{ml}} ml/día)",
+        "vitaminDays": "{{days}}/7 días ({{pct}}%)",
+        "kickSessions": "{{count}} sesiones en 7d",
+        "lastKickHours": "Hace {{hours}}h",
+        "topSymptom": "{{name}} ×{{count}}",
+        "weeklyGain": "{{value}} kg/sem",
+        "daysUntil": "En {{days}} día(s)",
+        "engagement": "{{pct}}% de actividad",
+        "ultrasoundCount": "{{count}} fotos",
+        "weekTag": "Sem {{week}}"
+      }
     }
   },
   "reset": {
