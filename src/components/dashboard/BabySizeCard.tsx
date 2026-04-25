@@ -56,32 +56,35 @@ export function BabySizeCard() {
   if (week < 4) return null;
 
   return (
-    <Card className="p-4 bg-card border-border/50 overflow-hidden">
-      <h3 className="text-base font-bold text-foreground mb-2">{t("babySize.title")}</h3>
-      <div className="flex items-center gap-4">
+    <Card className="p-5 bg-card border-border/40 rounded-3xl shadow-lg shadow-primary/5 overflow-hidden">
+      <div className="flex items-center justify-between mb-3">
+        <h3 className="text-lg font-extrabold text-foreground tracking-tight">{t("babySize.title")}</h3>
+        <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-primary/10 text-primary">
+          {t("babySize.weekLabel", { week })}
+        </span>
+      </div>
+      <div className="flex items-center gap-5">
         <motion.div
           initial={{ scale: 0, rotate: -20 }}
           animate={{ scale: 1, rotate: 0 }}
           transition={{ type: "spring", bounce: 0.5 }}
-          className="text-5xl flex-shrink-0"
+          className="text-6xl flex-shrink-0"
         >
           {data.emoji}
         </motion.div>
         <div className="flex-1 min-w-0">
-          <p className="text-xs text-muted-foreground">{t("babySize.weekLabel", { week })}</p>
-          <div className="flex gap-4 mt-1.5">
-            <div>
-              <p className="text-lg font-black text-foreground">{data.weightG >= 1000 ? `${(data.weightG / 1000).toFixed(1)} kg` : `${data.weightG} g`}</p>
-              <p className="text-[10px] text-muted-foreground">{t("babySize.weight")}</p>
+          <div className="grid grid-cols-2 gap-3">
+            <div className="rounded-2xl border border-border/40 bg-background/60 px-3 py-2.5">
+              <p className="text-2xl font-black text-foreground tabular-nums leading-none">{data.weightG >= 1000 ? `${(data.weightG / 1000).toFixed(1)}` : data.weightG}<span className="text-sm font-bold text-muted-foreground ms-1">{data.weightG >= 1000 ? "kg" : "g"}</span></p>
+              <p className="text-[10px] font-semibold text-muted-foreground mt-1">{t("babySize.weight")}</p>
             </div>
-            <div className="w-px bg-border/50" />
-            <div>
-              <p className="text-lg font-black text-foreground">{data.lengthCm} cm</p>
-              <p className="text-[10px] text-muted-foreground">{t("babySize.length")}</p>
+            <div className="rounded-2xl border border-border/40 bg-background/60 px-3 py-2.5">
+              <p className="text-2xl font-black text-foreground tabular-nums leading-none">{data.lengthCm}<span className="text-sm font-bold text-muted-foreground ms-1">cm</span></p>
+              <p className="text-[10px] font-semibold text-muted-foreground mt-1">{t("babySize.length")}</p>
             </div>
           </div>
-          {prevData && (
-            <p className="text-[10px] text-green-500 mt-1">
+          {prevData && data.weightG > prevData.weightG && (
+            <p className="text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold mt-2">
               +{data.weightG - prevData.weightG}g {t("babySize.sinceLastWeek")}
             </p>
           )}
