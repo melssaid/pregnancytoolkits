@@ -20,6 +20,9 @@ import { STORAGE_KEYS } from "@/lib/dataBus";
 import { readKickSessions } from "@/lib/kickSessionsStore";
 import { getUserId } from "@/hooks/useSupabase";
 
+// Storage key used by BumpPhotoService — read directly to avoid async in useMemo.
+const BUMP_PHOTOS_STORAGE_KEY = (uid: string) => `bump_photos_${uid}`;
+
 export interface HolisticSnapshot {
   generatedAt: string;
   profile: {
@@ -39,6 +42,12 @@ export interface HolisticSnapshot {
   appointments: { upcoming: Array<{ date: string; title: string }>; count: number };
   meals: { recentTitles: string[]; count: number };
   fitness: { recentTitles: string[]; count: number };
+  ultrasound: {
+    count: number;
+    latestWeek?: number;
+    latestAnalysisExcerpt?: string;
+    latestCapturedAt?: string;
+  };
 }
 
 export type Trend = "rising" | "stable" | "falling" | "unknown";
@@ -84,6 +93,11 @@ export interface DerivedInsights {
   appointments: {
     nextDateISO?: string;
     daysUntilNext?: number;
+  };
+  ultrasound: {
+    count: number;
+    latestWeek?: number;
+    hasRecentAnalysis: boolean;
   };
   engagementScore: number; // 0–100 — based on active sources
   riskFlags: string[];
@@ -154,6 +168,8 @@ export function useHolisticDashboardSnapshot(): Result {
     const contractions = safeParseLocalStorage<any[]>(STORAGE_KEYS.CONTRACTIONS, []) || [];
     const kickSessions = readKickSessions();
     const savedResults = safeParseLocalStorage<any[]>(STORAGE_KEYS.SAVED_RESULTS, []) || [];
+    const bumpPhotos =
+      safeParseLocalStorage<any[]>(BUMP_PHOTOS_STORAGE_KEY(userId), []) || [];
 
     // ── Mood from symptom logs ──
     const moodLast7 = symptoms
@@ -217,6 +233,18 @@ export function useHolisticDashboardSnapshot(): Result {
     const meals = savedResults.filter((r) => r?.toolId === "ai-meal-suggestion").slice(-5);
     const fitness = savedResults.filter((r) => r?.toolId === "ai-fitness-coach").slice(-5);
 
+    // ── Ultrasound / bump photos (most recent first) ──
+    const sortedPhotos = [...bumpPhotos].sort(
+      (a, b) =>
+        new Date(b?.created_at || 0).getTime() -
+        new Date(a?.created_at || 0).getTime(),
+    );
+    const latestPhoto = sortedPhotos[0];
+    const latestPhotoAnalysis = (latestPhoto?.ai_analysis || "").trim();
+    const latestAnalysisExcerpt = latestPhotoAnalysis
+      ? latestPhotoAnalysis.slice(0, 240).replace(/\s+/g, " ")
+      : undefined;
+
     const week = profile?.pregnancyWeek;
     const trimester = week ? (week <= 13 ? 1 : week <= 27 ? 2 : 3) : undefined;
     const weeksToBirth = week ? Math.max(0, 40 - week) : undefined;
@@ -245,6 +273,12 @@ export function useHolisticDashboardSnapshot(): Result {
       appointments: { upcoming, count: upcoming.length },
       meals: { recentTitles: meals.map((m) => m?.title || m?.summary || "").filter(Boolean), count: meals.length },
       fitness: { recentTitles: fitness.map((f) => f?.title || f?.summary || "").filter(Boolean), count: fitness.length },
+      ultrasound: {
+        count: bumpPhotos.length,
+        latestWeek: latestPhoto?.week,
+        latestAnalysisExcerpt,
+        latestCapturedAt: latestPhoto?.created_at,
+      },
     };
 
     // ── Derived insights ──────────────────────────────────────────────
@@ -319,6 +353,11 @@ export function useHolisticDashboardSnapshot(): Result {
     }
     if (engagementScore >= 60) positiveSignals.push("high_tracking_engagement");
 
+    // ── Ultrasound signals ──
+    const hasRecentUltrasoundAnalysis = !!latestAnalysisExcerpt;
+    if (bumpPhotos.length >= 3) positiveSignals.push("ultrasound_journal_consistent");
+    if (hasRecentUltrasoundAnalysis) positiveSignals.push("recent_ultrasound_ai_reading_available");
+
     const derivedInsights: DerivedInsights = {
       weekContext: { currentWeek: week, trimester, weeksToBirth },
       weight: {
@@ -352,6 +391,11 @@ export function useHolisticDashboardSnapshot(): Result {
       },
       contractions: { count: contractions.length },
       appointments: { nextDateISO, daysUntilNext },
+      ultrasound: {
+        count: bumpPhotos.length,
+        latestWeek: latestPhoto?.week,
+        hasRecentAnalysis: hasRecentUltrasoundAnalysis,
+      },
       engagementScore,
       riskFlags,
       positiveSignals,
@@ -440,6 +484,16 @@ export function useHolisticDashboardSnapshot(): Result {
     }
     if (fitness.length > 0) {
       lines.push(`**Recent Fitness (saved)**: ${fitness.length} sessions tracked`);
+    }
+
+    if (bumpPhotos.length > 0) {
+      lines.push(
+        `**Ultrasound Journal**: ${bumpPhotos.length} photo(s)` +
+          (latestPhoto?.week ? `, latest at week ${latestPhoto.week}` : "") +
+          (latestAnalysisExcerpt
+            ? `. Latest AI reading excerpt: "${latestAnalysisExcerpt}"`
+            : ""),
+      );
     }
 
     const contextSummary = lines.join("\n");

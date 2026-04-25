@@ -9093,6 +9093,25 @@
         "positive": "{{count}} positive Signale",
         "watchouts": "{{count}} Beobachtungspunkte"
       }
+    },
+    "ultrasound": {
+      "title": "Ultraschall-Journal",
+      "emptyDesc": "Lade ein Ultraschallbild hoch für eine sofortige KI-Bildauswertung.",
+      "uploadCta": "Erstes Bild hochladen",
+      "openCta": "Ultraschall-Tool öffnen",
+      "noAnalysisYet": "Noch keine Auswertung. Tippe auf Öffnen, um eine KI-Lesung zu erzeugen.",
+      "aiReading": "Letzte KI-Auswertung",
+      "weekTag": "Woche {{week}}",
+      "totalCount": "{{count}} gespeicherte Fotos"
+    },
+    "nutrition": {
+      "title": "Tägliche Ernährung",
+      "emptyDesc": "Erhalte smarte Mahlzeiten-Vorschläge passend zu deinem Stadium.",
+      "startCta": "Mahlzeitenplaner starten",
+      "openCta": "Mahlzeitenplaner öffnen",
+      "totalSaved": "{{count}} gespeicherte Mahlzeiten",
+      "savedMeal": "Gespeicherte Mahlzeit",
+      "tip": "Konzentriere dich auf Eiweiß, Eisen und Kalzium in jeder Mahlzeit."
     }
   },
   "reset": {

@@ -9093,6 +9093,25 @@
         "positive": "{{count}} señales positivas",
         "watchouts": "{{count}} puntos a vigilar"
       }
+    },
+    "ultrasound": {
+      "title": "Diario de ecografías",
+      "emptyDesc": "Sube una ecografía para obtener una lectura visual educativa con IA.",
+      "uploadCta": "Sube tu primera ecografía",
+      "openCta": "Abrir herramienta de ecografía",
+      "noAnalysisYet": "Sin análisis aún. Toca Abrir para generar una lectura con IA.",
+      "aiReading": "Última lectura de IA",
+      "weekTag": "Semana {{week}}",
+      "totalCount": "{{count}} fotos guardadas"
+    },
+    "nutrition": {
+      "title": "Nutrición diaria",
+      "emptyDesc": "Obtén sugerencias de comidas inteligentes según tu etapa.",
+      "startCta": "Empezar planificador",
+      "openCta": "Abrir planificador",
+      "totalSaved": "{{count}} comidas guardadas",
+      "savedMeal": "Comida guardada",
+      "tip": "Prioriza proteínas, hierro y calcio en cada comida."
     }
   },
   "reset": {

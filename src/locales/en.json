@@ -9180,6 +9180,25 @@
         "positive": "{{count}} positive signals",
         "watchouts": "{{count}} watch-outs"
       }
+    },
+    "ultrasound": {
+      "title": "Ultrasound Journal",
+      "emptyDesc": "Upload an ultrasound photo for an instant educational AI visual reading.",
+      "uploadCta": "Upload your first scan",
+      "openCta": "Open ultrasound tool",
+      "noAnalysisYet": "No analysis yet. Tap Open to generate an AI reading.",
+      "aiReading": "Latest AI reading",
+      "weekTag": "Week {{week}}",
+      "totalCount": "{{count}} saved photos"
+    },
+    "nutrition": {
+      "title": "Daily Nutrition",
+      "emptyDesc": "Get smart meal suggestions tailored to your stage and needs.",
+      "startCta": "Start meal planner",
+      "openCta": "Open meal planner",
+      "totalSaved": "{{count}} saved meals",
+      "savedMeal": "Saved meal",
+      "tip": "Focus on protein, iron and calcium in every meal."
     }
   },
   "reset": {

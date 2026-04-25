@@ -9093,6 +9093,25 @@
         "positive": "{{count}} signaux positifs",
         "watchouts": "{{count}} points de vigilance"
       }
+    },
+    "ultrasound": {
+      "title": "Journal d'échographies",
+      "emptyDesc": "Téléchargez une échographie pour une lecture visuelle éducative par IA.",
+      "uploadCta": "Télécharger votre première échographie",
+      "openCta": "Ouvrir l'outil d'échographie",
+      "noAnalysisYet": "Pas d'analyse. Appuyez sur Ouvrir pour générer une lecture IA.",
+      "aiReading": "Dernière lecture IA",
+      "weekTag": "Semaine {{week}}",
+      "totalCount": "{{count}} photos enregistrées"
+    },
+    "nutrition": {
+      "title": "Nutrition quotidienne",
+      "emptyDesc": "Recevez des suggestions de repas adaptées à votre étape.",
+      "startCta": "Lancer le planificateur",
+      "openCta": "Ouvrir le planificateur",
+      "totalSaved": "{{count}} repas enregistrés",
+      "savedMeal": "Repas enregistré",
+      "tip": "Privilégiez protéines, fer et calcium à chaque repas."
     }
   },
   "reset": {

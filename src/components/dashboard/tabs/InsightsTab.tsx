@@ -9,6 +9,8 @@ import { WeeklySymptomsCard } from "@/components/dashboard/WeeklySymptomsCard";
 import { WeightTrendCard } from "@/components/dashboard/WeightTrendCard";
 import { FetalMovementCard } from "@/components/dashboard/FetalMovementCard";
 import { RecentMealFitnessSummary } from "@/components/dashboard/RecentMealFitnessSummary";
+import { UltrasoundSummaryCard } from "@/components/dashboard/UltrasoundSummaryCard";
+import { DailyNutritionCard } from "@/components/dashboard/DailyNutritionCard";
 import { WeeklyKickFrequencyChart } from "@/components/charts/WeeklyKickFrequencyChart";
 import { WeeklyHydrationChart } from "@/components/charts/WeeklyHydrationChart";
 import { WeeklyContractionFrequencyChart } from "@/components/charts/WeeklyContractionFrequencyChart";
@@ -35,6 +37,10 @@ export const InsightsTab = memo(function InsightsTab() {
 
       {/* Always-on: Health score */}
       <HealthScoreRing />
+
+      {/* New summary cards: ultrasound journal + daily nutrition */}
+      <UltrasoundSummaryCard />
+      <DailyNutritionCard />
 
       {isPregnant && <WeeklyComparisonCard />}
 

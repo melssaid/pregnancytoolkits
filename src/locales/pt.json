@@ -9093,6 +9093,25 @@
         "positive": "{{count}} sinais positivos",
         "watchouts": "{{count}} pontos de atenção"
       }
+    },
+    "ultrasound": {
+      "title": "Diário de ultrassom",
+      "emptyDesc": "Envie uma foto de ultrassom para uma leitura visual educativa com IA.",
+      "uploadCta": "Envie seu primeiro ultrassom",
+      "openCta": "Abrir ferramenta",
+      "noAnalysisYet": "Sem análise ainda. Toque em Abrir para gerar leitura IA.",
+      "aiReading": "Última leitura IA",
+      "weekTag": "Semana {{week}}",
+      "totalCount": "{{count}} fotos salvas"
+    },
+    "nutrition": {
+      "title": "Nutrição diária",
+      "emptyDesc": "Receba sugestões de refeições adaptadas à sua fase.",
+      "startCta": "Iniciar planejador",
+      "openCta": "Abrir planejador",
+      "totalSaved": "{{count}} refeições salvas",
+      "savedMeal": "Refeição salva",
+      "tip": "Priorize proteína, ferro e cálcio em cada refeição."
     }
   },
   "reset": {
