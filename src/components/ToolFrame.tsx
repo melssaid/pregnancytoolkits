@@ -12,6 +12,7 @@ import { trackToolUsage } from "@/hooks/useInAppReview";
 
 import { FertilityDailyTip } from "./FertilityDailyTip";
 import { ToolRating } from "./ToolRating";
+import { ResetDataButton } from "./ResetDataButton";
 
 import { SEOHead } from "./SEOHead";
 const logoImage = "/logo.webp";
@@ -19,6 +20,14 @@ const logoImage = "/logo.webp";
 const FERTILITY_TOOL_IDS = new Set([
   "cycle-tracker", "due-date-calculator", "fertility-academy",
   "nutrition-supplements", "preconception-checkup",
+]);
+
+/** Tools that store user-entered tracking data and benefit from a Reset control. */
+const RESETTABLE_TOOL_IDS = new Set([
+  "smart-kick-counter", "contraction-timer", "vitamin-tracker",
+  "smart-weight-gain", "diaper-tracker", "baby-sleep-tracker",
+  "baby-growth", "ai-bump-photos", "ai-birth-plan",
+  "ai-hospital-bag", "smart-grocery-list",
 ]);
 
 
@@ -295,6 +304,13 @@ export function ToolFrame({
           {toolId && (
             <div className="mt-4">
               <ToolRating toolId={toolId} />
+            </div>
+          )}
+
+          {/* Per-tool reset control */}
+          {toolId && RESETTABLE_TOOL_IDS.has(toolId) && (
+            <div className="mt-3 flex justify-center">
+              <ResetDataButton toolId={toolId} variant="ghost" />
             </div>
           )}
 

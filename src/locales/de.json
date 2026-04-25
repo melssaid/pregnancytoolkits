@@ -9045,5 +9045,23 @@
       "backHome": "Zurück zur Startseite",
       "backHomeDesc": "Entdecke alle verfügbaren Werkzeuge"
     }
+  },
+  "reset": {
+    "toolLabel": "Werkzeug zurücksetzen",
+    "fullLabel": "Alle Daten zurücksetzen",
+    "toolTitle": "Daten dieses Werkzeugs zurücksetzen?",
+    "fullTitle": "Alle Dashboard-Daten zurücksetzen?",
+    "toolDesc": "Alle Einträge werden gelöscht. Rückgängig machen für 10 Sekunden möglich.",
+    "fullDesc": "Alle Tracker, gespeicherten Ergebnisse und der Verlauf werden gelöscht. Profil und Sprache bleiben erhalten.",
+    "cancel": "Abbrechen",
+    "confirm": "Ja, zurücksetzen",
+    "toolSuccess": "Werkzeugdaten gelöscht",
+    "fullSuccess": "Alle Dashboard-Daten gelöscht",
+    "undo": "Rückgängig",
+    "undoHint": "Rückgängig machen für 10 Sekunden möglich.",
+    "restored": "Daten wiederhergestellt",
+    "nothingToReset": "Keine Daten zum Zurücksetzen",
+    "dangerZone": "Gefahrenbereich",
+    "dangerZoneDesc": "Alle Tracker und Ergebnisse löschen. Profil und Sprache bleiben."
   }
 }

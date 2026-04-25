@@ -9045,5 +9045,23 @@
       "backHome": "Retour à l'accueil",
       "backHomeDesc": "Explorez tous les outils disponibles"
     }
+  },
+  "reset": {
+    "toolLabel": "Réinitialiser l'outil",
+    "fullLabel": "Tout réinitialiser",
+    "toolTitle": "Réinitialiser les données de cet outil ?",
+    "fullTitle": "Réinitialiser toutes les données ?",
+    "toolDesc": "Toutes les entrées de cet outil seront supprimées. Annulation possible pendant 10 secondes.",
+    "fullDesc": "Tous les suivis, résultats enregistrés et historique seront supprimés. Votre profil et langue restent intacts.",
+    "cancel": "Annuler",
+    "confirm": "Oui, réinitialiser",
+    "toolSuccess": "Données de l'outil effacées",
+    "fullSuccess": "Toutes les données effacées",
+    "undo": "Annuler",
+    "undoHint": "Annulation possible pendant 10 secondes.",
+    "restored": "Données restaurées",
+    "nothingToReset": "Aucune donnée à réinitialiser",
+    "dangerZone": "Zone sensible",
+    "dangerZoneDesc": "Effacer tous les suivis et résultats. Profil et langue préservés."
   }
 }
