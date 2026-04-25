@@ -119,7 +119,19 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
     const fullHTML = buildCleanHTML();
     if (!fullHTML) return;
     printViaIframe(fullHTML);
-  }, [buildCleanHTML]);
+    if (historyBucket) {
+      history.add({
+        title: title || downloadLabels[lang] || downloadLabels.en,
+        week: profile?.pregnancyWeek ?? null,
+        orientation,
+        bucket: historyBucket,
+        html: fullHTML,
+      });
+    }
+  }, [buildCleanHTML, historyBucket, history, title, lang, profile, orientation]);
+
+  const hLabels = historyLabels[lang] || historyLabels.en;
+  const dateLocale = lang === 'ar' ? 'ar-SA' : ({ de: 'de-DE', fr: 'fr-FR', es: 'es-ES', pt: 'pt-BR', tr: 'tr-TR' } as Record<string, string>)[lang] || 'en-US';
 
   return (
     <div>
@@ -169,6 +181,80 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
         <p className="text-[10px] text-muted-foreground/50 text-center tracking-wide">
           {downloadHint || downloadHints[lang] || downloadHints.en}
         </p>
+
+        {/* Local PDF history */}
+        {historyBucket && (
+          <div className="pt-1">
+            <button
+              type="button"
+              onClick={() => setHistoryOpen(o => !o)}
+              className="w-full flex items-center justify-between gap-2 px-3 py-2 rounded-xl bg-muted/30 hover:bg-muted/50 border border-border/40 text-xs font-semibold text-foreground transition-colors"
+              aria-expanded={historyOpen}
+            >
+              <span className="flex items-center gap-1.5">
+                <History className="w-3.5 h-3.5 text-muted-foreground" />
+                {historyOpen ? hLabels.hide : hLabels.show}
+              </span>
+              {history.entries.length > 0 && (
+                <span className="text-[10px] font-bold text-primary bg-primary/10 px-1.5 py-0.5 rounded-full">
+                  {history.entries.length}
+                </span>
+              )}
+            </button>
+
+            {historyOpen && (
+              <div className="mt-2 space-y-1.5">
+                {history.entries.length === 0 ? (
+                  <p className="text-[11px] text-muted-foreground/70 text-center py-3">
+                    {hLabels.empty}
+                  </p>
+                ) : (
+                  <>
+                    {history.entries.map(e => (
+                      <div
+                        key={e.id}
+                        className="flex items-center gap-2 p-2 rounded-lg bg-background border border-border/40"
+                      >
+                        <FileText className="w-4 h-4 text-primary shrink-0" />
+                        <div className="flex-1 min-w-0">
+                          <div className="text-xs font-semibold text-foreground truncate">
+                            {e.title}
+                          </div>
+                          <div className="text-[10px] text-muted-foreground">
+                            {new Date(e.createdAt).toLocaleDateString(dateLocale, { year: 'numeric', month: 'short', day: 'numeric' })}
+                            {e.week ? ` • ${hLabels.week} ${e.week}` : ''}
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => printViaIframe(e.html)}
+                          className="text-[10px] font-bold text-primary px-2 py-1 rounded-md hover:bg-primary/10 transition-colors"
+                        >
+                          {hLabels.reopen}
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => history.remove(e.id)}
+                          aria-label={hLabels.remove}
+                          className="text-muted-foreground hover:text-destructive p-1 rounded-md transition-colors"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    ))}
+                    <button
+                      type="button"
+                      onClick={history.clear}
+                      className="w-full text-[10px] font-semibold text-muted-foreground hover:text-destructive py-1 transition-colors"
+                    >
+                      {hLabels.clear}
+                    </button>
+                  </>
+                )}
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
