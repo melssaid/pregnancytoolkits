@@ -47,7 +47,7 @@ export function usePdfHistory(bucket: string) {
       ...entry,
       id: `pdf_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
       createdAt: new Date().toISOString(),
-      size: entry.dataUrl.length,
+      size: entry.html.length,
     };
     setEntries(prev => {
       const next = [newEntry, ...prev].slice(0, MAX_ENTRIES);
