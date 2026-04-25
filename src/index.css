@@ -415,59 +415,106 @@ html[lang="ar"] .ar-heading {
     overflow-wrap: anywhere;
   }
 
-  /* RTL Utilities */
-  .rtl\:space-x-reverse > :not([hidden]) ~ :not([hidden]) {
+  /* ═══════════════════════════════════════════════════════════════
+     AUTO-RTL MIRROR LAYER
+     يعكس فئات Tailwind غير المنطقية تلقائياً عند dir="rtl"
+     لتعمل جميع صفحات الأدوات (calculators, trackers) باتجاه صحيح
+     دون الحاجة لتعديل كل ملف. الاستثناءات: عناصر بـ dir="ltr"
+     صريح أو فئة .no-rtl-flip تبقى كما هي (للأرقام/الشعارات).
+     ═══════════════════════════════════════════════════════════════ */
+
+  /* space-x-* → عكس تلقائي */
+  html[dir="rtl"] [class*="space-x-"]:not(.no-rtl-flip):not([dir="ltr"]) > :not([hidden]) ~ :not([hidden]) {
     --tw-space-x-reverse: 1;
   }
 
-  /* RTL Flip for Icons */
-  html[dir="rtl"] .rtl-flip {
+  /* flex-row → row-reverse, justify-start/end يبقى منطقي عبر start/end */
+  html[dir="rtl"] .flex-row:not(.no-rtl-flip):not([dir="ltr"]) {
+    flex-direction: row-reverse;
+  }
+
+  /* text alignment — اقلب فقط text-left/right الافتراضية */
+  html[dir="rtl"] .text-left:not(.no-rtl-flip):not([dir="ltr"]) { text-align: right; }
+  html[dir="rtl"] .text-right:not(.no-rtl-flip):not([dir="ltr"]) { text-align: left; }
+
+  /* Margins — ml/mr لكل المقاسات الشائعة */
+  html[dir="rtl"] [class*=" ml-"]:not(.no-rtl-flip):not([dir="ltr"]),
+  html[dir="rtl"] [class^="ml-"]:not(.no-rtl-flip):not([dir="ltr"]) {
+    margin-left: 0 !important;
+  }
+  html[dir="rtl"] .ml-1:not(.no-rtl-flip) { margin-right: 0.25rem; }
+  html[dir="rtl"] .ml-1\.5:not(.no-rtl-flip) { margin-right: 0.375rem; }
+  html[dir="rtl"] .ml-2:not(.no-rtl-flip) { margin-right: 0.5rem; }
+  html[dir="rtl"] .ml-2\.5:not(.no-rtl-flip) { margin-right: 0.625rem; }
+  html[dir="rtl"] .ml-3:not(.no-rtl-flip) { margin-right: 0.75rem; }
+  html[dir="rtl"] .ml-4:not(.no-rtl-flip) { margin-right: 1rem; }
+  html[dir="rtl"] .ml-auto:not(.no-rtl-flip) { margin-right: auto; }
+
+  html[dir="rtl"] [class*=" mr-"]:not(.no-rtl-flip):not([dir="ltr"]),
+  html[dir="rtl"] [class^="mr-"]:not(.no-rtl-flip):not([dir="ltr"]) {
+    margin-right: 0 !important;
+  }
+  html[dir="rtl"] .mr-1:not(.no-rtl-flip) { margin-left: 0.25rem; }
+  html[dir="rtl"] .mr-1\.5:not(.no-rtl-flip) { margin-left: 0.375rem; }
+  html[dir="rtl"] .mr-2:not(.no-rtl-flip) { margin-left: 0.5rem; }
+  html[dir="rtl"] .mr-2\.5:not(.no-rtl-flip) { margin-left: 0.625rem; }
+  html[dir="rtl"] .mr-3:not(.no-rtl-flip) { margin-left: 0.75rem; }
+  html[dir="rtl"] .mr-4:not(.no-rtl-flip) { margin-left: 1rem; }
+  html[dir="rtl"] .mr-auto:not(.no-rtl-flip) { margin-left: auto; }
+
+  /* Paddings — pl/pr */
+  html[dir="rtl"] .pl-1:not(.no-rtl-flip) { padding-left: 0; padding-right: 0.25rem; }
+  html[dir="rtl"] .pl-2:not(.no-rtl-flip) { padding-left: 0; padding-right: 0.5rem; }
+  html[dir="rtl"] .pl-3:not(.no-rtl-flip) { padding-left: 0; padding-right: 0.75rem; }
+  html[dir="rtl"] .pl-4:not(.no-rtl-flip) { padding-left: 0; padding-right: 1rem; }
+  html[dir="rtl"] .pl-5:not(.no-rtl-flip) { padding-left: 0; padding-right: 1.25rem; }
+  html[dir="rtl"] .pl-6:not(.no-rtl-flip) { padding-left: 0; padding-right: 1.5rem; }
+  html[dir="rtl"] .pl-8:not(.no-rtl-flip) { padding-left: 0; padding-right: 2rem; }
+  html[dir="rtl"] .pl-10:not(.no-rtl-flip) { padding-left: 0; padding-right: 2.5rem; }
+
+  html[dir="rtl"] .pr-1:not(.no-rtl-flip) { padding-right: 0; padding-left: 0.25rem; }
+  html[dir="rtl"] .pr-2:not(.no-rtl-flip) { padding-right: 0; padding-left: 0.5rem; }
+  html[dir="rtl"] .pr-3:not(.no-rtl-flip) { padding-right: 0; padding-left: 0.75rem; }
+  html[dir="rtl"] .pr-4:not(.no-rtl-flip) { padding-right: 0; padding-left: 1rem; }
+  html[dir="rtl"] .pr-5:not(.no-rtl-flip) { padding-right: 0; padding-left: 1.25rem; }
+  html[dir="rtl"] .pr-6:not(.no-rtl-flip) { padding-right: 0; padding-left: 1.5rem; }
+  html[dir="rtl"] .pr-8:not(.no-rtl-flip) { padding-right: 0; padding-left: 2rem; }
+  html[dir="rtl"] .pr-10:not(.no-rtl-flip) { padding-right: 0; padding-left: 2.5rem; }
+
+  /* Border radius — l/r */
+  html[dir="rtl"] .rounded-l-xl:not(.no-rtl-flip) { border-radius: 0 0.75rem 0.75rem 0; }
+  html[dir="rtl"] .rounded-r-xl:not(.no-rtl-flip) { border-radius: 0.75rem 0 0 0.75rem; }
+  html[dir="rtl"] .rounded-l-2xl:not(.no-rtl-flip) { border-radius: 0 1rem 1rem 0; }
+  html[dir="rtl"] .rounded-r-2xl:not(.no-rtl-flip) { border-radius: 1rem 0 0 1rem; }
+  html[dir="rtl"] .rounded-l-lg:not(.no-rtl-flip) { border-radius: 0 0.5rem 0.5rem 0; }
+  html[dir="rtl"] .rounded-r-lg:not(.no-rtl-flip) { border-radius: 0.5rem 0 0 0.5rem; }
+
+  /* Gradient direction — to-r ↔ to-l */
+  html[dir="rtl"] .bg-gradient-to-r:not(.no-rtl-flip):not([dir="ltr"]) {
+    background-image: linear-gradient(to left, var(--tw-gradient-stops));
+  }
+  html[dir="rtl"] .bg-gradient-to-l:not(.no-rtl-flip):not([dir="ltr"]) {
+    background-image: linear-gradient(to right, var(--tw-gradient-stops));
+  }
+
+  /* Borders — border-l/r */
+  html[dir="rtl"] .border-l:not(.no-rtl-flip) { border-left-width: 0; border-right-width: 1px; }
+  html[dir="rtl"] .border-r:not(.no-rtl-flip) { border-right-width: 0; border-left-width: 1px; }
+  html[dir="rtl"] .border-l-2:not(.no-rtl-flip) { border-left-width: 0; border-right-width: 2px; }
+  html[dir="rtl"] .border-r-2:not(.no-rtl-flip) { border-right-width: 0; border-left-width: 2px; }
+  html[dir="rtl"] .border-l-4:not(.no-rtl-flip) { border-left-width: 0; border-right-width: 4px; }
+  html[dir="rtl"] .border-r-4:not(.no-rtl-flip) { border-right-width: 0; border-left-width: 4px; }
+
+  /* أيقونات اتجاهية شائعة (chevron/arrow) - تُقلب تلقائياً */
+  html[dir="rtl"] .lucide-chevron-right:not(.no-rtl-flip),
+  html[dir="rtl"] .lucide-chevron-left:not(.no-rtl-flip),
+  html[dir="rtl"] .lucide-arrow-right:not(.no-rtl-flip),
+  html[dir="rtl"] .lucide-arrow-left:not(.no-rtl-flip) {
     transform: scaleX(-1);
   }
 
-  /* RTL Gap Adjustments */
-  html[dir="rtl"] .gap-2,
-  html[dir="rtl"] .gap-3 {
-    direction: rtl;
-  }
-
-  /* RTL Text Alignment */
-  html[dir="rtl"] .text-left {
-    text-align: right;
-  }
-
-  html[dir="rtl"] .text-right {
-    text-align: left;
-  }
-
-  /* RTL Logical Margins and Paddings */
-  html[dir="rtl"] .ml-auto {
-    margin-left: 0;
-    margin-right: auto;
-  }
-
-  html[dir="rtl"] .mr-auto {
-    margin-right: 0;
-    margin-left: auto;
-  }
-
-  /* RTL Border Radius */
-  html[dir="rtl"] .rounded-l-xl {
-    border-radius: 0 0.75rem 0.75rem 0;
-  }
-
-  html[dir="rtl"] .rounded-r-xl {
-    border-radius: 0.75rem 0 0 0.75rem;
-  }
-
-  /* RTL Gradient Direction */
-  html[dir="rtl"] .bg-gradient-to-r {
-    background: linear-gradient(to left, var(--tw-gradient-stops));
-  }
-
-  html[dir="rtl"] .bg-gradient-to-l {
-    background: linear-gradient(to right, var(--tw-gradient-stops));
-  }
+  /* فئة استثناء يدوية — استخدمها على عناصر يجب ألا تنعكس */
+  .no-rtl-flip { /* marker class */ }
 }
 
 /* ═══════════════════════════════════════════════════════════════
