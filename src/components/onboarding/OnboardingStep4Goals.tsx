@@ -83,7 +83,7 @@ export const OnboardingStep4Goals: React.FC<Props> = ({
                 transition={{ delay: i * 0.04 }}
                 onClick={() => toggleGoal(g)}
                 className={cn(
-                  "relative flex items-center gap-2 px-3 py-2.5 rounded-xl border text-xs font-bold transition-all duration-200",
+                  "relative flex items-center gap-1.5 px-2 py-2.5 sm:px-3 rounded-xl border text-[11px] sm:text-xs font-bold transition-all duration-200 min-w-0",
                   isSelected
                     ? "bg-primary/10 border-primary/30 text-primary shadow-sm shadow-primary/10"
                     : "bg-card border-border/30 text-foreground/70 hover:bg-muted/40 hover:border-border/50"
@@ -97,7 +97,7 @@ export const OnboardingStep4Goals: React.FC<Props> = ({
                 )}>
                   {isSelected && <Check className="w-3 h-3" strokeWidth={3} />}
                 </div>
-                <span className="truncate">{t(`onboarding.step4.goal.${g}`)}</span>
+                <span className="leading-tight text-start">{t(`onboarding.step4.goal.${g}`)}</span>
               </motion.button>
             );
           })}
