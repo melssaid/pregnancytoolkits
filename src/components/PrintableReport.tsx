@@ -42,12 +42,24 @@ const orientationLabels: Record<string, { portrait: string; landscape: string; l
   tr: { portrait: 'Dikey', landscape: 'Yatay', layout: 'Düzen' },
 };
 
-export const PrintableReport: React.FC<PrintableReportProps> = ({ children, title, isLoading: contentLoading, downloadLabel, downloadHint }) => {
+const historyLabels: Record<string, { title: string; empty: string; week: string; reopen: string; remove: string; clear: string; show: string; hide: string }> = {
+  en: { title: 'Saved Reports', empty: 'No saved reports yet.', week: 'Week', reopen: 'Re-download', remove: 'Remove', clear: 'Clear all', show: 'History', hide: 'Hide history' },
+  ar: { title: 'التقارير المحفوظة', empty: 'لا توجد تقارير محفوظة بعد.', week: 'الأسبوع', reopen: 'إعادة التحميل', remove: 'حذف', clear: 'مسح الكل', show: 'السجل', hide: 'إخفاء السجل' },
+  de: { title: 'Gespeicherte Berichte', empty: 'Noch keine Berichte gespeichert.', week: 'Woche', reopen: 'Erneut laden', remove: 'Entfernen', clear: 'Alle löschen', show: 'Verlauf', hide: 'Verlauf ausblenden' },
+  fr: { title: 'Rapports enregistrés', empty: 'Aucun rapport enregistré.', week: 'Semaine', reopen: 'Re-télécharger', remove: 'Supprimer', clear: 'Tout effacer', show: 'Historique', hide: 'Masquer' },
+  es: { title: 'Informes guardados', empty: 'Aún no hay informes guardados.', week: 'Semana', reopen: 'Re-descargar', remove: 'Eliminar', clear: 'Borrar todo', show: 'Historial', hide: 'Ocultar' },
+  pt: { title: 'Relatórios salvos', empty: 'Nenhum relatório salvo ainda.', week: 'Semana', reopen: 'Baixar novamente', remove: 'Remover', clear: 'Limpar tudo', show: 'Histórico', hide: 'Ocultar' },
+  tr: { title: 'Kayıtlı raporlar', empty: 'Henüz kayıtlı rapor yok.', week: 'Hafta', reopen: 'Tekrar indir', remove: 'Sil', clear: 'Tümünü temizle', show: 'Geçmiş', hide: 'Gizle' },
+};
+
+export const PrintableReport: React.FC<PrintableReportProps> = ({ children, title, isLoading: contentLoading, downloadLabel, downloadHint, historyBucket }) => {
   const { i18n } = useTranslation();
   const { profile } = useUserProfile();
   const reportRef = useRef<HTMLDivElement>(null);
   const [logoDataUrl, setLogoDataUrl] = useState<string>('');
   const [orientation, setOrientation] = useState<PrintOrientation>('portrait');
+  const [historyOpen, setHistoryOpen] = useState(false);
+  const history = usePdfHistory(historyBucket || '__none__');
   const lang = i18n.language?.split('-')[0] || 'en';
   const isRTL = lang === 'ar';
   const oLabels = orientationLabels[lang] || orientationLabels.en;
