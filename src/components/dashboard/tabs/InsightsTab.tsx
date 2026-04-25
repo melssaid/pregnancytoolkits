@@ -37,6 +37,9 @@ export const InsightsTab = memo(function InsightsTab() {
       {/* Premium holistic AI analysis (7 points) — synthesises all tracked data */}
       <HolisticAIAnalysisCard />
 
+      {/* Transparent breakdown of which data sources fed the snapshot */}
+      <DataSourcesPanel />
+
       {/* Saved holistic reports archive — shows date + points + content */}
       <SavedHolisticReports />
 
