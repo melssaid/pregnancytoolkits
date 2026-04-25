@@ -85,8 +85,8 @@ const SmartDashboard = () => {
       />
 
       <main dir={isRTL ? "rtl" : "ltr"} className={`relative pb-24 bg-gradient-to-b ${trimesterTheme.gradient}`}>
-        {/* Decorative rose */}
-        <div className="pointer-events-none absolute -top-3 left-0 right-0 z-0 flex px-1">
+        {/* Decorative rose — anchored to the visual left in both LTR and RTL */}
+        <div className="pointer-events-none absolute -top-3 left-0 z-0 flex px-1" dir="ltr">
           <motion.img
             src={roseLeft}
             alt=""
@@ -110,7 +110,7 @@ const SmartDashboard = () => {
           />
         </div>
 
-        {/* Premium page header */}
+        {/* Premium page header — title only, no eyebrow */}
         <header className="container relative z-10 px-3 sm:px-4 pt-5 pb-3">
           <motion.div
             initial={{ opacity: 0, y: -8 }}
@@ -119,10 +119,7 @@ const SmartDashboard = () => {
             className="flex items-center justify-between gap-3"
           >
             <div className="min-w-0">
-              <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-primary/70">
-                {t("dashboardV2.header.kicker")}
-              </p>
-              <h1 className="mt-0.5 text-2xl sm:text-3xl font-black leading-tight tracking-tight text-foreground">
+              <h1 className="text-2xl sm:text-3xl font-black leading-tight tracking-tight text-foreground">
                 {t("dashboardV2.header.title")}
               </h1>
             </div>
