@@ -7,8 +7,11 @@ import {
   Bot, Hand, Gauge, Heart, Camera, Utensils, Dumbbell, Moon,
   Pill, Baby, Stethoscope, ShoppingBag, Briefcase, Sparkles,
   ChevronRight, ChevronLeft,
+  CalendarHeart, GraduationCap, ClipboardCheck,
+  HeartPulse, Brain, MessageCircleHeart, Droplets,
 } from "lucide-react";
 import { safeParseLocalStorage } from "@/lib/safeStorage";
+import { useUserProfile, type JourneyStage } from "@/hooks/useUserProfile";
 
 interface ToolItem {
   id: string;
@@ -20,6 +23,7 @@ interface ToolItem {
   count: number;
   accent: string;
   iconColor: string;
+  stages: JourneyStage[];
 }
 
 function safeArr(key: string): any[] {
