@@ -1,12 +1,14 @@
 import { memo, useMemo } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { TrendingUp, TrendingDown, ArrowRight, Minus } from "lucide-react";
+import { TrendingUp, TrendingDown, ArrowRight, ArrowLeft, Minus } from "lucide-react";
 import { Link } from "react-router-dom";
 import { safeParseLocalStorage } from "@/lib/safeStorage";
 
 export const WeightTrendCard = memo(function WeightTrendCard() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.dir() === "rtl";
+  const Arrow = isRTL ? ArrowLeft : ArrowRight;
 
   const { current, change, status } = useMemo(() => {
     // Read from weightGainEntries (what SmartWeightGainAnalyzer saves)
@@ -49,7 +51,7 @@ export const WeightTrendCard = memo(function WeightTrendCard() {
       >
         <div className="flex items-center justify-between mb-2">
           <h3 className="text-base font-bold text-foreground whitespace-normal leading-tight">{t("dailyDashboard.weight.title")}</h3>
-          <ArrowRight className="w-3.5 h-3.5 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
+          <Arrow className="w-3.5 h-3.5 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
         </div>
 
         {current ? (

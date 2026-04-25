@@ -1,7 +1,7 @@
 import { memo } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface FetalMovementCardProps {
@@ -10,7 +10,9 @@ interface FetalMovementCardProps {
 }
 
 export const FetalMovementCard = memo(function FetalMovementCard({ todayKicks, goal = 10 }: FetalMovementCardProps) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.dir() === "rtl";
+  const Arrow = isRTL ? ArrowLeft : ArrowRight;
   const pct = Math.min(100, (todayKicks / goal) * 100);
   const reached = todayKicks >= goal;
 
@@ -24,7 +26,7 @@ export const FetalMovementCard = memo(function FetalMovementCard({ todayKicks, g
       >
         <div className="flex items-center justify-between mb-2">
           <h3 className="text-base font-bold text-foreground whitespace-normal leading-tight">{t("dailyDashboard.fetalMovement.title")}</h3>
-          <ArrowRight className="w-3.5 h-3.5 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
+          <Arrow className="w-3.5 h-3.5 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
         </div>
 
         <div className="flex items-end gap-3 mb-2">
