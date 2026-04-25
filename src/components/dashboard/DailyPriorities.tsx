@@ -76,11 +76,11 @@ export const DailyPriorities = memo(function DailyPriorities({
       initial={{ opacity: 0, y: 6 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.1 }}
-      className="rounded-2xl border border-border/20 bg-card p-3.5"
+      className="rounded-3xl border border-border/40 bg-card p-5 shadow-lg shadow-primary/5"
     >
-      <div className="flex items-center justify-between mb-2.5">
-        <h3 className="text-base font-bold text-foreground whitespace-normal leading-tight">{t("dailyDashboard.priorities.title")}</h3>
-        <span className="text-[10px] text-primary font-semibold bg-primary/10 px-2 py-0.5 rounded-full">
+      <div className="flex items-center justify-between mb-3.5">
+        <h3 className="text-lg font-extrabold text-foreground tracking-tight">{t("dailyDashboard.priorities.title")}</h3>
+        <span className="text-[10px] font-bold tabular-nums text-primary bg-primary/10 px-2.5 py-1 rounded-full">
           {completedCount}/{items.length}
         </span>
       </div>

@@ -30,16 +30,21 @@ export function HealthScoreRing() {
   ];
 
   return (
-    <Card className="p-4 bg-card border-border/50">
-      <h3 className="text-base font-bold text-foreground mb-3">{t("healthScore.title")}</h3>
-      <div className="flex items-center gap-4">
+    <Card className="p-5 bg-card border-border/40 rounded-3xl shadow-lg shadow-primary/5">
+      <div className="flex items-center justify-between mb-4">
+        <h3 className="text-lg font-extrabold text-foreground tracking-tight">{t("healthScore.title")}</h3>
+        <span className={`text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-primary/10 ${scoreColor}`}>
+          {scoreLabel}
+        </span>
+      </div>
+      <div className="flex items-center gap-5">
         {/* Ring */}
-        <div className="relative w-24 h-24 flex-shrink-0">
+        <div className="relative w-28 h-28 flex-shrink-0">
           <svg className="w-full h-full -rotate-90" viewBox="0 0 96 96">
-            <circle cx="48" cy="48" r="42" fill="none" stroke="currentColor" strokeWidth="6" className="text-muted/20" />
+            <circle cx="48" cy="48" r="42" fill="none" stroke="currentColor" strokeWidth="7" className="text-muted/20" />
             <motion.circle
               cx="48" cy="48" r="42" fill="none"
-              stroke="url(#healthGrad)" strokeWidth="6" strokeLinecap="round"
+              stroke="url(#healthGrad)" strokeWidth="7" strokeLinecap="round"
               strokeDasharray={circumference}
               initial={{ strokeDashoffset: circumference }}
               animate={{ strokeDashoffset }}
@@ -55,21 +60,21 @@ export function HealthScoreRing() {
           <div className="absolute inset-0 flex flex-col items-center justify-center">
             <motion.span
               initial={{ scale: 0 }} animate={{ scale: 1 }}
-              className={`text-2xl font-black ${scoreColor}`}
+              transition={{ type: "spring", stiffness: 200, delay: 0.3 }}
+              className={`text-3xl font-black tabular-nums leading-none ${scoreColor}`}
             >
               {totalScore}
             </motion.span>
-            <span className="text-[9px] text-muted-foreground">/100</span>
+            <span className="text-[10px] font-semibold text-muted-foreground mt-0.5">/100</span>
           </div>
         </div>
 
         {/* Pillars breakdown */}
-        <div className="flex-1 space-y-1.5">
-          <p className={`text-xs font-bold ${scoreColor}`}>{scoreLabel}</p>
+        <div className="flex-1 space-y-2">
           {pillars.map((p) => (
             <div key={p.label} className="flex items-center gap-2">
-              <span className="text-[10px] text-muted-foreground w-20 leading-tight whitespace-normal break-words" style={{ overflowWrap: 'anywhere' }}>{p.label}</span>
-              <div className="flex-1 h-1.5 bg-muted/30 rounded-full overflow-hidden">
+              <span className="text-[11px] font-medium text-muted-foreground w-20 leading-tight whitespace-normal break-words" style={{ overflowWrap: 'anywhere' }}>{p.label}</span>
+              <div className="flex-1 h-2 bg-muted/30 rounded-full overflow-hidden">
                 <motion.div
                   className={`h-full rounded-full ${p.color}`}
                   initial={{ width: 0 }}
@@ -77,7 +82,7 @@ export function HealthScoreRing() {
                   transition={{ duration: 0.8, delay: 0.2 }}
                 />
               </div>
-              <span className="text-[9px] text-muted-foreground w-6 text-end">{p.value}</span>
+              <span className="text-[10px] font-bold text-foreground tabular-nums w-7 text-end">{p.value}</span>
             </div>
           ))}
         </div>
