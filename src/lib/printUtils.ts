@@ -40,14 +40,34 @@ const brandNames: Record<string, string> = {
 };
 
 const profileLabels: Record<string, Record<string, string>> = {
-  en: { week: 'Pregnancy Week', weight: 'Weight', height: 'Height', preWeight: 'Pre-pregnancy Weight', bloodType: 'Blood Type', dueDate: 'Due Date', lmp: 'Last Period', status: 'Status', pregnant: 'Pregnant', planning: 'Planning', patientInfo: 'Patient Information', kg: 'kg', cm: 'cm' },
-  ar: { week: 'أسبوع الحمل', weight: 'الوزن', height: 'الطول', preWeight: 'الوزن قبل الحمل', bloodType: 'فصيلة الدم', dueDate: 'تاريخ الولادة المتوقع', lmp: 'آخر دورة شهرية', status: 'الحالة', pregnant: 'حامل', planning: 'تخطيط', patientInfo: 'بيانات المريضة', kg: 'كغ', cm: 'سم' },
-  de: { week: 'Schwangerschaftswoche', weight: 'Gewicht', height: 'Größe', preWeight: 'Gewicht vor der Schwangerschaft', bloodType: 'Blutgruppe', dueDate: 'Geburtstermin', lmp: 'Letzte Periode', status: 'Status', pregnant: 'Schwanger', planning: 'Planung', patientInfo: 'Patientendaten', kg: 'kg', cm: 'cm' },
-  fr: { week: 'Semaine de grossesse', weight: 'Poids', height: 'Taille', preWeight: 'Poids avant grossesse', bloodType: 'Groupe sanguin', dueDate: "Date d'accouchement", lmp: 'Dernières règles', status: 'Statut', pregnant: 'Enceinte', planning: 'Planification', patientInfo: 'Informations patiente', kg: 'kg', cm: 'cm' },
-  es: { week: 'Semana de embarazo', weight: 'Peso', height: 'Altura', preWeight: 'Peso pre-embarazo', bloodType: 'Grupo sanguíneo', dueDate: 'Fecha de parto', lmp: 'Última menstruación', status: 'Estado', pregnant: 'Embarazada', planning: 'Planificación', patientInfo: 'Datos de la paciente', kg: 'kg', cm: 'cm' },
-  pt: { week: 'Semana de gestação', weight: 'Peso', height: 'Altura', preWeight: 'Peso pré-gestação', bloodType: 'Tipo sanguíneo', dueDate: 'Data prevista', lmp: 'Última menstruação', status: 'Estado', pregnant: 'Grávida', planning: 'Planejamento', patientInfo: 'Dados da paciente', kg: 'kg', cm: 'cm' },
-  tr: { week: 'Gebelik Haftası', weight: 'Kilo', height: 'Boy', preWeight: 'Gebelik öncesi kilo', bloodType: 'Kan grubu', dueDate: 'Tahmini doğum', lmp: 'Son adet', status: 'Durum', pregnant: 'Hamile', planning: 'Planlama', patientInfo: 'Hasta Bilgileri', kg: 'kg', cm: 'cm' },
+  en: { week: 'Pregnancy Week', weight: 'Weight', height: 'Height', preWeight: 'Pre-pregnancy Weight', bloodType: 'Blood Type', dueDate: 'Due Date', lmp: 'Last Period', status: 'Status', pregnant: 'Pregnant', planning: 'Planning', patientInfo: 'Patient Information', kg: 'kg', cm: 'cm', name: 'Name', age: 'Age', years: 'yrs', patientId: 'Patient ID' },
+  ar: { week: 'أسبوع الحمل', weight: 'الوزن', height: 'الطول', preWeight: 'الوزن قبل الحمل', bloodType: 'فصيلة الدم', dueDate: 'تاريخ الولادة المتوقع', lmp: 'آخر دورة شهرية', status: 'الحالة', pregnant: 'حامل', planning: 'تخطيط', patientInfo: 'بيانات المريضة', kg: 'كغ', cm: 'سم', name: 'الاسم', age: 'العمر', years: 'سنة', patientId: 'رقم المريضة' },
+  de: { week: 'Schwangerschaftswoche', weight: 'Gewicht', height: 'Größe', preWeight: 'Gewicht vor der Schwangerschaft', bloodType: 'Blutgruppe', dueDate: 'Geburtstermin', lmp: 'Letzte Periode', status: 'Status', pregnant: 'Schwanger', planning: 'Planung', patientInfo: 'Patientendaten', kg: 'kg', cm: 'cm', name: 'Name', age: 'Alter', years: 'J.', patientId: 'Patienten-ID' },
+  fr: { week: 'Semaine de grossesse', weight: 'Poids', height: 'Taille', preWeight: 'Poids avant grossesse', bloodType: 'Groupe sanguin', dueDate: "Date d'accouchement", lmp: 'Dernières règles', status: 'Statut', pregnant: 'Enceinte', planning: 'Planification', patientInfo: 'Informations patiente', kg: 'kg', cm: 'cm', name: 'Nom', age: 'Âge', years: 'ans', patientId: 'ID patiente' },
+  es: { week: 'Semana de embarazo', weight: 'Peso', height: 'Altura', preWeight: 'Peso pre-embarazo', bloodType: 'Grupo sanguíneo', dueDate: 'Fecha de parto', lmp: 'Última menstruación', status: 'Estado', pregnant: 'Embarazada', planning: 'Planificación', patientInfo: 'Datos de la paciente', kg: 'kg', cm: 'cm', name: 'Nombre', age: 'Edad', years: 'años', patientId: 'ID paciente' },
+  pt: { week: 'Semana de gestação', weight: 'Peso', height: 'Altura', preWeight: 'Peso pré-gestação', bloodType: 'Tipo sanguíneo', dueDate: 'Data prevista', lmp: 'Última menstruação', status: 'Estado', pregnant: 'Grávida', planning: 'Planejamento', patientInfo: 'Dados da paciente', kg: 'kg', cm: 'cm', name: 'Nome', age: 'Idade', years: 'anos', patientId: 'ID paciente' },
+  tr: { week: 'Gebelik Haftası', weight: 'Kilo', height: 'Boy', preWeight: 'Gebelik öncesi kilo', bloodType: 'Kan grubu', dueDate: 'Tahmini doğum', lmp: 'Son adet', status: 'Durum', pregnant: 'Hamile', planning: 'Planlama', patientInfo: 'Hasta Bilgileri', kg: 'kg', cm: 'cm', name: 'Ad', age: 'Yaş', years: 'yaş', patientId: 'Hasta No' },
 };
+
+function computeAge(dob: string): number | null {
+  try {
+    const d = new Date(dob);
+    if (isNaN(d.getTime())) return null;
+    const now = new Date();
+    let a = now.getFullYear() - d.getFullYear();
+    const m = now.getMonth() - d.getMonth();
+    if (m < 0 || (m === 0 && now.getDate() < d.getDate())) a--;
+    return a > 0 && a < 120 ? a : null;
+  } catch { return null; }
+}
+
+function getPatientShortId(): string {
+  try {
+    const raw = localStorage.getItem('pregnancy_user_id') || '';
+    if (!raw) return '';
+    return raw.replace(/[^a-zA-Z0-9]/g, '').slice(-6).toUpperCase();
+  } catch { return ''; }
+}
 
 const footerMessages: Record<string, string> = {
   en: 'We wish you a safe and healthy pregnancy. For any questions, contact us at',
