@@ -9116,7 +9116,14 @@
       "low": "Low",
       "neutral": "Neutral",
       "good": "Good",
-      "excellent": "Excellent"
+      "excellent": "Excellent",
+      "desc": {
+        "difficult": "A heavy day — take time to rest and care for yourself.",
+        "low": "Energy feels low — try a deep breath and a glass of water.",
+        "neutral": "A balanced day — neither up nor down.",
+        "good": "Feeling good — keep up your positive habits.",
+        "excellent": "Wonderful energy — your day is thriving."
+      }
     },
     "tools": {
       "title": "Tools",

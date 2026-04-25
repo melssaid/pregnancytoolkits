@@ -9029,7 +9029,14 @@
       "low": "Bas",
       "neutral": "Neutre",
       "good": "Bien",
-      "excellent": "Excellent"
+      "excellent": "Excellent",
+      "desc": {
+        "difficult": "Une journée pesante — prenez le temps de vous reposer.",
+        "low": "Énergie basse — respirez profondément et buvez de l'eau.",
+        "neutral": "Une journée équilibrée — ni haute ni basse.",
+        "good": "Vous vous sentez bien — gardez vos bonnes habitudes.",
+        "excellent": "Énergie merveilleuse — votre journée s'épanouit."
+      }
     },
     "tools": {
       "title": "Outils",

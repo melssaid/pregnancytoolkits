@@ -9029,7 +9029,14 @@
       "low": "Bajo",
       "neutral": "Neutral",
       "good": "Bien",
-      "excellent": "Excelente"
+      "excellent": "Excelente",
+      "desc": {
+        "difficult": "Un día pesado — tómate tiempo para descansar.",
+        "low": "Energía baja — respira profundo y bebe un vaso de agua.",
+        "neutral": "Un día equilibrado — ni alto ni bajo.",
+        "good": "Te sientes bien — mantén tus hábitos positivos.",
+        "excellent": "Energía maravillosa — tu día florece."
+      }
     },
     "tools": {
       "title": "Herramientas",

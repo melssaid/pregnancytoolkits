@@ -9029,7 +9029,14 @@
       "low": "Düşük",
       "neutral": "Nötr",
       "good": "İyi",
-      "excellent": "Mükemmel"
+      "excellent": "Mükemmel",
+      "desc": {
+        "difficult": "Yorucu bir gün — dinlenmeye ve kendine zaman ayır.",
+        "low": "Enerjin düşük — derin bir nefes al ve bir bardak su iç.",
+        "neutral": "Dengeli bir gün — ne yüksek ne düşük.",
+        "good": "İyi hissediyorsun — olumlu alışkanlıklarını sürdür.",
+        "excellent": "Harika enerji — günün parlıyor."
+      }
     },
     "tools": {
       "title": "Araçlar",
