@@ -17,9 +17,9 @@ export interface PdfHistoryEntry {
   orientation: 'portrait' | 'landscape';
   /** Tool/category bucket (e.g. "sonar", "smart-plan") */
   bucket: string;
-  /** base64 data URL of the PDF */
-  dataUrl: string;
-  /** byte size of the data url payload, for quota awareness */
+  /** Full printable HTML (re-opens native print dialog on re-download) */
+  html: string;
+  /** byte size of the html payload, for quota awareness */
   size: number;
 }
 
