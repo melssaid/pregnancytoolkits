@@ -1,9 +1,10 @@
 import React, { useRef, useCallback, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
-import { Download, Loader2 } from 'lucide-react';
+import { Download, Loader2, RectangleVertical, RectangleHorizontal } from 'lucide-react';
 import { useUserProfile } from '@/hooks/useUserProfile';
-import { buildPrintHTML, loadLogoBase64 } from '@/lib/printUtils';
+import { buildPrintHTML, loadLogoBase64, type PrintOrientation } from '@/lib/printUtils';
+import { cn } from '@/lib/utils';
 
 interface PrintableReportProps {
   children: React.ReactNode;
@@ -26,6 +27,16 @@ const downloadHints: Record<string, string> = {
   es: 'Guarda una copia para tu médico',
   pt: 'Salve uma cópia para seu médico',
   tr: 'Doktorunuzla paylaşmak için bir kopya kaydedin',
+};
+
+const orientationLabels: Record<string, { portrait: string; landscape: string; layout: string }> = {
+  en: { portrait: 'Portrait', landscape: 'Landscape', layout: 'Layout' },
+  ar: { portrait: 'عمودي', landscape: 'أفقي', layout: 'التخطيط' },
+  de: { portrait: 'Hochformat', landscape: 'Querformat', layout: 'Layout' },
+  fr: { portrait: 'Portrait', landscape: 'Paysage', layout: 'Mise en page' },
+  es: { portrait: 'Vertical', landscape: 'Horizontal', layout: 'Diseño' },
+  pt: { portrait: 'Retrato', landscape: 'Paisagem', layout: 'Layout' },
+  tr: { portrait: 'Dikey', landscape: 'Yatay', layout: 'Düzen' },
 };
 
 export const PrintableReport: React.FC<PrintableReportProps> = ({ children, title, isLoading: contentLoading, downloadLabel, downloadHint }) => {
