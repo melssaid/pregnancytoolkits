@@ -9051,6 +9051,22 @@
     "seo": {
       "title": "Ihr Schwangerschafts-Dashboard",
       "description": "Begleiten Sie Ihre Schwangerschaft Woche für Woche mit personalisierten Einblicken und Wellness-Tools."
+    },
+    "toasts": {
+      "toolUpdated": "{{tool}} aktualisiert",
+      "dashboardUpdated": "Dashboard aktualisiert"
+    },
+    "toolNames": {
+      "kicks": "Kindsbewegungen",
+      "contractions": "Wehen-Timer",
+      "weight": "Gewichts-Tracker",
+      "symptoms": "Symptome",
+      "vitamins": "Vitamine",
+      "diapers": "Windeln",
+      "sleep": "Babyschlaf",
+      "growth": "Babywachstum",
+      "appointments": "Termine",
+      "saved": "Gespeicherte Ergebnisse"
     }
   },
   "reset": {

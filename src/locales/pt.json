@@ -9051,6 +9051,22 @@
     "seo": {
       "title": "Seu painel de gravidez",
       "description": "Acompanhe sua gravidez semana a semana com análises personalizadas e ferramentas de bem-estar."
+    },
+    "toasts": {
+      "toolUpdated": "{{tool}} atualizado",
+      "dashboardUpdated": "Painel atualizado"
+    },
+    "toolNames": {
+      "kicks": "Contador de chutes",
+      "contractions": "Cronômetro de contrações",
+      "weight": "Controle de peso",
+      "symptoms": "Sintomas",
+      "vitamins": "Vitaminas",
+      "diapers": "Fraldas",
+      "sleep": "Sono do bebê",
+      "growth": "Crescimento do bebê",
+      "appointments": "Consultas",
+      "saved": "Resultados salvos"
     }
   },
   "reset": {

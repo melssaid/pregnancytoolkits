@@ -9138,6 +9138,22 @@
     "seo": {
       "title": "Your Pregnancy Dashboard",
       "description": "Track your pregnancy week by week with personalized insights, mood, weight and wellness tools."
+    },
+    "toasts": {
+      "toolUpdated": "{{tool}} updated",
+      "dashboardUpdated": "Dashboard updated"
+    },
+    "toolNames": {
+      "kicks": "Kick counter",
+      "contractions": "Contraction timer",
+      "weight": "Weight tracker",
+      "symptoms": "Symptoms",
+      "vitamins": "Vitamins",
+      "diapers": "Diapers",
+      "sleep": "Baby sleep",
+      "growth": "Baby growth",
+      "appointments": "Appointments",
+      "saved": "Saved results"
     }
   },
   "reset": {
