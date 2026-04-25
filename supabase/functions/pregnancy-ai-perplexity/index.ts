@@ -15,7 +15,8 @@ type AIType =
   | "hospital-bag" | "birth-position" | "partner-guide" | "lactation-prep"
   | "nausea-relief" | "skincare-advice" | "birth-plan" | "mental-health" | "pregnancy-plan" | "baby-growth-analysis"
   | "weight-analysis" | "contraction-analysis" | "craving-alternatives"
-  | "live-search"; // Perplexity Sonar live web search with citations (cost: 5 points)
+  | "live-search" // Perplexity Sonar live web search with citations (cost: 5 points)
+  | "holistic-dashboard"; // Premium dashboard-wide AI analysis (cost: 7 points)
 
 interface AIRequest {
   type: AIType;
