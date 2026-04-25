@@ -9051,6 +9051,22 @@
     "seo": {
       "title": "Hamilelik Panonuz",
       "description": "Hamileliğinizi haftalık olarak kişisel öneriler ve sağlık araçlarıyla takip edin."
+    },
+    "toasts": {
+      "toolUpdated": "{{tool}} güncellendi",
+      "dashboardUpdated": "Pano güncellendi"
+    },
+    "toolNames": {
+      "kicks": "Tekme sayacı",
+      "contractions": "Kasılma zamanlayıcı",
+      "weight": "Kilo takibi",
+      "symptoms": "Belirtiler",
+      "vitamins": "Vitaminler",
+      "diapers": "Bezler",
+      "sleep": "Bebek uykusu",
+      "growth": "Bebek gelişimi",
+      "appointments": "Randevular",
+      "saved": "Kayıtlı sonuçlar"
     }
   },
   "reset": {

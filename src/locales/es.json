@@ -9051,6 +9051,22 @@
     "seo": {
       "title": "Tu panel de embarazo",
       "description": "Sigue tu embarazo semana a semana con análisis personalizados y herramientas de bienestar."
+    },
+    "toasts": {
+      "toolUpdated": "{{tool}} actualizado",
+      "dashboardUpdated": "Panel actualizado"
+    },
+    "toolNames": {
+      "kicks": "Contador de patadas",
+      "contractions": "Temporizador de contracciones",
+      "weight": "Control de peso",
+      "symptoms": "Síntomas",
+      "vitamins": "Vitaminas",
+      "diapers": "Pañales",
+      "sleep": "Sueño del bebé",
+      "growth": "Crecimiento del bebé",
+      "appointments": "Citas",
+      "saved": "Resultados guardados"
     }
   },
   "reset": {

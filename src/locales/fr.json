@@ -9051,6 +9051,22 @@
     "seo": {
       "title": "Votre tableau de bord de grossesse",
       "description": "Suivez votre grossesse semaine par semaine avec des analyses personnalisées et des outils bien-être."
+    },
+    "toasts": {
+      "toolUpdated": "{{tool}} mis à jour",
+      "dashboardUpdated": "Tableau de bord mis à jour"
+    },
+    "toolNames": {
+      "kicks": "Compteur de coups",
+      "contractions": "Minuteur de contractions",
+      "weight": "Suivi du poids",
+      "symptoms": "Symptômes",
+      "vitamins": "Vitamines",
+      "diapers": "Couches",
+      "sleep": "Sommeil de bébé",
+      "growth": "Croissance de bébé",
+      "appointments": "Rendez-vous",
+      "saved": "Résultats enregistrés"
     }
   },
   "reset": {
