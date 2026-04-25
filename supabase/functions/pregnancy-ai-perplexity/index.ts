@@ -44,6 +44,7 @@ const VALID_TYPES: AIType[] = [
   "nausea-relief", "skincare-advice", "birth-plan", "mental-health", "pregnancy-plan", "baby-growth-analysis",
   "weight-analysis", "contraction-analysis", "craving-alternatives",
   "live-search",
+  "holistic-dashboard",
 ];
 
 // ── Validation constants ──
@@ -209,6 +210,7 @@ const MODEL_TUNING: Record<AIType, { temperature: number; max_tokens: number }> 
   "contraction-analysis": { temperature: 0.2, max_tokens: 3000 },
   "craving-alternatives": { temperature: 0.7, max_tokens: 2000 },
   "live-search":          { temperature: 0.2, max_tokens: 2500 },
+  "holistic-dashboard":   { temperature: 0.35, max_tokens: 4000 },
 };
 
 // ── Language configuration ──
