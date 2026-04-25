@@ -354,10 +354,82 @@ export const HolisticAIAnalysisCard = memo(function HolisticAIAnalysisCard() {
                 )}
 
                 {isLoading && !content && (
-                  <div className="flex items-center gap-2 text-primary py-2">
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                    <span className="text-sm">{t("toolsInternal.aiInsights.generatingInsights")}</span>
-                  </div>
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.96 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.35, ease: "easeOut" }}
+                    className="relative my-3 overflow-hidden rounded-2xl px-5 py-6"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, hsl(var(--primary) / 0.08), hsl(var(--accent) / 0.06))",
+                      border: "1px solid hsl(var(--primary) / 0.18)",
+                      boxShadow: "0 4px 20px -8px hsl(var(--primary) / 0.25)",
+                    }}
+                  >
+                    {/* Animated shimmer sweep */}
+                    <motion.div
+                      className="absolute inset-0 pointer-events-none"
+                      style={{
+                        background:
+                          "linear-gradient(110deg, transparent 30%, hsl(var(--primary) / 0.10) 50%, transparent 70%)",
+                      }}
+                      animate={{ x: ["-100%", "100%"] }}
+                      transition={{ duration: 2.2, repeat: Infinity, ease: "linear" }}
+                    />
+
+                    <div className="relative flex flex-col items-center justify-center gap-3">
+                      {/* Pro dual-ring spinner */}
+                      <div className="relative w-12 h-12">
+                        <motion.div
+                          className="absolute inset-0 rounded-full"
+                          style={{
+                            border: "2.5px solid hsl(var(--primary) / 0.15)",
+                            borderTopColor: "hsl(var(--primary))",
+                          }}
+                          animate={{ rotate: 360 }}
+                          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                        />
+                        <motion.div
+                          className="absolute inset-1.5 rounded-full"
+                          style={{
+                            border: "2px solid hsl(var(--accent) / 0.15)",
+                            borderBottomColor: "hsl(var(--accent))",
+                          }}
+                          animate={{ rotate: -360 }}
+                          transition={{ duration: 1.4, repeat: Infinity, ease: "linear" }}
+                        />
+                        <motion.div
+                          className="absolute inset-0 flex items-center justify-center"
+                          animate={{ scale: [1, 1.15, 1], opacity: [0.7, 1, 0.7] }}
+                          transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+                        >
+                          <Sparkles className="w-4 h-4 text-primary" />
+                        </motion.div>
+                      </div>
+
+                      {/* Bold loading label */}
+                      <span className="text-[13px] font-extrabold text-primary tracking-tight text-center">
+                        {t("toolsInternal.aiInsights.generatingInsights")}
+                      </span>
+
+                      {/* Animated dots */}
+                      <div className="flex items-center gap-1">
+                        {[0, 1, 2].map((i) => (
+                          <motion.span
+                            key={i}
+                            className="w-1.5 h-1.5 rounded-full bg-primary"
+                            animate={{ opacity: [0.3, 1, 0.3], y: [0, -2, 0] }}
+                            transition={{
+                              duration: 1.1,
+                              repeat: Infinity,
+                              delay: i * 0.15,
+                              ease: "easeInOut",
+                            }}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
                 )}
 
                 {content && isExpanded && (
