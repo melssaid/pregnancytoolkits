@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { useReducedMotion, type Transition, type Variants } from "framer-motion";
+import { useReducedMotion, type Transition, type TargetAndTransition } from "framer-motion";
 
 /**
  * Centralized motion preset for dashboard cards.
@@ -14,54 +14,39 @@ import { useReducedMotion, type Transition, type Variants } from "framer-motion"
  *   const m = useOptimizedMotion();
  *   <motion.div {...m.fadeUp(index)} />
  *   <motion.div {...m.fadeIn} />
- *   <motion.circle {...m.draw(value)} />
+ *   <motion.span {...m.pop} />
+ *   <motion.circle ... transition={m.longTransition} />
  */
+
+interface MotionPreset {
+  initial: TargetAndTransition;
+  animate: TargetAndTransition;
+  transition: Transition;
+}
 
 interface OptimizedMotion {
   /** True when animations should be disabled / instant. */
   disabled: boolean;
   /** True for low-end devices (shorter, simpler animations). */
   lowEnd: boolean;
-  /** Standard tween used everywhere. */
+  /** Standard short tween (entry animations). */
   transition: Transition;
+  /** Longer tween for ring/bar draws (~600–1200ms). */
+  longTransition: Transition;
   /** Fade + slight upward translate. Index applies a tiny stagger. */
-  fadeUp: (index?: number) => {
-    initial: Variants["initial"];
-    animate: Variants["animate"];
-    transition: Transition;
-  };
+  fadeUp: (index?: number) => MotionPreset;
   /** Plain fade. */
-  fadeIn: {
-    initial: Variants["initial"];
-    animate: Variants["animate"];
-    transition: Transition;
-  };
+  fadeIn: MotionPreset;
   /** Horizontal slide-in (used for timelines). */
-  slideIn: (index?: number) => {
-    initial: Variants["initial"];
-    animate: Variants["animate"];
-    transition: Transition;
-  };
+  slideIn: (index?: number) => MotionPreset;
   /** Spring pop used for score numbers. */
-  pop: {
-    initial: Variants["initial"];
-    animate: Variants["animate"];
-    transition: Transition;
-  };
-  /** SVG stroke-dashoffset / width tween for ring + bar progress. */
-  draw: (to: number | string, fromKey?: "strokeDashoffset" | "width") => {
-    initial: Record<string, number | string>;
-    animate: Record<string, number | string>;
-    transition: Transition;
-  };
+  pop: MotionPreset;
 }
 
 function detectLowEnd(): boolean {
   if (typeof navigator === "undefined") return false;
-  // deviceMemory is in GB. Treat <= 2 GB as low-end.
   const mem = (navigator as Navigator & { deviceMemory?: number }).deviceMemory;
   if (typeof mem === "number" && mem <= 2) return true;
-  // hardwareConcurrency: cores. <= 4 is low-end on mobile.
   if (typeof navigator.hardwareConcurrency === "number" && navigator.hardwareConcurrency <= 4) {
     return true;
   }
@@ -75,37 +60,35 @@ export function useOptimizedMotion(): OptimizedMotion {
     const lowEnd = detectLowEnd();
     const disabled = !!reduced;
 
-    // Tween durations — short on low-end, normal otherwise. Disabled => instant.
     const D = disabled ? 0 : lowEnd ? 0.18 : 0.28;
-    const longD = disabled ? 0 : lowEnd ? 0.6 : 1.2; // for ring draws
+    const longD = disabled ? 0 : lowEnd ? 0.6 : 1.2;
     const stagger = disabled || lowEnd ? 0 : 0.04;
 
-    const baseTransition: Transition = {
-      duration: D,
-      ease: [0.22, 1, 0.36, 1],
-    };
+    const transition: Transition = { duration: D, ease: [0.22, 1, 0.36, 1] };
+    const longTransition: Transition = { duration: longD, ease: [0.22, 1, 0.36, 1] };
 
     return {
       disabled,
       lowEnd,
-      transition: baseTransition,
+      transition,
+      longTransition,
 
       fadeUp: (index = 0) => ({
         initial: disabled ? { opacity: 1, y: 0 } : { opacity: 0, y: 6 },
         animate: { opacity: 1, y: 0 },
-        transition: { ...baseTransition, delay: stagger * index },
+        transition: { ...transition, delay: stagger * index },
       }),
 
       fadeIn: {
         initial: disabled ? { opacity: 1 } : { opacity: 0 },
         animate: { opacity: 1 },
-        transition: baseTransition,
+        transition,
       },
 
       slideIn: (index = 0) => ({
         initial: disabled ? { opacity: 1, x: 0 } : { opacity: 0, x: -8 },
         animate: { opacity: 1, x: 0 },
-        transition: { ...baseTransition, delay: stagger * index * 1.5 },
+        transition: { ...transition, delay: stagger * index * 1.5 },
       }),
 
       pop: {
@@ -116,14 +99,6 @@ export function useOptimizedMotion(): OptimizedMotion {
           : lowEnd
           ? { duration: 0.25, ease: "easeOut" }
           : { type: "spring", stiffness: 220, damping: 18, delay: 0.15 },
-      },
-
-      draw: (to, fromKey = "strokeDashoffset") => {
-        return {
-          initial: { [fromKey]: fromKey === "width" ? (disabled ? to : "0%") : (disabled ? to : 0) },
-          animate: { [fromKey]: to },
-          transition: { duration: longD, ease: "easeOut" },
-        };
       },
     };
   }, [reduced]);
