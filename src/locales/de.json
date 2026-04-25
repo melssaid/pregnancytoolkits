@@ -9036,7 +9036,8 @@
         "neutral": "Ein ausgeglichener Tag — weder hoch noch tief.",
         "good": "Du fühlst dich gut — halte deine positiven Gewohnheiten bei.",
         "excellent": "Wunderbare Energie — dein Tag blüht auf."
-      }
+      },
+      "tapToSelect": "Tippe, um deine Stimmung zu wählen"
     },
     "tools": {
       "title": "Werkzeuge",

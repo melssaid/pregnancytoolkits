@@ -9036,7 +9036,8 @@
         "neutral": "Une journée équilibrée — ni haute ni basse.",
         "good": "Vous vous sentez bien — gardez vos bonnes habitudes.",
         "excellent": "Énergie merveilleuse — votre journée s'épanouit."
-      }
+      },
+      "tapToSelect": "Appuyez pour choisir votre humeur"
     },
     "tools": {
       "title": "Outils",

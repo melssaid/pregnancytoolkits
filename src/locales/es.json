@@ -9036,7 +9036,8 @@
         "neutral": "Un día equilibrado — ni alto ni bajo.",
         "good": "Te sientes bien — mantén tus hábitos positivos.",
         "excellent": "Energía maravillosa — tu día florece."
-      }
+      },
+      "tapToSelect": "Toca para elegir tu estado"
     },
     "tools": {
       "title": "Herramientas",

@@ -9036,7 +9036,8 @@
         "neutral": "Dengeli bir gün — ne yüksek ne düşük.",
         "good": "İyi hissediyorsun — olumlu alışkanlıklarını sürdür.",
         "excellent": "Harika enerji — günün parlıyor."
-      }
+      },
+      "tapToSelect": "Ruh halini seçmek için dokun"
     },
     "tools": {
       "title": "Araçlar",
