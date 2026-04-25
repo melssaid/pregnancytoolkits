@@ -43,8 +43,9 @@ export function TrialExpiryBanner() {
     return (Date.now() - parseInt(firstOpen, 10)) / (24 * 60 * 60 * 1000);
   }, []);
 
+  const couponUsed = typeof window !== "undefined" && !!localStorage.getItem("pt_coupon_used");
   const isPremium = tier === "premium";
-  const shouldShow = !isPremium && daysSinceInstall >= 3 && !dismissed;
+  const shouldShow = !isPremium && !couponUsed && daysSinceInstall >= 3 && !dismissed;
 
   const handleDismiss = () => {
     setDismissed(true);

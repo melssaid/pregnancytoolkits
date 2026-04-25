@@ -26,6 +26,9 @@ export const CouponRedeemer: React.FC = () => {
       if (result.coupon) {
         applyCouponTier(result.coupon.expiresAt, result.coupon.bonusPoints, result.coupon.couponId);
       }
+      try {
+        localStorage.setItem('pt_coupon_used', Date.now().toString());
+      } catch {}
       setJustActivated(true);
       setCode('');
       refresh();
