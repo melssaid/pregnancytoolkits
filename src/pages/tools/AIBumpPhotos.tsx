@@ -401,12 +401,12 @@ const AIBumpPhotos: React.FC = () => {
         <motion.div
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
-          className="relative overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/8 via-pink-500/5 to-purple-500/8 px-3.5 py-3"
+          className="relative overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/10 via-primary/5 to-accent/40 px-3.5 py-3"
         >
           {/* subtle sheen */}
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-transparent via-white/30 to-transparent dark:via-white/5" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-transparent via-foreground/[0.03] to-transparent" />
           <div className="relative flex items-center gap-3">
-            <div className="shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-pink-500 flex items-center justify-center shadow-md shadow-primary/25">
+            <div className="shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center shadow-md shadow-primary/25">
               <Sparkles className="w-5 h-5 text-primary-foreground" />
             </div>
             <div className="flex-1 min-w-0">
