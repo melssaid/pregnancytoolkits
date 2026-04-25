@@ -775,8 +775,58 @@ const AIBumpPhotos: React.FC = () => {
                       <div className="mt-4">
                         <UltrasoundAbbreviationsGuide />
                       </div>
-                      <PrintableReport title={t('toolsInternal.bumpPhotos.aiAnalysisWeek', { week: selectedPhoto.week })}>
-                        <MarkdownRenderer content={aiAnalysis} />
+                      <PrintableReport
+                        title={
+                          isRTL
+                            ? `تقرير تحليل السونار — الأسبوع ${selectedPhoto.week}`
+                            : `Ultrasound Analysis Report — Week ${selectedPhoto.week}`
+                        }
+                        downloadLabel={
+                          isRTL
+                            ? '📄 تحميل تقرير PDF لزيارة الطبيب'
+                            : '📄 Download PDF for Doctor Visit'
+                        }
+                        downloadHint={
+                          isRTL
+                            ? 'تقرير منسّق احترافياً يتضمّن الصورة والتحليل الكامل'
+                            : 'Professionally formatted report with the image and full analysis'
+                        }
+                      >
+                        <div className="markdown-content">
+                          {/* Doctor visit header context */}
+                          <div style={{ marginBottom: '16px', paddingBottom: '12px', borderBottom: '1px solid #e5e7eb' }}>
+                            <table style={{ width: '100%', fontSize: '14px' }}>
+                              <tbody>
+                                <tr>
+                                  <td><strong>{isRTL ? 'الأسبوع:' : 'Week:'}</strong> {selectedPhoto.week}</td>
+                                  <td><strong>{isRTL ? 'التاريخ:' : 'Date:'}</strong> {new Date(selectedPhoto.created_at).toLocaleDateString(isRTL ? 'ar' : 'en-US')}</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            {selectedPhoto.caption && (
+                              <p style={{ marginTop: '8px', fontSize: '14px' }}>
+                                <strong>{isRTL ? 'ملاحظات:' : 'Notes:'}</strong> {selectedPhoto.caption}
+                              </p>
+                            )}
+                          </div>
+
+                          {/* Ultrasound image */}
+                          <div style={{ textAlign: 'center', marginBottom: '16px' }}>
+                            <img
+                              src={selectedPhoto.image_ref}
+                              alt={`Ultrasound week ${selectedPhoto.week}`}
+                              style={{
+                                maxWidth: '100%',
+                                maxHeight: '380px',
+                                borderRadius: '8px',
+                                display: 'inline-block',
+                              }}
+                            />
+                          </div>
+
+                          {/* AI analysis */}
+                          <MarkdownRenderer content={aiAnalysis} />
+                        </div>
                       </PrintableReport>
                     </>
                   ) : (

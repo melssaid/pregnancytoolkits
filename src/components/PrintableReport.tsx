@@ -9,6 +9,8 @@ interface PrintableReportProps {
   children: React.ReactNode;
   title?: string;
   isLoading?: boolean;
+  downloadLabel?: string;
+  downloadHint?: string;
 }
 
 const downloadLabels: Record<string, string> = {
@@ -26,7 +28,7 @@ const downloadHints: Record<string, string> = {
   tr: 'Doktorunuzla paylaşmak için bir kopya kaydedin',
 };
 
-export const PrintableReport: React.FC<PrintableReportProps> = ({ children, title, isLoading: contentLoading }) => {
+export const PrintableReport: React.FC<PrintableReportProps> = ({ children, title, isLoading: contentLoading, downloadLabel, downloadHint }) => {
   const { i18n } = useTranslation();
   const { profile } = useUserProfile();
   const reportRef = useRef<HTMLDivElement>(null);
@@ -104,10 +106,10 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
           className="w-full gap-2"
         >
           {contentLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4" />}
-          {downloadLabels[lang] || downloadLabels.en}
+          {downloadLabel || downloadLabels[lang] || downloadLabels.en}
         </Button>
         <p className="text-[10px] text-muted-foreground/50 text-center tracking-wide">
-          {downloadHints[lang] || downloadHints.en}
+          {downloadHint || downloadHints[lang] || downloadHints.en}
         </p>
       </div>
     </div>
