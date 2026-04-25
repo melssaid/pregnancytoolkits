@@ -4,75 +4,112 @@ import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { toolsData } from "@/lib/tools-data";
-import { Sparkles, ArrowRight, ArrowLeft, Star, Trophy } from "lucide-react";
+import { ArrowRight, ArrowLeft, Trophy, Flower2, Baby, Sprout } from "lucide-react";
 import { useMemo } from "react";
-import { useToolRating } from "@/hooks/useToolRating";
 import { getToolDescription, getToolTitle } from "@/lib/toolCopy";
+import { useUserProfile, type JourneyStage } from "@/hooks/useUserProfile";
 
 /**
- * Recommends tools based on pregnancy week stored in localStorage.
- * If no week data, shows popular tools sorted by priority.
+ * Stage-aware tool discovery — covers all three life stages:
+ *   • fertility   (pre-pregnancy / trying to conceive)
+ *   • pregnant    (active pregnancy weeks 1–42)
+ *   • postpartum  (after birth / baby care)
+ *
+ * Tools are scored by how relevant they are to the user's current stage,
+ * with a secondary score based on pregnancy week when available.
  */
-function getRecommendedTools(week: number | null) {
-  // Tools mapped to pregnancy phases
-  const phaseMap: Record<string, [number, number]> = {
-    "cycle-tracker": [0, 4],
-    "due-date-calculator": [0, 10],
-    "fertility-academy": [0, 6],
-    "preconception-checkup": [0, 6],
-    "nutrition-supplements": [0, 42],
-    "fetal-growth": [5, 42],
-    "weekly-summary": [4, 42],
-    "ai-meal-suggestion": [4, 42],
-    "kick-counter": [20, 42],
-    "weight-gain": [8, 42],
-    "contraction-timer": [34, 42],
-    "ai-birth-plan": [28, 40],
-    "ai-hospital-bag": [30, 40],
-    "ai-fitness-coach": [4, 38],
-    "pregnancy-comfort": [12, 42],
-    "wellness-diary": [4, 42],
-    "vitamin-tracker": [0, 42],
-    "smart-pregnancy-plan": [4, 42],
-    "ai-bump-photos": [10, 40],
-    "ai-partner-guide": [20, 42],
-    "baby-gear-recommender": [28, 42],
-    "smart-appointment-reminder": [4, 42],
-    "postpartum-recovery": [38, 50],
-    "baby-cry-translator": [38, 50],
-    "baby-sleep-tracker": [38, 50],
-    "baby-growth": [38, 50],
-    "diaper-tracker": [38, 50],
-    "ai-lactation-prep": [30, 50],
-    "postpartum-mental-health": [34, 50],
-  };
 
-  if (week === null) {
-    return toolsData.slice().sort((a, b) => a.priority - b.priority);
+type StageRange = { fertility?: number; pregnant?: [number, number]; postpartum?: number };
+
+// Higher number = more relevant for that stage. `undefined` = not relevant.
+const STAGE_MAP: Record<string, StageRange> = {
+  // ── Fertility / Pre-pregnancy ───────────────────────────────────────────
+  "cycle-tracker":           { fertility: 100, pregnant: [0, 4] },
+  "fertility-academy":       { fertility: 95 },
+  "preconception-checkup":   { fertility: 92 },
+  "due-date-calculator":     { fertility: 70, pregnant: [0, 12] },
+
+  // ── Pregnancy ───────────────────────────────────────────────────────────
+  "smart-pregnancy-plan":    { pregnant: [4, 42] },
+  "weekly-summary":          { pregnant: [4, 42] },
+  "fetal-growth":            { pregnant: [5, 42] },
+  "ai-meal-suggestion":      { fertility: 60, pregnant: [4, 42], postpartum: 40 },
+  "nutrition-supplements":   { fertility: 55, pregnant: [0, 42], postpartum: 50 },
+  "vitamin-tracker":         { fertility: 50, pregnant: [0, 42], postpartum: 45 },
+  "kick-counter":            { pregnant: [20, 42] },
+  "weight-gain":             { pregnant: [8, 42] },
+  "ai-fitness-coach":        { fertility: 40, pregnant: [4, 38], postpartum: 60 },
+  "pregnancy-comfort":       { pregnant: [12, 42] },
+  "wellness-diary":          { fertility: 50, pregnant: [4, 42], postpartum: 70 },
+  "smart-appointment-reminder": { fertility: 60, pregnant: [4, 42], postpartum: 60 },
+  "ai-bump-photos":          { pregnant: [10, 40] },
+  "ai-partner-guide":        { pregnant: [20, 42], postpartum: 70 },
+  "ai-birth-plan":           { pregnant: [28, 40] },
+  "ai-hospital-bag":         { pregnant: [30, 40] },
+  "contraction-timer":       { pregnant: [34, 42] },
+  "ai-lactation-prep":       { pregnant: [30, 42], postpartum: 90 },
+  "baby-gear-recommender":   { pregnant: [28, 42], postpartum: 85 },
+
+  // ── Postpartum / Baby ───────────────────────────────────────────────────
+  "postpartum-recovery":     { postpartum: 98 },
+  "postpartum-mental-health":{ postpartum: 96 },
+  "baby-cry-translator":     { postpartum: 92 },
+  "baby-sleep-tracker":      { postpartum: 90 },
+  "baby-growth":             { postpartum: 88 },
+  "diaper-tracker":          { postpartum: 86 },
+};
+
+function scoreTool(toolId: string, stage: JourneyStage, week: number | null): number {
+  const range = STAGE_MAP[toolId];
+  if (!range) return 0;
+
+  if (stage === "fertility") return range.fertility ?? 0;
+  if (stage === "postpartum") return range.postpartum ?? 0;
+  // pregnant
+  if (range.pregnant) {
+    const [lo, hi] = range.pregnant;
+    if (week !== null) {
+      if (week >= lo && week <= hi) return 100 - Math.abs(week - (lo + hi) / 2);
+      return 0;
+    }
+    return 60; // pregnant but no week stored → still relevant
   }
-
-  // Score tools by relevance to current week
-  return toolsData
-    .map(tool => {
-      const range = phaseMap[tool.id];
-      let score = 0;
-      if (range) {
-        if (week >= range[0] && week <= range[1]) {
-          score = 100 - Math.abs(week - (range[0] + range[1]) / 2);
-        }
-      }
-      return { ...tool, score };
-    })
-    .sort((a, b) => b.score - a.score);
+  return 0;
 }
+
+function getRecommendedTools(stage: JourneyStage, week: number | null) {
+  return toolsData
+    .map(tool => ({ ...tool, score: scoreTool(tool.id, stage, week) }))
+    .sort((a, b) => {
+      if (b.score !== a.score) return b.score - a.score;
+      return a.priority - b.priority;
+    });
+}
+
+const STAGE_ICON: Record<JourneyStage, typeof Flower2> = {
+  fertility: Sprout,
+  pregnant: Flower2,
+  postpartum: Baby,
+};
+
+const STAGE_TINT: Record<JourneyStage, { bg: string; text: string }> = {
+  fertility:  { bg: "bg-emerald-500/10", text: "text-emerald-600 dark:text-emerald-400" },
+  pregnant:   { bg: "bg-rose-500/10",    text: "text-rose-600 dark:text-rose-400" },
+  postpartum: { bg: "bg-sky-500/10",     text: "text-sky-600 dark:text-sky-400" },
+};
 
 export default function DiscoverTools() {
   const { t, i18n } = useTranslation();
-  const lang = i18n.language?.split('-')[0] || 'en';
+  const lang = i18n.language?.split("-")[0] || "en";
   const isRTL = i18n.language === "ar";
   const ArrowIcon = isRTL ? ArrowLeft : ArrowRight;
+  const { profile } = useUserProfile();
+  const stage: JourneyStage = profile.journeyStage || "pregnant";
+  const StageIcon = STAGE_ICON[stage];
+  const tint = STAGE_TINT[stage];
 
   const week = useMemo(() => {
+    if (stage !== "pregnant") return null;
     try {
       const saved = localStorage.getItem("pregnancyWeek");
       if (saved) return parseInt(saved, 10);
@@ -83,8 +120,8 @@ export default function DiscoverTools() {
         return Math.max(4, 40 - weeksLeft);
       }
     } catch {}
-    return null;
-  }, []);
+    return profile.pregnancyWeek || null;
+  }, [stage, profile.pregnancyWeek]);
 
   // Track which tools user has visited
   const usedTools = useMemo(() => {
@@ -94,23 +131,32 @@ export default function DiscoverTools() {
     } catch { return new Set<string>(); }
   }, []);
 
-  const recommended = useMemo(() => getRecommendedTools(week), [week]);
-  const newTools = recommended.filter(t => !usedTools.has(t.id));
-  const usedToolsList = recommended.filter(t => usedTools.has(t.id));
+  const recommended = useMemo(() => getRecommendedTools(stage, week), [stage, week]);
+  // Only show tools that actually belong to this stage (score > 0)
+  const stageTools = recommended.filter(t => t.score > 0);
+  const newTools = stageTools.filter(t => !usedTools.has(t.id));
+  const usedToolsList = stageTools.filter(t => usedTools.has(t.id));
+
+  // Stage-specific copy
+  const stageTitle = t(`discover.stage.${stage}.title`);
+  const stageContext = stage === "pregnant" && week
+    ? t("discover.weekContext", { week })
+    : t(`discover.stage.${stage}.context`);
 
   return (
     <Layout showBack>
       <SEOHead title={t("discover.seoTitle", "Discover New Tools")} noindex />
       <div className="container max-w-2xl pb-20">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center py-6">
-          <Sparkles className="h-8 w-8 text-primary mx-auto mb-2" />
-          <h1 className="text-xl font-bold text-foreground mb-1">
-            {t("discover.title", "Discover Tools for You")}
-          </h1>
-          <p className="text-xs text-muted-foreground mb-3">
-            {week ? t("discover.weekContext", { week, defaultValue: "Recommended for week {{week}} of your journey" }) : t("discover.generalContext", "Based on popular tools")}
-          </p>
-          <Link to="/achievements" className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-bold hover:bg-amber-500/20 transition-colors">
+          <div className={`inline-flex h-12 w-12 items-center justify-center rounded-2xl ${tint.bg} mx-auto mb-3`}>
+            <StageIcon className={`h-6 w-6 ${tint.text}`} strokeWidth={1.8} />
+          </div>
+          <h1 className="text-xl font-bold text-foreground mb-1">{stageTitle}</h1>
+          <p className="text-xs text-muted-foreground mb-3">{stageContext}</p>
+          <Link
+            to="/achievements"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-bold hover:bg-amber-500/20 transition-colors"
+          >
             <Trophy className="w-3.5 h-3.5" />
             {t("discover.viewAchievements", "View My Achievements")}
           </Link>
@@ -125,7 +171,7 @@ export default function DiscoverTools() {
               <span className="text-[10px] text-muted-foreground font-normal">({newTools.length})</span>
             </h2>
             <div className="space-y-2">
-              {newTools.slice(0, 10).map((tool, i) => {
+              {newTools.slice(0, 12).map((tool, i) => {
                 const Icon = tool.icon;
                 return (
                   <motion.div key={tool.id} initial={{ opacity: 0, x: isRTL ? 10 : -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.04 }}>
