@@ -112,14 +112,13 @@ export function useHolisticDashboardSnapshot(): Result {
     const snapshot: HolisticSnapshot = {
       generatedAt: new Date().toISOString(),
       profile: {
-        name: profile?.name,
         pregnancyWeek: profile?.pregnancyWeek,
         trimester: profile?.pregnancyWeek
           ? profile.pregnancyWeek <= 13 ? 1 : profile.pregnancyWeek <= 27 ? 2 : 3
           : undefined,
         journeyStage: profile?.journeyStage,
-        weight: profile?.weight,
-        height: profile?.height,
+        weight: profile?.weight ?? undefined,
+        height: profile?.height ?? undefined,
       },
       mood: { recent: moodEntries, count: moodEntries.length },
       symptoms: { recent: symptomEntries, count: symptomEntries.length },
