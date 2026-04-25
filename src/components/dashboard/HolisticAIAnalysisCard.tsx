@@ -28,6 +28,7 @@ export const HolisticAIAnalysisCard = memo(function HolisticAIAnalysisCard() {
     section: "pregnancy-plan",
     toolType: "holistic-dashboard",
   });
+  const { save, isSaved, unsaveByContent } = useSavedResults("holistic-dashboard");
 
   const [hasGenerated, setHasGenerated] = useState(false);
   const [isExpanded, setIsExpanded] = useState(true);
