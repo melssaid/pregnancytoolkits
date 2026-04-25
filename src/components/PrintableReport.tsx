@@ -44,8 +44,10 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
   const { profile } = useUserProfile();
   const reportRef = useRef<HTMLDivElement>(null);
   const [logoDataUrl, setLogoDataUrl] = useState<string>('');
+  const [orientation, setOrientation] = useState<PrintOrientation>('portrait');
   const lang = i18n.language?.split('-')[0] || 'en';
   const isRTL = lang === 'ar';
+  const oLabels = orientationLabels[lang] || orientationLabels.en;
 
   useEffect(() => {
     loadLogoBase64().then(setLogoDataUrl);
