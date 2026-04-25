@@ -146,20 +146,24 @@ export const UnifiedToolsGrid = memo(function UnifiedToolsGrid() {
             >
               <Link
                 to={tool.href}
-                className={`group relative flex h-full items-center gap-3 rounded-2xl border border-border/30 bg-gradient-to-br ${tool.accent} px-3.5 py-3.5 transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-md active:scale-[0.98] min-w-0`}
+                className={`tool-card-pro group relative flex h-full items-center gap-3 overflow-hidden rounded-2xl border border-border/30 bg-gradient-to-br ${tool.accent} px-3.5 py-3.5 hover:border-primary/40 active:scale-[0.98] min-w-0`}
               >
-                <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-border/40 bg-background/70 backdrop-blur-sm shadow-sm flex-shrink-0">
-                  <Icon className={`h-5 w-5 ${tool.iconColor}`} strokeWidth={1.85} />
+                {/* Soft directional sheen on hover */}
+                <span aria-hidden className="pointer-events-none absolute -top-1/2 -end-1/2 h-[140%] w-[60%] rotate-12 bg-gradient-to-b from-white/30 via-white/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                <div className={`tool-icon-halo flex h-11 w-11 items-center justify-center rounded-2xl border border-border/40 bg-background/80 backdrop-blur-sm shadow-sm flex-shrink-0 ${tool.iconColor}`}>
+                  <Icon className="h-5 w-5" strokeWidth={1.85} />
                 </div>
                 <span className="flex-1 min-w-0 text-[15px] font-bold leading-snug text-foreground break-words" style={{ overflowWrap: "anywhere" }}>
                   {t(tool.labelKey, tool.labelEn)}
                 </span>
                 {hasData && (
-                  <span className={`flex-shrink-0 text-[13px] font-black tabular-nums ${tool.iconColor} bg-background/70 rounded-full px-2.5 py-1 min-w-[28px] text-center`}>
+                  <span className={`flex-shrink-0 inline-flex items-center gap-1 text-[13px] font-black tabular-nums ${tool.iconColor} bg-background/80 rounded-full ps-1.5 pe-2.5 py-1 min-w-[34px] justify-center shadow-sm border border-border/30`}>
+                    <span className={`tool-active-dot h-1.5 w-1.5 rounded-full bg-current`} />
                     {tool.count}
                   </span>
                 )}
-                <Chevron className="flex-shrink-0 h-4 w-4 text-muted-foreground/50 group-hover:text-primary/70 transition-colors" />
+                <Chevron className="flex-shrink-0 h-4 w-4 text-muted-foreground/50 group-hover:text-primary group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5 transition-all" />
               </Link>
             </motion.div>
           );
