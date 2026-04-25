@@ -49,9 +49,15 @@ function buildPath(values: Array<number | undefined>, w: number, h: number, pad 
     .join(" ");
 }
 
-export const HolisticTimelineChart = memo(function HolisticTimelineChart() {
+interface HolisticTimelineChartProps {
+  initialRange?: Range;
+}
+
+export const HolisticTimelineChart = memo(function HolisticTimelineChart({
+  initialRange = 7,
+}: HolisticTimelineChartProps = {}) {
   const { t } = useTranslation();
-  const [range, setRange] = useState<Range>(7);
+  const [range, setRange] = useState<Range>(initialRange);
   const [active, setActive] = useState<MetricKey>("weight");
 
   const points = useMemo<DayPoint[]>(() => {
