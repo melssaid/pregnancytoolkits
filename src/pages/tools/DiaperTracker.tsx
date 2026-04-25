@@ -72,6 +72,12 @@ const DiaperTracker = () => {
     return () => clearInterval(interval);
   }, [lastChangeTime]);
 
+  const persist = (updated: DiaperEntry[]) => {
+    setEntries(updated);
+    localStorage.setItem("diaperEntries", JSON.stringify(updated));
+    emitDataChange("diaperEntries");
+  };
+
   const addEntry = (type: DiaperType) => {
     const newEntry: DiaperEntry = {
       id: Date.now().toString(),
@@ -79,8 +85,7 @@ const DiaperTracker = () => {
       type,
     };
     const updated = [newEntry, ...entries].slice(0, 90);
-    setEntries(updated);
-    localStorage.setItem("diaperEntries", JSON.stringify(updated));
+    persist(updated);
     setLastAdded(type);
     if (navigator.vibrate) navigator.vibrate(30);
     setTimeout(() => setLastAdded(null), 800);
@@ -92,16 +97,12 @@ const DiaperTracker = () => {
       (e) => e.type === type && new Date(e.time).toDateString() === today
     );
     if (idx !== -1) {
-      const updated = entries.filter((_, i) => i !== idx);
-      setEntries(updated);
-      localStorage.setItem("diaperEntries", JSON.stringify(updated));
+      persist(entries.filter((_, i) => i !== idx));
     }
   };
 
   const deleteEntry = (id: string) => {
-    const updated = entries.filter((e) => e.id !== id);
-    setEntries(updated);
-    localStorage.setItem("diaperEntries", JSON.stringify(updated));
+    persist(entries.filter((e) => e.id !== id));
   };
 
   const getTodayStats = () => {
