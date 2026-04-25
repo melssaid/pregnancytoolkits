@@ -397,6 +397,37 @@ const AIBumpPhotos: React.FC = () => {
     >
       <div className="space-y-6">
 
+        {/* ──────────── PRO ANALYSIS BADGE ──────────── */}
+        <motion.div
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="relative overflow-hidden rounded-2xl border border-primary/20 bg-gradient-to-br from-primary/10 via-primary/5 to-accent/40 px-3.5 py-3"
+        >
+          {/* subtle sheen */}
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-transparent via-foreground/[0.03] to-transparent" />
+          <div className="relative flex items-center gap-3">
+            <div className="shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center shadow-md shadow-primary/25">
+              <Sparkles className="w-5 h-5 text-primary-foreground" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-1.5 flex-wrap">
+                <span className="text-[13px] font-extrabold text-foreground leading-tight">
+                  {isRTL ? 'تحليل احترافي عميق للسونار' : 'Pro Ultrasound Analysis'}
+                </span>
+                <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-primary/15 text-primary text-[10px] font-bold">
+                  <Crown className="w-2.5 h-2.5" />
+                  {isRTL ? '٥ نقاط' : '5 pts'}
+                </span>
+              </div>
+              <p className="text-[10.5px] text-muted-foreground mt-0.5 leading-snug">
+                {isRTL
+                  ? 'قراءة بصرية متعددة الأقسام: ملاحظات، قياسات، تطور، وأسئلة لطبيبك'
+                  : 'Multi-section visual reading: observations, measurements, milestones & doctor questions'}
+              </p>
+            </div>
+          </div>
+        </motion.div>
+
         {/* ──────────── 1. UPLOAD SECTION ──────────── */}
         <Card className="border-primary/20 overflow-hidden">
           {/* Decorative accent bar */}

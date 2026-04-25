@@ -81,7 +81,7 @@ export const TOOL_WEIGHT_REGISTRY: Record<AIToolType, InsightWeight> = {
   "sleep-meditation": 0.5,    // sub-action of Pregnancy Comfort
   "sleep-routine": 0.5,       // sub-action of Pregnancy Comfort
   "vitamin-advice": 0.5,        // quick vitamin tips
-  "bump-photos": 2,           // bump photo analysis — higher cost
+  "bump-photos": 5,           // ultrasound photo analysis — multimodal vision + deep clinical context
   "baby-cry-analysis": 0.5,     // quick cry classification
   "postpartum-recovery": 1,
   "hospital-bag": 1,
