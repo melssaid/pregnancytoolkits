@@ -1,62 +1,80 @@
-import { Link } from "react-router-dom";
+import { lazy, Suspense, useState, useEffect, useCallback } from "react";
 import { SEOHead } from "@/components/SEOHead";
 import { motion, useScroll, useTransform } from "framer-motion";
-// TodaysInsightCard removed — replaced by NutritionTipCard
 import { useTranslation } from "react-i18next";
-import { useUserProfile } from "@/hooks/useUserProfile";
-import { useTrackingStats } from "@/hooks/useTrackingStats";
 import { Layout } from "@/components/Layout";
-import { safeParseLocalStorage } from "@/lib/safeStorage";
 import { useSmartConversionPrompt } from "@/hooks/useSmartConversionPrompt";
+import { useTrimesterTheme } from "@/hooks/useTrimesterTheme";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Sun, BarChart3, Calendar, LayoutGrid } from "lucide-react";
+import { haptic } from "@/lib/haptics";
 import roseLeft from "@/assets/rose-left.png";
 
-// Dashboard components — curated set (duplicates removed)
-import { DailyHeroCard } from "@/components/dashboard/DailyHeroCard";
-import { RiskAlertCard } from "@/components/dashboard/RiskAlertCard";
-import { DailyPriorities } from "@/components/dashboard/DailyPriorities";
-import { RecentMealFitnessSummary } from "@/components/dashboard/RecentMealFitnessSummary";
-import { QuickActionsBar } from "@/components/dashboard/QuickActionsBar";
-import { HydrationTracker } from "@/components/dashboard/HydrationTracker";
-import { FetalMovementCard } from "@/components/dashboard/FetalMovementCard";
-import { WeightTrendCard } from "@/components/dashboard/WeightTrendCard";
-import { UsageStatsNudge } from "@/components/dashboard/UsageStatsNudge";
+// Today tab is eager — first paint
+import { TodayTab } from "@/components/dashboard/tabs/TodayTab";
+import { DashboardTabSkeleton } from "@/components/dashboard/DashboardTabSkeleton";
 
-import { BirthCountdownCard } from "@/components/dashboard/BirthCountdownCard";
-import { AppRatingCard } from "@/components/dashboard/AppRatingCard";
-import { WeekCertificateCard } from "@/components/dashboard/WeekCertificateCard";
-import { StageRecommendation } from "@/components/dashboard/StageRecommendation";
-import { DailyHealthChallengeCard } from "@/components/dashboard/DailyHealthChallengeCard";
-import { DynamicFAQ } from "@/components/DynamicFAQ";
-import { useTrimesterTheme } from "@/hooks/useTrimesterTheme";
+// Lazy-loaded tabs to shrink initial bundle
+const InsightsTab = lazy(() => import("@/components/dashboard/tabs/InsightsTab"));
+const ArchiveTab = lazy(() => import("@/components/dashboard/tabs/ArchiveTab"));
+const MoreTab = lazy(() => import("@/components/dashboard/tabs/MoreTab"));
 
-// Hero & insight features
-import { HealthScoreRing } from "@/components/dashboard/HealthScoreRing";
-import { BabySizeCard } from "@/components/dashboard/BabySizeCard";
-import { WeeklyComparisonCard } from "@/components/dashboard/WeeklyComparisonCard";
-import { MilestonesTimeline } from "@/components/dashboard/MilestonesTimeline";
-import { DoctorVisitPrepCard } from "@/components/dashboard/DoctorVisitPrepCard";
-import { NutritionTipCard } from "@/components/dashboard/NutritionTipCard";
-import { PartnerSummaryCard } from "@/components/dashboard/PartnerSummaryCard";
-import { WeeklySymptomsCard } from "@/components/dashboard/WeeklySymptomsCard";
-import { ContractionSummaryCard } from "@/components/dashboard/ContractionSummaryCard";
-import { MoodTrendCard } from "@/components/dashboard/MoodTrendCard";
-import { ResultsArchiveCalendar } from "@/components/dashboard/ResultsArchiveCalendar";
-import { MyToolsQuickGrid } from "@/components/dashboard/MyToolsQuickGrid";
+const TAB_KEY = "dashboard_active_tab";
+type TabKey = "today" | "insights" | "archive" | "more";
 
 const SmartDashboard = () => {
-  const { t } = useTranslation();
-  const { profile } = useUserProfile();
-  const { stats } = useTrackingStats();
-
-  const healthCheckin = safeParseLocalStorage<any>("dashboard_health_checkin_v1", null);
+  const { t, i18n } = useTranslation();
+  const isAr = i18n.language === "ar";
   useSmartConversionPrompt();
   const trimesterTheme = useTrimesterTheme();
-  const bloodPressure = healthCheckin?.bloodPressure || "";
 
+  const [activeTab, setActiveTab] = useState<TabKey>(() => {
+    try {
+      const saved = sessionStorage.getItem(TAB_KEY) as TabKey | null;
+      if (saved && ["today", "insights", "archive", "more"].includes(saved)) return saved;
+    } catch {}
+    return "today";
+  });
+
+  // Restore scroll per-tab
+  useEffect(() => {
+    try {
+      const y = sessionStorage.getItem(`dashboard_tab_scroll_${activeTab}`);
+      if (y) window.scrollTo(0, parseInt(y, 10));
+      else window.scrollTo(0, 0);
+    } catch {}
+  }, [activeTab]);
+
+  // Save scroll position
+  useEffect(() => {
+    const onScroll = () => {
+      try {
+        sessionStorage.setItem(`dashboard_tab_scroll_${activeTab}`, String(window.scrollY));
+      } catch {}
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [activeTab]);
+
+  const handleTabChange = useCallback((value: string) => {
+    haptic("tap");
+    const next = value as TabKey;
+    try { sessionStorage.setItem(TAB_KEY, next); } catch {}
+    setActiveTab(next);
+  }, []);
+
+  // Decorative parallax
   const { scrollY } = useScroll();
   const roseLeftY = useTransform(scrollY, [0, 400], [0, -60]);
-  const roseOpacity = useTransform(scrollY, [0, 300], [0.92, 0]);
+  const roseOpacity = useTransform(scrollY, [0, 300], [0.85, 0]);
   const roseLeftScale = useTransform(scrollY, [0, 400], [1, 0.7]);
+
+  const tabs: Array<{ key: TabKey; icon: typeof Sun; labelAr: string; labelEn: string }> = [
+    { key: "today",    icon: Sun,        labelAr: "اليوم",  labelEn: "Today" },
+    { key: "insights", icon: BarChart3,  labelAr: "الرؤى",  labelEn: "Insights" },
+    { key: "archive",  icon: Calendar,   labelAr: "الأرشيف", labelEn: "Archive" },
+    { key: "more",     icon: LayoutGrid, labelAr: "المزيد", labelEn: "More" },
+  ];
 
   return (
     <Layout>
@@ -65,18 +83,19 @@ const SmartDashboard = () => {
         description="Your personalized pregnancy dashboard"
       />
 
-      <main className={`container py-4 pb-24 bg-gradient-to-b ${trimesterTheme.gradient} relative`}>
-        <div className="absolute -top-3 left-0 right-0 flex pointer-events-none px-1 z-0">
+      <main className={`relative pb-24 bg-gradient-to-b ${trimesterTheme.gradient}`}>
+        {/* Decorative rose */}
+        <div className="pointer-events-none absolute -top-3 left-0 right-0 z-0 flex px-1">
           <motion.img
             src={roseLeft}
             alt=""
-            width={96}
-            height={96}
+            width={84}
+            height={84}
             style={{ y: roseLeftY, opacity: roseOpacity, scale: roseLeftScale }}
             initial={{ y: -20, opacity: 0, rotate: -20, scale: 0.5 }}
             animate={{
               y: [0, -5, 0],
-              opacity: 0.92,
+              opacity: 0.85,
               rotate: [-10, -4, -10],
               scale: [1, 1.06, 1],
             }}
@@ -86,85 +105,69 @@ const SmartDashboard = () => {
               scale: { duration: 4, repeat: Infinity, ease: "easeInOut" },
               opacity: { duration: 0.8, ease: "easeOut" },
             }}
-            className="drop-shadow-lg"
+            className="drop-shadow-md"
           />
         </div>
 
-        <div className="relative z-10 space-y-3.5">
-          {/* ═══ 1. HERO & STATUS — always visible ═══ */}
-          <DailyHeroCard week={profile.pregnancyWeek} dueDate={profile.dueDate} />
-          <HealthScoreRing />
-          <BabySizeCard />
-          <BirthCountdownCard />
-
-          {/* Risk Alerts — conditional, high priority */}
-          <RiskAlertCard
-            bloodPressure={bloodPressure}
-            todayKicks={stats.dailyTracking.todayKicks}
-            week={profile.pregnancyWeek}
-          />
-
-          {/* ═══ 2. WEEKLY INSIGHTS — context for the week ═══ */}
-          <WeekCertificateCard />
-          <StageRecommendation />
-          <WeeklyComparisonCard />
-
-          {/* ═══ 3. DAILY MANAGEMENT — focus on today ═══ */}
-          <DailyPriorities
-            vitaminsTaken={stats.dailyTracking.vitaminsTaken}
-            todayKicks={stats.dailyTracking.todayKicks}
-            waterGlasses={stats.dailyTracking.waterGlasses}
-            upcomingAppointments={stats.planning.upcomingAppointments}
-          />
-          <QuickActionsBar />
-          <DailyHealthChallengeCard />
-          <NutritionTipCard />
-          <HydrationTracker />
-
-          {/* ═══ 4. TRACKING LOGS — single source per topic ═══ */}
-          <RecentMealFitnessSummary />
-          <WeeklySymptomsCard />
-          <MoodTrendCard />
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-            <FetalMovementCard todayKicks={stats.dailyTracking.todayKicks} />
-            <WeightTrendCard />
-          </div>
-
-          {/* ═══ 5. PREPARATION — doctor, partner, labor ═══ */}
-          <DoctorVisitPrepCard />
-          <PartnerSummaryCard />
-          {profile.pregnancyWeek >= 32 && <ContractionSummaryCard />}
-
-          {/* ═══ 6. ARCHIVE & TOOLS — history & quick access ═══ */}
-          <MyToolsQuickGrid />
-          <ResultsArchiveCalendar />
-          <MilestonesTimeline />
-
-          {/* ═══ 7. ENGAGEMENT ═══ */}
-          <UsageStatsNudge />
-          <AppRatingCard />
-          <DynamicFAQ />
-
-          {/* Back to Home Banner */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+        <Tabs value={activeTab} onValueChange={handleTabChange} className="relative z-10">
+          {/* Sticky tab bar — pro Apple-style */}
+          <TabsList
+            className="sticky top-[3.5rem] sm:top-[4.5rem] z-30 grid h-auto w-full
+                       grid-cols-4 gap-0 rounded-none border-b border-border/40
+                       bg-background/92 p-0 backdrop-blur-xl shadow-sm"
+            aria-label={isAr ? "أقسام لوحة التحكم" : "Dashboard sections"}
           >
-            <Link
-              to="/"
-              className="block rounded-2xl bg-gradient-to-br from-primary/10 via-card to-pink-100/30 dark:from-primary/15 dark:to-primary/5 border border-primary/15 p-5 text-center hover:shadow-lg hover:border-primary/30 transition-all group"
-            >
-              <span className="text-2xl mb-2 block">🏠</span>
-              <h3 className="text-base font-extrabold text-foreground mb-1">
-                {t("dashboard.backHome.title", "العودة للصفحة الرئيسية")}
-              </h3>
-              <p className="text-xs text-muted-foreground font-medium">
-                {t("dashboard.backHome.subtitle", "استكشفي واستخدمي كافة الأدوات المتاحة")}
-              </p>
-            </Link>
-          </motion.div>
-        </div>
+            {tabs.map((tab) => {
+              const Icon = tab.icon;
+              const isActive = activeTab === tab.key;
+              return (
+                <TabsTrigger
+                  key={tab.key}
+                  value={tab.key}
+                  className="relative flex h-14 flex-col items-center justify-center gap-0.5 rounded-none border-0 bg-transparent
+                             text-[10px] font-bold transition-colors
+                             data-[state=active]:bg-transparent data-[state=active]:text-primary data-[state=active]:shadow-none
+                             data-[state=inactive]:text-muted-foreground"
+                >
+                  <Icon className={`h-[18px] w-[18px] transition-transform ${isActive ? "scale-110" : ""}`} strokeWidth={isActive ? 2.4 : 2} />
+                  <span className="leading-none mt-0.5">{isAr ? tab.labelAr : tab.labelEn}</span>
+                  {isActive && (
+                    <motion.span
+                      layoutId="dashboard-tab-indicator"
+                      className="absolute bottom-0 left-1/4 right-1/4 h-[3px] rounded-full bg-primary"
+                      transition={{ type: "spring", stiffness: 320, damping: 28 }}
+                    />
+                  )}
+                </TabsTrigger>
+              );
+            })}
+          </TabsList>
+
+          {/* Tab contents */}
+          <div className="container px-3 sm:px-4 pt-4">
+            <TabsContent value="today" className="mt-0">
+              <TodayTab />
+            </TabsContent>
+
+            <TabsContent value="insights" className="mt-0">
+              <Suspense fallback={<DashboardTabSkeleton />}>
+                <InsightsTab />
+              </Suspense>
+            </TabsContent>
+
+            <TabsContent value="archive" className="mt-0">
+              <Suspense fallback={<DashboardTabSkeleton />}>
+                <ArchiveTab />
+              </Suspense>
+            </TabsContent>
+
+            <TabsContent value="more" className="mt-0">
+              <Suspense fallback={<DashboardTabSkeleton />}>
+                <MoreTab />
+              </Suspense>
+            </TabsContent>
+          </div>
+        </Tabs>
       </main>
     </Layout>
   );

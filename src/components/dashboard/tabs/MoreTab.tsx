@@ -1,0 +1,55 @@
+import { memo } from "react";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { Home } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { DoctorVisitPrepCard } from "@/components/dashboard/DoctorVisitPrepCard";
+import { PartnerSummaryCard } from "@/components/dashboard/PartnerSummaryCard";
+import { ContractionSummaryCard } from "@/components/dashboard/ContractionSummaryCard";
+import { UsageStatsNudge } from "@/components/dashboard/UsageStatsNudge";
+import { AppRatingCard } from "@/components/dashboard/AppRatingCard";
+import { DynamicFAQ } from "@/components/DynamicFAQ";
+import { useDashboardData } from "@/hooks/useDashboardData";
+
+/**
+ * "More" tab — preparation, partner, FAQ, app actions.
+ */
+export const MoreTab = memo(function MoreTab() {
+  const { t, i18n } = useTranslation();
+  const isAr = i18n.language === "ar";
+  const { profile, isPregnant } = useDashboardData();
+
+  return (
+    <div className="space-y-4 pb-6">
+      {isPregnant && <DoctorVisitPrepCard />}
+      {isPregnant && <PartnerSummaryCard />}
+      {isPregnant && profile.pregnancyWeek >= 32 && <ContractionSummaryCard />}
+
+      <UsageStatsNudge />
+      <AppRatingCard />
+      <DynamicFAQ />
+
+      {/* Back to home */}
+      <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}>
+        <Link
+          to="/"
+          className="flex items-center gap-3 rounded-2xl border border-primary/15 bg-gradient-to-br from-primary/8 via-card to-primary/[0.04] p-4 hover:shadow-md hover:border-primary/30 transition-all"
+        >
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/12">
+            <Home className="h-5 w-5 text-primary" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <p className="text-sm font-bold text-foreground">
+              {isAr ? "العودة للصفحة الرئيسية" : "Back to home"}
+            </p>
+            <p className="text-xs text-muted-foreground">
+              {isAr ? "استكشفي جميع الأدوات المتاحة" : "Explore all available tools"}
+            </p>
+          </div>
+        </Link>
+      </motion.div>
+    </div>
+  );
+});
+
+export default MoreTab;
