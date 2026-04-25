@@ -100,6 +100,7 @@ export const TOOL_WEIGHT_REGISTRY: Record<AIToolType, InsightWeight> = {
   "craving-alternatives": 0.5,  // lightweight craving swap suggestions
   "grocery-list": 0.5,          // quick grocery nutrition tips
   "live-search": 5,             // Perplexity Sonar — real-time web search with citations
+  "holistic-dashboard": 7,      // Premium dashboard-wide cross-data analysis (Pro model)
 };
 
 /**
