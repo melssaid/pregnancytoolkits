@@ -106,8 +106,6 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
     [today, todayLog, logs, week]
   );
 
-  const GreetingIcon = greeting.icon;
-
   return (
     <motion.div
       initial={m.disabled ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
@@ -116,21 +114,25 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
       style={{ willChange: m.disabled ? "auto" : "transform, opacity" }}
       className="relative overflow-hidden rounded-3xl border border-border/40 bg-gradient-to-br from-card via-card to-primary/[0.04] shadow-lg shadow-primary/5"
     >
-      {/* Decorative glow */}
-      <div className="pointer-events-none absolute -top-16 -end-16 h-48 w-48 rounded-full bg-primary/10 blur-3xl" />
+      {/* Decorative rose — replaces generic glow for a refined botanical accent */}
+      <img
+        src={roseDecor}
+        alt=""
+        aria-hidden="true"
+        loading="lazy"
+        decoding="async"
+        className="pointer-events-none select-none absolute -top-6 -end-6 h-36 w-36 object-contain opacity-[0.18] mix-blend-multiply dark:opacity-25 dark:mix-blend-screen rtl:scale-x-[-1]"
+      />
       <div className="pointer-events-none absolute -bottom-20 -start-20 h-44 w-44 rounded-full bg-secondary/15 blur-3xl" />
 
       <div className="relative px-5 pt-5 pb-4">
-        {/* Greeting row */}
-        <div className="flex items-center gap-2.5 mb-4">
-          <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-            <GreetingIcon className="h-5 w-5" strokeWidth={2} />
+        {/* Wellness tip row — formal, minimal (no greeting label) */}
+        <div className="flex items-start gap-2.5 mb-4">
+          <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-primary/10 text-primary ring-1 ring-primary/15">
+            <Quote className="h-4 w-4" strokeWidth={2.25} />
           </div>
-          <div className="flex-1 min-w-0">
-            <p className="text-[12px] font-extrabold uppercase tracking-[0.1em] text-primary">
-              {greeting.title}
-            </p>
-            <p className="mt-1 text-[14px] font-medium leading-snug text-foreground/85 line-clamp-2">
+          <div className="flex-1 min-w-0 pt-1">
+            <p className="text-[14px] font-medium leading-snug text-foreground/90 line-clamp-2">
               {greeting.tip}
             </p>
           </div>
