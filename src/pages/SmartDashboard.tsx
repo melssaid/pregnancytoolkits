@@ -80,8 +80,8 @@ const SmartDashboard = () => {
   return (
     <Layout>
       <SEOHead
-        title={t("dailyDashboard.pageTitle", "Pregnancy Dashboard")}
-        description="Your personalized pregnancy dashboard"
+        title={t("dashboardV2.seo.title")}
+        description={t("dashboardV2.seo.description")}
       />
 
       <main dir={isRTL ? "rtl" : "ltr"} className={`relative pb-24 bg-gradient-to-b ${trimesterTheme.gradient}`}>
