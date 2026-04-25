@@ -9045,5 +9045,23 @@
       "backHome": "Volver al inicio",
       "backHomeDesc": "Explora todas las herramientas disponibles"
     }
+  },
+  "reset": {
+    "toolLabel": "Restablecer herramienta",
+    "fullLabel": "Restablecer todo",
+    "toolTitle": "¿Restablecer los datos de esta herramienta?",
+    "fullTitle": "¿Restablecer todos los datos del panel?",
+    "toolDesc": "Se eliminarán todas las entradas de esta herramienta. Puedes deshacer durante 10 segundos.",
+    "fullDesc": "Se eliminarán todos los registros, resultados guardados e historial. Tu perfil e idioma permanecen.",
+    "cancel": "Cancelar",
+    "confirm": "Sí, restablecer",
+    "toolSuccess": "Datos de la herramienta borrados",
+    "fullSuccess": "Todos los datos borrados",
+    "undo": "Deshacer",
+    "undoHint": "Puedes deshacer durante 10 segundos.",
+    "restored": "Datos restaurados",
+    "nothingToReset": "Sin datos para restablecer",
+    "dangerZone": "Zona de peligro",
+    "dangerZoneDesc": "Borra todos los registros y resultados. Perfil e idioma se mantienen."
   }
 }

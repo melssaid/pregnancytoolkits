@@ -9132,5 +9132,23 @@
       "backHome": "Back to home",
       "backHomeDesc": "Explore all available tools"
     }
+  },
+  "reset": {
+    "toolLabel": "Reset tool data",
+    "fullLabel": "Reset all data",
+    "toolTitle": "Reset this tool's data?",
+    "fullTitle": "Reset all dashboard data?",
+    "toolDesc": "All entries for this tool will be deleted. You can undo this for 10 seconds.",
+    "fullDesc": "All trackers, saved results, and history will be deleted. Your profile and language stay intact. You can undo this for 10 seconds.",
+    "cancel": "Cancel",
+    "confirm": "Yes, reset",
+    "toolSuccess": "Tool data cleared",
+    "fullSuccess": "All dashboard data cleared",
+    "undo": "Undo",
+    "undoHint": "You can undo this within 10 seconds.",
+    "restored": "Data restored",
+    "nothingToReset": "No data to reset",
+    "dangerZone": "Danger zone",
+    "dangerZoneDesc": "Clear all trackers and saved results. Profile and language settings stay intact."
   }
 }

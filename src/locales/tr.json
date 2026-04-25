@@ -9045,5 +9045,23 @@
       "backHome": "Ana sayfaya dön",
       "backHomeDesc": "Mevcut tüm araçları keşfet"
     }
+  },
+  "reset": {
+    "toolLabel": "Araç verisini sıfırla",
+    "fullLabel": "Tüm verileri sıfırla",
+    "toolTitle": "Bu aracın verileri sıfırlansın mı?",
+    "fullTitle": "Tüm pano verileri sıfırlansın mı?",
+    "toolDesc": "Bu araca ait tüm kayıtlar silinecek. 10 saniye içinde geri alabilirsiniz.",
+    "fullDesc": "Tüm izleyiciler, kaydedilen sonuçlar ve geçmiş silinecek. Profiliniz ve diliniz korunur.",
+    "cancel": "İptal",
+    "confirm": "Evet, sıfırla",
+    "toolSuccess": "Araç verisi temizlendi",
+    "fullSuccess": "Tüm pano verileri temizlendi",
+    "undo": "Geri al",
+    "undoHint": "10 saniye içinde geri alabilirsiniz.",
+    "restored": "Veriler geri yüklendi",
+    "nothingToReset": "Sıfırlanacak veri yok",
+    "dangerZone": "Tehlike bölgesi",
+    "dangerZoneDesc": "Tüm izleyici ve sonuçları sil. Profil ve dil korunur."
   }
 }

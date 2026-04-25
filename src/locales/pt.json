@@ -9045,5 +9045,23 @@
       "backHome": "Voltar ao início",
       "backHomeDesc": "Explore todas as ferramentas disponíveis"
     }
+  },
+  "reset": {
+    "toolLabel": "Redefinir ferramenta",
+    "fullLabel": "Redefinir tudo",
+    "toolTitle": "Redefinir os dados desta ferramenta?",
+    "fullTitle": "Redefinir todos os dados?",
+    "toolDesc": "Todas as entradas serão excluídas. Você pode desfazer por 10 segundos.",
+    "fullDesc": "Todos os rastreadores, resultados salvos e histórico serão excluídos. Perfil e idioma permanecem.",
+    "cancel": "Cancelar",
+    "confirm": "Sim, redefinir",
+    "toolSuccess": "Dados da ferramenta apagados",
+    "fullSuccess": "Todos os dados apagados",
+    "undo": "Desfazer",
+    "undoHint": "Você pode desfazer por 10 segundos.",
+    "restored": "Dados restaurados",
+    "nothingToReset": "Sem dados para redefinir",
+    "dangerZone": "Zona de perigo",
+    "dangerZoneDesc": "Apaga todos os rastreadores e resultados. Perfil e idioma mantidos."
   }
 }
