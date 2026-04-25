@@ -1460,6 +1460,47 @@
       "prePregnancyWeight": "Pre-pregnancy weight",
       "yourActualWeight": "Your actual weight",
       "recommendedRange": "Recommended range"
+    },
+    "weeklyMood": {
+      "title": "Weekly Mood Trend",
+      "aria": "Mood trend chart for the last 7 days",
+      "mood": "Mood",
+      "noEntry": "No entry",
+      "average": "Average",
+      "entries": "Entries",
+      "range": "Range",
+      "trend": {
+        "up": "Improving",
+        "down": "Declining",
+        "neutral": "Stable"
+      }
+    },
+    "weeklyHydration": {
+      "title": "Weekly Hydration",
+      "aria": "Weekly water intake chart",
+      "glasses": "Glasses",
+      "average": "Avg/day",
+      "total": "Total",
+      "goalsMet": "Goals met",
+      "trend": {
+        "up": "Improving",
+        "down": "Declining",
+        "neutral": "Stable"
+      }
+    },
+    "weeklyContractions": {
+      "title": "Weekly Contraction Frequency",
+      "aria": "Weekly contraction frequency chart",
+      "count": "Count",
+      "avg": "avg",
+      "total": "Total",
+      "activeDays": "Active days",
+      "peak": "Peak",
+      "trend": {
+        "up": "Rising",
+        "down": "Falling",
+        "neutral": "Stable"
+      }
     }
   },
   "appUpdated": {

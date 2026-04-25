@@ -10,6 +10,9 @@ import { WeeklySymptomsCard } from "@/components/dashboard/WeeklySymptomsCard";
 import { WeightTrendCard } from "@/components/dashboard/WeightTrendCard";
 import { FetalMovementCard } from "@/components/dashboard/FetalMovementCard";
 import { RecentMealFitnessSummary } from "@/components/dashboard/RecentMealFitnessSummary";
+import { WeeklyMoodTrendChart } from "@/components/charts/WeeklyMoodTrendChart";
+import { WeeklyHydrationChart } from "@/components/charts/WeeklyHydrationChart";
+import { WeeklyContractionFrequencyChart } from "@/components/charts/WeeklyContractionFrequencyChart";
 import { useDashboardData } from "@/hooks/useDashboardData";
 
 /**
@@ -22,7 +25,8 @@ export const InsightsTab = memo(function InsightsTab() {
 
   const hasAnyInsight =
     dataCheck.hasMoodData || dataCheck.hasWeight || dataCheck.hasSymptomsData ||
-    dataCheck.hasRecentActivity || stats.dailyTracking.todayKicks > 0;
+    dataCheck.hasRecentActivity || dataCheck.hasHydration || dataCheck.hasContractions ||
+    stats.dailyTracking.todayKicks > 0;
 
   return (
     <div className="space-y-4 pb-6">
@@ -30,6 +34,11 @@ export const InsightsTab = memo(function InsightsTab() {
       <HealthScoreRing />
 
       {isPregnant && <WeeklyComparisonCard />}
+
+      {/* New weekly trend charts */}
+      {dataCheck.hasMoodData && <WeeklyMoodTrendChart />}
+      {dataCheck.hasHydration && <WeeklyHydrationChart />}
+      {dataCheck.hasContractions && <WeeklyContractionFrequencyChart />}
 
       {dataCheck.hasMoodData && <MoodTrendCard />}
       {dataCheck.hasSymptomsData && <WeeklySymptomsCard />}

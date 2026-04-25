@@ -1385,6 +1385,47 @@
       "prePregnancyWeight": "Poids avant grossesse",
       "yourActualWeight": "Votre poids réel",
       "recommendedRange": "Plage recommandée"
+    },
+    "weeklyMood": {
+      "title": "Tendance d'humeur hebdo",
+      "aria": "Graphique d'humeur sur 7 jours",
+      "mood": "Humeur",
+      "noEntry": "Aucune entrée",
+      "average": "Moyenne",
+      "entries": "Entrées",
+      "range": "Plage",
+      "trend": {
+        "up": "En hausse",
+        "down": "En baisse",
+        "neutral": "Stable"
+      }
+    },
+    "weeklyHydration": {
+      "title": "Hydratation hebdomadaire",
+      "aria": "Graphique d'hydratation hebdo",
+      "glasses": "Verres",
+      "average": "Moy/jour",
+      "total": "Total",
+      "goalsMet": "Objectifs atteints",
+      "trend": {
+        "up": "En hausse",
+        "down": "En baisse",
+        "neutral": "Stable"
+      }
+    },
+    "weeklyContractions": {
+      "title": "Fréquence des contractions",
+      "aria": "Graphique des contractions",
+      "count": "Nombre",
+      "avg": "moy",
+      "total": "Total",
+      "activeDays": "Jours actifs",
+      "peak": "Pic",
+      "trend": {
+        "up": "En hausse",
+        "down": "En baisse",
+        "neutral": "Stable"
+      }
     }
   },
   "appUpdated": {
