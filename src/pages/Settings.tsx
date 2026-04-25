@@ -4,8 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import { 
   Globe, User, Download, Trash2, 
   ChevronRight, ChevronLeft, Lock, RotateCcw,
-  Bell, Info, Mail, ExternalLink
+  Bell, Info, Mail, ExternalLink, Radar
 } from 'lucide-react';
+import { SonarIntegrationSettings } from '@/components/settings/SonarIntegrationSettings';
 import { useAIUsage } from '@/contexts/AIUsageContext';
 import { toast } from 'sonner';
 import { DataBackupManager } from '@/components/settings/DataBackupManager';
@@ -22,7 +23,7 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
-type SettingsView = 'main' | 'profile' | 'language' | 'security' | 'backup' | 'delete' | 'notifications';
+type SettingsView = 'main' | 'profile' | 'language' | 'security' | 'backup' | 'delete' | 'notifications' | 'sonar';
 
 const APP_VERSION = '1.0.16';
 
@@ -66,6 +67,19 @@ const Settings: React.FC = () => {
       ],
     },
     {
+      title: t('settings.aiSection', 'AI Tools'),
+      items: [
+        {
+          id: 'sonar' as SettingsView,
+          icon: Radar,
+          label: t('settings.sonar.title'),
+          desc: t('settings.sonar.subtitle'),
+          iconColor: 'text-primary',
+          iconBg: 'bg-primary/10',
+        },
+      ],
+    },
+    {
       title: t('settings.dataSection', 'Data & Privacy'),
       items: [
         {
@@ -96,6 +110,7 @@ const Settings: React.FC = () => {
       case 'backup': return <DataBackupManager compact />;
       case 'delete': return <AccountDeletion compact />;
       case 'notifications': return <NotificationSettings />;
+      case 'sonar': return <SonarIntegrationSettings compact />;
       default: return null;
     }
   };
