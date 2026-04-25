@@ -1,4 +1,6 @@
 import { memo } from "react";
+import { useTranslation } from "react-i18next";
+import { Sparkles } from "lucide-react";
 import { TodayStoryHero } from "@/components/dashboard/TodayStoryHero";
 import { RiskAlertCard } from "@/components/dashboard/RiskAlertCard";
 import { DailyPriorities } from "@/components/dashboard/DailyPriorities";
@@ -8,21 +10,42 @@ import { DailyHealthChallengeCard } from "@/components/dashboard/DailyHealthChal
 import { BabySizeCard } from "@/components/dashboard/BabySizeCard";
 import { BirthCountdownCard } from "@/components/dashboard/BirthCountdownCard";
 import { UnifiedToolsGrid } from "@/components/dashboard/UnifiedToolsGrid";
+import { EmptyStateCard } from "@/components/dashboard/EmptyStateCard";
 import { useDashboardData } from "@/hooks/useDashboardData";
 
 /**
  * "Today" tab — primary daily focus.
  * Order is dynamic based on time of day (morning/afternoon/evening).
+ * Cards self-hide when their underlying data is empty.
  */
 export const TodayTab = memo(function TodayTab() {
-  const { profile, stats, bloodPressure, timeSlot, isPregnant } = useDashboardData();
+  const { t } = useTranslation();
+  const { profile, stats, bloodPressure, timeSlot, isPregnant, dataCheck } = useDashboardData();
 
-  // Time-based card ordering (after the persistent Hero + Risk + Priorities)
-  const morningOrder = [<NutritionTipCard key="nut" />, <HydrationTracker key="hyd" />, <BabySizeCard key="baby" />];
-  const afternoonOrder = [<HydrationTracker key="hyd" />, <NutritionTipCard key="nut" />, <BabySizeCard key="baby" />];
-  const eveningOrder = [<DailyHealthChallengeCard key="ch" />, <NutritionTipCard key="nut" />, <BabySizeCard key="baby" />];
+  // Time-based card ordering — only mount cards that are relevant
+  const morningOrder = [
+    <NutritionTipCard key="nut" />,
+    <HydrationTracker key="hyd" />,
+    isPregnant && profile.pregnancyWeek >= 4 ? <BabySizeCard key="baby" /> : null,
+  ].filter(Boolean);
+
+  const afternoonOrder = [
+    <HydrationTracker key="hyd" />,
+    <NutritionTipCard key="nut" />,
+    isPregnant && profile.pregnancyWeek >= 4 ? <BabySizeCard key="baby" /> : null,
+  ].filter(Boolean);
+
+  const eveningOrder = [
+    <DailyHealthChallengeCard key="ch" />,
+    <NutritionTipCard key="nut" />,
+    isPregnant && profile.pregnancyWeek >= 4 ? <BabySizeCard key="baby" /> : null,
+  ].filter(Boolean);
+
   const dynamicCards =
     timeSlot === "morning" ? morningOrder : timeSlot === "afternoon" ? afternoonOrder : eveningOrder;
+
+  // Smart empty state: brand-new user with no profile and no data
+  const isBrandNew = !isPregnant && !dataCheck.hasAnyData;
 
   return (
     <div className="space-y-4 pb-6">
@@ -42,6 +65,17 @@ export const TodayTab = memo(function TodayTab() {
       />
 
       <UnifiedToolsGrid />
+
+      {/* Brand-new user nudge */}
+      {isBrandNew && (
+        <EmptyStateCard
+          icon={Sparkles}
+          title={t("dashboardV2.todayEmpty.title")}
+          description={t("dashboardV2.todayEmpty.desc")}
+          ctaLabel={t("dashboardV2.todayEmpty.cta")}
+          ctaHref="/discover"
+        />
+      )}
 
       {/* Time-based section */}
       <div className="space-y-4">
