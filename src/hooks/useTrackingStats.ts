@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { getUserId } from '@/hooks/useSupabase';
+import { subscribeToData } from '@/lib/dataBus';
 
 interface CategoryStats {
   dailyTracking: {
@@ -45,9 +46,13 @@ export const useTrackingStats = () => {
       const today = new Date().toISOString().split('T')[0];
 
       // Daily Tracking Stats
-      const kickSessions = JSON.parse(localStorage.getItem(`kick_sessions_${userId}`) || '[]');
-      const todaySessions = kickSessions.filter((s: any) => s.started_at?.startsWith(today));
-      const todayKicks = todaySessions.reduce((sum: number, s: any) => sum + (s.total_kicks || 0), 0);
+      // Kick sessions: support all known writers (canonical + legacy + per-user)
+      const kickCanonical = JSON.parse(localStorage.getItem('kick_sessions') || '[]');
+      const kickPerUser = JSON.parse(localStorage.getItem(`kick_sessions_${userId}`) || '[]');
+      const kickLegacy = JSON.parse(localStorage.getItem('kick_sessions_data') || '[]');
+      const kickSessions = (kickCanonical.length ? kickCanonical : kickPerUser.length ? kickPerUser : kickLegacy) as any[];
+      const todaySessions = kickSessions.filter((s: any) => (s.started_at || s.startedAt || s.date)?.toString().startsWith(today));
+      const todayKicks = todaySessions.reduce((sum: number, s: any) => sum + (s.total_kicks || s.kicks?.length || 0), 0);
 
       // Weight: read from weight_gain_entries (what the analyzer saves) + profile fallback
       const weightEntries = JSON.parse(localStorage.getItem('weight_gain_entries') || '[]');
