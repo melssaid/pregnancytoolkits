@@ -161,33 +161,42 @@ const SmartDashboard = () => {
       />
 
       <main dir={isRTL ? "rtl" : "ltr"} className={`relative pb-24 bg-gradient-to-b ${trimesterTheme.gradient}`}>
-        {/* Decorative rose — larger, centered, slightly lower */}
+        {/* Time-aware decorative emblem — replaces side rose. Smaller, glass-pill,
+            shifts icon (sunrise/sun/moon) and accent gradient with the hour. */}
         <div
-          className="pointer-events-none absolute top-6 sm:top-8 left-1/2 -translate-x-1/2 z-0 flex"
+          className="pointer-events-none absolute top-5 sm:top-7 right-3 sm:right-5 z-0"
           dir="ltr"
           aria-hidden="true"
         >
-          <motion.img
-            src={roseLeft}
-            alt=""
-            width={88}
-            height={88}
-            style={{ y: roseLeftY, opacity: roseOpacity, scale: roseLeftScale }}
-            initial={{ y: -20, opacity: 0, rotate: -20, scale: 0.5 }}
-            animate={{
-              y: [0, -5, 0],
-              opacity: 0.85,
-              rotate: [-10, -4, -10],
-              scale: [1, 1.06, 1],
-            }}
+          <motion.div
+            style={{ y: emblemY, opacity: emblemOpacity, scale: emblemScale }}
+            initial={{ opacity: 0, scale: 0.6, rotate: -8 }}
+            animate={{ opacity: 0.9, scale: 1, rotate: [0, 4, 0] }}
             transition={{
-              y: { duration: 3.5, repeat: Infinity, ease: "easeInOut" },
-              rotate: { duration: 5, repeat: Infinity, ease: "easeInOut" },
-              scale: { duration: 4, repeat: Infinity, ease: "easeInOut" },
-              opacity: { duration: 0.8, ease: "easeOut" },
+              opacity: { duration: 0.7, ease: "easeOut" },
+              scale: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+              rotate: { duration: 6, repeat: Infinity, ease: "easeInOut" },
             }}
-            className="drop-shadow-md"
-          />
+            className={`relative h-12 w-12 sm:h-14 sm:w-14 rounded-2xl
+                        bg-gradient-to-br ${emblemTone.from} ${emblemTone.to}
+                        backdrop-blur-md
+                        border border-white/40 dark:border-white/10
+                        shadow-lg ${emblemTone.ring}
+                        flex items-center justify-center`}
+          >
+            {/* Soft inner highlight */}
+            <span className="absolute inset-0 rounded-2xl bg-gradient-to-b from-white/40 to-transparent dark:from-white/10" />
+            <TimeEmblem
+              className={`relative h-5 w-5 sm:h-6 sm:w-6 ${emblemTone.icon}`}
+              strokeWidth={2.2}
+            />
+            {/* Subtle shimmer dot */}
+            <motion.span
+              className="absolute -top-1 -right-1 h-2 w-2 rounded-full bg-white/90 shadow"
+              animate={{ opacity: [0.5, 1, 0.5], scale: [0.85, 1.1, 0.85] }}
+              transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+            />
+          </motion.div>
         </div>
 
         {/* Premium page header — title only, no eyebrow */}
