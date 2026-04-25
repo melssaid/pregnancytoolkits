@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Baby, Heart, Sparkles, Star } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface ProgressIndicatorProps {
   currentWeek: number;
@@ -22,6 +23,7 @@ export function ProgressIndicator({
   showMilestones = true 
 }: ProgressIndicatorProps) {
   const { t } = useTranslation();
+  const { isRTL } = useLanguage();
   const progress = Math.min((currentWeek / totalWeeks) * 100, 100);
   const daysRemaining = Math.max((totalWeeks - currentWeek) * 7, 0);
 
@@ -36,10 +38,15 @@ export function ProgressIndicator({
         
         <div className="h-4 bg-secondary/50 rounded-full overflow-hidden relative">
           <motion.div
+            key={`pi-fill-${isRTL ? 'rtl' : 'ltr'}`}
             initial={{ width: 0 }}
             animate={{ width: `${progress}%` }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="h-full bg-gradient-to-r from-primary via-pink-400 to-rose-400 rounded-full relative"
+            className="h-full bg-gradient-to-r from-primary via-pink-400 to-rose-400 rounded-full absolute top-0"
+            style={{
+              left: isRTL ? 'auto' : 0,
+              right: isRTL ? 0 : 'auto',
+            }}
           >
             {/* Shimmer Effect */}
             <motion.div
@@ -51,10 +58,18 @@ export function ProgressIndicator({
 
           {/* Baby Icon at Progress Point */}
           <motion.div
+            key={`pi-thumb-${isRTL ? 'rtl' : 'ltr'}`}
             initial={{ scale: 0 }}
-            animate={{ scale: 1, left: `${Math.min(progress, 95)}%` }}
+            animate={
+              isRTL
+                ? { scale: 1, right: `${Math.min(progress, 95)}%` }
+                : { scale: 1, left: `${Math.min(progress, 95)}%` }
+            }
             transition={{ delay: 0.5, type: "spring" }}
-            className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2"
+            className="absolute top-1/2 -translate-y-1/2"
+            style={{
+              transform: `translateY(-50%) translateX(${isRTL ? '50%' : '-50%'})`,
+            }}
           >
             <div className="p-1 bg-white rounded-full shadow-lg border-2 border-primary">
               <Baby className="h-4 w-4 text-primary" />
