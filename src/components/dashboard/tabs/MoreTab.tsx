@@ -9,6 +9,7 @@ import { ContractionSummaryCard } from "@/components/dashboard/ContractionSummar
 import { UsageStatsNudge } from "@/components/dashboard/UsageStatsNudge";
 import { AppRatingCard } from "@/components/dashboard/AppRatingCard";
 import { DynamicFAQ } from "@/components/DynamicFAQ";
+import { ResetDataButton } from "@/components/ResetDataButton";
 import { useDashboardData } from "@/hooks/useDashboardData";
 
 /**
@@ -48,6 +49,19 @@ export const MoreTab = memo(function MoreTab() {
           </div>
         </Link>
       </motion.div>
+
+      {/* Danger zone: full dashboard reset */}
+      {dataCheck.hasAnyData && (
+        <div className="rounded-2xl border border-destructive/20 bg-destructive/[0.03] p-4 space-y-2">
+          <p className="text-sm font-bold text-foreground">
+            {t("reset.dangerZone", "Danger zone")}
+          </p>
+          <p className="text-xs text-muted-foreground">
+            {t("reset.dangerZoneDesc", "Clear all trackers and saved results. Profile and language settings stay intact.")}
+          </p>
+          <ResetDataButton variant="outline" />
+        </div>
+      )}
     </div>
   );
 });
