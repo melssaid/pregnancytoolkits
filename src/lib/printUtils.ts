@@ -141,12 +141,6 @@ function buildPatientInfoHTML(profile: any, lang: string, isRTL: boolean): strin
   </div>`;
 }
 
-  return `<div class="patient-card">
-    <h3 class="patient-title">${escapeHtml(l.patientInfo)}</h3>
-    <div class="patient-grid">${rows.map(r => `<span class="patient-field">${r}</span>`).join('')}</div>
-  </div>`;
-}
-
 export function buildPrintHTML({ content, title, lang, isRTL, profile, logoDataUrl }: BuildPrintHTMLOptions): string {
   const brand = brandNames[lang] || brandNames.en;
   const patientHTML = buildPatientInfoHTML(profile, lang, isRTL);
