@@ -718,6 +718,9 @@
       "total": "kasılma",
       "avgDuration": "Ort. süre",
       "avgInterval": "Ort. aralık"
+    },
+    "savedResults": {
+      "label": "Kayıtlı YZ sonucu"
     }
   },
   "layout": {
@@ -1477,6 +1480,20 @@
       "peak": "Tepe",
       "trend": {
         "up": "Artıyor",
+        "down": "Azalıyor",
+        "neutral": "Sabit"
+      }
+    },
+    "weeklyKicks": {
+      "title": "Haftalık Bebek Hareketleri",
+      "aria": "Haftalık bebek hareket sıklığı grafiği",
+      "sessions": "oturum",
+      "kicks": "hareket",
+      "total": "Toplam",
+      "activeDays": "Aktif gün",
+      "peak": "Zirve",
+      "trend": {
+        "up": "İyileşiyor",
         "down": "Azalıyor",
         "neutral": "Sabit"
       }

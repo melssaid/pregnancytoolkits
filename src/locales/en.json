@@ -773,6 +773,9 @@
       "total": "contractions",
       "avgDuration": "Avg duration",
       "avgInterval": "Avg interval"
+    },
+    "savedResults": {
+      "label": "AI result saved"
     }
   },
   "layout": {
@@ -1553,6 +1556,20 @@
       "trend": {
         "up": "Rising",
         "down": "Falling",
+        "neutral": "Stable"
+      }
+    },
+    "weeklyKicks": {
+      "title": "Weekly Fetal Movements",
+      "aria": "Weekly fetal movement frequency chart",
+      "sessions": "sessions",
+      "kicks": "movements",
+      "total": "Total",
+      "activeDays": "Active days",
+      "peak": "Peak",
+      "trend": {
+        "up": "Improving",
+        "down": "Declining",
         "neutral": "Stable"
       }
     }
