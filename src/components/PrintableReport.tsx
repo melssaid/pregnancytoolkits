@@ -9,6 +9,8 @@ interface PrintableReportProps {
   children: React.ReactNode;
   title?: string;
   isLoading?: boolean;
+  downloadLabel?: string;
+  downloadHint?: string;
 }
 
 const downloadLabels: Record<string, string> = {
