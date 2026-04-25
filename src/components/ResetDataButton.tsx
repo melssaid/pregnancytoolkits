@@ -60,7 +60,7 @@ export function ResetDataButton({
     }
 
     const snap: ResetSnapshot = clearKeys(keys);
-    haptics.medium();
+    haptic("medium");
     setOpen(false);
 
     toast.success(
