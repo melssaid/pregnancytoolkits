@@ -129,7 +129,7 @@ const SmartDashboard = () => {
           </motion.div>
         </header>
 
-        <Tabs value={activeTab} onValueChange={handleTabChange} className="relative z-10">
+        <Tabs value={activeTab} onValueChange={handleTabChange} dir={isRTL ? "rtl" : "ltr"} className="relative z-10">
           {/* Sticky tab bar — pro Apple-style */}
           <TabsList
             className="sticky top-[3.25rem] sm:top-[4rem] z-30 grid h-auto w-full
