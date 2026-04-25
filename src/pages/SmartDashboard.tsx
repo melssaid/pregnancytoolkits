@@ -8,10 +8,9 @@ import { useSmartConversionPrompt } from "@/hooks/useSmartConversionPrompt";
 import { useTrimesterTheme } from "@/hooks/useTrimesterTheme";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Sun, BarChart3, Calendar, LayoutGrid } from "lucide-react";
+import { Sun, BarChart3, Calendar, LayoutGrid, Sunrise, Moon, Sparkles } from "lucide-react";
 import { haptic } from "@/lib/haptics";
 import { subscribeToData, STORAGE_KEYS } from "@/lib/dataBus";
-import roseLeft from "@/assets/rose-left.png";
 
 // Maps a canonical storage key to the i18n key used in the toast title.
 // Anything unmapped falls back to a generic "dashboard updated" message.
