@@ -12,7 +12,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "validate:locales": "npx tsx scripts/validate-locales.ts",
-    "prelaunch": "npm run validate:locales && vitest run src/services/smartEngine"
+    "prelaunch": "npm run validate:locales && npm run validate:cards && vitest run src/services/smartEngine",
+    "validate:cards": "node scripts/validate-card-locales.mjs"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",

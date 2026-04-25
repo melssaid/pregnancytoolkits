@@ -760,6 +760,9 @@
       "grocery": "قائمة التسوق",
       "hospitalBag": "حقيبة المستشفى",
       "birthPlan": "خطة الولادة"
+    },
+    "weeklySymptoms": {
+      "title": "أعراض هذا الأسبوع"
     }
   },
   "layout": {

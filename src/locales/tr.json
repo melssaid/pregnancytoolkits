@@ -705,6 +705,9 @@
       "grocery": "Market listesi",
       "hospitalBag": "Hastane cantasi",
       "birthPlan": "Dogum plani"
+    },
+    "weeklySymptoms": {
+      "title": "Bu haftanın belirtileri"
     }
   },
   "layout": {
@@ -8730,10 +8733,10 @@
   },
   "babySize": {
     "title": "Baby's Size This Week",
-    "weekLabel": "Week {{week}}",
+    "weekLabel": "{{week}}. hafta",
     "weight": "Weight",
     "length": "Length",
-    "sinceLastWeek": "since last week"
+    "sinceLastWeek": "geçen haftadan beri"
   },
   "weeklyComparison": {
     "title": "Weekly Comparison",
@@ -8745,7 +8748,7 @@
   },
   "milestones": {
     "title": "Pregnancy Milestones",
-    "week": "Week {{week}}",
+    "week": "{{week}}. hafta",
     "now": "You are here",
     "heartbeat": "First heartbeat",
     "firstTrimesterEnd": "End of first trimester",
@@ -8756,7 +8759,7 @@
     "babyPosition": "Baby gets into position",
     "fullTerm": "Full term",
     "dueDate": "Expected due date",
-    "weeksLeft": "{{count}}w"
+    "weeksLeft": "{{count}} hafta"
   },
   "contextSymptoms": {
     "title": "Expected Symptoms This Week",
@@ -8956,7 +8959,7 @@
   },
   "medicalSummary": {
     "title": "Your Medical Summary",
-    "currentWeek": "Current Week",
+    "currentWeek": "Mevcut hafta",
     "weight": "Current Weight",
     "weightEntries": "Weight Records",
     "totalKickSessions": "Kick Monitoring Sessions",
