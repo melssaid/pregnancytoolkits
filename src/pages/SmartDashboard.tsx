@@ -109,12 +109,34 @@ const SmartDashboard = () => {
           />
         </div>
 
+        {/* Premium page header */}
+        <header className="container relative z-10 px-3 sm:px-4 pt-5 pb-3">
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+            className="flex items-center justify-between gap-3"
+          >
+            <div className="min-w-0">
+              <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-primary/70">
+                {isAr ? "لوحة التحكم" : "Dashboard"}
+              </p>
+              <h1 className="mt-0.5 text-2xl sm:text-3xl font-black leading-tight tracking-tight text-foreground">
+                {isAr ? "رحلتكِ اليوم" : "Your Journey"}
+              </h1>
+            </div>
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/15 to-primary/5 border border-primary/20 shadow-sm">
+              <Sun className="h-5 w-5 text-primary" strokeWidth={2.2} />
+            </div>
+          </motion.div>
+        </header>
+
         <Tabs value={activeTab} onValueChange={handleTabChange} className="relative z-10">
           {/* Sticky tab bar — pro Apple-style */}
           <TabsList
-            className="sticky top-[3.5rem] sm:top-[4.5rem] z-30 grid h-auto w-full
+            className="sticky top-[3.25rem] sm:top-[4rem] z-30 grid h-auto w-full
                        grid-cols-4 gap-0 rounded-none border-b border-border/40
-                       bg-background/92 p-0 backdrop-blur-xl shadow-sm"
+                       bg-background/92 p-0 backdrop-blur-xl shadow-[0_4px_12px_-6px_hsl(var(--primary)/0.12)]"
             aria-label={isAr ? "أقسام لوحة التحكم" : "Dashboard sections"}
           >
             {tabs.map((tab) => {
@@ -124,13 +146,13 @@ const SmartDashboard = () => {
                 <TabsTrigger
                   key={tab.key}
                   value={tab.key}
-                  className="relative flex h-14 flex-col items-center justify-center gap-0.5 rounded-none border-0 bg-transparent
+                  className="relative flex h-12 sm:h-14 flex-col items-center justify-center gap-0.5 rounded-none border-0 bg-transparent
                              text-[10px] font-bold transition-colors
                              data-[state=active]:bg-transparent data-[state=active]:text-primary data-[state=active]:shadow-none
                              data-[state=inactive]:text-muted-foreground"
                 >
-                  <Icon className={`h-[18px] w-[18px] transition-transform ${isActive ? "scale-110" : ""}`} strokeWidth={isActive ? 2.4 : 2} />
-                  <span className="leading-none mt-0.5">{isAr ? tab.labelAr : tab.labelEn}</span>
+                  <Icon className={`h-[17px] w-[17px] sm:h-[18px] sm:w-[18px] transition-transform ${isActive ? "scale-110" : ""}`} strokeWidth={isActive ? 2.4 : 2} />
+                  <span className="leading-none mt-0.5 text-[9px] sm:text-[10px]">{isAr ? tab.labelAr : tab.labelEn}</span>
                   {isActive && (
                     <motion.span
                       layoutId="dashboard-tab-indicator"
