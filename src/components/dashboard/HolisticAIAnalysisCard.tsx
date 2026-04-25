@@ -274,7 +274,7 @@ export const HolisticAIAnalysisCard = memo(function HolisticAIAnalysisCard() {
           </motion.button>
         )}
 
-        <MiniUsageBar toolType="holistic-dashboard" section="pregnancy-plan" />
+        <MiniUsageBar toolType="holistic-dashboard" section="pregnancy-plan" hideHint />
 
         {/* Error */}
         {error && (

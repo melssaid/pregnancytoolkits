@@ -24,10 +24,11 @@ interface MiniUsageBarProps {
   toolType?: AIToolType;
   section?: SmartSection;
   className?: string;
+  hideHint?: boolean;
 }
 
 /** Reusable usage bar with cost hints — for tools that don't use AIActionButton */
-export const MiniUsageBar: React.FC<MiniUsageBarProps> = ({ toolType, section, className = '' }) => {
+export const MiniUsageBar: React.FC<MiniUsageBarProps> = ({ toolType, section, className = '', hideHint = false }) => {
   const { remaining, used, limit, isLimitReached, tier } = useAIUsage();
   const navigate = useNavigate();
   const { i18n } = useTranslation();
@@ -72,9 +73,11 @@ export const MiniUsageBar: React.FC<MiniUsageBarProps> = ({ toolType, section, c
       </div>
 
       {/* Explanation text */}
-      <p className="text-[10px] text-muted-foreground/80 text-center font-medium px-1">
-        {weight === 2 ? labels.costHint2 : weight === 0.5 ? labels.costHint05 : weight === 0 ? labels.costHint0 : labels.explanation}
-      </p>
+      {!hideHint && (
+        <p className="text-[10px] text-muted-foreground/80 text-center font-medium px-1">
+          {weight === 2 ? labels.costHint2 : weight === 0.5 ? labels.costHint05 : weight === 0 ? labels.costHint0 : labels.explanation}
+        </p>
+      )}
 
       {/* Near-limit nudge */}
       {isFree && isNearLimit && !isLimitReached && (
