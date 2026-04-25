@@ -52,12 +52,10 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
     return () => window.removeEventListener("storage", onStorage);
   }, [today]);
 
-  // Time-based greeting (translated via i18n in 7 languages)
+  // Time-based wellness tip (translated via i18n in 7 languages) — greeting label removed per design
   const greeting = useMemo(() => {
     const slot = timeSlot;
     return {
-      icon: slot === "morning" ? Sun : slot === "afternoon" ? Coffee : Moon,
-      title: t(`dashboardV2.greeting.${slot}`),
       tip: t(`dashboardV2.greeting.${slot}Tip`),
     };
   }, [timeSlot, t]);
