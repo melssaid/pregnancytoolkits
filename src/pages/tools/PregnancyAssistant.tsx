@@ -85,9 +85,10 @@ function useDashboardContext() {
 export default function PregnancyAssistant() {
   const { t } = useTranslation();
   const dashboardContext = useDashboardContext();
+  const [liveSearch, setLiveSearch] = useState(false);
   const { sendChat, isLoading, error } = useSmartChat({
     section: "pregnancy-plan",
-    toolType: "pregnancy-assistant",
+    toolType: liveSearch ? "live-search" : "pregnancy-assistant",
   });
 
   const [messages, setMessages] = useState<Message[]>([]);
