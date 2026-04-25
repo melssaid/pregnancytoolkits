@@ -10,6 +10,7 @@ import { MiniUsageBar } from "@/components/ai/MiniUsageBar";
 import { useSmartInsight } from "@/hooks/useSmartInsight";
 import { useAIUsage } from "@/contexts/AIUsageContext";
 import { useHolisticDashboardSnapshot } from "@/hooks/useHolisticDashboardSnapshot";
+import { HolisticTimelineChart } from "@/components/dashboard/HolisticTimelineChart";
 
 /**
  * Premium "Holistic AI Analysis" card — synthesises ALL tracked dashboard
