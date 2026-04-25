@@ -113,19 +113,33 @@ function buildPatientInfoHTML(profile: any, lang: string, isRTL: boolean): strin
   const l = profileLabels[lang] || profileLabels.en;
   const rows: string[] = [];
 
-  const hasRealData = profile?.weight || profile?.height || profile?.bloodType || profile?.dueDate || profile?.lastPeriodDate || profile?.prePregnancyWeight;
-  if (!hasRealData) return '';
+  const name = (profile?.name || profile?.fullName || '').toString().trim();
+  const dob = profile?.dateOfBirth || profile?.birthDate || profile?.dob || null;
+  const age = dob ? computeAge(String(dob)) : null;
+  const patientId = getPatientShortId();
 
-  rows.push(`<strong>${escapeHtml(l.status)}:</strong> ${escapeHtml(profile.isPregnant ? l.pregnant : l.planning)}`);
-  if (profile.isPregnant && profile.lastPeriodDate) rows.push(`<strong>${escapeHtml(l.week)}:</strong> ${escapeHtml(String(profile.pregnancyWeek))}`);
-  if (profile.weight) rows.push(`<strong>${escapeHtml(l.weight)}:</strong> ${escapeHtml(String(profile.weight))} ${escapeHtml(l.kg)}`);
-  if (profile.prePregnancyWeight) rows.push(`<strong>${escapeHtml(l.preWeight)}:</strong> ${escapeHtml(String(profile.prePregnancyWeight))} ${escapeHtml(l.kg)}`);
-  if (profile.height) rows.push(`<strong>${escapeHtml(l.height)}:</strong> ${escapeHtml(String(profile.height))} ${escapeHtml(l.cm)}`);
-  if (profile.bloodType) rows.push(`<strong>${escapeHtml(l.bloodType)}:</strong> ${escapeHtml(String(profile.bloodType))}`);
-  if (profile.dueDate) rows.push(`<strong>${escapeHtml(l.dueDate)}:</strong> ${escapeHtml(new Date(profile.dueDate).toLocaleDateString(getLocaleString(lang, isRTL)))}`);
-  if (profile.lastPeriodDate) rows.push(`<strong>${escapeHtml(l.lmp)}:</strong> ${escapeHtml(new Date(profile.lastPeriodDate).toLocaleDateString(getLocaleString(lang, isRTL)))}`);
+  const hasAnyData = name || age !== null || patientId || profile?.weight || profile?.height || profile?.bloodType || profile?.dueDate || profile?.lastPeriodDate || profile?.prePregnancyWeight;
+  if (!hasAnyData) return '';
+
+  if (name) rows.push(`<strong>${escapeHtml(l.name)}:</strong> ${escapeHtml(name)}`);
+  if (patientId) rows.push(`<strong>${escapeHtml(l.patientId)}:</strong> ${escapeHtml(patientId)}`);
+  if (age !== null) rows.push(`<strong>${escapeHtml(l.age)}:</strong> ${escapeHtml(String(age))} ${escapeHtml(l.years)}`);
+  rows.push(`<strong>${escapeHtml(l.status)}:</strong> ${escapeHtml(profile?.isPregnant ? l.pregnant : l.planning)}`);
+  if (profile?.isPregnant && profile?.lastPeriodDate) rows.push(`<strong>${escapeHtml(l.week)}:</strong> ${escapeHtml(String(profile.pregnancyWeek))}`);
+  if (profile?.lastPeriodDate) rows.push(`<strong>${escapeHtml(l.lmp)}:</strong> ${escapeHtml(new Date(profile.lastPeriodDate).toLocaleDateString(getLocaleString(lang, isRTL)))}`);
+  if (profile?.dueDate) rows.push(`<strong>${escapeHtml(l.dueDate)}:</strong> ${escapeHtml(new Date(profile.dueDate).toLocaleDateString(getLocaleString(lang, isRTL)))}`);
+  if (profile?.weight) rows.push(`<strong>${escapeHtml(l.weight)}:</strong> ${escapeHtml(String(profile.weight))} ${escapeHtml(l.kg)}`);
+  if (profile?.prePregnancyWeight) rows.push(`<strong>${escapeHtml(l.preWeight)}:</strong> ${escapeHtml(String(profile.prePregnancyWeight))} ${escapeHtml(l.kg)}`);
+  if (profile?.height) rows.push(`<strong>${escapeHtml(l.height)}:</strong> ${escapeHtml(String(profile.height))} ${escapeHtml(l.cm)}`);
+  if (profile?.bloodType) rows.push(`<strong>${escapeHtml(l.bloodType)}:</strong> ${escapeHtml(String(profile.bloodType))}`);
 
   if (rows.length <= 1) return '';
+
+  return `<div class="patient-card">
+    <h3 class="patient-title">${escapeHtml(l.patientInfo)}</h3>
+    <div class="patient-grid">${rows.map(r => `<span class="patient-field">${r}</span>`).join('')}</div>
+  </div>`;
+}
 
   return `<div class="patient-card">
     <h3 class="patient-title">${escapeHtml(l.patientInfo)}</h3>
