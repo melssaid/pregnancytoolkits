@@ -42,6 +42,7 @@ const VALID_TYPES: AIType[] = [
   "hospital-bag", "birth-position", "partner-guide", "lactation-prep",
   "nausea-relief", "skincare-advice", "birth-plan", "mental-health", "pregnancy-plan", "baby-growth-analysis",
   "weight-analysis", "contraction-analysis", "craving-alternatives",
+  "live-search",
 ];
 
 // ── Validation constants ──
