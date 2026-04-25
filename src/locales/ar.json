@@ -9326,6 +9326,24 @@
         "ultrasoundCount": "{{count}} صور",
         "weekTag": "أسبوع {{week}}"
       }
+    },
+    "sonarHistory": {
+      "title": "تاريخ واتجاهات سونار",
+      "subtitle": "{{count}} تحليل خلال آخر {{days}} يوماً.",
+      "empty": "شغّلي تحليلك الشامل الأول أعلاه لبدء بناء سجل سونار.",
+      "engagementOverRuns": "التفاعل عبر التحليلات",
+      "avgShort": "المتوسط {{value}}٪",
+      "lastRunShort": "آخر تحليل",
+      "runs": "{{count}} تحليلات",
+      "weekShort": "أسبوع {{week}}",
+      "recentRuns": "آخر التحليلات",
+      "manageSources": "إدارة المصادر",
+      "stats": {
+        "positiveSignals": "إشارات إيجابية",
+        "watchOuts": "نقاط للانتباه",
+        "engagement": "تفاعل التتبع",
+        "pointsSpent": "النقاط المستهلكة"
+      }
     }
   },
   "reset": {
