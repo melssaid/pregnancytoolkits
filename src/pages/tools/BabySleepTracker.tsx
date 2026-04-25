@@ -15,6 +15,7 @@ import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { AIResponseFrame } from "@/components/ai/AIResponseFrame";
 import { PrintableReport } from "@/components/PrintableReport";
 import { Progress } from "@/components/ui/progress";
+import { emitDataChange, STORAGE_KEYS } from "@/lib/dataBus";
 
 interface SleepSession {
   id: string;
@@ -61,6 +62,7 @@ const BabySleepTracker = () => {
   const saveToStorage = (newSessions: SleepSession[], active: SleepSession | null) => {
     const toSave = active ? [...newSessions, active] : newSessions;
     localStorage.setItem(STORAGE_KEY, JSON.stringify(toSave.slice(-100)));
+    emitDataChange(STORAGE_KEYS.BABY_SLEEP);
   };
 
   const startSleep = (type: "nap" | "night") => {

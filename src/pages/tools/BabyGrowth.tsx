@@ -14,6 +14,7 @@ import { toast } from "sonner";
 import { useSmartInsight } from "@/hooks/useSmartInsight";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { AIActionButton } from "@/components/ai/AIActionButton";
+import { emitDataChange, STORAGE_KEYS } from "@/lib/dataBus";
 
 interface GrowthEntry {
   id: string;
@@ -123,6 +124,7 @@ const BabyGrowth = () => {
     const updated = [newEntry, ...entries].sort((a, b) => a.ageMonths - b.ageMonths);
     setEntries(updated);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+    emitDataChange(STORAGE_KEYS.BABY_GROWTH);
 
     setAgeMonths("");
     setWeight("");
@@ -136,6 +138,7 @@ const BabyGrowth = () => {
     const updated = entries.filter((e) => e.id !== id);
     setEntries(updated);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+    emitDataChange(STORAGE_KEYS.BABY_GROWTH);
     toast.success(t('toolsInternal.babyGrowth.deleted'));
   };
 
