@@ -101,8 +101,9 @@ const SmartDashboard = () => {
 
       toast(message, {
         duration: 2000,
-        dir: isRTL ? "rtl" : "ltr",
-        className: "text-sm rounded-2xl",
+        // Sonner reads direction from the document <html dir="…">, which is
+        // already kept in sync with the active language by ToolFrame/Layout.
+        className: `text-sm rounded-2xl ${isRTL ? "text-right" : "text-left"}`,
       });
     }, TRACKED_KEYS);
 
