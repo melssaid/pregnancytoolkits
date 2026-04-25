@@ -1,3 +1,4 @@
+import { readKickSessions } from "@/lib/kickSessionsStore";
 import { useState, useMemo, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
@@ -25,13 +26,10 @@ export interface HealthData {
   conditions: string[];
 }
 
-/** Read latest kick session stats from localStorage */
+/** Read latest kick session stats from the unified canonical store */
 function getLatestKickStats(): { totalKicks: number; lastSessionDate: string | null } {
   try {
-    const userId = localStorage.getItem('pregnancy_user_id') || 'default';
-    const raw = localStorage.getItem(`kick_sessions_${userId}`);
-    if (!raw) return { totalKicks: 0, lastSessionDate: null };
-    const sessions = JSON.parse(raw) as Array<{ total_kicks?: number; ended_at?: string; started_at?: string }>;
+    const sessions = readKickSessions() as Array<{ total_kicks?: number; ended_at?: string; started_at?: string }>;
     const completed = sessions.filter(s => s.ended_at).sort((a, b) =>
       new Date(b.ended_at!).getTime() - new Date(a.ended_at!).getTime()
     );

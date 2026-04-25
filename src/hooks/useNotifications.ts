@@ -1,3 +1,4 @@
+import { readKickSessions } from "@/lib/kickSessionsStore";
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { differenceInDays, addDays, format } from 'date-fns';
 import { safeParseLocalStorage, safeSaveToLocalStorage } from '@/lib/safeStorage';
@@ -143,9 +144,7 @@ export const hasCycleData = (): boolean => {
 
 export const hasKickData = (): boolean => {
   try {
-    const userId = localStorage.getItem('pregnancy_user_id') || 'default';
-    const data = localStorage.getItem(`kick_sessions_${userId}`);
-    return data ? JSON.parse(data).length > 0 : false;
+    return readKickSessions().length > 0;
   } catch { return false; }
 };
 

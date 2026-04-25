@@ -1,3 +1,4 @@
+import { readKickSessions } from "@/lib/kickSessionsStore";
 import { useEffect, useState } from "react";
 import { safeParseLocalStorage } from "@/lib/safeStorage";
 import { subscribeToData, STORAGE_KEYS } from "@/lib/dataBus";
@@ -35,11 +36,8 @@ function compute(): DashboardDataCheck {
   const waterLogs = safeParseLocalStorage<any[]>(STORAGE_KEYS.WATER_LOGS(userId), []);
   const vitaminLogsObj = safeParseLocalStorage<Record<string, any>>(STORAGE_KEYS.VITAMIN_LOGS, {});
   const appointments = safeParseLocalStorage<any[]>(STORAGE_KEYS.APPOINTMENTS, []);
-  // Kick sessions: support legacy keys + canonical (some writers use suffixed keys)
-  const kickCanonical = safeParseLocalStorage<any[]>(STORAGE_KEYS.KICK_SESSIONS, []);
-  const kickPerUser = safeParseLocalStorage<any[]>(`kick_sessions_${userId}`, []);
-  const kickLegacy = safeParseLocalStorage<any[]>("kick_sessions_data", []);
-  const kickSessions = kickCanonical.length ? kickCanonical : kickPerUser.length ? kickPerUser : kickLegacy;
+  // Kick sessions — unified canonical store (auto-migrates legacy keys on read)
+  const kickSessions = readKickSessions();
   const bumpPhotos = safeParseLocalStorage<any[]>(STORAGE_KEYS.BUMP_PHOTOS(userId), []);
 
   const hasMoodData = symptoms.some((l) => (l?.mood ?? 0) > 0);

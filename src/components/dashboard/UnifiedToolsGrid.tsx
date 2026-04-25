@@ -1,3 +1,4 @@
+import { readKickSessions } from "@/lib/kickSessionsStore";
 import { memo, useMemo } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
@@ -41,7 +42,7 @@ export const UnifiedToolsGrid = memo(function UnifiedToolsGrid() {
 
   const tools = useMemo<ToolItem[]>(() => {
     const uid = getUserId();
-    const kicks = uid ? safeArr(`kick_sessions_${uid}`).filter((k: any) => k.ended_at) : [];
+    const kicks = readKickSessions().filter((k: any) => k.ended_at);
     const vits = uid ? safeArr(`vitamin_logs_${uid}`) : [];
     const contractions = safeArr("contraction_timer_data");
     const weights = safeArr("weight_gain_entries");

@@ -1,3 +1,4 @@
+import { readKickSessions } from "@/lib/kickSessionsStore";
 import { useState, useCallback } from "react";
 import { Download, Loader2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -188,7 +189,7 @@ export function MedicalSummaryCard() {
   // Read all data sources
   const weightEntries = JSON.parse(localStorage.getItem("weight_gain_entries") || "[]");
   const symptomLogs = JSON.parse(localStorage.getItem("symptom_logs") || "[]");
-  const kickSessions = JSON.parse(localStorage.getItem(`kick_sessions_${userId}`) || "[]");
+  const kickSessions = readKickSessions();
   const vitaminLogsRaw = localStorage.getItem("vitamin-tracker-logs");
   const waterLogs = JSON.parse(localStorage.getItem(`water_logs_${userId}`) || "[]");
   const appointments = JSON.parse(localStorage.getItem("appointments") || "[]").filter((a: any) => a.user_id === userId);

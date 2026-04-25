@@ -1,3 +1,4 @@
+import { readKickSessions } from "@/lib/kickSessionsStore";
 import { useState, useEffect, useCallback } from 'react';
 import { getUserId } from '@/hooks/useSupabase';
 import { subscribeToData } from '@/lib/dataBus';
@@ -46,11 +47,8 @@ export const useTrackingStats = () => {
       const today = new Date().toISOString().split('T')[0];
 
       // Daily Tracking Stats
-      // Kick sessions: support all known writers (canonical + legacy + per-user)
-      const kickCanonical = JSON.parse(localStorage.getItem('kick_sessions') || '[]');
-      const kickPerUser = JSON.parse(localStorage.getItem(`kick_sessions_${userId}`) || '[]');
-      const kickLegacy = JSON.parse(localStorage.getItem('kick_sessions_data') || '[]');
-      const kickSessions = (kickCanonical.length ? kickCanonical : kickPerUser.length ? kickPerUser : kickLegacy) as any[];
+      // Kick sessions — unified canonical store (auto-migrates legacy keys on read)
+      const kickSessions = readKickSessions() as any[];
       const todaySessions = kickSessions.filter((s: any) => (s.started_at || s.startedAt || s.date)?.toString().startsWith(today));
       const todayKicks = todaySessions.reduce((sum: number, s: any) => sum + (s.total_kicks || s.kicks?.length || 0), 0);
 

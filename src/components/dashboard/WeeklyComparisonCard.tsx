@@ -1,3 +1,4 @@
+import { readKickSessions } from "@/lib/kickSessionsStore";
 import { motion } from "framer-motion";
 import { TrendingUp, TrendingDown, Minus } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -28,8 +29,8 @@ export function WeeklyComparisonCard() {
   const waterThisWeek = waterLogs.filter((l: any) => l.date >= weekAgoStr && l.date <= todayStr).reduce((s: number, l: any) => s + (l.glasses || 1), 0);
   const waterLastWeek = waterLogs.filter((l: any) => l.date >= twoWeeksAgoStr && l.date < weekAgoStr).reduce((s: number, l: any) => s + (l.glasses || 1), 0);
 
-  // Kicks
-  const kickSessions = JSON.parse(localStorage.getItem(`kick_sessions_${userId}`) || "[]");
+  // Kicks — unified canonical store
+  const kickSessions = readKickSessions();
   const kicksThisWeek = kickSessions.filter((s: any) => s.started_at >= weekAgoStr).reduce((sum: number, s: any) => sum + (s.total_kicks || 0), 0);
   const kicksLastWeek = kickSessions.filter((s: any) => s.started_at >= twoWeeksAgoStr && s.started_at < weekAgoStr).reduce((sum: number, s: any) => sum + (s.total_kicks || 0), 0);
 

@@ -6,6 +6,11 @@ import { updateDocumentDirection, i18nReady } from "./i18n";
 import i18n from "./i18n";
 import { SettingsProvider } from "@/providers/SettingsProvider";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import { migrateKickSessions } from "@/lib/kickSessionsStore";
+
+// One-shot data migration: collapse legacy kick-session buckets into the canonical key.
+// Idempotent (guarded by a flag in localStorage) and safe to run before render.
+migrateKickSessions();
 
 // Sync: set document direction (instant, no I/O)
 updateDocumentDirection(i18n.language);

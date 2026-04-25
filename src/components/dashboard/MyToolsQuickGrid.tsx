@@ -1,3 +1,4 @@
+import { readKickSessions } from "@/lib/kickSessionsStore";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
@@ -65,7 +66,7 @@ export function MyToolsQuickGrid() {
 
   const items = useMemo<ToolItem[]>(() => {
     const uid = getUserId();
-    const kicks = uid ? safeArr(`kick_sessions_${uid}`).filter((k) => k.ended_at) : [];
+    const kicks = readKickSessions().filter((k: any) => k.ended_at);
     const vits = uid ? safeArr(`vitamin_logs_${uid}`) : [];
     const contractions = safeArr("contraction_timer_data");
     const weights = safeArr("weight_gain_entries");
