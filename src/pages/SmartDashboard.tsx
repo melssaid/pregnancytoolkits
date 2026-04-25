@@ -170,19 +170,19 @@ const SmartDashboard = () => {
             </TabsContent>
 
             <TabsContent value="insights" className="mt-0">
-              <Suspense fallback={<DashboardTabSkeleton />}>
+              <Suspense fallback={<DashboardTabSkeleton tab="insights" />}>
                 <InsightsTab />
               </Suspense>
             </TabsContent>
 
             <TabsContent value="archive" className="mt-0">
-              <Suspense fallback={<DashboardTabSkeleton />}>
+              <Suspense fallback={<DashboardTabSkeleton tab="archive" />}>
                 <ArchiveTab />
               </Suspense>
             </TabsContent>
 
             <TabsContent value="more" className="mt-0">
-              <Suspense fallback={<DashboardTabSkeleton />}>
+              <Suspense fallback={<DashboardTabSkeleton tab="more" />}>
                 <MoreTab />
               </Suspense>
             </TabsContent>
