@@ -704,7 +704,15 @@
       "symptoms": "Diario de bem-estar",
       "grocery": "Lista de compras",
       "hospitalBag": "Mala maternidade",
-      "birthPlan": "Plano de parto"
+      "birthPlan": "Plano de parto",
+      "cycle": "Ciclo",
+      "fertilityAcademy": "Academia de fertilidade",
+      "preconception": "Check-up pré-concepção",
+      "babyGrowth": "Crescimento do bebê",
+      "babySleep": "Sono do bebê",
+      "cryTranslator": "Tradutor de choro",
+      "lactation": "Amamentação",
+      "mentalHealth": "Bem-estar mental"
     },
     "weeklySymptoms": {
       "title": "Sintomas desta semana"
@@ -8642,7 +8650,21 @@
     "seoTitle": "Descubra novas ferramentas",
     "title": "Descubra ferramentas para você",
     "viewAchievements": "Ver minhas conquistas",
-    "weekContext": "Recomendado para a semana {{week}}"
+    "weekContext": "Recomendado para a semana {{week}}",
+    "stage": {
+      "fertility": {
+        "title": "Ferramentas para planejar sua jornada",
+        "context": "Selecionadas para a pré-concepção"
+      },
+      "pregnant": {
+        "title": "Descubra ferramentas para você",
+        "context": "Baseado em ferramentas populares"
+      },
+      "postpartum": {
+        "title": "Ferramentas para você e seu bebê",
+        "context": "Selecionadas para o pós-parto"
+      }
+    }
   },
   "faq": {
     "title": "Perguntas frequentes para sua semana"

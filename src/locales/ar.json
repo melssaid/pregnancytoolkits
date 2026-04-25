@@ -759,7 +759,15 @@
       "symptoms": "يوميات العافية",
       "grocery": "قائمة التسوق",
       "hospitalBag": "حقيبة المستشفى",
-      "birthPlan": "خطة الولادة"
+      "birthPlan": "خطة الولادة",
+      "cycle": "الدورة",
+      "fertilityAcademy": "أكاديمية الخصوبة",
+      "preconception": "فحص ما قبل الحمل",
+      "babyGrowth": "نمو الطفل",
+      "babySleep": "نوم الطفل",
+      "cryTranslator": "ترجمة البكاء",
+      "lactation": "الرضاعة",
+      "mentalHealth": "الصحة النفسية"
     },
     "weeklySymptoms": {
       "title": "أعراض هذا الأسبوع"
@@ -8763,7 +8771,21 @@
     "seoTitle": "اكتشفي أدوات جديدة",
     "title": "اكتشفي الأدوات المناسبة لكِ",
     "viewAchievements": "عرض إنجازاتي",
-    "weekContext": "مقترح للأسبوع {{week}} من رحلتك"
+    "weekContext": "مقترح للأسبوع {{week}} من رحلتك",
+    "stage": {
+      "fertility": {
+        "title": "أدوات للتخطيط لرحلتكِ",
+        "context": "مختارة لمرحلة ما قبل الحمل"
+      },
+      "pregnant": {
+        "title": "اكتشفي الأدوات المناسبة لكِ",
+        "context": "بناءً على الأدوات الأكثر شيوعاً"
+      },
+      "postpartum": {
+        "title": "أدوات لكِ ولطفلكِ",
+        "context": "مختارة لمرحلة ما بعد الولادة"
+      }
+    }
   },
   "faq": {
     "title": "أسئلة شائعة لأسبوعك"
