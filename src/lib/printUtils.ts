@@ -25,6 +25,8 @@ export async function loadLogoBase64(): Promise<string> {
   }
 }
 
+export type PrintOrientation = 'portrait' | 'landscape';
+
 interface BuildPrintHTMLOptions {
   content: string;
   title?: string;
@@ -32,6 +34,7 @@ interface BuildPrintHTMLOptions {
   isRTL: boolean;
   profile: any;
   logoDataUrl?: string;
+  orientation?: PrintOrientation;
 }
 
 const brandNames: Record<string, string> = {
@@ -141,12 +144,13 @@ function buildPatientInfoHTML(profile: any, lang: string, isRTL: boolean): strin
   </div>`;
 }
 
-export function buildPrintHTML({ content, title, lang, isRTL, profile, logoDataUrl }: BuildPrintHTMLOptions): string {
+export function buildPrintHTML({ content, title, lang, isRTL, profile, logoDataUrl, orientation = 'portrait' }: BuildPrintHTMLOptions): string {
   const brand = brandNames[lang] || brandNames.en;
   const patientHTML = buildPatientInfoHTML(profile, lang, isRTL);
   const locale = getLocaleString(lang, isRTL);
   const dateStr = new Date().toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric' });
   const pad = isRTL ? 'right' : 'left';
+  const isLandscape = orientation === 'landscape';
 
   return `<!DOCTYPE html>
 <html dir="${isRTL ? 'rtl' : 'ltr'}" lang="${lang}">
@@ -221,9 +225,15 @@ export function buildPrintHTML({ content, title, lang, isRTL, profile, logoDataU
     /* Force all elements visible (override framer-motion, hidden states, etc.) */
     .print-content * { opacity: 1 !important; transform: none !important; visibility: visible !important; }
 
+    /* Patient grid: wider in landscape */
+    ${isLandscape ? '.patient-grid { grid-template-columns: 1fr 1fr 1fr; }' : ''}
+    /* Images & tables benefit from extra width in landscape */
+    .print-content img { max-width: 100%; height: auto; ${isLandscape ? 'max-height: 140mm;' : 'max-height: 110mm;'} display: block; margin: 10px auto; border-radius: 6px; }
+    .print-content table { font-size: ${isLandscape ? '12.5px' : '13px'}; }
+
     @media print {
-      body { padding: 10mm; }
-      @page { margin: 10mm; size: A4; }
+      body { padding: ${isLandscape ? '8mm 10mm' : '10mm'}; }
+      @page { margin: ${isLandscape ? '8mm' : '10mm'}; size: A4 ${orientation}; }
     }
   </style>
 </head>

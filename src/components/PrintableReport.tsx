@@ -1,9 +1,10 @@
 import React, { useRef, useCallback, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
-import { Download, Loader2 } from 'lucide-react';
+import { Download, Loader2, RectangleVertical, RectangleHorizontal } from 'lucide-react';
 import { useUserProfile } from '@/hooks/useUserProfile';
-import { buildPrintHTML, loadLogoBase64 } from '@/lib/printUtils';
+import { buildPrintHTML, loadLogoBase64, type PrintOrientation } from '@/lib/printUtils';
+import { cn } from '@/lib/utils';
 
 interface PrintableReportProps {
   children: React.ReactNode;
@@ -28,13 +29,25 @@ const downloadHints: Record<string, string> = {
   tr: 'Doktorunuzla paylaşmak için bir kopya kaydedin',
 };
 
+const orientationLabels: Record<string, { portrait: string; landscape: string; layout: string }> = {
+  en: { portrait: 'Portrait', landscape: 'Landscape', layout: 'Layout' },
+  ar: { portrait: 'عمودي', landscape: 'أفقي', layout: 'التخطيط' },
+  de: { portrait: 'Hochformat', landscape: 'Querformat', layout: 'Layout' },
+  fr: { portrait: 'Portrait', landscape: 'Paysage', layout: 'Mise en page' },
+  es: { portrait: 'Vertical', landscape: 'Horizontal', layout: 'Diseño' },
+  pt: { portrait: 'Retrato', landscape: 'Paisagem', layout: 'Layout' },
+  tr: { portrait: 'Dikey', landscape: 'Yatay', layout: 'Düzen' },
+};
+
 export const PrintableReport: React.FC<PrintableReportProps> = ({ children, title, isLoading: contentLoading, downloadLabel, downloadHint }) => {
   const { i18n } = useTranslation();
   const { profile } = useUserProfile();
   const reportRef = useRef<HTMLDivElement>(null);
   const [logoDataUrl, setLogoDataUrl] = useState<string>('');
+  const [orientation, setOrientation] = useState<PrintOrientation>('portrait');
   const lang = i18n.language?.split('-')[0] || 'en';
   const isRTL = lang === 'ar';
+  const oLabels = orientationLabels[lang] || orientationLabels.en;
 
   useEffect(() => {
     loadLogoBase64().then(setLogoDataUrl);
@@ -84,8 +97,8 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
       }
     });
 
-    return buildPrintHTML({ content: tempDiv.innerHTML, title, lang, isRTL, profile, logoDataUrl });
-  }, [lang, isRTL, title, profile, logoDataUrl]);
+    return buildPrintHTML({ content: tempDiv.innerHTML, title, lang, isRTL, profile, logoDataUrl, orientation });
+  }, [lang, isRTL, title, profile, logoDataUrl, orientation]);
 
   const handleDownload = useCallback(() => {
     const fullHTML = buildCleanHTML();
@@ -99,6 +112,36 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
         {children}
       </div>
       <div className="mt-3 space-y-2" data-no-print>
+        {/* Orientation toggle */}
+        <div
+          role="radiogroup"
+          aria-label={oLabels.layout}
+          className="grid grid-cols-2 gap-1 p-1 rounded-xl bg-muted/40 border border-border/40"
+        >
+          {(['portrait', 'landscape'] as const).map(opt => {
+            const active = orientation === opt;
+            const Icon = opt === 'portrait' ? RectangleVertical : RectangleHorizontal;
+            return (
+              <button
+                key={opt}
+                type="button"
+                role="radio"
+                aria-checked={active}
+                onClick={() => setOrientation(opt)}
+                className={cn(
+                  'flex items-center justify-center gap-1.5 py-1.5 px-2 rounded-lg text-xs font-semibold transition-all',
+                  active
+                    ? 'bg-background text-foreground shadow-sm border border-border/60'
+                    : 'text-muted-foreground hover:text-foreground'
+                )}
+              >
+                <Icon className="w-3.5 h-3.5" />
+                {oLabels[opt]}
+              </button>
+            );
+          })}
+        </div>
+
         <Button
           variant="outline"
           onClick={handleDownload}
