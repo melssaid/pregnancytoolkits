@@ -9201,6 +9201,14 @@
           "hydration": "Hydration",
           "symptoms": "Symptoms"
         }
+      },
+      "save": "Save",
+      "saved": "Saved",
+      "savedList": {
+        "title": "Saved Reports",
+        "points": "{{count}} pts",
+        "week": "Wk {{week}}",
+        "delete": "Delete"
       }
     },
     "ultrasound": {

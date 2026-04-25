@@ -1,7 +1,7 @@
 import { memo, useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, Crown, Loader2, ChevronDown, ChevronUp } from "lucide-react";
+import { Sparkles, Crown, Loader2, ChevronDown, ChevronUp, Bookmark, BookmarkCheck } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 import { AIErrorBanner } from "@/components/ai/AIErrorBanner";
@@ -11,6 +11,7 @@ import { useSmartInsight } from "@/hooks/useSmartInsight";
 import { useAIUsage } from "@/contexts/AIUsageContext";
 import { useHolisticDashboardSnapshot } from "@/hooks/useHolisticDashboardSnapshot";
 import { HolisticTimelineChart } from "@/components/dashboard/HolisticTimelineChart";
+import { useSavedResults } from "@/hooks/useSavedResults";
 
 /**
  * Premium "Holistic AI Analysis" card — synthesises ALL tracked dashboard
@@ -27,6 +28,7 @@ export const HolisticAIAnalysisCard = memo(function HolisticAIAnalysisCard() {
     section: "pregnancy-plan",
     toolType: "holistic-dashboard",
   });
+  const { save, isSaved, unsaveByContent } = useSavedResults("holistic-dashboard");
 
   const [hasGenerated, setHasGenerated] = useState(false);
   const [isExpanded, setIsExpanded] = useState(true);
@@ -235,17 +237,51 @@ export const HolisticAIAnalysisCard = memo(function HolisticAIAnalysisCard() {
                 <HolisticTimelineChart />
 
                 {content && (
-                  <button
-                    onClick={() => setIsExpanded((v) => !v)}
-                    className="flex items-center gap-1 text-[11px] text-muted-foreground hover:text-foreground transition-colors mb-2"
-                  >
-                    {isExpanded ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
-                    <span>
-                      {isExpanded
-                        ? t("toolsInternal.aiInsights.clickToCollapse")
-                        : t("toolsInternal.aiInsights.clickToExpand")}
-                    </span>
-                  </button>
+                  <div className="flex items-center justify-between gap-2 mb-2">
+                    <button
+                      onClick={() => setIsExpanded((v) => !v)}
+                      className="flex items-center gap-1 text-[11px] text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                      {isExpanded ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
+                      <span>
+                        {isExpanded
+                          ? t("toolsInternal.aiInsights.clickToCollapse")
+                          : t("toolsInternal.aiInsights.clickToExpand")}
+                      </span>
+                    </button>
+                    {(() => {
+                      const saved = isSaved(content);
+                      return (
+                        <button
+                          onClick={() =>
+                            saved
+                              ? unsaveByContent(content)
+                              : save({
+                                  toolId: "holistic-dashboard",
+                                  title: t("dashboardV2.holistic.title"),
+                                  content,
+                                  meta: {
+                                    pointsCost: 7,
+                                    week: snapshot.profile.pregnancyWeek,
+                                    riskFlags: derivedInsights.riskFlags.length,
+                                    positiveSignals: derivedInsights.positiveSignals.length,
+                                    engagementScore: derivedInsights.engagementScore,
+                                  },
+                                })
+                          }
+                          className="flex items-center gap-1 text-[11px] font-semibold px-2 py-1 rounded-full transition-all"
+                          style={{
+                            background: saved ? "hsl(var(--primary) / 0.12)" : "hsl(0 0% 100% / 0.55)",
+                            color: saved ? "hsl(var(--primary))" : "hsl(var(--foreground) / 0.7)",
+                            border: `1px solid ${saved ? "hsl(var(--primary) / 0.3)" : "hsl(0 0% 0% / 0.08)"}`,
+                          }}
+                        >
+                          {saved ? <BookmarkCheck className="w-3 h-3" /> : <Bookmark className="w-3 h-3" />}
+                          {t(saved ? "dashboardV2.holistic.saved" : "dashboardV2.holistic.save")}
+                        </button>
+                      );
+                    })()}
+                  </div>
                 )}
 
                 {isLoading && !content && (
