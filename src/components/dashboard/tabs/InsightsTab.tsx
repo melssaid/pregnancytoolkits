@@ -3,6 +3,7 @@ import { Sparkles } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { HealthScoreRing } from "@/components/dashboard/HealthScoreRing";
 import { HolisticAIAnalysisCard } from "@/components/dashboard/HolisticAIAnalysisCard";
+import { SavedHolisticReports } from "@/components/dashboard/SavedHolisticReports";
 import { WeeklyComparisonCard } from "@/components/dashboard/WeeklyComparisonCard";
 import { MoodTrendCard } from "@/components/dashboard/MoodTrendCard";
 import { WeeklySymptomsCard } from "@/components/dashboard/WeeklySymptomsCard";
