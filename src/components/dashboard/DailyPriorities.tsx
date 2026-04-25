@@ -96,12 +96,12 @@ export const DailyPriorities = memo(function DailyPriorities({
             }
           };
           return (
-            <Link key={item.id} to={isAnchor ? "#" : item.href} onClick={handleClick}>
+            <Link key={item.id} to={isAnchor ? "#" : item.href} onClick={handleClick} className="block">
               <motion.div
-                initial={{ opacity: 0, x: -6 }}
-                animate={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
                 transition={{ delay: 0.05 * i }}
-                className={`flex items-center gap-2.5 p-2.5 rounded-xl transition-colors ${
+                className={`flex items-center gap-2.5 p-2.5 rounded-xl transition-colors min-w-0 ${
                   item.done ? "bg-primary/5" : "bg-muted/30 hover:bg-muted/50"
                 }`}
               >
@@ -114,11 +114,11 @@ export const DailyPriorities = memo(function DailyPriorities({
                     <Circle className="w-3 h-3 text-muted-foreground/50" />
                   )}
                 </div>
-                <span className={`text-xs font-medium flex-1 whitespace-normal leading-tight ${item.done ? "text-primary" : "text-foreground"}`}>
+                <span className={`text-xs font-semibold flex-1 min-w-0 break-words leading-snug py-0.5 ${item.done ? "text-primary" : "text-foreground"}`}>
                   {t(item.labelKey)}
                 </span>
                 {item.detail && (
-                  <span className="text-[10px] font-semibold text-muted-foreground bg-muted px-1.5 py-0.5 rounded-full">
+                  <span className="text-[10px] font-bold tabular-nums text-muted-foreground bg-muted px-2 py-0.5 rounded-full flex-shrink-0">
                     {item.detail}
                   </span>
                 )}
