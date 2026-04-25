@@ -40,14 +40,34 @@ const brandNames: Record<string, string> = {
 };
 
 const profileLabels: Record<string, Record<string, string>> = {
-  en: { week: 'Pregnancy Week', weight: 'Weight', height: 'Height', preWeight: 'Pre-pregnancy Weight', bloodType: 'Blood Type', dueDate: 'Due Date', lmp: 'Last Period', status: 'Status', pregnant: 'Pregnant', planning: 'Planning', patientInfo: 'Patient Information', kg: 'kg', cm: 'cm' },
-  ar: { week: 'أسبوع الحمل', weight: 'الوزن', height: 'الطول', preWeight: 'الوزن قبل الحمل', bloodType: 'فصيلة الدم', dueDate: 'تاريخ الولادة المتوقع', lmp: 'آخر دورة شهرية', status: 'الحالة', pregnant: 'حامل', planning: 'تخطيط', patientInfo: 'بيانات المريضة', kg: 'كغ', cm: 'سم' },
-  de: { week: 'Schwangerschaftswoche', weight: 'Gewicht', height: 'Größe', preWeight: 'Gewicht vor der Schwangerschaft', bloodType: 'Blutgruppe', dueDate: 'Geburtstermin', lmp: 'Letzte Periode', status: 'Status', pregnant: 'Schwanger', planning: 'Planung', patientInfo: 'Patientendaten', kg: 'kg', cm: 'cm' },
-  fr: { week: 'Semaine de grossesse', weight: 'Poids', height: 'Taille', preWeight: 'Poids avant grossesse', bloodType: 'Groupe sanguin', dueDate: "Date d'accouchement", lmp: 'Dernières règles', status: 'Statut', pregnant: 'Enceinte', planning: 'Planification', patientInfo: 'Informations patiente', kg: 'kg', cm: 'cm' },
-  es: { week: 'Semana de embarazo', weight: 'Peso', height: 'Altura', preWeight: 'Peso pre-embarazo', bloodType: 'Grupo sanguíneo', dueDate: 'Fecha de parto', lmp: 'Última menstruación', status: 'Estado', pregnant: 'Embarazada', planning: 'Planificación', patientInfo: 'Datos de la paciente', kg: 'kg', cm: 'cm' },
-  pt: { week: 'Semana de gestação', weight: 'Peso', height: 'Altura', preWeight: 'Peso pré-gestação', bloodType: 'Tipo sanguíneo', dueDate: 'Data prevista', lmp: 'Última menstruação', status: 'Estado', pregnant: 'Grávida', planning: 'Planejamento', patientInfo: 'Dados da paciente', kg: 'kg', cm: 'cm' },
-  tr: { week: 'Gebelik Haftası', weight: 'Kilo', height: 'Boy', preWeight: 'Gebelik öncesi kilo', bloodType: 'Kan grubu', dueDate: 'Tahmini doğum', lmp: 'Son adet', status: 'Durum', pregnant: 'Hamile', planning: 'Planlama', patientInfo: 'Hasta Bilgileri', kg: 'kg', cm: 'cm' },
+  en: { week: 'Pregnancy Week', weight: 'Weight', height: 'Height', preWeight: 'Pre-pregnancy Weight', bloodType: 'Blood Type', dueDate: 'Due Date', lmp: 'Last Period', status: 'Status', pregnant: 'Pregnant', planning: 'Planning', patientInfo: 'Patient Information', kg: 'kg', cm: 'cm', name: 'Name', age: 'Age', years: 'yrs', patientId: 'Patient ID' },
+  ar: { week: 'أسبوع الحمل', weight: 'الوزن', height: 'الطول', preWeight: 'الوزن قبل الحمل', bloodType: 'فصيلة الدم', dueDate: 'تاريخ الولادة المتوقع', lmp: 'آخر دورة شهرية', status: 'الحالة', pregnant: 'حامل', planning: 'تخطيط', patientInfo: 'بيانات المريضة', kg: 'كغ', cm: 'سم', name: 'الاسم', age: 'العمر', years: 'سنة', patientId: 'رقم المريضة' },
+  de: { week: 'Schwangerschaftswoche', weight: 'Gewicht', height: 'Größe', preWeight: 'Gewicht vor der Schwangerschaft', bloodType: 'Blutgruppe', dueDate: 'Geburtstermin', lmp: 'Letzte Periode', status: 'Status', pregnant: 'Schwanger', planning: 'Planung', patientInfo: 'Patientendaten', kg: 'kg', cm: 'cm', name: 'Name', age: 'Alter', years: 'J.', patientId: 'Patienten-ID' },
+  fr: { week: 'Semaine de grossesse', weight: 'Poids', height: 'Taille', preWeight: 'Poids avant grossesse', bloodType: 'Groupe sanguin', dueDate: "Date d'accouchement", lmp: 'Dernières règles', status: 'Statut', pregnant: 'Enceinte', planning: 'Planification', patientInfo: 'Informations patiente', kg: 'kg', cm: 'cm', name: 'Nom', age: 'Âge', years: 'ans', patientId: 'ID patiente' },
+  es: { week: 'Semana de embarazo', weight: 'Peso', height: 'Altura', preWeight: 'Peso pre-embarazo', bloodType: 'Grupo sanguíneo', dueDate: 'Fecha de parto', lmp: 'Última menstruación', status: 'Estado', pregnant: 'Embarazada', planning: 'Planificación', patientInfo: 'Datos de la paciente', kg: 'kg', cm: 'cm', name: 'Nombre', age: 'Edad', years: 'años', patientId: 'ID paciente' },
+  pt: { week: 'Semana de gestação', weight: 'Peso', height: 'Altura', preWeight: 'Peso pré-gestação', bloodType: 'Tipo sanguíneo', dueDate: 'Data prevista', lmp: 'Última menstruação', status: 'Estado', pregnant: 'Grávida', planning: 'Planejamento', patientInfo: 'Dados da paciente', kg: 'kg', cm: 'cm', name: 'Nome', age: 'Idade', years: 'anos', patientId: 'ID paciente' },
+  tr: { week: 'Gebelik Haftası', weight: 'Kilo', height: 'Boy', preWeight: 'Gebelik öncesi kilo', bloodType: 'Kan grubu', dueDate: 'Tahmini doğum', lmp: 'Son adet', status: 'Durum', pregnant: 'Hamile', planning: 'Planlama', patientInfo: 'Hasta Bilgileri', kg: 'kg', cm: 'cm', name: 'Ad', age: 'Yaş', years: 'yaş', patientId: 'Hasta No' },
 };
+
+function computeAge(dob: string): number | null {
+  try {
+    const d = new Date(dob);
+    if (isNaN(d.getTime())) return null;
+    const now = new Date();
+    let a = now.getFullYear() - d.getFullYear();
+    const m = now.getMonth() - d.getMonth();
+    if (m < 0 || (m === 0 && now.getDate() < d.getDate())) a--;
+    return a > 0 && a < 120 ? a : null;
+  } catch { return null; }
+}
+
+function getPatientShortId(): string {
+  try {
+    const raw = localStorage.getItem('pregnancy_user_id') || '';
+    if (!raw) return '';
+    return raw.replace(/[^a-zA-Z0-9]/g, '').slice(-6).toUpperCase();
+  } catch { return ''; }
+}
 
 const footerMessages: Record<string, string> = {
   en: 'We wish you a safe and healthy pregnancy. For any questions, contact us at',
@@ -93,17 +113,25 @@ function buildPatientInfoHTML(profile: any, lang: string, isRTL: boolean): strin
   const l = profileLabels[lang] || profileLabels.en;
   const rows: string[] = [];
 
-  const hasRealData = profile?.weight || profile?.height || profile?.bloodType || profile?.dueDate || profile?.lastPeriodDate || profile?.prePregnancyWeight;
-  if (!hasRealData) return '';
+  const name = (profile?.name || profile?.fullName || '').toString().trim();
+  const dob = profile?.dateOfBirth || profile?.birthDate || profile?.dob || null;
+  const age = dob ? computeAge(String(dob)) : null;
+  const patientId = getPatientShortId();
 
-  rows.push(`<strong>${escapeHtml(l.status)}:</strong> ${escapeHtml(profile.isPregnant ? l.pregnant : l.planning)}`);
-  if (profile.isPregnant && profile.lastPeriodDate) rows.push(`<strong>${escapeHtml(l.week)}:</strong> ${escapeHtml(String(profile.pregnancyWeek))}`);
-  if (profile.weight) rows.push(`<strong>${escapeHtml(l.weight)}:</strong> ${escapeHtml(String(profile.weight))} ${escapeHtml(l.kg)}`);
-  if (profile.prePregnancyWeight) rows.push(`<strong>${escapeHtml(l.preWeight)}:</strong> ${escapeHtml(String(profile.prePregnancyWeight))} ${escapeHtml(l.kg)}`);
-  if (profile.height) rows.push(`<strong>${escapeHtml(l.height)}:</strong> ${escapeHtml(String(profile.height))} ${escapeHtml(l.cm)}`);
-  if (profile.bloodType) rows.push(`<strong>${escapeHtml(l.bloodType)}:</strong> ${escapeHtml(String(profile.bloodType))}`);
-  if (profile.dueDate) rows.push(`<strong>${escapeHtml(l.dueDate)}:</strong> ${escapeHtml(new Date(profile.dueDate).toLocaleDateString(getLocaleString(lang, isRTL)))}`);
-  if (profile.lastPeriodDate) rows.push(`<strong>${escapeHtml(l.lmp)}:</strong> ${escapeHtml(new Date(profile.lastPeriodDate).toLocaleDateString(getLocaleString(lang, isRTL)))}`);
+  const hasAnyData = name || age !== null || patientId || profile?.weight || profile?.height || profile?.bloodType || profile?.dueDate || profile?.lastPeriodDate || profile?.prePregnancyWeight;
+  if (!hasAnyData) return '';
+
+  if (name) rows.push(`<strong>${escapeHtml(l.name)}:</strong> ${escapeHtml(name)}`);
+  if (patientId) rows.push(`<strong>${escapeHtml(l.patientId)}:</strong> ${escapeHtml(patientId)}`);
+  if (age !== null) rows.push(`<strong>${escapeHtml(l.age)}:</strong> ${escapeHtml(String(age))} ${escapeHtml(l.years)}`);
+  rows.push(`<strong>${escapeHtml(l.status)}:</strong> ${escapeHtml(profile?.isPregnant ? l.pregnant : l.planning)}`);
+  if (profile?.isPregnant && profile?.lastPeriodDate) rows.push(`<strong>${escapeHtml(l.week)}:</strong> ${escapeHtml(String(profile.pregnancyWeek))}`);
+  if (profile?.lastPeriodDate) rows.push(`<strong>${escapeHtml(l.lmp)}:</strong> ${escapeHtml(new Date(profile.lastPeriodDate).toLocaleDateString(getLocaleString(lang, isRTL)))}`);
+  if (profile?.dueDate) rows.push(`<strong>${escapeHtml(l.dueDate)}:</strong> ${escapeHtml(new Date(profile.dueDate).toLocaleDateString(getLocaleString(lang, isRTL)))}`);
+  if (profile?.weight) rows.push(`<strong>${escapeHtml(l.weight)}:</strong> ${escapeHtml(String(profile.weight))} ${escapeHtml(l.kg)}`);
+  if (profile?.prePregnancyWeight) rows.push(`<strong>${escapeHtml(l.preWeight)}:</strong> ${escapeHtml(String(profile.prePregnancyWeight))} ${escapeHtml(l.kg)}`);
+  if (profile?.height) rows.push(`<strong>${escapeHtml(l.height)}:</strong> ${escapeHtml(String(profile.height))} ${escapeHtml(l.cm)}`);
+  if (profile?.bloodType) rows.push(`<strong>${escapeHtml(l.bloodType)}:</strong> ${escapeHtml(String(profile.bloodType))}`);
 
   if (rows.length <= 1) return '';
 
