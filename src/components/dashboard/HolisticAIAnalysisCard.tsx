@@ -12,6 +12,9 @@ import { useAIUsage } from "@/contexts/AIUsageContext";
 import { useHolisticDashboardSnapshot } from "@/hooks/useHolisticDashboardSnapshot";
 import { HolisticTimelineChart } from "@/components/dashboard/HolisticTimelineChart";
 import { useSavedResults } from "@/hooks/useSavedResults";
+import { useSonarSettings } from "@/lib/sonarSettings";
+import { Link } from "react-router-dom";
+import { Settings2 } from "lucide-react";
 
 /**
  * Premium "Holistic AI Analysis" card — synthesises ALL tracked dashboard
@@ -28,7 +31,8 @@ export const HolisticAIAnalysisCard = memo(function HolisticAIAnalysisCard() {
     section: "pregnancy-plan",
     toolType: "holistic-dashboard",
   });
-  const { save, isSaved, unsaveByContent } = useSavedResults("holistic-dashboard");
+  const { save, isSaved, unsaveByContent, results: savedResults } = useSavedResults("holistic-dashboard");
+  const { settings: sonar } = useSonarSettings();
 
   const [hasGenerated, setHasGenerated] = useState(false);
   const [isExpanded, setIsExpanded] = useState(true);
@@ -48,20 +52,65 @@ export const HolisticAIAnalysisCard = memo(function HolisticAIAnalysisCard() {
     clearError();
     setHasGenerated(true);
     setIsExpanded(true);
-    const prompt =
+
+    // Pull optional sources per Sonar settings
+    const lastSavedReport = sonar.includeSavedReport ? savedResults?.[0] : null;
+    const nutritionResults = sonar.includeNutritionCard
+      ? (() => {
+          try {
+            const raw = localStorage.getItem("ai-saved-results");
+            const all = raw ? JSON.parse(raw) : [];
+            return Array.isArray(all)
+              ? all.filter((r: any) => r?.toolId === "ai-meal-suggestion").slice(-2)
+              : [];
+          } catch { return []; }
+        })()
+      : [];
+
+    const sections: string[] = [];
+    sections.push(
       `Below is a pre-computed holistic wellness brief of my dashboard tracking data. ` +
       `It already includes derived trends, averages, risk flags, and positive signals — ` +
       `please ANALYSE and synthesise it (do not just restate the numbers). ` +
-      `Connect related signals where meaningful.\n\n` +
-      `${contextSummary}`;
+      `Connect related signals where meaningful.`,
+    );
+
+    sections.push(`\n### Sonar Scope: ${sonar.scope.toUpperCase()} (window: ${sonar.timelineWindow}d)`);
+
+    if (sonar.scope === "snapshot" || sonar.scope === "both") {
+      sections.push(`\n### Snapshot Brief\n${contextSummary}`);
+    }
+    if (sonar.scope === "timeline" || sonar.scope === "both") {
+      sections.push(
+        `\n### Timeline Reference\n` +
+        `Refer to the user's last ${sonar.timelineWindow}-day trend chart (weight, mood, hydration, symptoms). ` +
+        `Comment on direction/consistency only when meaningful.`,
+      );
+    }
+    if (lastSavedReport?.content) {
+      const excerpt = String(lastSavedReport.content).slice(0, 600).replace(/\s+/g, " ");
+      sections.push(`\n### Previous Saved Report (excerpt)\n${excerpt}`);
+    }
+    if (nutritionResults.length > 0) {
+      const titles = nutritionResults
+        .map((m: any) => m?.title || m?.summary)
+        .filter(Boolean)
+        .join(" • ");
+      if (titles) sections.push(`\n### Recent Nutrition Card\nRecent meal suggestions: ${titles}`);
+    }
+
     await generate({
-      prompt,
+      prompt: sections.join("\n"),
       context: {
         language: lang,
         weekNumber: snapshot.profile.pregnancyWeek,
         riskFlagsCount: derivedInsights.riskFlags.length,
         positiveSignalsCount: derivedInsights.positiveSignals.length,
         engagementScore: derivedInsights.engagementScore,
+        sonarScope: sonar.scope,
+        sonarWindow: sonar.timelineWindow,
+        sonarIncludeSavedReport: sonar.includeSavedReport,
+        sonarIncludeNutrition: sonar.includeNutritionCard,
       },
       skipCache: hasGenerated,
     });
