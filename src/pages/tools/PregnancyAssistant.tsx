@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import {
   Send, Bot, Loader2, Heart, Baby, Coffee, Apple, Stethoscope,
-  Moon, Dumbbell, UtensilsCrossed, SmilePlus, Sparkles, RotateCcw,
+  Moon, Dumbbell, UtensilsCrossed, SmilePlus, Sparkles, RotateCcw, Globe,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
