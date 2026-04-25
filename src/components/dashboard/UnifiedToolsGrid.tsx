@@ -43,6 +43,8 @@ export const UnifiedToolsGrid = memo(function UnifiedToolsGrid() {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.dir() === "rtl";
   const Chevron = isRTL ? ChevronLeft : ChevronRight;
+  const { profile } = useUserProfile();
+  const stage: JourneyStage = profile.journeyStage || "pregnant";
 
   const tools = useMemo<ToolItem[]>(() => {
     const uid = getUserId();
@@ -56,61 +58,119 @@ export const UnifiedToolsGrid = memo(function UnifiedToolsGrid() {
     const groceries = safeArr("pregnancyGroceryList");
     const bag = safeArr("hospital-bag-items");
     const birthPlans = safeArr("birthPlans");
+    const cycles = safeArr("cycle-tracker-data");
+    const sleepLogs = safeArr("baby-sleep-logs");
+    const cryLogs = safeArr("baby-cry-logs");
+    const growthEntries = safeArr("baby-growth-entries");
     const meals = safeArr("ai-saved-results").filter((r: any) => r.toolId === "ai-meal-suggestion");
     const fitness = safeArr("ai-saved-results").filter((r: any) => r.toolId === "ai-fitness-coach");
 
     return [
+      // ── Universal — visible across all stages ────────────────────────────
       { id: "assistant", href: "/tools/pregnancy-assistant", icon: Bot,
         labelKey: "dailyDashboard.quickActions.assistant", labelAr: "المساعدة", labelEn: "Assistant",
-        count: 0, accent: "from-violet-500/12 to-violet-500/[0.04]", iconColor: "text-violet-600 dark:text-violet-400" },
-      { id: "kicks", href: "/tools/kick-counter", icon: Hand,
-        labelKey: "dailyDashboard.quickActions.kicks", labelAr: "حركات الجنين", labelEn: "Movements",
-        count: kicks.length, accent: "from-pink-500/12 to-pink-500/[0.04]", iconColor: "text-pink-600 dark:text-pink-400" },
-      { id: "weight", href: "/tools/weight-gain", icon: Gauge,
-        labelKey: "dailyDashboard.quickActions.weight", labelAr: "الوزن", labelEn: "Weight",
-        count: weights.length, accent: "from-emerald-500/12 to-emerald-500/[0.04]", iconColor: "text-emerald-600 dark:text-emerald-400" },
-      { id: "meals", href: "/tools/ai-meal-suggestion", icon: Utensils,
-        labelKey: "dailyDashboard.quickActions.meals", labelAr: "الوجبات", labelEn: "Meals",
-        count: meals.length, accent: "from-orange-500/12 to-orange-500/[0.04]", iconColor: "text-orange-600 dark:text-orange-400" },
+        count: 0, accent: "from-violet-500/12 to-violet-500/[0.04]", iconColor: "text-violet-600 dark:text-violet-400",
+        stages: ["fertility", "pregnant", "postpartum"] },
       { id: "wellness", href: "/tools/wellness-diary", icon: Heart,
         labelKey: "dailyDashboard.quickActions.symptoms", labelAr: "العافية", labelEn: "Wellness",
-        count: symptoms.length + wellness.length, accent: "from-rose-500/12 to-rose-500/[0.04]", iconColor: "text-rose-600 dark:text-rose-400" },
-      { id: "fitness", href: "/tools/ai-fitness-coach", icon: Dumbbell,
-        labelKey: "dailyDashboard.quickActions.fitness", labelAr: "اللياقة", labelEn: "Fitness",
-        count: fitness.length, accent: "from-blue-500/12 to-blue-500/[0.04]", iconColor: "text-blue-600 dark:text-blue-400" },
+        count: symptoms.length + wellness.length, accent: "from-rose-500/12 to-rose-500/[0.04]", iconColor: "text-rose-600 dark:text-rose-400",
+        stages: ["fertility", "pregnant", "postpartum"] },
       { id: "vitamins", href: "/tools/vitamin-tracker", icon: Pill,
         labelKey: "dashboard.myTools.vitamins", labelAr: "الفيتامينات", labelEn: "Vitamins",
-        count: vits.length, accent: "from-amber-500/12 to-amber-500/[0.04]", iconColor: "text-amber-600 dark:text-amber-400" },
+        count: vits.length, accent: "from-amber-500/12 to-amber-500/[0.04]", iconColor: "text-amber-600 dark:text-amber-400",
+        stages: ["fertility", "pregnant", "postpartum"] },
+      { id: "meals", href: "/tools/ai-meal-suggestion", icon: Utensils,
+        labelKey: "dailyDashboard.quickActions.meals", labelAr: "الوجبات", labelEn: "Meals",
+        count: meals.length, accent: "from-orange-500/12 to-orange-500/[0.04]", iconColor: "text-orange-600 dark:text-orange-400",
+        stages: ["fertility", "pregnant", "postpartum"] },
+      { id: "fitness", href: "/tools/ai-fitness-coach", icon: Dumbbell,
+        labelKey: "dailyDashboard.quickActions.fitness", labelAr: "اللياقة", labelEn: "Fitness",
+        count: fitness.length, accent: "from-blue-500/12 to-blue-500/[0.04]", iconColor: "text-blue-600 dark:text-blue-400",
+        stages: ["fertility", "pregnant", "postpartum"] },
+
+      // ── Fertility / Pre-pregnancy ────────────────────────────────────────
+      { id: "cycle", href: "/tools/cycle-tracker", icon: CalendarHeart,
+        labelKey: "dashboard.myTools.cycle", labelAr: "الدورة", labelEn: "Cycle",
+        count: cycles.length, accent: "from-pink-400/12 to-pink-400/[0.04]", iconColor: "text-pink-500 dark:text-pink-300",
+        stages: ["fertility"] },
+      { id: "fertilityAcademy", href: "/tools/fertility-academy", icon: GraduationCap,
+        labelKey: "dashboard.myTools.fertilityAcademy", labelAr: "أكاديمية الخصوبة", labelEn: "Fertility Academy",
+        count: 0, accent: "from-emerald-500/12 to-emerald-500/[0.04]", iconColor: "text-emerald-600 dark:text-emerald-400",
+        stages: ["fertility"] },
+      { id: "preconception", href: "/tools/preconception-checkup", icon: ClipboardCheck,
+        labelKey: "dashboard.myTools.preconception", labelAr: "فحص ما قبل الحمل", labelEn: "Preconception Check",
+        count: 0, accent: "from-teal-500/12 to-teal-500/[0.04]", iconColor: "text-teal-600 dark:text-teal-400",
+        stages: ["fertility"] },
+
+      // ── Pregnancy ────────────────────────────────────────────────────────
+      { id: "kicks", href: "/tools/kick-counter", icon: Hand,
+        labelKey: "dailyDashboard.quickActions.kicks", labelAr: "حركات الجنين", labelEn: "Movements",
+        count: kicks.length, accent: "from-pink-500/12 to-pink-500/[0.04]", iconColor: "text-pink-600 dark:text-pink-400",
+        stages: ["pregnant"] },
+      { id: "weight", href: "/tools/weight-gain", icon: Gauge,
+        labelKey: "dailyDashboard.quickActions.weight", labelAr: "الوزن", labelEn: "Weight",
+        count: weights.length, accent: "from-emerald-500/12 to-emerald-500/[0.04]", iconColor: "text-emerald-600 dark:text-emerald-400",
+        stages: ["pregnant"] },
       { id: "comfort", href: "/tools/pregnancy-comfort", icon: Moon,
         labelKey: "dailyDashboard.quickActions.comfort", labelAr: "الراحة", labelEn: "Comfort",
-        count: 0, accent: "from-indigo-500/12 to-indigo-500/[0.04]", iconColor: "text-indigo-600 dark:text-indigo-400" },
-      { id: "contractions", href: "/tools/contraction-timer", icon: Heart,
+        count: 0, accent: "from-indigo-500/12 to-indigo-500/[0.04]", iconColor: "text-indigo-600 dark:text-indigo-400",
+        stages: ["pregnant"] },
+      { id: "contractions", href: "/tools/contraction-timer", icon: HeartPulse,
         labelKey: "dashboard.myTools.contractions", labelAr: "الانقباضات", labelEn: "Contractions",
-        count: contractions.length, accent: "from-red-500/12 to-red-500/[0.04]", iconColor: "text-red-600 dark:text-red-400" },
-      { id: "diaper", href: "/tools/diaper-tracker", icon: Baby,
-        labelKey: "dashboard.myTools.diaper", labelAr: "حفاضات الطفل", labelEn: "Diaper",
-        count: diapers.length, accent: "from-cyan-500/12 to-cyan-500/[0.04]", iconColor: "text-cyan-600 dark:text-cyan-400" },
+        count: contractions.length, accent: "from-red-500/12 to-red-500/[0.04]", iconColor: "text-red-600 dark:text-red-400",
+        stages: ["pregnant"] },
       { id: "photos", href: "/tools/ai-bump-photos", icon: Camera,
         labelKey: "dailyDashboard.quickActions.photos", labelAr: "الصور", labelEn: "Photos",
-        count: 0, accent: "from-purple-500/12 to-purple-500/[0.04]", iconColor: "text-purple-600 dark:text-purple-400" },
+        count: 0, accent: "from-purple-500/12 to-purple-500/[0.04]", iconColor: "text-purple-600 dark:text-purple-400",
+        stages: ["pregnant"] },
       { id: "grocery", href: "/tools/smart-grocery-list", icon: ShoppingBag,
         labelKey: "dashboard.myTools.grocery", labelAr: "قائمة التسوق", labelEn: "Grocery",
-        count: groceries.length, accent: "from-lime-500/12 to-lime-500/[0.04]", iconColor: "text-lime-600 dark:text-lime-400" },
+        count: groceries.length, accent: "from-lime-500/12 to-lime-500/[0.04]", iconColor: "text-lime-600 dark:text-lime-400",
+        stages: ["pregnant", "postpartum"] },
       { id: "bag", href: "/tools/ai-hospital-bag", icon: Briefcase,
         labelKey: "dashboard.myTools.hospitalBag", labelAr: "حقيبة المستشفى", labelEn: "Hospital Bag",
-        count: bag.length, accent: "from-fuchsia-500/12 to-fuchsia-500/[0.04]", iconColor: "text-fuchsia-600 dark:text-fuchsia-400" },
+        count: bag.length, accent: "from-fuchsia-500/12 to-fuchsia-500/[0.04]", iconColor: "text-fuchsia-600 dark:text-fuchsia-400",
+        stages: ["pregnant"] },
       { id: "birthPlan", href: "/tools/ai-birth-plan", icon: Sparkles,
         labelKey: "dashboard.myTools.birthPlan", labelAr: "خطة الولادة", labelEn: "Birth Plan",
-        count: birthPlans.length, accent: "from-rose-400/12 to-rose-400/[0.04]", iconColor: "text-rose-500 dark:text-rose-300" },
+        count: birthPlans.length, accent: "from-rose-400/12 to-rose-400/[0.04]", iconColor: "text-rose-500 dark:text-rose-300",
+        stages: ["pregnant"] },
+
+      // ── Postpartum / Baby care ───────────────────────────────────────────
+      { id: "babyGrowth", href: "/tools/baby-growth", icon: Baby,
+        labelKey: "dashboard.myTools.babyGrowth", labelAr: "نمو الطفل", labelEn: "Baby Growth",
+        count: growthEntries.length, accent: "from-sky-500/12 to-sky-500/[0.04]", iconColor: "text-sky-600 dark:text-sky-400",
+        stages: ["postpartum"] },
+      { id: "diaper", href: "/tools/diaper-tracker", icon: Droplets,
+        labelKey: "dashboard.myTools.diaper", labelAr: "حفاضات الطفل", labelEn: "Diaper",
+        count: diapers.length, accent: "from-cyan-500/12 to-cyan-500/[0.04]", iconColor: "text-cyan-600 dark:text-cyan-400",
+        stages: ["postpartum"] },
+      { id: "babySleep", href: "/tools/baby-sleep-tracker", icon: Moon,
+        labelKey: "dashboard.myTools.babySleep", labelAr: "نوم الطفل", labelEn: "Baby Sleep",
+        count: sleepLogs.length, accent: "from-indigo-500/12 to-indigo-500/[0.04]", iconColor: "text-indigo-600 dark:text-indigo-400",
+        stages: ["postpartum"] },
+      { id: "cryTranslator", href: "/tools/baby-cry-translator", icon: MessageCircleHeart,
+        labelKey: "dashboard.myTools.cryTranslator", labelAr: "ترجمة بكاء الطفل", labelEn: "Cry Translator",
+        count: cryLogs.length, accent: "from-pink-500/12 to-pink-500/[0.04]", iconColor: "text-pink-600 dark:text-pink-400",
+        stages: ["postpartum"] },
+      { id: "lactation", href: "/tools/ai-lactation-prep", icon: Stethoscope,
+        labelKey: "dashboard.myTools.lactation", labelAr: "الرضاعة الطبيعية", labelEn: "Lactation",
+        count: 0, accent: "from-amber-400/12 to-amber-400/[0.04]", iconColor: "text-amber-500 dark:text-amber-300",
+        stages: ["pregnant", "postpartum"] },
+      { id: "mentalHealth", href: "/tools/postpartum-mental-health", icon: Brain,
+        labelKey: "dashboard.myTools.mentalHealth", labelAr: "الصحة النفسية", labelEn: "Mental Wellness",
+        count: 0, accent: "from-violet-400/12 to-violet-400/[0.04]", iconColor: "text-violet-500 dark:text-violet-300",
+        stages: ["postpartum"] },
     ];
   }, []);
 
-  // Sort: tools with data first, then suggestions
+  // Filter to current stage, then sort: with-data first, then empty suggestions
   const sorted = useMemo(() => {
-    const withData = tools.filter(t => t.count > 0);
-    const empty = tools.filter(t => t.count === 0);
+    const stageTools = tools.filter(t => t.stages.includes(stage));
+    const withData = stageTools.filter(t => t.count > 0);
+    const empty = stageTools.filter(t => t.count === 0);
     return [...withData, ...empty];
-  }, [tools]);
+  }, [tools, stage]);
 
   return (
     <motion.section
