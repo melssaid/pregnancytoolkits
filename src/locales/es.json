@@ -9026,6 +9026,11 @@
       "title": "Herramientas",
       "viewAll": "Ver todo"
     },
+    "todayEmpty": {
+      "title": "Bienvenida a bordo",
+      "desc": "Cuéntanos sobre tu viaje para desbloquear análisis personalizados, recordatorios inteligentes y progreso semanal.",
+      "cta": "Configurar perfil"
+    },
     "insightsEmpty": {
       "title": "Aún no hay análisis",
       "desc": "Comienza a registrar tus datos diarios para ver tendencias aquí",

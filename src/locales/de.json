@@ -9026,6 +9026,11 @@
       "title": "Werkzeuge",
       "viewAll": "Alle anzeigen"
     },
+    "todayEmpty": {
+      "title": "Willkommen",
+      "desc": "Erzähle uns von deiner Reise, um personalisierte Einblicke, smarte Erinnerungen und wöchentliche Fortschritte freizuschalten.",
+      "cta": "Profil einrichten"
+    },
     "insightsEmpty": {
       "title": "Noch keine Einblicke",
       "desc": "Erfasse deine täglichen Daten, um Trends und Analysen hier zu sehen",

@@ -9113,6 +9113,11 @@
       "title": "Tools",
       "viewAll": "View all"
     },
+    "todayEmpty": {
+      "title": "Welcome aboard",
+      "desc": "Tell us a bit about your journey to unlock personalized insights, smart reminders and weekly progress.",
+      "cta": "Set up your profile"
+    },
     "insightsEmpty": {
       "title": "No insights yet",
       "desc": "Start logging your daily data to see trends and analyses here",

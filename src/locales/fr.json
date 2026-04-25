@@ -9026,6 +9026,11 @@
       "title": "Outils",
       "viewAll": "Voir tout"
     },
+    "todayEmpty": {
+      "title": "Bienvenue",
+      "desc": "Parlez-nous de votre parcours pour débloquer des analyses personnalisées, des rappels intelligents et des progrès hebdomadaires.",
+      "cta": "Configurer le profil"
+    },
     "insightsEmpty": {
       "title": "Pas encore d'analyses",
       "desc": "Commencez à enregistrer vos données pour voir les tendances ici",
