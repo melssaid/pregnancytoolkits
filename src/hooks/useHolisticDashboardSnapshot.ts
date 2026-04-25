@@ -233,6 +233,18 @@ export function useHolisticDashboardSnapshot(): Result {
     const meals = savedResults.filter((r) => r?.toolId === "ai-meal-suggestion").slice(-5);
     const fitness = savedResults.filter((r) => r?.toolId === "ai-fitness-coach").slice(-5);
 
+    // ── Ultrasound / bump photos (most recent first) ──
+    const sortedPhotos = [...bumpPhotos].sort(
+      (a, b) =>
+        new Date(b?.created_at || 0).getTime() -
+        new Date(a?.created_at || 0).getTime(),
+    );
+    const latestPhoto = sortedPhotos[0];
+    const latestPhotoAnalysis = (latestPhoto?.ai_analysis || "").trim();
+    const latestAnalysisExcerpt = latestPhotoAnalysis
+      ? latestPhotoAnalysis.slice(0, 240).replace(/\s+/g, " ")
+      : undefined;
+
     const week = profile?.pregnancyWeek;
     const trimester = week ? (week <= 13 ? 1 : week <= 27 ? 2 : 3) : undefined;
     const weeksToBirth = week ? Math.max(0, 40 - week) : undefined;
@@ -261,6 +273,12 @@ export function useHolisticDashboardSnapshot(): Result {
       appointments: { upcoming, count: upcoming.length },
       meals: { recentTitles: meals.map((m) => m?.title || m?.summary || "").filter(Boolean), count: meals.length },
       fitness: { recentTitles: fitness.map((f) => f?.title || f?.summary || "").filter(Boolean), count: fitness.length },
+      ultrasound: {
+        count: bumpPhotos.length,
+        latestWeek: latestPhoto?.week,
+        latestAnalysisExcerpt,
+        latestCapturedAt: latestPhoto?.created_at,
+      },
     };
 
     // ── Derived insights ──────────────────────────────────────────────
