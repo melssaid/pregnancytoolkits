@@ -188,9 +188,11 @@ export const AIResponseFrame = ({
                 {remaining}<span className="text-foreground/40 font-semibold">/{limit}</span>
               </span>
             </div>
-            <p className="text-[10px] text-muted-foreground text-center font-medium">
-              {weight === 0 ? uLabels.costHint0 : weight === 2 ? uLabels.costHint2 : weight === 0.5 ? uLabels.costHint05 : uLabels.explanation}
-            </p>
+            {!hideUsageHint && (
+              <p className="text-[10px] text-muted-foreground text-center font-medium">
+                {weight === 0 ? uLabels.costHint0 : weight === 2 ? uLabels.costHint2 : weight === 0.5 ? uLabels.costHint05 : uLabels.explanation}
+              </p>
+            )}
           </div>
         )}
 
