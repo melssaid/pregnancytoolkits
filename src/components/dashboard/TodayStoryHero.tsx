@@ -5,6 +5,7 @@ import { Sun, Coffee, Moon, Sparkles, Check } from "lucide-react";
 import { haptic } from "@/lib/haptics";
 import { safeParseLocalStorage, safeSaveToLocalStorage } from "@/lib/safeStorage";
 import { useDashboardData } from "@/hooks/useDashboardData";
+import { useOptimizedMotion } from "@/hooks/useOptimizedMotion";
 
 interface DailyLog {
   date: string;
@@ -26,6 +27,7 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
   const { t, i18n } = useTranslation();
   const isAr = i18n.language === "ar";
   const { profile, week, timeSlot, isPregnant } = useDashboardData();
+  const m = useOptimizedMotion();
 
   // Mood state
   const today = new Date().toISOString().split("T")[0];
@@ -107,9 +109,10 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: -10 }}
+      initial={m.disabled ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      transition={m.transition}
+      style={{ willChange: m.disabled ? "auto" : "transform, opacity" }}
       className="relative overflow-hidden rounded-3xl border border-border/40 bg-gradient-to-br from-card via-card to-primary/[0.04] shadow-lg shadow-primary/5"
     >
       {/* Decorative glow */}
@@ -146,9 +149,9 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
                   strokeWidth="7"
                   strokeLinecap="round"
                   strokeDasharray={circumference}
-                  initial={{ strokeDashoffset: circumference }}
+                  initial={{ strokeDashoffset: m.disabled ? circumference - strokeDash : circumference }}
                   animate={{ strokeDashoffset: circumference - strokeDash }}
-                  transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+                  transition={m.longTransition}
                 />
                 <defs>
                   <linearGradient id="heroProgressGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -160,9 +163,7 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
               </svg>
               <div className="absolute inset-0 flex flex-col items-center justify-center">
                 <motion.span
-                  initial={{ scale: 0.4, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ delay: 0.4, type: "spring", stiffness: 200 }}
+                  {...m.pop}
                   className="text-5xl font-black leading-none text-foreground tabular-nums"
                   style={{ fontFamily: isAr ? "'Tajawal', sans-serif" : undefined }}
                 >
