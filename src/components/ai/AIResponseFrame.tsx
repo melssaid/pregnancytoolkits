@@ -24,6 +24,7 @@ interface AIResponseFrameProps {
   toolId?: string;
   toolType?: AIToolType;
   section?: SmartSection;
+  hideUsageHint?: boolean;
 }
 
 export const AIResponseFrame = ({
