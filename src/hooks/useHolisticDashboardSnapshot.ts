@@ -168,6 +168,8 @@ export function useHolisticDashboardSnapshot(): Result {
     const contractions = safeParseLocalStorage<any[]>(STORAGE_KEYS.CONTRACTIONS, []) || [];
     const kickSessions = readKickSessions();
     const savedResults = safeParseLocalStorage<any[]>(STORAGE_KEYS.SAVED_RESULTS, []) || [];
+    const bumpPhotos =
+      safeParseLocalStorage<any[]>(BUMP_PHOTOS_STORAGE_KEY(userId), []) || [];
 
     // ── Mood from symptom logs ──
     const moodLast7 = symptoms
