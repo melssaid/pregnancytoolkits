@@ -228,7 +228,7 @@ const SmartDashboard = () => {
                        shadow-[0_8px_24px_-12px_hsl(var(--primary)/0.18)]"
           >
             <TabsList
-              className="grid h-auto w-full grid-cols-4 gap-1 rounded-2xl p-1
+              className="relative grid h-auto w-full grid-cols-4 gap-1 rounded-2xl p-1
                          bg-white/40 dark:bg-white/5
                          backdrop-blur-xl
                          border border-white/40 dark:border-white/10
@@ -284,6 +284,26 @@ const SmartDashboard = () => {
                   </TabsTrigger>
                 );
               })}
+
+              {/* ═══════════════════════════════════════════════════════════
+                  GRADUATED SHADOW DIVIDERS — elegant bands between tab sections
+                  Three separators between four tabs, each with layered
+                  graduated shadows fading at top & bottom for a glass-ridge feel.
+                  ═══════════════════════════════════════════════════════════ */}
+              {[1, 2, 3].map((pos) => (
+                <div
+                  key={`tab-band-${pos}`}
+                  className="absolute top-2 bottom-2 pointer-events-none select-none"
+                  style={{ left: `${pos * 25}%`, transform: "translateX(-50%)" }}
+                >
+                  {/* Wide ambient glow band — primary-tinted shadow */}
+                  <div className="absolute inset-y-1 -inset-x-3 rounded-full bg-gradient-to-b from-transparent via-primary/[0.04] via-50% to-transparent blur-[3px]" />
+                  {/* Core graduated ridge line */}
+                  <div className="absolute inset-y-1.5 left-1/2 -translate-x-1/2 w-[1.5px] rounded-full bg-gradient-to-b from-transparent via-border/40 via-45% to-transparent" />
+                  {/* Glass highlight for depth */}
+                  <div className="absolute inset-y-2.5 left-1/2 -translate-x-1/2 w-px rounded-full bg-gradient-to-b from-transparent via-white/30 via-45% to-transparent" />
+                </div>
+              ))}
             </TabsList>
           </div>
 
