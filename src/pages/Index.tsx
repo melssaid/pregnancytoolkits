@@ -183,8 +183,11 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
       </AnimatePresence>
       {/* Gradient Header — premium Pregnancy+ style */}
       <button
+        type="button"
         onClick={onToggle}
-        className={`${config.headerGradient} px-4 py-4 relative overflow-hidden w-full text-start min-h-[68px] flex items-center`}
+        aria-expanded={isOpen}
+        aria-controls={`journey-tools-${config.key}`}
+        className={`${config.headerGradient} px-4 py-4 relative z-20 overflow-hidden w-full text-start min-h-[68px] flex items-center cursor-pointer`}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent" />
         <div className="absolute -top-6 -end-6 w-28 h-28 rounded-full bg-white/8 blur-2xl" />
