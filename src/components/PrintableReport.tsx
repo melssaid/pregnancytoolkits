@@ -81,6 +81,9 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
   const [orientation, setOrientation] = useState<PrintOrientation>('portrait');
   const [historyOpen, setHistoryOpen] = useState(false);
   const [hasContent, setHasContent] = useState(false);
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const previewIframeRef = useRef<HTMLIFrameElement>(null);
+  const pLabels = previewLabels[lang] || previewLabels.en;
   const history = usePdfHistory(historyBucket || '__none__');
   const lang = i18n.language?.split('-')[0] || 'en';
   const isRTL = lang === 'ar';
