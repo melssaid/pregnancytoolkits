@@ -103,7 +103,7 @@ export const OnboardingStep1Welcome: React.FC<Props> = ({ selectedLang, onSelect
           animate={{ scale: 1, opacity: 1 }}
           transition={{ type: 'spring', stiffness: 300, damping: 20 }}
         >
-          <img src={logoImage} alt="App Logo" className="w-full h-full object-cover" />
+          <img src={logoImage} alt="App Logo" width={56} height={56} loading="eager" decoding="async" fetchPriority="high" className="w-full h-full object-cover" />
         </motion.div>
         <div className="min-w-0">
           <h2 className="text-xl font-black text-foreground leading-tight" style={{ fontFamily: "'Tajawal', sans-serif", fontWeight: 800 }}>
