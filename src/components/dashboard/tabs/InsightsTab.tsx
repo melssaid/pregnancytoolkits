@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { Sparkles } from "lucide-react";
+import { Sparkles, Activity, Brain, LineChart, ClipboardList, Gauge } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { HealthScoreRing } from "@/components/dashboard/HealthScoreRing";
 import { HolisticAIAnalysisCard } from "@/components/dashboard/HolisticAIAnalysisCard";
@@ -22,22 +22,49 @@ import { useDashboardData } from "@/hooks/useDashboardData";
 import { useUserProfile } from "@/hooks/useUserProfile";
 
 /**
- * "Insights" tab — analytics, trends and visualisations.
+ * "Insights" tab — clinical-grade analytics layout.
  *
- * Refactored ordering (Option A) — funnel from simple → deep → detailed:
- *   1. Quick glance: HealthScoreRing
- *   2. Transparency: DataSourcesPanel  (what's feeding the analysis?)
- *   3. Live derived signals: SignalsPreviewPanel
- *   4. Deep AI synthesis: HolisticAIAnalysisCard (premium, 7 pts)
- *   5. Cross-snapshot history: SonarHistoryTrendsCard
- *   6. Stage-aware summary cards (pregnancy-only hidden for fertility/postpartum)
- *   7. Trend charts (auto-hide if no data)
- *   8. Detail cards (auto-hide if no data)
- *
- * Each card is gated by dataCheck or stage so empty/irrelevant cards never render.
+ * Sections (top → bottom = overview → granular):
+ *   A. Overview       → HealthScoreRing
+ *   B. Vital Signals  → SignalsPreviewPanel + DataSourcesPanel (transparency)
+ *   C. Deep Analysis  → HolisticAIAnalysisCard + SonarHistoryTrendsCard
+ *   D. Stage Summary  → Ultrasound, Nutrition, Weekly comparison
+ *   E. Trend Charts   → Kicks, hydration, contractions
+ *   F. Detailed Logs  → Mood, symptoms, weight, movement, meals
  */
+
+interface SectionProps {
+  icon: React.ElementType;
+  label: string;
+  hint?: string;
+  children: React.ReactNode;
+}
+
+const Section = ({ icon: Icon, label, hint, children }: SectionProps) => (
+  <section className="space-y-3">
+    <div className="flex items-center gap-2 px-1">
+      <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+        <Icon className="w-3.5 h-3.5 text-primary" />
+      </div>
+      <div className="flex-1 min-w-0">
+        <h3 className="text-[13px] font-bold text-foreground leading-tight tracking-tight">
+          {label}
+        </h3>
+        {hint && (
+          <p className="text-[10.5px] text-muted-foreground leading-tight mt-0.5 truncate">
+            {hint}
+          </p>
+        )}
+      </div>
+      <div className="h-px w-8 bg-gradient-to-l from-border to-transparent shrink-0" />
+    </div>
+    <div className="space-y-3">{children}</div>
+  </section>
+);
+
 export const InsightsTab = memo(function InsightsTab() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.language === "ar";
   const { stats, dataCheck, isPregnant } = useDashboardData();
   const { profile: userProfile } = useUserProfile();
   const stage = userProfile.journeyStage || (isPregnant ? "pregnant" : "pregnant");
@@ -49,42 +76,86 @@ export const InsightsTab = memo(function InsightsTab() {
     stats.dailyTracking.todayKicks > 0 || dataCheck.hasKickSessions ||
     dataCheck.hasSleepData;
 
+  const hasCharts =
+    (isPregnancyStage && dataCheck.hasKickSessions) ||
+    dataCheck.hasHydration ||
+    (isPregnancyStage && dataCheck.hasContractions);
+  const hasDetail =
+    dataCheck.hasMoodData || dataCheck.hasSymptomsData || dataCheck.hasWeight ||
+    (isPregnancyStage && (stats.dailyTracking.todayKicks > 0 || dataCheck.hasKickSessions)) ||
+    dataCheck.hasRecentActivity;
+
   return (
-    <div className="space-y-4 pb-6">
-      {/* 1️⃣ Quick glance — at-a-glance score */}
-      <HealthScoreRing />
+    <div className="space-y-6 pb-6">
+      {/* ───── A · OVERVIEW ───── */}
+      <Section
+        icon={Gauge}
+        label={isRTL ? "نظرة عامة" : "Overview"}
+        hint={isRTL ? "مؤشر صحي شامل لحالتك اليوم" : "At-a-glance wellness score"}
+      >
+        <HealthScoreRing />
+      </Section>
 
-      {/* 2️⃣ Transparency — which data sources feed the analysis (stage-aware) */}
-      <DataSourcesPanel />
+      {/* ───── B · VITAL SIGNALS ───── */}
+      <Section
+        icon={Activity}
+        label={isRTL ? "المؤشرات الحيوية" : "Vital Signals"}
+        hint={isRTL ? "إشارات مباشرة من بياناتك ومصادرها" : "Live signals & data sources"}
+      >
+        <SignalsPreviewPanel />
+        <DataSourcesPanel />
+      </Section>
 
-      {/* 3️⃣ Live derived signals from current data */}
-      <SignalsPreviewPanel />
+      {/* ───── C · DEEP ANALYSIS ───── */}
+      <Section
+        icon={Brain}
+        label={isRTL ? "التحليل العميق" : "Deep Analysis"}
+        hint={isRTL ? "تركيب ذكي شامل وسجل التحاليل السابقة" : "AI synthesis & historical trends"}
+      >
+        <HolisticAIAnalysisCard />
+        <SonarHistoryTrendsCard />
+      </Section>
 
-      {/* 4️⃣ Premium holistic AI synthesis — uses everything above */}
-      <HolisticAIAnalysisCard />
+      {/* ───── D · STAGE SUMMARY ───── */}
+      <Section
+        icon={ClipboardList}
+        label={isRTL ? "ملخص هذه المرحلة" : "Stage Summary"}
+        hint={isRTL ? "السونار، التغذية، والمقارنة الأسبوعية" : "Ultrasound, nutrition & weekly comparison"}
+      >
+        {isPregnancyStage && <UltrasoundSummaryCard />}
+        <DailyNutritionCard />
+        {isPregnancyStage && isPregnant && <WeeklyComparisonCard />}
+      </Section>
 
-      {/* 5️⃣ Cross-snapshot trends across previous holistic runs */}
-      <SonarHistoryTrendsCard />
-
-      {/* 6️⃣ Stage-aware summary cards — only relevant during pregnancy */}
-      {isPregnancyStage && <UltrasoundSummaryCard />}
-      <DailyNutritionCard />
-      {isPregnancyStage && isPregnant && <WeeklyComparisonCard />}
-
-      {/* 7️⃣ Weekly trend charts — render only when their data exists.
-              Kick / contraction charts only make sense during pregnancy. */}
-      {isPregnancyStage && dataCheck.hasKickSessions && <WeeklyKickFrequencyChart />}
-      {dataCheck.hasHydration && <WeeklyHydrationChart />}
-      {isPregnancyStage && dataCheck.hasContractions && <WeeklyContractionFrequencyChart />}
-
-      {/* 8️⃣ Detail cards — auto-hide when empty / irrelevant for stage */}
-      {dataCheck.hasMoodData && <MoodTrendCard />}
-      {dataCheck.hasSymptomsData && <WeeklySymptomsCard />}
-      {dataCheck.hasWeight && <WeightTrendCard />}
-      {isPregnancyStage && (stats.dailyTracking.todayKicks > 0 || dataCheck.hasKickSessions) && (
-        <FetalMovementCard todayKicks={stats.dailyTracking.todayKicks} />
+      {/* ───── E · TREND CHARTS ───── */}
+      {hasCharts && (
+        <Section
+          icon={LineChart}
+          label={isRTL ? "اتجاهات أسبوعية" : "Weekly Trends"}
+          hint={isRTL ? "رسوم بيانية تظهر عند توفر البيانات" : "Charts appear when data exists"}
+        >
+          {isPregnancyStage && dataCheck.hasKickSessions && <WeeklyKickFrequencyChart />}
+          {dataCheck.hasHydration && <WeeklyHydrationChart />}
+          {isPregnancyStage && dataCheck.hasContractions && <WeeklyContractionFrequencyChart />}
+        </Section>
       )}
-      {dataCheck.hasRecentActivity && <RecentMealFitnessSummary />}
+
+      {/* ───── F · DETAILED LOGS ───── */}
+      {hasDetail && (
+        <Section
+          icon={Sparkles}
+          label={isRTL ? "السجلات التفصيلية" : "Detailed Logs"}
+          hint={isRTL ? "المزاج، الأعراض، الوزن، الحركة، والوجبات" : "Mood, symptoms, weight, movement & meals"}
+        >
+          {dataCheck.hasMoodData && <MoodTrendCard />}
+          {dataCheck.hasSymptomsData && <WeeklySymptomsCard />}
+          {dataCheck.hasWeight && <WeightTrendCard />}
+          {isPregnancyStage && (stats.dailyTracking.todayKicks > 0 || dataCheck.hasKickSessions) && (
+            <FetalMovementCard todayKicks={stats.dailyTracking.todayKicks} />
+          )}
+          {dataCheck.hasRecentActivity && <RecentMealFitnessSummary />}
+        </Section>
+      )}
 
       {/* Smart empty state */}
       {!hasAnyInsight && (
