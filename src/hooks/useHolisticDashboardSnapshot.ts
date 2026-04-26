@@ -114,7 +114,7 @@ interface Result {
 }
 
 const MIN_SOURCES = 3;
-const ALL_SOURCES = 10;
+const ALL_SOURCES = 14; // mood, moodScore, symptoms, sleep, weight, hydration, vitamins, kicks, contractions, appointments, meals, fitness, bumpPhotos, ultrasound
 const HYDRATION_TARGET_ML = 2500;
 
 // ── Helpers ─────────────────────────────────────────────────────────────
