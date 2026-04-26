@@ -47,6 +47,13 @@ export interface HolisticSnapshot {
     latestWeek?: number;
     latestAnalysisExcerpt?: string;
     latestCapturedAt?: string;
+    readingsWithAnalysisCount: number;
+  };
+  sleep: {
+    sessionsLast7Days: number;
+    avgMinutesPerDay?: number;
+    napCount: number;
+    nightCount: number;
   };
 }
 
