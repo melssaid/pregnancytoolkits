@@ -560,12 +560,24 @@ export function useHolisticDashboardSnapshot(): Result {
 
     if (bumpPhotos.length > 0) {
       lines.push(
-        `**Ultrasound Journal**: ${bumpPhotos.length} photo(s)` +
+        `**Body / Ultrasound Photos**: ${bumpPhotos.length} photo(s), ${readingsWithAnalysisCount} with AI reading` +
           (latestPhoto?.week ? `, latest at week ${latestPhoto.week}` : "") +
           (latestAnalysisExcerpt
             ? `. Latest AI reading excerpt: "${latestAnalysisExcerpt}"`
             : ""),
       );
+    }
+
+    if (sleepLast7.length > 0) {
+      const hours = avgSleepMinutesPerDay !== undefined ? (avgSleepMinutesPerDay / 60).toFixed(1) : "—";
+      lines.push(
+        `**Sleep**: ${sleepLast7.length} session(s) last 7d (${nightCount} night, ${napCount} nap), ` +
+          `avg ${hours} h/day — quality: ${sleepQuality}`,
+      );
+    }
+
+    if (dataCheck.hasMoodScore) {
+      lines.push(`**Mood Scoring**: depth threshold met (≥3 logs in last 14 days) — trend analysis enabled`);
     }
 
     const contextSummary = lines.join("\n");
