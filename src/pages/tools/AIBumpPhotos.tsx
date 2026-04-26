@@ -552,15 +552,15 @@ const AIBumpPhotos: React.FC = () => {
               );
             })()}
 
-            {/* Quota usage indicator + upgrade CTA */}
+            {/* Upgrade CTA when quota exhausted */}
             <div className="pt-1 space-y-2">
-              <div className="flex items-center justify-between">
-                <span className={`text-xs font-medium ${isLimitReached ? 'text-destructive' : 'text-foreground'}`}>
-                  {isLimitReached 
-                    ? t('aiErrors.monthlyLimitTitle', 'Monthly limit reached')
-                    : t('toolsInternal.bumpPhotos.analysisQuotaRemaining', { remaining, defaultValue: '{{remaining}} analyses remaining' })}
-                </span>
-              </div>
+              {isLimitReached && (
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-medium text-destructive">
+                    {t('aiErrors.monthlyLimitTitle', 'Monthly limit reached')}
+                  </span>
+                </div>
+              )}
               {isLimitReached && (
                 <button
                   onClick={() => { window.location.href = '/pricing-demo'; }}
