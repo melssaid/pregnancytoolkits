@@ -23,6 +23,7 @@ import { ToolFrame } from '@/components/ToolFrame';
 import { UltrasoundAbbreviationsGuide } from '@/components/UltrasoundAbbreviationsGuide';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { compressImage, estimateDataUrlSize, formatBytes } from '@/lib/imageCompression';
+import { triggerUpgradeBanner } from '@/components/TrialExpiryBanner';
 
 interface BumpPhoto {
   id: string;
@@ -42,6 +43,11 @@ const AIBumpPhotos: React.FC = () => {
   const { t } = useTranslation();
   const { isRTL } = useLanguage();
   const { profile: userProfile } = useUserProfile();
+
+  // Contextual trigger: opening the Sonar tool is a high-intent moment
+  useEffect(() => {
+    triggerUpgradeBanner("sonar_opened");
+  }, []);
   const [photos, setPhotos] = useState<BumpPhoto[]>([]);
   const [currentWeek, setCurrentWeek] = useState(userProfile.pregnancyWeek || 0);
   const [isUploading, setIsUploading] = useState(false);
