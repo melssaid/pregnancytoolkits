@@ -9239,7 +9239,11 @@
         "contractions": "Kasılmalar",
         "appointments": "Randevular",
         "meals": "Öğünler",
-        "fitness": "Fitness"
+        "fitness": "Fitness",
+        "sleep": "Uyku",
+        "moodScore": "Ruh hali skoru",
+        "bumpPhotos": "Karın fotoğrafları",
+        "ultrasound": "Ultrason okumaları"
       }
     },
     "signals": {

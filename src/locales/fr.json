@@ -9239,7 +9239,11 @@
         "contractions": "Contractions",
         "appointments": "Rendez-vous",
         "meals": "Repas",
-        "fitness": "Fitness"
+        "fitness": "Fitness",
+        "sleep": "Sommeil",
+        "moodScore": "Score d'humeur",
+        "bumpPhotos": "Photos du ventre",
+        "ultrasound": "Lectures d'échographie"
       }
     },
     "signals": {

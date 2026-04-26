@@ -9326,7 +9326,11 @@
         "contractions": "الانقباضات",
         "appointments": "المواعيد",
         "meals": "الوجبات",
-        "fitness": "اللياقة"
+        "fitness": "اللياقة",
+        "sleep": "النوم",
+        "moodScore": "تقييم المزاج",
+        "bumpPhotos": "صور البطن",
+        "ultrasound": "قراءات السونار"
       }
     },
     "signals": {

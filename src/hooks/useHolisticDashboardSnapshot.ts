@@ -47,6 +47,13 @@ export interface HolisticSnapshot {
     latestWeek?: number;
     latestAnalysisExcerpt?: string;
     latestCapturedAt?: string;
+    readingsWithAnalysisCount: number;
+  };
+  sleep: {
+    sessionsLast7Days: number;
+    avgMinutesPerDay?: number;
+    napCount: number;
+    nightCount: number;
   };
 }
 
@@ -98,6 +105,12 @@ export interface DerivedInsights {
     count: number;
     latestWeek?: number;
     hasRecentAnalysis: boolean;
+    readingsWithAnalysisCount: number;
+  };
+  sleep: {
+    sessionsLast7Days: number;
+    avgMinutesPerDay?: number;
+    quality: "low" | "moderate" | "good" | "unknown";
   };
   engagementScore: number; // 0–100 — based on active sources
   riskFlags: string[];
@@ -114,7 +127,7 @@ interface Result {
 }
 
 const MIN_SOURCES = 3;
-const ALL_SOURCES = 10;
+const ALL_SOURCES = 14; // mood, moodScore, symptoms, sleep, weight, hydration, vitamins, kicks, contractions, appointments, meals, fitness, bumpPhotos, ultrasound
 const HYDRATION_TARGET_ML = 2500;
 
 // ── Helpers ─────────────────────────────────────────────────────────────
@@ -170,6 +183,8 @@ export function useHolisticDashboardSnapshot(): Result {
     const savedResults = safeParseLocalStorage<any[]>(STORAGE_KEYS.SAVED_RESULTS, []) || [];
     const bumpPhotos =
       safeParseLocalStorage<any[]>(BUMP_PHOTOS_STORAGE_KEY(userId), []) || [];
+    const sleepSessionsRaw =
+      safeParseLocalStorage<any[]>(STORAGE_KEYS.BABY_SLEEP, []) || [];
 
     // ── Mood from symptom logs ──
     const moodLast7 = symptoms
@@ -244,6 +259,37 @@ export function useHolisticDashboardSnapshot(): Result {
     const latestAnalysisExcerpt = latestPhotoAnalysis
       ? latestPhotoAnalysis.slice(0, 240).replace(/\s+/g, " ")
       : undefined;
+    const readingsWithAnalysisCount = bumpPhotos.filter(
+      (p) => typeof p?.ai_analysis === "string" && p.ai_analysis.trim().length > 20,
+    ).length;
+
+    // ── Sleep sessions (last 7 days, completed only) ──
+    const sevenDaysAgoMsForSleep = Date.now() - 7 * 86400_000;
+    const completedSleep = sleepSessionsRaw.filter((s) => !!s?.endTime && !!s?.startTime);
+    const sleepLast7 = completedSleep.filter(
+      (s) => new Date(s.startTime).getTime() >= sevenDaysAgoMsForSleep,
+    );
+    const sleepMinutesLast7 = sleepLast7.reduce((sum, s) => {
+      const start = new Date(s.startTime).getTime();
+      const end = new Date(s.endTime).getTime();
+      const mins = Math.max(0, Math.round((end - start) / 60000));
+      return sum + mins;
+    }, 0);
+    const sleepDistinctDays = new Set(
+      sleepLast7.map((s) => new Date(s.startTime).toISOString().slice(0, 10)),
+    ).size || 0;
+    const avgSleepMinutesPerDay =
+      sleepDistinctDays > 0 ? Math.round(sleepMinutesLast7 / sleepDistinctDays) : undefined;
+    const napCount = sleepLast7.filter((s) => s.type === "nap").length;
+    const nightCount = sleepLast7.filter((s) => s.type === "night").length;
+    const sleepQuality: "low" | "moderate" | "good" | "unknown" =
+      avgSleepMinutesPerDay === undefined
+        ? "unknown"
+        : avgSleepMinutesPerDay >= 480
+          ? "good"
+          : avgSleepMinutesPerDay >= 360
+            ? "moderate"
+            : "low";
 
     const week = profile?.pregnancyWeek;
     const trimester = week ? (week <= 13 ? 1 : week <= 27 ? 2 : 3) : undefined;
@@ -278,6 +324,13 @@ export function useHolisticDashboardSnapshot(): Result {
         latestWeek: latestPhoto?.week,
         latestAnalysisExcerpt,
         latestCapturedAt: latestPhoto?.created_at,
+        readingsWithAnalysisCount,
+      },
+      sleep: {
+        sessionsLast7Days: sleepLast7.length,
+        avgMinutesPerDay: avgSleepMinutesPerDay,
+        napCount,
+        nightCount,
       },
     };
 
@@ -314,7 +367,9 @@ export function useHolisticDashboardSnapshot(): Result {
 
     const sourcesCount = [
       dataCheck.hasMoodData,
+      dataCheck.hasMoodScore,
       dataCheck.hasSymptomsData,
+      dataCheck.hasSleepData,
       dataCheck.hasWeight,
       dataCheck.hasHydration,
       dataCheck.hasVitamins,
@@ -323,6 +378,8 @@ export function useHolisticDashboardSnapshot(): Result {
       dataCheck.hasAppointments,
       dataCheck.hasMeals,
       dataCheck.hasFitness,
+      dataCheck.hasBumpPhotos,
+      dataCheck.hasUltrasoundReadings,
     ].filter(Boolean).length;
 
     const engagementScore = Math.round((sourcesCount / ALL_SOURCES) * 100);
@@ -357,6 +414,15 @@ export function useHolisticDashboardSnapshot(): Result {
     const hasRecentUltrasoundAnalysis = !!latestAnalysisExcerpt;
     if (bumpPhotos.length >= 3) positiveSignals.push("ultrasound_journal_consistent");
     if (hasRecentUltrasoundAnalysis) positiveSignals.push("recent_ultrasound_ai_reading_available");
+    if (readingsWithAnalysisCount >= 2) positiveSignals.push("multiple_ultrasound_ai_readings");
+
+    // ── Sleep signals ──
+    if (sleepQuality === "good") positiveSignals.push("healthy_sleep_average");
+    if (sleepQuality === "low" && sleepLast7.length >= 3) riskFlags.push("low_sleep_average_last_week");
+    if (sleepLast7.length >= 5) positiveSignals.push("consistent_sleep_tracking");
+
+    // ── Mood scoring depth signal ──
+    if (dataCheck.hasMoodScore) positiveSignals.push("mood_scoring_depth_sufficient");
 
     const derivedInsights: DerivedInsights = {
       weekContext: { currentWeek: week, trimester, weeksToBirth },
@@ -395,6 +461,12 @@ export function useHolisticDashboardSnapshot(): Result {
         count: bumpPhotos.length,
         latestWeek: latestPhoto?.week,
         hasRecentAnalysis: hasRecentUltrasoundAnalysis,
+        readingsWithAnalysisCount,
+      },
+      sleep: {
+        sessionsLast7Days: sleepLast7.length,
+        avgMinutesPerDay: avgSleepMinutesPerDay,
+        quality: sleepQuality,
       },
       engagementScore,
       riskFlags,
@@ -488,12 +560,24 @@ export function useHolisticDashboardSnapshot(): Result {
 
     if (bumpPhotos.length > 0) {
       lines.push(
-        `**Ultrasound Journal**: ${bumpPhotos.length} photo(s)` +
+        `**Body / Ultrasound Photos**: ${bumpPhotos.length} photo(s), ${readingsWithAnalysisCount} with AI reading` +
           (latestPhoto?.week ? `, latest at week ${latestPhoto.week}` : "") +
           (latestAnalysisExcerpt
             ? `. Latest AI reading excerpt: "${latestAnalysisExcerpt}"`
             : ""),
       );
+    }
+
+    if (sleepLast7.length > 0) {
+      const hours = avgSleepMinutesPerDay !== undefined ? (avgSleepMinutesPerDay / 60).toFixed(1) : "—";
+      lines.push(
+        `**Sleep**: ${sleepLast7.length} session(s) last 7d (${nightCount} night, ${napCount} nap), ` +
+          `avg ${hours} h/day — quality: ${sleepQuality}`,
+      );
+    }
+
+    if (dataCheck.hasMoodScore) {
+      lines.push(`**Mood Scoring**: depth threshold met (≥3 logs in last 14 days) — trend analysis enabled`);
     }
 
     const contextSummary = lines.join("\n");

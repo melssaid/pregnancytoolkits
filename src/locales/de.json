@@ -9239,7 +9239,11 @@
         "contractions": "Wehen",
         "appointments": "Termine",
         "meals": "Mahlzeiten",
-        "fitness": "Fitness"
+        "fitness": "Fitness",
+        "sleep": "Schlaf",
+        "moodScore": "Stimmungs-Score",
+        "bumpPhotos": "Bauchfotos",
+        "ultrasound": "Ultraschall-Auswertungen"
       }
     },
     "signals": {

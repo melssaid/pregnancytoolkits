@@ -9326,7 +9326,11 @@
         "contractions": "Contractions",
         "appointments": "Appointments",
         "meals": "Meals",
-        "fitness": "Fitness"
+        "fitness": "Fitness",
+        "sleep": "Sleep",
+        "moodScore": "Mood Scoring",
+        "bumpPhotos": "Bump Photos",
+        "ultrasound": "Ultrasound Readings"
       }
     },
     "signals": {
