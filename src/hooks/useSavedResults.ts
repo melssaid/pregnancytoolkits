@@ -23,6 +23,21 @@ export function useSavedResults(toolId?: string) {
     safeSaveToLocalStorage(STORAGE_KEY, allResults);
   }, [allResults]);
 
+  // Sync from external auto-saves (useSmartInsight) and other tabs
+  useEffect(() => {
+    const reload = () => {
+      const fresh = safeParseLocalStorage<SavedAIResult[]>(STORAGE_KEY, [], (d): d is SavedAIResult[] => Array.isArray(d));
+      setAllResults(fresh);
+    };
+    const onStorage = (e: StorageEvent) => { if (e.key === STORAGE_KEY) reload(); };
+    window.addEventListener('ai-results-saved', reload);
+    window.addEventListener('storage', onStorage);
+    return () => {
+      window.removeEventListener('ai-results-saved', reload);
+      window.removeEventListener('storage', onStorage);
+    };
+  }, []);
+
   const results = toolId ? allResults.filter(r => r.toolId === toolId) : allResults;
 
   const isSaved = useCallback((content: string) => {
