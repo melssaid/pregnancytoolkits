@@ -125,10 +125,10 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
       />
       <div className="pointer-events-none absolute -bottom-20 -start-20 h-44 w-44 rounded-full bg-secondary/15 blur-3xl" />
 
-      <div className="relative px-5 pt-5 pb-4">
+      <div className="relative px-5 pt-6 pb-4">
         {/* Wellness tip row — formal, minimal (icon removed per design) */}
-        <div className="mb-4">
-          <p className="text-[14px] font-medium leading-snug text-foreground/90 line-clamp-2">
+        <div className="mb-5">
+          <p className="text-[15px] font-medium leading-relaxed text-foreground/90 line-clamp-3 tracking-tight">
             {greeting.tip}
           </p>
         </div>
