@@ -7,13 +7,19 @@ import { useSubscriptionStatus } from "@/hooks/useSubscriptionStatus";
 
 const INSTALL_KEY = "pt_first_open";
 const DISMISS_KEY = "pt_upgrade_banner_dismissed";
-const THREE_DAYS_MS = 3 * 24 * 60 * 60 * 1000;
+const SHOWN_COUNT_KEY = "pt_upgrade_banner_shown_count";
+const LAST_SHOWN_KEY = "pt_upgrade_banner_last_shown";
+const SESSION_KEY = "pt_upgrade_banner_session_shown";
+
+const DISMISS_COOLDOWN_MS = 7 * 24 * 60 * 60 * 1000; // 7 days after dismiss
+const ROTATION_INTERVAL_MS = 2 * 24 * 60 * 60 * 1000; // show at most every 2 days
+const MAX_IMPRESSIONS = 6; // cap total appearances
 
 export function TrialExpiryBanner() {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const { tier } = useSubscriptionStatus();
-  const [dismissed, setDismissed] = useState(false);
+  const [visible, setVisible] = useState(false);
   const lang = i18n.language?.split("-")[0] || "en";
 
   // Record first open timestamp
@@ -23,32 +29,41 @@ export function TrialExpiryBanner() {
     }
   }, []);
 
-  // Check if dismissed today
+  // Decide whether to show on mount (rotation logic)
   useEffect(() => {
-    const dismissedAt = localStorage.getItem(DISMISS_KEY);
-    if (dismissedAt) {
-      const elapsed = Date.now() - parseInt(dismissedAt, 10);
-      // Re-show after 24h
-      if (elapsed < 24 * 60 * 60 * 1000) {
-        setDismissed(true);
-      } else {
-        localStorage.removeItem(DISMISS_KEY);
-      }
+    if (tier === "premium") {
+      setVisible(false);
+      return;
     }
-  }, []);
+    const couponUsed = !!localStorage.getItem("pt_coupon_used");
+    if (couponUsed) return;
 
-  const daysSinceInstall = useMemo(() => {
-    const firstOpen = localStorage.getItem(INSTALL_KEY);
-    if (!firstOpen) return 0;
-    return (Date.now() - parseInt(firstOpen, 10)) / (24 * 60 * 60 * 1000);
-  }, []);
+    const firstOpen = parseInt(localStorage.getItem(INSTALL_KEY) || "0", 10);
+    const daysSinceInstall = firstOpen ? (Date.now() - firstOpen) / (24 * 60 * 60 * 1000) : 0;
+    if (daysSinceInstall < 3) return;
 
-  const couponUsed = typeof window !== "undefined" && !!localStorage.getItem("pt_coupon_used");
-  const isPremium = tier === "premium";
-  const shouldShow = !isPremium && !couponUsed && daysSinceInstall >= 3 && !dismissed;
+    const dismissedAt = parseInt(localStorage.getItem(DISMISS_KEY) || "0", 10);
+    if (dismissedAt && Date.now() - dismissedAt < DISMISS_COOLDOWN_MS) return;
+
+    const shownCount = parseInt(localStorage.getItem(SHOWN_COUNT_KEY) || "0", 10);
+    if (shownCount >= MAX_IMPRESSIONS) return;
+
+    const lastShown = parseInt(localStorage.getItem(LAST_SHOWN_KEY) || "0", 10);
+    if (lastShown && Date.now() - lastShown < ROTATION_INTERVAL_MS) return;
+
+    // Once per session only
+    if (sessionStorage.getItem(SESSION_KEY)) return;
+
+    setVisible(true);
+    sessionStorage.setItem(SESSION_KEY, "1");
+    localStorage.setItem(LAST_SHOWN_KEY, Date.now().toString());
+    localStorage.setItem(SHOWN_COUNT_KEY, String(shownCount + 1));
+  }, [tier]);
+
+  const shouldShow = visible && tier !== "premium";
 
   const handleDismiss = () => {
-    setDismissed(true);
+    setVisible(false);
     localStorage.setItem(DISMISS_KEY, Date.now().toString());
   };
 
