@@ -79,14 +79,43 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
       '[data-no-print], .no-print, button, svg, canvas, video, audio, iframe, [role="progressbar"]'
     ).forEach(el => el.remove());
 
-    // 2) Prefer the rich markdown / prose container if it contains real text
-    const markdownEl = clone.querySelector(
-      '.markdown-content, .prose, [class*="markdown"], [class*="Markdown"]'
-    );
+    // 2) Pick the richest content container. We probe many selectors used
+    //    across tools (meals, plan, symptoms, etc.) and pick the one whose
+    //    text is longest. This is resilient to class renames or wrapper changes.
+    const CONTENT_SELECTORS = [
+      '[data-print-content]',
+      '[data-ai-content]',
+      '[data-report-content]',
+      '.markdown-content',
+      '.prose',
+      '[class*="markdown"]',
+      '[class*="Markdown"]',
+      '[class*="prose"]',
+      '[class*="ai-result"]',
+      '[class*="AIResult"]',
+      '[class*="report-body"]',
+      '[class*="ReportBody"]',
+      '[class*="result-content"]',
+      '[class*="meal"]',
+      'article',
+    ];
+    let bestEl: Element | null = null;
+    let bestLen = 0;
+    for (const sel of CONTENT_SELECTORS) {
+      clone.querySelectorAll(sel).forEach(el => {
+        const len = (el.textContent || '').trim().length;
+        if (len > bestLen) {
+          bestLen = len;
+          bestEl = el;
+        }
+      });
+    }
+
     let printContent: string;
-    if (markdownEl && (markdownEl.textContent || '').trim().length > 20) {
-      printContent = markdownEl.innerHTML;
+    if (bestEl && bestLen >= 20) {
+      printContent = (bestEl as HTMLElement).innerHTML;
     } else {
+      // Fallback: use whole clone (filtered above)
       printContent = clone.innerHTML;
     }
 
