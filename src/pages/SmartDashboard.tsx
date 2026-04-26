@@ -158,22 +158,37 @@ const SmartDashboard = () => {
 
 
         <Tabs value={activeTab} onValueChange={handleTabChange} dir={isRTL ? "rtl" : "ltr"} className="relative z-10">
-          {/* Sticky tab bar — pro Apple-style */}
-          {/* Sticky glass tab bar — frosted with subtle inner highlight */}
+          {/* ═══════════════════════════════════════════════════════════
+              STICKY GLASS TAB BAR — refined frosted dock with layered
+              inner shadow, dual-tone gradient, ambient sheen.
+              ═══════════════════════════════════════════════════════════ */}
           <div
-            className="sticky top-[3.25rem] sm:top-[4rem] z-30 px-3 sm:px-4 pt-2 pb-2
-                       bg-gradient-to-b from-background/80 to-background/40 backdrop-blur-2xl
-                       border-b border-white/20 dark:border-white/5
-                       shadow-[0_8px_24px_-12px_hsl(var(--primary)/0.18)]"
+            className="sticky top-[3.25rem] sm:top-[4rem] z-30 px-3 sm:px-4 pt-2.5 pb-2.5
+                       bg-gradient-to-b from-background/85 via-background/70 to-background/40
+                       backdrop-blur-2xl
+                       border-b border-white/25 dark:border-white/5
+                       shadow-[0_10px_28px_-14px_hsl(var(--primary)/0.22)]"
           >
             <TabsList
-              className="relative grid h-auto w-full grid-cols-4 gap-1 rounded-2xl p-1
-                         bg-white/40 dark:bg-white/5
+              className="relative grid h-auto w-full grid-cols-4 gap-1 rounded-2xl p-1.5
+                         bg-gradient-to-b from-white/55 via-white/40 to-white/30
+                         dark:from-white/[0.07] dark:via-white/[0.04] dark:to-white/[0.02]
                          backdrop-blur-xl
-                         border border-white/40 dark:border-white/10
-                         shadow-[inset_0_1px_0_0_hsl(0_0%_100%/0.6),0_2px_8px_-2px_hsl(var(--primary)/0.08)]"
+                         border border-white/55 dark:border-white/10
+                         shadow-[inset_0_1.5px_0_0_hsl(0_0%_100%/0.75),inset_0_-1px_0_0_hsl(220_30%_50%/0.08),0_4px_14px_-4px_hsl(var(--primary)/0.12)]
+                         ring-1 ring-white/30 dark:ring-white/5"
               aria-label={t("dashboardV2.header.sectionsAria")}
             >
+              {/* Inner ambient sheen — soft top-down highlight for glass depth */}
+              <span
+                aria-hidden
+                className="pointer-events-none absolute inset-0 rounded-2xl opacity-60"
+                style={{
+                  background:
+                    "radial-gradient(120% 100% at 50% -20%, hsl(0 0% 100% / 0.55) 0%, transparent 55%)",
+                }}
+              />
+
               {tabs.map((tab) => {
                 const Icon = tab.icon;
                 const isActive = activeTab === tab.key;
@@ -192,11 +207,11 @@ const SmartDashboard = () => {
                       <motion.span
                         layoutId="dashboard-tab-glass"
                         className="absolute inset-0 rounded-xl
-                                   bg-gradient-to-b from-white/85 to-white/55
-                                   dark:from-white/15 dark:to-white/5
+                                   bg-gradient-to-b from-white/95 via-white/75 to-white/60
+                                   dark:from-white/20 dark:via-white/10 dark:to-white/5
                                    backdrop-blur-md
-                                   border border-white/70 dark:border-white/15
-                                   shadow-[inset_0_1px_0_0_hsl(0_0%_100%/0.95),0_4px_12px_-4px_hsl(var(--primary)/0.25)]"
+                                   border border-white/80 dark:border-white/15
+                                   shadow-[inset_0_1.5px_0_0_hsl(0_0%_100%/0.95),inset_0_-1px_0_0_hsl(var(--primary)/0.08),0_6px_16px_-6px_hsl(var(--primary)/0.32)]"
                         transition={{ type: "spring", stiffness: 380, damping: 30 }}
                       />
                     )}
@@ -204,7 +219,7 @@ const SmartDashboard = () => {
                     <span
                       className={`relative z-10 flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-lg transition-all duration-300 ${
                         isActive
-                          ? `bg-gradient-to-br ${tab.grad} shadow-[inset_0_1px_0_0_hsl(0_0%_100%/0.5)]`
+                          ? `bg-gradient-to-br ${tab.grad} shadow-[inset_0_1px_0_0_hsl(0_0%_100%/0.55),0_2px_6px_-2px_hsl(var(--primary)/0.35)]`
                           : "bg-transparent"
                       }`}
                     >
@@ -235,12 +250,14 @@ const SmartDashboard = () => {
                   className="absolute top-2 bottom-2 pointer-events-none select-none"
                   style={{ left: `${pos * 25}%`, transform: "translateX(-50%)" }}
                 >
-                  {/* Wide ambient glow band — primary-tinted shadow */}
-                  <div className="absolute inset-y-1 -inset-x-3 rounded-full bg-gradient-to-b from-transparent via-primary/[0.04] via-50% to-transparent blur-[3px]" />
-                  {/* Core graduated ridge line */}
-                  <div className="absolute inset-y-1.5 left-1/2 -translate-x-1/2 w-[1.5px] rounded-full bg-gradient-to-b from-transparent via-border/40 via-45% to-transparent" />
-                  {/* Glass highlight for depth */}
-                  <div className="absolute inset-y-2.5 left-1/2 -translate-x-1/2 w-px rounded-full bg-gradient-to-b from-transparent via-white/30 via-45% to-transparent" />
+                  {/* Soft ambient halo — primary-tinted glow for atmosphere */}
+                  <div className="absolute inset-y-0 -inset-x-3 rounded-full bg-gradient-to-b from-transparent via-primary/[0.06] via-50% to-transparent blur-[4px]" />
+                  {/* Core graduated ridge line — crisp hairline divider */}
+                  <div className="absolute inset-y-1 left-1/2 -translate-x-1/2 w-[1.5px] rounded-full bg-gradient-to-b from-transparent via-border/50 via-45% to-transparent" />
+                  {/* Top highlight pearl — adds glassy depth & focal point */}
+                  <div className="absolute top-2 left-1/2 -translate-x-1/2 h-1.5 w-1.5 rounded-full bg-white/70 dark:bg-white/20 blur-[1.5px]" />
+                  {/* Inner glass highlight strand — subtle vertical sheen */}
+                  <div className="absolute inset-y-2.5 left-1/2 -translate-x-1/2 w-px rounded-full bg-gradient-to-b from-transparent via-white/45 via-45% to-transparent" />
                 </div>
               ))}
             </TabsList>
