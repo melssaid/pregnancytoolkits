@@ -231,9 +231,68 @@ export function buildPrintHTML({ content, title, lang, isRTL, profile, logoDataU
     .print-content img { max-width: 100%; height: auto; ${isLandscape ? 'max-height: 140mm;' : 'max-height: 110mm;'} display: block; margin: 10px auto; border-radius: 6px; }
     .print-content table { font-size: ${isLandscape ? '12.5px' : '13px'}; }
 
+    /* ============ Pagination-friendly rules ============ */
+    /* Header & footer never split across pages */
+    .print-header, .print-footer { page-break-inside: avoid; break-inside: avoid; }
+    .print-footer { margin-top: 14px; }
+
+    /* Headings should stay with the paragraph that follows them */
+    .print-content h1, .print-content h2, .print-content h3,
+    .print-content h4, .print-content h5, .print-content h6 {
+      page-break-after: avoid;
+      break-after: avoid-page;
+      page-break-inside: avoid;
+      break-inside: avoid;
+      /* Orphan/widow control for the heading line itself */
+      orphans: 3;
+      widows: 3;
+    }
+
+    /* Top-level h1/h2 are good page-start anchors for very long reports */
+    .print-content h1 { page-break-before: auto; }
+    .print-content h2 { page-break-before: auto; }
+
+    /* Paragraphs & list items: avoid awkward 1-line widows/orphans */
+    .print-content p, .print-content li, .print-content blockquote {
+      orphans: 3;
+      widows: 3;
+    }
+
+    /* Keep lists together when possible; allow break between items only */
+    .print-content ul, .print-content ol { page-break-inside: auto; break-inside: auto; }
+    .print-content li { page-break-inside: avoid; break-inside: avoid; }
+
+    /* Tables: repeat headers on every page, never split a row */
+    .print-content table { page-break-inside: auto; break-inside: auto; border-collapse: collapse; width: 100%; }
+    .print-content thead { display: table-header-group; }
+    .print-content tfoot { display: table-footer-group; }
+    .print-content tr   { page-break-inside: avoid; break-inside: avoid; }
+
+    /* Images, figures, code blocks, callouts — keep intact */
+    .print-content img,
+    .print-content figure,
+    .print-content pre,
+    .print-content blockquote,
+    .print-content [class*="card"],
+    .print-content [class*="Card"],
+    .print-content [class*="callout"],
+    .print-content [class*="alert"] {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    /* Explicit break helpers (can be added by content authors) */
+    .page-break, .pagebreak { page-break-before: always; break-before: page; }
+    .no-break { page-break-inside: avoid; break-inside: avoid; }
+
     @media print {
+      html, body { background: #fff !important; }
       body { padding: ${isLandscape ? '8mm 10mm' : '10mm'}; }
-      @page { margin: ${isLandscape ? '8mm' : '10mm'}; size: A4 ${orientation}; }
+      @page { margin: ${isLandscape ? '8mm' : '12mm 10mm'}; size: A4 ${orientation}; }
+      /* Hide any link URL annotations the browser might add to long anchors */
+      a[href]:after { content: ''; }
+      /* Avoid stray empty pages from trailing margins */
+      .print-content > *:last-child { margin-bottom: 0; }
     }
   </style>
 </head>
