@@ -196,13 +196,31 @@ const SmartDashboard = () => {
                   <TabsTrigger
                     key={tab.key}
                     value={tab.key}
-                    className={`relative flex h-12 sm:h-14 flex-col items-center justify-center gap-0.5
+                    className={`group relative flex h-12 sm:h-14 flex-col items-center justify-center gap-0.5
                                rounded-xl border-0 bg-transparent
-                               text-[10px] font-bold transition-all duration-300
+                               text-[10px] font-bold
+                               transition-[color,transform,background-color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]
                                data-[state=active]:shadow-none
-                               ${isActive ? tab.activeIcon : "text-muted-foreground"}
-                               data-[state=inactive]:hover:bg-white/30 dark:data-[state=inactive]:hover:bg-white/5`}
+                               focus-visible:outline-none
+                               focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-1 focus-visible:ring-offset-background/40
+                               active:scale-[0.97]
+                               ${isActive
+                                 ? `${tab.activeIcon} -translate-y-[1px]`
+                                 : "text-muted-foreground hover:text-foreground/85 hover:-translate-y-[0.5px]"}`}
                   >
+                    {/* Inactive hover veil — soft frosted layer that fades in */}
+                    {!isActive && (
+                      <span
+                        aria-hidden
+                        className="pointer-events-none absolute inset-0 rounded-xl
+                                   bg-gradient-to-b from-white/55 via-white/30 to-white/10
+                                   dark:from-white/[0.08] dark:via-white/[0.04] dark:to-transparent
+                                   opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100
+                                   transition-opacity duration-300 ease-out"
+                      />
+                    )}
+
+                    {/* Active glass pill — animated layout transition between tabs */}
                     {isActive && (
                       <motion.span
                         layoutId="dashboard-tab-glass"
@@ -212,27 +230,46 @@ const SmartDashboard = () => {
                                    backdrop-blur-md
                                    border border-white/80 dark:border-white/15
                                    shadow-[inset_0_1.5px_0_0_hsl(0_0%_100%/0.95),inset_0_-1px_0_0_hsl(var(--primary)/0.08),0_6px_16px_-6px_hsl(var(--primary)/0.32)]"
+                        transition={{ type: "spring", stiffness: 380, damping: 30, mass: 0.6 }}
+                      />
+                    )}
+
+                    {/* Active underline accent — thin gradient bar at base for crisp identity */}
+                    {isActive && (
+                      <motion.span
+                        layoutId="dashboard-tab-underline"
+                        aria-hidden
+                        className="absolute bottom-1 left-1/2 -translate-x-1/2 h-[2px] w-7 sm:w-8 rounded-full
+                                   bg-gradient-to-r from-transparent via-primary to-transparent
+                                   shadow-[0_0_6px_hsl(var(--primary)/0.45)]"
                         transition={{ type: "spring", stiffness: 380, damping: 30 }}
                       />
                     )}
-                    {/* Per-tab icon medallion: vivid gradient swatch when active */}
+
+                    {/* Per-tab icon medallion: vivid gradient swatch when active, soft halo on hover when inactive */}
                     <span
-                      className={`relative z-10 flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-lg transition-all duration-300 ${
+                      className={`relative z-10 flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-lg
+                                  transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
                         isActive
-                          ? `bg-gradient-to-br ${tab.grad} shadow-[inset_0_1px_0_0_hsl(0_0%_100%/0.55),0_2px_6px_-2px_hsl(var(--primary)/0.35)]`
-                          : "bg-transparent"
+                          ? `bg-gradient-to-br ${tab.grad} shadow-[inset_0_1px_0_0_hsl(0_0%_100%/0.55),0_2px_6px_-2px_hsl(var(--primary)/0.35)] scale-105`
+                          : "bg-transparent group-hover:bg-white/40 dark:group-hover:bg-white/5 group-hover:scale-[1.06]"
                       }`}
                     >
                       <Icon
-                        className={`transition-all duration-300 ${
+                        className={`transition-all duration-300 ease-out ${
                           isActive
                             ? `h-[15px] w-[15px] sm:h-4 sm:w-4 text-white ${tab.iconShadow}`
-                            : "h-[17px] w-[17px] sm:h-[18px] sm:w-[18px]"
+                            : "h-[17px] w-[17px] sm:h-[18px] sm:w-[18px] group-hover:text-foreground/85"
                         }`}
                         strokeWidth={isActive ? 2.4 : 2}
                       />
                     </span>
-                    <span className="relative z-10 leading-tight mt-0.5 text-[9px] sm:text-[10px] text-center px-0.5">
+                    <span
+                      className={`relative z-10 leading-tight mt-0.5 text-[9px] sm:text-[10px] text-center px-0.5
+                                  transition-all duration-300 ${
+                                    isActive ? "tracking-[0.01em]" : "tracking-normal"
+                                  }`}
+                    >
                       {t(tab.tKey)}
                     </span>
                   </TabsTrigger>
