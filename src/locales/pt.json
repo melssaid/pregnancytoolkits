@@ -9255,6 +9255,13 @@
         "moodScore": "Pontuação de humor",
         "bumpPhotos": "Fotos da barriga",
         "ultrasound": "Leituras de ultrassom"
+      },
+      "stageBadge": "Modo de análise: {{stage}}",
+      "stageBadgeAria": "Etapa de análise ativa",
+      "stages": {
+        "pregnant": "Gravidez",
+        "postpartum": "Pós-parto",
+        "fertility": "Fertilidade"
       }
     },
     "signals": {

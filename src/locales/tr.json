@@ -9255,6 +9255,13 @@
         "moodScore": "Ruh hali skoru",
         "bumpPhotos": "Karın fotoğrafları",
         "ultrasound": "Ultrason okumaları"
+      },
+      "stageBadge": "Analiz modu: {{stage}}",
+      "stageBadgeAria": "Etkin analiz aşaması",
+      "stages": {
+        "pregnant": "Gebelik",
+        "postpartum": "Loğusalık",
+        "fertility": "Doğurganlık"
       }
     },
     "signals": {
