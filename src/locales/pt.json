@@ -9342,7 +9342,8 @@
         "recent_one": "1 sessão nos últimos 7 dias",
         "recent_other": "{{count}} sessões nos últimos 7 dias",
         "empty": "Registre a primeira sessão de sono do seu bebê"
-      }
+      },
+      "emptyHint": "Comece por qualquer pilar de recuperação abaixo — seus relatórios serão construídos com o tempo."
     }
   },
   "reset": {

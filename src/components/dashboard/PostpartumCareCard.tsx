@@ -2,7 +2,7 @@ import { memo, useMemo } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { Brain, Baby, ChevronLeft, ChevronRight, HeartPulse } from "lucide-react";
+import { Brain, Baby, ChevronLeft, ChevronRight, HeartPulse, Sparkles } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { safeParseLocalStorage } from "@/lib/safeStorage";
 
@@ -49,6 +49,8 @@ export const PostpartumCareCard = memo(function PostpartumCareCard() {
     };
   }, [moodEntries, sleepLogs]);
 
+  const hasAnyData = stats.moodCount > 0 || stats.sleepCount > 0;
+
   return (
     <motion.section
       initial={{ opacity: 0, y: 8 }}
@@ -63,6 +65,22 @@ export const PostpartumCareCard = memo(function PostpartumCareCard() {
       >
         {t("dashboardV2.postpartumCard.title", "ركائز التعافي")}
       </h3>
+
+      {!hasAnyData && (
+        <Card className="rounded-2xl border-border/40 bg-gradient-to-br from-sky-500/8 via-violet-500/5 to-rose-500/8 p-3.5">
+          <div className="flex items-start gap-3">
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-background/85 text-violet-600 dark:text-violet-400 ring-1 ring-border/40 flex-shrink-0">
+              <Sparkles className="h-4 w-4" strokeWidth={1.85} />
+            </div>
+            <p className="text-[12.5px] text-foreground/85 leading-relaxed">
+              {t(
+                "dashboardV2.postpartumCard.emptyHint",
+                "ابدئي بأي ركيزة من ركائز التعافي أدناه — سنبني تقاريرك تدريجياً."
+              )}
+            </p>
+          </div>
+        </Card>
+      )}
 
       <div className="grid grid-cols-1 gap-2">
         <Link to="/tools/postpartum-mental-health" className="block">
