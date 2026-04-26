@@ -195,16 +195,16 @@ export function ToolFrame({
                 {/* Aura */}
                 <motion.div
                   className="absolute rounded-full bg-primary/8 blur-lg"
-                  style={{ width: 46, height: 46 }}
+                  style={{ width: 54, height: 54 }}
                   animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.6, 0.3] }}
                   transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                 />
-                <div className="h-10 w-10 rounded-full overflow-hidden shadow-lg">
+                <div className="h-12 w-12 rounded-full overflow-hidden shadow-lg">
                   <img 
                     src={logoImage} 
                     alt="Pregnancy Toolkits" 
-                    width={40}
-                    height={40}
+                    width={48}
+                    height={48}
                     loading="eager"
                     decoding="async"
                     className="w-full h-full object-cover scale-[1.35]"
