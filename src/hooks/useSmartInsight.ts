@@ -5,7 +5,9 @@
 
 import { useState, useCallback, useRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { toast } from "sonner";
 import { useAIUsage } from "@/contexts/AIUsageContext";
+import { safeParseLocalStorage, safeSaveToLocalStorage } from "@/lib/safeStorage";
 import {
   executeSmartRequest,
   getQuotaState,
@@ -17,9 +19,40 @@ import {
   type AIToolType,
 } from "@/services/smartEngine";
 
+const SAVED_KEY = "ai-saved-results";
+const MAX_SAVED = 20;
+
+interface SavedAIResult {
+  id: string;
+  toolId: string;
+  title: string;
+  content: string;
+  savedAt: string;
+  meta?: Record<string, any>;
+}
+
+function autoSaveResult(toolId: string, title: string, content: string, meta?: Record<string, any>) {
+  const trimmed = (content || "").trim();
+  if (trimmed.length < 30) return; // skip near-empty
+  const all = safeParseLocalStorage<SavedAIResult[]>(SAVED_KEY, [], (d): d is SavedAIResult[] => Array.isArray(d));
+  if (all.some(r => r.content === trimmed)) return; // dedupe
+  const next = [
+    { id: `saved-${Date.now()}`, toolId, title, content: trimmed, savedAt: new Date().toISOString(), meta },
+    ...all,
+  ].slice(0, MAX_SAVED);
+  safeSaveToLocalStorage(SAVED_KEY, next);
+  try { window.dispatchEvent(new CustomEvent("ai-results-saved")); } catch {}
+}
+
 export interface UseSmartInsightOptions {
   section: SmartSection;
   toolType?: AIToolType;
+  /** Disable auto-save (default: enabled) */
+  autoSave?: boolean;
+  /** Title used for the auto-saved entry */
+  autoSaveTitle?: string;
+  /** Tool ID for the saved entry (defaults to toolType or section) */
+  autoSaveToolId?: string;
 }
 
 export function useSmartInsight({ section, toolType }: UseSmartInsightOptions) {
