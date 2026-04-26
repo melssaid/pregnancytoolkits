@@ -86,6 +86,77 @@ function getRecommendedTools(stage: JourneyStage, week: number | null) {
     });
 }
 
+/**
+ * Derive a short, localized "why we recommend this" badge per tool.
+ * Returns null when the reason would be redundant (very low score).
+ */
+type ReasonKind = "fertility" | "postpartum" | "near-week" | "this-week" | "trimester" | "all-pregnancy";
+type Reason = { kind: ReasonKind; label: string; tone: string };
+
+function getReasonBadge(
+  toolId: string,
+  stage: JourneyStage,
+  week: number | null,
+  t: (key: string, opts?: Record<string, unknown>) => string
+): Reason | null {
+  const range = STAGE_MAP[toolId];
+  if (!range) return null;
+
+  if (stage === "fertility" && range.fertility) {
+    return {
+      kind: "fertility",
+      label: t("discover.reason.fertility", "Pre-pregnancy"),
+      tone: "bg-emerald-500/10 text-emerald-700 dark:text-emerald-300",
+    };
+  }
+  if (stage === "postpartum" && range.postpartum) {
+    return {
+      kind: "postpartum",
+      label: t("discover.reason.postpartum", "Postpartum care"),
+      tone: "bg-sky-500/10 text-sky-700 dark:text-sky-300",
+    };
+  }
+  if (stage === "pregnant" && range.pregnant) {
+    const [lo, hi] = range.pregnant;
+    if (week !== null && week >= lo && week <= hi) {
+      const center = Math.round((lo + hi) / 2);
+      const dist = Math.abs(week - center);
+      // Highly specific window (≤ 6 weeks wide) → call out the exact week
+      if (hi - lo <= 6) {
+        return {
+          kind: "this-week",
+          label: t("discover.reason.thisWeek", { week, defaultValue: `Useful at week ${week}` }),
+          tone: "bg-rose-500/12 text-rose-700 dark:text-rose-300",
+        };
+      }
+      // Within 4 weeks of the center → "near week N"
+      if (dist <= 4) {
+        return {
+          kind: "near-week",
+          label: t("discover.reason.nearWeek", { week, defaultValue: `Near week ${week}` }),
+          tone: "bg-rose-500/10 text-rose-700 dark:text-rose-300",
+        };
+      }
+      // Trimester-scope match
+      const trimester = week <= 13 ? 1 : week <= 27 ? 2 : 3;
+      return {
+        kind: "trimester",
+        label: t(`discover.reason.trimester${trimester}`, { defaultValue: `Trimester ${trimester}` }),
+        tone: "bg-violet-500/10 text-violet-700 dark:text-violet-300",
+      };
+    }
+    // Pregnant but no week stored, or generic full-pregnancy tool
+    if (lo <= 4 && hi >= 38) {
+      return {
+        kind: "all-pregnancy",
+        label: t("discover.reason.allPregnancy", "All pregnancy"),
+        tone: "bg-rose-500/10 text-rose-700 dark:text-rose-300",
+      };
+    }
+  }
+  return null;
+}
+
 const STAGE_ICON: Record<JourneyStage, typeof Flower2> = {
   fertility: Sprout,
   pregnant: Flower2,
