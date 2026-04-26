@@ -17,6 +17,10 @@ import {
   CheckCircle2,
   Circle,
   AlertTriangle,
+  Moon,
+  ScanLine,
+  Camera,
+  Gauge,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { useDashboardDataCheck } from "@/hooks/useDashboardDataCheck";
@@ -31,16 +35,20 @@ interface SourceRow {
 }
 
 const SOURCES: SourceRow[] = [
-  { key: "hasMoodData",      icon: Heart,       i18nKey: "mood",         href: "/tools/wellness-diary",       color: "hsl(345 75% 60%)" },
-  { key: "hasSymptomsData",  icon: Activity,    i18nKey: "symptoms",     href: "/tools/wellness-diary",       color: "hsl(280 60% 60%)" },
-  { key: "hasWeight",        icon: Scale,       i18nKey: "weight",       href: "/tools/smart-weight-gain",    color: "hsl(330 70% 55%)" },
-  { key: "hasHydration",     icon: Droplet,     i18nKey: "hydration",    href: "/tools/smart-pregnancy-plan", color: "hsl(200 80% 55%)" },
-  { key: "hasVitamins",      icon: Pill,        i18nKey: "vitamins",     href: "/tools/vitamin-tracker",      color: "hsl(160 60% 50%)" },
-  { key: "hasKickSessions",  icon: Baby,        i18nKey: "kicks",        href: "/tools/smart-kick-counter",   color: "hsl(25 80% 55%)" },
-  { key: "hasContractions",  icon: Timer,       i18nKey: "contractions", href: "/tools/contraction-timer",    color: "hsl(0 70% 55%)" },
-  { key: "hasAppointments",  icon: CalendarDays,i18nKey: "appointments", href: "/tools/smart-appointment-reminder", color: "hsl(220 70% 55%)" },
-  { key: "hasMeals",         icon: Apple,       i18nKey: "meals",        href: "/tools/ai-meal-suggestion",   color: "hsl(140 55% 50%)" },
-  { key: "hasFitness",       icon: Dumbbell,    i18nKey: "fitness",      href: "/tools/ai-fitness-coach",     color: "hsl(45 80% 50%)" },
+  { key: "hasMoodData",           icon: Heart,        i18nKey: "mood",         href: "/tools/wellness-diary",       color: "hsl(345 75% 60%)" },
+  { key: "hasMoodScore",          icon: Gauge,        i18nKey: "moodScore",    href: "/tools/wellness-diary",       color: "hsl(320 65% 55%)" },
+  { key: "hasSymptomsData",       icon: Activity,     i18nKey: "symptoms",     href: "/tools/wellness-diary",       color: "hsl(280 60% 60%)" },
+  { key: "hasSleepData",          icon: Moon,         i18nKey: "sleep",        href: "/tools/baby-sleep-tracker",   color: "hsl(240 55% 55%)" },
+  { key: "hasWeight",             icon: Scale,        i18nKey: "weight",       href: "/tools/smart-weight-gain",    color: "hsl(330 70% 55%)" },
+  { key: "hasHydration",          icon: Droplet,      i18nKey: "hydration",    href: "/tools/smart-pregnancy-plan", color: "hsl(200 80% 55%)" },
+  { key: "hasVitamins",           icon: Pill,         i18nKey: "vitamins",     href: "/tools/vitamin-tracker",      color: "hsl(160 60% 50%)" },
+  { key: "hasKickSessions",       icon: Baby,         i18nKey: "kicks",        href: "/tools/smart-kick-counter",   color: "hsl(25 80% 55%)" },
+  { key: "hasContractions",       icon: Timer,        i18nKey: "contractions", href: "/tools/contraction-timer",    color: "hsl(0 70% 55%)" },
+  { key: "hasAppointments",       icon: CalendarDays, i18nKey: "appointments", href: "/tools/smart-appointment-reminder", color: "hsl(220 70% 55%)" },
+  { key: "hasMeals",              icon: Apple,        i18nKey: "meals",        href: "/tools/ai-meal-suggestion",   color: "hsl(140 55% 50%)" },
+  { key: "hasFitness",            icon: Dumbbell,     i18nKey: "fitness",      href: "/tools/ai-fitness-coach",     color: "hsl(45 80% 50%)" },
+  { key: "hasBumpPhotos",         icon: Camera,       i18nKey: "bumpPhotos",   href: "/tools/ai-bump-photos",       color: "hsl(15 70% 55%)" },
+  { key: "hasUltrasoundReadings", icon: ScanLine,     i18nKey: "ultrasound",   href: "/tools/ai-bump-photos",       color: "hsl(190 70% 50%)" },
 ];
 
 const MIN_SOURCES = 3;
