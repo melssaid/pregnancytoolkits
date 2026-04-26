@@ -55,7 +55,7 @@ export interface UseSmartInsightOptions {
   autoSaveToolId?: string;
 }
 
-export function useSmartInsight({ section, toolType }: UseSmartInsightOptions) {
+export function useSmartInsight({ section, toolType, autoSave = true, autoSaveTitle, autoSaveToolId }: UseSmartInsightOptions) {
   const [isLoading, setIsLoading] = useState(false);
   const [content, setContent] = useState("");
   const [error, setError] = useState<string | null>(null);
