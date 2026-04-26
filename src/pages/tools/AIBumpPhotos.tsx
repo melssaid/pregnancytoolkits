@@ -536,7 +536,7 @@ const AIBumpPhotos: React.FC = () => {
                 <Button
                   onClick={() => target && analyzePhoto(target)}
                   disabled={!canAnalyze}
-                  className="w-full h-11 rounded-xl text-sm font-semibold gap-2"
+                  className="w-full h-12 rounded-xl text-sm font-bold gap-2 bg-gradient-to-r from-primary via-primary to-primary/80 text-primary-foreground shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 hover:opacity-95 transition-all disabled:opacity-50 disabled:shadow-none"
                 >
                   {isAnalyzing ? (
                     <>
