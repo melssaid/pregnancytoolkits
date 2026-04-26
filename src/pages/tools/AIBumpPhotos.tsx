@@ -413,9 +413,6 @@ const AIBumpPhotos: React.FC = () => {
           {/* subtle sheen */}
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-transparent via-foreground/[0.03] to-transparent" />
           <div className="relative flex items-center gap-3">
-            <div className="shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center shadow-md shadow-primary/25">
-              <Sparkles className="w-5 h-5 text-primary-foreground" />
-            </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-1.5 flex-wrap">
                 <span className="text-[13px] font-extrabold text-foreground leading-tight">
@@ -539,7 +536,7 @@ const AIBumpPhotos: React.FC = () => {
                 <Button
                   onClick={() => target && analyzePhoto(target)}
                   disabled={!canAnalyze}
-                  className="w-full h-11 rounded-xl text-sm font-semibold gap-2"
+                  className="w-full h-12 rounded-xl text-sm font-bold gap-2 bg-gradient-to-r from-primary via-primary to-primary/80 text-primary-foreground shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 hover:opacity-95 transition-all disabled:opacity-50 disabled:shadow-none"
                 >
                   {isAnalyzing ? (
                     <>
