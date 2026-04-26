@@ -127,7 +127,19 @@ interface Result {
 }
 
 const MIN_SOURCES = 3;
-const ALL_SOURCES = 14; // mood, moodScore, symptoms, sleep, weight, hydration, vitamins, kicks, contractions, appointments, meals, fitness, bumpPhotos, ultrasound
+// Stage-adaptive source counts. The dashboard's DataSourcesPanel filters its
+// catalogue by journey stage; we mirror that here so engagementScore and
+// dataRichness reflect ONLY the sources that make sense for the user.
+//   universal sources : 9  (mood, moodScore, symptoms, sleep, weight,
+//                           hydration, appointments, meals, fitness)
+//   pregnancy-only    : 5  (vitamins, kicks, contractions, bumpPhotos, ultrasound)
+//   postpartum-only   : 0  (today — extend later)
+//   fertility-only    : 0  (today — extend later)
+const SOURCES_BY_STAGE: Record<"pregnant" | "postpartum" | "fertility", number> = {
+  pregnant: 14,
+  postpartum: 9,
+  fertility: 9,
+};
 const HYDRATION_TARGET_ML = 2500;
 
 // ── Helpers ─────────────────────────────────────────────────────────────
