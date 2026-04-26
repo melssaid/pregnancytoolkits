@@ -127,7 +127,7 @@ export function ToolFrame({
             <Link to="/" className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center">
               <motion.div 
                 className="relative flex items-center justify-center"
-                style={{ width: 56, height: 56 }}
+                style={{ width: 64, height: 64 }}
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: [0.8, 1.08, 0.97, 1], opacity: 1 }}
                 transition={{ duration: 0.7, ease: "easeOut" }}
@@ -135,7 +135,7 @@ export function ToolFrame({
                 {/* Rotating ring */}
                 <motion.div
                   className="absolute rounded-full border border-primary/15"
-                  style={{ width: 52, height: 52 }}
+                  style={{ width: 60, height: 60 }}
                   animate={{ rotate: 360 }}
                   transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                 />
