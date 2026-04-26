@@ -1,19 +1,26 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Crown, Sparkles, X } from "lucide-react";
+import { Crown, X } from "lucide-react";
 import { useSubscriptionStatus } from "@/hooks/useSubscriptionStatus";
 
-const INSTALL_KEY = "pt_first_open";
 const DISMISS_KEY = "pt_upgrade_banner_dismissed";
 const SHOWN_COUNT_KEY = "pt_upgrade_banner_shown_count";
-const LAST_SHOWN_KEY = "pt_upgrade_banner_last_shown";
+const TRIGGER_KEY = "pt_upgrade_banner_trigger";
 const SESSION_KEY = "pt_upgrade_banner_session_shown";
 
 const DISMISS_COOLDOWN_MS = 7 * 24 * 60 * 60 * 1000; // 7 days after dismiss
-const ROTATION_INTERVAL_MS = 2 * 24 * 60 * 60 * 1000; // show at most every 2 days
-const MAX_IMPRESSIONS = 6; // cap total appearances
+const MAX_IMPRESSIONS = 8;
+
+// Public API: call this from anywhere to request the banner on next render.
+// Examples: when user opens the Sonar tool, or hits the AI quota limit.
+export function triggerUpgradeBanner(reason: "sonar_opened" | "quota_reached" | "premium_feature_blocked" | string) {
+  try {
+    localStorage.setItem(TRIGGER_KEY, JSON.stringify({ reason, at: Date.now() }));
+    window.dispatchEvent(new CustomEvent("pt:upgrade-banner-trigger", { detail: { reason } }));
+  } catch {}
+}
 
 export function TrialExpiryBanner() {
   const { t, i18n } = useTranslation();
@@ -22,42 +29,40 @@ export function TrialExpiryBanner() {
   const [visible, setVisible] = useState(false);
   const lang = i18n.language?.split("-")[0] || "en";
 
-  // Record first open timestamp
-  useEffect(() => {
-    if (!localStorage.getItem(INSTALL_KEY)) {
-      localStorage.setItem(INSTALL_KEY, Date.now().toString());
-    }
-  }, []);
-
-  // Decide whether to show on mount (rotation logic)
+  // Evaluate whether to show, based on a pending contextual trigger
   useEffect(() => {
     if (tier === "premium") {
       setVisible(false);
       return;
     }
-    const couponUsed = !!localStorage.getItem("pt_coupon_used");
-    if (couponUsed) return;
 
-    const firstOpen = parseInt(localStorage.getItem(INSTALL_KEY) || "0", 10);
-    const daysSinceInstall = firstOpen ? (Date.now() - firstOpen) / (24 * 60 * 60 * 1000) : 0;
-    if (daysSinceInstall < 3) return;
+    const evaluate = () => {
+      const couponUsed = !!localStorage.getItem("pt_coupon_used");
+      if (couponUsed) return;
 
-    const dismissedAt = parseInt(localStorage.getItem(DISMISS_KEY) || "0", 10);
-    if (dismissedAt && Date.now() - dismissedAt < DISMISS_COOLDOWN_MS) return;
+      const triggerRaw = localStorage.getItem(TRIGGER_KEY);
+      if (!triggerRaw) return; // no contextual trigger → stay hidden
 
-    const shownCount = parseInt(localStorage.getItem(SHOWN_COUNT_KEY) || "0", 10);
-    if (shownCount >= MAX_IMPRESSIONS) return;
+      const dismissedAt = parseInt(localStorage.getItem(DISMISS_KEY) || "0", 10);
+      if (dismissedAt && Date.now() - dismissedAt < DISMISS_COOLDOWN_MS) return;
 
-    const lastShown = parseInt(localStorage.getItem(LAST_SHOWN_KEY) || "0", 10);
-    if (lastShown && Date.now() - lastShown < ROTATION_INTERVAL_MS) return;
+      const shownCount = parseInt(localStorage.getItem(SHOWN_COUNT_KEY) || "0", 10);
+      if (shownCount >= MAX_IMPRESSIONS) return;
 
-    // Once per session only
-    if (sessionStorage.getItem(SESSION_KEY)) return;
+      // Once per session only
+      if (sessionStorage.getItem(SESSION_KEY)) return;
 
-    setVisible(true);
-    sessionStorage.setItem(SESSION_KEY, "1");
-    localStorage.setItem(LAST_SHOWN_KEY, Date.now().toString());
-    localStorage.setItem(SHOWN_COUNT_KEY, String(shownCount + 1));
+      setVisible(true);
+      sessionStorage.setItem(SESSION_KEY, "1");
+      localStorage.setItem(SHOWN_COUNT_KEY, String(shownCount + 1));
+      // Consume the trigger so it doesn't fire again until a new qualifying event
+      localStorage.removeItem(TRIGGER_KEY);
+    };
+
+    evaluate();
+    const handler = () => evaluate();
+    window.addEventListener("pt:upgrade-banner-trigger", handler);
+    return () => window.removeEventListener("pt:upgrade-banner-trigger", handler);
   }, [tier]);
 
   const shouldShow = visible && tier !== "premium";
