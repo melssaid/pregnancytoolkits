@@ -86,6 +86,78 @@ function getRecommendedTools(stage: JourneyStage, week: number | null) {
     });
 }
 
+/**
+ * Derive a short, localized "why we recommend this" badge per tool.
+ * Returns null when the reason would be redundant (very low score).
+ */
+type ReasonKind = "fertility" | "postpartum" | "near-week" | "this-week" | "trimester" | "all-pregnancy";
+type Reason = { kind: ReasonKind; label: string; tone: string };
+
+function getReasonBadge(
+  toolId: string,
+  stage: JourneyStage,
+  week: number | null,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  t: (key: string, opts?: any) => string
+): Reason | null {
+  const range = STAGE_MAP[toolId];
+  if (!range) return null;
+
+  if (stage === "fertility" && range.fertility) {
+    return {
+      kind: "fertility",
+      label: t("discover.reason.fertility", "Pre-pregnancy"),
+      tone: "bg-emerald-500/10 text-emerald-700 dark:text-emerald-300",
+    };
+  }
+  if (stage === "postpartum" && range.postpartum) {
+    return {
+      kind: "postpartum",
+      label: t("discover.reason.postpartum", "Postpartum care"),
+      tone: "bg-sky-500/10 text-sky-700 dark:text-sky-300",
+    };
+  }
+  if (stage === "pregnant" && range.pregnant) {
+    const [lo, hi] = range.pregnant;
+    if (week !== null && week >= lo && week <= hi) {
+      const center = Math.round((lo + hi) / 2);
+      const dist = Math.abs(week - center);
+      // Highly specific window (≤ 6 weeks wide) → call out the exact week
+      if (hi - lo <= 6) {
+        return {
+          kind: "this-week",
+          label: t("discover.reason.thisWeek", { week, defaultValue: `Useful at week ${week}` }),
+          tone: "bg-rose-500/12 text-rose-700 dark:text-rose-300",
+        };
+      }
+      // Within 4 weeks of the center → "near week N"
+      if (dist <= 4) {
+        return {
+          kind: "near-week",
+          label: t("discover.reason.nearWeek", { week, defaultValue: `Near week ${week}` }),
+          tone: "bg-rose-500/10 text-rose-700 dark:text-rose-300",
+        };
+      }
+      // Trimester-scope match
+      const trimester = week <= 13 ? 1 : week <= 27 ? 2 : 3;
+      return {
+        kind: "trimester",
+        label: t(`discover.reason.trimester${trimester}`, { defaultValue: `Trimester ${trimester}` }),
+        tone: "bg-violet-500/10 text-violet-700 dark:text-violet-300",
+      };
+    }
+    // Pregnant but no week stored, or generic full-pregnancy tool
+    if (lo <= 4 && hi >= 38) {
+      return {
+        kind: "all-pregnancy",
+        label: t("discover.reason.allPregnancy", "All pregnancy"),
+        tone: "bg-rose-500/10 text-rose-700 dark:text-rose-300",
+      };
+    }
+  }
+  return null;
+}
+
 const STAGE_ICON: Record<JourneyStage, typeof Flower2> = {
   fertility: Sprout,
   pregnant: Flower2,
@@ -173,18 +245,29 @@ export default function DiscoverTools() {
             <div className="space-y-2">
               {newTools.slice(0, 12).map((tool, i) => {
                 const Icon = tool.icon;
+                const reason = getReasonBadge(tool.id, stage, week, t);
                 return (
                   <motion.div key={tool.id} initial={{ opacity: 0, x: isRTL ? 10 : -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.04 }}>
-                    <Link to={tool.href} className="flex items-center gap-3 p-3 rounded-xl bg-card border border-border hover:border-primary/30 transition-all group">
-                      <div className="h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center">
+                    <Link to={tool.href} className="flex items-start gap-3 p-3 rounded-xl bg-card border border-border hover:border-primary/30 transition-all group">
+                      <div className="h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
                         <Icon className="h-4 w-4 text-primary" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">{getToolTitle(tool, t, lang)}</div>
-                        <div className="text-[10px] text-muted-foreground truncate">{getToolDescription(tool, t, lang)}</div>
+                        <div className="flex items-center gap-1.5 flex-wrap">
+                          <span className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">{getToolTitle(tool, t, lang)}</span>
+                          {tool.hasAI && <span className="text-[9px] px-1.5 py-0.5 rounded-full bg-primary/10 text-primary font-bold">AI</span>}
+                        </div>
+                        <div className="text-[10px] text-muted-foreground truncate mt-0.5">{getToolDescription(tool, t, lang)}</div>
+                        {reason && (
+                          <span
+                            className={`inline-block mt-1.5 text-[9.5px] font-semibold px-1.5 py-0.5 rounded-md ${reason.tone}`}
+                            aria-label={t("discover.reason.ariaPrefix", "Why suggested:") + " " + reason.label}
+                          >
+                            {reason.label}
+                          </span>
+                        )}
                       </div>
-                      {tool.hasAI && <span className="text-[9px] px-1.5 py-0.5 rounded-full bg-primary/10 text-primary font-bold">AI</span>}
-                      <ArrowIcon className="h-3.5 w-3.5 text-muted-foreground group-hover:text-primary" />
+                      <ArrowIcon className="h-3.5 w-3.5 text-muted-foreground group-hover:text-primary flex-shrink-0 mt-1" />
                     </Link>
                   </motion.div>
                 );

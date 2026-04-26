@@ -8664,6 +8664,17 @@
         "title": "Outils pour vous et votre bébé",
         "context": "Sélectionnés pour le post-partum"
       }
+    },
+    "reason": {
+      "fertility": "Pré-grossesse",
+      "postpartum": "Soins post-partum",
+      "thisWeek": "Utile à la semaine {{week}}",
+      "nearWeek": "Proche de la semaine {{week}}",
+      "trimester1": "1er trimestre",
+      "trimester2": "2e trimestre",
+      "trimester3": "3e trimestre",
+      "allPregnancy": "Toute la grossesse",
+      "ariaPrefix": "Raison de la suggestion :"
     }
   },
   "faq": {

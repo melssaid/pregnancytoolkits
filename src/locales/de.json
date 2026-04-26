@@ -8664,6 +8664,17 @@
         "title": "Tools für Sie und Ihr Baby",
         "context": "Kuratiert für die Wochenbettphase"
       }
+    },
+    "reason": {
+      "fertility": "Vor der Schwangerschaft",
+      "postpartum": "Wochenbettpflege",
+      "thisWeek": "Nützlich in Woche {{week}}",
+      "nearWeek": "Nahe Woche {{week}}",
+      "trimester1": "1. Trimester",
+      "trimester2": "2. Trimester",
+      "trimester3": "3. Trimester",
+      "allPregnancy": "Gesamte Schwangerschaft",
+      "ariaPrefix": "Warum vorgeschlagen:"
     }
   },
   "faq": {

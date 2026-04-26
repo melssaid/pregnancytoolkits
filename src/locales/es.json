@@ -8664,6 +8664,17 @@
         "title": "Herramientas para ti y tu bebé",
         "context": "Seleccionadas para el posparto"
       }
+    },
+    "reason": {
+      "fertility": "Pre-embarazo",
+      "postpartum": "Cuidado postparto",
+      "thisWeek": "Útil en la semana {{week}}",
+      "nearWeek": "Cerca de la semana {{week}}",
+      "trimester1": "1er trimestre",
+      "trimester2": "2º trimestre",
+      "trimester3": "3er trimestre",
+      "allPregnancy": "Todo el embarazo",
+      "ariaPrefix": "Por qué sugerida:"
     }
   },
   "faq": {
