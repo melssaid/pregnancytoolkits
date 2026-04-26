@@ -67,16 +67,62 @@ export function TrialExpiryBanner() {
     localStorage.setItem(DISMISS_KEY, Date.now().toString());
   };
 
-  const labels: Record<string, { text: string; cta: string }> = {
-    ar: { text: "🌟 اكتشفي قوة التحليلات الذكية — اشتركي الآن!", cta: "اشتركي" },
-    en: { text: "🌟 Unlock smart analyses — Subscribe now!", cta: "Subscribe" },
-    de: { text: "🌟 Smarte Analysen freischalten — Jetzt abonnieren!", cta: "Abonnieren" },
-    fr: { text: "🌟 Débloquez les analyses intelligentes — Abonnez-vous!", cta: "S'abonner" },
-    es: { text: "🌟 Desbloquea análisis inteligentes — ¡Suscríbete!", cta: "Suscríbete" },
-    pt: { text: "🌟 Desbloqueie análises inteligentes — Assine agora!", cta: "Assinar" },
-    tr: { text: "🌟 Akıllı analizlerin kilidini açın — Şimdi abone olun!", cta: "Abone Ol" },
+  const variants: Record<string, { text: string; cta: string }[]> = {
+    ar: [
+      { text: "🌟 اكتشفي قوة التحليلات الذكية — اشتركي الآن!", cta: "اشتركي" },
+      { text: "✨ خطة حمل مخصصة لكِ بالذكاء الاصطناعي", cta: "ابدئي" },
+      { text: "👑 60 تحليلاً شهرياً + ميزات حصرية", cta: "ترقية" },
+      { text: "💎 رفيقتكِ الذكية طوال رحلة الحمل", cta: "اشتركي" },
+      { text: "🌸 تحليل السونار والحركات بدقة احترافية", cta: "جربي" },
+    ],
+    en: [
+      { text: "🌟 Unlock smart analyses — Subscribe now!", cta: "Subscribe" },
+      { text: "✨ Personalized AI pregnancy plan made for you", cta: "Start" },
+      { text: "👑 60 monthly analyses + exclusive features", cta: "Upgrade" },
+      { text: "💎 Your smart companion through pregnancy", cta: "Join" },
+      { text: "🌸 Pro-level scan & kick analysis", cta: "Try" },
+    ],
+    de: [
+      { text: "🌟 Smarte Analysen freischalten — Jetzt abonnieren!", cta: "Abonnieren" },
+      { text: "✨ Personalisierter KI-Schwangerschaftsplan", cta: "Starten" },
+      { text: "👑 60 Analysen/Monat + exklusive Features", cta: "Upgrade" },
+      { text: "💎 Deine smarte Begleiterin in der Schwangerschaft", cta: "Beitreten" },
+      { text: "🌸 Profi-Ultraschall- & Kick-Analyse", cta: "Testen" },
+    ],
+    fr: [
+      { text: "🌟 Débloquez les analyses intelligentes — Abonnez-vous!", cta: "S'abonner" },
+      { text: "✨ Plan de grossesse IA personnalisé", cta: "Commencer" },
+      { text: "👑 60 analyses/mois + fonctions exclusives", cta: "Passer" },
+      { text: "💎 Votre compagne intelligente de grossesse", cta: "Rejoindre" },
+      { text: "🌸 Analyse pro des échographies et mouvements", cta: "Essayer" },
+    ],
+    es: [
+      { text: "🌟 Desbloquea análisis inteligentes — ¡Suscríbete!", cta: "Suscríbete" },
+      { text: "✨ Plan de embarazo IA personalizado para ti", cta: "Empezar" },
+      { text: "👑 60 análisis/mes + funciones exclusivas", cta: "Mejorar" },
+      { text: "💎 Tu compañera inteligente del embarazo", cta: "Unirse" },
+      { text: "🌸 Análisis profesional de ecografías y patadas", cta: "Probar" },
+    ],
+    pt: [
+      { text: "🌟 Desbloqueie análises inteligentes — Assine agora!", cta: "Assinar" },
+      { text: "✨ Plano de gravidez IA personalizado para você", cta: "Começar" },
+      { text: "👑 60 análises/mês + recursos exclusivos", cta: "Upgrade" },
+      { text: "💎 Sua companheira inteligente na gravidez", cta: "Entrar" },
+      { text: "🌸 Análise profissional de ultrassom e chutes", cta: "Testar" },
+    ],
+    tr: [
+      { text: "🌟 Akıllı analizlerin kilidini açın — Şimdi abone olun!", cta: "Abone Ol" },
+      { text: "✨ Size özel AI hamilelik planı", cta: "Başla" },
+      { text: "👑 Aylık 60 analiz + özel özellikler", cta: "Yükselt" },
+      { text: "💎 Hamilelik yolculuğunuzda akıllı arkadaşınız", cta: "Katıl" },
+      { text: "🌸 Profesyonel ultrason ve tekme analizi", cta: "Dene" },
+    ],
   };
-  const l = labels[lang] || labels.en;
+  const langVariants = variants[lang] || variants.en;
+  // Rotate based on shown count so each impression shows a different message
+  const shownCount = parseInt(localStorage.getItem(SHOWN_COUNT_KEY) || "0", 10);
+  const variantIndex = Math.max(0, shownCount - 1) % langVariants.length;
+  const l = langVariants[variantIndex];
 
   return (
     <AnimatePresence>
