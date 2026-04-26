@@ -1,77 +1,56 @@
-# خطة التنفيذ: زر "التحليل الذكي الشامل" — 7 نقاط
 
-## الهدف
-إضافة زر مميز في أعلى تبويب **Insights** بلوحة التحكم يجمع كافة بيانات المستخدم (وزن، أعراض، مزاج، نوم، حركة، تغذية، نشاط...) ويرسلها لأقوى نموذج (`google/gemini-2.5-pro`) لإنتاج تحليل احترافي شامل بصيغة CEO Persona أنثوية — بتكلفة **7 نقاط** من خطة الاستهلاك.
+## التشخيص
 
----
+### مشكلة 1 — الـ splash يعرض صورة ثابتة بدلاً من الفيديو
 
-## 1) تسجيل الأداة في المحرك الذكي
-**ملف:** `src/services/smartEngine/types.ts`
-- إضافة `"holistic-dashboard"` ضمن `AIToolType`.
-- توسيع `InsightWeight` ليشمل `7`: `0 | 0.5 | 1 | 2 | 5 | 7`.
-- إضافة المفتاح في `TOOL_WEIGHT_REGISTRY` بقيمة **7** (المصدر الوحيد للحقيقة).
+عند فحص `index.html` (سطر 295-407):
 
-## 2) توسيع الـ Edge Function
-**ملف:** `supabase/functions/pregnancy-ai-perplexity/index.ts`
-- فرع جديد للحالة `holistic-dashboard`:
-  - النموذج `google/gemini-2.5-pro` (سياق ضخم + تحليل عميق).
-  - System prompt بشخصية CEO أنثوية: ملخص تنفيذي → مؤشرات بارزة → تنبيهات لينة → توصيات أسبوعية → خطة الأيام السبعة القادمة.
-  - يستقبل `snapshot` كنص JSON منظم في `messages`.
+- **شرط التخطي في سطر 328** يتخطى فيديو الـ splash نهائياً للمستخدمين الذين أنهوا onboarding (`splashSeenPersistent && onboardingDone`)، فيرون مباشرة `PageSkeleton` (الذي يستخدم `splash-logo-v2.webp` كصورة ثابتة) ويظنون ذلك هو الـ splash.
+- الفيديو ليس عليه `loop` ولا `poster` صريح، وفي حال تأخر `play()` بسبب autoplay policy في WebView يبقى الإطار الأول معروضاً بدون حركة.
+- حجم `splash-video.mp4` = **2.2MB** — على شبكة بطيئة في الزيارة الأولى، يستهلك ثوانٍ قبل بدء التشغيل، فيبدو ساكناً.
 
-## 3) هوك تجميع البيانات
-**ملف جديد:** `src/hooks/useHolisticDashboardSnapshot.ts`
-- يجمع من المصادر الموجودة دون لمس مفاتيح التخزين:
-  - `useUserProfile` (بروفايل/أسبوع/مرحلة).
-  - `useDashboardData` (وزن/أعراض/dataCheck).
-  - `kick_sessions` / `water_logs_<uid>` / `contraction_timer_data`.
-  - `mood_logs` / `sleep_logs` / `meal_logs` / `fitness_logs` / `vitamin_logs` / `appointments`.
-- يحسب `dataRichness` (٪) و `hasMinimumData` (≥ 3 مصادر).
-- يرجع `{ snapshot, dataRichness, hasMinimumData, sourcesCount }`.
+### مشكلة 2 — البطء في التنقلات الداخلية بعد التحميل الأول
 
-## 4) بطاقة الزر المميز
-**ملف جديد:** `src/components/dashboard/HolisticAIAnalysisCard.tsx`
-- glassmorphism + gradient وردي-بنفسجي + حدود ذهبية رفيعة (متوافق مع Warm Rose-to-Lavender).
-- شارة **"7 نقاط"** + أيقونة Crown صغيرة + Sparkles.
-- شريط `dataRichness` بصري.
-- زر CTA يستخدم `AIActionButton` مع `costHint="7"`.
-- النتيجة داخل `AIInsightCard` + `UsagePulseFooter` + `AIFeedbackPrompt` + `SaveResultButton` + `AIResultDisclaimer` (نفس نمط بقية الأدوات).
+السبب الجذري في `src/main.tsx`:
 
-## 5) دعم تكلفة 7 في زر الإجراء
-**ملف:** `src/components/ai/AIActionButton.tsx`
-- إضافة دعم `costHint="7"` في الواجهة (badge "7 نقاط / 7 points / 7 puntos…").
-- منطق الاستهلاك يبقى عبر `resolveWeight()` فقط.
-
-## 6) دمج البطاقة في تبويب Insights
-**ملف:** `src/components/dashboard/tabs/InsightsTab.tsx`
-- إضافة `<HolisticAIAnalysisCard />` كأول عنصر (قبل `HealthScoreRing`).
-- إذا `!hasMinimumData` تُعرض حالة لطيفة تشجع على التتبع.
-
-## 7) ترجمات السبع لغات
-**ملفات:** `src/locales/{ar,en,de,fr,es,pt,tr}.json`
-- مفتاح جديد `dashboardV2.holistic`:
-  - `title`, `subtitle`, `cta`, `cost` (بأرقام غربية: **7**), `dataRichness`, `minDataNeeded`, `whatItAnalyzes`, `disclaimerNote`.
+1. **سطر 73-77**: في معاينة Lovable و iframes يتم استدعاء `unregister()` لكل Service Worker عند كل تحميل ← يُلغي تخزين JavaScript chunks مؤقتاً، فكل صفحة جديدة تُحمَّل من الشبكة.
+2. **سطر 130-148**: 6 imports ديناميكية مؤجلة (storageCleanup, webVitals, googlePlayBilling, indexedDBStore + migration لـ 3 جداول) كلها على main thread أثناء أول idle بعد التنقل ← تأخير ملحوظ.
+3. **`src/lib/routePrefetch.ts` معرَّف لكنه لا يُستدعى من أي مكان** — تم التحقق عبر `rg "prefetchCriticalRoutes"` ← الصفحات لا تُحمَّل مسبقاً، فأول زيارة لأي أداة تنتظر تنزيل chunk كامل.
+4. **`PageSkeleton` يستورد `framer-motion`** فقط لـ 3 نقاط متحركة ← chunk ثقيل يُحمَّل في كل suspense fallback خلال التنقل.
 
 ---
 
-## ضمانات الجودة
-- ✅ CEO Persona أنثوية بالعربية، فصحى، مختصرة.
-- ✅ مصطلحات عافية فقط (ملاحظات، لا تشخيص/طبي).
-- ✅ التكلفة **7 نقاط** في `TOOL_WEIGHT_REGISTRY` كمصدر وحيد.
-- ✅ شريط الاستهلاك واستطلاع الرضا بنفس نمط `AIInsightCard`.
-- ✅ أرقام غربية للتكلفة (**7**) في كل اللغات.
-- ✅ RTL تلقائي عبر بنية `ToolFrame`/الكلاسات الموجودة.
-- ✅ عدم لمس `client.ts` / `types.ts` المُولّدين.
+## الخطة
 
----
+### A) إصلاح الـ splash بحيث يظهر الفيديو فقط (لا صورة ثابتة)
 
-## الملفات المتأثرة
-**جديدة:**
-- `src/hooks/useHolisticDashboardSnapshot.ts`
-- `src/components/dashboard/HolisticAIAnalysisCard.tsx`
+ملف: `index.html`
 
-**معدّلة:**
-- `src/services/smartEngine/types.ts`
-- `src/components/ai/AIActionButton.tsx`
-- `src/components/dashboard/tabs/InsightsTab.tsx`
-- `supabase/functions/pregnancy-ai-perplexity/index.ts`
-- `src/locales/ar.json`, `en.json`, `de.json`, `fr.json`, `es.json`, `pt.json`, `tr.json`
+1. **حذف شرط التخطي للـ onboardingDone**: إزالة `(splashSeenPersistent && onboardingDone)` من سطر 328 بحيث يتم فقط تخطي الفيديو إن كان قد عُرض فعلاً **في نفس الجلسة** (refresh / deep-link). هذا يضمن أن كل تحميل cold-start يعرض الفيديو.
+2. **إضافة `poster` شفاف 1×1** على عنصر `<video>` لمنع ظهور أي إطار ثابت قبل بدء التشغيل (إن لم يبدأ play بعد، يظهر فراغ أسود مطابق للخلفية بدلاً من إطار مجمَّد).
+3. **إضافة `loop` كـ fallback**: إن استغرق React أكثر من مدة الفيديو، يستمر الفيديو في التشغيل بدلاً من التجميد على آخر إطار.
+4. **محاولة play مرة ثانية على `loadedmetadata`** كحماية ضد فشل autoplay الأول في WebView.
+5. **تقليل safety cap** من 8s إلى 5s حتى لا يعلق المستخدم خلف splash إن فشل الفيديو.
+
+### B) حذف مصادر البطء في التنقلات
+
+**ملف: `src/main.tsx`**
+
+1. **استدعاء `prefetchCriticalRoutes()`** ضمن `deferAfterPaint` ← تحميل مسبق لـ Dashboard / Settings / أهم 3-4 أدوات حسب رحلة المستخدم بعد أول paint.
+2. **حذف unregister المتعدد للـ Service Workers في المعاينة** أو على الأقل تنفيذه مرة واحدة فقط عبر `sessionStorage` flag بدلاً من كل تحميل.
+3. **تأجيل migrations الـ IndexedDB** بـ `setTimeout(..., 5000)` بعد paint بدلاً من تشغيلها في أول idle ← ترك الـ main thread حراً للتنقلات.
+4. **تجميع imports المؤجلة في `Promise.all`** بدلاً من إطلاقها متسلسلة عبر `.then()` متشعب.
+
+**ملف: `src/components/PageSkeleton.tsx`**
+
+5. **استبدال `framer-motion` بـ CSS keyframes خالصة** للنقاط الثلاث ← يحذف dependency ثقيلة من الـ critical chunk، فيظهر الـ skeleton فوراً ودون chunk إضافي.
+
+### ملاحظة مهمة للمستخدم
+
+سؤالك قال: "الانتقالات الداخلية يمكن أن تظل ثابتة كما هي بالـ splash ذو الثلاث نقاط". فهمت ذلك على أن **PageSkeleton (3 نقاط) يبقى للانتقالات الداخلية**، وفقط **الـ splash الأولي يجب أن يكون فيديو دائماً**. الخطة أعلاه تطبق هذا بالضبط.
+
+### الملفات المعدّلة
+
+- `index.html` — إصلاح منطق splash + poster + loop + retry play
+- `src/main.tsx` — تفعيل route prefetch + تأجيل migrations + تنظيف SW logic + جمع imports
+- `src/components/PageSkeleton.tsx` — استبدال framer-motion بـ CSS pure

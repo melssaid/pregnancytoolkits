@@ -293,7 +293,8 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <!-- Splash overlay (outside #root so React doesn't displace it) -->
     <div id="splash-overlay" style="position:fixed;inset:0;z-index:9999;transition:opacity 0.6s cubic-bezier(0.4,0,0.2,1);will-change:opacity;background:#000;display:flex;align-items:center;justify-content:center;overflow:hidden;">
-      <video id="splash-video" autoplay muted playsinline webkit-playsinline preload="auto"
+      <video id="splash-video" autoplay muted loop playsinline webkit-playsinline preload="auto"
+        poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
         style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;pointer-events:none;background:#000;transition:opacity 0.6s ease, transform 0.8s cubic-bezier(0.4,0,0.2,1);will-change:opacity,transform;"
         src="/splash-video.mp4"
       ></video>
@@ -316,17 +317,14 @@
         if(!overlay||!vid){return;}
 
         var SESSION_SPLASH_KEY='pt_video_splash_session';
-        var splashSeenPersistent=localStorage.getItem(SPLASH_KEY);
-        var onboardingDone=localStorage.getItem(ONBOARDING_KEY);
         var splashSeenSession=sessionStorage.getItem(SESSION_SPLASH_KEY);
         // Keep root black until app mounts to prevent any pink flash
         document.body.style.background='#000';
         document.documentElement.style.background='#000';
 
-        // Skip splash if: already shown this session (internal nav/refresh)
-        // OR returning user who finished onboarding
-        if(splashSeenSession || (splashSeenPersistent && onboardingDone)){
-          sessionStorage.setItem(SESSION_SPLASH_KEY,'1');
+        // Skip splash ONLY if already shown in THIS session (refresh / deep-link nav).
+        // Cold starts always show the video — even for returning users who finished onboarding.
+        if(splashSeenSession){
           overlay.parentNode.removeChild(overlay);
           requestAnimationFrame(function(){
             document.body.style.transition='background 0.4s ease';
@@ -334,10 +332,6 @@
             document.documentElement.style.background='#faf6f2';
           });
           return;
-        }
-
-        if(splashSeenPersistent && !onboardingDone){
-          localStorage.removeItem(SPLASH_KEY);
         }
 
         // Mark splash as shown for THIS session immediately so any
@@ -393,17 +387,22 @@
           setTimeout(endSplash, 2000);
         }, {once:true});
 
-        try{
-          var playPromise=vid.play();
-          if(playPromise && playPromise.then){
-            playPromise.catch(function(){
-              setTimeout(endSplash, 2000);
-            });
-          }
-        }catch(e){ setTimeout(endSplash, 1500); }
+        function tryPlay(){
+          try{
+            var p=vid.play();
+            if(p && p.then){ p.catch(function(){}); }
+          }catch(e){}
+        }
+        // Retry play on metadata load (covers WebView autoplay failures)
+        vid.addEventListener('loadedmetadata', tryPlay, {once:true});
+        tryPlay();
+        // Last-resort fallback if play never starts
+        setTimeout(function(){
+          if(vid.paused && vid.currentTime===0){ endSplash(); }
+        }, 1500);
 
-        // Safety cap only — let the video finish its natural cycle via 'ended' event
-        setTimeout(endSplash, 8000);
+        // Safety cap — never block the user behind splash for more than 5s
+        setTimeout(endSplash, 5000);
       })();
     </script>
 

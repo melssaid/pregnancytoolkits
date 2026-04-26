@@ -81,10 +81,15 @@ const isPreviewHost =
   window.location.hostname.includes("lovableproject.com") ||
   window.location.hostname.includes("lovable.app");
 
+const SW_CLEANUP_KEY = "pt_sw_cleaned_v1";
+
 const clearStaleCaches = async () => {
-  // In preview/iframe: unregister any SW to avoid stale-cache + eval errors
+  // In preview/iframe: unregister any SW ONCE per session to avoid stale-cache + eval errors.
+  // Repeating this on every load was killing chunk caching and slowing internal navigation.
   if ("serviceWorker" in navigator) {
     if (isPreviewHost || isInIframe) {
+      if (sessionStorage.getItem(SW_CLEANUP_KEY)) return;
+      sessionStorage.setItem(SW_CLEANUP_KEY, "1");
       try {
         const regs = await navigator.serviceWorker.getRegistrations();
         for (const r of regs) await r.unregister();
@@ -170,25 +175,31 @@ deferAfterPaint(() => {
       return null;
     });
 
-  // Storage cleanup
-  safeImport(() => import("@/lib/storageCleanup"), "storageCleanup")
-    .then((m) => m?.maybeRunCleanup());
+  // Prefetch likely next routes — drastically improves perceived navigation speed.
+  // Loads in idle so it never competes with user interactions.
+  safeImport(() => import("@/lib/routePrefetch"), "routePrefetch")
+    .then((m) => m?.prefetchCriticalRoutes());
 
-  // Core Web Vitals measurement
-  safeImport(() => import("@/lib/webVitals"), "webVitals")
-    .then((m) => m?.initWebVitals());
+  // Light-weight modules — fire in parallel, no need to chain
+  Promise.all([
+    safeImport(() => import("@/lib/storageCleanup"), "storageCleanup")
+      .then((m) => m?.maybeRunCleanup()),
+    safeImport(() => import("@/lib/webVitals"), "webVitals")
+      .then((m) => m?.initWebVitals()),
+    safeImport(() => import("@/lib/googlePlayBilling"), "googlePlayBilling")
+      .then((m) => m?.retryPendingAcknowledges()),
+  ]);
 
-  // Retry any pending purchase acknowledges
-  safeImport(() => import("@/lib/googlePlayBilling"), "googlePlayBilling")
-    .then((m) => m?.retryPendingAcknowledges());
-
-  // Migrate large data to IndexedDB
-  safeImport(() => import("@/lib/indexedDBStore"), "indexedDBStore").then((m) => {
-    if (!m) return;
-    ['kick_counter_sessions', 'contraction_entries', 'weight_gain_entries'].forEach(key => {
-      m.migrateFromLocalStorage(key);
+  // IndexedDB migration is heavy — push it well past first navigation
+  // so it never competes with the user clicking into a tool.
+  setTimeout(() => {
+    safeImport(() => import("@/lib/indexedDBStore"), "indexedDBStore").then((m) => {
+      if (!m) return;
+      ['kick_counter_sessions', 'contraction_entries', 'weight_gain_entries'].forEach(key => {
+        m.migrateFromLocalStorage(key);
+      });
     });
-  });
+  }, 5000);
 
   if (import.meta.env.DEV || isPreviewHost || isInIframe) return;
 

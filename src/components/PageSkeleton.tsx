@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { forwardRef } from "react";
 
 const LoadingScreen = forwardRef<HTMLDivElement>((_, ref) => (
@@ -16,21 +15,25 @@ const LoadingScreen = forwardRef<HTMLDivElement>((_, ref) => (
       decoding="async"
     />
 
-    <div className="flex items-center gap-2" aria-hidden>
-      {[0, 1, 2].map((i) => (
-        <motion.span
-          key={i}
-          className="w-2.5 h-2.5 rounded-full bg-primary"
-          animate={{ y: [0, -6, 0], opacity: [0.35, 1, 0.35] }}
-          transition={{
-            duration: 0.8,
-            repeat: Infinity,
-            delay: i * 0.15,
-            ease: "easeInOut",
-          }}
-        />
-      ))}
+    <div className="pt-skeleton-dots" aria-hidden>
+      <span /><span /><span />
     </div>
+
+    <style>{`
+      .pt-skeleton-dots{display:flex;align-items:center;gap:8px}
+      .pt-skeleton-dots span{
+        width:10px;height:10px;border-radius:9999px;
+        background:hsl(var(--primary, 340 65% 55%));
+        opacity:.35;
+        animation:pt-skel-bounce .8s infinite ease-in-out;
+      }
+      .pt-skeleton-dots span:nth-child(2){animation-delay:.15s}
+      .pt-skeleton-dots span:nth-child(3){animation-delay:.3s}
+      @keyframes pt-skel-bounce{
+        0%,100%{transform:translateY(0);opacity:.35}
+        50%{transform:translateY(-6px);opacity:1}
+      }
+    `}</style>
   </div>
 ));
 
