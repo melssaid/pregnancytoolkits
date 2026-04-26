@@ -116,27 +116,8 @@ const SmartDashboard = () => {
     setActiveTab(next);
   }, []);
 
-  // Decorative parallax for the time-aware emblem
-  const { scrollY } = useScroll();
-  const emblemY = useTransform(scrollY, [0, 400], [0, -40]);
-  const emblemOpacity = useTransform(scrollY, [0, 300], [0.9, 0]);
-  const emblemScale = useTransform(scrollY, [0, 400], [1, 0.75]);
+  // Decorative emblem removed — header is now title-only.
 
-  // Time-aware emblem: morning sunrise → afternoon sun → evening moon → night sparkles
-  const hour = new Date().getHours();
-  const TimeEmblem =
-    hour < 6  ? Moon :
-    hour < 11 ? Sunrise :
-    hour < 17 ? Sun :
-    hour < 21 ? Sunrise :
-                Moon;
-  // Per-time gradient + glow color
-  const emblemTone =
-    hour < 6  ? { from: "from-indigo-400/30",  to: "to-violet-500/15", ring: "shadow-indigo-400/30",  icon: "text-indigo-400" } :
-    hour < 11 ? { from: "from-amber-300/40",   to: "to-rose-300/15",   ring: "shadow-amber-300/40",   icon: "text-amber-500" } :
-    hour < 17 ? { from: "from-yellow-300/40",  to: "to-orange-300/15", ring: "shadow-yellow-300/40",  icon: "text-amber-500" } :
-    hour < 21 ? { from: "from-rose-400/35",    to: "to-purple-400/15", ring: "shadow-rose-400/30",    icon: "text-rose-500" } :
-                { from: "from-violet-500/35",  to: "to-indigo-500/15", ring: "shadow-violet-500/30",  icon: "text-violet-400" };
 
   // Each tab gets its own gradient + accent for the active glass pill icon
   const tabs: Array<{
