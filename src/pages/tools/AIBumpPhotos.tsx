@@ -43,6 +43,11 @@ const AIBumpPhotos: React.FC = () => {
   const { t } = useTranslation();
   const { isRTL } = useLanguage();
   const { profile: userProfile } = useUserProfile();
+
+  // Contextual trigger: opening the Sonar tool is a high-intent moment
+  useEffect(() => {
+    triggerUpgradeBanner("sonar_opened");
+  }, []);
   const [photos, setPhotos] = useState<BumpPhoto[]>([]);
   const [currentWeek, setCurrentWeek] = useState(userProfile.pregnancyWeek || 0);
   const [isUploading, setIsUploading] = useState(false);
