@@ -9300,6 +9300,38 @@
         "engagement": "Takip etkileşimi",
         "pointsSpent": "Harcanan puan"
       }
+    },
+    "fertilityCard": {
+      "setupTitle": "Döngü Takibi",
+      "setupDesc": "Günlük tahminler almak için döngünüzü ayarlayın",
+      "day": "Gün",
+      "nextPeriod_one": "Sonraki adet 1 gün sonra",
+      "nextPeriod_other": "Sonraki adet {{count}} gün sonra",
+      "phase": {
+        "menstrual": "Adet dönemi",
+        "follicular": "Foliküler faz",
+        "fertile": "Doğurgan pencere",
+        "luteal": "Luteal faz"
+      }
+    },
+    "postpartumCard": {
+      "title": "İyileşme Sütunları",
+      "mood": {
+        "title": "Haftalık duygusal kontrol",
+        "recent_one": "Son 7 günde 1 kayıt",
+        "recent_other": "Son 7 günde {{count}} kayıt",
+        "empty": "Bu hafta EPDS kontrolünüzü başlatın"
+      },
+      "lactation": {
+        "title": "Emzirme desteği",
+        "desc": "Günlük emzirme planı ve rehberliği"
+      },
+      "sleep": {
+        "title": "Bebek uykusu",
+        "recent_one": "Son 7 günde 1 oturum",
+        "recent_other": "Son 7 günde {{count}} oturum",
+        "empty": "Bebeğinizin ilk uyku oturumunu kaydedin"
+      }
     }
   },
   "reset": {

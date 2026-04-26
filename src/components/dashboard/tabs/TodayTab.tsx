@@ -11,7 +11,10 @@ import { BabySizeCard } from "@/components/dashboard/BabySizeCard";
 import { BirthCountdownCard } from "@/components/dashboard/BirthCountdownCard";
 import { UnifiedToolsGrid } from "@/components/dashboard/UnifiedToolsGrid";
 import { EmptyStateCard } from "@/components/dashboard/EmptyStateCard";
+import { FertilityCycleCard } from "@/components/dashboard/FertilityCycleCard";
+import { PostpartumCareCard } from "@/components/dashboard/PostpartumCareCard";
 import { useDashboardData } from "@/hooks/useDashboardData";
+import { useUserProfile } from "@/hooks/useUserProfile";
 
 /**
  * "Today" tab — primary daily focus.
@@ -21,9 +24,13 @@ import { useDashboardData } from "@/hooks/useDashboardData";
 export const TodayTab = memo(function TodayTab() {
   const { t } = useTranslation();
   const { profile, stats, bloodPressure, timeSlot, isPregnant, dataCheck } = useDashboardData();
+  const { profile: userProfile } = useUserProfile();
+  const stage = userProfile.journeyStage || (isPregnant ? "pregnant" : "pregnant");
+  const isFertility = stage === "fertility";
+  const isPostpartum = stage === "postpartum";
 
   // Only show pregnancy-tied content when the user has set a real week
-  const hasRealWeek = isPregnant && profile.pregnancyWeek >= 4;
+  const hasRealWeek = isPregnant && profile.pregnancyWeek >= 4 && stage === "pregnant";
 
   // Time-based card ordering — only mount cards that are relevant
   const morningOrder = [
@@ -67,6 +74,10 @@ export const TodayTab = memo(function TodayTab() {
         upcomingAppointments={stats.planning.upcomingAppointments}
       />
 
+      {/* Stage-specific hero cards */}
+      {isFertility && <FertilityCycleCard />}
+      {isPostpartum && <PostpartumCareCard />}
+
       <UnifiedToolsGrid />
 
       {/* Brand-new user nudge */}
@@ -87,8 +98,8 @@ export const TodayTab = memo(function TodayTab() {
         ))}
       </div>
 
-      {/* Birth countdown only in last trimester */}
-      {isPregnant && profile.pregnancyWeek >= 28 && <BirthCountdownCard />}
+      {/* Birth countdown only in last trimester (pregnancy stage) */}
+      {stage === "pregnant" && isPregnant && profile.pregnancyWeek >= 28 && <BirthCountdownCard />}
 
       {/* Evening: include challenge card if not shown above */}
       {timeSlot !== "evening" && <DailyHealthChallengeCard />}

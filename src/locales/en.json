@@ -9387,6 +9387,38 @@
         "engagement": "Tracking engagement",
         "pointsSpent": "Points spent"
       }
+    },
+    "fertilityCard": {
+      "setupTitle": "Cycle Tracker",
+      "setupDesc": "Set up your cycle to receive daily predictions",
+      "day": "Day",
+      "nextPeriod_one": "Next period in 1 day",
+      "nextPeriod_other": "Next period in {{count}} days",
+      "phase": {
+        "menstrual": "Menstrual phase",
+        "follicular": "Follicular phase",
+        "fertile": "Fertile window",
+        "luteal": "Luteal phase"
+      }
+    },
+    "postpartumCard": {
+      "title": "Recovery Pillars",
+      "mood": {
+        "title": "Weekly emotional check-in",
+        "recent_one": "1 entry in last 7 days",
+        "recent_other": "{{count}} entries in last 7 days",
+        "empty": "Start your EPDS check-in this week"
+      },
+      "lactation": {
+        "title": "Breastfeeding support",
+        "desc": "Daily lactation plan and guidance"
+      },
+      "sleep": {
+        "title": "Baby sleep",
+        "recent_one": "1 session in last 7 days",
+        "recent_other": "{{count}} sessions in last 7 days",
+        "empty": "Log your baby's first sleep session"
+      }
     }
   },
   "reset": {

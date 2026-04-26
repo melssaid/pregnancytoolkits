@@ -9300,6 +9300,38 @@
         "engagement": "Compromiso de seguimiento",
         "pointsSpent": "Puntos gastados"
       }
+    },
+    "fertilityCard": {
+      "setupTitle": "Rastreador de ciclo",
+      "setupDesc": "Configura tu ciclo para recibir predicciones diarias",
+      "day": "Día",
+      "nextPeriod_one": "Próxima regla en 1 día",
+      "nextPeriod_other": "Próxima regla en {{count}} días",
+      "phase": {
+        "menstrual": "Fase menstrual",
+        "follicular": "Fase folicular",
+        "fertile": "Ventana fértil",
+        "luteal": "Fase lútea"
+      }
+    },
+    "postpartumCard": {
+      "title": "Pilares de recuperación",
+      "mood": {
+        "title": "Chequeo emocional semanal",
+        "recent_one": "1 registro en los últimos 7 días",
+        "recent_other": "{{count}} registros en los últimos 7 días",
+        "empty": "Inicia tu evaluación EPDS esta semana"
+      },
+      "lactation": {
+        "title": "Apoyo a la lactancia",
+        "desc": "Plan y guía diaria de lactancia"
+      },
+      "sleep": {
+        "title": "Sueño del bebé",
+        "recent_one": "1 sesión en los últimos 7 días",
+        "recent_other": "{{count}} sesiones en los últimos 7 días",
+        "empty": "Registra la primera sesión de sueño de tu bebé"
+      }
     }
   },
   "reset": {

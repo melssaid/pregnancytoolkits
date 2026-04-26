@@ -9300,6 +9300,38 @@
         "engagement": "Tracking-Engagement",
         "pointsSpent": "Verbrauchte Punkte"
       }
+    },
+    "fertilityCard": {
+      "setupTitle": "Zyklus-Tracker",
+      "setupDesc": "Richte deinen Zyklus ein, um tägliche Prognosen zu erhalten",
+      "day": "Tag",
+      "nextPeriod_one": "Nächste Periode in 1 Tag",
+      "nextPeriod_other": "Nächste Periode in {{count}} Tagen",
+      "phase": {
+        "menstrual": "Menstruationsphase",
+        "follicular": "Follikelphase",
+        "fertile": "Fruchtbares Fenster",
+        "luteal": "Lutealphase"
+      }
+    },
+    "postpartumCard": {
+      "title": "Säulen der Erholung",
+      "mood": {
+        "title": "Wöchentlicher emotionaler Check-in",
+        "recent_one": "1 Eintrag in den letzten 7 Tagen",
+        "recent_other": "{{count}} Einträge in den letzten 7 Tagen",
+        "empty": "Starte diese Woche deinen EPDS-Check-in"
+      },
+      "lactation": {
+        "title": "Stillunterstützung",
+        "desc": "Täglicher Stillplan und Anleitung"
+      },
+      "sleep": {
+        "title": "Babyschlaf",
+        "recent_one": "1 Sitzung in den letzten 7 Tagen",
+        "recent_other": "{{count}} Sitzungen in den letzten 7 Tagen",
+        "empty": "Protokolliere die erste Schlafsitzung deines Babys"
+      }
     }
   },
   "reset": {
