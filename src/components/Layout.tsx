@@ -204,14 +204,14 @@ export function Layout({ children, showBack = false, compactBackHeader = false }
                     />
                   </>
                   <div className="rounded-full overflow-hidden shadow-lg h-11 w-11">
-                    <video
-                      src="/logo-video.mp4"
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
+                    <img
+                      src={logoImage}
+                      alt="Pregnancy Toolkits"
+                      width={44}
+                      height={44}
                       className="w-full h-full object-cover"
-                      aria-label="Pregnancy Toolkits"
+                      loading="eager"
+                      decoding="async"
                     />
                   </div>
                 </div>
