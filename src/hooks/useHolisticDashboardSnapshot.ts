@@ -105,6 +105,12 @@ export interface DerivedInsights {
     count: number;
     latestWeek?: number;
     hasRecentAnalysis: boolean;
+    readingsWithAnalysisCount: number;
+  };
+  sleep: {
+    sessionsLast7Days: number;
+    avgMinutesPerDay?: number;
+    quality: "low" | "moderate" | "good" | "unknown";
   };
   engagementScore: number; // 0–100 — based on active sources
   riskFlags: string[];
