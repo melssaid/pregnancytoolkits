@@ -259,7 +259,7 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
               </Button>
               <p className={cn(
                 'text-[10px] text-center tracking-wide',
-                isEmpty ? 'text-amber-600 dark:text-amber-400 font-medium' : 'text-muted-foreground/50'
+                isEmpty ? 'text-destructive/80 font-medium' : 'text-muted-foreground/50'
               )}>
                 {isEmpty
                   ? eLabels.hint
