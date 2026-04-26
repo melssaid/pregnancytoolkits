@@ -81,10 +81,15 @@ const isPreviewHost =
   window.location.hostname.includes("lovableproject.com") ||
   window.location.hostname.includes("lovable.app");
 
+const SW_CLEANUP_KEY = "pt_sw_cleaned_v1";
+
 const clearStaleCaches = async () => {
-  // In preview/iframe: unregister any SW to avoid stale-cache + eval errors
+  // In preview/iframe: unregister any SW ONCE per session to avoid stale-cache + eval errors.
+  // Repeating this on every load was killing chunk caching and slowing internal navigation.
   if ("serviceWorker" in navigator) {
     if (isPreviewHost || isInIframe) {
+      if (sessionStorage.getItem(SW_CLEANUP_KEY)) return;
+      sessionStorage.setItem(SW_CLEANUP_KEY, "1");
       try {
         const regs = await navigator.serviceWorker.getRegistrations();
         for (const r of regs) await r.unregister();
