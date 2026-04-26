@@ -5,11 +5,14 @@ import { ResultsArchiveCalendar } from "@/components/dashboard/ResultsArchiveCal
 import { MilestonesTimeline } from "@/components/dashboard/MilestonesTimeline";
 import { WeekCertificateCard } from "@/components/dashboard/WeekCertificateCard";
 import { StageRecommendation } from "@/components/dashboard/StageRecommendation";
+import { SavedHolisticReports } from "@/components/dashboard/SavedHolisticReports";
 import { EmptyStateCard } from "@/components/dashboard/EmptyStateCard";
 import { useDashboardData } from "@/hooks/useDashboardData";
 
 /**
  * "Archive" tab — saved results, history, milestones.
+ * Includes the SavedHolisticReports archive (moved from InsightsTab so the
+ * Insights tab stays focused on LIVE analysis while history lives here).
  * Shows a polished empty state when nothing exists yet.
  */
 export const ArchiveTab = memo(function ArchiveTab() {
@@ -36,6 +39,10 @@ export const ArchiveTab = memo(function ArchiveTab() {
     <div className="space-y-4 pb-6">
       {isPregnant && <WeekCertificateCard />}
       {isPregnant && <StageRecommendation />}
+
+      {/* Saved holistic reports archive — moved here from InsightsTab */}
+      <SavedHolisticReports />
+
       {isPregnant && <MilestonesTimeline />}
       {dataCheck.hasSavedResults && <ResultsArchiveCalendar />}
     </div>
