@@ -8664,6 +8664,17 @@
         "title": "Sizin ve Bebeğiniz İçin Araçlar",
         "context": "Doğum sonrası için seçilmiş"
       }
+    },
+    "reason": {
+      "fertility": "Hamilelik öncesi",
+      "postpartum": "Doğum sonrası bakım",
+      "thisWeek": "{{week}}. haftada faydalı",
+      "nearWeek": "{{week}}. haftaya yakın",
+      "trimester1": "1. trimester",
+      "trimester2": "2. trimester",
+      "trimester3": "3. trimester",
+      "allPregnancy": "Tüm hamilelik",
+      "ariaPrefix": "Neden önerildi:"
     }
   },
   "faq": {

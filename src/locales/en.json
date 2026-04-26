@@ -8785,6 +8785,17 @@
         "title": "Tools for You and Your Baby",
         "context": "Curated for your postpartum stage"
       }
+    },
+    "reason": {
+      "fertility": "Pre-pregnancy",
+      "postpartum": "Postpartum care",
+      "thisWeek": "Useful at week {{week}}",
+      "nearWeek": "Near week {{week}}",
+      "trimester1": "1st trimester",
+      "trimester2": "2nd trimester",
+      "trimester3": "3rd trimester",
+      "allPregnancy": "All pregnancy",
+      "ariaPrefix": "Why suggested:"
     }
   },
   "faq": {
