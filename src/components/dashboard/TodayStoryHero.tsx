@@ -126,17 +126,13 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
       <div className="pointer-events-none absolute -bottom-20 -start-20 h-44 w-44 rounded-full bg-secondary/15 blur-3xl" />
 
       <div className="relative px-5 pt-5 pb-4">
-        {/* Wellness tip row — formal, minimal (no greeting label) */}
-        <div className="flex items-start gap-2.5 mb-4">
-          <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-primary/10 text-primary ring-1 ring-primary/15">
-            <Quote className="h-4 w-4" strokeWidth={2.25} />
-          </div>
-          <div className="flex-1 min-w-0 pt-1">
-            <p className="text-[14px] font-medium leading-snug text-foreground/90 line-clamp-2">
-              {greeting.tip}
-            </p>
-          </div>
+        {/* Wellness tip row — formal, minimal (icon removed per design) */}
+        <div className="mb-4">
+          <p className="text-[14px] font-medium leading-snug text-foreground/90 line-clamp-2">
+            {greeting.tip}
+          </p>
         </div>
+
 
         {/* Pregnancy section — only render with real user data */}
         {hasRealWeek ? (
