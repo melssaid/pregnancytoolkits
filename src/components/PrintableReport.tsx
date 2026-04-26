@@ -42,6 +42,16 @@ const orientationLabels: Record<string, { portrait: string; landscape: string; l
   tr: { portrait: 'Dikey', landscape: 'Yatay', layout: 'Düzen' },
 };
 
+const emptyLabels: Record<string, { btn: string; hint: string }> = {
+  ar: { btn: 'لا يوجد تقرير بعد', hint: 'انتظري اكتمال التحليل لتفعيل التحميل' },
+  en: { btn: 'No report yet', hint: 'Wait for the analysis to finish to enable download' },
+  de: { btn: 'Noch kein Bericht', hint: 'Warten Sie, bis die Analyse abgeschlossen ist' },
+  fr: { btn: 'Aucun rapport pour le moment', hint: 'Attendez la fin de l’analyse' },
+  es: { btn: 'Aún no hay informe', hint: 'Espera a que termine el análisis' },
+  pt: { btn: 'Nenhum relatório ainda', hint: 'Aguarde a análise terminar' },
+  tr: { btn: 'Henüz rapor yok', hint: 'Analizin bitmesini bekleyin' },
+};
+
 const historyLabels: Record<string, { title: string; empty: string; week: string; reopen: string; remove: string; clear: string; show: string; hide: string }> = {
   en: { title: 'Saved Reports', empty: 'No saved reports yet.', week: 'Week', reopen: 'Re-download', remove: 'Remove', clear: 'Clear all', show: 'History', hide: 'Hide history' },
   ar: { title: 'التقارير المحفوظة', empty: 'لا توجد تقارير محفوظة بعد.', week: 'الأسبوع', reopen: 'إعادة التحميل', remove: 'حذف', clear: 'مسح الكل', show: 'السجل', hide: 'إخفاء السجل' },
