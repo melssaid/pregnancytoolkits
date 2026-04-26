@@ -257,20 +257,37 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
           const isEmpty = !contentLoading && !hasContent;
           return (
             <>
-              <Button
-                variant="outline"
-                onClick={handleDownload}
-                disabled={contentLoading || isEmpty}
-                aria-disabled={contentLoading || isEmpty}
-                className={cn('w-full gap-2', isEmpty && 'opacity-60 cursor-not-allowed')}
-              >
-                {contentLoading
-                  ? <Loader2 className="w-4 h-4 animate-spin" />
-                  : <Download className="w-4 h-4" />}
-                {isEmpty
-                  ? eLabels.btn
-                  : (downloadLabel || downloadLabels[lang] || downloadLabels.en)}
-              </Button>
+              <div className="grid grid-cols-[auto_1fr] gap-2">
+                <Button
+                  variant="ghost"
+                  type="button"
+                  onClick={() => setPreviewOpen(true)}
+                  disabled={contentLoading || isEmpty}
+                  aria-disabled={contentLoading || isEmpty}
+                  className={cn(
+                    'gap-1.5 px-3 border border-border/40 bg-muted/30 hover:bg-muted/60',
+                    isEmpty && 'opacity-50 cursor-not-allowed'
+                  )}
+                  aria-label={pLabels.open}
+                >
+                  <Eye className="w-4 h-4" />
+                  <span className="text-xs font-semibold">{pLabels.open}</span>
+                </Button>
+                <Button
+                  variant="outline"
+                  onClick={handleDownload}
+                  disabled={contentLoading || isEmpty}
+                  aria-disabled={contentLoading || isEmpty}
+                  className={cn('w-full gap-2', isEmpty && 'opacity-60 cursor-not-allowed')}
+                >
+                  {contentLoading
+                    ? <Loader2 className="w-4 h-4 animate-spin" />
+                    : <Download className="w-4 h-4" />}
+                  {isEmpty
+                    ? eLabels.btn
+                    : (downloadLabel || downloadLabels[lang] || downloadLabels.en)}
+                </Button>
+              </div>
               <p className={cn(
                 'text-[10px] text-center tracking-wide',
                 isEmpty ? 'text-destructive/80 font-medium' : 'text-muted-foreground/50'
