@@ -6,9 +6,12 @@ import { cn } from "@/lib/utils";
 const Slider = React.forwardRef<
   React.ElementRef<typeof SliderPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root>
->(({ className, ...props }, ref) => (
+>(({ className, dir, ...props }, ref) => {
+  const resolvedDir = dir ?? (typeof document !== "undefined" && document.documentElement.dir === "rtl" ? "rtl" : "ltr");
+  return (
   <SliderPrimitive.Root
     ref={ref}
+    dir={resolvedDir}
     className={cn("relative flex w-full touch-none select-none items-center", className)}
     {...props}
   >
