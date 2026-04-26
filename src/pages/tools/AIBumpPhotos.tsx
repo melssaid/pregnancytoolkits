@@ -23,6 +23,7 @@ import { ToolFrame } from '@/components/ToolFrame';
 import { UltrasoundAbbreviationsGuide } from '@/components/UltrasoundAbbreviationsGuide';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { compressImage, estimateDataUrlSize, formatBytes } from '@/lib/imageCompression';
+import { triggerUpgradeBanner } from '@/components/TrialExpiryBanner';
 
 interface BumpPhoto {
   id: string;
