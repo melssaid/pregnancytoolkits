@@ -20,6 +20,10 @@ import { useUserProfile } from "@/hooks/useUserProfile";
  * "Today" tab — primary daily focus.
  * Order is dynamic based on time of day (morning/afternoon/evening).
  * Cards self-hide when their underlying data is empty.
+ *
+ * Refactor (Option A): each card appears EXACTLY ONCE per render path.
+ * Time slot only changes the relative ORDER of the daily cards — never
+ * mounts duplicates.
  */
 export const TodayTab = memo(function TodayTab() {
   const { t } = useTranslation();
@@ -32,27 +36,20 @@ export const TodayTab = memo(function TodayTab() {
   // Only show pregnancy-tied content when the user has set a real week
   const hasRealWeek = isPregnant && profile.pregnancyWeek >= 4 && stage === "pregnant";
 
-  // Time-based card ordering — only mount cards that are relevant
-  const morningOrder = [
-    hasRealWeek ? <NutritionTipCard key="nut" /> : null,
-    <HydrationTracker key="hyd" />,
-    hasRealWeek ? <BabySizeCard key="baby" /> : null,
-  ].filter(Boolean);
+  // ── Dynamic ordering of the SAME set of daily cards ───────────────
+  // Each card key appears exactly once in the array — the time slot
+  // simply re-orders the relative emphasis (morning → nutrition first,
+  // afternoon → hydration first, evening → challenge first).
+  const dailyCards: Array<{ key: string; node: React.ReactNode } | null> = (() => {
+    const nutrition = hasRealWeek ? { key: "nut", node: <NutritionTipCard /> } : null;
+    const hydration = { key: "hyd", node: <HydrationTracker /> };
+    const baby = hasRealWeek ? { key: "baby", node: <BabySizeCard /> } : null;
+    const challenge = { key: "ch", node: <DailyHealthChallengeCard /> };
 
-  const afternoonOrder = [
-    <HydrationTracker key="hyd" />,
-    hasRealWeek ? <NutritionTipCard key="nut" /> : null,
-    hasRealWeek ? <BabySizeCard key="baby" /> : null,
-  ].filter(Boolean);
-
-  const eveningOrder = [
-    <DailyHealthChallengeCard key="ch" />,
-    hasRealWeek ? <NutritionTipCard key="nut" /> : null,
-    hasRealWeek ? <BabySizeCard key="baby" /> : null,
-  ].filter(Boolean);
-
-  const dynamicCards =
-    timeSlot === "morning" ? morningOrder : timeSlot === "afternoon" ? afternoonOrder : eveningOrder;
+    if (timeSlot === "morning") return [nutrition, hydration, baby, challenge];
+    if (timeSlot === "afternoon") return [hydration, nutrition, baby, challenge];
+    return [challenge, nutrition, hydration, baby]; // evening
+  })();
 
   // Smart empty state: brand-new user with no profile and no data
   const isBrandNew = !isPregnant && !dataCheck.hasAnyData;
@@ -91,18 +88,15 @@ export const TodayTab = memo(function TodayTab() {
         />
       )}
 
-      {/* Time-based section */}
+      {/* Time-based section — single, deduplicated set of daily cards */}
       <div className="space-y-4">
-        {dynamicCards.map((card, i) => (
-          <div key={i}>{card}</div>
+        {dailyCards.filter(Boolean).map((c) => (
+          <div key={c!.key}>{c!.node}</div>
         ))}
       </div>
 
       {/* Birth countdown only in last trimester (pregnancy stage) */}
       {stage === "pregnant" && isPregnant && profile.pregnancyWeek >= 28 && <BirthCountdownCard />}
-
-      {/* Evening: include challenge card if not shown above */}
-      {timeSlot !== "evening" && <DailyHealthChallengeCard />}
     </div>
   );
 });
