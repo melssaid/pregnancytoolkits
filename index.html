@@ -387,17 +387,22 @@
           setTimeout(endSplash, 2000);
         }, {once:true});
 
-        try{
-          var playPromise=vid.play();
-          if(playPromise && playPromise.then){
-            playPromise.catch(function(){
-              setTimeout(endSplash, 2000);
-            });
-          }
-        }catch(e){ setTimeout(endSplash, 1500); }
+        function tryPlay(){
+          try{
+            var p=vid.play();
+            if(p && p.then){ p.catch(function(){}); }
+          }catch(e){}
+        }
+        // Retry play on metadata load (covers WebView autoplay failures)
+        vid.addEventListener('loadedmetadata', tryPlay, {once:true});
+        tryPlay();
+        // Last-resort fallback if play never starts
+        setTimeout(function(){
+          if(vid.paused && vid.currentTime===0){ endSplash(); }
+        }, 1500);
 
-        // Safety cap only — let the video finish its natural cycle via 'ended' event
-        setTimeout(endSplash, 8000);
+        // Safety cap — never block the user behind splash for more than 5s
+        setTimeout(endSplash, 5000);
       })();
     </script>
 
