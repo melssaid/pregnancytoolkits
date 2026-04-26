@@ -83,12 +83,12 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
   const [hasContent, setHasContent] = useState(false);
   const [previewOpen, setPreviewOpen] = useState(false);
   const previewIframeRef = useRef<HTMLIFrameElement>(null);
-  const pLabels = previewLabels[lang] || previewLabels.en;
   const history = usePdfHistory(historyBucket || '__none__');
   const lang = i18n.language?.split('-')[0] || 'en';
   const isRTL = lang === 'ar';
   const oLabels = orientationLabels[lang] || orientationLabels.en;
   const eLabels = emptyLabels[lang] || emptyLabels.en;
+  const pLabels = previewLabels[lang] || previewLabels.en;
 
   useEffect(() => {
     loadLogoBase64().then(setLogoDataUrl);
