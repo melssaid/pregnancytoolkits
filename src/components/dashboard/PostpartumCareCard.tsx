@@ -2,7 +2,7 @@ import { memo, useMemo } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { Brain, Baby, ChevronLeft, ChevronRight, HeartPulse } from "lucide-react";
+import { Brain, Baby, ChevronLeft, ChevronRight, HeartPulse, Sparkles } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { safeParseLocalStorage } from "@/lib/safeStorage";
 
