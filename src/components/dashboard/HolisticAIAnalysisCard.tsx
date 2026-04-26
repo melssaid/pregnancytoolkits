@@ -140,15 +140,6 @@ export const HolisticAIAnalysisCard = memo(function HolisticAIAnalysisCard() {
       <CardContent className="relative pt-4 pb-4 space-y-3">
         {/* Header */}
         <div className="flex items-start gap-3">
-          <div
-            className="shrink-0 p-2.5 rounded-2xl"
-            style={{
-              background: "linear-gradient(135deg, hsl(var(--primary)), hsl(330 65% 50%), hsl(280 55% 50%))",
-              boxShadow: "0 4px 14px -2px hsl(var(--primary) / 0.4)",
-            }}
-          >
-            <Sparkles className="w-5 h-5 text-white" />
-          </div>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-1.5 flex-wrap">
               <h3 className="font-bold text-[15px] text-foreground leading-tight">
