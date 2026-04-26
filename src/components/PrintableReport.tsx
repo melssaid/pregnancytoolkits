@@ -53,6 +53,16 @@ const emptyLabels: Record<string, { btn: string; hint: string }> = {
   tr: { btn: 'Henüz rapor yok', hint: 'Analizin bitmesini bekleyin' },
 };
 
+const previewLabels: Record<string, { open: string; title: string; print: string; close: string }> = {
+  ar: { open: 'معاينة', title: 'معاينة التقرير قبل التحميل', print: 'تحميل PDF', close: 'إغلاق' },
+  en: { open: 'Preview', title: 'Preview report before download', print: 'Download PDF', close: 'Close' },
+  de: { open: 'Vorschau', title: 'Vorschau vor dem Download', print: 'PDF herunterladen', close: 'Schließen' },
+  fr: { open: 'Aperçu', title: 'Aperçu avant téléchargement', print: 'Télécharger le PDF', close: 'Fermer' },
+  es: { open: 'Vista previa', title: 'Vista previa antes de descargar', print: 'Descargar PDF', close: 'Cerrar' },
+  pt: { open: 'Pré-visualizar', title: 'Pré-visualização antes do download', print: 'Baixar PDF', close: 'Fechar' },
+  tr: { open: 'Önizleme', title: 'İndirmeden önce önizleme', print: 'PDF indir', close: 'Kapat' },
+};
+
 const historyLabels: Record<string, { title: string; empty: string; week: string; reopen: string; remove: string; clear: string; show: string; hide: string }> = {
   en: { title: 'Saved Reports', empty: 'No saved reports yet.', week: 'Week', reopen: 'Re-download', remove: 'Remove', clear: 'Clear all', show: 'History', hide: 'Hide history' },
   ar: { title: 'التقارير المحفوظة', empty: 'لا توجد تقارير محفوظة بعد.', week: 'الأسبوع', reopen: 'إعادة التحميل', remove: 'حذف', clear: 'مسح الكل', show: 'السجل', hide: 'إخفاء السجل' },
