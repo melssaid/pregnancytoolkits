@@ -161,62 +161,20 @@ const SmartDashboard = () => {
       />
 
       <main dir={isRTL ? "rtl" : "ltr"} className={`relative pb-24 bg-gradient-to-b ${trimesterTheme.gradient}`}>
-        {/* Time-aware decorative emblem — replaces side rose. Smaller, glass-pill,
-            shifts icon (sunrise/sun/moon) and accent gradient with the hour. */}
-        <div
-          className="pointer-events-none absolute top-5 sm:top-7 right-3 sm:right-5 z-0"
-          dir="ltr"
-          aria-hidden="true"
-        >
-          <motion.div
-            style={{ y: emblemY, opacity: emblemOpacity, scale: emblemScale }}
-            initial={{ opacity: 0, scale: 0.6, rotate: -8 }}
-            animate={{ opacity: 0.9, scale: 1, rotate: [0, 4, 0] }}
-            transition={{
-              opacity: { duration: 0.7, ease: "easeOut" },
-              scale: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
-              rotate: { duration: 6, repeat: Infinity, ease: "easeInOut" },
-            }}
-            className={`relative h-12 w-12 sm:h-14 sm:w-14 rounded-2xl
-                        bg-gradient-to-br ${emblemTone.from} ${emblemTone.to}
-                        backdrop-blur-md
-                        border border-white/40 dark:border-white/10
-                        shadow-lg ${emblemTone.ring}
-                        flex items-center justify-center`}
-          >
-            {/* Soft inner highlight */}
-            <span className="absolute inset-0 rounded-2xl bg-gradient-to-b from-white/40 to-transparent dark:from-white/10" />
-            <TimeEmblem
-              className={`relative h-5 w-5 sm:h-6 sm:w-6 ${emblemTone.icon}`}
-              strokeWidth={2.2}
-            />
-            {/* Subtle shimmer dot */}
-            <motion.span
-              className="absolute -top-1 -right-1 h-2 w-2 rounded-full bg-white/90 shadow"
-              animate={{ opacity: [0.5, 1, 0.5], scale: [0.85, 1.1, 0.85] }}
-              transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
-            />
-          </motion.div>
-        </div>
-
-        {/* Premium page header — title only, no eyebrow */}
+        {/* Premium page header — title only, no decorative emblem or icon */}
         <header className="container relative z-10 px-3 sm:px-4 pt-5 pb-3">
           <motion.div
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-            className="flex items-center justify-between gap-3"
+            className="min-w-0"
           >
-            <div className="min-w-0">
-              <h1 className="text-2xl sm:text-3xl font-black leading-tight tracking-tight text-foreground">
-                {t("dashboardV2.header.title")}
-              </h1>
-            </div>
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/15 to-primary/5 border border-primary/20 shadow-sm">
-              <Sun className="h-5 w-5 text-primary" strokeWidth={2.2} />
-            </div>
+            <h1 className="text-2xl sm:text-3xl font-black leading-tight tracking-tight text-foreground">
+              {t("dashboardV2.header.title")}
+            </h1>
           </motion.div>
         </header>
+
 
         <Tabs value={activeTab} onValueChange={handleTabChange} dir={isRTL ? "rtl" : "ltr"} className="relative z-10">
           {/* Sticky tab bar — pro Apple-style */}
