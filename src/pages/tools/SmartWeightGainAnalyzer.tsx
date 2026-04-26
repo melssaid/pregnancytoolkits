@@ -281,8 +281,8 @@ Provide personalized advice with: 1) Assessment 2) Nutritional tips 3) Exercise 
                     className="w-full"
                   />
                   <div className="flex justify-between mt-1">
-                    <span className="text-[10px] text-muted-foreground">4</span>
-                    <span className="text-[10px] text-muted-foreground">42</span>
+                    <span className="text-[10px] text-muted-foreground tabular-nums">4</span>
+                    <span className="text-[10px] text-muted-foreground tabular-nums">42</span>
                   </div>
                 </div>
               </div>

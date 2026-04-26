@@ -120,14 +120,14 @@ export function ToolFrame({
           {/* Subtle top accent line */}
           <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
           
-          <div dir="ltr" className="px-4 sm:px-6 h-14 flex items-center justify-between">
+          <div dir="ltr" className="px-4 sm:px-6 h-16 flex items-center justify-between">
             <div className="flex items-center min-w-0">
               <BackButton />
             </div>
             <Link to="/" className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center">
               <motion.div 
                 className="relative flex items-center justify-center"
-                style={{ width: 56, height: 56 }}
+                style={{ width: 64, height: 64 }}
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: [0.8, 1.08, 0.97, 1], opacity: 1 }}
                 transition={{ duration: 0.7, ease: "easeOut" }}
@@ -135,14 +135,14 @@ export function ToolFrame({
                 {/* Rotating ring */}
                 <motion.div
                   className="absolute rounded-full border border-primary/15"
-                  style={{ width: 52, height: 52 }}
+                  style={{ width: 60, height: 60 }}
                   animate={{ rotate: 360 }}
                   transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                 />
                 {/* Heart particles */}
                 {[0, 1, 2, 3, 4, 5].map((i) => {
                   const angle = (i / 6) * 360;
-                  const radius = 24;
+                  const radius = 28;
                   const isPink = i % 2 === 1;
                   return (
                     <motion.span
@@ -195,16 +195,16 @@ export function ToolFrame({
                 {/* Aura */}
                 <motion.div
                   className="absolute rounded-full bg-primary/8 blur-lg"
-                  style={{ width: 46, height: 46 }}
+                  style={{ width: 54, height: 54 }}
                   animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.6, 0.3] }}
                   transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                 />
-                <div className="h-10 w-10 rounded-full overflow-hidden shadow-lg">
+                <div className="h-12 w-12 rounded-full overflow-hidden shadow-lg">
                   <img 
                     src={logoImage} 
                     alt="Pregnancy Toolkits" 
-                    width={40}
-                    height={40}
+                    width={48}
+                    height={48}
                     loading="eager"
                     decoding="async"
                     className="w-full h-full object-cover scale-[1.35]"
