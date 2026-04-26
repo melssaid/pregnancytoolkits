@@ -143,7 +143,7 @@ export function useSmartInsight({ section, toolType, autoSave = true, autoSaveTi
         skipCache,
       });
     },
-    [section, toolType, t, quota.limit]
+    [section, toolType, t, quota.limit, autoSave, autoSaveToolId, autoSaveTitle, refreshUsage]
   );
 
   const clearError = useCallback(() => {
