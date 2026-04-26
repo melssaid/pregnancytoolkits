@@ -9300,6 +9300,38 @@
         "engagement": "Engagement de suivi",
         "pointsSpent": "Points dépensés"
       }
+    },
+    "fertilityCard": {
+      "setupTitle": "Suivi du cycle",
+      "setupDesc": "Configurez votre cycle pour recevoir des prévisions quotidiennes",
+      "day": "Jour",
+      "nextPeriod_one": "Prochaines règles dans 1 jour",
+      "nextPeriod_other": "Prochaines règles dans {{count}} jours",
+      "phase": {
+        "menstrual": "Phase menstruelle",
+        "follicular": "Phase folliculaire",
+        "fertile": "Fenêtre fertile",
+        "luteal": "Phase lutéale"
+      }
+    },
+    "postpartumCard": {
+      "title": "Piliers de la récupération",
+      "mood": {
+        "title": "Bilan émotionnel hebdomadaire",
+        "recent_one": "1 entrée ces 7 derniers jours",
+        "recent_other": "{{count}} entrées ces 7 derniers jours",
+        "empty": "Commencez votre évaluation EPDS cette semaine"
+      },
+      "lactation": {
+        "title": "Soutien à l'allaitement",
+        "desc": "Plan et conseils quotidiens d'allaitement"
+      },
+      "sleep": {
+        "title": "Sommeil de bébé",
+        "recent_one": "1 session ces 7 derniers jours",
+        "recent_other": "{{count}} sessions ces 7 derniers jours",
+        "empty": "Enregistrez la première séance de sommeil de votre bébé"
+      }
     }
   },
   "reset": {
