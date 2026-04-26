@@ -414,7 +414,10 @@
       "title": "Baby Growth Tracker",
       "description": "Track growth with WHO charts."
     },
-    "kickCounter": "Fetal Kick Counter",
+    "kickCounter": {
+      "title": "Fetal Kick Counter",
+      "description": "Fetal Kick Counter"
+    },
     "weightGain": {
       "title": "Weight Gain Tracker",
       "description": "Track your pregnancy weight with smart wellness insights.",

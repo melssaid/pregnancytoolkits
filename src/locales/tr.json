@@ -347,7 +347,10 @@
       "title": "Bebek Varış Geri Sayımı",
       "description": "Küçüğünüzün ne zaman geleceğini öğrenin."
     },
-    "kickCounter": "Fetal Tekme Sayacı",
+    "kickCounter": {
+      "title": "Fetal Tekme Sayacı",
+      "description": "Fetal Tekme Sayacı"
+    },
     "weightGain": {
       "title": "Kilo Sağlığı Rehberi",
       "description": "Hamilelik sürecinde kilo değişimlerinizi takip edin.",

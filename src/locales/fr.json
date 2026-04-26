@@ -351,7 +351,10 @@
       "title": "Croissance intelligente du bébé",
       "description": "Suivez la croissance avec les courbes OMS."
     },
-    "kickCounter": "Compteur de coups fœtaux",
+    "kickCounter": {
+      "title": "Compteur de coups fœtaux",
+      "description": "Compteur de coups fœtaux"
+    },
     "weightGain": {
       "title": "Guide Bien-être du Poids",
       "description": "Suivez l'évolution de votre poids pendant la grossesse.",
