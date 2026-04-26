@@ -248,6 +248,7 @@ const JourneyCard = memo(function JourneyCard({ config, index, isSubscriptionAct
               opacity: { duration: 0.4, ease: "easeInOut" }
             }}
             className="overflow-hidden"
+            id={`journey-tools-${config.key}`}
           >
             <div className="px-2 pb-2.5 pt-1.5">
               <div className="grid grid-cols-3 gap-1.5">
