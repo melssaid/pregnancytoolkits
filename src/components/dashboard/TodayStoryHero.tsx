@@ -8,6 +8,7 @@ import { safeParseLocalStorage, safeSaveToLocalStorage } from "@/lib/safeStorage
 import { useDashboardData } from "@/hooks/useDashboardData";
 import { useOptimizedMotion } from "@/hooks/useOptimizedMotion";
 import roseDecor from "@/assets/rose-right.png";
+import { DailyTipCard } from "@/components/dashboard/DailyTipCard";
 
 interface DailyLog {
   date: string;
@@ -126,18 +127,9 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
       <div className="pointer-events-none absolute -bottom-20 -start-20 h-44 w-44 rounded-full bg-secondary/15 blur-3xl" />
 
       <div className="relative px-5 pt-6 pb-4">
-        {/* Wellness tip row — formal, minimal (icon removed per design) */}
+        {/* Wellness tip — extracted reusable component */}
         <div className="mb-5">
-          {greeting.tip && greeting.tip.trim().length > 0 ? (
-            <p className="text-[15px] font-medium leading-relaxed text-foreground/90 line-clamp-3 tracking-tight">
-              {greeting.tip}
-            </p>
-          ) : (
-            <div className="space-y-2" aria-hidden="true">
-              <div className="h-3.5 w-11/12 rounded-full bg-muted/60 animate-pulse" />
-              <div className="h-3.5 w-2/3 rounded-full bg-muted/50 animate-pulse" />
-            </div>
-          )}
+          <DailyTipCard tip={greeting.tip} ariaLabel={t("dashboardV2.greeting.tipAria", { defaultValue: "Daily wellness tip" })} />
         </div>
 
 
