@@ -317,17 +317,14 @@
         if(!overlay||!vid){return;}
 
         var SESSION_SPLASH_KEY='pt_video_splash_session';
-        var splashSeenPersistent=localStorage.getItem(SPLASH_KEY);
-        var onboardingDone=localStorage.getItem(ONBOARDING_KEY);
         var splashSeenSession=sessionStorage.getItem(SESSION_SPLASH_KEY);
         // Keep root black until app mounts to prevent any pink flash
         document.body.style.background='#000';
         document.documentElement.style.background='#000';
 
-        // Skip splash if: already shown this session (internal nav/refresh)
-        // OR returning user who finished onboarding
-        if(splashSeenSession || (splashSeenPersistent && onboardingDone)){
-          sessionStorage.setItem(SESSION_SPLASH_KEY,'1');
+        // Skip splash ONLY if already shown in THIS session (refresh / deep-link nav).
+        // Cold starts always show the video — even for returning users who finished onboarding.
+        if(splashSeenSession){
           overlay.parentNode.removeChild(overlay);
           requestAnimationFrame(function(){
             document.body.style.transition='background 0.4s ease';
@@ -335,10 +332,6 @@
             document.documentElement.style.background='#faf6f2';
           });
           return;
-        }
-
-        if(splashSeenPersistent && !onboardingDone){
-          localStorage.removeItem(SPLASH_KEY);
         }
 
         // Mark splash as shown for THIS session immediately so any
