@@ -69,14 +69,30 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
   const [logoDataUrl, setLogoDataUrl] = useState<string>('');
   const [orientation, setOrientation] = useState<PrintOrientation>('portrait');
   const [historyOpen, setHistoryOpen] = useState(false);
+  const [hasContent, setHasContent] = useState(false);
   const history = usePdfHistory(historyBucket || '__none__');
   const lang = i18n.language?.split('-')[0] || 'en';
   const isRTL = lang === 'ar';
   const oLabels = orientationLabels[lang] || orientationLabels.en;
+  const eLabels = emptyLabels[lang] || emptyLabels.en;
 
   useEffect(() => {
     loadLogoBase64().then(setLogoDataUrl);
   }, []);
+
+  // Track whether the report area has meaningful text yet
+  useEffect(() => {
+    const node = reportRef.current;
+    if (!node) return;
+    const check = () => {
+      const text = (node.textContent || '').trim();
+      setHasContent(text.length >= 30);
+    };
+    check();
+    const obs = new MutationObserver(check);
+    obs.observe(node, { childList: true, subtree: true, characterData: true });
+    return () => obs.disconnect();
+  }, [children]);
 
   const buildCleanHTML = useCallback(() => {
     if (!reportRef.current) return null;
