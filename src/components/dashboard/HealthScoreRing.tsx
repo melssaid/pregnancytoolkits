@@ -9,11 +9,18 @@ export function HealthScoreRing() {
   const { stats } = useTrackingStats();
   const m = useOptimizedMotion();
 
-  // Calculate score from 4 pillars (each 25 points max)
+  // Real data presence — never render synthetic 0/100 score
+  const hasWater = stats.dailyTracking.waterGlasses > 0;
+  const hasKicks = stats.dailyTracking.todayKicks > 0;
+  const hasVitamins = stats.dailyTracking.vitaminsTaken > 0;
+  const hasActivity = !!stats.dailyTracking.lastWeight || stats.postpartum.sleepHoursToday > 0;
+  const hasAnyRealData = hasWater || hasKicks || hasVitamins || hasActivity;
+  if (!hasAnyRealData) return null;
+
+  // Calculate score from 4 pillars (each 25 points max) — only from logged data
   const waterScore = Math.min(stats.dailyTracking.waterGlasses / 8, 1) * 25;
   const kickScore = Math.min(stats.dailyTracking.todayKicks / 10, 1) * 25;
   const vitaminScore = Math.min(stats.dailyTracking.vitaminsTaken / 3, 1) * 25;
-  // Activity score based on any logged data today
   const activityScore = (stats.dailyTracking.lastWeight ? 12.5 : 0) + (stats.postpartum.sleepHoursToday > 0 ? 12.5 : 0);
 
   const totalScore = Math.round(waterScore + kickScore + vitaminScore + activityScore);
