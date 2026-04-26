@@ -162,8 +162,8 @@ const AIBumpPhotos: React.FC = () => {
         description: t('toolsInternal.bumpPhotos.photoSavedDesc', { week: currentWeek })
       });
 
-      // Auto analyze
-      analyzePhoto(photo);
+      // Select latest photo so user can press the explicit "Analyze" button
+      setSelectedPhoto(photo);
       
     } catch (error: any) {
       console.error('Upload error:', error);
@@ -524,6 +524,33 @@ const AIBumpPhotos: React.FC = () => {
                 </motion.div>
               </div>
             )}
+
+            {/* Persistent Analyze Button — visible before & after upload */}
+            {(() => {
+              const target = selectedPhoto || photos[photos.length - 1] || null;
+              const canAnalyze = !!target && !isAnalyzing && !isUploading && !isLimitReached;
+              return (
+                <Button
+                  onClick={() => target && analyzePhoto(target)}
+                  disabled={!canAnalyze}
+                  className="w-full h-11 rounded-xl text-sm font-semibold gap-2"
+                >
+                  {isAnalyzing ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      {t('toolsInternal.bumpPhotos.analyzing', 'Analyzing…')}
+                    </>
+                  ) : (
+                    <>
+                      <Sparkles className="w-4 h-4" />
+                      {target
+                        ? t('toolsInternal.bumpPhotos.analyzePhotoCta', 'Analyze photo')
+                        : t('toolsInternal.bumpPhotos.addPhotoFirst', 'Add a photo to analyze')}
+                    </>
+                  )}
+                </Button>
+              );
+            })()}
 
             {/* Quota usage indicator + upgrade CTA */}
             <div className="pt-1 space-y-2">
