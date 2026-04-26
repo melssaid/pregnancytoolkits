@@ -374,6 +374,62 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
           </div>
         )}
       </div>
+
+      {/* Print preview dialog — renders the exact HTML that will be printed */}
+      <Dialog open={previewOpen} onOpenChange={setPreviewOpen}>
+        <DialogContent
+          className="max-w-3xl w-[95vw] h-[90vh] p-0 gap-0 flex flex-col overflow-hidden"
+          onOpenAutoFocus={() => {
+            // Inject preview HTML once the iframe is mounted
+            requestAnimationFrame(() => {
+              const html = buildCleanHTML();
+              const iframe = previewIframeRef.current;
+              if (!iframe || !html) return;
+              const doc = iframe.contentDocument || iframe.contentWindow?.document;
+              if (!doc) return;
+              doc.open();
+              doc.write(html);
+              doc.close();
+            });
+          }}
+        >
+          <DialogHeader className="px-4 py-3 border-b border-border/50 flex-row items-center justify-between space-y-0">
+            <DialogTitle className="text-sm font-bold flex items-center gap-2">
+              <Eye className="w-4 h-4 text-primary" />
+              {pLabels.title}
+            </DialogTitle>
+          </DialogHeader>
+          <div className="flex-1 bg-muted/20 overflow-hidden">
+            <iframe
+              ref={previewIframeRef}
+              title={pLabels.title}
+              className="w-full h-full border-0 bg-background"
+            />
+          </div>
+          <div className="px-4 py-3 border-t border-border/50 flex items-center justify-end gap-2 bg-background">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setPreviewOpen(false)}
+              className="gap-1.5"
+            >
+              <X className="w-4 h-4" />
+              {pLabels.close}
+            </Button>
+            <Button
+              size="sm"
+              onClick={() => {
+                setPreviewOpen(false);
+                handleDownload();
+              }}
+              className="gap-1.5"
+            >
+              <Download className="w-4 h-4" />
+              {pLabels.print}
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
