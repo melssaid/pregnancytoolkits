@@ -2,7 +2,7 @@ import { memo, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useUserProfile } from "@/hooks/useUserProfile";
 import { motion } from "framer-motion";
-import { Sun, Moon, Sunrise, Sunset, Baby } from "lucide-react";
+// Time icons removed per design preference — keep only the pregnancy progress ring.
 
 const greetings: Record<string, Record<string, string>> = {
   morning:   { ar: "صباح الخير 🌸", en: "Good Morning 🌸", de: "Guten Morgen 🌸", fr: "Bonjour 🌸", es: "Buenos días 🌸", pt: "Bom dia 🌸", tr: "Günaydın 🌸" },
@@ -10,7 +10,7 @@ const greetings: Record<string, Record<string, string>> = {
   evening:   { ar: "مساء الورد 🌙", en: "Good Evening 🌙", de: "Guten Abend 🌙", fr: "Bonsoir 🌙", es: "Buenas noches 🌙", pt: "Boa noite 🌙", tr: "İyi akşamlar 🌙" },
 };
 
-const timeIcons = { morning: Sunrise, afternoon: Sun, evening: Moon };
+
 
 const dailyTips: Record<string, string[]> = {
   ar: [
