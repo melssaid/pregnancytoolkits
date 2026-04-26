@@ -42,6 +42,16 @@ const orientationLabels: Record<string, { portrait: string; landscape: string; l
   tr: { portrait: 'Dikey', landscape: 'Yatay', layout: 'Düzen' },
 };
 
+const emptyLabels: Record<string, { btn: string; hint: string }> = {
+  ar: { btn: 'لا يوجد تقرير بعد', hint: 'انتظري اكتمال التحليل لتفعيل التحميل' },
+  en: { btn: 'No report yet', hint: 'Wait for the analysis to finish to enable download' },
+  de: { btn: 'Noch kein Bericht', hint: 'Warten Sie, bis die Analyse abgeschlossen ist' },
+  fr: { btn: 'Aucun rapport pour le moment', hint: 'Attendez la fin de l’analyse' },
+  es: { btn: 'Aún no hay informe', hint: 'Espera a que termine el análisis' },
+  pt: { btn: 'Nenhum relatório ainda', hint: 'Aguarde a análise terminar' },
+  tr: { btn: 'Henüz rapor yok', hint: 'Analizin bitmesini bekleyin' },
+};
+
 const historyLabels: Record<string, { title: string; empty: string; week: string; reopen: string; remove: string; clear: string; show: string; hide: string }> = {
   en: { title: 'Saved Reports', empty: 'No saved reports yet.', week: 'Week', reopen: 'Re-download', remove: 'Remove', clear: 'Clear all', show: 'History', hide: 'Hide history' },
   ar: { title: 'التقارير المحفوظة', empty: 'لا توجد تقارير محفوظة بعد.', week: 'الأسبوع', reopen: 'إعادة التحميل', remove: 'حذف', clear: 'مسح الكل', show: 'السجل', hide: 'إخفاء السجل' },
@@ -59,14 +69,30 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
   const [logoDataUrl, setLogoDataUrl] = useState<string>('');
   const [orientation, setOrientation] = useState<PrintOrientation>('portrait');
   const [historyOpen, setHistoryOpen] = useState(false);
+  const [hasContent, setHasContent] = useState(false);
   const history = usePdfHistory(historyBucket || '__none__');
   const lang = i18n.language?.split('-')[0] || 'en';
   const isRTL = lang === 'ar';
   const oLabels = orientationLabels[lang] || orientationLabels.en;
+  const eLabels = emptyLabels[lang] || emptyLabels.en;
 
   useEffect(() => {
     loadLogoBase64().then(setLogoDataUrl);
   }, []);
+
+  // Track whether the report area has meaningful text yet
+  useEffect(() => {
+    const node = reportRef.current;
+    if (!node) return;
+    const check = () => {
+      const text = (node.textContent || '').trim();
+      setHasContent(text.length >= 30);
+    };
+    check();
+    const obs = new MutationObserver(check);
+    obs.observe(node, { childList: true, subtree: true, characterData: true });
+    return () => obs.disconnect();
+  }, [children]);
 
   const buildCleanHTML = useCallback(() => {
     if (!reportRef.current) return null;
@@ -213,18 +239,35 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
           })}
         </div>
 
-        <Button
-          variant="outline"
-          onClick={handleDownload}
-          disabled={contentLoading}
-          className="w-full gap-2"
-        >
-          {contentLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4" />}
-          {downloadLabel || downloadLabels[lang] || downloadLabels.en}
-        </Button>
-        <p className="text-[10px] text-muted-foreground/50 text-center tracking-wide">
-          {downloadHint || downloadHints[lang] || downloadHints.en}
-        </p>
+        {(() => {
+          const isEmpty = !contentLoading && !hasContent;
+          return (
+            <>
+              <Button
+                variant="outline"
+                onClick={handleDownload}
+                disabled={contentLoading || isEmpty}
+                aria-disabled={contentLoading || isEmpty}
+                className={cn('w-full gap-2', isEmpty && 'opacity-60 cursor-not-allowed')}
+              >
+                {contentLoading
+                  ? <Loader2 className="w-4 h-4 animate-spin" />
+                  : <Download className="w-4 h-4" />}
+                {isEmpty
+                  ? eLabels.btn
+                  : (downloadLabel || downloadLabels[lang] || downloadLabels.en)}
+              </Button>
+              <p className={cn(
+                'text-[10px] text-center tracking-wide',
+                isEmpty ? 'text-destructive/80 font-medium' : 'text-muted-foreground/50'
+              )}>
+                {isEmpty
+                  ? eLabels.hint
+                  : (downloadHint || downloadHints[lang] || downloadHints.en)}
+              </p>
+            </>
+          );
+        })()}
 
         {/* Local PDF history */}
         {historyBucket && (
