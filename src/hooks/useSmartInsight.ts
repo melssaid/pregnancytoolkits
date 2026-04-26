@@ -101,6 +101,7 @@ export function useSmartInsight({ section, toolType, autoSave = true, autoSaveTi
       setWasCached(false);
 
       const lang = langRef.current?.split("-")[0] || "en";
+      let accumulated = "";
 
       await executeSmartRequest({
         request: {
@@ -110,6 +111,7 @@ export function useSmartInsight({ section, toolType, autoSave = true, autoSaveTi
           context: { ...context, language: lang },
         },
         onDelta: (chunk) => {
+          accumulated += chunk;
           setContent((prev) => prev + chunk);
           onDelta?.(chunk);
         },
@@ -117,6 +119,13 @@ export function useSmartInsight({ section, toolType, autoSave = true, autoSaveTi
           setIsLoading(false);
           setWasCached(response.cached);
           refreshUsage(); // Sync AIUsageContext after quota consumed by engine
+          // Auto-save successful AI result (skip cached re-runs to avoid spam)
+          if (autoSave && !response.cached && accumulated.trim().length >= 30) {
+            const toolId = autoSaveToolId || toolType || section;
+            const title = autoSaveTitle || toolType || section;
+            autoSaveResult(toolId, title, accumulated, { language: lang, ...(context || {}) });
+            try { toast.success(t("ai.autoSaved", "✓ تم الحفظ تلقائياً")); } catch {}
+          }
         },
         onError: (err: SmartError) => {
           setIsLoading(false);
