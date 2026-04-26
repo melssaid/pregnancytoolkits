@@ -501,14 +501,25 @@ export function useHolisticDashboardSnapshot(): Result {
     // ── Build LLM-optimised Markdown summary (instead of raw JSON) ────
     const lines: string[] = [];
     lines.push(`## User Context`);
+
+    // Stage-aware framing — explicit instruction so the model never
+    // mixes signals across journeys (e.g. mentioning kicks for postpartum).
+    const stageHumanLabel =
+      stageKey === "pregnant" ? "Pregnancy"
+      : stageKey === "postpartum" ? "Postpartum (after birth)"
+      : "Fertility / Trying-to-conceive";
+    lines.push(`- **Active Journey Stage**: ${stageHumanLabel}`);
+    lines.push(
+      `- **Scope rule**: Tailor every insight, recommendation and tone to the **${stageHumanLabel}** stage. ` +
+      `Ignore data sources that don't apply to this stage and never recommend tools from a different stage.`,
+    );
+
     if (week) {
       lines.push(`- Pregnancy Week: ${week} (Trimester ${trimester}) — ~${weeksToBirth} weeks until birth`);
-    } else if (profile?.journeyStage) {
-      lines.push(`- Journey Stage: ${profile.journeyStage}`);
     }
     if (profile?.weight) lines.push(`- Profile Weight: ${profile.weight} kg`);
     if (profile?.height) lines.push(`- Profile Height: ${profile.height} cm`);
-    lines.push(`- Tracking Engagement: ${engagementScore}% (${sourcesCount}/${ALL_SOURCES} sources active)`);
+    lines.push(`- Tracking Engagement: ${engagementScore}% (${sourcesCount}/${totalSources} stage-relevant sources active)`);
 
     if (positiveSignals.length > 0) {
       lines.push(``, `## Positive Signals`);
