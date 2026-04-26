@@ -142,7 +142,7 @@ export function ToolFrame({
                 {/* Heart particles */}
                 {[0, 1, 2, 3, 4, 5].map((i) => {
                   const angle = (i / 6) * 360;
-                  const radius = 24;
+                  const radius = 28;
                   const isPink = i % 2 === 1;
                   return (
                     <motion.span
