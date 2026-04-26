@@ -452,6 +452,12 @@ export function useHolisticDashboardSnapshot(): Result {
         count: bumpPhotos.length,
         latestWeek: latestPhoto?.week,
         hasRecentAnalysis: hasRecentUltrasoundAnalysis,
+        readingsWithAnalysisCount,
+      },
+      sleep: {
+        sessionsLast7Days: sleepLast7.length,
+        avgMinutesPerDay: avgSleepMinutesPerDay,
+        quality: sleepQuality,
       },
       engagementScore,
       riskFlags,
