@@ -84,6 +84,11 @@ export const AIErrorBanner: React.FC<AIErrorBannerProps> = ({
   const visible = !!(errorType && message);
   const isQuotaExhausted = errorType === 'quota_exhausted';
 
+  // Contextual trigger: hitting the quota is a high-intent upgrade moment
+  useEffect(() => {
+    if (isQuotaExhausted) triggerUpgradeBanner("quota_reached");
+  }, [isQuotaExhausted]);
+
   // Fallback to 'unknown' if errorType isn't in our maps
   const safeType = errorType && colorMap[errorType] ? errorType : 'unknown';
 
