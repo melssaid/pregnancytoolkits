@@ -128,9 +128,16 @@ export const TodayStoryHero = memo(function TodayStoryHero() {
       <div className="relative px-5 pt-6 pb-4">
         {/* Wellness tip row — formal, minimal (icon removed per design) */}
         <div className="mb-5">
-          <p className="text-[15px] font-medium leading-relaxed text-foreground/90 line-clamp-3 tracking-tight">
-            {greeting.tip}
-          </p>
+          {greeting.tip && greeting.tip.trim().length > 0 ? (
+            <p className="text-[15px] font-medium leading-relaxed text-foreground/90 line-clamp-3 tracking-tight">
+              {greeting.tip}
+            </p>
+          ) : (
+            <div className="space-y-2" aria-hidden="true">
+              <div className="h-3.5 w-11/12 rounded-full bg-muted/60 animate-pulse" />
+              <div className="h-3.5 w-2/3 rounded-full bg-muted/50 animate-pulse" />
+            </div>
+          )}
         </div>
 
 
