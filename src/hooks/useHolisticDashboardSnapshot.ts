@@ -377,24 +377,37 @@ export function useHolisticDashboardSnapshot(): Result {
       ? Math.round((hydrationAvg / HYDRATION_TARGET_ML) * 100)
       : undefined;
 
-    const sourcesCount = [
+    // ── Stage-adaptive source counting ──
+    // Universal sources count for everyone; pregnancy-specific sources only
+    // count when the user is in the pregnant stage. This prevents postpartum
+    // / fertility users from being penalised for missing pregnancy data.
+    const stageKey = (profile?.journeyStage as "pregnant" | "postpartum" | "fertility" | undefined) || "pregnant";
+    const totalSources = SOURCES_BY_STAGE[stageKey] ?? SOURCES_BY_STAGE.pregnant;
+
+    const universalActive = [
       dataCheck.hasMoodData,
       dataCheck.hasMoodScore,
       dataCheck.hasSymptomsData,
       dataCheck.hasSleepData,
       dataCheck.hasWeight,
       dataCheck.hasHydration,
-      dataCheck.hasVitamins,
-      dataCheck.hasKickSessions,
-      dataCheck.hasContractions,
       dataCheck.hasAppointments,
       dataCheck.hasMeals,
       dataCheck.hasFitness,
-      dataCheck.hasBumpPhotos,
-      dataCheck.hasUltrasoundReadings,
     ].filter(Boolean).length;
 
-    const engagementScore = Math.round((sourcesCount / ALL_SOURCES) * 100);
+    const pregnancyActive = stageKey === "pregnant"
+      ? [
+          dataCheck.hasVitamins,
+          dataCheck.hasKickSessions,
+          dataCheck.hasContractions,
+          dataCheck.hasBumpPhotos,
+          dataCheck.hasUltrasoundReadings,
+        ].filter(Boolean).length
+      : 0;
+
+    const sourcesCount = universalActive + pregnancyActive;
+    const engagementScore = Math.round((sourcesCount / totalSources) * 100);
 
     // ── Risk flags & positive signals ──
     const riskFlags: string[] = [];
