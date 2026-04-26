@@ -1,6 +1,6 @@
 import { lazy, Suspense, useState, useEffect, useCallback, useRef } from "react";
 import { SEOHead } from "@/components/SEOHead";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 import { Layout } from "@/components/Layout";
@@ -8,7 +8,7 @@ import { useSmartConversionPrompt } from "@/hooks/useSmartConversionPrompt";
 import { useTrimesterTheme } from "@/hooks/useTrimesterTheme";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Sun, BarChart3, Calendar, LayoutGrid, Sunrise, Moon, Sparkles } from "lucide-react";
+import { Sun, BarChart3, Calendar, LayoutGrid } from "lucide-react";
 import { haptic } from "@/lib/haptics";
 import { subscribeToData, STORAGE_KEYS } from "@/lib/dataBus";
 
