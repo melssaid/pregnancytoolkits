@@ -314,7 +314,9 @@ export function useHolisticDashboardSnapshot(): Result {
 
     const sourcesCount = [
       dataCheck.hasMoodData,
+      dataCheck.hasMoodScore,
       dataCheck.hasSymptomsData,
+      dataCheck.hasSleepData,
       dataCheck.hasWeight,
       dataCheck.hasHydration,
       dataCheck.hasVitamins,
@@ -323,6 +325,8 @@ export function useHolisticDashboardSnapshot(): Result {
       dataCheck.hasAppointments,
       dataCheck.hasMeals,
       dataCheck.hasFitness,
+      dataCheck.hasBumpPhotos,
+      dataCheck.hasUltrasoundReadings,
     ].filter(Boolean).length;
 
     const engagementScore = Math.round((sourcesCount / ALL_SOURCES) * 100);
