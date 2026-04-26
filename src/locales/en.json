@@ -9429,7 +9429,8 @@
         "recent_one": "1 session in last 7 days",
         "recent_other": "{{count}} sessions in last 7 days",
         "empty": "Log your baby's first sleep session"
-      }
+      },
+      "emptyHint": "Start with any recovery pillar below — your reports will build over time."
     }
   },
   "reset": {

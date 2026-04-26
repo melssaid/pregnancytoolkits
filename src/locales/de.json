@@ -9342,7 +9342,8 @@
         "recent_one": "1 Sitzung in den letzten 7 Tagen",
         "recent_other": "{{count}} Sitzungen in den letzten 7 Tagen",
         "empty": "Protokolliere die erste Schlafsitzung deines Babys"
-      }
+      },
+      "emptyHint": "Beginne mit einer der Erholungssäulen unten — deine Berichte wachsen mit der Zeit."
     }
   },
   "reset": {

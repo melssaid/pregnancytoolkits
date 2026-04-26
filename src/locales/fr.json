@@ -9342,7 +9342,8 @@
         "recent_one": "1 session ces 7 derniers jours",
         "recent_other": "{{count}} sessions ces 7 derniers jours",
         "empty": "Enregistrez la première séance de sommeil de votre bébé"
-      }
+      },
+      "emptyHint": "Commencez par n'importe quel pilier ci-dessous — vos rapports se construiront avec le temps."
     }
   },
   "reset": {

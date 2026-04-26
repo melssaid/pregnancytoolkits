@@ -9342,7 +9342,8 @@
         "recent_one": "Son 7 günde 1 oturum",
         "recent_other": "Son 7 günde {{count}} oturum",
         "empty": "Bebeğinizin ilk uyku oturumunu kaydedin"
-      }
+      },
+      "emptyHint": "Aşağıdaki iyileşme sütunlarından biriyle başlayın — raporlarınız zamanla oluşacak."
     }
   },
   "reset": {
