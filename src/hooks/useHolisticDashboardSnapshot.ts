@@ -414,6 +414,15 @@ export function useHolisticDashboardSnapshot(): Result {
     const hasRecentUltrasoundAnalysis = !!latestAnalysisExcerpt;
     if (bumpPhotos.length >= 3) positiveSignals.push("ultrasound_journal_consistent");
     if (hasRecentUltrasoundAnalysis) positiveSignals.push("recent_ultrasound_ai_reading_available");
+    if (readingsWithAnalysisCount >= 2) positiveSignals.push("multiple_ultrasound_ai_readings");
+
+    // ── Sleep signals ──
+    if (sleepQuality === "good") positiveSignals.push("healthy_sleep_average");
+    if (sleepQuality === "low" && sleepLast7.length >= 3) riskFlags.push("low_sleep_average_last_week");
+    if (sleepLast7.length >= 5) positiveSignals.push("consistent_sleep_tracking");
+
+    // ── Mood scoring depth signal ──
+    if (dataCheck.hasMoodScore) positiveSignals.push("mood_scoring_depth_sufficient");
 
     const derivedInsights: DerivedInsights = {
       weekContext: { currentWeek: week, trimester, weeksToBirth },
