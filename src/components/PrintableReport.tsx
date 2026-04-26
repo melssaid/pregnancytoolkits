@@ -1,7 +1,8 @@
 import React, { useRef, useCallback, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
-import { Download, Loader2, RectangleVertical, RectangleHorizontal, History, Trash2, FileText } from 'lucide-react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Download, Loader2, RectangleVertical, RectangleHorizontal, History, Trash2, FileText, Eye, X } from 'lucide-react';
 import { useUserProfile } from '@/hooks/useUserProfile';
 import { buildPrintHTML, loadLogoBase64, type PrintOrientation } from '@/lib/printUtils';
 import { usePdfHistory } from '@/hooks/usePdfHistory';
