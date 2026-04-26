@@ -259,6 +259,37 @@ export function useHolisticDashboardSnapshot(): Result {
     const latestAnalysisExcerpt = latestPhotoAnalysis
       ? latestPhotoAnalysis.slice(0, 240).replace(/\s+/g, " ")
       : undefined;
+    const readingsWithAnalysisCount = bumpPhotos.filter(
+      (p) => typeof p?.ai_analysis === "string" && p.ai_analysis.trim().length > 20,
+    ).length;
+
+    // ── Sleep sessions (last 7 days, completed only) ──
+    const sevenDaysAgoMsForSleep = Date.now() - 7 * 86400_000;
+    const completedSleep = sleepSessionsRaw.filter((s) => !!s?.endTime && !!s?.startTime);
+    const sleepLast7 = completedSleep.filter(
+      (s) => new Date(s.startTime).getTime() >= sevenDaysAgoMsForSleep,
+    );
+    const sleepMinutesLast7 = sleepLast7.reduce((sum, s) => {
+      const start = new Date(s.startTime).getTime();
+      const end = new Date(s.endTime).getTime();
+      const mins = Math.max(0, Math.round((end - start) / 60000));
+      return sum + mins;
+    }, 0);
+    const sleepDistinctDays = new Set(
+      sleepLast7.map((s) => new Date(s.startTime).toISOString().slice(0, 10)),
+    ).size || 0;
+    const avgSleepMinutesPerDay =
+      sleepDistinctDays > 0 ? Math.round(sleepMinutesLast7 / sleepDistinctDays) : undefined;
+    const napCount = sleepLast7.filter((s) => s.type === "nap").length;
+    const nightCount = sleepLast7.filter((s) => s.type === "night").length;
+    const sleepQuality: "low" | "moderate" | "good" | "unknown" =
+      avgSleepMinutesPerDay === undefined
+        ? "unknown"
+        : avgSleepMinutesPerDay >= 480
+          ? "good"
+          : avgSleepMinutesPerDay >= 360
+            ? "moderate"
+            : "low";
 
     const week = profile?.pregnancyWeek;
     const trimester = week ? (week <= 13 ? 1 : week <= 27 ? 2 : 3) : undefined;
@@ -293,6 +324,13 @@ export function useHolisticDashboardSnapshot(): Result {
         latestWeek: latestPhoto?.week,
         latestAnalysisExcerpt,
         latestCapturedAt: latestPhoto?.created_at,
+        readingsWithAnalysisCount,
+      },
+      sleep: {
+        sessionsLast7Days: sleepLast7.length,
+        avgMinutesPerDay: avgSleepMinutesPerDay,
+        napCount,
+        nightCount,
       },
     };
 
