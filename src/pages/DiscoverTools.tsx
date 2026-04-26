@@ -245,18 +245,29 @@ export default function DiscoverTools() {
             <div className="space-y-2">
               {newTools.slice(0, 12).map((tool, i) => {
                 const Icon = tool.icon;
+                const reason = getReasonBadge(tool.id, stage, week, t);
                 return (
                   <motion.div key={tool.id} initial={{ opacity: 0, x: isRTL ? 10 : -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.04 }}>
-                    <Link to={tool.href} className="flex items-center gap-3 p-3 rounded-xl bg-card border border-border hover:border-primary/30 transition-all group">
-                      <div className="h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center">
+                    <Link to={tool.href} className="flex items-start gap-3 p-3 rounded-xl bg-card border border-border hover:border-primary/30 transition-all group">
+                      <div className="h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
                         <Icon className="h-4 w-4 text-primary" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">{getToolTitle(tool, t, lang)}</div>
-                        <div className="text-[10px] text-muted-foreground truncate">{getToolDescription(tool, t, lang)}</div>
+                        <div className="flex items-center gap-1.5 flex-wrap">
+                          <span className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">{getToolTitle(tool, t, lang)}</span>
+                          {tool.hasAI && <span className="text-[9px] px-1.5 py-0.5 rounded-full bg-primary/10 text-primary font-bold">AI</span>}
+                        </div>
+                        <div className="text-[10px] text-muted-foreground truncate mt-0.5">{getToolDescription(tool, t, lang)}</div>
+                        {reason && (
+                          <span
+                            className={`inline-block mt-1.5 text-[9.5px] font-semibold px-1.5 py-0.5 rounded-md ${reason.tone}`}
+                            aria-label={t("discover.reason.ariaPrefix", "Why suggested:") + " " + reason.label}
+                          >
+                            {reason.label}
+                          </span>
+                        )}
                       </div>
-                      {tool.hasAI && <span className="text-[9px] px-1.5 py-0.5 rounded-full bg-primary/10 text-primary font-bold">AI</span>}
-                      <ArrowIcon className="h-3.5 w-3.5 text-muted-foreground group-hover:text-primary" />
+                      <ArrowIcon className="h-3.5 w-3.5 text-muted-foreground group-hover:text-primary flex-shrink-0 mt-1" />
                     </Link>
                   </motion.div>
                 );
