@@ -1,7 +1,8 @@
 import React, { useRef, useCallback, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
-import { Download, Loader2, RectangleVertical, RectangleHorizontal, History, Trash2, FileText } from 'lucide-react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Download, Loader2, RectangleVertical, RectangleHorizontal, History, Trash2, FileText, Eye, X } from 'lucide-react';
 import { useUserProfile } from '@/hooks/useUserProfile';
 import { buildPrintHTML, loadLogoBase64, type PrintOrientation } from '@/lib/printUtils';
 import { usePdfHistory } from '@/hooks/usePdfHistory';
@@ -52,6 +53,16 @@ const emptyLabels: Record<string, { btn: string; hint: string }> = {
   tr: { btn: 'Henüz rapor yok', hint: 'Analizin bitmesini bekleyin' },
 };
 
+const previewLabels: Record<string, { open: string; title: string; print: string; close: string }> = {
+  ar: { open: 'معاينة', title: 'معاينة التقرير قبل التحميل', print: 'تحميل PDF', close: 'إغلاق' },
+  en: { open: 'Preview', title: 'Preview report before download', print: 'Download PDF', close: 'Close' },
+  de: { open: 'Vorschau', title: 'Vorschau vor dem Download', print: 'PDF herunterladen', close: 'Schließen' },
+  fr: { open: 'Aperçu', title: 'Aperçu avant téléchargement', print: 'Télécharger le PDF', close: 'Fermer' },
+  es: { open: 'Vista previa', title: 'Vista previa antes de descargar', print: 'Descargar PDF', close: 'Cerrar' },
+  pt: { open: 'Pré-visualizar', title: 'Pré-visualização antes do download', print: 'Baixar PDF', close: 'Fechar' },
+  tr: { open: 'Önizleme', title: 'İndirmeden önce önizleme', print: 'PDF indir', close: 'Kapat' },
+};
+
 const historyLabels: Record<string, { title: string; empty: string; week: string; reopen: string; remove: string; clear: string; show: string; hide: string }> = {
   en: { title: 'Saved Reports', empty: 'No saved reports yet.', week: 'Week', reopen: 'Re-download', remove: 'Remove', clear: 'Clear all', show: 'History', hide: 'Hide history' },
   ar: { title: 'التقارير المحفوظة', empty: 'لا توجد تقارير محفوظة بعد.', week: 'الأسبوع', reopen: 'إعادة التحميل', remove: 'حذف', clear: 'مسح الكل', show: 'السجل', hide: 'إخفاء السجل' },
@@ -70,11 +81,14 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
   const [orientation, setOrientation] = useState<PrintOrientation>('portrait');
   const [historyOpen, setHistoryOpen] = useState(false);
   const [hasContent, setHasContent] = useState(false);
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const previewIframeRef = useRef<HTMLIFrameElement>(null);
   const history = usePdfHistory(historyBucket || '__none__');
   const lang = i18n.language?.split('-')[0] || 'en';
   const isRTL = lang === 'ar';
   const oLabels = orientationLabels[lang] || orientationLabels.en;
   const eLabels = emptyLabels[lang] || emptyLabels.en;
+  const pLabels = previewLabels[lang] || previewLabels.en;
 
   useEffect(() => {
     loadLogoBase64().then(setLogoDataUrl);
@@ -243,20 +257,37 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
           const isEmpty = !contentLoading && !hasContent;
           return (
             <>
-              <Button
-                variant="outline"
-                onClick={handleDownload}
-                disabled={contentLoading || isEmpty}
-                aria-disabled={contentLoading || isEmpty}
-                className={cn('w-full gap-2', isEmpty && 'opacity-60 cursor-not-allowed')}
-              >
-                {contentLoading
-                  ? <Loader2 className="w-4 h-4 animate-spin" />
-                  : <Download className="w-4 h-4" />}
-                {isEmpty
-                  ? eLabels.btn
-                  : (downloadLabel || downloadLabels[lang] || downloadLabels.en)}
-              </Button>
+              <div className="grid grid-cols-[auto_1fr] gap-2">
+                <Button
+                  variant="ghost"
+                  type="button"
+                  onClick={() => setPreviewOpen(true)}
+                  disabled={contentLoading || isEmpty}
+                  aria-disabled={contentLoading || isEmpty}
+                  className={cn(
+                    'gap-1.5 px-3 border border-border/40 bg-muted/30 hover:bg-muted/60',
+                    isEmpty && 'opacity-50 cursor-not-allowed'
+                  )}
+                  aria-label={pLabels.open}
+                >
+                  <Eye className="w-4 h-4" />
+                  <span className="text-xs font-semibold">{pLabels.open}</span>
+                </Button>
+                <Button
+                  variant="outline"
+                  onClick={handleDownload}
+                  disabled={contentLoading || isEmpty}
+                  aria-disabled={contentLoading || isEmpty}
+                  className={cn('w-full gap-2', isEmpty && 'opacity-60 cursor-not-allowed')}
+                >
+                  {contentLoading
+                    ? <Loader2 className="w-4 h-4 animate-spin" />
+                    : <Download className="w-4 h-4" />}
+                  {isEmpty
+                    ? eLabels.btn
+                    : (downloadLabel || downloadLabels[lang] || downloadLabels.en)}
+                </Button>
+              </div>
               <p className={cn(
                 'text-[10px] text-center tracking-wide',
                 isEmpty ? 'text-destructive/80 font-medium' : 'text-muted-foreground/50'
@@ -343,6 +374,62 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
           </div>
         )}
       </div>
+
+      {/* Print preview dialog — renders the exact HTML that will be printed */}
+      <Dialog open={previewOpen} onOpenChange={setPreviewOpen}>
+        <DialogContent
+          className="max-w-3xl w-[95vw] h-[90vh] p-0 gap-0 flex flex-col overflow-hidden"
+          onOpenAutoFocus={() => {
+            // Inject preview HTML once the iframe is mounted
+            requestAnimationFrame(() => {
+              const html = buildCleanHTML();
+              const iframe = previewIframeRef.current;
+              if (!iframe || !html) return;
+              const doc = iframe.contentDocument || iframe.contentWindow?.document;
+              if (!doc) return;
+              doc.open();
+              doc.write(html);
+              doc.close();
+            });
+          }}
+        >
+          <DialogHeader className="px-4 py-3 border-b border-border/50 flex-row items-center justify-between space-y-0">
+            <DialogTitle className="text-sm font-bold flex items-center gap-2">
+              <Eye className="w-4 h-4 text-primary" />
+              {pLabels.title}
+            </DialogTitle>
+          </DialogHeader>
+          <div className="flex-1 bg-muted/20 overflow-hidden">
+            <iframe
+              ref={previewIframeRef}
+              title={pLabels.title}
+              className="w-full h-full border-0 bg-background"
+            />
+          </div>
+          <div className="px-4 py-3 border-t border-border/50 flex items-center justify-end gap-2 bg-background">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setPreviewOpen(false)}
+              className="gap-1.5"
+            >
+              <X className="w-4 h-4" />
+              {pLabels.close}
+            </Button>
+            <Button
+              size="sm"
+              onClick={() => {
+                setPreviewOpen(false);
+                handleDownload();
+              }}
+              className="gap-1.5"
+            >
+              <Download className="w-4 h-4" />
+              {pLabels.print}
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
