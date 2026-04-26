@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { WifiOff, Clock, CreditCard, AlertCircle, RefreshCw, X, Crown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
 import type { SmartErrorType } from '@/services/smartEngine';
+import { triggerUpgradeBanner } from '@/components/TrialExpiryBanner';
 type AIErrorType = 'quota_exhausted' | 'rate_limit' | 'payment' | 'network' | 'auth' | 'unknown';
 
 interface AIErrorBannerProps {
