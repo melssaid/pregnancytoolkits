@@ -127,7 +127,19 @@ interface Result {
 }
 
 const MIN_SOURCES = 3;
-const ALL_SOURCES = 14; // mood, moodScore, symptoms, sleep, weight, hydration, vitamins, kicks, contractions, appointments, meals, fitness, bumpPhotos, ultrasound
+// Stage-adaptive source counts. The dashboard's DataSourcesPanel filters its
+// catalogue by journey stage; we mirror that here so engagementScore and
+// dataRichness reflect ONLY the sources that make sense for the user.
+//   universal sources : 9  (mood, moodScore, symptoms, sleep, weight,
+//                           hydration, appointments, meals, fitness)
+//   pregnancy-only    : 5  (vitamins, kicks, contractions, bumpPhotos, ultrasound)
+//   postpartum-only   : 0  (today — extend later)
+//   fertility-only    : 0  (today — extend later)
+const SOURCES_BY_STAGE: Record<"pregnant" | "postpartum" | "fertility", number> = {
+  pregnant: 14,
+  postpartum: 9,
+  fertility: 9,
+};
 const HYDRATION_TARGET_ML = 2500;
 
 // ── Helpers ─────────────────────────────────────────────────────────────
@@ -365,24 +377,37 @@ export function useHolisticDashboardSnapshot(): Result {
       ? Math.round((hydrationAvg / HYDRATION_TARGET_ML) * 100)
       : undefined;
 
-    const sourcesCount = [
+    // ── Stage-adaptive source counting ──
+    // Universal sources count for everyone; pregnancy-specific sources only
+    // count when the user is in the pregnant stage. This prevents postpartum
+    // / fertility users from being penalised for missing pregnancy data.
+    const stageKey = (profile?.journeyStage as "pregnant" | "postpartum" | "fertility" | undefined) || "pregnant";
+    const totalSources = SOURCES_BY_STAGE[stageKey] ?? SOURCES_BY_STAGE.pregnant;
+
+    const universalActive = [
       dataCheck.hasMoodData,
       dataCheck.hasMoodScore,
       dataCheck.hasSymptomsData,
       dataCheck.hasSleepData,
       dataCheck.hasWeight,
       dataCheck.hasHydration,
-      dataCheck.hasVitamins,
-      dataCheck.hasKickSessions,
-      dataCheck.hasContractions,
       dataCheck.hasAppointments,
       dataCheck.hasMeals,
       dataCheck.hasFitness,
-      dataCheck.hasBumpPhotos,
-      dataCheck.hasUltrasoundReadings,
     ].filter(Boolean).length;
 
-    const engagementScore = Math.round((sourcesCount / ALL_SOURCES) * 100);
+    const pregnancyActive = stageKey === "pregnant"
+      ? [
+          dataCheck.hasVitamins,
+          dataCheck.hasKickSessions,
+          dataCheck.hasContractions,
+          dataCheck.hasBumpPhotos,
+          dataCheck.hasUltrasoundReadings,
+        ].filter(Boolean).length
+      : 0;
+
+    const sourcesCount = universalActive + pregnancyActive;
+    const engagementScore = Math.round((sourcesCount / totalSources) * 100);
 
     // ── Risk flags & positive signals ──
     const riskFlags: string[] = [];
@@ -476,14 +501,25 @@ export function useHolisticDashboardSnapshot(): Result {
     // ── Build LLM-optimised Markdown summary (instead of raw JSON) ────
     const lines: string[] = [];
     lines.push(`## User Context`);
+
+    // Stage-aware framing — explicit instruction so the model never
+    // mixes signals across journeys (e.g. mentioning kicks for postpartum).
+    const stageHumanLabel =
+      stageKey === "pregnant" ? "Pregnancy"
+      : stageKey === "postpartum" ? "Postpartum (after birth)"
+      : "Fertility / Trying-to-conceive";
+    lines.push(`- **Active Journey Stage**: ${stageHumanLabel}`);
+    lines.push(
+      `- **Scope rule**: Tailor every insight, recommendation and tone to the **${stageHumanLabel}** stage. ` +
+      `Ignore data sources that don't apply to this stage and never recommend tools from a different stage.`,
+    );
+
     if (week) {
       lines.push(`- Pregnancy Week: ${week} (Trimester ${trimester}) — ~${weeksToBirth} weeks until birth`);
-    } else if (profile?.journeyStage) {
-      lines.push(`- Journey Stage: ${profile.journeyStage}`);
     }
     if (profile?.weight) lines.push(`- Profile Weight: ${profile.weight} kg`);
     if (profile?.height) lines.push(`- Profile Height: ${profile.height} cm`);
-    lines.push(`- Tracking Engagement: ${engagementScore}% (${sourcesCount}/${ALL_SOURCES} sources active)`);
+    lines.push(`- Tracking Engagement: ${engagementScore}% (${sourcesCount}/${totalSources} stage-relevant sources active)`);
 
     if (positiveSignals.length > 0) {
       lines.push(``, `## Positive Signals`);

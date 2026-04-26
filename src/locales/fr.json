@@ -9255,6 +9255,13 @@
         "moodScore": "Score d'humeur",
         "bumpPhotos": "Photos du ventre",
         "ultrasound": "Lectures d'échographie"
+      },
+      "stageBadge": "Mode d'analyse : {{stage}}",
+      "stageBadgeAria": "Étape d'analyse active",
+      "stages": {
+        "pregnant": "Grossesse",
+        "postpartum": "Post-partum",
+        "fertility": "Fertilité"
       }
     },
     "signals": {

@@ -9255,6 +9255,13 @@
         "moodScore": "Stimmungs-Score",
         "bumpPhotos": "Bauchfotos",
         "ultrasound": "Ultraschall-Auswertungen"
+      },
+      "stageBadge": "Analysemodus: {{stage}}",
+      "stageBadgeAria": "Aktive Analysephase",
+      "stages": {
+        "pregnant": "Schwangerschaft",
+        "postpartum": "Wochenbett",
+        "fertility": "Fruchtbarkeit"
       }
     },
     "signals": {

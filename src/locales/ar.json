@@ -9342,6 +9342,13 @@
         "moodScore": "تقييم المزاج",
         "bumpPhotos": "صور البطن",
         "ultrasound": "قراءات السونار"
+      },
+      "stageBadge": "وضع تحليل: {{stage}}",
+      "stageBadgeAria": "مرحلة التحليل النشطة",
+      "stages": {
+        "pregnant": "الحمل",
+        "postpartum": "ما بعد الولادة",
+        "fertility": "الخصوبة"
       }
     },
     "signals": {
