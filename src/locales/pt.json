@@ -347,7 +347,10 @@
       "title": "Contagem regressiva do bebê",
       "description": "Descubra quando seu bebê chegará."
     },
-    "kickCounter": "Contador de chutes fetais",
+    "kickCounter": {
+      "title": "Contador de chutes fetais",
+      "description": "Contador de chutes fetais"
+    },
     "weightGain": {
       "title": "Guia de Bem-estar do Peso",
       "description": "Acompanhe as mudanças de peso durante a gravidez.",

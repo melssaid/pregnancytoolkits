@@ -347,7 +347,10 @@
       "title": "Cuenta regresiva del bebé",
       "description": "Descubre cuándo llegará tu bebé."
     },
-    "kickCounter": "Contador de patadas fetales",
+    "kickCounter": {
+      "title": "Contador de patadas fetales",
+      "description": "Contador de patadas fetales"
+    },
     "weightGain": {
       "title": "Guía de Bienestar del Peso",
       "description": "Registra los cambios de peso durante el embarazo.",

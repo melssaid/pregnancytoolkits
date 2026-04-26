@@ -351,7 +351,10 @@
       "title": "Intelligentes Baby-Wachstum",
       "description": "Verfolgen Sie das Wachstum mit WHO-Diagrammen."
     },
-    "kickCounter": "Fetaler Tritt-Zähler",
+    "kickCounter": {
+      "title": "Fetaler Tritt-Zähler",
+      "description": "Fetaler Tritt-Zähler"
+    },
     "weightGain": {
       "title": "Gewichts-Wellness-Guide",
       "description": "Begleiten Sie Ihre Gewichtsentwicklung in der Schwangerschaft.",
