@@ -8,6 +8,7 @@ import { safeParseLocalStorage, safeSaveToLocalStorage } from "@/lib/safeStorage
 import { useDashboardData } from "@/hooks/useDashboardData";
 import { useOptimizedMotion } from "@/hooks/useOptimizedMotion";
 import roseDecor from "@/assets/rose-right.png";
+import { DailyTipCard } from "@/components/dashboard/DailyTipCard";
 
 interface DailyLog {
   date: string;
