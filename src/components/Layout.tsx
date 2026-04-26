@@ -325,7 +325,7 @@ export function Layout({ children, showBack = false, compactBackHeader = false }
         <div className="container max-w-lg mx-auto px-4">
           {/* Logo & Brand */}
           <div className="flex flex-col items-center gap-3 mb-5">
-            <img src={logoImage} alt="Logo" width={36} height={36} loading="lazy" decoding="async" className="h-9 w-9 rounded-full object-cover shadow-sm" />
+            <img src={logoImage} alt="Logo" width={36} height={36} loading="eager" decoding="async" fetchPriority="high" className="h-9 w-9 rounded-full object-cover shadow-sm" />
             <span className="text-xs font-semibold text-muted-foreground/60">{t('app.name')}</span>
           </div>
 

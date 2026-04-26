@@ -49,7 +49,7 @@ export function SmartAppBanner() {
         <button onClick={dismiss} className="p-1 text-muted-foreground hover:text-foreground" aria-label="Close">
           <X className="h-4 w-4" />
         </button>
-        <img src="/logo.webp" alt="App" className="h-10 w-10 rounded-xl" loading="lazy" />
+        <img src="/logo.webp" alt="App" width={40} height={40} loading="eager" decoding="async" fetchPriority="high" className="h-10 w-10 rounded-xl" />
         <div className="flex-1 min-w-0">
           <p className="text-sm font-semibold text-foreground truncate">Pregnancy Toolkits</p>
           <p className="text-[10px] text-muted-foreground truncate">
