@@ -1,6 +1,6 @@
 import { lazy, Suspense, useState, useEffect, useCallback, useRef } from "react";
 import { SEOHead } from "@/components/SEOHead";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 import { Layout } from "@/components/Layout";
@@ -8,7 +8,7 @@ import { useSmartConversionPrompt } from "@/hooks/useSmartConversionPrompt";
 import { useTrimesterTheme } from "@/hooks/useTrimesterTheme";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Sun, BarChart3, Calendar, LayoutGrid, Sunrise, Moon, Sparkles } from "lucide-react";
+import { Sun, BarChart3, Calendar, LayoutGrid } from "lucide-react";
 import { haptic } from "@/lib/haptics";
 import { subscribeToData, STORAGE_KEYS } from "@/lib/dataBus";
 
@@ -116,27 +116,8 @@ const SmartDashboard = () => {
     setActiveTab(next);
   }, []);
 
-  // Decorative parallax for the time-aware emblem
-  const { scrollY } = useScroll();
-  const emblemY = useTransform(scrollY, [0, 400], [0, -40]);
-  const emblemOpacity = useTransform(scrollY, [0, 300], [0.9, 0]);
-  const emblemScale = useTransform(scrollY, [0, 400], [1, 0.75]);
+  // Decorative emblem removed — header is now title-only.
 
-  // Time-aware emblem: morning sunrise → afternoon sun → evening moon → night sparkles
-  const hour = new Date().getHours();
-  const TimeEmblem =
-    hour < 6  ? Moon :
-    hour < 11 ? Sunrise :
-    hour < 17 ? Sun :
-    hour < 21 ? Sunrise :
-                Moon;
-  // Per-time gradient + glow color
-  const emblemTone =
-    hour < 6  ? { from: "from-indigo-400/30",  to: "to-violet-500/15", ring: "shadow-indigo-400/30",  icon: "text-indigo-400" } :
-    hour < 11 ? { from: "from-amber-300/40",   to: "to-rose-300/15",   ring: "shadow-amber-300/40",   icon: "text-amber-500" } :
-    hour < 17 ? { from: "from-yellow-300/40",  to: "to-orange-300/15", ring: "shadow-yellow-300/40",  icon: "text-amber-500" } :
-    hour < 21 ? { from: "from-rose-400/35",    to: "to-purple-400/15", ring: "shadow-rose-400/30",    icon: "text-rose-500" } :
-                { from: "from-violet-500/35",  to: "to-indigo-500/15", ring: "shadow-violet-500/30",  icon: "text-violet-400" };
 
   // Each tab gets its own gradient + accent for the active glass pill icon
   const tabs: Array<{
@@ -161,62 +142,20 @@ const SmartDashboard = () => {
       />
 
       <main dir={isRTL ? "rtl" : "ltr"} className={`relative pb-24 bg-gradient-to-b ${trimesterTheme.gradient}`}>
-        {/* Time-aware decorative emblem — replaces side rose. Smaller, glass-pill,
-            shifts icon (sunrise/sun/moon) and accent gradient with the hour. */}
-        <div
-          className="pointer-events-none absolute top-5 sm:top-7 right-3 sm:right-5 z-0"
-          dir="ltr"
-          aria-hidden="true"
-        >
-          <motion.div
-            style={{ y: emblemY, opacity: emblemOpacity, scale: emblemScale }}
-            initial={{ opacity: 0, scale: 0.6, rotate: -8 }}
-            animate={{ opacity: 0.9, scale: 1, rotate: [0, 4, 0] }}
-            transition={{
-              opacity: { duration: 0.7, ease: "easeOut" },
-              scale: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
-              rotate: { duration: 6, repeat: Infinity, ease: "easeInOut" },
-            }}
-            className={`relative h-12 w-12 sm:h-14 sm:w-14 rounded-2xl
-                        bg-gradient-to-br ${emblemTone.from} ${emblemTone.to}
-                        backdrop-blur-md
-                        border border-white/40 dark:border-white/10
-                        shadow-lg ${emblemTone.ring}
-                        flex items-center justify-center`}
-          >
-            {/* Soft inner highlight */}
-            <span className="absolute inset-0 rounded-2xl bg-gradient-to-b from-white/40 to-transparent dark:from-white/10" />
-            <TimeEmblem
-              className={`relative h-5 w-5 sm:h-6 sm:w-6 ${emblemTone.icon}`}
-              strokeWidth={2.2}
-            />
-            {/* Subtle shimmer dot */}
-            <motion.span
-              className="absolute -top-1 -right-1 h-2 w-2 rounded-full bg-white/90 shadow"
-              animate={{ opacity: [0.5, 1, 0.5], scale: [0.85, 1.1, 0.85] }}
-              transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
-            />
-          </motion.div>
-        </div>
-
-        {/* Premium page header — title only, no eyebrow */}
+        {/* Premium page header — title only, no decorative emblem or icon */}
         <header className="container relative z-10 px-3 sm:px-4 pt-5 pb-3">
           <motion.div
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-            className="flex items-center justify-between gap-3"
+            className="min-w-0"
           >
-            <div className="min-w-0">
-              <h1 className="text-2xl sm:text-3xl font-black leading-tight tracking-tight text-foreground">
-                {t("dashboardV2.header.title")}
-              </h1>
-            </div>
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/15 to-primary/5 border border-primary/20 shadow-sm">
-              <Sun className="h-5 w-5 text-primary" strokeWidth={2.2} />
-            </div>
+            <h1 className="text-2xl sm:text-3xl font-black leading-tight tracking-tight text-foreground">
+              {t("dashboardV2.header.title")}
+            </h1>
           </motion.div>
         </header>
+
 
         <Tabs value={activeTab} onValueChange={handleTabChange} dir={isRTL ? "rtl" : "ltr"} className="relative z-10">
           {/* Sticky tab bar — pro Apple-style */}
