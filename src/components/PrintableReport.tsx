@@ -239,18 +239,35 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
           })}
         </div>
 
-        <Button
-          variant="outline"
-          onClick={handleDownload}
-          disabled={contentLoading}
-          className="w-full gap-2"
-        >
-          {contentLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4" />}
-          {downloadLabel || downloadLabels[lang] || downloadLabels.en}
-        </Button>
-        <p className="text-[10px] text-muted-foreground/50 text-center tracking-wide">
-          {downloadHint || downloadHints[lang] || downloadHints.en}
-        </p>
+        {(() => {
+          const isEmpty = !contentLoading && !hasContent;
+          return (
+            <>
+              <Button
+                variant="outline"
+                onClick={handleDownload}
+                disabled={contentLoading || isEmpty}
+                aria-disabled={contentLoading || isEmpty}
+                className={cn('w-full gap-2', isEmpty && 'opacity-60 cursor-not-allowed')}
+              >
+                {contentLoading
+                  ? <Loader2 className="w-4 h-4 animate-spin" />
+                  : <Download className="w-4 h-4" />}
+                {isEmpty
+                  ? eLabels.btn
+                  : (downloadLabel || downloadLabels[lang] || downloadLabels.en)}
+              </Button>
+              <p className={cn(
+                'text-[10px] text-center tracking-wide',
+                isEmpty ? 'text-amber-600 dark:text-amber-400 font-medium' : 'text-muted-foreground/50'
+              )}>
+                {isEmpty
+                  ? eLabels.hint
+                  : (downloadHint || downloadHints[lang] || downloadHints.en)}
+              </p>
+            </>
+          );
+        })()}
 
         {/* Local PDF history */}
         {historyBucket && (
