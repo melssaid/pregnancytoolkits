@@ -90,7 +90,6 @@ const WelcomeCard = memo(function WelcomeCard() {
   const { profile } = useUserProfile();
   const lang = i18n.language?.split("-")[0] || "en";
   const timeOfDay = useMemo(() => getTimeOfDay(), []);
-  const TimeIcon = timeIcons[timeOfDay];
 
   const greeting = greetings[timeOfDay][lang] || greetings[timeOfDay].en;
   const tips = dailyTips[lang] || dailyTips.en;
@@ -115,8 +114,8 @@ const WelcomeCard = memo(function WelcomeCard() {
       <div className="absolute -top-8 -end-8 w-28 h-28 rounded-full bg-primary/8 blur-3xl pointer-events-none" />
 
       <div className="relative flex items-start gap-3">
-        {/* Progress Ring or Time Icon */}
-        {week > 0 ? (
+        {/* Progress Ring (only for pregnant users) */}
+        {week > 0 && (
           <div className="relative flex-shrink-0 w-16 h-16">
             <svg viewBox="0 0 64 64" className="w-full h-full -rotate-90">
               <circle cx="32" cy="32" r="28" fill="none" stroke="hsl(var(--muted))" strokeWidth="3" opacity={0.3} />
@@ -136,14 +135,10 @@ const WelcomeCard = memo(function WelcomeCard() {
               <span className="text-sm font-black text-primary leading-none" style={{ fontFamily: "'Cairo', sans-serif" }}>
                 {week}
               </span>
-            <span className="text-[8px] text-muted-foreground font-medium">
+              <span className="text-[8px] text-muted-foreground font-medium">
                 {({ ar: "أسبوع", de: "Woche", tr: "hafta", fr: "sem.", es: "sem.", pt: "sem." })[lang] || "week"}
               </span>
             </div>
-          </div>
-        ) : (
-          <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center">
-            <TimeIcon className="w-5 h-5 text-primary" strokeWidth={1.8} />
           </div>
         )}
 
