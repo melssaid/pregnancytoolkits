@@ -73,29 +73,24 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
 
     const clone = reportRef.current.cloneNode(true) as HTMLElement;
 
+    // 1) Remove non-printable interactive/decorative elements ONLY
+    //    (previous heuristic deleted any element with classes like h-3 / h-32, which destroyed real content)
     clone.querySelectorAll(
-      '[data-no-print], .no-print, button, svg, canvas, video, audio, iframe, [role="progressbar"], [data-radix-collection-item]'
+      '[data-no-print], .no-print, button, svg, canvas, video, audio, iframe, [role="progressbar"]'
     ).forEach(el => el.remove());
 
-    clone.querySelectorAll('*').forEach(el => {
-      const h = el as HTMLElement;
-      const cls = h.getAttribute('class') || '';
-      const tag = h.tagName.toLowerCase();
-
-      if (/\bh-\[?[0-3]/.test(cls) || /\bh-1\b/.test(cls) || /\bh-0\.5\b/.test(cls)) { el.remove(); return; }
-      if (/progress|badge|ring|spinner|loading|skeleton/i.test(cls)) { el.remove(); return; }
-      if (tag === 'div' && h.children.length === 0 && !h.textContent?.trim()) { el.remove(); return; }
-    });
-
-    const markdownEl = clone.querySelector('.markdown-content, .prose, [class*="markdown"], [class*="Markdown"]');
+    // 2) Prefer the rich markdown / prose container if it contains real text
+    const markdownEl = clone.querySelector(
+      '.markdown-content, .prose, [class*="markdown"], [class*="Markdown"]'
+    );
     let printContent: string;
-
-    if (markdownEl) {
+    if (markdownEl && (markdownEl.textContent || '').trim().length > 20) {
       printContent = markdownEl.innerHTML;
     } else {
       printContent = clone.innerHTML;
     }
 
+    // 3) Strip styling/data attrs but KEEP all text & structure
     const tempDiv = document.createElement('div');
     tempDiv.innerHTML = printContent;
     tempDiv.querySelectorAll('*').forEach(el => {
@@ -106,18 +101,38 @@ export const PrintableReport: React.FC<PrintableReportProps> = ({ children, titl
       h.removeAttribute('data-orientation');
     });
 
+    // 4) Remove only truly empty wrappers
     tempDiv.querySelectorAll('div, span').forEach(el => {
       if (!el.textContent?.trim() && el.children.length === 0) {
         el.remove();
       }
     });
 
+    // 5) Guard: abort if there's no real content to print
+    const cleanedText = (tempDiv.textContent || '').trim();
+    if (cleanedText.length < 5) return null;
+
     return buildPrintHTML({ content: tempDiv.innerHTML, title, lang, isRTL, profile, logoDataUrl, orientation });
   }, [lang, isRTL, title, profile, logoDataUrl, orientation]);
 
-  const handleDownload = useCallback(() => {
+  const handleDownload = useCallback(async () => {
     const fullHTML = buildCleanHTML();
-    if (!fullHTML) return;
+    if (!fullHTML) {
+      const msgs: Record<string, string> = {
+        ar: 'لا يوجد محتوى للتحميل بعد. انتظري اكتمال التحليل.',
+        en: 'No content to download yet. Please wait for the analysis to finish.',
+        de: 'Noch kein Inhalt zum Herunterladen.',
+        fr: 'Aucun contenu à télécharger pour le moment.',
+        es: 'Aún no hay contenido para descargar.',
+        pt: 'Ainda não há conteúdo para baixar.',
+        tr: 'Henüz indirilecek içerik yok.',
+      };
+      try {
+        const { toast } = await import('sonner');
+        toast.warning(msgs[lang] || msgs.en);
+      } catch { /* noop */ }
+      return;
+    }
     printViaIframe(fullHTML);
     if (historyBucket) {
       history.add({
