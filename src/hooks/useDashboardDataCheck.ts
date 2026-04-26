@@ -12,6 +12,7 @@ import { getUserId } from "@/hooks/useSupabase";
 export interface DashboardDataCheck {
   hasSymptomsData: boolean;
   hasMoodData: boolean;
+  hasMoodScore: boolean;          // NEW — depth: ≥3 mood entries in last 14 days
   hasContractions: boolean;
   hasSavedResults: boolean;
   hasWeight: boolean;
@@ -22,7 +23,9 @@ export interface DashboardDataCheck {
   hasKickSessions: boolean;
   hasMeals: boolean;
   hasFitness: boolean;
-  hasBumpPhotos: boolean;
+  hasBumpPhotos: boolean;          // body / bump photo journal
+  hasUltrasoundReadings: boolean;  // NEW — bump photos with AI analysis attached
+  hasSleepData: boolean;           // NEW — baby/parent sleep sessions
   hasAnyData: boolean;
 }
 
@@ -39,9 +42,18 @@ function compute(): DashboardDataCheck {
   // Kick sessions — unified canonical store (auto-migrates legacy keys on read)
   const kickSessions = readKickSessions();
   const bumpPhotos = safeParseLocalStorage<any[]>(STORAGE_KEYS.BUMP_PHOTOS(userId), []);
+  const sleepSessions = safeParseLocalStorage<any[]>(STORAGE_KEYS.BABY_SLEEP, []);
 
   const hasMoodData = symptoms.some((l) => (l?.mood ?? 0) > 0);
   const hasSymptomsData = symptoms.some((l) => l?.symptoms?.length > 0);
+  // Mood scoring depth — ≥3 distinct dated mood entries in last 14 days
+  const fourteenDaysAgo = Date.now() - 14 * 86400_000;
+  const hasMoodScore =
+    symptoms.filter((l) => {
+      if (!l || (l?.mood ?? 0) <= 0) return false;
+      const ts = new Date(l?.date || l?.timestamp || 0).getTime();
+      return Number.isFinite(ts) && ts >= fourteenDaysAgo;
+    }).length >= 3;
   const hasContractions = contractions.length > 0;
   const hasSavedResults = savedResults.length > 0;
   const hasWeight = weightEntries.length > 0 || !!profile?.weight;
@@ -53,17 +65,22 @@ function compute(): DashboardDataCheck {
   const hasAppointments = appointments.length > 0;
   const hasKickSessions = kickSessions.length > 0;
   const hasBumpPhotos = bumpPhotos.length > 0;
+  const hasUltrasoundReadings = bumpPhotos.some(
+    (p) => typeof p?.ai_analysis === "string" && p.ai_analysis.trim().length > 20,
+  );
+  const hasSleepData = Array.isArray(sleepSessions) && sleepSessions.some((s) => !!s?.endTime);
 
   const hasAnyData =
     hasMoodData || hasSymptomsData || hasContractions || hasSavedResults ||
     hasWeight || hasRecentActivity || hasHydration || hasVitamins ||
-    hasAppointments || hasKickSessions || hasBumpPhotos;
+    hasAppointments || hasKickSessions || hasBumpPhotos ||
+    hasUltrasoundReadings || hasSleepData;
 
   return {
-    hasSymptomsData, hasMoodData, hasContractions, hasSavedResults,
+    hasSymptomsData, hasMoodData, hasMoodScore, hasContractions, hasSavedResults,
     hasWeight, hasRecentActivity, hasHydration, hasVitamins,
     hasAppointments, hasKickSessions, hasMeals, hasFitness,
-    hasBumpPhotos, hasAnyData,
+    hasBumpPhotos, hasUltrasoundReadings, hasSleepData, hasAnyData,
   };
 }
 
