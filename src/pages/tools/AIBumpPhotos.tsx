@@ -162,8 +162,8 @@ const AIBumpPhotos: React.FC = () => {
         description: t('toolsInternal.bumpPhotos.photoSavedDesc', { week: currentWeek })
       });
 
-      // Auto analyze
-      analyzePhoto(photo);
+      // Select latest photo so user can press the explicit "Analyze" button
+      setSelectedPhoto(photo);
       
     } catch (error: any) {
       console.error('Upload error:', error);
