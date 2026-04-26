@@ -149,22 +149,36 @@ Deno.serve(async (req) => {
     const liveFrom = new Date(now.getTime() - liveMinutes * 60 * 1000).toISOString();
     const dailyFrom = new Date(now.getTime() - dailyDays * 24 * 60 * 60 * 1000).toISOString();
 
-    const { data, error } = await adminClient
-      .from("tool_analytics")
-      .select("tool_id, session_id, action_type, metadata, created_at")
-      .gte("created_at", from)
-      .order("created_at", { ascending: false })
-      .limit(5000);
+    // Paginated fetch — Supabase caps each request at 1000 rows by default.
+    // We page through up to 50k rows to ensure accuracy on busy days.
+    const fetchAllRows = async <T,>(
+      from_iso: string,
+      columns: string,
+      maxRows = 50000,
+    ): Promise<T[]> => {
+      const pageSize = 1000;
+      const all: T[] = [];
+      for (let offset = 0; offset < maxRows; offset += pageSize) {
+        const { data: page, error: pageErr } = await adminClient
+          .from("tool_analytics")
+          .select(columns)
+          .gte("created_at", from_iso)
+          .order("created_at", { ascending: false })
+          .range(offset, offset + pageSize - 1);
+        if (pageErr) throw pageErr;
+        if (!page || page.length === 0) break;
+        all.push(...(page as T[]));
+        if (page.length < pageSize) break;
+      }
+      return all;
+    };
 
-    if (error) throw error;
-
-    // Daily aggregates (last N days) — DAU + PWA installs + app opens
-    const { data: dailyData } = await adminClient
-      .from("tool_analytics")
-      .select("session_id, action_type, tool_id, created_at")
-      .gte("created_at", dailyFrom)
-      .order("created_at", { ascending: false })
-      .limit(20000);
+    const data = await fetchAllRows<ToolRow>(from, "tool_id, session_id, action_type, metadata, created_at", 10000);
+    const dailyData = await fetchAllRows<{ session_id: string; action_type: string; tool_id: string; created_at: string }>(
+      dailyFrom,
+      "session_id, action_type, tool_id, created_at",
+      50000,
+    );
 
     // Push subscriptions distribution (live snapshot)
     const { data: pushData } = await adminClient

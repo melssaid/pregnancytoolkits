@@ -191,11 +191,34 @@ export default function AdminUsageDashboard() {
                   </TabsList>
 
                   <TabsContent value="daily" className="space-y-3">
+                    {(() => {
+                      const today = stats.daily[stats.daily.length - 1];
+                      const yesterday = stats.daily[stats.daily.length - 2];
+                      const last7 = stats.daily.slice(-7);
+                      const weekDau = last7.reduce((s, d) => s + d.dau, 0);
+                      const weekViews = last7.reduce((s, d) => s + d.pageViews, 0);
+                      const trend = today && yesterday && yesterday.dau > 0
+                        ? Math.round(((today.dau - yesterday.dau) / yesterday.dau) * 100)
+                        : null;
+                      return (
+                        <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+                          <StatCard
+                            icon={<Users className="h-4 w-4" />}
+                            label="زوار اليوم"
+                            value={today?.dau ?? 0}
+                            sub={trend !== null ? `${trend >= 0 ? "+" : ""}${trend}% عن الأمس` : "بداية اليوم"}
+                          />
+                          <StatCard icon={<Eye className="h-4 w-4" />} label="مشاهدات اليوم" value={today?.pageViews ?? 0} sub={`${today?.appOpens ?? 0} فتحات`} />
+                          <StatCard icon={<TrendingUp className="h-4 w-4" />} label="زوار الأسبوع" value={weekDau} sub={`${weekViews} مشاهدة`} />
+                          <StatCard icon={<Bell className="h-4 w-4" />} label="مشتركو الإشعارات" value={stats.pushSubscriptions.total} sub="إجمالي" />
+                        </div>
+                      );
+                    })()}
                     <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
                       <StatCard icon={<TrendingUp className="h-4 w-4" />} label={`زوار ${stats.dailyDays} أيام`} value={stats.dailyTotals.dau} sub="DAU مجموع" />
                       <StatCard icon={<Eye className="h-4 w-4" />} label="مشاهدات الصفحات" value={stats.dailyTotals.pageViews} sub="آخر أسبوع" />
                       <StatCard icon={<Download className="h-4 w-4" />} label="تثبيتات PWA" value={stats.dailyTotals.pwaInstalls} sub="مجموع الأسبوع" />
-                      <StatCard icon={<Bell className="h-4 w-4" />} label="مشتركو الإشعارات" value={stats.pushSubscriptions.total} sub="حالياً" />
+                      <StatCard icon={<Activity className="h-4 w-4" />} label="فتحات التطبيق" value={stats.dailyTotals.appOpens} sub="مجموع الأسبوع" />
                     </div>
 
                     <Card>
