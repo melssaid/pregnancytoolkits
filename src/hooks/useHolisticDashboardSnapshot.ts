@@ -183,6 +183,8 @@ export function useHolisticDashboardSnapshot(): Result {
     const savedResults = safeParseLocalStorage<any[]>(STORAGE_KEYS.SAVED_RESULTS, []) || [];
     const bumpPhotos =
       safeParseLocalStorage<any[]>(BUMP_PHOTOS_STORAGE_KEY(userId), []) || [];
+    const sleepSessionsRaw =
+      safeParseLocalStorage<any[]>(STORAGE_KEYS.BABY_SLEEP, []) || [];
 
     // ── Mood from symptom logs ──
     const moodLast7 = symptoms
