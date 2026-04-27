@@ -34,7 +34,7 @@ const i18nLabels: Record<string, {
     yearlyPrice: '$19.99/year',
     creditsBadge: '75 credits granted',
     perks: [
-      '60 AI analyses every month',
+      '75 AI analyses every month',
       'All 36+ smart tools unlocked',
       'Personalized wellness insights',
       'Priority support & updates',
@@ -68,9 +68,9 @@ const i18nLabels: Record<string, {
     yearly: 'Jährliches Premium',
     monthlyPrice: '2,99 $/Monat',
     yearlyPrice: '19,99 $/Jahr',
-    creditsBadge: '60 Credits erhalten',
+    creditsBadge: '75 Credits erhalten',
     perks: [
-      '60 KI-Analysen pro Monat',
+      '75 KI-Analysen pro Monat',
       'Alle 36+ Smart-Tools freigeschaltet',
       'Personalisierte Wellness-Einblicke',
       'Prioritäts-Support & Updates',
@@ -140,7 +140,7 @@ const i18nLabels: Record<string, {
     yearly: 'Yıllık Premium',
     monthlyPrice: '$2.99/ay',
     yearlyPrice: '$19.99/yıl',
-    creditsBadge: '60 kredi verildi',
+    creditsBadge: '75 kredi verildi',
     perks: [
       'Ayda 75 AI analizi',
       'Tüm 36+ akıllı araç açık',

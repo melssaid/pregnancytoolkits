@@ -83,7 +83,7 @@ export function TrialExpiryBanner() {
     en: [
       { text: "🌟 Unlock smart analyses — Subscribe now!", cta: "Subscribe" },
       { text: "✨ Personalized AI pregnancy plan made for you", cta: "Start" },
-      { text: "👑 60 monthly analyses + exclusive features", cta: "Upgrade" },
+      { text: "👑 75 monthly analyses + exclusive features", cta: "Upgrade" },
       { text: "💎 Your smart companion through pregnancy", cta: "Join" },
       { text: "🌸 Pro-level scan & kick analysis", cta: "Try" },
     ],
