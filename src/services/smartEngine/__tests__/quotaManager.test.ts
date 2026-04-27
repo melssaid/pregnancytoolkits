@@ -141,15 +141,15 @@ describe('TOOL_WEIGHT_REGISTRY', () => {
     }
   });
 
-  it('light tools have weight 0.5', () => {
-    const lightTools = [
+  it('previously-light tools are unified to weight 1', () => {
+    const unifiedTools = [
       'meal-suggestion', 'vitamin-advice', 'baby-cry-analysis',
       'skincare-advice', 'partner-guide', 'birth-position',
       'grocery-list', 'craving-alternatives', 'nausea-relief',
       'sleep-analysis', 'sleep-meditation', 'sleep-routine',
     ] as const;
-    for (const tool of lightTools) {
-      expect(TOOL_WEIGHT_REGISTRY[tool]).toBe(0.5);
+    for (const tool of unifiedTools) {
+      expect(TOOL_WEIGHT_REGISTRY[tool]).toBe(1);
     }
   });
 
@@ -157,7 +157,7 @@ describe('TOOL_WEIGHT_REGISTRY', () => {
     const keys = Object.keys(TOOL_WEIGHT_REGISTRY);
     expect(keys.length).toBeGreaterThanOrEqual(30);
     for (const key of keys) {
-      expect([0, 0.5, 1, 2]).toContain(TOOL_WEIGHT_REGISTRY[key as keyof typeof TOOL_WEIGHT_REGISTRY]);
+      expect([0, 1, 2, 5, 7]).toContain(TOOL_WEIGHT_REGISTRY[key as keyof typeof TOOL_WEIGHT_REGISTRY]);
     }
   });
 });
