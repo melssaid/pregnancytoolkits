@@ -80,10 +80,10 @@ export const UsagePulseFooter: React.FC<UsagePulseFooterProps> = ({
   // Cost label
   const costLabel = weight === 0
     ? L.freeAction
-    : weight === 0.5
-      ? L.halfPoint
-      : weight === 2
-        ? `2 ${L.points}`
+    : weight === 2
+      ? `2 ${L.points}`
+      : weight >= 5
+        ? `${weight} ${L.points}`
         : `1 ${L.point}`;
 
   // Bar gradient by remaining

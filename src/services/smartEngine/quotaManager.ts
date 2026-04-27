@@ -5,7 +5,7 @@
  *
  * FREE: 10 points/month | PREMIUM: 60 points/month
  * Coupon bonuses ACCUMULATE on top of base limit (server is source of truth).
- * Weights: standard=1, heavy/photo=2, lightweight=0.5, free=0
+ * Weights: standard=1, heavy/photo=2, premium-vision/search=5, holistic=7, free=0
  */
 
 import { QUOTA_TIERS, type InsightWeight, type QuotaState } from "./types";

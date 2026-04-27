@@ -186,7 +186,7 @@ export const AIActionButton: React.FC<AIActionButtonProps> = ({
           {isFree && (
             <div className="space-y-2">
               <p className="text-[10px] text-muted-foreground/70 text-center font-medium px-1">
-                {weight === 0 ? labels.costHint0 : weight === 2 ? labels.costHint2 : weight === 0.5 ? labels.costHint05 : labels.costHint1}
+                {weight === 0 ? labels.costHint0 : weight === 2 ? labels.costHint2 : labels.costHint1}
               </p>
               <UpgradeCard />
             </div>
