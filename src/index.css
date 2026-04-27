@@ -698,12 +698,42 @@ html[dir="rtl"] .rtl-flip {
   contain-intrinsic-size: auto 300px;
 }
 
-/* Accessibility: respect user motion preferences */
+/* ═══ Accessibility: strict prefers-reduced-motion enforcement ═══
+ * Kills all CSS animations, transitions, smooth scroll, and decorative
+ * infinite loops (gradient, marquee, pulse, shimmer, float, spin) so the
+ * app stays light and accessible on motion-sensitive devices.
+ */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
-    animation-duration: 0.01ms !important;
+    animation-duration: 0.001ms !important;
+    animation-delay: 0ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    transition-duration: 0.001ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Disable decorative infinite animations entirely */
+  .animate-gradient,
+  .animate-spin,
+  .animate-ping,
+  .animate-pulse,
+  .animate-bounce,
+  .tool-active-dot,
+  [class*="animate-shimmer"],
+  [class*="animate-float"],
+  [class*="animate-marquee"] {
+    animation: none !important;
+  }
+
+  /* Neutralize video-based decorative motion (splash/logo loops still load
+     but don't auto-loop visibly when user prefers stillness). */
+  video[autoplay] {
+    animation: none !important;
+  }
+
+  /* Prevent parallax / smooth-scroll containers from animating */
+  html, body {
     scroll-behavior: auto !important;
   }
 }
