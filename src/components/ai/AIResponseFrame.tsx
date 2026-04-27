@@ -71,14 +71,14 @@ export const AIResponseFrame = ({
     return 'hsl(var(--primary))';
   };
 
-  const usageExplanations: Record<string, { explanation: string; costHint0: string; costHint05: string; costHint1: string; costHint2: string }> = {
-    en: { explanation: 'Each smart analysis uses 1 point from your monthly balance', costHint0: 'Free ✨', costHint05: 'Uses ½ credit', costHint1: 'Uses 1 credit', costHint2: 'Uses 2 credits' },
-    ar: { explanation: 'كل تحليل ذكي يستهلك نقطة واحدة من رصيدك الشهري', costHint0: 'مجاني ✨', costHint05: 'تستهلك نصف نقطة', costHint1: 'تستهلك نقطة واحدة', costHint2: 'تستهلك نقطتين' },
-    de: { explanation: 'Jede Analyse verbraucht 1 Punkt Ihres monatlichen Guthabens', costHint0: 'Kostenlos ✨', costHint05: '½ Credit', costHint1: '1 Credit verbraucht', costHint2: '2 Credits verbraucht' },
-    fr: { explanation: 'Chaque analyse utilise 1 point de votre solde mensuel', costHint0: 'Gratuit ✨', costHint05: '½ crédit', costHint1: 'Utilise 1 crédit', costHint2: 'Utilise 2 crédits' },
-    es: { explanation: 'Cada análisis usa 1 punto de tu saldo mensual', costHint0: 'Gratis ✨', costHint05: '½ crédito', costHint1: 'Usa 1 crédito', costHint2: 'Usa 2 créditos' },
-    pt: { explanation: 'Cada análise usa 1 ponto do seu saldo mensal', costHint0: 'Grátis ✨', costHint05: '½ crédito', costHint1: 'Usa 1 crédito', costHint2: 'Usa 2 créditos' },
-    tr: { explanation: 'Her analiz aylık bakiyenizden 1 puan kullanır', costHint0: 'Ücretsiz ✨', costHint05: '½ kredi', costHint1: '1 kredi kullanır', costHint2: '2 kredi kullanır' },
+  const usageExplanations: Record<string, { explanation: string; costFree: string; costFmt: (n: number) => string }> = {
+    en: { explanation: 'Each smart analysis uses 1 point from your monthly balance', costFree: 'Free ✨', costFmt: (n) => `This analysis used ${n} ${n === 1 ? 'credit' : 'credits'}` },
+    ar: { explanation: 'كل تحليل ذكي يستهلك نقطة واحدة من رصيدك الشهري', costFree: 'مجاني ✨', costFmt: (n) => n === 1 ? 'استهلك هذا التحليل نقطة واحدة' : n === 2 ? 'استهلك هذا التحليل نقطتين' : `استهلك هذا التحليل ${n} نقاط` },
+    de: { explanation: 'Jede Analyse verbraucht 1 Punkt Ihres monatlichen Guthabens', costFree: 'Kostenlos ✨', costFmt: (n) => `Diese Analyse verbrauchte ${n} ${n === 1 ? 'Credit' : 'Credits'}` },
+    fr: { explanation: 'Chaque analyse utilise 1 point de votre solde mensuel', costFree: 'Gratuit ✨', costFmt: (n) => `Cette analyse a utilisé ${n} ${n === 1 ? 'crédit' : 'crédits'}` },
+    es: { explanation: 'Cada análisis usa 1 punto de tu saldo mensual', costFree: 'Gratis ✨', costFmt: (n) => `Este análisis usó ${n} ${n === 1 ? 'crédito' : 'créditos'}` },
+    pt: { explanation: 'Cada análise usa 1 ponto do seu saldo mensal', costFree: 'Grátis ✨', costFmt: (n) => `Esta análise usou ${n} ${n === 1 ? 'crédito' : 'créditos'}` },
+    tr: { explanation: 'Her analiz aylık bakiyenizden 1 puan kullanır', costFree: 'Ücretsiz ✨', costFmt: (n) => `Bu analiz ${n} kredi kullandı` },
   };
   const lang = i18n.language?.split('-')[0] || 'en';
   const uLabels = usageExplanations[lang] || usageExplanations.en;
@@ -190,7 +190,7 @@ export const AIResponseFrame = ({
             </div>
             {!hideUsageHint && (
               <p className="text-[10px] text-muted-foreground text-center font-medium">
-                {weight === 0 ? uLabels.costHint0 : weight === 2 ? uLabels.costHint2 : uLabels.explanation}
+                {weight === 0 ? uLabels.costFree : weight === 1 ? uLabels.explanation : uLabels.costFmt(weight)}
               </p>
             )}
           </div>

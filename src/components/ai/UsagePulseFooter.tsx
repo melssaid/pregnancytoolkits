@@ -9,35 +9,35 @@ import { resolveWeight, type AIToolType, type SmartSection } from '@/services/sm
 
 const labels: Record<string, {
   consumed: string; remaining: string; of: string; thisAction: string;
-  point: string; points: string; halfPoint: string; freeAction: string;
+  point: string; points: string; freeAction: string;
   upgradeCta: string; resetsMonthly: string; nearLimit: string; couponOneTime: string;
 }> = {
   ar: { consumed: 'استهلكتِ', remaining: 'المتبقي', of: 'من', thisAction: 'هذا التحليل',
-        point: 'نقطة', points: 'نقاط', halfPoint: 'نصف نقطة', freeAction: 'تحليل مجاني ✨',
+        point: 'نقطة', points: 'نقاط', freeAction: 'تحليل مجاني ✨',
         upgradeCta: 'احصلي على 75 نقطة شهرياً', resetsMonthly: 'يتجدد شهرياً', nearLimit: 'اقتربتِ من نهاية الرصيد',
         couponOneTime: 'نقاط الكوبون لمرة واحدة' },
   en: { consumed: 'Used', remaining: 'Remaining', of: 'of', thisAction: 'this analysis',
-        point: 'point', points: 'points', halfPoint: '½ point', freeAction: 'Free analysis ✨',
+        point: 'point', points: 'points', freeAction: 'Free analysis ✨',
         upgradeCta: 'Get 75 points monthly', resetsMonthly: 'Resets monthly', nearLimit: 'Almost out of credits',
         couponOneTime: 'Coupon points · one-time' },
   de: { consumed: 'Verbraucht', remaining: 'Übrig', of: 'von', thisAction: 'diese Analyse',
-        point: 'Punkt', points: 'Punkte', halfPoint: '½ Punkt', freeAction: 'Kostenlos ✨',
+        point: 'Punkt', points: 'Punkte', freeAction: 'Kostenlos ✨',
         upgradeCta: '75 Punkte monatlich', resetsMonthly: 'Monatlich', nearLimit: 'Limit fast erreicht',
         couponOneTime: 'Gutschein · einmalig' },
   fr: { consumed: 'Utilisé', remaining: 'Restant', of: 'sur', thisAction: 'cette analyse',
-        point: 'point', points: 'points', halfPoint: '½ point', freeAction: 'Gratuit ✨',
+        point: 'point', points: 'points', freeAction: 'Gratuit ✨',
         upgradeCta: '75 points par mois', resetsMonthly: 'Mensuel', nearLimit: 'Presque épuisé',
         couponOneTime: 'Points coupon · unique' },
   es: { consumed: 'Usado', remaining: 'Restante', of: 'de', thisAction: 'este análisis',
-        point: 'punto', points: 'puntos', halfPoint: '½ punto', freeAction: 'Gratis ✨',
+        point: 'punto', points: 'puntos', freeAction: 'Gratis ✨',
         upgradeCta: '75 puntos al mes', resetsMonthly: 'Mensual', nearLimit: 'Casi sin créditos',
         couponOneTime: 'Cupón · un solo uso' },
   pt: { consumed: 'Usado', remaining: 'Restante', of: 'de', thisAction: 'esta análise',
-        point: 'ponto', points: 'pontos', halfPoint: '½ ponto', freeAction: 'Grátis ✨',
+        point: 'ponto', points: 'pontos', freeAction: 'Grátis ✨',
         upgradeCta: '75 pontos por mês', resetsMonthly: 'Mensal', nearLimit: 'Quase sem créditos',
         couponOneTime: 'Cupom · uso único' },
   tr: { consumed: 'Kullanıldı', remaining: 'Kalan', of: '/', thisAction: 'bu analiz',
-        point: 'puan', points: 'puan', halfPoint: '½ puan', freeAction: 'Ücretsiz ✨',
+        point: 'puan', points: 'puan', freeAction: 'Ücretsiz ✨',
         upgradeCta: 'Aylık 75 puan al', resetsMonthly: 'Aylık', nearLimit: 'Limit dolmak üzere',
         couponOneTime: 'Kupon · tek seferlik' },
 };

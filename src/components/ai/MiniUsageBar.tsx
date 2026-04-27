@@ -7,17 +7,17 @@ import { useTranslation } from 'react-i18next';
 import { resolveWeight, type AIToolType, type SmartSection } from '@/services/smartEngine/types';
 
 const usageLabels: Record<string, {
-  costHint0: string; costHint05: string; costHint1: string; costHint2: string;
+  costFree: string; costFmt: (n: number) => string;
   upgradeTitle: string; upgradeSub: string; upgradeCta: string;
   explanation: string; nearLimitNudge: string;
 }> = {
-  en: { costHint0: 'Free ✨', costHint05: 'Uses ½ credit', costHint1: 'Uses 1 credit', costHint2: 'Uses 2 credits', upgradeTitle: 'Want more analyses?', upgradeSub: 'Get 75 smart analyses every month', upgradeCta: 'View Plans', explanation: 'Each smart analysis uses 1 point from your monthly balance', nearLimitNudge: 'Subscribe for 75 analyses/month' },
-  ar: { costHint0: 'مجاني ✨', costHint05: 'تستهلك نصف نقطة', costHint1: 'تستهلك نقطة واحدة', costHint2: 'تستهلك نقطتين', upgradeTitle: 'تريدين تحليلات أكثر؟', upgradeSub: '75 تحليل ذكي كل شهر', upgradeCta: 'عرض الباقات', explanation: 'كل تحليل ذكي يستهلك نقطة واحدة من رصيدك الشهري', nearLimitNudge: 'اشتركي للحصول على 75 تحليل/شهر' },
-  de: { costHint0: 'Kostenlos ✨', costHint05: '½ Credit', costHint1: '1 Credit verbraucht', costHint2: '2 Credits verbraucht', upgradeTitle: 'Mehr Analysen gewünscht?', upgradeSub: '75 smarte Analysen pro Monat', upgradeCta: 'Pläne ansehen', explanation: 'Jede Analyse verbraucht 1 Punkt Ihres monatlichen Guthabens', nearLimitNudge: 'Abonnieren für 75 Analysen/Monat' },
-  fr: { costHint0: 'Gratuit ✨', costHint05: '½ crédit', costHint1: 'Utilise 1 crédit', costHint2: 'Utilise 2 crédits', upgradeTitle: 'Plus d\'analyses ?', upgradeSub: '75 analyses intelligentes par mois', upgradeCta: 'Voir les offres', explanation: 'Chaque analyse utilise 1 point de votre solde mensuel', nearLimitNudge: 'Abonnez-vous pour 75 analyses/mois' },
-  es: { costHint0: 'Gratis ✨', costHint05: '½ crédito', costHint1: 'Usa 1 crédito', costHint2: 'Usa 2 créditos', upgradeTitle: '¿Más análisis?', upgradeSub: '75 análisis inteligentes al mes', upgradeCta: 'Ver planes', explanation: 'Cada análisis usa 1 punto de tu saldo mensual', nearLimitNudge: 'Suscríbete para 75 análisis/mes' },
-  pt: { costHint0: 'Grátis ✨', costHint05: '½ crédito', costHint1: 'Usa 1 crédito', costHint2: 'Usa 2 créditos', upgradeTitle: 'Quer mais análises?', upgradeSub: '75 análises inteligentes por mês', upgradeCta: 'Ver planos', explanation: 'Cada análise usa 1 ponto do seu saldo mensal', nearLimitNudge: 'Assine para 75 análises/mês' },
-  tr: { costHint0: 'Ücretsiz ✨', costHint05: '½ kredi', costHint1: '1 kredi kullanır', costHint2: '2 kredi kullanır', upgradeTitle: 'Daha fazla analiz?', upgradeSub: 'Ayda 75 akıllı analiz', upgradeCta: 'Planları gör', explanation: 'Her analiz aylık bakiyenizden 1 puan kullanır', nearLimitNudge: '75 analiz/ay için abone olun' },
+  en: { costFree: 'Free ✨', costFmt: (n) => `Uses ${n} ${n === 1 ? 'credit' : 'credits'}`, upgradeTitle: 'Want more analyses?', upgradeSub: 'Get 75 smart analyses every month', upgradeCta: 'View Plans', explanation: 'Each smart analysis uses 1 point from your monthly balance', nearLimitNudge: 'Subscribe for 75 analyses/month' },
+  ar: { costFree: 'مجاني ✨', costFmt: (n) => n === 1 ? 'تستهلك نقطة واحدة' : n === 2 ? 'تستهلك نقطتين' : `تستهلك ${n} نقاط`, upgradeTitle: 'تريدين تحليلات أكثر؟', upgradeSub: '75 تحليل ذكي كل شهر', upgradeCta: 'عرض الباقات', explanation: 'كل تحليل ذكي يستهلك نقطة واحدة من رصيدك الشهري', nearLimitNudge: 'اشتركي للحصول على 75 تحليل/شهر' },
+  de: { costFree: 'Kostenlos ✨', costFmt: (n) => `Verbraucht ${n} ${n === 1 ? 'Credit' : 'Credits'}`, upgradeTitle: 'Mehr Analysen gewünscht?', upgradeSub: '75 smarte Analysen pro Monat', upgradeCta: 'Pläne ansehen', explanation: 'Jede Analyse verbraucht 1 Punkt Ihres monatlichen Guthabens', nearLimitNudge: 'Abonnieren für 75 Analysen/Monat' },
+  fr: { costFree: 'Gratuit ✨', costFmt: (n) => `Utilise ${n} ${n === 1 ? 'crédit' : 'crédits'}`, upgradeTitle: 'Plus d\'analyses ?', upgradeSub: '75 analyses intelligentes par mois', upgradeCta: 'Voir les offres', explanation: 'Chaque analyse utilise 1 point de votre solde mensuel', nearLimitNudge: 'Abonnez-vous pour 75 analyses/mois' },
+  es: { costFree: 'Gratis ✨', costFmt: (n) => `Usa ${n} ${n === 1 ? 'crédito' : 'créditos'}`, upgradeTitle: '¿Más análisis?', upgradeSub: '75 análisis inteligentes al mes', upgradeCta: 'Ver planes', explanation: 'Cada análisis usa 1 punto de tu saldo mensual', nearLimitNudge: 'Suscríbete para 75 análisis/mes' },
+  pt: { costFree: 'Grátis ✨', costFmt: (n) => `Usa ${n} ${n === 1 ? 'crédito' : 'créditos'}`, upgradeTitle: 'Quer mais análises?', upgradeSub: '75 análises inteligentes por mês', upgradeCta: 'Ver planos', explanation: 'Cada análise usa 1 ponto do seu saldo mensal', nearLimitNudge: 'Assine para 75 análises/mês' },
+  tr: { costFree: 'Ücretsiz ✨', costFmt: (n) => `${n} kredi kullanır`, upgradeTitle: 'Daha fazla analiz?', upgradeSub: 'Ayda 75 akıllı analiz', upgradeCta: 'Planları gör', explanation: 'Her analiz aylık bakiyenizden 1 puan kullanır', nearLimitNudge: '75 analiz/ay için abone olun' },
 };
 
 interface MiniUsageBarProps {
@@ -75,7 +75,7 @@ export const MiniUsageBar: React.FC<MiniUsageBarProps> = ({ toolType, section, c
       {/* Explanation text */}
       {!hideHint && (
         <p className="text-[10px] text-muted-foreground/80 text-center font-medium px-1">
-          {weight === 2 ? labels.costHint2 : weight === 0 ? labels.costHint0 : labels.explanation}
+          {weight === 0 ? labels.costFree : weight === 1 ? labels.explanation : labels.costFmt(weight)}
         </p>
       )}
 
