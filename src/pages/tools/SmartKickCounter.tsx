@@ -4,6 +4,7 @@ import { Baby, Play, TrendingUp, Clock, Loader2, Save, Zap } from 'lucide-react'
 import { ContextualWarningBanner, WhenToCallDoctorCard, EvidenceInfoBlock } from '@/components/safety';
 import { KickPatternVisualizer } from '@/components/kick-counter/KickPatternVisualizer';
 import { AIInsightCard } from '@/components/ai/AIInsightCard';
+import { AIMovementAnalysis } from '@/components/kick-counter/AIMovementAnalysis';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
@@ -485,33 +486,18 @@ const SmartKickCounter: React.FC = () => {
               />
             </div>
 
-            {/* AI Analysis — inside same container */}
+            {/* AI Movement Analysis — multi-phase: rule summary → deep AI (1 point) */}
             {history.length >= 3 && (
-              <div className="border-t border-border/10 bg-muted/5">
-                  <AIInsightCard
-                    title={t('toolsInternal.kickCounter.aiAnalysisTitle')}
-                    aiType="kick-analysis"
-                    prompt={`You are an supportive pregnancy wellness guide reviewing baby movement patterns.
-
-## Patient Data
-- Pregnancy Week: ${currentWeek}
-- Total Sessions: ${history.length}
-
-## Session Records
-${history.slice(0, 14).map((s: any) => `${new Date(s.started_at).toISOString().split('T')[0]}: ${s.total_kicks} kicks in ${s.duration_minutes || 0} min`).join('\n')}
-
-## Statistics
-- Average kicks/session: ${getAverageKicks()}
-- Movement score: ${movementScore}/100
-
-Provide: 1) Pattern review, 2) Interpretation for week ${currentWeek}, 3) Recommendations, 4) When to seek care, 5) Tips. Be supportive.`}
-                    context={{ week: currentWeek }}
-                    buttonText={t('toolsInternal.kickCounter.aiAnalysisButton')}
-                    icon={<TrendingUp className="w-4 h-4" />}
-                    showPrintButton
-                    showDisclaimer
-                    printTitle={t('toolsInternal.kickCounter.title')}
-                  />
+              <div className="border-t border-border/10 bg-muted/5 p-3">
+                <AIMovementAnalysis
+                  sessions={history.slice(0, 14).map((s: any) => ({
+                    date: new Date(s.started_at).toISOString().split('T')[0],
+                    kicks: s.total_kicks,
+                    duration: s.duration_minutes || 0,
+                    startTime: new Date(s.started_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+                  }))}
+                  currentWeek={currentWeek}
+                />
               </div>
             )}
 
