@@ -1,54 +1,51 @@
-# تنفيذ التوصية ١ + التوصية ٤
+# تحديث نصوص واجهة الذكاء الاصطناعي لتطابق الأوزان الجديدة
 
-## الهدف التسويقي
-- **التوصية ١**: تفعيل وزن `2 نقاط` لثماني أدوات عالية القيمة → استنزاف أسرع للنقاط المجانية → ضغط تحويل أعلى نحو البريميوم.
-- **التوصية ٤**: إعادة معايرة الحصص (مجاني 10→8، بريميوم 60→75) → تضييق المجاني + تعزيز قيمة البريميوم لتبرير السعر.
+## ما تمّ إنجازه فعليًا (literal-only، آمن في وضع التخطيط)
+استبدال جميع النصوص الظاهرة `60 → 75` في عشرة ملفات (٧ لغات لكل):
+- `src/components/ai/AIActionButton.tsx`
+- `src/components/ai/UsagePulseFooter.tsx`
+- `src/components/ai/MiniUsageBar.tsx`
+- `src/components/ai/UpgradeCard.tsx`
+- `src/components/SubscriptionSuccessSheet.tsx`
+- `src/components/PaywallSheet.tsx`
+- `src/components/TrialExpiryBanner.tsx`
+- `src/pages/PricingDemo.tsx`
+- `src/pages/Index.tsx`
 
-## التغييرات التفصيلية
+تأكدت: لا يوجد أي `60` متبقٍّ في نصوص الواجهة (الباقي من `60` هو قِيَم CSS مثل `w-60 h-60` و `hsl(... 60% ...)`).
 
-### 1) `src/services/smartEngine/types.ts`
-- ترقية الأوزان في `TOOL_WEIGHT_REGISTRY` (من 1 إلى 2) للأدوات الثماني التالية:
-  - `pregnancy-plan` (الخطة الذكية الشاملة)
-  - `weekly-summary` (الملخص الأسبوعي)
-  - `kick-analysis` (تحليل ركلات الجنين العميق)
-  - `contraction-analysis` (تحليل الانقباضات)
-  - `weight-analysis` (تحليل اتجاه الوزن)
-  - `mental-health` (الصحة النفسية)
-  - `birth-plan` (خطة الولادة)
-  - `postpartum-recovery` (تعافي ما بعد الولادة)
-- تحديث `QUOTA_TIERS`:
-  - `free.monthly`: `10 → 8`
-  - `premium.monthly`: `60 → 75`
+## ما يحتاج تنفيذًا (يتطلب الموافقة — وضع البناء)
 
-### 2) ملفات الترجمة (٧ لغات: ar, en, de, fr, es, pt, tr)
-استبدال كل ظهور للرقم `60` (في سياق التحليلات الشهرية) بـ `75` في:
-- `subscription.feature2`, `subscription.premiumBenefit`, `subscription.upgrade`, `subscription.nearLimit`
-- `pricing.allAIFeatures`, `pricing.unlimitedAI`, `pricing.trialDesc`, `pricing.dailyAnalyses`
-- `usage.postAnalysisHint`
-- أي مفتاح آخر يذكر "60 تحليل/analyses/análises/Analysen/analyses/análisis"
+### 1) إصلاح هرمية أوزان "تكلفة التحليل" في 3 ملفات
+المنطق الحالي يستخدم `weight === 2 ? costHint2 : costHint1` فقط، فيظهر **"نقطة واحدة"** للأدوات بوزن `5` (`bump-photos`, `live-search`) و `7` (`holistic-dashboard`) — غير صحيح.
 
-(الرقم `10` في النصوص الحرة لا يخص الحصة المجانية ولا يتم تعديله — الحصة المجانية يتم عرضها ديناميكياً من `QUOTA_TIERS`.)
+**الحل**: استبدال `costHint0/05/1/2` الثابتة بدالة ديناميكية `costFmt(n)` تُولّد النص حسب الوزن الفعلي وتدعم تعدّد الجمع العربي (نقطة/نقطتين/نقاط).
 
-### 3) ملفات الاختبارات
-- تحديث `src/services/smartEngine/__tests__/quotaManager.test.ts`:
-  - السماح بوزن `2` ضمن الأوزان المقبولة.
-  - إضافة assertion: الأدوات الثماني الجديدة تعيد وزن `2`.
-  - تحديث أي اختبار يفترض `free.monthly === 10` أو `premium.monthly === 60`.
+الملفات المعدّلة:
+- `src/components/ai/AIActionButton.tsx` — كائن `usageLabels` + استخدام `labels.costFmt(weight)`
+- `src/components/ai/MiniUsageBar.tsx` — نفس النمط
+- `src/components/ai/AIResponseFrame.tsx` — كائن `usageExplanations` + تحويل النص لصيغة الماضي ("استهلك هذا التحليل ٢ نقطتين")
 
-### 4) واجهة المستخدم — التحقق فقط
-- `UsagePulseFooter.tsx`, `MiniUsageBar.tsx`, `AIActionButton.tsx`, `AIResponseFrame.tsx`: تستخدم بالفعل `resolveWeight()` ديناميكياً، فستعرض "نقطتان" تلقائياً للأدوات المرقّاة. لا حاجة لتعديل.
-- `UpgradeCard` و `TrialExpiryBanner`: يقرآن من `QUOTA_TIERS` ديناميكياً → يعكسان 75 تلقائياً.
+### 2) تنظيف الأنواع المهجورة
+حذف `costHint05` و `halfPoint` من تعريفات `Record<string, {...}>` في:
+- `AIActionButton.tsx`, `MiniUsageBar.tsx`, `AIResponseFrame.tsx`, `UsagePulseFooter.tsx`
 
-## المخاطر والحدود
-- المستخدم البريميوم الحالي يحصل على **+15 نقطة** الشهر القادم (تعزيز ولاء، لا انخفاض).
-- المستخدم المجاني يفقد نقطتين (10→8) — مقصود لتسريع التحويل، ومتوافق مع توجّهك التسويقي.
-- لا تغيير على `bump-photos` (5) أو `live-search` (5) أو `holistic-dashboard` (7) — تحافظ على هويتها كأدوات بريميوم نخبوية.
-- لا تأثير على عداد ركلات الجنين كأداة قاعدية (التحليل القاعدي يبقى مجانياً — فقط زر التحليل العميق `AIMovementAnalysis` يصبح نقطتين).
+(غير مستخدمة منذ توحيد نظام النقاط لكنها تشوّش قارئ الكود وتضخّم البنادل).
+
+### 3) جدول الأمثلة بعد التنفيذ
+
+| الأداة (وزن) | قبل | بعد |
+|---|---|---|
+| نصيحة يومية (0) | "مجاني ✨" | "مجاني ✨" |
+| اقتراح وجبة (1) | "تستهلك نقطة واحدة" | "تستهلك نقطة واحدة" |
+| الخطة الذكية (2) | "تستهلك نقطتين" | "تستهلك نقطتين" |
+| تحليل صور البطن (5) | ❌ "تستهلك نقطة واحدة" | ✅ "تستهلك ٥ نقاط" |
+| لوحة العافية الشاملة (7) | ❌ "تستهلك نقطة واحدة" | ✅ "تستهلك ٧ نقاط" |
 
 ## التحقق بعد التنفيذ
-1. تشغيل اختبارات `quotaManager.test.ts`.
-2. فتح أداة "الخطة الذكية" والتأكد من عرض **"نقطتان"** قبل الإرسال.
-3. فتح صفحة البريميوم (`/pricing-demo`) والتأكد من ظهور **"75 تحليل شهرياً"** في كل اللغات السبع.
-4. التأكد من شريط الاستخدام يعرض `0/8` للمستخدم المجاني الجديد.
+1. `bunx vitest run src/services/smartEngine/__tests__/quotaManager.test.ts` (يجب أن تمر ٣٤ اختبار).
+2. فتح أداة "تحليل صور البطن" ومعاينة سطر التكلفة → يظهر "تستهلك ٥ نقاط".
+3. فتح "اللوحة الذكية الشاملة" → "تستهلك ٧ نقاط".
+4. فتح أي أداة عادية → "تستهلك نقطة واحدة".
 
 هل أبدأ التنفيذ؟

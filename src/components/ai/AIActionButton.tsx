@@ -24,14 +24,21 @@ interface AIActionButtonProps {
   section?: SmartSection;
 }
 
-const usageLabels: Record<string, { remaining: string; of: string; free: string; pro: string; limitReached: string; resetsMonthly: string; unlockMore: string; costHint0: string; costHint05: string; costHint1: string; costHint2: string; upgradeTitle: string; upgradeSub: string; upgradeCta: string }> = {
-  en: { remaining: 'remaining', of: 'of', free: 'Free', pro: 'PRO', limitReached: 'Monthly limit reached', resetsMonthly: 'Resets monthly', unlockMore: 'Unlock 75 Monthly Analyses', costHint0: 'Free ✨', costHint05: 'Uses ½ credit', costHint1: 'Uses 1 credit', costHint2: 'Uses 2 credits', upgradeTitle: 'Want more analyses?', upgradeSub: 'Get 75 smart analyses every month', upgradeCta: 'View Plans' },
-  ar: { remaining: 'متبقي', of: 'من', free: 'مجاني', pro: 'PRO', limitReached: 'تم استنفاد الحد الشهري', resetsMonthly: 'يتجدد شهرياً', unlockMore: 'احصلي على 75 تحليل شهرياً', costHint0: 'مجاني ✨', costHint05: 'تستهلك نصف نقطة', costHint1: 'تستهلك نقطة واحدة', costHint2: 'تستهلك نقطتين', upgradeTitle: 'تريدين تحليلات أكثر؟', upgradeSub: '75 تحليل ذكي كل شهر', upgradeCta: 'عرض الباقات' },
-  de: { remaining: 'übrig', of: 'von', free: 'Gratis', pro: 'PRO', limitReached: 'Monatslimit erreicht', resetsMonthly: 'Monatlich zurückgesetzt', unlockMore: '75 Analysen pro Monat freischalten', costHint0: 'Kostenlos ✨', costHint05: '½ Credit verbraucht', costHint1: '1 Credit verbraucht', costHint2: '2 Credits verbraucht', upgradeTitle: 'Mehr Analysen gewünscht?', upgradeSub: '75 smarte Analysen pro Monat', upgradeCta: 'Pläne ansehen' },
-  fr: { remaining: 'restants', of: 'sur', free: 'Gratuit', pro: 'PRO', limitReached: 'Limite mensuelle atteinte', resetsMonthly: 'Réinitialisation mensuelle', unlockMore: 'Débloquer 75 analyses par mois', costHint0: 'Gratuit ✨', costHint05: 'Utilise ½ crédit', costHint1: 'Utilise 1 crédit', costHint2: 'Utilise 2 crédits', upgradeTitle: 'Plus d\'analyses ?', upgradeSub: '75 analyses intelligentes par mois', upgradeCta: 'Voir les offres' },
-  es: { remaining: 'restantes', of: 'de', free: 'Gratis', pro: 'PRO', limitReached: 'Límite mensual alcanzado', resetsMonthly: 'Se renueva mensualmente', unlockMore: 'Desbloquear 75 análisis mensuales', costHint0: 'Gratis ✨', costHint05: 'Usa ½ crédito', costHint1: 'Usa 1 crédito', costHint2: 'Usa 2 créditos', upgradeTitle: '¿Más análisis?', upgradeSub: '75 análisis inteligentes al mes', upgradeCta: 'Ver planes' },
-  pt: { remaining: 'restantes', of: 'de', free: 'Grátis', pro: 'PRO', limitReached: 'Limite mensal atingido', resetsMonthly: 'Renova mensalmente', unlockMore: 'Desbloquear 75 análises mensais', costHint0: 'Grátis ✨', costHint05: 'Usa ½ crédito', costHint1: 'Usa 1 crédito', costHint2: 'Usa 2 créditos', upgradeTitle: 'Quer mais análises?', upgradeSub: '75 análises inteligentes por mês', upgradeCta: 'Ver planos' },
-  tr: { remaining: 'kalan', of: '/', free: 'Ücretsiz', pro: 'PRO', limitReached: 'Aylık limit doldu', resetsMonthly: 'Aylık sıfırlanır', unlockMore: 'Aylık 75 analiz açın', costHint0: 'Ücretsiz ✨', costHint05: '½ kredi kullanır', costHint1: '1 kredi kullanır', costHint2: '2 kredi kullanır', upgradeTitle: 'Daha fazla analiz?', upgradeSub: 'Ayda 75 akıllı analiz', upgradeCta: 'Planları gör' },
+// Localized cost-hint labels. costFmt(n) renders the actual weight (1, 2, 5, 7…)
+// and supports Arabic plural forms (نقطة / نقطتين / نقاط).
+const usageLabels: Record<string, {
+  remaining: string; of: string; free: string; pro: string;
+  limitReached: string; resetsMonthly: string; unlockMore: string;
+  costFree: string; costFmt: (n: number) => string;
+  upgradeTitle: string; upgradeSub: string; upgradeCta: string;
+}> = {
+  en: { remaining: 'remaining', of: 'of', free: 'Free', pro: 'PRO', limitReached: 'Monthly limit reached', resetsMonthly: 'Resets monthly', unlockMore: 'Unlock 75 Monthly Analyses', costFree: 'Free ✨', costFmt: (n) => `Uses ${n} ${n === 1 ? 'credit' : 'credits'}`, upgradeTitle: 'Want more analyses?', upgradeSub: 'Get 75 smart analyses every month', upgradeCta: 'View Plans' },
+  ar: { remaining: 'متبقي', of: 'من', free: 'مجاني', pro: 'PRO', limitReached: 'تم استنفاد الحد الشهري', resetsMonthly: 'يتجدد شهرياً', unlockMore: 'احصلي على 75 تحليل شهرياً', costFree: 'مجاني ✨', costFmt: (n) => n === 1 ? 'تستهلك نقطة واحدة' : n === 2 ? 'تستهلك نقطتين' : `تستهلك ${n} نقاط`, upgradeTitle: 'تريدين تحليلات أكثر؟', upgradeSub: '75 تحليل ذكي كل شهر', upgradeCta: 'عرض الباقات' },
+  de: { remaining: 'übrig', of: 'von', free: 'Gratis', pro: 'PRO', limitReached: 'Monatslimit erreicht', resetsMonthly: 'Monatlich zurückgesetzt', unlockMore: '75 Analysen pro Monat freischalten', costFree: 'Kostenlos ✨', costFmt: (n) => `Verbraucht ${n} ${n === 1 ? 'Credit' : 'Credits'}`, upgradeTitle: 'Mehr Analysen gewünscht?', upgradeSub: '75 smarte Analysen pro Monat', upgradeCta: 'Pläne ansehen' },
+  fr: { remaining: 'restants', of: 'sur', free: 'Gratuit', pro: 'PRO', limitReached: 'Limite mensuelle atteinte', resetsMonthly: 'Réinitialisation mensuelle', unlockMore: 'Débloquer 75 analyses par mois', costFree: 'Gratuit ✨', costFmt: (n) => `Utilise ${n} ${n === 1 ? 'crédit' : 'crédits'}`, upgradeTitle: 'Plus d\'analyses ?', upgradeSub: '75 analyses intelligentes par mois', upgradeCta: 'Voir les offres' },
+  es: { remaining: 'restantes', of: 'de', free: 'Gratis', pro: 'PRO', limitReached: 'Límite mensual alcanzado', resetsMonthly: 'Se renueva mensualmente', unlockMore: 'Desbloquear 75 análisis mensuales', costFree: 'Gratis ✨', costFmt: (n) => `Usa ${n} ${n === 1 ? 'crédito' : 'créditos'}`, upgradeTitle: '¿Más análisis?', upgradeSub: '75 análisis inteligentes al mes', upgradeCta: 'Ver planes' },
+  pt: { remaining: 'restantes', of: 'de', free: 'Grátis', pro: 'PRO', limitReached: 'Limite mensal atingido', resetsMonthly: 'Renova mensalmente', unlockMore: 'Desbloquear 75 análises mensais', costFree: 'Grátis ✨', costFmt: (n) => `Usa ${n} ${n === 1 ? 'crédito' : 'créditos'}`, upgradeTitle: 'Quer mais análises?', upgradeSub: '75 análises inteligentes por mês', upgradeCta: 'Ver planos' },
+  tr: { remaining: 'kalan', of: '/', free: 'Ücretsiz', pro: 'PRO', limitReached: 'Aylık limit doldu', resetsMonthly: 'Aylık sıfırlanır', unlockMore: 'Aylık 75 analiz açın', costFree: 'Ücretsiz ✨', costFmt: (n) => `${n} kredi kullanır`, upgradeTitle: 'Daha fazla analiz?', upgradeSub: 'Ayda 75 akıllı analiz', upgradeCta: 'Planları gör' },
 };
 
 /**
@@ -186,7 +193,7 @@ export const AIActionButton: React.FC<AIActionButtonProps> = ({
           {isFree && (
             <div className="space-y-2">
               <p className="text-[10px] text-muted-foreground/70 text-center font-medium px-1">
-                {weight === 0 ? labels.costHint0 : weight === 2 ? labels.costHint2 : labels.costHint1}
+                {weight === 0 ? labels.costFree : labels.costFmt(weight)}
               </p>
               <UpgradeCard />
             </div>
