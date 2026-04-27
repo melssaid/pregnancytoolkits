@@ -311,29 +311,31 @@
     <script>
       (function(){
         var SPLASH_KEY='pt_video_splash_seen';
-        var ONBOARDING_KEY='onboarding_disclaimer_accepted';
         var overlay=document.getElementById('splash-overlay');
         var vid=document.getElementById('splash-video');
         if(!overlay||!vid){return;}
 
-        // Keep root black until app mounts to prevent any pink flash
+        // Keep root black until app mounts to prevent any white/pink flash
         document.body.style.background='#000';
         document.documentElement.style.background='#000';
-
-        // Always show the splash video on every cold start (every time the user opens the app).
-        // Internal SPA navigations don't re-run this script, so they remain unaffected.
 
         window.__htmlSplashVideoActive=true;
         window.__htmlSplashVideoEnded=false;
 
         var done=false;
         var appReady=false;
-        window.addEventListener('app:first-render', function(){ appReady=true; }, {once:true});
+        var minShownAt=Date.now();
+        var MIN_DURATION=1200; // ensure splash is shown long enough to feel intentional
+
+        window.addEventListener('app:first-render', function(){
+          appReady=true;
+          maybeFinish();
+        }, {once:true});
 
         function fadeOverlay(){
-          // Freeze video on last frame to prevent any flash
+          // Pause video to free GPU/decoder before fading
           try { vid.pause(); } catch(e){}
-          // Crossfade overlay out — app/onboarding is already rendered underneath
+          // Smooth professional crossfade — app is already painted underneath
           overlay.style.opacity='0';
           setTimeout(function(){
             if(overlay.parentNode) overlay.parentNode.removeChild(overlay);
@@ -342,34 +344,28 @@
           }, 600);
         }
 
-        function endSplash(){
-          if(done)return;
+        function maybeFinish(){
+          if(done) return;
+          if(!appReady) return; // keep video looping until React paints
+          var elapsed=Date.now()-minShownAt;
+          var wait=Math.max(0, MIN_DURATION-elapsed);
           done=true;
           localStorage.setItem(SPLASH_KEY,'true');
           window.__htmlSplashVideoActive=false;
           window.__htmlSplashVideoEnded=true;
           window.dispatchEvent(new CustomEvent('html-splash-ended'));
-
-          // Freeze immediately on last frame (no white frame after video ends)
-          try { vid.pause(); } catch(e){}
-
-          // Wait for React + onboarding modal to be ready before fading overlay
-          var waited=0;
-          (function waitForApp(){
-            if(appReady || waited>=2500){
-              // Tiny grace so onboarding modal can paint underneath
-              setTimeout(fadeOverlay, 80);
-            } else {
-              waited+=60;
-              setTimeout(waitForApp, 60);
-            }
-          })();
+          // Wait one extra frame so React's first paint is fully committed
+          setTimeout(function(){
+            requestAnimationFrame(function(){
+              requestAnimationFrame(fadeOverlay);
+            });
+          }, wait);
         }
 
-        vid.addEventListener('ended', endSplash, {once:true});
-        vid.addEventListener('error', endSplash, {once:true});
+        // Errors / stalls — fail open so user is never stuck
+        vid.addEventListener('error', function(){ appReady=true; maybeFinish(); }, {once:true});
         vid.addEventListener('stalled', function(){
-          setTimeout(endSplash, 2000);
+          setTimeout(function(){ appReady=true; maybeFinish(); }, 2000);
         }, {once:true});
 
         function tryPlay(){
@@ -378,16 +374,16 @@
             if(p && p.then){ p.catch(function(){}); }
           }catch(e){}
         }
-        // Retry play on metadata load (covers WebView autoplay failures)
         vid.addEventListener('loadedmetadata', tryPlay, {once:true});
         tryPlay();
-        // Last-resort fallback if play never starts
+
+        // If video can't autoplay at all, don't block the app
         setTimeout(function(){
-          if(vid.paused && vid.currentTime===0){ endSplash(); }
+          if(vid.paused && vid.currentTime===0){ appReady=true; maybeFinish(); }
         }, 1500);
 
-        // Safety cap — never block the user behind splash for more than 5s
-        setTimeout(endSplash, 5000);
+        // Hard safety cap — never block user behind splash for more than 6s
+        setTimeout(function(){ appReady=true; maybeFinish(); }, 6000);
       })();
     </script>
 

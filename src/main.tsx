@@ -30,48 +30,9 @@ declare global {
   }
 }
 
-let splashDismissed = false;
-
-const dismissSplash = () => {
-  if (splashDismissed) return;
-  splashDismissed = true;
-  const splash = document.getElementById("splash-overlay");
-  if (!splash) return;
-  splash.style.opacity = "0";
-  splash.style.visibility = "hidden";
-  setTimeout(() => splash.remove(), 500);
-};
-
-// Dismiss splash when EITHER React renders OR html-splash video ends
-// (whichever comes LAST — but with a hard 5s safety net)
-let appFirstRenderReady = false;
-let htmlSplashEnded = false;
-
-const tryDismiss = () => {
-  if (appFirstRenderReady && htmlSplashEnded) dismissSplash();
-};
-
-window.addEventListener("app:first-render", () => {
-  appFirstRenderReady = true;
-  tryDismiss();
-}, { once: true });
-
-window.addEventListener("html-splash-ended", () => {
-  htmlSplashEnded = true;
-  tryDismiss();
-}, { once: true });
-
-// If splash overlay is already gone (returning user), mark it
-if (!document.getElementById("splash-overlay")) {
-  htmlSplashEnded = true;
-}
-
-// Hard safety: dismiss after 7s no matter what (video ~3-4s + app load buffer)
-setTimeout(() => {
-  appFirstRenderReady = true;
-  htmlSplashEnded = true;
-  dismissSplash();
-}, 7000);
+// Splash overlay is fully owned by the inline script in index.html.
+// It listens for the `app:first-render` event we dispatch below and fades out
+// only after React has painted, so the user never sees a white frame.
 
 const isInIframe = (() => {
   try { return window.self !== window.top; } catch { return true; }
