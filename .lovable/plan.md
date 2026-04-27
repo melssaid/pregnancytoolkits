@@ -1,95 +1,54 @@
-# خطة: ترقية تسعير الذكاء الاصطناعي + زر تحليل عداد الركلات
+# تنفيذ التوصية ١ + التوصية ٤
 
-## 1. زر الذكاء الاصطناعي في عداد ركلات الجنين
+## الهدف التسويقي
+- **التوصية ١**: تفعيل وزن `2 نقاط` لثماني أدوات عالية القيمة → استنزاف أسرع للنقاط المجانية → ضغط تحويل أعلى نحو البريميوم.
+- **التوصية ٤**: إعادة معايرة الحصص (مجاني 10→8، بريميوم 60→75) → تضييق المجاني + تعزيز قيمة البريميوم لتبرير السعر.
 
-المكوّن `src/components/kick-counter/AIMovementAnalysis.tsx` موجود بالفعل ومجهّز بـ `toolType: 'kick-analysis'` (وزن = 1 نقطة) لكنه **غير مستورَد في أي صفحة**.
+## التغييرات التفصيلية
 
-- إضافته إلى `src/pages/tools/SmartKickCounter.tsx` تحت لوحة الإحصائيات.
-- يستهلك نقطة واحدة (موجود مسبقًا في السجل، لا تغيير).
-- يظهر فقط بعد تسجيل ≥3 جلسات (شرط داخلي بالفعل).
+### 1) `src/services/smartEngine/types.ts`
+- ترقية الأوزان في `TOOL_WEIGHT_REGISTRY` (من 1 إلى 2) للأدوات الثماني التالية:
+  - `pregnancy-plan` (الخطة الذكية الشاملة)
+  - `weekly-summary` (الملخص الأسبوعي)
+  - `kick-analysis` (تحليل ركلات الجنين العميق)
+  - `contraction-analysis` (تحليل الانقباضات)
+  - `weight-analysis` (تحليل اتجاه الوزن)
+  - `mental-health` (الصحة النفسية)
+  - `birth-plan` (خطة الولادة)
+  - `postpartum-recovery` (تعافي ما بعد الولادة)
+- تحديث `QUOTA_TIERS`:
+  - `free.monthly`: `10 → 8`
+  - `premium.monthly`: `60 → 75`
 
-## 2. إلغاء "نصف نقطة" نهائيًا — توحيد كل أداة على نقطة كاملة
+### 2) ملفات الترجمة (٧ لغات: ar, en, de, fr, es, pt, tr)
+استبدال كل ظهور للرقم `60` (في سياق التحليلات الشهرية) بـ `75` في:
+- `subscription.feature2`, `subscription.premiumBenefit`, `subscription.upgrade`, `subscription.nearLimit`
+- `pricing.allAIFeatures`, `pricing.unlimitedAI`, `pricing.trialDesc`, `pricing.dailyAnalyses`
+- `usage.postAnalysisHint`
+- أي مفتاح آخر يذكر "60 تحليل/analyses/análises/Analysen/analyses/análisis"
 
-**التغييرات في الكود (`src/services/smartEngine/types.ts`):**
+(الرقم `10` في النصوص الحرة لا يخص الحصة المجانية ولا يتم تعديله — الحصة المجانية يتم عرضها ديناميكياً من `QUOTA_TIERS`.)
 
-| المفتاح | الوزن الحالي | الوزن الجديد |
-|---|---|---|
-| meal-suggestion | 0.5 | **1** |
-| sleep-analysis | 0.5 | **1** |
-| sleep-meditation | 0.5 | **1** |
-| sleep-routine | 0.5 | **1** |
-| vitamin-advice | 0.5 | **1** |
-| baby-cry-analysis | 0.5 | **1** |
-| birth-position | 0.5 | **1** |
-| partner-guide | 0.5 | **1** |
-| nausea-relief | 0.5 | **1** |
-| skincare-advice | 0.5 | **1** |
-| craving-alternatives | 0.5 | **1** |
-| grocery-list | 0.5 | **1** |
+### 3) ملفات الاختبارات
+- تحديث `src/services/smartEngine/__tests__/quotaManager.test.ts`:
+  - السماح بوزن `2` ضمن الأوزان المقبولة.
+  - إضافة assertion: الأدوات الثماني الجديدة تعيد وزن `2`.
+  - تحديث أي اختبار يفترض `free.monthly === 10` أو `premium.monthly === 60`.
 
-**ملاحظات تقنية مرافقة:**
-- إزالة `0.5` من `InsightWeight` → `0 | 1 | 2 | 5 | 7`.
-- تحديث تعليق `quotaManager.ts` السطر 8.
-- تحديث الاختبار `src/services/smartEngine/__tests__/quotaManager.test.ts` (السطور 144–160) ليتحقق من 1 بدل 0.5.
+### 4) واجهة المستخدم — التحقق فقط
+- `UsagePulseFooter.tsx`, `MiniUsageBar.tsx`, `AIActionButton.tsx`, `AIResponseFrame.tsx`: تستخدم بالفعل `resolveWeight()` ديناميكياً، فستعرض "نقطتان" تلقائياً للأدوات المرقّاة. لا حاجة لتعديل.
+- `UpgradeCard` و `TrialExpiryBanner`: يقرآن من `QUOTA_TIERS` ديناميكياً → يعكسان 75 تلقائياً.
 
-**النصوص الظاهرة للمستخدم — حذف عبارات نصف نقطة:**
-- `src/components/ai/UsagePulseFooter.tsx`: حذف `halfPoint` من قواميس اللغات السبع وحذف فرع `weight === 0.5` من منطق العرض.
-- `src/components/ai/AIActionButton.tsx`: حذف `costHint05` من اللغات السبع.
-- `src/components/ai/AIResponseFrame.tsx`: حذف `costHint05`.
-- `src/components/ai/MiniUsageBar.tsx`: حذف `costHint05`.
+## المخاطر والحدود
+- المستخدم البريميوم الحالي يحصل على **+15 نقطة** الشهر القادم (تعزيز ولاء، لا انخفاض).
+- المستخدم المجاني يفقد نقطتين (10→8) — مقصود لتسريع التحويل، ومتوافق مع توجّهك التسويقي.
+- لا تغيير على `bump-photos` (5) أو `live-search` (5) أو `holistic-dashboard` (7) — تحافظ على هويتها كأدوات بريميوم نخبوية.
+- لا تأثير على عداد ركلات الجنين كأداة قاعدية (التحليل القاعدي يبقى مجانياً — فقط زر التحليل العميق `AIMovementAnalysis` يصبح نقطتين).
 
-النتيجة: أي تحليل ذكي → "تستهلك نقطة واحدة" / "1 point". بقية أرقام العداد (60 شهريًا، نقاط الكوبونات، الإنذارات) تبقى ثابتة كما هي.
+## التحقق بعد التنفيذ
+1. تشغيل اختبارات `quotaManager.test.ts`.
+2. فتح أداة "الخطة الذكية" والتأكد من عرض **"نقطتان"** قبل الإرسال.
+3. فتح صفحة البريميوم (`/pricing-demo`) والتأكد من ظهور **"75 تحليل شهرياً"** في كل اللغات السبع.
+4. التأكد من شريط الاستخدام يعرض `0/8` للمستخدم المجاني الجديد.
 
-## 3. تقييم تسويقي/برمجي لأوزان جميع أزرار الذكاء الاصطناعي
-
-> الهدف: دفع المستخدم نحو الترقية المدفوعة (60 نقطة/شهر) عبر هندسة ندرة معتدلة — لا نخنقه فيهرب، ولا نعطيه فائضًا فيستغني.
-
-### الفئة أ — أدوات يومية تخلق العادة (إبقاؤها رخيصة = استمرار التفاعل اليومي → يصل للحد بسرعة)
-
-| الأداة | الوزن المقترح | المنطق التسويقي |
-|---|---|---|
-| daily-tips | **0** (يبقى) | الميزة الإدمانية المجانية — تثبيت العادة |
-| meal-suggestion | **1** (مرفوع من 0.5) | استخدام يومي محتمل × 30 يوم = استنفاد سريع |
-| vitamin-advice | **1** (مرفوع) | يومي → يدفع للترقية خلال أسبوعين |
-| craving-alternatives | **1** (مرفوع) | عاطفي/متكرر |
-| nausea-relief | **1** (مرفوع) | متكرر في الثلث الأول |
-| skincare-advice | **1** (مرفوع) | متكرر |
-| grocery-list | **1** (مرفوع) | أسبوعي على الأقل |
-| baby-cry-analysis | **1** (مرفوع) | متعدد المرات يوميًا للأمهات الجدد |
-
-### الفئة ب — أدوات تخطيط متوسطة (تبقى عند 1 — توازن جيد)
-
-`pregnancy-assistant`, `weekly-summary`, `symptom-analysis`, `kick-analysis`, `birth-plan`, `hospital-bag`, `lactation-prep`, `mental-health`, `pregnancy-plan`, `baby-growth-analysis`, `weight-analysis`, `contraction-analysis`, `posture-coach`, `walking-coach`, `stretch-reminder`, `back-pain-relief`, `leg-cramp-preventer`, `smoothie-generator`, `labor-tracker`, `appointment-prep`, `postpartum-recovery`, `sleep-analysis`, `sleep-meditation`, `sleep-routine`, `birth-position`, `partner-guide`.
-
-### الفئة ج — أدوات بريميوم (رفع مدروس لزيادة الإحساس بالقيمة)
-
-| الأداة | الحالي | المقترح | لماذا |
-|---|---|---|---|
-| bump-photos | 5 | **5** (يبقى) | تحليل بصري ثقيل — السعر يعكس التكلفة |
-| live-search (سونار) | 5 | **5** (يبقى) | بحث ويب فوري بمصادر — قيمة عالية واضحة |
-| holistic-dashboard | 7 | **7** (يبقى) | تحليل شامل بـPro model — يستحق الـ7 |
-
-### النتيجة المتوقعة
-
-- متوسط مستخدم نشط حاليًا (مع 0.5): يستهلك ~25 تحليل في 60 نقطة → يكفيه شهرين.
-- بعد التوحيد على 1: 60 تحليل = 60 نقطة → استنفاد شهري دقيق + لحظة "احتاج المزيد".
-- مع رفع الأدوات اليومية إلى 1، المستخدم النشط (5 تحليلات/يوم) يستنفد رصيده المجاني بحلول اليوم 12 → نافذة شراء مثالية في منتصف الشهر.
-
-### مقترحات تسويقية إضافية (لا تنفّذ في هذه الجولة — للنقاش)
-
-1. **عداد رؤية ندرة** عند ≤10 نقاط متبقية: شريط إنذار ذهبي + CTA ترقية (الأساس موجود في `nearLimit`).
-2. **خطة "Kick Counter Pro" مصغّرة**: تحليل عداد الركلات اليومي مجاني للمشتركين فقط — تحويل تلقائي.
-3. **خصم نهاية الشهر** (للمستخدم الذي استنفد رصيده ولم يشترِ): كوبون 30% لمدة 48 ساعة.
-
-## 4. الملفات المعدّلة
-
-- `src/services/smartEngine/types.ts` — توحيد الأوزان + إزالة `0.5` من `InsightWeight`.
-- `src/services/smartEngine/quotaManager.ts` — تحديث التعليق فقط.
-- `src/services/smartEngine/__tests__/quotaManager.test.ts` — تحديث الاختبار.
-- `src/components/ai/UsagePulseFooter.tsx` — إزالة `halfPoint`.
-- `src/components/ai/AIActionButton.tsx` — إزالة `costHint05`.
-- `src/components/ai/AIResponseFrame.tsx` — إزالة `costHint05`.
-- `src/components/ai/MiniUsageBar.tsx` — إزالة `costHint05`.
-- `src/pages/tools/SmartKickCounter.tsx` — استيراد ودمج `AIMovementAnalysis` تحت قسم الإحصائيات.
-
-بعد موافقتك أنفّذ التعديلات دفعة واحدة.
+هل أبدأ التنفيذ؟
