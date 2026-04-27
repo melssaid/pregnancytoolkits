@@ -1,51 +1,44 @@
-# تحديث نصوص واجهة الذكاء الاصطناعي لتطابق الأوزان الجديدة
+# Sync AI Movement Analysis with the Chart's Metrics
 
-## ما تمّ إنجازه فعليًا (literal-only، آمن في وضع التخطيط)
-استبدال جميع النصوص الظاهرة `60 → 75` في عشرة ملفات (٧ لغات لكل):
-- `src/components/ai/AIActionButton.tsx`
-- `src/components/ai/UsagePulseFooter.tsx`
-- `src/components/ai/MiniUsageBar.tsx`
-- `src/components/ai/UpgradeCard.tsx`
-- `src/components/SubscriptionSuccessSheet.tsx`
-- `src/components/PaywallSheet.tsx`
-- `src/components/TrialExpiryBanner.tsx`
-- `src/pages/PricingDemo.tsx`
-- `src/pages/Index.tsx`
+## Problem
+`AIMovementAnalysis.tsx` recomputes its own averages internally, so the AI prompt receives **different numbers** than what the user sees in the chart strip (`getMovementScore()`, `getAverageKicks()`, average duration). This breaks the perceived consistency between the chart and the AI write-up.
 
-تأكدت: لا يوجد أي `60` متبقٍّ في نصوص الواجهة (الباقي من `60` هو قِيَم CSS مثل `w-60 h-60` و `hsl(... 60% ...)`).
+## Fix
 
-## ما يحتاج تنفيذًا (يتطلب الموافقة — وضع البناء)
+### 1) `src/components/kick-counter/AIMovementAnalysis.tsx`
+Add three optional props:
+- `movementScore?: number` — the 0–100 score shown in the circular gauge
+- `avgKicks?: number` — average kicks per session
+- `avgDurationMinutes?: number` — average session duration
 
-### 1) إصلاح هرمية أوزان "تكلفة التحليل" في 3 ملفات
-المنطق الحالي يستخدم `weight === 2 ? costHint2 : costHint1` فقط، فيظهر **"نقطة واحدة"** للأدوات بوزن `5` (`bump-photos`, `live-search`) و `7` (`holistic-dashboard`) — غير صحيح.
+In `runDeepAnalysis()`, prefer these props over locally-recomputed values, and add a new line to the prompt:
+```
+## Statistics (these are the exact numbers shown to the user in the chart)
+- Movement Score (shown in chart): {score}/100
+- Average kicks per session: {avgKicks}
+- Average session duration: {avgDuration} min
+- Fastest / Slowest / Most active time …
+```
+Plus an explicit instruction:
+> "Refer to the Movement Score and averages above by their exact values when explaining the pattern."
 
-**الحل**: استبدال `costHint0/05/1/2` الثابتة بدالة ديناميكية `costFmt(n)` تُولّد النص حسب الوزن الفعلي وتدعم تعدّد الجمع العربي (نقطة/نقطتين/نقاط).
+Local recompute remains as a fallback so the component still works when used elsewhere without the props.
 
-الملفات المعدّلة:
-- `src/components/ai/AIActionButton.tsx` — كائن `usageLabels` + استخدام `labels.costFmt(weight)`
-- `src/components/ai/MiniUsageBar.tsx` — نفس النمط
-- `src/components/ai/AIResponseFrame.tsx` — كائن `usageExplanations` + تحويل النص لصيغة الماضي ("استهلك هذا التحليل ٢ نقطتين")
+### 2) `src/pages/tools/SmartKickCounter.tsx` (line ~492)
+Pass the three values that the parent already computes:
+```tsx
+<AIMovementAnalysis
+  sessions={…}
+  currentWeek={currentWeek}
+  movementScore={movementScore}
+  avgKicks={getAverageKicks()}
+  avgDurationMinutes={
+    history.length > 0
+      ? Math.round(history.reduce((sum, s: any) => sum + (s.duration_minutes || 0), 0) / history.length)
+      : 0
+  }
+/>
+```
 
-### 2) تنظيف الأنواع المهجورة
-حذف `costHint05` و `halfPoint` من تعريفات `Record<string, {...}>` في:
-- `AIActionButton.tsx`, `MiniUsageBar.tsx`, `AIResponseFrame.tsx`, `UsagePulseFooter.tsx`
-
-(غير مستخدمة منذ توحيد نظام النقاط لكنها تشوّش قارئ الكود وتضخّم البنادل).
-
-### 3) جدول الأمثلة بعد التنفيذ
-
-| الأداة (وزن) | قبل | بعد |
-|---|---|---|
-| نصيحة يومية (0) | "مجاني ✨" | "مجاني ✨" |
-| اقتراح وجبة (1) | "تستهلك نقطة واحدة" | "تستهلك نقطة واحدة" |
-| الخطة الذكية (2) | "تستهلك نقطتين" | "تستهلك نقطتين" |
-| تحليل صور البطن (5) | ❌ "تستهلك نقطة واحدة" | ✅ "تستهلك ٥ نقاط" |
-| لوحة العافية الشاملة (7) | ❌ "تستهلك نقطة واحدة" | ✅ "تستهلك ٧ نقاط" |
-
-## التحقق بعد التنفيذ
-1. `bunx vitest run src/services/smartEngine/__tests__/quotaManager.test.ts` (يجب أن تمر ٣٤ اختبار).
-2. فتح أداة "تحليل صور البطن" ومعاينة سطر التكلفة → يظهر "تستهلك ٥ نقاط".
-3. فتح "اللوحة الذكية الشاملة" → "تستهلك ٧ نقاط".
-4. فتح أي أداة عادية → "تستهلك نقطة واحدة".
-
-هل أبدأ التنفيذ؟
+## Result
+The AI now writes things like *"Your Movement Score is 82/100, with an average of 12 kicks per session…"* — matching the chart 1-for-1. No new quota cost, no UI redesign.
