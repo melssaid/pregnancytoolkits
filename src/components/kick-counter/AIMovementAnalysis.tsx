@@ -21,6 +21,12 @@ interface KickSession {
 interface AIMovementAnalysisProps {
   sessions: KickSession[];
   currentWeek?: number;
+  /** Movement score (0–100) shown in the chart strip — passed in so the AI uses the same number the user sees. */
+  movementScore?: number;
+  /** Average kicks per session shown in the chart strip. */
+  avgKicks?: number;
+  /** Average session duration (minutes) shown in the chart strip. */
+  avgDurationMinutes?: number;
 }
 
 type AnalysisPhase = 'idle' | 'rule-summary' | 'collecting' | 'analyzing' | 'generating' | 'complete';
@@ -62,7 +68,10 @@ function generateRuleSummary(sessions: KickSession[], week: number, t: (key: str
 
 export const AIMovementAnalysis: React.FC<AIMovementAnalysisProps> = ({ 
   sessions,
-  currentWeek = 28 
+  currentWeek = 28,
+  movementScore,
+  avgKicks,
+  avgDurationMinutes,
 }) => {
   const { t } = useTranslation();
   const { currentLanguage } = useLanguage();
@@ -125,9 +134,15 @@ export const AIMovementAnalysis: React.FC<AIMovementAnalysisProps> = ({
     }
 
     const durations = recentSessions.map(s => s.duration);
-    const avgDuration = durations.reduce((a, b) => a + b, 0) / durations.length;
+    const localAvgDuration = durations.reduce((a, b) => a + b, 0) / durations.length;
     const minDuration = Math.min(...durations);
     const maxDuration = Math.max(...durations);
+    const localAvgKicks = recentSessions.reduce((a, s) => a + s.kicks, 0) / recentSessions.length;
+
+    // Prefer the metrics the user sees in the chart strip; fall back to local calc.
+    const displayedAvgDuration = typeof avgDurationMinutes === 'number' ? avgDurationMinutes : localAvgDuration;
+    const displayedAvgKicks = typeof avgKicks === 'number' ? avgKicks : localAvgKicks;
+    const displayedScore = typeof movementScore === 'number' ? movementScore : null;
 
     const timeDistribution = recentSessions.reduce((acc, s) => {
       const hour = parseInt(s.startTime.split(':')[0]);
@@ -138,6 +153,10 @@ export const AIMovementAnalysis: React.FC<AIMovementAnalysisProps> = ({
     const mostActiveTime = Object.entries(timeDistribution).sort((a, b) => b[1] - a[1])[0]?.[0] || 'varied';
 
     const sessionData = recentSessions.map(s => `${s.date} at ${s.startTime}: ${s.kicks} kicks in ${s.duration} min`).join('\n');
+
+    const scoreLine = displayedScore !== null
+      ? `- Movement Score (shown in chart): ${displayedScore}/100`
+      : '';
 
     await generate({
       prompt: `You are an supportive pregnancy wellness guide reviewing baby movement patterns.
@@ -150,10 +169,14 @@ export const AIMovementAnalysis: React.FC<AIMovementAnalysisProps> = ({
 ## Session Records
 ${sessionData}
 
-## Statistics
-- Average time to 10 kicks: ${avgDuration.toFixed(1)} min
-- Fastest: ${minDuration} min | Slowest: ${maxDuration} min  
+## Statistics (these are the exact numbers shown to the user in the chart)
+${scoreLine}
+- Average kicks per session: ${displayedAvgKicks.toFixed(1)}
+- Average session duration: ${displayedAvgDuration.toFixed(1)} min
+- Fastest session: ${minDuration} min | Slowest session: ${maxDuration} min  
 - Most active time: ${mostActiveTime}
+
+IMPORTANT: Refer to the Movement Score and averages above by their exact values when explaining the pattern, so the user sees consistency between the chart and your analysis.
 
 Provide:
 ### 📊 Pattern Review
@@ -163,7 +186,7 @@ Provide:
 ### 💡 Quick Tips (2-3 for week ${currentWeek})
 
 Be warm, reassuring, and accurate. Use calm, non-alarming language.`,
-      context: { week: currentWeek },
+      context: { week: currentWeek, movementScore: displayedScore, avgKicks: displayedAvgKicks, avgDuration: displayedAvgDuration },
       skipCache: false,
       onDelta: () => setProgress(prev => Math.min(prev + 0.5, 98)),
     });

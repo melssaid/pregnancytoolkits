@@ -497,6 +497,13 @@ const SmartKickCounter: React.FC = () => {
                     startTime: new Date(s.started_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
                   }))}
                   currentWeek={currentWeek}
+                  movementScore={movementScore}
+                  avgKicks={getAverageKicks()}
+                  avgDurationMinutes={
+                    history.length > 0
+                      ? Math.round(history.reduce((sum: number, s: any) => sum + (s.duration_minutes || 0), 0) / history.length)
+                      : 0
+                  }
                 />
               </div>
             )}
