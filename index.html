@@ -315,9 +315,11 @@
         var vid=document.getElementById('splash-video');
         if(!overlay||!vid){return;}
 
-        // Keep root black until app mounts to prevent any white/pink flash
-        document.body.style.background='#000';
-        document.documentElement.style.background='#000';
+        // Use the app's warm background from the start — prevents any white OR
+        // black flash if the overlay fades faster than the underlying paint.
+        var APP_BG='#faf6f2';
+        document.body.style.background=APP_BG;
+        document.documentElement.style.background=APP_BG;
 
         window.__htmlSplashVideoActive=true;
         window.__htmlSplashVideoEnded=false;
@@ -325,7 +327,7 @@
         var done=false;
         var appReady=false;
         var minShownAt=Date.now();
-        var MIN_DURATION=1200; // ensure splash is shown long enough to feel intentional
+        var MIN_DURATION=800; // shorter — only enforce brand moment, not extra wait
 
         window.addEventListener('app:first-render', function(){
           appReady=true;
@@ -333,20 +335,16 @@
         }, {once:true});
 
         function fadeOverlay(){
-          // Pause video to free GPU/decoder before fading
           try { vid.pause(); } catch(e){}
-          // Smooth professional crossfade — app is already painted underneath
           overlay.style.opacity='0';
           setTimeout(function(){
             if(overlay.parentNode) overlay.parentNode.removeChild(overlay);
-            document.body.style.background='#faf6f2';
-            document.documentElement.style.background='#faf6f2';
-          }, 600);
+          }, 500);
         }
 
         function maybeFinish(){
           if(done) return;
-          if(!appReady) return; // keep video looping until React paints
+          if(!appReady) return;
           var elapsed=Date.now()-minShownAt;
           var wait=Math.max(0, MIN_DURATION-elapsed);
           done=true;
@@ -354,7 +352,6 @@
           window.__htmlSplashVideoActive=false;
           window.__htmlSplashVideoEnded=true;
           window.dispatchEvent(new CustomEvent('html-splash-ended'));
-          // Wait one extra frame so React's first paint is fully committed
           setTimeout(function(){
             requestAnimationFrame(function(){
               requestAnimationFrame(fadeOverlay);
@@ -362,10 +359,9 @@
           }, wait);
         }
 
-        // Errors / stalls — fail open so user is never stuck
         vid.addEventListener('error', function(){ appReady=true; maybeFinish(); }, {once:true});
         vid.addEventListener('stalled', function(){
-          setTimeout(function(){ appReady=true; maybeFinish(); }, 2000);
+          setTimeout(function(){ appReady=true; maybeFinish(); }, 1500);
         }, {once:true});
 
         function tryPlay(){
@@ -377,13 +373,13 @@
         vid.addEventListener('loadedmetadata', tryPlay, {once:true});
         tryPlay();
 
-        // If video can't autoplay at all, don't block the app
+        // If video can't autoplay, don't block
         setTimeout(function(){
           if(vid.paused && vid.currentTime===0){ appReady=true; maybeFinish(); }
-        }, 1500);
+        }, 1200);
 
-        // Hard safety cap — never block user behind splash for more than 6s
-        setTimeout(function(){ appReady=true; maybeFinish(); }, 6000);
+        // Hard safety cap — never block user behind splash for more than 4s
+        setTimeout(function(){ appReady=true; maybeFinish(); }, 4000);
       })();
     </script>
 
