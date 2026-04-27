@@ -310,9 +310,24 @@
     <script>
       (function(){
         var SPLASH_KEY='pt_video_splash_seen';
+        var SPLASH_SESSION_KEY='pt_video_splash_seen_session';
         var overlay=document.getElementById('splash-overlay');
         var vid=document.getElementById('splash-video');
         if(!overlay||!vid){return;}
+
+        var hasSeenSessionSplash=false;
+        try {
+          hasSeenSessionSplash = sessionStorage.getItem(SPLASH_SESSION_KEY)==='true';
+        } catch(e) {}
+
+        if(hasSeenSessionSplash){
+          try { vid.pause(); vid.removeAttribute('src'); vid.load(); } catch(e){}
+          if(overlay.parentNode) overlay.parentNode.removeChild(overlay);
+          window.__htmlSplashVideoActive=false;
+          window.__htmlSplashVideoEnded=true;
+          window.dispatchEvent(new CustomEvent('html-splash-ended'));
+          return;
+        }
 
         // Use the app's warm background from the start — prevents any white OR
         // black flash if the overlay fades faster than the underlying paint.
@@ -348,6 +363,7 @@
           var wait=Math.max(0, MIN_DURATION-elapsed);
           done=true;
           localStorage.setItem(SPLASH_KEY,'true');
+          try { sessionStorage.setItem(SPLASH_SESSION_KEY,'true'); } catch(e) {}
           window.__htmlSplashVideoActive=false;
           window.__htmlSplashVideoEnded=true;
           window.dispatchEvent(new CustomEvent('html-splash-ended'));
