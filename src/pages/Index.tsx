@@ -304,7 +304,7 @@ const FooterCard = memo(function FooterCard() {
   }> = {
     en: {
       title: 'Unlock Your Full Journey', cta: 'Start Your Premium Journey', ctaPrice: '$2.99/mo', trust: '✨ Free trial · Cancel anytime',
-      feat1: '60 smart analyses every month', feat2: 'All 36+ premium tools unlocked', feat3: 'Tailored guidance just for you',
+      feat1: '75 smart analyses every month', feat2: 'All 36+ premium tools unlocked', feat3: 'Tailored guidance just for you',
       exhaustedTitle: 'You’ve used all your analyses', exhaustedCta: 'Continue with Premium',
       premiumTitle: 'Premium Member', premiumDesc: '60 monthly AI analyses ready',
     },
@@ -316,33 +316,33 @@ const FooterCard = memo(function FooterCard() {
     },
     de: {
       title: 'Entfalte deine Reise', cta: 'Premium-Reise starten', ctaPrice: '$2.99/Monat', trust: '✨ Gratis testen · Jederzeit kündbar',
-      feat1: '60 smarte Analysen / Monat', feat2: 'Alle 36+ Premium-Tools', feat3: 'Persönlich auf dich zugeschnitten',
+      feat1: '75 smarte Analysen / Monat', feat2: 'Alle 36+ Premium-Tools', feat3: 'Persönlich auf dich zugeschnitten',
       exhaustedTitle: 'Analysen aufgebraucht', exhaustedCta: 'Mit Premium fortfahren',
       premiumTitle: 'Premium-Mitglied', premiumDesc: '60 KI-Analysen pro Monat verfügbar',
     },
     fr: {
       title: 'Libère ton parcours', cta: 'Lancer mon parcours Premium', ctaPrice: '$2.99/mois', trust: '✨ Essai gratuit · Annulation à tout moment',
-      feat1: '60 analyses intelligentes / mois', feat2: 'Tous les 36+ outils Premium', feat3: 'Conseils sur mesure pour toi',
+      feat1: '75 analyses intelligentes / mois', feat2: 'Tous les 36+ outils Premium', feat3: 'Conseils sur mesure pour toi',
       exhaustedTitle: 'Analyses épuisées', exhaustedCta: 'Continuer avec Premium',
-      premiumTitle: 'Membre Premium', premiumDesc: '60 analyses IA mensuelles prêtes',
+      premiumTitle: 'Membre Premium', premiumDesc: '75 analyses IA mensuelles prêtes',
     },
     es: {
       title: 'Desbloquea tu viaje', cta: 'Comienza tu viaje Premium', ctaPrice: '$2.99/mes', trust: '✨ Prueba gratis · Cancela cuando quieras',
-      feat1: '60 análisis inteligentes al mes', feat2: 'Todas las 36+ herramientas Premium', feat3: 'Consejos personalizados para ti',
+      feat1: '75 análisis inteligentes al mes', feat2: 'Todas las 36+ herramientas Premium', feat3: 'Consejos personalizados para ti',
       exhaustedTitle: 'Análisis agotados', exhaustedCta: 'Continuar con Premium',
-      premiumTitle: 'Miembro Premium', premiumDesc: '60 análisis IA mensuales listos',
+      premiumTitle: 'Miembro Premium', premiumDesc: '75 análisis IA mensuales listos',
     },
     pt: {
       title: 'Desbloqueie sua jornada', cta: 'Começar jornada Premium', ctaPrice: '$2.99/mês', trust: '✨ Teste grátis · Cancele quando quiser',
-      feat1: '60 análises inteligentes / mês', feat2: 'Todas as 36+ ferramentas Premium', feat3: 'Dicas feitas para você',
+      feat1: '75 análises inteligentes / mês', feat2: 'Todas as 36+ ferramentas Premium', feat3: 'Dicas feitas para você',
       exhaustedTitle: 'Análises esgotadas', exhaustedCta: 'Continuar com Premium',
-      premiumTitle: 'Membro Premium', premiumDesc: '60 análises IA mensais prontas',
+      premiumTitle: 'Membro Premium', premiumDesc: '75 análises IA mensais prontas',
     },
     tr: {
       title: 'Yolculuğunu Aç', cta: 'Premium Yolculuğa Başla', ctaPrice: '$2.99/ay', trust: '✨ Ücretsiz deneme · Her an iptal',
-      feat1: 'Ayda 60 akıllı analiz', feat2: 'Tüm 36+ Premium araç açık', feat3: 'Sana özel rehberlik',
+      feat1: 'Ayda 75 akıllı analiz', feat2: 'Tüm 36+ Premium araç açık', feat3: 'Sana özel rehberlik',
       exhaustedTitle: 'Analizlerin tükendi', exhaustedCta: 'Premium ile Devam Et',
-      premiumTitle: 'Premium Üye', premiumDesc: 'Aylık 60 AI analiz hazır',
+      premiumTitle: 'Premium Üye', premiumDesc: 'Aylık 75 AI analiz hazır',
     },
   };
   const l = labels[lang] || labels.en;

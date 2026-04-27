@@ -11,13 +11,13 @@ import { useActiveCoupon } from '@/hooks/useActiveCoupon';
 // to avoid implying an automatic monthly renewal. Wording is aligned
 // with UsagePulseFooter ("Coupon points · one-time" / "نقاط الكوبون لمرة واحدة").
 const labels: Record<string, { title: string; sub: string; couponSub: string; cta: string }> = {
-  en: { title: 'Unlock Premium', sub: '60 analyses/month + all tools', couponSub: 'Coupon points · one-time. Subscribe for monthly renewal', cta: 'View Plans' },
-  ar: { title: 'اشتركي في بريميوم', sub: '60 تحليل شهرياً + جميع الأدوات', couponSub: 'نقاط الكوبون لمرة واحدة · اشتركي للتجديد الشهري', cta: 'عرض الباقات' },
-  de: { title: 'Premium freischalten', sub: '60 Analysen/Monat + alle Tools', couponSub: 'Gutschein · einmalig. Abonniere für monatliche Erneuerung', cta: 'Pläne' },
-  fr: { title: 'Passer au Premium', sub: '60 analyses/mois + tous les outils', couponSub: 'Points coupon · unique. Abonnez-vous pour le renouvellement mensuel', cta: 'Voir offres' },
-  es: { title: 'Desbloquear Premium', sub: '60 análisis/mes + todas las herramientas', couponSub: 'Cupón · un solo uso. Suscríbete para renovación mensual', cta: 'Ver planes' },
-  pt: { title: 'Desbloquear Premium', sub: '60 análises/mês + todas as ferramentas', couponSub: 'Cupom · uso único. Assine para renovação mensal', cta: 'Ver planos' },
-  tr: { title: 'Premium\'a Geç', sub: 'Ayda 60 analiz + tüm araçlar', couponSub: 'Kupon · tek seferlik. Aylık yenileme için abone ol', cta: 'Planlar' },
+  en: { title: 'Unlock Premium', sub: '75 analyses/month + all tools', couponSub: 'Coupon points · one-time. Subscribe for monthly renewal', cta: 'View Plans' },
+  ar: { title: 'اشتركي في بريميوم', sub: '75 تحليل شهرياً + جميع الأدوات', couponSub: 'نقاط الكوبون لمرة واحدة · اشتركي للتجديد الشهري', cta: 'عرض الباقات' },
+  de: { title: 'Premium freischalten', sub: '75 Analysen/Monat + alle Tools', couponSub: 'Gutschein · einmalig. Abonniere für monatliche Erneuerung', cta: 'Pläne' },
+  fr: { title: 'Passer au Premium', sub: '75 analyses/mois + tous les outils', couponSub: 'Points coupon · unique. Abonnez-vous pour le renouvellement mensuel', cta: 'Voir offres' },
+  es: { title: 'Desbloquear Premium', sub: '75 análisis/mes + todas las herramientas', couponSub: 'Cupón · un solo uso. Suscríbete para renovación mensual', cta: 'Ver planes' },
+  pt: { title: 'Desbloquear Premium', sub: '75 análises/mês + todas as ferramentas', couponSub: 'Cupom · uso único. Assine para renovação mensal', cta: 'Ver planos' },
+  tr: { title: 'Premium\'a Geç', sub: 'Ayda 75 analiz + tüm araçlar', couponSub: 'Kupon · tek seferlik. Aylık yenileme için abone ol', cta: 'Planlar' },
 };
 
 interface UpgradeCardProps {

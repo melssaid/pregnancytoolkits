@@ -55,7 +55,7 @@ export default function PricingDemo() {
         toast.success(
           isAr ? '🎉 تم تفعيل اشتراككِ بنجاح!' : '🎉 Subscription activated!',
           {
-            description: isAr ? 'تم منحكِ 60 نقطة — جميع الأدوات مفتوحة' : '60 credits granted — all tools unlocked',
+            description: isAr ? 'تم منحكِ 75 نقطة — جميع الأدوات مفتوحة' : '75 credits granted — all tools unlocked',
             duration: 4000,
           }
         );
