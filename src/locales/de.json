@@ -130,7 +130,7 @@
     "yr": "Jahr",
     "save": "44% sparen",
     "feature1": "33+ intelligente Wellness-Tools",
-    "feature2": "60 intelligente Analysen pro Monat",
+    "feature2": "75 intelligente Analysen pro Monat",
     "feature3": "Personalisierte KI-Gesundheitsberichte",
     "feature4": "Priorisierte Anfragenverarbeitung",
     "feature5": "7 Sprachen mit erweiterten Analysen",
@@ -6286,7 +6286,7 @@
   "subscriptionModal": {
     "premium": "Premium",
     "unlockFullAccess": "Vollen Zugang freischalten",
-    "allAIFeatures": "Alle KI-Funktionen, 60 monatliche Analysen",
+    "allAIFeatures": "Alle KI-Funktionen, 75 monatliche Analysen",
     "freeTrialDays": "Jetzt abonnieren",
     "fullAccessCancel": "Voller Zugang, jederzeit kündbar",
     "monthly": "Monatlich",
@@ -6294,7 +6294,7 @@
     "save": "44% sparen",
     "perMonth": "/Monat",
     "perYear": "/Jahr",
-    "unlimitedAI": "60 monatliche KI-Analysen",
+    "unlimitedAI": "75 monatliche KI-Analysen",
     "personalizedMeals": "Personalisierte Mahlzeitenpläne",
     "advancedHealth": "Erweiterte Gesundheitsverfolgung",
     "prioritySupport": "Prioritäts-Support",
@@ -6306,7 +6306,7 @@
     "thankYou": "Vielen Dank für dein Interesse!",
     "comingSoon": "Das Abo wird in der App-Store-Version verfügbar sein.",
     "trialActivated": "Premium aktiviert!",
-    "trialDesc": "Genieße alle Premium-Funktionen mit 60 monatlichen Analysen!",
+    "trialDesc": "Genieße alle Premium-Funktionen mit 75 monatlichen Analysen!",
     "errorProcessing": "Abo konnte nicht verarbeitet werden",
     "trialRemaining": "Premium aktiv",
     "trialEnded": "Abonnement beendet",
@@ -6804,7 +6804,7 @@
     "subtitle": "Unbegrenzter Zugang zu allen Funktionen",
     "benefits": {
       "allAITools": "33+ smart wellness tools",
-      "dailyAnalyses": "60 smart analyses per month",
+      "dailyAnalyses": "75 smart analyses per month",
       "personalizedInsights": "Tips personalized to your week",
       "fullAccess": "Full access with no limits"
     },
@@ -8478,7 +8478,7 @@
   "quotaExhausted": {
     "upgradeHint": "Schalten Sie mehr personalisierte Einblicke mit Premium frei",
     "upgradeCTA": "Weiter mit Premium",
-    "postAnalysisHint": "Upgrade auf Premium für 60 monatliche Analysen und tiefere Einblicke",
+    "postAnalysisHint": "Upgrade auf Premium für 75 monatliche Analysen und tiefere Einblicke",
     "unlockMore": "Mehr freischalten"
   },
   "smartAlerts": {
@@ -8772,18 +8772,18 @@
     "subtitle": "Sie haben die Kraft der KI erlebt",
     "usedAnalyses": "Sie haben {{count}} KI-Analysen genutzt",
     "duringTrial": "während Ihrer Testphase",
-    "premiumBenefit": "60 Analysen/Monat",
+    "premiumBenefit": "75 Analysen/Monat",
     "premiumDesc": "Alle 33+ KI-Tools freischalten",
     "cta": "Premium-Pläne ansehen",
     "dismiss": "Vielleicht später"
   },
   "usageNudge": {
     "title": "{{used}}/{{limit}} Analysen verwendet",
-    "upgrade": "Auf 60/Monat upgraden →",
+    "upgrade": "Auf 75/Monat upgraden →",
     "subscribe": "Jetzt abonnieren"
   },
   "smartPrompt": {
-    "nearLimit": "Sie haben {{used}} von {{limit}} Analysen genutzt! Abonnieren Sie für 60/Monat.",
+    "nearLimit": "Sie haben {{used}} von {{limit}} Analysen genutzt! Abonnieren Sie für 75/Monat.",
     "upgradeNow": "Jetzt upgraden"
   },
   "vitaminTracker": {

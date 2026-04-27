@@ -1,20 +1,23 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { getQuotaState, canAfford, consumeQuota, setTier, clearAdminBypass, syncFromServer, syncCouponBonuses, applyCouponTier } from '../quotaManager';
-import { resolveWeight, TOOL_WEIGHT_REGISTRY } from '../types';
+import { resolveWeight, TOOL_WEIGHT_REGISTRY, QUOTA_TIERS } from '../types';
 
 const STORAGE_KEY = 'smart_quota_v2';
 const ADMIN_KEY = 'smart_admin_bypass';
+
+const FREE_LIMIT = 8;
+const PREMIUM_LIMIT = 75;
 
 beforeEach(() => {
   localStorage.clear();
 });
 
 describe('quotaManager', () => {
-  it('defaults to free tier with 10 limit', () => {
+  it('defaults to free tier with 8 limit', () => {
     const state = getQuotaState();
     expect(state.tier).toBe('free');
-    expect(state.limit).toBe(10);
-    expect(state.remaining).toBe(10);
+    expect(state.limit).toBe(FREE_LIMIT);
+    expect(state.remaining).toBe(FREE_LIMIT);
     expect(state.used).toBe(0);
     expect(state.isExhausted).toBe(false);
   });
@@ -23,18 +26,18 @@ describe('quotaManager', () => {
     consumeQuota(1);
     const state = getQuotaState();
     expect(state.used).toBe(1);
-    expect(state.remaining).toBe(9);
+    expect(state.remaining).toBe(FREE_LIMIT - 1);
   });
 
-  it('consumes quota with weight 2 (bump-photos)', () => {
+  it('consumes quota with weight 2 (high-value tool)', () => {
     consumeQuota(2);
     const state = getQuotaState();
     expect(state.used).toBe(2);
-    expect(state.remaining).toBe(8);
+    expect(state.remaining).toBe(FREE_LIMIT - 2);
   });
 
-  it('exhausts free quota at 10', () => {
-    for (let i = 0; i < 10; i++) consumeQuota(1);
+  it('exhausts free quota at 8', () => {
+    for (let i = 0; i < FREE_LIMIT; i++) consumeQuota(1);
     const state = getQuotaState();
     expect(state.isExhausted).toBe(true);
     expect(state.remaining).toBe(0);
@@ -42,29 +45,29 @@ describe('quotaManager', () => {
   });
 
   it('free user cannot afford weight-2 when only 1 remaining', () => {
-    for (let i = 0; i < 9; i++) consumeQuota(1);
+    for (let i = 0; i < FREE_LIMIT - 1; i++) consumeQuota(1);
     expect(canAfford(1)).toBe(true);
     expect(canAfford(2)).toBe(false);
   });
 
-  it('premium tier has 60 limit', () => {
+  it('premium tier has 75 limit', () => {
     setTier('premium');
     const state = getQuotaState();
     expect(state.tier).toBe('premium');
-    expect(state.limit).toBe(60);
-    expect(state.remaining).toBe(60);
+    expect(state.limit).toBe(PREMIUM_LIMIT);
+    expect(state.remaining).toBe(PREMIUM_LIMIT);
   });
 
-  it('exhausts premium quota at 60', () => {
+  it('exhausts premium quota at 75', () => {
     setTier('premium');
-    for (let i = 0; i < 60; i++) consumeQuota(1);
+    for (let i = 0; i < PREMIUM_LIMIT; i++) consumeQuota(1);
     const state = getQuotaState();
     expect(state.isExhausted).toBe(true);
     expect(state.remaining).toBe(0);
   });
 
   it('isNearLimit triggers when remaining <= 2', () => {
-    for (let i = 0; i < 8; i++) consumeQuota(1);
+    for (let i = 0; i < FREE_LIMIT - 2; i++) consumeQuota(1);
     const state = getQuotaState();
     expect(state.isNearLimit).toBe(true);
     expect(state.remaining).toBe(2);
@@ -88,7 +91,7 @@ describe('quotaManager', () => {
     }));
     const state = getQuotaState();
     expect(state.used).toBe(0);
-    expect(state.remaining).toBe(10);
+    expect(state.remaining).toBe(FREE_LIMIT);
   });
 
   it('does not double-deduct on sequential calls', () => {
@@ -99,56 +102,60 @@ describe('quotaManager', () => {
   });
 
   it('syncs coupon-backed server limit into local quota state', () => {
-    // Server returns: tier=premium, limit=120 (60 base + 60 coupon)
-    syncFromServer(3, 'premium', 120);
+    // Server returns: tier=premium, limit=135 (75 base + 60 coupon)
+    syncFromServer(3, 'premium', PREMIUM_LIMIT + 60);
     const state = getQuotaState();
     expect(state.used).toBe(3);
     expect(state.tier).toBe('premium');
-    expect(state.limit).toBe(120);
-    expect(state.remaining).toBe(117);
+    expect(state.limit).toBe(PREMIUM_LIMIT + 60);
+    expect(state.remaining).toBe(PREMIUM_LIMIT + 60 - 3);
   });
 
   it('removes coupon override when server returns default premium limit', () => {
-    syncFromServer(1, 'premium', 120);
-    syncFromServer(2, 'premium', 60);
+    syncFromServer(1, 'premium', PREMIUM_LIMIT + 60);
+    syncFromServer(2, 'premium', PREMIUM_LIMIT);
     const state = getQuotaState();
-    expect(state.limit).toBe(60);
-    expect(state.remaining).toBe(58);
+    expect(state.limit).toBe(PREMIUM_LIMIT);
+    expect(state.remaining).toBe(PREMIUM_LIMIT - 2);
   });
 
   it('weight-2 tool exhausts free quota faster', () => {
-    for (let i = 0; i < 4; i++) consumeQuota(2); // 8 used
+    for (let i = 0; i < 3; i++) consumeQuota(2); // 6 used
     expect(canAfford(2)).toBe(true); // 2 remaining → can still afford weight 2
-    consumeQuota(2); // 10 used
+    consumeQuota(2); // 8 used
     expect(canAfford(1)).toBe(false);
     expect(getQuotaState().isExhausted).toBe(true);
   });
 });
 
 describe('TOOL_WEIGHT_REGISTRY', () => {
-  it('bump-photos has weight 2', () => {
-    expect(TOOL_WEIGHT_REGISTRY['bump-photos']).toBe(2);
+  it('bump-photos has weight 5 (multimodal vision)', () => {
+    expect(TOOL_WEIGHT_REGISTRY['bump-photos']).toBe(5);
   });
 
-  it('all standard tools have weight 1', () => {
-    const standardTools = [
-      'symptom-analysis', 'pregnancy-assistant',
-      'kick-analysis', 'mental-health', 'weight-analysis',
-      'hospital-bag', 'birth-plan', 'contraction-analysis',
+  it('high-value tools have weight 2', () => {
+    const heavyTools = [
+      'pregnancy-plan',
+      'weekly-summary',
+      'kick-analysis',
+      'contraction-analysis',
+      'weight-analysis',
+      'mental-health',
+      'birth-plan',
+      'postpartum-recovery',
     ] as const;
-    for (const tool of standardTools) {
-      expect(TOOL_WEIGHT_REGISTRY[tool]).toBe(1);
+    for (const tool of heavyTools) {
+      expect(TOOL_WEIGHT_REGISTRY[tool]).toBe(2);
     }
   });
 
-  it('previously-light tools are unified to weight 1', () => {
-    const unifiedTools = [
-      'meal-suggestion', 'vitamin-advice', 'baby-cry-analysis',
-      'skincare-advice', 'partner-guide', 'birth-position',
-      'grocery-list', 'craving-alternatives', 'nausea-relief',
-      'sleep-analysis', 'sleep-meditation', 'sleep-routine',
+  it('standard tools have weight 1', () => {
+    const standardTools = [
+      'symptom-analysis', 'pregnancy-assistant',
+      'hospital-bag', 'meal-suggestion', 'vitamin-advice',
+      'baby-cry-analysis', 'sleep-analysis',
     ] as const;
-    for (const tool of unifiedTools) {
+    for (const tool of standardTools) {
       expect(TOOL_WEIGHT_REGISTRY[tool]).toBe(1);
     }
   });
@@ -163,8 +170,13 @@ describe('TOOL_WEIGHT_REGISTRY', () => {
 });
 
 describe('resolveWeight', () => {
-  it('resolves bump-photos to weight 2 from toolType', () => {
-    expect(resolveWeight('bump-photos')).toBe(2);
+  it('resolves bump-photos to weight 5 from toolType', () => {
+    expect(resolveWeight('bump-photos')).toBe(5);
+  });
+
+  it('resolves heavy tool to weight 2 from toolType', () => {
+    expect(resolveWeight('pregnancy-plan')).toBe(2);
+    expect(resolveWeight('kick-analysis')).toBe(2);
   });
 
   it('resolves standard tool to weight 1 from toolType', () => {
@@ -172,7 +184,8 @@ describe('resolveWeight', () => {
   });
 
   it('resolves weight from section when no toolType', () => {
-    expect(resolveWeight(undefined, 'bump-photos')).toBe(2); // maps to bump-photos
+    expect(resolveWeight(undefined, 'bump-photos')).toBe(5);
+    expect(resolveWeight(undefined, 'kick-analysis')).toBe(2);
   });
 
   it('resolves weight from section for standard sections', () => {
@@ -184,21 +197,28 @@ describe('resolveWeight', () => {
   });
 });
 
+describe('QUOTA_TIERS', () => {
+  it('free tier has 8 monthly analyses', () => {
+    expect(QUOTA_TIERS.free.monthly).toBe(8);
+  });
+  it('premium tier has 75 monthly analyses', () => {
+    expect(QUOTA_TIERS.premium.monthly).toBe(75);
+  });
+});
+
 // ── Coupon additivity: client-side mirror of check-quota math ──
-// Server formula: limit = baseLimit (free=10/premium=60) + sum(active coupon bonus_points)
-// Client must match: limit = QUOTA_TIERS[tier].monthly + couponPoints + promoBonus
+// Server formula: limit = baseLimit (free=8/premium=75) + sum(active coupon bonus_points)
 describe('coupon additivity (client ↔ server parity)', () => {
-  const PREMIUM_BASE = 60;
+  const PREMIUM_BASE = PREMIUM_LIMIT;
 
   it('adds a single coupon bonus on top of premium base limit', () => {
     syncCouponBonuses([
       { couponId: 'SAHAR60', expiresAt: new Date(Date.now() + 86_400_000).toISOString(), bonusPoints: 60 },
     ]);
     const state = getQuotaState();
-    // Coupon presence forces premium tier client-side (matches server)
     expect(state.tier).toBe('premium');
-    expect(state.limit).toBe(PREMIUM_BASE + 60); // 120
-    expect(state.remaining).toBe(120);
+    expect(state.limit).toBe(PREMIUM_BASE + 60);
+    expect(state.remaining).toBe(PREMIUM_BASE + 60);
   });
 
   it('sums multiple active coupons additively above the base', () => {
@@ -207,26 +227,24 @@ describe('coupon additivity (client ↔ server parity)', () => {
       { couponId: 'B', expiresAt: new Date(Date.now() + 86_400_000).toISOString(), bonusPoints: 30 },
       { couponId: 'C', expiresAt: new Date(Date.now() + 86_400_000).toISOString(), bonusPoints: 10 },
     ]);
-    expect(getQuotaState().limit).toBe(PREMIUM_BASE + 60 + 30 + 10); // 160
+    expect(getQuotaState().limit).toBe(PREMIUM_BASE + 60 + 30 + 10);
   });
 
   it('coupon points remain spendable AFTER base premium quota is exhausted', () => {
     syncCouponBonuses([
       { couponId: 'BARAKAT60', expiresAt: new Date(Date.now() + 86_400_000).toISOString(), bonusPoints: 60 },
     ]);
-    // Consume the entire base premium quota
     for (let i = 0; i < PREMIUM_BASE; i++) consumeQuota(1);
     const mid = getQuotaState();
-    expect(mid.used).toBe(60);
-    expect(mid.isExhausted).toBe(false); // ✅ coupon bonus keeps user above the line
+    expect(mid.used).toBe(PREMIUM_BASE);
+    expect(mid.isExhausted).toBe(false);
     expect(mid.remaining).toBe(60);
 
-    // Continue consuming into coupon credits
     for (let i = 0; i < 60; i++) consumeQuota(1);
     const final = getQuotaState();
-    expect(final.used).toBe(120);
+    expect(final.used).toBe(PREMIUM_BASE + 60);
     expect(final.remaining).toBe(0);
-    expect(final.isExhausted).toBe(true); // exhausted only after coupon depleted
+    expect(final.isExhausted).toBe(true);
   });
 
   it('ignores expired coupons in the active set', () => {
@@ -234,7 +252,7 @@ describe('coupon additivity (client ↔ server parity)', () => {
       { couponId: 'EXPIRED', expiresAt: new Date(Date.now() - 1000).toISOString(), bonusPoints: 60 },
       { couponId: 'LIVE', expiresAt: new Date(Date.now() + 86_400_000).toISOString(), bonusPoints: 30 },
     ]);
-    expect(getQuotaState().limit).toBe(PREMIUM_BASE + 30); // expired one excluded
+    expect(getQuotaState().limit).toBe(PREMIUM_BASE + 30);
   });
 
   it('replaces previous coupon set on next sync (no double count across syncs)', () => {
@@ -244,7 +262,6 @@ describe('coupon additivity (client ↔ server parity)', () => {
     );
     expect(getQuotaState().limit).toBe(PREMIUM_BASE + 60);
 
-    // Server returns updated set — A removed, B active. Must not stack with previous A.
     syncCouponBonuses(
       [{ couponId: 'B', expiresAt: new Date(Date.now() + 86_400_000).toISOString(), bonusPoints: 30 }],
       'period-2'
@@ -259,8 +276,8 @@ describe('coupon additivity (client ↔ server parity)', () => {
     const applied1 = syncCouponBonuses(coupons, 'v-2026-04');
     const applied2 = syncCouponBonuses(coupons, 'v-2026-04');
     expect(applied1).toBe(true);
-    expect(applied2).toBe(false); // skipped as duplicate
-    expect(getQuotaState().limit).toBe(PREMIUM_BASE + 60); // still 120, not 180
+    expect(applied2).toBe(false);
+    expect(getQuotaState().limit).toBe(PREMIUM_BASE + 60);
   });
 
   it('applyCouponTier accumulates additively across distinct coupon keys', () => {
@@ -269,22 +286,18 @@ describe('coupon additivity (client ↔ server parity)', () => {
     applyCouponTier(future, 30, 'COUPON_B');
     const state = getQuotaState();
     expect(state.tier).toBe('premium');
-    expect(state.limit).toBe(PREMIUM_BASE + 60 + 30); // 150
+    expect(state.limit).toBe(PREMIUM_BASE + 60 + 30);
   });
 
   it('mirrors server formula: limit = baseLimit + couponBonus (parity check)', () => {
-    // Server-side math (check-quota/index.ts):
-    //   effectiveTier = couponBonus > 0 ? 'premium' : tier
-    //   baseLimit = TIER_LIMITS[effectiveTier]  // 60
-    //   limit = baseLimit + couponBonus         // 60 + 90 = 150
     const baseLimit = PREMIUM_BASE;
     const couponBonus = 60 + 30;
-    const serverLimit = baseLimit + couponBonus; // 150
+    const serverLimit = baseLimit + couponBonus;
 
     syncCouponBonuses([
       { couponId: 'A', expiresAt: new Date(Date.now() + 86_400_000).toISOString(), bonusPoints: 60 },
       { couponId: 'B', expiresAt: new Date(Date.now() + 86_400_000).toISOString(), bonusPoints: 30 },
     ]);
-    expect(getQuotaState().limit).toBe(serverLimit); // ✅ client === server
+    expect(getQuotaState().limit).toBe(serverLimit);
   });
 });

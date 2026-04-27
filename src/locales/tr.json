@@ -130,7 +130,7 @@
     "yr": "yıl",
     "save": "%44 Tasarruf",
     "feature1": "33+ akıllı sağlık aracı",
-    "feature2": "Ayda 60 akıllı analiz",
+    "feature2": "Ayda 75 akıllı analiz",
     "feature3": "Kişiselleştirilmiş AI sağlık raporları",
     "feature4": "Öncelikli istek işleme",
     "feature5": "Gelişmiş analizle 7 dil desteği",
@@ -6804,7 +6804,7 @@
     "subtitle": "Tüm özelliklere sınırsız erişim",
     "benefits": {
       "allAITools": "33+ smart wellness tools",
-      "dailyAnalyses": "60 smart analyses per month",
+      "dailyAnalyses": "75 smart analyses per month",
       "personalizedInsights": "Tips personalized to your week",
       "fullAccess": "Full access with no limits"
     },
@@ -8772,7 +8772,7 @@
     "subtitle": "Yapay zekanın gücünü deneyimlediniz",
     "usedAnalyses": "{{count}} AI analizi kullandınız",
     "duringTrial": "deneme süreniz boyunca",
-    "premiumBenefit": "60 analiz/ay",
+    "premiumBenefit": "75 analiz/ay",
     "premiumDesc": "33+ AI aracının tümünü açın",
     "cta": "Premium Planları Gör",
     "dismiss": "Belki sonra"

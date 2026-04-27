@@ -65,9 +65,9 @@ export type InsightWeight = 0 | 1 | 2 | 5 | 7;
  */
 export const TOOL_WEIGHT_REGISTRY: Record<AIToolType, InsightWeight> = {
   "symptom-analysis": 1,
-  "meal-suggestion": 1,         // unified pricing — 1 point per analysis
+  "meal-suggestion": 1,
   "pregnancy-assistant": 1,
-  "weekly-summary": 1,
+  "weekly-summary": 2,          // ⬆ high-value editorial — recap of full week
   "posture-coach": 1,
   "walking-coach": 1,
   "stretch-reminder": 1,
@@ -77,28 +77,28 @@ export const TOOL_WEIGHT_REGISTRY: Record<AIToolType, InsightWeight> = {
   "daily-tips": 0,              // free — encourages daily engagement
   "labor-tracker": 1,
   "appointment-prep": 1,
-  "kick-analysis": 1,
-  "sleep-analysis": 1,          // unified pricing
-  "sleep-meditation": 1,        // unified pricing
-  "sleep-routine": 1,           // unified pricing
-  "vitamin-advice": 1,          // unified pricing
+  "kick-analysis": 2,           // ⬆ deep multi-session pattern analysis
+  "sleep-analysis": 1,
+  "sleep-meditation": 1,
+  "sleep-routine": 1,
+  "vitamin-advice": 1,
   "bump-photos": 5,             // ultrasound photo analysis — multimodal vision + deep clinical context
-  "baby-cry-analysis": 1,       // unified pricing
-  "postpartum-recovery": 1,
+  "baby-cry-analysis": 1,
+  "postpartum-recovery": 2,     // ⬆ multi-phase recovery plan
   "hospital-bag": 1,
-  "birth-position": 1,          // unified pricing
-  "partner-guide": 1,           // unified pricing
+  "birth-position": 1,
+  "partner-guide": 1,
   "lactation-prep": 1,
-  "nausea-relief": 1,           // unified pricing
-  "skincare-advice": 1,         // unified pricing
-  "birth-plan": 1,
-  "mental-health": 1,
-  "pregnancy-plan": 1,
+  "nausea-relief": 1,
+  "skincare-advice": 1,
+  "birth-plan": 2,              // ⬆ comprehensive personalized birth plan
+  "mental-health": 2,           // ⬆ sensitive deep emotional analysis
+  "pregnancy-plan": 2,          // ⬆ flagship holistic plan — high perceived value
   "baby-growth-analysis": 1,
-  "weight-analysis": 1,
-  "contraction-analysis": 1,
-  "craving-alternatives": 1,    // unified pricing
-  "grocery-list": 1,            // unified pricing
+  "weight-analysis": 2,         // ⬆ trend analysis across multiple weeks
+  "contraction-analysis": 2,    // ⬆ critical pattern analysis (labor signals)
+  "craving-alternatives": 1,
+  "grocery-list": 1,
   "live-search": 5,             // Perplexity Sonar — real-time web search with citations
   "holistic-dashboard": 7,      // Premium dashboard-wide cross-data analysis (Pro model)
 };
@@ -129,8 +129,8 @@ export interface QuotaTier {
 }
 
 export const QUOTA_TIERS: Record<string, QuotaTier> = {
-  free: { monthly: 10, label: "Free" },
-  premium: { monthly: 60, label: "Premium" },
+  free: { monthly: 8, label: "Free" },
+  premium: { monthly: 75, label: "Premium" },
 };
 
 // ── Quota state ──

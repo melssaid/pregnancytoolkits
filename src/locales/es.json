@@ -130,7 +130,7 @@
     "yr": "año",
     "save": "Ahorra 44%",
     "feature1": "33+ herramientas inteligentes de bienestar",
-    "feature2": "60 análisis inteligentes al mes",
+    "feature2": "75 análisis inteligentes al mes",
     "feature3": "Informes de salud IA personalizados",
     "feature4": "Procesamiento prioritario de solicitudes",
     "feature5": "7 idiomas con análisis avanzado",
@@ -6286,7 +6286,7 @@
   "subscriptionModal": {
     "premium": "Premium",
     "unlockFullAccess": "Desbloquear acceso completo",
-    "allAIFeatures": "Todas las funciones de IA, 60 análisis mensuales",
+    "allAIFeatures": "Todas las funciones de IA, 75 análisis mensuales",
     "freeTrialDays": "Suscribirse ahora",
     "fullAccessCancel": "Acceso completo, cancela cuando quieras",
     "monthly": "Mensual",
@@ -6294,7 +6294,7 @@
     "save": "Ahorra 44%",
     "perMonth": "/mes",
     "perYear": "/año",
-    "unlimitedAI": "60 análisis de IA al mes",
+    "unlimitedAI": "75 análisis de IA al mes",
     "personalizedMeals": "Planes de comidas personalizados",
     "advancedHealth": "Seguimiento de salud avanzado",
     "prioritySupport": "Soporte prioritario",
@@ -6306,7 +6306,7 @@
     "thankYou": "¡Gracias por tu interés!",
     "comingSoon": "La suscripción estará disponible en la versión de la tienda de apps.",
     "trialActivated": "¡Premium activado!",
-    "trialDesc": "¡Disfruta de todas las funciones premium con 60 análisis mensuales!",
+    "trialDesc": "¡Disfruta de todas las funciones premium con 75 análisis mensuales!",
     "errorProcessing": "No se pudo procesar la suscripción",
     "trialRemaining": "Premium activo",
     "trialEnded": "Suscripción finalizada",
@@ -6804,7 +6804,7 @@
     "subtitle": "Acceso ilimitado a todas las funciones",
     "benefits": {
       "allAITools": "33+ smart wellness tools",
-      "dailyAnalyses": "60 smart analyses per month",
+      "dailyAnalyses": "75 smart analyses per month",
       "personalizedInsights": "Tips personalized to your week",
       "fullAccess": "Full access with no limits"
     },
@@ -8478,7 +8478,7 @@
   "quotaExhausted": {
     "upgradeHint": "Desbloquea más análisis personalizados con Premium",
     "upgradeCTA": "Continuar con Premium",
-    "postAnalysisHint": "Actualiza a Premium para 60 análisis mensuales e información más profunda",
+    "postAnalysisHint": "Actualiza a Premium para 75 análisis mensuales e información más profunda",
     "unlockMore": "Desbloquear más"
   },
   "smartAlerts": {
@@ -8772,18 +8772,18 @@
     "subtitle": "Has experimentado el poder de la IA",
     "usedAnalyses": "Usaste {{count}} análisis de IA",
     "duringTrial": "durante tu período de prueba",
-    "premiumBenefit": "60 análisis/mes",
+    "premiumBenefit": "75 análisis/mes",
     "premiumDesc": "Desbloquea las 33+ herramientas de IA",
     "cta": "Ver Planes Premium",
     "dismiss": "Quizás después"
   },
   "usageNudge": {
     "title": "{{used}}/{{limit}} análisis usados",
-    "upgrade": "Mejora a 60/mes →",
+    "upgrade": "Mejora a 75/mes →",
     "subscribe": "Suscribirse ahora"
   },
   "smartPrompt": {
-    "nearLimit": "¡Has usado {{used}} de {{limit}} análisis! Suscríbete para 60/mes.",
+    "nearLimit": "¡Has usado {{used}} de {{limit}} análisis! Suscríbete para 75/mes.",
     "upgradeNow": "Mejorar Ahora"
   },
   "vitaminTracker": {
