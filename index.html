@@ -316,27 +316,12 @@
         var vid=document.getElementById('splash-video');
         if(!overlay||!vid){return;}
 
-        var SESSION_SPLASH_KEY='pt_video_splash_session';
-        var splashSeenSession=sessionStorage.getItem(SESSION_SPLASH_KEY);
         // Keep root black until app mounts to prevent any pink flash
         document.body.style.background='#000';
         document.documentElement.style.background='#000';
 
-        // Skip splash ONLY if already shown in THIS session (refresh / deep-link nav).
-        // Cold starts always show the video — even for returning users who finished onboarding.
-        if(splashSeenSession){
-          overlay.parentNode.removeChild(overlay);
-          requestAnimationFrame(function(){
-            document.body.style.transition='background 0.4s ease';
-            document.body.style.background='#faf6f2';
-            document.documentElement.style.background='#faf6f2';
-          });
-          return;
-        }
-
-        // Mark splash as shown for THIS session immediately so any
-        // re-execution of this script (deep-link refresh) skips it
-        sessionStorage.setItem(SESSION_SPLASH_KEY,'1');
+        // Always show the splash video on every cold start (every time the user opens the app).
+        // Internal SPA navigations don't re-run this script, so they remain unaffected.
 
         window.__htmlSplashVideoActive=true;
         window.__htmlSplashVideoEnded=false;
