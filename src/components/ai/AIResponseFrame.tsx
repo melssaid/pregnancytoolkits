@@ -190,7 +190,7 @@ export const AIResponseFrame = ({
             </div>
             {!hideUsageHint && (
               <p className="text-[10px] text-muted-foreground text-center font-medium">
-                {weight === 0 ? uLabels.costFree : weight === 1 ? uLabels.explanation : uLabels.costFmt(weight)}
+                {weight === 0 ? uLabels.costFree : uLabels.costFmt(weight)}
               </p>
             )}
           </div>
