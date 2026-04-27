@@ -54,7 +54,7 @@ export const SECTION_TOOL_MAP: Record<SmartSection, AIToolType> = {
 };
 
 // ── Quota cost weights ──
-export type InsightWeight = 0 | 0.5 | 1 | 2 | 5 | 7;
+export type InsightWeight = 0 | 1 | 2 | 5 | 7;
 
 /**
  * TOOL_WEIGHT_REGISTRY — THE SINGLE SOURCE OF TRUTH for AI request costs.
@@ -65,7 +65,7 @@ export type InsightWeight = 0 | 0.5 | 1 | 2 | 5 | 7;
  */
 export const TOOL_WEIGHT_REGISTRY: Record<AIToolType, InsightWeight> = {
   "symptom-analysis": 1,
-  "meal-suggestion": 0.5,        // quick single meal suggestion
+  "meal-suggestion": 1,         // unified pricing — 1 point per analysis
   "pregnancy-assistant": 1,
   "weekly-summary": 1,
   "posture-coach": 1,
@@ -78,27 +78,27 @@ export const TOOL_WEIGHT_REGISTRY: Record<AIToolType, InsightWeight> = {
   "labor-tracker": 1,
   "appointment-prep": 1,
   "kick-analysis": 1,
-  "sleep-analysis": 0.5,      // sub-action of Pregnancy Comfort
-  "sleep-meditation": 0.5,    // sub-action of Pregnancy Comfort
-  "sleep-routine": 0.5,       // sub-action of Pregnancy Comfort
-  "vitamin-advice": 0.5,        // quick vitamin tips
-  "bump-photos": 5,           // ultrasound photo analysis — multimodal vision + deep clinical context
-  "baby-cry-analysis": 0.5,     // quick cry classification
+  "sleep-analysis": 1,          // unified pricing
+  "sleep-meditation": 1,        // unified pricing
+  "sleep-routine": 1,           // unified pricing
+  "vitamin-advice": 1,          // unified pricing
+  "bump-photos": 5,             // ultrasound photo analysis — multimodal vision + deep clinical context
+  "baby-cry-analysis": 1,       // unified pricing
   "postpartum-recovery": 1,
   "hospital-bag": 1,
-  "birth-position": 0.5,         // lightweight position suggestions
-  "partner-guide": 0.5,          // lightweight partner support tips
+  "birth-position": 1,          // unified pricing
+  "partner-guide": 1,           // unified pricing
   "lactation-prep": 1,
-  "nausea-relief": 0.5,         // lightweight relief tips
-  "skincare-advice": 0.5,       // quick skincare routine
+  "nausea-relief": 1,           // unified pricing
+  "skincare-advice": 1,         // unified pricing
   "birth-plan": 1,
   "mental-health": 1,
   "pregnancy-plan": 1,
   "baby-growth-analysis": 1,
   "weight-analysis": 1,
   "contraction-analysis": 1,
-  "craving-alternatives": 0.5,  // lightweight craving swap suggestions
-  "grocery-list": 0.5,          // quick grocery nutrition tips
+  "craving-alternatives": 1,    // unified pricing
+  "grocery-list": 1,            // unified pricing
   "live-search": 5,             // Perplexity Sonar — real-time web search with citations
   "holistic-dashboard": 7,      // Premium dashboard-wide cross-data analysis (Pro model)
 };
