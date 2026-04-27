@@ -75,7 +75,7 @@ export const MiniUsageBar: React.FC<MiniUsageBarProps> = ({ toolType, section, c
       {/* Explanation text */}
       {!hideHint && (
         <p className="text-[10px] text-muted-foreground/80 text-center font-medium px-1">
-          {weight === 0 ? labels.costFree : weight === 1 ? labels.explanation : labels.costFmt(weight)}
+          {weight === 0 ? labels.costFree : labels.costFmt(weight)}
         </p>
       )}
 
