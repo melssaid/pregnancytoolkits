@@ -10,7 +10,7 @@ import { EncryptionIndicator } from "./EncryptionIndicator";
 import { LanguageDropdown } from "./LanguageDropdown";
 import { TrialExpiryBanner } from "./TrialExpiryBanner";
 import { BreadcrumbSchema } from "./BreadcrumbSchema";
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense } from "react";
 import { getTotalToolsCount } from "@/lib/tools-data";
 import { useSubscriptionStatus } from "@/hooks/useSubscriptionStatus";
 import { useEngagementSignals } from "@/hooks/useEngagementSignals";
@@ -35,10 +35,6 @@ export function Layout({ children, showBack = false, compactBackHeader = false }
     t('layout.trustBar.aiTools', { count: getTotalToolsCount(), defaultValue: '{{count}}+ Smart Tools' }),
     t('layout.trustBar.premium'),
   ];
-
-  useEffect(() => {
-    window.dispatchEvent(new CustomEvent("app:first-render"));
-  }, []);
 
   // Smooth sticky header transition on scroll
   const { scrollY } = useScroll();
