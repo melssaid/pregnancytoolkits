@@ -132,7 +132,7 @@
     "yr": "yr",
     "save": "Save 44%",
     "feature1": "33+ smart wellness tools",
-    "feature2": "60 smart analyses per month",
+    "feature2": "75 smart analyses per month",
     "feature3": "Personalized AI health reports",
     "feature4": "Priority request processing",
     "feature5": "7 languages with advanced analysis",
@@ -164,14 +164,14 @@
     "subtitle": "You've experienced the power of AI",
     "usedAnalyses": "You used {{count}} AI analyses",
     "duringTrial": "during your trial period",
-    "premiumBenefit": "60 analyses/month",
+    "premiumBenefit": "75 analyses/month",
     "premiumDesc": "Unlock all 33+ AI tools",
     "cta": "View Premium Plans",
     "dismiss": "Maybe later"
   },
   "usageNudge": {
     "title": "{{used}}/{{limit}} analyses used",
-    "upgrade": "Upgrade for 60 analyses/month",
+    "upgrade": "Upgrade for 75 analyses/month",
     "subscribe": "Subscribe Now"
   },
   "journey": {
@@ -197,7 +197,7 @@
     }
   },
   "smartPrompt": {
-    "nearLimit": "You've used {{used}} of {{limit}} analyses! Subscribe for 60/month.",
+    "nearLimit": "You've used {{used}} of {{limit}} analyses! Subscribe for 75/month.",
     "upgradeNow": "Upgrade Now"
   },
   "onboarding": {
@@ -6407,7 +6407,7 @@
   "subscriptionModal": {
     "premium": "Premium",
     "unlockFullAccess": "Unlock Full Access",
-    "allAIFeatures": "All AI features, 60 monthly analyses",
+    "allAIFeatures": "All AI features, 75 monthly analyses",
     "freeTrialDays": "Subscribe Now",
     "fullAccessCancel": "Full access, cancel anytime",
     "monthly": "Monthly",
@@ -6427,7 +6427,7 @@
     "thankYou": "Thank you for your interest!",
     "comingSoon": "Subscription will be available in the app store version.",
     "trialActivated": "Premium Activated!",
-    "trialDesc": "Enjoy all premium features with 60 monthly analyses!",
+    "trialDesc": "Enjoy all premium features with 75 monthly analyses!",
     "errorProcessing": "Unable to process subscription",
     "trialRemaining": "Premium active",
     "trialEnded": "Subscription ended",
@@ -6925,7 +6925,7 @@
     "subtitle": "Subscribe to unlock all smart tools",
     "benefits": {
       "allAITools": "33+ smart wellness tools",
-      "dailyAnalyses": "60 smart analyses per month",
+      "dailyAnalyses": "75 smart analyses per month",
       "personalizedInsights": "Tips personalized to your week",
       "fullAccess": "Full access with no limits"
     },
@@ -8599,7 +8599,7 @@
   "quotaExhausted": {
     "upgradeHint": "Unlock more personalized insights with Premium",
     "upgradeCTA": "Continue with Premium",
-    "postAnalysisHint": "Upgrade to Premium for 60 monthly analyses and deeper insights",
+    "postAnalysisHint": "Upgrade to Premium for 75 monthly analyses and deeper insights",
     "unlockMore": "Unlock more"
   },
   "smartAlerts": {
