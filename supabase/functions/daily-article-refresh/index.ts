@@ -1,19 +1,6 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
-
-const ARTICLE_SEED_REGISTRY = [
-  { slug: "fertility-window-guide", section: "planning", type: "article", tags: ["fertility", "timing", "cycle-awareness"], titles: { ar: "نافذة الخصوبة بوضوح", en: "Understanding your fertility window", de: "Das Fruchtbarkeitsfenster verstehen", fr: "Comprendre la fenêtre de fertilité", es: "Entender la ventana fértil", tr: "Doğurganlık dönemini anlamak", pt: "Entender a janela fértil" } },
-  { slug: "cycle-quality-signals", section: "planning", type: "research", tags: ["cycle-awareness", "patterns", "tracking"], titles: { ar: "إشارات جودة الدورة", en: "Cycle quality signals", de: "Signale der Zyklusqualität", fr: "Signaux de qualité du cycle", es: "Señales de calidad del ciclo", tr: "Döngü kalitesi sinyalleri", pt: "Sinais de qualidade do ciclo" } },
-  { slug: "preconception-nutrition-readiness", section: "planning", type: "article", tags: ["nutrition", "readiness", "vitamins"], titles: { ar: "الاستعداد الغذائي قبل الحمل", en: "Nutrition readiness before pregnancy", de: "Ernährungsstart vor der Schwangerschaft", fr: "Préparer la nutrition avant la grossesse", es: "Preparación nutricional antes del embarazo", tr: "Hamilelik öncesi beslenme hazırlığı", pt: "Preparação nutricional antes da gravidez" } },
-  { slug: "sleep-and-fertility", section: "planning", type: "research", tags: ["sleep", "fertility", "routine"], titles: { ar: "النوم ودوره في الخصوبة", en: "Sleep and fertility balance", de: "Schlaf und Fruchtbarkeit im Gleichgewicht", fr: "Sommeil et équilibre de fertilité", es: "Sueño y equilibrio de la fertilidad", tr: "Uyku ve doğurganlık dengesi", pt: "Sono e equilíbrio da fertilidade" } },
-  { slug: "when-to-use-cycle-tracking", section: "planning", type: "article", tags: ["tracking", "cycle-awareness", "planning"], titles: { ar: "متى يفيد تتبع الدورة فعلاً؟", en: "When cycle tracking helps most", de: "Wann Zyklustracking am meisten hilft", fr: "Quand le suivi du cycle aide le plus", es: "Cuándo ayuda más seguir el ciclo", tr: "Döngü takibi en çok ne zaman fayda sağlar", pt: "Quando o acompanhamento do ciclo ajuda mais" } },
-  { slug: "ovulation-practical-guide", section: "planning", type: "article", tags: ["ovulation", "timing", "planning"], titles: { ar: "فهم الإباضة بشكل عملي", en: "A practical guide to ovulation", de: "Ovulation praktisch verstehen", fr: "Comprendre l’ovulation de façon pratique", es: "Entender la ovulación de forma práctica", tr: "Yumurtlamayı pratik şekilde anlamak", pt: "Entender a ovulação de forma prática" } },
-  { slug: "emotional-planning-before-pregnancy", section: "planning", type: "article", tags: ["mindset", "planning", "support"], titles: { ar: "الاستعداد النفسي قبل الحمل", en: "Emotional planning before pregnancy", de: "Mentale Vorbereitung vor der Schwangerschaft", fr: "Préparation émotionnelle avant la grossesse", es: "Preparación emocional antes del embarazo", tr: "Hamilelik öncesi duygusal hazırlık", pt: "Planejamento emocional antes da gravidez" } },
-  { slug: "common-trying-to-conceive-mistakes", section: "planning", type: "article", tags: ["mistakes", "planning", "fertility"], titles: { ar: "أخطاء شائعة عند محاولة الحمل", en: "Common mistakes while trying to conceive", de: "Häufige Fehler beim Kinderwunsch", fr: "Erreurs fréquentes quand on essaie de concevoir", es: "Errores comunes al intentar concebir", tr: "Hamile kalmaya çalışırken yapılan yaygın hatalar", pt: "Erros comuns ao tentar engravidar" } },
-  { slug: "daily-routine-discovery", section: "planning", type: "discovery", tags: ["routine", "sleep", "readiness"], titles: { ar: "اكتشاف: الروتين اليومي يصنع فرقاً", en: "Discovery: daily routine matters more", de: "Entdeckung: Die tägliche Routine zählt", fr: "Découverte : la routine quotidienne compte", es: "Descubrimiento: la rutina diaria sí importa", tr: "Keşif: günlük rutin gerçekten etkili", pt: "Descoberta: a rotina diária faz diferença" } },
-  { slug: "micronutrients-for-conception", section: "planning", type: "research", tags: ["nutrition", "vitamins", "research"], titles: { ar: "بحث مبسط: المغذيات الدقيقة", en: "Research brief: micronutrients for conception", de: "Kurz erklärt: Mikronährstoffe bei Kinderwunsch", fr: "Recherche simple : micronutriments et conception", es: "Investigación simple: micronutrientes y concepción", tr: "Kısa araştırma: gebe kalma için mikro besinler", pt: "Pesquisa simples: micronutrientes para concepção" } },
-  { slug: "decision-from-tracking-to-plan", section: "planning", type: "article", tags: ["decision-making", "tracking", "planning"], titles: { ar: "من التتبع إلى الخطة", en: "From tracking to a clear plan", de: "Vom Tracking zum klaren Plan", fr: "Du suivi à un plan clair", es: "Del seguimiento a un plan claro", tr: "Takipten net bir plana", pt: "Do acompanhamento para um plano claro" } },
-] as const;
+import { ARTICLE_SEED_REGISTRY } from "./article-seed-registry.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -22,23 +9,143 @@ const corsHeaders = {
 
 const SUPPORTED_LANGS = ["ar", "en", "de", "fr", "es", "tr", "pt"] as const;
 const CONTENT_MODEL = "google/gemini-2.5-flash";
+const MAX_TOKENS = 4500;
+const REQUEST_TIMEOUT_MS = 60000;
+const MAX_RETRIES = 1;
+
+const sectionLabel = (section: string, lang: string) => {
+  const map: Record<string, Record<string, string>> = {
+    planning: { ar: "التخطيط والخصوبة", en: "planning & fertility", de: "Planung & Fruchtbarkeit", fr: "planification & fertilité", es: "planificación y fertilidad", tr: "planlama ve doğurganlık", pt: "planejamento e fertilidade" },
+    pregnant: { ar: "رحلة الحمل", en: "pregnancy journey", de: "Schwangerschaftsreise", fr: "parcours de grossesse", es: "trayecto del embarazo", tr: "gebelik yolculuğu", pt: "jornada da gravidez" },
+    postpartum: { ar: "ما بعد الولادة والعناية بالطفل", en: "postpartum & baby care", de: "Wochenbett & Babypflege", fr: "post-partum & soins bébé", es: "posparto y cuidado del bebé", tr: "doğum sonrası ve bebek bakımı", pt: "pós-parto e cuidados com o bebê" },
+  };
+  return map[section]?.[lang] || map[section]?.en || section;
+};
 
 const buildPrompt = (seed: (typeof ARTICLE_SEED_REGISTRY)[number], lang: string) => {
-  const title = seed.titles[lang as keyof typeof seed.titles] || seed.titles.en;
-  return `Write a rich, practical, medically careful article in ${lang} for the topic "${title}".
+  const title = (seed.titles as Record<string, string>)[lang] || seed.titles.en;
+  const sectionName = sectionLabel(seed.section, lang);
+  const isArabic = lang === "ar";
 
-Requirements:
-- Audience: women using a pregnancy and fertility wellness app
-- Length: 700-1000 words
-- Tone: practical, clear, warm, non-diagnostic
-- Structure:
-  1) short compelling intro
-  2) 4 to 6 markdown sections with ## headings
-  3) concise practical closing
-- Must stay tightly focused on the exact topic
-- Avoid filler, generic intros, and repeated template phrases
-- Include actionable insights tied to daily decisions
-- Return valid JSON with keys: title_override, excerpt_override, intro_override, markdown_body, seo_description, reading_minutes`;
+  const personaLine = isArabic
+    ? "اكتبي بصوت رقيق ومهني للنساء، خاطبيهن بصيغة المؤنث، بلغة عربية فصيحة واضحة بدون تشخيص طبي."
+    : "Write in a warm, supportive, professional voice for women. Avoid clinical diagnosis. Use 'you' naturally.";
+
+  return `Topic: "${title}" — Section: ${sectionName}.
+
+${personaLine}
+
+Write a focused, useful article (550-750 words) in ${lang} that genuinely answers what a reader searches for on this exact topic.
+
+Output strict JSON ONLY (no markdown wrapper) with these exact keys:
+- title_override: string (refined title, max 80 chars)
+- excerpt_override: string (1-2 sentences hook, max 200 chars)
+- intro_override: string (one paragraph opening, 2-3 sentences)
+- markdown_body: string (4 sections each starting with "## " heading; each section 80-130 words; use short bullets where useful; NO h1; NO triple backticks; close all quotes)
+- seo_description: string (max 155 chars, plain text)
+- reading_minutes: integer (3-6)
+
+Rules:
+- Stay tightly on the exact topic. No filler intros like "In this article we will discuss".
+- Practical, actionable, non-diagnostic. Wellness tone, never medical advice.
+- Keep total markdown_body under 3500 characters to ensure clean JSON.
+- Tags to weave naturally: ${seed.tags.join(", ")}.
+- Return valid JSON, properly escaped, single object.`;
+};
+
+const callAI = async (prompt: string, apiKey: string): Promise<any> => {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+  try {
+    const res = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
+      signal: controller.signal,
+      body: JSON.stringify({
+        model: CONTENT_MODEL,
+        temperature: 0.4,
+        max_tokens: MAX_TOKENS,
+        response_format: { type: "json_object" },
+        messages: [
+          { role: "system", content: "You are a multilingual wellness editorial writer. Output ONLY a single valid JSON object. Never wrap in markdown. Always close all strings." },
+          { role: "user", content: prompt },
+        ],
+      }),
+    });
+    if (!res.ok) {
+      const txt = await res.text();
+      throw new Error(`HTTP ${res.status}: ${txt.slice(0, 200)}`);
+    }
+    return await res.json();
+  } finally {
+    clearTimeout(timeout);
+  }
+};
+
+// Try to repair common JSON issues from truncated AI output.
+const safeParseJSON = (raw: string): any | null => {
+  if (!raw) return null;
+  let text = raw.trim();
+  // Strip code fences
+  text = text.replace(/^```(?:json)?\s*/i, "").replace(/```\s*$/i, "");
+  try { return JSON.parse(text); } catch {}
+  // Attempt: cut at last closing brace
+  const lastBrace = text.lastIndexOf("}");
+  if (lastBrace > 0) {
+    try { return JSON.parse(text.slice(0, lastBrace + 1)); } catch {}
+  }
+  // Attempt: close unterminated string + brace
+  try { return JSON.parse(text + '"}'); } catch {}
+  try { return JSON.parse(text + "}"); } catch {}
+  return null;
+};
+
+interface ProcessResult { ok: boolean; error?: string; }
+
+const processSeedLang = async (
+  admin: any,
+  seed: (typeof ARTICLE_SEED_REGISTRY)[number],
+  lang: string,
+  effectiveDate: string,
+  apiKey: string,
+): Promise<ProcessResult> => {
+  let lastError = "";
+  for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
+    try {
+      const aiData = await callAI(buildPrompt(seed, lang), apiKey);
+      const raw = aiData.choices?.[0]?.message?.content ?? "";
+      const parsed = safeParseJSON(raw);
+      if (!parsed) {
+        lastError = `JSON parse failed (attempt ${attempt + 1})`;
+        continue;
+      }
+      const body = typeof parsed.markdown_body === "string" ? parsed.markdown_body.trim() : "";
+      if (body.length < 200) {
+        lastError = `markdown_body too short (${body.length} chars)`;
+        continue;
+      }
+      const { error } = await admin.from("article_daily_content").upsert({
+        slug: seed.slug,
+        language: lang,
+        title_override: parsed.title_override ?? null,
+        excerpt_override: parsed.excerpt_override ?? null,
+        intro_override: parsed.intro_override ?? null,
+        markdown_body: body,
+        seo_description: parsed.seo_description ?? null,
+        reading_minutes: typeof parsed.reading_minutes === "number" ? parsed.reading_minutes : null,
+        effective_date: effectiveDate,
+        is_published: true,
+      }, { onConflict: "slug,language,effective_date" });
+      if (error) {
+        lastError = `DB upsert failed: ${error.message}`;
+        continue;
+      }
+      return { ok: true };
+    } catch (e) {
+      lastError = e instanceof Error ? e.message : String(e);
+    }
+  }
+  return { ok: false, error: lastError };
 };
 
 serve(async (req) => {
@@ -48,101 +155,72 @@ serve(async (req) => {
   const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "";
   const lovableApiKey = Deno.env.get("LOVABLE_API_KEY") ?? "";
   if (!supabaseUrl || !serviceRoleKey || !lovableApiKey) {
-    return new Response(JSON.stringify({ error: "Missing backend configuration" }), { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+    return new Response(JSON.stringify({ error: "Missing backend configuration" }), {
+      status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" },
+    });
   }
 
   const admin = createClient(supabaseUrl, serviceRoleKey);
   const body = await req.json().catch(() => ({}));
-  const slugs = Array.isArray(body.slugs) && body.slugs.length ? new Set(body.slugs as string[]) : null;
-  const languages = Array.isArray(body.languages) && body.languages.length ? (body.languages as string[]) : [...SUPPORTED_LANGS];
-  const effectiveDate = typeof body.effectiveDate === "string" ? body.effectiveDate : new Date().toISOString().slice(0, 10);
+  const slugFilter: Set<string> | null = Array.isArray(body.slugs) && body.slugs.length
+    ? new Set(body.slugs as string[]) : null;
+  const languages: string[] = Array.isArray(body.languages) && body.languages.length
+    ? body.languages : [...SUPPORTED_LANGS];
+  const effectiveDate: string = typeof body.effectiveDate === "string"
+    ? body.effectiveDate : new Date().toISOString().slice(0, 10);
+
+  const targets = ARTICLE_SEED_REGISTRY.filter((s) => !slugFilter || slugFilter.has(s.slug));
 
   const runInsert = await admin.from("article_refresh_runs").insert({
-    run_date: effectiveDate,
-    status: "started",
-    source_model: CONTENT_MODEL,
-    languages,
+    run_date: effectiveDate, status: "started", source_model: CONTENT_MODEL, languages,
   }).select("id").single();
-
   const runId = runInsert.data?.id;
-  let processedCount = 0;
 
-  try {
-    const targets = ARTICLE_SEED_REGISTRY.filter((seed) => !slugs || slugs.has(seed.slug));
+  let processed = 0;
+  let failed = 0;
+  const errors: string[] = [];
 
-    for (const seed of targets) {
-      await Promise.all(languages.map(async (lang) => {
-        const prompt = buildPrompt(seed, lang);
-        const aiRes = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${lovableApiKey}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            model: CONTENT_MODEL,
-            temperature: 0.3,
-            max_tokens: 1800,
-            response_format: { type: "json_object" },
-            messages: [
-              { role: "system", content: "You are a multilingual health editorial writer. Respond only with JSON." },
-              { role: "user", content: prompt },
-            ],
-          }),
-        });
+  const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
-        if (!aiRes.ok) {
-          const details = await aiRes.text();
-          throw new Error(`AI generation failed for ${seed.slug}/${lang}: ${details}`);
-        }
-        const aiData = await aiRes.json();
-        const raw = aiData.choices?.[0]?.message?.content ?? "{}";
-        const parsed = JSON.parse(raw);
-        const markdownBody = typeof parsed.markdown_body === "string" ? parsed.markdown_body.trim() : "";
-
-        if (!markdownBody) {
-          throw new Error(`Missing markdown_body for ${seed.slug}/${lang}`);
-        }
-
-        await admin.from("article_daily_content").upsert({
-          slug: seed.slug,
-          language: lang,
-          title_override: parsed.title_override ?? null,
-          excerpt_override: parsed.excerpt_override ?? null,
-          intro_override: parsed.intro_override ?? null,
-          markdown_body: markdownBody,
-          seo_description: parsed.seo_description ?? null,
-          reading_minutes: parsed.reading_minutes ?? null,
-          effective_date: effectiveDate,
-          is_published: true,
-        }, { onConflict: "slug,language,effective_date" });
-
-        processedCount += 1;
-      }));
+  // Sequential per-seed AND per-language to respect AI gateway rate limits (free tier).
+  // ~600ms gap between calls keeps us safely under common per-minute caps.
+  for (const seed of targets) {
+    const results: ProcessResult[] = [];
+    for (const lang of languages) {
+      results.push(await processSeedLang(admin, seed, lang, effectiveDate, lovableApiKey));
+      await sleep(600);
     }
-
-    if (runId) {
-      await admin.from("article_refresh_runs").update({
-        status: "completed",
-        processed_count: processedCount,
-        finished_at: new Date().toISOString(),
-      }).eq("id", runId);
-    }
-
-    return new Response(JSON.stringify({ ok: true, processedCount }), { headers: { ...corsHeaders, "Content-Type": "application/json" } });
-  } catch (error) {
-    if (runId) {
-      await admin.from("article_refresh_runs").update({
-        status: "failed",
-        processed_count: processedCount,
-        error_message: error instanceof Error ? error.message : String(error),
-        finished_at: new Date().toISOString(),
-      }).eq("id", runId);
-    }
-
-    return new Response(JSON.stringify({ error: error instanceof Error ? error.message : String(error) }), {
-      status: 500,
-      headers: { ...corsHeaders, "Content-Type": "application/json" },
+    results.forEach((r, idx) => {
+      if (r.ok) processed += 1;
+      else {
+        failed += 1;
+        errors.push(`${seed.slug}/${languages[idx]}: ${r.error}`);
+      }
     });
+
+    // Lightweight progress checkpoint (silent failure on update is OK).
+    if (runId) {
+      await admin.from("article_refresh_runs").update({
+        processed_count: processed,
+        notes: `processed ${processed}, failed ${failed}, last seed ${seed.slug}`,
+      }).eq("id", runId);
+    }
   }
+
+  if (runId) {
+    await admin.from("article_refresh_runs").update({
+      status: failed === 0 ? "completed" : (processed > 0 ? "partial" : "failed"),
+      processed_count: processed,
+      finished_at: new Date().toISOString(),
+      error_message: errors.length ? errors.slice(0, 10).join(" | ") : null,
+    }).eq("id", runId);
+  }
+
+  return new Response(JSON.stringify({
+    ok: failed === 0,
+    processed,
+    failed,
+    total: targets.length * languages.length,
+    sampleErrors: errors.slice(0, 5),
+  }), { headers: { ...corsHeaders, "Content-Type": "application/json" } });
 });
