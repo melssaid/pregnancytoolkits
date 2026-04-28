@@ -1,6 +1,7 @@
 import { describe, expect, it, vi, afterEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import type { ArticleRecord } from "@/data/articles";
 import * as articleData from "@/data/articles";
 import ArticlePage from "@/pages/ArticlePage";
@@ -28,13 +29,45 @@ vi.mock("@/components/articles/RelatedArticles", () => ({
   RelatedArticles: () => null,
 }));
 
-const renderArticleRoute = (slug: string) => render(
-  <MemoryRouter initialEntries={[`/articles/${slug}`]}>
-    <Routes>
-      <Route path="/articles/:slug" element={<ArticlePage />} />
-    </Routes>
-  </MemoryRouter>
-);
+vi.mock("@/components/articles/ArticleReadingEnhancements", () => ({
+  ArticleReadingEnhancements: () => null,
+}));
+
+// Bypass network — useDailyArticleContent will resolve to null and use fallback registry content.
+vi.mock("@/integrations/supabase/client", () => ({
+  supabase: {
+    from: () => ({
+      select: () => ({
+        eq: () => ({
+          eq: () => ({
+            lte: () => ({
+              eq: () => ({
+                order: () => ({
+                  limit: () => ({
+                    maybeSingle: async () => ({ data: null, error: null }),
+                  }),
+                }),
+              }),
+            }),
+          }),
+        }),
+      }),
+    }),
+  },
+}));
+
+const renderArticleRoute = (slug: string) => {
+  const client = new QueryClient({ defaultOptions: { queries: { retry: false } } });
+  return render(
+    <QueryClientProvider client={client}>
+      <MemoryRouter initialEntries={[`/articles/${slug}`]}>
+        <Routes>
+          <Route path="/articles/:slug" element={<ArticlePage />} />
+        </Routes>
+      </MemoryRouter>
+    </QueryClientProvider>
+  );
+};
 
 afterEach(() => {
   vi.restoreAllMocks();

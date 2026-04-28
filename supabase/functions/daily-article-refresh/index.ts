@@ -27,20 +27,28 @@ const buildPrompt = (seed: (typeof ARTICLE_SEED_REGISTRY)[number], lang: string)
   const sectionName = sectionLabel(seed.section, lang);
   const isArabic = lang === "ar";
 
+  // CEO Persona for Arabic: female address, formal, assertive, concise.
+  // Wellness companion tone — never medical diagnosis or device terminology.
   const personaLine = isArabic
-    ? "اكتبي بصوت رقيق ومهني للنساء، خاطبيهن بصيغة المؤنث، بلغة عربية فصيحة واضحة بدون تشخيص طبي."
-    : "Write in a warm, supportive, professional voice for women. Avoid clinical diagnosis. Use 'you' naturally.";
+    ? "اكتبي بصيغة المؤنث المخاطب (أنتِ)، بلغة عربية فصحى أنيقة وواثقة وموجزة، بأسلوب 'رفيقة العافية' دون تشخيص طبي أو ألفاظ سريرية. لا تبدئي بتحيات أو تقديم طويل. ادخلي مباشرة في صلب الموضوع."
+    : "Write in a warm, supportive, professional 'wellness companion' voice for women. Avoid clinical diagnosis or medical-device language. Use 'you' naturally. No greetings or long intros — go straight to value.";
+
+  const safetyRules = isArabic
+    ? "ممنوع: كلمات (تشخيص، علاج، دواء، جنين/جنيني — استخدمي 'الطفل' أو 'البيبي'، جهاز طبي). إذا كان الموضوع حساسًا (نزيف، ألم شديد، حركة قليلة)، اذكري ضرورة استشارة الطبيبة بأسلوب لطيف دون تهويل، ولا تعطي توصيات دوائية."
+    : "Forbidden: words like 'diagnosis', 'treatment', 'prescribe', 'fetal' (use 'baby'), 'medical device'. For sensitive topics (bleeding, severe pain, low movement), gently remind to consult a clinician — never alarm, never recommend medication.";
 
   return `Topic: "${title}" — Section: ${sectionName}.
 
 ${personaLine}
+
+${safetyRules}
 
 Write a focused, useful article (550-750 words) in ${lang} that genuinely answers what a reader searches for on this exact topic.
 
 Output strict JSON ONLY (no markdown wrapper) with these exact keys:
 - title_override: string (refined title, max 80 chars)
 - excerpt_override: string (1-2 sentences hook, max 200 chars)
-- intro_override: string (one paragraph opening, 2-3 sentences)
+- intro_override: string (one paragraph opening, 2-3 sentences — no greetings)
 - markdown_body: string (4 sections each starting with "## " heading; each section 80-130 words; use short bullets where useful; NO h1; NO triple backticks; close all quotes)
 - seo_description: string (max 155 chars, plain text)
 - reading_minutes: integer (3-6)
