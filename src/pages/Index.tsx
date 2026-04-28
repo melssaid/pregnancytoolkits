@@ -616,7 +616,17 @@ const CouponAndShareRow = memo(function CouponAndShareRow() {
 const Index = () => {
   const { t, i18n } = useTranslation();
   const { tier, isUnlocked, isLoading: subLoading } = useSubscriptionStatus();
+  const { profile: userProfile } = useUserProfile();
   const lang = i18n.language?.split('-')[0] || 'en';
+
+  // Stage-aware journey ordering: user's current stage first
+  const orderedJourneyConfigs = useMemo(() => {
+    const userKey = stageToJourneyKey[userProfile.journeyStage] || "pregnant";
+    const userIdx = journeyConfigs.findIndex((c) => c.key === userKey);
+    if (userIdx <= 0) return journeyConfigs;
+    return [journeyConfigs[userIdx], ...journeyConfigs.filter((_, i) => i !== userIdx)];
+  }, [userProfile.journeyStage]);
+
   const [openJourneyKey, setOpenJourneyKey] = useState<JourneyKey | null>(() => {
     try {
       const savedOpen = localStorage.getItem("journey-open");
@@ -627,11 +637,13 @@ const Index = () => {
       const savedStates = localStorage.getItem("journey-states");
       if (savedStates) {
         const states = JSON.parse(savedStates) as Partial<Record<JourneyKey, boolean>>;
-        return journeyConfigs.find((config) => states[config.key])?.key ?? null;
+        const found = journeyConfigs.find((config) => states[config.key])?.key;
+        if (found) return found;
       }
     } catch {}
 
-    return null;
+    // Default: auto-open the user's current stage
+    return stageToJourneyKey[userProfile.journeyStage] || null;
   });
 
   useEffect(() => {
@@ -660,7 +672,7 @@ const Index = () => {
         <div className="px-2.5 sm:px-4 md:px-6 lg:px-8 max-w-4xl mx-auto space-y-3 pb-6">
 
 
-          {journeyConfigs.map((config, index) => (
+          {orderedJourneyConfigs.map((config, index) => (
             <JourneyCard
               key={config.key}
               config={config}
