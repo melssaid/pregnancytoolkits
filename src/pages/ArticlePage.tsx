@@ -11,9 +11,25 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Button } from "@/components/ui/button";
 import { FeaturedArticlesRail } from "@/components/articles/FeaturedArticlesRail";
 import { RelatedArticles } from "@/components/articles/RelatedArticles";
+import { ArticleReadingEnhancements } from "@/components/articles/ArticleReadingEnhancements";
 import { articleUiCopy, getLocalizedArticleBySlug, getRelatedToolRecords } from "@/data/articles";
 import { resolveArticleLocale } from "@/lib/articleLocale";
 import { useDailyArticleContent } from "@/hooks/useDailyArticleContent";
+import { useUserProfile } from "@/hooks/useUserProfile";
+
+// Map article section → user journey stage (for stage-aware tool filtering)
+const sectionStageMap: Record<string, "fertility" | "pregnant" | "postpartum"> = {
+  planning: "fertility",
+  pregnant: "pregnant",
+  postpartum: "postpartum",
+};
+
+// Map article section → preferred tool category prefixes
+const sectionCategoryMap: Record<string, string[]> = {
+  planning: ["categories.fertility", "categories.nutrition", "categories.smartAssistant"],
+  pregnant: ["categories.pregnancy", "categories.smartAssistant", "categories.nutrition", "categories.wellness"],
+  postpartum: ["categories.postpartum", "categories.preparation", "categories.wellness"],
+};
 
 const ArticlePage = () => {
   const { slug = "" } = useParams();
@@ -23,7 +39,33 @@ const ArticlePage = () => {
   const copy = articleUiCopy(lang);
   const article = useMemo(() => getLocalizedArticleBySlug(slug, lang), [lang, slug]);
   const dailyContent = useDailyArticleContent(slug, lang);
-  const relatedTools = useMemo(() => (article ? getRelatedToolRecords(article) : []), [article]);
+  const { profile: userProfile } = useUserProfile();
+
+  const allRelatedTools = useMemo(() => (article ? getRelatedToolRecords(article) : []), [article]);
+
+  // Stage-aware tool ranking: prioritize tools that match the user's current journey stage
+  // OR the article's section. Always returns at least 2 if available.
+  const relatedTools = useMemo(() => {
+    if (!article || allRelatedTools.length === 0) return allRelatedTools;
+    const userStage = userProfile.journeyStage;
+    const articleStage = sectionStageMap[article.sectionKey];
+    const targetStage = userStage === articleStage ? userStage : articleStage;
+    const preferredCats = sectionCategoryMap[article.sectionKey] || [];
+
+    const scored = allRelatedTools.map((tool) => {
+      let score = 0;
+      const idx = preferredCats.indexOf(tool!.categoryKey);
+      if (idx >= 0) score += 10 - idx;
+      // Boost tools whose href hints match stage
+      if (targetStage === "fertility" && /fertility|cycle|preconception|ovulation/i.test(tool!.href)) score += 5;
+      if (targetStage === "pregnant" && /pregnancy|kick|contraction|fetal|bump|weight|birth/i.test(tool!.href)) score += 5;
+      if (targetStage === "postpartum" && /postpartum|baby|diaper|sleep|cry|lactation/i.test(tool!.href)) score += 5;
+      return { tool, score };
+    });
+    scored.sort((a, b) => b.score - a.score);
+    return scored.map((s) => s.tool);
+  }, [article, allRelatedTools, userProfile.journeyStage]);
+
   const contentFallback = lang === "ar"
     ? {
         title: "المحتوى النصي لهذه المقالة غير متاح حالياً",
@@ -65,19 +107,22 @@ const ArticlePage = () => {
   const resolvedTitle = dailyContent.data?.title_override?.trim() || article.title;
   const resolvedIntro = dailyContent.data?.intro_override?.trim() || article.intro?.trim() || "";
   const resolvedExcerpt = dailyContent.data?.excerpt_override?.trim() || resolvedIntro || article.excerpt;
-  const markdownBody = useMemo(() => {
-    const introBlock = resolvedIntro ? [resolvedIntro] : [];
-    const sectionBlocks = resolvedSections.flatMap((section, index) => {
-      const body = section.body.trim();
-      if (!body) return [];
-      if (index === 0 && !section.heading.trim()) return [body];
-      return [`## ${section.heading.trim()}`, body];
-    });
 
-    return [...introBlock, ...sectionBlocks].join("\n\n").trim();
-  }, [resolvedIntro, resolvedSections]);
+  const hasRenderableContent = resolvedSections.length > 0 || !!resolvedIntro;
 
-  const hasRenderableContent = markdownBody.length > 0;
+  const markdownComponents = useMemo(
+    () => ({
+      h2: ({ children }: any) => (
+        <h2 className={`text-[1.45rem] font-black leading-tight text-foreground ${locale.headingClass}`}>
+          {children}
+        </h2>
+      ),
+      p: ({ children }: any) => <p className="text-[15px] leading-8 text-foreground">{children}</p>,
+    }),
+    [locale.headingClass]
+  );
+
+  const markdownClass = `article-markdown prose prose-sm max-w-none prose-headings:text-foreground prose-p:my-0 prose-p:text-foreground prose-p:leading-8 prose-p:text-[15px] prose-h2:mt-6 prose-h2:mb-3 prose-h2:border-b prose-h2:border-border prose-h2:pb-3 prose-h2:text-[1.45rem] prose-h2:font-black prose-ul:my-4 prose-ul:space-y-2 prose-li:text-[14px] prose-li:leading-7 prose-strong:text-foreground dark:prose-invert ${locale.isRTL ? "prose-headings:ar-heading prose-ul:ps-5" : "prose-ul:pl-5"}`;
 
   return (
     <Layout showBack compactBackHeader>
@@ -118,26 +163,39 @@ const ArticlePage = () => {
           </div>
         </header>
 
+        {/* Reading enhancements: progress bar, ToC, floating share/save */}
+        <ArticleReadingEnhancements
+          slug={article.slug}
+          title={resolvedTitle}
+          excerpt={resolvedExcerpt}
+          sections={resolvedSections}
+          isRTL={locale.isRTL}
+        />
+
         <section className="rounded-[1.6rem] border border-border bg-card px-4 py-4" style={{ boxShadow: "var(--shadow-card)" }}>
           <div className="relative space-y-3" data-testid="article-body">
             {hasRenderableContent ? (
-              <div className="rounded-[1.35rem] border border-border bg-card px-4 py-5">
-                <div className={`article-markdown prose prose-sm max-w-none prose-headings:text-foreground prose-p:my-0 prose-p:text-foreground prose-p:leading-8 prose-p:text-[15px] prose-h2:mt-10 prose-h2:mb-4 prose-h2:border-b prose-h2:border-border prose-h2:pb-3 prose-h2:text-[1.45rem] prose-h2:font-black prose-ul:my-4 prose-ul:space-y-2 prose-li:text-[14px] prose-li:leading-7 prose-strong:text-foreground dark:prose-invert ${locale.isRTL ? "prose-headings:ar-heading prose-ul:ps-5" : "prose-ul:pl-5"}`}
-                  style={{ textAlign: locale.textAlign }}>
-                  <ReactMarkdown
-                    remarkPlugins={[remarkGfm]}
-                    components={{
-                      h2: ({ children }) => (
-                        <h2 className={`text-[1.45rem] font-black leading-tight text-foreground ${locale.headingClass}`}>
-                          {children}
-                        </h2>
-                      ),
-                      p: ({ children }) => <p className="text-[15px] leading-8 text-foreground">{children}</p>,
-                    }}
-                  >
-                    {markdownBody}
-                  </ReactMarkdown>
-                </div>
+              <div className={`rounded-[1.35rem] border border-border bg-card px-4 py-5 ${markdownClass}`}
+                style={{ textAlign: locale.textAlign }}>
+                {resolvedIntro && (
+                  <div data-section-index="-1" className="mb-4">
+                    <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
+                      {resolvedIntro}
+                    </ReactMarkdown>
+                  </div>
+                )}
+                {resolvedSections.map((section, index) => {
+                  const body = section.body.trim();
+                  if (!body && !section.heading.trim()) return null;
+                  const headingMd = section.heading.trim() ? `## ${section.heading.trim()}\n\n` : "";
+                  return (
+                    <div key={`section-${index}`} data-section-index={index} className="scroll-mt-20">
+                      <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
+                        {`${headingMd}${body}`}
+                      </ReactMarkdown>
+                    </div>
+                  );
+                })}
               </div>
             ) : (
               <div data-testid="article-body-fallback" className="rounded-[1.35rem] border border-border bg-card px-4 py-5 text-center">
@@ -161,9 +219,9 @@ const ArticlePage = () => {
             </div>
             <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
               {relatedTools.map((tool) => (
-                <Link key={tool.id} to={tool.href} className="rounded-[1rem] border border-border bg-card px-3 py-2 transition-colors hover:border-primary/35 hover:bg-secondary">
-                  <div className={`text-[11px] font-bold text-foreground ${locale.headingClass}`}>{t(tool.titleKey)}</div>
-                  <div className="mt-1 line-clamp-2 text-[9px] leading-4 text-muted-foreground">{t(tool.descriptionKey)}</div>
+                <Link key={tool!.id} to={tool!.href} className="rounded-[1rem] border border-border bg-card px-3 py-2 transition-colors hover:border-primary/35 hover:bg-secondary">
+                  <div className={`text-[11px] font-bold text-foreground ${locale.headingClass}`}>{t(tool!.titleKey)}</div>
+                  <div className="mt-1 line-clamp-2 text-[9px] leading-4 text-muted-foreground">{t(tool!.descriptionKey)}</div>
                 </Link>
               ))}
             </div>
