@@ -13,6 +13,7 @@ import { UnifiedToolsGrid } from "@/components/dashboard/UnifiedToolsGrid";
 import { EmptyStateCard } from "@/components/dashboard/EmptyStateCard";
 import { FertilityCycleCard } from "@/components/dashboard/FertilityCycleCard";
 import { PostpartumCareCard } from "@/components/dashboard/PostpartumCareCard";
+import { QuickProblemSolver } from "@/components/dashboard/QuickProblemSolver";
 import { useDashboardData } from "@/hooks/useDashboardData";
 import { useUserProfile } from "@/hooks/useUserProfile";
 
@@ -74,6 +75,9 @@ export const TodayTab = memo(function TodayTab() {
       {/* Stage-specific hero cards */}
       {isFertility && <FertilityCycleCard />}
       {isPostpartum && <PostpartumCareCard />}
+
+      {/* Quick problem solver — stage-aware shortcuts to the most-asked questions */}
+      <QuickProblemSolver />
 
       <UnifiedToolsGrid />
 
