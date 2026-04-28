@@ -619,13 +619,9 @@ const Index = () => {
   const { profile: userProfile } = useUserProfile();
   const lang = i18n.language?.split('-')[0] || 'en';
 
-  // Stage-aware journey ordering: user's current stage first
-  const orderedJourneyConfigs = useMemo(() => {
-    const userKey = stageToJourneyKey[userProfile.journeyStage] || "pregnant";
-    const userIdx = journeyConfigs.findIndex((c) => c.key === userKey);
-    if (userIdx <= 0) return journeyConfigs;
-    return [journeyConfigs[userIdx], ...journeyConfigs.filter((_, i) => i !== userIdx)];
-  }, [userProfile.journeyStage]);
+  // Fixed, predictable order — planning → pregnant → postpartum.
+  // The user's stage only controls which section auto-opens, not the layout.
+  const orderedJourneyConfigs = journeyConfigs;
 
   const [openJourneyKey, setOpenJourneyKey] = useState<JourneyKey | null>(() => {
     try {
