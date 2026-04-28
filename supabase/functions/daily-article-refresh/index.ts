@@ -180,11 +180,16 @@ serve(async (req) => {
   let failed = 0;
   const errors: string[] = [];
 
-  // Sequential per-seed; parallel per-language inside one seed (small batch).
+  const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
+  // Sequential per-seed AND per-language to respect AI gateway rate limits (free tier).
+  // ~600ms gap between calls keeps us safely under common per-minute caps.
   for (const seed of targets) {
-    const results = await Promise.all(
-      languages.map((lang) => processSeedLang(admin, seed, lang, effectiveDate, lovableApiKey))
-    );
+    const results: ProcessResult[] = [];
+    for (const lang of languages) {
+      results.push(await processSeedLang(admin, seed, lang, effectiveDate, lovableApiKey));
+      await sleep(600);
+    }
     results.forEach((r, idx) => {
       if (r.ok) processed += 1;
       else {
