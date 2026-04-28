@@ -1,10 +1,11 @@
-import React, { memo, useMemo } from 'react';
+import React, { memo, useCallback, useMemo, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Calendar } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { motion } from 'framer-motion';
+import { haptic } from '@/lib/haptics';
 
 interface WeekSliderProps {
   week: number;
@@ -17,32 +18,31 @@ interface WeekSliderProps {
   className?: string;
 }
 
-const getTrimesterKey = (week: number): string => {
+// Clinically accurate trimester boundaries:
+// T1 = weeks 1–13, T2 = weeks 14–27, T3 = weeks 28–42
+const getTrimesterKey = (week: number): 'trimester1' | 'trimester2' | 'trimester3' => {
   if (week <= 13) return 'trimester1';
-  if (week <= 26) return 'trimester2';
+  if (week <= 27) return 'trimester2';
   return 'trimester3';
 };
 
 const getTrimesterColor = (week: number): string => {
-  if (week <= 13) return 'bg-emerald-100 text-emerald-700 border-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-300';
-  if (week <= 26) return 'bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-900/30 dark:text-blue-300';
-  return 'bg-purple-100 text-purple-700 border-purple-200 dark:bg-purple-900/30 dark:text-purple-300';
+  const t = getTrimesterKey(week);
+  if (t === 'trimester1')
+    return 'bg-emerald-100 text-emerald-700 border-emerald-200 dark:bg-emerald-900/30 dark:text-emerald-300 dark:border-emerald-800/40';
+  if (t === 'trimester2')
+    return 'bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-900/30 dark:text-blue-300 dark:border-blue-800/40';
+  return 'bg-purple-100 text-purple-700 border-purple-200 dark:bg-purple-900/30 dark:text-purple-300 dark:border-purple-800/40';
 };
 
-const TRIMESTER_BOUNDARIES = [
-  { week: 1, color: 'hsl(var(--primary))' },
-  { week: 13, color: 'hsl(160, 60%, 45%)' },
-  { week: 14, color: 'hsl(210, 70%, 55%)' },
-  { week: 26, color: 'hsl(210, 70%, 55%)' },
-  { week: 27, color: 'hsl(270, 60%, 55%)' },
-  { week: 42, color: 'hsl(270, 60%, 55%)' },
-];
-
 function getTrackColor(week: number): string {
-  if (week <= 13) return 'hsl(var(--primary))';
-  if (week <= 26) return 'hsl(210, 70%, 55%)';
+  const t = getTrimesterKey(week);
+  if (t === 'trimester1') return 'hsl(var(--primary))';
+  if (t === 'trimester2') return 'hsl(210, 70%, 55%)';
   return 'hsl(270, 60%, 55%)';
 }
+
+const clamp = (v: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, v));
 
 export const WeekSlider = memo(function WeekSlider({
   week,
@@ -56,88 +56,173 @@ export const WeekSlider = memo(function WeekSlider({
 }: WeekSliderProps) {
   const { t } = useTranslation();
   const { isRTL } = useLanguage();
+  const trackRef = useRef<HTMLDivElement | null>(null);
+  const lastWeekRef = useRef<number>(week);
 
-  const progress = useMemo(() => ((week - min) / (max - min)) * 100, [week, min, max]);
+  // Guard against degenerate ranges and out-of-range incoming values
+  const safeMin = Math.min(min, max);
+  const safeMax = Math.max(min, max);
+  const safeWeek = clamp(week, safeMin, safeMax);
+  const span = Math.max(1, safeMax - safeMin);
+
+  const progress = useMemo(() => ((safeWeek - safeMin) / span) * 100, [safeWeek, safeMin, span]);
 
   const displayLabel = label || t('toolsInternal.weekSlider.currentWeek');
-  const trimesterText = t(`toolsInternal.weekSlider.${getTrimesterKey(week)}`);
+  const trimesterText = t(`toolsInternal.weekSlider.${getTrimesterKey(safeWeek)}`);
 
-  const handleTrackClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    let ratio = (e.clientX - rect.left) / rect.width;
-    if (isRTL) ratio = 1 - ratio;
-    const newWeek = Math.round(min + ratio * (max - min));
-    onChange(Math.max(min, Math.min(max, newWeek)));
-  };
+  const commit = useCallback(
+    (newWeek: number) => {
+      const clamped = clamp(Math.round(newWeek), safeMin, safeMax);
+      if (clamped !== lastWeekRef.current) {
+        lastWeekRef.current = clamped;
+        haptic('tap');
+        onChange(clamped);
+      }
+    },
+    [onChange, safeMin, safeMax],
+  );
 
-  const handleDrag = (e: React.PointerEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    const track = (e.currentTarget.parentElement as HTMLElement);
-    
-    const onMove = (ev: PointerEvent) => {
-      const rect = track.getBoundingClientRect();
-      let ratio = (ev.clientX - rect.left) / rect.width;
+  const weekFromClientX = useCallback(
+    (clientX: number, rect: DOMRect) => {
+      let ratio = (clientX - rect.left) / rect.width;
       if (isRTL) ratio = 1 - ratio;
-      const newWeek = Math.round(min + ratio * (max - min));
-      onChange(Math.max(min, Math.min(max, newWeek)));
-    };
-    
-    const onUp = () => {
-      document.removeEventListener('pointermove', onMove);
-      document.removeEventListener('pointerup', onUp);
-    };
-    
-    document.addEventListener('pointermove', onMove);
-    document.addEventListener('pointerup', onUp);
-  };
+      ratio = clamp(ratio, 0, 1);
+      return safeMin + ratio * span;
+    },
+    [isRTL, safeMin, span],
+  );
 
-  // Milestone markers at trimester boundaries
-  const milestones = [13, 27].filter(m => m >= min && m <= max);
+  const handlePointerDown = useCallback(
+    (e: React.PointerEvent<HTMLDivElement>) => {
+      const track = trackRef.current;
+      if (!track) return;
+      // Capture pointer so dragging continues even if it leaves the track
+      try {
+        track.setPointerCapture(e.pointerId);
+      } catch {
+        /* noop */
+      }
+      const rect = track.getBoundingClientRect();
+      commit(weekFromClientX(e.clientX, rect));
+    },
+    [commit, weekFromClientX],
+  );
+
+  const handlePointerMove = useCallback(
+    (e: React.PointerEvent<HTMLDivElement>) => {
+      const track = trackRef.current;
+      if (!track) return;
+      // Only react while pointer is held (buttons & 1) — covers mouse, touch, pen
+      if (e.pointerType === 'mouse' && e.buttons === 0) return;
+      if (!track.hasPointerCapture(e.pointerId)) return;
+      const rect = track.getBoundingClientRect();
+      commit(weekFromClientX(e.clientX, rect));
+    },
+    [commit, weekFromClientX],
+  );
+
+  const handlePointerUp = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
+    const track = trackRef.current;
+    if (track && track.hasPointerCapture(e.pointerId)) {
+      try {
+        track.releasePointerCapture(e.pointerId);
+      } catch {
+        /* noop */
+      }
+    }
+  }, []);
+
+  // Keyboard: increase/decrease ALWAYS map to logical "next/previous week"
+  // regardless of layout direction. ArrowRight in RTL still feels natural
+  // because the visual progress fills from the right side, so right-arrow
+  // still moves the thumb forward visually.
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLDivElement>) => {
+      let next: number | null = null;
+      switch (e.key) {
+        case 'ArrowRight':
+          next = isRTL ? safeWeek - 1 : safeWeek + 1;
+          break;
+        case 'ArrowLeft':
+          next = isRTL ? safeWeek + 1 : safeWeek - 1;
+          break;
+        case 'ArrowUp':
+          next = safeWeek + 1;
+          break;
+        case 'ArrowDown':
+          next = safeWeek - 1;
+          break;
+        case 'PageUp':
+          next = safeWeek + 4;
+          break;
+        case 'PageDown':
+          next = safeWeek - 4;
+          break;
+        case 'Home':
+          next = safeMin;
+          break;
+        case 'End':
+          next = safeMax;
+          break;
+      }
+      if (next !== null) {
+        e.preventDefault();
+        commit(next);
+      }
+    },
+    [commit, isRTL, safeWeek, safeMin, safeMax],
+  );
+
+  // Trimester boundary markers (start of T2 = 14, start of T3 = 28)
+  const milestones = useMemo(
+    () => [14, 28].filter((m) => m > safeMin && m < safeMax),
+    [safeMin, safeMax],
+  );
 
   const content = (
-    <div className={`space-y-4 ${className}`}>
+    <div className={`space-y-4 ${className}`} dir={isRTL ? 'rtl' : 'ltr'}>
       {/* Header */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <Calendar className="w-4 h-4 text-primary" />
-          <label className="font-medium text-foreground text-sm">
-            {displayLabel}
-          </label>
+      <div className="flex items-center justify-between gap-2">
+        <div className="flex items-center gap-2 min-w-0">
+          <Calendar className="w-4 h-4 text-primary shrink-0" />
+          <label className="font-medium text-foreground text-sm truncate">{displayLabel}</label>
         </div>
         {showTrimester && (
           <Badge
             variant="outline"
-            className={`text-xs font-medium ${getTrimesterColor(week)}`}
+            className={`text-xs font-medium shrink-0 ${getTrimesterColor(safeWeek)}`}
           >
             {trimesterText}
           </Badge>
         )}
       </div>
 
-      {/* Custom Track */}
+      {/* Track */}
       <div className="space-y-2">
         <div
-          className="relative h-7 flex items-center cursor-pointer select-none touch-none"
-          onClick={handleTrackClick}
+          ref={trackRef}
+          className="relative h-8 flex items-center cursor-pointer select-none touch-none px-1"
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerUp}
+          onPointerCancel={handlePointerUp}
+          onKeyDown={handleKeyDown}
           role="slider"
-          aria-valuenow={week}
-          aria-valuemin={min}
-          aria-valuemax={max}
+          aria-label={displayLabel}
+          aria-valuenow={safeWeek}
+          aria-valuemin={safeMin}
+          aria-valuemax={safeMax}
+          aria-valuetext={`${t('common.week')} ${safeWeek} — ${trimesterText}`}
           tabIndex={0}
-          onKeyDown={(e) => {
-            const step = isRTL ? -1 : 1;
-            if (e.key === 'ArrowRight') onChange(Math.min(max, week + step));
-            if (e.key === 'ArrowLeft') onChange(Math.max(min, week - step));
-          }}
         >
           {/* Track background */}
-          <div className="absolute inset-x-0 h-2 rounded-full bg-secondary/60 overflow-hidden">
+          <div className="absolute inset-x-1 h-2 rounded-full bg-secondary/60 overflow-hidden">
             {/* Filled portion */}
             <motion.div
               key={`fill-${isRTL ? 'rtl' : 'ltr'}`}
               className="absolute top-0 h-full rounded-full"
               style={{
-                background: `linear-gradient(${isRTL ? '270deg' : '90deg'}, hsl(var(--primary)), ${getTrackColor(week)})`,
+                background: `linear-gradient(${isRTL ? '270deg' : '90deg'}, hsl(var(--primary)), ${getTrackColor(safeWeek)})`,
                 left: isRTL ? 'auto' : 0,
                 right: isRTL ? 0 : 'auto',
               }}
@@ -146,16 +231,20 @@ export const WeekSlider = memo(function WeekSlider({
             />
           </div>
 
-          {/* Trimester milestone dots */}
+          {/* Trimester milestone markers */}
           {milestones.map((m) => {
-            const pos = ((m - min) / (max - min)) * 100;
+            const pos = ((m - safeMin) / span) * 100;
+            const passed = safeWeek >= m;
             return (
               <div
-                key={`${m}-${isRTL ? 'rtl' : 'ltr'}`}
-                className="absolute top-1/2 -translate-y-1/2 w-1 h-3 rounded-full bg-border/60"
+                key={`milestone-${m}`}
+                aria-hidden="true"
+                className={`absolute top-1/2 -translate-y-1/2 w-1 h-3 rounded-full transition-colors ${
+                  passed ? 'bg-primary/70' : 'bg-border/70'
+                }`}
                 style={{
-                  left: isRTL ? 'auto' : `${pos}%`,
-                  right: isRTL ? `${pos}%` : 'auto',
+                  left: isRTL ? 'auto' : `calc(${pos}% + 4px)`,
+                  right: isRTL ? `calc(${pos}% + 4px)` : 'auto',
                 }}
               />
             );
@@ -164,42 +253,44 @@ export const WeekSlider = memo(function WeekSlider({
           {/* Thumb */}
           <motion.div
             key={`thumb-${isRTL ? 'rtl' : 'ltr'}`}
-            className="absolute top-1/2 z-10"
+            aria-hidden="true"
+            className="absolute top-1/2 z-10 pointer-events-none"
             style={{
               translateX: isRTL ? '50%' : '-50%',
               translateY: '-50%',
-              left: isRTL ? 'auto' : undefined,
-              right: isRTL ? undefined : 'auto',
             }}
             animate={
               isRTL
-                ? { right: `${progress}%` }
-                : { left: `${progress}%` }
+                ? { right: `calc(${progress}% + 4px)` }
+                : { left: `calc(${progress}% + 4px)` }
             }
             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-            onPointerDown={handleDrag}
           >
-            <div className="w-6 h-6 rounded-full border-2 border-primary bg-background shadow-md shadow-primary/20 flex items-center justify-center cursor-grab active:cursor-grabbing">
+            <div className="w-6 h-6 rounded-full border-2 border-primary bg-background shadow-md shadow-primary/20 flex items-center justify-center">
               <div className="w-2 h-2 rounded-full bg-primary" />
             </div>
           </motion.div>
         </div>
 
-        {/* Labels */}
+        {/* Labels — start / current / end. RTL flips visually via flex direction. */}
         <div className="flex items-center justify-between text-xs text-muted-foreground">
-          <span>{t('common.week')} {min}</span>
+          <span className="tabular-nums">
+            {t('common.week')} {safeMin}
+          </span>
           <motion.div
             className="flex flex-col items-center"
-            key={week}
+            key={safeWeek}
             initial={{ scale: 0.9, opacity: 0.5 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ type: 'spring', stiffness: 400, damping: 20 }}
           >
             <span className="text-base font-bold text-primary tabular-nums">
-              {t('common.week')} {week}
+              {t('common.week')} {safeWeek}
             </span>
           </motion.div>
-          <span>{t('common.week')} {max}</span>
+          <span className="tabular-nums">
+            {t('common.week')} {safeMax}
+          </span>
         </div>
       </div>
     </div>
@@ -211,9 +302,7 @@ export const WeekSlider = memo(function WeekSlider({
 
   return (
     <Card className="shadow-sm border-border bg-card">
-      <CardContent className="pt-4 pb-4">
-        {content}
-      </CardContent>
+      <CardContent className="pt-4 pb-4">{content}</CardContent>
     </Card>
   );
 });
