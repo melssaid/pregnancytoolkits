@@ -1,7 +1,7 @@
-import { useEffect, useMemo, useState, useCallback, useRef } from "react";
+import { useEffect, useMemo, useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { Bookmark, BookmarkCheck, Share2, ArrowUp, List, X, Link2, Mail, Send, MessageCircle, Facebook, Twitter } from "lucide-react";
-import { toast } from "sonner";
+import { Bookmark, BookmarkCheck, ArrowUp, List, X } from "lucide-react";
+
 import { useSavedResults } from "@/hooks/useSavedResults";
 
 interface Section {
@@ -46,7 +46,7 @@ function ReadingProgressBar() {
   );
 }
 
-/** Floating action bar — share, save, ToC, back-to-top */
+/** Floating action bar — save, ToC, back-to-top */
 export function ArticleReadingEnhancements({ slug, title, excerpt, sections, isRTL }: Props) {
   const { t, i18n } = useTranslation();
   const lang = i18n.language?.split("-")[0] || "en";
@@ -57,31 +57,17 @@ export function ArticleReadingEnhancements({ slug, title, excerpt, sections, isR
   const [showSticky, setShowSticky] = useState(false);
   const [showTopBtn, setShowTopBtn] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [shareOpen, setShareOpen] = useState(false);
-  const shareMenuRef = useRef<HTMLDivElement | null>(null);
 
   const savedKey = `article:${slug}`;
   const saved = isSaved(savedKey);
 
   const labels = useMemo(
     () => ({
-      share: isAr ? "مشاركة" : "Share",
       save: isAr ? "حفظ" : "Save",
       saved: isAr ? "محفوظ" : "Saved",
       toc: isAr ? "محتويات المقال" : "In this article",
       jumpTo: isAr ? "الانتقال إلى" : "Jump to",
       top: isAr ? "أعلى" : "Top",
-      copied: isAr ? "تم نسخ الرابط" : "Link copied",
-      shareFail: isAr ? "تعذرت المشاركة" : "Sharing failed",
-      shareVia: isAr ? "شارك عبر" : "Share via",
-      whatsapp: "WhatsApp",
-      facebook: "Facebook",
-      twitter: isAr ? "X (تويتر)" : "X (Twitter)",
-      telegram: "Telegram",
-      email: isAr ? "البريد الإلكتروني" : "Email",
-      copyLink: isAr ? "نسخ الرابط" : "Copy link",
-      systemShare: isAr ? "مشاركة عبر النظام" : "System share",
-      close: isAr ? "إغلاق" : "Close",
     }),
     [isAr]
   );
@@ -123,81 +109,6 @@ export function ArticleReadingEnhancements({ slug, title, excerpt, sections, isR
     return () => window.removeEventListener("scroll", onScroll);
   }, [headings]);
 
-  const shareUrl = typeof window !== "undefined" ? window.location.href : "";
-  const shareText = `${title}${excerpt ? ` — ${excerpt}` : ""}`;
-
-  const openShareTarget = useCallback((target: "whatsapp" | "facebook" | "twitter" | "telegram" | "email" | "copy" | "system") => {
-    const url = shareUrl;
-    const text = shareText;
-    const enc = encodeURIComponent;
-    setShareOpen(false);
-    try {
-      if (target === "system") {
-        if (typeof navigator !== "undefined" && (navigator as any).share) {
-          (navigator as any).share({ title, text: excerpt, url }).catch((err: any) => {
-            if (err?.name !== "AbortError") toast.error(labels.shareFail);
-          });
-        } else {
-          navigator.clipboard?.writeText(url).then(() => toast.success(labels.copied));
-        }
-        return;
-      }
-      if (target === "copy") {
-        navigator.clipboard?.writeText(url).then(() => toast.success(labels.copied));
-        return;
-      }
-      let href = "";
-      switch (target) {
-        case "whatsapp":
-          href = `https://wa.me/?text=${enc(`${text} ${url}`)}`;
-          break;
-        case "facebook":
-          href = `https://www.facebook.com/sharer/sharer.php?u=${enc(url)}&quote=${enc(text)}`;
-          break;
-        case "twitter":
-          href = `https://twitter.com/intent/tweet?text=${enc(text)}&url=${enc(url)}`;
-          break;
-        case "telegram":
-          href = `https://t.me/share/url?url=${enc(url)}&text=${enc(text)}`;
-          break;
-        case "email":
-          href = `mailto:?subject=${enc(title)}&body=${enc(`${text}\n\n${url}`)}`;
-          break;
-      }
-      if (href) {
-        const win = window.open(href, "_blank", "noopener,noreferrer");
-        if (!win) {
-          // popup blocked → fallback: navigate same tab
-          window.location.href = href;
-        }
-      }
-    } catch (err: any) {
-      toast.error(labels.shareFail);
-    }
-  }, [shareUrl, shareText, title, excerpt, labels.copied, labels.shareFail]);
-
-  const handleShare = useCallback(() => {
-    setShareOpen((v) => !v);
-  }, []);
-
-  // Close share menu on outside click / Escape
-  useEffect(() => {
-    if (!shareOpen) return;
-    const onDown = (e: MouseEvent) => {
-      if (shareMenuRef.current && !shareMenuRef.current.contains(e.target as Node)) {
-        setShareOpen(false);
-      }
-    };
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setShareOpen(false);
-    };
-    document.addEventListener("mousedown", onDown);
-    document.addEventListener("keydown", onKey);
-    return () => {
-      document.removeEventListener("mousedown", onDown);
-      document.removeEventListener("keydown", onKey);
-    };
-  }, [shareOpen]);
 
   const handleSave = useCallback(() => {
     if (saved) {
@@ -370,50 +281,6 @@ export function ArticleReadingEnhancements({ slug, title, excerpt, sections, isR
             <ArrowUp className="h-4 w-4" strokeWidth={2.2} />
           </button>
         )}
-        <div ref={shareMenuRef} className="relative">
-          <button
-            type="button"
-            onClick={handleShare}
-            aria-label={labels.share}
-            aria-haspopup="menu"
-            aria-expanded={shareOpen}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card/95 text-foreground shadow-md backdrop-blur transition-all hover:scale-105 active:scale-95"
-          >
-            <Share2 className="h-4 w-4 text-primary" strokeWidth={2.2} />
-          </button>
-          {shareOpen && (
-            <div
-              role="menu"
-              aria-label={labels.shareVia}
-              dir={isRTL ? "rtl" : "ltr"}
-              className={`absolute bottom-0 ${isRTL ? "left-12" : "right-12"} w-56 rounded-2xl border border-border bg-card/98 p-2 shadow-xl backdrop-blur animate-in fade-in zoom-in-95`}
-            >
-              <div className="px-2 pb-2 pt-1 text-xs font-semibold text-muted-foreground">
-                {labels.shareVia}
-              </div>
-              {[
-                { key: "whatsapp", label: labels.whatsapp, Icon: MessageCircle, color: "text-[hsl(142,70%,45%)]" },
-                { key: "facebook", label: labels.facebook, Icon: Facebook, color: "text-[hsl(221,44%,41%)]" },
-                { key: "twitter", label: labels.twitter, Icon: Twitter, color: "text-foreground" },
-                { key: "telegram", label: labels.telegram, Icon: Send, color: "text-[hsl(200,80%,50%)]" },
-                { key: "email", label: labels.email, Icon: Mail, color: "text-[hsl(15,70%,55%)]" },
-                { key: "copy", label: labels.copyLink, Icon: Link2, color: "text-primary" },
-                { key: "system", label: labels.systemShare, Icon: Share2, color: "text-primary" },
-              ].map(({ key, label, Icon, color }) => (
-                <button
-                  key={key}
-                  type="button"
-                  role="menuitem"
-                  onClick={() => openShareTarget(key as any)}
-                  className="flex w-full items-center gap-3 rounded-xl px-3 py-2 text-sm text-foreground hover:bg-muted/60 active:scale-[0.98] transition"
-                >
-                  <Icon className={`h-4 w-4 shrink-0 ${color}`} strokeWidth={2.2} />
-                  <span className="truncate">{label}</span>
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
         <button
           type="button"
           onClick={handleSave}
