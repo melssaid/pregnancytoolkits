@@ -278,41 +278,46 @@ export const UsagePulseFooter: React.FC<UsagePulseFooterProps> = ({
 
       {/* Sub-line: source badge + reset hint + upgrade nudge */}
       <div className="flex items-center justify-between gap-2 mt-2 px-1 flex-wrap">
-        <div className="flex items-center gap-1.5 min-w-0">
+        <div className="flex items-center gap-1.5 min-w-0 flex-1">
           {/* Transparency badge: Local vs Snapshot */}
           <Popover>
             <PopoverTrigger asChild>
               <button
                 type="button"
                 aria-label={L.sourceTitle}
-                className={`inline-flex items-center gap-1 rounded-full px-1.5 py-0.5 text-[9.5px] font-bold border transition-colors ${
+                dir={isRTL ? 'rtl' : 'ltr'}
+                className={`inline-flex items-center gap-1 rounded-full px-1.5 py-0.5 text-[9.5px] font-bold border transition-colors shrink-0 whitespace-nowrap ${
                   isSnapshot
                     ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-700 dark:text-emerald-400 hover:bg-emerald-500/15'
                     : 'bg-amber-500/10 border-amber-500/30 text-amber-700 dark:text-amber-400 hover:bg-amber-500/15'
                 }`}
               >
                 {isSnapshot
-                  ? <Cloud className="w-2.5 h-2.5" />
-                  : <HardDrive className="w-2.5 h-2.5" />}
+                  ? <Cloud className="w-2.5 h-2.5 shrink-0" />
+                  : <HardDrive className="w-2.5 h-2.5 shrink-0" />}
                 <span>{isSnapshot ? L.sourceSnapshot : L.sourceLocal}</span>
-                <Info className="w-2.5 h-2.5 opacity-70" />
+                <Info className="w-2.5 h-2.5 opacity-70 shrink-0" />
               </button>
             </PopoverTrigger>
             <PopoverContent
-              align="start"
-              sideOffset={6}
-              className="w-72 p-3 text-[11px] leading-relaxed"
+              align={isRTL ? 'end' : 'start'}
+              side="top"
+              sideOffset={8}
+              collisionPadding={12}
+              avoidCollisions
+              dir={isRTL ? 'rtl' : 'ltr'}
+              className="w-[min(18rem,calc(100vw-1.5rem))] p-3 text-[11px] leading-relaxed break-words"
             >
               <div className="flex items-center gap-1.5 mb-1.5 font-bold text-foreground">
                 {isSnapshot
-                  ? <Cloud className="w-3.5 h-3.5 text-emerald-500" />
-                  : <HardDrive className="w-3.5 h-3.5 text-amber-500" />}
-                <span>{L.sourceTitle}</span>
+                  ? <Cloud className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
+                  : <HardDrive className="w-3.5 h-3.5 text-amber-500 shrink-0" />}
+                <span className="break-words">{L.sourceTitle}</span>
               </div>
-              <p className="text-muted-foreground mb-2">
+              <p className="text-muted-foreground mb-2 break-words">
                 {isSnapshot ? L.sourceSnapshotDesc : L.sourceLocalDesc}
               </p>
-              <div className="space-y-1 text-[10.5px] text-foreground/80 border-t border-border/30 pt-2">
+              <div className="space-y-1 text-[10.5px] text-foreground/80 border-t border-border/30 pt-2 break-words">
                 {isSnapshot ? (
                   <>
                     <div>{L.syncedAgo(formatRelative(sourceInfo.snapshotAt))}</div>
@@ -329,16 +334,16 @@ export const UsagePulseFooter: React.FC<UsagePulseFooterProps> = ({
               </div>
             </PopoverContent>
           </Popover>
-          <span className="text-[10px] text-muted-foreground/80 font-medium truncate">
+          <span className="text-[10px] text-muted-foreground/80 font-medium truncate min-w-0">
             {resetHint}
           </span>
         </div>
         {isFree && (isNearLimit || isLimitReached) && (
           <button
             onClick={() => navigate('/pricing-demo')}
-            className="flex items-center gap-1 text-[10.5px] font-bold text-primary hover:text-primary/80 transition-colors"
+            className="flex items-center gap-1 text-[10.5px] font-bold text-primary hover:text-primary/80 transition-colors shrink-0 whitespace-nowrap"
           >
-            <Crown className="w-3 h-3" fill="currentColor" />
+            <Crown className="w-3 h-3 shrink-0" fill="currentColor" />
             <span>{L.upgradeCta}</span>
           </button>
         )}
