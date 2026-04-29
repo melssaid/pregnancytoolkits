@@ -101,6 +101,7 @@ export function recordServerSnapshot(payload: {
     periodStart: payload.periodStart ?? new Date().toISOString(),
     receivedAt: Date.now(),
     responseVersion: payload.periodStart ?? new Date().toISOString(),
+    localUsedAtSnapshot: readQuota().used,
   };
   writeServerSnapshot(snap);
 }
