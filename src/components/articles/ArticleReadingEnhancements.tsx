@@ -71,6 +71,15 @@ export function ArticleReadingEnhancements({ slug, title, excerpt, sections, isR
       top: isAr ? "أعلى" : "Top",
       copied: isAr ? "تم نسخ الرابط" : "Link copied",
       shareFail: isAr ? "تعذرت المشاركة" : "Sharing failed",
+      shareVia: isAr ? "شارك عبر" : "Share via",
+      whatsapp: "WhatsApp",
+      facebook: "Facebook",
+      twitter: isAr ? "X (تويتر)" : "X (Twitter)",
+      telegram: "Telegram",
+      email: isAr ? "البريد الإلكتروني" : "Email",
+      copyLink: isAr ? "نسخ الرابط" : "Copy link",
+      systemShare: isAr ? "مشاركة عبر النظام" : "System share",
+      close: isAr ? "إغلاق" : "Close",
     }),
     [isAr]
   );
