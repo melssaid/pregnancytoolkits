@@ -180,18 +180,25 @@ export function getQuotaState(): QuotaState {
   let tier = localTier;
 
   if (snap) {
-    // Server is the source of truth — adopt its values
-    used = snap.used;
+    // Server is the source of truth for limit/tier — adopt its values
     limit = snap.limit;
     tier = snap.tier;
+
+    // For `used`: take server baseline + any local consumption that happened
+    // AFTER the snapshot was recorded. This keeps the UI counter responsive
+    // (decrements immediately after each AI call) without waiting for the
+    // next server sync, while still honoring server truth for the baseline.
+    const baseline = snap.localUsedAtSnapshot ?? localUsed;
+    const localDelta = Math.max(0, localUsed - baseline);
+    used = snap.used + localDelta;
 
     // Log any drift between local computation and server truth
     const drifts: DriftEntry[] = [];
     if (snap.limit !== localLimit) {
       drifts.push({ at: Date.now(), field: "limit", server: snap.limit, client: localLimit, delta: snap.limit - localLimit });
     }
-    if (snap.used !== localUsed) {
-      drifts.push({ at: Date.now(), field: "used", server: snap.used, client: localUsed, delta: snap.used - localUsed });
+    if (snap.used !== baseline) {
+      drifts.push({ at: Date.now(), field: "used", server: snap.used, client: baseline, delta: snap.used - baseline });
     }
     if (snap.tier !== localTier) {
       drifts.push({ at: Date.now(), field: "tier", server: snap.tier, client: localTier });
