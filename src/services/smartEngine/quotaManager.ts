@@ -27,6 +27,12 @@ interface ServerSnapshot {
   periodStart: string;
   receivedAt: number;       // local epoch ms when snapshot was stored
   responseVersion: string;  // = periodStart, used as version tag
+  /**
+   * Local `stored.used` value at the moment this snapshot was taken.
+   * Used to add any local consumption that happened AFTER the snapshot,
+   * so the displayed `used` reflects fresh AI calls before the next sync.
+   */
+  localUsedAtSnapshot?: number;
 }
 
 interface DriftEntry {
