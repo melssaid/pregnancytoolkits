@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, Crown, Zap } from 'lucide-react';
+import { Sparkles, Crown, Zap, CloudCheck, HardDrive, Info } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAIUsage } from '@/contexts/AIUsageContext';
 import { useActiveCoupon } from '@/hooks/useActiveCoupon';
 import { resolveWeight, type AIToolType, type SmartSection } from '@/services/smartEngine/types';
+import { getQuotaSourceInfo, type QuotaSourceInfo } from '@/services/smartEngine/quotaManager';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 
 const labels: Record<string, {
   consumed: string; remaining: string; of: string; thisAction: string;
