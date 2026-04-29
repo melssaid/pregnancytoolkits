@@ -63,23 +63,11 @@ export function ArticleReadingEnhancements({ slug, title, excerpt, sections, isR
 
   const labels = useMemo(
     () => ({
-      share: isAr ? "مشاركة" : "Share",
       save: isAr ? "حفظ" : "Save",
       saved: isAr ? "محفوظ" : "Saved",
       toc: isAr ? "محتويات المقال" : "In this article",
       jumpTo: isAr ? "الانتقال إلى" : "Jump to",
       top: isAr ? "أعلى" : "Top",
-      copied: isAr ? "تم نسخ الرابط" : "Link copied",
-      shareFail: isAr ? "تعذرت المشاركة" : "Sharing failed",
-      shareVia: isAr ? "شارك عبر" : "Share via",
-      whatsapp: "WhatsApp",
-      facebook: "Facebook",
-      twitter: isAr ? "X (تويتر)" : "X (Twitter)",
-      telegram: "Telegram",
-      email: isAr ? "البريد الإلكتروني" : "Email",
-      copyLink: isAr ? "نسخ الرابط" : "Copy link",
-      systemShare: isAr ? "مشاركة عبر النظام" : "System share",
-      close: isAr ? "إغلاق" : "Close",
     }),
     [isAr]
   );
