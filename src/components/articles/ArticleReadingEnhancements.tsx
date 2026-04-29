@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { Bookmark, BookmarkCheck, ArrowUp, List, X } from "lucide-react";
-import { toast } from "sonner";
+
 import { useSavedResults } from "@/hooks/useSavedResults";
 
 interface Section {
