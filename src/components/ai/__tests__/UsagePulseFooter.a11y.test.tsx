@@ -183,7 +183,7 @@ describe('UsagePulseFooter — source badge accessibility', () => {
       expect(dialog).toBeInTheDocument();
       // Content has non-empty text — guards against blank popovers caused by
       // missing localizations.
-      expect(within(dialog).getByText(/./)).toBeTruthy();
+      expect((dialog.textContent ?? '').trim().length).toBeGreaterThan(0);
     });
   });
 
