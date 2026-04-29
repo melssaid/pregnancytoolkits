@@ -276,11 +276,63 @@ export const UsagePulseFooter: React.FC<UsagePulseFooterProps> = ({
         </motion.div>
       </div>
 
-      {/* Sub-line: nudge or reset hint */}
-      <div className="flex items-center justify-between gap-2 mt-2 px-1">
-        <span className="text-[10px] text-muted-foreground/80 font-medium">
-          {resetHint}
-        </span>
+      {/* Sub-line: source badge + reset hint + upgrade nudge */}
+      <div className="flex items-center justify-between gap-2 mt-2 px-1 flex-wrap">
+        <div className="flex items-center gap-1.5 min-w-0">
+          {/* Transparency badge: Local vs Snapshot */}
+          <Popover>
+            <PopoverTrigger asChild>
+              <button
+                type="button"
+                aria-label={L.sourceTitle}
+                className={`inline-flex items-center gap-1 rounded-full px-1.5 py-0.5 text-[9.5px] font-bold border transition-colors ${
+                  isSnapshot
+                    ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-700 dark:text-emerald-400 hover:bg-emerald-500/15'
+                    : 'bg-amber-500/10 border-amber-500/30 text-amber-700 dark:text-amber-400 hover:bg-amber-500/15'
+                }`}
+              >
+                {isSnapshot
+                  ? <Cloud className="w-2.5 h-2.5" />
+                  : <HardDrive className="w-2.5 h-2.5" />}
+                <span>{isSnapshot ? L.sourceSnapshot : L.sourceLocal}</span>
+                <Info className="w-2.5 h-2.5 opacity-70" />
+              </button>
+            </PopoverTrigger>
+            <PopoverContent
+              align="start"
+              sideOffset={6}
+              className="w-72 p-3 text-[11px] leading-relaxed"
+            >
+              <div className="flex items-center gap-1.5 mb-1.5 font-bold text-foreground">
+                {isSnapshot
+                  ? <Cloud className="w-3.5 h-3.5 text-emerald-500" />
+                  : <HardDrive className="w-3.5 h-3.5 text-amber-500" />}
+                <span>{L.sourceTitle}</span>
+              </div>
+              <p className="text-muted-foreground mb-2">
+                {isSnapshot ? L.sourceSnapshotDesc : L.sourceLocalDesc}
+              </p>
+              <div className="space-y-1 text-[10.5px] text-foreground/80 border-t border-border/30 pt-2">
+                {isSnapshot ? (
+                  <>
+                    <div>{L.syncedAgo(formatRelative(sourceInfo.snapshotAt))}</div>
+                    <div>{L.refreshIn(formatCountdown(sourceInfo.expiresInSec))}</div>
+                    {sourceInfo.pendingLocalDelta > 0 && (
+                      <div className="text-primary font-semibold">
+                        {L.pendingDelta(sourceInfo.pendingLocalDelta)}
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <div className="text-amber-600 dark:text-amber-400 font-medium">{L.delayNote}</div>
+                )}
+              </div>
+            </PopoverContent>
+          </Popover>
+          <span className="text-[10px] text-muted-foreground/80 font-medium truncate">
+            {resetHint}
+          </span>
+        </div>
         {isFree && (isNearLimit || isLimitReached) && (
           <button
             onClick={() => navigate('/pricing-demo')}
