@@ -123,19 +123,81 @@ export function ArticleReadingEnhancements({ slug, title, excerpt, sections, isR
     return () => window.removeEventListener("scroll", onScroll);
   }, [headings]);
 
-  const handleShare = useCallback(async () => {
-    const url = typeof window !== "undefined" ? window.location.href : "";
+  const shareUrl = typeof window !== "undefined" ? window.location.href : "";
+  const shareText = `${title}${excerpt ? ` — ${excerpt}` : ""}`;
+
+  const openShareTarget = useCallback((target: "whatsapp" | "facebook" | "twitter" | "telegram" | "email" | "copy" | "system") => {
+    const url = shareUrl;
+    const text = shareText;
+    const enc = encodeURIComponent;
+    setShareOpen(false);
     try {
-      if (navigator.share) {
-        await navigator.share({ title, text: excerpt, url });
-      } else if (navigator.clipboard) {
-        await navigator.clipboard.writeText(url);
-        toast.success(labels.copied);
+      if (target === "system") {
+        if (typeof navigator !== "undefined" && (navigator as any).share) {
+          (navigator as any).share({ title, text: excerpt, url }).catch((err: any) => {
+            if (err?.name !== "AbortError") toast.error(labels.shareFail);
+          });
+        } else {
+          navigator.clipboard?.writeText(url).then(() => toast.success(labels.copied));
+        }
+        return;
+      }
+      if (target === "copy") {
+        navigator.clipboard?.writeText(url).then(() => toast.success(labels.copied));
+        return;
+      }
+      let href = "";
+      switch (target) {
+        case "whatsapp":
+          href = `https://wa.me/?text=${enc(`${text} ${url}`)}`;
+          break;
+        case "facebook":
+          href = `https://www.facebook.com/sharer/sharer.php?u=${enc(url)}&quote=${enc(text)}`;
+          break;
+        case "twitter":
+          href = `https://twitter.com/intent/tweet?text=${enc(text)}&url=${enc(url)}`;
+          break;
+        case "telegram":
+          href = `https://t.me/share/url?url=${enc(url)}&text=${enc(text)}`;
+          break;
+        case "email":
+          href = `mailto:?subject=${enc(title)}&body=${enc(`${text}\n\n${url}`)}`;
+          break;
+      }
+      if (href) {
+        const win = window.open(href, "_blank", "noopener,noreferrer");
+        if (!win) {
+          // popup blocked → fallback: navigate same tab
+          window.location.href = href;
+        }
       }
     } catch (err: any) {
-      if (err?.name !== "AbortError") toast.error(labels.shareFail);
+      toast.error(labels.shareFail);
     }
-  }, [title, excerpt, labels.copied, labels.shareFail]);
+  }, [shareUrl, shareText, title, excerpt, labels.copied, labels.shareFail]);
+
+  const handleShare = useCallback(() => {
+    setShareOpen((v) => !v);
+  }, []);
+
+  // Close share menu on outside click / Escape
+  useEffect(() => {
+    if (!shareOpen) return;
+    const onDown = (e: MouseEvent) => {
+      if (shareMenuRef.current && !shareMenuRef.current.contains(e.target as Node)) {
+        setShareOpen(false);
+      }
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setShareOpen(false);
+    };
+    document.addEventListener("mousedown", onDown);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onDown);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [shareOpen]);
 
   const handleSave = useCallback(() => {
     if (saved) {
