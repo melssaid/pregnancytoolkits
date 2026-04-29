@@ -184,6 +184,29 @@ export const UsagePulseFooter: React.FC<UsagePulseFooterProps> = ({
     }
   }, [justConsumed, weight]);
 
+  // Track quota source (snapshot vs local) for the transparency badge.
+  // Refresh on consumption events and every 30s so countdown stays accurate.
+  const [sourceInfo, setSourceInfo] = useState<QuotaSourceInfo>(() => getQuotaSourceInfo());
+  useEffect(() => {
+    setSourceInfo(getQuotaSourceInfo());
+    const id = window.setInterval(() => setSourceInfo(getQuotaSourceInfo()), 30_000);
+    return () => window.clearInterval(id);
+  }, [used, remaining, justConsumed]);
+
+  const formatRelative = (ms: number | null): string => {
+    if (!ms) return L.justNow;
+    const diff = Math.max(0, Math.floor((Date.now() - ms) / 1000));
+    if (diff < 5) return L.justNow;
+    if (diff < 60) return L.secondsAgo(diff);
+    return L.minutesAgo(Math.floor(diff / 60));
+  };
+  const formatCountdown = (sec: number | null): string => {
+    if (sec === null) return '—';
+    if (sec < 60) return L.secondsAgo(sec).replace(/^.*?(\d+).*$/, (_, n) => `${n}s`);
+    return `${Math.floor(sec / 60)}m`;
+  };
+  const isSnapshot = sourceInfo.source === 'snapshot';
+
   return (
     <div className={`mt-4 pt-3 border-t border-primary/10 ${className}`}>
       {/* Headline: Used + Remaining */}
