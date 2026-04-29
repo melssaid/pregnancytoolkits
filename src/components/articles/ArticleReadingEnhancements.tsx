@@ -267,38 +267,57 @@ export function ArticleReadingEnhancements({ slug, title, excerpt, sections, isR
       )}
 
       {/* Floating action bar */}
-      <div
+      <nav
         className={`fixed bottom-20 z-40 flex flex-col gap-2 ${isRTL ? "left-3" : "right-3"}`}
         dir={isRTL ? "rtl" : "ltr"}
+        role="toolbar"
+        aria-orientation="vertical"
+        aria-label={isAr ? "أدوات قراءة المقال" : "Article reading tools"}
       >
         {showTopBtn && (
           <button
             type="button"
             onClick={scrollTop}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                scrollTop();
+              }
+            }}
             aria-label={labels.top}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card/95 text-foreground shadow-md backdrop-blur transition-all hover:scale-105 active:scale-95"
+            title={labels.top}
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card/95 text-foreground shadow-md backdrop-blur transition-all hover:scale-105 active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
-            <ArrowUp className="h-4 w-4" strokeWidth={2.2} />
+            <ArrowUp className="h-4 w-4" strokeWidth={2.2} aria-hidden="true" focusable="false" />
+            <span className="sr-only">{labels.top}</span>
           </button>
         )}
         <button
           type="button"
           onClick={handleSave}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              handleSave();
+            }
+          }}
           aria-label={saved ? labels.saved : labels.save}
           aria-pressed={saved}
-          className={`flex h-10 w-10 items-center justify-center rounded-full border shadow-md backdrop-blur transition-all hover:scale-105 active:scale-95 ${
+          title={saved ? labels.saved : labels.save}
+          className={`flex h-10 w-10 items-center justify-center rounded-full border shadow-md backdrop-blur transition-all hover:scale-105 active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
             saved
               ? "border-primary bg-primary text-primary-foreground"
               : "border-border bg-card/95 text-foreground"
           }`}
         >
           {saved ? (
-            <BookmarkCheck className="h-4 w-4" strokeWidth={2.2} />
+            <BookmarkCheck className="h-4 w-4" strokeWidth={2.2} aria-hidden="true" focusable="false" />
           ) : (
-            <Bookmark className="h-4 w-4 text-primary" strokeWidth={2.2} />
+            <Bookmark className="h-4 w-4 text-primary" strokeWidth={2.2} aria-hidden="true" focusable="false" />
           )}
+          <span className="sr-only">{saved ? labels.saved : labels.save}</span>
         </button>
-      </div>
+      </nav>
     </>
   );
 }
