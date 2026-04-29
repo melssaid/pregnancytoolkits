@@ -138,6 +138,7 @@ export const UsagePulseFooter: React.FC<UsagePulseFooterProps> = ({
   const { i18n } = useTranslation();
   const navigate = useNavigate();
   const lang = i18n.language?.split('-')[0] || 'en';
+  const isRTL = i18n.dir?.(i18n.language) === 'rtl' || lang === 'ar';
   const L = labels[lang] || labels.en;
 
   const weight = resolveWeight(toolType, section);
