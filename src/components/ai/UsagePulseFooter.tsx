@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, Crown, Zap, CloudCheck, HardDrive, Info } from 'lucide-react';
+import { Sparkles, Crown, Zap, Cloud, HardDrive, Info } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAIUsage } from '@/contexts/AIUsageContext';
