@@ -82,7 +82,14 @@ export const UsagePulseFooter: React.FC<UsagePulseFooterProps> = ({
   const isNearLimit = remainPct <= 20 && !isLimitReached;
   // Coupon bonus is one-time only (not auto-renewed). Show clear hint when free user has an active coupon.
   const hasOneTimeCoupon = isFree && !!activeCoupon;
-  const resetHint = isLimitReached ? L.nearLimit : (hasOneTimeCoupon ? L.couponOneTime : L.resetsMonthly);
+  const premiumRenewHint = L.resetsMonthlyPremium;
+  const resetHint = isLimitReached
+    ? L.nearLimit
+    : hasOneTimeCoupon
+      ? L.couponOneTime
+      : isFree
+        ? L.resetsMonthly
+        : premiumRenewHint;
 
   // Cost label
   const costLabel = weight === 0
