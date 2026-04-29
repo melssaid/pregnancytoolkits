@@ -108,9 +108,111 @@ const AIUsageContext = createContext<AIUsageContextValue | null>(null);
 export function AIUsageProvider({ children }: { children: ReactNode }) {
   const [state, setState] = useState<QuotaState>(readState);
   const hasSynced = useRef(false);
+  const resyncTimer = useRef<number | null>(null);
+  const lastResyncAt = useRef(0);
+  const resyncInflight = useRef(false);
 
   // Refresh on mount and periodically when tab gains focus
   const refresh = useCallback(() => setState(readState()), []);
+
+  // Reusable: full server sync (quota + DB subscription + coupons) → snapshot
+  const syncAll = useCallback(async () => {
+    // 1. Server quota sync (usage count + tier-aware limit) — uses device fingerprint
+    const currentTier = readState().tier;
+    const serverPromise = fetchServerQuota(currentTier);
+
+    // 2. DB subscription check (direct subscription status)
+    const dbPromise = (async () => {
+      try {
+        const { supabase } = await import('@/integrations/supabase/client');
+        const { data: { user } } = await supabase.auth.getUser();
+        if (!user?.id) return null;
+        const { data: sub } = await supabase
+          .from('subscriptions')
+          .select('status, subscription_type, subscription_end')
+          .eq('user_id', user.id)
+          .eq('status', 'active')
+          .order('created_at', { ascending: false })
+          .limit(1)
+          .maybeSingle();
+        if (sub && sub.subscription_type !== 'trial') {
+          const subEnd = sub.subscription_end ? new Date(sub.subscription_end) : null;
+          if (!subEnd || subEnd > new Date()) return 'premium' as const;
+        }
+        return null;
+      } catch { return null; }
+    })();
+
+    const [server, dbTier] = await Promise.all([serverPromise, dbPromise]);
+
+    if (dbTier === 'premium') qmSetTier('premium');
+
+    if (server) {
+      const normalizeVersion = (raw: unknown): string => {
+        if (raw == null) return "v0";
+        if (typeof raw === "number" && Number.isFinite(raw)) {
+          const d = new Date(raw);
+          return isNaN(d.getTime()) ? "v0" : d.toISOString();
+        }
+        if (typeof raw === "string" && raw.trim()) {
+          const d = new Date(raw);
+          return isNaN(d.getTime()) ? raw.trim() : d.toISOString();
+        }
+        return "v0";
+      };
+      const responseVersion = normalizeVersion(server.periodStart);
+
+      if (server.activeCoupons.length > 0) {
+        syncCouponBonuses(server.activeCoupons, responseVersion);
+        const sorted = [...server.activeCoupons].sort(
+          (a, b) => new Date(b.expiresAt).getTime() - new Date(a.expiresAt).getTime()
+        );
+        try { localStorage.setItem('active_coupon_v1', JSON.stringify(sorted[0])); } catch { /* ignore */ }
+      }
+      const effectiveTier = dbTier === 'premium' ? 'premium' : server.tier;
+      const effectiveLimit = dbTier === 'premium' ? Math.max(server.limit, 60) : server.limit;
+      qmSyncFromServer(server.used, effectiveTier, effectiveLimit);
+
+      recordServerSnapshot({
+        used: server.used,
+        limit: effectiveLimit,
+        tier: effectiveTier,
+        baseLimit: server.baseLimit,
+        couponBonus: server.couponBonus,
+        periodStart: responseVersion,
+      });
+    }
+
+    refresh();
+  }, [refresh]);
+
+  /**
+   * Debounced server resync triggered after local consumption.
+   * - Coalesces rapid consume bursts into a single network call.
+   * - Throttles to at most once every 4s, with a small 800ms debounce
+   *   so multi-step flows (e.g. weight=2) sync only once.
+   * - Falls back to silent no-op if a sync is already inflight.
+   */
+  const scheduleResync = useCallback(() => {
+    if (resyncTimer.current !== null) {
+      window.clearTimeout(resyncTimer.current);
+      resyncTimer.current = null;
+    }
+    const sinceLast = Date.now() - lastResyncAt.current;
+    const minGap = 4_000;
+    const debounce = 800;
+    const wait = sinceLast < minGap ? Math.max(debounce, minGap - sinceLast) : debounce;
+    resyncTimer.current = window.setTimeout(async () => {
+      resyncTimer.current = null;
+      if (resyncInflight.current) return;
+      resyncInflight.current = true;
+      lastResyncAt.current = Date.now();
+      try {
+        await syncAll();
+      } catch { /* silent — local snapshot remains usable */ }
+      finally { resyncInflight.current = false; }
+    }, wait);
+  }, [syncAll]);
 
   // Sync from server on first mount to prevent localStorage clearing exploit
   useEffect(() => {
@@ -129,93 +231,8 @@ export function AIUsageProvider({ children }: { children: ReactNode }) {
       }
     } catch { /* ignore */ }
 
-    // Fetch server quota AND check DB subscription in parallel
-    const syncAll = async () => {
-      // 1. Server quota sync (usage count + tier-aware limit) — uses device fingerprint
-      const currentTier = readState().tier;
-      const serverPromise = fetchServerQuota(currentTier);
-
-      // 2. DB subscription check (direct subscription status)
-      const dbPromise = (async () => {
-        try {
-          const { supabase } = await import('@/integrations/supabase/client');
-          const { data: { user } } = await supabase.auth.getUser();
-          if (!user?.id) return null;
-          const { data: sub } = await supabase
-            .from('subscriptions')
-            .select('status, subscription_type, subscription_end')
-            .eq('user_id', user.id)
-            .eq('status', 'active')
-            .order('created_at', { ascending: false })
-            .limit(1)
-            .maybeSingle();
-          if (sub && sub.subscription_type !== 'trial') {
-            const subEnd = sub.subscription_end ? new Date(sub.subscription_end) : null;
-            if (!subEnd || subEnd > new Date()) return 'premium' as const;
-          }
-          return null;
-        } catch { return null; }
-      })();
-
-      const [server, dbTier] = await Promise.all([serverPromise, dbPromise]);
-
-      // Apply DB subscription tier first (most authoritative for paid users)
-      if (dbTier === 'premium') {
-        qmSetTier('premium');
-      }
-
-      // Then apply server quota (usage count + coupon bonuses)
-      if (server) {
-        // Normalize responseVersion → stable ISO string. Accepts ISO, epoch ms,
-        // or arbitrary date-parsable input; falls back to "v0" if invalid.
-        const normalizeVersion = (raw: unknown): string => {
-          if (raw == null) return "v0";
-          if (typeof raw === "number" && Number.isFinite(raw)) {
-            const d = new Date(raw);
-            return isNaN(d.getTime()) ? "v0" : d.toISOString();
-          }
-          if (typeof raw === "string" && raw.trim()) {
-            const d = new Date(raw);
-            return isNaN(d.getTime()) ? raw.trim() : d.toISOString();
-          }
-          return "v0";
-        };
-        const responseVersion = normalizeVersion(server.periodStart);
-
-        // Sync server-known active coupons into local quota + active_coupon cache
-        if (server.activeCoupons.length > 0) {
-          // Idempotent: pair coupon set with stable server response version
-          syncCouponBonuses(server.activeCoupons, responseVersion);
-          // Cache the longest-lasting coupon for useActiveCoupon hook
-          const sorted = [...server.activeCoupons].sort(
-            (a, b) => new Date(b.expiresAt).getTime() - new Date(a.expiresAt).getTime()
-          );
-          try {
-            localStorage.setItem('active_coupon_v1', JSON.stringify(sorted[0]));
-          } catch { /* ignore */ }
-        }
-        // If DB says premium, ensure server tier doesn't downgrade it
-        const effectiveTier = dbTier === 'premium' ? 'premium' : server.tier;
-        const effectiveLimit = dbTier === 'premium' ? Math.max(server.limit, 60) : server.limit;
-        qmSyncFromServer(server.used, effectiveTier, effectiveLimit);
-
-        // ✅ Authoritative snapshot: getQuotaState now reads from this until TTL expires.
-        // Drift between local computation and server is auto-logged via console + localStorage.
-        recordServerSnapshot({
-          used: server.used,
-          limit: effectiveLimit,
-          tier: effectiveTier,
-          baseLimit: server.baseLimit,
-          couponBonus: server.couponBonus,
-          periodStart: responseVersion,
-        });
-      }
-
-      refresh();
-    };
-
     syncAll();
-  }, [refresh]);
+  }, [refresh, syncAll]);
 
   useEffect(() => {
     // Listen for storage changes from other tabs or from smartEngine writes
@@ -227,15 +244,24 @@ export function AIUsageProvider({ children }: { children: ReactNode }) {
       qmSetTier('premium');
       refresh();
     };
+    // ⚡ Live: after any local consumption, immediately reflect new local count
+    // and trigger a debounced server resync to refresh the authoritative snapshot.
+    const onQuotaConsumed = () => {
+      refresh();
+      scheduleResync();
+    };
     window.addEventListener('storage', onStorage);
     window.addEventListener('focus', refresh);
     window.addEventListener('subscription-activated', onSubscriptionActivated);
+    window.addEventListener('quota-consumed', onQuotaConsumed as EventListener);
     return () => {
       window.removeEventListener('storage', onStorage);
       window.removeEventListener('focus', refresh);
       window.removeEventListener('subscription-activated', onSubscriptionActivated);
+      window.removeEventListener('quota-consumed', onQuotaConsumed as EventListener);
+      if (resyncTimer.current !== null) window.clearTimeout(resyncTimer.current);
     };
-  }, [refresh]);
+  }, [refresh, scheduleResync]);
 
   // Poll after any action to keep UI in sync
   const afterAction = useCallback(() => {
