@@ -1,52 +1,117 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, Crown, Zap } from 'lucide-react';
+import { Sparkles, Crown, Zap, Cloud, HardDrive, Info } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAIUsage } from '@/contexts/AIUsageContext';
 import { useActiveCoupon } from '@/hooks/useActiveCoupon';
 import { resolveWeight, type AIToolType, type SmartSection } from '@/services/smartEngine/types';
+import { getQuotaSourceInfo, type QuotaSourceInfo } from '@/services/smartEngine/quotaManager';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 
 const labels: Record<string, {
   consumed: string; remaining: string; of: string; thisAction: string;
   point: string; points: string; freeAction: string;
   upgradeCta: string; resetsMonthly: string; resetsMonthlyPremium: string; nearLimit: string; couponOneTime: string;
+  sourceSnapshot: string; sourceLocal: string;
+  sourceTitle: string;
+  sourceSnapshotDesc: string; sourceLocalDesc: string;
+  syncedAgo: (s: string) => string; refreshIn: (s: string) => string;
+  pendingDelta: (n: number) => string;
+  delayNote: string;
+  justNow: string; secondsAgo: (n: number) => string; minutesAgo: (n: number) => string;
 }> = {
   ar: { consumed: 'استهلكتِ', remaining: 'المتبقي', of: 'من', thisAction: 'هذا التحليل',
         point: 'نقطة', points: 'نقاط', freeAction: 'تحليل مجاني ✨',
         upgradeCta: 'احصلي على 75 نقطة شهرياً', resetsMonthly: 'الرصيد المجاني يتجدد شهرياً',
         resetsMonthlyPremium: 'يتجدد مع تجديد اشتراكك', nearLimit: 'اقتربتِ من نهاية الرصيد',
-        couponOneTime: 'نقاط الكوبون لمرة واحدة' },
+        couponOneTime: 'نقاط الكوبون لمرة واحدة',
+        sourceSnapshot: 'متزامن', sourceLocal: 'محلي',
+        sourceTitle: 'مصدر الأرقام',
+        sourceSnapshotDesc: 'الأرقام مأخوذة من السيرفر (السنابشوت الرسمي) ومُحدَّثة فوراً عند كل استخدام محلي.',
+        sourceLocalDesc: 'لا يوجد سنابشوت حديث من السيرفر — الأرقام محسوبة من جهازك مؤقتاً وستتم المزامنة عند الاتصال.',
+        syncedAgo: (s) => `آخر مزامنة: ${s}`, refreshIn: (s) => `يُعاد التحقق خلال ${s}`,
+        pendingDelta: (n) => `+${n} استخدام محلي بعد آخر مزامنة`,
+        delayNote: 'قد يتأخر التحديث حتى ٥ دقائق ريثما تتم المزامنة مع السيرفر.',
+        justNow: 'الآن', secondsAgo: (n) => `قبل ${n} ث`, minutesAgo: (n) => `قبل ${n} د` },
   en: { consumed: 'Used', remaining: 'Remaining', of: 'of', thisAction: 'this analysis',
         point: 'point', points: 'points', freeAction: 'Free analysis ✨',
         upgradeCta: 'Get 75 points monthly', resetsMonthly: 'Free credits reset monthly',
         resetsMonthlyPremium: 'Renews with your subscription', nearLimit: 'Almost out of credits',
-        couponOneTime: 'Coupon points · one-time' },
+        couponOneTime: 'Coupon points · one-time',
+        sourceSnapshot: 'Synced', sourceLocal: 'Local',
+        sourceTitle: 'Where these numbers come from',
+        sourceSnapshotDesc: 'Numbers come from the server snapshot, with your latest local usage applied instantly on top.',
+        sourceLocalDesc: 'No fresh server snapshot — counts are computed locally and will sync next time you reconnect.',
+        syncedAgo: (s) => `Last sync: ${s}`, refreshIn: (s) => `Re-checks in ${s}`,
+        pendingDelta: (n) => `+${n} local use since last sync`,
+        delayNote: 'Updates may lag up to 5 min until the next server sync.',
+        justNow: 'just now', secondsAgo: (n) => `${n}s ago`, minutesAgo: (n) => `${n}m ago` },
   de: { consumed: 'Verbraucht', remaining: 'Übrig', of: 'von', thisAction: 'diese Analyse',
         point: 'Punkt', points: 'Punkte', freeAction: 'Kostenlos ✨',
         upgradeCta: '75 Punkte monatlich', resetsMonthly: 'Gratis monatlich',
         resetsMonthlyPremium: 'Erneuert mit Abo', nearLimit: 'Limit fast erreicht',
-        couponOneTime: 'Gutschein · einmalig' },
+        couponOneTime: 'Gutschein · einmalig',
+        sourceSnapshot: 'Synchron.', sourceLocal: 'Lokal',
+        sourceTitle: 'Quelle der Werte',
+        sourceSnapshotDesc: 'Werte stammen aus dem Server-Snapshot, lokale Nutzung wird sofort ergänzt.',
+        sourceLocalDesc: 'Kein frischer Server-Snapshot — Werte lokal berechnet, Sync bei Verbindung.',
+        syncedAgo: (s) => `Letzter Sync: ${s}`, refreshIn: (s) => `Neu in ${s}`,
+        pendingDelta: (n) => `+${n} lokal seit Sync`,
+        delayNote: 'Aktualisierung kann bis zu 5 Min dauern.',
+        justNow: 'gerade', secondsAgo: (n) => `vor ${n}s`, minutesAgo: (n) => `vor ${n}m` },
   fr: { consumed: 'Utilisé', remaining: 'Restant', of: 'sur', thisAction: 'cette analyse',
         point: 'point', points: 'points', freeAction: 'Gratuit ✨',
         upgradeCta: '75 points par mois', resetsMonthly: 'Crédits gratuits mensuels',
         resetsMonthlyPremium: 'Renouvelé avec l\'abonnement', nearLimit: 'Presque épuisé',
-        couponOneTime: 'Points coupon · unique' },
+        couponOneTime: 'Points coupon · unique',
+        sourceSnapshot: 'Synchro.', sourceLocal: 'Local',
+        sourceTitle: 'Source des chiffres',
+        sourceSnapshotDesc: 'Chiffres issus du snapshot serveur, votre usage local est ajouté instantanément.',
+        sourceLocalDesc: 'Aucun snapshot serveur récent — calculs locaux, sync à la reconnexion.',
+        syncedAgo: (s) => `Dernier sync : ${s}`, refreshIn: (s) => `Vérif. dans ${s}`,
+        pendingDelta: (n) => `+${n} usage local depuis sync`,
+        delayNote: 'Mise à jour jusqu\'à 5 min.',
+        justNow: 'à l\'instant', secondsAgo: (n) => `il y a ${n}s`, minutesAgo: (n) => `il y a ${n}m` },
   es: { consumed: 'Usado', remaining: 'Restante', of: 'de', thisAction: 'este análisis',
         point: 'punto', points: 'puntos', freeAction: 'Gratis ✨',
         upgradeCta: '75 puntos al mes', resetsMonthly: 'Créditos gratis mensuales',
         resetsMonthlyPremium: 'Se renueva con tu suscripción', nearLimit: 'Casi sin créditos',
-        couponOneTime: 'Cupón · un solo uso' },
+        couponOneTime: 'Cupón · un solo uso',
+        sourceSnapshot: 'Sincron.', sourceLocal: 'Local',
+        sourceTitle: 'Origen de los datos',
+        sourceSnapshotDesc: 'Datos del snapshot del servidor, con tu uso local aplicado al instante.',
+        sourceLocalDesc: 'Sin snapshot reciente — cálculo local, se sincroniza al reconectar.',
+        syncedAgo: (s) => `Último sync: ${s}`, refreshIn: (s) => `Revisa en ${s}`,
+        pendingDelta: (n) => `+${n} uso local desde sync`,
+        delayNote: 'Puede tardar hasta 5 min.',
+        justNow: 'ahora', secondsAgo: (n) => `hace ${n}s`, minutesAgo: (n) => `hace ${n}m` },
   pt: { consumed: 'Usado', remaining: 'Restante', of: 'de', thisAction: 'esta análise',
         point: 'ponto', points: 'pontos', freeAction: 'Grátis ✨',
         upgradeCta: '75 pontos por mês', resetsMonthly: 'Créditos grátis mensais',
         resetsMonthlyPremium: 'Renova com sua assinatura', nearLimit: 'Quase sem créditos',
-        couponOneTime: 'Cupom · uso único' },
+        couponOneTime: 'Cupom · uso único',
+        sourceSnapshot: 'Sincron.', sourceLocal: 'Local',
+        sourceTitle: 'Origem dos números',
+        sourceSnapshotDesc: 'Dados do snapshot do servidor, com seu uso local aplicado na hora.',
+        sourceLocalDesc: 'Sem snapshot recente — cálculo local, sincroniza ao reconectar.',
+        syncedAgo: (s) => `Último sync: ${s}`, refreshIn: (s) => `Verifica em ${s}`,
+        pendingDelta: (n) => `+${n} uso local desde sync`,
+        delayNote: 'Pode demorar até 5 min.',
+        justNow: 'agora', secondsAgo: (n) => `há ${n}s`, minutesAgo: (n) => `há ${n}m` },
   tr: { consumed: 'Kullanıldı', remaining: 'Kalan', of: '/', thisAction: 'bu analiz',
         point: 'puan', points: 'puan', freeAction: 'Ücretsiz ✨',
         upgradeCta: 'Aylık 75 puan al', resetsMonthly: 'Ücretsiz aylık yenilenir',
         resetsMonthlyPremium: 'Aboneliğinizle yenilenir', nearLimit: 'Limit dolmak üzere',
-        couponOneTime: 'Kupon · tek seferlik' },
+        couponOneTime: 'Kupon · tek seferlik',
+        sourceSnapshot: 'Senkron', sourceLocal: 'Yerel',
+        sourceTitle: 'Sayıların kaynağı',
+        sourceSnapshotDesc: 'Sayılar sunucu anlık görüntüsünden alınır; yerel kullanım anında eklenir.',
+        sourceLocalDesc: 'Yeni sunucu anlık görüntüsü yok — yerel hesaplanır, bağlanınca senkronlanır.',
+        syncedAgo: (s) => `Son senk: ${s}`, refreshIn: (s) => `${s} sonra yenilenir`,
+        pendingDelta: (n) => `Senk\'den beri +${n} yerel kullanım`,
+        delayNote: 'Güncelleme 5 dk\'ya kadar gecikebilir.',
+        justNow: 'şimdi', secondsAgo: (n) => `${n}sn önce`, minutesAgo: (n) => `${n}dk önce` },
 };
 
 interface UsagePulseFooterProps {
@@ -119,6 +184,29 @@ export const UsagePulseFooter: React.FC<UsagePulseFooterProps> = ({
     }
   }, [justConsumed, weight]);
 
+  // Track quota source (snapshot vs local) for the transparency badge.
+  // Refresh on consumption events and every 30s so countdown stays accurate.
+  const [sourceInfo, setSourceInfo] = useState<QuotaSourceInfo>(() => getQuotaSourceInfo());
+  useEffect(() => {
+    setSourceInfo(getQuotaSourceInfo());
+    const id = window.setInterval(() => setSourceInfo(getQuotaSourceInfo()), 30_000);
+    return () => window.clearInterval(id);
+  }, [used, remaining, justConsumed]);
+
+  const formatRelative = (ms: number | null): string => {
+    if (!ms) return L.justNow;
+    const diff = Math.max(0, Math.floor((Date.now() - ms) / 1000));
+    if (diff < 5) return L.justNow;
+    if (diff < 60) return L.secondsAgo(diff);
+    return L.minutesAgo(Math.floor(diff / 60));
+  };
+  const formatCountdown = (sec: number | null): string => {
+    if (sec === null) return '—';
+    if (sec < 60) return L.secondsAgo(sec).replace(/^.*?(\d+).*$/, (_, n) => `${n}s`);
+    return `${Math.floor(sec / 60)}m`;
+  };
+  const isSnapshot = sourceInfo.source === 'snapshot';
+
   return (
     <div className={`mt-4 pt-3 border-t border-primary/10 ${className}`}>
       {/* Headline: Used + Remaining */}
@@ -188,11 +276,63 @@ export const UsagePulseFooter: React.FC<UsagePulseFooterProps> = ({
         </motion.div>
       </div>
 
-      {/* Sub-line: nudge or reset hint */}
-      <div className="flex items-center justify-between gap-2 mt-2 px-1">
-        <span className="text-[10px] text-muted-foreground/80 font-medium">
-          {resetHint}
-        </span>
+      {/* Sub-line: source badge + reset hint + upgrade nudge */}
+      <div className="flex items-center justify-between gap-2 mt-2 px-1 flex-wrap">
+        <div className="flex items-center gap-1.5 min-w-0">
+          {/* Transparency badge: Local vs Snapshot */}
+          <Popover>
+            <PopoverTrigger asChild>
+              <button
+                type="button"
+                aria-label={L.sourceTitle}
+                className={`inline-flex items-center gap-1 rounded-full px-1.5 py-0.5 text-[9.5px] font-bold border transition-colors ${
+                  isSnapshot
+                    ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-700 dark:text-emerald-400 hover:bg-emerald-500/15'
+                    : 'bg-amber-500/10 border-amber-500/30 text-amber-700 dark:text-amber-400 hover:bg-amber-500/15'
+                }`}
+              >
+                {isSnapshot
+                  ? <Cloud className="w-2.5 h-2.5" />
+                  : <HardDrive className="w-2.5 h-2.5" />}
+                <span>{isSnapshot ? L.sourceSnapshot : L.sourceLocal}</span>
+                <Info className="w-2.5 h-2.5 opacity-70" />
+              </button>
+            </PopoverTrigger>
+            <PopoverContent
+              align="start"
+              sideOffset={6}
+              className="w-72 p-3 text-[11px] leading-relaxed"
+            >
+              <div className="flex items-center gap-1.5 mb-1.5 font-bold text-foreground">
+                {isSnapshot
+                  ? <Cloud className="w-3.5 h-3.5 text-emerald-500" />
+                  : <HardDrive className="w-3.5 h-3.5 text-amber-500" />}
+                <span>{L.sourceTitle}</span>
+              </div>
+              <p className="text-muted-foreground mb-2">
+                {isSnapshot ? L.sourceSnapshotDesc : L.sourceLocalDesc}
+              </p>
+              <div className="space-y-1 text-[10.5px] text-foreground/80 border-t border-border/30 pt-2">
+                {isSnapshot ? (
+                  <>
+                    <div>{L.syncedAgo(formatRelative(sourceInfo.snapshotAt))}</div>
+                    <div>{L.refreshIn(formatCountdown(sourceInfo.expiresInSec))}</div>
+                    {sourceInfo.pendingLocalDelta > 0 && (
+                      <div className="text-primary font-semibold">
+                        {L.pendingDelta(sourceInfo.pendingLocalDelta)}
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <div className="text-amber-600 dark:text-amber-400 font-medium">{L.delayNote}</div>
+                )}
+              </div>
+            </PopoverContent>
+          </Popover>
+          <span className="text-[10px] text-muted-foreground/80 font-medium truncate">
+            {resetHint}
+          </span>
+        </div>
         {isFree && (isNearLimit || isLimitReached) && (
           <button
             onClick={() => navigate('/pricing-demo')}

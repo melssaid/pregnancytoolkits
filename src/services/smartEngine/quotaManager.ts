@@ -71,6 +71,52 @@ function logDrift(entries: DriftEntry[]): void {
 }
 
 /**
+ * Diagnostic info about where the displayed quota numbers come from.
+ * Used by UI badges/tooltips to reduce user confusion about local vs server data.
+ */
+export interface QuotaSourceInfo {
+  /** "snapshot" = server snapshot is authoritative (fresh, within TTL).
+   *  "local"    = no fresh snapshot; numbers come purely from localStorage. */
+  source: "snapshot" | "local";
+  /** Epoch ms when the current snapshot was received from the server. null if local-only. */
+  snapshotAt: number | null;
+  /** Seconds until the snapshot expires (TTL). null when local-only. */
+  expiresInSec: number | null;
+  /** TTL of a snapshot in seconds (constant). */
+  ttlSec: number;
+  /** Local consumption added on top of snapshot baseline (immediate decrement). */
+  pendingLocalDelta: number;
+}
+
+/**
+ * Returns where the currently displayed quota numbers come from
+ * (server snapshot vs local) plus freshness info — for badges/tooltips.
+ */
+export function getQuotaSourceInfo(): QuotaSourceInfo {
+  const snap = readServerSnapshot();
+  const local = readQuota();
+  if (!snap) {
+    return {
+      source: "local",
+      snapshotAt: null,
+      expiresInSec: null,
+      ttlSec: SERVER_SNAPSHOT_TTL_MS / 1000,
+      pendingLocalDelta: 0,
+    };
+  }
+  const baseline = snap.localUsedAtSnapshot ?? local.used;
+  const delta = Math.max(0, local.used - baseline);
+  const expiresInMs = Math.max(0, SERVER_SNAPSHOT_TTL_MS - (Date.now() - snap.receivedAt));
+  return {
+    source: "snapshot",
+    snapshotAt: snap.receivedAt,
+    expiresInSec: Math.floor(expiresInMs / 1000),
+    ttlSec: SERVER_SNAPSHOT_TTL_MS / 1000,
+    pendingLocalDelta: delta,
+  };
+}
+
+/**
  * Read the most recent drift log entries (diagnostic helper for admin dashboards).
  */
 export function getDriftLog(): DriftEntry[] {
