@@ -1,6 +1,6 @@
-import { useEffect, useMemo, useState, useCallback, useRef } from "react";
+import { useEffect, useMemo, useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { Bookmark, BookmarkCheck, Share2, ArrowUp, List, X, Link2, Mail, Send, MessageCircle, Facebook, Twitter } from "lucide-react";
+import { Bookmark, BookmarkCheck, ArrowUp, List, X } from "lucide-react";
 import { toast } from "sonner";
 import { useSavedResults } from "@/hooks/useSavedResults";
 
