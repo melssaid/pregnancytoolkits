@@ -103,7 +103,15 @@ const labels: Record<string, {
         point: 'puan', points: 'puan', freeAction: 'Ücretsiz ✨',
         upgradeCta: 'Aylık 75 puan al', resetsMonthly: 'Ücretsiz aylık yenilenir',
         resetsMonthlyPremium: 'Aboneliğinizle yenilenir', nearLimit: 'Limit dolmak üzere',
-        couponOneTime: 'Kupon · tek seferlik' },
+        couponOneTime: 'Kupon · tek seferlik',
+        sourceSnapshot: 'Senkron', sourceLocal: 'Yerel',
+        sourceTitle: 'Sayıların kaynağı',
+        sourceSnapshotDesc: 'Sayılar sunucu anlık görüntüsünden alınır; yerel kullanım anında eklenir.',
+        sourceLocalDesc: 'Yeni sunucu anlık görüntüsü yok — yerel hesaplanır, bağlanınca senkronlanır.',
+        syncedAgo: (s) => `Son senk: ${s}`, refreshIn: (s) => `${s} sonra yenilenir`,
+        pendingDelta: (n) => `Senk\'den beri +${n} yerel kullanım`,
+        delayNote: 'Güncelleme 5 dk\'ya kadar gecikebilir.',
+        justNow: 'şimdi', secondsAgo: (n) => `${n}sn önce`, minutesAgo: (n) => `${n}dk önce` },
 };
 
 interface UsagePulseFooterProps {
