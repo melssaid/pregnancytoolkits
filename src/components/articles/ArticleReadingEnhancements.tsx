@@ -46,7 +46,7 @@ function ReadingProgressBar() {
   );
 }
 
-/** Floating action bar — share, save, ToC, back-to-top */
+/** Floating action bar — save, ToC, back-to-top */
 export function ArticleReadingEnhancements({ slug, title, excerpt, sections, isRTL }: Props) {
   const { t, i18n } = useTranslation();
   const lang = i18n.language?.split("-")[0] || "en";
