@@ -57,8 +57,6 @@ export function ArticleReadingEnhancements({ slug, title, excerpt, sections, isR
   const [showSticky, setShowSticky] = useState(false);
   const [showTopBtn, setShowTopBtn] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [shareOpen, setShareOpen] = useState(false);
-  const shareMenuRef = useRef<HTMLDivElement | null>(null);
 
   const savedKey = `article:${slug}`;
   const saved = isSaved(savedKey);
