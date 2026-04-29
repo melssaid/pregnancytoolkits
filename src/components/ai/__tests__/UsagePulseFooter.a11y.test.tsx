@@ -92,7 +92,7 @@ function renderFooter(lang: string) {
   return render(
     <I18nextProvider i18n={i18n}>
       <MemoryRouter>
-        <UsagePulseFooter section="general" />
+        <UsagePulseFooter section="symptoms" />
       </MemoryRouter>
     </I18nextProvider>
   );
