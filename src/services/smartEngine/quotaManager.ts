@@ -287,7 +287,17 @@ export function consumeQuota(weight: InsightWeight = 1): QuotaState {
   stored.used += weight;
   stored.monthKey = getCurrentMonthKey(); // ensure current month
   writeQuota(stored);
-  return getQuotaState();
+  const state = getQuotaState();
+  // Notify listeners (AIUsageContext) so they can immediately refresh + resync server snapshot.
+  // Wrapped in try/catch — must not break consumption if dispatch fails (SSR/tests).
+  try {
+    if (typeof window !== 'undefined' && weight > 0) {
+      window.dispatchEvent(new CustomEvent('quota-consumed', {
+        detail: { weight, used: state.used, remaining: state.remaining, at: Date.now() },
+      }));
+    }
+  } catch { /* ignore */ }
+  return state;
 }
 
 /**
